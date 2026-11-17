@@ -29,7 +29,7 @@ run(python, ['-m', 'unittest', 'discover', '-s', 'torneos_yugioh/tests', '-p', '
 if (process.env.RUN_EDITORIAL_SOURCE_TESTS === '1') {
   run(python, ['-m', 'unittest', 'discover', '-s', 'torneos_yugioh/tests', '-p', 'deck_library_test.py']);
 } else {
-  console.log('Skipped historical library build: context/gpt is intentionally empty; RUN_EDITORIAL_SOURCE_TESTS=1 requires external source deliveries.');
+  console.log('Skipped historical library build: GPT research inputs belong to the independent repository; RUN_EDITORIAL_SOURCE_TESTS=1 requires external source deliveries.');
 }
 run(python, ['-m', 'unittest', 'discover', '-s', 'torneos_yugioh/tests', '-p', 'asset_paths_test.py']);
 if (fs.existsSync(path.join(root, 'outputs/ygo-import-11-decks-20261101/backend-test.php'))) {

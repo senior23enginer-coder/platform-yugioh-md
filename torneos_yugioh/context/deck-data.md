@@ -25,7 +25,7 @@ Requisitos del servidor: PHP ZipArchive, permisos de escritura en `assets/editor
 
 ## Preparación y comprobaciones locales
 
-`tools/build_deck_data_sources.py` prepara los ZIP de originales públicos de los 16 estudios activos. Excluye `03_COMPROBACIONES_NO_IMPORTAR` y vecinos de otros decks. Deben publicarse junto con los módulos y endpoints al desplegar la función.
+`tools/build_deck_data_sources.py` lee el repositorio hermano `../gpt-yugioh-promps-platform` (o `YGO_PROMPTS_ROOT`) y prepara los ZIP de originales públicos de los 16 estudios activos. Excluye `03_COMPROBACIONES_NO_IMPORTAR` y vecinos de otros decks. Deben publicarse junto con los módulos y endpoints al desplegar la función.
 
 ```powershell
 C:\Python314\python.exe torneos_yugioh/tools/build_deck_data_sources.py

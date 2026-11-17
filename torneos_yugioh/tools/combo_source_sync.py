@@ -12,7 +12,8 @@ import urllib.error
 import urllib.request
 
 APP = Path(__file__).resolve().parents[1]
-SOURCE = APP / 'context/gpt/01_INFORMACION_A_IMPORTAR'
+PROMPTS = Path(os.environ.get('YGO_PROMPTS_ROOT', str(APP.parent.parent / 'gpt-yugioh-promps-platform'))).resolve()
+SOURCE = PROMPTS / '01_INFORMACION_A_IMPORTAR'
 URL = 'https://stationxtulua.com/yugioh/?api=combo_creator&source_prompts=1'
 
 

@@ -1,12 +1,14 @@
 """Package exact per-deck author folders for the web Data export (no private QA)."""
 import hashlib
 import json
+import os
 import zipfile
 from pathlib import Path
 
 APP = Path(__file__).resolve().parents[1]
 ROOT = APP.parent
-SOURCE = APP / 'context/gpt/01_INFORMACION_PARA_IMPORTAR/decks'
+PROMPTS = Path(os.environ.get('YGO_PROMPTS_ROOT', str(ROOT.parent / 'gpt-yugioh-promps-platform'))).resolve()
+SOURCE = PROMPTS / '01_INFORMACION_PARA_IMPORTAR/decks'
 TARGET = APP / 'assets/editorial/deck-data-sources'
 
 
@@ -16,7 +18,8 @@ def build():
     index = {}
     for deck_id, entry in state['checked_studies'].items():
         record = json.loads((APP / entry['path'].removeprefix('./')).read_text(encoding='utf8'))
-        path = (ROOT / record.get('folder_delivery', {}).get('source_file', '')).resolve()
+        relative = record.get('folder_delivery', {}).get('source_file', '').removeprefix('torneos_yugioh/context/gpt/')
+        path = (PROMPTS / relative).resolve()
         if not path.is_file() or not path.is_relative_to(SOURCE.resolve()):
             continue
         folder = path.parent

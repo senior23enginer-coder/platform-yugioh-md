@@ -14,7 +14,8 @@ from pathlib import Path
 
 APP = Path(__file__).resolve().parents[1]
 ROOT = APP.parent
-SOURCE = APP / 'context/gpt/01_INFORMACION_PARA_IMPORTAR'
+PROMPTS = Path(os.environ.get('YGO_PROMPTS_ROOT', str(ROOT.parent / 'gpt-yugioh-promps-platform'))).resolve()
+SOURCE = PROMPTS / '01_INFORMACION_PARA_IMPORTAR'
 OUT = ROOT / os.environ.get('YGO_IMPORT_OUTPUT','outputs/import-20261116-v31')
 VERSION = os.environ.get('YGO_IMPORT_VERSION','20261116-folder-delivery-v31')
 TARGET = APP / 'assets/editorial' / VERSION
@@ -88,7 +89,7 @@ def plans():
     result={}
     for ref,(id,name) in CONFIRMED.items():
         file=next((SOURCE/'decks').glob(f'DECK_{ref}_*/*.md'))
-        result[str(id)]={'name':name,'file':str(file.relative_to(ROOT)), 'cards':new_inventory(file)}
+        result[str(id)]={'name':name,'file':str(file.relative_to(PROMPTS)), 'cards':new_inventory(file)}
     write(OUT/'inventory-plan.json',result)
     return result
 
@@ -311,7 +312,7 @@ def build():
         for title,body in parts:
             if re.search(r'CONTROL INDIVIDUAL|EJECUCIÓN DOCUMENTAL|AVANCE A01|PROGRESO|TABLERO DE AVANCE|ESTADO DE LOS DIEZ|CUADRO A01|CONTROLES ANTES|FIN Y CONTROL|CIERRE DE ITERACIÓN',title,re.I):continue
             player.append((title,body))
-        data['folder_delivery']={'source_sha256':hashlib.sha256(file.read_bytes()).hexdigest(),'reader':'./'+(TARGET/f'{id}-guide.html').relative_to(APP).as_posix(),'source_file':file.relative_to(ROOT).as_posix()}
+        data['folder_delivery']={'source_sha256':hashlib.sha256(file.read_bytes()).hexdigest(),'reader':'./'+(TARGET/f'{id}-guide.html').relative_to(APP).as_posix(),'source_repository':'gpt-yugioh-promps-platform','source_file':file.relative_to(PROMPTS).as_posix()}
         page=render_page(data['name'],player,file)
         (TARGET/f'{id}-guide.html').write_text(page,encoding='utf8')
         digest=write(TARGET/f'{id}.json',data)

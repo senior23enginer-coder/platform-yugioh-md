@@ -18,8 +18,7 @@ htdocs/
 
 # Generated dependencies, caches and temporary state
 # Research deliveries are local inputs; keep this directory empty in Git.
-/torneos_yugioh/context/gpt/**
-!/torneos_yugioh/context/gpt/.gitkeep
+/torneos_yugioh/context/gpt/
 node_modules/
 __pycache__/
 *.pyc

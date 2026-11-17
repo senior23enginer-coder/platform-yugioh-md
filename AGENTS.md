@@ -1,6 +1,6 @@
 # Canonical Yu-Gi-Oh repository
 
-The GitHub repository intentionally keeps `torneos_yugioh/context/gpt/` empty except for `.gitkeep`. Never commit research deliveries or prompts there. Local imports may populate that ignored folder temporarily. Preserve existing deployed editorial runtime assets; do not delete them when cleaning source deliveries. Historical source-dependent tests are opt-in via `RUN_EDITORIAL_SOURCE_TESTS=1` and require the external inputs.
+This application repository does not contain a `gpt` directory, even as an empty placeholder. Research, prompts and source deliveries belong exclusively to the sibling `gpt-yugioh-promps-platform` repository. Active import/sync tools resolve that sibling by default or use `YGO_PROMPTS_ROOT`. Do not recreate an internal GPT folder. Preserve deployed editorial runtime assets; they are application resources. Historical source-dependent tests are opt-in and require their separate external inputs.
 
 This repository is the source of truth for Station X's Yu-Gi-Oh platform. Save all platform code, tests, editorial inputs and maintained context here. Do not continue editing the old sibling `xstation/torneos_yugioh` copy.
 
@@ -15,8 +15,8 @@ This repository is the source of truth for Station X's Yu-Gi-Oh platform. Save a
 
 ## Documented combo changes
 
-- When changing a combo from a prompt delivery, update the corresponding deck/route source under `torneos_yugioh/context/gpt/01_INFORMACION_A_IMPORTAR/` as part of the same task, together with its generated data and visual/editor representation. Preserve stable deck and route IDs and version the previous content in Git/native history.
+- When changing a combo from a prompt delivery, update the corresponding deck/route source in the external `../gpt-yugioh-promps-platform/01_INFORMACION_A_IMPORTAR/` as part of the same task, together with its generated data and visual/editor representation. Preserve stable deck and route IDs and version the previous content in Git/native history.
 - Use the specific A09/A10 deck or supplementary guide and its matching structured route in `GUIAS_Y_DECISIONES_V16.json`; update all affected representations rather than only changing the renderer. Shared prompt instructions under `02_PROMPTS_MAESTRO_Y_CODEX/` change when the shared requirement changes.
 - Before reimporting, reconcile saved native editor revisions with their documented source so an older prompt cannot silently replace a player's edits. Report any source/platform difference that remains. Saving a native combo is not evidence that the local prompt files were updated; verify source writes separately before claiming synchronization.
 
-- Native documented saves now version their source prompt transactionally. Before reimporting, synchronize and read `context/gpt/01_INFORMACION_A_IMPORTAR/revisiones_editor/index.json`; its graph revisions override historical route text. Run `tools/combo_source_sync.py` and verify status before asserting local source freshness.
+- Native documented saves now version their source prompt transactionally. Before reimporting, synchronize and read `../gpt-yugioh-promps-platform/01_INFORMACION_A_IMPORTAR/revisiones_editor/index.json`; its graph revisions override historical route text. Run `tools/combo_source_sync.py` and verify status before asserting local source freshness.

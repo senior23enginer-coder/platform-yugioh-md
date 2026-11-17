@@ -1,6 +1,8 @@
 # Station X · Yu-Gi-Oh
 
-Este repositorio contiene únicamente la plataforma Yu-Gi-Oh y sus recursos de ejecución. `torneos_yugioh/context/gpt/` se conserva vacía, con un `.gitkeep` para que Git mantenga la carpeta; las entregas y prompts se gestionan como entradas locales o mediante Importar/exportar Data. No se incluyen credenciales, dependencias instaladas ni archivos privados de trabajo. Los recursos editoriales ya publicados permanecen en `assets/editorial/`, porque la plataforma los utiliza para sus guías y exportaciones.
+Este repositorio contiene únicamente la plataforma Yu-Gi-Oh y sus recursos de ejecución. **No contiene una carpeta `gpt`.** Los prompts y entregas pertenecen al repositorio independiente [gpt-yugioh-promps-platform](https://github.com/senior23enginer-coder/gpt-yugioh-promps-platform). No se incluyen credenciales, dependencias instaladas ni archivos privados de trabajo. Los recursos editoriales ya publicados permanecen en `assets/editorial/`, porque la plataforma los utiliza para sus guías y exportaciones.
+
+Las herramientas activas de importación y sincronización leen por defecto el clon hermano `../gpt-yugioh-promps-platform/`. Para ubicarlo en otro lugar, definir `YGO_PROMPTS_ROOT` con la raíz de ese repositorio. La importación ZIP desde la web sigue funcionando íntegramente en el servidor, sin necesitar ninguno de los clones locales.
 
 Repositorio oficial de la plataforma: https://github.com/senior23enginer-coder/platform-yugioh-md. Todo cambio de código, pruebas, documentación y contenido editorial de Yu-Gi-Oh se mantiene aquí.
 
@@ -9,7 +11,7 @@ Repositorio oficial de la plataforma: https://github.com/senior23enginer-coder/p
 - `torneos_yugioh/`: aplicación PHP, frontend, recursos, pruebas y herramientas editoriales.
 - `torneos_yugioh/context/README.md`: índice de documentación funcional y técnica.
 - `torneos_yugioh/context/editorial-sync-state.json`: referencia del contenido editorial activo y sus fuentes.
-- `torneos_yugioh/context/gpt/`: carpeta vacía reservada para entradas locales, excluidas del control de versiones.
+- `../gpt-yugioh-promps-platform/`: repositorio independiente de prompts, entregas e investigación; no forma parte de este árbol.
 - `outputs/ygo-editorial-sync-20261030/`: contexto de sincronización y base histórica para los demás decks.
 - `outputs/ygo-import-11-decks-20261101/`: inventario y evidencias de la integración de los 11 decks.
 - `station_x_perfiles_67_decks.txt`: fuente histórica; no sustituye las referencias activas del estado editorial.
@@ -42,7 +44,7 @@ npm run test:calculator
 npm run test:export
 ```
 
-`npm test` ejecuta las pruebas unitarias PHP, las paridades JS/PHP y la sincronización editorial en archivos temporales; no conecta con producción. Si PHP o Python no están en PATH, definir `PHP_BINARY` y `PYTHON_BINARY` con sus ejecutables. Las comprobaciones históricas que necesitan entregas externas de `context/gpt` se ejecutan solo con `RUN_EDITORIAL_SOURCE_TESTS=1` y esas entregas presentes; la carpeta se distribuye vacía.
+`npm test` ejecuta las pruebas unitarias PHP, las paridades JS/PHP y la sincronización editorial en archivos temporales; no conecta con producción. Si PHP o Python no están en PATH, definir `PHP_BINARY` y `PYTHON_BINARY` con sus ejecutables. Las comprobaciones históricas que necesitan entregas externas se ejecutan solo con `RUN_EDITORIAL_SOURCE_TESTS=1` y sus entradas presentes en el repositorio independiente.
 
 Los escenarios de navegador y las pruebas de integración con MySQL tienen requisitos propios: consultar `torneos_yugioh/context/testing.md` y cada prueba antes de ejecutarla. No ejecutar pruebas de mutación sobre producción. La prueba de ciclo de temporadas requiere una base de prueba específica y no forma parte del comando anterior.
 
