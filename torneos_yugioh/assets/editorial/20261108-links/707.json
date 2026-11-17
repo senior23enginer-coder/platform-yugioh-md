@@ -1,0 +1,1838 @@
+{
+  "schema": "station-x-curated-v62",
+  "deck_id": 707,
+  "name": "Dark Magician",
+  "format": "rush_duel",
+  "cards": [
+    {
+      "id": "707:A08:C001",
+      "cid": 15451,
+      "name": "Ataque Mágico Oscuro",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 446
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/15451.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Destruye todas las cartas Mágicas y Trampas del campo rival."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — removal / apertura de campo."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Controlar un Mago Oscuro boca arriba."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Destruye todas las cartas Mágicas y Trampas del campo rival."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15451&ope=2"
+      ],
+      "role": "Carta Mágica Normal — removal / apertura de campo.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Carta Mágica Normal — removal / apertura de campo",
+        "relation": "Destruye todas las cartas Mágicas y Trampas del campo rival",
+        "risk": "Controlar un Mago Oscuro boca arriba",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Destruye todas las cartas Mágicas y Trampas del campo rival."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Destruye todas las cartas Mágicas y Trampas del campo rival."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        }
+      ],
+      "learning": {
+        "Para qué sirve": "Carta Mágica Normal — removal / apertura de campo..",
+        "Aplicación concreta registrada": "Destruye todas las cartas Mágicas y Trampas del campo rival.",
+        "Limitación a respetar": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [
+        "M1",
+        "M2"
+      ],
+      "related_practice": [
+        "M3"
+      ],
+      "route_links": []
+    },
+    {
+      "id": "707:A08:C002",
+      "cid": 16772,
+      "name": "Distribuidor Maravilloso",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 447
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16772.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Enviar tres cartas de la mano al Cementerio y robar tres cartas."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Tener hasta tres monstruos en el Cementerio y pagar 300 LP."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Enviar tres cartas de la mano al Cementerio y robar tres cartas."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: priorizar consistencia sin comprometer piezas de Fusión; segundo: buscar la carta que falta para superar el campo rival; tardío: solo aporta ventaja si queda un objetivo y su coste puede pagarse."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16772&ope=2"
+      ],
+      "role": "Monstruo de Efecto — consistencia / reciclaje.",
+      "synergy": {
+        "function": "Sinergia directa descrita",
+        "resource": "Envío mencionado en la interacción; no equivale por sí mismo a descarte desde la mano",
+        "labels": [
+          "Sinergia directa"
+        ],
+        "reason": "Monstruo de Efecto — consistencia / reciclaje",
+        "relation": "Enviar tres cartas de la mano al Cementerio y robar tres cartas",
+        "risk": "Tener hasta tres monstruos en el Cementerio y pagar 300 LP",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Enviar tres cartas de la mano al Cementerio y robar tres cartas."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Enviar tres cartas de la mano al Cementerio y robar tres cartas."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Envío mencionado en la interacción; no equivale por sí mismo a descarte desde la mano."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ],
+      "learning": {
+        "Para qué sirve": "Monstruo de Efecto — consistencia / reciclaje..",
+        "Aplicación concreta registrada": "Enviar tres cartas de la mano al Cementerio y robar tres cartas.",
+        "Limitación a respetar": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": []
+    },
+    {
+      "id": "707:A08:C003",
+      "cid": 18685,
+      "name": "Maga Legendaria",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 448
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/18685.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Revelar las tres cartas superiores; puede enviar un monstruo revelado al Cementerio y recuperar un monstruo Normal LEGEND del Cementerio."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — monstruo de apoyo/material o recurso de Sacrificio."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "No tiene requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Revelar las tres cartas superiores; puede enviar un monstruo revelado al Cementerio y recuperar un monstruo Normal LEGEND del Cementerio."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18685&ope=2"
+      ],
+      "role": "Monstruo de Efecto — monstruo de apoyo/material o recurso de Sacrificio.",
+      "synergy": {
+        "function": "Sinergia directa descrita",
+        "resource": "Envío mencionado en la interacción; no equivale por sí mismo a descarte desde la mano",
+        "labels": [
+          "Sinergia directa"
+        ],
+        "reason": "Monstruo de Efecto — monstruo de apoyo/material o recurso de Sacrificio",
+        "relation": "Revelar las tres cartas superiores; puede enviar un monstruo revelado al Cementerio y recuperar un monstruo Normal LEGEND del Cementerio",
+        "risk": "No tiene requisito de activación",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Revelar las tres cartas superiores; puede enviar un monstruo revelado al Cementerio y recuperar un monstruo Normal LEGEND del Cementerio."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Revelar las tres cartas superiores; puede enviar un monstruo revelado al Cementerio y recuperar un monstruo Normal LEGEND del Cementerio."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Envío mencionado en la interacción; no equivale por sí mismo a descarte desde la mano."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte."
+        }
+      ],
+      "learning": {
+        "Para qué sirve": "Monstruo de Efecto — monstruo de apoyo/material o recurso de Sacrificio..",
+        "Aplicación concreta registrada": "Revelar las tres cartas superiores; puede enviar un monstruo revelado al Cementerio y recuperar un monstruo Normal LEGEND del Cementerio.",
+        "Limitación a respetar": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": []
+    },
+    {
+      "id": "707:A08:C004",
+      "cid": 19597,
+      "name": "Mago Oscuro Sabio",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 449
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19597.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Roba una carta; después puede Invocar de Modo Especial un Mago Oscuro del Cementerio."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — extensión de campo y recuperación de recursos."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Enviar desde la mano al Cementerio un Lanzador de Conjuros/OSCURIDAD."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Roba una carta; después puede Invocar de Modo Especial un Mago Oscuro del Cementerio."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: priorizar consistencia sin comprometer piezas de Fusión; segundo: buscar la carta que falta para superar el campo rival; tardío: solo aporta ventaja si queda un objetivo y su coste puede pagarse."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19597&ope=2"
+      ],
+      "role": "Monstruo de Efecto — extensión de campo y recuperación de recursos.",
+      "synergy": {
+        "function": "Sinergia directa descrita",
+        "resource": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo…",
+        "labels": [
+          "Sinergia directa"
+        ],
+        "reason": "Monstruo de Efecto — extensión de campo y recuperación de recursos",
+        "relation": "Roba una carta; después puede Invocar de Modo Especial un Mago Oscuro del Cementerio",
+        "risk": "Enviar desde la mano al Cementerio un Lanzador de Conjuros/OSCURIDAD",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Roba una carta; después puede Invocar de Modo Especial un Mago Oscuro del Cementerio."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Roba una carta; después puede Invocar de Modo Especial un Mago Oscuro del Cementerio."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo…."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ],
+      "learning": {
+        "Para qué sirve": "Monstruo de Efecto — extensión de campo y recuperación de recursos..",
+        "Aplicación concreta registrada": "Roba una carta; después puede Invocar de Modo Especial un Mago Oscuro del Cementerio.",
+        "Limitación a respetar": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [
+        "M1"
+      ],
+      "related_practice": [
+        "M3"
+      ],
+      "route_links": []
+    },
+    {
+      "id": "707:A08:C005",
+      "cid": 19329,
+      "name": "Grito de Monstruo",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 450
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19329.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Roba una carta; después puede Invocar del Cementerio un monstruo sin efecto que tenga ATK 2000 o DEF 2100."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — extensión de campo y recuperación de recursos."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Enviar de la mano un monstruo al Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Roba una carta; después puede Invocar del Cementerio un monstruo sin efecto que tenga ATK 2000 o DEF 2100."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19329&ope=2"
+      ],
+      "role": "Carta Mágica Normal — extensión de campo y recuperación de recursos.",
+      "synergy": {
+        "function": "Sinergia directa descrita",
+        "resource": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo…",
+        "labels": [
+          "Sinergia directa"
+        ],
+        "reason": "Carta Mágica Normal — extensión de campo y recuperación de recursos",
+        "relation": "Roba una carta; después puede Invocar del Cementerio un monstruo sin efecto que tenga ATK 2000 o DEF 2100",
+        "risk": "Enviar de la mano un monstruo al Cementerio",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Roba una carta; después puede Invocar del Cementerio un monstruo sin efecto que tenga ATK 2000 o DEF 2100."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Roba una carta; después puede Invocar del Cementerio un monstruo sin efecto que tenga ATK 2000 o DEF 2100."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo…."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ],
+      "learning": {
+        "Para qué sirve": "Carta Mágica Normal — extensión de campo y recuperación de recursos..",
+        "Aplicación concreta registrada": "Roba una carta; después puede Invocar del Cementerio un monstruo sin efecto que tenga ATK 2000 o DEF 2100.",
+        "Limitación a respetar": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [
+        "M1",
+        "M2",
+        "M4"
+      ],
+      "related_practice": [
+        "M2",
+        "M3"
+      ],
+      "route_links": []
+    },
+    {
+      "id": "707:A08:C006",
+      "cid": 19773,
+      "name": "Hechicero Eliminador Oscuro",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 451
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19773.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Se llama Mago Oscuro ese turno; puede devolver diez Mágicas del Cementerio al Deck para destruir un monstruo rival boca arriba de Nivel 8 o inferior."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — apoyo situacional sujeto a condición escrita."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Enviar la primera carta de tu Deck al Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Se llama Mago Oscuro ese turno; puede devolver diez Mágicas del Cementerio al Deck para destruir un monstruo rival boca arriba de Nivel 8 o inferior."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19773&ope=2"
+      ],
+      "role": "Monstruo de Efecto — apoyo situacional sujeto a condición escrita.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución. el resultado está sujeto a monstruos/cartas que puedan…",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Monstruo de Efecto — apoyo situacional sujeto a condición escrita",
+        "relation": "Se llama Mago Oscuro ese turno; puede devolver diez Mágicas del Cementerio al Deck para destruir un monstruo rival boca arriba de Nivel 8 o inferior",
+        "risk": "Enviar la primera carta de tu Deck al Cementerio",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Se llama Mago Oscuro ese turno; puede devolver diez Mágicas del Cementerio al Deck para destruir un monstruo rival boca arriba de Nivel 8 o inferior."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Se llama Mago Oscuro ese turno; puede devolver diez Mágicas del Cementerio al Deck para destruir un monstruo rival boca arriba de Nivel 8 o inferior."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución. el resultado está sujeto a monstruos/cartas que puedan…."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        }
+      ],
+      "learning": {
+        "Para qué sirve": "Monstruo de Efecto — apoyo situacional sujeto a condición escrita..",
+        "Aplicación concreta registrada": "Se llama Mago Oscuro ese turno; puede devolver diez Mágicas del Cementerio al Deck para destruir un monstruo rival boca arriba de Nivel 8 o inferior.",
+        "Limitación a respetar": "pagar/cumplir el requisito escrito antes de prometer la resolución. el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": []
+    },
+    {
+      "id": "707:A08:C007",
+      "cid": 17209,
+      "name": "Ráfaga de Resonancia Oscura",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 452
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/17209.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Otorga 1000 ATK por el turno a un Lanzador de Conjuros OSCURIDAD propio de Nivel 6+; otorga otros 1000 si controlas Mago Oscuro o Chica Maga Oscura."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — presión de combate / modificación de estadísticas."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Otorga 1000 ATK por el turno a un Lanzador de Conjuros OSCURIDAD propio de Nivel 6+; otorga otros 1000 si controlas Mago Oscuro o Chica Maga Oscura."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17209&ope=2"
+      ],
+      "role": "Carta Mágica Normal — presión de combate / modificación de estadísticas.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Carta Mágica Normal — presión de combate / modificación de estadísticas",
+        "relation": "Otorga 1000 ATK por el turno a un Lanzador de Conjuros OSCURIDAD propio de Nivel 6+; otorga otros 1000 si controlas Mago Oscuro o Chica Maga Oscura",
+        "risk": "Sin requisito de activación",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Otorga 1000 ATK por el turno a un Lanzador de Conjuros OSCURIDAD propio de Nivel 6+; otorga otros 1000 si controlas Mago Oscuro o Chica Maga Oscura."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Otorga 1000 ATK por el turno a un Lanzador de Conjuros OSCURIDAD propio de Nivel 6+; otorga otros 1000 si controlas Mago Oscuro o Chica Maga Oscura."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        }
+      ],
+      "learning": {
+        "Para qué sirve": "Carta Mágica Normal — presión de combate / modificación de estadísticas..",
+        "Aplicación concreta registrada": "Otorga 1000 ATK por el turno a un Lanzador de Conjuros OSCURIDAD propio de Nivel 6+; otorga otros 1000 si controlas Mago Oscuro o Chica Maga Oscura.",
+        "Limitación a respetar": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": []
+    },
+    {
+      "id": "707:A08:C008",
+      "cid": 20151,
+      "name": "Brillo Sombrío",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 453
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20151.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Pone hasta dos monstruos de Efecto boca arriba de cualquier Campo boca abajo en Defensa; si incluyó un monstruo rival con ATK original de al menos 2600, recupera 1500 LP."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta de Trampa Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Cuando el rival Invoca un monstruo en su turno; enviar una carta de la mano al Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Pone hasta dos monstruos de Efecto boca arriba de cualquier Campo boca abajo en Defensa; si incluyó un monstruo rival con ATK original de al menos 2600, recupera 1500 LP."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20151&ope=2"
+      ],
+      "role": "Carta de Trampa Normal — consistencia / reciclaje.",
+      "synergy": {
+        "function": "Sinergia directa descrita",
+        "resource": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución",
+        "labels": [
+          "Sinergia directa"
+        ],
+        "reason": "Carta de Trampa Normal — consistencia / reciclaje",
+        "relation": "Pone hasta dos monstruos de Efecto boca arriba de cualquier Campo boca abajo en Defensa; si incluyó un monstruo rival con ATK original de al menos 2600, recupera 1500 LP",
+        "risk": "Cuando el rival Invoca un monstruo en su turno; enviar una carta de la mano al Cementerio",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Pone hasta dos monstruos de Efecto boca arriba de cualquier Campo boca abajo en Defensa; si incluyó un monstruo rival con ATK original de al menos 2600, recupera 1500 LP."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Pone hasta dos monstruos de Efecto boca arriba de cualquier Campo boca abajo en Defensa; si incluyó un monstruo rival con ATK original de al menos 2600, recupera 1500 LP."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        }
+      ],
+      "learning": {
+        "Para qué sirve": "Carta de Trampa Normal — consistencia / reciclaje..",
+        "Aplicación concreta registrada": "Pone hasta dos monstruos de Efecto boca arriba de cualquier Campo boca abajo en Defensa; si incluyó un monstruo rival con ATK original de al menos 2600, recupera 1500 LP.",
+        "Limitación a respetar": "pagar/cumplir el requisito escrito antes de prometer la resolución.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": []
+    },
+    {
+      "id": "707:A08:C009",
+      "cid": 19598,
+      "name": "Piedra de los Magos Oscuros",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 454
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19598.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Invoca desde la mano y/o Cementerio hasta un Lanzador de Conjuros OSCURIDAD con 2500 ATK y hasta otro con 2000 ATK, boca arriba."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — extensor / habilitador de material."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Invoca desde la mano y/o Cementerio hasta un Lanzador de Conjuros OSCURIDAD con 2500 ATK y hasta otro con 2000 ATK, boca arriba."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19598&ope=2"
+      ],
+      "role": "Carta Mágica Normal — extensor / habilitador de material.",
+      "synergy": {
+        "function": "Sinergia directa descrita",
+        "resource": "Coste o consumo descrito en : comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto",
+        "labels": [
+          "Sinergia directa"
+        ],
+        "reason": "Carta Mágica Normal — extensor / habilitador de material",
+        "relation": "Invoca desde la mano y/o Cementerio hasta un Lanzador de Conjuros OSCURIDAD con 2500 ATK y hasta otro con 2000 ATK, boca arriba",
+        "risk": "Sin requisito de activación",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Invoca desde la mano y/o Cementerio hasta un Lanzador de Conjuros OSCURIDAD con 2500 ATK y hasta otro con 2000 ATK, boca arriba."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Invoca desde la mano y/o Cementerio hasta un Lanzador de Conjuros OSCURIDAD con 2500 ATK y hasta otro con 2000 ATK, boca arriba."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        }
+      ],
+      "learning": {
+        "Para qué sirve": "Carta Mágica Normal — extensor / habilitador de material..",
+        "Aplicación concreta registrada": "Invoca desde la mano y/o Cementerio hasta un Lanzador de Conjuros OSCURIDAD con 2500 ATK y hasta otro con 2000 ATK, boca arriba.",
+        "Limitación a respetar": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": []
+    },
+    {
+      "id": "707:A08:C010",
+      "cid": 15410,
+      "name": "Mago Oscuro",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 455
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/15410.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Monstruo Normal LEGEND."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "No tiene efecto."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Monstruo Normal LEGEND."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15410&ope=2"
+      ],
+      "role": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado",
+        "relation": "Monstruo Normal LEGEND",
+        "risk": "No tiene efecto",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Monstruo Normal LEGEND."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Monstruo Normal LEGEND."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte."
+        }
+      ],
+      "learning": {
+        "Para qué sirve": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado..",
+        "Aplicación concreta registrada": "Monstruo Normal LEGEND.",
+        "Limitación a respetar": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [
+        "M1",
+        "M4"
+      ],
+      "related_practice": [
+        "M2",
+        "M3"
+      ],
+      "route_links": []
+    },
+    {
+      "id": "707:A08:C011",
+      "cid": 20305,
+      "name": "Lily Aniquiladora",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 456
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20305.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Envía la primera carta del Deck al Cementerio; si era Lanzador de Conjuros, esta carta cuenta por dos Sacrificios para un Lanzador de Conjuros/OSCURIDAD en Ataque este turno."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — apoyo situacional sujeto a condición escrita."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Haber sido Invocada de Modo Normal este turno."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Envía la primera carta del Deck al Cementerio; si era Lanzador de Conjuros, esta carta cuenta por dos Sacrificios para un Lanzador de Conjuros/OSCURIDAD en Ataque este turno."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20305&ope=2"
+      ],
+      "role": "Monstruo de Efecto — apoyo situacional sujeto a condición escrita.",
+      "synergy": {
+        "function": "Sinergia directa descrita",
+        "resource": "Envío mencionado en la interacción; no equivale por sí mismo a descarte desde la mano",
+        "labels": [
+          "Sinergia directa"
+        ],
+        "reason": "Monstruo de Efecto — apoyo situacional sujeto a condición escrita",
+        "relation": "Envía la primera carta del Deck al Cementerio; si era Lanzador de Conjuros, esta carta cuenta por dos Sacrificios para un Lanzador de Conjuros/OSCURIDAD en Ataque este turno",
+        "risk": "Haber sido Invocada de Modo Normal este turno",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Envía la primera carta del Deck al Cementerio; si era Lanzador de Conjuros, esta carta cuenta por dos Sacrificios para un Lanzador de Conjuros/OSCURIDAD en Ataque este turno."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Envía la primera carta del Deck al Cementerio; si era Lanzador de Conjuros, esta carta cuenta por dos Sacrificios para un Lanzador de Conjuros/OSCURIDAD en Ataque este turno."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Envío mencionado en la interacción; no equivale por sí mismo a descarte desde la mano."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        }
+      ],
+      "learning": {
+        "Para qué sirve": "Monstruo de Efecto — apoyo situacional sujeto a condición escrita..",
+        "Aplicación concreta registrada": "Envía la primera carta del Deck al Cementerio; si era Lanzador de Conjuros, esta carta cuenta por dos Sacrificios para un Lanzador de Conjuros/OSCURIDAD en Ataque este turno.",
+        "Limitación a respetar": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": []
+    },
+    {
+      "id": "707:A08:C012",
+      "cid": 16371,
+      "name": "Chica Maga Oscura",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 457
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16371.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Gana 500 ATK por cada Mago Oscuro en ambos Cementerios."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — presión de combate / modificación de estadísticas."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "No necesita activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Gana 500 ATK por cada Mago Oscuro en ambos Cementerios."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16371&ope=2"
+      ],
+      "role": "Monstruo de Efecto — presión de combate / modificación de estadísticas.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Monstruo de Efecto — presión de combate / modificación de estadísticas",
+        "relation": "Gana 500 ATK por cada Mago Oscuro en ambos Cementerios",
+        "risk": "No necesita activación",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Gana 500 ATK por cada Mago Oscuro en ambos Cementerios."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Gana 500 ATK por cada Mago Oscuro en ambos Cementerios."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        }
+      ],
+      "learning": {
+        "Para qué sirve": "Monstruo de Efecto — presión de combate / modificación de estadísticas..",
+        "Aplicación concreta registrada": "Gana 500 ATK por cada Mago Oscuro en ambos Cementerios.",
+        "Limitación a respetar": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": []
+    },
+    {
+      "id": "707:A08:C013",
+      "cid": 15450,
+      "name": "Mil Cuchillos",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 458
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/15450.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Destruye un monstruo del Campo rival."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — removal / apertura de campo."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Controlar un Mago Oscuro boca arriba."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Destruye un monstruo del Campo rival."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15450&ope=2"
+      ],
+      "role": "Carta Mágica Normal — removal / apertura de campo.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Carta Mágica Normal — removal / apertura de campo",
+        "relation": "Destruye un monstruo del Campo rival",
+        "risk": "Controlar un Mago Oscuro boca arriba",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Destruye un monstruo del Campo rival."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Destruye un monstruo del Campo rival."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        }
+      ],
+      "learning": {
+        "Para qué sirve": "Carta Mágica Normal — removal / apertura de campo..",
+        "Aplicación concreta registrada": "Destruye un monstruo del Campo rival.",
+        "Limitación a respetar": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [
+        "M1",
+        "M2"
+      ],
+      "related_practice": [
+        "M3"
+      ],
+      "route_links": []
+    },
+    {
+      "id": "707:A08:C014",
+      "cid": 19341,
+      "name": "¡Equitación Lindasesina!",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 459
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19341.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Invoca del Cementerio en Ataque propio un monstruo cuyo ATK no supere el del recién invocado; después puede reducir en 1800 ATK hasta dos monstruos rivales boca arriba ese turno."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta de Trampa Normal — extensor / habilitador de material."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Cuando el rival Invoca boca arriba un monstruo de Efecto."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Invoca del Cementerio en Ataque propio un monstruo cuyo ATK no supere el del recién invocado; después puede reducir en 1800 ATK hasta dos monstruos rivales boca arriba ese turno."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19341&ope=2"
+      ],
+      "role": "Carta de Trampa Normal — extensor / habilitador de material.",
+      "synergy": {
+        "function": "Sinergia directa descrita",
+        "resource": "Coste o consumo descrito en : comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto",
+        "labels": [
+          "Sinergia directa"
+        ],
+        "reason": "Carta de Trampa Normal — extensor / habilitador de material",
+        "relation": "Invoca del Cementerio en Ataque propio un monstruo cuyo ATK no supere el del recién invocado; después puede reducir en 1800 ATK hasta dos monstruos rivales boca arriba ese turno",
+        "risk": "Cuando el rival Invoca boca arriba un monstruo de Efecto",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Invoca del Cementerio en Ataque propio un monstruo cuyo ATK no supere el del recién invocado; después puede reducir en 1800 ATK hasta dos monstruos rivales boca arriba ese turno."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Invoca del Cementerio en Ataque propio un monstruo cuyo ATK no supere el del recién invocado; después puede reducir en 1800 ATK hasta dos monstruos rivales boca arriba ese turno."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        }
+      ],
+      "learning": {
+        "Para qué sirve": "Carta de Trampa Normal — extensor / habilitador de material..",
+        "Aplicación concreta registrada": "Invoca del Cementerio en Ataque propio un monstruo cuyo ATK no supere el del recién invocado; después puede reducir en 1800 ATK hasta dos monstruos rivales boca arriba ese turno.",
+        "Limitación a respetar": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": []
+    },
+    {
+      "id": "707:A08:C015",
+      "cid": 17212,
+      "name": "Orden Secreta",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 460
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/17212.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Invoca un monstruo Normal de Nivel 7 desde mano o Cementerio; le da 700 ATK ese turno y lo protege frente a destrucción por Trampas rivales."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — recurso táctico cuya condición y resultado están descritos en su ficha."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Invoca un monstruo Normal de Nivel 7 desde mano o Cementerio; le da 700 ATK ese turno y lo protege frente a destrucción por Trampas rivales."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "la condición de una Mágica/Trampa y sus blancos deben cumplirse antes de resolver. No confundir esta carta con un monstruo ni usarla como material."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17212&ope=2"
+      ],
+      "role": "Carta Mágica Normal — recurso táctico cuya condición y resultado están descritos en su ficha.",
+      "synergy": {
+        "function": "Sinergia directa descrita",
+        "resource": "Coste o consumo descrito en : la condición de una Mágica/Trampa y sus blancos deben cumplirse antes de resolver. No confundir esta carta con un monstruo…",
+        "labels": [
+          "Sinergia directa"
+        ],
+        "reason": "Carta Mágica Normal — recurso táctico cuya condición y resultado están descritos en su ficha",
+        "relation": "Invoca un monstruo Normal de Nivel 7 desde mano o Cementerio; le da 700 ATK ese turno y lo protege frente a destrucción por Trampas rivales",
+        "risk": "Sin requisito de activación",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Invoca un monstruo Normal de Nivel 7 desde mano o Cementerio; le da 700 ATK ese turno y lo protege frente a destrucción por Trampas rivales."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Invoca un monstruo Normal de Nivel 7 desde mano o Cementerio; le da 700 ATK ese turno y lo protege frente a destrucción por Trampas rivales."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : la condición de una Mágica/Trampa y sus blancos deben cumplirse antes de resolver. No confundir esta carta con un monstruo…."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "la condición de una Mágica/Trampa y sus blancos deben cumplirse antes de resolver. No confundir esta carta con un monstruo ni usarla como material."
+        }
+      ],
+      "learning": {
+        "Para qué sirve": "Carta Mágica Normal — recurso táctico cuya condición y resultado están descritos en su ficha..",
+        "Aplicación concreta registrada": "Invoca un monstruo Normal de Nivel 7 desde mano o Cementerio; le da 700 ATK ese turno y lo protege frente a destrucción por Trampas rivales.",
+        "Limitación a respetar": "la condición de una Mágica/Trampa y sus blancos deben cumplirse antes de resolver. No confundir esta carta con un monstruo ni usarla como material.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [
+        "M1"
+      ],
+      "related_practice": [
+        "M3"
+      ],
+      "route_links": []
+    },
+    {
+      "id": "707:A08:C016",
+      "cid": 16372,
+      "name": "Olla de la Codicia",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 461
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16372.png",
+      "fields": [
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Roba dos cartas."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16372&ope=2"
+      ],
+      "role": "Carta Mágica Normal — consistencia / reciclaje.",
+      "synergy": {
+        "function": "Sinergia indirecta de recursos",
+        "resource": "Material o destino del Extra condicionado a los requisitos de invocación",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Carta Mágica Normal — consistencia / reciclaje",
+        "relation": "Roba dos cartas. Aportación posible como material, coste o objetivo; verificar consumidor",
+        "risk": "Sin requisito de activación",
+        "decision": "Conservar si existe consumidor legal"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Roba dos cartas."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Roba dos cartas. Aportación posible como material, coste o objetivo; verificar consumidor."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Material o destino del Extra condicionado a los requisitos de invocación."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ],
+      "learning": {
+        "Para qué sirve": "Carta Mágica Normal — consistencia / reciclaje..",
+        "Aplicación concreta registrada": "Roba dos cartas. Aportación posible como material, coste o objetivo; verificar consumidor.",
+        "Limitación a respetar": "disponer de cartas suficientes en Deck y distinguir robo de búsqueda.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": []
+    },
+    {
+      "id": "707:A08:C017",
+      "cid": 21007,
+      "name": "Maldición de la Luz Ascendente",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 462
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/21007.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Cambia un monstruo rival a Ataque boca arriba o Defensa boca abajo."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "El rival debe tener una o ninguna carta en mano."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Cambia un monstruo rival a Ataque boca arriba o Defensa boca abajo. Si el rival activó una Trampa ese turno o es el primer turno del jugador segundo, ambos roban dos."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=21007&ope=2"
+      ],
+      "role": "Carta Mágica Normal — consistencia / reciclaje.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : disponer de cartas suficientes en Deck y distinguir robo de búsqueda",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Carta Mágica Normal — consistencia / reciclaje",
+        "relation": "Cambia un monstruo rival a Ataque boca arriba o Defensa boca abajo",
+        "risk": "El rival debe tener una o ninguna carta en mano",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Cambia un monstruo rival a Ataque boca arriba o Defensa boca abajo. Si el rival activó una Trampa ese turno o es el primer turno del jugador segundo, ambos roban dos."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Cambia un monstruo rival a Ataque boca arriba o Defensa boca abajo."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ],
+      "learning": {
+        "Para qué sirve": "Carta Mágica Normal — consistencia / reciclaje..",
+        "Aplicación concreta registrada": "Cambia un monstruo rival a Ataque boca arriba o Defensa boca abajo.",
+        "Limitación a respetar": "disponer de cartas suficientes en Deck y distinguir robo de búsqueda.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": []
+    },
+    {
+      "id": "707:A08:C018",
+      "cid": 19995,
+      "name": "Gaia el Campeón Dragón Rápido",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 3,
+          "card_id": 463
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19995.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Extra Gaia sin Maldición de Dragón ni Fusión en Main: no hay ruta de acceso demostrada."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Fusionar un Guerrero con DEF 2100 y Maldición de Dragón; para el efecto, enviar la carta superior del Deck al Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Inflige daño de penetración este turno y, si la mano está vacía, puede robar una carta."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda. las tres Fusiones Gaia del Extra mencionan materiales que no aparecen completos en el Main fotografiado; NO asumir Invocación ejecutable."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19995&ope=2"
+      ],
+      "role": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre.",
+      "synergy": {
+        "function": "Sin acceso demostrado con el inventario",
+        "resource": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo…",
+        "labels": [
+          "Sin sinergia demostrada"
+        ],
+        "reason": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre",
+        "relation": "Extra Gaia sin Maldición de Dragón ni Fusión en Main: no hay ruta de acceso demostrada",
+        "risk": "Fusionar un Guerrero con DEF 2100 y Maldición de Dragón; para el efecto, enviar la carta superior del Deck al Cementerio",
+        "decision": "Revisar zona/acceso; sustitución por validar"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Inflige daño de penetración este turno y, si la mano está vacía, puede robar una carta."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Extra Gaia sin Maldición de Dragón ni Fusión en Main: no hay ruta de acceso demostrada."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo…."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda. las tres Fusiones Gaia del Extra mencionan materiales que no aparecen completos en el Main fotografiado; NO asumir Invocación ejecutable."
+        }
+      ],
+      "learning": {
+        "Para qué sirve": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre..",
+        "Aplicación concreta registrada": "Extra Gaia sin Maldición de Dragón ni Fusión en Main: no hay ruta de acceso demostrada.",
+        "Limitación a respetar": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda. las tres Fusiones Gaia del Extra mencionan materiales que no aparecen completos en el Main fotografiado; NO asumir Invocación ejecutable.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [],
+      "related_practice": [],
+      "extra_navigation": true,
+      "route_links": []
+    },
+    {
+      "id": "707:A08:C019",
+      "cid": 18298,
+      "name": "Gaia el Campeón Dragón",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 3,
+          "card_id": 464
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/18298.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Extra Gaia sin Maldición de Dragón ni Fusión en Main: no hay ruta de acceso demostrada."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Materiales nombrados: Gaia el Caballero Feroz y Maldición de Dragón."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Monstruo Fusión sin efecto activado."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18298&ope=2"
+      ],
+      "role": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre.",
+      "synergy": {
+        "function": "Sin acceso demostrado con el inventario",
+        "resource": "Coste o consumo descrito en : no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo…",
+        "labels": [
+          "Sin sinergia demostrada"
+        ],
+        "reason": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre",
+        "relation": "Extra Gaia sin Maldición de Dragón ni Fusión en Main: no hay ruta de acceso demostrada",
+        "risk": "Materiales nombrados: Gaia el Caballero Feroz y Maldición de Dragón",
+        "decision": "Revisar zona/acceso; sustitución por validar"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Monstruo Fusión sin efecto activado."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Extra Gaia sin Maldición de Dragón ni Fusión en Main: no hay ruta de acceso demostrada."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo…."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual. las tres Fusiones Gaia del Extra mencionan materiales que no aparecen completos en el Main fotografiado; NO asumir Invocación ejecutable."
+        }
+      ],
+      "learning": {
+        "Para qué sirve": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre..",
+        "Aplicación concreta registrada": "Extra Gaia sin Maldición de Dragón ni Fusión en Main: no hay ruta de acceso demostrada.",
+        "Limitación a respetar": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual. las tres Fusiones Gaia del Extra mencionan materiales que no aparecen completos en el Main fotografiado; NO asumir Invocación ejecutable.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [],
+      "related_practice": [],
+      "extra_navigation": true,
+      "route_links": []
+    },
+    {
+      "id": "707:A08:C020",
+      "cid": 19323,
+      "name": "Gaia, el Conquistador de Campeones",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 465
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19323.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Extra Gaia sin Maldición de Dragón ni Fusión en Main: no hay ruta de acceso demostrada."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Fusionar Gaia el Caballero Feroz y Maldición de Dragón; el turno que fue Invocado de Modo Especial, devolver al Deck un monstruo del Cementerio que no sea Caballero Mágico."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Elegir entre atacar directamente este turno o destruir una Mágica/Trampa rival."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. las tres Fusiones Gaia del Extra mencionan materiales que no aparecen completos en el Main fotografiado; NO asumir Invocación ejecutable."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19323&ope=2"
+      ],
+      "role": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre.",
+      "synergy": {
+        "function": "Sin acceso demostrado con el inventario",
+        "resource": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución. el resultado está sujeto a monstruos/cartas que puedan…",
+        "labels": [
+          "Sin sinergia demostrada"
+        ],
+        "reason": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre",
+        "relation": "Extra Gaia sin Maldición de Dragón ni Fusión en Main: no hay ruta de acceso demostrada",
+        "risk": "Fusionar Gaia el Caballero Feroz y Maldición de Dragón; el turno que fue Invocado de Modo Especial, devolver al Deck un monstruo del Cementerio…",
+        "decision": "Revisar zona/acceso; sustitución por validar"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Elegir entre atacar directamente este turno o destruir una Mágica/Trampa rival."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Extra Gaia sin Maldición de Dragón ni Fusión en Main: no hay ruta de acceso demostrada."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución. el resultado está sujeto a monstruos/cartas que puedan…."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. las tres Fusiones Gaia del Extra mencionan materiales que no aparecen completos en el Main fotografiado; NO asumir Invocación ejecutable."
+        }
+      ],
+      "learning": {
+        "Para qué sirve": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre..",
+        "Aplicación concreta registrada": "Extra Gaia sin Maldición de Dragón ni Fusión en Main: no hay ruta de acceso demostrada.",
+        "Limitación a respetar": "pagar/cumplir el requisito escrito antes de prometer la resolución. el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. las tres Fusiones Gaia del Extra mencionan materiales que no aparecen completos en el Main fotografiado; NO asumir Invocación ejecutable.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [],
+      "related_practice": [],
+      "extra_navigation": true,
+      "route_links": []
+    }
+  ],
+  "skills": [
+    {
+      "name": "ILLUSION OF EXECUTION",
+      "image": "./assets/editorial/20261108-links/skills/707_ILLUSION_OF_EXECUTION.jpeg"
+    }
+  ],
+  "profile": {
+    "Arquetipo": "Dark Magician de Rush Duel, con habilidad Illusion of Execution.",
+    "Tipo de estrategia": "apoyo de Mágicas, acceso al nombre Mago Oscuro y Fusiones condicionadas.",
+    "Estilo de juego": "control por herramientas Mágicas y desarrollo de monstruos Lanzadores de Conjuros.",
+    "Cómo se juega": "Mago Oscuro habilita cartas de apoyo como Mil Cuchillos y Ataque Mágico Oscuro cuando se cumplen sus condiciones; la Skill y las Fusiones registradas deben tratarse según sus textos y materiales exactos.",
+    "Cartas representativas": "Dark Magician, Dark Eradicator Warlock, Thousand Knives, Dark Magic Attack e Illusion of Execution.",
+    "Qué vigilar": "nombre temporal, turno habilitado de la Skill y acceso real a los materiales de Fusión."
+  },
+  "summary": [
+    {
+      "title": "Dictamen de conjunto",
+      "text": "Mago Oscuro Rush y sus Mágicas nombradas cooperan; el Extra Gaia registrado es actualmente incompatible por ausencia de acceso demostrado."
+    },
+    {
+      "title": "Motor que mueve el deck",
+      "text": "Mago Oscuro, Piedra, Orden Secreta, Sabio y Skill crean disponibilidad real o nombre válido de Mago Oscuro para habilitar Mágicas específicas."
+    },
+    {
+      "title": "Sinergia indirecta",
+      "text": "una carta enviada al GY puede servir como objetivo de recuperación, pero su mera presencia no activa por sí sola los efectos que requieren ese nombre en campo."
+    },
+    {
+      "title": "Conflicto decisivo",
+      "text": "la Skill local opera desde turno 2 y bajo límite por duelo; el nombre temporal solo existe tras resolver su efecto. Gaia, Gaia Campeón Dragón y Gaia Conquistador no cuentan como destinos jugables sin materiales/procedimiento."
+    },
+    {
+      "title": "Decisión concreta",
+      "text": "aclarar si siete ranuras del Extra Gaia son históricas o se desea modificar la construcción; no borrar ni agregar cartas sin autorización."
+    },
+    {
+      "title": "Qué aprender después",
+      "text": "elegir Cuchillos si el objetivo es monstruo o Ataque Mágico Oscuro si son M/T, nunca atribuir ambos finales a una mano que posee solo uno."
+    }
+  ],
+  "engine_maps": [
+    {
+      "title": "Piedra (19598) → Mago Oscuro (15410) + Chica Maga Oscura (16371)",
+      "category": "INTERACCIÓN",
+      "result": "Recuperar hasta dos cuerpos con ATK original indicado.",
+      "requirements": "Objetivos realmente disponibles en mano/GY y efectos propios.",
+      "photos": [
+        {
+          "name": "Piedra de los Magos Oscuros",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/19598.png"
+        },
+        {
+          "name": "Mago Oscuro",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/15410.png"
+        },
+        {
+          "name": "Chica Maga Oscura",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/16371.png"
+        }
+      ]
+    },
+    {
+      "title": "Mago Oscuro Sabio (19597) / Orden Secreta (17212) → Mago Oscuro",
+      "category": "INTERACCIÓN",
+      "result": "Reanimación por dos vías distintas.",
+      "requirements": "Descarte Lanzador OSCURIDAD o Normal Nivel 7 disponible.",
+      "photos": [
+        {
+          "name": "Mago Oscuro Sabio",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/19597.png"
+        },
+        {
+          "name": "Orden Secreta",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/17212.png"
+        }
+      ]
+    },
+    {
+      "title": "Hechicero Eliminador (19773) → Ataque Mágico Oscuro (15451) / Mil Cuchillos (15450)",
+      "category": "INTERACCIÓN",
+      "result": "Habilitar Mágicas que exigen «Mago Oscuro» boca arriba.",
+      "requirements": "Primero resolver el efecto de identidad temporal; duración solo ese turno.",
+      "photos": [
+        {
+          "name": "Hechicero Eliminador Oscuro",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/19773.png"
+        },
+        {
+          "name": "Ataque Mágico Oscuro",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/15451.png"
+        },
+        {
+          "name": "Mil Cuchillos",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/15450.png"
+        }
+      ]
+    },
+    {
+      "title": "Gaia Rápido (19995) / Gaia (18298) / Gaia Conquistador (19323)",
+      "category": "INTERACCIÓN",
+      "result": "Sin relación operativa actualmente demostrada.",
+      "requirements": "Faltan material «Maldición de Dragón» y método «Fusión» registrado.",
+      "photos": [
+        {
+          "name": "Gaia el Campeón Dragón Rápido",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/19995.png"
+        },
+        {
+          "name": "Gaia el Campeón Dragón",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/18298.png"
+        },
+        {
+          "name": "Gaia, el Conquistador de Campeones",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/19323.png"
+        }
+      ]
+    }
+  ],
+  "routes": [],
+  "decisions": [
+    {
+      "id": "M1",
+      "title": "Cuándo usar las Mágicas nombradas",
+      "situation": "tienes Mil Cuchillos o Ataque Mágico Oscuro, pero Mago Oscuro no está disponible bajo el nombre requerido.",
+      "options": [
+        {
+          "id": "A",
+          "text": "activar la Mágica de todos modos"
+        },
+        {
+          "id": "B",
+          "text": "preparar antes el nombre/monstruo elegible mediante Piedra, Orden Secreta, Sabio o Skill conforme a cada condición."
+        }
+      ],
+      "answer": "B. La Mágica funciona como respuesta cuando se cumple su condición, no solo por estar en la mano.",
+      "error": "",
+      "routes": []
+    },
+    {
+      "id": "M2",
+      "title": "Retirar monstruo o M/T",
+      "situation": "el rival presenta un monstruo amenazante y también Mágicas/Trampas.",
+      "options": [
+        {
+          "id": "A",
+          "text": "usar indistintamente Mil Cuchillos y Ataque Mágico Oscuro"
+        },
+        {
+          "id": "B",
+          "text": "seleccionar la carta que puede afectar el tipo de amenaza elegido."
+        }
+      ],
+      "answer": "B. Elige objetivo y momento; no confundir ambas retiradas.",
+      "error": "",
+      "routes": []
+    },
+    {
+      "id": "M3",
+      "title": "Nombre temporal de la Skill",
+      "situation": "Illusion of Execution puede generar una condición de nombre, pero solo después de su activación y resolución válidas.",
+      "options": [
+        {
+          "id": "A",
+          "text": "contar el nombre desde antes y en cualquier turno"
+        },
+        {
+          "id": "B",
+          "text": "respetar la ventana local y el período de validez."
+        }
+      ],
+      "answer": "B. El nombre de una carta no cambia retroactivamente por anunciar una Skill que aún no ha resuelto.",
+      "error": "",
+      "routes": []
+    },
+    {
+      "id": "M4",
+      "title": "Destinos Gaia del Extra sin puente",
+      "situation": "una propuesta usa Fusiones Gaia incluidas en el Extra, pero no hay un procedimiento/material demostrado desde la lista actual.",
+      "options": [
+        {
+          "id": "A",
+          "text": "mostrar esa Fusión como parte de una guía legal"
+        },
+        {
+          "id": "B",
+          "text": "elegir la línea real de Mago Oscuro y dejar el destino Gaia fuera de las jugadas hasta demostrar su acceso."
+        }
+      ],
+      "answer": "B. La existencia del monstruo en Extra no prueba que sea invocable.",
+      "error": "",
+      "routes": []
+    }
+  ],
+  "practice": [
+    {
+      "id": "M1",
+      "title": "Habilidad en el momento equivocado",
+      "challenge": "el escenario declara Illusion of Execution antes de la ventana de turno descrita. ¿Qué debe pasar?",
+      "answer": "no ejecutar ese efecto ni atribuir el nombre temporal.",
+      "explanation": "",
+      "routes": []
+    },
+    {
+      "id": "M2",
+      "title": "M/T o monstruo",
+      "challenge": "el rival solo tiene Mágicas/Trampas que quieres retirar, pero eliges una carta destinada a destruir un monstruo. ¿Cuál es el criterio de elección correcto?",
+      "answer": "usar la respuesta que afecta al tipo de carta presente, respetando primero el requisito de Mago Oscuro.",
+      "explanation": "",
+      "routes": []
+    },
+    {
+      "id": "M3",
+      "title": "Extra sin acceso",
+      "challenge": "se muestra una Fusión Gaia en Extra sin método ni materiales disponibles. ¿Es una ruta certificable solo porque aparece en el inventario?",
+      "answer": "no. Debe demostrar procedimiento, materiales y restricciones concretas. ---",
+      "explanation": "",
+      "routes": []
+    }
+  ],
+  "motor": {
+    "introduction": "Motor principal: Dark Magician + Skill ILLUSION OF EXECUTION → recursos de hechicería, control y destinos de Fusión. La Skill existe fuera del Deck; no atribuir efectos al Mago Oscuro que pertenecen solo a la habilidad.",
+    "choices": [],
+    "precaution": ""
+  }
+}

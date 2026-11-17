@@ -1,0 +1,16 @@
+.step-lesson { margin: 14px 0; max-width: 80ch; line-height: 1.65; overflow-wrap: anywhere; }
+.step-lesson > section { margin: 0 0 16px; padding: 14px; border: 1px solid #294c65; border-radius: 10px; background: #0a1b2b; }
+.step-lesson h5 { margin: 0 0 10px; font-size: 1rem; color: #80e8ff; }
+.step-lesson ol { padding-left: 24px; margin-bottom: 0; }
+.step-lesson li + li { margin-top: 10px; }
+.step-lesson dl { margin: 0; }
+.step-lesson dt { margin-top: 8px; font-weight: 700; color: #c6d9e8; }
+.step-lesson dd { margin: 0 0 8px; white-space: normal; overflow-wrap: anywhere; }
+.step-lesson .step-lesson-warnings { border-color: #52657a; }
+.step-lesson-original { margin: 12px 0; }
+.step-lesson-original p { white-space: normal; overflow-wrap: anywhere; }
+.cc-guide .cc-conditions p { white-space: pre-line; }
+.step-lesson-conditions ul { padding-left: 22px; }
+.step-lesson-conditions { overflow-wrap: anywhere; }
+.step-lesson-conditions li + li { margin-top: 10px; }
+@media(max-width:575px) { .step-lesson > section { padding: 12px; } }

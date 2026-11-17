@@ -1,0 +1,117 @@
+{
+  "version": "20261117-folder-delivery-v40",
+  "decks": {
+    "650": {
+      "path": "./assets/editorial/20261117-folder-delivery-v40/650.json",
+      "cards": 42,
+      "routes": 20,
+      "sha256": "a6ac6cd91f2f9fddadbf6a30719486af39e7ae3bf1436c6b172876073a8a79d6",
+      "presentation": "curated-v62"
+    },
+    "653": {
+      "path": "./assets/editorial/20261117-folder-delivery-v40/653.json",
+      "cards": 37,
+      "routes": 16,
+      "sha256": "7b74ddf781944d3ede7b716974cc9ff1626a44eeed537ba695741b5051cbe08c",
+      "presentation": "curated-v62"
+    },
+    "656": {
+      "path": "./assets/editorial/20261117-folder-delivery-v40/656.json",
+      "cards": 50,
+      "routes": 23,
+      "sha256": "155062e059a364bf8292b7dcf24256103af4156d778a76c7331408f7ace09536",
+      "presentation": "curated-v62"
+    },
+    "665": {
+      "path": "./assets/editorial/20261117-folder-delivery-v40/665.json",
+      "cards": 38,
+      "routes": 16,
+      "sha256": "b92f8c353345d929ce0620bb075ba3f9bc1db1cac281db45ab9697962477ba97",
+      "presentation": "curated-v62"
+    },
+    "670": {
+      "path": "./assets/editorial/20261117-folder-delivery-v40/670.json",
+      "cards": 45,
+      "routes": 11,
+      "sha256": "8e959799c4c67464f1b5bf303f9509c39dbfa51cb665e2a7edc5fb976f5e0937",
+      "presentation": "curated-v62"
+    },
+    "684": {
+      "path": "./assets/editorial/20261117-folder-delivery-v40/684.json",
+      "cards": 52,
+      "routes": 17,
+      "sha256": "618d4e263034052e84e5540f12cf6fde5884e576d8a640d3544401b8bc83539f",
+      "presentation": "curated-v62"
+    },
+    "687": {
+      "path": "./assets/editorial/20261117-folder-delivery-v40/687.json",
+      "cards": 36,
+      "routes": 22,
+      "sha256": "6c169600992d53d5c1b88bc85e52bf6e1af8e806b67158b49343141087893901",
+      "presentation": "curated-v62"
+    },
+    "704": {
+      "path": "./assets/editorial/20261117-folder-delivery-v40/704.json",
+      "cards": 17,
+      "routes": 3,
+      "sha256": "c8eb6e4b51cf3dba11528ddc18b7bd0bace59d329c9538c9288a3edcadffc3a7",
+      "presentation": "curated-v62"
+    },
+    "705": {
+      "path": "./assets/editorial/20261117-folder-delivery-v40/705.json",
+      "cards": 16,
+      "routes": 6,
+      "sha256": "5574a0fb618b4f60fedf0c87dad17a5926040191731c4eeb1daa0f67b6b6f947",
+      "presentation": "curated-v62"
+    },
+    "706": {
+      "path": "./assets/editorial/20261117-folder-delivery-v40/706.json",
+      "cards": 17,
+      "routes": 9,
+      "sha256": "0465bb6edfe6ce227813fd82796756485a4a2c86782706c7a883e6da2fac4695",
+      "presentation": "curated-v62"
+    },
+    "707": {
+      "path": "./assets/editorial/20261117-folder-delivery-v40/707.json",
+      "cards": 20,
+      "routes": 9,
+      "sha256": "ee6cd24b005584ba0afb11c7124a76516cbbd6cd0cbdd6cde399164babdf2810",
+      "presentation": "curated-v62"
+    },
+    "671": {
+      "path": "./assets/editorial/20261117-folder-delivery-v40/671.json",
+      "cards": 39,
+      "routes": 12,
+      "sha256": "96c7934e48c726957278d1895c09bd2049c993ab2bfe76b78a3a01924e2b32f7",
+      "presentation": "curated-v62"
+    },
+    "677": {
+      "path": "./assets/editorial/20261117-folder-delivery-v40/677.json",
+      "cards": 39,
+      "routes": 14,
+      "sha256": "25658fbe7863577b2ed214195ad4ba04e250f90dec09e0fb1efc9fbcd0724094",
+      "presentation": "curated-v62"
+    },
+    "660": {
+      "path": "./assets/editorial/20261117-folder-delivery-v40/660.json",
+      "cards": 36,
+      "routes": 5,
+      "sha256": "ff2e3cb8459aeb59a90966fa803b9589633028024735f511761be8b0d807ce9c",
+      "presentation": "curated-v62"
+    },
+    "673": {
+      "path": "./assets/editorial/20261117-folder-delivery-v40/673.json",
+      "cards": 39,
+      "routes": 5,
+      "sha256": "ad9c4c9e22898c4d73578d3c38be7d68c5204d929d9a9d67b79232dbc322493d",
+      "presentation": "curated-v62"
+    },
+    "699": {
+      "path": "./assets/editorial/20261117-folder-delivery-v40/699.json",
+      "cards": 39,
+      "routes": 5,
+      "sha256": "79ba66b675bd7b3f4a20544e7e7785231489fca19f4f7b08dd78461ca23e7eec",
+      "presentation": "curated-v62"
+    }
+  }
+}

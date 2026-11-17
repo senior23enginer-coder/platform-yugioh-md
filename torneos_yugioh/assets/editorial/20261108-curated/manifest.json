@@ -1,0 +1,82 @@
+{
+  "version": "20261108-curated-147",
+  "decks": {
+    "650": {
+      "path": "./assets/editorial/20261108-curated/650.json",
+      "cards": 42,
+      "routes": 6,
+      "sha256": "4a2b676b78283ad60638ca1527c37ea9dac63b35a195f286b75578ac3101f2d8",
+      "presentation": "curated-v62"
+    },
+    "653": {
+      "path": "./assets/editorial/20261108-curated/653.json",
+      "cards": 37,
+      "routes": 7,
+      "sha256": "6c1201561c65868d7c27b43a192cf522f68de8d01cf2004679fa231223fb89e2",
+      "presentation": "curated-v62"
+    },
+    "656": {
+      "path": "./assets/editorial/20261108-curated/656.json",
+      "cards": 50,
+      "routes": 9,
+      "sha256": "bf724a89bf582bec91d2971ae4f248afae40fe98eb2a4e3e78ab861794efc9cd",
+      "presentation": "curated-v62"
+    },
+    "665": {
+      "path": "./assets/editorial/20261108-curated/665.json",
+      "cards": 38,
+      "routes": 9,
+      "sha256": "b5f7cd481a6e13d44b396d4d8f88b1402b3a4e03fe6138c17ce9779b421a2643",
+      "presentation": "curated-v62"
+    },
+    "670": {
+      "path": "./assets/editorial/20261108-curated/670.json",
+      "cards": 45,
+      "routes": 7,
+      "sha256": "a9d9b31d032be158bc32b9e7df0c6dc8c4ec45c0b898c5823996429f2424eaba",
+      "presentation": "curated-v62"
+    },
+    "684": {
+      "path": "./assets/editorial/20261108-curated/684.json",
+      "cards": 52,
+      "routes": 8,
+      "sha256": "52f075d39bed8bd1a88c338e624ec1523536ed61f4fa2794c500b2db4a2561db",
+      "presentation": "curated-v62"
+    },
+    "687": {
+      "path": "./assets/editorial/20261108-curated/687.json",
+      "cards": 36,
+      "routes": 13,
+      "sha256": "ea22e2371df6a1a28fc4d3f08718be5418941760611250d511d326d6f6fb2076",
+      "presentation": "curated-v62"
+    },
+    "704": {
+      "path": "./assets/editorial/20261108-curated/704.json",
+      "cards": 17,
+      "routes": 0,
+      "sha256": "bd2f5d3f18c502fff97d25d8fd500882bcc5fd8199e1011a7bf4f43a9114c970",
+      "presentation": "curated-v62"
+    },
+    "705": {
+      "path": "./assets/editorial/20261108-curated/705.json",
+      "cards": 16,
+      "routes": 0,
+      "sha256": "41b6b305c6f3c0614ac787ba23675411328ba341e3afc3a4b2d9272b1ceeb273",
+      "presentation": "curated-v62"
+    },
+    "706": {
+      "path": "./assets/editorial/20261108-curated/706.json",
+      "cards": 17,
+      "routes": 0,
+      "sha256": "d987bbdff20db50a6af8ac77883334d8ce5503004980bfcf007520f36501b234",
+      "presentation": "curated-v62"
+    },
+    "707": {
+      "path": "./assets/editorial/20261108-curated/707.json",
+      "cards": 20,
+      "routes": 0,
+      "sha256": "b2010ad0fc974dc2eb7eb5f06a2045ebf557cf61b4aa55ac3f509b7b21d2d8ee",
+      "presentation": "curated-v62"
+    }
+  }
+}

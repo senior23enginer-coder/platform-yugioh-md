@@ -1,0 +1,1055 @@
+{
+  "deck_id": 704,
+  "name": "Pyro",
+  "format": "rush_duel",
+  "source_file": "DECK_704_PYRO.md",
+  "source_sha256": "d6391e9a31772b52a3b4df3283f01ab6a003fbc16310014211614f3ef4919c13",
+  "guide_sha256": "31f594944e531932397e3b011cb9dd9bf1532ce32ab85f0fb0ebb5770e84ccc5",
+  "eligibility_policy": "checked-only-v1",
+  "inventory": [
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 429,
+      "name": "¡Atraviesa!"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 430,
+      "name": "Germalewe"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 431,
+      "name": "Orden Secreta"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 432,
+      "name": "Hiperasistente Ember"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 433,
+      "name": "Cromatográfagas"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 434,
+      "name": "Superasistente Ember"
+    },
+    {
+      "section": "main",
+      "quantity": 2,
+      "card_id": 435,
+      "name": "Fusión"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 436,
+      "name": "Fuego Ardiente"
+    },
+    {
+      "section": "main",
+      "quantity": 2,
+      "card_id": 437,
+      "name": "Salamandra Quimicalizada"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 438,
+      "name": "Gelatina Defensiva"
+    },
+    {
+      "section": "main",
+      "quantity": 2,
+      "card_id": 439,
+      "name": "Amparo del Protector Estelar"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 440,
+      "name": "Parar la Defensa"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 441,
+      "name": "Agujero Trampa"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 442,
+      "name": "Gobernante de las Llamas"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 443,
+      "name": "Olla de la Codicia"
+    },
+    {
+      "section": "extra",
+      "quantity": 2,
+      "card_id": 444,
+      "name": "Arquero Ígneo Supergráfagas"
+    },
+    {
+      "section": "extra",
+      "quantity": 3,
+      "card_id": 445,
+      "name": "Salamandra Alquimicalizada"
+    }
+  ],
+  "cards": [
+    {
+      "id": "704:A08:C001",
+      "name": "¡Atraviesa!",
+      "cid": 15204,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/15204.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 429
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **1x**. CID Rush: **15204**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — presión de combate / modificación de estadísticas."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Otorga daño de penetración este turno a un monstruo propio boca arriba."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **ALCHEMY BLAZE** necesita revelador válido y requisitos de construcción; no se activa libremente en turno 1."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15204&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 15204: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **1x**. CID Rush: **15204**.\n- **Rol funcional:** Carta Mágica Normal — presión de combate / modificación de estadísticas.\n- **Requisito específico:** Sin requisito de activación.\n- **Efecto / resultado concreto:** Otorga daño de penetración este turno a un monstruo propio boca arriba.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** La Skill **ALCHEMY BLAZE** necesita revelador válido y requisitos de construcción; no se activa libremente en turno 1.\n- **Riesgos y dependencias:** comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15204&ope=2\n- **Contraste de fuente Rush:** CID 15204: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "704:A08:C002",
+      "name": "Germalewe",
+      "cid": 17285,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/17285.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 430
+        }
+      ],
+      "classification": "RECURSO_MATERIAL",
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **3x**. CID Rush: **17285**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "No tiene efecto."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Monstruo Normal; recurso para sacrificar o emplear como material."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**ALCHEMY BLAZE**, desde turno 2 y si se cumple el predicado de Pyro/FUEGO/DEF, puede recuperar dos piezas aptas; luego obliga a enviar una carta de mano."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17285&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 17285: fuente oficial Rush consultada en japonés; tipo Monstruo Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **3x**. CID Rush: **17285**.\n- **Rol funcional:** Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado.\n- **Requisito específico:** No tiene efecto.\n- **Efecto / resultado concreto:** Monstruo Normal; recurso para sacrificar o emplear como material.\n- **Ir primero, segundo y juego tardío:** Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza.\n- **Relación con habilidad y otras piezas:** **ALCHEMY BLAZE**, desde turno 2 y si se cumple el predicado de Pyro/FUEGO/DEF, puede recuperar dos piezas aptas; luego obliga a enviar una carta de mano.\n- **Riesgos y dependencias:** no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17285&ope=2\n- **Contraste de fuente Rush:** CID 17285: fuente oficial Rush consultada en japonés; tipo Monstruo Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "704:A08:C003",
+      "name": "Orden Secreta",
+      "cid": 17212,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/17212.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 431
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **3x**. CID Rush: **17212**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — recurso táctico cuya condición y resultado están descritos en su ficha."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Invoca un monstruo Normal de Nivel 7 desde mano o Cementerio; le da 700 ATK ese turno y lo protege frente a destrucción por Trampas rivales."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**ALCHEMY BLAZE**, desde turno 2 y si se cumple el predicado de Pyro/FUEGO/DEF, puede recuperar dos piezas aptas; luego obliga a enviar una carta de mano."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "la condición de una Mágica/Trampa y sus blancos deben cumplirse antes de resolver. No confundir esta carta con un monstruo ni usarla como material."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17212&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 17212: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **3x**. CID Rush: **17212**.\n- **Rol funcional:** Carta Mágica Normal — recurso táctico cuya condición y resultado están descritos en su ficha.\n- **Requisito específico:** Sin requisito de activación.\n- **Efecto / resultado concreto:** Invoca un monstruo Normal de Nivel 7 desde mano o Cementerio; le da 700 ATK ese turno y lo protege frente a destrucción por Trampas rivales.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** **ALCHEMY BLAZE**, desde turno 2 y si se cumple el predicado de Pyro/FUEGO/DEF, puede recuperar dos piezas aptas; luego obliga a enviar una carta de mano.\n- **Riesgos y dependencias:** la condición de una Mágica/Trampa y sus blancos deben cumplirse antes de resolver. No confundir esta carta con un monstruo ni usarla como material.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17212&ope=2\n- **Contraste de fuente Rush:** CID 17212: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "704:A08:C004",
+      "name": "Hiperasistente Ember",
+      "cid": 19291,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19291.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 432
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **3x**. CID Rush: **19291**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — extensor / habilitador de material."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "El rival debe controlar un monstruo; enviar esta carta boca arriba propia al Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Invoca desde la mano un Piro de Nivel 7+; si SP Assistant Archer está en el Cementerio, ese monstruo gana 800 ATK este turno."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**ALCHEMY BLAZE**, desde turno 2 y si se cumple el predicado de Pyro/FUEGO/DEF, puede recuperar dos piezas aptas; luego obliga a enviar una carta de mano."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19291&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 19291: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **3x**. CID Rush: **19291**.\n- **Rol funcional:** Monstruo de Efecto — extensor / habilitador de material.\n- **Requisito específico:** El rival debe controlar un monstruo; enviar esta carta boca arriba propia al Cementerio.\n- **Efecto / resultado concreto:** Invoca desde la mano un Piro de Nivel 7+; si SP Assistant Archer está en el Cementerio, ese monstruo gana 800 ATK este turno.\n- **Ir primero, segundo y juego tardío:** Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales.\n- **Relación con habilidad y otras piezas:** **ALCHEMY BLAZE**, desde turno 2 y si se cumple el predicado de Pyro/FUEGO/DEF, puede recuperar dos piezas aptas; luego obliga a enviar una carta de mano.\n- **Riesgos y dependencias:** pagar/cumplir el requisito escrito antes de prometer la resolución.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19291&ope=2\n- **Contraste de fuente Rush:** CID 19291: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "704:A08:C005",
+      "name": "Cromatográfagas",
+      "cid": 18583,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/18583.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 433
+        }
+      ],
+      "classification": "RECURSO_MATERIAL",
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **3x**. CID Rush: **18583**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "No tiene efecto."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Monstruo Normal de Nivel 7 y material nombrado de Supergráfagas Archer."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**ALCHEMY BLAZE**, desde turno 2 y si se cumple el predicado de Pyro/FUEGO/DEF, puede recuperar dos piezas aptas; luego obliga a enviar una carta de mano."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18583&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 18583: fuente oficial Rush consultada en japonés; tipo Monstruo Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **3x**. CID Rush: **18583**.\n- **Rol funcional:** Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado.\n- **Requisito específico:** No tiene efecto.\n- **Efecto / resultado concreto:** Monstruo Normal de Nivel 7 y material nombrado de Supergráfagas Archer.\n- **Ir primero, segundo y juego tardío:** Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza.\n- **Relación con habilidad y otras piezas:** **ALCHEMY BLAZE**, desde turno 2 y si se cumple el predicado de Pyro/FUEGO/DEF, puede recuperar dos piezas aptas; luego obliga a enviar una carta de mano.\n- **Riesgos y dependencias:** no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18583&ope=2\n- **Contraste de fuente Rush:** CID 18583: fuente oficial Rush consultada en japonés; tipo Monstruo Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "704:A08:C006",
+      "name": "Superasistente Ember",
+      "cid": 17963,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/17963.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 434
+        }
+      ],
+      "classification": "RECURSO_MATERIAL",
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **3x**. CID Rush: **17963**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "No tiene efecto."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Monstruo Normal de Nivel 1, material nombrado de dos Fusiones del Extra."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**ALCHEMY BLAZE**, desde turno 2 y si se cumple el predicado de Pyro/FUEGO/DEF, puede recuperar dos piezas aptas; luego obliga a enviar una carta de mano."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17963&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 17963: fuente oficial Rush consultada en japonés; tipo Monstruo Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **3x**. CID Rush: **17963**.\n- **Rol funcional:** Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado.\n- **Requisito específico:** No tiene efecto.\n- **Efecto / resultado concreto:** Monstruo Normal de Nivel 1, material nombrado de dos Fusiones del Extra.\n- **Ir primero, segundo y juego tardío:** Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza.\n- **Relación con habilidad y otras piezas:** **ALCHEMY BLAZE**, desde turno 2 y si se cumple el predicado de Pyro/FUEGO/DEF, puede recuperar dos piezas aptas; luego obliga a enviar una carta de mano.\n- **Riesgos y dependencias:** no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17963&ope=2\n- **Contraste de fuente Rush:** CID 17963: fuente oficial Rush consultada en japonés; tipo Monstruo Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "704:A08:C007",
+      "name": "Fusión",
+      "cid": 16934,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16934.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 435
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **2x**. CID Rush: **16934**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — extensor / habilitador de material."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Usa monstruos boca arriba del Campo propio como materiales, enviándolos al Cementerio para una Invocación por Fusión válida; no usa automáticamente materiales de la mano."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**ALCHEMY BLAZE**, desde turno 2 y si se cumple el predicado de Pyro/FUEGO/DEF, puede recuperar dos piezas aptas; luego obliga a enviar una carta de mano."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16934&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 16934: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **2x**. CID Rush: **16934**.\n- **Rol funcional:** Carta Mágica Normal — extensor / habilitador de material.\n- **Requisito específico:** Sin requisito de activación.\n- **Efecto / resultado concreto:** Usa monstruos boca arriba del Campo propio como materiales, enviándolos al Cementerio para una Invocación por Fusión válida; no usa automáticamente materiales de la mano.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** **ALCHEMY BLAZE**, desde turno 2 y si se cumple el predicado de Pyro/FUEGO/DEF, puede recuperar dos piezas aptas; luego obliga a enviar una carta de mano.\n- **Riesgos y dependencias:** verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16934&ope=2\n- **Contraste de fuente Rush:** CID 16934: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "704:A08:C008",
+      "name": "Fuego Ardiente",
+      "cid": 16171,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16171.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 436
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **3x**. CID Rush: **16171**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — apoyo situacional sujeto a condición escrita."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Controlar dos o más monstruos Piro boca arriba."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Inflige 300 puntos de daño; después puede destruir una Mágica/Trampa rival."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **ALCHEMY BLAZE** necesita revelador válido y requisitos de construcción; no se activa libremente en turno 1."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16171&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 16171: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **3x**. CID Rush: **16171**.\n- **Rol funcional:** Carta Mágica Normal — apoyo situacional sujeto a condición escrita.\n- **Requisito específico:** Controlar dos o más monstruos Piro boca arriba.\n- **Efecto / resultado concreto:** Inflige 300 puntos de daño; después puede destruir una Mágica/Trampa rival.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** La Skill **ALCHEMY BLAZE** necesita revelador válido y requisitos de construcción; no se activa libremente en turno 1.\n- **Riesgos y dependencias:** el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16171&ope=2\n- **Contraste de fuente Rush:** CID 16171: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "704:A08:C009",
+      "name": "Salamandra Quimicalizada",
+      "cid": 17868,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/17868.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 437
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **2x**. CID Rush: **17868**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — presión de combate / modificación de estadísticas."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Devolver al Deck tres monstruos Piro del propio Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Todos los monstruos boca arriba rivales pierden 100 ATK por cada monstruo en el Cementerio rival hasta fin de turno."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**ALCHEMY BLAZE**, desde turno 2 y si se cumple el predicado de Pyro/FUEGO/DEF, puede recuperar dos piezas aptas; luego obliga a enviar una carta de mano."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17868&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 17868: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **2x**. CID Rush: **17868**.\n- **Rol funcional:** Monstruo de Efecto — presión de combate / modificación de estadísticas.\n- **Requisito específico:** Devolver al Deck tres monstruos Piro del propio Cementerio.\n- **Efecto / resultado concreto:** Todos los monstruos boca arriba rivales pierden 100 ATK por cada monstruo en el Cementerio rival hasta fin de turno.\n- **Ir primero, segundo y juego tardío:** Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales.\n- **Relación con habilidad y otras piezas:** **ALCHEMY BLAZE**, desde turno 2 y si se cumple el predicado de Pyro/FUEGO/DEF, puede recuperar dos piezas aptas; luego obliga a enviar una carta de mano.\n- **Riesgos y dependencias:** pagar/cumplir el requisito escrito antes de prometer la resolución.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17868&ope=2\n- **Contraste de fuente Rush:** CID 17868: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "704:A08:C010",
+      "name": "Gelatina Defensiva",
+      "cid": 18646,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/18646.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 438
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **1x**. CID Rush: **18646**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta de Trampa Normal — defensa ante ataque y prevención de daño de batalla."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Cuando un monstruo rival de Nivel 8 o inferior declara ataque."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Envía al Cementerio la carta superior de tu Deck y evita todo el daño de batalla ese turno; si tienes 3000 LP o más, recibes además 2000 de daño de efecto."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: construir la condición de activación; segundo: verificar que la jugada responde al estado rival actual; tardío: ahorrar el recurso si todavía no se cumple el requisito."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **ALCHEMY BLAZE** necesita revelador válido y requisitos de construcción; no se activa libremente en turno 1."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18646&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 18646, nombre japonés **バッファード・スライム** (Buffered Slime): texto oficial localizado con `request_locale=ja`, tipo Carta de Trampa Normal. La condición de ataque de monstruo rival de Nivel 8 o inferior, el envío de la carta superior del Deck, la prevención de daño de batalla del turno y el daño de efecto de 2000 si los LP propios son al menos 3000 coinciden con el resumen previo. La denominación española «Gelatina Defensiva» sigue siendo un alias del inventario; no se impone traducción oficial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **1x**. CID Rush: **18646**.\n- **Rol funcional:** Carta de Trampa Normal — defensa ante ataque y prevención de daño de batalla.\n- **Requisito específico:** Cuando un monstruo rival de Nivel 8 o inferior declara ataque.\n- **Efecto / resultado concreto:** Envía al Cementerio la carta superior de tu Deck y evita todo el daño de batalla ese turno; si tienes 3000 LP o más, recibes además 2000 de daño de efecto.\n- **Ir primero, segundo y juego tardío:** Primero: construir la condición de activación; segundo: verificar que la jugada responde al estado rival actual; tardío: ahorrar el recurso si todavía no se cumple el requisito.\n- **Relación con habilidad y otras piezas:** La Skill **ALCHEMY BLAZE** necesita revelador válido y requisitos de construcción; no se activa libremente en turno 1.\n- **Riesgos y dependencias:** comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18646&ope=2\n- **Contraste de fuente Rush:** CID 18646, nombre japonés **バッファード・スライム** (Buffered Slime): texto oficial localizado con `request_locale=ja`, tipo Carta de Trampa Normal. La condición de ataque de monstruo rival de Nivel 8 o inferior, el envío de la carta superior del Deck, la prevención de daño de batalla del turno y el daño de efecto de 2000 si los LP propios son al menos 3000 coinciden con el resumen previo. La denominación española «Gelatina Defensiva» sigue siendo un alias del inventario; no se impone traducción oficial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "704:A08:C011",
+      "name": "Amparo del Protector Estelar",
+      "cid": 19700,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19700.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 439
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **2x**. CID Rush: **19700**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta de Trampa Normal — presión de combate / modificación de estadísticas."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "En el turno rival, cuando roba o Invoca un monstruo; enviar un monstruo propio del Campo al Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "El rival solo puede declarar un ataque en ese turno. Opcionalmente permite tomar control de una Fusión Caballero Mágico rival de Nivel 9+ y ATK original 3000."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**ALCHEMY BLAZE**, desde turno 2 y si se cumple el predicado de Pyro/FUEGO/DEF, puede recuperar dos piezas aptas; luego obliga a enviar una carta de mano."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual. pagar/cumplir el requisito escrito antes de prometer la resolución."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19700&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 19700: fuente oficial Rush consultada en japonés; tipo Carta de Trampa Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **2x**. CID Rush: **19700**.\n- **Rol funcional:** Carta de Trampa Normal — presión de combate / modificación de estadísticas.\n- **Requisito específico:** En el turno rival, cuando roba o Invoca un monstruo; enviar un monstruo propio del Campo al Cementerio.\n- **Efecto / resultado concreto:** El rival solo puede declarar un ataque en ese turno. Opcionalmente permite tomar control de una Fusión Caballero Mágico rival de Nivel 9+ y ATK original 3000.\n- **Ir primero, segundo y juego tardío:** Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo.\n- **Relación con habilidad y otras piezas:** **ALCHEMY BLAZE**, desde turno 2 y si se cumple el predicado de Pyro/FUEGO/DEF, puede recuperar dos piezas aptas; luego obliga a enviar una carta de mano.\n- **Riesgos y dependencias:** verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual. pagar/cumplir el requisito escrito antes de prometer la resolución.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19700&ope=2\n- **Contraste de fuente Rush:** CID 19700: fuente oficial Rush consultada en japonés; tipo Carta de Trampa Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "704:A08:C012",
+      "name": "Parar la Defensa",
+      "cid": 16776,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16776.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 440
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **1x**. CID Rush: **16776**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — presión de combate / modificación de estadísticas."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Cambia un monstruo rival que esté en Defensa a Ataque boca arriba."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **ALCHEMY BLAZE** necesita revelador válido y requisitos de construcción; no se activa libremente en turno 1."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16776&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 16776: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **1x**. CID Rush: **16776**.\n- **Rol funcional:** Carta Mágica Normal — presión de combate / modificación de estadísticas.\n- **Requisito específico:** Sin requisito de activación.\n- **Efecto / resultado concreto:** Cambia un monstruo rival que esté en Defensa a Ataque boca arriba.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** La Skill **ALCHEMY BLAZE** necesita revelador válido y requisitos de construcción; no se activa libremente en turno 1.\n- **Riesgos y dependencias:** comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16776&ope=2\n- **Contraste de fuente Rush:** CID 16776: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "704:A08:C013",
+      "name": "Agujero Trampa",
+      "cid": 15913,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/15913.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 441
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **1x**. CID Rush: **15913**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta de Trampa Normal — extensor / habilitador de material."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Cuando el rival Invoca de Modo Normal un monstruo de al menos 1000 ATK."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Destruye ese monstruo invocado."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **ALCHEMY BLAZE** necesita revelador válido y requisitos de construcción; no se activa libremente en turno 1."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15913&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 15913: fuente oficial Rush consultada en japonés; tipo Carta de Trampa Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **1x**. CID Rush: **15913**.\n- **Rol funcional:** Carta de Trampa Normal — extensor / habilitador de material.\n- **Requisito específico:** Cuando el rival Invoca de Modo Normal un monstruo de al menos 1000 ATK.\n- **Efecto / resultado concreto:** Destruye ese monstruo invocado.\n- **Ir primero, segundo y juego tardío:** Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo.\n- **Relación con habilidad y otras piezas:** La Skill **ALCHEMY BLAZE** necesita revelador válido y requisitos de construcción; no se activa libremente en turno 1.\n- **Riesgos y dependencias:** el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15913&ope=2\n- **Contraste de fuente Rush:** CID 15913: fuente oficial Rush consultada en japonés; tipo Carta de Trampa Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "704:A08:C014",
+      "name": "Gobernante de las Llamas",
+      "cid": 17926,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/17926.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 442
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **1x**. CID Rush: **17926**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — extensor / habilitador de material."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "No necesita activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Esta carta boca arriba cuenta por dos Sacrificios para Invocar por Sacrificio en Ataque un monstruo de FUEGO."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: construir la condición de activación; segundo: verificar que la jugada responde al estado rival actual; tardío: ahorrar el recurso si todavía no se cumple el requisito."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **ALCHEMY BLAZE** necesita revelador válido y requisitos de construcción; no se activa libremente en turno 1."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17926&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 17926: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **1x**. CID Rush: **17926**.\n- **Rol funcional:** Monstruo de Efecto — extensor / habilitador de material.\n- **Requisito específico:** No necesita activación.\n- **Efecto / resultado concreto:** Esta carta boca arriba cuenta por dos Sacrificios para Invocar por Sacrificio en Ataque un monstruo de FUEGO.\n- **Ir primero, segundo y juego tardío:** Primero: construir la condición de activación; segundo: verificar que la jugada responde al estado rival actual; tardío: ahorrar el recurso si todavía no se cumple el requisito.\n- **Relación con habilidad y otras piezas:** La Skill **ALCHEMY BLAZE** necesita revelador válido y requisitos de construcción; no se activa libremente en turno 1.\n- **Riesgos y dependencias:** comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17926&ope=2\n- **Contraste de fuente Rush:** CID 17926: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "704:A08:C015",
+      "name": "Olla de la Codicia",
+      "cid": 16372,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16372.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 443
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **1x**. CID Rush: **16372**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Roba dos cartas."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **ALCHEMY BLAZE** necesita revelador válido y requisitos de construcción; no se activa libremente en turno 1."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16372&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 16372: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **1x**. CID Rush: **16372**.\n- **Rol funcional:** Carta Mágica Normal — consistencia / reciclaje.\n- **Requisito específico:** Sin requisito de activación.\n- **Efecto / resultado concreto:** Roba dos cartas.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** La Skill **ALCHEMY BLAZE** necesita revelador válido y requisitos de construcción; no se activa libremente en turno 1.\n- **Riesgos y dependencias:** disponer de cartas suficientes en Deck y distinguir robo de búsqueda.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16372&ope=2\n- **Contraste de fuente Rush:** CID 16372: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "704:A08:C016",
+      "name": "Arquero Ígneo Supergráfagas",
+      "cid": 19990,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19990.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 2,
+          "card_id": 444
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Extra **2x**. CID Rush: **19990**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Fusionar Chromatographagas + SP Assistant Archer. Devolver al tope del Deck un Piro Normal de Nivel 7 del Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Gana 2500 ATK este turno; opcionalmente reduce en 1500 ATK un monstruo rival boca arriba de Nivel 9 o inferior."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **ALCHEMY BLAZE** necesita revelador válido y requisitos de construcción; no se activa libremente en turno 1."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19990&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 19990: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Extra **2x**. CID Rush: **19990**.\n- **Rol funcional:** Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre.\n- **Requisito específico:** Fusionar Chromatographagas + SP Assistant Archer. Devolver al tope del Deck un Piro Normal de Nivel 7 del Cementerio.\n- **Efecto / resultado concreto:** Gana 2500 ATK este turno; opcionalmente reduce en 1500 ATK un monstruo rival boca arriba de Nivel 9 o inferior.\n- **Ir primero, segundo y juego tardío:** Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra.\n- **Relación con habilidad y otras piezas:** La Skill **ALCHEMY BLAZE** necesita revelador válido y requisitos de construcción; no se activa libremente en turno 1.\n- **Riesgos y dependencias:** pagar/cumplir el requisito escrito antes de prometer la resolución.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19990&ope=2\n- **Contraste de fuente Rush:** CID 19990: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "704:A08:C017",
+      "name": "Salamandra Alquimicalizada",
+      "cid": 18614,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/18614.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 3,
+          "card_id": 445
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Extra **3x**. CID Rush: **18614**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Fusionar Chemicalized Salamander + SP Assistant Archer; usar efecto en la Main Phase en que se invocó de Modo Especial."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Destruye todas las Mágicas/Trampas de ambos Campos y opcionalmente reduce 1000 ATK a los monstruos rivales por cada Mágica destruida."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**ALCHEMY BLAZE**, desde turno 2 y si se cumple el predicado de Pyro/FUEGO/DEF, puede recuperar dos piezas aptas; luego obliga a enviar una carta de mano."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18614&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 18614: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Extra **3x**. CID Rush: **18614**.\n- **Rol funcional:** Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre.\n- **Requisito específico:** Fusionar Chemicalized Salamander + SP Assistant Archer; usar efecto en la Main Phase en que se invocó de Modo Especial.\n- **Efecto / resultado concreto:** Destruye todas las Mágicas/Trampas de ambos Campos y opcionalmente reduce 1000 ATK a los monstruos rivales por cada Mágica destruida.\n- **Ir primero, segundo y juego tardío:** Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra.\n- **Relación con habilidad y otras piezas:** **ALCHEMY BLAZE**, desde turno 2 y si se cumple el predicado de Pyro/FUEGO/DEF, puede recuperar dos piezas aptas; luego obliga a enviar una carta de mano.\n- **Riesgos y dependencias:** el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18614&ope=2\n- **Contraste de fuente Rush:** CID 18614: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    }
+  ],
+  "combos": [],
+  "engine_relations": [],
+  "routes": [],
+  "checked_interactions": [],
+  "checked_cases": []
+}

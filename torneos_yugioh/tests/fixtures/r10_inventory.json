@@ -1,0 +1,3203 @@
+{
+  "allDecks": [
+    {
+      "id": 650,
+      "name": "Elfnote",
+      "format_codes": [
+        "tcg_advanced"
+      ]
+    },
+    {
+      "id": 670,
+      "name": "Infernoble",
+      "format_codes": [
+        "tcg_advanced"
+      ]
+    },
+    {
+      "id": 684,
+      "name": "Cyber Dragon Pure",
+      "format_codes": [
+        "tcg_advanced"
+      ]
+    },
+    {
+      "id": 656,
+      "name": "Tearlaments",
+      "format_codes": [
+        "tcg_advanced"
+      ]
+    },
+    {
+      "id": 665,
+      "name": "Kashtira Pure",
+      "format_codes": [
+        "tcg_advanced"
+      ]
+    },
+    {
+      "id": 653,
+      "name": "DoomZ",
+      "format_codes": [
+        "tcg_advanced"
+      ]
+    },
+    {
+      "id": 687,
+      "name": "Volcanic",
+      "format_codes": [
+        "tcg_advanced"
+      ]
+    },
+    {
+      "id": 704,
+      "name": "Pyro",
+      "format_codes": [
+        "rush_duel"
+      ]
+    },
+    {
+      "id": 705,
+      "name": "Royal",
+      "format_codes": [
+        "rush_duel"
+      ]
+    },
+    {
+      "id": 706,
+      "name": "Hero",
+      "format_codes": [
+        "rush_duel"
+      ]
+    },
+    {
+      "id": 707,
+      "name": "Dark Magician",
+      "format_codes": [
+        "rush_duel"
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "id": 200,
+      "deck_id": 650,
+      "card_name": "Los Tres Campeones de Almaespada / The Three Champions of Swordsoul [Synchro; Konami 22356]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 74405783
+    },
+    {
+      "id": 201,
+      "deck_id": 650,
+      "card_name": "Bestia Nube Dorada – Malong / Golden Cloud Beast - Malong [Synchro]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 93125329
+    },
+    {
+      "id": 202,
+      "deck_id": 650,
+      "card_name": "Dragón Azote de Tormentas Destorbim / Storm-Bane Dragon Destorbim [Synchro]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 94641726
+    },
+    {
+      "id": 203,
+      "deck_id": 650,
+      "card_name": "Ecclesia y el Dragón Oscuro / Ecclesia and the Dark Dragon [extra; efecto y material según carta]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 78397661
+    },
+    {
+      "id": 204,
+      "deck_id": 650,
+      "card_name": "Elfnota Serafín Strelitzia / Elfnote Seraphim Strelitzia [Synchro]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 42302563
+    },
+    {
+      "id": 205,
+      "deck_id": 650,
+      "card_name": "Elfnota Orgullosa de Junio / Elfnote June Pride [Synchro]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 5559570
+    },
+    {
+      "id": 206,
+      "deck_id": 650,
+      "card_name": "S:P Pequeña Caballera / S:P Little Knight [Link]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 29301450
+    },
+    {
+      "id": 207,
+      "deck_id": 650,
+      "card_name": "Luluwalilith Despiánica / Despian Luluwalilith [Synchro]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 53971455
+    },
+    {
+      "id": 208,
+      "deck_id": 650,
+      "card_name": "Mago Arcanista / Arcanite Magician [Synchro]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 31924889
+    },
+    {
+      "id": 209,
+      "deck_id": 650,
+      "card_name": "Dragón Sincro Ala Cristalina / Crystal Wing Synchro Dragon [Synchro]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 50954680
+    },
+    {
+      "id": 210,
+      "deck_id": 650,
+      "card_name": "F.A. Coche Trucado del Amanecer / F.A. Dawn Dragster [Synchro]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 33158448
+    },
+    {
+      "id": 211,
+      "deck_id": 650,
+      "card_name": "Dragón de la Rosa Rojiza / Ruddy Rose Dragon [Synchro]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 40139997
+    },
+    {
+      "id": 212,
+      "deck_id": 650,
+      "card_name": "Albion el Dragón Señalado / Albion the Branded Dragon [Fusion]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 87746184
+    },
+    {
+      "id": 213,
+      "deck_id": 650,
+      "card_name": "Ángel del Caos / Chaos Angel [Synchro]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 22850702
+    },
+    {
+      "id": 214,
+      "deck_id": 650,
+      "card_name": "Junora, el Modelo de Poder de Afinación / Junora the Power Patron of Tuning [Synchro]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 5914858
+    },
+    {
+      "id": 181,
+      "deck_id": 650,
+      "card_name": "Elfnota Regina / Elfnote Regina",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 56651978
+    },
+    {
+      "id": 182,
+      "deck_id": 650,
+      "card_name": "Elfnota Lucina / Elfnote Lucina",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 13597785
+    },
+    {
+      "id": 183,
+      "deck_id": 650,
+      "card_name": "Elfnota Tinia / Elfnote Tinia",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 59581480
+    },
+    {
+      "id": 184,
+      "deck_id": 650,
+      "card_name": "Elfnota Modelo de Poder / Elfnote Power Patron",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 12375297
+    },
+    {
+      "id": 185,
+      "deck_id": 650,
+      "card_name": "Elfnota Fortuna / Elfnote Fortuna",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 85976588
+    },
+    {
+      "id": 186,
+      "deck_id": 650,
+      "card_name": "Fidraulis Harmonía / Fidraulis Harmony",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 70088809
+    },
+    {
+      "id": 187,
+      "deck_id": 650,
+      "card_name": "Medius el Puro / Medius the Pure",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 97556336
+    },
+    {
+      "id": 188,
+      "deck_id": 650,
+      "card_name": "Vidolium, el Inestable Modelo de Poder de Unidad / Vidolium the Unstable Power Patron of Unity",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 70488851
+    },
+    {
+      "id": 189,
+      "deck_id": 650,
+      "card_name": "Magnamhut Abyssial / Bystial Magnamhut",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 33854624
+    },
+    {
+      "id": 190,
+      "deck_id": 650,
+      "card_name": "Ecclesia Dogmátik, la Virtuosa / Dogmatika Ecclesia, the Virtuous",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 60303688
+    },
+    {
+      "id": 191,
+      "deck_id": 650,
+      "card_name": "Nervedo, la Bestia Sombría Modelo de Poder / Nervedo the Shadebeast Power Patron",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 17473466
+    },
+    {
+      "id": 192,
+      "deck_id": 650,
+      "card_name": "Flor de Ceniza y Primavera Feliz / Ash Blossom & Joyous Spring",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 14558127
+    },
+    {
+      "id": 193,
+      "deck_id": 650,
+      "card_name": "Fuwalos Multivadora / Mulcharmy Fuwalos",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 42141493
+    },
+    {
+      "id": 194,
+      "deck_id": 650,
+      "card_name": "Purulia Multivadora / Mulcharmy Purulia",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 84192580
+    },
+    {
+      "id": 195,
+      "deck_id": 650,
+      "card_name": "Bella Fantasma y Mansión Embrujada / Ghost Belle & Haunted Mansion",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 73642296
+    },
+    {
+      "id": 196,
+      "deck_id": 650,
+      "card_name": "Portal de Modelo de Poder Vetado – Término / Prohibited Power Patron Portal - Terminus",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 25661743
+    },
+    {
+      "id": 197,
+      "deck_id": 650,
+      "card_name": "El Caído y la Virtuosa / The Fallen & The Virtuous",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 30271097
+    },
+    {
+      "id": 198,
+      "deck_id": 650,
+      "card_name": "Elfonotas: Bienvenidos a Casa / Elfnotes: Welcome Home",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 64491754
+    },
+    {
+      "id": 199,
+      "deck_id": 650,
+      "card_name": "Elfonotas: Rapsodia de Locura / Elfnotes: Rhapsodia of Madness",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 24092792
+    },
+    {
+      "id": 215,
+      "deck_id": 650,
+      "card_name": "Druiswurm Abyssial / Bystial Druiswurm",
+      "quantity": 1,
+      "section": "side",
+      "ygoprodeck_id": 6637331
+    },
+    {
+      "id": 216,
+      "deck_id": 650,
+      "card_name": "Bella Fantasma y Mansión Embrujada / Ghost Belle & Haunted Mansion",
+      "quantity": 1,
+      "section": "side",
+      "ygoprodeck_id": 73642296
+    },
+    {
+      "id": 217,
+      "deck_id": 650,
+      "card_name": "El Bufón y el Pájaro del Candado / Droll & Lock Bird",
+      "quantity": 2,
+      "section": "side",
+      "ygoprodeck_id": 94145021
+    },
+    {
+      "id": 218,
+      "deck_id": 650,
+      "card_name": "Ogro Fantasma y Conejo de las Nieves / Ghost Ogre & Snow Rabbit",
+      "quantity": 2,
+      "section": "side",
+      "ygoprodeck_id": 59438930
+    },
+    {
+      "id": 219,
+      "deck_id": 650,
+      "card_name": "Llamado por la Tumba / Called by the Grave",
+      "quantity": 1,
+      "section": "side",
+      "ygoprodeck_id": 24224830
+    },
+    {
+      "id": 220,
+      "deck_id": 650,
+      "card_name": "Talento de Tácticas Triples / Triple Tactics Talent",
+      "quantity": 1,
+      "section": "side",
+      "ygoprodeck_id": 25311006
+    },
+    {
+      "id": 221,
+      "deck_id": 650,
+      "card_name": "«C» Contacto / Contact \"C\"",
+      "quantity": 3,
+      "section": "side",
+      "ygoprodeck_id": 87170768
+    },
+    {
+      "id": 222,
+      "deck_id": 650,
+      "card_name": "Juicio Solemne / Solemn Judgment",
+      "quantity": 1,
+      "section": "side",
+      "ygoprodeck_id": 41420027
+    },
+    {
+      "id": 223,
+      "deck_id": 650,
+      "card_name": "Olla de la Pereza / Pot of Avarice",
+      "quantity": 3,
+      "section": "side",
+      "ygoprodeck_id": 67169062
+    },
+    {
+      "id": 340,
+      "deck_id": 653,
+      "card_name": "Número F0: Futuro Draco Utópico",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 26973555
+    },
+    {
+      "id": 341,
+      "deck_id": 653,
+      "card_name": "Springans Fiestero",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 48285768
+    },
+    {
+      "id": 342,
+      "deck_id": 653,
+      "card_name": "Gigantesco «Campeón» Sargas",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 11132674
+    },
+    {
+      "id": 343,
+      "deck_id": 653,
+      "card_name": "DoomZ XII Fin - Drastrius",
+      "quantity": 2,
+      "section": "extra",
+      "ygoprodeck_id": 95626382
+    },
+    {
+      "id": 344,
+      "deck_id": 653,
+      "card_name": "DoomZ XIII Over - Graflario",
+      "quantity": 2,
+      "section": "extra",
+      "ygoprodeck_id": 65848113
+    },
+    {
+      "id": 345,
+      "deck_id": 653,
+      "card_name": "Fractura DoomZ - Diactorus",
+      "quantity": 2,
+      "section": "extra",
+      "ygoprodeck_id": 31010081
+    },
+    {
+      "id": 346,
+      "deck_id": 653,
+      "card_name": "Júpiter el Modelo de Poder de Destrucción",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 68231287
+    },
+    {
+      "id": 347,
+      "deck_id": 653,
+      "card_name": "Número F0: Futuro Utópico Zexal",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 41522092
+    },
+    {
+      "id": 348,
+      "deck_id": 653,
+      "card_name": "Varudras, el Último Portador del Fin de los Tiempos",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 70636044
+    },
+    {
+      "id": 349,
+      "deck_id": 653,
+      "card_name": "Divino Arsenal AA-ZEUS - Trueno del Cielo",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 90448279
+    },
+    {
+      "id": 350,
+      "deck_id": 653,
+      "card_name": "Número F0: Futuro Utópico",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 65305468
+    },
+    {
+      "id": 351,
+      "deck_id": 653,
+      "card_name": "Mago Gagagaga",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 86331741
+    },
+    {
+      "id": 322,
+      "deck_id": 653,
+      "card_name": "Medius el Puro",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 97556336
+    },
+    {
+      "id": 323,
+      "deck_id": 653,
+      "card_name": "Mando DoomZ «D.O.O.M.D.U.R.G.»",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 68831625
+    },
+    {
+      "id": 324,
+      "deck_id": 653,
+      "card_name": "DoomZ Modelo de Poder",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 81650695
+    },
+    {
+      "id": 325,
+      "deck_id": 653,
+      "card_name": "El Bufón y el Pájaro del Candado",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 94145021
+    },
+    {
+      "id": 326,
+      "deck_id": 653,
+      "card_name": "Modelo de Poder Máquina de Sombras Zegredo",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 43871165
+    },
+    {
+      "id": 327,
+      "deck_id": 653,
+      "card_name": "Flor de Ceniza & Primavera Feliz",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 14558127
+    },
+    {
+      "id": 328,
+      "deck_id": 653,
+      "card_name": "Therion «Rey» Regulus",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 10604644
+    },
+    {
+      "id": 329,
+      "deck_id": 653,
+      "card_name": "DoomZ XII Cero - Drastea",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 92472273
+    },
+    {
+      "id": 330,
+      "deck_id": 653,
+      "card_name": "DoomZ V Cinco - Amalthe",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 28877382
+    },
+    {
+      "id": 331,
+      "deck_id": 653,
+      "card_name": "DoomZ VII Siete - Elara",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 54265980
+    },
+    {
+      "id": 332,
+      "deck_id": 653,
+      "card_name": "Infinito Temporal",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 10045474
+    },
+    {
+      "id": 333,
+      "deck_id": 653,
+      "card_name": "Fuwalos Multivadora",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 42141493
+    },
+    {
+      "id": 334,
+      "deck_id": 653,
+      "card_name": "Portal del Modelo de Poder Desatado - Terminus",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 25661743
+    },
+    {
+      "id": 335,
+      "deck_id": 653,
+      "card_name": "Incursores DoomZ",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 32442017
+    },
+    {
+      "id": 336,
+      "deck_id": 653,
+      "card_name": "Vidrium, Modelo de Poder de la Exterminación del Caos",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 70488851
+    },
+    {
+      "id": 337,
+      "deck_id": 653,
+      "card_name": "Cambio DoomZ",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 38007649
+    },
+    {
+      "id": 338,
+      "deck_id": 653,
+      "card_name": "Destrucción DoomZ",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 80320877
+    },
+    {
+      "id": 339,
+      "deck_id": 653,
+      "card_name": "Mando DoomZ «A.D.R.A.S.T.E.I.A.»",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 84054556
+    },
+    {
+      "id": 352,
+      "deck_id": 653,
+      "card_name": "Ogro Fantasma & Conejo de las Nieves",
+      "quantity": 2,
+      "section": "side",
+      "ygoprodeck_id": 59438930
+    },
+    {
+      "id": 353,
+      "deck_id": 653,
+      "card_name": "Talento de Tácticas Triples",
+      "quantity": 1,
+      "section": "side",
+      "ygoprodeck_id": 25311006
+    },
+    {
+      "id": 354,
+      "deck_id": 653,
+      "card_name": "Número 60: Dugares el Eterno",
+      "quantity": 1,
+      "section": "side",
+      "ygoprodeck_id": 66011101
+    },
+    {
+      "id": 355,
+      "deck_id": 653,
+      "card_name": "Llamado por la Tumba",
+      "quantity": 1,
+      "section": "side",
+      "ygoprodeck_id": 24224830
+    },
+    {
+      "id": 356,
+      "deck_id": 653,
+      "card_name": "Tormenta de Relámpagos",
+      "quantity": 2,
+      "section": "side",
+      "ygoprodeck_id": 14532163
+    },
+    {
+      "id": 357,
+      "deck_id": 653,
+      "card_name": "Nibiru, el Ser Primitivo",
+      "quantity": 1,
+      "section": "side",
+      "ygoprodeck_id": 27204311
+    },
+    {
+      "id": 358,
+      "deck_id": 653,
+      "card_name": "Súper Asesino Estelar TY-PHON - Crisis Celeste",
+      "quantity": 1,
+      "section": "side",
+      "ygoprodeck_id": 93039339
+    },
+    {
+      "id": 385,
+      "deck_id": 656,
+      "card_name": "Agnumday del Demoniherrero",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 32991300
+    },
+    {
+      "id": 386,
+      "deck_id": 656,
+      "card_name": "Sprind Spright",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 72329844
+    },
+    {
+      "id": 387,
+      "deck_id": 656,
+      "card_name": "S:P Pequeña Caballera",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 29301450
+    },
+    {
+      "id": 388,
+      "deck_id": 656,
+      "card_name": "Réquiem del Demoniherrero",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 2463794
+    },
+    {
+      "id": 389,
+      "deck_id": 656,
+      "card_name": "Garura, Alas de Vida Resonante",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 11765832
+    },
+    {
+      "id": 390,
+      "deck_id": 656,
+      "card_name": "Predaplanta Dragostapelia",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 69946549
+    },
+    {
+      "id": 391,
+      "deck_id": 656,
+      "card_name": "Tiagrimientos Caleido-Heart",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 28226490
+    },
+    {
+      "id": 392,
+      "deck_id": 656,
+      "card_name": "I:P Enmascarada",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 65741786
+    },
+    {
+      "id": 393,
+      "deck_id": 656,
+      "card_name": "Secuencia del Demoniherrero",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 49867899
+    },
+    {
+      "id": 394,
+      "deck_id": 656,
+      "card_name": "Fangodragón del Pantano",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 54757758
+    },
+    {
+      "id": 395,
+      "deck_id": 656,
+      "card_name": "Lácrima del Demoniherrero",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 46640168
+    },
+    {
+      "id": 396,
+      "deck_id": 656,
+      "card_name": "Parca Peregrina",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 45742626
+    },
+    {
+      "id": 397,
+      "deck_id": 656,
+      "card_name": "El Vampiro Zombi",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 73082255
+    },
+    {
+      "id": 398,
+      "deck_id": 656,
+      "card_name": "Caballero Exciton Horda de Maldad",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 46772449
+    },
+    {
+      "id": 399,
+      "deck_id": 656,
+      "card_name": "Ladrón del Tiempo Repetidor",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 55285840
+    },
+    {
+      "id": 359,
+      "deck_id": 656,
+      "card_name": "Súper Polimerización",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 48130397
+    },
+    {
+      "id": 360,
+      "deck_id": 656,
+      "card_name": "Lácrima las Lágrimas Carmesíes",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 28803166
+    },
+    {
+      "id": 361,
+      "deck_id": 656,
+      "card_name": "Tiagrimientos Havnis",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 37961969
+    },
+    {
+      "id": 362,
+      "deck_id": 656,
+      "card_name": "Planeta Primigenio Perlerreino",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 77103950
+    },
+    {
+      "id": 363,
+      "deck_id": 656,
+      "card_name": "Kashtira Fenrir",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 32909498
+    },
+    {
+      "id": 364,
+      "deck_id": 656,
+      "card_name": "Flor de Ceniza & Primavera Feliz",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 14558127
+    },
+    {
+      "id": 365,
+      "deck_id": 656,
+      "card_name": "Tiagrimientos Reinoheart",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 73956664
+    },
+    {
+      "id": 366,
+      "deck_id": 656,
+      "card_name": "Tiagrimientos Scheiren",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 572850
+    },
+    {
+      "id": 367,
+      "deck_id": 656,
+      "card_name": "Tiagrimientos Merrli",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 74078255
+    },
+    {
+      "id": 368,
+      "deck_id": 656,
+      "card_name": "Bienes del Entierro Insensato",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 35726888
+    },
+    {
+      "id": 369,
+      "deck_id": 656,
+      "card_name": "Trivikarma",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 7436169
+    },
+    {
+      "id": 370,
+      "deck_id": 656,
+      "card_name": "Crimanto Tiagrimientos",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 1329620
+    },
+    {
+      "id": 371,
+      "deck_id": 656,
+      "card_name": "Grito Tiagrimientos",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 6767771
+    },
+    {
+      "id": 372,
+      "deck_id": 656,
+      "card_name": "Mudora el Oráculo de la Espada",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 99937011
+    },
+    {
+      "id": 373,
+      "deck_id": 656,
+      "card_name": "Amset, Gloria de Horus",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 84941194
+    },
+    {
+      "id": 374,
+      "deck_id": 656,
+      "card_name": "Ocultador de Efectos",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 97268402
+    },
+    {
+      "id": 375,
+      "deck_id": 656,
+      "card_name": "Corona Prohibida",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 98829635
+    },
+    {
+      "id": 376,
+      "deck_id": 656,
+      "card_name": "Tiagrimientos Kashtira",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 4928565
+    },
+    {
+      "id": 377,
+      "deck_id": 656,
+      "card_name": "Planeta Bajo Presión Wraitsoth",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 71832012
+    },
+    {
+      "id": 378,
+      "deck_id": 656,
+      "card_name": "Metarruido Tiagrimientos",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 38436986
+    },
+    {
+      "id": 379,
+      "deck_id": 656,
+      "card_name": "Demoniherrero Grabador",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 60764609
+    },
+    {
+      "id": 380,
+      "deck_id": 656,
+      "card_name": "Sarcófago del Rey",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 16528181
+    },
+    {
+      "id": 381,
+      "deck_id": 656,
+      "card_name": "Hapi, Guía de Horus",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 47330808
+    },
+    {
+      "id": 382,
+      "deck_id": 656,
+      "card_name": "Tracto del Demoniherrero",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 98567237
+    },
+    {
+      "id": 383,
+      "deck_id": 656,
+      "card_name": "Fabuloso Lurrie",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 97651498
+    },
+    {
+      "id": 384,
+      "deck_id": 656,
+      "card_name": "Keldo la Protectora Sagrada",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 63542003
+    },
+    {
+      "id": 400,
+      "deck_id": 656,
+      "card_name": "Tiagrimientos Havnis",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 37961969
+    },
+    {
+      "id": 401,
+      "deck_id": 656,
+      "card_name": "Fuwalos Multivadora",
+      "quantity": 2,
+      "section": "reserve",
+      "ygoprodeck_id": 42141493
+    },
+    {
+      "id": 402,
+      "deck_id": 656,
+      "card_name": "Punto de Oveja",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 50277355
+    },
+    {
+      "id": 403,
+      "deck_id": 656,
+      "card_name": "Alma Desencadenada de Shyama",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 88554436
+    },
+    {
+      "id": 404,
+      "deck_id": 656,
+      "card_name": "Llamado por la Tumba",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 24224830
+    },
+    {
+      "id": 405,
+      "deck_id": 656,
+      "card_name": "Ciclón del Cosmos",
+      "quantity": 2,
+      "section": "reserve",
+      "ygoprodeck_id": 8267140
+    },
+    {
+      "id": 406,
+      "deck_id": 656,
+      "card_name": "Polvo de Pluma de Arpía",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 18144507
+    },
+    {
+      "id": 407,
+      "deck_id": 656,
+      "card_name": "Terraformación",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 73628505
+    },
+    {
+      "id": 408,
+      "deck_id": 656,
+      "card_name": "Talento de Tácticas Triples",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 25311006
+    },
+    {
+      "id": 409,
+      "deck_id": 656,
+      "card_name": "Grito Tiagrimientos",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 6767771
+    },
+    {
+      "id": 410,
+      "deck_id": 656,
+      "card_name": "Súper Polimerización",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 48130397
+    },
+    {
+      "id": 411,
+      "deck_id": 656,
+      "card_name": "Bella Fantasma & Mansión Embrujada",
+      "quantity": 3,
+      "section": "reserve",
+      "ygoprodeck_id": 73642296
+    },
+    {
+      "id": 113,
+      "deck_id": 665,
+      "card_name": "Kashtira Shangri-Ira [Xyz rango 7]",
+      "quantity": 3,
+      "section": "extra",
+      "ygoprodeck_id": 73542331
+    },
+    {
+      "id": 114,
+      "deck_id": 665,
+      "card_name": "Kashtira Arise-Heart [Xyz rango 7]",
+      "quantity": 2,
+      "section": "extra",
+      "ygoprodeck_id": 48626373
+    },
+    {
+      "id": 115,
+      "deck_id": 665,
+      "card_name": "Número 11: Ojo Grande / Number 11: Big Eye [Xyz rango 7]",
+      "quantity": 2,
+      "section": "extra",
+      "ygoprodeck_id": 80117527
+    },
+    {
+      "id": 116,
+      "deck_id": 665,
+      "card_name": "Divino Arsenal AA-ZEUS – Trueno del Cielo / Divine Arsenal AA-ZEUS – Sky Thunder [Xyz]",
+      "quantity": 2,
+      "section": "extra",
+      "ygoprodeck_id": 90448279
+    },
+    {
+      "id": 117,
+      "deck_id": 665,
+      "card_name": "Armado Oscuro, el Dragón de la Aniquilación / Dark Armed, the Dragon of Annihilation [Xyz rango 7]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 78144171
+    },
+    {
+      "id": 118,
+      "deck_id": 665,
+      "card_name": "Baronesa de la Flor / Baronne de Fleur [Synchro nivel 10]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 84815190
+    },
+    {
+      "id": 119,
+      "deck_id": 665,
+      "card_name": "Donner, Daga Mascota a Sueldo / Donner, Dagger Fur Hire [Link-2]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 8728498
+    },
+    {
+      "id": 120,
+      "deck_id": 665,
+      "card_name": "Diosa del Inframundo del Mundo Cerrado / Underworld Goddess of the Closed World [Link-5]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 98127546
+    },
+    {
+      "id": 121,
+      "deck_id": 665,
+      "card_name": "Guerrero Fósil Caballero del Cráneo / Fossil Warrior Skull Knight [Fusión]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 59531356
+    },
+    {
+      "id": 122,
+      "deck_id": 665,
+      "card_name": "Máquina Fósil Vagón del Cráneo / Fossil Machine Skull Wagon [Fusión]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 83656563
+    },
+    {
+      "id": 92,
+      "deck_id": 665,
+      "card_name": "Kashtira Fenrir",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 32909498
+    },
+    {
+      "id": 93,
+      "deck_id": 665,
+      "card_name": "Kashtira Unicornio",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 68304193
+    },
+    {
+      "id": 94,
+      "deck_id": 665,
+      "card_name": "Kashtira Riseheart",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 31149212
+    },
+    {
+      "id": 95,
+      "deck_id": 665,
+      "card_name": "Kashtira Ogre",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 94392192
+    },
+    {
+      "id": 96,
+      "deck_id": 665,
+      "card_name": "Terrogarras Kashtira / Scareclaw Kashtira",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 78534861
+    },
+    {
+      "id": 97,
+      "deck_id": 665,
+      "card_name": "Tiagrimentos Kashtira / Tearlaments Kashtira",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 4928565
+    },
+    {
+      "id": 98,
+      "deck_id": 665,
+      "card_name": "Flor de Ceniza y Primavera Feliz / Ash Blossom & Joyous Spring",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 14558127
+    },
+    {
+      "id": 99,
+      "deck_id": 665,
+      "card_name": "Variador Dimensional / Dimension Shifter",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 91800273
+    },
+    {
+      "id": 100,
+      "deck_id": 665,
+      "card_name": "Planeta Bajo Presión Wraitsoth / Pressured Planet Wraitsoth",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 71832012
+    },
+    {
+      "id": 101,
+      "deck_id": 665,
+      "card_name": "Nacimiento Kashtira / Kashtira Birth",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 69540484
+    },
+    {
+      "id": 102,
+      "deck_id": 665,
+      "card_name": "Kashtirateosis / Kashtiratheosis",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 34447918
+    },
+    {
+      "id": 103,
+      "deck_id": 665,
+      "card_name": "Terraformación / Terraforming",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 73628505
+    },
+    {
+      "id": 104,
+      "deck_id": 665,
+      "card_name": "Libro de la Luna / Book of Moon",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 14087893
+    },
+    {
+      "id": 105,
+      "deck_id": 665,
+      "card_name": "Agujero Oscuro / Dark Hole",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 53129443
+    },
+    {
+      "id": 106,
+      "deck_id": 665,
+      "card_name": "Olla de la Prosperidad / Pot of Prosperity",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 84211599
+    },
+    {
+      "id": 107,
+      "deck_id": 665,
+      "card_name": "Ciclón del Cosmos / Cosmic Cyclone",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 8267140
+    },
+    {
+      "id": 108,
+      "deck_id": 665,
+      "card_name": "Lanza Prohibida / Forbidden Lance",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 27243130
+    },
+    {
+      "id": 109,
+      "deck_id": 665,
+      "card_name": "Talento de Tácticas Triples / Triple Tactics Talent",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 25311006
+    },
+    {
+      "id": 110,
+      "deck_id": 665,
+      "card_name": "Infinito Temporal / Infinite Impermanence",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 10045474
+    },
+    {
+      "id": 111,
+      "deck_id": 665,
+      "card_name": "Preparaciones Kashtira / Kashtira Preparations",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 21639276
+    },
+    {
+      "id": 112,
+      "deck_id": 665,
+      "card_name": "Big Bang Kashtira / Kashtira Big Bang",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 33925864
+    },
+    {
+      "id": 123,
+      "deck_id": 665,
+      "card_name": "Libro de la Luna / Book of Moon",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 14087893
+    },
+    {
+      "id": 124,
+      "deck_id": 665,
+      "card_name": "Talento de Tácticas Triples / Triple Tactics Talent",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 25311006
+    },
+    {
+      "id": 125,
+      "deck_id": 665,
+      "card_name": "Virus Epidémico Erradicador / Eradicator Epidemic Virus",
+      "quantity": 2,
+      "section": "reserve",
+      "ygoprodeck_id": 54974237
+    },
+    {
+      "id": 126,
+      "deck_id": 665,
+      "card_name": "Variador Dimensional / Dimension Shifter",
+      "quantity": 2,
+      "section": "reserve",
+      "ygoprodeck_id": 91800273
+    },
+    {
+      "id": 127,
+      "deck_id": 665,
+      "card_name": "Lanza Prohibida / Forbidden Lance",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 27243130
+    },
+    {
+      "id": 128,
+      "deck_id": 665,
+      "card_name": "Kashtira Unicornio / Kashtira Unicorn",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 68304193
+    },
+    {
+      "id": 129,
+      "deck_id": 665,
+      "card_name": "Dinoluchador Pankratops / Dinowrestler Pankratops",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 82385847
+    },
+    {
+      "id": 130,
+      "deck_id": 665,
+      "card_name": "Barrera Dimensional / Dimensional Barrier",
+      "quantity": 2,
+      "section": "reserve",
+      "ygoprodeck_id": 83326048
+    },
+    {
+      "id": 131,
+      "deck_id": 665,
+      "card_name": "Olla de la Prosperidad / Pot of Prosperity",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 84211599
+    },
+    {
+      "id": 132,
+      "deck_id": 665,
+      "card_name": "Nibiru, el Ser Primitivo / Nibiru, the Primal Being",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 27204311
+    },
+    {
+      "id": 133,
+      "deck_id": 665,
+      "card_name": "El Bufón y el Pájaro del Candado / Droll & Lock Bird",
+      "quantity": 3,
+      "section": "reserve",
+      "ygoprodeck_id": 94145021
+    },
+    {
+      "id": 134,
+      "deck_id": 665,
+      "card_name": "Bella Fantasma y Mansión Embrujada / Ghost Belle & Haunted Mansion",
+      "quantity": 2,
+      "section": "reserve",
+      "ygoprodeck_id": 73642296
+    },
+    {
+      "id": 135,
+      "deck_id": 665,
+      "card_name": "Infinitrack Goliath [monstruo Link para intercambio con Extra Deck]",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 23689428
+    },
+    {
+      "id": 162,
+      "deck_id": 670,
+      "card_name": "Infernoble Knight Captain Roland [Synchro]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 40251688
+    },
+    {
+      "id": 163,
+      "deck_id": 670,
+      "card_name": "Baronne de Fleur [Synchro]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 84815190
+    },
+    {
+      "id": 164,
+      "deck_id": 670,
+      "card_name": "Infernoble Knight Emperor Charles [Synchro]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 77656797
+    },
+    {
+      "id": 165,
+      "deck_id": 670,
+      "card_name": "Battlin' Boxer King Dempsey [Xyz]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 46804536
+    },
+    {
+      "id": 166,
+      "deck_id": 670,
+      "card_name": "Super Starslayer TY-PHON - Sky Crisis [Xyz]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 93039339
+    },
+    {
+      "id": 167,
+      "deck_id": 670,
+      "card_name": "Angelica, Princess of Noble Arms [Synchro]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 36320744
+    },
+    {
+      "id": 168,
+      "deck_id": 670,
+      "card_name": "Isolde, Two Tales of the Noble Knights [Link]",
+      "quantity": 2,
+      "section": "extra",
+      "ygoprodeck_id": 59934749
+    },
+    {
+      "id": 169,
+      "deck_id": 670,
+      "card_name": "Emperor Charles the Great [Link]",
+      "quantity": 2,
+      "section": "extra",
+      "ygoprodeck_id": 97864322
+    },
+    {
+      "id": 170,
+      "deck_id": 670,
+      "card_name": "Apollousa, Bow of the Goddess [Link]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 4280258
+    },
+    {
+      "id": 171,
+      "deck_id": 670,
+      "card_name": "Relinquished Anima [Link]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 94259633
+    },
+    {
+      "id": 172,
+      "deck_id": 670,
+      "card_name": "Link Spider [Link]",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 98978921
+    },
+    {
+      "id": 173,
+      "deck_id": 670,
+      "card_name": "S:P Little Knight [Link]",
+      "quantity": 2,
+      "section": "extra",
+      "ygoprodeck_id": 29301450
+    },
+    {
+      "id": 136,
+      "deck_id": 670,
+      "card_name": "Kashtira Fenrir",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 32909498
+    },
+    {
+      "id": 137,
+      "deck_id": 670,
+      "card_name": "Kashtira Riseheart",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 31149212
+    },
+    {
+      "id": 138,
+      "deck_id": 670,
+      "card_name": "Diabellstar la Bruja Negra",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 72270339
+    },
+    {
+      "id": 139,
+      "deck_id": 670,
+      "card_name": "Fénix Inmortal Gearfried / Immortal Phoenix Gearfried",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 22091647
+    },
+    {
+      "id": 140,
+      "deck_id": 670,
+      "card_name": "Infernoble Caballero Turpin",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 89809665
+    },
+    {
+      "id": 141,
+      "deck_id": 670,
+      "card_name": "Infernoble Caballero Maugis",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 94730900
+    },
+    {
+      "id": 142,
+      "deck_id": 670,
+      "card_name": "Infernoble Caballero Ogier",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 21351206
+    },
+    {
+      "id": 143,
+      "deck_id": 670,
+      "card_name": "Infernoble Caballero Ricciardetto",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 53404966
+    },
+    {
+      "id": 144,
+      "deck_id": 670,
+      "card_name": "Infernoble Caballero Renaud",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 56824871
+    },
+    {
+      "id": 145,
+      "deck_id": 670,
+      "card_name": "Infernoble Caballero Oliver",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 58346901
+    },
+    {
+      "id": 146,
+      "deck_id": 670,
+      "card_name": "Neo Space Connector",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 85840608
+    },
+    {
+      "id": 147,
+      "deck_id": 670,
+      "card_name": "Delfín Aqua Neo-Espacial / Neo-Spacian Aqua Dolphin",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 17955766
+    },
+    {
+      "id": 148,
+      "deck_id": 670,
+      "card_name": "Dama del Pedernal / Fire Flint Lady",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 42052439
+    },
+    {
+      "id": 149,
+      "deck_id": 670,
+      "card_name": "El Bufón y el Pájaro del Candado / Droll & Lock Bird",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 94145021
+    },
+    {
+      "id": 150,
+      "deck_id": 670,
+      "card_name": "Ocultador de Efectos / Effect Veiler",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 97268402
+    },
+    {
+      "id": 151,
+      "deck_id": 670,
+      "card_name": "Flor de Ceniza y Primavera Feliz / Ash Blossom & Joyous Spring",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 14558127
+    },
+    {
+      "id": 152,
+      "deck_id": 670,
+      "card_name": "Anillo Angelical de Angélica / Angelica's Angelic Ring",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 40678060
+    },
+    {
+      "id": 153,
+      "deck_id": 670,
+      "card_name": "Infernarmas Nobles – Almace / Infernoble Arms - Almace",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 98319530
+    },
+    {
+      "id": 154,
+      "deck_id": 670,
+      "card_name": "Infernarmas Nobles – Durendal / Infernoble Arms - Durendal",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 37478723
+    },
+    {
+      "id": 155,
+      "deck_id": 670,
+      "card_name": "Museo de Armas Nobles / Noble Arms Museum",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 25807544
+    },
+    {
+      "id": 156,
+      "deck_id": 670,
+      "card_name": "Espada Divina – Hoja del Fénix / Divine Sword - Phoenix Blade",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 31423101
+    },
+    {
+      "id": 157,
+      "deck_id": 670,
+      "card_name": "D.D.R. – Reencarnación de la Dimensión Diferente / D.D.R. - Different Dimension Reincarnation",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 9622164
+    },
+    {
+      "id": 158,
+      "deck_id": 670,
+      "card_name": "Se Busca: ¡Rastreadores del Botín del Pecado! / WANTED: Seeker of Sinful Spoils",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 80845034
+    },
+    {
+      "id": 159,
+      "deck_id": 670,
+      "card_name": "Herencia del Cáliz / Heritage of the Chalice",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 51412776
+    },
+    {
+      "id": 160,
+      "deck_id": 670,
+      "card_name": "Refuerzo del Ejército / Reinforcement of the Army",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 32807846
+    },
+    {
+      "id": 161,
+      "deck_id": 670,
+      "card_name": "Botín del Pecado Original – Ojo de Serpiente / Original Sinful Spoils - Snake-Eye",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 89023486
+    },
+    {
+      "id": 174,
+      "deck_id": 670,
+      "card_name": "Nibiru, the Primal Being",
+      "quantity": 3,
+      "section": "reserve",
+      "ygoprodeck_id": 27204311
+    },
+    {
+      "id": 175,
+      "deck_id": 670,
+      "card_name": "D.D. Crow",
+      "quantity": 2,
+      "section": "reserve",
+      "ygoprodeck_id": 24508238
+    },
+    {
+      "id": 176,
+      "deck_id": 670,
+      "card_name": "Herald of the Abyss",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 94016752
+    },
+    {
+      "id": 177,
+      "deck_id": 670,
+      "card_name": "Triple Tactics Talent",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 25311006
+    },
+    {
+      "id": 178,
+      "deck_id": 670,
+      "card_name": "Triple Tactics Thrust",
+      "quantity": 3,
+      "section": "reserve",
+      "ygoprodeck_id": 35269904
+    },
+    {
+      "id": 179,
+      "deck_id": 670,
+      "card_name": "Evenly Matched",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 15693423
+    },
+    {
+      "id": 180,
+      "deck_id": 670,
+      "card_name": "Dimensional Barrier",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 83326048
+    },
+    {
+      "id": 252,
+      "deck_id": 684,
+      "card_name": "Dragón de la Devastación Chimeratech / Chimeratech Rampage Dragon (Konami ID 11764)",
+      "quantity": 2,
+      "section": "extra",
+      "ygoprodeck_id": 84058253
+    },
+    {
+      "id": 253,
+      "deck_id": 684,
+      "card_name": "Ciber Dragón Sieger / Cyber Dragon Sieger",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 46724542
+    },
+    {
+      "id": 254,
+      "deck_id": 684,
+      "card_name": "Dragón Fortaleza Chimeratech / Chimeratech Fortress Dragon",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 79229522
+    },
+    {
+      "id": 255,
+      "deck_id": 684,
+      "card_name": "Caballero Mecánico / Clockwork Knight (Konami ID 20787)",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 41739381
+    },
+    {
+      "id": 256,
+      "deck_id": 684,
+      "card_name": "Centinela Barricadborg / Barricadeborg Blocker",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 13117073
+    },
+    {
+      "id": 257,
+      "deck_id": 684,
+      "card_name": "Ciber Dragón Nova / Cyber Dragon Nova (Konami ID 10870)",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 58069384
+    },
+    {
+      "id": 258,
+      "deck_id": 684,
+      "card_name": "Heosvarog el Amanecer Mecánico / Heosvarog the Mechanical Dawn (Konami ID 20511)",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 8963089
+    },
+    {
+      "id": 259,
+      "deck_id": 684,
+      "card_name": "Genio Qliferte / Qliphort Genius",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 22423493
+    },
+    {
+      "id": 260,
+      "deck_id": 684,
+      "card_name": "Dragón Megaflota Chimeratech / Chimeratech Megafleet Dragon",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 87116928
+    },
+    {
+      "id": 261,
+      "deck_id": 684,
+      "card_name": "Caza del Cielo As - Azalea / Sky Striker Ace - Azalea",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 98462037
+    },
+    {
+      "id": 262,
+      "deck_id": 684,
+      "card_name": "Vimana Cronómalo / Chronomaly Vimana",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 2609443
+    },
+    {
+      "id": 263,
+      "deck_id": 684,
+      "card_name": "Ciber Dragón del Infinito / Cyber Dragon Infinity (Konami ID 11765)",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 10443958
+    },
+    {
+      "id": 264,
+      "deck_id": 684,
+      "card_name": "S:P Pequeña Caballera / S:P Little Knight",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 29301450
+    },
+    {
+      "id": 265,
+      "deck_id": 684,
+      "card_name": "Dragón Ciber Eternidad / Cyber Eternity Dragon",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 82315403
+    },
+    {
+      "id": 224,
+      "deck_id": 684,
+      "card_name": "Núcleo Ciber Dragón / Cyber Dragon Core",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 23893227
+    },
+    {
+      "id": 225,
+      "deck_id": 684,
+      "card_name": "Ciber Dragón / Cyber Dragon",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 70095154
+    },
+    {
+      "id": 226,
+      "deck_id": 684,
+      "card_name": "Ciber Dragón Nachster / Cyber Dragon Nachster",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 1142880
+    },
+    {
+      "id": 227,
+      "deck_id": 684,
+      "card_name": "Ciber Dragón Herz / Cyber Dragon Herz",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 56364287
+    },
+    {
+      "id": 228,
+      "deck_id": 684,
+      "card_name": "Quimera Ciberoscura / Cyberdark Chimera",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 5370235
+    },
+    {
+      "id": 229,
+      "deck_id": 684,
+      "card_name": "Cuerno Ciberoscuro / Cyberdark Horn",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 41230939
+    },
+    {
+      "id": 230,
+      "deck_id": 684,
+      "card_name": "Sierpe Ciberoscura / Cyberdark Wurm [Konami 21164]",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 56100345
+    },
+    {
+      "id": 231,
+      "deck_id": 684,
+      "card_name": "Cyberdark Claw",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 82562802
+    },
+    {
+      "id": 232,
+      "deck_id": 684,
+      "card_name": "Ciber Fénix / Cyber Phoenix",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 3370104
+    },
+    {
+      "id": 233,
+      "deck_id": 684,
+      "card_name": "Jormungardr Ciber / Cyber Jormungardr [Konami 21163]",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 19715246
+    },
+    {
+      "id": 234,
+      "deck_id": 684,
+      "card_name": "Therion «Rey» Regulus / Therion \"King\" Regulus",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 10604644
+    },
+    {
+      "id": 235,
+      "deck_id": 684,
+      "card_name": "Flor de Ceniza y Primavera Feliz / Ash Blossom & Joyous Spring",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 14558127
+    },
+    {
+      "id": 236,
+      "deck_id": 684,
+      "card_name": "Bella Fantasma y Mansión Embrujada / Ghost Belle & Haunted Mansion",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 73642296
+    },
+    {
+      "id": 237,
+      "deck_id": 684,
+      "card_name": "Inactidisparador, la Fortaleza de la Negación [Máquina/Péndulo/EFECTO; texto fotografiado y nombre confirmado]",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 58707981
+    },
+    {
+      "id": 238,
+      "deck_id": 684,
+      "card_name": "Ciber Emergencia / Cyber Emergency",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 60600126
+    },
+    {
+      "id": 239,
+      "deck_id": 684,
+      "card_name": "Reino Ciberoscuro / Cyberdark Realm",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 64753988
+    },
+    {
+      "id": 240,
+      "deck_id": 684,
+      "card_name": "Ciber Sistemarev / Cyber Revsystem",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 33041277
+    },
+    {
+      "id": 241,
+      "deck_id": 684,
+      "card_name": "Horizonte Cibernético / Cybernetic Horizon",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 63031396
+    },
+    {
+      "id": 242,
+      "deck_id": 684,
+      "card_name": "Noche Mecánica / Clockwork Night",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 84797028
+    },
+    {
+      "id": 243,
+      "deck_id": 684,
+      "card_name": "Vínculo de Poder / Power Bond",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 37630732
+    },
+    {
+      "id": 244,
+      "deck_id": 684,
+      "card_name": "Eliminar el Límite / Limiter Removal",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 23171610
+    },
+    {
+      "id": 245,
+      "deck_id": 684,
+      "card_name": "Fusión Cibercarga / Cyberload Fusion",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 55704856
+    },
+    {
+      "id": 246,
+      "deck_id": 684,
+      "card_name": "Fusión Sobrecarga / Overload Fusion",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 3659803
+    },
+    {
+      "id": 247,
+      "deck_id": 684,
+      "card_name": "Ciber Eterno / Cyber Eternal",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 32768230
+    },
+    {
+      "id": 248,
+      "deck_id": 684,
+      "card_name": "Tifón del Espacio Místico / Mystical Space Typhoon",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 5318639
+    },
+    {
+      "id": 249,
+      "deck_id": 684,
+      "card_name": "Ciclón del Cosmos / Cosmic Cyclone",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 8267140
+    },
+    {
+      "id": 250,
+      "deck_id": 684,
+      "card_name": "Infinito Temporal / Infinite Impermanence",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 10045474
+    },
+    {
+      "id": 251,
+      "deck_id": 684,
+      "card_name": "Desborde Cibernético / Cybernetic Overflow",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 82428674
+    },
+    {
+      "id": 266,
+      "deck_id": 684,
+      "card_name": "El Calculador",
+      "quantity": 2,
+      "section": "reserve",
+      "ygoprodeck_id": 51196174
+    },
+    {
+      "id": 267,
+      "deck_id": 684,
+      "card_name": "Prisión Dimensional",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 70342110
+    },
+    {
+      "id": 268,
+      "deck_id": 684,
+      "card_name": "Fuwalos Multivadora",
+      "quantity": 2,
+      "section": "reserve",
+      "ygoprodeck_id": 42141493
+    },
+    {
+      "id": 269,
+      "deck_id": 684,
+      "card_name": "Droll & Lock Bird",
+      "quantity": 2,
+      "section": "reserve",
+      "ygoprodeck_id": 94145021
+    },
+    {
+      "id": 270,
+      "deck_id": 684,
+      "card_name": "Horizonte Cibernético",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 63031396
+    },
+    {
+      "id": 271,
+      "deck_id": 684,
+      "card_name": "Tormenta de Relámpagos",
+      "quantity": 3,
+      "section": "reserve",
+      "ygoprodeck_id": 14532163
+    },
+    {
+      "id": 272,
+      "deck_id": 684,
+      "card_name": "Ciclón del Cosmos",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 8267140
+    },
+    {
+      "id": 273,
+      "deck_id": 684,
+      "card_name": "Fusion Recycling Plant",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 22829942
+    },
+    {
+      "id": 274,
+      "deck_id": 684,
+      "card_name": "Talento de Tácticas Triples",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 25311006
+    },
+    {
+      "id": 275,
+      "deck_id": 684,
+      "card_name": "Reino Ciberoscuro",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 64753988
+    },
+    {
+      "id": 276,
+      "deck_id": 684,
+      "card_name": "Vínculo de Poder",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 37630732
+    },
+    {
+      "id": 277,
+      "deck_id": 684,
+      "card_name": "Ciber Dragón Herz",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 56364287
+    },
+    {
+      "id": 278,
+      "deck_id": 684,
+      "card_name": "Revolución Cibernética",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 18597560
+    },
+    {
+      "id": 279,
+      "deck_id": 684,
+      "card_name": "Ciber Dragón Sieger",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 46724542
+    },
+    {
+      "id": 280,
+      "deck_id": 684,
+      "card_name": "Dragón Ciber Final",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 1546123
+    },
+    {
+      "id": 281,
+      "deck_id": 684,
+      "card_name": "Caballero Mecánico",
+      "quantity": 2,
+      "section": "reserve",
+      "ygoprodeck_id": 41739381
+    },
+    {
+      "id": 282,
+      "deck_id": 684,
+      "card_name": "Chimeratech Overdragon",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 64599569
+    },
+    {
+      "id": 283,
+      "deck_id": 684,
+      "card_name": "Ciber Dragón Nova",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 58069384
+    },
+    {
+      "id": 302,
+      "deck_id": 687,
+      "card_name": "I:P Enmascarada / I:P Masquerena",
+      "quantity": 2,
+      "section": "extra",
+      "ygoprodeck_id": 65741786
+    },
+    {
+      "id": 303,
+      "deck_id": 687,
+      "card_name": "Hiita, la Encantadora del Fuego Encendida / Hiita the Fire Charmer, Ablaze",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 48815792
+    },
+    {
+      "id": 304,
+      "deck_id": 687,
+      "card_name": "Caballero de Pesadilla Unicornio / Knightmare Unicorn",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 38342335
+    },
+    {
+      "id": 305,
+      "deck_id": 687,
+      "card_name": "Diosa del Inframundo del Mundo Cerrado / Underworld Goddess of the Closed World",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 98127546
+    },
+    {
+      "id": 306,
+      "deck_id": 687,
+      "card_name": "Caballero de Pesadilla Fénix / Knightmare Phoenix",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 2857636
+    },
+    {
+      "id": 307,
+      "deck_id": 687,
+      "card_name": "Enlacekuriboh / Linkuriboh",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 41999284
+    },
+    {
+      "id": 308,
+      "deck_id": 687,
+      "card_name": "Súper Asesino Estelar TY-PHON – Crisis Celeste / Super Starslayer TY-PHON - Sky Crisis",
+      "quantity": 3,
+      "section": "extra",
+      "ygoprodeck_id": 93039339
+    },
+    {
+      "id": 309,
+      "deck_id": 687,
+      "card_name": "S:P Pequeña Caballera / S:P Little Knight",
+      "quantity": 3,
+      "section": "extra",
+      "ygoprodeck_id": 29301450
+    },
+    {
+      "id": 310,
+      "deck_id": 687,
+      "card_name": "Salamangrande Almiraj / Salamangreat Almiraj",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 60303245
+    },
+    {
+      "id": 311,
+      "deck_id": 687,
+      "card_name": "Princesa Prometea, Otorgadora de Llamas / Promethean Princess, Bestower of Flames",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": 2772337
+    },
+    {
+      "id": 284,
+      "deck_id": 687,
+      "card_name": "Soldado Volcánico / Volcanic Trooper",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 22411609
+    },
+    {
+      "id": 285,
+      "deck_id": 687,
+      "card_name": "Emperador Volcánico / Volcanic Emperor",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 46412900
+    },
+    {
+      "id": 286,
+      "deck_id": 687,
+      "card_name": "Misil Volcánico / Volcanic Rocket",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 76459806
+    },
+    {
+      "id": 287,
+      "deck_id": 687,
+      "card_name": "Percusión Anular Volcánica / Volcanic Rimfire",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 59805313
+    },
+    {
+      "id": 288,
+      "deck_id": 687,
+      "card_name": "Disparo Disperso Volcánico / Volcanic Scattershot",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 69750546
+    },
+    {
+      "id": 289,
+      "deck_id": 687,
+      "card_name": "Cartucho Volcánico / Volcanic Shell",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 33365932
+    },
+    {
+      "id": 290,
+      "deck_id": 687,
+      "card_name": "Estatua-Barrera del Infierno / Barrier Statue of the Inferno",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 47961808
+    },
+    {
+      "id": 291,
+      "deck_id": 687,
+      "card_name": "\"C\" Maxx / Maxx \"C\"",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 23434538
+    },
+    {
+      "id": 292,
+      "deck_id": 687,
+      "card_name": "Acelerador de Llama Volcánico / Volcanic Blaze Accelerator",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 85250352
+    },
+    {
+      "id": 293,
+      "deck_id": 687,
+      "card_name": "Acelerador de Llama / Blaze Accelerator",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 69537999
+    },
+    {
+      "id": 294,
+      "deck_id": 687,
+      "card_name": "Eyección de Fuego / Fire Ejection",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 11654067
+    },
+    {
+      "id": 295,
+      "deck_id": 687,
+      "card_name": "Gotas Prohibidas / Forbidden Droplet",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 24299458
+    },
+    {
+      "id": 296,
+      "deck_id": 687,
+      "card_name": "Hoguera / Bonfire",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 85106525
+    },
+    {
+      "id": 297,
+      "deck_id": 687,
+      "card_name": "Olla de la Extravagancia / Pot of Extravagance",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 49238328
+    },
+    {
+      "id": 298,
+      "deck_id": 687,
+      "card_name": "Recarga del Acelerador de Llama / Blaze Accelerator Reload",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": 52198054
+    },
+    {
+      "id": 299,
+      "deck_id": 687,
+      "card_name": "Infierno Volcánico / Volcanic Inferno",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 84138874
+    },
+    {
+      "id": 300,
+      "deck_id": 687,
+      "card_name": "Emisión Volcánica / Volcanic Emission",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": 58143766
+    },
+    {
+      "id": 301,
+      "deck_id": 687,
+      "card_name": "Emparejamiento de Atributos / Gozen Match",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": 53334471
+    },
+    {
+      "id": 312,
+      "deck_id": 687,
+      "card_name": "Infinito Temporal / Infinite Impermanence",
+      "quantity": 3,
+      "section": "reserve",
+      "ygoprodeck_id": 10045474
+    },
+    {
+      "id": 313,
+      "deck_id": 687,
+      "card_name": "Flor de Ceniza y Primavera Feliz / Ash Blossom & Joyous Spring",
+      "quantity": 2,
+      "section": "reserve",
+      "ygoprodeck_id": 14558127
+    },
+    {
+      "id": 314,
+      "deck_id": 687,
+      "card_name": "Corona Prohibida / Forbidden Chalice",
+      "quantity": 2,
+      "section": "reserve",
+      "ygoprodeck_id": 25789292
+    },
+    {
+      "id": 315,
+      "deck_id": 687,
+      "card_name": "Almas en Choque / Clash of Souls",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 57496978
+    },
+    {
+      "id": 316,
+      "deck_id": 687,
+      "card_name": "Pelea Pareja / Evenly Matched",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 15693423
+    },
+    {
+      "id": 317,
+      "deck_id": 687,
+      "card_name": "Rivalidad de los Señores de la Guerra / Rivalry of Warlords",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 90846359
+    },
+    {
+      "id": 318,
+      "deck_id": 687,
+      "card_name": "Polvo de Pluma de Arpía / Harpie's Feather Duster",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 18144507
+    },
+    {
+      "id": 319,
+      "deck_id": 687,
+      "card_name": "\"C\" Maxx / Maxx \"C\"",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 23434538
+    },
+    {
+      "id": 320,
+      "deck_id": 687,
+      "card_name": "Emparejamiento de Atributos / Gozen Match",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 53334471
+    },
+    {
+      "id": 321,
+      "deck_id": 687,
+      "card_name": "Olla de la Prosperidad / Pot of Prosperity",
+      "quantity": 1,
+      "section": "reserve",
+      "ygoprodeck_id": 84211599
+    },
+    {
+      "id": 444,
+      "deck_id": 704,
+      "card_name": "Arquero Ígneo Supergráfagas",
+      "quantity": 2,
+      "section": "extra",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 445,
+      "deck_id": 704,
+      "card_name": "Salamandra Alquimicalizada",
+      "quantity": 3,
+      "section": "extra",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 429,
+      "deck_id": 704,
+      "card_name": "¡Atraviesa!",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 430,
+      "deck_id": 704,
+      "card_name": "Germalewe",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 431,
+      "deck_id": 704,
+      "card_name": "Orden Secreta",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 432,
+      "deck_id": 704,
+      "card_name": "Hiperasistente Ember",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 433,
+      "deck_id": 704,
+      "card_name": "Cromatográfagas",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 434,
+      "deck_id": 704,
+      "card_name": "Superasistente Ember",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 435,
+      "deck_id": 704,
+      "card_name": "Fusión",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 436,
+      "deck_id": 704,
+      "card_name": "Fuego Ardiente",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 437,
+      "deck_id": 704,
+      "card_name": "Salamandra Quimicalizada",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 438,
+      "deck_id": 704,
+      "card_name": "Gelatina Defensiva",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 439,
+      "deck_id": 704,
+      "card_name": "Amparo del Protector Estelar",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 440,
+      "deck_id": 704,
+      "card_name": "Parar la Defensa",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 441,
+      "deck_id": 704,
+      "card_name": "Agujero Trampa",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 442,
+      "deck_id": 704,
+      "card_name": "Gobernante de las Llamas",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 443,
+      "deck_id": 704,
+      "card_name": "Olla de la Codicia",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 466,
+      "deck_id": 705,
+      "card_name": "Kheiron el Caballero Estelar",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 467,
+      "deck_id": 705,
+      "card_name": "Phaser del Rebelde Real",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 468,
+      "deck_id": 705,
+      "card_name": "Impasse Ignoto",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 469,
+      "deck_id": 705,
+      "card_name": "Metal Maldito del Rebelde Real",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 470,
+      "deck_id": 705,
+      "card_name": "Heavy Metal del Rebelde Real",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 471,
+      "deck_id": 705,
+      "card_name": "Progrock del Rebelde Real",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 472,
+      "deck_id": 705,
+      "card_name": "Descendiente de Titanes",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 473,
+      "deck_id": 705,
+      "card_name": "Canjear",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 474,
+      "deck_id": 705,
+      "card_name": "Aliento de Fuego del Genio",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 475,
+      "deck_id": 705,
+      "card_name": "Restauración de Cartas",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 476,
+      "deck_id": 705,
+      "card_name": "Maldición de la Luz Ascendente",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 477,
+      "deck_id": 705,
+      "card_name": "Gelatina Defensiva",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 478,
+      "deck_id": 705,
+      "card_name": "Avaricia del Rey",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 479,
+      "deck_id": 705,
+      "card_name": "Agujero Trampa",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 480,
+      "deck_id": 705,
+      "card_name": "Esplendor del Rey",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 481,
+      "deck_id": 705,
+      "card_name": "Monstruo Reencarnado",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 424,
+      "deck_id": 706,
+      "card_name": "Héroe Elemental Voltic Wingman",
+      "quantity": 2,
+      "section": "extra",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 425,
+      "deck_id": 706,
+      "card_name": "Héroe Elemental del Estallido Wingman",
+      "quantity": 2,
+      "section": "extra",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 426,
+      "deck_id": 706,
+      "card_name": "Héroe Elemental de la Llama Wingman",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 427,
+      "deck_id": 706,
+      "card_name": "Héroe Elemental Heliosfera",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 428,
+      "deck_id": 706,
+      "card_name": "Héroe Elemental Shining Flare Wingman",
+      "quantity": 2,
+      "section": "extra",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 412,
+      "deck_id": 706,
+      "card_name": "Héroe Elemental Avian",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 413,
+      "deck_id": 706,
+      "card_name": "Héroe Elemental Sparkman",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 414,
+      "deck_id": 706,
+      "card_name": "Héroe Elemental Burstinatrix",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 415,
+      "deck_id": 706,
+      "card_name": "Héroe Ascendente de Argen",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 416,
+      "deck_id": 706,
+      "card_name": "Inicio Reinicio",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 417,
+      "deck_id": 706,
+      "card_name": "Descenso de Héroe",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 418,
+      "deck_id": 706,
+      "card_name": "Brillo Sombrío",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 419,
+      "deck_id": 706,
+      "card_name": "Circulación Elemental",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 420,
+      "deck_id": 706,
+      "card_name": "Estrategia Mágica Aviar",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 421,
+      "deck_id": 706,
+      "card_name": "Fusión",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 422,
+      "deck_id": 706,
+      "card_name": "Agujero Trampa",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 423,
+      "deck_id": 706,
+      "card_name": "Olla de la Codicia",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 463,
+      "deck_id": 707,
+      "card_name": "Gaia el Campeón Dragón Rápido",
+      "quantity": 3,
+      "section": "extra",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 464,
+      "deck_id": 707,
+      "card_name": "Gaia el Campeón Dragón",
+      "quantity": 3,
+      "section": "extra",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 465,
+      "deck_id": 707,
+      "card_name": "Gaia, el Conquistador de Campeones",
+      "quantity": 1,
+      "section": "extra",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 446,
+      "deck_id": 707,
+      "card_name": "Ataque Mágico Oscuro",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 447,
+      "deck_id": 707,
+      "card_name": "Distribuidor Maravilloso",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 448,
+      "deck_id": 707,
+      "card_name": "Maga Legendaria",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 449,
+      "deck_id": 707,
+      "card_name": "Mago Oscuro Sabio",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 450,
+      "deck_id": 707,
+      "card_name": "Grito de Monstruo",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 451,
+      "deck_id": 707,
+      "card_name": "Hechicero Eliminador Oscuro",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 452,
+      "deck_id": 707,
+      "card_name": "Ráfaga de Resonancia Oscura",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 453,
+      "deck_id": 707,
+      "card_name": "Brillo Sombrío",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 454,
+      "deck_id": 707,
+      "card_name": "Piedra de los Magos Oscuros",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 455,
+      "deck_id": 707,
+      "card_name": "Mago Oscuro",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 456,
+      "deck_id": 707,
+      "card_name": "Lily Aniquiladora",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 457,
+      "deck_id": 707,
+      "card_name": "Chica Maga Oscura",
+      "quantity": 3,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 458,
+      "deck_id": 707,
+      "card_name": "Mil Cuchillos",
+      "quantity": 2,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 459,
+      "deck_id": 707,
+      "card_name": "¡Equitación Lindasesina!",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 460,
+      "deck_id": 707,
+      "card_name": "Orden Secreta",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 461,
+      "deck_id": 707,
+      "card_name": "Olla de la Codicia",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": null
+    },
+    {
+      "id": 462,
+      "deck_id": 707,
+      "card_name": "Maldición de la Luz Ascendente",
+      "quantity": 1,
+      "section": "main",
+      "ygoprodeck_id": null
+    }
+  ]
+}

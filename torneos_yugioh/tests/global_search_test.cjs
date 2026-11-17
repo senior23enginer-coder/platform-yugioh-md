@@ -1,0 +1,13 @@
+const assert=require('node:assert/strict'),M=require('../assets/modules/navigation/global-search.js');
+const data={allDecks:[{id:1,name:'Dragón Azul',team_id:10,team:'Equipo Élite'},{id:2,name:'Dragón Azul',team_id:11},{id:3,name:'Azul de prueba'}],teams:[{id:10,name:'Equipo Élite',short_code:'ELI'},{id:11,name:'Otro equipo'}],competitions:[{id:20,name:'Copa Élite',code:'COP26',type:'cup'},{id:21,name:'Liga Azul',type:'league'}]};
+const before=JSON.stringify(data);
+assert.equal(M.search(data,'dragon azul')[0].type,'Deck');assert.deepEqual(M.search(data,'dragon azul').filter(x=>x.type==='Deck').map(x=>x.id),[1,2]);
+assert.equal(M.search(data,'  EQUIPO   elite  ')[0].id,10);assert.equal(M.search(data,'ELI')[0].type,'Equipo');
+assert.equal(M.search(data,'elite copa')[0].id,20);assert.equal(M.search(data,'COP26')[0].id,20);assert.equal(M.search(data,'liga')[0].type,'Evento');
+assert(M.search(data,'dragon').some(x=>x.type==='Equipo'&&x.id===10));
+assert.deepEqual(M.search(data,'  '),[]);assert.deepEqual(M.search(data,'missing xyz'),[]);assert.deepEqual(M.search(data,'undefined'),[]);
+assert.equal(M.search({...data,allDecks:[...data.allDecks,data.allDecks[0]]},'dragon').filter(x=>x.id===1&&x.type==='Deck').length,1);
+assert(M.search(data,'azul',1).length===1);assert.equal(JSON.stringify(data),before);
+const aliases={competitions:[{id:30,name:'Ancient League',display_name:'Liga Ancient',type:'league'}]};
+assert.equal(M.search(aliases,'liga ancient')[0].id,30);assert.equal(M.search(aliases,'ancient league')[0].label,'Liga Ancient');
+console.log(JSON.stringify({ok:true,categories:3,accentInsensitive:true,multiword:true,stableIds:true,sourcePreserved:true}));

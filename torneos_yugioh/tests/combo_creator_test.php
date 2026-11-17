@@ -1,0 +1,50 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__.'/../includes/decks/combo-creator.php';
+$pdo=new PDO('sqlite::memory:',null,null,[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);
+$pdo->exec('CREATE TABLE sx_ygo_decks(id INT PRIMARY KEY,name TEXT); CREATE TABLE sx_ygo_deck_cards(id INT PRIMARY KEY,deck_id INT,card_name TEXT,quantity INT,section TEXT,ygoprodeck_id INT)');
+$pdo->exec("INSERT INTO sx_ygo_decks VALUES(1,'Deck A'),(2,'Deck B'),(3,'Sin cartas'); INSERT INTO sx_ygo_deck_cards VALUES(11,1,'Starter',3,'main',100),(12,1,'Extra',1,'extra',200),(21,2,'Foreign',1,'main',300)");
+ygo_combo_schema($pdo);$checks=0;
+function check(bool $value): void { global $checks;if(!$value)throw new RuntimeException('Assertion '.($checks+1).' failed');$checks++; }
+function rejects(callable $fn,string $class=InvalidArgumentException::class): void { try {$fn();} catch(Throwable $e){check($e instanceof $class);return;}throw new RuntimeException('Expected rejection'); }
+$inventory=ygo_combo_inventory($pdo,1);
+$node=static fn(string $id,string $kind,array $cards)=>['id'=>$id,'kind'=>$kind,'title'=>$id,'action'=>'Activar','explanation'=>'Coste y condición explícitos','x'=>40,'y'=>40,'cards'=>$cards];
+$doc=['id'=>'test-combo-00000001','title'=>'Mi combo','kind'=>'combo','objective'=>'Plan condicionado','conditions'=>'Normal disponible','turn_order'=>'first','nodes'=>[$node('start','opening',[11]),$node('end','result',[12])],'edges'=>[['from'=>'start','to'=>'end','label'=>'Si resuelve']]];
+$input=['deck_id'=>1,'inventory_sha256'=>$inventory['inventory_sha256'],'revision'=>0,'document'=>$doc];
+$before=$pdo->query('SELECT * FROM sx_ygo_deck_cards ORDER BY id')->fetchAll();
+$saved=ygo_combo_save($pdo,$input);check($saved['revision']===1);check($saved['deck_id']===1);check(count($saved['cards_snapshot'])===2);
+check(ygo_combo_save($pdo,$input)['revision']===1);check((int)$pdo->query('SELECT COUNT(*) FROM sx_ygo_created_combos')->fetchColumn()===1);
+$input['revision']=1;$input['document']['title']='Corrección';$saved=ygo_combo_save($pdo,$input);check($saved['revision']===2);check((int)$pdo->query('SELECT COUNT(*) FROM sx_ygo_created_combo_revisions')->fetchColumn()===2);
+$stale=$input;$stale['document']['title']='Edición concurrente';rejects(fn()=>ygo_combo_save($pdo,$stale),DomainException::class);
+check($pdo->query('SELECT title FROM sx_ygo_created_combos')->fetchColumn()==='Corrección');
+$invalid=$input;$invalid['revision']=2;$invalid['document']['nodes'][0]['cards']=[21];rejects(fn()=>ygo_combo_save($pdo,$invalid));
+$invalid['document']['nodes'][0]['cards']=[12];rejects(fn()=>ygo_combo_save($pdo,$invalid));
+$invalid['document']['nodes'][0]['cards']=[11,11,11,11];rejects(fn()=>ygo_combo_save($pdo,$invalid));
+$invalid=$input;$invalid['document']['edges'][]=['from'=>'end','to'=>'start','label'=>'Ciclo'];rejects(fn()=>ygo_combo_save($pdo,$invalid));
+$invalid=$input;$invalid['document']['edges'][0]['to']='missing';rejects(fn()=>ygo_combo_save($pdo,$invalid));
+$invalid=$input;$invalid['document']['nodes'][0]['x']=-20;rejects(fn()=>ygo_combo_save($pdo,$invalid));
+$invalid=$input;$invalid['document']['nodes'][0]['title']='';rejects(fn()=>ygo_combo_save($pdo,$invalid));
+$invalid=$input;$invalid['document']['nodes'][1]['id']='start';rejects(fn()=>ygo_combo_save($pdo,$invalid));
+rejects(fn()=>ygo_combo_inventory($pdo,3));rejects(fn()=>ygo_combo_inventory($pdo,999));
+$foreign=$input;$foreign['deck_id']=2;$foreign['inventory_sha256']=ygo_combo_inventory($pdo,2)['inventory_sha256'];$foreign['document']['nodes']=[$node('own','step',[21])];$foreign['document']['edges']=[];rejects(fn()=>ygo_combo_save($pdo,$foreign));
+check($before===$pdo->query('SELECT * FROM sx_ygo_deck_cards ORDER BY id')->fetchAll());
+$pdo->exec('UPDATE sx_ygo_deck_cards SET quantity=2 WHERE id=11');$input['revision']=2;rejects(fn()=>ygo_combo_save($pdo,$input),DomainException::class);
+$stored=$pdo->query('SELECT * FROM sx_ygo_created_combos')->fetch(PDO::FETCH_ASSOC);$unpacked=ygo_combo_unpack($stored,ygo_combo_inventory($pdo,1)['inventory_sha256']);check($unpacked['stale']);check($unpacked['cards_snapshot'][0]['quantity']===3);
+check((int)$pdo->query('SELECT COUNT(*) FROM sx_ygo_created_combo_revisions')->fetchColumn()===2);
+
+$read=ygo_combo_inventory($pdo,3,false,false);check(!$read['cards_loaded']);check($read['cards']===[]);
+$technical=$doc;$technical['editorial_status']='conditional';$technical['board_format']='tcg';
+$technical['nodes'][1]['details']=['cost'=>'Discard only when documented','source'=>'Original manual study'];
+$technical['nodes'][1]['placements']=[['card_index'=>0,'zone'=>'monster_1','position'=>'attack','materials'=>'One material documented']];
+$normal=$inventory;$normal['format']='tcg';$clean=ygo_combo_document($technical,$normal);
+check($clean['nodes'][1]['details']['cost']==='Discard only when documented');check($clean['nodes'][1]['placements'][0]['zone']==='monster_1');check($clean['editorial_status']==='conditional');
+$bad=$technical;$bad['nodes'][1]['placements'][0]['card_index']=9;rejects(fn()=>ygo_combo_document($bad,$normal));
+$bad=$technical;$bad['nodes'][1]['placements'][0]['zone']='fake_zone';rejects(fn()=>ygo_combo_document($bad,$normal));
+$bad=$technical;$bad['editorial_status']='verified';rejects(fn()=>ygo_combo_document($bad,$normal));
+$rush=$inventory;$rush['format']='rush';$rush['skills']=[['id'=>'TEST-SKILL','name'=>'Fixture Skill']];
+$rushDoc=$technical;$rushDoc['board_format']='rush';$rushDoc['skill_id']='TEST-SKILL';$rushDoc['nodes'][1]['placements'][0]['zone']='monster_3';
+check(ygo_combo_document($rushDoc,$rush)['skill_snapshot']['id']==='TEST-SKILL');
+$bad=$rushDoc;$bad['nodes'][1]['placements'][0]['zone']='monster_4';rejects(fn()=>ygo_combo_document($bad,$rush));
+$bad=$rushDoc;$bad['skill_id']='FOREIGN-SKILL';rejects(fn()=>ygo_combo_document($bad,$rush));
+$bad=$technical;$bad['skill_id']='TEST-SKILL';rejects(fn()=>ygo_combo_document($bad,$normal));
+echo json_encode(['ok'=>true,'checks'=>$checks,'persistence'=>true,'revisionHistory'=>true,'foreignCardsRejected'=>true,'staleInventoryRejected'=>true,'cyclesRejected'=>true,'nativeListsUnchanged'=>true]).PHP_EOL;

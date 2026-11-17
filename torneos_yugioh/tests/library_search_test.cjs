@@ -1,0 +1,12 @@
+const assert=require('assert/strict'),fs=require('fs'),engine=require('../assets/library-search.js');
+const fixture=process.argv[2];assert(fixture,'Pass the PHP-generated current library fixture');const data=JSON.parse(fs.readFileSync(fixture,'utf8')),index=engine.createIndex(data.articles);let checks=0;
+function check(ok,why){checks++;assert(ok,why);}
+const cases=[['ida y vuelta','system-double_round_robin'],['double round robin','system-double_round_robin'],['¿Cómo funciona una liga de ida y vuelta?','system-double_round_robin'],['suizo','system-swiss'],['elminacion directa','system-single_elimination'],['Pegasus Challenge','model-pegasus_challenge'],['Elo Battle Royale','guide-ffa-elo'],['CUSTOM_XP',null],['ascenso descenso','guide-promotions'],['tipo modelo','term-type-model-system'],['que significa BO3','term-best-of'],['Apex League','event-25']];
+for(const [query,id] of cases){const hits=engine.search(index,query);check(hits.length>0,'Results for '+query);if(id)check(hits.slice(0,5).some(h=>h.article.id===id),'Relevant top-five result '+query+' '+hits.slice(0,5).map(h=>h.article.id).join(','));else check(hits[0].article.category==='Reglas registradas','Actual CUSTOM_XP rule ranks first');}
+check(engine.search(index,'zzqxyvzzq').length===0,'Unknown query does not fabricate answers');check(engine.search(index,'y de la').length===0,'Stop words only do not imply meaningful result');
+const models=engine.search(index,'','Modelos preconfigurados');check(models.length===198,'All available models covered');check(models.every(h=>h.article.category==='Modelos preconfigurados'),'Category scope exact');
+const tail=engine.createIndex([{id:'tail',title:'One',summary:'Two',aliases:[],sections:[{title:'Body',paragraphs:[Array.from({length:40},(_,i)=>'word'+i).join(' ')+' distintivofinal']}]}]);check(engine.search(tail,'distintivofinal').length===1,'Index covers complete article, not only preview');
+check(engine.normalize('DIVISIÓN_ÚNICA')==='division unica','Accents case and codes normalized');
+check(engine.search(index,'mazo').length>0,'Synonym-only query supported');check(engine.search(index,'terminología').some(h=>h.article.category==='Terminología'),'Glossary category searchable');
+const started=performance.now();for(let i=0;i<30;i++)engine.search(index,cases[i%cases.length][0]);const ms=performance.now()-started;check(ms<4000,'Interactive search performance '+ms);
+console.log('PASS '+checks+' library search relevance and robustness checks; '+data.articles.length+' articles; 30 queries '+Math.round(ms)+'ms');

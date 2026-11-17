@@ -1,0 +1,856 @@
+{
+  "catalog_001": {
+    "id": 1,
+    "name": "World Championship (WCS)",
+    "base": "world_championship",
+    "description": "Receta interna de Station X para World Championship (WCS). Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_002": {
+    "id": 2,
+    "name": "World Championship Qualifier",
+    "base": "wcq_world_championship_qualifier",
+    "description": "Receta interna de Station X para World Championship Qualifier. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_003": {
+    "id": 3,
+    "name": "Yu-Gi-Oh! Championship Series",
+    "base": "ycs_yu_gi_oh_championship_series",
+    "description": "Receta interna de Station X para Yu-Gi-Oh! Championship Series. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_004": {
+    "id": 4,
+    "name": "Team YCS",
+    "base": "team_ycs",
+    "description": "Receta interna de Station X para Team YCS. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_005": {
+    "id": 5,
+    "name": "Remote Duel YCS",
+    "base": "remote_duel_ycs",
+    "description": "Receta interna de Station X para Remote Duel YCS. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_006": {
+    "id": 6,
+    "name": "Regional Qualifier",
+    "base": "regional_qualifier",
+    "description": "Receta interna de Station X para Regional Qualifier. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_007": {
+    "id": 7,
+    "name": "National Qualifier",
+    "base": "national_qualifier",
+    "description": "Receta interna de Station X para National Qualifier. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_008": {
+    "id": 8,
+    "name": "OTS Championship",
+    "base": "ots_championship",
+    "description": "Receta interna de Station X para OTS Championship. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_009": {
+    "id": 9,
+    "name": "OTS Tournament Series",
+    "base": "ots_tournament_series",
+    "description": "Receta interna de Station X para OTS Tournament Series. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_010": {
+    "id": 10,
+    "name": "YCS VIP Qualifier",
+    "base": "ycs_vip_qualifier",
+    "description": "Receta interna de Station X para YCS VIP Qualifier. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_011": {
+    "id": 11,
+    "name": "Dragon Duel",
+    "base": "dragon_duel",
+    "description": "Receta interna de Station X para Dragon Duel. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_012": {
+    "id": 12,
+    "name": "Dragon Duel Championship",
+    "base": "dragon_duel_championship",
+    "description": "Receta interna de Station X para Dragon Duel Championship. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_013": {
+    "id": 13,
+    "name": "Dragon Duel Last Chance Qualifier",
+    "base": "last_chance_qualifier",
+    "description": "Receta interna de Station X para Dragon Duel Last Chance Qualifier. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_014": {
+    "id": 14,
+    "name": "Ranking Tournament (OCG)",
+    "base": "ranking_tournament",
+    "description": "Receta interna de Station X para Ranking Tournament (OCG). Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {
+      "ruleset": "ocg"
+    }
+  },
+  "catalog_015": {
+    "id": 15,
+    "name": "World Qualifying Points",
+    "base": "ranking_tournament",
+    "description": "Receta interna de Station X para World Qualifying Points. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_016": {
+    "id": 16,
+    "name": "Win-A-Mat",
+    "base": "win_a_mat",
+    "description": "Receta interna de Station X para Win-A-Mat. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_017": {
+    "id": 17,
+    "name": "Attack of the Giant Card!!",
+    "base": "attack_of_the_giant_card",
+    "description": "Receta interna de Station X para Attack of the Giant Card!!. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_018": {
+    "id": 18,
+    "name": "Rivalry of Warlords",
+    "base": "rivalry_of_warlords",
+    "description": "Receta interna de Station X para Rivalry of Warlords. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_019": {
+    "id": 19,
+    "name": "Structure Deck Tournament",
+    "base": "structure_deck_tournament",
+    "description": "Receta interna de Station X para Structure Deck Tournament. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_020": {
+    "id": 20,
+    "name": "THE CHRONICLES DECK Tournament",
+    "base": "torneo_local",
+    "description": "Receta interna de Station X para THE CHRONICLES DECK Tournament. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "La condicion de cartas indicada en el nombre es informativa y su cumplimiento es externo. Station X no valida cartas, limites, banlists, puntos de construccion ni pools.",
+    "overrides": {}
+  },
+  "catalog_021": {
+    "id": 21,
+    "name": "Genesys Tournament",
+    "base": "genesys_championship",
+    "description": "Receta interna de Station X para Genesys Tournament. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_022": {
+    "id": 22,
+    "name": "Time Wizard Tournament",
+    "base": "time_wizard",
+    "description": "Receta interna de Station X para Time Wizard Tournament. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_023": {
+    "id": 23,
+    "name": "Speed Duel Tournament",
+    "base": "speed_duel_tournament",
+    "description": "Receta interna de Station X para Speed Duel Tournament. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_024": {
+    "id": 24,
+    "name": "3 vs. 3 Team Duel",
+    "base": "team_3v3",
+    "description": "Receta interna de Station X para 3 vs. 3 Team Duel. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_025": {
+    "id": 25,
+    "name": "Tag Duel Tournament",
+    "base": "tag_duel",
+    "description": "Receta interna de Station X para Tag Duel Tournament. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_026": {
+    "id": 26,
+    "name": "MASTER DUEL Tournament",
+    "base": "master_duel_tournament",
+    "description": "Receta interna de Station X para MASTER DUEL Tournament. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_027": {
+    "id": 27,
+    "name": "DUEL LINKS Tournament",
+    "base": "duel_links_tournament",
+    "description": "Receta interna de Station X para DUEL LINKS Tournament. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_028": {
+    "id": 28,
+    "name": "Charity Tournament",
+    "base": "charity_tournament",
+    "description": "Receta interna de Station X para Charity Tournament. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_029": {
+    "id": 29,
+    "name": "Public Events Playoff",
+    "base": "public_event_playoff",
+    "description": "Receta interna de Station X para Public Events Playoff. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_030": {
+    "id": 30,
+    "name": "Yu-Gi-Oh! Extravaganza",
+    "base": "torneo_local",
+    "description": "Receta interna de Station X para Yu-Gi-Oh! Extravaganza. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_031": {
+    "id": 31,
+    "name": "OTS Local Tournament",
+    "base": "torneo_local",
+    "description": "Receta interna de Station X para OTS Local Tournament. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_032": {
+    "id": 32,
+    "name": "Core Booster Premiere!",
+    "base": "core_booster_premiere",
+    "description": "Receta interna de Station X para Core Booster Premiere!. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_033": {
+    "id": 33,
+    "name": "Yu-Gi-Oh! Day",
+    "base": "yugioh_day",
+    "description": "Receta interna de Station X para Yu-Gi-Oh! Day. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_034": {
+    "id": 34,
+    "name": "World Championship Celebration",
+    "base": "world_championship_celebration",
+    "description": "Receta interna de Station X para World Championship Celebration. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_035": {
+    "id": 35,
+    "name": "Demo Duel",
+    "base": "exhibition_match",
+    "description": "Receta interna de Station X para Demo Duel. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_036": {
+    "id": 36,
+    "name": "Release Tournament",
+    "base": "torneo_local",
+    "description": "Receta interna de Station X para Release Tournament. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_037": {
+    "id": 37,
+    "name": "Community Tournament",
+    "base": "torneo_local",
+    "description": "Receta interna de Station X para Community Tournament. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_038": {
+    "id": 38,
+    "name": "Anniversary Tournament",
+    "base": "torneo_local",
+    "description": "Receta interna de Station X para Anniversary Tournament. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_039": {
+    "id": 39,
+    "name": "Promotional Tournament",
+    "base": "yugioh_day",
+    "description": "Receta interna de Station X para Promotional Tournament. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_040": {
+    "id": 40,
+    "name": "Liga regular",
+    "base": "liga",
+    "description": "Receta interna de Station X para Liga regular. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_041": {
+    "id": 41,
+    "name": "Liga ida y vuelta",
+    "base": "double_round_robin",
+    "description": "Receta interna de Station X para Liga ida y vuelta. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_042": {
+    "id": 42,
+    "name": "Liga por divisiones",
+    "base": "liga",
+    "description": "Receta interna de Station X para Liga por divisiones. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_043": {
+    "id": 43,
+    "name": "Liga de campeones",
+    "base": "season_tournament",
+    "description": "Receta interna de Station X para Liga de campeones. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_044": {
+    "id": 44,
+    "name": "Liga de aspirantes",
+    "base": "liga",
+    "description": "Receta interna de Station X para Liga de aspirantes. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial. Liga con tabla independiente; no asigna ascensos ni descensos sin divisiones y cupos configurados.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_045": {
+    "id": 45,
+    "name": "Liga de desarrollo",
+    "base": "liga",
+    "description": "Receta interna de Station X para Liga de desarrollo. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial. Liga con tabla independiente; no asigna ascensos ni descensos sin divisiones y cupos configurados.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_046": {
+    "id": 46,
+    "name": "Copa nacional",
+    "base": "knockout_cup",
+    "description": "Receta interna de Station X para Copa nacional. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_047": {
+    "id": 47,
+    "name": "Copa internacional",
+    "base": "knockout_cup",
+    "description": "Receta interna de Station X para Copa internacional. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_048": {
+    "id": 48,
+    "name": "Copa de campeones",
+    "base": "champions_cup",
+    "description": "Receta interna de Station X para Copa de campeones. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_049": {
+    "id": 49,
+    "name": "Supercopa",
+    "base": "super_cup",
+    "description": "Receta interna de Station X para Supercopa. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_050": {
+    "id": 50,
+    "name": "Masters",
+    "base": "championship",
+    "description": "Receta interna de Station X para Masters. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_051": {
+    "id": 51,
+    "name": "Grand Prix",
+    "base": "swiss_top_cut",
+    "description": "Receta interna de Station X para Grand Prix. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_052": {
+    "id": 52,
+    "name": "Clasificatorio abierto",
+    "base": "clasificatorio",
+    "description": "Receta interna de Station X para Clasificatorio abierto. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_053": {
+    "id": 53,
+    "name": "Clasificatorio cerrado",
+    "base": "clasificatorio",
+    "description": "Receta interna de Station X para Clasificatorio cerrado. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {
+      "access_type": "INVITATIONAL"
+    }
+  },
+  "catalog_054": {
+    "id": 54,
+    "name": "Repechaje",
+    "base": "last_chance_qualifier",
+    "description": "Receta interna de Station X para Repechaje. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_055": {
+    "id": 55,
+    "name": "Playoffs",
+    "base": "playoffs",
+    "description": "Receta interna de Station X para Playoffs. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_056": {
+    "id": 56,
+    "name": "Play-in",
+    "base": "top_cut",
+    "description": "Receta interna de Station X para Play-in. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_057": {
+    "id": 57,
+    "name": "Promoción",
+    "base": "match_play",
+    "description": "Receta interna de Station X para Promoción. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial. Serie decisiva entre dos participantes; no mueve divisiones automaticamente.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_058": {
+    "id": 58,
+    "name": "Permanencia",
+    "base": "match_play",
+    "description": "Receta interna de Station X para Permanencia. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial. Serie decisiva entre dos participantes; no mueve divisiones automaticamente.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_059": {
+    "id": 59,
+    "name": "Torneo de campeones",
+    "base": "champions_cup",
+    "description": "Receta interna de Station X para Torneo de campeones. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_060": {
+    "id": 60,
+    "name": "Circuito de puntos",
+    "base": "ranking_tournament",
+    "description": "Receta interna de Station X para Circuito de puntos. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_061": {
+    "id": 61,
+    "name": "Singleton",
+    "base": "swiss_tournament",
+    "description": "Receta interna de Station X para Singleton. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "La condicion de cartas indicada en el nombre es informativa y su cumplimiento es externo. Station X no valida cartas, limites, banlists, puntos de construccion ni pools.",
+    "overrides": {}
+  },
+  "catalog_062": {
+    "id": 62,
+    "name": "Commander",
+    "base": "swiss_tournament",
+    "description": "Receta interna de Station X para Commander. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "La condicion de cartas indicada en el nombre es informativa y su cumplimiento es externo. Station X no valida cartas, limites, banlists, puntos de construccion ni pools.",
+    "overrides": {}
+  },
+  "catalog_063": {
+    "id": 63,
+    "name": "Draft",
+    "base": "draft_tournament",
+    "description": "Receta interna de Station X para Draft. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "La condicion de cartas indicada en el nombre es informativa y su cumplimiento es externo. Station X no valida cartas, limites, banlists, puntos de construccion ni pools.",
+    "overrides": {}
+  },
+  "catalog_064": {
+    "id": 64,
+    "name": "Sealed",
+    "base": "sealed_deck_tournament",
+    "description": "Receta interna de Station X para Sealed. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "La condicion de cartas indicada en el nombre es informativa y su cumplimiento es externo. Station X no valida cartas, limites, banlists, puntos de construccion ni pools.",
+    "overrides": {}
+  },
+  "catalog_065": {
+    "id": 65,
+    "name": "Archetype Only",
+    "base": "swiss_tournament",
+    "description": "Receta interna de Station X para Archetype Only. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "La condicion de cartas indicada en el nombre es informativa y su cumplimiento es externo. Station X no valida cartas, limites, banlists, puntos de construccion ni pools.",
+    "overrides": {}
+  },
+  "catalog_066": {
+    "id": 66,
+    "name": "Mono-Attribute",
+    "base": "swiss_tournament",
+    "description": "Receta interna de Station X para Mono-Attribute. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "La condicion de cartas indicada en el nombre es informativa y su cumplimiento es externo. Station X no valida cartas, limites, banlists, puntos de construccion ni pools.",
+    "overrides": {}
+  },
+  "catalog_067": {
+    "id": 67,
+    "name": "Mono-Type",
+    "base": "swiss_tournament",
+    "description": "Receta interna de Station X para Mono-Type. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "La condicion de cartas indicada en el nombre es informativa y su cumplimiento es externo. Station X no valida cartas, limites, banlists, puntos de construccion ni pools.",
+    "overrides": {}
+  },
+  "catalog_068": {
+    "id": 68,
+    "name": "Highlander",
+    "base": "swiss_tournament",
+    "description": "Receta interna de Station X para Highlander. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "La condicion de cartas indicada en el nombre es informativa y su cumplimiento es externo. Station X no valida cartas, limites, banlists, puntos de construccion ni pools.",
+    "overrides": {}
+  },
+  "catalog_069": {
+    "id": 69,
+    "name": "Common Only",
+    "base": "swiss_tournament",
+    "description": "Receta interna de Station X para Common Only. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "La condicion de cartas indicada en el nombre es informativa y su cumplimiento es externo. Station X no valida cartas, limites, banlists, puntos de construccion ni pools.",
+    "overrides": {}
+  },
+  "catalog_070": {
+    "id": 70,
+    "name": "Budget Deck",
+    "base": "swiss_tournament",
+    "description": "Receta interna de Station X para Budget Deck. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "La condicion de cartas indicada en el nombre es informativa y su cumplimiento es externo. Station X no valida cartas, limites, banlists, puntos de construccion ni pools.",
+    "overrides": {}
+  },
+  "catalog_071": {
+    "id": 71,
+    "name": "No Extra Deck",
+    "base": "swiss_tournament",
+    "description": "Receta interna de Station X para No Extra Deck. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "La condicion de cartas indicada en el nombre es informativa y su cumplimiento es externo. Station X no valida cartas, limites, banlists, puntos de construccion ni pools.",
+    "overrides": {}
+  },
+  "catalog_072": {
+    "id": 72,
+    "name": "Fusion Only",
+    "base": "swiss_tournament",
+    "description": "Receta interna de Station X para Fusion Only. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "La condicion de cartas indicada en el nombre es informativa y su cumplimiento es externo. Station X no valida cartas, limites, banlists, puntos de construccion ni pools.",
+    "overrides": {}
+  },
+  "catalog_073": {
+    "id": 73,
+    "name": "Synchro Only",
+    "base": "swiss_tournament",
+    "description": "Receta interna de Station X para Synchro Only. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "La condicion de cartas indicada en el nombre es informativa y su cumplimiento es externo. Station X no valida cartas, limites, banlists, puntos de construccion ni pools.",
+    "overrides": {}
+  },
+  "catalog_074": {
+    "id": 74,
+    "name": "Xyz Only",
+    "base": "swiss_tournament",
+    "description": "Receta interna de Station X para Xyz Only. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "La condicion de cartas indicada en el nombre es informativa y su cumplimiento es externo. Station X no valida cartas, limites, banlists, puntos de construccion ni pools.",
+    "overrides": {}
+  },
+  "catalog_075": {
+    "id": 75,
+    "name": "Link Only",
+    "base": "swiss_tournament",
+    "description": "Receta interna de Station X para Link Only. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "La condicion de cartas indicada en el nombre es informativa y su cumplimiento es externo. Station X no valida cartas, limites, banlists, puntos de construccion ni pools.",
+    "overrides": {}
+  },
+  "catalog_076": {
+    "id": 76,
+    "name": "Ritual Only",
+    "base": "swiss_tournament",
+    "description": "Receta interna de Station X para Ritual Only. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "La condicion de cartas indicada en el nombre es informativa y su cumplimiento es externo. Station X no valida cartas, limites, banlists, puntos de construccion ni pools.",
+    "overrides": {}
+  },
+  "catalog_077": {
+    "id": 77,
+    "name": "No Hand Traps",
+    "base": "swiss_tournament",
+    "description": "Receta interna de Station X para No Hand Traps. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "La condicion de cartas indicada en el nombre es informativa y su cumplimiento es externo. Station X no valida cartas, limites, banlists, puntos de construccion ni pools.",
+    "overrides": {}
+  },
+  "catalog_078": {
+    "id": 78,
+    "name": "Custom Banlist",
+    "base": "swiss_tournament",
+    "description": "Receta interna de Station X para Custom Banlist. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "La condicion de cartas indicada en el nombre es informativa y su cumplimiento es externo. Station X no valida cartas, limites, banlists, puntos de construccion ni pools.",
+    "overrides": {}
+  },
+  "catalog_079": {
+    "id": 79,
+    "name": "Random Deck",
+    "base": "swiss_tournament",
+    "description": "Receta interna de Station X para Random Deck. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "La condicion de cartas indicada en el nombre es informativa y su cumplimiento es externo. Station X no valida cartas, limites, banlists, puntos de construccion ni pools.",
+    "overrides": {}
+  },
+  "catalog_080": {
+    "id": 80,
+    "name": "Mirror Match",
+    "base": "swiss_tournament",
+    "description": "Receta interna de Station X para Mirror Match. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "La condicion de cartas indicada en el nombre es informativa y su cumplimiento es externo. Station X no valida cartas, limites, banlists, puntos de construccion ni pools.",
+    "overrides": {}
+  },
+  "catalog_081": {
+    "id": 81,
+    "name": "King of the Hill",
+    "base": "king_of_the_hill",
+    "description": "Receta interna de Station X para King of the Hill. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_082": {
+    "id": 82,
+    "name": "Gauntlet",
+    "base": "gauntlet",
+    "description": "Receta interna de Station X para Gauntlet. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_083": {
+    "id": 83,
+    "name": "Survival",
+    "base": "gauntlet",
+    "description": "Receta interna de Station X para Survival. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Contrato interno Gauntlet: defensor ante retadores ordenados. No se inventan vidas extra ni poderes especiales.",
+    "overrides": {}
+  },
+  "catalog_084": {
+    "id": 84,
+    "name": "Boss Challenge",
+    "base": "gauntlet",
+    "description": "Receta interna de Station X para Boss Challenge. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Contrato interno Gauntlet: defensor ante retadores ordenados. No se inventan vidas extra ni poderes especiales.",
+    "overrides": {}
+  },
+  "catalog_085": {
+    "id": 85,
+    "name": "Battle Royale",
+    "base": "battle_royale",
+    "description": "Receta interna de Station X para Battle Royale. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Mesa de3 o4 jugadores independientes. Turnos individuales, eliminacion permanente y ultimo superviviente ganador; no suma Elo1v1.",
+    "overrides": {}
+  },
+  "catalog_086": {
+    "id": 86,
+    "name": "Free-for-All",
+    "base": "battle_royale",
+    "description": "Receta interna de Station X para Free-for-All. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Mesa de3 o4 jugadores independientes. Turnos individuales, eliminacion permanente y ultimo superviviente ganador; no suma Elo1v1.",
+    "overrides": {}
+  },
+  "catalog_087": {
+    "id": 87,
+    "name": "Team Battle",
+    "base": "team_3v3",
+    "description": "Receta interna de Station X para Team Battle. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Contrato interno de equipos3v3: tres puestos fijos y victoria colectiva por dos puestos ganados.",
+    "overrides": {}
+  },
+  "catalog_088": {
+    "id": 88,
+    "name": "Crew Battle",
+    "base": "team_3v3",
+    "description": "Receta interna de Station X para Crew Battle. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Contrato interno de equipos3v3: tres puestos fijos y victoria colectiva por dos puestos ganados.",
+    "overrides": {}
+  },
+  "catalog_089": {
+    "id": 89,
+    "name": "Relay Duel",
+    "base": "tag_duel",
+    "description": "Receta interna de Station X para Relay Duel. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Contrato interno Tag2v2 compartido; no simula reemplazos de jugadores ni una mecanica de relevos diferente.",
+    "overrides": {}
+  },
+  "catalog_090": {
+    "id": 90,
+    "name": "Best-of-Series",
+    "base": "match_play",
+    "description": "Receta interna de Station X para Best-of-Series. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_091": {
+    "id": 91,
+    "name": "Challenge Ladder",
+    "base": "ladder",
+    "description": "Receta interna de Station X para Challenge Ladder. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_092": {
+    "id": 92,
+    "name": "Bounty Tournament",
+    "base": "swiss_tournament",
+    "description": "Receta interna de Station X para Bounty Tournament. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Suizo con ranking deportivo. Las recompensas o primas externas no agregan XP ni puntos adicionales automaticos.",
+    "overrides": {}
+  },
+  "catalog_093": {
+    "id": 93,
+    "name": "Seasonal Championship",
+    "base": "season_tournament",
+    "description": "Receta interna de Station X para Seasonal Championship. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_094": {
+    "id": 94,
+    "name": "Opening Tournament",
+    "base": "torneo_local",
+    "description": "Receta interna de Station X para Opening Tournament. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_095": {
+    "id": 95,
+    "name": "Closing Tournament",
+    "base": "swiss_top_cut",
+    "description": "Receta interna de Station X para Closing Tournament. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_096": {
+    "id": 96,
+    "name": "All-Star Tournament",
+    "base": "all_star_event",
+    "description": "Receta interna de Station X para All-Star Tournament. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_097": {
+    "id": 97,
+    "name": "Invitational",
+    "base": "invitational",
+    "description": "Receta interna de Station X para Invitational. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_098": {
+    "id": 98,
+    "name": "Legends Tournament",
+    "base": "championship",
+    "description": "Receta interna de Station X para Legends Tournament. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_099": {
+    "id": 99,
+    "name": "Rookie Tournament",
+    "base": "rookie_tournament",
+    "description": "Receta interna de Station X para Rookie Tournament. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_100": {
+    "id": 100,
+    "name": "Redemption Tournament",
+    "base": "last_chance_qualifier",
+    "description": "Receta interna de Station X para Redemption Tournament. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_101": {
+    "id": 101,
+    "name": "Anniversary Cup",
+    "base": "copa",
+    "description": "Receta interna de Station X para Anniversary Cup. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_102": {
+    "id": 102,
+    "name": "Community Cup",
+    "base": "copa",
+    "description": "Receta interna de Station X para Community Cup. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_103": {
+    "id": 103,
+    "name": "Rivalry Cup",
+    "base": "copa",
+    "description": "Receta interna de Station X para Rivalry Cup. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_104": {
+    "id": 104,
+    "name": "Interleague Cup",
+    "base": "copa",
+    "description": "Receta interna de Station X para Interleague Cup. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  },
+  "catalog_105": {
+    "id": 105,
+    "name": "Champions Invitational",
+    "base": "invitational",
+    "description": "Receta interna de Station X para Champions Invitational. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {
+      "access_type": "INVITATIONAL"
+    }
+  },
+  "catalog_106": {
+    "id": 106,
+    "name": "Last Chance Qualifier",
+    "base": "last_chance_qualifier",
+    "description": "Receta interna de Station X para Last Chance Qualifier. Se ejecuta el sistema y las fases seleccionados; no certifica un reglamento oficial.",
+    "difference": "Usa las reglas deportivas de la plantilla vinculada. Nombre, finalidad y configuracion se guardan y se consultan en la ficha.",
+    "overrides": {}
+  }
+}

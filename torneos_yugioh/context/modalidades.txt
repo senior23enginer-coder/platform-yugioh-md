@@ -1,0 +1,141 @@
+Claro. Te lo dejo en **una sola tabla**, limpia y lista para copiar a TXT:
+
+```txt
+TIPOS DE EVENTOS Y MODALIDADES DE YU-GI-OH!
+
+| # | TIPO DE EVENTO | MODALIDAD / SISTEMA | PARTICIPACIÓN | CONSTRUCCIÓN | FORMATO / REGLAS | ENTORNO | NIVEL |
+|---|----------------|---------------------|---------------|--------------|------------------|---------|-------|
+| 1 | Torneo Local | Suizo | Individual 1v1 | Constructed | TCG Advanced | Presencial | Local |
+| 2 | Liga | Round Robin / Suizo acumulativo | Individual 1v1 | Constructed | TCG Advanced | Presencial | Local |
+| 3 | Copa | Grupos + Eliminación / Suizo + Top Cut | Individual 1v1 | Constructed | TCG Advanced | Presencial | Competitivo |
+| 4 | Clasificatorio | Suizo + Top Cut | Individual 1v1 | Constructed | TCG Advanced | Presencial | Competitivo |
+| 5 | Regional Qualifier | Suizo + Clasificación | Individual 1v1 | Constructed | TCG Advanced | Presencial | Oficial |
+| 6 | National Qualifier | Suizo + Top Cut | Individual 1v1 | Constructed | TCG Advanced | Presencial | Oficial |
+| 7 | WCQ - World Championship Qualifier | Suizo + Top Cut | Individual 1v1 | Constructed | TCG Advanced | Presencial | Premier |
+| 8 | YCS - Yu-Gi-Oh! Championship Series | Suizo + Top Cut | Individual 1v1 | Constructed | TCG Advanced | Presencial | Premier |
+| 9 | Team YCS | Suizo + Top Cut | Equipos 3v3 | Constructed | TCG Advanced | Presencial | Premier |
+| 10 | World Championship | Rondas + Eliminación | Individual 1v1 | Constructed | Reglamento Mundial | Presencial | Mundial |
+| 11 | OTS Championship | Suizo + Top Cut | Individual 1v1 | Constructed | TCG Advanced | Presencial | Oficial |
+| 12 | OTS Tournament Series | Suizo + Top Cut | Equipos 3v3 | Constructed | TCG Advanced | Presencial | Oficial |
+| 13 | YCS VIP Qualifier | Suizo / Eliminación | Individual 1v1 | Constructed | TCG Advanced | Presencial | Clasificatorio |
+| 14 | Dragon Duel | Suizo | Individual 1v1 | Constructed | TCG Advanced | Presencial | Juvenil |
+| 15 | Dragon Duel Championship | Suizo + Top Cut | Individual 1v1 | Constructed | TCG Advanced | Presencial | Juvenil |
+| 16 | Remote Duel Regional | Suizo | Individual 1v1 | Constructed | TCG Advanced | Remoto | Oficial |
+| 17 | Remote Duel YCS | Suizo + Top Cut | Individual 1v1 | Constructed | TCG Advanced | Remoto | Premier |
+| 18 | Genesys Regional Qualifier | Suizo + Clasificación | Individual 1v1 | Constructed | Genesys | Presencial | Oficial |
+| 19 | Genesys Championship | Suizo + Top Cut | Individual 1v1 | Constructed | Genesys | Presencial | Oficial |
+| 20 | Yu-Gi-Oh! Day | Suizo / Evento especial | Individual 1v1 | Constructed | TCG Advanced | Presencial | Promocional |
+| 21 | Core Booster Premiere! | Evento de estreno | Individual 1v1 | Sealed / Constructed | Reglas especiales | Presencial | Promocional |
+| 22 | World Championship Celebration | Suizo / Especial | Individual 1v1 | Constructed | TCG Advanced | Presencial | Celebración |
+| 23 | Attack of the Giant Card!! | Suizo / Eliminación | Individual 1v1 | Constructed | TCG Advanced | Presencial | Evento público |
+| 24 | Win-A-Mat | Eliminación directa | Individual 1v1 | Constructed | TCG Advanced | Presencial | Evento público |
+| 25 | Public Event Playoff | Eliminación directa | Individual 1v1 | Constructed | TCG Advanced | Presencial | Evento público |
+| 26 | Structure Deck Tournament | Eliminación / Flight | Individual 1v1 | Structure Deck | Reglas del evento | Presencial | Especial |
+| 27 | Charity Tournament | Suizo | Individual 1v1 | Constructed | TCG Advanced | Presencial | Especial |
+| 28 | 3 vs 3 Team Dueling | Suizo / Eliminación | Equipos 3v3 | Constructed | TCG Advanced | Presencial | Equipos |
+| 29 | Tag Duel | Suizo / Eliminación | Equipos 2v2 | Constructed | Tag Duel | Presencial | Alternativo |
+| 30 | Rivalry of Warlords | Suizo / Eliminación | Individual 1v1 | Constructed | Rivalry of Warlords | Presencial | Alternativo |
+| 31 | Time Wizard | Suizo / Eliminación | Individual 1v1 | Constructed | Histórico | Presencial | Alternativo |
+| 32 | Time Travel | Suizo / Eliminación | Individual 1v1 | Constructed | Histórico con reglas modernas | Presencial | Alternativo |
+| 33 | GOAT Format Tournament | Suizo / Eliminación | Individual 1v1 | Constructed | GOAT 2005 | Presencial | Histórico |
+| 34 | Edison Format Tournament | Suizo / Eliminación | Individual 1v1 | Constructed | Edison 2010 | Presencial | Histórico |
+| 35 | Heart of the Underdog | Suizo | Individual 1v1 | Constructed | Heart of the Underdog | Presencial | Alternativo |
+| 36 | Common Charity | Suizo | Individual 1v1 | Constructed | Common Charity | Presencial | Alternativo |
+| 37 | Deck Master | Suizo | Individual 1v1 | Constructed | Deck Master | Presencial | Alternativo |
+| 38 | Pegasus Challenge | Suizo / Reglas especiales | Individual 1v1 | Constructed | Pegasus Challenge | Presencial | Alternativo |
+| 39 | Speed Duel Tournament | Suizo | Individual 1v1 | Constructed | Speed Duel | Presencial | Alternativo |
+| 40 | Speed Duel Main Event | Suizo + Top Cut | Individual 1v1 | Constructed | Speed Duel | Presencial | Competitivo |
+| 41 | Master Duel Tournament | Suizo / Eliminación | Individual 1v1 | Digital | Master Duel | Online | Digital |
+| 42 | Duel Links Tournament | Suizo / Eliminación | Individual 1v1 | Digital | Duel Links | Online | Digital |
+| 43 | Sealed Deck Tournament | Suizo / Eliminación | Individual 1v1 | Sealed | Limitado | Presencial | Especial |
+| 44 | Draft Tournament | Draft + Suizo / Eliminación | Individual 1v1 | Draft | Limitado | Presencial | Especial |
+| 45 | Casual Tournament | Suizo / Libre | Individual 1v1 | Constructed | Formato configurable | Presencial | Casual |
+| 46 | Exhibition Match | Partida única / Serie | Individual / Equipos | Constructed | Formato configurable | Presencial | Exhibición |
+| 47 | Invitational | Suizo + Top Cut / Eliminación | Individual 1v1 | Constructed | Formato configurable | Presencial | Especial |
+| 48 | Open Tournament | Suizo + Top Cut | Individual 1v1 | Constructed | TCG Advanced | Presencial | Competitivo |
+| 49 | Championship | Suizo + Top Cut | Individual 1v1 | Constructed | TCG Advanced | Presencial | Competitivo |
+| 50 | Finals | Eliminación directa | Individual 1v1 | Constructed | Según evento | Presencial | Final |
+| 51 | Playoffs | Eliminación directa | Individual / Equipos | Constructed | Según evento | Presencial | Fase |
+| 52 | Top Cut | Eliminación directa | Individual / Equipos | Constructed | Según evento | Presencial | Fase |
+| 53 | Last Chance Qualifier | Eliminación / Suizo | Individual 1v1 | Constructed | Según evento | Presencial | Clasificatorio |
+| 54 | Flight Tournament | Eliminación directa | Individual 1v1 | Constructed | Según evento | Presencial | Mini torneo |
+| 55 | Single Elimination Tournament | Eliminación directa | Individual 1v1 | Constructed | Configurable | Presencial | Genérico |
+| 56 | Double Elimination Tournament | Doble eliminación | Individual 1v1 | Constructed | Configurable | Presencial | Genérico |
+| 57 | Round Robin Tournament | Todos contra todos | Individual 1v1 | Constructed | Configurable | Presencial | Genérico |
+| 58 | Double Round Robin | Todos contra todos ida y vuelta | Individual 1v1 | Constructed | Configurable | Presencial | Genérico |
+| 59 | Group Stage Tournament | Fase de grupos | Individual / Equipos | Constructed | Configurable | Presencial | Genérico |
+| 60 | Groups + Knockout | Grupos + Eliminación | Individual / Equipos | Constructed | Configurable | Presencial | Genérico |
+| 61 | Swiss Tournament | Suizo | Individual 1v1 | Constructed | Configurable | Presencial | Genérico |
+| 62 | Swiss + Top Cut | Suizo + Eliminación | Individual 1v1 | Constructed | Configurable | Presencial | Genérico |
+| 63 | League Table | Tabla por puntos | Individual / Equipos | Constructed | Configurable | Presencial | Liga |
+| 64 | Bracket Tournament | Llave eliminatoria | Individual / Equipos | Constructed | Configurable | Presencial | Genérico |
+| 65 | Best of 1 Event | Suizo / Eliminación | Individual 1v1 | Constructed | Configurable | Presencial / Online | Genérico |
+| 66 | Best of 3 Event | Suizo / Eliminación | Individual 1v1 | Constructed | TCG estándar | Presencial / Online | Genérico |
+| 67 | Match Play | Suizo / Eliminación | Individual 1v1 | Constructed | TCG | Presencial | Competitivo |
+| 68 | Team League | Round Robin / Suizo | Equipos | Constructed | Configurable | Presencial | Liga |
+| 69 | Team Cup | Grupos + Eliminación | Equipos | Constructed | Configurable | Presencial | Copa |
+| 70 | Team Championship | Suizo + Top Cut | Equipos | Constructed | Configurable | Presencial | Campeonato |
+| 71 | Online League | Round Robin / Suizo | Individual 1v1 | Digital / Constructed | Configurable | Online | Liga |
+| 72 | Online Cup | Suizo + Top Cut / Eliminación | Individual 1v1 | Digital | Configurable | Online | Copa |
+| 73 | Online Qualifier | Suizo + Top Cut | Individual 1v1 | Digital | Configurable | Online | Clasificatorio |
+| 74 | Ranking Tournament | Suizo / Liga | Individual 1v1 | Constructed | Configurable | Presencial | Ranking |
+| 75 | Ladder | Clasificación continua | Individual 1v1 | Constructed | Configurable | Presencial / Online | Ranking |
+| 76 | King of the Hill | Ganador permanece | Individual 1v1 | Constructed | Configurable | Presencial | Casual |
+| 77 | Gauntlet | Serie contra múltiples rivales | Individual 1v1 | Constructed | Configurable | Presencial | Especial |
+| 78 | Knockout Cup | Eliminación directa | Individual / Equipos | Constructed | Configurable | Presencial | Copa |
+| 79 | Group League | Round Robin por grupos | Individual / Equipos | Constructed | Configurable | Presencial | Liga |
+| 80 | Season Tournament | Liga + Playoffs | Individual / Equipos | Constructed | Configurable | Presencial | Temporada |
+| 81 | Regular Season | Tabla / Round Robin | Individual / Equipos | Constructed | Configurable | Presencial | Temporada |
+| 82 | Postseason | Playoffs | Individual / Equipos | Constructed | Configurable | Presencial | Temporada |
+| 83 | Grand Final | Final única / Best of X | Individual / Equipos | Constructed | Según evento | Presencial | Final |
+| 84 | Super Cup | Campeones enfrentados | Individual / Equipos | Constructed | Configurable | Presencial | Especial |
+| 85 | Champions Cup | Grupos + Eliminación | Individual / Equipos | Constructed | Configurable | Presencial | Copa |
+| 86 | Masters Tournament | Invitacional / Suizo + Top | Individual 1v1 | Constructed | Configurable | Presencial | Especial |
+| 87 | All-Star Event | Exhibición / Equipos | Individual / Equipos | Constructed | Reglas especiales | Presencial | Exhibición |
+| 88 | Rookie Tournament | Suizo | Individual 1v1 | Constructed | Configurable | Presencial | Principiantes |
+| 89 | Beginner Tournament | Suizo / Casual | Individual 1v1 | Constructed | Configurable | Presencial | Principiantes |
+| 90 | Academy Tournament | Suizo / Liga | Individual 1v1 | Constructed | Configurable | Presencial | Formación |
+```
+
+### MODALIDADES DISPONIBLES
+
+```txt
+1. Suizo
+2. Suizo + Top Cut
+3. Eliminación directa
+4. Doble eliminación
+5. Round Robin
+6. Double Round Robin
+7. Grupos
+8. Grupos + Eliminación
+9. Liga por puntos
+10. Playoffs
+11. Top Cut
+12. Bracket
+13. Flights
+14. Ladder
+15. King of the Hill
+16. Gauntlet
+17. Temporada + Playoffs
+18. Clasificatorio
+19. Last Chance Qualifier
+20. Invitational
+21. Open
+22. Individual 1v1
+23. Tag 2v2
+24. Team 3v3
+25. Equipos personalizados
+26. Constructed
+27. Sealed
+28. Draft
+29. Digital
+30. Remote Duel
+31. Presencial
+32. Online
+33. Best of 1
+34. Best of 3
+35. Best of 5
+36. Serie personalizada
+```
+
+Para la plataforma que estás construyendo, esta tabla te permite manejar prácticamente cualquier combinación: **Liga Legend, Liga Titan, Copa, Clasificatorio, Divisiones, Regional, YCS, Time Wizard, GOAT, Edison, Teams, etc.**

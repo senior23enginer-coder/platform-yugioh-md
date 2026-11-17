@@ -1,0 +1,8 @@
+.delivery-details{margin-block:1rem;padding:1rem;border:1px solid #31576d;border-radius:.7rem;min-width:0;overflow-wrap:anywhere}
+.delivery-details>summary,.delivery-infographic>summary{cursor:pointer;font-weight:700;padding:.4rem}
+.delivery-details article+article{margin-top:1.2rem;padding-top:1rem;border-top:1px solid #31576d}
+.delivery-infographic{margin-block:1rem;max-width:100%;min-width:0}
+.delivery-infographic>img{display:block;width:auto;max-width:100%;height:auto;margin:1rem auto}
+.delivery-details .curated-photos{flex-wrap:wrap}
+@media(max-width:600px){.delivery-details{padding:.65rem}.delivery-details .curated-resources>div{min-width:0}}
+.v21-actions{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0}.v21-actions button{white-space:normal;min-height:44px}.v21-actions button[aria-pressed=true]{background:#124358;color:#fff;border-color:#39dcff}[data-variant-control] select{width:100%;max-width:100%;margin:.5rem 0 1rem}[data-situation-detail],[data-variant-detail]{min-width:0;overflow-wrap:anywhere}[data-situation-detail] article{padding:1rem 0}[data-situational-strategy]{margin-bottom:1.5rem}

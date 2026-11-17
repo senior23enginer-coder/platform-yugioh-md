@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="220" viewBox="0 0 900 220">
+  <defs><linearGradient id="t" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#fff2a3"/><stop offset="1" stop-color="#b98216"/></linearGradient><linearGradient id="l" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#e3c8ff"/><stop offset="1" stop-color="#6c35ff"/></linearGradient><linearGradient id="e" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#a7f2ff"/><stop offset="1" stop-color="#167fff"/></linearGradient><linearGradient id="c" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#b4ffd2"/><stop offset="1" stop-color="#07924d"/></linearGradient></defs>
+  <g font-family="Arial" font-weight="900" text-anchor="middle">
+    <g transform="translate(110 25)"><path d="M75 0 145 45 126 148 75 190 24 148 5 45Z" fill="url(#t)" stroke="#fff0a8" stroke-width="4"/><text x="75" y="112" font-size="25" fill="#211400">TITAN</text></g>
+    <g transform="translate(330 25)"><path d="M75 0 145 45 126 148 75 190 24 148 5 45Z" fill="url(#l)" stroke="#ead8ff" stroke-width="4"/><text x="75" y="112" font-size="22" fill="#fff">LEGEND</text></g>
+    <g transform="translate(550 25)"><path d="M75 0 145 45 126 148 75 190 24 148 5 45Z" fill="url(#e)" stroke="#d9f7ff" stroke-width="4"/><text x="75" y="112" font-size="26" fill="#fff">ELITE</text></g>
+    <g transform="translate(750 25)"><path d="M75 0 145 45 126 148 75 190 24 148 5 45Z" fill="url(#c)" stroke="#d8ffe5" stroke-width="4"/><text x="75" y="112" font-size="17" fill="#fff">CHALLENGER</text></g>
+  </g>
+</svg>

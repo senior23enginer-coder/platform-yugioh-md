@@ -1,0 +1,2439 @@
+{
+  "schema": "station-x-curated-v62",
+  "deck_id": 699,
+  "name": "Goat Control",
+  "format": "goat",
+  "cards": [
+    {
+      "id": "699:CARD:4054",
+      "cid": 4054,
+      "name": "Sangan",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4054.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4054.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 645
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Buscador al enviarse del Campo al GY, con texto de época"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No buscar cartas fuera de su umbral de ATK"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Buscador al enviarse del Campo al GY, con texto de época"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No buscar cartas fuera de su umbral de ATK"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Buscador al enviarse del Campo al GY, con texto de época",
+        "explanation": "No buscar cartas fuera de su umbral de ATK"
+      },
+      "role": "Buscador al enviarse del Campo al GY, con texto de época",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4054&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Sangan"
+      ]
+    },
+    {
+      "id": "699:CARD:4174",
+      "cid": 4174,
+      "name": "Dragón de Fuego Oscuro",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4174.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4174.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 673
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "4"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Tsukuyomi / Breaker / D.D. Dama Guerrera / Virus Infecta-Tribu Nivel4"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "4"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Tsukuyomi / Breaker / D.D. Dama Guerrera / Virus Infecta-Tribu Nivel4"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "4",
+        "explanation": "Tsukuyomi / Breaker / D.D. Dama Guerrera / Virus Infecta-Tribu Nivel4"
+      },
+      "role": "4",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4174&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Dragón de Fuego Oscuro"
+      ]
+    },
+    {
+      "id": "699:CARD:4300",
+      "cid": 4300,
+      "name": "Dragoness, el Caballero Perverso",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4300.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4300.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 672
+        }
+      ],
+      "fields": [],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {},
+      "role": "",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4300&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Dragoness, el Caballero Perverso",
+        "Dragoness Nivel3"
+      ]
+    },
+    {
+      "id": "699:CARD:4434",
+      "cid": 4434,
+      "name": "Mago de la Fe",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4434.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4434.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 638
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "FLIP para recuperar una Mágica de GY"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Está expuesto antes de voltear; recuperar solo cuando se activa FLIP"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "FLIP para recuperar una Mágica de GY"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Está expuesto antes de voltear; recuperar solo cuando se activa FLIP"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "FLIP para recuperar una Mágica de GY",
+        "explanation": "Está expuesto antes de voltear; recuperar solo cuando se activa FLIP"
+      },
+      "role": "FLIP para recuperar una Mágica de GY",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4434&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Mago de la Fe"
+      ]
+    },
+    {
+      "id": "699:CARD:4481",
+      "cid": 4481,
+      "name": "Serpiente Siniestra",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4481.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4481.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 644
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Recurso repetible en GY bajo texto/errata histórica"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Ajustar a versión GOAT acordada, no asumir recuperación ilimitada moderna"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Recurso repetible en GY bajo texto/errata histórica"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Ajustar a versión GOAT acordada, no asumir recuperación ilimitada moderna"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Recurso repetible en GY bajo texto/errata histórica",
+        "explanation": "Ajustar a versión GOAT acordada, no asumir recuperación ilimitada moderna"
+      },
+      "role": "Recurso repetible en GY bajo texto/errata histórica",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4481&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Serpiente Siniestra"
+      ]
+    },
+    {
+      "id": "699:CARD:4597",
+      "cid": 4597,
+      "name": "Jarra de la Metamorfosis",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4597.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4597.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 647
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "FLIP: ambos descartan sus manos y roban cinco"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Puede devolver ventaja al rival; distinguirla de la Mágica Metamorfosis"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "FLIP: ambos descartan sus manos y roban cinco"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Puede devolver ventaja al rival; distinguirla de la Mágica Metamorfosis"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "FLIP: ambos descartan sus manos y roban cinco",
+        "explanation": "Puede devolver ventaja al rival; distinguirla de la Mágica Metamorfosis"
+      },
+      "role": "FLIP: ambos descartan sus manos y roban cinco",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4597&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Jarra de la Metamorfosis"
+      ]
+    },
+    {
+      "id": "699:CARD:4740",
+      "cid": 4740,
+      "name": "Límite de los Mil Ojos",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4740.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4740.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 3,
+          "card_id": 666
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "1"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Ficha oveja Nivel1; Mago de la Fe Nivel1; Serpiente Siniestra Nivel1"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "1"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Ficha oveja Nivel1; Mago de la Fe Nivel1; Serpiente Siniestra Nivel1"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "1",
+        "explanation": "Ficha oveja Nivel1; Mago de la Fe Nivel1; Serpiente Siniestra Nivel1"
+      },
+      "role": "1",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4740&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Límite de los Mil Ojos"
+      ]
+    },
+    {
+      "id": "699:CARD:4812",
+      "cid": 4812,
+      "name": "Caridad Grácil",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4812.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4812.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 654
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Robar tres y descartar dos; prepara GY LIGHT/DARK"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No confundir descarte como coste/efecto sin leer texto"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Robar tres y descartar dos; prepara GY LIGHT/DARK"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No confundir descarte como coste/efecto sin leer texto"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Robar tres y descartar dos; prepara GY LIGHT/DARK",
+        "explanation": "No confundir descarte como coste/efecto sin leer texto"
+      },
+      "role": "Robar tres y descartar dos; prepara GY LIGHT/DARK",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4812&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Caridad Grácil"
+      ]
+    },
+    {
+      "id": "699:CARD:4818",
+      "cid": 4818,
+      "name": "Scapegoat",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4818.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4818.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 650
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Trae cuatro fichas oveja Nivel1 DEF si 4 zonas libres"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No puedes invocar otros monstruos durante ese mismo turno"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Trae cuatro fichas oveja Nivel1 DEF si 4 zonas libres"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No puedes invocar otros monstruos durante ese mismo turno"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Trae cuatro fichas oveja Nivel1 DEF si 4 zonas libres",
+        "explanation": "No puedes invocar otros monstruos durante ese mismo turno"
+      },
+      "role": "Trae cuatro fichas oveja Nivel1 DEF si 4 zonas libres",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4818&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Scapegoat"
+      ]
+    },
+    {
+      "id": "699:CARD:4844",
+      "cid": 4844,
+      "name": "Olla de la Codicia",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4844.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4844.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 653
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Robar dos"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Legalidad se rige por banlist de GOAT, no TCG actual"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Robar dos"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Legalidad se rige por banlist de GOAT, no TCG actual"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Robar dos",
+        "explanation": "Legalidad se rige por banlist de GOAT, no TCG actual"
+      },
+      "role": "Robar dos",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4844&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Olla de la Codicia"
+      ]
+    },
+    {
+      "id": "699:CARD:4887",
+      "cid": 4887,
+      "name": "Fuerza de Espejo",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4887.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4887.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 662
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Retirar monstruos en ataque rival por batalla"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Mantener set si el rival amenaza OTK"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Retirar monstruos en ataque rival por batalla"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Mantener set si el rival amenaza OTK"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Retirar monstruos en ataque rival por batalla",
+        "explanation": "Mantener set si el rival amenaza OTK"
+      },
+      "role": "Retirar monstruos en ataque rival por batalla",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4887&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Fuerza de Espejo"
+      ]
+    },
+    {
+      "id": "699:CARD:4891",
+      "cid": 4891,
+      "name": "Tormenta Fuerte",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4891.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4891.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 656
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Quita todas las M/T en campo"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Destruye también tus propias cartas; temporizar"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Quita todas las M/T en campo"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Destruye también tus propias cartas; temporizar"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Quita todas las M/T en campo",
+        "explanation": "Destruye también tus propias cartas; temporizar"
+      },
+      "role": "Quita todas las M/T en campo",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4891&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Tormenta Fuerte"
+      ]
+    },
+    {
+      "id": "699:CARD:4898",
+      "cid": 4898,
+      "name": "Robo Oportunista",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4898.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4898.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 658
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Robar control de monstruo rival si es posible"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Requiere objetivo legal; guarda su Nivel para Metamorfosis"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Robar control de monstruo rival si es posible"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Requiere objetivo legal; guarda su Nivel para Metamorfosis"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Robar control de monstruo rival si es posible",
+        "explanation": "Requiere objetivo legal; guarda su Nivel para Metamorfosis"
+      },
+      "role": "Robar control de monstruo rival si es posible",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4898&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Robo Oportunista"
+      ]
+    },
+    {
+      "id": "699:CARD:4901",
+      "cid": 4901,
+      "name": "Dúo de Delincuentes",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4901.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4901.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 655
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Disrupción temprana de mano rival por LP"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Elige ventanas y efectos de descarte según texto de época"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Disrupción temprana de mano rival por LP"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Elige ventanas y efectos de descarte según texto de época"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Disrupción temprana de mano rival por LP",
+        "explanation": "Elige ventanas y efectos de descarte según texto de época"
+      },
+      "role": "Disrupción temprana de mano rival por LP",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4901&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Dúo de Delincuentes"
+      ]
+    },
+    {
+      "id": "699:CARD:4909",
+      "cid": 4909,
+      "name": "Tifón del Espacio Místico",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/4909.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/4909.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 657
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Remueve M/T objetivo"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Destruir una carta continua no equivale a negar todas las activaciones"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Remueve M/T objetivo"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Destruir una carta continua no equivale a negar todas las activaciones"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Remueve M/T objetivo",
+        "explanation": "Destruir una carta continua no equivale a negar todas las activaciones"
+      },
+      "role": "Remueve M/T objetivo",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4909&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Tifón del Espacio Místico"
+      ]
+    },
+    {
+      "id": "699:CARD:4963",
+      "cid": 4963,
+      "name": "Noble de Crossout",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4963.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4963.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 652
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Desterrar monstruo boca abajo y copias equivalentes del Deck conforme texto"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No sirve contra monstruos boca arriba"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Desterrar monstruo boca abajo y copias equivalentes del Deck conforme texto"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No sirve contra monstruos boca arriba"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Desterrar monstruo boca abajo y copias equivalentes del Deck conforme texto",
+        "explanation": "No sirve contra monstruos boca arriba"
+      },
+      "role": "Desterrar monstruo boca abajo y copias equivalentes del Deck conforme texto",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4963&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Noble de Crossout"
+      ]
+    },
+    {
+      "id": "699:CARD:4966",
+      "cid": 4966,
+      "name": "Entierro Prematuro",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4966.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4966.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 659
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Revivir monstruo a cambio de pago/equipamiento"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Interacción con M/T que la retire"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Revivir monstruo a cambio de pago/equipamiento"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Interacción con M/T que la retire"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Revivir monstruo a cambio de pago/equipamiento",
+        "explanation": "Interacción con M/T que la retire"
+      },
+      "role": "Revivir monstruo a cambio de pago/equipamiento",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4966&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Entierro Prematuro"
+      ]
+    },
+    {
+      "id": "699:CARD:4988",
+      "cid": 4988,
+      "name": "Tornado de Polvo",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4988.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4988.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 660
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Trampa para destruir M/T y potencialmente setear"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No niega automáticamente efectos ya activados"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Trampa para destruir M/T y potencialmente setear"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No niega automáticamente efectos ya activados"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Trampa para destruir M/T y potencialmente setear",
+        "explanation": "No niega automáticamente efectos ya activados"
+      },
+      "role": "Trampa para destruir M/T y potencialmente setear",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4988&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Tornado de Polvo"
+      ]
+    },
+    {
+      "id": "699:CARD:4989",
+      "cid": 4989,
+      "name": "Llamada de los Condenados",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4989.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4989.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 665
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Revivir monstruo GY propio mediante trampa continua"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Objetivo debe poder ser revivido; trampa expuesta"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Revivir monstruo GY propio mediante trampa continua"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Objetivo debe poder ser revivido; trampa expuesta"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Revivir monstruo GY propio mediante trampa continua",
+        "explanation": "Objetivo debe poder ser revivido; trampa expuesta"
+      },
+      "role": "Revivir monstruo GY propio mediante trampa continua",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4989&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Llamada de los Condenados"
+      ]
+    },
+    {
+      "id": "699:CARD:5005",
+      "cid": 5005,
+      "name": "Anillo Destructor",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5005.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5005.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 664
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Remover monstruo y ocasionar daño conforme texto de época"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Revisar errata histórica/seguridad de LP"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Remover monstruo y ocasionar daño conforme texto de época"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Revisar errata histórica/seguridad de LP"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Remover monstruo y ocasionar daño conforme texto de época",
+        "explanation": "Revisar errata histórica/seguridad de LP"
+      },
+      "role": "Remover monstruo y ocasionar daño conforme texto de época",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5005&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Anillo Destructor"
+      ]
+    },
+    {
+      "id": "699:CARD:5023",
+      "cid": 5023,
+      "name": "Caballero del Aire Parshath",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5023.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5023.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 637
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Atacante Nivel5, atraviesa defensa y roba si causa daño de batalla"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Requiere sacrificio o resurrección legítima; convertir a Balter sacrifica su presión"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Atacante Nivel5, atraviesa defensa y roba si causa daño de batalla"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Requiere sacrificio o resurrección legítima; convertir a Balter sacrifica su presión"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Atacante Nivel5, atraviesa defensa y roba si causa daño de batalla",
+        "explanation": "Requiere sacrificio o resurrección legítima; convertir a Balter sacrifica su presión"
+      },
+      "role": "Atacante Nivel5, atraviesa defensa y roba si causa daño de batalla",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5023&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Caballero del Aire Parshath"
+      ]
+    },
+    {
+      "id": "699:CARD:5114",
+      "cid": 5114,
+      "name": "Tributo Torrencial",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5114.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5114.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 663
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Destrucción de monstruos por ventana de invocación"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "También destruye los propios"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Destrucción de monstruos por ventana de invocación"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "También destruye los propios"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Destrucción de monstruos por ventana de invocación",
+        "explanation": "También destruye los propios"
+      },
+      "role": "Destrucción de monstruos por ventana de invocación",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5114&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Tributo Torrencial"
+      ]
+    },
+    {
+      "id": "699:CARD:5302",
+      "cid": 5302,
+      "name": "Balter Oscuro el Terrible",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5302.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5302.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 2,
+          "card_id": 667
+        }
+      ],
+      "fields": [],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {},
+      "role": "",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5302&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Balter Oscuro el Terrible",
+        "Balter Nivel5"
+      ]
+    },
+    {
+      "id": "699:CARD:5319",
+      "cid": 5319,
+      "name": "Ryu Senshi",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5319.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5319.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 669
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "6"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Controlar Nivel6"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "6"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Controlar Nivel6"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "6",
+        "explanation": "Controlar Nivel6"
+      },
+      "role": "6",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5319&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Ryu Senshi"
+      ]
+    },
+    {
+      "id": "699:CARD:5338",
+      "cid": 5338,
+      "name": "Dragón Cráneo Demonio",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5338.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5338.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 674
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "9"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Controlar Level9 por efecto ajeno"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "9"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Controlar Level9 por efecto ajeno"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "9",
+        "explanation": "Controlar Level9 por efecto ajeno"
+      },
+      "role": "9",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5338&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Dragón Cráneo Demonio"
+      ]
+    },
+    {
+      "id": "699:CARD:5381",
+      "cid": 5381,
+      "name": "Sacerdote de Asura",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5381.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5381.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 642
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Espíritu que batalla varios monstruos y regresa a mano"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Vulnerable a respuesta en batalla"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Espíritu que batalla varios monstruos y regresa a mano"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Vulnerable a respuesta en batalla"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Espíritu que batalla varios monstruos y regresa a mano",
+        "explanation": "Vulnerable a respuesta en batalla"
+      },
+      "role": "Espíritu que batalla varios monstruos y regresa a mano",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5381&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Sacerdote de Asura"
+      ]
+    },
+    {
+      "id": "699:CARD:5432",
+      "cid": 5432,
+      "name": "Libro de la Luna",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5432.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5432.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 651
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Cambiar 1 monstruo boca arriba a DEF boca abajo"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Interrumpe, protege o reinicia FLIP/TER en momento correcto"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Cambiar 1 monstruo boca arriba a DEF boca abajo"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Interrumpe, protege o reinicia FLIP/TER en momento correcto"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Cambiar 1 monstruo boca arriba a DEF boca abajo",
+        "explanation": "Interrumpe, protege o reinicia FLIP/TER en momento correcto"
+      },
+      "role": "Cambiar 1 monstruo boca arriba a DEF boca abajo",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5432&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Libro de la Luna"
+      ]
+    },
+    {
+      "id": "699:CARD:5528",
+      "cid": 5528,
+      "name": "Segador en la Pesadilla",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5528.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5528.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 675
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "5"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Parshath Nivel5"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "5"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Parshath Nivel5"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "5",
+        "explanation": "Parshath Nivel5"
+      },
+      "role": "5",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5528&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Segador en la Pesadilla",
+        "Segador Nivel5"
+      ]
+    },
+    {
+      "id": "699:CARD:5539",
+      "cid": 5539,
+      "name": "Metamorfosis",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5539.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5539.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 649
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Tributa 1 monstruo propio y trae Fusión de mismo Nivel desde Extra"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No necesita Polimerización, sí un monstruo del Nivel requerido; invocación Especial"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Tributa 1 monstruo propio y trae Fusión de mismo Nivel desde Extra"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No necesita Polimerización, sí un monstruo del Nivel requerido; invocación Especial"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Tributa 1 monstruo propio y trae Fusión de mismo Nivel desde Extra",
+        "explanation": "No necesita Polimerización, sí un monstruo del Nivel requerido; invocación Especial"
+      },
+      "role": "Tributa 1 monstruo propio y trae Fusión de mismo Nivel desde Extra",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5539&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Metamorfosis"
+      ]
+    },
+    {
+      "id": "699:CARD:5655",
+      "cid": 5655,
+      "name": "Breaker el Guerrero Mágico",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5655.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5655.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 646
+        }
+      ],
+      "fields": [],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {},
+      "role": "",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5655&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Breaker el Guerrero Mágico"
+      ]
+    },
+    {
+      "id": "699:CARD:5660",
+      "cid": 5660,
+      "name": "Virus Infecta-Tribu",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5660.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5660.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 648
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Descartar carta, declarar Tipo, destruir monstruos boca arriba de ese Tipo"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Simetría: puede destruir los tuyos"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Descartar carta, declarar Tipo, destruir monstruos boca arriba de ese Tipo"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Simetría: puede destruir los tuyos"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Descartar carta, declarar Tipo, destruir monstruos boca arriba de ese Tipo",
+        "explanation": "Simetría: puede destruir los tuyos"
+      },
+      "role": "Descartar carta, declarar Tipo, destruir monstruos boca arriba de ese Tipo",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5660&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Virus Infecta-Tribu"
+      ]
+    },
+    {
+      "id": "699:CARD:5663",
+      "cid": 5663,
+      "name": "Mercader Mágico",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5663.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5663.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 639
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "FLIP excava hasta Magia/Trampa y manda los monstruos intermedios al GY"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No escoge libremente cartas enviadas"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "FLIP excava hasta Magia/Trampa y manda los monstruos intermedios al GY"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No escoge libremente cartas enviadas"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "FLIP excava hasta Magia/Trampa y manda los monstruos intermedios al GY",
+        "explanation": "No escoge libremente cartas enviadas"
+      },
+      "role": "FLIP excava hasta Magia/Trampa y manda los monstruos intermedios al GY",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5663&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Mercader Mágico"
+      ]
+    },
+    {
+      "id": "699:CARD:5719",
+      "cid": 5719,
+      "name": "D.D. Dama Guerrera",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5719.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5719.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 643
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Remoción por batalla de su rival y ella misma"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Evalúa si conviene gastar Normal por intercambio"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Remoción por batalla de su rival y ella misma"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Evalúa si conviene gastar Normal por intercambio"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Remoción por batalla de su rival y ella misma",
+        "explanation": "Evalúa si conviene gastar Normal por intercambio"
+      },
+      "role": "Remoción por batalla de su rival y ella misma",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5719&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "D.D. Dama Guerrera"
+      ]
+    },
+    {
+      "id": "699:CARD:5780",
+      "cid": 5780,
+      "name": "Tsukuyomi",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5780.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5780.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 640
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Espíritu que gira monstruo boca arriba a defensa boca abajo y vuelve a mano"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No permite volver a voltear inmediatamente monstruos que cambiaron posición/entraron ese turno"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Espíritu que gira monstruo boca arriba a defensa boca abajo y vuelve a mano"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No permite volver a voltear inmediatamente monstruos que cambiaron posición/entraron ese turno"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Espíritu que gira monstruo boca arriba a defensa boca abajo y vuelve a mano",
+        "explanation": "No permite volver a voltear inmediatamente monstruos que cambiaron posición/entraron ese turno"
+      },
+      "role": "Espíritu que gira monstruo boca arriba a defensa boca abajo y vuelve a mano",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5780&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Tsukuyomi"
+      ]
+    },
+    {
+      "id": "699:CARD:5799",
+      "cid": 5799,
+      "name": "Armadura Sakuretsu",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5799.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5799.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 661
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Destruir atacante rival al declarar ataque según texto"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Depende de batalla; no impide efectos previos"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Destruir atacante rival al declarar ataque según texto"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Depende de batalla; no impide efectos previos"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Destruir atacante rival al declarar ataque según texto",
+        "explanation": "Depende de batalla; no impide efectos previos"
+      },
+      "role": "Destruir atacante rival al declarar ataque según texto",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5799&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Armadura Sakuretsu"
+      ]
+    },
+    {
+      "id": "699:CARD:5835",
+      "cid": 5835,
+      "name": "Soldado del Brillo Negro - Enviado del Principio",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5835.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5835.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 641
+        }
+      ],
+      "fields": [],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {},
+      "role": "",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5835&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Soldado del Brillo Negro - Enviado del Principio"
+      ]
+    },
+    {
+      "id": "699:CARD:6126",
+      "cid": 6126,
+      "name": "Rey Ojama",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/6126.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/6126.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 671
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "6"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Controlar Nivel6"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "6"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Controlar Nivel6"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "6",
+        "explanation": "Controlar Nivel6"
+      },
+      "role": "6",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=6126&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Rey Ojama"
+      ]
+    },
+    {
+      "id": "699:CARD:6204",
+      "cid": 6204,
+      "name": "Hoja Oscura el Caballero Dragón",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/6204.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/6204.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 2,
+          "card_id": 668
+        }
+      ],
+      "fields": [],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {},
+      "role": "",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=6204&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Hoja Oscura el Caballero Dragón",
+        "Hoja Oscura Caballero Dragón Nivel6"
+      ]
+    },
+    {
+      "id": "699:CARD:6264",
+      "cid": 6264,
+      "name": "Dragón Gatling",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/6264.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/6264.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 670
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "8"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "BLS Nivel8 en Campo"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "8"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "BLS Nivel8 en Campo"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "8",
+        "explanation": "BLS Nivel8 en Campo"
+      },
+      "role": "8",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=6264&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Dragón Gatling"
+      ]
+    }
+  ],
+  "skills": [],
+  "profile": {
+    "Arquetipo": "Goat Control",
+    "Estilo de juego": "Estilo: control y ventaja de cartas, no un deck de combos extensos al estilo moderno. Presiona mediante Caballero del Aire Parshath (piercing/robo), Soldado del Brillo Negro – Enviado del Principio, recuperación de mágicas de Mago de la Fe, protección por Libro de la Luna / Tsukuyomi, intercambios de uno por uno y una pieza central: Scapegoat → Metamorfosis → Límite de los Mil Ojos.",
+    "Cómo se juega": "Estilo: control y ventaja de cartas, no un deck de combos extensos al estilo moderno. Presiona mediante Caballero del Aire Parshath (piercing/robo), Soldado del Brillo Negro – Enviado del Principio, recuperación de mágicas de Mago de la Fe, protección por Libro de la Luna / Tsukuyomi, intercambios de uno por uno y una pieza central: Scapegoat → Metamorfosis → Límite de los Mil Ojos.\n\n- Primero: proteger recursos, colocar FLIP/trampas, usar Scapegoat en turno rival cuando se disponga de 4 zonas libres y después transformar en turno propio si hay Metamorfosis.\n- Segundo: forzar respuestas con Mago de la Fe, Breaker, Noble de Crossout o Virus Infecta-Tribu; elegir si eliminar antes la defensa y presionar con Parshath/BLS.\n- Juego medio/tardío: calcular cartas en mano, GY LIGHT/DARK para BLS, mágicas recuperables mediante Mago de la Fe, y cuántas Metamorfosis restan.\n- Debilidad clave: solo dos Scapegoat, tres Metamorfosis; manos de sacrificios de Extra sin objetivos de mismo nivel; si el usuario gasta el último Dark o Light válido, BLS puede quedar muerto; pocas cartas Extra de utilidad real sin monstruos Nivel6/9 propios."
+  },
+  "summary": "",
+  "engine_maps": [],
+  "routes": [
+    {
+      "id": "699:A09:G-C01",
+      "name": "«Goats en turno rival → Límite de los Mil Ojos», básica/fundamental",
+      "title": "«Goats en turno rival → Límite de los Mil Ojos», básica/fundamental",
+      "family": "Desarrollo de la jugada",
+      "purpose": "«Goats en turno rival → Límite de los Mil Ojos», básica/fundamental",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [
+        {
+          "cid": 4818,
+          "name": "Scapegoat",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4818.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4818.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 5539,
+          "name": "Metamorfosis",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5539.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5539.png",
+          "label": "Carta mencionada en el paso"
+        }
+      ],
+      "result": "Final: TER con monstruo rival equipado (si resolvió) + hasta 3 fichas; no es daño garantizado. Interrupción: si las fichas desaparecieron o no está Meta, no invocar TER.",
+      "opening": "Entrada: Scapegoat colocada o en mano con activación legal durante turno del rival; 4 zonas propias libres; Metamorfosis en mano para siguiente propio turno; TER en Extra.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "En turno del rival, activa Scapegoat si tienes cuatro zonas de monstruos libres.",
+          "detail": "En turno del rival, activa Scapegoat si tienes cuatro zonas de monstruos libres.",
+          "photos": [
+            {
+              "cid": 4818,
+              "name": "Scapegoat",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4818.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4818.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Resuelve Invocación Especial de 4 fichas oveja Nivel1 en DEF. Ese turno rival no podrás Invocar otros monstruos; esto es aceptable.",
+          "detail": "Resuelve Invocación Especial de 4 fichas oveja Nivel1 en DEF. Ese turno rival no podrás Invocar otros monstruos; esto es aceptable.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "Termina turno rival. Durante tu siguiente turno, las fichas que sobrevivan están disponibles; ya acabó la restricción de Scapegoat.",
+          "detail": "Termina turno rival. Durante tu siguiente turno, las fichas que sobrevivan están disponibles; ya acabó la restricción de Scapegoat.",
+          "photos": [
+            {
+              "cid": 4818,
+              "name": "Scapegoat",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4818.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4818.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Activa Metamorfosis (Mágica Normal), ofrece UNA ficha Nivel1 como Tributo.",
+          "detail": "Activa Metamorfosis (Mágica Normal), ofrece UNA ficha Nivel1 como Tributo.",
+          "photos": [
+            {
+              "cid": 5539,
+              "name": "Metamorfosis",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5539.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5539.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 5,
+          "action": "Invoca por efecto de Metamorfosis Límite de los Mil Ojos Nivel1 del Extra; las otras fichas permanecen si no fueron retiradas.",
+          "detail": "Invoca por efecto de Metamorfosis Límite de los Mil Ojos Nivel1 del Extra; las otras fichas permanecen si no fueron retiradas.",
+          "photos": [
+            {
+              "cid": 4740,
+              "name": "Límite de los Mil Ojos",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4740.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4740.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 5539,
+              "name": "Metamorfosis",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5539.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5539.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 6,
+          "action": "Si hay un monstruo rival controlable y efecto de TER disponible, selecciona uno y equipa a TER con él según efecto.\nFinal: TER con monstruo rival equipado (si resolvió) + hasta 3 fichas; no es daño garantizado. Interrupción: si las fichas desaparecieron o no está Meta, no invocar TER.",
+          "detail": "Si hay un monstruo rival controlable y efecto de TER disponible, selecciona uno y equipa a TER con él según efecto.\nFinal: TER con monstruo rival equipado (si resolvió) + hasta 3 fichas; no es daño garantizado. Interrupción: si las fichas desaparecieron o no está Meta, no invocar TER.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "**Entrada:** Scapegoat colocada o en mano con activación legal durante turno del rival; **4 zonas propias libres**; Metamorfosis en mano para siguiente propio turno; TER en Extra.\n1. En turno **del rival**, activa **Scapegoat** si tienes cuatro zonas de monstruos libres.\n2. Resuelve Invocación Especial de **4 fichas oveja Nivel1 en DEF**. Ese turno rival no podrás Invocar otros monstruos; esto es aceptable.\n3. Termina turno rival. Durante **tu siguiente turno**, las fichas que sobrevivan están disponibles; ya acabó la restricción de Scapegoat.\n4. Activa **Metamorfosis** (Mágica Normal), ofrece **UNA ficha Nivel1** como Tributo.\n5. Invoca por efecto de Metamorfosis **Límite de los Mil Ojos Nivel1** del Extra; las otras fichas permanecen si no fueron retiradas.\n6. Si hay un monstruo rival controlable y efecto de TER disponible, selecciona uno y equipa a TER con él según efecto.\n**Final:** TER con monstruo rival equipado (si resolvió) + hasta 3 fichas; no es daño garantizado. **Interrupción:** si las fichas desaparecieron o no está Meta, no invocar TER.\n\n",
+      "initial_details": "Entrada: Scapegoat colocada o en mano con activación legal durante turno del rival; 4 zonas propias libres; Metamorfosis en mano para siguiente propio turno; TER en Extra.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": [],
+      "technical": "Entrada: Scapegoat colocada o en mano con activación legal durante turno del rival; 4 zonas propias libres; Metamorfosis en mano para siguiente propio turno; TER en Extra.\n1. En turno del rival, activa Scapegoat si tienes cuatro zonas de monstruos libres.\n2. Resuelve Invocación Especial de 4 fichas oveja Nivel1 en DEF. Ese turno rival no podrás Invocar otros monstruos; esto es aceptable.\n3. Termina turno rival. Durante tu siguiente turno, las fichas que sobrevivan están disponibles; ya acabó la restricción de Scapegoat.\n4. Activa Metamorfosis (Mágica Normal), ofrece UNA ficha Nivel1 como Tributo.\n5. Invoca por efecto de Metamorfosis Límite de los Mil Ojos Nivel1 del Extra; las otras fichas permanecen si no fueron retiradas.\n6. Si hay un monstruo rival controlable y efecto de TER disponible, selecciona uno y equipa a TER con él según efecto.\nFinal: TER con monstruo rival equipado (si resolvió) + hasta 3 fichas; no es daño garantizado. Interrupción: si las fichas desaparecieron o no está Meta, no invocar TER.\n\n- G-V01: Si activas Scapegoat en tu propio turno, ese turno no puedes Invocar TER por Metamorfosis; guarda Meta hasta el siguiente turno y sobrevive con fichas.\n- G-V02: Con Sangan Nivel3 y Metamorfosis, se puede acceder a Dragoness Nivel3, pero su utilidad suele ser menor a conservar Sangan; el disparador de Sangan se verifica según texto histórico al enviarlo del campo al GY por coste.\n- G-V03: Con BLS Nivel8 ya Invocado legalmente y Metamorfosis, el objetivo Dragón Gatling Nivel8 es alcanzable, pero convertir BLS en ese Fusion no suele justificar inversión; evaluar efecto de moneda.\n- G-V04: Con Robo Oportunista controlando monstruo rival Nivel6, Meta podría dar Ryu Senshi / Hoja Oscura / Rey Ojama de Nivel6. Sin ese monstruo específico no existe la ruta con este Main.\n\nConteo: 5 líneas principales + 4 variantes documentadas = 9 casos lógicos; 0 probados en simulador y 0 replays. Son jugadas condicionales reales, no promesas de tabla final."
+    },
+    {
+      "id": "699:A09:G-C02",
+      "name": "«Mago de la Fe recicla la Mágica clave», básica",
+      "title": "«Mago de la Fe recicla la Mágica clave», básica",
+      "family": "Desarrollo de la jugada",
+      "purpose": "«Mago de la Fe recicla la Mágica clave», básica",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [
+        {
+          "cid": 4434,
+          "name": "Mago de la Fe",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4434.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4434.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 4818,
+          "name": "Scapegoat",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4818.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4818.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 5539,
+          "name": "Metamorfosis",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5539.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5539.png",
+          "label": "Carta mencionada en el paso"
+        }
+      ],
+      "result": "Final: +1 Magia recuperada; no se garantiza una segunda Fusión. Si Mago es destruido boca abajo sin voltearse, este efecto no se produce.",
+      "opening": "Entrada: Mago de la Fe boca abajo desde turno anterior o colocado legalmente; Metamorfosis/Scapegoat/otra Magia útil en GY y Mago puede ser volteado.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Voltea Mago de la Fe boca arriba (por Invocación Volteo o efecto de giro legal).",
+          "detail": "Voltea Mago de la Fe boca arriba (por Invocación Volteo o efecto de giro legal).",
+          "photos": [
+            {
+              "cid": 4434,
+              "name": "Mago de la Fe",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4434.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4434.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Activa su efecto FLIP y selecciona una Magia que realmente esté en tu GY.",
+          "detail": "Activa su efecto FLIP y selecciona una Magia que realmente esté en tu GY.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "Añade esa Magia a mano al resolver.",
+          "detail": "Añade esa Magia a mano al resolver.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Valora si usarla ahora: por ejemplo, recupera Metamorfosis si hay un monstruo sacrificable del Nivel de una Fusión que esté en Extra.\nFinal: +1 Magia recuperada; no se garantiza una segunda Fusión. Si Mago es destruido boca abajo sin voltearse, este efecto no se produce.",
+          "detail": "Valora si usarla ahora: por ejemplo, recupera Metamorfosis si hay un monstruo sacrificable del Nivel de una Fusión que esté en Extra.\nFinal: +1 Magia recuperada; no se garantiza una segunda Fusión. Si Mago es destruido boca abajo sin voltearse, este efecto no se produce.",
+          "photos": [
+            {
+              "cid": 5539,
+              "name": "Metamorfosis",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5539.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5539.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "**Entrada:** Mago de la Fe boca abajo desde turno anterior o colocado legalmente; Metamorfosis/Scapegoat/otra Magia útil en GY y Mago puede ser volteado.\n1. Voltea **Mago de la Fe** boca arriba (por Invocación Volteo o efecto de giro legal).\n2. Activa su **efecto FLIP** y selecciona **una Magia que realmente esté en tu GY**.\n3. Añade esa Magia a mano al resolver.\n4. Valora si usarla ahora: por ejemplo, recupera **Metamorfosis** si hay un monstruo sacrificable del Nivel de una Fusión que esté en Extra.\n**Final:** +1 Magia recuperada; no se garantiza una segunda Fusión. Si Mago es destruido boca abajo sin voltearse, este efecto no se produce.\n\n",
+      "initial_details": "Entrada: Mago de la Fe boca abajo desde turno anterior o colocado legalmente; Metamorfosis/Scapegoat/otra Magia útil en GY y Mago puede ser volteado.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": [],
+      "technical": "Entrada: Mago de la Fe boca abajo desde turno anterior o colocado legalmente; Metamorfosis/Scapegoat/otra Magia útil en GY y Mago puede ser volteado.\n1. Voltea Mago de la Fe boca arriba (por Invocación Volteo o efecto de giro legal).\n2. Activa su efecto FLIP y selecciona una Magia que realmente esté en tu GY.\n3. Añade esa Magia a mano al resolver.\n4. Valora si usarla ahora: por ejemplo, recupera Metamorfosis si hay un monstruo sacrificable del Nivel de una Fusión que esté en Extra.\nFinal: +1 Magia recuperada; no se garantiza una segunda Fusión. Si Mago es destruido boca abajo sin voltearse, este efecto no se produce.\n\n- G-V01: Si activas Scapegoat en tu propio turno, ese turno no puedes Invocar TER por Metamorfosis; guarda Meta hasta el siguiente turno y sobrevive con fichas.\n- G-V02: Con Sangan Nivel3 y Metamorfosis, se puede acceder a Dragoness Nivel3, pero su utilidad suele ser menor a conservar Sangan; el disparador de Sangan se verifica según texto histórico al enviarlo del campo al GY por coste.\n- G-V03: Con BLS Nivel8 ya Invocado legalmente y Metamorfosis, el objetivo Dragón Gatling Nivel8 es alcanzable, pero convertir BLS en ese Fusion no suele justificar inversión; evaluar efecto de moneda.\n- G-V04: Con Robo Oportunista controlando monstruo rival Nivel6, Meta podría dar Ryu Senshi / Hoja Oscura / Rey Ojama de Nivel6. Sin ese monstruo específico no existe la ruta con este Main.\n\nConteo: 5 líneas principales + 4 variantes documentadas = 9 casos lógicos; 0 probados en simulador y 0 replays. Son jugadas condicionales reales, no promesas de tabla final."
+    },
+    {
+      "id": "699:A09:G-C03",
+      "name": "«Reset TER con Libro de la Luna», media/por turnos",
+      "title": "«Reset TER con Libro de la Luna», media/por turnos",
+      "family": "Desarrollo de la jugada",
+      "purpose": "«Reset TER con Libro de la Luna», media/por turnos",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [
+        {
+          "cid": 5432,
+          "name": "Libro de la Luna",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5432.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5432.png",
+          "label": "Carta mencionada en el paso"
+        }
+      ],
+      "result": "Final: posibilidad de nueva absorción, no un loop instantáneo garantizado en turno de invocación.",
+      "opening": "Entrada: TER que fue Invocado en turno anterior, sigue boca arriba y puede legalmente cambiar posición en una ocasión futura; ya absorbió un monstruo; Libro de la Luna disponible.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Identifica que TER ya consumió su capacidad de absorción en su estado actual.",
+          "detail": "Identifica que TER ya consumió su capacidad de absorción en su estado actual.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Usa Libro de la Luna para poner TER en DEF boca abajo, en ventana permitida.",
+          "detail": "Usa Libro de la Luna para poner TER en DEF boca abajo, en ventana permitida.",
+          "photos": [
+            {
+              "cid": 5432,
+              "name": "Libro de la Luna",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5432.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5432.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "Revisa la pérdida/destrucción del monstruo equipado que quedó sin equipo válido.",
+          "detail": "Revisa la pérdida/destrucción del monstruo equipado que quedó sin equipo válido.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Si TER puede Invocarse por Volteo legalmente ese turno (no se invocó ni cambió posición manualmente ese mismo turno), hazlo; de lo contrario espera un turno.",
+          "detail": "Si TER puede Invocarse por Volteo legalmente ese turno (no se invocó ni cambió posición manualmente ese mismo turno), hazlo; de lo contrario espera un turno.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 5,
+          "action": "Con TER boca arriba de nuevo, su efecto de absorción puede usarse conforme a su texto, con un monstruo rival presente.\nFinal: posibilidad de nueva absorción, no un loop instantáneo garantizado en turno de invocación.",
+          "detail": "Con TER boca arriba de nuevo, su efecto de absorción puede usarse conforme a su texto, con un monstruo rival presente.\nFinal: posibilidad de nueva absorción, no un loop instantáneo garantizado en turno de invocación.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "**Entrada:** TER que fue Invocado en **turno anterior**, sigue boca arriba y puede legalmente cambiar posición en una ocasión futura; ya absorbió un monstruo; Libro de la Luna disponible.\n1. Identifica que TER ya consumió su capacidad de absorción en su estado actual.\n2. Usa **Libro de la Luna** para poner TER en DEF boca abajo, en ventana permitida.\n3. Revisa la pérdida/destrucción del monstruo equipado que quedó sin equipo válido.\n4. Si TER puede **Invocarse por Volteo legalmente ese turno** (no se invocó ni cambió posición manualmente ese mismo turno), hazlo; de lo contrario espera un turno.\n5. Con TER boca arriba de nuevo, su efecto de absorción puede usarse conforme a su texto, con un monstruo rival presente.\n**Final:** posibilidad de nueva absorción, **no** un loop instantáneo garantizado en turno de invocación.\n\n",
+      "initial_details": "Entrada: TER que fue Invocado en turno anterior, sigue boca arriba y puede legalmente cambiar posición en una ocasión futura; ya absorbió un monstruo; Libro de la Luna disponible.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": [],
+      "technical": "Entrada: TER que fue Invocado en turno anterior, sigue boca arriba y puede legalmente cambiar posición en una ocasión futura; ya absorbió un monstruo; Libro de la Luna disponible.\n1. Identifica que TER ya consumió su capacidad de absorción en su estado actual.\n2. Usa Libro de la Luna para poner TER en DEF boca abajo, en ventana permitida.\n3. Revisa la pérdida/destrucción del monstruo equipado que quedó sin equipo válido.\n4. Si TER puede Invocarse por Volteo legalmente ese turno (no se invocó ni cambió posición manualmente ese mismo turno), hazlo; de lo contrario espera un turno.\n5. Con TER boca arriba de nuevo, su efecto de absorción puede usarse conforme a su texto, con un monstruo rival presente.\nFinal: posibilidad de nueva absorción, no un loop instantáneo garantizado en turno de invocación.\n\n- G-V01: Si activas Scapegoat en tu propio turno, ese turno no puedes Invocar TER por Metamorfosis; guarda Meta hasta el siguiente turno y sobrevive con fichas.\n- G-V02: Con Sangan Nivel3 y Metamorfosis, se puede acceder a Dragoness Nivel3, pero su utilidad suele ser menor a conservar Sangan; el disparador de Sangan se verifica según texto histórico al enviarlo del campo al GY por coste.\n- G-V03: Con BLS Nivel8 ya Invocado legalmente y Metamorfosis, el objetivo Dragón Gatling Nivel8 es alcanzable, pero convertir BLS en ese Fusion no suele justificar inversión; evaluar efecto de moneda.\n- G-V04: Con Robo Oportunista controlando monstruo rival Nivel6, Meta podría dar Ryu Senshi / Hoja Oscura / Rey Ojama de Nivel6. Sin ese monstruo específico no existe la ruta con este Main.\n\nConteo: 5 líneas principales + 4 variantes documentadas = 9 casos lógicos; 0 probados en simulador y 0 replays. Son jugadas condicionales reales, no promesas de tabla final."
+    },
+    {
+      "id": "699:A09:G-C04",
+      "name": "«Parshath: conservar robo o convertir a Balter», bifurcación real",
+      "title": "«Parshath: conservar robo o convertir a Balter», bifurcación real",
+      "family": "Desarrollo de la jugada",
+      "purpose": "«Parshath: conservar robo o convertir a Balter», bifurcación real",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [
+        {
+          "cid": 5023,
+          "name": "Caballero del Aire Parshath",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5023.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5023.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 5539,
+          "name": "Metamorfosis",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5539.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5539.png",
+          "label": "Carta mencionada en el paso"
+        }
+      ],
+      "result": "Final: Balter/Reaper en lugar de Parshath; sacrificaste el atacante y la magia. NO obtienes ambos.",
+      "opening": "Entrada: Caballero del Aire Parshath Nivel5 boca arriba en tu campo y Metamorfosis en mano; Dark Balter/Reaper disponibles en Extra; no hay bloqueo de Invocaciones.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Evalúa si Parshath puede infligir daño de batalla: si sí, conservarlo puede darte una carta al robar.",
+          "detail": "Evalúa si Parshath puede infligir daño de batalla: si sí, conservarlo puede darte una carta al robar.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Si lo necesitas como defensa alternativa, activa Metamorfosis y tributa Parshath Nivel5.",
+          "detail": "Si lo necesitas como defensa alternativa, activa Metamorfosis y tributa Parshath Nivel5.",
+          "photos": [
+            {
+              "cid": 5539,
+              "name": "Metamorfosis",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5539.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5539.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "Invoca Balter Oscuro el Terrible Nivel5 del Extra (o Segador en la Pesadilla Nivel5 en otro caso).",
+          "detail": "Invoca Balter Oscuro el Terrible Nivel5 del Extra (o Segador en la Pesadilla Nivel5 en otro caso).",
+          "photos": [
+            {
+              "cid": 5302,
+              "name": "Balter Oscuro el Terrible",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5302.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5302.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 5528,
+              "name": "Segador en la Pesadilla",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5528.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/5528.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Aplica los textos de esa Fusión solo cuando haya una activación/ataque válido.\nFinal: Balter/Reaper en lugar de Parshath; sacrificaste el atacante y la magia. NO obtienes ambos.",
+          "detail": "Aplica los textos de esa Fusión solo cuando haya una activación/ataque válido.\nFinal: Balter/Reaper en lugar de Parshath; sacrificaste el atacante y la magia. NO obtienes ambos.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "**Entrada:** Caballero del Aire Parshath **Nivel5 boca arriba en tu campo** y Metamorfosis en mano; Dark Balter/Reaper disponibles en Extra; no hay bloqueo de Invocaciones.\n1. Evalúa si **Parshath** puede infligir daño de batalla: si sí, conservarlo puede darte una carta al robar.\n2. Si lo necesitas como defensa alternativa, activa **Metamorfosis** y tributa **Parshath Nivel5**.\n3. Invoca **Balter Oscuro el Terrible Nivel5** del Extra (o Segador en la Pesadilla Nivel5 en otro caso).\n4. Aplica los textos de esa Fusión solo cuando haya una activación/ataque válido.\n**Final:** Balter/Reaper en lugar de Parshath; sacrificaste el atacante y la magia. NO obtienes ambos.\n\n",
+      "initial_details": "Entrada: Caballero del Aire Parshath Nivel5 boca arriba en tu campo y Metamorfosis en mano; Dark Balter/Reaper disponibles en Extra; no hay bloqueo de Invocaciones.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": [],
+      "technical": "Entrada: Caballero del Aire Parshath Nivel5 boca arriba en tu campo y Metamorfosis en mano; Dark Balter/Reaper disponibles en Extra; no hay bloqueo de Invocaciones.\n1. Evalúa si Parshath puede infligir daño de batalla: si sí, conservarlo puede darte una carta al robar.\n2. Si lo necesitas como defensa alternativa, activa Metamorfosis y tributa Parshath Nivel5.\n3. Invoca Balter Oscuro el Terrible Nivel5 del Extra (o Segador en la Pesadilla Nivel5 en otro caso).\n4. Aplica los textos de esa Fusión solo cuando haya una activación/ataque válido.\nFinal: Balter/Reaper en lugar de Parshath; sacrificaste el atacante y la magia. NO obtienes ambos.\n\n- G-V01: Si activas Scapegoat en tu propio turno, ese turno no puedes Invocar TER por Metamorfosis; guarda Meta hasta el siguiente turno y sobrevive con fichas.\n- G-V02: Con Sangan Nivel3 y Metamorfosis, se puede acceder a Dragoness Nivel3, pero su utilidad suele ser menor a conservar Sangan; el disparador de Sangan se verifica según texto histórico al enviarlo del campo al GY por coste.\n- G-V03: Con BLS Nivel8 ya Invocado legalmente y Metamorfosis, el objetivo Dragón Gatling Nivel8 es alcanzable, pero convertir BLS en ese Fusion no suele justificar inversión; evaluar efecto de moneda.\n- G-V04: Con Robo Oportunista controlando monstruo rival Nivel6, Meta podría dar Ryu Senshi / Hoja Oscura / Rey Ojama de Nivel6. Sin ese monstruo específico no existe la ruta con este Main.\n\nConteo: 5 líneas principales + 4 variantes documentadas = 9 casos lógicos; 0 probados en simulador y 0 replays. Son jugadas condicionales reales, no promesas de tabla final."
+    },
+    {
+      "id": "699:A09:G-C05",
+      "name": "«Caridad Grácil prepara BLS», media/condicional a lo robado",
+      "title": "«Caridad Grácil prepara BLS», media/condicional a lo robado",
+      "family": "Desarrollo de la jugada",
+      "purpose": "«Caridad Grácil prepara BLS», media/condicional a lo robado",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [
+        {
+          "cid": 4812,
+          "name": "Caridad Grácil",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4812.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4812.png",
+          "label": "Carta mencionada en el paso"
+        }
+      ],
+      "result": "Final: BLS en Campo solo en la rama con GY y mano correctos. Si no robaste/descartaste lo necesario, continúa control sin declarar BLS.",
+      "opening": "Entrada: Caridad Grácil en mano; BLS en mano o accesible después; es posible reunir 1 LIGHT y 1 DARK en GY respetando reglas. NO se presupone resultado de robo.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Activa Caridad Grácil: roba 3, descarta 2 según efecto.",
+          "detail": "Activa Caridad Grácil: roba 3, descarta 2 según efecto.",
+          "photos": [
+            {
+              "cid": 4812,
+              "name": "Caridad Grácil",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4812.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/699/4812.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Cuenta atributos de monstruos en GY tras la resolución, no antes.",
+          "detail": "Cuenta atributos de monstruos en GY tras la resolución, no antes.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "Si hay por lo menos un LIGHT y un DARK elegibles, destierra una copia de cada atributo para Invocar Especial BLS desde la mano mediante su condición.",
+          "detail": "Si hay por lo menos un LIGHT y un DARK elegibles, destierra una copia de cada atributo para Invocar Especial BLS desde la mano mediante su condición.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Elige si BLS necesita atacar o desterrar monstruo rival por su efecto; con la opción de destierro se pierde capacidad de atacar ese turno conforme a texto.\nFinal: BLS en Campo solo en la rama con GY y mano correctos. Si no robaste/descartaste lo necesario, continúa control sin declarar BLS.",
+          "detail": "Elige si BLS necesita atacar o desterrar monstruo rival por su efecto; con la opción de destierro se pierde capacidad de atacar ese turno conforme a texto.\nFinal: BLS en Campo solo en la rama con GY y mano correctos. Si no robaste/descartaste lo necesario, continúa control sin declarar BLS.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "**Entrada:** Caridad Grácil en mano; BLS en mano o accesible después; es posible reunir **1 LIGHT y 1 DARK** en GY respetando reglas. NO se presupone resultado de robo.\n1. Activa **Caridad Grácil**: roba 3, descarta 2 según efecto.\n2. Cuenta atributos de monstruos en GY **tras la resolución**, no antes.\n3. Si hay por lo menos **un LIGHT y un DARK** elegibles, destierra una copia de cada atributo para Invocar Especial **BLS** desde la mano mediante su condición.\n4. Elige si BLS necesita atacar o desterrar monstruo rival por su efecto; con la opción de destierro se pierde capacidad de atacar ese turno conforme a texto.\n**Final:** BLS en Campo solo en la rama con GY y mano correctos. Si no robaste/descartaste lo necesario, continúa control sin declarar BLS.\n\n",
+      "initial_details": "Entrada: Caridad Grácil en mano; BLS en mano o accesible después; es posible reunir 1 LIGHT y 1 DARK en GY respetando reglas. NO se presupone resultado de robo.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": [],
+      "technical": "Entrada: Caridad Grácil en mano; BLS en mano o accesible después; es posible reunir 1 LIGHT y 1 DARK en GY respetando reglas. NO se presupone resultado de robo.\n1. Activa Caridad Grácil: roba 3, descarta 2 según efecto.\n2. Cuenta atributos de monstruos en GY tras la resolución, no antes.\n3. Si hay por lo menos un LIGHT y un DARK elegibles, destierra una copia de cada atributo para Invocar Especial BLS desde la mano mediante su condición.\n4. Elige si BLS necesita atacar o desterrar monstruo rival por su efecto; con la opción de destierro se pierde capacidad de atacar ese turno conforme a texto.\nFinal: BLS en Campo solo en la rama con GY y mano correctos. Si no robaste/descartaste lo necesario, continúa control sin declarar BLS.\n\n- G-V01: Si activas Scapegoat en tu propio turno, ese turno no puedes Invocar TER por Metamorfosis; guarda Meta hasta el siguiente turno y sobrevive con fichas.\n- G-V02: Con Sangan Nivel3 y Metamorfosis, se puede acceder a Dragoness Nivel3, pero su utilidad suele ser menor a conservar Sangan; el disparador de Sangan se verifica según texto histórico al enviarlo del campo al GY por coste.\n- G-V03: Con BLS Nivel8 ya Invocado legalmente y Metamorfosis, el objetivo Dragón Gatling Nivel8 es alcanzable, pero convertir BLS en ese Fusion no suele justificar inversión; evaluar efecto de moneda.\n- G-V04: Con Robo Oportunista controlando monstruo rival Nivel6, Meta podría dar Ryu Senshi / Hoja Oscura / Rey Ojama de Nivel6. Sin ese monstruo específico no existe la ruta con este Main.\n\nConteo: 5 líneas principales + 4 variantes documentadas = 9 casos lógicos; 0 probados en simulador y 0 replays. Son jugadas condicionales reales, no promesas de tabla final."
+    }
+  ],
+  "decisions": [],
+  "practice": [],
+  "motor": "",
+  "side_plans": [],
+  "matchup_plans": [],
+  "format_context": {},
+  "improvement_experiments": [],
+  "decision_exercises": [],
+  "rule_scenarios": [],
+  "rule_controls": [],
+  "general_rules": [],
+  "causal_relations": [],
+  "causal_skills": [],
+  "rule_variants": [],
+  "situational_decisions": [],
+  "folder_delivery": {
+    "source_sha256": "c6c36a9a8863bebd3c9d44989ec25db791ae6d68776bd4556f552a1370cf15cd",
+    "reader": "./assets/editorial/20261117-folder-delivery-v37-complete/699-guide.html",
+    "source_file": "torneos_yugioh/context/gpt/01_INFORMACION_PARA_IMPORTAR/decks/DECK_NUEVO_16_GOAT_CONTROL/DECK_NUEVO_16_GOAT_CONTROL_CONTENIDO_CURADO.md"
+  }
+}

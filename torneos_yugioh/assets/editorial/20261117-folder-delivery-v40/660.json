@@ -1,0 +1,3067 @@
+{
+  "schema": "station-x-curated-v62",
+  "deck_id": 660,
+  "name": "Purrely",
+  "format": "tcg_advanced",
+  "cards": [
+    {
+      "id": "660:CARD:4842",
+      "cid": 4842,
+      "name": "Monstruo Renacido",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/4842.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/4842.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 581
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Recuperar monstruo del GY si destino legal"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No otorga materiales extra automáticamente al Xyz"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Recuperar monstruo del GY si destino legal"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No otorga materiales extra automáticamente al Xyz"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Recuperar monstruo del GY si destino legal",
+        "explanation": "No otorga materiales extra automáticamente al Xyz"
+      },
+      "role": "Recuperar monstruo del GY si destino legal",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4842&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Monstruo Renacido"
+      ]
+    },
+    {
+      "id": "660:CARD:9279",
+      "cid": 9279,
+      "name": "El Bufón y el Pájaro del Candado",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/9279.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/9279.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 568
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Restringe nuevas adiciones del Deck a mano tras primer añadido"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "También puede bloquear nuestras búsquedas según turno/contexto"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Restringe nuevas adiciones del Deck a mano tras primer añadido"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "También puede bloquear nuestras búsquedas según turno/contexto"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Restringe nuevas adiciones del Deck a mano tras primer añadido",
+        "explanation": "También puede bloquear nuestras búsquedas según turno/contexto"
+      },
+      "role": "Restringe nuevas adiciones del Deck a mano tras primer añadido",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=9279&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "El Bufón y el Pájaro del Candado"
+      ],
+      "delivery_fields": {
+        "Restricción documental del formato": "El estudio señala LIMITADA (1); copias en exceso según esa fuente: 2. El inventario se conserva."
+      }
+    },
+    {
+      "id": "660:CARD:11243",
+      "cid": 11243,
+      "name": "Artefacto Lancea",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/671/11243.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/671/11243.png",
+      "slots": [
+        {
+          "section": "side",
+          "quantity": 3,
+          "card_id": 594
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Side: interrumpir destierro rival durante su turno"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Puede impedir nuestras jugadas que destierran si se solapa el turno"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Side: interrumpir destierro rival durante su turno"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Puede impedir nuestras jugadas que destierran si se solapa el turno"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Side: interrumpir destierro rival durante su turno",
+        "explanation": "Puede impedir nuestras jugadas que destierran si se solapa el turno"
+      },
+      "role": "Side: interrumpir destierro rival durante su turno",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=11243&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Artefacto Lancea"
+      ]
+    },
+    {
+      "id": "660:CARD:11708",
+      "cid": 11708,
+      "name": "Hermana Fantasma & Conejo Espectral",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/11708.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/11708.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 566
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Destruir carta en campo cuando corresponde a su activación de efecto"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Destrucción NO equivale a negar ese efecto"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Destruir carta en campo cuando corresponde a su activación de efecto"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Destrucción NO equivale a negar ese efecto"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Destruir carta en campo cuando corresponde a su activación de efecto",
+        "explanation": "Destrucción NO equivale a negar ese efecto"
+      },
+      "role": "Destruir carta en campo cuando corresponde a su activación de efecto",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=11708&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Hermana Fantasma & Conejo Espectral"
+      ]
+    },
+    {
+      "id": "660:CARD:12027",
+      "cid": 12027,
+      "name": "Princesaduende Silvana",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/12027.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/12027.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 588
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Xyz de nivel 1 para excavar y posible extensión Planta, uso técnico"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Necesita dos monstruos Nivel 1 simultáneos; no siempre aporta al plan"
+        },
+        {
+          "title": "Materiales y acceso al Extra (V40)",
+          "text": "2 monstruos Nivel1; Xyz"
+        },
+        {
+          "title": "Para qué utilizarla (V40)",
+          "text": "Xyz dos Nivel1; excavación alternativa que no sustituye la pieza del motor."
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Xyz de nivel 1 para excavar y posible extensión Planta, uso técnico"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Necesita dos monstruos Nivel 1 simultáneos; no siempre aporta al plan"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Xyz de nivel 1 para excavar y posible extensión Planta, uso técnico",
+        "explanation": "Necesita dos monstruos Nivel 1 simultáneos; no siempre aporta al plan"
+      },
+      "role": "Xyz de nivel 1 para excavar y posible extensión Planta, uso técnico",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12027&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Princesaduende Silvana"
+      ]
+    },
+    {
+      "id": "660:CARD:12950",
+      "cid": 12950,
+      "name": "Flor de Ceniza & Primavera Feliz",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/12950.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/12950.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 564
+        }
+      ],
+      "fields": [],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {},
+      "role": "",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12950&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Flor de Ceniza & Primavera Feliz"
+      ]
+    },
+    {
+      "id": "660:CARD:13587",
+      "cid": 13587,
+      "name": "Bella Fantasma & Mansión Embrujada",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/13587.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/13587.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 567
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Interacción frente a jugadas de Cementerio según efecto"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Comparar activación y ventana"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Interacción frente a jugadas de Cementerio según efecto"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Comparar activación y ventana"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Interacción frente a jugadas de Cementerio según efecto",
+        "explanation": "Comparar activación y ventana"
+      },
+      "role": "Interacción frente a jugadas de Cementerio según efecto",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13587&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Bella Fantasma & Mansión Embrujada"
+      ]
+    },
+    {
+      "id": "660:CARD:13619",
+      "cid": 13619,
+      "name": "Llamado por la Tumba",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/13619.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/13619.jpg",
+      "slots": [
+        {
+          "section": "side",
+          "quantity": 1,
+          "card_id": 597
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Side: negar monstruo en GY/handtrap por ventana válida"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Requiere materiales, zona y ventana de efecto comprobables; ruta documental condicionada"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Side: negar monstruo en GY/handtrap por ventana válida"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Requiere materiales, zona y ventana de efecto comprobables; ruta documental condicionada"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Side: negar monstruo en GY/handtrap por ventana válida",
+        "explanation": "Requiere materiales, zona y ventana de efecto comprobables; ruta documental condicionada"
+      },
+      "role": "Side: negar monstruo en GY/handtrap por ventana válida",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13619&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Llamado por la Tumba"
+      ],
+      "delivery_fields": {
+        "Restricción documental del formato": "El estudio señala PROHIBIDA (0); copias en exceso según esa fuente: 1. El inventario se conserva."
+      }
+    },
+    {
+      "id": "660:CARD:13631",
+      "cid": 13631,
+      "name": "Infinito Temporal",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/13631.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/13631.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 583
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Niega efecto de monstruo en campo, con posibles columnas de M/T si colocada"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Desde mano solo con campo propio vacío, según texto"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Niega efecto de monstruo en campo, con posibles columnas de M/T si colocada"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Desde mano solo con campo propio vacío, según texto"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Niega efecto de monstruo en campo, con posibles columnas de M/T si colocada",
+        "explanation": "Desde mano solo con campo propio vacío, según texto"
+      },
+      "role": "Niega efecto de monstruo en campo, con posibles columnas de M/T si colocada",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13631&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Infinito Temporal"
+      ]
+    },
+    {
+      "id": "660:CARD:13841",
+      "cid": 13841,
+      "name": "Ánima Renunciada",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/13841.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/13841.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 593
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Link1 desde un Nivel1 no ficha para absorber monstruo en zona apuntada"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Importa colocar bien la zona, no es removal universal"
+        },
+        {
+          "title": "Materiales y acceso al Extra (V40)",
+          "text": "Enlace 1: 1 monstruo Nivel1 que no sea Ficha."
+        },
+        {
+          "title": "Para qué utilizarla (V40)",
+          "text": "Link1 de Nivel1 no ficha, absorbe solo a objetivo en la zona apuntada."
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Link1 desde un Nivel1 no ficha para absorber monstruo en zona apuntada"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Importa colocar bien la zona, no es removal universal"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Link1 desde un Nivel1 no ficha para absorber monstruo en zona apuntada",
+        "explanation": "Importa colocar bien la zona, no es removal universal"
+      },
+      "role": "Link1 desde un Nivel1 no ficha para absorber monstruo en zona apuntada",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13841&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Ánima Renunciada"
+      ]
+    },
+    {
+      "id": "660:CARD:14208",
+      "cid": 14208,
+      "name": "Señoroscuro Condenado",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/14208.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/14208.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 590
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Link de tributo/intercambio para romper obstáculo si materiales legales"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Comprobar 2 Hadas y coste adicional al activarlo"
+        },
+        {
+          "title": "Materiales y acceso al Extra (V40)",
+          "text": "Enlace 2: 2 monstruos Hada."
+        },
+        {
+          "title": "Para qué utilizarla (V40)",
+          "text": "Link dos Hadas para plan Hada específico, no reemplazo genérico de Noir."
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Link de tributo/intercambio para romper obstáculo si materiales legales"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Comprobar 2 Hadas y coste adicional al activarlo"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Link de tributo/intercambio para romper obstáculo si materiales legales",
+        "explanation": "Comprobar 2 Hadas y coste adicional al activarlo"
+      },
+      "role": "Link de tributo/intercambio para romper obstáculo si materiales legales",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14208&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Señoroscuro Condenado"
+      ]
+    },
+    {
+      "id": "660:CARD:14741",
+      "cid": 14741,
+      "name": "Nibiru, el Ser Primitivo",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/14741.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/14741.png",
+      "slots": [
+        {
+          "section": "side",
+          "quantity": 2,
+          "card_id": 595
+        }
+      ],
+      "fields": [],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {},
+      "role": "",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14741&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Nibiru, el Ser Primitivo"
+      ]
+    },
+    {
+      "id": "660:CARD:14742",
+      "cid": 14742,
+      "name": "Gobernante Oscuro No Más",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/14742.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/14742.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 580
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Neutraliza efectos de monstruos del rival boca arriba al comenzar remontada"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No permite daño rival ese turno"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Neutraliza efectos de monstruos del rival boca arriba al comenzar remontada"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No permite daño rival ese turno"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Neutraliza efectos de monstruos del rival boca arriba al comenzar remontada",
+        "explanation": "No permite daño rival ese turno"
+      },
+      "role": "Neutraliza efectos de monstruos del rival boca arriba al comenzar remontada",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14742&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Gobernante Oscuro No Más"
+      ]
+    },
+    {
+      "id": "660:CARD:15296",
+      "cid": 15296,
+      "name": "Talento de Tácticas Triples",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/15296.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/15296.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 579
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Respuesta si se cumplen efectos de monstruo rival en Main"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Requiere materiales, zona y ventana de efecto comprobables; ruta documental condicionada"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Respuesta si se cumplen efectos de monstruo rival en Main"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Requiere materiales, zona y ventana de efecto comprobables; ruta documental condicionada"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Respuesta si se cumplen efectos de monstruo rival en Main",
+        "explanation": "Requiere materiales, zona y ventana de efecto comprobables; ruta documental condicionada"
+      },
+      "role": "Respuesta si se cumplen efectos de monstruo rival en Main",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15296&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Talento de Tácticas Triples"
+      ],
+      "delivery_fields": {
+        "Restricción documental del formato": "El estudio señala PROHIBIDA (0); copias en exceso según esa fuente: 1. El inventario se conserva."
+      }
+    },
+    {
+      "id": "660:CARD:15524",
+      "cid": 15524,
+      "name": "Divino Arsenal AA-ZEUS - Trueno del Cielo",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/15524.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/15524.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 589
+        }
+      ],
+      "fields": [
+        {
+          "title": "Materiales y acceso al Extra (V40)",
+          "text": "2 monstruos Nivel12; Xyz"
+        },
+        {
+          "title": "Para qué utilizarla (V40)",
+          "text": "Salida tras batalla Xyz; requiere materiales para borrar otras cartas del campo."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {},
+      "role": "",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15524&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Divino Arsenal AA-ZEUS - Trueno del Cielo"
+      ]
+    },
+    {
+      "id": "660:CARD:15756",
+      "cid": 15756,
+      "name": "Olla de la Prosperidad",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/15756.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/15756.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 578
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Filtra excavación a cambio de desterrar Extra boca abajo"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Sacrifica opciones Xyz; no desterrar Noir/Plump claves a ciegas"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Filtra excavación a cambio de desterrar Extra boca abajo"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Sacrifica opciones Xyz; no desterrar Noir/Plump claves a ciegas"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Filtra excavación a cambio de desterrar Extra boca abajo",
+        "explanation": "Sacrifica opciones Xyz; no desterrar Noir/Plump claves a ciegas"
+      },
+      "role": "Filtra excavación a cambio de desterrar Extra boca abajo",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15756&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Olla de la Prosperidad"
+      ]
+    },
+    {
+      "id": "660:CARD:16651",
+      "cid": 16651,
+      "name": "Protector del Agente - Luna",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/16651.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/16651.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 591
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Link de Hadas para ganar acceso/valor"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No asumir búsquedas Agente si no hay objetivos en Main"
+        },
+        {
+          "title": "Materiales y acceso al Extra (V40)",
+          "text": "Enlace 2: 2 monstruos Hada."
+        },
+        {
+          "title": "Para qué utilizarla (V40)",
+          "text": "Link dos Hadas; útil solo con objetivos coherentes del motor Hada/Santuario."
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Link de Hadas para ganar acceso/valor"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No asumir búsquedas Agente si no hay objetivos en Main"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Link de Hadas para ganar acceso/valor",
+        "explanation": "No asumir búsquedas Agente si no hay objetivos en Main"
+      },
+      "role": "Link de Hadas para ganar acceso/valor",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=16651&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Protector del Agente - Luna"
+      ]
+    },
+    {
+      "id": "660:CARD:16868",
+      "cid": 16868,
+      "name": "Prohibida la Venta",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/677/16868.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/677/16868.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 577
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Plan de bloqueo o filtrado"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Restricción posterior de nombre o Extra gastado; no ambas sin valorar coste"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Plan de bloqueo o filtrado"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Restricción posterior de nombre o Extra gastado; no ambas sin valorar coste"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Plan de bloqueo o filtrado",
+        "explanation": "Restricción posterior de nombre o Extra gastado; no ambas sin valorar coste"
+      },
+      "role": "Plan de bloqueo o filtrado",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=16868&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Prohibida la Venta"
+      ]
+    },
+    {
+      "id": "660:CARD:18003",
+      "cid": 18003,
+      "name": "Purrely",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 562
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Construir Xyz por Recuerdos sin desperdiciar Normal"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Elegir efecto correcto: Purrely excava; Purrelyly busca no-Rápida y usa GY"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Construir Xyz por Recuerdos sin desperdiciar Normal"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Elegir efecto correcto: Purrely excava; Purrelyly busca no-Rápida y usa GY"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Construir Xyz por Recuerdos sin desperdiciar Normal",
+        "explanation": "Elegir efecto correcto: Purrely excava; Purrelyly busca no-Rápida y usa GY"
+      },
+      "role": "Construir Xyz por Recuerdos sin desperdiciar Normal",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18003&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Purrely"
+      ]
+    },
+    {
+      "id": "660:CARD:18004",
+      "cid": 18004,
+      "name": "Felicidad Epurrely",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18004.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18004.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 2,
+          "card_id": 584
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Rango 2: batalla y búsqueda Purrely; reaccionar con Recuerdos Rápidos"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No se invoca directamente con 1 Level1 sin efecto habilitador"
+        },
+        {
+          "title": "Materiales y acceso al Extra (V40)",
+          "text": "2 monstruos Nivel2; Xyz"
+        },
+        {
+          "title": "Para qué utilizarla (V40)",
+          "text": "Xyz Rango2: buscar Purrely si efectivamente combatió; Feliz material puede reducir ATK."
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Rango 2: batalla y búsqueda Purrely; reaccionar con Recuerdos Rápidos"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No se invoca directamente con 1 Level1 sin efecto habilitador"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Rango 2: batalla y búsqueda Purrely; reaccionar con Recuerdos Rápidos",
+        "explanation": "No se invoca directamente con 1 Level1 sin efecto habilitador"
+      },
+      "role": "Rango 2: batalla y búsqueda Purrely; reaccionar con Recuerdos Rápidos",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18004&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Felicidad Epurrely",
+        "Felicidad"
+      ]
+    },
+    {
+      "id": "660:CARD:18005",
+      "cid": 18005,
+      "name": "Belleza Epurrely",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18005.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18005.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 2,
+          "card_id": 585
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Rango 2: negar monstruo, rápido si tiene Bello Recuerdo como material"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Sin ese material la ventana cambia"
+        },
+        {
+          "title": "Materiales y acceso al Extra (V40)",
+          "text": "2 monstruos Nivel2; Xyz"
+        },
+        {
+          "title": "Para qué utilizarla (V40)",
+          "text": "Xyz Rango2: negar monstruo rival; rapidez solo con Bello material."
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Rango 2: negar monstruo, rápido si tiene Bello Recuerdo como material"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Sin ese material la ventana cambia"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Rango 2: negar monstruo, rápido si tiene Bello Recuerdo como material",
+        "explanation": "Sin ese material la ventana cambia"
+      },
+      "role": "Rango 2: negar monstruo, rápido si tiene Bello Recuerdo como material",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18005&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Belleza Epurrely",
+        "Belleza"
+      ]
+    },
+    {
+      "id": "660:CARD:18006",
+      "cid": 18006,
+      "name": "Rechoncho Epurrely",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18006.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18006.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 2,
+          "card_id": 586
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Rango 2: adjuntar hasta 2 M/T de GYs y Recuerdos Rápidos; escalar material"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Solo si hay blancos válidos en GY"
+        },
+        {
+          "title": "Materiales y acceso al Extra (V40)",
+          "text": "2 monstruos Nivel2; Xyz"
+        },
+        {
+          "title": "Para qué utilizarla (V40)",
+          "text": "Xyz Rango2: adjunta M/T presentes en GYs; preparar cinco materiales para Noir."
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Rango 2: adjuntar hasta 2 M/T de GYs y Recuerdos Rápidos; escalar material"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Solo si hay blancos válidos en GY"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Rango 2: adjuntar hasta 2 M/T de GYs y Recuerdos Rápidos; escalar material",
+        "explanation": "Solo si hay blancos válidos en GY"
+      },
+      "role": "Rango 2: adjuntar hasta 2 M/T de GYs y Recuerdos Rápidos; escalar material",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18006&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Rechoncho Epurrely",
+        "Rechoncho",
+        "Texto oficial Rechoncho"
+      ]
+    },
+    {
+      "id": "660:CARD:18008",
+      "cid": 18008,
+      "name": "Noir Expurrely",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18008.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18008.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 3,
+          "card_id": 587
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Amenaza resistente y retirada al fondo del Deck"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Umbral ≥5 y dos materiales gastados; protección no eterna"
+        },
+        {
+          "title": "Materiales y acceso al Extra (V40)",
+          "text": "2 monstruos Nivel7; Xyz"
+        },
+        {
+          "title": "Para qué utilizarla (V40)",
+          "text": "Alternativo sobre Rango2 ≥5 materiales; gastar 2 para retirar amenaza sacrifica protección."
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Amenaza resistente y retirada al fondo del Deck"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Umbral ≥5 y dos materiales gastados; protección no eterna"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Amenaza resistente y retirada al fondo del Deck",
+        "explanation": "Umbral ≥5 y dos materiales gastados; protección no eterna"
+      },
+      "role": "Amenaza resistente y retirada al fondo del Deck",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Noir Expurrely",
+        "Noir",
+        "Texto oficial Noir grande"
+      ]
+    },
+    {
+      "id": "660:CARD:18009",
+      "cid": 18009,
+      "name": "Calle Purrely Vagabundo",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18009.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18009.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 572
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Protección/recursos del campo Purrely y ventaja cuando se pierde Xyz"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Verificar duración de protección al objetivo"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Protección/recursos del campo Purrely y ventaja cuando se pierde Xyz"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Verificar duración de protección al objetivo"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Protección/recursos del campo Purrely y ventaja cuando se pierde Xyz",
+        "explanation": "Verificar duración de protección al objetivo"
+      },
+      "role": "Protección/recursos del campo Purrely y ventaja cuando se pierde Xyz",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18009&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Calle Purrely Vagabundo"
+      ]
+    },
+    {
+      "id": "660:CARD:18010",
+      "cid": 18010,
+      "name": "Mi Amigo Purrely",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18010.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18010.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 571
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Pagar 500 LP y revelar 3 Purrely (excluye misma carta); recupera Recuerdos si Xyz sale por rival"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Elección aleatoria del oponente, no búsqueda determinista"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Pagar 500 LP y revelar 3 Purrely (excluye misma carta); recupera Recuerdos si Xyz sale por rival"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Elección aleatoria del oponente, no búsqueda determinista"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Pagar 500 LP y revelar 3 Purrely (excluye misma carta); recupera Recuerdos si Xyz sale por rival",
+        "explanation": "Elección aleatoria del oponente, no búsqueda determinista"
+      },
+      "role": "Pagar 500 LP y revelar 3 Purrely (excluye misma carta); recupera Recuerdos si Xyz sale por rival",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18010&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Mi Amigo Purrely",
+        "Mi Amigo"
+      ]
+    },
+    {
+      "id": "660:CARD:18011",
+      "cid": 18011,
+      "name": "Feliz Recuerdo Purrely",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18011.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18011.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 574
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Protección contra primera destrucción por efecto hasta próximo turno; con descarte invoca Purrely"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Hace de material para Felicidad, no asegura victoria"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Protección contra primera destrucción por efecto hasta próximo turno; con descarte invoca Purrely"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Hace de material para Felicidad, no asegura victoria"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Protección contra primera destrucción por efecto hasta próximo turno; con descarte invoca Purrely",
+        "explanation": "Hace de material para Felicidad, no asegura victoria"
+      },
+      "role": "Protección contra primera destrucción por efecto hasta próximo turno; con descarte invoca Purrely",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18011&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Feliz Recuerdo Purrely",
+        "Feliz Recuerdo"
+      ]
+    },
+    {
+      "id": "660:CARD:18012",
+      "cid": 18012,
+      "name": "Bello Recuerdo Purrely",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18012.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18012.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 573
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Protege próximo daño? No: la versión Pretty otorga LP a ambos y puede traer Purrely con descarte"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Belleza gana efecto rápido con este material"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Protege próximo daño? No: la versión Pretty otorga LP a ambos y puede traer Purrely con descarte"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Belleza gana efecto rápido con este material"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Protege próximo daño? No: la versión Pretty otorga LP a ambos y puede traer Purrely con descarte",
+        "explanation": "Belleza gana efecto rápido con este material"
+      },
+      "role": "Protege próximo daño? No: la versión Pretty otorga LP a ambos y puede traer Purrely con descarte",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18012&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Bello Recuerdo Purrely",
+        "Bello Recuerdo"
+      ]
+    },
+    {
+      "id": "660:CARD:18013",
+      "cid": 18013,
+      "name": "Delicioso Recuerdo Purrely",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18013.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18013.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 575
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Evita destrucción por batalla a monstruo elegido; descarte opcional para traer Purrely"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Material da +300 por material; permite Rechoncho"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Evita destrucción por batalla a monstruo elegido; descarte opcional para traer Purrely"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Material da +300 por material; permite Rechoncho"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Evita destrucción por batalla a monstruo elegido; descarte opcional para traer Purrely",
+        "explanation": "Material da +300 por material; permite Rechoncho"
+      },
+      "role": "Evita destrucción por batalla a monstruo elegido; descarte opcional para traer Purrely",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18013&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Delicioso Recuerdo Purrely",
+        "Delicioso Recuerdo"
+      ]
+    },
+    {
+      "id": "660:CARD:18014",
+      "cid": 18014,
+      "name": "¿¡Purrelysaltó!?",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18014.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18014.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 582
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Xyz Purrely de rango diferente sobre Xyz Purrely existente"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Regresa al Extra en End Phase del siguiente turno"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Xyz Purrely de rango diferente sobre Xyz Purrely existente"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Regresa al Extra en End Phase del siguiente turno"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Xyz Purrely de rango diferente sobre Xyz Purrely existente",
+        "explanation": "Regresa al Extra en End Phase del siguiente turno"
+      },
+      "role": "Xyz Purrely de rango diferente sobre Xyz Purrely existente",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18014&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "¿¡Purrelysaltó!?",
+        "Texto oficial trampa"
+      ]
+    },
+    {
+      "id": "660:CARD:18214",
+      "cid": 18214,
+      "name": "Impulso de Tácticas Triples",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18214.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18214.png",
+      "slots": [
+        {
+          "section": "side",
+          "quantity": 1,
+          "card_id": 596
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Side: acceder a Magia/Trampa Normal según condición"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No garantiza acceso a Recuerdos Rápidos"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Side: acceder a Magia/Trampa Normal según condición"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No garantiza acceso a Recuerdos Rápidos"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Side: acceder a Magia/Trampa Normal según condición",
+        "explanation": "No garantiza acceso a Recuerdos Rápidos"
+      },
+      "role": "Side: acceder a Magia/Trampa Normal según condición",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18214&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Impulso de Tácticas Triples"
+      ]
+    },
+    {
+      "id": "660:CARD:18481",
+      "cid": 18481,
+      "name": "Purrelyly",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18481.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18481.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 563
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Busca carta Purrely NO Mágica Rápida al invocarse; Xyz con Recuerdo Rápido del GY, adjuntándolo"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Requiere objetivo en GY; los dos efectos tienen su límite"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Busca carta Purrely NO Mágica Rápida al invocarse; Xyz con Recuerdo Rápido del GY, adjuntándolo"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Requiere objetivo en GY; los dos efectos tienen su límite"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Busca carta Purrely NO Mágica Rápida al invocarse; Xyz con Recuerdo Rápido del GY, adjuntándolo",
+        "explanation": "Requiere objetivo en GY; los dos efectos tienen su límite"
+      },
+      "role": "Busca carta Purrely NO Mágica Rápida al invocarse; Xyz con Recuerdo Rápido del GY, adjuntándolo",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18481&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Purrelyly",
+        "Texto oficial Purrelyly"
+      ]
+    },
+    {
+      "id": "660:CARD:18524",
+      "cid": 18524,
+      "name": "Sueño Recuerdo Purrely",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18524.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18524.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 576
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Evita próximo daño de batalla/efecto; opción descarte para traer Purrely"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Como material proporciona robo en Standby rival"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Evita próximo daño de batalla/efecto; opción descarte para traer Purrely"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Como material proporciona robo en Standby rival"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Evita próximo daño de batalla/efecto; opción descarte para traer Purrely",
+        "explanation": "Como material proporciona robo en Standby rival"
+      },
+      "role": "Evita próximo daño de batalla/efecto; opción descarte para traer Purrely",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18524&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Sueño Recuerdo Purrely",
+        "Sueño Recuerdo"
+      ]
+    },
+    {
+      "id": "660:CARD:19188",
+      "cid": 19188,
+      "name": "S:P Pequeña Caballera",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/19188.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/19188.jpg",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 592
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Link2 de interacción temporal, reacción al rival"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Necesita 2 efectos; su efecto de entrada depende de usar Extra como material"
+        },
+        {
+          "title": "Materiales y acceso al Extra (V40)",
+          "text": "Enlace 2: 2 monstruos de efecto."
+        },
+        {
+          "title": "Para qué utilizarla (V40)",
+          "text": "Link2 dos efectos; protege por destierro temporal de respuesta en ventana rival."
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Link2 de interacción temporal, reacción al rival"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Necesita 2 efectos; su efecto de entrada depende de usar Extra como material"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Link2 de interacción temporal, reacción al rival",
+        "explanation": "Necesita 2 efectos; su efecto de entrada depende de usar Extra como material"
+      },
+      "role": "Link2 de interacción temporal, reacción al rival",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19188&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "S:P Pequeña Caballera"
+      ]
+    },
+    {
+      "id": "660:CARD:20206",
+      "cid": 20206,
+      "name": "Purulia Multivadora",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/20206.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20206.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 570
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Handtrap para patrón de invocación que señale su texto"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Separar de Fuwalos, confirmar condición exacta"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Handtrap para patrón de invocación que señale su texto"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Separar de Fuwalos, confirmar condición exacta"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Handtrap para patrón de invocación que señale su texto",
+        "explanation": "Separar de Fuwalos, confirmar condición exacta"
+      },
+      "role": "Handtrap para patrón de invocación que señale su texto",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20206&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Purulia Multivadora"
+      ]
+    },
+    {
+      "id": "660:CARD:20500",
+      "cid": 20500,
+      "name": "Fuwalos Multivadora",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/20500.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20500.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 569
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Handtrap de presión sobre invocaciones rivales cubiertas por su texto"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No garantiza robo incondicional"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Handtrap de presión sobre invocaciones rivales cubiertas por su texto"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No garantiza robo incondicional"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Handtrap de presión sobre invocaciones rivales cubiertas por su texto",
+        "explanation": "No garantiza robo incondicional"
+      },
+      "role": "Handtrap de presión sobre invocaciones rivales cubiertas por su texto",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20500&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Fuwalos Multivadora"
+      ]
+    },
+    {
+      "id": "660:CARD:21338",
+      "cid": 21338,
+      "name": "Ángel del Alba Kambi",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/21338.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/21338.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 565
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Hada LUZ Nivel 1: puede Invocarse Especial desde mano si no controlas monstruos o todos los propios son Hada; sacrifica Hadas, incluso a sí misma, para Invocar desde el Deck una Hada cuyo Nivel iguale la suma de Niveles originales sacrificados. CID oficial 21338."
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "La activación del efecto de sacrificio restringe tus Invocaciones Especiales del turno a monstruos Hada; por tanto, no combinar ese turno con Xyz que no sean Hada o Links ajenos al Tipo. No es una negación."
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Hada LUZ Nivel 1: puede Invocarse Especial desde mano si no controlas monstruos o todos los propios son Hada; sacrifica Hadas, incluso a sí misma, para Invocar desde el Deck una Hada cuyo Nivel iguale la suma de Niveles originales sacrificados. CID oficial 21338."
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "La activación del efecto de sacrificio restringe tus Invocaciones Especiales del turno a monstruos Hada; por tanto, no combinar ese turno con Xyz que no sean Hada o Links ajenos al Tipo. No es una negación."
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Hada LUZ Nivel 1: puede Invocarse Especial desde mano si no controlas monstruos o todos los propios son Hada; sacrifica Hadas, incluso a sí misma, para Invocar desde el Deck una Hada cuyo Nivel iguale la suma de Niveles originales sacrificados. CID oficial 21338.",
+        "explanation": "La activación del efecto de sacrificio restringe tus Invocaciones Especiales del turno a monstruos Hada; por tanto, no combinar ese turno con Xyz que no sean Hada o Links ajenos al Tipo. No es una negación."
+      },
+      "role": "Hada LUZ Nivel 1: puede Invocarse Especial desde mano si no controlas monstruos o todos los propios son Hada; sacrifica Hadas, incluso a sí misma, para Invocar desde el Deck una Hada cuyo Nivel iguale la suma de Niveles originales sacrificados. CID oficial 21338.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21338&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Ángel del Alba Kambi"
+      ]
+    }
+  ],
+  "skills": [],
+  "profile": {
+    "Arquetipo": "Purrely",
+    "Estilo de juego": "Plan principal: transformar a Purrely/Purrelyly y los Recuerdos rápidos en Xyz Rango 2, añadir cartas como materiales y, cuando realmente se llegue a cinco o más, superponer Noir Expurrely de Rango 7. Una alternativa es la trampa ¿¡Purrelysaltó!?, que permite un cambio de Rango temporal con su propia condición de regreso al Extra.",
+    "Cómo se juega": "Plan principal: transformar a Purrely/Purrelyly y los Recuerdos rápidos en Xyz Rango 2, añadir cartas como materiales y, cuando realmente se llegue a cinco o más, superponer Noir Expurrely de Rango 7. Una alternativa es la trampa ¿¡Purrelysaltó!?, que permite un cambio de Rango temporal con su propia condición de regreso al Extra.\n\n- Primero: obtener una Xyz pequeña (Rechoncho para recursos, Belleza para respuesta a monstruos) y conservar Recuerdos activables; Noir grande es el techo, no una salida garantizada.\n- Segundo: elegir entre Belleza para negar, Felicidad para presión/recuperar cartas y AA-ZEUS como limpieza postcombate si se cumple su requisito; Gobernante Oscuro No Más puede desactivar monstruos rivales antes de desarrollar.\n- Juego medio: reciclar recursos con Mi Amigo Purrely cuando el rival retire tus Xyz por sus cartas; la mano ganada no debe asumirse antes de que ocurra el disparador.\n- Debilidades reales: mano saturada de handtraps sin Recuerdos; coste de descarte; depender de que el rival seleccione al azar una carta entre tres mostradas; ataque a efectos de Purrely al invocar; demasiadas cartas Main (48) diluyen motores respecto de una construcción menor."
+  },
+  "summary": "",
+  "engine_maps": [],
+  "routes": [
+    {
+      "id": "660:A09:P-C01",
+      "name": "«Belleza con respuesta de monstruo», dificultad básica",
+      "title": "«Belleza con respuesta de monstruo», dificultad básica",
+      "family": "Desarrollo de la jugada",
+      "purpose": "«Belleza con respuesta de monstruo», dificultad básica",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [
+        {
+          "cid": 18003,
+          "name": "Purrely",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 18005,
+          "name": "Belleza Epurrely",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18005.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18005.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 18012,
+          "name": "Bello Recuerdo Purrely",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18012.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18012.png",
+          "label": "Carta mencionada en el paso"
+        }
+      ],
+      "result": "Salida: Belleza Xyz con Purrely y Bello como materiales; Normal consumida. Fallo: si Bello ya no está en mano al revelar o niegan el efecto de Purrely, no está demostrada la Xyz.",
+      "opening": "Entrada: Purrely en mano; Bello Recuerdo Purrely (Pretty) en mano; Extra contiene Belleza. Campo propio sin monstruos; no se presupone resultado de excavación.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Invoca Purrely de Normal.",
+          "detail": "Invoca Purrely de Normal.",
+          "photos": [
+            {
+              "cid": 18003,
+              "name": "Purrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Ofrece la activación opcional de excavación: mira 3 superiores y añade M/T Purrely solo si existe entre ellas; no contarla como garantizada.",
+          "detail": "Ofrece la activación opcional de excavación: mira 3 superiores y añade M/T Purrely solo si existe entre ellas; no contarla como garantizada.",
+          "photos": [
+            {
+              "cid": 18003,
+              "name": "Purrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "En Main Phase revela Bello Recuerdo de mano para el otro efecto de Purrely.",
+          "detail": "En Main Phase revela Bello Recuerdo de mano para el otro efecto de Purrely.",
+          "photos": [
+            {
+              "cid": 18003,
+              "name": "Purrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 18012,
+              "name": "Bello Recuerdo Purrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18012.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18012.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Invoca Belleza Epurrely del Extra sobre Purrely y adjunta Bello desde la mano como material según el texto.",
+          "detail": "Invoca Belleza Epurrely del Extra sobre Purrely y adjunta Bello desde la mano como material según el texto.",
+          "photos": [
+            {
+              "cid": 18003,
+              "name": "Purrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 18005,
+              "name": "Belleza Epurrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18005.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18005.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 5,
+          "action": "Conserva Belleza para seleccionar monstruo de efecto rival y negarlo por su efecto; como tiene Bello material, esa negación puede ser efecto rápido.\nSalida: Belleza Xyz con Purrely y Bello como materiales; Normal consumida. Fallo: si Bello ya no está en mano al revelar o niegan el efecto de Purrely, no está demostrada la Xyz.",
+          "detail": "Conserva Belleza para seleccionar monstruo de efecto rival y negarlo por su efecto; como tiene Bello material, esa negación puede ser efecto rápido.\nSalida: Belleza Xyz con Purrely y Bello como materiales; Normal consumida. Fallo: si Bello ya no está en mano al revelar o niegan el efecto de Purrely, no está demostrada la Xyz.",
+          "photos": [
+            {
+              "cid": 18003,
+              "name": "Purrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 18005,
+              "name": "Belleza Epurrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18005.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18005.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "**Entrada:** Purrely en mano; Bello Recuerdo Purrely (Pretty) en mano; Extra contiene Belleza. Campo propio sin monstruos; no se presupone resultado de excavación.\n1. Invoca **Purrely** de Normal.\n2. Ofrece la activación opcional de excavación: mira 3 superiores y añade M/T Purrely **solo si existe entre ellas**; no contarla como garantizada.\n3. En Main Phase revela **Bello Recuerdo** de mano para el otro efecto de Purrely.\n4. Invoca **Belleza Epurrely** del Extra sobre Purrely y adjunta Bello desde la mano como material según el texto.\n5. Conserva Belleza para seleccionar monstruo de efecto rival y negarlo por su efecto; como tiene Bello material, esa negación puede ser **efecto rápido**.\n**Salida:** Belleza Xyz con Purrely y Bello como materiales; Normal consumida. **Fallo:** si Bello ya no está en mano al revelar o niegan el efecto de Purrely, no está demostrada la Xyz.\n\n",
+      "initial_details": "Entrada: Purrely en mano; Bello Recuerdo Purrely (Pretty) en mano; Extra contiene Belleza. Campo propio sin monstruos; no se presupone resultado de excavación.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18003&ope=2&request_locale=en",
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18005&ope=2&request_locale=en"
+      ],
+      "technical": "Entrada: Purrely en mano; Bello Recuerdo Purrely (Pretty) en mano; Extra contiene Belleza. Campo propio sin monstruos; no se presupone resultado de excavación.\n1. Invoca Purrely de Normal.\n2. Ofrece la activación opcional de excavación: mira 3 superiores y añade M/T Purrely solo si existe entre ellas; no contarla como garantizada.\n3. En Main Phase revela Bello Recuerdo de mano para el otro efecto de Purrely.\n4. Invoca Belleza Epurrely del Extra sobre Purrely y adjunta Bello desde la mano como material según el texto.\n5. Conserva Belleza para seleccionar monstruo de efecto rival y negarlo por su efecto; como tiene Bello material, esa negación puede ser efecto rápido.\nSalida: Belleza Xyz con Purrely y Bello como materiales; Normal consumida. Fallo: si Bello ya no está en mano al revelar o niegan el efecto de Purrely, no está demostrada la Xyz.\n\n- P-V01: Purrelyly encuentra Mi Amigo (no Rápida) y este revela tres Purrely del Deck: el rival elige al azar. Si hay Droll rival activo, no completar búsquedas posteriores a la primera adición.\n- P-V02: con Rechoncho y un solo blanco M/T en GY, obtiene como máximo tres materiales antes del Recuerdo en mano; tras adjuntar uno queda cuatro, no llega a Noir por alternativa de cinco.\n- P-V03: si Noir de cinco materiales gasta dos para devolver una carta al fondo, deja tres; su protección de ≥5 ya no aplica. No aconsejar usar el efecto por inercia frente a eliminación rival.\n\nCobertura: 5 rutas principales + 3 variantes causales, 8 escenarios documentados, 0 simulados, 0 demostrados en replay. Las entradas están especificadas para evitar búsquedas desde zonas equivocadas.\n\nCondiciones y límites de esta secuencia\n- Inicio exigido: Purrely + Bello Recuerdo en mano; Belleza en Extra; Deck con 3 cartas excavables.\n- Regla comprobada: Purrely revela una Mágica Rápida que Belleza menciona; Belleza solo hace la negación RÁPIDA si Bello es material.\n- Si se interrumpe / no aplica: Excavar 3 no garantiza obtener carta; si se pierde Bello en mano antes de revelarlo no hay invocación descrita.\n- Textos oficiales comprobados: [Purrely](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18003&ope=2&request_locale=en), [Epurrely Beauty](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18005&ope=2&request_locale=en).\n- Ensayo de simulador: NO APORTADO; este control es documental, no ejecución.",
+      "documentary_review": {
+        "id": "P-C01",
+        "conditions": {
+          "Inicio exigido": "Purrely + Bello Recuerdo en mano; Belleza en Extra; Deck con 3 cartas excavables.",
+          "Regla comprobada": "Purrely revela una Mágica Rápida que Belleza menciona; Belleza solo hace la negación RÁPIDA si Bello es material.",
+          "Si se interrumpe / no aplica": "Excavar 3 no garantiza obtener carta; si se pierde Bello en mano antes de revelarlo no hay invocación descrita.",
+          "Textos oficiales comprobados": "[Purrely](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18003&ope=2&request_locale=en), [Epurrely Beauty](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18005&ope=2&request_locale=en).",
+          "Ensayo de simulador": "NO APORTADO; este control es documental, no ejecución."
+        },
+        "text": "- Inicio exigido: Purrely + Bello Recuerdo en mano; Belleza en Extra; Deck con 3 cartas excavables.\n- Regla comprobada: Purrely revela una Mágica Rápida que Belleza menciona; Belleza solo hace la negación RÁPIDA si Bello es material.\n- Si se interrumpe / no aplica: Excavar 3 no garantiza obtener carta; si se pierde Bello en mano antes de revelarlo no hay invocación descrita.\n- Textos oficiales comprobados: [Purrely](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18003&ope=2&request_locale=en), [Epurrely Beauty](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18005&ope=2&request_locale=en).\n- Ensayo de simulador: NO APORTADO; este control es documental, no ejecución.",
+        "sources": [
+          "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18003&ope=2&request_locale=en",
+          "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18005&ope=2&request_locale=en"
+        ]
+      }
+    },
+    {
+      "id": "660:A09:P-C02",
+      "name": "«Rechoncho a través del Cementerio», dificultad intermedia",
+      "title": "«Rechoncho a través del Cementerio», dificultad intermedia",
+      "family": "Desarrollo de la jugada",
+      "purpose": "«Rechoncho a través del Cementerio», dificultad intermedia",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [
+        {
+          "cid": 18006,
+          "name": "Rechoncho Epurrely",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18006.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18006.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 18013,
+          "name": "Delicioso Recuerdo Purrely",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18013.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18013.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 18481,
+          "name": "Purrelyly",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18481.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18481.png",
+          "label": "Carta mencionada en el paso"
+        }
+      ],
+      "result": "Salida: Rechoncho 4 materiales en este escenario. No se convierte aún en Noir. Si no hay dos blancos, material real menor.",
+      "opening": "Entrada explícita: Purrelyly en mano; Delicioso Recuerdo previamente en GY por un efecto lícito; 2 M/T válidas adicionales en uno o ambos GYs; Extra contiene Rechoncho. No se atribuye al rival ninguna M/T gratuita.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Invoca Purrelyly de Normal o Especial.",
+          "detail": "Invoca Purrelyly de Normal o Especial.",
+          "photos": [
+            {
+              "cid": 18481,
+              "name": "Purrelyly",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18481.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18481.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Si su efecto de búsqueda resuelve, añade una carta Purrely que no sea Mágica Rápida, de acuerdo con existencia en Deck.",
+          "detail": "Si su efecto de búsqueda resuelve, añade una carta Purrely que no sea Mágica Rápida, de acuerdo con existencia en Deck.",
+          "photos": [
+            {
+              "cid": 18003,
+              "name": "Purrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "Activa el efecto de Purrelyly que selecciona Delicioso Recuerdo en GY.",
+          "detail": "Activa el efecto de Purrelyly que selecciona Delicioso Recuerdo en GY.",
+          "photos": [
+            {
+              "cid": 18013,
+              "name": "Delicioso Recuerdo Purrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18013.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18013.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 18481,
+              "name": "Purrelyly",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18481.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18481.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Xyz Invoca Rechoncho Epurrely del Extra usando Purrelyly y adjunta Delicioso como material.",
+          "detail": "Xyz Invoca Rechoncho Epurrely del Extra usando Purrelyly y adjunta Delicioso como material.",
+          "photos": [
+            {
+              "cid": 18006,
+              "name": "Rechoncho Epurrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18006.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18006.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 18481,
+              "name": "Purrelyly",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18481.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18481.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 5,
+          "action": "Por el efecto de Rechoncho, selecciona y adjunta hasta 2 Magias/Trampas existentes de los GYs. Con dos válidas, Rechoncho termina con 4 materiales.\nSalida: Rechoncho 4 materiales en este escenario. No se convierte aún en Noir. Si no hay dos blancos, material real menor.",
+          "detail": "Por el efecto de Rechoncho, selecciona y adjunta hasta 2 Magias/Trampas existentes de los GYs. Con dos válidas, Rechoncho termina con 4 materiales.\nSalida: Rechoncho 4 materiales en este escenario. No se convierte aún en Noir. Si no hay dos blancos, material real menor.",
+          "photos": [
+            {
+              "cid": 18006,
+              "name": "Rechoncho Epurrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18006.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18006.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 18008,
+              "name": "Noir Expurrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18008.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18008.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "**Entrada explícita:** Purrelyly en mano; **Delicioso Recuerdo** previamente en GY por un efecto lícito; 2 M/T válidas adicionales en uno o ambos GYs; Extra contiene Rechoncho. No se atribuye al rival ninguna M/T gratuita.\n1. Invoca **Purrelyly** de Normal o Especial.\n2. Si su efecto de búsqueda resuelve, añade una carta Purrely **que no sea Mágica Rápida**, de acuerdo con existencia en Deck.\n3. Activa el efecto de Purrelyly que selecciona **Delicioso Recuerdo en GY**.\n4. Xyz Invoca **Rechoncho Epurrely** del Extra usando Purrelyly y adjunta Delicioso como material.\n5. Por el efecto de Rechoncho, selecciona y adjunta **hasta 2** Magias/Trampas existentes de los GYs. Con dos válidas, Rechoncho termina con **4 materiales**.\n**Salida:** Rechoncho 4 materiales en este escenario. **No se convierte aún en Noir**. Si no hay dos blancos, material real menor.\n\n",
+      "initial_details": "Entrada explícita: Purrelyly en mano; Delicioso Recuerdo previamente en GY por un efecto lícito; 2 M/T válidas adicionales en uno o ambos GYs; Extra contiene Rechoncho. No se atribuye al rival ninguna M/T gratuita.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18006&ope=2&request_locale=en",
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18481&ope=2&request_locale=en"
+      ],
+      "technical": "Entrada explícita: Purrelyly en mano; Delicioso Recuerdo previamente en GY por un efecto lícito; 2 M/T válidas adicionales en uno o ambos GYs; Extra contiene Rechoncho. No se atribuye al rival ninguna M/T gratuita.\n1. Invoca Purrelyly de Normal o Especial.\n2. Si su efecto de búsqueda resuelve, añade una carta Purrely que no sea Mágica Rápida, de acuerdo con existencia en Deck.\n3. Activa el efecto de Purrelyly que selecciona Delicioso Recuerdo en GY.\n4. Xyz Invoca Rechoncho Epurrely del Extra usando Purrelyly y adjunta Delicioso como material.\n5. Por el efecto de Rechoncho, selecciona y adjunta hasta 2 Magias/Trampas existentes de los GYs. Con dos válidas, Rechoncho termina con 4 materiales.\nSalida: Rechoncho 4 materiales en este escenario. No se convierte aún en Noir. Si no hay dos blancos, material real menor.\n\n- P-V01: Purrelyly encuentra Mi Amigo (no Rápida) y este revela tres Purrely del Deck: el rival elige al azar. Si hay Droll rival activo, no completar búsquedas posteriores a la primera adición.\n- P-V02: con Rechoncho y un solo blanco M/T en GY, obtiene como máximo tres materiales antes del Recuerdo en mano; tras adjuntar uno queda cuatro, no llega a Noir por alternativa de cinco.\n- P-V03: si Noir de cinco materiales gasta dos para devolver una carta al fondo, deja tres; su protección de ≥5 ya no aplica. No aconsejar usar el efecto por inercia frente a eliminación rival.\n\nCobertura: 5 rutas principales + 3 variantes causales, 8 escenarios documentados, 0 simulados, 0 demostrados en replay. Las entradas están especificadas para evitar búsquedas desde zonas equivocadas.\n\nCondiciones y límites de esta secuencia\n- Inicio exigido: Purrelyly en mano/campo; Delicioso YA en GY; 2 M/T reales en uno o ambos GY.\n- Regla comprobada: Purrelyly convierte Delicioso del GY en material; Rechoncho adjunta hasta 2 M/T de cualquier GY.\n- Si se interrumpe / no aplica: Si solo 1 M/T elegible, el final es 3 materiales; Noir cinco no resulta aún.\n- Textos oficiales comprobados: [Purrelyly](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18481&ope=2&request_locale=en), [Epurrely Plump](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18006&ope=2&request_locale=en).\n- Ensayo de simulador: NO APORTADO; este control es documental, no ejecución.",
+      "documentary_review": {
+        "id": "P-C02",
+        "conditions": {
+          "Inicio exigido": "Purrelyly en mano/campo; Delicioso YA en GY; 2 M/T reales en uno o ambos GY.",
+          "Regla comprobada": "Purrelyly convierte Delicioso del GY en material; Rechoncho adjunta hasta 2 M/T de cualquier GY.",
+          "Si se interrumpe / no aplica": "Si solo 1 M/T elegible, el final es 3 materiales; Noir cinco no resulta aún.",
+          "Textos oficiales comprobados": "[Purrelyly](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18481&ope=2&request_locale=en), [Epurrely Plump](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18006&ope=2&request_locale=en).",
+          "Ensayo de simulador": "NO APORTADO; este control es documental, no ejecución."
+        },
+        "text": "- Inicio exigido: Purrelyly en mano/campo; Delicioso YA en GY; 2 M/T reales en uno o ambos GY.\n- Regla comprobada: Purrelyly convierte Delicioso del GY en material; Rechoncho adjunta hasta 2 M/T de cualquier GY.\n- Si se interrumpe / no aplica: Si solo 1 M/T elegible, el final es 3 materiales; Noir cinco no resulta aún.\n- Textos oficiales comprobados: [Purrelyly](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18481&ope=2&request_locale=en), [Epurrely Plump](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18006&ope=2&request_locale=en).\n- Ensayo de simulador: NO APORTADO; este control es documental, no ejecución.",
+        "sources": [
+          "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18006&ope=2&request_locale=en",
+          "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18481&ope=2&request_locale=en"
+        ]
+      }
+    },
+    {
+      "id": "660:A09:P-C03",
+      "name": "«Cinco materiales → Noir permanente», extensión de P-C02",
+      "title": "«Cinco materiales → Noir permanente», extensión de P-C02",
+      "family": "Desarrollo de la jugada",
+      "purpose": "«Cinco materiales → Noir permanente», extensión de P-C02",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [
+        {
+          "cid": 18006,
+          "name": "Rechoncho Epurrely",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18006.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18006.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 18008,
+          "name": "Noir Expurrely",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18008.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18008.png",
+          "label": "Carta mencionada en el paso"
+        }
+      ],
+      "result": "Salida: Noir ≥5 materiales, con protección al entrar; no se promete conservarla tras uso. Interrupción: si se niega el enganche del Recuerdo y permanece con 4, no se puede aplicar esta invocación alternativa.",
+      "opening": "Entrada: salida exacta P-C02 con 4 materiales, un Recuerdo Rápido adicional en mano activable y Rechoncho aún en campo; Noir en Extra.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Activa el Recuerdo Rápido en ventana legal y aplica su texto sobre blanco legal cuando corresponda.",
+          "detail": "Activa el Recuerdo Rápido en ventana legal y aplica su texto sobre blanco legal cuando corresponda.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Encadena/activa el efecto rápido pertinente de Rechoncho al activar ese Recuerdo (respetando la regla de encadenamiento) y adjunta esa carta en campo como material según el efecto.",
+          "detail": "Encadena/activa el efecto rápido pertinente de Rechoncho al activar ese Recuerdo (respetando la regla de encadenamiento) y adjunta esa carta en campo como material según el efecto.",
+          "photos": [
+            {
+              "cid": 18006,
+              "name": "Rechoncho Epurrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18006.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18006.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "Ahora Rechoncho tiene 5 materiales (si los pasos anteriores resolvieron y no perdió ninguno).",
+          "detail": "Ahora Rechoncho tiene 5 materiales (si los pasos anteriores resolvieron y no perdió ninguno).",
+          "photos": [
+            {
+              "cid": 18006,
+              "name": "Rechoncho Epurrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18006.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18006.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Xyz Invoca Noir Expurrely Rango7 utilizando ese Rango2 de cinco materiales, transfiriendo los cinco.",
+          "detail": "Xyz Invoca Noir Expurrely Rango7 utilizando ese Rango2 de cinco materiales, transfiriendo los cinco.",
+          "photos": [
+            {
+              "cid": 18008,
+              "name": "Noir Expurrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18008.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18008.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 5,
+          "action": "Noir tendrá protección de efectos activados rivales por sus 5 materiales. Antes de gastar 2 para devolver una carta al fondo, decide si vale la pena quedar con 3 y perder protección.\nSalida: Noir ≥5 materiales, con protección al entrar; no se promete conservarla tras uso. Interrupción: si se niega el enganche del Recuerdo y permanece con 4, no se puede aplicar esta invocación alternativa.",
+          "detail": "Noir tendrá protección de efectos activados rivales por sus 5 materiales. Antes de gastar 2 para devolver una carta al fondo, decide si vale la pena quedar con 3 y perder protección.\nSalida: Noir ≥5 materiales, con protección al entrar; no se promete conservarla tras uso. Interrupción: si se niega el enganche del Recuerdo y permanece con 4, no se puede aplicar esta invocación alternativa.",
+          "photos": [
+            {
+              "cid": 18008,
+              "name": "Noir Expurrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18008.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18008.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "**Entrada:** salida exacta P-C02 con 4 materiales, un **Recuerdo Rápido** adicional en mano activable y Rechoncho aún en campo; Noir en Extra.\n1. Activa el Recuerdo Rápido en ventana legal y aplica su texto sobre blanco legal cuando corresponda.\n2. Encadena/activa el efecto rápido pertinente de Rechoncho al activar ese Recuerdo (respetando la regla de encadenamiento) y adjunta **esa carta en campo** como material según el efecto.\n3. Ahora Rechoncho tiene **5 materiales** (si los pasos anteriores resolvieron y no perdió ninguno).\n4. Xyz Invoca **Noir Expurrely** Rango7 utilizando ese Rango2 de cinco materiales, transfiriendo los cinco.\n5. Noir tendrá protección de efectos activados rivales por sus 5 materiales. Antes de gastar 2 para devolver una carta al fondo, decide si vale la pena quedar con 3 y perder protección.\n**Salida:** Noir ≥5 materiales, con protección al entrar; **no** se promete conservarla tras uso. **Interrupción:** si se niega el enganche del Recuerdo y permanece con 4, no se puede aplicar esta invocación alternativa.\n\n",
+      "initial_details": "Entrada: salida exacta P-C02 con 4 materiales, un Recuerdo Rápido adicional en mano activable y Rechoncho aún en campo; Noir en Extra.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18006&ope=2&request_locale=en",
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=en"
+      ],
+      "technical": "Entrada: salida exacta P-C02 con 4 materiales, un Recuerdo Rápido adicional en mano activable y Rechoncho aún en campo; Noir en Extra.\n1. Activa el Recuerdo Rápido en ventana legal y aplica su texto sobre blanco legal cuando corresponda.\n2. Encadena/activa el efecto rápido pertinente de Rechoncho al activar ese Recuerdo (respetando la regla de encadenamiento) y adjunta esa carta en campo como material según el efecto.\n3. Ahora Rechoncho tiene 5 materiales (si los pasos anteriores resolvieron y no perdió ninguno).\n4. Xyz Invoca Noir Expurrely Rango7 utilizando ese Rango2 de cinco materiales, transfiriendo los cinco.\n5. Noir tendrá protección de efectos activados rivales por sus 5 materiales. Antes de gastar 2 para devolver una carta al fondo, decide si vale la pena quedar con 3 y perder protección.\nSalida: Noir ≥5 materiales, con protección al entrar; no se promete conservarla tras uso. Interrupción: si se niega el enganche del Recuerdo y permanece con 4, no se puede aplicar esta invocación alternativa.\n\n- P-V01: Purrelyly encuentra Mi Amigo (no Rápida) y este revela tres Purrely del Deck: el rival elige al azar. Si hay Droll rival activo, no completar búsquedas posteriores a la primera adición.\n- P-V02: con Rechoncho y un solo blanco M/T en GY, obtiene como máximo tres materiales antes del Recuerdo en mano; tras adjuntar uno queda cuatro, no llega a Noir por alternativa de cinco.\n- P-V03: si Noir de cinco materiales gasta dos para devolver una carta al fondo, deja tres; su protección de ≥5 ya no aplica. No aconsejar usar el efecto por inercia frente a eliminación rival.\n\nCobertura: 5 rutas principales + 3 variantes causales, 8 escenarios documentados, 0 simulados, 0 demostrados en replay. Las entradas están especificadas para evitar búsquedas desde zonas equivocadas.\n\nCondiciones y límites de esta secuencia\n- Inicio exigido: Estado de P-C02 ya alcanzó Rechoncho con 4 materiales + 1 Recuerdo rápido en mano.\n- Regla comprobada: Al activar un Recuerdo, Rechoncho puede adjuntar esa carta del campo; Noir alterno requiere Rango2 con ≥5 materiales.\n- Si se interrumpe / no aplica: Si el Recuerdo no se adjunta o fue negada la activación, NO invocar Noir por su procedimiento alternativo.\n- Textos oficiales comprobados: [Epurrely Plump](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18006&ope=2&request_locale=en), [Expurrely Noir](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=en).\n- Ensayo de simulador: NO APORTADO; este control es documental, no ejecución.",
+      "documentary_review": {
+        "id": "P-C03",
+        "conditions": {
+          "Inicio exigido": "Estado de P-C02 ya alcanzó Rechoncho con 4 materiales + 1 Recuerdo rápido en mano.",
+          "Regla comprobada": "Al activar un Recuerdo, Rechoncho puede adjuntar esa carta del campo; Noir alterno requiere Rango2 con ≥5 materiales.",
+          "Si se interrumpe / no aplica": "Si el Recuerdo no se adjunta o fue negada la activación, NO invocar Noir por su procedimiento alternativo.",
+          "Textos oficiales comprobados": "[Epurrely Plump](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18006&ope=2&request_locale=en), [Expurrely Noir](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=en).",
+          "Ensayo de simulador": "NO APORTADO; este control es documental, no ejecución."
+        },
+        "text": "- Inicio exigido: Estado de P-C02 ya alcanzó Rechoncho con 4 materiales + 1 Recuerdo rápido en mano.\n- Regla comprobada: Al activar un Recuerdo, Rechoncho puede adjuntar esa carta del campo; Noir alterno requiere Rango2 con ≥5 materiales.\n- Si se interrumpe / no aplica: Si el Recuerdo no se adjunta o fue negada la activación, NO invocar Noir por su procedimiento alternativo.\n- Textos oficiales comprobados: [Epurrely Plump](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18006&ope=2&request_locale=en), [Expurrely Noir](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=en).\n- Ensayo de simulador: NO APORTADO; este control es documental, no ejecución.",
+        "sources": [
+          "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18006&ope=2&request_locale=en",
+          "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=en"
+        ]
+      }
+    },
+    {
+      "id": "660:A09:P-C04",
+      "name": "«Noir temporal por trampa», dificultad media",
+      "title": "«Noir temporal por trampa», dificultad media",
+      "family": "Desarrollo de la jugada",
+      "purpose": "«Noir temporal por trampa», dificultad media",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [
+        {
+          "cid": 18003,
+          "name": "Purrely",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 18008,
+          "name": "Noir Expurrely",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18008.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18008.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 18014,
+          "name": "¿¡Purrelysaltó!?",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18014.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18014.png",
+          "label": "Carta mencionada en el paso"
+        }
+      ],
+      "result": "Salida: Noir temporal; no confundir con la ruta permanente P-C03 ni decir «Noir protegido» sin cinco materiales.",
+      "opening": "Entrada: un Xyz Purrely en campo; ¿¡Purrelysaltó!? colocada desde turno anterior y legalmente activable; Noir Rango7 en Extra; se puede seleccionar el Xyz.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Espera una ventana de activación legal de la trampa y selecciona el Xyz Purrely propio.",
+          "detail": "Espera una ventana de activación legal de la trampa y selecciona el Xyz Purrely propio.",
+          "photos": [
+            {
+              "cid": 18003,
+              "name": "Purrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Resuelve la trampa e Invoca Noir Expurrely usando la Xyz como material, conservando materiales del monstruo objetivo bajo el nuevo Xyz.",
+          "detail": "Resuelve la trampa e Invoca Noir Expurrely usando la Xyz como material, conservando materiales del monstruo objetivo bajo el nuevo Xyz.",
+          "photos": [
+            {
+              "cid": 18008,
+              "name": "Noir Expurrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18008.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18008.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "Cuenta los materiales de verdad. Con menos de cinco, Noir no es inmune a efectos activados.",
+          "detail": "Cuenta los materiales de verdad. Con menos de cinco, Noir no es inmune a efectos activados.",
+          "photos": [
+            {
+              "cid": 18008,
+              "name": "Noir Expurrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18008.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18008.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Anota el retorno obligatorio de Noir al Extra en la End Phase del siguiente turno, según el texto.\nSalida: Noir temporal; no confundir con la ruta permanente P-C03 ni decir «Noir protegido» sin cinco materiales.",
+          "detail": "Anota el retorno obligatorio de Noir al Extra en la End Phase del siguiente turno, según el texto.\nSalida: Noir temporal; no confundir con la ruta permanente P-C03 ni decir «Noir protegido» sin cinco materiales.",
+          "photos": [
+            {
+              "cid": 18008,
+              "name": "Noir Expurrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18008.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18008.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "**Entrada:** un Xyz Purrely en campo; **¿¡Purrelysaltó!?** colocada desde turno anterior y legalmente activable; Noir Rango7 en Extra; se puede seleccionar el Xyz.\n1. Espera una ventana de activación legal de la trampa y selecciona el Xyz Purrely propio.\n2. Resuelve la trampa e Invoca **Noir Expurrely** usando la Xyz como material, conservando materiales del monstruo objetivo bajo el nuevo Xyz.\n3. Cuenta los materiales **de verdad**. Con menos de cinco, Noir no es inmune a efectos activados.\n4. Anota el retorno obligatorio de Noir al Extra en la **End Phase del siguiente turno**, según el texto.\n**Salida:** Noir temporal; no confundir con la ruta permanente P-C03 ni decir «Noir protegido» sin cinco materiales.\n\n",
+      "initial_details": "Entrada: un Xyz Purrely en campo; ¿¡Purrelysaltó!? colocada desde turno anterior y legalmente activable; Noir Rango7 en Extra; se puede seleccionar el Xyz.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=en",
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18014&ope=2&request_locale=en"
+      ],
+      "technical": "Entrada: un Xyz Purrely en campo; ¿¡Purrelysaltó!? colocada desde turno anterior y legalmente activable; Noir Rango7 en Extra; se puede seleccionar el Xyz.\n1. Espera una ventana de activación legal de la trampa y selecciona el Xyz Purrely propio.\n2. Resuelve la trampa e Invoca Noir Expurrely usando la Xyz como material, conservando materiales del monstruo objetivo bajo el nuevo Xyz.\n3. Cuenta los materiales de verdad. Con menos de cinco, Noir no es inmune a efectos activados.\n4. Anota el retorno obligatorio de Noir al Extra en la End Phase del siguiente turno, según el texto.\nSalida: Noir temporal; no confundir con la ruta permanente P-C03 ni decir «Noir protegido» sin cinco materiales.\n\n- P-V01: Purrelyly encuentra Mi Amigo (no Rápida) y este revela tres Purrely del Deck: el rival elige al azar. Si hay Droll rival activo, no completar búsquedas posteriores a la primera adición.\n- P-V02: con Rechoncho y un solo blanco M/T en GY, obtiene como máximo tres materiales antes del Recuerdo en mano; tras adjuntar uno queda cuatro, no llega a Noir por alternativa de cinco.\n- P-V03: si Noir de cinco materiales gasta dos para devolver una carta al fondo, deja tres; su protección de ≥5 ya no aplica. No aconsejar usar el efecto por inercia frente a eliminación rival.\n\nCobertura: 5 rutas principales + 3 variantes causales, 8 escenarios documentados, 0 simulados, 0 demostrados en replay. Las entradas están especificadas para evitar búsquedas desde zonas equivocadas.\n\nCondiciones y límites de esta secuencia\n- Inicio exigido: Xyz Purrely en campo; trampa ¿¡Purrelysaltó!? previamente Colocada o activable legalmente.\n- Regla comprobada: La trampa cambia de Rango, transfiere materiales y exige devolver el nuevo Xyz en la End Phase del turno siguiente.\n- Si se interrumpe / no aplica: Con menos de cinco materiales Noir es removible por efectos activados; es transformación temporal, no acceso permanente.\n- Textos oficiales comprobados: [Purrelyeap!?](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18014&ope=2&request_locale=en), [Expurrely Noir](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=en).\n- Ensayo de simulador: NO APORTADO; este control es documental, no ejecución.",
+      "documentary_review": {
+        "id": "P-C04",
+        "conditions": {
+          "Inicio exigido": "Xyz Purrely en campo; trampa ¿¡Purrelysaltó!? previamente Colocada o activable legalmente.",
+          "Regla comprobada": "La trampa cambia de Rango, transfiere materiales y exige devolver el nuevo Xyz en la End Phase del turno siguiente.",
+          "Si se interrumpe / no aplica": "Con menos de cinco materiales Noir es removible por efectos activados; es transformación temporal, no acceso permanente.",
+          "Textos oficiales comprobados": "[Purrelyeap!?](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18014&ope=2&request_locale=en), [Expurrely Noir](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=en).",
+          "Ensayo de simulador": "NO APORTADO; este control es documental, no ejecución."
+        },
+        "text": "- Inicio exigido: Xyz Purrely en campo; trampa ¿¡Purrelysaltó!? previamente Colocada o activable legalmente.\n- Regla comprobada: La trampa cambia de Rango, transfiere materiales y exige devolver el nuevo Xyz en la End Phase del turno siguiente.\n- Si se interrumpe / no aplica: Con menos de cinco materiales Noir es removible por efectos activados; es transformación temporal, no acceso permanente.\n- Textos oficiales comprobados: [Purrelyeap!?](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18014&ope=2&request_locale=en), [Expurrely Noir](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=en).\n- Ensayo de simulador: NO APORTADO; este control es documental, no ejecución.",
+        "sources": [
+          "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=en",
+          "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18014&ope=2&request_locale=en"
+        ]
+      }
+    },
+    {
+      "id": "660:A09:P-C05",
+      "name": "«Ruta Felicidad: buscar tras combate», dificultad media",
+      "title": "«Ruta Felicidad: buscar tras combate», dificultad media",
+      "family": "Desarrollo de la jugada",
+      "purpose": "«Ruta Felicidad: buscar tras combate», dificultad media",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [
+        {
+          "cid": 18003,
+          "name": "Purrely",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 18004,
+          "name": "Felicidad Epurrely",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18004.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18004.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 18011,
+          "name": "Feliz Recuerdo Purrely",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18011.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18011.png",
+          "label": "Carta mencionada en el paso"
+        }
+      ],
+      "result": "Salida: acceso a búsqueda posbatalla o a ruta ZEUS condicional, no tablero de turno1 asegurado.",
+      "opening": "Entrada: Purrely en mano, Feliz Recuerdo en mano, Felicidad R2 en Extra; objetivo de batalla alcanzable. Depende de que el combate ocurra.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Normal Purrely; resuelve la excavación solo si tiene objetivo válido entre 3.",
+          "detail": "Normal Purrely; resuelve la excavación solo si tiene objetivo válido entre 3.",
+          "photos": [
+            {
+              "cid": 18003,
+              "name": "Purrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Revela Feliz Recuerdo desde mano y Xyz Invoca Felicidad Epurrely usando Purrely y el Recuerdo como materiales.",
+          "detail": "Revela Feliz Recuerdo desde mano y Xyz Invoca Felicidad Epurrely usando Purrely y el Recuerdo como materiales.",
+          "photos": [
+            {
+              "cid": 18003,
+              "name": "Purrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 18004,
+              "name": "Felicidad Epurrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18004.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18004.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 18011,
+              "name": "Feliz Recuerdo Purrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18011.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18011.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "Durante Battle, declara un ataque legal con Felicidad; si la carta batalló, al final del Damage Step puede añadir una carta Purrely del Deck.",
+          "detail": "Durante Battle, declara un ataque legal con Felicidad; si la carta batalló, al final del Damage Step puede añadir una carta Purrely del Deck.",
+          "photos": [
+            {
+              "cid": 18003,
+              "name": "Purrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18003.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 18004,
+              "name": "Felicidad Epurrely",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18004.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/18004.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Si tiene Feliz como material, considera también reducir a la mitad el ATK de un monstruo boca arriba legal según su efecto.",
+          "detail": "Si tiene Feliz como material, considera también reducir a la mitad el ATK de un monstruo boca arriba legal según su efecto.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 5,
+          "action": "Solo después del combate considera AA-ZEUS si hay turno/condición Xyz de batalla y espacio de Extra legal; no asumir daño letal.\nSalida: acceso a búsqueda posbatalla o a ruta ZEUS condicional, no tablero de turno1 asegurado.",
+          "detail": "Solo después del combate considera AA-ZEUS si hay turno/condición Xyz de batalla y espacio de Extra legal; no asumir daño letal.\nSalida: acceso a búsqueda posbatalla o a ruta ZEUS condicional, no tablero de turno1 asegurado.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "**Entrada:** Purrely en mano, Feliz Recuerdo en mano, Felicidad R2 en Extra; objetivo de batalla alcanzable. **Depende de que el combate ocurra**.\n1. Normal Purrely; resuelve la excavación solo si tiene objetivo válido entre 3.\n2. Revela **Feliz Recuerdo** desde mano y Xyz Invoca **Felicidad Epurrely** usando Purrely y el Recuerdo como materiales.\n3. Durante Battle, declara un ataque legal con Felicidad; si la carta **batalló**, al final del Damage Step puede añadir una carta Purrely del Deck.\n4. Si tiene Feliz como material, considera también reducir a la mitad el ATK de un monstruo boca arriba legal según su efecto.\n5. Solo después del combate considera **AA-ZEUS** si hay turno/condición Xyz de batalla y espacio de Extra legal; no asumir daño letal.\n**Salida:** acceso a búsqueda posbatalla o a ruta ZEUS condicional, no tablero de turno1 asegurado.\n\n",
+      "initial_details": "Entrada: Purrely en mano, Feliz Recuerdo en mano, Felicidad R2 en Extra; objetivo de batalla alcanzable. Depende de que el combate ocurra.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18004&ope=2&request_locale=en",
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18011&ope=2&request_locale=en"
+      ],
+      "technical": "Entrada: Purrely en mano, Feliz Recuerdo en mano, Felicidad R2 en Extra; objetivo de batalla alcanzable. Depende de que el combate ocurra.\n1. Normal Purrely; resuelve la excavación solo si tiene objetivo válido entre 3.\n2. Revela Feliz Recuerdo desde mano y Xyz Invoca Felicidad Epurrely usando Purrely y el Recuerdo como materiales.\n3. Durante Battle, declara un ataque legal con Felicidad; si la carta batalló, al final del Damage Step puede añadir una carta Purrely del Deck.\n4. Si tiene Feliz como material, considera también reducir a la mitad el ATK de un monstruo boca arriba legal según su efecto.\n5. Solo después del combate considera AA-ZEUS si hay turno/condición Xyz de batalla y espacio de Extra legal; no asumir daño letal.\nSalida: acceso a búsqueda posbatalla o a ruta ZEUS condicional, no tablero de turno1 asegurado.\n\n- P-V01: Purrelyly encuentra Mi Amigo (no Rápida) y este revela tres Purrely del Deck: el rival elige al azar. Si hay Droll rival activo, no completar búsquedas posteriores a la primera adición.\n- P-V02: con Rechoncho y un solo blanco M/T en GY, obtiene como máximo tres materiales antes del Recuerdo en mano; tras adjuntar uno queda cuatro, no llega a Noir por alternativa de cinco.\n- P-V03: si Noir de cinco materiales gasta dos para devolver una carta al fondo, deja tres; su protección de ≥5 ya no aplica. No aconsejar usar el efecto por inercia frente a eliminación rival.\n\nCobertura: 5 rutas principales + 3 variantes causales, 8 escenarios documentados, 0 simulados, 0 demostrados en replay. Las entradas están especificadas para evitar búsquedas desde zonas equivocadas.\n\nCondiciones y límites de esta secuencia\n- Inicio exigido: Purrely + Feliz Recuerdo; Felicidad Extra; rival con combate posible.\n- Regla comprobada: Felicidad busca al FINAL del Damage Step si combatió; AA-ZEUS requiere batalla de Xyz previa.\n- Si se interrumpe / no aplica: Si no hay batalla legal, no buscar con Felicidad por esa vía ni poner ZEUS automáticamente.\n- Textos oficiales comprobados: [Epurrely Happiness](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18004&ope=2&request_locale=en), [Purrely Happy Memory](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18011&ope=2&request_locale=en).\n- Ensayo de simulador: NO APORTADO; este control es documental, no ejecución.",
+      "documentary_review": {
+        "id": "P-C05",
+        "conditions": {
+          "Inicio exigido": "Purrely + Feliz Recuerdo; Felicidad Extra; rival con combate posible.",
+          "Regla comprobada": "Felicidad busca al FINAL del Damage Step si combatió; AA-ZEUS requiere batalla de Xyz previa.",
+          "Si se interrumpe / no aplica": "Si no hay batalla legal, no buscar con Felicidad por esa vía ni poner ZEUS automáticamente.",
+          "Textos oficiales comprobados": "[Epurrely Happiness](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18004&ope=2&request_locale=en), [Purrely Happy Memory](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18011&ope=2&request_locale=en).",
+          "Ensayo de simulador": "NO APORTADO; este control es documental, no ejecución."
+        },
+        "text": "- Inicio exigido: Purrely + Feliz Recuerdo; Felicidad Extra; rival con combate posible.\n- Regla comprobada: Felicidad busca al FINAL del Damage Step si combatió; AA-ZEUS requiere batalla de Xyz previa.\n- Si se interrumpe / no aplica: Si no hay batalla legal, no buscar con Felicidad por esa vía ni poner ZEUS automáticamente.\n- Textos oficiales comprobados: [Epurrely Happiness](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18004&ope=2&request_locale=en), [Purrely Happy Memory](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18011&ope=2&request_locale=en).\n- Ensayo de simulador: NO APORTADO; este control es documental, no ejecución.",
+        "sources": [
+          "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18004&ope=2&request_locale=en",
+          "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18011&ope=2&request_locale=en"
+        ]
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "id": "660:V40:TACTIC:1",
+      "title": "Rival que niega búsquedas",
+      "situation": "Rival que niega búsquedas",
+      "options": [
+        {
+          "id": "A",
+          "text": "Me toca empezar"
+        },
+        {
+          "id": "B",
+          "text": "Juego segundo"
+        }
+      ],
+      "answer": "Si empiezas: Abrir con Purrelyly para Mi Amigo o Purrely para excavación, según mano.\n\nSi vas segundo: Proteger Recuerdos clave; no declarar carta excavada antes de mirar 3.\n\nSide documentado: Side disponible no contiene una protección general garantizada para todas las búsquedas.",
+      "error": "Droll rival impide otra adición del Deck a la mano después de activarse; Kambi no corrige esto.",
+      "routes": []
+    },
+    {
+      "id": "660:V40:TACTIC:2",
+      "title": "Destierro intensivo",
+      "situation": "Destierro intensivo",
+      "options": [
+        {
+          "id": "A",
+          "text": "Me toca empezar"
+        },
+        {
+          "id": "B",
+          "text": "Juego segundo"
+        }
+      ],
+      "answer": "Si empiezas: Elegir Bello→Belleza como interacción si los GYs no sirven a Rechoncho.\n\nSi vas segundo: Lancea del Side solo frena destierro turno rival; plan de respuesta específico.\n\nSide documentado: Lancea ×3.",
+      "error": "Rechoncho necesita M/T existentes en GY para acelerar cinco materiales; no autoproduce recursos.",
+      "routes": []
+    },
+    {
+      "id": "660:V40:TACTIC:3",
+      "title": "Combo 5+ invocaciones",
+      "situation": "Combo 5+ invocaciones",
+      "options": [
+        {
+          "id": "A",
+          "text": "Me toca empezar"
+        },
+        {
+          "id": "B",
+          "text": "Juego segundo"
+        }
+      ],
+      "answer": "Si empiezas: Acumular materiales de Noir o Belleza, no gastar dos de Noir por inercia.\n\nSi vas segundo: Nibiru si el rival cumple cinco o más invocaciones y aún hay ventana útil.\n\nSide documentado: Nibiru ×2.",
+      "error": "Nibiru deja Token rival; revisar respuestas a Nibiru antes de usar.",
+      "routes": []
+    },
+    {
+      "id": "660:V40:TACTIC:4",
+      "title": "Monstruos resistentes establecidos",
+      "situation": "Monstruos resistentes establecidos",
+      "options": [
+        {
+          "id": "A",
+          "text": "Me toca empezar"
+        },
+        {
+          "id": "B",
+          "text": "Juego segundo"
+        }
+      ],
+      "answer": "Si empiezas: Si empiezas, una Belleza con Bello hace negación rápida; no es negación de activación.\n\nSi vas segundo: Gobernante Oscuro No Más abre campo, pero no deja hacer daño ese turno.\n\nSide documentado: Impulso ×1 Side, condicionado por efecto de monstruo rival.",
+      "error": "No asumir que Impulso accede a Recuerdos Rápidos; son Quick-Play.",
+      "routes": []
+    },
+    {
+      "id": "660:V40:TACTIC:5",
+      "title": "Retirada de Xyz / juego largo",
+      "situation": "Retirada de Xyz / juego largo",
+      "options": [
+        {
+          "id": "A",
+          "text": "Me toca empezar"
+        },
+        {
+          "id": "B",
+          "text": "Juego segundo"
+        }
+      ],
+      "answer": "Si empiezas: Mi Amigo y Calle preparan recuperar recursos si rival saca tu Xyz.\n\nSi vas segundo: Reevaluar Noir de 5 vs desacoplar 2 y caer a 3, perdiendo inmunidad.\n\nSide documentado: Solo 7 cartas Side identificadas; 8 desconocidas.",
+      "error": "No recuperar Recuerdos si tu Xyz sale por coste propio en vez de carta rival.",
+      "routes": []
+    },
+    {
+      "id": "660:V40:TACTIC:6",
+      "title": "Backrow / negación continua",
+      "situation": "Backrow / negación continua",
+      "options": [
+        {
+          "id": "A",
+          "text": "Me toca empezar"
+        },
+        {
+          "id": "B",
+          "text": "Juego segundo"
+        }
+      ],
+      "answer": "Si empiezas: Combinar Felicidad, Recuerdos y recursos de Calle según objetivos existentes.\n\nSi vas segundo: ZEUS solo después de batalla Xyz; no es salida genérica turno 1.\n\nSide documentado: No hay Tormenta de Relámpagos identificada en su Side.",
+      "error": "Kambi activa lock Hada, incompatible con Extra no Hada ese turno cuando usa su efecto.",
+      "routes": []
+    }
+  ],
+  "practice": [],
+  "motor": "",
+  "side_plans": [],
+  "matchup_plans": [],
+  "format_context": {},
+  "improvement_experiments": [],
+  "decision_exercises": [],
+  "rule_scenarios": [],
+  "rule_controls": [],
+  "general_rules": [],
+  "causal_relations": [],
+  "causal_skills": [],
+  "rule_variants": [],
+  "situational_decisions": [],
+  "folder_delivery": {
+    "source_sha256": "ab786be17c3a6645a4f4ddbfa3677ee2b06b1be33ddc3d09b596231146516480",
+    "reader": "./assets/editorial/20261117-folder-delivery-v40/660-guide.html",
+    "source_file": "torneos_yugioh/context/gpt/01_INFORMACION_PARA_IMPORTAR/decks/DECK_NUEVO_14_PURRELY/DECK_NUEVO_14_PURRELY_CONTENIDO_CURADO.md"
+  },
+  "documentary_reviews": [
+    {
+      "id": "P-C01",
+      "conditions": {
+        "Inicio exigido": "Purrely + Bello Recuerdo en mano; Belleza en Extra; Deck con 3 cartas excavables.",
+        "Regla comprobada": "Purrely revela una Mágica Rápida que Belleza menciona; Belleza solo hace la negación RÁPIDA si Bello es material.",
+        "Si se interrumpe / no aplica": "Excavar 3 no garantiza obtener carta; si se pierde Bello en mano antes de revelarlo no hay invocación descrita.",
+        "Textos oficiales comprobados": "[Purrely](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18003&ope=2&request_locale=en), [Epurrely Beauty](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18005&ope=2&request_locale=en).",
+        "Ensayo de simulador": "NO APORTADO; este control es documental, no ejecución."
+      },
+      "text": "- Inicio exigido: Purrely + Bello Recuerdo en mano; Belleza en Extra; Deck con 3 cartas excavables.\n- Regla comprobada: Purrely revela una Mágica Rápida que Belleza menciona; Belleza solo hace la negación RÁPIDA si Bello es material.\n- Si se interrumpe / no aplica: Excavar 3 no garantiza obtener carta; si se pierde Bello en mano antes de revelarlo no hay invocación descrita.\n- Textos oficiales comprobados: [Purrely](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18003&ope=2&request_locale=en), [Epurrely Beauty](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18005&ope=2&request_locale=en).\n- Ensayo de simulador: NO APORTADO; este control es documental, no ejecución.",
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18003&ope=2&request_locale=en",
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18005&ope=2&request_locale=en"
+      ]
+    },
+    {
+      "id": "P-C02",
+      "conditions": {
+        "Inicio exigido": "Purrelyly en mano/campo; Delicioso YA en GY; 2 M/T reales en uno o ambos GY.",
+        "Regla comprobada": "Purrelyly convierte Delicioso del GY en material; Rechoncho adjunta hasta 2 M/T de cualquier GY.",
+        "Si se interrumpe / no aplica": "Si solo 1 M/T elegible, el final es 3 materiales; Noir cinco no resulta aún.",
+        "Textos oficiales comprobados": "[Purrelyly](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18481&ope=2&request_locale=en), [Epurrely Plump](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18006&ope=2&request_locale=en).",
+        "Ensayo de simulador": "NO APORTADO; este control es documental, no ejecución."
+      },
+      "text": "- Inicio exigido: Purrelyly en mano/campo; Delicioso YA en GY; 2 M/T reales en uno o ambos GY.\n- Regla comprobada: Purrelyly convierte Delicioso del GY en material; Rechoncho adjunta hasta 2 M/T de cualquier GY.\n- Si se interrumpe / no aplica: Si solo 1 M/T elegible, el final es 3 materiales; Noir cinco no resulta aún.\n- Textos oficiales comprobados: [Purrelyly](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18481&ope=2&request_locale=en), [Epurrely Plump](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18006&ope=2&request_locale=en).\n- Ensayo de simulador: NO APORTADO; este control es documental, no ejecución.",
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18006&ope=2&request_locale=en",
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18481&ope=2&request_locale=en"
+      ]
+    },
+    {
+      "id": "P-C03",
+      "conditions": {
+        "Inicio exigido": "Estado de P-C02 ya alcanzó Rechoncho con 4 materiales + 1 Recuerdo rápido en mano.",
+        "Regla comprobada": "Al activar un Recuerdo, Rechoncho puede adjuntar esa carta del campo; Noir alterno requiere Rango2 con ≥5 materiales.",
+        "Si se interrumpe / no aplica": "Si el Recuerdo no se adjunta o fue negada la activación, NO invocar Noir por su procedimiento alternativo.",
+        "Textos oficiales comprobados": "[Epurrely Plump](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18006&ope=2&request_locale=en), [Expurrely Noir](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=en).",
+        "Ensayo de simulador": "NO APORTADO; este control es documental, no ejecución."
+      },
+      "text": "- Inicio exigido: Estado de P-C02 ya alcanzó Rechoncho con 4 materiales + 1 Recuerdo rápido en mano.\n- Regla comprobada: Al activar un Recuerdo, Rechoncho puede adjuntar esa carta del campo; Noir alterno requiere Rango2 con ≥5 materiales.\n- Si se interrumpe / no aplica: Si el Recuerdo no se adjunta o fue negada la activación, NO invocar Noir por su procedimiento alternativo.\n- Textos oficiales comprobados: [Epurrely Plump](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18006&ope=2&request_locale=en), [Expurrely Noir](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=en).\n- Ensayo de simulador: NO APORTADO; este control es documental, no ejecución.",
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18006&ope=2&request_locale=en",
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=en"
+      ]
+    },
+    {
+      "id": "P-C04",
+      "conditions": {
+        "Inicio exigido": "Xyz Purrely en campo; trampa ¿¡Purrelysaltó!? previamente Colocada o activable legalmente.",
+        "Regla comprobada": "La trampa cambia de Rango, transfiere materiales y exige devolver el nuevo Xyz en la End Phase del turno siguiente.",
+        "Si se interrumpe / no aplica": "Con menos de cinco materiales Noir es removible por efectos activados; es transformación temporal, no acceso permanente.",
+        "Textos oficiales comprobados": "[Purrelyeap!?](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18014&ope=2&request_locale=en), [Expurrely Noir](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=en).",
+        "Ensayo de simulador": "NO APORTADO; este control es documental, no ejecución."
+      },
+      "text": "- Inicio exigido: Xyz Purrely en campo; trampa ¿¡Purrelysaltó!? previamente Colocada o activable legalmente.\n- Regla comprobada: La trampa cambia de Rango, transfiere materiales y exige devolver el nuevo Xyz en la End Phase del turno siguiente.\n- Si se interrumpe / no aplica: Con menos de cinco materiales Noir es removible por efectos activados; es transformación temporal, no acceso permanente.\n- Textos oficiales comprobados: [Purrelyeap!?](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18014&ope=2&request_locale=en), [Expurrely Noir](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=en).\n- Ensayo de simulador: NO APORTADO; este control es documental, no ejecución.",
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=en",
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18014&ope=2&request_locale=en"
+      ]
+    },
+    {
+      "id": "P-C05",
+      "conditions": {
+        "Inicio exigido": "Purrely + Feliz Recuerdo; Felicidad Extra; rival con combate posible.",
+        "Regla comprobada": "Felicidad busca al FINAL del Damage Step si combatió; AA-ZEUS requiere batalla de Xyz previa.",
+        "Si se interrumpe / no aplica": "Si no hay batalla legal, no buscar con Felicidad por esa vía ni poner ZEUS automáticamente.",
+        "Textos oficiales comprobados": "[Epurrely Happiness](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18004&ope=2&request_locale=en), [Purrely Happy Memory](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18011&ope=2&request_locale=en).",
+        "Ensayo de simulador": "NO APORTADO; este control es documental, no ejecución."
+      },
+      "text": "- Inicio exigido: Purrely + Feliz Recuerdo; Felicidad Extra; rival con combate posible.\n- Regla comprobada: Felicidad busca al FINAL del Damage Step si combatió; AA-ZEUS requiere batalla de Xyz previa.\n- Si se interrumpe / no aplica: Si no hay batalla legal, no buscar con Felicidad por esa vía ni poner ZEUS automáticamente.\n- Textos oficiales comprobados: [Epurrely Happiness](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18004&ope=2&request_locale=en), [Purrely Happy Memory](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18011&ope=2&request_locale=en).\n- Ensayo de simulador: NO APORTADO; este control es documental, no ejecución.",
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18004&ope=2&request_locale=en",
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18011&ope=2&request_locale=en"
+      ]
+    },
+    {
+      "id": "P-V01",
+      "conditions": {
+        "Inicio exigido": "Purrelyly logra buscar Mi Amigo; deck dispone de 3 revelables; pagar 500 LP.",
+        "Regla comprobada": "Mi Amigo revela 3 y rival escoge AL AZAR una de ellas; no seleccionas el resultado.",
+        "Si se interrumpe / no aplica": "Si Droll ya se aplicó después de búsqueda de Purrelyly, no añadir una segunda carta del Deck a mano.",
+        "Textos oficiales comprobados": "[My Friend Purrely](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18010&ope=2&request_locale=en), [Purrelyly](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18481&ope=2&request_locale=en).",
+        "Ensayo de simulador": "NO APORTADO; este control es documental, no ejecución."
+      },
+      "text": "- Inicio exigido: Purrelyly logra buscar Mi Amigo; deck dispone de 3 revelables; pagar 500 LP.\n- Regla comprobada: Mi Amigo revela 3 y rival escoge AL AZAR una de ellas; no seleccionas el resultado.\n- Si se interrumpe / no aplica: Si Droll ya se aplicó después de búsqueda de Purrelyly, no añadir una segunda carta del Deck a mano.\n- Textos oficiales comprobados: [My Friend Purrely](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18010&ope=2&request_locale=en), [Purrelyly](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18481&ope=2&request_locale=en).\n- Ensayo de simulador: NO APORTADO; este control es documental, no ejecución.",
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18010&ope=2&request_locale=en",
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18481&ope=2&request_locale=en"
+      ]
+    },
+    {
+      "id": "P-V02",
+      "conditions": {
+        "Inicio exigido": "Rechoncho obtenido por P-C02 pero solo 1 M/T válida en todos los cementerios.",
+        "Regla comprobada": "Rechoncho queda con 3 materiales, con 1 Recuerdo más solo llega a 4; no activa condición de Noir alterno.",
+        "Si se interrumpe / no aplica": "No inventar una segunda M/T en GY; esperar Stray Street End Phase o otra carta legal para llegar a 5.",
+        "Textos oficiales comprobados": "[Epurrely Plump](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18006&ope=2&request_locale=en), [Expurrely Noir](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=en).",
+        "Ensayo de simulador": "NO APORTADO; este control es documental, no ejecución."
+      },
+      "text": "- Inicio exigido: Rechoncho obtenido por P-C02 pero solo 1 M/T válida en todos los cementerios.\n- Regla comprobada: Rechoncho queda con 3 materiales, con 1 Recuerdo más solo llega a 4; no activa condición de Noir alterno.\n- Si se interrumpe / no aplica: No inventar una segunda M/T en GY; esperar Stray Street End Phase o otra carta legal para llegar a 5.\n- Textos oficiales comprobados: [Epurrely Plump](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18006&ope=2&request_locale=en), [Expurrely Noir](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=en).\n- Ensayo de simulador: NO APORTADO; este control es documental, no ejecución.",
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18006&ope=2&request_locale=en",
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=en"
+      ]
+    },
+    {
+      "id": "P-V03",
+      "conditions": {
+        "Inicio exigido": "Noir con exactamente 5 materiales, 1 carta rival retirable, 2 desacoplables.",
+        "Regla comprobada": "Noir desacopla 2 como coste y queda con 3; protección frente a efectos activados exige ≥5 al momento relevante.",
+        "Si se interrumpe / no aplica": "Si el rival encadena respuesta tras perder materiales puede afectarlo; decidir conservarlos según amenaza.",
+        "Textos oficiales comprobados": "[Expurrely Noir](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=en).",
+        "Ensayo de simulador": "NO APORTADO; este control es documental, no ejecución."
+      },
+      "text": "- Inicio exigido: Noir con exactamente 5 materiales, 1 carta rival retirable, 2 desacoplables.\n- Regla comprobada: Noir desacopla 2 como coste y queda con 3; protección frente a efectos activados exige ≥5 al momento relevante.\n- Si se interrumpe / no aplica: Si el rival encadena respuesta tras perder materiales puede afectarlo; decidir conservarlos según amenaza.\n- Textos oficiales comprobados: [Expurrely Noir](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=en).\n- Ensayo de simulador: NO APORTADO; este control es documental, no ejecución.",
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18008&ope=2&request_locale=en"
+      ]
+    }
+  ],
+  "source_format_checks": [],
+  "delivery_v40": {
+    "opening": [
+      {
+        "event": "≥1 Purrely o Purrelyly",
+        "probability": "43.78 %",
+        "interpretation": "NO garantiza jugar la ruta: requiere zona, costes y resoluciones."
+      },
+      {
+        "event": "≥1 Recuerdo (10 copias)",
+        "probability": "70.69 %",
+        "interpretation": "NO garantiza jugar la ruta: requiere zona, costes y resoluciones."
+      },
+      {
+        "event": "Purrely Y cualquier Recuerdo",
+        "probability": "18.29 %",
+        "interpretation": "NO garantiza jugar la ruta: requiere zona, costes y resoluciones."
+      },
+      {
+        "event": "Purrely o Purrelyly Y cualquier Recuerdo",
+        "probability": "28.33 %",
+        "interpretation": "NO garantiza jugar la ruta: requiere zona, costes y resoluciones."
+      },
+      {
+        "event": "≥2 Recuerdos Rápidos en apertura",
+        "probability": "27.58 %",
+        "interpretation": "No asegura que ambas Magias puedan activarse simultáneamente."
+      },
+      {
+        "event": "≥1 Mi Amigo",
+        "probability": "28.65 %",
+        "interpretation": "NO garantiza jugar la ruta: requiere zona, costes y resoluciones."
+      },
+      {
+        "event": "≥1 Kambi",
+        "probability": "28.65 %",
+        "interpretation": "NO garantiza jugar la ruta: requiere zona, costes y resoluciones."
+      },
+      {
+        "event": "≥1 Monstruo (Purrely/Purrelyly) y Mi Amigo",
+        "probability": "10.86 %",
+        "interpretation": "NO garantiza jugar la ruta: requiere zona, costes y resoluciones."
+      }
+    ],
+    "extra_access": [
+      {
+        "cid": 18004,
+        "materials": "2 monstruos Nivel2; Xyz",
+        "purpose": "Xyz Rango2: buscar Purrely si efectivamente combatió; Feliz material puede reducir ATK."
+      },
+      {
+        "cid": 18005,
+        "materials": "2 monstruos Nivel2; Xyz",
+        "purpose": "Xyz Rango2: negar monstruo rival; rapidez solo con Bello material."
+      },
+      {
+        "cid": 18006,
+        "materials": "2 monstruos Nivel2; Xyz",
+        "purpose": "Xyz Rango2: adjunta M/T presentes en GYs; preparar cinco materiales para Noir."
+      },
+      {
+        "cid": 18008,
+        "materials": "2 monstruos Nivel7; Xyz",
+        "purpose": "Alternativo sobre Rango2 ≥5 materiales; gastar 2 para retirar amenaza sacrifica protección."
+      },
+      {
+        "cid": 12027,
+        "materials": "2 monstruos Nivel1; Xyz",
+        "purpose": "Xyz dos Nivel1; excavación alternativa que no sustituye la pieza del motor."
+      },
+      {
+        "cid": 15524,
+        "materials": "2 monstruos Nivel12; Xyz",
+        "purpose": "Salida tras batalla Xyz; requiere materiales para borrar otras cartas del campo."
+      },
+      {
+        "cid": 14208,
+        "materials": "Enlace 2: 2 monstruos Hada.",
+        "purpose": "Link dos Hadas para plan Hada específico, no reemplazo genérico de Noir."
+      },
+      {
+        "cid": 16651,
+        "materials": "Enlace 2: 2 monstruos Hada.",
+        "purpose": "Link dos Hadas; útil solo con objetivos coherentes del motor Hada/Santuario."
+      },
+      {
+        "cid": 19188,
+        "materials": "Enlace 2: 2 monstruos de efecto.",
+        "purpose": "Link2 dos efectos; protege por destierro temporal de respuesta en ventana rival."
+      },
+      {
+        "cid": 13841,
+        "materials": "Enlace 1: 1 monstruo Nivel1 que no sea Ficha.",
+        "purpose": "Link1 de Nivel1 no ficha, absorbe solo a objetivo en la zona apuntada."
+      }
+    ],
+    "situations": [
+      {
+        "situation": "Rival que niega búsquedas",
+        "first": "Abrir con Purrelyly para Mi Amigo o Purrely para excavación, según mano.",
+        "second": "Proteger Recuerdos clave; no declarar carta excavada antes de mirar 3.",
+        "side": "Side disponible no contiene una protección general garantizada para todas las búsquedas.",
+        "risk": "Droll rival impide otra adición del Deck a la mano después de activarse; Kambi no corrige esto."
+      },
+      {
+        "situation": "Destierro intensivo",
+        "first": "Elegir Bello→Belleza como interacción si los GYs no sirven a Rechoncho.",
+        "second": "Lancea del Side solo frena destierro turno rival; plan de respuesta específico.",
+        "side": "Lancea ×3.",
+        "risk": "Rechoncho necesita M/T existentes en GY para acelerar cinco materiales; no autoproduce recursos."
+      },
+      {
+        "situation": "Combo 5+ invocaciones",
+        "first": "Acumular materiales de Noir o Belleza, no gastar dos de Noir por inercia.",
+        "second": "Nibiru si el rival cumple cinco o más invocaciones y aún hay ventana útil.",
+        "side": "Nibiru ×2.",
+        "risk": "Nibiru deja Token rival; revisar respuestas a Nibiru antes de usar."
+      },
+      {
+        "situation": "Monstruos resistentes establecidos",
+        "first": "Si empiezas, una Belleza con Bello hace negación rápida; no es negación de activación.",
+        "second": "Gobernante Oscuro No Más abre campo, pero no deja hacer daño ese turno.",
+        "side": "Impulso ×1 Side, condicionado por efecto de monstruo rival.",
+        "risk": "No asumir que Impulso accede a Recuerdos Rápidos; son Quick-Play."
+      },
+      {
+        "situation": "Retirada de Xyz / juego largo",
+        "first": "Mi Amigo y Calle preparan recuperar recursos si rival saca tu Xyz.",
+        "second": "Reevaluar Noir de 5 vs desacoplar 2 y caer a 3, perdiendo inmunidad.",
+        "side": "Solo 7 cartas Side identificadas; 8 desconocidas.",
+        "risk": "No recuperar Recuerdos si tu Xyz sale por coste propio en vez de carta rival."
+      },
+      {
+        "situation": "Backrow / negación continua",
+        "first": "Combinar Felicidad, Recuerdos y recursos de Calle según objetivos existentes.",
+        "second": "ZEUS solo después de batalla Xyz; no es salida genérica turno 1.",
+        "side": "No hay Tormenta de Relámpagos identificada en su Side.",
+        "risk": "Kambi activa lock Hada, incompatible con Extra no Hada ese turno cuando usa su efecto."
+      }
+    ],
+    "scope": "Documentary analysis; no simulator execution or inventory changes."
+  }
+}

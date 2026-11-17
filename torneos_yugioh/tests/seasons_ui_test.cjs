@@ -1,0 +1,103 @@
+const { chromium } = require('playwright');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const base = process.env.YGO_TEST_URL || 'http://127.0.0.1:8769/app/';
+const readOnly = process.env.YGO_READ_ONLY === '1';
+if (!readOnly && !base.startsWith('http://127.0.0.1:8769/')) throw new Error('CRUD tests only run against the isolated local copy.');
+const out = path.resolve(__dirname, '../../outputs/ygo-seasons-20261015');
+(async () => {
+  const browser = await chromium.launch({ headless: true });
+  const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+  const errors = [];
+  page.on('pageerror', e => errors.push(e.message));
+  page.on('dialog', dialog => dialog.accept());
+  async function ready() { await page.waitForFunction(() => window.DML_DATA?.dbStatus?.connected); }
+  async function save(form) {
+    await Promise.all([page.waitForNavigation({ waitUntil: 'domcontentloaded' }), form.locator('button[type=submit]').last().click()]);
+    await ready();
+  }
+  try {
+    await page.goto(base + '#torneos', { waitUntil: 'domcontentloaded', timeout: 90000 });
+    await ready();
+    assert.equal(await page.locator('.side-menu [data-route="divisiones"]').count(), 0);
+    assert.equal(await page.locator('.side-menu [data-route="temporadas"]').count(), 1);
+    await page.locator('[data-screen="torneos"] [data-route="divisiones"]').click();
+    await page.locator('[data-screen="divisiones"]:not([hidden])').waitFor();
+    await page.locator('.side-menu [data-route="temporadas"]').click();
+    await page.locator('[data-screen="temporadas"]:not([hidden])').waitFor();
+    const data = await page.evaluate(() => window.DML_DATA);
+    const original = data.seasons.find(s => s.slug === 'temporada-2026');
+    assert.equal(original.starts_on, '2026-01-01');
+    assert.equal(original.ends_on, '2026-12-31');
+    assert.equal(data.competitions.filter(c => ['Apex League','Elite League','Vanguard League','Ascension League','Rush Dominion League','Ancient League'].includes(c.name)).length, 6);
+    assert.ok(data.competitions.filter(c => c.id <= 28).every(c => Number(c.season_id) === Number(original.id)));
+    if (!readOnly) {
+      console.log('Navigation and original season verified.');
+      await page.locator('[data-season-new]').click();
+      const modal = page.locator('#seasonEditorModal');
+      await modal.waitFor({ state: 'visible' });
+      const form = modal.locator('form');
+      await form.locator('[name=season_name]').fill('QA Browser Quarter');
+      await form.locator('[name=season_period]').selectOption('quarterly');
+      await form.locator('[name=season_starts_on]').fill('2030-07-01');
+      await form.locator('[name=season_starts_on]').dispatchEvent('change');
+      assert.equal(await form.locator('[name=season_ends_on]').inputValue(), '2030-09-30');
+      await save(form);
+      let season = await page.evaluate(() => window.DML_DATA.seasons.find(s => s.name === 'QA Browser Quarter'));
+      assert.ok(season);
+      await page.locator(`[data-season-edit="${season.id}"]`).click();
+      await modal.waitFor({ state: 'visible' });
+      await form.locator('[name=season_name]').fill('QA Browser Quarter Edited');
+      await save(form);
+      assert.ok(await page.evaluate(() => window.DML_DATA.seasons.some(s => s.name === 'QA Browser Quarter Edited')));
+      await page.locator(`[data-season-view="${season.id}"]`).click();
+      await modal.waitFor({ state: 'visible' });
+      assert.equal(await form.locator('[name=season_name]').isDisabled(), true);
+      assert.equal(await form.locator('[data-season-save]').isVisible(), false);
+      await modal.locator('[data-bs-dismiss=modal]').first().click();
+      await modal.waitFor({ state: 'hidden' });
+      await save(page.locator(`[data-season-row="${season.id}"] [data-season-delete-form]`));
+      assert.equal(await page.locator(`[data-season-row="${season.id}"]`).count(), 0);
+      console.log('Season create, edit, consult and delete verified.');
+      await page.locator('[data-season-new]').click();
+      await modal.waitFor({ state: 'visible' });
+      await form.locator('[name=season_name]').fill('QA Browser Close');
+      await form.locator('[name=season_starts_on]').fill('2030-01-01');
+      await save(form);
+      season = await page.evaluate(() => window.DML_DATA.seasons.find(s => s.name === 'QA Browser Close'));
+      // Use the real rendered event form and server handler, keeping all normal defaults.
+      await page.goto(base + '?season_context=' + season.id + '#crear_evento', { waitUntil: 'domcontentloaded' });
+      await ready();
+      const eventForm = page.locator('.event-create-form');
+      const eventName = 'QA Season event ' + season.id;
+      await eventForm.locator('[name=competition_name]').fill(eventName);
+      await eventForm.locator('[name=competition_type]').selectOption('special');
+      assert.equal(await eventForm.locator('[name=competition_season_id]').inputValue(), String(season.id));
+      const payload = await eventForm.evaluate(form => Object.fromEntries(new FormData(form).entries()));
+      payload.starts_on = '2030-04-01';
+      const response = await page.request.post(base + '?season_context=' + season.id, { form: payload });
+      assert.equal(response.status(), 200);
+      await page.goto(base + '?season_context=' + season.id + '&refresh=' + Date.now() + '#temporadas', { waitUntil: 'domcontentloaded' });
+      await ready();
+      const event = await page.evaluate(name => window.DML_DATA.competitions.find(c => c.name === name), eventName);
+      assert.ok(event, 'Event form must create an event in the selected season');
+      assert.equal(Number(event.season_id), Number(season.id));
+      await save(page.locator(`[data-season-row="${season.id}"] [data-season-close-form]`));
+      const closed = await page.evaluate(id => window.DML_DATA.competitions.find(c => c.id === id), event.id);
+      assert.equal(closed.status, 'closed');
+      assert.equal(closed.can_execute, false);
+      assert.equal(await page.locator(`[data-season-row="${season.id}"] [data-season-edit]`).count(), 0);
+      console.log('Season closure cascades to its event and blocks execution.');
+    }
+    await page.goto(base + '#temporadas', { waitUntil: 'domcontentloaded' });
+    await ready();
+    await page.screenshot({ path: path.join(out, readOnly ? 'seasons-production-desktop.png' : 'seasons-local-desktop.png') });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.screenshot({ path: path.join(out, readOnly ? 'seasons-production-mobile.png' : 'seasons-local-mobile.png') });
+    assert.deepEqual(errors, []);
+    const result = { passed: true, read_only: readOnly, navigation: true, season_2026: true, season_crud: !readOnly, closure: !readOnly, javascript_errors: errors };
+    fs.writeFileSync(path.join(out, readOnly ? 'production-ui-result.json' : 'local-ui-result.json'), JSON.stringify(result, null, 2));
+    console.log(JSON.stringify(result));
+  } finally { await browser.close(); }
+})().catch(error => { console.error(error); process.exit(1); });

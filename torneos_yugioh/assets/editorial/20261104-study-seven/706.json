@@ -1,0 +1,1386 @@
+{
+  "deck_id": 706,
+  "name": "Hero",
+  "format": "rush_duel",
+  "source_file": "DECK_706_HERO.md",
+  "source_sha256": "16fd9e7c3b6e7e7512dac3fbe5546d955917e57f9f2c86a22261be0ebb6e37fa",
+  "inventory": [
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 412,
+      "name": "Héroe Elemental Avian"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 413,
+      "name": "Héroe Elemental Sparkman"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 414,
+      "name": "Héroe Elemental Burstinatrix"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 415,
+      "name": "Héroe Ascendente de Argen"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 416,
+      "name": "Inicio Reinicio"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 417,
+      "name": "Descenso de Héroe"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 418,
+      "name": "Brillo Sombrío"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 419,
+      "name": "Circulación Elemental"
+    },
+    {
+      "section": "main",
+      "quantity": 2,
+      "card_id": 420,
+      "name": "Estrategia Mágica Aviar"
+    },
+    {
+      "section": "main",
+      "quantity": 2,
+      "card_id": 421,
+      "name": "Fusión"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 422,
+      "name": "Agujero Trampa"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 423,
+      "name": "Olla de la Codicia"
+    },
+    {
+      "section": "extra",
+      "quantity": 2,
+      "card_id": 424,
+      "name": "Héroe Elemental Voltic Wingman"
+    },
+    {
+      "section": "extra",
+      "quantity": 2,
+      "card_id": 425,
+      "name": "Héroe Elemental del Estallido Wingman"
+    },
+    {
+      "section": "extra",
+      "quantity": 1,
+      "card_id": 426,
+      "name": "Héroe Elemental de la Llama Wingman"
+    },
+    {
+      "section": "extra",
+      "quantity": 1,
+      "card_id": 427,
+      "name": "Héroe Elemental Heliosfera"
+    },
+    {
+      "section": "extra",
+      "quantity": 2,
+      "card_id": 428,
+      "name": "Héroe Elemental Shining Flare Wingman"
+    }
+  ],
+  "cards": [
+    {
+      "id": "706:A08:C001",
+      "name": "Héroe Elemental Avian",
+      "cid": 20460,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20460.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 412
+        }
+      ],
+      "classification": "RECURSO_MATERIAL",
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **3x**. CID Rush: **20460**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "No tiene efecto."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Monstruo Normal; material nombrado para las Fusiones Wingman y Heliosfera."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20460&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 20460: fuente oficial Rush consultada en japonés; tipo Monstruo Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **3x**. CID Rush: **20460**.\n- **Rol funcional:** Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado.\n- **Requisito específico:** No tiene efecto.\n- **Efecto / resultado concreto:** Monstruo Normal; material nombrado para las Fusiones Wingman y Heliosfera.\n- **Ir primero, segundo y juego tardío:** Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza.\n- **Relación con habilidad y otras piezas:** La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main.\n- **Riesgos y dependencias:** no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20460&ope=2\n- **Contraste de fuente Rush:** CID 20460: fuente oficial Rush consultada en japonés; tipo Monstruo Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "706:A08:C002",
+      "name": "Héroe Elemental Sparkman",
+      "cid": 20457,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20457.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 413
+        }
+      ],
+      "classification": "RECURSO_MATERIAL",
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **3x**. CID Rush: **20457**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "No tiene efecto."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Monstruo Normal de 1600 ATK; se emplea como material nombrado de Voltic Wingman, Heliosfera y Shining Flare Wingman."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20457&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 20457: fuente oficial Rush consultada en japonés; tipo Monstruo Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **3x**. CID Rush: **20457**.\n- **Rol funcional:** Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado.\n- **Requisito específico:** No tiene efecto.\n- **Efecto / resultado concreto:** Monstruo Normal de 1600 ATK; se emplea como material nombrado de Voltic Wingman, Heliosfera y Shining Flare Wingman.\n- **Ir primero, segundo y juego tardío:** Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza.\n- **Relación con habilidad y otras piezas:** La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main.\n- **Riesgos y dependencias:** no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20457&ope=2\n- **Contraste de fuente Rush:** CID 20457: fuente oficial Rush consultada en japonés; tipo Monstruo Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "706:A08:C003",
+      "name": "Héroe Elemental Burstinatrix",
+      "cid": 20459,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20459.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 414
+        }
+      ],
+      "classification": "RECURSO_MATERIAL",
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **3x**. CID Rush: **20459**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "No tiene efecto."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Monstruo Normal; material nombrado de Burst Wingman, Flame Wingman y Heliosfera."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20459&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 20459: fuente oficial Rush consultada en japonés; tipo Monstruo Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **3x**. CID Rush: **20459**.\n- **Rol funcional:** Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado.\n- **Requisito específico:** No tiene efecto.\n- **Efecto / resultado concreto:** Monstruo Normal; material nombrado de Burst Wingman, Flame Wingman y Heliosfera.\n- **Ir primero, segundo y juego tardío:** Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza.\n- **Relación con habilidad y otras piezas:** La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main.\n- **Riesgos y dependencias:** no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20459&ope=2\n- **Contraste de fuente Rush:** CID 20459: fuente oficial Rush consultada en japonés; tipo Monstruo Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "706:A08:C004",
+      "name": "Héroe Ascendente de Argen",
+      "cid": 20461,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20461.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 415
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **3x**. CID Rush: **20461**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Revelar un monstruo Fusión Guerrero de Nivel 6 o 7 del Extra Deck."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Revelar las cuatro cartas superiores del Deck; añadir hasta dos monstruos Normales nombrados como material de esa Fusión y colocar las restantes en el fondo del Deck en el orden elegido."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: priorizar consistencia sin comprometer piezas de Fusión; segundo: buscar la carta que falta para superar el campo rival; tardío: solo aporta ventaja si queda un objetivo y su coste puede pagarse."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual. pagar/cumplir el requisito escrito antes de prometer la resolución."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20461&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 20461: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **3x**. CID Rush: **20461**.\n- **Rol funcional:** Monstruo de Efecto — consistencia / reciclaje.\n- **Requisito específico:** Revelar un monstruo Fusión Guerrero de Nivel 6 o 7 del Extra Deck.\n- **Efecto / resultado concreto:** Revelar las cuatro cartas superiores del Deck; añadir hasta dos monstruos Normales nombrados como material de esa Fusión y colocar las restantes en el fondo del Deck en el orden elegido.\n- **Ir primero, segundo y juego tardío:** Primero: priorizar consistencia sin comprometer piezas de Fusión; segundo: buscar la carta que falta para superar el campo rival; tardío: solo aporta ventaja si queda un objetivo y su coste puede pagarse.\n- **Relación con habilidad y otras piezas:** La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main.\n- **Riesgos y dependencias:** verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual. pagar/cumplir el requisito escrito antes de prometer la resolución.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20461&ope=2\n- **Contraste de fuente Rush:** CID 20461: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "706:A08:C005",
+      "name": "Inicio Reinicio",
+      "cid": 16929,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16929.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 416
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **3x**. CID Rush: **16929**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — recurso táctico cuya condición y resultado están descritos en su ficha."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Colocar una carta de la mano al fondo del Deck."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Invoca un monstruo Normal de Nivel 5 o menor del Cementerio y opcionalmente recupera una Fusión de ese Cementerio."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "la condición de una Mágica/Trampa y sus blancos deben cumplirse antes de resolver. No confundir esta carta con un monstruo ni usarla como material."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16929&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 16929: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **3x**. CID Rush: **16929**.\n- **Rol funcional:** Carta Mágica Normal — recurso táctico cuya condición y resultado están descritos en su ficha.\n- **Requisito específico:** Colocar una carta de la mano al fondo del Deck.\n- **Efecto / resultado concreto:** Invoca un monstruo Normal de Nivel 5 o menor del Cementerio y opcionalmente recupera una Fusión de ese Cementerio.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main.\n- **Riesgos y dependencias:** la condición de una Mágica/Trampa y sus blancos deben cumplirse antes de resolver. No confundir esta carta con un monstruo ni usarla como material.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16929&ope=2\n- **Contraste de fuente Rush:** CID 16929: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "706:A08:C006",
+      "name": "Descenso de Héroe",
+      "cid": 20665,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20665.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 417
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **3x**. CID Rush: **20665**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — extensor / habilitador de material."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Invoca desde el Cementerio, en Defensa boca arriba, hasta dos objetivos permitidos (Neo-Espaciales específicos o Guerreros Normales) cuyos Niveles sumen como máximo siete. Ese turno solo pueden atacar tus Guerreros."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "Considerar la Skill **HERO RUSH RISING** como recurso separado: enviar una carta propia del campo no es coste gratuito."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20665&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 20665: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **3x**. CID Rush: **20665**.\n- **Rol funcional:** Carta Mágica Normal — extensor / habilitador de material.\n- **Requisito específico:** Sin requisito de activación.\n- **Efecto / resultado concreto:** Invoca desde el Cementerio, en Defensa boca arriba, hasta dos objetivos permitidos (Neo-Espaciales específicos o Guerreros Normales) cuyos Niveles sumen como máximo siete. Ese turno solo pueden atacar tus Guerreros.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** Considerar la Skill **HERO RUSH RISING** como recurso separado: enviar una carta propia del campo no es coste gratuito.\n- **Riesgos y dependencias:** comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20665&ope=2\n- **Contraste de fuente Rush:** CID 20665: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "706:A08:C007",
+      "name": "Brillo Sombrío",
+      "cid": 20151,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20151.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 418
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **3x**. CID Rush: **20151**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta de Trampa Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Cuando el rival Invoca un monstruo en su turno; enviar una carta de la mano al Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Pone hasta dos monstruos de Efecto boca arriba de cualquier Campo boca abajo en Defensa; si incluyó un monstruo rival con ATK original de al menos 2600, recupera 1500 LP."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "Considerar la Skill **HERO RUSH RISING** como recurso separado: enviar una carta propia del campo no es coste gratuito."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20151&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 20151: fuente oficial Rush consultada en japonés; tipo Carta de Trampa Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **3x**. CID Rush: **20151**.\n- **Rol funcional:** Carta de Trampa Normal — consistencia / reciclaje.\n- **Requisito específico:** Cuando el rival Invoca un monstruo en su turno; enviar una carta de la mano al Cementerio.\n- **Efecto / resultado concreto:** Pone hasta dos monstruos de Efecto boca arriba de cualquier Campo boca abajo en Defensa; si incluyó un monstruo rival con ATK original de al menos 2600, recupera 1500 LP.\n- **Ir primero, segundo y juego tardío:** Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo.\n- **Relación con habilidad y otras piezas:** Considerar la Skill **HERO RUSH RISING** como recurso separado: enviar una carta propia del campo no es coste gratuito.\n- **Riesgos y dependencias:** pagar/cumplir el requisito escrito antes de prometer la resolución.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20151&ope=2\n- **Contraste de fuente Rush:** CID 20151: fuente oficial Rush consultada en japonés; tipo Carta de Trampa Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "706:A08:C008",
+      "name": "Circulación Elemental",
+      "cid": 20465,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20465.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 419
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **3x**. CID Rush: **20465**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Revelar una Fusión Guerrero de Nivel 6 o 7 del Extra y enviar de la mano un Guerrero cuyo nombre sea material de esa Fusión."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Roba tres, luego manda una carta de la mano al Cementerio. Durante el resto del turno impide activar efectos de monstruos que no sean Guerreros."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "Considerar la Skill **HERO RUSH RISING** como recurso separado: enviar una carta propia del campo no es coste gratuito."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20465&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 20465: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **3x**. CID Rush: **20465**.\n- **Rol funcional:** Carta Mágica Normal — consistencia / reciclaje.\n- **Requisito específico:** Revelar una Fusión Guerrero de Nivel 6 o 7 del Extra y enviar de la mano un Guerrero cuyo nombre sea material de esa Fusión.\n- **Efecto / resultado concreto:** Roba tres, luego manda una carta de la mano al Cementerio. Durante el resto del turno impide activar efectos de monstruos que no sean Guerreros.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** Considerar la Skill **HERO RUSH RISING** como recurso separado: enviar una carta propia del campo no es coste gratuito.\n- **Riesgos y dependencias:** pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20465&ope=2\n- **Contraste de fuente Rush:** CID 20465: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "706:A08:C009",
+      "name": "Estrategia Mágica Aviar",
+      "cid": 16358,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16358.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 420
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **2x**. CID Rush: **16358**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — removal / apertura de campo."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Controlar en conjunto dos o más Guerreros y/o Bestias Aladas boca arriba."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Destruye una Mágica/Trampa rival; luego puedes devolver al tope del Deck un Guerrero o Bestia Alada de Nivel 8 o menor del Cementerio."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "Considerar la Skill **HERO RUSH RISING** como recurso separado: enviar una carta propia del campo no es coste gratuito."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16358&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 16358: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **2x**. CID Rush: **16358**.\n- **Rol funcional:** Carta Mágica Normal — removal / apertura de campo.\n- **Requisito específico:** Controlar en conjunto dos o más Guerreros y/o Bestias Aladas boca arriba.\n- **Efecto / resultado concreto:** Destruye una Mágica/Trampa rival; luego puedes devolver al tope del Deck un Guerrero o Bestia Alada de Nivel 8 o menor del Cementerio.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** Considerar la Skill **HERO RUSH RISING** como recurso separado: enviar una carta propia del campo no es coste gratuito.\n- **Riesgos y dependencias:** el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16358&ope=2\n- **Contraste de fuente Rush:** CID 16358: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "706:A08:C010",
+      "name": "Fusión",
+      "cid": 16934,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16934.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 421
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **2x**. CID Rush: **16934**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — extensor / habilitador de material."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Usa monstruos boca arriba del Campo propio como materiales, enviándolos al Cementerio para una Invocación por Fusión válida; no usa automáticamente materiales de la mano."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16934&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 16934: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **2x**. CID Rush: **16934**.\n- **Rol funcional:** Carta Mágica Normal — extensor / habilitador de material.\n- **Requisito específico:** Sin requisito de activación.\n- **Efecto / resultado concreto:** Usa monstruos boca arriba del Campo propio como materiales, enviándolos al Cementerio para una Invocación por Fusión válida; no usa automáticamente materiales de la mano.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main.\n- **Riesgos y dependencias:** verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16934&ope=2\n- **Contraste de fuente Rush:** CID 16934: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "706:A08:C011",
+      "name": "Agujero Trampa",
+      "cid": 15913,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/15913.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 422
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **1x**. CID Rush: **15913**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta de Trampa Normal — extensor / habilitador de material."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Cuando el rival Invoca de Modo Normal un monstruo de al menos 1000 ATK."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Destruye ese monstruo invocado."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "Considerar la Skill **HERO RUSH RISING** como recurso separado: enviar una carta propia del campo no es coste gratuito."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15913&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 15913: fuente oficial Rush consultada en japonés; tipo Carta de Trampa Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **1x**. CID Rush: **15913**.\n- **Rol funcional:** Carta de Trampa Normal — extensor / habilitador de material.\n- **Requisito específico:** Cuando el rival Invoca de Modo Normal un monstruo de al menos 1000 ATK.\n- **Efecto / resultado concreto:** Destruye ese monstruo invocado.\n- **Ir primero, segundo y juego tardío:** Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo.\n- **Relación con habilidad y otras piezas:** Considerar la Skill **HERO RUSH RISING** como recurso separado: enviar una carta propia del campo no es coste gratuito.\n- **Riesgos y dependencias:** el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15913&ope=2\n- **Contraste de fuente Rush:** CID 15913: fuente oficial Rush consultada en japonés; tipo Carta de Trampa Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "706:A08:C012",
+      "name": "Olla de la Codicia",
+      "cid": 16372,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16372.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 423
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **1x**. CID Rush: **16372**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Roba dos cartas."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "Considerar la Skill **HERO RUSH RISING** como recurso separado: enviar una carta propia del campo no es coste gratuito."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16372&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 16372: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **1x**. CID Rush: **16372**.\n- **Rol funcional:** Carta Mágica Normal — consistencia / reciclaje.\n- **Requisito específico:** Sin requisito de activación.\n- **Efecto / resultado concreto:** Roba dos cartas.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** Considerar la Skill **HERO RUSH RISING** como recurso separado: enviar una carta propia del campo no es coste gratuito.\n- **Riesgos y dependencias:** disponer de cartas suficientes en Deck y distinguir robo de búsqueda.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16372&ope=2\n- **Contraste de fuente Rush:** CID 16372: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "706:A08:C013",
+      "name": "Héroe Elemental Voltic Wingman",
+      "cid": 21316,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/21316.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 2,
+          "card_id": 424
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Extra **2x**. CID Rush: **21316**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Solo Invocación por Fusión; materiales Sparkman + Avian. Efecto en Main Phase propia en que fue Invocado de Modo Especial."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Devuelve al Deck monstruos del Cementerio empleados como materiales y realiza una Fusión de un monstruo Guerrero Nivel 6 a 8 que solo se pueda Invocar por Fusión."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=21316&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 21316: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Extra **2x**. CID Rush: **21316**.\n- **Rol funcional:** Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre.\n- **Requisito específico:** Solo Invocación por Fusión; materiales Sparkman + Avian. Efecto en Main Phase propia en que fue Invocado de Modo Especial.\n- **Efecto / resultado concreto:** Devuelve al Deck monstruos del Cementerio empleados como materiales y realiza una Fusión de un monstruo Guerrero Nivel 6 a 8 que solo se pueda Invocar por Fusión.\n- **Ir primero, segundo y juego tardío:** Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra.\n- **Relación con habilidad y otras piezas:** La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main.\n- **Riesgos y dependencias:** verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=21316&ope=2\n- **Contraste de fuente Rush:** CID 21316: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "706:A08:C014",
+      "name": "Héroe Elemental del Estallido Wingman",
+      "cid": 20454,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20454.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 2,
+          "card_id": 425
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Extra **2x**. CID Rush: **20454**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Solo Invocación por Fusión; materiales Avian + Burstinatrix. Enviar la primera carta del Deck al Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Aumenta 1000 ATK de un Guerrero propio boca arriba hasta el final del siguiente turno rival; después puede destruir una Mágica/Trampa rival."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20454&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 20454: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Extra **2x**. CID Rush: **20454**.\n- **Rol funcional:** Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre.\n- **Requisito específico:** Solo Invocación por Fusión; materiales Avian + Burstinatrix. Enviar la primera carta del Deck al Cementerio.\n- **Efecto / resultado concreto:** Aumenta 1000 ATK de un Guerrero propio boca arriba hasta el final del siguiente turno rival; después puede destruir una Mágica/Trampa rival.\n- **Ir primero, segundo y juego tardío:** Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra.\n- **Relación con habilidad y otras piezas:** La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main.\n- **Riesgos y dependencias:** pagar/cumplir el requisito escrito antes de prometer la resolución. el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20454&ope=2\n- **Contraste de fuente Rush:** CID 20454: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "706:A08:C015",
+      "name": "Héroe Elemental de la Llama Wingman",
+      "cid": 20453,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20453.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 426
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Extra **1x**. CID Rush: **20453**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Solo Invocación por Fusión; materiales Avian + Burstinatrix. Efecto continuo sin requisito activado."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Si destruye en batalla un monstruo y lo manda al Cementerio, inflige daño igual al ATK original de ese monstruo."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20453&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 20453: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Extra **1x**. CID Rush: **20453**.\n- **Rol funcional:** Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre.\n- **Requisito específico:** Solo Invocación por Fusión; materiales Avian + Burstinatrix. Efecto continuo sin requisito activado.\n- **Efecto / resultado concreto:** Si destruye en batalla un monstruo y lo manda al Cementerio, inflige daño igual al ATK original de ese monstruo.\n- **Ir primero, segundo y juego tardío:** Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra.\n- **Relación con habilidad y otras piezas:** La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main.\n- **Riesgos y dependencias:** el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20453&ope=2\n- **Contraste de fuente Rush:** CID 20453: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "706:A08:C016",
+      "name": "Héroe Elemental Heliosfera",
+      "cid": 21501,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/21501.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 427
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Extra **1x**. CID Rush: **21501**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Solo Invocación por Fusión; materiales Sparkman + Avian + Burstinatrix. Tener al menos diez cartas en el Deck."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Robar y revelar una carta; si resulta ser monstruo, además puede destruir una carta del Campo rival."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=21501&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 21501: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Extra **1x**. CID Rush: **21501**.\n- **Rol funcional:** Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre.\n- **Requisito específico:** Solo Invocación por Fusión; materiales Sparkman + Avian + Burstinatrix. Tener al menos diez cartas en el Deck.\n- **Efecto / resultado concreto:** Robar y revelar una carta; si resulta ser monstruo, además puede destruir una carta del Campo rival.\n- **Ir primero, segundo y juego tardío:** Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra.\n- **Relación con habilidad y otras piezas:** La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main.\n- **Riesgos y dependencias:** el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. disponer de cartas suficientes en Deck y distinguir robo de búsqueda.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=21501&ope=2\n- **Contraste de fuente Rush:** CID 21501: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "706:A08:C017",
+      "name": "Héroe Elemental Shining Flare Wingman",
+      "cid": 20610,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20610.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 2,
+          "card_id": 428
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Extra **2x**. CID Rush: **20610**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Solo Invocación por Fusión; materiales Flame Wingman + Sparkman; efecto continuo."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Gana 300 ATK por cada Guerrero en tu Cementerio; al destruir en batalla y enviar al Cementerio un monstruo, inflige daño igual a su ATK original."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20610&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 20610: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Extra **2x**. CID Rush: **20610**.\n- **Rol funcional:** Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre.\n- **Requisito específico:** Solo Invocación por Fusión; materiales Flame Wingman + Sparkman; efecto continuo.\n- **Efecto / resultado concreto:** Gana 300 ATK por cada Guerrero en tu Cementerio; al destruir en batalla y enviar al Cementerio un monstruo, inflige daño igual a su ATK original.\n- **Ir primero, segundo y juego tardío:** Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra.\n- **Relación con habilidad y otras piezas:** La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main.\n- **Riesgos y dependencias:** el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20610&ope=2\n- **Contraste de fuente Rush:** CID 20610: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    }
+  ],
+  "combos": [],
+  "engine_relations": [],
+  "scope": "Documentación editorial 01–07 con correspondencia de inventario e imágenes. Sin importar rutas de A08 ni certificar combos.",
+  "sections": [
+    {
+      "number": 1,
+      "title": "Empieza aquí",
+      "source_text": "- **Estado: COMPLETA EDITORIALMENTE (1/1: rol y objetivo formulados).** HERO 706, **Rush Duel**, 30 Main / 8 Extra / 0 Side / 0 Reserva; Skill local independiente del Main.\n- **Rol del asistente:** analista de cartas HERO en su edición Rush, entrenador de adquisición/recuperación de materiales y diseñador de guías visuales de Fusión. Basar nombres, costes y efectos en **APARTADO_05** y relaciones en **APARTADO_06**, sin sustituirlos por efectos TCG.\n- **Objetivo central:** enseñar a poner en campo a **Avian, Sparkman y Burstinatrix**, elegir correctamente las Fusiones accesibles del Extra y preservar recursos para evoluciones como Llama Wingman y Shining Flare Wingman, con aportes condicionales de Argen, Inicio Reinicio, Descenso de Héroe y la Skill **HERO RUSH RISING**.\n- **Competencias a desarrollar:** reconocer qué materiales exige literalmente cada Fusión y en qué zona deben estar; evaluar excavaciones sin garantizar resultados; reconstruir cuerpos Normales desde GY, pagar los costes de mano/campo y escoger entre presión de combate, retirada de M/T y preservación de recursos.\n- **Criterio de demostración:** no anunciar una Fusión sin materiales correctos boca arriba y Fusión activable, ni una evolución del Extra sin su Fusión previa requerida. Cada ruta deberá registrar mano, campo, materiales, restricciones, resultado y posible interrupción; la Skill solo se aplica bajo reglas locales verificadas.\n- **Siguiente acción:** comprobar procedimientos de Fusión Rush y límites de Skill en **APARTADO_07**, luego explorar 08 y producir fichas/guías 09–10; mantener 02–04 intactos.\n\n#### Aplicación en Station X\n\n- **Aplicación autorizada 2026-11-04:** prompt 01 aplicado a los resultados documentados de este mismo deck. Destino: Empieza aquí: objetivo y competencias. ID 706; formato rush_duel; equipo consultado: Valor Vanguard. Inventario cotejado sin cambiar cartas ni cantidades. La documentación editorial no acredita secuencias de combo.",
+      "source_sha256": "62fe1effa3507e166dcccf5029d50094d5b6e3404a846fa784bd4ffc489a9795",
+      "status": "documented_editorially",
+      "rules_certified": false
+    },
+    {
+      "number": 2,
+      "title": "Identidad y versión",
+      "source_text": "- **Estado: COMPLETA para el inventario documental proporcionado.**\n- **Identidad documental:** Hero; `deck_id=706`; formato `rush_duel`. Equipo: pendiente de consulta en Station X. Contrato modular v4; corte histórico 2026-11-03; versión de inventario en producción no verificada.\n- **Cantidades registradas:** Main 30 / Extra 8 / Side 0 / Reserva 0. Skill separada: HERO RUSH RISING (RD/SK01-003).\n- **Estado distinguido:** identidad encontrada en paquete = sí; inventario transcrito = sí; identidad del deck dentro del paquete = confirmada; sincronización con producción = fuera del alcance documental; estudio A01 y A05 previo = documentado; estudio completo 01–36 = no.\n- **Evidencia:** bloque «Inventario íntegro recibido» de este archivo y fichas previas del **APARTADO_05**; no se ha consultado Station X en vivo.\n- **Siguiente acción:** usar esta identidad para el análisis A03–A07. La comparación con Station X solamente será necesaria si Miguel autoriza publicar allí.\n\n#### Aplicación en Station X\n\n- **Aplicación autorizada 2026-11-04:** prompt 02 aplicado a los resultados documentados de este mismo deck. Destino: Identidad y versión: registro vivo y procedencia. ID 706; formato rush_duel; equipo consultado: Valor Vanguard. Inventario cotejado sin cambiar cartas ni cantidades. La documentación editorial no acredita secuencias de combo.",
+      "source_sha256": "04dc930715007f8b7388d173e658f7510d909410d92c0971930fb4284401dfa0",
+      "status": "documented_editorially",
+      "rules_certified": false
+    },
+    {
+      "number": 3,
+      "title": "Lista y cantidades",
+      "source_text": "- **Estado: COMPLETA para transcripción, integridad y conteo del inventario suministrado; verificaciones reglamentarias se gestionan en A05/A07.**\n- **Conteo verificable del bloque recibido:** Main Deck: 30 declaradas / 30 transcritas / 12 nombres. Extra Deck: 8 declaradas / 8 transcritas / 5 nombres. Side Deck: 0 declaradas / 0 transcritas / 0 nombres. Reserva: 0 declaradas / 0 transcritas / 0 nombres.\n- **Resultado aritmético:** las copias transcritas coinciden con los totales declarados de las cuatro zonas.\n- **Identidad y fuentes:** los nombres EN/ES y copias permanecen exactamente como fueron recibidos; las fichas de **APARTADO_05** incluyen referencias de carta donde las hay. La fuente para las cantidades es el propio bloque del deck; A05 contiene la referencia oficial por carta. La comprobación de efectos y materiales pertenece a A05/A07, no cambia el conteo.\n- **Confirmado documentalmente:** suma de cantidades y presencia de entradas; **identificación pendiente de revisión externa:** alias, traducciones, erratas y requisitos particulares, sin afectar la transcripción exacta. Una zona con cero declarado se conserva como cero **del registro histórico**, no como decisión definitiva del propietario.\n- **Identificadores lingüísticos:** 17 entradas tienen las columnas EN y ES marcadas «No documentado», aunque preservan un **Nombre guardado**. No equivale a carta desconocida ni a traducción verificada; contrastar cada alias con referencia oficial antes de certificar identidad multilingüe.\n- **Banlist:** sin comprobación general y sin retirar ni añadir cartas. Las restricciones oficiales se consultarían exclusivamente en futuras recomendaciones de cambio de construcción.\n- **Siguiente acción:** conservar los registros y remitir el cotejo de efectos/requisitos a A05/A07. No se necesita una base de datos externa para aceptar las copias recibidas.\n\n#### Aplicación en Station X\n\n- **Aplicación autorizada 2026-11-04:** prompt 03 aplicado a los resultados documentados de este mismo deck. Destino: Lista y cantidades: inventario conservado. ID 706; formato rush_duel; equipo consultado: Valor Vanguard. Inventario cotejado sin cambiar cartas ni cantidades. La documentación editorial no acredita secuencias de combo.",
+      "source_sha256": "630d521b2bdd344de01c2a9c274697d1fc1c018b6b034d58b84e7c0d33a1fd0d",
+      "status": "documented_editorially",
+      "rules_certified": false
+    },
+    {
+      "number": 4,
+      "title": "Fuentes y zonas",
+      "source_text": "- **Estado: COMPLETA para clasificación de Main, Extra, Side, Reserva y Skill del paquete proporcionado.**\n- **Main Deck (30):** 3× Héroe Elemental Avian; 3× Héroe Elemental Sparkman; 3× Héroe Elemental Burstinatrix; 3× Héroe Ascendente de Argen; 3× Inicio Reinicio; 3× Descenso de Héroe; 3× Brillo Sombrío; 3× Circulación Elemental; 2× Estrategia Mágica Aviar; 2× Fusión; 1× Agujero Trampa; 1× Olla de la Codicia.\n- **Extra Deck (8):** 2× Héroe Elemental Voltic Wingman; 2× Héroe Elemental del Estallido Wingman; 1× Héroe Elemental de la Llama Wingman; 1× Héroe Elemental Heliosfera; 2× Héroe Elemental Shining Flare Wingman.\n- **Side Deck (0):** sin cartas transcritas.\n- **Reserva (0):** sin cartas transcritas.\n- **Disponibilidad:** Main es la fuente de cartas robables; Extra requiere su método de Invocación; Side (0) solo puede sustituir cartas **entre duelos**, no aporta recursos durante el duelo actual; Reserva (0) no está integrada en Main/Extra/Side y no es utilizable sin cambio posterior aprobado.\n- **Skill:** «HERO RUSH RISING (RD/SK01-003)» está separada de las 30 cartas Main, no se roba y su texto exacto está disponible en la imagen aportada y se utiliza sujeto a sus requisitos.\n- **Evidencia:** inventario exacto del archivo; las relaciones jugables se examinan en **APARTADO_05** y **APARTADO_06**. La clasificación corresponde a la información íntegra suministrada; no presupone publicación en Station X.\n- **Siguiente acción:** estudiar disponibilidad efectiva por efecto en A05–A07 y propuestas de Side solo en apartados posteriores. Verificar el texto de Skill antes de activarla.\n\n#### Aplicación en Station X\n\n- **Aplicación autorizada 2026-11-04:** prompt 04 aplicado a los resultados documentados de este mismo deck. Destino: Fuentes y zonas: disponibilidad y Skill separada. ID 706; formato rush_duel; equipo consultado: Valor Vanguard. Inventario cotejado sin cambiar cartas ni cantidades. La documentación editorial no acredita secuencias de combo.",
+      "source_sha256": "e8e287bab5b389c4d856bbe81e0d542fcc80524f80c9b7ab9f5089a4239e6d35",
+      "status": "documented_editorially",
+      "rules_certified": false
+    },
+    {
+      "number": 5,
+      "title": "Cartas y funciones",
+      "source_text": "- **Estado:** **COMPLETA EDITORIALMENTE — 17/17 FICHAS DOCUMENTADAS**; no equivale a una simulación completa ni a resolver todas las condiciones de la habilidad local.\n- **Inventario:** **17 nombres** (Main y Extra), cantidades y zonas preservadas; **Side 0 / Reserva 0**.\n- **Procedencia:** reconstrucción de las fichas a partir de «Station_X_Guia_11_Decks_390_Cartas_126_Combos_2026-11-01.md», que contenía descripciones funcionales y CID de Konami Rush; no se mezclan efectos homónimos del TCG.\n- **Habilidad local separada:** **HERO RUSH RISING (RD/SK01-003)**. **Requisito:** Manda 1 carta de tu Campo al Cementerio, si todos los monstruos con 1600 o más ATK de tu Deck construido son de Tipo Guerrero y Atributo LUZ, y todos los monstruos de tu Deck Extra son de Tipo Guerrero. **Efecto:** Haz que 1 monstruo boca arriba en el Campo pierda 600 ATK/DEF hasta el final de este turno. Después, puedes añadir 1 \"Fusion\" de tu Deck o Cementerio a tu mano.\n- **Criterio:** las Skills no se roban ni se cuentan en el Main; no se cambian cartas, copias, apartados de combos ni probabilidades. Los efectos de carta y decisiones tácticas deben revisarse con fotos y reglas Rush reales antes de declararlos certificados para la liga física.\n- **Cotejo adicional de Yu-Gi-Oh! Neuron Rush:** 17/17 fichas con su texto original japonés localizado por CID; 0 con el enlace temporalmente inaccesible. Esta comprobación de procedencia no equivale a traducción jurídica certificada ni a validación de Skill personalizada.\n\n#### 01. Héroe Elemental Avian\n\n![Carta Rush CID 20460](../imagenes/rush/20460.png)\n\n- **Zona y copias:** Main **3x**. CID Rush: **20460**.\n- **Rol funcional:** Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado.\n- **Requisito específico:** No tiene efecto.\n- **Efecto / resultado concreto:** Monstruo Normal; material nombrado para las Fusiones Wingman y Heliosfera.\n- **Ir primero, segundo y juego tardío:** Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza.\n- **Relación con habilidad y otras piezas:** La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main.\n- **Riesgos y dependencias:** no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20460&ope=2\n- **Contraste de fuente Rush:** CID 20460: fuente oficial Rush consultada en japonés; tipo Monstruo Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.\n\n#### 02. Héroe Elemental Sparkman\n\n![Carta Rush CID 20457](../imagenes/rush/20457.png)\n\n- **Zona y copias:** Main **3x**. CID Rush: **20457**.\n- **Rol funcional:** Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado.\n- **Requisito específico:** No tiene efecto.\n- **Efecto / resultado concreto:** Monstruo Normal de 1600 ATK; se emplea como material nombrado de Voltic Wingman, Heliosfera y Shining Flare Wingman.\n- **Ir primero, segundo y juego tardío:** Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza.\n- **Relación con habilidad y otras piezas:** La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main.\n- **Riesgos y dependencias:** no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20457&ope=2\n- **Contraste de fuente Rush:** CID 20457: fuente oficial Rush consultada en japonés; tipo Monstruo Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.\n\n#### 03. Héroe Elemental Burstinatrix\n\n![Carta Rush CID 20459](../imagenes/rush/20459.png)\n\n- **Zona y copias:** Main **3x**. CID Rush: **20459**.\n- **Rol funcional:** Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado.\n- **Requisito específico:** No tiene efecto.\n- **Efecto / resultado concreto:** Monstruo Normal; material nombrado de Burst Wingman, Flame Wingman y Heliosfera.\n- **Ir primero, segundo y juego tardío:** Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza.\n- **Relación con habilidad y otras piezas:** La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main.\n- **Riesgos y dependencias:** no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20459&ope=2\n- **Contraste de fuente Rush:** CID 20459: fuente oficial Rush consultada en japonés; tipo Monstruo Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.\n\n#### 04. Héroe Ascendente de Argen\n\n![Carta Rush CID 20461](../imagenes/rush/20461.png)\n\n- **Zona y copias:** Main **3x**. CID Rush: **20461**.\n- **Rol funcional:** Monstruo de Efecto — consistencia / reciclaje.\n- **Requisito específico:** Revelar un monstruo Fusión Guerrero de Nivel 6 o 7 del Extra Deck.\n- **Efecto / resultado concreto:** Revelar las cuatro cartas superiores del Deck; añadir hasta dos monstruos Normales nombrados como material de esa Fusión y colocar las restantes en el fondo del Deck en el orden elegido.\n- **Ir primero, segundo y juego tardío:** Primero: priorizar consistencia sin comprometer piezas de Fusión; segundo: buscar la carta que falta para superar el campo rival; tardío: solo aporta ventaja si queda un objetivo y su coste puede pagarse.\n- **Relación con habilidad y otras piezas:** La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main.\n- **Riesgos y dependencias:** verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual. pagar/cumplir el requisito escrito antes de prometer la resolución.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20461&ope=2\n- **Contraste de fuente Rush:** CID 20461: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.\n\n#### 05. Inicio Reinicio\n\n![Carta Rush CID 16929](../imagenes/rush/16929.png)\n\n- **Zona y copias:** Main **3x**. CID Rush: **16929**.\n- **Rol funcional:** Carta Mágica Normal — recurso táctico cuya condición y resultado están descritos en su ficha.\n- **Requisito específico:** Colocar una carta de la mano al fondo del Deck.\n- **Efecto / resultado concreto:** Invoca un monstruo Normal de Nivel 5 o menor del Cementerio y opcionalmente recupera una Fusión de ese Cementerio.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main.\n- **Riesgos y dependencias:** la condición de una Mágica/Trampa y sus blancos deben cumplirse antes de resolver. No confundir esta carta con un monstruo ni usarla como material.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16929&ope=2\n- **Contraste de fuente Rush:** CID 16929: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.\n\n#### 06. Descenso de Héroe\n\n![Carta Rush CID 20665](../imagenes/rush/20665.png)\n\n- **Zona y copias:** Main **3x**. CID Rush: **20665**.\n- **Rol funcional:** Carta Mágica Normal — extensor / habilitador de material.\n- **Requisito específico:** Sin requisito de activación.\n- **Efecto / resultado concreto:** Invoca desde el Cementerio, en Defensa boca arriba, hasta dos objetivos permitidos (Neo-Espaciales específicos o Guerreros Normales) cuyos Niveles sumen como máximo siete. Ese turno solo pueden atacar tus Guerreros.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** Considerar la Skill **HERO RUSH RISING** como recurso separado: enviar una carta propia del campo no es coste gratuito.\n- **Riesgos y dependencias:** comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20665&ope=2\n- **Contraste de fuente Rush:** CID 20665: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.\n\n#### 07. Brillo Sombrío\n\n![Carta Rush CID 20151](../imagenes/rush/20151.png)\n\n- **Zona y copias:** Main **3x**. CID Rush: **20151**.\n- **Rol funcional:** Carta de Trampa Normal — consistencia / reciclaje.\n- **Requisito específico:** Cuando el rival Invoca un monstruo en su turno; enviar una carta de la mano al Cementerio.\n- **Efecto / resultado concreto:** Pone hasta dos monstruos de Efecto boca arriba de cualquier Campo boca abajo en Defensa; si incluyó un monstruo rival con ATK original de al menos 2600, recupera 1500 LP.\n- **Ir primero, segundo y juego tardío:** Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo.\n- **Relación con habilidad y otras piezas:** Considerar la Skill **HERO RUSH RISING** como recurso separado: enviar una carta propia del campo no es coste gratuito.\n- **Riesgos y dependencias:** pagar/cumplir el requisito escrito antes de prometer la resolución.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20151&ope=2\n- **Contraste de fuente Rush:** CID 20151: fuente oficial Rush consultada en japonés; tipo Carta de Trampa Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.\n\n#### 08. Circulación Elemental\n\n![Carta Rush CID 20465](../imagenes/rush/20465.png)\n\n- **Zona y copias:** Main **3x**. CID Rush: **20465**.\n- **Rol funcional:** Carta Mágica Normal — consistencia / reciclaje.\n- **Requisito específico:** Revelar una Fusión Guerrero de Nivel 6 o 7 del Extra y enviar de la mano un Guerrero cuyo nombre sea material de esa Fusión.\n- **Efecto / resultado concreto:** Roba tres, luego manda una carta de la mano al Cementerio. Durante el resto del turno impide activar efectos de monstruos que no sean Guerreros.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** Considerar la Skill **HERO RUSH RISING** como recurso separado: enviar una carta propia del campo no es coste gratuito.\n- **Riesgos y dependencias:** pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20465&ope=2\n- **Contraste de fuente Rush:** CID 20465: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.\n\n#### 09. Estrategia Mágica Aviar\n\n![Carta Rush CID 16358](../imagenes/rush/16358.png)\n\n- **Zona y copias:** Main **2x**. CID Rush: **16358**.\n- **Rol funcional:** Carta Mágica Normal — removal / apertura de campo.\n- **Requisito específico:** Controlar en conjunto dos o más Guerreros y/o Bestias Aladas boca arriba.\n- **Efecto / resultado concreto:** Destruye una Mágica/Trampa rival; luego puedes devolver al tope del Deck un Guerrero o Bestia Alada de Nivel 8 o menor del Cementerio.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** Considerar la Skill **HERO RUSH RISING** como recurso separado: enviar una carta propia del campo no es coste gratuito.\n- **Riesgos y dependencias:** el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16358&ope=2\n- **Contraste de fuente Rush:** CID 16358: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.\n\n#### 10. Fusión\n\n![Carta Rush CID 16934](../imagenes/rush/16934.png)\n\n- **Zona y copias:** Main **2x**. CID Rush: **16934**.\n- **Rol funcional:** Carta Mágica Normal — extensor / habilitador de material.\n- **Requisito específico:** Sin requisito de activación.\n- **Efecto / resultado concreto:** Usa monstruos boca arriba del Campo propio como materiales, enviándolos al Cementerio para una Invocación por Fusión válida; no usa automáticamente materiales de la mano.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main.\n- **Riesgos y dependencias:** verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16934&ope=2\n- **Contraste de fuente Rush:** CID 16934: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.\n\n#### 11. Agujero Trampa\n\n![Carta Rush CID 15913](../imagenes/rush/15913.png)\n\n- **Zona y copias:** Main **1x**. CID Rush: **15913**.\n- **Rol funcional:** Carta de Trampa Normal — extensor / habilitador de material.\n- **Requisito específico:** Cuando el rival Invoca de Modo Normal un monstruo de al menos 1000 ATK.\n- **Efecto / resultado concreto:** Destruye ese monstruo invocado.\n- **Ir primero, segundo y juego tardío:** Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo.\n- **Relación con habilidad y otras piezas:** Considerar la Skill **HERO RUSH RISING** como recurso separado: enviar una carta propia del campo no es coste gratuito.\n- **Riesgos y dependencias:** el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15913&ope=2\n- **Contraste de fuente Rush:** CID 15913: fuente oficial Rush consultada en japonés; tipo Carta de Trampa Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.\n\n#### 12. Olla de la Codicia\n\n![Carta Rush CID 16372](../imagenes/rush/16372.png)\n\n- **Zona y copias:** Main **1x**. CID Rush: **16372**.\n- **Rol funcional:** Carta Mágica Normal — consistencia / reciclaje.\n- **Requisito específico:** Sin requisito de activación.\n- **Efecto / resultado concreto:** Roba dos cartas.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** Considerar la Skill **HERO RUSH RISING** como recurso separado: enviar una carta propia del campo no es coste gratuito.\n- **Riesgos y dependencias:** disponer de cartas suficientes en Deck y distinguir robo de búsqueda.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16372&ope=2\n- **Contraste de fuente Rush:** CID 16372: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.\n\n#### 13. Héroe Elemental Voltic Wingman\n\n![Carta Rush CID 21316](../imagenes/rush/21316.png)\n\n- **Zona y copias:** Extra **2x**. CID Rush: **21316**.\n- **Rol funcional:** Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre.\n- **Requisito específico:** Solo Invocación por Fusión; materiales Sparkman + Avian. Efecto en Main Phase propia en que fue Invocado de Modo Especial.\n- **Efecto / resultado concreto:** Devuelve al Deck monstruos del Cementerio empleados como materiales y realiza una Fusión de un monstruo Guerrero Nivel 6 a 8 que solo se pueda Invocar por Fusión.\n- **Ir primero, segundo y juego tardío:** Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra.\n- **Relación con habilidad y otras piezas:** La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main.\n- **Riesgos y dependencias:** verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=21316&ope=2\n- **Contraste de fuente Rush:** CID 21316: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.\n\n#### 14. Héroe Elemental del Estallido Wingman\n\n![Carta Rush CID 20454](../imagenes/rush/20454.png)\n\n- **Zona y copias:** Extra **2x**. CID Rush: **20454**.\n- **Rol funcional:** Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre.\n- **Requisito específico:** Solo Invocación por Fusión; materiales Avian + Burstinatrix. Enviar la primera carta del Deck al Cementerio.\n- **Efecto / resultado concreto:** Aumenta 1000 ATK de un Guerrero propio boca arriba hasta el final del siguiente turno rival; después puede destruir una Mágica/Trampa rival.\n- **Ir primero, segundo y juego tardío:** Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra.\n- **Relación con habilidad y otras piezas:** La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main.\n- **Riesgos y dependencias:** pagar/cumplir el requisito escrito antes de prometer la resolución. el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20454&ope=2\n- **Contraste de fuente Rush:** CID 20454: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.\n\n#### 15. Héroe Elemental de la Llama Wingman\n\n![Carta Rush CID 20453](../imagenes/rush/20453.png)\n\n- **Zona y copias:** Extra **1x**. CID Rush: **20453**.\n- **Rol funcional:** Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre.\n- **Requisito específico:** Solo Invocación por Fusión; materiales Avian + Burstinatrix. Efecto continuo sin requisito activado.\n- **Efecto / resultado concreto:** Si destruye en batalla un monstruo y lo manda al Cementerio, inflige daño igual al ATK original de ese monstruo.\n- **Ir primero, segundo y juego tardío:** Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra.\n- **Relación con habilidad y otras piezas:** La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main.\n- **Riesgos y dependencias:** el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20453&ope=2\n- **Contraste de fuente Rush:** CID 20453: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.\n\n#### 16. Héroe Elemental Heliosfera\n\n![Carta Rush CID 21501](../imagenes/rush/21501.png)\n\n- **Zona y copias:** Extra **1x**. CID Rush: **21501**.\n- **Rol funcional:** Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre.\n- **Requisito específico:** Solo Invocación por Fusión; materiales Sparkman + Avian + Burstinatrix. Tener al menos diez cartas en el Deck.\n- **Efecto / resultado concreto:** Robar y revelar una carta; si resulta ser monstruo, además puede destruir una carta del Campo rival.\n- **Ir primero, segundo y juego tardío:** Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra.\n- **Relación con habilidad y otras piezas:** La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main.\n- **Riesgos y dependencias:** el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. disponer de cartas suficientes en Deck y distinguir robo de búsqueda.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=21501&ope=2\n- **Contraste de fuente Rush:** CID 21501: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.\n\n#### 17. Héroe Elemental Shining Flare Wingman\n\n![Carta Rush CID 20610](../imagenes/rush/20610.png)\n\n- **Zona y copias:** Extra **2x**. CID Rush: **20610**.\n- **Rol funcional:** Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre.\n- **Requisito específico:** Solo Invocación por Fusión; materiales Flame Wingman + Sparkman; efecto continuo.\n- **Efecto / resultado concreto:** Gana 300 ATK por cada Guerrero en tu Cementerio; al destruir en batalla y enviar al Cementerio un monstruo, inflige daño igual a su ATK original.\n- **Ir primero, segundo y juego tardío:** Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra.\n- **Relación con habilidad y otras piezas:** La Skill local **HERO RUSH RISING** puede recuperar «Fusión» y debilitar un monstruo, pero exige sus condiciones globales Guerrero/LUZ y no se roba del Main.\n- **Riesgos y dependencias:** el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20610&ope=2\n- **Contraste de fuente Rush:** CID 20610: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.\n\n### Continuidad específica del apartado 05\n\n- **Avance del inventario:** 17 fichas con efecto, requisito, función, uso, dependencia y fuente de Yu-Gi-Oh! Rush Duel por CID.\n- **Cotejo pendiente:** revisar las condiciones materiales de cada carta y la frecuencia/validez de **HERO RUSH RISING (RD/SK01-003)** en la liga física; no marcar estas fichas como completamente certificadas.\n- **Siguiente tarea:** continuar el apartado 05 de otros decks. La guía de combos sigue sin ejecutarse.\n\n\n- **Cierre de lectura individual:** 17/17 fichas operativas sin cambiar inventario. Fichas con texto original Rush accesible: 17/17. Sin CID pendiente de consulta primaria. Las Skills locales siguen sujetas a reglas aprobadas por la liga.\n\n\n#### Skill independiente — HERO RUSH RISING\n\n![Skill HERO RUSH RISING](../imagenes/skills/706_HERO_RUSH_RISING.jpeg)\n\n- **Requisito:** Envía 1 carta del campo propio al GY; todos los monstruos de 1600+ ATK del Deck deben ser Guerrero/LUZ y todos los del Extra Guerrero.\n- **Efecto:** Un monstruo boca arriba pierde 600 ATK/DEF hasta final del turno; después puede añadirse 1 Fusión del Deck/GY.\n- **Función:** Habilita acceso a Fusión con Avian, Sparkman y Burstinatrix disponibles en campo; la rebaja de estadísticas es apoyo de combate.\n- **Riesgo:** Enviar la carta de campo consume un recurso que podría ser material de Fusión.\n- **Identidad:** RD/SK01-003; no pertenece al Main ni a la mano. Fuente: imagen aportada por Miguel, Skill personalizada.\n\n#### Aplicación en Station X\n\n- **Aplicación autorizada 2026-11-04:** prompt 05 aplicado a los resultados documentados de este mismo deck. Destino: Cartas y funciones: fichas individuales. ID 706; formato rush_duel; equipo consultado: Valor Vanguard. Inventario cotejado sin cambiar cartas ni cantidades. La documentación editorial no acredita secuencias de combo.",
+      "source_sha256": "69bb0aaa7f1a4a256b8d554f627dfe8b85d21b2a3c6b051c9022ee11c9c26f8f",
+      "status": "documented_editorially",
+      "rules_certified": false
+    },
+    {
+      "number": 6,
+      "title": "Motores y sinergias",
+      "source_text": "- **Estado: COMPLETA EDITORIALMENTE — motores, dependencias y mapa fotográfico con Skill aportada.** Las rutas completas se certifican por separado en A08–A13.\n\n#### Motores de Guerreros Normales y Fusión\n\n1. **Tres materiales principales.** **Héroe Elemental Avian** (CID 20460), **Sparkman** (20457) y **Burstinatrix** (20459) son **Normales** del Main. Sus nombres se requieren literalmente en el Extra: **Voltic Wingman** (21316) necesita Sparkman + Avian; **Estallido Wingman** (20454) y **Llama Wingman** (20453) necesitan Avian + Burstinatrix; **Heliosfera** (21501) necesita los tres. **Shining Flare Wingman** (20610) exige **Llama Wingman + Sparkman**, no tres Normales directos.\n2. **Selección y recuperación de materiales.** **Héroe Ascendente de Argen** (20461) revela una Fusión Guerrero de Nivel 6 o 7 del Extra y examina las cuatro cartas superiores; puede añadir hasta **dos Normales nombrados como materiales** de esa Fusión **si aparecen**. No es búsqueda segura desde todo el Deck. **Inicio Reinicio** (16929) coloca una carta de mano al fondo del Deck para revivir un Normal de Nivel 5 o menor del GY y puede recuperar **Fusión** del GY.\n3. **Extensión del Cementerio.** **Descenso de Héroe** (20665) recupera en Defensa boca arriba hasta dos monstruos Normales Guerrero válidos del GY con **suma de Niveles máximo 7** y restringe ataques a Guerreros. Sirve para reunir materiales, pero no hace una Fusión por sí misma. **Fusión** Rush (16934) envía materiales **boca arriba desde Campo propio**, de modo que los monstruos recuperados deben estar efectivamente disponibles antes de activarla.\n4. **Consistencia y coste de mano.** **Circulación Elemental** (20465) revela una Fusión Guerrero Nivel 6/7, envía de la mano un Guerrero nombrado material de ella, roba tres y manda una carta de mano al GY. Por el resto del turno bloquea la activación de efectos de monstruos **no Guerrero**, que puede afectar apoyos de otros Tipos. No equivale a Invocar el monstruo descartado ni garantiza robar «Fusión».\n5. **Extra por etapas, no un solo objetivo.** **Llama Wingman** gana daño tras destruir en batalla y enviar monstruo al GY; **Estallido Wingman** potencia Guerrero y puede destruir M/T si paga su envío de carta superior; **Voltic Wingman** puede, durante su turno de Invocación, devolver materiales del GY al Deck y realizar otra Fusión Guerrero permitida con materiales legales. **Shining Flare Wingman** necesita tener **Llama Wingman** como material original nombrado y más Sparkman; no se salta ese requisito por el efecto de Voltic.\n6. **HERO RUSH RISING (RD/SK01-003).** Habilidad local, no robable: envía una carta **de tu Campo** al GY, requiere composición específica del Deck (monstruos con 1600+ ATK Guerrero/LUZ y Extra Guerrero), reduce 600 ATK/DEF a un monstruo boca arriba y **puede añadir Fusión** desde Deck/GY. El coste de campo compite con cuerpos que se necesitan para Fusión; deben verificarse las reglas locales y el estado de campo antes de contar ese acceso.\n7. **Apoyo y defensa.** **Estrategia Mágica Aviar** (16358) exige dos o más Guerreros/Bestias Aladas boca arriba en conjunto, destruye M/T rival y puede devolver recurso adecuado del GY al tope del Deck. **Brillo Sombrío** (20151) actúa ante una Invocación rival enviando carta de mano al GY y cambiando hasta dos monstruos de efecto a Defensa boca abajo; **Agujero Trampa** (15913) responde a Invocación Normal específica.\n\n#### Mapa de materiales y enlaces con imágenes pendientes\n\n| Referencias por CID | Ruta de sinergia | Requisito verificable | Visual |\n|---|---|---|---|\n| Argen (20461) → Avian (20460) / Sparkman (20457) / Burstinatrix (20459) | Excavar cuatro cartas para encontrar hasta dos Normales nombrados. | Revelar Fusión Guerrero Nivel 6 o 7 apropiada; resultado no garantizado. | ![CID 20461](../imagenes/rush/20461.png) ![CID 20460](../imagenes/rush/20460.png) ![CID 20457](../imagenes/rush/20457.png) ![CID 20459](../imagenes/rush/20459.png) |\n| Inicio Reinicio (16929) / Descenso de Héroe (20665) → Normales al Campo | Recuperar materiales del Cementerio. | Normal Nivel ≤5 o dos Guerreros con suma ≤7; destino Defensa donde corresponda. | ![CID 16929](../imagenes/rush/16929.png) ![CID 20665](../imagenes/rush/20665.png) |\n| Avian + Burstinatrix + Fusión (16934) → Llama (20453) / Estallido (20454) | Elegir una de dos Fusiones con mismos materiales. | Ambas cartas boca arriba en tu Campo y Fusión activable. | ![CID 16934](../imagenes/rush/16934.png) ![CID 20453](../imagenes/rush/20453.png) ![CID 20454](../imagenes/rush/20454.png) |\n| Sparkman + Avian + Fusión → Voltic (21316) | Fusión con potencial extensión desde GY. | Materiales en Campo y condiciones de su efecto de continuación. | ![CID 21316](../imagenes/rush/21316.png) |\n| Llama Wingman (20453) + Sparkman (20457) → Shining Flare (20610) | Segunda Fusión de materiales nombrados. | Obtener efectivamente Llama Wingman como material y usar Fusión válida. | ![CID 20453](../imagenes/rush/20453.png) ![CID 20457](../imagenes/rush/20457.png) ![CID 20610](../imagenes/rush/20610.png) |\n| Skill HERO RUSH RISING → Fusión | Acceso a carta de Fusión y ajuste de combate. | Composición aprobada y envío real de carta propia en Campo. | ![Skill HERO RUSH RISING](../imagenes/skills/706_HERO_RUSH_RISING.jpeg) |\n\n#### Conflictos, recursos y alcance\n\n- **Mismos Normales, destinos distintos:** Avian/Burstinatrix producen dos Wingman; Sparkman sirve en Voltic, Heliosfera y Shining Flare. Si los materiales fueron enviados al GY, una siguiente Fusión necesita recuperarlos legalmente.\n- **Heliosfera** exige los tres Normales y al menos diez cartas restantes del Deck para su efecto; el robo/revelado no equivale a destrucción asegurada.\n- **Bloqueos de Tipo:** Circulación Elemental impide activar efectos de monstruos no Guerrero por el resto del turno; Descenso de Héroe solo deja atacar a Guerreros. Comprobar si cada pieza invocada cumple antes de usarla.\n- **Sin Side/Reserva:** no se inventan materiales externos ni nuevas cartas para conseguir Shining Flare.\n- **Siguiente tarea:** validar reglas Rush de materiales y Skills en 07; después enumerar interacciones, extensiones y ramas reproducibles de estas Fusiones en 08–09. El mapa fotográfico debe usar imágenes oficiales de los CID señalados.\n\n\n\n\n#### Skill personalizada y motor — HERO RUSH RISING\n\n![Skill HERO RUSH RISING](../imagenes/skills/706_HERO_RUSH_RISING.jpeg)\n\n- **Identidad y zona:** RD/SK01-003; habilidad separada de Main/Extra/Side/Reserva, no robable.\n- **Requisito de la imagen:** Envía 1 carta del campo propio al GY; todos los monstruos de 1600+ ATK del Deck deben ser Guerrero/LUZ y todos los del Extra Guerrero.\n- **Efecto de la imagen:** Un monstruo boca arriba pierde 600 ATK/DEF hasta final del turno; después puede añadirse 1 Fusión del Deck/GY.\n- **Sinergia:** Habilita acceso a Fusión con Avian, Sparkman y Burstinatrix disponibles en campo; la rebaja de estadísticas es apoyo de combate.\n- **Dependencias/riesgo:** Enviar la carta de campo consume un recurso que podría ser material de Fusión.\n- **Clasificación:** habilitador o extensión, no combo completo. Texto e imagen aportados por Miguel; no inferir límites por turno no escritos.\n\n#### Aplicación en Station X\n\n- **Aplicación autorizada 2026-11-04:** prompt 06 aplicado a los resultados documentados de este mismo deck. Destino: Motores y sinergias: relaciones y conflictos documentados. ID 706; formato rush_duel; equipo consultado: Valor Vanguard. Inventario cotejado sin cambiar cartas ni cantidades. La documentación editorial no acredita secuencias de combo.",
+      "source_sha256": "6f9e719d5f93eaea217e9dba60df1cf5ff3bbf18a473b5d1bd20c901a3570318",
+      "status": "documented_editorially",
+      "rules_certified": false
+    },
+    {
+      "number": 7,
+      "title": "Práctica y reglas",
+      "source_text": "- **Estado: COMPLETA EDITORIALMENTE para identificación y condiciones mecánicas del formato aplicables a esta lista; certificación de combos fuera de A07.**\n- **Formato efectivo:** `rush_duel`. **Mecánicas relevantes:** Rush: Invocación Normal múltiple, Sacrificio y Fusión. No introducir mecánicas ajenas a los monstruos y efectos del inventario.\n- **Control reglamentario propio del deck:** Comprobar materiales HERO exactos y el orden de Fusiones evolutivas; no asumir que el nombre genérico «HERO» sustituye materiales nombrados. Texto de HERO RUSH RISING recibido en A06; verificar sus requisitos al usarla.\n- **Puntos obligatorios de comprobación antes de cada secuencia:** mano/campo/Cementerio y zona actual; efecto activable y ventana; coste frente a efecto; nombre, Atributo, Tipo y Nivel requeridos; material consumido; límite por turno; restricciones de Invocación; cadena y resultado final. Una relación de **APARTADO_06** no certifica estos pasos.\n- **Fuente vinculada:** fichas de **APARTADO_05** para cartas y enlaces de **APARTADO_06** para dependencias. Los efectos discutibles se revisarán por carta en base oficial antes de publicarse como jugada legal.\n- **Rush/TCG:** No asumir reglas TCG ni contar la Skill como carta en mano; validar texto, límites y activación local de HERO RUSH RISING (RD/SK01-003).\n- **Siguiente acción:** validar por texto oficial cada ruta propuesta en 08–10, anotando materiales, zonas, cadenas y resultados, y resolver las condiciones actualmente pendientes.\n\n- **Comprobaciones específicas cruzadas con A05/A06:** Fusión Rush exige materiales nombrados boca arriba en campo; Shining Flare necesita Flame Wingman previo + Sparkman; Argen excava y no busca libremente; Hero Rush Rising no se incluye en Main ni sustituye carta de Fusión.\n- **Piezas para seguimiento y cita cruzada:** Avian, Sparkman, Burstinatrix, Flame Wingman, Shining Flare Wingman, Fusion, Argen. Los efectos exactos, CID y recursos se detallan en A05; los enlaces tácticos y sus límites están en A06. Estas referencias son filtros de legalidad, no una afirmación de que cada combinación posible produzca un combo.\n- **Límite documentado:** la prueba secuencial exhaustiva de una mano, estado de campo, cadenas y endboard pertenece a A08–A13; las Skills locales conservan la salvedad de reglamento propio. El estado COMPLETA EDITORIALMENTE de A07 no certifica automáticamente esas rutas. \n\n- **Skill recibida:** HERO RUSH RISING (RD/SK01-003). Requisitos, efecto y foto en A06; no se cuenta en el Main ni se usa sin satisfacer sus condiciones.\n\n#### Aplicación en Station X\n\n- **Aplicación autorizada 2026-11-04:** prompt 07 aplicado a los resultados documentados de este mismo deck. Destino: Práctica y reglas: mecánicas del formato y requisitos. ID 706; formato rush_duel; equipo consultado: Valor Vanguard. Inventario cotejado sin cambiar cartas ni cantidades. La documentación editorial no acredita secuencias de combo.",
+      "source_sha256": "a4655b932d7f831cac405c9547f44d32cfd0e39ff62a79edad5236632804bcda",
+      "status": "documented_editorially",
+      "rules_certified": false
+    }
+  ],
+  "identity": {
+    "deck_id": 706,
+    "name": "Hero",
+    "format": "rush_duel",
+    "team": "Valor Vanguard",
+    "source_date": "2026-11-03",
+    "inventory_verified_on": "2026-11-04",
+    "inventory_sha256": "91d95625de97c66b446c61395231427e1cd9a54cc26ace5d3ea763c355c48a44",
+    "source_contract": "4"
+  },
+  "goal": {
+    "Objetivo central": "enseñar a poner en campo a **Avian, Sparkman y Burstinatrix**, elegir correctamente las Fusiones accesibles del Extra y preservar recursos para evoluciones como Llama Wingman y Shining Flare Wingman, con aportes condicionales de Argen, Inicio Reinicio, Descenso de Héroe y la Skill **HERO RUSH RISING**.",
+    "Competencias a desarrollar": "reconocer qué materiales exige literalmente cada Fusión y en qué zona deben estar; evaluar excavaciones sin garantizar resultados; reconstruir cuerpos Normales desde GY, pagar los costes de mano/campo y escoger entre presión de combate, retirada de M/T y preservación de recursos.",
+    "Criterio de demostración": "no anunciar una Fusión sin materiales correctos boca arriba y Fusión activable, ni una evolución del Extra sin su Fusión previa requerida. Cada ruta deberá registrar mano, campo, materiales, restricciones, resultado y posible interrupción; la Skill solo se aplica bajo reglas locales verificadas."
+  },
+  "skills": [
+    {
+      "name": "HERO RUSH RISING",
+      "image": "./assets/editorial/20261104-study-seven/skills/706_HERO_RUSH_RISING.jpeg",
+      "text": "![Skill HERO RUSH RISING](../imagenes/skills/706_HERO_RUSH_RISING.jpeg)\n\n- **Requisito:** Envía 1 carta del campo propio al GY; todos los monstruos de 1600+ ATK del Deck deben ser Guerrero/LUZ y todos los del Extra Guerrero.\n- **Efecto:** Un monstruo boca arriba pierde 600 ATK/DEF hasta final del turno; después puede añadirse 1 Fusión del Deck/GY.\n- **Función:** Habilita acceso a Fusión con Avian, Sparkman y Burstinatrix disponibles en campo; la rebaja de estadísticas es apoyo de combate.\n- **Riesgo:** Enviar la carta de campo consume un recurso que podría ser material de Fusión.\n- **Identidad:** RD/SK01-003; no pertenece al Main ni a la mano. Fuente: imagen aportada por Miguel, Skill personalizada.",
+      "kind": "skill",
+      "not_in_draw_pool": true,
+      "rules_certified": false
+    }
+  ],
+  "engine_maps": [
+    {
+      "id": "706:A06:map:01",
+      "title": "Argen (20461) → Avian (20460) / Sparkman (20457) / Burstinatrix (20459)",
+      "result": "Excavar cuatro cartas para encontrar hasta dos Normales nombrados.",
+      "requirements": "Revelar Fusión Guerrero Nivel 6 o 7 apropiada; resultado no garantizado.",
+      "photos": [
+        {
+          "image": "./assets/editorial/20261104-checked-study/images/rush/20461.png",
+          "name": "Héroe Ascendente de Argen",
+          "cid": 20461,
+          "slots": [
+            {
+              "section": "main",
+              "quantity": 3,
+              "card_id": 415
+            }
+          ],
+          "kind": "card"
+        },
+        {
+          "image": "./assets/editorial/20261104-checked-study/images/rush/20460.png",
+          "name": "Héroe Elemental Avian",
+          "cid": 20460,
+          "slots": [
+            {
+              "section": "main",
+              "quantity": 3,
+              "card_id": 412
+            }
+          ],
+          "kind": "card"
+        },
+        {
+          "image": "./assets/editorial/20261104-checked-study/images/rush/20457.png",
+          "name": "Héroe Elemental Sparkman",
+          "cid": 20457,
+          "slots": [
+            {
+              "section": "main",
+              "quantity": 3,
+              "card_id": 413
+            }
+          ],
+          "kind": "card"
+        },
+        {
+          "image": "./assets/editorial/20261104-checked-study/images/rush/20459.png",
+          "name": "Héroe Elemental Burstinatrix",
+          "cid": 20459,
+          "slots": [
+            {
+              "section": "main",
+              "quantity": 3,
+              "card_id": 414
+            }
+          ],
+          "kind": "card"
+        }
+      ],
+      "source_section": 6,
+      "identity_links_checked": true,
+      "rules_certified": false,
+      "is_combo": false
+    },
+    {
+      "id": "706:A06:map:02",
+      "title": "Inicio Reinicio (16929) / Descenso de Héroe (20665) → Normales al Campo",
+      "result": "Recuperar materiales del Cementerio.",
+      "requirements": "Normal Nivel ≤5 o dos Guerreros con suma ≤7; destino Defensa donde corresponda.",
+      "photos": [
+        {
+          "image": "./assets/editorial/20261104-checked-study/images/rush/16929.png",
+          "name": "Inicio Reinicio",
+          "cid": 16929,
+          "slots": [
+            {
+              "section": "main",
+              "quantity": 3,
+              "card_id": 416
+            }
+          ],
+          "kind": "card"
+        },
+        {
+          "image": "./assets/editorial/20261104-checked-study/images/rush/20665.png",
+          "name": "Descenso de Héroe",
+          "cid": 20665,
+          "slots": [
+            {
+              "section": "main",
+              "quantity": 3,
+              "card_id": 417
+            }
+          ],
+          "kind": "card"
+        }
+      ],
+      "source_section": 6,
+      "identity_links_checked": true,
+      "rules_certified": false,
+      "is_combo": false
+    },
+    {
+      "id": "706:A06:map:03",
+      "title": "Avian + Burstinatrix + Fusión (16934) → Llama (20453) / Estallido (20454)",
+      "result": "Elegir una de dos Fusiones con mismos materiales.",
+      "requirements": "Ambas cartas boca arriba en tu Campo y Fusión activable.",
+      "photos": [
+        {
+          "image": "./assets/editorial/20261104-checked-study/images/rush/16934.png",
+          "name": "Fusión",
+          "cid": 16934,
+          "slots": [
+            {
+              "section": "main",
+              "quantity": 2,
+              "card_id": 421
+            }
+          ],
+          "kind": "card"
+        },
+        {
+          "image": "./assets/editorial/20261104-checked-study/images/rush/20453.png",
+          "name": "Héroe Elemental de la Llama Wingman",
+          "cid": 20453,
+          "slots": [
+            {
+              "section": "extra",
+              "quantity": 1,
+              "card_id": 426
+            }
+          ],
+          "kind": "card"
+        },
+        {
+          "image": "./assets/editorial/20261104-checked-study/images/rush/20454.png",
+          "name": "Héroe Elemental del Estallido Wingman",
+          "cid": 20454,
+          "slots": [
+            {
+              "section": "extra",
+              "quantity": 2,
+              "card_id": 425
+            }
+          ],
+          "kind": "card"
+        }
+      ],
+      "source_section": 6,
+      "identity_links_checked": true,
+      "rules_certified": false,
+      "is_combo": false
+    },
+    {
+      "id": "706:A06:map:04",
+      "title": "Sparkman + Avian + Fusión → Voltic (21316)",
+      "result": "Fusión con potencial extensión desde GY.",
+      "requirements": "Materiales en Campo y condiciones de su efecto de continuación.",
+      "photos": [
+        {
+          "image": "./assets/editorial/20261104-checked-study/images/rush/21316.png",
+          "name": "Héroe Elemental Voltic Wingman",
+          "cid": 21316,
+          "slots": [
+            {
+              "section": "extra",
+              "quantity": 2,
+              "card_id": 424
+            }
+          ],
+          "kind": "card"
+        }
+      ],
+      "source_section": 6,
+      "identity_links_checked": true,
+      "rules_certified": false,
+      "is_combo": false
+    },
+    {
+      "id": "706:A06:map:05",
+      "title": "Llama Wingman (20453) + Sparkman (20457) → Shining Flare (20610)",
+      "result": "Segunda Fusión de materiales nombrados.",
+      "requirements": "Obtener efectivamente Llama Wingman como material y usar Fusión válida.",
+      "photos": [
+        {
+          "image": "./assets/editorial/20261104-checked-study/images/rush/20453.png",
+          "name": "Héroe Elemental de la Llama Wingman",
+          "cid": 20453,
+          "slots": [
+            {
+              "section": "extra",
+              "quantity": 1,
+              "card_id": 426
+            }
+          ],
+          "kind": "card"
+        },
+        {
+          "image": "./assets/editorial/20261104-checked-study/images/rush/20457.png",
+          "name": "Héroe Elemental Sparkman",
+          "cid": 20457,
+          "slots": [
+            {
+              "section": "main",
+              "quantity": 3,
+              "card_id": 413
+            }
+          ],
+          "kind": "card"
+        },
+        {
+          "image": "./assets/editorial/20261104-checked-study/images/rush/20610.png",
+          "name": "Héroe Elemental Shining Flare Wingman",
+          "cid": 20610,
+          "slots": [
+            {
+              "section": "extra",
+              "quantity": 2,
+              "card_id": 428
+            }
+          ],
+          "kind": "card"
+        }
+      ],
+      "source_section": 6,
+      "identity_links_checked": true,
+      "rules_certified": false,
+      "is_combo": false
+    },
+    {
+      "id": "706:A06:map:06",
+      "title": "Skill HERO RUSH RISING → Fusión",
+      "result": "Acceso a carta de Fusión y ajuste de combate.",
+      "requirements": "Composición aprobada y envío real de carta propia en Campo.",
+      "photos": [
+        {
+          "name": "HERO RUSH RISING",
+          "image": "./assets/editorial/20261104-study-seven/skills/706_HERO_RUSH_RISING.jpeg",
+          "text": "![Skill HERO RUSH RISING](../imagenes/skills/706_HERO_RUSH_RISING.jpeg)\n\n- **Requisito:** Envía 1 carta del campo propio al GY; todos los monstruos de 1600+ ATK del Deck deben ser Guerrero/LUZ y todos los del Extra Guerrero.\n- **Efecto:** Un monstruo boca arriba pierde 600 ATK/DEF hasta final del turno; después puede añadirse 1 Fusión del Deck/GY.\n- **Función:** Habilita acceso a Fusión con Avian, Sparkman y Burstinatrix disponibles en campo; la rebaja de estadísticas es apoyo de combate.\n- **Riesgo:** Enviar la carta de campo consume un recurso que podría ser material de Fusión.\n- **Identidad:** RD/SK01-003; no pertenece al Main ni a la mano. Fuente: imagen aportada por Miguel, Skill personalizada.",
+          "kind": "skill",
+          "not_in_draw_pool": true,
+          "rules_certified": false
+        }
+      ],
+      "source_section": 6,
+      "identity_links_checked": true,
+      "rules_certified": false,
+      "is_combo": false
+    }
+  ],
+  "engine_notes": "- **Estado: COMPLETA EDITORIALMENTE — motores, dependencias y mapa fotográfico con Skill aportada.** Las rutas completas se certifican por separado en A08–A13.\n\n#### Motores de Guerreros Normales y Fusión\n\n1. **Tres materiales principales.** **Héroe Elemental Avian** (CID 20460), **Sparkman** (20457) y **Burstinatrix** (20459) son **Normales** del Main. Sus nombres se requieren literalmente en el Extra: **Voltic Wingman** (21316) necesita Sparkman + Avian; **Estallido Wingman** (20454) y **Llama Wingman** (20453) necesitan Avian + Burstinatrix; **Heliosfera** (21501) necesita los tres. **Shining Flare Wingman** (20610) exige **Llama Wingman + Sparkman**, no tres Normales directos.\n2. **Selección y recuperación de materiales.** **Héroe Ascendente de Argen** (20461) revela una Fusión Guerrero de Nivel 6 o 7 del Extra y examina las cuatro cartas superiores; puede añadir hasta **dos Normales nombrados como materiales** de esa Fusión **si aparecen**. No es búsqueda segura desde todo el Deck. **Inicio Reinicio** (16929) coloca una carta de mano al fondo del Deck para revivir un Normal de Nivel 5 o menor del GY y puede recuperar **Fusión** del GY.\n3. **Extensión del Cementerio.** **Descenso de Héroe** (20665) recupera en Defensa boca arriba hasta dos monstruos Normales Guerrero válidos del GY con **suma de Niveles máximo 7** y restringe ataques a Guerreros. Sirve para reunir materiales, pero no hace una Fusión por sí misma. **Fusión** Rush (16934) envía materiales **boca arriba desde Campo propio**, de modo que los monstruos recuperados deben estar efectivamente disponibles antes de activarla.\n4. **Consistencia y coste de mano.** **Circulación Elemental** (20465) revela una Fusión Guerrero Nivel 6/7, envía de la mano un Guerrero nombrado material de ella, roba tres y manda una carta de mano al GY. Por el resto del turno bloquea la activación de efectos de monstruos **no Guerrero**, que puede afectar apoyos de otros Tipos. No equivale a Invocar el monstruo descartado ni garantiza robar «Fusión».\n5. **Extra por etapas, no un solo objetivo.** **Llama Wingman** gana daño tras destruir en batalla y enviar monstruo al GY; **Estallido Wingman** potencia Guerrero y puede destruir M/T si paga su envío de carta superior; **Voltic Wingman** puede, durante su turno de Invocación, devolver materiales del GY al Deck y realizar otra Fusión Guerrero permitida con materiales legales. **Shining Flare Wingman** necesita tener **Llama Wingman** como material original nombrado y más Sparkman; no se salta ese requisito por el efecto de Voltic.\n6. **HERO RUSH RISING (RD/SK01-003).** Habilidad local, no robable: envía una carta **de tu Campo** al GY, requiere composición específica del Deck (monstruos con 1600+ ATK Guerrero/LUZ y Extra Guerrero), reduce 600 ATK/DEF a un monstruo boca arriba y **puede añadir Fusión** desde Deck/GY. El coste de campo compite con cuerpos que se necesitan para Fusión; deben verificarse las reglas locales y el estado de campo antes de contar ese acceso.\n7. **Apoyo y defensa.** **Estrategia Mágica Aviar** (16358) exige dos o más Guerreros/Bestias Aladas boca arriba en conjunto, destruye M/T rival y puede devolver recurso adecuado del GY al tope del Deck. **Brillo Sombrío** (20151) actúa ante una Invocación rival enviando carta de mano al GY y cambiando hasta dos monstruos de efecto a Defensa boca abajo; **Agujero Trampa** (15913) responde a Invocación Normal específica.\n\n\n\n#### Conflictos, recursos y alcance\n\n- **Mismos Normales, destinos distintos:** Avian/Burstinatrix producen dos Wingman; Sparkman sirve en Voltic, Heliosfera y Shining Flare. Si los materiales fueron enviados al GY, una siguiente Fusión necesita recuperarlos legalmente.\n- **Heliosfera** exige los tres Normales y al menos diez cartas restantes del Deck para su efecto; el robo/revelado no equivale a destrucción asegurada.\n- **Bloqueos de Tipo:** Circulación Elemental impide activar efectos de monstruos no Guerrero por el resto del turno; Descenso de Héroe solo deja atacar a Guerreros. Comprobar si cada pieza invocada cumple antes de usarla.\n- **Sin Side/Reserva:** no se inventan materiales externos ni nuevas cartas para conseguir Shining Flare.\n- **Siguiente tarea:** validar reglas Rush de materiales y Skills en 07; después enumerar interacciones, extensiones y ramas reproducibles de estas Fusiones en 08–09. El mapa fotográfico debe usar imágenes oficiales de los CID señalados.\n\n\n\n\n#### Skill personalizada y motor — HERO RUSH RISING\n\n![Skill HERO RUSH RISING](../imagenes/skills/706_HERO_RUSH_RISING.jpeg)\n\n- **Identidad y zona:** RD/SK01-003; habilidad separada de Main/Extra/Side/Reserva, no robable.\n- **Requisito de la imagen:** Envía 1 carta del campo propio al GY; todos los monstruos de 1600+ ATK del Deck deben ser Guerrero/LUZ y todos los del Extra Guerrero.\n- **Efecto de la imagen:** Un monstruo boca arriba pierde 600 ATK/DEF hasta final del turno; después puede añadirse 1 Fusión del Deck/GY.\n- **Sinergia:** Habilita acceso a Fusión con Avian, Sparkman y Burstinatrix disponibles en campo; la rebaja de estadísticas es apoyo de combate.\n- **Dependencias/riesgo:** Enviar la carta de campo consume un recurso que podría ser material de Fusión.\n- **Clasificación:** habilitador o extensión, no combo completo. Texto e imagen aportados por Miguel; no inferir límites por turno no escritos.\n\n#### Aplicación en Station X\n\n- **Aplicación autorizada 2026-11-04:** prompt 06 aplicado a los resultados documentados de este mismo deck. Destino: Motores y sinergias: relaciones y conflictos documentados. ID 706; formato rush_duel; equipo consultado: Valor Vanguard. Inventario cotejado sin cambiar cartas ni cantidades. La documentación editorial no acredita secuencias de combo."
+}

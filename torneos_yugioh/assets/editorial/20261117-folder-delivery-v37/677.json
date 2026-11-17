@@ -1,0 +1,2185 @@
+{
+  "schema": "station-x-curated-v62",
+  "deck_id": 677,
+  "name": "Crystron",
+  "format": "tcg_advanced",
+  "cards": [
+    {
+      "id": "677:CARD:4861",
+      "cid": 4861,
+      "name": "Juicio Solemne",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/4861.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/4861.jpg",
+      "slots": [
+        {
+          "section": "side",
+          "quantity": 3,
+          "card_id": 561
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Side: contratrampa pagar mitad LP para negar invocación o activación M/T; **no niega libremente todo efecto de monstruo**. S04."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Side: contratrampa pagar mitad LP para negar invocación o activación M/T; **no niega libremente todo efecto de monstruo**. S04.",
+        "explanation": "Side: contratrampa pagar mitad LP para negar invocación o activación M/T; **no niega libremente todo efecto de monstruo**. S04."
+      },
+      "role": "Side: contratrampa pagar mitad LP para negar invocación o activación M/T; **no niega libremente todo efecto de monstruo**. S04.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4861&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:5236",
+      "cid": 5236,
+      "name": "Entierro Insensato",
+      "image": "./assets/editorial/20261117-folder-delivery-v37/images/677/5236.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/677/5236.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 539
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Envía monstruo del Deck al GY; habilita Thystvern/Tristaros de Cementerio o Amset/Hapi si ya hay Sarcófago. D04."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Envía monstruo del Deck al GY; habilita Thystvern/Tristaros de Cementerio o Amset/Hapi si ya hay Sarcófago. D04.",
+        "explanation": "Envía monstruo del Deck al GY; habilita Thystvern/Tristaros de Cementerio o Amset/Hapi si ya hay Sarcófago. D04."
+      },
+      "role": "Envía monstruo del Deck al GY; habilita Thystvern/Tristaros de Cementerio o Amset/Hapi si ya hay Sarcófago. D04.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5236&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:7445",
+      "cid": 7445,
+      "name": "Súper Polimerización",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/7445.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/7445.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 537
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Rompecampos de Fusión usando materiales válidos de cualquier Campo; descartar 1 carta, oponente no responde a activación; **usar antes de bloqueo a Sincronías/Máquinas**. R17/R18; A08-I03."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Rompecampos de Fusión usando materiales válidos de cualquier Campo; descartar 1 carta, oponente no responde a activación; **usar antes de bloqueo a Sincronías/Máquinas**. R17/R18; A08-I03.",
+        "explanation": "Rompecampos de Fusión usando materiales válidos de cualquier Campo; descartar 1 carta, oponente no responde a activación; **usar antes de bloqueo a Sincronías/Máquinas**. R17/R18; A08-I03."
+      },
+      "role": "Rompecampos de Fusión usando materiales válidos de cualquier Campo; descartar 1 carta, oponente no responde a activación; **usar antes de bloqueo a Sincronías/Máquinas**. R17/R18; A08-I03.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7445&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:9279",
+      "cid": 9279,
+      "name": "El Bufón y el Pájaro del Candado",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/9279.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/9279.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 531
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Handtrap tras una adición del Deck a mano; bloquea nuevas adiciones ese turno, **también propias** si se resuelve. D10."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Handtrap tras una adición del Deck a mano; bloquea nuevas adiciones ese turno, **también propias** si se resuelve. D10.",
+        "explanation": "Handtrap tras una adición del Deck a mano; bloquea nuevas adiciones ese turno, **también propias** si se resuelve. D10."
+      },
+      "role": "Handtrap tras una adición del Deck a mano; bloquea nuevas adiciones ese turno, **también propias** si se resuelve. D10.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=9279&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:9454",
+      "cid": 9454,
+      "name": "Cazadora del Caos",
+      "image": "./assets/editorial/20261117-folder-delivery-v37/images/677/9454.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/677/9454.png",
+      "slots": [
+        {
+          "section": "side",
+          "quantity": 2,
+          "card_id": 554
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Side: puede invocarse desde mano ante especial del rival descartando carta; impide **al adversario** desterrar; usar solo tras entrada Side. S01."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Side: puede invocarse desde mano ante especial del rival descartando carta; impide **al adversario** desterrar; usar solo tras entrada Side. S01.",
+        "explanation": "Side: puede invocarse desde mano ante especial del rival descartando carta; impide **al adversario** desterrar; usar solo tras entrada Side. S01."
+      },
+      "role": "Side: puede invocarse desde mano ante especial del rival descartando carta; impide **al adversario** desterrar; usar solo tras entrada Side. S01.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=9454&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:10870",
+      "cid": 10870,
+      "name": "Ciber Dragón Nova",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/10870.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/10870.jpg",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 547
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Rango 5 Máquina Xyz: **2 Máquinas de Nivel 5**, Sulfador y segunda copia de Azufafnir en C06; plataforma de Infinito. R19/C06; no hay «Ciber Dragón» en Main para revivir."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Rango 5 Máquina Xyz: **2 Máquinas de Nivel 5**, Sulfador y segunda copia de Azufafnir en C06; plataforma de Infinito. R19/C06; no hay «Ciber Dragón» en Main para revivir.",
+        "explanation": "Rango 5 Máquina Xyz: **2 Máquinas de Nivel 5**, Sulfador y segunda copia de Azufafnir en C06; plataforma de Infinito. R19/C06; no hay «Ciber Dragón» en Main para revivir."
+      },
+      "role": "Rango 5 Máquina Xyz: **2 Máquinas de Nivel 5**, Sulfador y segunda copia de Azufafnir en C06; plataforma de Infinito. R19/C06; no hay «Ciber Dragón» en Main para revivir.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=10870&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:11243",
+      "cid": 11243,
+      "name": "Artefacto Lancea",
+      "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/11243.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/11243.png",
+      "slots": [
+        {
+          "section": "side",
+          "quantity": 2,
+          "card_id": 555
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Side: tributar desde mano/Campo en turno rival; **ningún jugador** destierra ese turno; puede bloquear nuestros efectos de Smiger/Tristaros/Citree. S01."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Side: tributar desde mano/Campo en turno rival; **ningún jugador** destierra ese turno; puede bloquear nuestros efectos de Smiger/Tristaros/Citree. S01.",
+        "explanation": "Side: tributar desde mano/Campo en turno rival; **ningún jugador** destierra ese turno; puede bloquear nuestros efectos de Smiger/Tristaros/Citree. S01."
+      },
+      "role": "Side: tributar desde mano/Campo en turno rival; **ningún jugador** destierra ese turno; puede bloquear nuestros efectos de Smiger/Tristaros/Citree. S01.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=11243&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:11411",
+      "cid": 11411,
+      "name": "Regaño Solemne",
+      "image": "./assets/editorial/20261117-folder-delivery-v37/images/677/11411.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/677/11411.png",
+      "slots": [
+        {
+          "section": "side",
+          "quantity": 1,
+          "card_id": 556
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Side: contra trampa de negación fuerte, exige **ninguna otra carta Colocada** por ti y pago de LP; problema si quieres Colocar Agrupamiento/Juicio. S04."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Side: contra trampa de negación fuerte, exige **ninguna otra carta Colocada** por ti y pago de LP; problema si quieres Colocar Agrupamiento/Juicio. S04.",
+        "explanation": "Side: contra trampa de negación fuerte, exige **ninguna otra carta Colocada** por ti y pago de LP; problema si quieres Colocar Agrupamiento/Juicio. S04."
+      },
+      "role": "Side: contra trampa de negación fuerte, exige **ninguna otra carta Colocada** por ti y pago de LP; problema si quieres Colocar Agrupamiento/Juicio. S04.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=11411&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:11765",
+      "cid": 11765,
+      "name": "Ciber Dragón del Infinito",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/11765.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/11765.jpg",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 546
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Rango 6 Máquina Xyz; se superpone sobre Nova, absorbe monstruo en Ataque y niega carta/efecto desacoplando. R19/C06; **bloqueado por Smiger de Campo**, permitido por bloqueo Máquina de Sulfador."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Rango 6 Máquina Xyz; se superpone sobre Nova, absorbe monstruo en Ataque y niega carta/efecto desacoplando. R19/C06; **bloqueado por Smiger de Campo**, permitido por bloqueo Máquina de Sulfador.",
+        "explanation": "Rango 6 Máquina Xyz; se superpone sobre Nova, absorbe monstruo en Ataque y niega carta/efecto desacoplando. R19/C06; **bloqueado por Smiger de Campo**, permitido por bloqueo Máquina de Sulfador."
+      },
+      "role": "Rango 6 Máquina Xyz; se superpone sobre Nova, absorbe monstruo en Ataque y niega carta/efecto desacoplando. R19/C06; **bloqueado por Smiger de Campo**, permitido por bloqueo Máquina de Sulfador.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=11765&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:11849",
+      "cid": 11849,
+      "name": "Arresto Erróneo",
+      "image": "./assets/editorial/20261117-folder-delivery-v37/images/677/11849.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/677/11849.png",
+      "slots": [
+        {
+          "section": "side",
+          "quantity": 2,
+          "card_id": 560
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Side: impide **a ambos** añadir Deck→mano salvo robando hasta final de tu próximo turno; niega tus búsquedas Inclusión, Imsety, Thystvern, Smiger. S03."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Side: impide **a ambos** añadir Deck→mano salvo robando hasta final de tu próximo turno; niega tus búsquedas Inclusión, Imsety, Thystvern, Smiger. S03.",
+        "explanation": "Side: impide **a ambos** añadir Deck→mano salvo robando hasta final de tu próximo turno; niega tus búsquedas Inclusión, Imsety, Thystvern, Smiger. S03."
+      },
+      "role": "Side: impide **a ambos** añadir Deck→mano salvo robando hasta final de tu próximo turno; niega tus búsquedas Inclusión, Imsety, Thystvern, Smiger. S03.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=11849&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:12157",
+      "cid": 12157,
+      "name": "Hagoita de Alta-Velociroid",
+      "image": "./assets/editorial/20261117-folder-delivery-v37/images/677/12157.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/677/12157.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 548
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Nivel 5 Máquina Sincronía; Citree2+Smiger3; efecto rápido se sacrifica y aumenta 1 Nivel de monstruos en Campo; **su auto-revivir exige Cantante Velociroid inexistente en Main**. R06; C01."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Nivel 5 Máquina Sincronía; Citree2+Smiger3; efecto rápido se sacrifica y aumenta 1 Nivel de monstruos en Campo; **su auto-revivir exige Cantante Velociroid inexistente en Main**. R06; C01.",
+        "explanation": "Nivel 5 Máquina Sincronía; Citree2+Smiger3; efecto rápido se sacrifica y aumenta 1 Nivel de monstruos en Campo; **su auto-revivir exige Cantante Velociroid inexistente en Main**. R06; C01."
+      },
+      "role": "Nivel 5 Máquina Sincronía; Citree2+Smiger3; efecto rápido se sacrifica y aumenta 1 Nivel de monstruos en Campo; **su auto-revivir exige Cantante Velociroid inexistente en Main**. R06; C01.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12157&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:12606",
+      "cid": 12606,
+      "name": "Cristron Citree",
+      "image": "./assets/editorial/20261117-folder-delivery-v37/images/677/12606.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/677/12606.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 526
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Nivel 2 Cantante; en Main/Battle rival revive **un no Cantante** del GY con efecto negado y hace Sincronía Máquina **solo con esos dos**, desterrándolos. R06; C01/C02/V01."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Nivel 2 Cantante; en Main/Battle rival revive **un no Cantante** del GY con efecto negado y hace Sincronía Máquina **solo con esos dos**, desterrándolos. R06; C01/C02/V01.",
+        "explanation": "Nivel 2 Cantante; en Main/Battle rival revive **un no Cantante** del GY con efecto negado y hace Sincronía Máquina **solo con esos dos**, desterrándolos. R06; C01/C02/V01."
+      },
+      "role": "Nivel 2 Cantante; en Main/Battle rival revive **un no Cantante** del GY con efecto negado y hace Sincronía Máquina **solo con esos dos**, desterrándolos. R06; C01/C02/V01.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12606&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:12608",
+      "cid": 12608,
+      "name": "Cristron Smiger",
+      "image": "./assets/editorial/20261117-folder-delivery-v37/images/677/12608.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/677/12608.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 523
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Nivel 3 no Cantante; destruye boca arriba propia y trae Cantante del Deck; **bloqueo a Sincronías Máquina**. GY destierro busca M/T Cristron, pero **solo 1 de sus efectos por turno**. R02/R03; C01/C02/C06 como coste/C07 como GY/V03."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Nivel 3 no Cantante; destruye boca arriba propia y trae Cantante del Deck; **bloqueo a Sincronías Máquina**. GY destierro busca M/T Cristron, pero **solo 1 de sus efectos por turno**. R02/R03; C01/C02/C06 como coste/C07 como GY/V03.",
+        "explanation": "Nivel 3 no Cantante; destruye boca arriba propia y trae Cantante del Deck; **bloqueo a Sincronías Máquina**. GY destierro busca M/T Cristron, pero **solo 1 de sus efectos por turno**. R02/R03; C01/C02/C06 como coste/C07 como GY/V03."
+      },
+      "role": "Nivel 3 no Cantante; destruye boca arriba propia y trae Cantante del Deck; **bloqueo a Sincronías Máquina**. GY destierro busca M/T Cristron, pero **solo 1 de sus efectos por turno**. R02/R03; C01/C02/C06 como coste/C07 como GY/V03.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12608&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:12609",
+      "cid": 12609,
+      "name": "Cristron Thystvern",
+      "image": "./assets/editorial/20261117-folder-delivery-v37/images/677/12609.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/677/12609.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 527
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Nivel 3 no Cantante; como Smiger desde Campo pero en GY destierra para **buscar monstruo Cristron**; solo uno de sus dos efectos por turno. R11; C02."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Nivel 3 no Cantante; como Smiger desde Campo pero en GY destierra para **buscar monstruo Cristron**; solo uno de sus dos efectos por turno. R11; C02.",
+        "explanation": "Nivel 3 no Cantante; como Smiger desde Campo pero en GY destierra para **buscar monstruo Cristron**; solo uno de sus dos efectos por turno. R11; C02."
+      },
+      "role": "Nivel 3 no Cantante; como Smiger desde Campo pero en GY destierra para **buscar monstruo Cristron**; solo uno de sus dos efectos por turno. R11; C02.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12609&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:12756",
+      "cid": 12756,
+      "name": "Cristron Azufafnir",
+      "image": "./assets/editorial/20261117-folder-delivery-v37/images/677/12756.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/677/12756.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 525
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Nivel 5 no Cantante; descarta otro Cristron para invocarse en DEF, después destruye carta propia; si se destruye en Campo puede traer Cristron del Deck en DEF. R12/R19; C06 con segundo Azufafnir en Deck, V01/V03."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Nivel 5 no Cantante; descarta otro Cristron para invocarse en DEF, después destruye carta propia; si se destruye en Campo puede traer Cristron del Deck en DEF. R12/R19; C06 con segundo Azufafnir en Deck, V01/V03.",
+        "explanation": "Nivel 5 no Cantante; descarta otro Cristron para invocarse en DEF, después destruye carta propia; si se destruye en Campo puede traer Cristron del Deck en DEF. R12/R19; C06 con segundo Azufafnir en Deck, V01/V03."
+      },
+      "role": "Nivel 5 no Cantante; descarta otro Cristron para invocarse en DEF, después destruye carta propia; si se destruye en Campo puede traer Cristron del Deck en DEF. R12/R19; C06 con segundo Azufafnir en Deck, V01/V03.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12756&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:12781",
+      "cid": 12781,
+      "name": "Cristron Quariongandrax",
+      "image": "./assets/editorial/20261117-folder-delivery-v37/images/677/12781.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/677/12781.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 543
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Nivel 9 **Máquina Sincronía**, **2+ Cantantes + exactamente 1 no Cantante**; al sincronizar destierra hasta número de materiales de monstruos rivales Campo/GY. R07/V01."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Nivel 9 **Máquina Sincronía**, **2+ Cantantes + exactamente 1 no Cantante**; al sincronizar destierra hasta número de materiales de monstruos rivales Campo/GY. R07/V01.",
+        "explanation": "Nivel 9 **Máquina Sincronía**, **2+ Cantantes + exactamente 1 no Cantante**; al sincronizar destierra hasta número de materiales de monstruos rivales Campo/GY. R07/V01."
+      },
+      "role": "Nivel 9 **Máquina Sincronía**, **2+ Cantantes + exactamente 1 no Cantante**; al sincronizar destierra hasta número de materiales de monstruos rivales Campo/GY. R07/V01.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12781&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:12950",
+      "cid": 12950,
+      "name": "Flor de Ceniza & Primavera Feliz",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/12950.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/12950.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 530
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Handtrap; impide un efecto que añada del Deck, invoque del Deck o mande del Deck al GY; proteger puntos críticos, no es extender Crystron. D09."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Handtrap; impide un efecto que añada del Deck, invoque del Deck o mande del Deck al GY; proteger puntos críticos, no es extender Crystron. D09.",
+        "explanation": "Handtrap; impide un efecto que añada del Deck, invoque del Deck o mande del Deck al GY; proteger puntos críticos, no es extender Crystron. D09."
+      },
+      "role": "Handtrap; impide un efecto que añada del Deck, invoque del Deck o mande del Deck al GY; proteger puntos críticos, no es extender Crystron. D09.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12950&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:13360",
+      "cid": 13360,
+      "name": "Destructor Samurái",
+      "image": "./assets/editorial/20261117-folder-delivery-v37/images/677/13360.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/677/13360.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 551
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Nivel 7 Máquina Sincronía, opción de batalla tras Citree2+Sulfador5; no confundir control de batalla con negación general. D05."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Nivel 7 Máquina Sincronía, opción de batalla tras Citree2+Sulfador5; no confundir control de batalla con negación general. D05.",
+        "explanation": "Nivel 7 Máquina Sincronía, opción de batalla tras Citree2+Sulfador5; no confundir control de batalla con negación general. D05."
+      },
+      "role": "Nivel 7 Máquina Sincronía, opción de batalla tras Citree2+Sulfador5; no confundir control de batalla con negación general. D05.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13360&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:13454",
+      "cid": 13454,
+      "name": "Fangodragón del Pantano",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/13454.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/13454.jpg",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 553
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Fusión exige **2 monstruos mismo Atributo y distinto Tipo**; opción Super Poly si rival aporta materiales; imposible tras bloqueo a Sincronías/Máquinas. R18; A08-I03."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Fusión exige **2 monstruos mismo Atributo y distinto Tipo**; opción Super Poly si rival aporta materiales; imposible tras bloqueo a Sincronías/Máquinas. R18; A08-I03.",
+        "explanation": "Fusión exige **2 monstruos mismo Atributo y distinto Tipo**; opción Super Poly si rival aporta materiales; imposible tras bloqueo a Sincronías/Máquinas. R18; A08-I03."
+      },
+      "role": "Fusión exige **2 monstruos mismo Atributo y distinto Tipo**; opción Super Poly si rival aporta materiales; imposible tras bloqueo a Sincronías/Máquinas. R18; A08-I03.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13454&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:13619",
+      "cid": 13619,
+      "name": "Llamado por la Tumba",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/13619.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/13619.jpg",
+      "slots": [
+        {
+          "section": "side",
+          "quantity": 1,
+          "card_id": 557
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Side: destierra monstruo en GY rival y niega su nombre hasta el final del próximo turno; proteger starter ante Ash en contexto legal. S02."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Side: destierra monstruo en GY rival y niega su nombre hasta el final del próximo turno; proteger starter ante Ash en contexto legal. S02.",
+        "explanation": "Side: destierra monstruo en GY rival y niega su nombre hasta el final del próximo turno; proteger starter ante Ash en contexto legal. S02."
+      },
+      "role": "Side: destierra monstruo en GY rival y niega su nombre hasta el final del próximo turno; proteger starter ante Ash en contexto legal. S02.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13619&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:13710",
+      "cid": 13710,
+      "name": "F.A. Coche Trucado del Amanecer",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/13710.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/13710.jpg",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 2,
+          "card_id": 541
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Nivel 7 **Máquina Sincronía** (1 Cantante+1 no Cantante), niega M/T bajando 2 Niveles; potencial Citree2+Sulfador5. **Ficha oficial consultada señalaba «Prohibida»; alerta puntual, sin auditoría global de lista.**"
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Nivel 7 **Máquina Sincronía** (1 Cantante+1 no Cantante), niega M/T bajando 2 Niveles; potencial Citree2+Sulfador5. **Ficha oficial consultada señalaba «Prohibida»; alerta puntual, sin auditoría global de lista.**",
+        "explanation": "Nivel 7 **Máquina Sincronía** (1 Cantante+1 no Cantante), niega M/T bajando 2 Niveles; potencial Citree2+Sulfador5. **Ficha oficial consultada señalaba «Prohibida»; alerta puntual, sin auditoría global de lista.**"
+      },
+      "role": "Nivel 7 **Máquina Sincronía** (1 Cantante+1 no Cantante), niega M/T bajando 2 Niveles; potencial Citree2+Sulfador5. **Ficha oficial consultada señalaba «Prohibida»; alerta puntual, sin auditoría global de lista.**",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13710&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:13826",
+      "cid": 13826,
+      "name": "Número 90: Señor Fotónico de Ojos Galácticos",
+      "image": "./assets/editorial/20261117-folder-delivery-v37/images/677/13826.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/677/13826.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 549
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Rango 8, 2 Nivel 8 Horus; niega efecto de monstruo desacoplando, pero con Horus como material **no lo destruye por no ser Galaxia/Galáctico**; sin Fotónico de material no obtiene inmunidad. R15; C04."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Rango 8, 2 Nivel 8 Horus; niega efecto de monstruo desacoplando, pero con Horus como material **no lo destruye por no ser Galaxia/Galáctico**; sin Fotónico de material no obtiene inmunidad. R15; C04.",
+        "explanation": "Rango 8, 2 Nivel 8 Horus; niega efecto de monstruo desacoplando, pero con Horus como material **no lo destruye por no ser Galaxia/Galáctico**; sin Fotónico de material no obtiene inmunidad. R15; C04."
+      },
+      "role": "Rango 8, 2 Nivel 8 Horus; niega efecto de monstruo desacoplando, pero con Horus como material **no lo destruye por no ser Galaxia/Galáctico**; sin Fotónico de material no obtiene inmunidad. R15; C04.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13826&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:15296",
+      "cid": 15296,
+      "name": "Talento de Tácticas Triples",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/15296.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/15296.jpg",
+      "slots": [
+        {
+          "section": "side",
+          "quantity": 1,
+          "card_id": 558
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Side: únicamente en Main Phase si rival activó efecto de monstruo **en tu Main Phase** ese turno; robo, control o mirar mano según condición. S02."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Side: únicamente en Main Phase si rival activó efecto de monstruo **en tu Main Phase** ese turno; robo, control o mirar mano según condición. S02.",
+        "explanation": "Side: únicamente en Main Phase si rival activó efecto de monstruo **en tu Main Phase** ese turno; robo, control o mirar mano según condición. S02."
+      },
+      "role": "Side: únicamente en Main Phase si rival activó efecto de monstruo **en tu Main Phase** ese turno; robo, control o mirar mano según condición. S02.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15296&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:15299",
+      "cid": 15299,
+      "name": "Gotas Prohibidas",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/15299.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/15299.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 538
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Negación/mitad de ATK de monstruos de efecto rivales mediante envío de otras cartas de mano/Campo; coste/ratio y tipos enviados importan. D08."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Negación/mitad de ATK de monstruos de efecto rivales mediante envío de otras cartas de mano/Campo; coste/ratio y tipos enviados importan. D08.",
+        "explanation": "Negación/mitad de ATK de monstruos de efecto rivales mediante envío de otras cartas de mano/Campo; coste/ratio y tipos enviados importan. D08."
+      },
+      "role": "Negación/mitad de ATK de monstruos de efecto rivales mediante envío de otras cartas de mano/Campo; coste/ratio y tipos enviados importan. D08.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15299&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:16850",
+      "cid": 16850,
+      "name": "El Vampiro Zombi",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/16850.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/16850.jpg",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 550
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Rango 8 Zombi Xyz, 2 Nivel 8; desacopla para mandar **4 cartas de cada Deck al GY** y si cae algún monstruo puede revivir uno de los enviados; incertidumbre del resultado. R16; C05."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Rango 8 Zombi Xyz, 2 Nivel 8; desacopla para mandar **4 cartas de cada Deck al GY** y si cae algún monstruo puede revivir uno de los enviados; incertidumbre del resultado. R16; C05.",
+        "explanation": "Rango 8 Zombi Xyz, 2 Nivel 8; desacopla para mandar **4 cartas de cada Deck al GY** y si cae algún monstruo puede revivir uno de los enviados; incertidumbre del resultado. R16; C05."
+      },
+      "role": "Rango 8 Zombi Xyz, 2 Nivel 8; desacopla para mandar **4 cartas de cada Deck al GY** y si cae algún monstruo puede revivir uno de los enviados; incertidumbre del resultado. R16; C05.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=16850&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:16868",
+      "cid": 16868,
+      "name": "Prohibida la Venta",
+      "image": "./assets/editorial/20261117-folder-delivery-v37/images/677/16868.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/677/16868.png",
+      "slots": [
+        {
+          "section": "side",
+          "quantity": 2,
+          "card_id": 559
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Side: declara nombre; rival no activa ese nombre por el turno; **tú no podrás activarlo el resto del duelo**. S03."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Side: declara nombre; rival no activa ese nombre por el turno; **tú no podrás activarlo el resto del duelo**. S03.",
+        "explanation": "Side: declara nombre; rival no activa ese nombre por el turno; **tú no podrás activarlo el resto del duelo**. S03."
+      },
+      "role": "Side: declara nombre; rival no activa ese nombre por el turno; **tú no podrás activarlo el resto del duelo**. S03.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=16868&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:17746",
+      "cid": 17746,
+      "name": "Garura, Alas de Vida Resonante",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/17746.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/17746.jpg",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 552
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Fusión exige **2 monstruos de mismo Tipo/Atributo y distintos nombres**; objetivo posible Súper Polimerización sin bloqueo previo; al ir GY puede robar. R17; A08-I03."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Fusión exige **2 monstruos de mismo Tipo/Atributo y distintos nombres**; objetivo posible Súper Polimerización sin bloqueo previo; al ir GY puede robar. R17; A08-I03.",
+        "explanation": "Fusión exige **2 monstruos de mismo Tipo/Atributo y distintos nombres**; objetivo posible Súper Polimerización sin bloqueo previo; al ir GY puede robar. R17; A08-I03."
+      },
+      "role": "Fusión exige **2 monstruos de mismo Tipo/Atributo y distintos nombres**; objetivo posible Súper Polimerización sin bloqueo previo; al ir GY puede robar. R17; A08-I03.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17746&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:19153",
+      "cid": 19153,
+      "name": "Amset, Gloria de Horus",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/19153.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/19153.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 528
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Nivel 8; manda de mano 2 cartas **incluyéndose** para buscar Sarcófago y opcionalmente robar 1; desde GY se invoca si controlas Sarcófago. R13/R14/R15; C04/C05/C07 (descarta Smiger)."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Nivel 8; manda de mano 2 cartas **incluyéndose** para buscar Sarcófago y opcionalmente robar 1; desde GY se invoca si controlas Sarcófago. R13/R14/R15; C04/C05/C07 (descarta Smiger).",
+        "explanation": "Nivel 8; manda de mano 2 cartas **incluyéndose** para buscar Sarcófago y opcionalmente robar 1; desde GY se invoca si controlas Sarcófago. R13/R14/R15; C04/C05/C07 (descarta Smiger)."
+      },
+      "role": "Nivel 8; manda de mano 2 cartas **incluyéndose** para buscar Sarcófago y opcionalmente robar 1; desde GY se invoca si controlas Sarcófago. R13/R14/R15; C04/C05/C07 (descarta Smiger).",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19153&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:19155",
+      "cid": 19155,
+      "name": "Hapi, Guía de Horus",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/19155.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/19155.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 529
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Nivel 8; reaparece de GY con Sarcófago; si carta propia deja Campo por efecto rival puede recuperar 2 cartas de GY/destierro, condicional. R14/R15; C04/C05."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Nivel 8; reaparece de GY con Sarcófago; si carta propia deja Campo por efecto rival puede recuperar 2 cartas de GY/destierro, condicional. R14/R15; C04/C05.",
+        "explanation": "Nivel 8; reaparece de GY con Sarcófago; si carta propia deja Campo por efecto rival puede recuperar 2 cartas de GY/destierro, condicional. R14/R15; C04/C05."
+      },
+      "role": "Nivel 8; reaparece de GY con Sarcófago; si carta propia deja Campo por efecto rival puede recuperar 2 cartas de GY/destierro, condicional. R14/R15; C04/C05.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19155&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:19188",
+      "cid": 19188,
+      "name": "S:P Pequeña Caballera",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/19188.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/19188.jpg",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 544
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Link-2 de 2 Efectos; uso táctico de destierro, pero **no** se puede invocar tras bloqueo Smiger/Sulfador durante ese turno. D03."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Link-2 de 2 Efectos; uso táctico de destierro, pero **no** se puede invocar tras bloqueo Smiger/Sulfador durante ese turno. D03.",
+        "explanation": "Link-2 de 2 Efectos; uso táctico de destierro, pero **no** se puede invocar tras bloqueo Smiger/Sulfador durante ese turno. D03."
+      },
+      "role": "Link-2 de 2 Efectos; uso táctico de destierro, pero **no** se puede invocar tras bloqueo Smiger/Sulfador durante ese turno. D03.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19188&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:19200",
+      "cid": 19200,
+      "name": "Sarcófago del Rey",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/19200.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/19200.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 536
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Mágica Continua; envía carta de mano al GY para mandar un Horus del Deck al GY hasta 4 usos/turno, protege y habilita revivir Amset/Hapi. R14; C04/C05."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Mágica Continua; envía carta de mano al GY para mandar un Horus del Deck al GY hasta 4 usos/turno, protege y habilita revivir Amset/Hapi. R14; C04/C05.",
+        "explanation": "Mágica Continua; envía carta de mano al GY para mandar un Horus del Deck al GY hasta 4 usos/turno, protege y habilita revivir Amset/Hapi. R14; C04/C05."
+      },
+      "role": "Mágica Continua; envía carta de mano al GY para mandar un Horus del Deck al GY hasta 4 usos/turno, protege y habilita revivir Amset/Hapi. R14; C04/C05.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19200&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:20206",
+      "cid": 20206,
+      "name": "Purulia Multivadora",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/20206.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20206.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 533
+        },
+        {
+          "section": "side",
+          "quantity": 1,
+          "card_id": 534
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Handtrap para determinadas invocaciones del adversario desde mano; **2 Main + 1 Side** sin duplicar el total. D09/S03."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Handtrap para determinadas invocaciones del adversario desde mano; **2 Main + 1 Side** sin duplicar el total. D09/S03.",
+        "explanation": "Handtrap para determinadas invocaciones del adversario desde mano; **2 Main + 1 Side** sin duplicar el total. D09/S03."
+      },
+      "role": "Handtrap para determinadas invocaciones del adversario desde mano; **2 Main + 1 Side** sin duplicar el total. D09/S03.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20206&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:20500",
+      "cid": 20500,
+      "name": "Fuwalos Multivadora",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/20500.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20500.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 532
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Handtrap de robo condicionada por especiales del adversario desde Deck/Extra; sus requisitos de campo/turno se comprueban antes de usar. D09."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Handtrap de robo condicionada por especiales del adversario desde Deck/Extra; sus requisitos de campo/turno se comprueban antes de usar. D09.",
+        "explanation": "Handtrap de robo condicionada por especiales del adversario desde Deck/Extra; sus requisitos de campo/turno se comprueban antes de usar. D09."
+      },
+      "role": "Handtrap de robo condicionada por especiales del adversario desde Deck/Extra; sus requisitos de campo/turno se comprueban antes de usar. D09.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20500&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:20758",
+      "cid": 20758,
+      "name": "Cristron Tristaros",
+      "image": "./assets/editorial/20261117-folder-delivery-v37/images/677/20758.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/677/20758.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 524
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Nivel 2 Cantante; al responder a activación rival trae Cristron del Deck y hace Sincronía Máquina **incluyéndolo**; GY destierro destruye Sincronía propia para traer 2 Cristron del Deck; bloqueo a Máquinas. R07/R08; C03/V01."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Nivel 2 Cantante; al responder a activación rival trae Cristron del Deck y hace Sincronía Máquina **incluyéndolo**; GY destierro destruye Sincronía propia para traer 2 Cristron del Deck; bloqueo a Máquinas. R07/R08; C03/V01.",
+        "explanation": "Nivel 2 Cantante; al responder a activación rival trae Cristron del Deck y hace Sincronía Máquina **incluyéndolo**; GY destierro destruye Sincronía propia para traer 2 Cristron del Deck; bloqueo a Máquinas. R07/R08; C03/V01."
+      },
+      "role": "Nivel 2 Cantante; al responder a activación rival trae Cristron del Deck y hace Sincronía Máquina **incluyéndolo**; GY destierro destruye Sincronía propia para traer 2 Cristron del Deck; bloqueo a Máquinas. R07/R08; C03/V01.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20758&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:20759",
+      "cid": 20759,
+      "name": "Cristron Sulfador",
+      "image": "./assets/editorial/20261117-folder-delivery-v37/images/677/20759.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/677/20759.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 522
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Nivel 5 no Cantante; destruye una carta Cristron propia para invocarse desde mano/GY y después manda hasta 2 Cristron distintos del Deck al GY; **bloqueo a Máquinas** Extra. R04/R07/R19; C02/C06/C07/V01."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Nivel 5 no Cantante; destruye una carta Cristron propia para invocarse desde mano/GY y después manda hasta 2 Cristron distintos del Deck al GY; **bloqueo a Máquinas** Extra. R04/R07/R19; C02/C06/C07/V01.",
+        "explanation": "Nivel 5 no Cantante; destruye una carta Cristron propia para invocarse desde mano/GY y después manda hasta 2 Cristron distintos del Deck al GY; **bloqueo a Máquinas** Extra. R04/R07/R19; C02/C06/C07/V01."
+      },
+      "role": "Nivel 5 no Cantante; destruye una carta Cristron propia para invocarse desde mano/GY y después manda hasta 2 Cristron distintos del Deck al GY; **bloqueo a Máquinas** Extra. R04/R07/R19; C02/C06/C07/V01.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20759&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:20778",
+      "cid": 20778,
+      "name": "Cristron Elesqueletus",
+      "image": "./assets/editorial/20261117-folder-delivery-v37/images/677/20778.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/677/20778.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 2,
+          "card_id": 542
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Nivel 7 **Máquina Sincronía**, recupera Cristron GY/destierro al sincronizar; destruido después de ser sincronizado revive Cristron. R09/R10; C02/C03."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Nivel 7 **Máquina Sincronía**, recupera Cristron GY/destierro al sincronizar; destruido después de ser sincronizado revive Cristron. R09/R10; C02/C03.",
+        "explanation": "Nivel 7 **Máquina Sincronía**, recupera Cristron GY/destierro al sincronizar; destruido después de ser sincronizado revive Cristron. R09/R10; C02/C03."
+      },
+      "role": "Nivel 7 **Máquina Sincronía**, recupera Cristron GY/destierro al sincronizar; destruido después de ser sincronizado revive Cristron. R09/R10; C02/C03.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20778&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:20787",
+      "cid": 20787,
+      "name": "Caballero Mecánico",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/20787.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20787.jpg",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 545
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "**Link-1 Clockwork Knight**, Máquina no Link ATK original ≤1000; buscaría «Noche Mecánica» que **NO figura** en lista; puede tributar Máquina para revivir otra Máquina pequeña del GY. R20."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "**Link-1 Clockwork Knight**, Máquina no Link ATK original ≤1000; buscaría «Noche Mecánica» que **NO figura** en lista; puede tributar Máquina para revivir otra Máquina pequeña del GY. R20.",
+        "explanation": "**Link-1 Clockwork Knight**, Máquina no Link ATK original ≤1000; buscaría «Noche Mecánica» que **NO figura** en lista; puede tributar Máquina para revivir otra Máquina pequeña del GY. R20."
+      },
+      "role": "**Link-1 Clockwork Knight**, Máquina no Link ATK original ≤1000; buscaría «Noche Mecánica» que **NO figura** en lista; puede tributar Máquina para revivir otra Máquina pequeña del GY. R20.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20787&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:20798",
+      "cid": 20798,
+      "name": "Inclusión Cristron",
+      "image": "./assets/editorial/20261117-folder-delivery-v37/images/677/20798.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/677/20798.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 535
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Mágica Continua: al activarla busca otra carta Cristron, protege primera destrucción por batalla de cada Cristron; desde GY se destierra para revivir Cristron. R01/R04/R05; C02/C06/C07/V04."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Mágica Continua: al activarla busca otra carta Cristron, protege primera destrucción por batalla de cada Cristron; desde GY se destierra para revivir Cristron. R01/R04/R05; C02/C06/C07/V04.",
+        "explanation": "Mágica Continua: al activarla busca otra carta Cristron, protege primera destrucción por batalla de cada Cristron; desde GY se destierra para revivir Cristron. R01/R04/R05; C02/C06/C07/V04."
+      },
+      "role": "Mágica Continua: al activarla busca otra carta Cristron, protege primera destrucción por batalla de cada Cristron; desde GY se destierra para revivir Cristron. R01/R04/R05; C02/C06/C07/V04.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20798&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:CARD:20817",
+      "cid": 20817,
+      "name": "Agrupamiento Cristron",
+      "image": "./assets/editorial/20261117-folder-delivery-v37/images/677/20817.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/677/20817.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 540
+        }
+      ],
+      "fields": [
+        {
+          "title": "Qué hace en este deck",
+          "text": "Trampa Continua: protege Cristron de destierro por efectos rivales; recicla Cristron de GY/destierro al Deck para destruir 1–2 cartas boca arriba seleccionadas. R21; D06."
+        }
+      ],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Trampa Continua: protege Cristron de destierro por efectos rivales; recicla Cristron de GY/destierro al Deck para destruir 1–2 cartas boca arriba seleccionadas. R21; D06.",
+        "explanation": "Trampa Continua: protege Cristron de destierro por efectos rivales; recicla Cristron de GY/destierro al Deck para destruir 1–2 cartas boca arriba seleccionadas. R21; D06."
+      },
+      "role": "Trampa Continua: protege Cristron de destierro por efectos rivales; recicla Cristron de GY/destierro al Deck para destruir 1–2 cartas boca arriba seleccionadas. R21; D06.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20817&ope=2&request_locale=es"
+      ]
+    }
+  ],
+  "skills": [],
+  "profile": {
+    "Arquetipo": "Cristron / Horus — estudio individual A01–A10, profundización v3 (17-11-2026)",
+    "Tipo de estrategia": "Consultar el plan de juego y las condiciones de cada línea.",
+    "Estilo de juego": "Dictamen: híbrido de control reactivo por Sincronía Máquina (Cristron) y presencia autónoma de Nivel 8 / Xyz (Horus); las distintas cartas de interacción/respuestas no convierten por sí solas todas las manos en un tablero. Objetivo 1: sobrevivir e interrumpir desde Tristaros/Citree, obtener ventaja con Elesqueletus y convertir recursos en presión; objetivo 2: desarrollar Amset + Hapi a Número 90 para negar efecto de monstruo o a Vampiro Zombi para moler y extender; objetivo 3: llegar a Nova → Infinito con dos Nivel 5 Máquina (C06) para negar la activación de cartas/efectos; objetivo 4: ganar tempo con Gotas Prohibidas / Súper Polimerización antes de aplicar bloqueos del Extra. Son objetivos tácticos, no victorias garantizadas.",
+    "Cómo se juega": "Dictamen: híbrido de control reactivo por Sincronía Máquina (Cristron) y presencia autónoma de Nivel 8 / Xyz (Horus); las distintas cartas de interacción/respuestas no convierten por sí solas todas las manos en un tablero. Objetivo 1: sobrevivir e interrumpir desde Tristaros/Citree, obtener ventaja con Elesqueletus y convertir recursos en presión; objetivo 2: desarrollar Amset + Hapi a Número 90 para negar efecto de monstruo o a Vampiro Zombi para moler y extender; objetivo 3: llegar a Nova → Infinito con dos Nivel 5 Máquina (C06) para negar la activación de cartas/efectos; objetivo 4: ganar tempo con Gotas Prohibidas / Súper Polimerización antes de aplicar bloqueos del Extra. Son objetivos tácticos, no victorias garantizadas.\n\nConflictos estructurales reales: (a) Smiger/Thystvern en campo restringen el resto del turno a Sincronías Máquina si usan su efecto de destruir; (b) Sulfador al invocarse por su efecto propio restringe a Máquinas del Extra por el resto del turno; (c) tras cualquiera de esas restricciones, S:P, Número 90, Vampiro Zombi, Garura y Fangodragón pueden quedar inaccesibles ese turno según el caso; (d) la segunda habilidad de Hagoita exige un Cantante «Velociroid» que esta lista no lleva. No declarar «puedo sacar cualquier Extra».\n\nFortalezas: dos motores que pueden trabajar en turnos distintos, recuperación de Cristron mediante Inclusión/Elesqueletus, descarte Horus que alimenta Cementerio, acceso alternativo a Infinito sin Normal (C06), sinergia Amset→Smiger de Cementerio (C07), salidas Máquina mediante las restricciones y cartas disruptivas genéricas. Debilidades: dependencia de Normal para algunos starters, escasez de Cantantes frente a 15 Extra, gastar Smiger en Campo impide usar su búsqueda de Cementerio ese mismo turno, C06 consume otra copia de Azufafnir del Deck y el Side puede bloquear nuestras propias búsquedas o destierros."
+  },
+  "summary": "",
+  "engine_maps": [],
+  "routes": [
+    {
+      "id": "677:A09:C01",
+      "name": "C01 — Smiger solo: preparar Hagoita en el turno rival",
+      "title": "C01 — Smiger solo: preparar Hagoita en el turno rival",
+      "family": "Desarrollo de la jugada",
+      "purpose": "convertir una sola Normal en una Sincronía Máquina Nivel 5 con uso defensivo, conservando las demás cartas de la mano. Dificultad: básica; starter: Smiger ×1; recurso: Normal Summon; turno: propio para preparar, adversario para sincronizar.",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [],
+      "result": "Campo final verificable bajo esos supuestos: Hagoita ×1; Citree y Smiger desterrados como materiales por el efecto de Citree; otros recursos de mano desconocidos y no contados. Hagoita no es una negación universal: su Efecto Rápido tributa a sí misma para aumentar Nivel en Campo; su autorresurrección requiere un Cantante «Velociroid» ausente de esta lista.\n- Puntos de fallo/ramas: si el rival niega Smiger antes de resolver, no aparece Citree; si destierra Smiger del GY antes de Citree, falta objetivo; si evita la Sincronía al resolver Citree, no afirmar tablero final. R01/R02/R06; RGL01/03/07.",
+      "opening": "- Objetivo: convertir una sola Normal en una Sincronía Máquina Nivel 5 con uso defensivo, conservando las demás cartas de la mano. Dificultad: básica; starter: Smiger ×1; recurso: Normal Summon; turno: propio para preparar, adversario para sincronizar.\n- Estado inicial exacto: nuestro Campo y Cementerio vacíos; Smiger en mano, Citree en Deck, Hagoita en Extra; sin restricciones previas ni efectos rivales.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "En tu Main Phase, Invoca de Modo Normal Smiger (Nivel 3, no Cantante).",
+          "detail": "En tu Main Phase, Invoca de Modo Normal Smiger (Nivel 3, no Cantante).",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Activa el efecto de Smiger en Campo, seleccionándolo a él mismo como carta boca arriba propia. Al resolver, destruye a Smiger (queda en GY) e Invoca de Modo Especial Citree (Cantante Nivel 2) desde Deck. Restricción: por el resto de tu turno solo Sincronías Máquina desde Extra. No puedes desterrar ahora ese Smiger para buscar una M/T, porque Smiger permite solo uno de sus efectos por turno.",
+          "detail": "Activa el efecto de Smiger en Campo, seleccionándolo a él mismo como carta boca arriba propia. Al resolver, destruye a Smiger (queda en GY) e Invoca de Modo Especial Citree (Cantante Nivel 2) desde Deck. Restricción: por el resto de tu turno solo Sincronías Máquina desde Extra. No puedes desterrar ahora ese Smiger para buscar una M/T, porque Smiger permite solo uno de sus efectos por turno.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "Termina tu turno con Citree en Campo, Smiger en GY y Hagoita todavía en Extra. No declares Hagoita ya Invocada: Citree espera turno adversario.",
+          "detail": "Termina tu turno con Citree en Campo, Smiger en GY y Hagoita todavía en Extra. No declares Hagoita ya Invocada: Citree espera turno adversario.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Durante Main Phase o Battle Phase del rival, activa Efecto Rápido de Citree, seleccionando Smiger no Cantante de tu GY. Si se resuelve, Invoca a Smiger con efectos negados y, inmediatamente, realiza Sincronía usando solo Citree (2) + Smiger (3) → Hagoita de Alta-Velociroid (Nivel 5, Máquina).\n- Campo final verificable bajo esos supuestos: Hagoita ×1; Citree y Smiger desterrados como materiales por el efecto de Citree; otros recursos de mano desconocidos y no contados. Hagoita no es una negación universal: su Efecto Rápido tributa a sí misma para aumentar Nivel en Campo; su autorresurrección requiere un Cantante «Velociroid» ausente de esta lista.\n- Puntos de fallo/ramas: si el rival niega Smiger antes de resolver, no aparece Citree; si destierra Smiger del GY antes de Citree, falta objetivo; si evita la Sincronía al resolver Citree, no afirmar tablero final. R01/R02/R06; RGL01/03/07.",
+          "detail": "Durante Main Phase o Battle Phase del rival, activa Efecto Rápido de Citree, seleccionando Smiger no Cantante de tu GY. Si se resuelve, Invoca a Smiger con efectos negados y, inmediatamente, realiza Sincronía usando solo Citree (2) + Smiger (3) → Hagoita de Alta-Velociroid (Nivel 5, Máquina).\n- Campo final verificable bajo esos supuestos: Hagoita ×1; Citree y Smiger desterrados como materiales por el efecto de Citree; otros recursos de mano desconocidos y no contados. Hagoita no es una negación universal: su Efecto Rápido tributa a sí misma para aumentar Nivel en Campo; su autorresurrección requiere un Cantante «Velociroid» ausente de esta lista.\n- Puntos de fallo/ramas: si el rival niega Smiger antes de resolver, no aparece Citree; si destierra Smiger del GY antes de Citree, falta objetivo; si evita la Sincronía al resolver Citree, no afirmar tablero final. R01/R02/R06; RGL01/03/07.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "\n- **Objetivo:** convertir una sola Normal en una Sincronía Máquina Nivel 5 con uso defensivo, conservando las demás cartas de la mano. **Dificultad:** básica; **starter:** Smiger ×1; **recurso:** Normal Summon; **turno:** propio para preparar, adversario para sincronizar.\n- **Estado inicial exacto:** nuestro Campo y Cementerio vacíos; Smiger en mano, Citree en Deck, Hagoita en Extra; sin restricciones previas ni efectos rivales.\n1. En tu Main Phase, **Invoca de Modo Normal Smiger** (Nivel 3, no Cantante).\n2. Activa **el efecto de Smiger en Campo**, seleccionándolo **a él mismo** como carta boca arriba propia. Al resolver, **destruye a Smiger** (queda en GY) e **Invoca de Modo Especial Citree** (Cantante Nivel 2) desde Deck. **Restricción:** por el resto de tu turno solo Sincronías Máquina desde Extra. **No** puedes desterrar ahora ese Smiger para buscar una M/T, porque Smiger permite solo **uno** de sus efectos por turno.\n3. Termina tu turno con **Citree en Campo**, Smiger en GY y Hagoita todavía en Extra. No declares Hagoita ya Invocada: **Citree espera turno adversario**.\n4. Durante Main Phase o Battle Phase del rival, activa **Efecto Rápido de Citree**, seleccionando **Smiger no Cantante de tu GY**. Si se resuelve, Invoca a Smiger con efectos negados y, **inmediatamente**, realiza Sincronía usando **solo Citree (2) + Smiger (3)** → **Hagoita de Alta-Velociroid (Nivel 5, Máquina)**.\n- **Campo final verificable bajo esos supuestos:** Hagoita ×1; Citree y Smiger **desterrados** como materiales por el efecto de Citree; otros recursos de mano desconocidos y no contados. Hagoita **no es una negación universal**: su Efecto Rápido tributa a sí misma para aumentar Nivel en Campo; su autorresurrección requiere un Cantante «Velociroid» ausente de esta lista.\n- **Puntos de fallo/ramas:** si el rival niega Smiger antes de resolver, no aparece Citree; si destierra Smiger del GY antes de Citree, falta objetivo; si evita la Sincronía al resolver Citree, no afirmar tablero final. **R01/R02/R06; RGL01/03/07.**\n\n",
+      "initial_details": "- Objetivo: convertir una sola Normal en una Sincronía Máquina Nivel 5 con uso defensivo, conservando las demás cartas de la mano. Dificultad: básica; starter: Smiger ×1; recurso: Normal Summon; turno: propio para preparar, adversario para sincronizar.\n- Estado inicial exacto: nuestro Campo y Cementerio vacíos; Smiger en mano, Citree en Deck, Hagoita en Extra; sin restricciones previas ni efectos rivales.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": []
+    },
+    {
+      "id": "677:A09:C02",
+      "name": "C02 — Inclusión + Sulfador: Elesqueletus y recuperación",
+      "title": "C02 — Inclusión + Sulfador: Elesqueletus y recuperación",
+      "family": "Desarrollo de la jugada",
+      "purpose": "una Sincronía de Nivel 7 con recuperación concreta de Inclusión y Smiger en Campo. Dificultad: media; starter mínimo: Inclusión Cristron ×1 + Sulfador ×1 en mano; Normal disponible. No requiere cartas imaginarias en el Extra.",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [
+        {
+          "cid": 20798,
+          "name": "Inclusión Cristron",
+          "image": "./assets/editorial/20261117-folder-delivery-v37/images/677/20798.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/677/20798.png",
+          "label": "Carta mencionada en el paso"
+        }
+      ],
+      "result": "Campo final con la ruta sin interrupciones: Elesqueletus ×1 + Smiger ×1; mano incluye Inclusión recuperada; GY contiene Citree, Sulfador, Tristaros y Thystvern; Inclusión ya no está desterrada; Normal agotada. Este es un tablero de recursos, no una negación universal ni OTK garantizado.\n- Variantes/fallos: si Ash niega la búsqueda de Inclusión, no aparece el Smiger asumido; si Sulfador no puede destruir la Inclusión, no se habilita su invocación; si Tristaros o Thystvern ya no están en Deck, ajusta objetivos en vez de afirmar envío exacto. R01/R02/R04/R05/R08/R10/R11; RGL01/04/08.",
+      "opening": "- Objetivo: una Sincronía de Nivel 7 con recuperación concreta de Inclusión y Smiger en Campo. Dificultad: media; starter mínimo: Inclusión Cristron ×1 + Sulfador ×1 en mano; Normal disponible. No requiere cartas imaginarias en el Extra.\n- Estado inicial: Campo/GY vacíos; en Deck hay Smiger, Citree, Tristaros y Thystvern; Extra contiene Elesqueletus; no rival interviene.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Activa Inclusión Cristron (Mágica Continua). En su activación busca Smiger de Deck a mano. La carta permanece boca arriba en Campo.",
+          "detail": "Activa Inclusión Cristron (Mágica Continua). En su activación busca Smiger de Deck a mano. La carta permanece boca arriba en Campo.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Normal Summon Smiger (3). Activa su efecto apuntando a sí mismo; destrúyelo → GY; Invoca Citree (2) del Deck. Queda activo bloqueo de Extra solo Sincronía Máquina por resto del turno.",
+          "detail": "Normal Summon Smiger (3). Activa su efecto apuntando a sí mismo; destrúyelo → GY; Invoca Citree (2) del Deck. Queda activo bloqueo de Extra solo Sincronía Máquina por resto del turno.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "Activa el efecto propio de Sulfador desde mano, seleccionando la Inclusión Cristron boca arriba que controlas. Destruye Inclusión → GY e Invoca Sulfador (5); su efecto de invocación manda desde Deck Tristaros (2) y Thystvern (3) al GY (nombres distintos). Sulfador establece bloqueo a Máquinas desde Extra: sigue prevaleciendo el de Smiger, más restrictivo.",
+          "detail": "Activa el efecto propio de Sulfador desde mano, seleccionando la Inclusión Cristron boca arriba que controlas. Destruye Inclusión → GY e Invoca Sulfador (5); su efecto de invocación manda desde Deck Tristaros (2) y Thystvern (3) al GY (nombres distintos). Sulfador establece bloqueo a Máquinas desde Extra: sigue prevaleciendo el de Smiger, más restrictivo.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Destierra Inclusión del GY para activar su efecto y seleccionar el Smiger de tu GY; Invoca Smiger (3). Inclusión queda desterrada temporalmente.",
+          "detail": "Destierra Inclusión del GY para activar su efecto y seleccionar el Smiger de tu GY; Invoca Smiger (3). Inclusión queda desterrada temporalmente.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 5,
+          "action": "Sincroniza Citree Cantante (2) + Sulfador no Cantante (5) → Elesqueletus (7, Máquina Sincronía). Citree/Sulfador van al GY como materiales de una Sincronía regular de tu turno; no se aplica aquí el destierro del efecto de Citree, porque no lo usamos.",
+          "detail": "Sincroniza Citree Cantante (2) + Sulfador no Cantante (5) → Elesqueletus (7, Máquina Sincronía). Citree/Sulfador van al GY como materiales de una Sincronía regular de tu turno; no se aplica aquí el destierro del efecto de Citree, porque no lo usamos.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 6,
+          "action": "Al ser Invocada por Sincronía, Elesqueletus recupera una carta Cristron de tu GY/destierro: selecciona Inclusión desterrada y añádela a mano. No intentes activarla de nuevo en este turno; Inclusión solo permite una activación por turno.\n- Campo final con la ruta sin interrupciones: Elesqueletus ×1 + Smiger ×1; mano incluye Inclusión recuperada; GY contiene Citree, Sulfador, Tristaros y Thystvern; Inclusión ya no está desterrada; Normal agotada. Este es un tablero de recursos, no una negación universal ni OTK garantizado.\n- Variantes/fallos: si Ash niega la búsqueda de Inclusión, no aparece el Smiger asumido; si Sulfador no puede destruir la Inclusión, no se habilita su invocación; si Tristaros o Thystvern ya no están en Deck, ajusta objetivos en vez de afirmar envío exacto. R01/R02/R04/R05/R08/R10/R11; RGL01/04/08.",
+          "detail": "Al ser Invocada por Sincronía, Elesqueletus recupera una carta Cristron de tu GY/destierro: selecciona Inclusión desterrada y añádela a mano. No intentes activarla de nuevo en este turno; Inclusión solo permite una activación por turno.\n- Campo final con la ruta sin interrupciones: Elesqueletus ×1 + Smiger ×1; mano incluye Inclusión recuperada; GY contiene Citree, Sulfador, Tristaros y Thystvern; Inclusión ya no está desterrada; Normal agotada. Este es un tablero de recursos, no una negación universal ni OTK garantizado.\n- Variantes/fallos: si Ash niega la búsqueda de Inclusión, no aparece el Smiger asumido; si Sulfador no puede destruir la Inclusión, no se habilita su invocación; si Tristaros o Thystvern ya no están en Deck, ajusta objetivos en vez de afirmar envío exacto. R01/R02/R04/R05/R08/R10/R11; RGL01/04/08.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "\n- **Objetivo:** una Sincronía de Nivel 7 con recuperación concreta de Inclusión y Smiger en Campo. **Dificultad:** media; **starter mínimo:** Inclusión Cristron ×1 + Sulfador ×1 en mano; **Normal disponible**. **No** requiere cartas imaginarias en el Extra.\n- **Estado inicial:** Campo/GY vacíos; en Deck hay Smiger, Citree, Tristaros y Thystvern; Extra contiene Elesqueletus; no rival interviene.\n1. **Activa Inclusión Cristron** (Mágica Continua). En su activación **busca Smiger** de Deck a mano. La carta permanece boca arriba en Campo.\n2. **Normal Summon Smiger (3)**. Activa su efecto apuntando **a sí mismo**; destrúyelo → GY; **Invoca Citree (2)** del Deck. Queda activo bloqueo de Extra **solo Sincronía Máquina** por resto del turno.\n3. Activa el efecto propio de **Sulfador desde mano**, seleccionando la **Inclusión Cristron** boca arriba que controlas. Destruye Inclusión → GY e **Invoca Sulfador (5)**; su efecto de invocación manda desde Deck **Tristaros (2)** y **Thystvern (3)** al GY (nombres distintos). Sulfador establece bloqueo a **Máquinas** desde Extra: **sigue prevaleciendo** el de Smiger, más restrictivo.\n4. **Destierra Inclusión del GY** para activar su efecto y seleccionar el **Smiger** de tu GY; **Invoca Smiger (3)**. Inclusión queda desterrada temporalmente.\n5. **Sincroniza Citree Cantante (2) + Sulfador no Cantante (5)** → **Elesqueletus (7, Máquina Sincronía)**. Citree/Sulfador van al GY como materiales de una Sincronía regular de tu turno; **no** se aplica aquí el destierro del efecto de Citree, porque no lo usamos.\n6. Al ser Invocada por Sincronía, **Elesqueletus recupera una carta Cristron** de tu GY/destierro: selecciona **Inclusión desterrada** y añádela a mano. **No** intentes activarla de nuevo en este turno; Inclusión solo permite una activación por turno.\n- **Campo final con la ruta sin interrupciones:** Elesqueletus ×1 + Smiger ×1; mano incluye Inclusión recuperada; GY contiene Citree, Sulfador, Tristaros y Thystvern; Inclusión ya **no** está desterrada; Normal agotada. Este es un tablero de recursos, **no** una negación universal ni OTK garantizado.\n- **Variantes/fallos:** si Ash niega la búsqueda de Inclusión, no aparece el Smiger asumido; si Sulfador no puede destruir la Inclusión, no se habilita su invocación; si Tristaros o Thystvern ya no están en Deck, ajusta objetivos en vez de afirmar envío exacto. **R01/R02/R04/R05/R08/R10/R11; RGL01/04/08.**\n\n",
+      "initial_details": "- Objetivo: una Sincronía de Nivel 7 con recuperación concreta de Inclusión y Smiger en Campo. Dificultad: media; starter mínimo: Inclusión Cristron ×1 + Sulfador ×1 en mano; Normal disponible. No requiere cartas imaginarias en el Extra.\n- Estado inicial: Campo/GY vacíos; en Deck hay Smiger, Citree, Tristaros y Thystvern; Extra contiene Elesqueletus; no rival interviene.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": []
+    },
+    {
+      "id": "677:A09:C03",
+      "name": "C03 — Tristaros solo: Sincronía reactiva a una activación rival",
+      "title": "C03 — Tristaros solo: Sincronía reactiva a una activación rival",
+      "family": "Desarrollo de la jugada",
+      "purpose": "poner Elesqueletus mediante la cadena del oponente sin gastar un segundo starter de mano. Dificultad: media por ventanas; starter: Tristaros ×1.",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [],
+      "result": "Final condicional: Elesqueletus en Campo; Tristaros y Sulfador pasaron al GY como materiales normales, salvo otro efecto; una carta Cristron elegible puede regresar a mano tras la cadena posterior. No se cuenta automáticamente el envío de dos Cristron de Sulfador en el mismo eslabón: requiere revisar la activación real y la ventana del efecto.\n- Fallo: sin activación rival no hay Efecto Rápido de Tristaros; si se retira antes de responder, la ruta desaparece; si el oponente controla una interrupción, la cadena cambia. R07/R10; RGL05/08/15.",
+      "opening": "- Objetivo: poner Elesqueletus mediante la cadena del oponente sin gastar un segundo starter de mano. Dificultad: media por ventanas; starter: Tristaros ×1.\n- Estado inicial: tu Campo/GY vacíos, Tristaros en mano, Sulfador en Deck, Elesqueletus disponible en Extra; sin efecto de bloqueo previo.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "En tu turno Normal Summon Tristaros (Nivel 2, Cantante). Concluye turno; Tristaros debe sobrevivir en Campo.",
+          "detail": "En tu turno Normal Summon Tristaros (Nivel 2, Cantante). Concluye turno; Tristaros debe sobrevivir en Campo.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "En el turno rival, cuando el oponente activa una carta o efecto, responde en la cadena con el Efecto Rápido de Tristaros.",
+          "detail": "En el turno rival, cuando el oponente activa una carta o efecto, responde en la cadena con el Efecto Rápido de Tristaros.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "Si resuelve, Invoca Sulfador (Nivel 5) desde Deck e inmediatamente Sincroniza Tristaros (2) + Sulfador (5) → Elesqueletus (7). La Sincronía incluye al monstruo traído por Tristaros, como exige su texto. El efecto rival inicial todavía se resuelve en su orden de cadena; no lo declares negado por Elesqueletus.",
+          "detail": "Si resuelve, Invoca Sulfador (Nivel 5) desde Deck e inmediatamente Sincroniza Tristaros (2) + Sulfador (5) → Elesqueletus (7). La Sincronía incluye al monstruo traído por Tristaros, como exige su texto. El efecto rival inicial todavía se resuelve en su orden de cadena; no lo declares negado por Elesqueletus.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Tras resolverse íntegramente esa cadena, si Elesqueletus permanece y su efecto puede activarse, abre la cadena correspondiente para recuperar una carta Cristron del GY/destierro (por ejemplo, Tristaros que acaba de ser material), de acuerdo con los disparadores legales.\n- Final condicional: Elesqueletus en Campo; Tristaros y Sulfador pasaron al GY como materiales normales, salvo otro efecto; una carta Cristron elegible puede regresar a mano tras la cadena posterior. No se cuenta automáticamente el envío de dos Cristron de Sulfador en el mismo eslabón: requiere revisar la activación real y la ventana del efecto.\n- Fallo: sin activación rival no hay Efecto Rápido de Tristaros; si se retira antes de responder, la ruta desaparece; si el oponente controla una interrupción, la cadena cambia. R07/R10; RGL05/08/15.",
+          "detail": "Tras resolverse íntegramente esa cadena, si Elesqueletus permanece y su efecto puede activarse, abre la cadena correspondiente para recuperar una carta Cristron del GY/destierro (por ejemplo, Tristaros que acaba de ser material), de acuerdo con los disparadores legales.\n- Final condicional: Elesqueletus en Campo; Tristaros y Sulfador pasaron al GY como materiales normales, salvo otro efecto; una carta Cristron elegible puede regresar a mano tras la cadena posterior. No se cuenta automáticamente el envío de dos Cristron de Sulfador en el mismo eslabón: requiere revisar la activación real y la ventana del efecto.\n- Fallo: sin activación rival no hay Efecto Rápido de Tristaros; si se retira antes de responder, la ruta desaparece; si el oponente controla una interrupción, la cadena cambia. R07/R10; RGL05/08/15.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "\n- **Objetivo:** poner Elesqueletus mediante la cadena del oponente sin gastar un segundo starter de mano. **Dificultad:** media por ventanas; **starter:** Tristaros ×1.\n- **Estado inicial:** tu Campo/GY vacíos, Tristaros en mano, Sulfador en Deck, Elesqueletus disponible en Extra; sin efecto de bloqueo previo.\n1. En tu turno **Normal Summon Tristaros** (Nivel 2, Cantante). Concluye turno; Tristaros debe **sobrevivir** en Campo.\n2. En el turno rival, **cuando el oponente activa una carta o efecto**, responde en la cadena con el **Efecto Rápido de Tristaros**.\n3. Si resuelve, **Invoca Sulfador (Nivel 5) desde Deck** e **inmediatamente Sincroniza Tristaros (2) + Sulfador (5)** → **Elesqueletus (7)**. La Sincronía incluye al monstruo traído por Tristaros, como exige su texto. El efecto rival inicial todavía se resuelve en su orden de cadena; **no** lo declares negado por Elesqueletus.\n4. **Tras resolverse íntegramente esa cadena**, si Elesqueletus permanece y su efecto puede activarse, abre la cadena correspondiente para recuperar una carta Cristron del GY/destierro (por ejemplo, Tristaros que acaba de ser material), de acuerdo con los disparadores legales.\n- **Final condicional:** Elesqueletus en Campo; Tristaros y Sulfador pasaron al GY como materiales normales, salvo otro efecto; una carta Cristron elegible puede regresar a mano tras la cadena posterior. **No se cuenta automáticamente** el envío de dos Cristron de Sulfador en el mismo eslabón: requiere revisar la activación real y la ventana del efecto.\n- **Fallo:** sin activación rival no hay Efecto Rápido de Tristaros; si se retira antes de responder, la ruta desaparece; si el oponente controla una interrupción, la cadena cambia. **R07/R10; RGL05/08/15.**\n\n",
+      "initial_details": "- Objetivo: poner Elesqueletus mediante la cadena del oponente sin gastar un segundo starter de mano. Dificultad: media por ventanas; starter: Tristaros ×1.\n- Estado inicial: tu Campo/GY vacíos, Tristaros en mano, Sulfador en Deck, Elesqueletus disponible en Extra; sin efecto de bloqueo previo.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": []
+    },
+    {
+      "id": "677:A09:C04",
+      "name": "C04 — Amset + Hapi: acceso real a Número 90",
+      "title": "C04 — Amset + Hapi: acceso real a Número 90",
+      "family": "Desarrollo de la jugada",
+      "purpose": "obtener negación de efecto de monstruo de Rango 8. Dificultad: básica-media; starter: Amset + Hapi en mano; requisito: Sarcófago todavía en Deck; sin bloqueo previo del Extra.",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [],
+      "result": "Final: Número 90 en Campo con dos materiales Horus; Sarcófago boca arriba; ninguna de estas piezas sigue en GY hasta que se desacople una. En ventana legal, Número 90 puede desacoplar un material para negar efecto de monstruo; no destruye al monstruo negado si el desacoplado es Amset/Hapi, porque no es material «Galaxia/Galáctico». Tampoco adjudicar inmunidad por material «Fotónico» inexistente.\n- Fallo: Ash/Droll contra búsqueda, remoción de Sarcófago antes de las invocaciones o bloqueo previo Smiger/Sulfador. R13/R14/R15; RGL10/11.",
+      "opening": "- Objetivo: obtener negación de efecto de monstruo de Rango 8. Dificultad: básica-media; starter: Amset + Hapi en mano; requisito: Sarcófago todavía en Deck; sin bloqueo previo del Extra.\n- Estado inicial: Campo/GY vacíos, Amset y Hapi en mano, Sarcófago en Deck y Número 90 en Extra.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Activa el efecto de Amset en mano y envía Amset + Hapi de la mano al GY como coste. Busca Sarcófago del Rey de Deck a mano; si el texto lo permite y lo decides, roba 1 (carta desconocida: no inferir su nombre).",
+          "detail": "Activa el efecto de Amset en mano y envía Amset + Hapi de la mano al GY como coste. Busca Sarcófago del Rey de Deck a mano; si el texto lo permite y lo decides, roba 1 (carta desconocida: no inferir su nombre).",
+          "photos": [
+            {
+              "cid": 19200,
+              "name": "Sarcófago del Rey",
+              "image": "./assets/editorial/20261104-checked-study/images/tcg/19200.jpg",
+              "full_image": "./assets/editorial/20261104-checked-study/images/tcg/19200.jpg",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Activa Sarcófago del Rey como Mágica Continua boca arriba.",
+          "detail": "Activa Sarcófago del Rey como Mágica Continua boca arriba.",
+          "photos": [
+            {
+              "cid": 19200,
+              "name": "Sarcófago del Rey",
+              "image": "./assets/editorial/20261104-checked-study/images/tcg/19200.jpg",
+              "full_image": "./assets/editorial/20261104-checked-study/images/tcg/19200.jpg",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "Con Sarcófago boca arriba, Invoca de Modo Especial Amset desde tu GY usando su capacidad de retorno; después Hapi desde GY mediante su propio efecto, respetando límites de uso.",
+          "detail": "Con Sarcófago boca arriba, Invoca de Modo Especial Amset desde tu GY usando su capacidad de retorno; después Hapi desde GY mediante su propio efecto, respetando límites de uso.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Superpón los dos monstruos Nivel 8 → Número 90: Señor Fotónico de Ojos Galácticos (Rango 8), con Amset y Hapi como exactamente dos materiales Xyz.\n- Final: Número 90 en Campo con dos materiales Horus; Sarcófago boca arriba; ninguna de estas piezas sigue en GY hasta que se desacople una. En ventana legal, Número 90 puede desacoplar un material para negar efecto de monstruo; no destruye al monstruo negado si el desacoplado es Amset/Hapi, porque no es material «Galaxia/Galáctico». Tampoco adjudicar inmunidad por material «Fotónico» inexistente.\n- Fallo: Ash/Droll contra búsqueda, remoción de Sarcófago antes de las invocaciones o bloqueo previo Smiger/Sulfador. R13/R14/R15; RGL10/11.",
+          "detail": "Superpón los dos monstruos Nivel 8 → Número 90: Señor Fotónico de Ojos Galácticos (Rango 8), con Amset y Hapi como exactamente dos materiales Xyz.\n- Final: Número 90 en Campo con dos materiales Horus; Sarcófago boca arriba; ninguna de estas piezas sigue en GY hasta que se desacople una. En ventana legal, Número 90 puede desacoplar un material para negar efecto de monstruo; no destruye al monstruo negado si el desacoplado es Amset/Hapi, porque no es material «Galaxia/Galáctico». Tampoco adjudicar inmunidad por material «Fotónico» inexistente.\n- Fallo: Ash/Droll contra búsqueda, remoción de Sarcófago antes de las invocaciones o bloqueo previo Smiger/Sulfador. R13/R14/R15; RGL10/11.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "\n- **Objetivo:** obtener **negación de efecto de monstruo** de Rango 8. **Dificultad:** básica-media; **starter:** Amset + Hapi en mano; **requisito:** Sarcófago todavía en Deck; sin bloqueo previo del Extra.\n- **Estado inicial:** Campo/GY vacíos, Amset y Hapi en mano, Sarcófago en Deck y Número 90 en Extra.\n1. Activa el efecto de **Amset en mano** y envía **Amset + Hapi** de la mano al GY como coste. Busca **Sarcófago del Rey** de Deck a mano; si el texto lo permite y lo decides, **roba 1** (carta desconocida: no inferir su nombre).\n2. **Activa Sarcófago del Rey** como Mágica Continua boca arriba.\n3. Con Sarcófago boca arriba, **Invoca de Modo Especial Amset desde tu GY** usando su capacidad de retorno; después **Hapi desde GY** mediante su propio efecto, respetando límites de uso.\n4. Superpón los dos monstruos **Nivel 8** → **Número 90: Señor Fotónico de Ojos Galácticos (Rango 8)**, con **Amset y Hapi como exactamente dos materiales Xyz**.\n- **Final:** Número 90 en Campo con dos materiales Horus; Sarcófago boca arriba; ninguna de estas piezas sigue en GY hasta que se desacople una. En ventana legal, Número 90 puede **desacoplar un material para negar efecto de monstruo**; **no destruye al monstruo negado** si el desacoplado es Amset/Hapi, porque no es material «Galaxia/Galáctico». Tampoco adjudicar inmunidad por material «Fotónico» inexistente.\n- **Fallo:** Ash/Droll contra búsqueda, remoción de Sarcófago antes de las invocaciones o bloqueo previo Smiger/Sulfador. **R13/R14/R15; RGL10/11.**\n\n",
+      "initial_details": "- Objetivo: obtener negación de efecto de monstruo de Rango 8. Dificultad: básica-media; starter: Amset + Hapi en mano; requisito: Sarcófago todavía en Deck; sin bloqueo previo del Extra.\n- Estado inicial: Campo/GY vacíos, Amset y Hapi en mano, Sarcófago en Deck y Número 90 en Extra.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": []
+    },
+    {
+      "id": "677:A09:C05",
+      "name": "C05 — Sarcófago + Amset: Vampiro Zombi y molino incierto",
+      "title": "C05 — Sarcófago + Amset: Vampiro Zombi y molino incierto",
+      "family": "Desarrollo de la jugada",
+      "purpose": "extender o llenar Cementerio mediante Xyz de Rango 8, sin inventar lo que se muele. Dificultad: media; starter: Sarcófago + Amset en mano; requisito crítico: Hapi permanece en Deck.",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [],
+      "result": "Final garantizado antes del molino: Vampiro Zombi con 2 materiales y Sarcófago en Campo. Después: un material en GY; cartas molidas desconocidas; posible monstruo adicional no garantizado. El Vampiro es Zombi, no Máquina: resulta incompatible si ya activaste bloqueo de Sulfador y, con mayor razón, el de Smiger.\n- Fallo: si Hapi fue robado y no está en Deck, no se manda con ese efecto; si no cae monstruo en molienda, no hay objetivo para invocación. R14/R16; RGL10/11.",
+      "opening": "- Objetivo: extender o llenar Cementerio mediante Xyz de Rango 8, sin inventar lo que se muele. Dificultad: media; starter: Sarcófago + Amset en mano; requisito crítico: Hapi permanece en Deck.\n- Estado inicial: Campo/GY vacíos; Sarcófago y Amset en mano; Hapi en Deck; Vampiro Zombi en Extra; sin restricciones previas.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Activa Sarcófago del Rey. Activa su efecto: envía Amset de mano al GY para mandar Hapi del Deck al GY (dos movimientos de zonas diferentes). El envío de la mano y del Deck deben distinguirse.",
+          "detail": "Activa Sarcófago del Rey. Activa su efecto: envía Amset de mano al GY para mandar Hapi del Deck al GY (dos movimientos de zonas diferentes). El envío de la mano y del Deck deben distinguirse.",
+          "photos": [
+            {
+              "cid": 19200,
+              "name": "Sarcófago del Rey",
+              "image": "./assets/editorial/20261104-checked-study/images/tcg/19200.jpg",
+              "full_image": "./assets/editorial/20261104-checked-study/images/tcg/19200.jpg",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Mientras controles Sarcófago, Invoca Amset desde GY; luego Invoca Hapi desde GY. Son dos Horus Nivel 8 diferentes.",
+          "detail": "Mientras controles Sarcófago, Invoca Amset desde GY; luego Invoca Hapi desde GY. Son dos Horus Nivel 8 diferentes.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "Superpón Amset (8) + Hapi (8) → El Vampiro Zombi, Rango 8 con dos materiales, mientras Sarcófago sigue en tu Campo.",
+          "detail": "Superpón Amset (8) + Hapi (8) → El Vampiro Zombi, Rango 8 con dos materiales, mientras Sarcófago sigue en tu Campo.",
+          "photos": [
+            {
+              "cid": 16850,
+              "name": "El Vampiro Zombi",
+              "image": "./assets/editorial/20261104-checked-study/images/tcg/16850.jpg",
+              "full_image": "./assets/editorial/20261104-checked-study/images/tcg/16850.jpg",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Si decides activar su efecto, desacopla un material Xyz y manda al GY las 4 cartas superiores de cada Deck (4 propias + 4 rivales). Solo si hay un monstruo entre esas cartas enviadas, puedes Invocar de Modo Especial uno apropiado de esos monstruos, sujeto a condiciones/restricciones. No se presupone cuál cayó, ni que es Cristron, ni que necesariamente obtuviste otra invocación.\n- Final garantizado antes del molino: Vampiro Zombi con 2 materiales y Sarcófago en Campo. Después: un material en GY; cartas molidas desconocidas; posible monstruo adicional no garantizado. El Vampiro es Zombi, no Máquina: resulta incompatible si ya activaste bloqueo de Sulfador y, con mayor razón, el de Smiger.\n- Fallo: si Hapi fue robado y no está en Deck, no se manda con ese efecto; si no cae monstruo en molienda, no hay objetivo para invocación. R14/R16; RGL10/11.",
+          "detail": "Si decides activar su efecto, desacopla un material Xyz y manda al GY las 4 cartas superiores de cada Deck (4 propias + 4 rivales). Solo si hay un monstruo entre esas cartas enviadas, puedes Invocar de Modo Especial uno apropiado de esos monstruos, sujeto a condiciones/restricciones. No se presupone cuál cayó, ni que es Cristron, ni que necesariamente obtuviste otra invocación.\n- Final garantizado antes del molino: Vampiro Zombi con 2 materiales y Sarcófago en Campo. Después: un material en GY; cartas molidas desconocidas; posible monstruo adicional no garantizado. El Vampiro es Zombi, no Máquina: resulta incompatible si ya activaste bloqueo de Sulfador y, con mayor razón, el de Smiger.\n- Fallo: si Hapi fue robado y no está en Deck, no se manda con ese efecto; si no cae monstruo en molienda, no hay objetivo para invocación. R14/R16; RGL10/11.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "\n- **Objetivo:** extender o llenar Cementerio mediante Xyz de Rango 8, **sin inventar lo que se muele**. **Dificultad:** media; **starter:** Sarcófago + Amset en mano; **requisito crítico:** Hapi permanece en Deck.\n- **Estado inicial:** Campo/GY vacíos; Sarcófago y Amset en mano; Hapi en Deck; Vampiro Zombi en Extra; sin restricciones previas.\n1. **Activa Sarcófago del Rey**. Activa su efecto: envía **Amset de mano al GY** para mandar **Hapi del Deck al GY** (dos movimientos de zonas diferentes). El envío de la mano y del Deck deben distinguirse.\n2. Mientras controles Sarcófago, **Invoca Amset desde GY**; luego **Invoca Hapi desde GY**. Son dos Horus Nivel 8 diferentes.\n3. Superpón Amset (8) + Hapi (8) → **El Vampiro Zombi, Rango 8** con dos materiales, mientras Sarcófago sigue en tu Campo.\n4. Si decides activar su efecto, **desacopla un material Xyz** y manda al GY **las 4 cartas superiores de cada Deck** (4 propias + 4 rivales). **Solo si hay un monstruo entre esas cartas enviadas**, puedes Invocar de Modo Especial uno apropiado de esos monstruos, sujeto a condiciones/restricciones. No se presupone cuál cayó, ni que es Cristron, ni que necesariamente obtuviste otra invocación.\n- **Final garantizado antes del molino:** Vampiro Zombi con 2 materiales y Sarcófago en Campo. **Después:** un material en GY; cartas molidas desconocidas; posible monstruo adicional **no garantizado**. El Vampiro es Zombi, **no Máquina**: resulta incompatible si ya activaste bloqueo de Sulfador y, con mayor razón, el de Smiger.\n- **Fallo:** si Hapi fue robado y no está en Deck, no se manda con ese efecto; si no cae monstruo en molienda, no hay objetivo para invocación. **R14/R16; RGL10/11.**\n\n",
+      "initial_details": "- Objetivo: extender o llenar Cementerio mediante Xyz de Rango 8, sin inventar lo que se muele. Dificultad: media; starter: Sarcófago + Amset en mano; requisito crítico: Hapi permanece en Deck.\n- Estado inicial: Campo/GY vacíos; Sarcófago y Amset en mano; Hapi en Deck; Vampiro Zombi en Extra; sin restricciones previas.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": []
+    },
+    {
+      "id": "677:A09:C06",
+      "name": "C06 — Inclusión + Sulfador + Azufafnir → Nova → Infinito",
+      "title": "C06 — Inclusión + Sulfador + Azufafnir → Nova → Infinito",
+      "family": "Desarrollo de la jugada",
+      "purpose": "",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [
+        {
+          "cid": 11765,
+          "name": "Ciber Dragón del Infinito",
+          "image": "./assets/editorial/20261104-checked-study/images/tcg/11765.jpg",
+          "full_image": "./assets/editorial/20261104-checked-study/images/tcg/11765.jpg",
+          "label": "Carta mencionada en el paso"
+        }
+      ],
+      "result": "Final comprobable si se resuelve todo: Infinito con 3 materiales, Campo sin Inclusión (destruida); GY contiene Inclusión, Smiger descartado y primer Azufafnir destruido; Normal aún disponible. Si elegiste envíos opcionales de Sulfador, registra sus nombres en GY. Infinito es Máquina, por lo que el bloqueo de Sulfador no lo impide. No se produjo Sincronía ni hay Hagoita/Quariongandrax en ese Campo.\n- Fallos críticos: si negaron la búsqueda, faltaría Smiger para pagar descarte de Azufafnir; si retiran Sulfador antes de superponer, falta el segundo Nivel 5; si se agota el segundo Azufafnir del Deck, falla el acceso descrito. Requiere dos copias de Azufafnir físicamente disponibles (hay tres en Main). Fuentes: [Azufafnir 12756](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12756&ope=2&request_locale=es), [Sulfador 20759](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20759&ope=2&request_locale=es), [Nova 10870](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=10870&ope=2&request_locale=es), [Infinito 11765](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=11765&ope=2&request_locale=es). R12/R19; RGL04/11.",
+      "opening": "- Objetivo propio: producir una negación de activación de carta/efecto mediante Ciber Dragón del Infinito, no simplemente otro Sincronía. Dificultad: media-alta por administración del bloqueo. Starter mínimo: Inclusión + Sulfador + Azufafnir en mano; Campo/GY vacíos; Smiger y un segundo Azufafnir siguen en Deck; Nova + Infinito disponibles en Extra; no hay negación del adversario. No requiere Normal Summon.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Activa Inclusión Cristron; al activarse, busca Smiger del Deck y llévalo a tu mano. Ahora tienes Sulfador, Azufafnir y Smiger; Inclusión boca arriba.",
+          "detail": "Activa Inclusión Cristron; al activarse, busca Smiger del Deck y llévalo a tu mano. Ahora tienes Sulfador, Azufafnir y Smiger; Inclusión boca arriba.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Activa Sulfador desde mano, seleccionando tu Inclusión boca arriba; destruye Inclusión y, si lo logras, Invoca Sulfador Nivel 5. Por el resto del turno, desde Extra solo Máquinas; esto sí permite Xyz Máquina. Como efecto distinto al ser Invocado, Sulfador puede enviar hasta dos cartas Cristron de nombres diferentes desde Deck a GY; si eliges Tristaros/Thystvern, anota esos envíos en tu estado. No son requisitos de Nova.",
+          "detail": "Activa Sulfador desde mano, seleccionando tu Inclusión boca arriba; destruye Inclusión y, si lo logras, Invoca Sulfador Nivel 5. Por el resto del turno, desde Extra solo Máquinas; esto sí permite Xyz Máquina. Como efecto distinto al ser Invocado, Sulfador puede enviar hasta dos cartas Cristron de nombres diferentes desde Deck a GY; si eliges Tristaros/Thystvern, anota esos envíos en tu estado. No son requisitos de Nova.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "Activa Azufafnir/Sulfefnir desde mano, descartando Smiger (una carta «Cristron» distinta de sí mismo). Invoca Azufafnir en DEF, y su efecto obliga a destruir una carta que controlas: elige a ese mismo Azufafnir. Va al GY. Esta elección conserva Sulfador Nivel 5 en Campo.",
+          "detail": "Activa Azufafnir/Sulfefnir desde mano, descartando Smiger (una carta «Cristron» distinta de sí mismo). Invoca Azufafnir en DEF, y su efecto obliga a destruir una carta que controlas: elige a ese mismo Azufafnir. Va al GY. Esta elección conserva Sulfador Nivel 5 en Campo.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Como Azufafnir fue destruido en el Campo por efecto, activa su segundo efecto en una cadena posterior y Invoca el segundo Azufafnir del Deck en DEF. Sus dos efectos son una vez por turno cada uno; el segundo Azufafnir no usa sus propios efectos aquí. En Campo ahora están exactamente Sulfador Nivel 5 + segundo Azufafnir Nivel 5.",
+          "detail": "Como Azufafnir fue destruido en el Campo por efecto, activa su segundo efecto en una cadena posterior y Invoca el segundo Azufafnir del Deck en DEF. Sus dos efectos son una vez por turno cada uno; el segundo Azufafnir no usa sus propios efectos aquí. En Campo ahora están exactamente Sulfador Nivel 5 + segundo Azufafnir Nivel 5.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 5,
+          "action": "Superpone los dos Máquinas Nivel 5 → Ciber Dragón Nova, con Sulfador + segundo Azufafnir acoplados como 2 materiales Xyz. No actives un efecto de Smiger en Campo: bloquearía este Xyz.",
+          "detail": "Superpone los dos Máquinas Nivel 5 → Ciber Dragón Nova, con Sulfador + segundo Azufafnir acoplados como 2 materiales Xyz. No actives un efecto de Smiger en Campo: bloquearía este Xyz.",
+          "photos": [
+            {
+              "cid": 10870,
+              "name": "Ciber Dragón Nova",
+              "image": "./assets/editorial/20261104-checked-study/images/tcg/10870.jpg",
+              "full_image": "./assets/editorial/20261104-checked-study/images/tcg/10870.jpg",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 6,
+          "action": "Superpone Ciber Dragón del Infinito sobre el Nova que controlas; Nova y sus dos materiales pasan debajo de Infinito: 3 materiales Xyz (Nova + Sulfador + segundo Azufafnir). Reserva al menos uno para su Efecto Rápido de negar activación y destruir si se resuelve legalmente.\n- Final comprobable si se resuelve todo: Infinito con 3 materiales, Campo sin Inclusión (destruida); GY contiene Inclusión, Smiger descartado y primer Azufafnir destruido; Normal aún disponible. Si elegiste envíos opcionales de Sulfador, registra sus nombres en GY. Infinito es Máquina, por lo que el bloqueo de Sulfador no lo impide. No se produjo Sincronía ni hay Hagoita/Quariongandrax en ese Campo.\n- Fallos críticos: si negaron la búsqueda, faltaría Smiger para pagar descarte de Azufafnir; si retiran Sulfador antes de superponer, falta el segundo Nivel 5; si se agota el segundo Azufafnir del Deck, falla el acceso descrito. Requiere dos copias de Azufafnir físicamente disponibles (hay tres en Main). Fuentes: [Azufafnir 12756](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12756&ope=2&request_locale=es), [Sulfador 20759](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20759&ope=2&request_locale=es), [Nova 10870](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=10870&ope=2&request_locale=es), [Infinito 11765](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=11765&ope=2&request_locale=es). R12/R19; RGL04/11.",
+          "detail": "Superpone Ciber Dragón del Infinito sobre el Nova que controlas; Nova y sus dos materiales pasan debajo de Infinito: 3 materiales Xyz (Nova + Sulfador + segundo Azufafnir). Reserva al menos uno para su Efecto Rápido de negar activación y destruir si se resuelve legalmente.\n- Final comprobable si se resuelve todo: Infinito con 3 materiales, Campo sin Inclusión (destruida); GY contiene Inclusión, Smiger descartado y primer Azufafnir destruido; Normal aún disponible. Si elegiste envíos opcionales de Sulfador, registra sus nombres en GY. Infinito es Máquina, por lo que el bloqueo de Sulfador no lo impide. No se produjo Sincronía ni hay Hagoita/Quariongandrax en ese Campo.\n- Fallos críticos: si negaron la búsqueda, faltaría Smiger para pagar descarte de Azufafnir; si retiran Sulfador antes de superponer, falta el segundo Nivel 5; si se agota el segundo Azufafnir del Deck, falla el acceso descrito. Requiere dos copias de Azufafnir físicamente disponibles (hay tres en Main). Fuentes: [Azufafnir 12756](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12756&ope=2&request_locale=es), [Sulfador 20759](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20759&ope=2&request_locale=es), [Nova 10870](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=10870&ope=2&request_locale=es), [Infinito 11765](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=11765&ope=2&request_locale=es). R12/R19; RGL04/11.",
+          "photos": [
+            {
+              "cid": 11765,
+              "name": "Ciber Dragón del Infinito",
+              "image": "./assets/editorial/20261104-checked-study/images/tcg/11765.jpg",
+              "full_image": "./assets/editorial/20261104-checked-study/images/tcg/11765.jpg",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "\n- **Objetivo propio:** producir **una negación de activación de carta/efecto mediante Ciber Dragón del Infinito**, no simplemente otro Sincronía. **Dificultad:** media-alta por administración del bloqueo. **Starter mínimo:** Inclusión + Sulfador + Azufafnir **en mano**; Campo/GY vacíos; Smiger y un **segundo Azufafnir** siguen en Deck; Nova + Infinito disponibles en Extra; no hay negación del adversario. **No requiere Normal Summon.**\n1. **Activa Inclusión Cristron**; al activarse, **busca Smiger** del Deck y llévalo a tu mano. Ahora tienes Sulfador, Azufafnir y Smiger; Inclusión boca arriba.\n2. Activa **Sulfador desde mano**, seleccionando tu Inclusión boca arriba; **destruye Inclusión** y, si lo logras, **Invoca Sulfador Nivel 5**. Por el resto del turno, desde Extra **solo Máquinas**; esto **sí** permite Xyz Máquina. Como efecto distinto al ser Invocado, Sulfador puede enviar hasta dos cartas Cristron de nombres diferentes desde Deck a GY; si eliges Tristaros/Thystvern, anota esos envíos en tu estado. No son requisitos de Nova.\n3. Activa **Azufafnir/Sulfefnir desde mano**, **descartando Smiger** (una carta «Cristron» distinta de sí mismo). **Invoca Azufafnir en DEF**, y su efecto obliga a destruir una carta que controlas: **elige a ese mismo Azufafnir**. Va al GY. Esta elección **conserva Sulfador Nivel 5 en Campo**.\n4. Como Azufafnir fue destruido en el Campo por efecto, activa **su segundo efecto** en una cadena posterior y **Invoca el segundo Azufafnir del Deck en DEF**. Sus dos efectos son una vez por turno **cada uno**; el segundo Azufafnir no usa sus propios efectos aquí. En Campo ahora están exactamente **Sulfador Nivel 5 + segundo Azufafnir Nivel 5**.\n5. **Superpone los dos Máquinas Nivel 5** → **Ciber Dragón Nova**, con Sulfador + segundo Azufafnir acoplados como **2 materiales Xyz**. **No** actives un efecto de Smiger en Campo: bloquearía este Xyz.\n6. Superpone **Ciber Dragón del Infinito** sobre el Nova que controlas; Nova y sus dos materiales pasan debajo de Infinito: **3 materiales Xyz** (Nova + Sulfador + segundo Azufafnir). Reserva al menos uno para su **Efecto Rápido** de negar activación y destruir si se resuelve legalmente.\n- **Final comprobable si se resuelve todo:** **Infinito con 3 materiales**, Campo sin Inclusión (destruida); GY contiene Inclusión, **Smiger descartado** y **primer Azufafnir destruido**; Normal aún disponible. Si elegiste envíos opcionales de Sulfador, registra sus nombres en GY. Infinito es Máquina, por lo que el bloqueo de Sulfador **no** lo impide. **No** se produjo Sincronía ni hay Hagoita/Quariongandrax en ese Campo.\n- **Fallos críticos:** si negaron la búsqueda, faltaría Smiger para pagar descarte de Azufafnir; si retiran Sulfador antes de superponer, falta el segundo Nivel 5; si se agota el segundo Azufafnir del Deck, falla el acceso descrito. **Requiere dos copias de Azufafnir físicamente disponibles** (hay tres en Main). **Fuentes:** [Azufafnir 12756](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12756&ope=2&request_locale=es), [Sulfador 20759](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20759&ope=2&request_locale=es), [Nova 10870](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=10870&ope=2&request_locale=es), [Infinito 11765](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=11765&ope=2&request_locale=es). **R12/R19; RGL04/11.**\n\n",
+      "initial_details": "- Objetivo propio: producir una negación de activación de carta/efecto mediante Ciber Dragón del Infinito, no simplemente otro Sincronía. Dificultad: media-alta por administración del bloqueo. Starter mínimo: Inclusión + Sulfador + Azufafnir en mano; Campo/GY vacíos; Smiger y un segundo Azufafnir siguen en Deck; Nova + Infinito disponibles en Extra; no hay negación del adversario. No requiere Normal Summon.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=10870&ope=2&request_locale=es",
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=11765&ope=2&request_locale=es",
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12756&ope=2&request_locale=es",
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20759&ope=2&request_locale=es"
+      ]
+    },
+    {
+      "id": "677:A09:C07",
+      "name": "C07 — Amset + Smiger: puente Horus/Cristron sin bloqueo del Extra",
+      "title": "C07 — Amset + Smiger: puente Horus/Cristron sin bloqueo del Extra",
+      "family": "Desarrollo de la jugada",
+      "purpose": "",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [],
+      "result": "",
+      "opening": "- Objetivo propio: conseguir presencia Horus Nivel 8 + Tristaros para Sincronía reactiva, con dos motores activos y Smiger recuperable. Dificultad: media; mano mínima: Amset + Smiger. Estado inicial: Campo/GY vacíos; Sarcófago, Inclusión y Tristaros en Deck; Sulfador en Deck y Elesqueletus en Extra; ninguna restricción previa. Una Normal disponible.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Usa el efecto de Amset en mano: envía Amset + Smiger desde mano al GY; busca Sarcófago del Rey del Deck y opcionalmente roba una carta desconocida (no contar su identidad para este combo).",
+          "detail": "Usa el efecto de Amset en mano: envía Amset + Smiger desde mano al GY; busca Sarcófago del Rey del Deck y opcionalmente roba una carta desconocida (no contar su identidad para este combo).",
+          "photos": [
+            {
+              "cid": 19200,
+              "name": "Sarcófago del Rey",
+              "image": "./assets/editorial/20261104-checked-study/images/tcg/19200.jpg",
+              "full_image": "./assets/editorial/20261104-checked-study/images/tcg/19200.jpg",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Activa Sarcófago boca arriba. Con él en Campo, Invoca Amset desde GY mediante su condición especial; ya tienes un Horus Nivel 8 en Campo. Esto no crea un segundo Horus sin otra fuente.",
+          "detail": "Activa Sarcófago boca arriba. Con él en Campo, Invoca Amset desde GY mediante su condición especial; ya tienes un Horus Nivel 8 en Campo. Esto no crea un segundo Horus sin otra fuente.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "Como Smiger llegó al GY por descarte y NO activó su efecto de Campo, puedes desterrarlo desde GY para buscar Inclusión Cristron del Deck. Esta activación no impone bloqueo de Sincronía Máquina: es el otro efecto de Smiger.",
+          "detail": "Como Smiger llegó al GY por descarte y NO activó su efecto de Campo, puedes desterrarlo desde GY para buscar Inclusión Cristron del Deck. Esta activación no impone bloqueo de Sincronía Máquina: es el otro efecto de Smiger.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Activa Inclusión y busca Tristaros Nivel 2 del Deck; luego Normal Summon Tristaros. Resultado al cerrar tu turno: Amset 8 + Tristaros 2 en Zona de Monstruos, Sarcófago + Inclusión boca arriba en M/T; Smiger desterrado, no en GY, y ninguna Sincronía realizada aún.",
+          "detail": "Activa Inclusión y busca Tristaros Nivel 2 del Deck; luego Normal Summon Tristaros. Resultado al cerrar tu turno: Amset 8 + Tristaros 2 en Zona de Monstruos, Sarcófago + Inclusión boca arriba en M/T; Smiger desterrado, no en GY, y ninguna Sincronía realizada aún.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 5,
+          "action": "En el turno rival, si activa una carta/efecto, encadena Tristaros para traer Sulfador 5 del Deck y Sincronizar Tristaros2 + Sulfador5 → Elesqueletus7. Amset queda en Campo, no se utiliza como material. La cadena original rival resuelve según su efecto; Elesqueletus NO niega esa activación.",
+          "detail": "En el turno rival, si activa una carta/efecto, encadena Tristaros para traer Sulfador 5 del Deck y Sincronizar Tristaros2 + Sulfador5 → Elesqueletus7. Amset queda en Campo, no se utiliza como material. La cadena original rival resuelve según su efecto; Elesqueletus NO niega esa activación.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 6,
+          "action": "Después de la cadena, Elesqueletus puede recuperar Smiger desterrado a tu mano (si sigue siendo legal) mediante su disparador de haber sido sincronizada. Esa recuperación no autoriza un segundo uso de Smiger en el mismo turno si ya había usado efecto ese turno.\n- Estado final condicional: Elesqueletus 7 + Amset 8 en Campo, Sarcófago + Inclusión boca arriba; Smiger recuperado a mano; Tristaros y Sulfador en GY como materiales. Ventaja: no se activó el efecto de Smiger de Campo, así que no bloqueamos el Extra el turno propio; desventaja: usa dos búsquedas encadenadas vulnerables a Droll/negación y depende de una activación rival para hacer la Sincronía.\n- Si niegan: si Amset no añade Sarcófago, no puedes asegurar su invocación GY; si se prohíben búsquedas después de Sarcófago, la ruta Smiger/Inclusión pierde esta extensión; si Tristaros es retirado antes de la activación rival, no hay Elesqueletus. R03/R01/R07/R10/R13; RGL03/05/08/10/15.",
+          "detail": "Después de la cadena, Elesqueletus puede recuperar Smiger desterrado a tu mano (si sigue siendo legal) mediante su disparador de haber sido sincronizada. Esa recuperación no autoriza un segundo uso de Smiger en el mismo turno si ya había usado efecto ese turno.\n- Estado final condicional: Elesqueletus 7 + Amset 8 en Campo, Sarcófago + Inclusión boca arriba; Smiger recuperado a mano; Tristaros y Sulfador en GY como materiales. Ventaja: no se activó el efecto de Smiger de Campo, así que no bloqueamos el Extra el turno propio; desventaja: usa dos búsquedas encadenadas vulnerables a Droll/negación y depende de una activación rival para hacer la Sincronía.\n- Si niegan: si Amset no añade Sarcófago, no puedes asegurar su invocación GY; si se prohíben búsquedas después de Sarcófago, la ruta Smiger/Inclusión pierde esta extensión; si Tristaros es retirado antes de la activación rival, no hay Elesqueletus. R03/R01/R07/R10/R13; RGL03/05/08/10/15.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "\n- **Objetivo propio:** conseguir **presencia Horus Nivel 8 + Tristaros para Sincronía reactiva**, con dos motores activos y Smiger recuperable. **Dificultad:** media; **mano mínima:** Amset + Smiger. **Estado inicial:** Campo/GY vacíos; Sarcófago, Inclusión y Tristaros en Deck; Sulfador en Deck y Elesqueletus en Extra; ninguna restricción previa. **Una Normal disponible.**\n1. Usa el efecto de **Amset en mano**: envía **Amset + Smiger** desde mano al GY; **busca Sarcófago del Rey** del Deck y **opcionalmente** roba una carta desconocida (no contar su identidad para este combo).\n2. **Activa Sarcófago** boca arriba. Con él en Campo, **Invoca Amset desde GY** mediante su condición especial; ya tienes **un Horus Nivel 8** en Campo. Esto no crea un segundo Horus sin otra fuente.\n3. Como **Smiger llegó al GY por descarte y NO activó su efecto de Campo**, puedes **desterrarlo desde GY para buscar Inclusión Cristron** del Deck. Esta activación **no** impone bloqueo de Sincronía Máquina: es el otro efecto de Smiger.\n4. **Activa Inclusión** y busca **Tristaros Nivel 2** del Deck; luego **Normal Summon Tristaros**. Resultado al cerrar tu turno: **Amset 8 + Tristaros 2** en Zona de Monstruos, **Sarcófago + Inclusión** boca arriba en M/T; Smiger **desterrado**, no en GY, y ninguna Sincronía realizada aún.\n5. En el turno rival, si **activa una carta/efecto**, encadena **Tristaros** para traer **Sulfador 5 del Deck** y Sincronizar **Tristaros2 + Sulfador5 → Elesqueletus7**. **Amset queda en Campo**, no se utiliza como material. La cadena original rival resuelve según su efecto; **Elesqueletus NO niega esa activación**.\n6. Después de la cadena, **Elesqueletus** puede recuperar **Smiger desterrado** a tu mano (si sigue siendo legal) mediante su disparador de haber sido sincronizada. Esa recuperación no autoriza un segundo uso de Smiger en el mismo turno si ya había usado efecto ese turno.\n- **Estado final condicional:** Elesqueletus 7 + Amset 8 en Campo, Sarcófago + Inclusión boca arriba; Smiger recuperado a mano; Tristaros y Sulfador en GY como materiales. **Ventaja:** no se activó el efecto de Smiger de Campo, así que **no** bloqueamos el Extra el turno propio; **desventaja:** usa dos búsquedas encadenadas vulnerables a Droll/negación y depende de una activación rival para hacer la Sincronía.\n- **Si niegan:** si Amset no añade Sarcófago, no puedes asegurar su invocación GY; si se prohíben búsquedas después de Sarcófago, la ruta Smiger/Inclusión pierde esta extensión; si Tristaros es retirado antes de la activación rival, no hay Elesqueletus. **R03/R01/R07/R10/R13; RGL03/05/08/10/15.**\n\n",
+      "initial_details": "- Objetivo propio: conseguir presencia Horus Nivel 8 + Tristaros para Sincronía reactiva, con dos motores activos y Smiger recuperable. Dificultad: media; mano mínima: Amset + Smiger. Estado inicial: Campo/GY vacíos; Sarcófago, Inclusión y Tristaros en Deck; Sulfador en Deck y Elesqueletus en Extra; ninguna restricción previa. Una Normal disponible.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": []
+    },
+    {
+      "id": "677:A09:V01",
+      "name": "V01 — Extensión condicional de C02 a Quariongandrax (dos turnos)",
+      "title": "V01 — Extensión condicional de C02 a Quariongandrax (dos turnos)",
+      "family": "Desarrollo de la jugada",
+      "purpose": "",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [],
+      "result": "Final condicional: Quariongandrax en Campo, Smiger 3 y Azufafnir 5 permanecen si nada adicional los movió; materiales de esa Sincronía en GY; hasta 3 monstruos rivales desterrados solo si hubo objetivos y cadena válida. Sin activar la cadena rival, o si no sobrevive el tablero previo, V01 no ocurre. R07–R10; RGL05/06/08/09/15.",
+      "opening": "No es combo autónomo de una carta ni se cuenta como nuevo combo principal: parte exactamente después del campo final de C02, con Elesqueletus 7 y Smiger 3 en tu Campo; Tristaros 2 y Citree 2 en GY; segundo Tristaros 2, Azufafnir 5 y segundo Sulfador 5 todavía en Deck; Quariongandrax en Extra. Requiere supervivencia y espacio de monstruos. Dificultad alta, no simulada.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "En tu mismo turno, destierra del GY el primer Tristaros para activar su efecto: selecciona y destruye tu Elesqueletus previamente Invocada por Sincronía y trae dos Cristron desde Deck, el segundo Tristaros (Cantante 2) y Azufafnir (no Cantante 5). La restricción Extra de Tristaros es a Máquinas; también sigue la más estricta de Smiger este turno.",
+          "detail": "En tu mismo turno, destierra del GY el primer Tristaros para activar su efecto: selecciona y destruye tu Elesqueletus previamente Invocada por Sincronía y trae dos Cristron desde Deck, el segundo Tristaros (Cantante 2) y Azufafnir (no Cantante 5). La restricción Extra de Tristaros es a Máquinas; también sigue la más estricta de Smiger este turno.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Al haber sido destruida Elesqueletus que sí fue sincronizada, puede activar su efecto para revivir Citree (Cantante 2) de tu GY, según la ventana posterior de disparador. Resultado aproximado al cierre de tu turno: Smiger 3, Tristaros 2, Azufafnir 5 y Citree 2 en Campo (cuatro zonas ocupadas). Elesqueletus ahora GY; el primer Tristaros desterrado. No hagas una Sincronía aún: estamos preparando reacción rival.",
+          "detail": "Al haber sido destruida Elesqueletus que sí fue sincronizada, puede activar su efecto para revivir Citree (Cantante 2) de tu GY, según la ventana posterior de disparador. Resultado aproximado al cierre de tu turno: Smiger 3, Tristaros 2, Azufafnir 5 y Citree 2 en Campo (cuatro zonas ocupadas). Elesqueletus ahora GY; el primer Tristaros desterrado. No hagas una Sincronía aún: estamos preparando reacción rival.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "En el turno rival, ante una activación de carta/efecto del oponente, encadena el Efecto Rápido del segundo Tristaros; trae el segundo Sulfador Nivel 5 del Deck y de inmediato Sincroniza usando Tristaros 2 + Citree 2 (2 Cantantes) + Sulfador 5 (1 no Cantante) → Cristron Quariongandrax Nivel 9. El recién invocado Sulfador está incluido, requisito de Tristaros.",
+          "detail": "En el turno rival, ante una activación de carta/efecto del oponente, encadena el Efecto Rápido del segundo Tristaros; trae el segundo Sulfador Nivel 5 del Deck y de inmediato Sincroniza usando Tristaros 2 + Citree 2 (2 Cantantes) + Sulfador 5 (1 no Cantante) → Cristron Quariongandrax Nivel 9. El recién invocado Sulfador está incluido, requisito de Tristaros.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Después de resolverse toda la cadena de esa activación rival, si la Invocación por Sincronía ocurrió legalmente y el disparador se puede activar, usa el efecto de Quariongandrax para seleccionar hasta 3 monstruos del adversario válidos en Campo/GY y desterrarlos (el máximo se basa en sus 3 materiales). Si no existen 3 objetivos, el resultado es menor; no se destierran Mágicas/Trampas.\n- Final condicional: Quariongandrax en Campo, Smiger 3 y Azufafnir 5 permanecen si nada adicional los movió; materiales de esa Sincronía en GY; hasta 3 monstruos rivales desterrados solo si hubo objetivos y cadena válida. Sin activar la cadena rival, o si no sobrevive el tablero previo, V01 no ocurre. R07–R10; RGL05/06/08/09/15.",
+          "detail": "Después de resolverse toda la cadena de esa activación rival, si la Invocación por Sincronía ocurrió legalmente y el disparador se puede activar, usa el efecto de Quariongandrax para seleccionar hasta 3 monstruos del adversario válidos en Campo/GY y desterrarlos (el máximo se basa en sus 3 materiales). Si no existen 3 objetivos, el resultado es menor; no se destierran Mágicas/Trampas.\n- Final condicional: Quariongandrax en Campo, Smiger 3 y Azufafnir 5 permanecen si nada adicional los movió; materiales de esa Sincronía en GY; hasta 3 monstruos rivales desterrados solo si hubo objetivos y cadena válida. Sin activar la cadena rival, o si no sobrevive el tablero previo, V01 no ocurre. R07–R10; RGL05/06/08/09/15.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "\n**No es combo autónomo de una carta** ni se cuenta como nuevo combo principal: parte **exactamente después del campo final de C02**, con Elesqueletus 7 y Smiger 3 en tu Campo; Tristaros 2 y Citree 2 en GY; segundo Tristaros 2, Azufafnir 5 y segundo Sulfador 5 todavía en Deck; Quariongandrax en Extra. Requiere supervivencia y espacio de monstruos. **Dificultad alta, no simulada.**\n\n1. En tu mismo turno, destierra del GY el **primer Tristaros** para activar su efecto: selecciona y **destruye tu Elesqueletus** previamente Invocada por Sincronía y **trae dos Cristron desde Deck**, el **segundo Tristaros (Cantante 2)** y **Azufafnir (no Cantante 5)**. La restricción Extra de Tristaros es a Máquinas; también sigue la más estricta de Smiger este turno.\n2. Al haber sido destruida Elesqueletus que sí fue sincronizada, puede activar su efecto para **revivir Citree (Cantante 2) de tu GY**, según la ventana posterior de disparador. Resultado aproximado al cierre de tu turno: **Smiger 3, Tristaros 2, Azufafnir 5 y Citree 2** en Campo (cuatro zonas ocupadas). Elesqueletus ahora GY; el primer Tristaros desterrado. **No hagas una Sincronía aún**: estamos preparando reacción rival.\n3. En el turno rival, ante una **activación de carta/efecto del oponente**, encadena el Efecto Rápido del **segundo Tristaros**; trae el **segundo Sulfador Nivel 5 del Deck** y de inmediato Sincroniza usando **Tristaros 2 + Citree 2 (2 Cantantes) + Sulfador 5 (1 no Cantante)** → **Cristron Quariongandrax Nivel 9**. El recién invocado Sulfador está incluido, requisito de Tristaros.\n4. **Después de resolverse toda la cadena** de esa activación rival, si la Invocación por Sincronía ocurrió legalmente y el disparador se puede activar, usa el efecto de **Quariongandrax** para seleccionar hasta **3 monstruos del adversario** válidos en Campo/GY y **desterrarlos** (el máximo se basa en sus 3 materiales). Si no existen 3 objetivos, el resultado es menor; no se destierran Mágicas/Trampas.\n- **Final condicional:** Quariongandrax en Campo, Smiger 3 y Azufafnir 5 permanecen si nada adicional los movió; materiales de esa Sincronía en GY; hasta 3 monstruos rivales desterrados **solo si hubo objetivos y cadena válida**. Sin activar la cadena rival, o si no sobrevive el tablero previo, **V01 no ocurre**. **R07–R10; RGL05/06/08/09/15.**\n\n",
+      "initial_details": "No es combo autónomo de una carta ni se cuenta como nuevo combo principal: parte exactamente después del campo final de C02, con Elesqueletus 7 y Smiger 3 en tu Campo; Tristaros 2 y Citree 2 en GY; segundo Tristaros 2, Azufafnir 5 y segundo Sulfador 5 todavía en Deck; Quariongandrax en Extra. Requiere supervivencia y espacio de monstruos. Dificultad alta, no simulada.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": []
+    },
+    {
+      "id": "677:A09:V02",
+      "name": "V02 — Inclusión sola como acceso alterno a C01",
+      "title": "V02 — Inclusión sola como acceso alterno a C01",
+      "family": "Desarrollo de la jugada",
+      "purpose": "",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [],
+      "result": "",
+      "opening": "",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Mano inicial solo Inclusión como starter; Campo/GY vacíos, Smiger y Citree disponibles en Deck.",
+          "detail": "Mano inicial solo Inclusión como starter; Campo/GY vacíos, Smiger y Citree disponibles en Deck.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Activa Inclusión y busca Smiger. Haz Normal Smiger, destrúyelo por su efecto y trae Citree del Deck; Inclusión sigue boca arriba.",
+          "detail": "Activa Inclusión y busca Smiger. Haz Normal Smiger, destrúyelo por su efecto y trae Citree del Deck; Inclusión sigue boca arriba.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "En turno rival, Citree selecciona Smiger del GY y sincroniza Hagoita 5 como en C01, desterrando ambos materiales.\n- Diferencia real con C01: se consume una búsqueda; Inclusión permanece en Campo. Si la búsqueda fue negada o prohibida por Droll/Arresto, no asumir que se creó Smiger. No aumentar conteo de combos principales.",
+          "detail": "En turno rival, Citree selecciona Smiger del GY y sincroniza Hagoita 5 como en C01, desterrando ambos materiales.\n- Diferencia real con C01: se consume una búsqueda; Inclusión permanece en Campo. Si la búsqueda fue negada o prohibida por Droll/Arresto, no asumir que se creó Smiger. No aumentar conteo de combos principales.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "\n1. Mano inicial **solo Inclusión** como starter; Campo/GY vacíos, Smiger y Citree disponibles en Deck.\n2. Activa Inclusión y **busca Smiger**. Haz Normal Smiger, destrúyelo por su efecto y **trae Citree** del Deck; Inclusión sigue boca arriba.\n3. En turno rival, Citree selecciona Smiger del GY y sincroniza **Hagoita 5** como en C01, desterrando ambos materiales.\n- **Diferencia real con C01:** se consume una búsqueda; **Inclusión permanece en Campo**. Si la búsqueda fue negada o prohibida por Droll/Arresto, no asumir que se creó Smiger. **No** aumentar conteo de combos principales.\n\n",
+      "initial_details": "",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": []
+    },
+    {
+      "id": "677:A09:V03",
+      "name": "V03 — Azufafnir + Smiger: versión defensiva de Tristaros/C03",
+      "title": "V03 — Azufafnir + Smiger: versión defensiva de Tristaros/C03",
+      "family": "Desarrollo de la jugada",
+      "purpose": "",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [
+        {
+          "cid": 20817,
+          "name": "Agrupamiento Cristron",
+          "image": "./assets/editorial/20261117-folder-delivery-v37/images/677/20817.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/677/20817.png",
+          "label": "Carta mencionada en el paso"
+        }
+      ],
+      "result": "Resultado diferencial: frente a C03, añades una Trampa de eliminación y la búsqueda GY de Smiger; pagas Azufafnir + Smiger y dependes de tener Agrupamiento en Deck y de ventanas correctas. El efecto de Agrupamiento no es una negación de activación.",
+      "opening": "- Inicio distinto, mismo motor reactivo de C03: Azufafnir + Smiger en mano, Tristaros y Sulfador disponibles en Deck, Agrupamiento Cristron en Deck y Elesqueletus en Extra; Campo/GY vacíos. No usa Normal Summon y necesita que el rival active algo en su turno para llegar a Elesqueletus. No sumarlo como un octavo combo principal.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Descarta Smiger para activar Azufafnir en mano; Invócalo en DEF y destruye ese mismo Azufafnir con su efecto. El Azufafnir destruido activa en la nueva cadena su otro efecto y trae Tristaros del Deck en DEF.",
+          "detail": "Descarta Smiger para activar Azufafnir en mano; Invócalo en DEF y destruye ese mismo Azufafnir con su efecto. El Azufafnir destruido activa en la nueva cadena su otro efecto y trae Tristaros del Deck en DEF.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Destierra Smiger desde GY (no usó el efecto de Campo) y busca Agrupamiento Cristron del Deck. Coloca Agrupamiento en tu Zona M/T. Final del turno propio: Tristaros en Campo + Agrupamiento Colocado; Smiger desterrado, Azufafnir GY, Normal intacta. La Trampa NO se activa en el turno en que fue Colocada.",
+          "detail": "Destierra Smiger desde GY (no usó el efecto de Campo) y busca Agrupamiento Cristron del Deck. Coloca Agrupamiento en tu Zona M/T. Final del turno propio: Tristaros en Campo + Agrupamiento Colocado; Smiger desterrado, Azufafnir GY, Normal intacta. La Trampa NO se activa en el turno en que fue Colocada.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "En turno rival ante activación de carta/efecto, Tristaros puede traer Sulfador 5 del Deck y sincronizar Elesqueletus 7 con su Nivel 2. Al terminar la cadena, Elesqueletus puede recuperar Smiger desterrado a mano.",
+          "detail": "En turno rival ante activación de carta/efecto, Tristaros puede traer Sulfador 5 del Deck y sincronizar Elesqueletus 7 con su Nivel 2. Al terminar la cadena, Elesqueletus puede recuperar Smiger desterrado a mano.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Agrupamiento ya está activable en turno rival: cuando tengas Elesqueletus (Sincronía Cristron) y un Cristron elegible en GY/destierro para barajar, puedes activar la Trampa y su efecto contra hasta dos cartas boca arriba que selecciones, barajando por ejemplo Tristaros del GY. Si los objetivos desaparecen antes de resolver, no atribuyas destrucción.\n- Resultado diferencial: frente a C03, añades una Trampa de eliminación y la búsqueda GY de Smiger; pagas Azufafnir + Smiger y dependes de tener Agrupamiento en Deck y de ventanas correctas. El efecto de Agrupamiento no es una negación de activación.",
+          "detail": "Agrupamiento ya está activable en turno rival: cuando tengas Elesqueletus (Sincronía Cristron) y un Cristron elegible en GY/destierro para barajar, puedes activar la Trampa y su efecto contra hasta dos cartas boca arriba que selecciones, barajando por ejemplo Tristaros del GY. Si los objetivos desaparecen antes de resolver, no atribuyas destrucción.\n- Resultado diferencial: frente a C03, añades una Trampa de eliminación y la búsqueda GY de Smiger; pagas Azufafnir + Smiger y dependes de tener Agrupamiento en Deck y de ventanas correctas. El efecto de Agrupamiento no es una negación de activación.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "\n- **Inicio distinto, mismo motor reactivo de C03:** **Azufafnir + Smiger en mano**, Tristaros y Sulfador disponibles en Deck, Agrupamiento Cristron en Deck y Elesqueletus en Extra; Campo/GY vacíos. **No usa Normal Summon** y necesita que el rival active algo en su turno para llegar a Elesqueletus. **No sumarlo como un octavo combo principal.**\n1. Descarta **Smiger** para activar **Azufafnir en mano**; Invócalo en DEF y destruye **ese mismo Azufafnir** con su efecto. El Azufafnir destruido activa en la nueva cadena su **otro** efecto y trae **Tristaros** del Deck en DEF.\n2. **Destierra Smiger desde GY** (no usó el efecto de Campo) y busca **Agrupamiento Cristron** del Deck. **Coloca Agrupamiento** en tu Zona M/T. Final del turno propio: **Tristaros** en Campo + **Agrupamiento Colocado**; Smiger desterrado, Azufafnir GY, Normal intacta. **La Trampa NO se activa en el turno en que fue Colocada.**\n3. En turno rival ante activación de carta/efecto, Tristaros puede traer **Sulfador 5 del Deck** y sincronizar **Elesqueletus 7** con su Nivel 2. Al terminar la cadena, Elesqueletus puede recuperar Smiger desterrado a mano.\n4. **Agrupamiento ya está activable en turno rival**: cuando tengas Elesqueletus (Sincronía Cristron) y un Cristron elegible en GY/destierro para barajar, puedes activar la Trampa y su efecto contra hasta **dos cartas boca arriba** que selecciones, barajando por ejemplo **Tristaros** del GY. Si los objetivos desaparecen antes de resolver, no atribuyas destrucción.\n- **Resultado diferencial:** frente a C03, añades una **Trampa de eliminación** y la búsqueda GY de Smiger; pagas Azufafnir + Smiger y dependes de tener Agrupamiento en Deck y de ventanas correctas. El efecto de Agrupamiento **no** es una negación de activación.\n\n",
+      "initial_details": "- Inicio distinto, mismo motor reactivo de C03: Azufafnir + Smiger en mano, Tristaros y Sulfador disponibles en Deck, Agrupamiento Cristron en Deck y Elesqueletus en Extra; Campo/GY vacíos. No usa Normal Summon y necesita que el rival active algo en su turno para llegar a Elesqueletus. No sumarlo como un octavo combo principal.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": []
+    },
+    {
+      "id": "677:A09:V04",
+      "name": "V04 — Cambio de destino en C02: Destructor Samurái, no Elesqueletus",
+      "title": "V04 — Cambio de destino en C02: Destructor Samurái, no Elesqueletus",
+      "family": "Desarrollo de la jugada",
+      "purpose": "",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [],
+      "result": "",
+      "opening": "",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Sigue los pasos 1–4 de C02: Inclusión busca Smiger, Smiger trae Citree, Sulfador destruye Inclusión y se Invoca, Inclusión del GY se destierra para revivir Smiger. En ese punto tienes Citree 2 + Sulfador 5 + Smiger 3.",
+          "detail": "Sigue los pasos 1–4 de C02: Inclusión busca Smiger, Smiger trae Citree, Sulfador destruye Inclusión y se Invoca, Inclusión del GY se destierra para revivir Smiger. En ese punto tienes Citree 2 + Sulfador 5 + Smiger 3.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "En el paso 5, en vez de Elesqueletus, sincroniza Citree 2 + Sulfador 5 → Destructor Samurái 7 (Máquina Sincronía). Es legal pese al bloqueo de Smiger, porque sigue siendo Sincronía Máquina.",
+          "detail": "En el paso 5, en vez de Elesqueletus, sincroniza Citree 2 + Sulfador 5 → Destructor Samurái 7 (Máquina Sincronía). Es legal pese al bloqueo de Smiger, porque sigue siendo Sincronía Máquina.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "Fin: Destructor Samurái 7 + Smiger 3 en Campo; Inclusión permanece desterrada (no hubo Elesqueletus que la recuperara); Citree y Sulfador van al GY; Tristaros y Thystvern ya enviados en C02 pueden seguir allí. Tu campo gana opción para atacar: al combatir contra un monstruo, el rival no activa cartas/efectos hasta fin de Damage Step, y los efectos del monstruo combatido se niegan durante esa Battle Phase, según el texto de la carta. No equivale a negación general fuera de batalla.\n- Decisión: elige esta salida si vas segundo y el objetivo es combatir un monstruo problemático; elige Elesqueletus si necesitas recuperar Inclusión y conservar recursos. Mismo starter y materiales, distinto cierre: variante, no nuevo combo.",
+          "detail": "Fin: Destructor Samurái 7 + Smiger 3 en Campo; Inclusión permanece desterrada (no hubo Elesqueletus que la recuperara); Citree y Sulfador van al GY; Tristaros y Thystvern ya enviados en C02 pueden seguir allí. Tu campo gana opción para atacar: al combatir contra un monstruo, el rival no activa cartas/efectos hasta fin de Damage Step, y los efectos del monstruo combatido se niegan durante esa Battle Phase, según el texto de la carta. No equivale a negación general fuera de batalla.\n- Decisión: elige esta salida si vas segundo y el objetivo es combatir un monstruo problemático; elige Elesqueletus si necesitas recuperar Inclusión y conservar recursos. Mismo starter y materiales, distinto cierre: variante, no nuevo combo.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "\n1. Sigue los **pasos 1–4 de C02**: Inclusión busca Smiger, Smiger trae Citree, Sulfador destruye Inclusión y se Invoca, Inclusión del GY se destierra para revivir Smiger. En ese punto tienes **Citree 2 + Sulfador 5 + Smiger 3**.\n2. En el paso 5, **en vez de Elesqueletus**, sincroniza **Citree 2 + Sulfador 5 → Destructor Samurái 7 (Máquina Sincronía)**. Es legal pese al bloqueo de Smiger, porque sigue siendo **Sincronía Máquina**.\n3. **Fin:** Destructor Samurái 7 + Smiger 3 en Campo; Inclusión **permanece desterrada** (no hubo Elesqueletus que la recuperara); Citree y Sulfador van al GY; Tristaros y Thystvern ya enviados en C02 pueden seguir allí. Tu campo gana opción para atacar: al **combatir contra un monstruo**, el rival no activa cartas/efectos hasta fin de Damage Step, y los efectos del monstruo combatido se niegan durante esa Battle Phase, según el texto de la carta. **No** equivale a negación general fuera de batalla.\n- **Decisión:** elige esta salida **si vas segundo** y el objetivo es combatir un monstruo problemático; elige **Elesqueletus** si necesitas recuperar Inclusión y conservar recursos. **Mismo starter y materiales, distinto cierre: variante, no nuevo combo.**\n\n",
+      "initial_details": "",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": []
+    }
+  ],
+  "decisions": [],
+  "practice": [],
+  "motor": "",
+  "side_plans": [],
+  "matchup_plans": [],
+  "format_context": {},
+  "improvement_experiments": [],
+  "decision_exercises": [],
+  "rule_scenarios": [],
+  "rule_controls": [],
+  "general_rules": [],
+  "causal_relations": [],
+  "causal_skills": [],
+  "rule_variants": [],
+  "situational_decisions": [],
+  "folder_delivery": {
+    "source_sha256": "7c1a89321b76dbb6708c96ebf72381f42117d6d77b5e133c6bec06585a10c1a5",
+    "reader": "./assets/editorial/20261117-folder-delivery-v37/677-guide.html",
+    "source_file": "torneos_yugioh/context/gpt/01_INFORMACION_PARA_IMPORTAR/decks/DECK_NUEVO_13_CRISTRON_HORUS/DECK_NUEVO_13_CRISTRON_HORUS_CONTENIDO_CURADO.md"
+  }
+}

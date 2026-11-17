@@ -1,0 +1,7 @@
+# Approved sources and generated artifacts have byte-sensitive hashes.
+torneos_yugioh/context/gpt/**
+torneos_yugioh/assets/editorial/**
+torneos_yugioh/assets/guides/**
+outputs/**
+**/*.txt
+node_modules/**

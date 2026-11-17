@@ -1,0 +1,1955 @@
+{
+  "version": 1,
+  "cards": {
+    "650:200": {
+      "file": "./assets/cards/originals/yugiohdb-22356.jpg",
+      "card_name": "Los Tres Campeones de Almaespada / The Three Champions of Swordsoul [Synchro; Konami 22356]",
+      "image_id": 74405783
+    },
+    "650:201": {
+      "file": "./assets/cards/originals/yugiohdb-18666.jpg",
+      "card_name": "Bestia Nube Dorada – Malong / Golden Cloud Beast - Malong [Synchro]",
+      "image_id": 93125329
+    },
+    "650:202": {
+      "file": "./assets/cards/originals/yugiohdb-22335.jpg",
+      "card_name": "Dragón Azote de Tormentas Destorbim / Storm-Bane Dragon Destorbim [Synchro]",
+      "image_id": 94641726
+    },
+    "650:203": {
+      "file": "./assets/cards/originals/yugiohdb-22144.jpg",
+      "card_name": "Ecclesia y el Dragón Oscuro / Ecclesia and the Dark Dragon [extra; efecto y material según carta]",
+      "image_id": 78397661
+    },
+    "650:204": {
+      "file": "./assets/cards/originals/yugiohdb-22143.jpg",
+      "card_name": "Elfnota Serafín Strelitzia / Elfnote Seraphim Strelitzia [Synchro]",
+      "image_id": 42302563
+    },
+    "650:205": {
+      "file": "./assets/cards/originals/yugiohdb-22984.jpg",
+      "card_name": "Elfnota Orgullosa de Junio / Elfnote June Pride [Synchro]",
+      "image_id": 5559570
+    },
+    "650:206": {
+      "file": "./assets/cards/originals/yugiohdb-19188.jpg",
+      "card_name": "S:P Pequeña Caballera / S:P Little Knight [Link]",
+      "image_id": 29301450
+    },
+    "650:207": {
+      "file": "./assets/cards/originals/yugiohdb-18505.jpg",
+      "card_name": "Luluwalilith Despiánica / Despian Luluwalilith [Synchro]",
+      "image_id": 53971455
+    },
+    "650:208": {
+      "file": "./assets/cards/originals/yugiohdb-8038.jpg",
+      "card_name": "Mago Arcanista / Arcanite Magician [Synchro]",
+      "image_id": 31924889
+    },
+    "650:209": {
+      "file": "./assets/cards/originals/yugiohdb-12321.jpg",
+      "card_name": "Dragón Sincro Ala Cristalina / Crystal Wing Synchro Dragon [Synchro]",
+      "image_id": 50954680
+    },
+    "650:210": {
+      "file": "./assets/cards/originals/yugiohdb-13710.jpg",
+      "card_name": "F.A. Coche Trucado del Amanecer / F.A. Dawn Dragster [Synchro]",
+      "image_id": 33158448
+    },
+    "650:211": {
+      "file": "./assets/cards/originals/yugiohdb-15996.jpg",
+      "card_name": "Dragón de la Rosa Rojiza / Ruddy Rose Dragon [Synchro]",
+      "image_id": 40139997
+    },
+    "650:212": {
+      "file": "./assets/cards/originals/yugiohdb-15994.jpg",
+      "card_name": "Albion el Dragón Señalado / Albion the Branded Dragon [Fusion]",
+      "image_id": 87746184
+    },
+    "650:213": {
+      "file": "./assets/cards/originals/yugiohdb-18507.jpg",
+      "card_name": "Ángel del Caos / Chaos Angel [Synchro]",
+      "image_id": 22850702
+    },
+    "650:214": {
+      "file": "./assets/cards/originals/yugiohdb-22142.jpg",
+      "card_name": "Junora, el Modelo de Poder de Afinación / Junora the Power Patron of Tuning [Synchro]",
+      "image_id": 5914858
+    },
+    "650:181": {
+      "file": "./assets/cards/originals/yugiohdb-22523.jpg",
+      "card_name": "Elfnota Regina / Elfnote Regina",
+      "image_id": 56651978
+    },
+    "650:182": {
+      "file": "./assets/cards/originals/yugiohdb-22116.jpg",
+      "card_name": "Elfnota Lucina / Elfnote Lucina",
+      "image_id": 13597785
+    },
+    "650:183": {
+      "file": "./assets/cards/originals/yugiohdb-22117.jpg",
+      "card_name": "Elfnota Tinia / Elfnote Tinia",
+      "image_id": 59581480
+    },
+    "650:184": {
+      "file": "./assets/cards/originals/yugiohdb-22119.jpg",
+      "card_name": "Elfnota Modelo de Poder / Elfnote Power Patron",
+      "image_id": 12375297
+    },
+    "650:185": {
+      "file": "./assets/cards/originals/yugiohdb-22118.jpg",
+      "card_name": "Elfnota Fortuna / Elfnote Fortuna",
+      "image_id": 85976588
+    },
+    "650:186": {
+      "file": "./assets/cards/originals/yugiohdb-22533.jpg",
+      "card_name": "Fidraulis Harmonía / Fidraulis Harmony",
+      "image_id": 70088809
+    },
+    "650:187": {
+      "file": "./assets/cards/originals/yugiohdb-21419.jpg",
+      "card_name": "Medius el Puro / Medius the Pure",
+      "image_id": 97556336
+    },
+    "650:188": {
+      "file": "./assets/cards/originals/yugiohdb-22519.jpg",
+      "card_name": "Vidolium, el Inestable Modelo de Poder de Unidad / Vidolium the Unstable Power Patron of Unity",
+      "image_id": 70488851
+    },
+    "650:189": {
+      "file": "./assets/cards/originals/yugiohdb-17762.jpg",
+      "card_name": "Magnamhut Abyssial / Bystial Magnamhut",
+      "image_id": 33854624
+    },
+    "650:190": {
+      "file": "./assets/cards/originals/yugiohdb-15239.jpg",
+      "card_name": "Ecclesia Dogmátik, la Virtuosa / Dogmatika Ecclesia, the Virtuous",
+      "image_id": 60303688
+    },
+    "650:191": {
+      "file": "./assets/cards/originals/yugiohdb-22520.jpg",
+      "card_name": "Nervedo, la Bestia Sombría Modelo de Poder / Nervedo the Shadebeast Power Patron",
+      "image_id": 17473466
+    },
+    "650:192": {
+      "file": "./assets/cards/originals/yugiohdb-12950.jpg",
+      "card_name": "Flor de Ceniza y Primavera Feliz / Ash Blossom & Joyous Spring",
+      "image_id": 14558127
+    },
+    "650:193": {
+      "file": "./assets/cards/originals/yugiohdb-20500.jpg",
+      "card_name": "Fuwalos Multivadora / Mulcharmy Fuwalos",
+      "image_id": 42141493
+    },
+    "650:194": {
+      "file": "./assets/cards/originals/yugiohdb-20206.jpg",
+      "card_name": "Purulia Multivadora / Mulcharmy Purulia",
+      "image_id": 84192580
+    },
+    "650:195": {
+      "file": "./assets/cards/originals/yugiohdb-13587.jpg",
+      "card_name": "Bella Fantasma y Mansión Embrujada / Ghost Belle & Haunted Mansion",
+      "image_id": 73642296
+    },
+    "650:196": {
+      "file": "./assets/cards/originals/yugiohdb-22565.jpg",
+      "card_name": "Portal de Modelo de Poder Vetado – Término / Prohibited Power Patron Portal - Terminus",
+      "image_id": 25661743
+    },
+    "650:197": {
+      "file": "./assets/cards/originals/yugiohdb-22089.jpg",
+      "card_name": "El Caído y la Virtuosa / The Fallen & The Virtuous",
+      "image_id": 30271097
+    },
+    "650:198": {
+      "file": "./assets/cards/originals/yugiohdb-22159.jpg",
+      "card_name": "Elfonotas: Bienvenidos a Casa / Elfnotes: Welcome Home",
+      "image_id": 64491754
+    },
+    "650:199": {
+      "file": "./assets/cards/originals/yugiohdb-22173.jpg",
+      "card_name": "Elfonotas: Rapsodia de Locura / Elfnotes: Rhapsodia of Madness",
+      "image_id": 24092792
+    },
+    "650:215": {
+      "file": "./assets/cards/originals/yugiohdb-17764.jpg",
+      "card_name": "Druiswurm Abyssial / Bystial Druiswurm",
+      "image_id": 6637331
+    },
+    "650:216": {
+      "file": "./assets/cards/originals/yugiohdb-13587.jpg",
+      "card_name": "Bella Fantasma y Mansión Embrujada / Ghost Belle & Haunted Mansion",
+      "image_id": 73642296
+    },
+    "650:217": {
+      "file": "./assets/cards/originals/yugiohdb-9279.jpg",
+      "card_name": "El Bufón y el Pájaro del Candado / Droll & Lock Bird",
+      "image_id": 94145021
+    },
+    "650:218": {
+      "file": "./assets/cards/originals/yugiohdb-11708.jpg",
+      "card_name": "Ogro Fantasma y Conejo de las Nieves / Ghost Ogre & Snow Rabbit",
+      "image_id": 59438930
+    },
+    "650:219": {
+      "file": "./assets/cards/originals/yugiohdb-13619.jpg",
+      "card_name": "Llamado por la Tumba / Called by the Grave",
+      "image_id": 24224830
+    },
+    "650:220": {
+      "file": "./assets/cards/originals/yugiohdb-15296.jpg",
+      "card_name": "Talento de Tácticas Triples / Triple Tactics Talent",
+      "image_id": 25311006
+    },
+    "650:221": {
+      "file": "./assets/cards/originals/yugiohdb-13407.jpg",
+      "card_name": "«C» Contacto / Contact \"C\"",
+      "image_id": 87170768
+    },
+    "650:222": {
+      "file": "./assets/cards/originals/yugiohdb-4861.jpg",
+      "card_name": "Juicio Solemne / Solemn Judgment",
+      "image_id": 41420027
+    },
+    "650:223": {
+      "file": "./assets/cards/originals/yugiohdb-6511.jpg",
+      "card_name": "Olla de la Pereza / Pot of Avarice",
+      "image_id": 67169062
+    },
+    "653:340": {
+      "file": "./assets/cards/originals/yugiohdb-14958.jpg",
+      "card_name": "Número F0: Futuro Draco Utópico",
+      "image_id": 26973555
+    },
+    "653:341": {
+      "file": "./assets/cards/originals/yugiohdb-16002.jpg",
+      "card_name": "Springans Fiestero",
+      "image_id": 48285768
+    },
+    "653:342": {
+      "file": "./assets/cards/originals/yugiohdb-18190.jpg",
+      "card_name": "Gigantesco «Campeón» Sargas",
+      "image_id": 11132674
+    },
+    "653:343": {
+      "file": "./assets/cards/originals/yugiohdb-21811.jpg",
+      "card_name": "DoomZ XII Fin - Drastrius",
+      "image_id": 95626382
+    },
+    "653:344": {
+      "file": "./assets/cards/originals/yugiohdb-22554.jpg",
+      "card_name": "DoomZ XIII Over - Graflario",
+      "image_id": 65848113
+    },
+    "653:345": {
+      "file": "./assets/cards/originals/yugiohdb-21812.jpg",
+      "card_name": "Fractura DoomZ - Diactorus",
+      "image_id": 31010081
+    },
+    "653:346": {
+      "file": "./assets/cards/originals/yugiohdb-21810.jpg",
+      "card_name": "Júpiter el Modelo de Poder de Destrucción",
+      "image_id": 68231287
+    },
+    "653:347": {
+      "file": "./assets/cards/originals/yugiohdb-21453.jpg",
+      "card_name": "Número F0: Futuro Utópico Zexal",
+      "image_id": 41522092
+    },
+    "653:348": {
+      "file": "./assets/cards/originals/yugiohdb-19886.jpg",
+      "card_name": "Varudras, el Último Portador del Fin de los Tiempos",
+      "image_id": 70636044
+    },
+    "653:349": {
+      "file": "./assets/cards/originals/yugiohdb-15524.jpg",
+      "card_name": "Divino Arsenal AA-ZEUS - Trueno del Cielo",
+      "image_id": 90448279
+    },
+    "653:350": {
+      "file": "./assets/cards/originals/yugiohdb-11413.jpg",
+      "card_name": "Número F0: Futuro Utópico",
+      "image_id": 65305468
+    },
+    "653:351": {
+      "file": "./assets/cards/originals/yugiohdb-14920.jpg",
+      "card_name": "Mago Gagagaga",
+      "image_id": 86331741
+    },
+    "653:322": {
+      "file": "./assets/cards/originals/yugiohdb-21419.jpg",
+      "card_name": "Medius el Puro",
+      "image_id": 97556336
+    },
+    "653:323": {
+      "file": "./assets/cards/originals/yugiohdb-21824.jpg",
+      "card_name": "Mando DoomZ «D.O.O.M.D.U.R.G.»",
+      "image_id": 68831625
+    },
+    "653:324": {
+      "file": "./assets/cards/originals/yugiohdb-21777.jpg",
+      "card_name": "DoomZ Modelo de Poder",
+      "image_id": 81650695
+    },
+    "653:325": {
+      "file": "./assets/cards/originals/yugiohdb-9279.jpg",
+      "card_name": "El Bufón y el Pájaro del Candado",
+      "image_id": 94145021
+    },
+    "653:326": {
+      "file": "./assets/cards/originals/yugiohdb-22521.jpg",
+      "card_name": "Modelo de Poder Máquina de Sombras Zegredo",
+      "image_id": 43871165
+    },
+    "653:327": {
+      "file": "./assets/cards/originals/yugiohdb-12950.jpg",
+      "card_name": "Flor de Ceniza & Primavera Feliz",
+      "image_id": 14558127
+    },
+    "653:328": {
+      "file": "./assets/cards/originals/yugiohdb-17119.jpg",
+      "card_name": "Therion «Rey» Regulus",
+      "image_id": 10604644
+    },
+    "653:329": {
+      "file": "./assets/cards/originals/yugiohdb-21774.jpg",
+      "card_name": "DoomZ XII Cero - Drastea",
+      "image_id": 92472273
+    },
+    "653:330": {
+      "file": "./assets/cards/originals/yugiohdb-21775.jpg",
+      "card_name": "DoomZ V Cinco - Amalthe",
+      "image_id": 28877382
+    },
+    "653:331": {
+      "file": "./assets/cards/originals/yugiohdb-21776.jpg",
+      "card_name": "DoomZ VII Siete - Elara",
+      "image_id": 54265980
+    },
+    "653:332": {
+      "file": "./assets/cards/originals/yugiohdb-13631.jpg",
+      "card_name": "Infinito Temporal",
+      "image_id": 10045474
+    },
+    "653:333": {
+      "file": "./assets/cards/originals/yugiohdb-20500.jpg",
+      "card_name": "Fuwalos Multivadora",
+      "image_id": 42141493
+    },
+    "653:334": {
+      "file": "./assets/cards/originals/yugiohdb-22565.jpg",
+      "card_name": "Portal del Modelo de Poder Desatado - Terminus",
+      "image_id": 25661743
+    },
+    "653:335": {
+      "file": "./assets/cards/originals/yugiohdb-21823.jpg",
+      "card_name": "Incursores DoomZ",
+      "image_id": 32442017
+    },
+    "653:336": {
+      "file": "./assets/cards/originals/yugiohdb-22519.jpg",
+      "card_name": "Vidrium, Modelo de Poder de la Exterminación del Caos",
+      "image_id": 70488851
+    },
+    "653:337": {
+      "file": "./assets/cards/originals/yugiohdb-22158.jpg",
+      "card_name": "Cambio DoomZ",
+      "image_id": 38007649
+    },
+    "653:338": {
+      "file": "./assets/cards/originals/yugiohdb-21840.jpg",
+      "card_name": "Destrucción DoomZ",
+      "image_id": 80320877
+    },
+    "653:339": {
+      "file": "./assets/cards/originals/yugiohdb-22567.jpg",
+      "card_name": "Mando DoomZ «A.D.R.A.S.T.E.I.A.»",
+      "image_id": 84054556
+    },
+    "653:352": {
+      "file": "./assets/cards/originals/yugiohdb-11708.jpg",
+      "card_name": "Ogro Fantasma & Conejo de las Nieves",
+      "image_id": 59438930
+    },
+    "653:353": {
+      "file": "./assets/cards/originals/yugiohdb-15296.jpg",
+      "card_name": "Talento de Tácticas Triples",
+      "image_id": 25311006
+    },
+    "653:354": {
+      "file": "./assets/cards/originals/yugiohdb-14564.jpg",
+      "card_name": "Número 60: Dugares el Eterno",
+      "image_id": 66011101
+    },
+    "653:355": {
+      "file": "./assets/cards/originals/yugiohdb-13619.jpg",
+      "card_name": "Llamado por la Tumba",
+      "image_id": 24224830
+    },
+    "653:356": {
+      "file": "./assets/cards/originals/yugiohdb-14876.jpg",
+      "card_name": "Tormenta de Relámpagos",
+      "image_id": 14532163
+    },
+    "653:357": {
+      "file": "./assets/cards/originals/yugiohdb-14741.jpg",
+      "card_name": "Nibiru, el Ser Primitivo",
+      "image_id": 27204311
+    },
+    "653:358": {
+      "file": "./assets/cards/originals/yugiohdb-19184.jpg",
+      "card_name": "Súper Asesino Estelar TY-PHON - Crisis Celeste",
+      "image_id": 93039339
+    },
+    "656:385": {
+      "file": "./assets/cards/originals/yugiohdb-20521.jpg",
+      "card_name": "Agnumday del Demoniherrero",
+      "image_id": 32991300
+    },
+    "656:386": {
+      "file": "./assets/cards/originals/yugiohdb-17803.jpg",
+      "card_name": "Sprind Spright",
+      "image_id": 72329844
+    },
+    "656:387": {
+      "file": "./assets/cards/originals/yugiohdb-19188.jpg",
+      "card_name": "S:P Pequeña Caballera",
+      "image_id": 29301450
+    },
+    "656:388": {
+      "file": "./assets/cards/originals/yugiohdb-20225.jpg",
+      "card_name": "Réquiem del Demoniherrero",
+      "image_id": 2463794
+    },
+    "656:389": {
+      "file": "./assets/cards/originals/yugiohdb-17746.jpg",
+      "card_name": "Garura, Alas de Vida Resonante",
+      "image_id": 11765832
+    },
+    "656:390": {
+      "file": "./assets/cards/originals/yugiohdb-12870.jpg",
+      "card_name": "Predaplanta Dragostapelia",
+      "image_id": 69946549
+    },
+    "656:391": {
+      "file": "./assets/cards/originals/yugiohdb-17445.jpg",
+      "card_name": "Tiagrimientos Caleido-Heart",
+      "image_id": 28226490
+    },
+    "656:392": {
+      "file": "./assets/cards/originals/yugiohdb-14676.jpg",
+      "card_name": "I:P Enmascarada",
+      "image_id": 65741786
+    },
+    "656:393": {
+      "file": "./assets/cards/originals/yugiohdb-20226.jpg",
+      "card_name": "Secuencia del Demoniherrero",
+      "image_id": 49867899
+    },
+    "656:394": {
+      "file": "./assets/cards/originals/yugiohdb-13454.jpg",
+      "card_name": "Fangodragón del Pantano",
+      "image_id": 54757758
+    },
+    "656:395": {
+      "file": "./assets/cards/originals/yugiohdb-20214.jpg",
+      "card_name": "Lácrima del Demoniherrero",
+      "image_id": 46640168
+    },
+    "656:396": {
+      "file": "./assets/cards/originals/yugiohdb-11005.jpg",
+      "card_name": "Parca Peregrina",
+      "image_id": 45742626
+    },
+    "656:397": {
+      "file": "./assets/cards/originals/yugiohdb-16850.jpg",
+      "card_name": "El Vampiro Zombi",
+      "image_id": 73082255
+    },
+    "656:398": {
+      "file": "./assets/cards/originals/yugiohdb-10942.jpg",
+      "card_name": "Caballero Exciton Horda de Maldad",
+      "image_id": 46772449
+    },
+    "656:399": {
+      "file": "./assets/cards/originals/yugiohdb-14356.jpg",
+      "card_name": "Ladrón del Tiempo Repetidor",
+      "image_id": 55285840
+    },
+    "656:359": {
+      "file": "./assets/cards/originals/yugiohdb-7445.jpg",
+      "card_name": "Súper Polimerización",
+      "image_id": 48130397
+    },
+    "656:360": {
+      "file": "./assets/cards/originals/yugiohdb-20490.jpg",
+      "card_name": "Lácrima las Lágrimas Carmesíes",
+      "image_id": 28803166
+    },
+    "656:361": {
+      "file": "./assets/cards/originals/yugiohdb-17416.jpg",
+      "card_name": "Tiagrimientos Havnis",
+      "image_id": 37961969
+    },
+    "656:362": {
+      "file": "./assets/cards/originals/yugiohdb-17462.jpg",
+      "card_name": "Planeta Primigenio Perlerreino",
+      "image_id": 77103950
+    },
+    "656:363": {
+      "file": "./assets/cards/originals/yugiohdb-17768.jpg",
+      "card_name": "Kashtira Fenrir",
+      "image_id": 32909498
+    },
+    "656:364": {
+      "file": "./assets/cards/originals/yugiohdb-12950.jpg",
+      "card_name": "Flor de Ceniza & Primavera Feliz",
+      "image_id": 14558127
+    },
+    "656:365": {
+      "file": "./assets/cards/originals/yugiohdb-17417.jpg",
+      "card_name": "Tiagrimientos Reinoheart",
+      "image_id": 73956664
+    },
+    "656:366": {
+      "file": "./assets/cards/originals/yugiohdb-17415.jpg",
+      "card_name": "Tiagrimientos Scheiren",
+      "image_id": 572850
+    },
+    "656:367": {
+      "file": "./assets/cards/originals/yugiohdb-17414.jpg",
+      "card_name": "Tiagrimientos Merrli",
+      "image_id": 74078255
+    },
+    "656:368": {
+      "file": "./assets/cards/originals/yugiohdb-12800.jpg",
+      "card_name": "Bienes del Entierro Insensato",
+      "image_id": 35726888
+    },
+    "656:369": {
+      "file": "./assets/cards/originals/yugiohdb-18219.jpg",
+      "card_name": "Trivikarma",
+      "image_id": 7436169
+    },
+    "656:370": {
+      "file": "./assets/cards/originals/yugiohdb-17475.jpg",
+      "card_name": "Crimanto Tiagrimientos",
+      "image_id": 1329620
+    },
+    "656:371": {
+      "file": "./assets/cards/originals/yugiohdb-17813.jpg",
+      "card_name": "Grito Tiagrimientos",
+      "image_id": 6767771
+    },
+    "656:372": {
+      "file": "./assets/cards/originals/yugiohdb-17604.jpg",
+      "card_name": "Mudora el Oráculo de la Espada",
+      "image_id": 99937011
+    },
+    "656:373": {
+      "file": "./assets/cards/originals/yugiohdb-19153.jpg",
+      "card_name": "Amset, Gloria de Horus",
+      "image_id": 84941194
+    },
+    "656:374": {
+      "file": "./assets/cards/originals/yugiohdb-8933.jpg",
+      "card_name": "Ocultador de Efectos",
+      "image_id": 97268402
+    },
+    "656:375": {
+      "file": "./assets/cards/originals/yugiohdb-22169.jpg",
+      "card_name": "Corona Prohibida",
+      "image_id": 98829635
+    },
+    "656:376": {
+      "file": "./assets/cards/originals/yugiohdb-18153.jpg",
+      "card_name": "Tiagrimientos Kashtira",
+      "image_id": 4928565
+    },
+    "656:377": {
+      "file": "./assets/cards/originals/yugiohdb-18204.jpg",
+      "card_name": "Planeta Bajo Presión Wraitsoth",
+      "image_id": 71832012
+    },
+    "656:378": {
+      "file": "./assets/cards/originals/yugiohdb-17473.jpg",
+      "card_name": "Metarruido Tiagrimientos",
+      "image_id": 38436986
+    },
+    "656:379": {
+      "file": "./assets/cards/originals/yugiohdb-20196.jpg",
+      "card_name": "Demoniherrero Grabador",
+      "image_id": 60764609
+    },
+    "656:380": {
+      "file": "./assets/cards/originals/yugiohdb-19200.jpg",
+      "card_name": "Sarcófago del Rey",
+      "image_id": 16528181
+    },
+    "656:381": {
+      "file": "./assets/cards/originals/yugiohdb-19155.jpg",
+      "card_name": "Hapi, Guía de Horus",
+      "image_id": 47330808
+    },
+    "656:382": {
+      "file": "./assets/cards/originals/yugiohdb-20240.jpg",
+      "card_name": "Tracto del Demoniherrero",
+      "image_id": 98567237
+    },
+    "656:383": {
+      "file": "./assets/cards/originals/yugiohdb-8092.jpg",
+      "card_name": "Fabuloso Lurrie",
+      "image_id": 97651498
+    },
+    "656:384": {
+      "file": "./assets/cards/originals/yugiohdb-17603.jpg",
+      "card_name": "Keldo la Protectora Sagrada",
+      "image_id": 63542003
+    },
+    "656:400": {
+      "file": "./assets/cards/originals/yugiohdb-17416.jpg",
+      "card_name": "Tiagrimientos Havnis",
+      "image_id": 37961969
+    },
+    "656:401": {
+      "file": "./assets/cards/originals/yugiohdb-20500.jpg",
+      "card_name": "Fuwalos Multivadora",
+      "image_id": 42141493
+    },
+    "656:402": {
+      "file": "./assets/cards/originals/yugiohdb-14856.jpg",
+      "card_name": "Punto de Oveja",
+      "image_id": 50277355
+    },
+    "656:403": {
+      "file": "./assets/cards/originals/yugiohdb-18807.jpg",
+      "card_name": "Alma Desencadenada de Shyama",
+      "image_id": 88554436
+    },
+    "656:404": {
+      "file": "./assets/cards/originals/yugiohdb-13619.jpg",
+      "card_name": "Llamado por la Tumba",
+      "image_id": 24224830
+    },
+    "656:405": {
+      "file": "./assets/cards/originals/yugiohdb-12464.jpg",
+      "card_name": "Ciclón del Cosmos",
+      "image_id": 8267140
+    },
+    "656:406": {
+      "file": "./assets/cards/originals/yugiohdb-4678.jpg",
+      "card_name": "Polvo de Pluma de Arpía",
+      "image_id": 18144507
+    },
+    "656:407": {
+      "file": "./assets/cards/originals/yugiohdb-5537.jpg",
+      "card_name": "Terraformación",
+      "image_id": 73628505
+    },
+    "656:408": {
+      "file": "./assets/cards/originals/yugiohdb-15296.jpg",
+      "card_name": "Talento de Tácticas Triples",
+      "image_id": 25311006
+    },
+    "656:409": {
+      "file": "./assets/cards/originals/yugiohdb-17813.jpg",
+      "card_name": "Grito Tiagrimientos",
+      "image_id": 6767771
+    },
+    "656:410": {
+      "file": "./assets/cards/originals/yugiohdb-7445.jpg",
+      "card_name": "Súper Polimerización",
+      "image_id": 48130397
+    },
+    "656:411": {
+      "file": "./assets/cards/originals/yugiohdb-13587.jpg",
+      "card_name": "Bella Fantasma & Mansión Embrujada",
+      "image_id": 73642296
+    },
+    "665:113": {
+      "file": "./assets/cards/originals/yugiohdb-17800.jpg",
+      "card_name": "Kashtira Shangri-Ira [Xyz rango 7]",
+      "image_id": 73542331
+    },
+    "665:114": {
+      "file": "./assets/cards/originals/yugiohdb-18191.jpg",
+      "card_name": "Kashtira Arise-Heart [Xyz rango 7]",
+      "image_id": 48626373
+    },
+    "665:115": {
+      "file": "./assets/cards/originals/yugiohdb-9861.jpg",
+      "card_name": "Número 11: Ojo Grande / Number 11: Big Eye [Xyz rango 7]",
+      "image_id": 80117527
+    },
+    "665:116": {
+      "file": "./assets/cards/originals/yugiohdb-15524.jpg",
+      "card_name": "Divino Arsenal AA-ZEUS – Trueno del Cielo / Divine Arsenal AA-ZEUS – Sky Thunder [Xyz]",
+      "image_id": 90448279
+    },
+    "665:117": {
+      "file": "./assets/cards/originals/yugiohdb-13974.jpg",
+      "card_name": "Armado Oscuro, el Dragón de la Aniquilación / Dark Armed, the Dragon of Annihilation [Xyz rango 7]",
+      "image_id": 78144171
+    },
+    "665:118": {
+      "file": "./assets/cards/originals/yugiohdb-16386.jpg",
+      "card_name": "Baronesa de la Flor / Baronne de Fleur [Synchro nivel 10]",
+      "image_id": 84815190
+    },
+    "665:119": {
+      "file": "./assets/cards/originals/yugiohdb-17804.jpg",
+      "card_name": "Donner, Daga Mascota a Sueldo / Donner, Dagger Fur Hire [Link-2]",
+      "image_id": 8728498
+    },
+    "665:120": {
+      "file": "./assets/cards/originals/yugiohdb-15741.jpg",
+      "card_name": "Diosa del Inframundo del Mundo Cerrado / Underworld Goddess of the Closed World [Link-5]",
+      "image_id": 98127546
+    },
+    "665:121": {
+      "file": "./assets/cards/originals/yugiohdb-15366.jpg",
+      "card_name": "Guerrero Fósil Caballero del Cráneo / Fossil Warrior Skull Knight [Fusión]",
+      "image_id": 59531356
+    },
+    "665:122": {
+      "file": "./assets/cards/originals/yugiohdb-15882.jpg",
+      "card_name": "Máquina Fósil Vagón del Cráneo / Fossil Machine Skull Wagon [Fusión]",
+      "image_id": 83656563
+    },
+    "665:92": {
+      "file": "./assets/cards/originals/yugiohdb-17768.jpg",
+      "card_name": "Kashtira Fenrir",
+      "image_id": 32909498
+    },
+    "665:93": {
+      "file": "./assets/cards/originals/yugiohdb-17769.jpg",
+      "card_name": "Kashtira Unicornio",
+      "image_id": 68304193
+    },
+    "665:94": {
+      "file": "./assets/cards/originals/yugiohdb-18151.jpg",
+      "card_name": "Kashtira Riseheart",
+      "image_id": 31149212
+    },
+    "665:95": {
+      "file": "./assets/cards/originals/yugiohdb-17770.jpg",
+      "card_name": "Kashtira Ogre",
+      "image_id": 94392192
+    },
+    "665:96": {
+      "file": "./assets/cards/originals/yugiohdb-18152.jpg",
+      "card_name": "Terrogarras Kashtira / Scareclaw Kashtira",
+      "image_id": 78534861
+    },
+    "665:97": {
+      "file": "./assets/cards/originals/yugiohdb-18153.jpg",
+      "card_name": "Tiagrimentos Kashtira / Tearlaments Kashtira",
+      "image_id": 4928565
+    },
+    "665:98": {
+      "file": "./assets/cards/originals/yugiohdb-12950.jpg",
+      "card_name": "Flor de Ceniza y Primavera Feliz / Ash Blossom & Joyous Spring",
+      "image_id": 14558127
+    },
+    "665:99": {
+      "file": "./assets/cards/originals/yugiohdb-14740.jpg",
+      "card_name": "Variador Dimensional / Dimension Shifter",
+      "image_id": 91800273
+    },
+    "665:100": {
+      "file": "./assets/cards/originals/yugiohdb-18204.jpg",
+      "card_name": "Planeta Bajo Presión Wraitsoth / Pressured Planet Wraitsoth",
+      "image_id": 71832012
+    },
+    "665:101": {
+      "file": "./assets/cards/originals/yugiohdb-17815.jpg",
+      "card_name": "Nacimiento Kashtira / Kashtira Birth",
+      "image_id": 69540484
+    },
+    "665:102": {
+      "file": "./assets/cards/originals/yugiohdb-18203.jpg",
+      "card_name": "Kashtirateosis / Kashtiratheosis",
+      "image_id": 34447918
+    },
+    "665:103": {
+      "file": "./assets/cards/originals/yugiohdb-5537.jpg",
+      "card_name": "Terraformación / Terraforming",
+      "image_id": 73628505
+    },
+    "665:104": {
+      "file": "./assets/cards/originals/yugiohdb-5432.jpg",
+      "card_name": "Libro de la Luna / Book of Moon",
+      "image_id": 14087893
+    },
+    "665:105": {
+      "file": "./assets/cards/originals/yugiohdb-4342.jpg",
+      "card_name": "Agujero Oscuro / Dark Hole",
+      "image_id": 53129443
+    },
+    "665:106": {
+      "file": "./assets/cards/originals/yugiohdb-15756.jpg",
+      "card_name": "Olla de la Prosperidad / Pot of Prosperity",
+      "image_id": 84211599
+    },
+    "665:107": {
+      "file": "./assets/cards/originals/yugiohdb-12464.jpg",
+      "card_name": "Ciclón del Cosmos / Cosmic Cyclone",
+      "image_id": 8267140
+    },
+    "665:108": {
+      "file": "./assets/cards/originals/yugiohdb-9352.jpg",
+      "card_name": "Lanza Prohibida / Forbidden Lance",
+      "image_id": 27243130
+    },
+    "665:109": {
+      "file": "./assets/cards/originals/yugiohdb-15296.jpg",
+      "card_name": "Talento de Tácticas Triples / Triple Tactics Talent",
+      "image_id": 25311006
+    },
+    "665:110": {
+      "file": "./assets/cards/originals/yugiohdb-13631.jpg",
+      "card_name": "Infinito Temporal / Infinite Impermanence",
+      "image_id": 10045474
+    },
+    "665:111": {
+      "file": "./assets/cards/originals/yugiohdb-17831.jpg",
+      "card_name": "Preparaciones Kashtira / Kashtira Preparations",
+      "image_id": 21639276
+    },
+    "665:112": {
+      "file": "./assets/cards/originals/yugiohdb-18220.jpg",
+      "card_name": "Big Bang Kashtira / Kashtira Big Bang",
+      "image_id": 33925864
+    },
+    "665:123": {
+      "file": "./assets/cards/originals/yugiohdb-5432.jpg",
+      "card_name": "Libro de la Luna / Book of Moon",
+      "image_id": 14087893
+    },
+    "665:124": {
+      "file": "./assets/cards/originals/yugiohdb-15296.jpg",
+      "card_name": "Talento de Tácticas Triples / Triple Tactics Talent",
+      "image_id": 25311006
+    },
+    "665:125": {
+      "file": "./assets/cards/originals/yugiohdb-7153.jpg",
+      "card_name": "Virus Epidémico Erradicador / Eradicator Epidemic Virus",
+      "image_id": 54974237
+    },
+    "665:126": {
+      "file": "./assets/cards/originals/yugiohdb-14740.jpg",
+      "card_name": "Variador Dimensional / Dimension Shifter",
+      "image_id": 91800273
+    },
+    "665:127": {
+      "file": "./assets/cards/originals/yugiohdb-9352.jpg",
+      "card_name": "Lanza Prohibida / Forbidden Lance",
+      "image_id": 27243130
+    },
+    "665:128": {
+      "file": "./assets/cards/originals/yugiohdb-17769.jpg",
+      "card_name": "Kashtira Unicornio / Kashtira Unicorn",
+      "image_id": 68304193
+    },
+    "665:129": {
+      "file": "./assets/cards/originals/yugiohdb-13896.jpg",
+      "card_name": "Dinoluchador Pankratops / Dinowrestler Pankratops",
+      "image_id": 82385847
+    },
+    "665:130": {
+      "file": "./assets/cards/originals/yugiohdb-12668.jpg",
+      "card_name": "Barrera Dimensional / Dimensional Barrier",
+      "image_id": 83326048
+    },
+    "665:131": {
+      "file": "./assets/cards/originals/yugiohdb-15756.jpg",
+      "card_name": "Olla de la Prosperidad / Pot of Prosperity",
+      "image_id": 84211599
+    },
+    "665:132": {
+      "file": "./assets/cards/originals/yugiohdb-14741.jpg",
+      "card_name": "Nibiru, el Ser Primitivo / Nibiru, the Primal Being",
+      "image_id": 27204311
+    },
+    "665:133": {
+      "file": "./assets/cards/originals/yugiohdb-9279.jpg",
+      "card_name": "El Bufón y el Pájaro del Candado / Droll & Lock Bird",
+      "image_id": 94145021
+    },
+    "665:134": {
+      "file": "./assets/cards/originals/yugiohdb-13587.jpg",
+      "card_name": "Bella Fantasma y Mansión Embrujada / Ghost Belle & Haunted Mansion",
+      "image_id": 73642296
+    },
+    "665:135": {
+      "file": "./assets/cards/originals/yugiohdb-14400.jpg",
+      "card_name": "Infinitrack Goliath [monstruo Link para intercambio con Extra Deck]",
+      "image_id": 23689428
+    },
+    "670:162": {
+      "file": "./assets/cards/originals/yugiohdb-15275.jpg",
+      "card_name": "Infernoble Knight Captain Roland [Synchro]",
+      "image_id": 40251688
+    },
+    "670:163": {
+      "file": "./assets/cards/originals/yugiohdb-16386.jpg",
+      "card_name": "Baronne de Fleur [Synchro]",
+      "image_id": 84815190
+    },
+    "670:164": {
+      "file": "./assets/cards/originals/yugiohdb-15276.jpg",
+      "card_name": "Infernoble Knight Emperor Charles [Synchro]",
+      "image_id": 77656797
+    },
+    "670:165": {
+      "file": "./assets/cards/originals/yugiohdb-18926.jpg",
+      "card_name": "Battlin' Boxer King Dempsey [Xyz]",
+      "image_id": 46804536
+    },
+    "670:166": {
+      "file": "./assets/cards/originals/yugiohdb-19184.jpg",
+      "card_name": "Super Starslayer TY-PHON - Sky Crisis [Xyz]",
+      "image_id": 93039339
+    },
+    "670:167": {
+      "file": "./assets/cards/originals/yugiohdb-18827.jpg",
+      "card_name": "Angelica, Princess of Noble Arms [Synchro]",
+      "image_id": 36320744
+    },
+    "670:168": {
+      "file": "./assets/cards/originals/yugiohdb-13500.jpg",
+      "card_name": "Isolde, Two Tales of the Noble Knights [Link]",
+      "image_id": 59934749
+    },
+    "670:169": {
+      "file": "./assets/cards/originals/yugiohdb-18835.jpg",
+      "card_name": "Emperor Charles the Great [Link]",
+      "image_id": 97864322
+    },
+    "670:170": {
+      "file": "./assets/cards/originals/yugiohdb-14496.jpg",
+      "card_name": "Apollousa, Bow of the Goddess [Link]",
+      "image_id": 4280258
+    },
+    "670:171": {
+      "file": "./assets/cards/originals/yugiohdb-13841.jpg",
+      "card_name": "Relinquished Anima [Link]",
+      "image_id": 94259633
+    },
+    "670:172": {
+      "file": "./assets/cards/originals/yugiohdb-13034.jpg",
+      "card_name": "Link Spider [Link]",
+      "image_id": 98978921
+    },
+    "670:173": {
+      "file": "./assets/cards/originals/yugiohdb-19188.jpg",
+      "card_name": "S:P Little Knight [Link]",
+      "image_id": 29301450
+    },
+    "670:136": {
+      "file": "./assets/cards/originals/yugiohdb-17768.jpg",
+      "card_name": "Kashtira Fenrir",
+      "image_id": 32909498
+    },
+    "670:137": {
+      "file": "./assets/cards/originals/yugiohdb-18151.jpg",
+      "card_name": "Kashtira Riseheart",
+      "image_id": 31149212
+    },
+    "670:138": {
+      "file": "./assets/cards/originals/yugiohdb-19148.jpg",
+      "card_name": "Diabellstar la Bruja Negra",
+      "image_id": 72270339
+    },
+    "670:139": {
+      "file": "./assets/cards/originals/yugiohdb-14801.jpg",
+      "card_name": "Fénix Inmortal Gearfried / Immortal Phoenix Gearfried",
+      "image_id": 22091647
+    },
+    "670:140": {
+      "file": "./assets/cards/originals/yugiohdb-18801.jpg",
+      "card_name": "Infernoble Caballero Turpin",
+      "image_id": 89809665
+    },
+    "670:141": {
+      "file": "./assets/cards/originals/yugiohdb-15249.jpg",
+      "card_name": "Infernoble Caballero Maugis",
+      "image_id": 94730900
+    },
+    "670:142": {
+      "file": "./assets/cards/originals/yugiohdb-15247.jpg",
+      "card_name": "Infernoble Caballero Ogier",
+      "image_id": 21351206
+    },
+    "670:143": {
+      "file": "./assets/cards/originals/yugiohdb-18800.jpg",
+      "card_name": "Infernoble Caballero Ricciardetto",
+      "image_id": 53404966
+    },
+    "670:144": {
+      "file": "./assets/cards/originals/yugiohdb-15082.jpg",
+      "card_name": "Infernoble Caballero Renaud",
+      "image_id": 56824871
+    },
+    "670:145": {
+      "file": "./assets/cards/originals/yugiohdb-15248.jpg",
+      "card_name": "Infernoble Caballero Oliver",
+      "image_id": 58346901
+    },
+    "670:146": {
+      "file": "./assets/cards/originals/yugiohdb-14085.jpg",
+      "card_name": "Neo Space Connector",
+      "image_id": 85840608
+    },
+    "670:147": {
+      "file": "./assets/cards/originals/yugiohdb-6768.jpg",
+      "card_name": "Delfín Aqua Neo-Espacial / Neo-Spacian Aqua Dolphin",
+      "image_id": 17955766
+    },
+    "670:148": {
+      "file": "./assets/cards/originals/yugiohdb-15392.jpg",
+      "card_name": "Dama del Pedernal / Fire Flint Lady",
+      "image_id": 42052439
+    },
+    "670:149": {
+      "file": "./assets/cards/originals/yugiohdb-9279.jpg",
+      "card_name": "El Bufón y el Pájaro del Candado / Droll & Lock Bird",
+      "image_id": 94145021
+    },
+    "670:150": {
+      "file": "./assets/cards/originals/yugiohdb-8933.jpg",
+      "card_name": "Ocultador de Efectos / Effect Veiler",
+      "image_id": 97268402
+    },
+    "670:151": {
+      "file": "./assets/cards/originals/yugiohdb-12950.jpg",
+      "card_name": "Flor de Ceniza y Primavera Feliz / Ash Blossom & Joyous Spring",
+      "image_id": 14558127
+    },
+    "670:152": {
+      "file": "./assets/cards/originals/yugiohdb-19207.jpg",
+      "card_name": "Anillo Angelical de Angélica / Angelica's Angelic Ring",
+      "image_id": 40678060
+    },
+    "670:153": {
+      "file": "./assets/cards/originals/yugiohdb-18843.jpg",
+      "card_name": "Infernarmas Nobles – Almace / Infernoble Arms - Almace",
+      "image_id": 98319530
+    },
+    "670:154": {
+      "file": "./assets/cards/originals/yugiohdb-15287.jpg",
+      "card_name": "Infernarmas Nobles – Durendal / Infernoble Arms - Durendal",
+      "image_id": 37478723
+    },
+    "670:155": {
+      "file": "./assets/cards/originals/yugiohdb-18844.jpg",
+      "card_name": "Museo de Armas Nobles / Noble Arms Museum",
+      "image_id": 25807544
+    },
+    "670:156": {
+      "file": "./assets/cards/originals/yugiohdb-6458.jpg",
+      "card_name": "Espada Divina – Hoja del Fénix / Divine Sword - Phoenix Blade",
+      "image_id": 31423101
+    },
+    "670:157": {
+      "file": "./assets/cards/originals/yugiohdb-7519.jpg",
+      "card_name": "D.D.R. – Reencarnación de la Dimensión Diferente / D.D.R. - Different Dimension Reincarnation",
+      "image_id": 9622164
+    },
+    "670:158": {
+      "file": "./assets/cards/originals/yugiohdb-19196.jpg",
+      "card_name": "Se Busca: ¡Rastreadores del Botín del Pecado! / WANTED: Seeker of Sinful Spoils",
+      "image_id": 80845034
+    },
+    "670:159": {
+      "file": "./assets/cards/originals/yugiohdb-14075.jpg",
+      "card_name": "Herencia del Cáliz / Heritage of the Chalice",
+      "image_id": 51412776
+    },
+    "670:160": {
+      "file": "./assets/cards/originals/yugiohdb-5328.jpg",
+      "card_name": "Refuerzo del Ejército / Reinforcement of the Army",
+      "image_id": 32807846
+    },
+    "670:161": {
+      "file": "./assets/cards/originals/yugiohdb-19199.jpg",
+      "card_name": "Botín del Pecado Original – Ojo de Serpiente / Original Sinful Spoils - Snake-Eye",
+      "image_id": 89023486
+    },
+    "670:174": {
+      "file": "./assets/cards/originals/yugiohdb-14741.jpg",
+      "card_name": "Nibiru, the Primal Being",
+      "image_id": 27204311
+    },
+    "670:175": {
+      "file": "./assets/cards/originals/yugiohdb-6980.jpg",
+      "card_name": "D.D. Crow",
+      "image_id": 24508238
+    },
+    "670:176": {
+      "file": "./assets/cards/originals/yugiohdb-13950.jpg",
+      "card_name": "Herald of the Abyss",
+      "image_id": 94016752
+    },
+    "670:177": {
+      "file": "./assets/cards/originals/yugiohdb-15296.jpg",
+      "card_name": "Triple Tactics Talent",
+      "image_id": 25311006
+    },
+    "670:178": {
+      "file": "./assets/cards/originals/yugiohdb-18214.jpg",
+      "card_name": "Triple Tactics Thrust",
+      "image_id": 35269904
+    },
+    "670:179": {
+      "file": "./assets/cards/originals/yugiohdb-13293.jpg",
+      "card_name": "Evenly Matched",
+      "image_id": 15693423
+    },
+    "670:180": {
+      "file": "./assets/cards/originals/yugiohdb-12668.jpg",
+      "card_name": "Dimensional Barrier",
+      "image_id": 83326048
+    },
+    "684:252": {
+      "file": "./assets/cards/originals/yugiohdb-11764.jpg",
+      "card_name": "Dragón de la Devastación Chimeratech / Chimeratech Rampage Dragon (Konami ID 11764)",
+      "image_id": 84058253
+    },
+    "684:253": {
+      "file": "./assets/cards/originals/yugiohdb-13758.jpg",
+      "card_name": "Ciber Dragón Sieger / Cyber Dragon Sieger",
+      "image_id": 46724542
+    },
+    "684:254": {
+      "file": "./assets/cards/originals/yugiohdb-7403.jpg",
+      "card_name": "Dragón Fortaleza Chimeratech / Chimeratech Fortress Dragon",
+      "image_id": 79229522
+    },
+    "684:255": {
+      "file": "./assets/cards/originals/yugiohdb-20787.jpg",
+      "card_name": "Caballero Mecánico / Clockwork Knight (Konami ID 20787)",
+      "image_id": 41739381
+    },
+    "684:256": {
+      "file": "./assets/cards/originals/yugiohdb-14710.jpg",
+      "card_name": "Centinela Barricadborg / Barricadeborg Blocker",
+      "image_id": 13117073
+    },
+    "684:257": {
+      "file": "./assets/cards/originals/yugiohdb-10870.jpg",
+      "card_name": "Ciber Dragón Nova / Cyber Dragon Nova (Konami ID 10870)",
+      "image_id": 58069384
+    },
+    "684:258": {
+      "file": "./assets/cards/originals/yugiohdb-20511.jpg",
+      "card_name": "Heosvarog el Amanecer Mecánico / Heosvarog the Mechanical Dawn (Konami ID 20511)",
+      "image_id": 8963089
+    },
+    "684:259": {
+      "file": "./assets/cards/originals/yugiohdb-13502.jpg",
+      "card_name": "Genio Qliferte / Qliphort Genius",
+      "image_id": 22423493
+    },
+    "684:260": {
+      "file": "./assets/cards/originals/yugiohdb-13358.jpg",
+      "card_name": "Dragón Megaflota Chimeratech / Chimeratech Megafleet Dragon",
+      "image_id": 87116928
+    },
+    "684:261": {
+      "file": "./assets/cards/originals/yugiohdb-18448.jpg",
+      "card_name": "Caza del Cielo As - Azalea / Sky Striker Ace - Azalea",
+      "image_id": 98462037
+    },
+    "684:262": {
+      "file": "./assets/cards/originals/yugiohdb-16233.jpg",
+      "card_name": "Vimana Cronómalo / Chronomaly Vimana",
+      "image_id": 2609443
+    },
+    "684:263": {
+      "file": "./assets/cards/originals/yugiohdb-11765.jpg",
+      "card_name": "Ciber Dragón del Infinito / Cyber Dragon Infinity (Konami ID 11765)",
+      "image_id": 10443958
+    },
+    "684:264": {
+      "file": "./assets/cards/originals/yugiohdb-19188.jpg",
+      "card_name": "S:P Pequeña Caballera / S:P Little Knight",
+      "image_id": 29301450
+    },
+    "684:265": {
+      "file": "./assets/cards/originals/yugiohdb-13847.jpg",
+      "card_name": "Dragón Ciber Eternidad / Cyber Eternity Dragon",
+      "image_id": 82315403
+    },
+    "684:224": {
+      "file": "./assets/cards/originals/yugiohdb-10866.jpg",
+      "card_name": "Núcleo Ciber Dragón / Cyber Dragon Core",
+      "image_id": 23893227
+    },
+    "684:225": {
+      "file": "./assets/cards/originals/yugiohdb-6390.jpg",
+      "card_name": "Ciber Dragón / Cyber Dragon",
+      "image_id": 70095154
+    },
+    "684:226": {
+      "file": "./assets/cards/originals/yugiohdb-14047.jpg",
+      "card_name": "Ciber Dragón Nachster / Cyber Dragon Nachster",
+      "image_id": 1142880
+    },
+    "684:227": {
+      "file": "./assets/cards/originals/yugiohdb-13723.jpg",
+      "card_name": "Ciber Dragón Herz / Cyber Dragon Herz",
+      "image_id": 56364287
+    },
+    "684:228": {
+      "file": "./assets/cards/originals/yugiohdb-16296.jpg",
+      "card_name": "Quimera Ciberoscura / Cyberdark Chimera",
+      "image_id": 5370235
+    },
+    "684:229": {
+      "file": "./assets/cards/originals/yugiohdb-6830.jpg",
+      "card_name": "Cuerno Ciberoscuro / Cyberdark Horn",
+      "image_id": 41230939
+    },
+    "684:230": {
+      "file": "./assets/cards/originals/yugiohdb-21164.jpg",
+      "card_name": "Sierpe Ciberoscura / Cyberdark Wurm [Konami 21164]",
+      "image_id": 56100345
+    },
+    "684:231": {
+      "file": "./assets/cards/originals/yugiohdb-13181.jpg",
+      "card_name": "Cyberdark Claw",
+      "image_id": 82562802
+    },
+    "684:232": {
+      "file": "./assets/cards/originals/yugiohdb-6663.jpg",
+      "card_name": "Ciber Fénix / Cyber Phoenix",
+      "image_id": 3370104
+    },
+    "684:233": {
+      "file": "./assets/cards/originals/yugiohdb-21163.jpg",
+      "card_name": "Jormungardr Ciber / Cyber Jormungardr [Konami 21163]",
+      "image_id": 19715246
+    },
+    "684:234": {
+      "file": "./assets/cards/originals/yugiohdb-17119.jpg",
+      "card_name": "Therion «Rey» Regulus / Therion \"King\" Regulus",
+      "image_id": 10604644
+    },
+    "684:235": {
+      "file": "./assets/cards/originals/yugiohdb-12950.jpg",
+      "card_name": "Flor de Ceniza y Primavera Feliz / Ash Blossom & Joyous Spring",
+      "image_id": 14558127
+    },
+    "684:236": {
+      "file": "./assets/cards/originals/yugiohdb-13587.jpg",
+      "card_name": "Bella Fantasma y Mansión Embrujada / Ghost Belle & Haunted Mansion",
+      "image_id": 73642296
+    },
+    "684:237": {
+      "file": "./assets/cards/originals/yugiohdb-20205.jpg",
+      "card_name": "Inactidisparador, la Fortaleza de la Negación [Máquina/Péndulo/EFECTO; texto fotografiado y nombre confirmado]",
+      "image_id": 58707981
+    },
+    "684:238": {
+      "file": "./assets/cards/originals/yugiohdb-8428.jpg",
+      "card_name": "Ciber Emergencia / Cyber Emergency",
+      "image_id": 60600126
+    },
+    "684:239": {
+      "file": "./assets/cards/originals/yugiohdb-16298.jpg",
+      "card_name": "Reino Ciberoscuro / Cyberdark Realm",
+      "image_id": 64753988
+    },
+    "684:240": {
+      "file": "./assets/cards/originals/yugiohdb-13770.jpg",
+      "card_name": "Ciber Sistemarev / Cyber Revsystem",
+      "image_id": 33041277
+    },
+    "684:241": {
+      "file": "./assets/cards/originals/yugiohdb-16301.jpg",
+      "card_name": "Horizonte Cibernético / Cybernetic Horizon",
+      "image_id": 63031396
+    },
+    "684:242": {
+      "file": "./assets/cards/originals/yugiohdb-17625.jpg",
+      "card_name": "Noche Mecánica / Clockwork Night",
+      "image_id": 84797028
+    },
+    "684:243": {
+      "file": "./assets/cards/originals/yugiohdb-6398.jpg",
+      "card_name": "Vínculo de Poder / Power Bond",
+      "image_id": 37630732
+    },
+    "684:244": {
+      "file": "./assets/cards/originals/yugiohdb-5129.jpg",
+      "card_name": "Eliminar el Límite / Limiter Removal",
+      "image_id": 23171610
+    },
+    "684:245": {
+      "file": "./assets/cards/originals/yugiohdb-13849.jpg",
+      "card_name": "Fusión Cibercarga / Cyberload Fusion",
+      "image_id": 55704856
+    },
+    "684:246": {
+      "file": "./assets/cards/originals/yugiohdb-6783.jpg",
+      "card_name": "Fusión Sobrecarga / Overload Fusion",
+      "image_id": 3659803
+    },
+    "684:247": {
+      "file": "./assets/cards/originals/yugiohdb-16297.jpg",
+      "card_name": "Ciber Eterno / Cyber Eternal",
+      "image_id": 32768230
+    },
+    "684:248": {
+      "file": "./assets/cards/originals/yugiohdb-4909.jpg",
+      "card_name": "Tifón del Espacio Místico / Mystical Space Typhoon",
+      "image_id": 5318639
+    },
+    "684:249": {
+      "file": "./assets/cards/originals/yugiohdb-12464.jpg",
+      "card_name": "Ciclón del Cosmos / Cosmic Cyclone",
+      "image_id": 8267140
+    },
+    "684:250": {
+      "file": "./assets/cards/originals/yugiohdb-13631.jpg",
+      "card_name": "Infinito Temporal / Infinite Impermanence",
+      "image_id": 10045474
+    },
+    "684:251": {
+      "file": "./assets/cards/originals/yugiohdb-13787.jpg",
+      "card_name": "Desborde Cibernético / Cybernetic Overflow",
+      "image_id": 82428674
+    },
+    "684:266": {
+      "file": "./assets/cards/originals/yugiohdb-7436.jpg",
+      "card_name": "El Calculador",
+      "image_id": 51196174
+    },
+    "684:267": {
+      "file": "./assets/cards/originals/yugiohdb-7400.jpg",
+      "card_name": "Prisión Dimensional",
+      "image_id": 70342110
+    },
+    "684:268": {
+      "file": "./assets/cards/originals/yugiohdb-20500.jpg",
+      "card_name": "Fuwalos Multivadora",
+      "image_id": 42141493
+    },
+    "684:269": {
+      "file": "./assets/cards/originals/yugiohdb-9279.jpg",
+      "card_name": "Droll & Lock Bird",
+      "image_id": 94145021
+    },
+    "684:270": {
+      "file": "./assets/cards/originals/yugiohdb-16301.jpg",
+      "card_name": "Horizonte Cibernético",
+      "image_id": 63031396
+    },
+    "684:271": {
+      "file": "./assets/cards/originals/yugiohdb-14876.jpg",
+      "card_name": "Tormenta de Relámpagos",
+      "image_id": 14532163
+    },
+    "684:272": {
+      "file": "./assets/cards/originals/yugiohdb-12464.jpg",
+      "card_name": "Ciclón del Cosmos",
+      "image_id": 8267140
+    },
+    "684:273": {
+      "file": "./assets/cards/originals/yugiohdb-12872.jpg",
+      "card_name": "Fusion Recycling Plant",
+      "image_id": 22829942
+    },
+    "684:274": {
+      "file": "./assets/cards/originals/yugiohdb-15296.jpg",
+      "card_name": "Talento de Tácticas Triples",
+      "image_id": 25311006
+    },
+    "684:275": {
+      "file": "./assets/cards/originals/yugiohdb-16298.jpg",
+      "card_name": "Reino Ciberoscuro",
+      "image_id": 64753988
+    },
+    "684:276": {
+      "file": "./assets/cards/originals/yugiohdb-6398.jpg",
+      "card_name": "Vínculo de Poder",
+      "image_id": 37630732
+    },
+    "684:277": {
+      "file": "./assets/cards/originals/yugiohdb-13723.jpg",
+      "card_name": "Ciber Dragón Herz",
+      "image_id": 56364287
+    },
+    "684:278": {
+      "file": "./assets/cards/originals/yugiohdb-13851.jpg",
+      "card_name": "Revolución Cibernética",
+      "image_id": 18597560
+    },
+    "684:279": {
+      "file": "./assets/cards/originals/yugiohdb-13758.jpg",
+      "card_name": "Ciber Dragón Sieger",
+      "image_id": 46724542
+    },
+    "684:280": {
+      "file": "./assets/cards/originals/yugiohdb-6397.jpg",
+      "card_name": "Dragón Ciber Final",
+      "image_id": 1546123
+    },
+    "684:281": {
+      "file": "./assets/cards/originals/yugiohdb-20787.jpg",
+      "card_name": "Caballero Mecánico",
+      "image_id": 41739381
+    },
+    "684:282": {
+      "file": "./assets/cards/originals/yugiohdb-6734.jpg",
+      "card_name": "Chimeratech Overdragon",
+      "image_id": 64599569
+    },
+    "684:283": {
+      "file": "./assets/cards/originals/yugiohdb-10870.jpg",
+      "card_name": "Ciber Dragón Nova",
+      "image_id": 58069384
+    },
+    "687:302": {
+      "file": "./assets/cards/originals/yugiohdb-14676.jpg",
+      "card_name": "I:P Enmascarada / I:P Masquerena",
+      "image_id": 65741786
+    },
+    "687:303": {
+      "file": "./assets/cards/originals/yugiohdb-14133.jpg",
+      "card_name": "Hiita, la Encantadora del Fuego Encendida / Hiita the Fire Charmer, Ablaze",
+      "image_id": 48815792
+    },
+    "687:304": {
+      "file": "./assets/cards/originals/yugiohdb-13601.jpg",
+      "card_name": "Caballero de Pesadilla Unicornio / Knightmare Unicorn",
+      "image_id": 38342335
+    },
+    "687:305": {
+      "file": "./assets/cards/originals/yugiohdb-15741.jpg",
+      "card_name": "Diosa del Inframundo del Mundo Cerrado / Underworld Goddess of the Closed World",
+      "image_id": 98127546
+    },
+    "687:306": {
+      "file": "./assets/cards/originals/yugiohdb-13600.jpg",
+      "card_name": "Caballero de Pesadilla Fénix / Knightmare Phoenix",
+      "image_id": 2857636
+    },
+    "687:307": {
+      "file": "./assets/cards/originals/yugiohdb-13346.jpg",
+      "card_name": "Enlacekuriboh / Linkuriboh",
+      "image_id": 41999284
+    },
+    "687:308": {
+      "file": "./assets/cards/originals/yugiohdb-19184.jpg",
+      "card_name": "Súper Asesino Estelar TY-PHON – Crisis Celeste / Super Starslayer TY-PHON - Sky Crisis",
+      "image_id": 93039339
+    },
+    "687:309": {
+      "file": "./assets/cards/originals/yugiohdb-19188.jpg",
+      "card_name": "S:P Pequeña Caballera / S:P Little Knight",
+      "image_id": 29301450
+    },
+    "687:310": {
+      "file": "./assets/cards/originals/yugiohdb-14338.jpg",
+      "card_name": "Salamangrande Almiraj / Salamangreat Almiraj",
+      "image_id": 60303245
+    },
+    "687:311": {
+      "file": "./assets/cards/originals/yugiohdb-19507.jpg",
+      "card_name": "Princesa Prometea, Otorgadora de Llamas / Promethean Princess, Bestower of Flames",
+      "image_id": 2772337
+    },
+    "687:284": {
+      "file": "./assets/cards/originals/yugiohdb-18916.jpg",
+      "card_name": "Soldado Volcánico / Volcanic Trooper",
+      "image_id": 22411609
+    },
+    "687:285": {
+      "file": "./assets/cards/originals/yugiohdb-18915.jpg",
+      "card_name": "Emperador Volcánico / Volcanic Emperor",
+      "image_id": 46412900
+    },
+    "687:286": {
+      "file": "./assets/cards/originals/yugiohdb-7243.jpg",
+      "card_name": "Misil Volcánico / Volcanic Rocket",
+      "image_id": 76459806
+    },
+    "687:287": {
+      "file": "./assets/cards/originals/yugiohdb-18917.jpg",
+      "card_name": "Percusión Anular Volcánica / Volcanic Rimfire",
+      "image_id": 59805313
+    },
+    "687:288": {
+      "file": "./assets/cards/originals/yugiohdb-7083.jpg",
+      "card_name": "Disparo Disperso Volcánico / Volcanic Scattershot",
+      "image_id": 69750546
+    },
+    "687:289": {
+      "file": "./assets/cards/originals/yugiohdb-7082.jpg",
+      "card_name": "Cartucho Volcánico / Volcanic Shell",
+      "image_id": 33365932
+    },
+    "687:290": {
+      "file": "./assets/cards/originals/yugiohdb-6884.jpg",
+      "card_name": "Estatua-Barrera del Infierno / Barrier Statue of the Inferno",
+      "image_id": 47961808
+    },
+    "687:291": {
+      "file": "./assets/cards/originals/yugiohdb-9455.jpg",
+      "card_name": "\"C\" Maxx / Maxx \"C\"",
+      "image_id": 23434538
+    },
+    "687:292": {
+      "file": "./assets/cards/originals/yugiohdb-18918.jpg",
+      "card_name": "Acelerador de Llama Volcánico / Volcanic Blaze Accelerator",
+      "image_id": 85250352
+    },
+    "687:293": {
+      "file": "./assets/cards/originals/yugiohdb-7086.jpg",
+      "card_name": "Acelerador de Llama / Blaze Accelerator",
+      "image_id": 69537999
+    },
+    "687:294": {
+      "file": "./assets/cards/originals/yugiohdb-18919.jpg",
+      "card_name": "Eyección de Fuego / Fire Ejection",
+      "image_id": 11654067
+    },
+    "687:295": {
+      "file": "./assets/cards/originals/yugiohdb-15299.jpg",
+      "card_name": "Gotas Prohibidas / Forbidden Droplet",
+      "image_id": 24299458
+    },
+    "687:296": {
+      "file": "./assets/cards/originals/yugiohdb-19027.jpg",
+      "card_name": "Hoguera / Bonfire",
+      "image_id": 85106525
+    },
+    "687:297": {
+      "file": "./assets/cards/originals/yugiohdb-14144.jpg",
+      "card_name": "Olla de la Extravagancia / Pot of Extravagance",
+      "image_id": 49238328
+    },
+    "687:298": {
+      "file": "./assets/cards/originals/yugiohdb-11597.jpg",
+      "card_name": "Recarga del Acelerador de Llama / Blaze Accelerator Reload",
+      "image_id": 52198054
+    },
+    "687:299": {
+      "file": "./assets/cards/originals/yugiohdb-18921.jpg",
+      "card_name": "Infierno Volcánico / Volcanic Inferno",
+      "image_id": 84138874
+    },
+    "687:300": {
+      "file": "./assets/cards/originals/yugiohdb-18920.jpg",
+      "card_name": "Emisión Volcánica / Volcanic Emission",
+      "image_id": 58143766
+    },
+    "687:301": {
+      "file": "./assets/cards/originals/yugiohdb-7934.jpg",
+      "card_name": "Emparejamiento de Atributos / Gozen Match",
+      "image_id": 53334471
+    },
+    "687:312": {
+      "file": "./assets/cards/originals/yugiohdb-13631.jpg",
+      "card_name": "Infinito Temporal / Infinite Impermanence",
+      "image_id": 10045474
+    },
+    "687:313": {
+      "file": "./assets/cards/originals/yugiohdb-12950.jpg",
+      "card_name": "Flor de Ceniza y Primavera Feliz / Ash Blossom & Joyous Spring",
+      "image_id": 14558127
+    },
+    "687:314": {
+      "file": "./assets/cards/originals/yugiohdb-8213.jpg",
+      "card_name": "Corona Prohibida / Forbidden Chalice",
+      "image_id": 25789292
+    },
+    "687:315": {
+      "file": "./assets/cards/originals/yugiohdb-13002.jpg",
+      "card_name": "Almas en Choque / Clash of Souls",
+      "image_id": 57496978
+    },
+    "687:316": {
+      "file": "./assets/cards/originals/yugiohdb-13293.jpg",
+      "card_name": "Pelea Pareja / Evenly Matched",
+      "image_id": 15693423
+    },
+    "687:317": {
+      "file": "./assets/cards/originals/yugiohdb-5622.jpg",
+      "card_name": "Rivalidad de los Señores de la Guerra / Rivalry of Warlords",
+      "image_id": 90846359
+    },
+    "687:318": {
+      "file": "./assets/cards/originals/yugiohdb-4678.jpg",
+      "card_name": "Polvo de Pluma de Arpía / Harpie's Feather Duster",
+      "image_id": 18144507
+    },
+    "687:319": {
+      "file": "./assets/cards/originals/yugiohdb-9455.jpg",
+      "card_name": "\"C\" Maxx / Maxx \"C\"",
+      "image_id": 23434538
+    },
+    "687:320": {
+      "file": "./assets/cards/originals/yugiohdb-7934.jpg",
+      "card_name": "Emparejamiento de Atributos / Gozen Match",
+      "image_id": 53334471
+    },
+    "687:321": {
+      "file": "./assets/cards/originals/yugiohdb-15756.jpg",
+      "card_name": "Olla de la Prosperidad / Pot of Prosperity",
+      "image_id": 84211599
+    },
+    "704:444": {
+      "file": "./assets/cards/originals/rushdb-19990.jpg",
+      "card_name": "Arquero Ígneo Supergráfagas",
+      "image_id": null
+    },
+    "704:445": {
+      "file": "./assets/cards/originals/rushdb-18614.jpg",
+      "card_name": "Salamandra Alquimicalizada",
+      "image_id": null
+    },
+    "704:429": {
+      "file": "./assets/cards/originals/rushdb-15204.jpg",
+      "card_name": "¡Atraviesa!",
+      "image_id": null
+    },
+    "704:430": {
+      "file": "./assets/cards/originals/rushdb-17285.jpg",
+      "card_name": "Germalewe",
+      "image_id": null
+    },
+    "704:431": {
+      "file": "./assets/cards/originals/rushdb-17212.jpg",
+      "card_name": "Orden Secreta",
+      "image_id": null
+    },
+    "704:432": {
+      "file": "./assets/cards/originals/rushdb-19291.jpg",
+      "card_name": "Hiperasistente Ember",
+      "image_id": null
+    },
+    "704:433": {
+      "file": "./assets/cards/originals/rushdb-18583.jpg",
+      "card_name": "Cromatográfagas",
+      "image_id": null
+    },
+    "704:434": {
+      "file": "./assets/cards/originals/rushdb-17963.jpg",
+      "card_name": "Superasistente Ember",
+      "image_id": null
+    },
+    "704:435": {
+      "file": "./assets/cards/originals/rushdb-16934.jpg",
+      "card_name": "Fusión",
+      "image_id": null
+    },
+    "704:436": {
+      "file": "./assets/cards/originals/rushdb-16171.jpg",
+      "card_name": "Fuego Ardiente",
+      "image_id": null
+    },
+    "704:437": {
+      "file": "./assets/cards/originals/rushdb-17868.jpg",
+      "card_name": "Salamandra Quimicalizada",
+      "image_id": null
+    },
+    "704:438": {
+      "file": "./assets/cards/originals/rushdb-18646.jpg",
+      "card_name": "Gelatina Defensiva",
+      "image_id": null
+    },
+    "704:439": {
+      "file": "./assets/cards/originals/rushdb-19700.jpg",
+      "card_name": "Amparo del Protector Estelar",
+      "image_id": null
+    },
+    "704:440": {
+      "file": "./assets/cards/originals/rushdb-16776.jpg",
+      "card_name": "Parar la Defensa",
+      "image_id": null
+    },
+    "704:441": {
+      "file": "./assets/cards/originals/rushdb-15913.jpg",
+      "card_name": "Agujero Trampa",
+      "image_id": null
+    },
+    "704:442": {
+      "file": "./assets/cards/originals/rushdb-17926.jpg",
+      "card_name": "Gobernante de las Llamas",
+      "image_id": null
+    },
+    "704:443": {
+      "file": "./assets/cards/originals/rushdb-16372.jpg",
+      "card_name": "Olla de la Codicia",
+      "image_id": null
+    },
+    "705:466": {
+      "file": "./assets/cards/originals/rushdb-16344.jpg",
+      "card_name": "Kheiron el Caballero Estelar",
+      "image_id": null
+    },
+    "705:467": {
+      "file": "./assets/cards/originals/rushdb-16330.jpg",
+      "card_name": "Phaser del Rebelde Real",
+      "image_id": null
+    },
+    "705:468": {
+      "file": "./assets/cards/originals/rushdb-19760.jpg",
+      "card_name": "Impasse Ignoto",
+      "image_id": null
+    },
+    "705:469": {
+      "file": "./assets/cards/originals/rushdb-16331.jpg",
+      "card_name": "Metal Maldito del Rebelde Real",
+      "image_id": null
+    },
+    "705:470": {
+      "file": "./assets/cards/originals/rushdb-15441.jpg",
+      "card_name": "Heavy Metal del Rebelde Real",
+      "image_id": null
+    },
+    "705:471": {
+      "file": "./assets/cards/originals/rushdb-19761.jpg",
+      "card_name": "Progrock del Rebelde Real",
+      "image_id": null
+    },
+    "705:472": {
+      "file": "./assets/cards/originals/rushdb-16135.jpg",
+      "card_name": "Descendiente de Titanes",
+      "image_id": null
+    },
+    "705:473": {
+      "file": "./assets/cards/originals/rushdb-17721.jpg",
+      "card_name": "Canjear",
+      "image_id": null
+    },
+    "705:474": {
+      "file": "./assets/cards/originals/rushdb-15673.jpg",
+      "card_name": "Aliento de Fuego del Genio",
+      "image_id": null
+    },
+    "705:475": {
+      "file": "./assets/cards/originals/rushdb-17543.jpg",
+      "card_name": "Restauración de Cartas",
+      "image_id": null
+    },
+    "705:476": {
+      "file": "./assets/cards/originals/rushdb-21007.jpg",
+      "card_name": "Maldición de la Luz Ascendente",
+      "image_id": null
+    },
+    "705:477": {
+      "file": "./assets/cards/originals/rushdb-18646.jpg",
+      "card_name": "Gelatina Defensiva",
+      "image_id": null
+    },
+    "705:478": {
+      "file": "./assets/cards/originals/rushdb-19799.jpg",
+      "card_name": "Avaricia del Rey",
+      "image_id": null
+    },
+    "705:479": {
+      "file": "./assets/cards/originals/rushdb-15913.jpg",
+      "card_name": "Agujero Trampa",
+      "image_id": null
+    },
+    "705:480": {
+      "file": "./assets/cards/originals/rushdb-15674.jpg",
+      "card_name": "Esplendor del Rey",
+      "image_id": null
+    },
+    "705:481": {
+      "file": "./assets/cards/originals/rushdb-16305.jpg",
+      "card_name": "Monstruo Reencarnado",
+      "image_id": null
+    },
+    "706:424": {
+      "file": "./assets/cards/originals/rushdb-21316.jpg",
+      "card_name": "Héroe Elemental Voltic Wingman",
+      "image_id": null
+    },
+    "706:425": {
+      "file": "./assets/cards/originals/rushdb-20454.jpg",
+      "card_name": "Héroe Elemental del Estallido Wingman",
+      "image_id": null
+    },
+    "706:426": {
+      "file": "./assets/cards/originals/rushdb-20453.jpg",
+      "card_name": "Héroe Elemental de la Llama Wingman",
+      "image_id": null
+    },
+    "706:427": {
+      "file": "./assets/cards/originals/rushdb-21501.jpg",
+      "card_name": "Héroe Elemental Heliosfera",
+      "image_id": null
+    },
+    "706:428": {
+      "file": "./assets/cards/originals/rushdb-20610.jpg",
+      "card_name": "Héroe Elemental Shining Flare Wingman",
+      "image_id": null
+    },
+    "706:412": {
+      "file": "./assets/cards/originals/rushdb-20460.jpg",
+      "card_name": "Héroe Elemental Avian",
+      "image_id": null
+    },
+    "706:413": {
+      "file": "./assets/cards/originals/rushdb-20457.jpg",
+      "card_name": "Héroe Elemental Sparkman",
+      "image_id": null
+    },
+    "706:414": {
+      "file": "./assets/cards/originals/rushdb-20459.jpg",
+      "card_name": "Héroe Elemental Burstinatrix",
+      "image_id": null
+    },
+    "706:415": {
+      "file": "./assets/cards/originals/rushdb-20461.jpg",
+      "card_name": "Héroe Ascendente de Argen",
+      "image_id": null
+    },
+    "706:416": {
+      "file": "./assets/cards/originals/rushdb-16929.jpg",
+      "card_name": "Inicio Reinicio",
+      "image_id": null
+    },
+    "706:417": {
+      "file": "./assets/cards/originals/rushdb-20665.jpg",
+      "card_name": "Descenso de Héroe",
+      "image_id": null
+    },
+    "706:418": {
+      "file": "./assets/cards/originals/rushdb-20151.jpg",
+      "card_name": "Brillo Sombrío",
+      "image_id": null
+    },
+    "706:419": {
+      "file": "./assets/cards/originals/rushdb-20465.jpg",
+      "card_name": "Circulación Elemental",
+      "image_id": null
+    },
+    "706:420": {
+      "file": "./assets/cards/originals/rushdb-16358.jpg",
+      "card_name": "Estrategia Mágica Aviar",
+      "image_id": null
+    },
+    "706:421": {
+      "file": "./assets/cards/originals/rushdb-16934.jpg",
+      "card_name": "Fusión",
+      "image_id": null
+    },
+    "706:422": {
+      "file": "./assets/cards/originals/rushdb-15913.jpg",
+      "card_name": "Agujero Trampa",
+      "image_id": null
+    },
+    "706:423": {
+      "file": "./assets/cards/originals/rushdb-16372.jpg",
+      "card_name": "Olla de la Codicia",
+      "image_id": null
+    },
+    "707:463": {
+      "file": "./assets/cards/originals/rushdb-19995.jpg",
+      "card_name": "Gaia el Campeón Dragón Rápido",
+      "image_id": null
+    },
+    "707:464": {
+      "file": "./assets/cards/originals/rushdb-18298.jpg",
+      "card_name": "Gaia el Campeón Dragón",
+      "image_id": null
+    },
+    "707:465": {
+      "file": "./assets/cards/originals/rushdb-19323.jpg",
+      "card_name": "Gaia, el Conquistador de Campeones",
+      "image_id": null
+    },
+    "707:446": {
+      "file": "./assets/cards/originals/rushdb-15451.jpg",
+      "card_name": "Ataque Mágico Oscuro",
+      "image_id": null
+    },
+    "707:447": {
+      "file": "./assets/cards/originals/rushdb-16772.jpg",
+      "card_name": "Distribuidor Maravilloso",
+      "image_id": null
+    },
+    "707:448": {
+      "file": "./assets/cards/originals/rushdb-18685.jpg",
+      "card_name": "Maga Legendaria",
+      "image_id": null
+    },
+    "707:449": {
+      "file": "./assets/cards/originals/rushdb-19597.jpg",
+      "card_name": "Mago Oscuro Sabio",
+      "image_id": null
+    },
+    "707:450": {
+      "file": "./assets/cards/originals/rushdb-19329.jpg",
+      "card_name": "Grito de Monstruo",
+      "image_id": null
+    },
+    "707:451": {
+      "file": "./assets/cards/originals/rushdb-19773.jpg",
+      "card_name": "Hechicero Eliminador Oscuro",
+      "image_id": null
+    },
+    "707:452": {
+      "file": "./assets/cards/originals/rushdb-17209.jpg",
+      "card_name": "Ráfaga de Resonancia Oscura",
+      "image_id": null
+    },
+    "707:453": {
+      "file": "./assets/cards/originals/rushdb-20151.jpg",
+      "card_name": "Brillo Sombrío",
+      "image_id": null
+    },
+    "707:454": {
+      "file": "./assets/cards/originals/rushdb-19598.jpg",
+      "card_name": "Piedra de los Magos Oscuros",
+      "image_id": null
+    },
+    "707:455": {
+      "file": "./assets/cards/originals/rushdb-15410.jpg",
+      "card_name": "Mago Oscuro",
+      "image_id": null
+    },
+    "707:456": {
+      "file": "./assets/cards/originals/rushdb-20305.jpg",
+      "card_name": "Lily Aniquiladora",
+      "image_id": null
+    },
+    "707:457": {
+      "file": "./assets/cards/originals/rushdb-16371.jpg",
+      "card_name": "Chica Maga Oscura",
+      "image_id": null
+    },
+    "707:458": {
+      "file": "./assets/cards/originals/rushdb-15450.jpg",
+      "card_name": "Mil Cuchillos",
+      "image_id": null
+    },
+    "707:459": {
+      "file": "./assets/cards/originals/rushdb-19341.jpg",
+      "card_name": "¡Equitación Lindasesina!",
+      "image_id": null
+    },
+    "707:460": {
+      "file": "./assets/cards/originals/rushdb-17212.jpg",
+      "card_name": "Orden Secreta",
+      "image_id": null
+    },
+    "707:461": {
+      "file": "./assets/cards/originals/rushdb-16372.jpg",
+      "card_name": "Olla de la Codicia",
+      "image_id": null
+    },
+    "707:462": {
+      "file": "./assets/cards/originals/rushdb-21007.jpg",
+      "card_name": "Maldición de la Luz Ascendente",
+      "image_id": null
+    }
+  }
+}

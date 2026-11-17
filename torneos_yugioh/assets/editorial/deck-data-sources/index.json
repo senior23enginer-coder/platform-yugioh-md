@@ -1,0 +1,82 @@
+{
+  "650": {
+    "zip": "./assets/editorial/deck-data-sources/650.zip",
+    "source_document": "DECK_650_ELFNOTE_CONTENIDO_CURADO.md",
+    "sha256": "40b7bd8cbd61047a04cfe3f865f417db7d2dad9f074fe085809e6d5fc785e80f"
+  },
+  "653": {
+    "zip": "./assets/editorial/deck-data-sources/653.zip",
+    "source_document": "DECK_653_DOOMZ_CONTENIDO_CURADO.md",
+    "sha256": "7111ca8c89789f936aeed872967b24b6aa9219b943458047815de24fb5bd7f5f"
+  },
+  "656": {
+    "zip": "./assets/editorial/deck-data-sources/656.zip",
+    "source_document": "DECK_656_TEARLAMENTS_CONTENIDO_CURADO.md",
+    "sha256": "6264701a58a397e58e8b0bce8f5e3a52acade02460e1f7cc8d6e84efab43fbb6"
+  },
+  "665": {
+    "zip": "./assets/editorial/deck-data-sources/665.zip",
+    "source_document": "DECK_665_KASHTIRA_PURE_CONTENIDO_CURADO.md",
+    "sha256": "f1ae585116d572708f8aee0b00027dddda3bad8ca5918e027f5461ffd415dae3"
+  },
+  "670": {
+    "zip": "./assets/editorial/deck-data-sources/670.zip",
+    "source_document": "DECK_670_INFERNOBLE_CONTENIDO_CURADO.md",
+    "sha256": "e7a1c27d99df26063d57285681353067212325487b7b6b6fd8ab3d734fbbc569"
+  },
+  "684": {
+    "zip": "./assets/editorial/deck-data-sources/684.zip",
+    "source_document": "DECK_684_CYBER_DRAGON_PURE_CONTENIDO_CURADO.md",
+    "sha256": "a20f8ca145f62857f3c8fd1fd325673292356dcba18ca3e57b1a6e571f9fa219"
+  },
+  "687": {
+    "zip": "./assets/editorial/deck-data-sources/687.zip",
+    "source_document": "DECK_687_VOLCANIC_CONTENIDO_CURADO.md",
+    "sha256": "d17c6ee5f2b4ea464ebb56a6631899985063ea941d99e83df944311334eabcc6"
+  },
+  "704": {
+    "zip": "./assets/editorial/deck-data-sources/704.zip",
+    "source_document": "DECK_704_PYRO_CONTENIDO_CURADO.md",
+    "sha256": "bd1be8453de00a55a10bf5395df942334ae2354dfd12c016a54d251544c57823"
+  },
+  "705": {
+    "zip": "./assets/editorial/deck-data-sources/705.zip",
+    "source_document": "DECK_705_ROYAL_CONTENIDO_CURADO.md",
+    "sha256": "6056a8b688684391e5fd65d08139afc647cd7cfb3f2c88a9c925b2f5ebe811f1"
+  },
+  "706": {
+    "zip": "./assets/editorial/deck-data-sources/706.zip",
+    "source_document": "DECK_706_HERO_CONTENIDO_CURADO.md",
+    "sha256": "897442bdeb2876d88b947b461b5f3919bf6ab52650905bd305d38c78265bc5e3"
+  },
+  "707": {
+    "zip": "./assets/editorial/deck-data-sources/707.zip",
+    "source_document": "DECK_707_DARK_MAGICIAN_CONTENIDO_CURADO.md",
+    "sha256": "02b86dbf71c0256b3c9f5d1b0f616650cb0e0071393f60f5091632298ba682a7"
+  },
+  "671": {
+    "zip": "./assets/editorial/deck-data-sources/671.zip",
+    "source_document": "DECK_NUEVO_12_MEMENTOTLAN_DEMONIHERRERO_CONTENIDO_CURADO.md",
+    "sha256": "3ab7143481f6c5dc5b6962862b42ccfeea4c2994bd48b0c2db910e27b7be23b0"
+  },
+  "677": {
+    "zip": "./assets/editorial/deck-data-sources/677.zip",
+    "source_document": "DECK_NUEVO_13_CRISTRON_HORUS_CONTENIDO_CURADO.md",
+    "sha256": "803d030ec89f5393f54731230ab7392099b628ec5c4fe6a700fd75e58cbaa2f5"
+  },
+  "660": {
+    "zip": "./assets/editorial/deck-data-sources/660.zip",
+    "source_document": "DECK_NUEVO_14_PURRELY_CONTENIDO_CURADO.md",
+    "sha256": "40748d14dc5499b38419a8412e291f4d2c813d928b43de0ae7cc8e1853616716"
+  },
+  "673": {
+    "zip": "./assets/editorial/deck-data-sources/673.zip",
+    "source_document": "DECK_NUEVO_15_SALAMANGRANDE_CONTENIDO_CURADO.md",
+    "sha256": "c6e82b75064eab062342650f180663ec1c78de06b3b7eaca1e77f8a1c7069d03"
+  },
+  "699": {
+    "zip": "./assets/editorial/deck-data-sources/699.zip",
+    "source_document": "DECK_NUEVO_16_GOAT_CONTROL_CONTENIDO_CURADO.md",
+    "sha256": "280216b28eb65165abb91e5932a6929c1919531baf5cc2cabc1c74473c46211c"
+  }
+}

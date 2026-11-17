@@ -1,0 +1,1193 @@
+{
+  "articles": [
+    {
+      "id": "guide-start",
+      "category": "Guías de uso",
+      "title": "Por dónde empezar",
+      "summary": "La temporada contiene los eventos; cada evento reúne participantes, reglas, calendario y resultados.",
+      "aliases": [
+        "ayuda",
+        "manual",
+        "documentación",
+        "plataforma"
+      ],
+      "sections": [
+        {
+          "title": "Recorrido recomendado",
+          "paragraphs": [
+            "1. Consulta o crea la temporada.",
+            "2. Revisa formatos, equipos y decks.",
+            "3. Crea el evento con su tipo, sistema, participación y reglas.",
+            "4. Inscribe participantes o configura Fuentes y clasificados.",
+            "5. Programa las rondas desde la ficha.",
+            "6. Registra resultados completos, avanza las fases y finaliza el evento cuando su sistema termine."
+          ]
+        },
+        {
+          "title": "Cómo usar esta Biblioteca",
+          "paragraphs": [
+            "Puedes buscar una pregunta, el nombre de una plantilla, un código como CUSTOM_XP o un evento registrado. Filtra por categoría para distinguir explicaciones de datos reales.",
+            "Cada artículo indica su procedencia. Las fichas registradas reflejan la consulta actual; los modelos muestran valores iniciales que pueden cambiar al configurar un evento."
+          ]
+        }
+      ],
+      "related": [
+        "guide-create-event",
+        "term-type-model-system"
+      ]
+    },
+    {
+      "id": "guide-create-event",
+      "category": "Guías de uso",
+      "title": "Cómo crear y configurar un evento",
+      "summary": "El tipo clasifica el evento, la plantilla propone valores y el sistema competitivo organiza los cruces.",
+      "aliases": [
+        "crear",
+        "formulario",
+        "configuración",
+        "modelo evento"
+      ],
+      "sections": [
+        {
+          "title": "Pasos",
+          "paragraphs": [
+            "Abre Crear evento y elige temporada y nombre.",
+            "Elige tipo y, si te sirve, un modelo preconfigurado. Revisa los valores que rellena antes de guardar.",
+            "Selecciona formato, sistema competitivo, participación y mejor de. Configura avance y empate compatibles con el sistema.",
+            "Guarda y abre la ficha. Allí se consultan la configuración guardada, participantes, fechas y operaciones de programación y cierre."
+          ]
+        },
+        {
+          "title": "Antes de programar",
+          "paragraphs": [
+            "Completa los requisitos específicos: alineaciones para equipos, fuentes verificadas para clasificados o mesas para Battle Royale.",
+            "Un borrador o una plantilla elegida no equivale a un evento listo para iniciar. Las validaciones de la ficha indican qué falta."
+          ]
+        }
+      ],
+      "related": [
+        "term-type-model-system",
+        "guide-participants",
+        "guide-admission"
+      ]
+    },
+    {
+      "id": "guide-season",
+      "category": "Guías de uso",
+      "title": "Temporadas, fechas y cierre",
+      "summary": "Una temporada agrupa sus eventos y conserva el historial al finalizar.",
+      "aliases": [
+        "inicio",
+        "cierre",
+        "finalizar temporada"
+      ],
+      "sections": [
+        {
+          "title": "Consulta y edición",
+          "paragraphs": [
+            "Desde Temporadas abre la ficha para consultar sus fechas, estado y eventos asociados. Cada evento conserva su propia programación y fecha de cierre.",
+            "La finalización cierra operaciones de la temporada y conserva su historial. Una temporada con eventos o divisiones no debe desaparecer para limpiar un listado."
+          ]
+        },
+        {
+          "title": "Fechas",
+          "paragraphs": [
+            "La fecha del evento y la fecha de cada combate son datos distintos. Consulta el calendario para saber cuándo se disputa un cruce.",
+            "Los resultados futuros no se pueden capturar como disputados. La capacidad diaria, disponibilidad de participantes y cierre de temporada condicionan las fechas disponibles."
+          ]
+        }
+      ],
+      "related": [
+        "guide-calendar",
+        "guide-close"
+      ]
+    },
+    {
+      "id": "guide-participants",
+      "category": "Guías de uso",
+      "title": "Inscribir decks y configurar divisiones",
+      "summary": "Los participantes del evento deben ser compatibles con su formato y no repetirse.",
+      "aliases": [
+        "agregar deck",
+        "seleccionar",
+        "disponibles",
+        "inscripción",
+        "participantes"
+      ],
+      "sections": [
+        {
+          "title": "Disponibilidad",
+          "paragraphs": [
+            "El selector muestra los decks elegibles para el formato y el evento. Un deck no puede participar simultáneamente en dos ligas incompatibles; sí puede participar en otros tipos de eventos cuando el calendario lo permita.",
+            "Las divisiones organizan participantes dentro de una liga. No son formatos: TCG Avanzado puede contener varias ligas y divisiones."
+          ]
+        },
+        {
+          "title": "Equipos y mesas",
+          "paragraphs": [
+            "En 3v3 guarda equipos de tres y puestos fijos. En Tag guarda dos integrantes por lado. Las alineaciones se fijan al programar.",
+            "Battle Royale inscribe entre tres y cuatro jugadores independientes por mesa. Un mismo deck no ocupa dos puestos."
+          ]
+        }
+      ],
+      "related": [
+        "guide-promotions",
+        "term-format-division",
+        "term-teams"
+      ]
+    },
+    {
+      "id": "guide-promotions",
+      "category": "Guías de uso",
+      "title": "Cómo funcionan los ascensos y descensos",
+      "summary": "Los movimientos conectan divisiones contiguas de una misma liga y deben intercambiar el mismo número de plazas.",
+      "aliases": [
+        "promoción",
+        "ascender",
+        "descender",
+        "suben",
+        "bajan",
+        "ascenso descenso"
+      ],
+      "sections": [
+        {
+          "title": "Según el número de divisiones",
+          "paragraphs": [
+            "Una división: no hay ascensos ni descensos.",
+            "Dos divisiones: Primera puede descender a Segunda; Segunda puede ascender a Primera. Primera no asciende y Segunda no desciende.",
+            "Con más divisiones, las intermedias pueden recibir movimientos hacia la inmediatamente superior e inferior. Los extremos mantienen sus límites."
+          ]
+        },
+        {
+          "title": "Validación",
+          "paragraphs": [
+            "Los cupos de descenso desde una división deben corresponder a los cupos de ascenso de la siguiente. Ejemplo: dos bajan de Primera y dos suben de Segunda.",
+            "Los destinos pertenecen a la misma liga. Los movimientos requieren la liga finalizada y resultados verificables; un bloqueo de movimientos impide aplicarlos."
+          ]
+        }
+      ],
+      "related": [
+        "guide-participants"
+      ]
+    },
+    {
+      "id": "guide-admission",
+      "category": "Guías de uso",
+      "title": "Fuentes y clasificados: conectar eventos",
+      "summary": "El evento destino define de qué eventos cerrados recibe participantes y cuántas plazas toma.",
+      "aliases": [
+        "clasificación",
+        "cupos",
+        "plazas",
+        "evento previo",
+        "clasificados",
+        "porcentaje"
+      ],
+      "sections": [
+        {
+          "title": "Configuración",
+          "paragraphs": [
+            "Guarda el evento destino y abre Fuentes y clasificados. Selecciona fuentes, formato compatible y plazas exactas.",
+            "Puedes recibir campeón, subcampeón, Top N, puestos de grupo, mejores récords o participantes que superen puntos mínimos, según el contrato de admisión.",
+            "Las fuentes deben tener resultados y clasificación verificables. No se inventan clasificados por el nombre del evento ni se rellenan faltantes con suplentes automáticos."
+          ]
+        },
+        {
+          "title": "Porcentajes",
+          "paragraphs": [
+            "Un porcentaje reparte las plazas del destino entre fuentes; no es un porcentaje de todos los inscritos de cada origen. Los porcentajes deben sumar 100.",
+            "Los cupos enteros se asignan por restos mayores y orden de fuentes. Duplicados, cupos insuficientes y formatos incompatibles bloquean la carga."
+          ]
+        }
+      ],
+      "related": [
+        "system-top_cut",
+        "system-playoffs"
+      ]
+    },
+    {
+      "id": "guide-calendar",
+      "category": "Guías de uso",
+      "title": "Programar rondas sin cruces de horario",
+      "summary": "El calendario combina fechas de evento, disponibilidad de decks, horarios y capacidad diaria.",
+      "aliases": [
+        "horario",
+        "fechas",
+        "choque",
+        "colisión",
+        "día de por medio",
+        "programar"
+      ],
+      "sections": [
+        {
+          "title": "Cómo programar",
+          "paragraphs": [
+            "Abre la ficha del evento, revisa participantes y elige la fecha y el patrón de programación permitido.",
+            "En los sistemas por etapas solo se programa lo que puede resolverse con la información actual. Suizo crea la próxima ronda cuando la anterior está completa.",
+            "La programación respeta ocupación de participantes y no desplaza cruces existentes para forzar una nueva fecha."
+          ]
+        },
+        {
+          "title": "Consulta",
+          "paragraphs": [
+            "Abre Calendario, aplica filtros y selecciona un día para consultar sus combates. La ficha del evento permite ver únicamente los cruces asociados a ese evento.",
+            "Una jornada reúne varios enfrentamientos. Programar un combate a las 19:00 no equivale a disputar toda una jornada en ese horario."
+          ]
+        }
+      ],
+      "related": [
+        "term-round",
+        "system-double_round_robin"
+      ]
+    },
+    {
+      "id": "guide-results",
+      "category": "Guías de uso",
+      "title": "Registrar resultados y corregirlos",
+      "summary": "El servidor valida la secuencia de duelos y el cierre antes de guardar el resultado.",
+      "aliases": [
+        "A B E",
+        "D1 D5",
+        "corregir resultado",
+        "marcador",
+        "captura"
+      ],
+      "sections": [
+        {
+          "title": "Captura",
+          "paragraphs": [
+            "A y B son los lados del combate; E es empate. D1 a D5 son los duelos de una partida.",
+            "No se saltan duelos ni se agregan juegos después de un cierre válido. La regla aplicada puede ampliar la secuencia o exigir desempate.",
+            "En 3v3 se capturan tres resultados por puesto; en Tag se guarda una serie compartida. Battle Royale conserva el estado y ganador de su mesa propia."
+          ]
+        },
+        {
+          "title": "Correcciones",
+          "paragraphs": [
+            "Puedes corregir un resultado mientras su fase y sus dependencias lo permitan. Si ya alimentó una fase posterior, la corrección directa queda bloqueada.",
+            "Existe reversión de la última fase pendiente sin juego capturado para corregir la anterior. No se revierten en cascada fases ya jugadas para forzar un cambio.",
+            "Las estadísticas se recalculan desde los resultados confirmados. Un corte estadístico publicado conserva su versión; una corrección publicada requiere nueva revisión."
+          ]
+        }
+      ],
+      "related": [
+        "term-duel-match",
+        "guide-close",
+        "guide-ranking"
+      ]
+    },
+    {
+      "id": "guide-close",
+      "category": "Guías de uso",
+      "title": "Finalizar un evento y consultar su historial",
+      "summary": "El evento termina cuando su sistema completo está resuelto, no solo cuando se jugó una ronda.",
+      "aliases": [
+        "campeón",
+        "palmarés",
+        "finalizar",
+        "cerrar evento"
+      ],
+      "sections": [
+        {
+          "title": "Requisitos",
+          "paragraphs": [
+            "Completa todos los resultados pendientes y las fases que correspondan. Una eliminatoria necesita ganador en cada cruce.",
+            "En grupos sin eliminatoria existe una clasificación y ganador por grupo; no se inventa un campeón general.",
+            "En Battle Royale todas las mesas deben terminar. Si hay empate en victorias para el título, se requiere un desempate."
+          ]
+        },
+        {
+          "title": "Después del cierre",
+          "paragraphs": [
+            "Se conserva la clasificación, resultados y palmarés. Los cambios posteriores están sujetos a las restricciones de integridad y dependencias.",
+            "Cerrar un evento y cerrar la temporada son operaciones distintas. Consulta los eventos de la temporada antes de finalizarla."
+          ]
+        }
+      ],
+      "related": [
+        "guide-results",
+        "guide-season"
+      ]
+    },
+    {
+      "id": "guide-ranking",
+      "category": "Estadísticas",
+      "title": "Ranking Global: qué suma y cómo se consulta",
+      "summary": "El Ranking Global se calcula por identidad equipo/deck y formato; combina rating por partidas y bonos de medallas.",
+      "aliases": [
+        "elo",
+        "rating",
+        "puntos ranking",
+        "ranking individual",
+        "global"
+      ],
+      "sections": [
+        {
+          "title": "Cálculo",
+          "paragraphs": [
+            "El rating inicial es 1000. La expectativa utiliza la diferencia de ratings con divisor 600; el ajuste depende del K fijado para el impacto del evento.",
+            "Los valores iniciales de K son 20 para FULL y REDUCED y 25 para BONUS. Una política ya fijada conserva sus valores. NONE no puntúa en este dominio.",
+            "La clasificación exige al menos 10 partidas y 3 rivales. Tras 90 días sin actividad se marca inactividad; la reactivación requiere 3 partidas."
+          ]
+        },
+        {
+          "title": "Colectivos",
+          "paragraphs": [
+            "3v3 aporta cada resultado real por puesto sin duplicar el marcador conjunto.",
+            "Tag 2v2 acredita el resultado compartido a cada integrante frente al Elo promedio previo del equipo rival. Los juegos compartidos no se convierten en victorias de duelo individuales."
+          ]
+        },
+        {
+          "title": "Consulta",
+          "paragraphs": [
+            "En Estadísticas elige Ranking por formato y el formato que quieres consultar. La vista en vivo es provisional; un corte publicado es una fotografía inmutable.",
+            "No se atribuyen resultados históricos a integrantes sin identidad confirmada. Un cambio del equipo actual de un deck no reescribe su pasado."
+          ]
+        }
+      ],
+      "related": [
+        "guide-ffa-elo",
+        "term-publication",
+        "guide-metagame"
+      ]
+    },
+    {
+      "id": "guide-ffa-elo",
+      "category": "Estadísticas",
+      "title": "Elo Battle Royale / Free-for-All",
+      "summary": "Battle Royale usa un Elo propio por deck y formato, separado del Ranking Global individual.",
+      "aliases": [
+        "ffa",
+        "multijugador",
+        "battle royal",
+        "cuatro jugadores",
+        "3 jugadores",
+        "4 jugadores",
+        "probabilidad"
+      ],
+      "sections": [
+        {
+          "title": "Una mesa, un resultado",
+          "paragraphs": [
+            "Participan tres o cuatro jugadores independientes. El único superviviente gana; los demás registran derrota de mesa. No se crean cruces 1v1 ficticios.",
+            "Cada mesa cuenta una participación para cada jugador. No se asignan segundos ni terceros puestos a partir del orden de eliminación."
+          ]
+        },
+        {
+          "title": "Fórmula y ejemplo",
+          "paragraphs": [
+            "Base 1000 y K=20. La probabilidad de cada jugador es 10^(rating/600) dividido entre la suma de esos pesos de toda la mesa. Cambio = 20 × (resultado − probabilidad), con resultado 1 para el ganador y 0 para los demás.",
+            "Con cuatro jugadores de Elo 1000: ganador +15 y cada eliminado −5. La suma de cambios es cero. Un favorito recibe menos puntos por una victoria esperada.",
+            "Requiere 10 mesas y 3 rivales para clasificar, con 90 días de inactividad y 3 mesas para reactivarse. No suma bonos de medallas al Elo FFA."
+          ]
+        },
+        {
+          "title": "Dónde verlo",
+          "paragraphs": [
+            "Abre Estadísticas → Ranking por formato → Ranking: Battle Royale / Free-for-All. Consulta también su historial, CSV y PDF."
+          ]
+        }
+      ],
+      "related": [
+        "system-free_for_all",
+        "guide-ranking"
+      ]
+    },
+    {
+      "id": "guide-metagame",
+      "category": "Estadísticas",
+      "title": "Metagame, IC y tiers",
+      "summary": "El metagame estacional describe rendimiento observado y exige muestra suficiente y duelos completos.",
+      "aliases": [
+        "tier",
+        "tier zero",
+        "IC",
+        "Wilson",
+        "meta",
+        "elo estacional"
+      ],
+      "sections": [
+        {
+          "title": "Índice competitivo",
+          "paragraphs": [
+            "IC combina rendimiento (40%), Elo estacional (25%), Wilson conservador (20%), últimas cinco partidas (10%) y rendimiento de duelos (5%). La participación no aporta peso al IC.",
+            "La muestra mínima es de 10 partidas y 3 rivales. Las categorías de tier aplican además sus umbrales y requisitos; no basta con ser el deck más inscrito."
+          ]
+        },
+        {
+          "title": "Historia",
+          "paragraphs": [
+            "El Elo estacional y el Ranking Global son cálculos distintos. Un tier histórico procede de un corte publicado, no de una predicción posterior.",
+            "Los duelos compartidos de Tag no se convierten en evidencia individual de metagame. Battle Royale se consulta en su dominio de Elo propio."
+          ]
+        }
+      ],
+      "related": [
+        "guide-ranking",
+        "term-publication"
+      ]
+    },
+    {
+      "id": "guide-medals",
+      "category": "Estadísticas",
+      "title": "Medallas, logros y palmarés",
+      "summary": "Las medallas de campeonato y los logros describen méritos diferentes.",
+      "aliases": [
+        "medallas",
+        "logros",
+        "trofeos",
+        "bonos",
+        "achievements",
+        "campeón invicto"
+      ],
+      "sections": [
+        {
+          "title": "Diferencias",
+          "paragraphs": [
+            "Una medalla se relaciona con un título confirmado de un evento y puede aportar el bono definido para ese campeonato. El palmarés conserva el título y su procedencia.",
+            "Los logros se desbloquean mediante evidencia y objetivos. No generan puntos de Ranking Global por sí mismos.",
+            "Un dato desconocido se muestra pendiente; no se interpreta como una derrota, cero daño o cumplimiento del objetivo."
+          ]
+        },
+        {
+          "title": "Límites de evidencia",
+          "paragraphs": [
+            "Las victorias de duelo, daño, rapidez y partidas perfectas requieren registros individuales apropiados. Un resultado Tag compartido no prueba esos méritos individuales.",
+            "Algunos resúmenes de rivales y el logro de campeón invicto todavía no abarcan completamente Tag. El Elo colectivo sí está integrado."
+          ]
+        }
+      ],
+      "related": [
+        "guide-ranking"
+      ]
+    },
+    {
+      "id": "guide-library-scope",
+      "category": "Guías de uso",
+      "title": "Qué información conserva esta Biblioteca",
+      "summary": "Las guías explican el funcionamiento y las fichas registradas permiten consultar datos de la plataforma.",
+      "aliases": [
+        "documentación",
+        "fuentes",
+        "validación cartas",
+        "legalidad",
+        "banlist",
+        "alcance"
+      ],
+      "sections": [
+        {
+          "title": "Procedencia",
+          "paragraphs": [
+            "Los modelos, sistemas, formatos y opciones proceden de los catálogos actuales. Los eventos y reglas muestran los datos cargados para la temporada consultada.",
+            "Las guías generales se revisaron el 18 de octubre de 2026. Los campos guardados de un evento pueden diferir de los valores iniciales de su modelo."
+          ]
+        },
+        {
+          "title": "Alcance",
+          "paragraphs": [
+            "No es una certificación oficial de Konami ni una enciclopedia actualizada de legalidad de cartas. Station X no valida contenido de cartas, copias, Main/Extra/Side, puntos por carta, pools, sobres ni elecciones de Draft.",
+            "Los nombres Draft, Sealed o Genesys pueden describir una modalidad declarada. No activan controles de cartas ni inventarios. Las validaciones de participantes, formatos, resultados y calendario sí se mantienen.",
+            "El buscador consulta este contenido y los registros incluidos. No genera respuestas externas ni presenta inferencias como hechos."
+          ]
+        }
+      ],
+      "related": [
+        "guide-start"
+      ]
+    },
+    {
+      "id": "guide-technical",
+      "category": "Plataforma",
+      "title": "Cómo está construida la plataforma",
+      "summary": "Station X utiliza PHP, MySQL y una interfaz web con JavaScript; también dispone de soporte PWA.",
+      "aliases": [
+        "técnica",
+        "desarrollo",
+        "PHP",
+        "MySQL",
+        "arquitectura",
+        "base de datos",
+        "BD",
+        "PWA",
+        "offline"
+      ],
+      "sections": [
+        {
+          "title": "Organización",
+          "paragraphs": [
+            "index.php conecta las vistas y operaciones. Los módulos de includes separan reglas de eventos, admisión, equipos, temporadas, calendario y estadísticas.",
+            "Los resultados deportivos y las estadísticas derivadas se almacenan por separado. El cálculo de ranking no modifica combates ni resultados.",
+            "La aplicación registra auditoría y utiliza transacciones y bloqueos en operaciones deportivas para evitar avances o escrituras incompatibles."
+          ]
+        },
+        {
+          "title": "Biblioteca",
+          "paragraphs": [
+            "Este módulo proyecta información de lectura. No crea eventos ni ejecuta instrucciones escritas en notas. Su contenido textual se muestra escapado.",
+            "El buscador funciona en el navegador con normalización de acentos, sinónimos, relevancia y coincidencias aproximadas. Los artículos y recursos de la Biblioteca pueden consultarse sin conexión si ya fueron cargados."
+          ]
+        }
+      ],
+      "related": [
+        "guide-offline"
+      ]
+    },
+    {
+      "id": "guide-offline",
+      "category": "Plataforma",
+      "title": "Uso sin conexión y sincronización",
+      "summary": "La PWA conserva recursos y consultas cargadas para facilitar el acceso cuando falla la red.",
+      "aliases": [
+        "sin conexión",
+        "caché",
+        "instalar",
+        "app",
+        "sincronizar",
+        "pendientes"
+      ],
+      "sections": [
+        {
+          "title": "Consulta",
+          "paragraphs": [
+            "Abre la plataforma con conexión al menos una vez para cargar recursos y datos. La Biblioteca puede buscar en los artículos cargados sin consultar un servicio externo.",
+            "Un dato guardado en caché no demuestra que el servidor siga teniendo el mismo estado. Al volver la conexión consulta la ficha actual."
+          ]
+        },
+        {
+          "title": "Cambios",
+          "paragraphs": [
+            "Las operaciones que requieren validación del servidor no se consideran confirmadas por estar visibles en el navegador. Consulta el estado de captura y los cambios pendientes.",
+            "No se garantiza una cola sin conexión para todas las fichas editables. Los conflictos de entidad deben resolverse antes de dar un cambio por sincronizado."
+          ]
+        }
+      ],
+      "related": [
+        "guide-technical"
+      ]
+    },
+    {
+      "id": "term-type-model-system",
+      "category": "Terminología",
+      "title": "Tipo, modelo y sistema: qué diferencia hay",
+      "summary": "Tipo es la categoría; modelo es una plantilla inicial; sistema es el algoritmo que organiza la competición.",
+      "aliases": [
+        "tipo modelo",
+        "modelo preconfigurado",
+        "plantilla",
+        "sistema competitivo",
+        "diferencia entre tipo y modelo"
+      ],
+      "sections": [
+        {
+          "title": "Qué significa",
+          "paragraphs": [
+            "Ejemplo: tipo Liga, modelo Liga y sistema Round Robin ida y vuelta. Elegir Liga como tipo no activa automáticamente ida y vuelta.",
+            "La plantilla rellena valores compatibles. Los campos guardados de la ficha son la configuración real del evento. Un nombre como Pegasus Challenge no sustituye el sistema ni un reglamento definido."
+          ]
+        }
+      ],
+      "related": []
+    },
+    {
+      "id": "term-duel-match",
+      "category": "Terminología",
+      "title": "Duelo, partida y serie",
+      "summary": "Un duelo es un juego; una partida o match reúne duelos; una serie reúne varios matches.",
+      "aliases": [
+        "match",
+        "duelo",
+        "partida",
+        "combate",
+        "serie",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5"
+      ],
+      "sections": [
+        {
+          "title": "Qué significa",
+          "paragraphs": [
+            "D1, D2 y D3 son juegos de una partida. BO3 suele significar ganar dos juegos, sujeto a la regla aplicada.",
+            "El sistema Serie / final de Station X enfrenta a dos participantes hasta obtener dos victorias de match, con máximo tres matches. No es lo mismo que un BO3 dentro de un match."
+          ]
+        }
+      ],
+      "related": []
+    },
+    {
+      "id": "term-best-of",
+      "category": "Terminología",
+      "title": "BO1, BO3 y BO5",
+      "summary": "Mejor de indica cuántos juegos puede requerir la partida; la regla de resultados puede introducir condiciones específicas.",
+      "aliases": [
+        "best of",
+        "mejor de",
+        "bo1",
+        "bo3",
+        "bo5"
+      ],
+      "sections": [
+        {
+          "title": "Qué significa",
+          "paragraphs": [
+            "BO1: un juego. BO3: normalmente gana quien obtiene dos victorias. BO5: normalmente gana quien obtiene tres.",
+            "Una condición exacta configurada puede exigir más juegos o un desempate. Consulta siempre la regla aplicada, como CUSTOM_XP, y su secuencia antes de interpretar el cierre."
+          ]
+        }
+      ],
+      "related": []
+    },
+    {
+      "id": "term-format-division",
+      "category": "Terminología",
+      "title": "Formato y división",
+      "summary": "Formato identifica la familia compatible de decks; división organiza niveles dentro de una liga.",
+      "aliases": [
+        "formato",
+        "división",
+        "TCG",
+        "GOAT",
+        "Rush"
+      ],
+      "sections": [
+        {
+          "title": "Qué significa",
+          "paragraphs": [
+            "TCG Avanzado, GOAT y Rush Duel son formatos. Primera y Segunda son divisiones de una liga.",
+            "Dos ligas pueden usar TCG Avanzado y seguir siendo eventos distintos. Compartir formato no permite que el mismo deck esté simultáneamente inscrito en dos ligas incompatibles."
+          ]
+        }
+      ],
+      "related": []
+    },
+    {
+      "id": "term-round",
+      "category": "Terminología",
+      "title": "Ronda, jornada y mesa",
+      "summary": "La ronda o jornada agrupa enfrentamientos; la mesa identifica un cruce o grupo de jugadores.",
+      "aliases": [
+        "ronda",
+        "jornada",
+        "mesa",
+        "fixture",
+        "calendario"
+      ],
+      "sections": [
+        {
+          "title": "Qué significa",
+          "paragraphs": [
+            "En una liga par de diez equipos, una jornada puede contener cinco enfrentamientos. Eso no implica que todos se disputen el mismo día.",
+            "Battle Royale utiliza una mesa de tres o cuatro jugadores, con estado propio, turnos por jugador y un ganador."
+          ]
+        }
+      ],
+      "related": []
+    },
+    {
+      "id": "term-bye",
+      "category": "Terminología",
+      "title": "BYE o descanso sin rival",
+      "summary": "Un BYE es un descanso explícito por la estructura o número impar de participantes.",
+      "aliases": [
+        "bye",
+        "descanso",
+        "impar"
+      ],
+      "sections": [
+        {
+          "title": "Qué significa",
+          "paragraphs": [
+            "No se crea un combate falso, duelos ganados ni XP.",
+            "En el suizo interno el BYE concede tres puntos de tabla, se evita repetirlo y se asigna al último elegible que permita completar los emparejamientos. En una llave permite avanzar según su estructura."
+          ]
+        }
+      ],
+      "related": []
+    },
+    {
+      "id": "term-buchholz",
+      "category": "Terminología",
+      "title": "Buchholz y desempates de tabla",
+      "summary": "Buchholz suma los puntos de los rivales realmente enfrentados.",
+      "aliases": [
+        "bucholz",
+        "buchholz",
+        "desempates",
+        "puntos rivales"
+      ],
+      "sections": [
+        {
+          "title": "Qué significa",
+          "paragraphs": [
+            "En el perfil suizo interno, el orden compara puntos, Buchholz, diferencia de juegos y orden inicial de inscripción.",
+            "El último criterio administrativo conserva el orden fijado al programar. No se sortea de nuevo para cambiar posiciones. Un desempate de tabla es distinto de resolver un match empatado."
+          ]
+        }
+      ],
+      "related": []
+    },
+    {
+      "id": "term-top-cut",
+      "category": "Terminología",
+      "title": "Top Cut y playoffs",
+      "summary": "Son fases decisivas a las que acceden participantes clasificados de una etapa previa.",
+      "aliases": [
+        "top cut",
+        "playoff",
+        "playoffs",
+        "corte",
+        "top n"
+      ],
+      "sections": [
+        {
+          "title": "Qué significa",
+          "paragraphs": [
+            "Un sistema compuesto como Suizo + Top Cut conserva ambas etapas en el mismo evento. Top Cut aislado requiere fuentes verificables.",
+            "No se avanza con resultados pendientes. Los cupos se determinan por el sistema y los parámetros guardados, no por el texto del nombre."
+          ]
+        }
+      ],
+      "related": []
+    },
+    {
+      "id": "term-teams",
+      "category": "Terminología",
+      "title": "Tag 2v2 y equipos 3v3",
+      "summary": "Tag comparte un resultado entre dos integrantes por lado; 3v3 conserva tres resultados por puestos fijos.",
+      "aliases": [
+        "tag duel",
+        "tag",
+        "2v2",
+        "3v3",
+        "equipo",
+        "alineaciones",
+        "colectivo"
+      ],
+      "sections": [
+        {
+          "title": "Qué significa",
+          "paragraphs": [
+            "En Tag no se adjudica al capitán una victoria individual que represente a todo el equipo. Su resultado compartido sí puede ajustar el rating de cada integrante.",
+            "En 3v3 cada puesto disputa su match y la suma decide el ganador colectivo. El integrante que gana conserva su victoria individual aunque pierda su equipo."
+          ]
+        }
+      ],
+      "related": []
+    },
+    {
+      "id": "term-lp",
+      "category": "Terminología",
+      "title": "LP, turno y eliminación",
+      "summary": "LP son puntos de vida. Un turno pertenece a un jugador y contiene fases del duelo.",
+      "aliases": [
+        "life points",
+        "puntos vida",
+        "turnos",
+        "LP",
+        "rendición",
+        "deck out"
+      ],
+      "sections": [
+        {
+          "title": "Qué significa",
+          "paragraphs": [
+            "En Battle Royale cada jugador tiene LP, turnos y estado de eliminación propios. Los eliminados se omiten al avanzar el turno.",
+            "La mesa termina cuando queda un superviviente. Puede registrarse eliminación por LP cero, rendición, deck agotado o efecto confirmado; no se valida el contenido de las cartas que lo producen."
+          ]
+        }
+      ],
+      "related": []
+    },
+    {
+      "id": "term-publication",
+      "category": "Terminología",
+      "title": "Provisional, corte publicado y revisión",
+      "summary": "La vista provisional se recalcula; un corte publicado conserva sus valores para consulta histórica.",
+      "aliases": [
+        "corte",
+        "publicación",
+        "provisional",
+        "revisión",
+        "snapshot",
+        "histórico"
+      ],
+      "sections": [
+        {
+          "title": "Qué significa",
+          "paragraphs": [
+            "Una corrección de resultados actualiza la proyección en vivo y puede dar lugar a una nueva revisión publicada vinculada a la anterior.",
+            "Los cortes del Ranking Global y del metagame tienen alcances distintos. Consulta formato, temporada, fecha de corte y fecha de publicación antes de comparar cifras."
+          ]
+        }
+      ],
+      "related": []
+    },
+    {
+      "id": "term-table-columns",
+      "category": "Terminología",
+      "title": "PTS, PJ, PG, PE, PP y diferencia de juegos",
+      "summary": "Son abreviaturas de la tabla de clasificación deportiva.",
+      "aliases": [
+        "PTS",
+        "PJ",
+        "PG",
+        "PE",
+        "PP",
+        "CG",
+        "CP",
+        "DP",
+        "JD",
+        "VG",
+        "EG",
+        "DG",
+        "tabla"
+      ],
+      "sections": [
+        {
+          "title": "Qué significa",
+          "paragraphs": [
+            "PTS: puntos. PJ: partidas jugadas. PG: ganadas. PE: empatadas. PP: perdidas.",
+            "CG y CP representan juegos ganados y perdidos en la tabla; DP es su diferencia. En las estadísticas también aparecen J, V, E y D para partidas, y JD, VG, EG y DG para duelos.",
+            "Los puntos de tabla deportiva no son el Elo ni el total del Ranking Global."
+          ]
+        }
+      ],
+      "related": []
+    },
+    {
+      "id": "term-win-rate",
+      "category": "Terminología",
+      "title": "WR, muestra y cobertura",
+      "summary": "WR es el porcentaje de victorias; la muestra indica cuántos resultados sustentan una cifra.",
+      "aliases": [
+        "wr",
+        "win rate",
+        "porcentaje victorias",
+        "muestra",
+        "cobertura",
+        "N/D"
+      ],
+      "sections": [
+        {
+          "title": "Qué significa",
+          "paragraphs": [
+            "Una victoria sobre una partida produce 100% de WR con muestra uno. No implica el mismo respaldo que 90 victorias sobre cien partidas.",
+            "Cobertura indica cuántos registros tienen la evidencia necesaria para calcular el indicador. Un campo desconocido no se rellena con cero."
+          ]
+        }
+      ],
+      "related": []
+    }
+  ],
+  "engines": {
+    "manual": {
+      "summary": "El organizador define los cruces y su calendario.",
+      "details": [
+        "No genera automáticamente rondas ni clasificados. Requiere selección manual de participantes de entrada y resultados válidos. El título manual necesita adjudicación expresa en el palmarés."
+      ],
+      "aliases": [
+        "manual",
+        "amistoso"
+      ]
+    },
+    "round_robin": {
+      "summary": "Todos se enfrentan una vez a cada rival.",
+      "details": [
+        "Con N participantes hay N×(N−1)/2 matches y cada uno juega N−1. Con diez: 45 matches y nueve por participante.",
+        "Con N par hay N−1 jornadas; con N impar hay N jornadas y descansos. Los descansos no son matches."
+      ],
+      "aliases": [
+        "todos contra todos",
+        "una vuelta",
+        "round robin"
+      ]
+    },
+    "double_round_robin": {
+      "summary": "Cada participante se enfrenta dos veces a cada rival: ida y vuelta.",
+      "details": [
+        "Con N participantes hay N×(N−1) matches y cada uno juega 2×(N−1). Con diez: 90 matches, 18 por participante y 18 jornadas de cinco matches.",
+        "Con seis: 30 matches y diez por participante. Con siete: 42 matches y doce por participante, repartidos en 14 jornadas con descansos.",
+        "Cada división conserva sus cruces independientes. La fecha de fin depende de cuántos combates se programen por día, no solo del número de jornadas."
+      ],
+      "aliases": [
+        "ida y vuelta",
+        "doble vuelta",
+        "double round robin",
+        "doble round robin"
+      ]
+    },
+    "league_points": {
+      "summary": "Liga que ordena por puntos con calendario todos contra todos a una vuelta.",
+      "details": [
+        "El tipo Liga no significa ida y vuelta. Para dos enfrentamientos por rival selecciona Round Robin ida y vuelta. Consulta la puntuación y regla guardadas."
+      ],
+      "aliases": [
+        "liga por puntos"
+      ]
+    },
+    "swiss": {
+      "summary": "Suizo: empareja por rendimiento y crea una ronda a la vez.",
+      "details": [
+        "El perfil interno calcula min(N−1, ceil(log2 N)) rondas. Ocho participantes: tres; diez: cuatro.",
+        "Victoria 3, empate 1 y derrota 0. BYE: tres puntos sin match ni XP. Se evita repetir rival.",
+        "La siguiente ronda exige resultados completos. Si no existe una ronda completa válida, se bloquea el avance. Orden: puntos, Buchholz, diferencia de juegos y orden inicial."
+      ],
+      "aliases": [
+        "suizo",
+        "swiss",
+        "buchholz"
+      ]
+    },
+    "swiss_top_cut": {
+      "summary": "Primero suizo; después eliminatoria de los mejores.",
+      "details": [
+        "Completa la fase suiza antes de generar el corte. El perfil interno elige la mayor potencia de dos no superior a la mitad de participantes, con mínimo dos y máximo ocho.",
+        "Cuatro inscritos: Top 2; diez: Top 4; veinte: Top 8. Los cruces de la fase final requieren ganador."
+      ],
+      "aliases": [
+        "suizo con corte",
+        "swiss top cut"
+      ]
+    },
+    "single_elimination": {
+      "summary": "Eliminación directa: una derrota elimina.",
+      "details": [
+        "Los ganadores avanzan por la llave hasta la final. Un número no potencia de dos puede requerir BYE explícitos.",
+        "Con N participantes y un campeón se disputan N−1 matches reales. No se crean duelos ni XP para los descansos."
+      ],
+      "aliases": [
+        "eliminación simple",
+        "knockout",
+        "KO"
+      ]
+    },
+    "bracket": {
+      "summary": "Llave de eliminación por ganador.",
+      "details": [
+        "Organiza cruces y avance por ganador con estructura de eliminación directa. No es un algoritmo distinto por tener el nombre Bracket."
+      ],
+      "aliases": [
+        "bracket",
+        "llave",
+        "cuadro"
+      ]
+    },
+    "double_elimination": {
+      "summary": "Dos derrotas eliminan, con cuadros superior e inferior.",
+      "details": [
+        "El participante que pierde una vez pasa al cuadro de recuperación. Si el finalista invicto pierde la primera final, hay final de reset.",
+        "El total es 2N−2 o 2N−1 matches; no se cuentan BYE como victorias ficticias."
+      ],
+      "aliases": [
+        "doble eliminación",
+        "losers",
+        "winners",
+        "reset"
+      ]
+    },
+    "groups": {
+      "summary": "Grupos equilibrados de hasta cuatro participantes.",
+      "details": [
+        "Se siembran en serpiente desde el orden inicial. Todos contra todos a una vuelta dentro de cada grupo, con tabla independiente.",
+        "Hay ganador por grupo; no se proclama un campeón global sin una fase que lo resuelva."
+      ],
+      "aliases": [
+        "grupos",
+        "fase grupos"
+      ]
+    },
+    "groups_knockout": {
+      "summary": "Grupos y luego llave entre sus clasificados.",
+      "details": [
+        "Grupos de hasta cuatro, una vuelta. Clasifican los dos primeros de cada grupo.",
+        "El primer cruce enfrenta primero de un grupo contra segundo de otro, evitando el mismo origen cuando existen varios grupos. Luego avanza el ganador de cada llave."
+      ],
+      "aliases": [
+        "grupos eliminatoria",
+        "grupos knockout"
+      ]
+    },
+    "playoffs": {
+      "summary": "Fase decisiva independiente que recibe clasificados.",
+      "details": [
+        "Requiere configurar fuentes y cupos en el destino, con resultados verificables. Después se organiza una llave por ganador."
+      ],
+      "aliases": [
+        "playoffs",
+        "fase decisiva"
+      ]
+    },
+    "top_cut": {
+      "summary": "Corte final independiente entre clasificados.",
+      "details": [
+        "No selecciona invitados por el nombre del evento. Guarda fuentes verificadas y plazas antes de programar la llave."
+      ],
+      "aliases": [
+        "top cut",
+        "corte final"
+      ]
+    },
+    "series": {
+      "summary": "Dos participantes; gana quien obtiene dos victorias de match.",
+      "details": [
+        "Mínimo dos y máximo tres matches. Solo se crea el siguiente cuando el anterior tiene ganador.",
+        "El mejor de de cada match es independiente de la longitud de la serie. Un empate se resuelve dentro del match; no crea una cuarta partida de serie."
+      ],
+      "aliases": [
+        "serie final",
+        "series",
+        "mejor de tres matches"
+      ]
+    },
+    "season_playoffs": {
+      "summary": "Una vuelta de liga y después playoffs.",
+      "details": [
+        "Se completa todos contra todos a una vuelta. Pasan dos, cuatro u ocho al corte final según el total inscrito.",
+        "Este sistema por etapas requiere una liga de una división. No mezcla automáticamente divisiones para crear playoffs."
+      ],
+      "aliases": [
+        "temporada playoffs",
+        "liga playoffs"
+      ]
+    },
+    "flights": {
+      "summary": "Eliminatorias en grupos pequeños y llave final de ganadores.",
+      "details": [
+        "Se forman flights equilibrados de hasta cuatro. Cada flight se resuelve por eliminación directa; sus ganadores disputan la fase final.",
+        "Con N participantes hay N−1 matches reales. Los descansos no generan XP."
+      ],
+      "aliases": [
+        "flights",
+        "flight"
+      ]
+    },
+    "ladder": {
+      "summary": "Escalera interna de duración acotada a 2N rondas.",
+      "details": [
+        "Se retan posiciones vecinas alternando pares. Si gana el participante inferior intercambian puestos. No admite empate.",
+        "La primera posición al cierre gana. No es una liga abierta de retos indefinidos."
+      ],
+      "aliases": [
+        "ladder",
+        "escalera",
+        "retos"
+      ]
+    },
+    "king_of_the_hill": {
+      "summary": "El ganador permanece y recibe al siguiente retador.",
+      "details": [
+        "El primer inscrito defiende; los demás retan una vez según el orden inicial. Se disputan N−1 matches."
+      ],
+      "aliases": [
+        "king of the hill",
+        "rey colina",
+        "rey de la colina"
+      ]
+    },
+    "gauntlet": {
+      "summary": "Un participante intenta superar consecutivamente a todos los rivales.",
+      "details": [
+        "El primer inscrito afronta a cada rival en orden. Su primera derrota termina el intento sin campeón global.",
+        "Solo superar todos los retos produce campeón. No equivale a que cualquier último ganador gane el evento."
+      ],
+      "aliases": [
+        "gauntlet",
+        "reto consecutivo"
+      ]
+    },
+    "free_for_all": {
+      "summary": "Mesa Battle Royale de tres o cuatro jugadores independientes.",
+      "details": [
+        "Cada jugador tiene LP, fases, turnos y estado propios. Al quedar eliminado deja de recibir turnos.",
+        "Gana el único superviviente. No son dos equipos ni una colección de combates 1v1. Las acciones controlan revisión e identificador para evitar duplicados.",
+        "La creación deja la mesa pendiente; debe iniciarse expresamente. El Elo propio se consulta en Estadísticas → Ranking → Battle Royale / Free-for-All."
+      ],
+      "aliases": [
+        "battle royale",
+        "free for all",
+        "ffa",
+        "multijugador"
+      ]
+    },
+    "custom": {
+      "summary": "Seleccionar Custom no implementa un sistema nuevo.",
+      "details": [
+        "Un algoritmo personalizado necesita definición y código verificable. Su activación se bloquea mientras no exista un motor implementado.",
+        "Para organizar cruces a mano utiliza Manual, manteniendo las validaciones de participantes y resultados."
+      ],
+      "aliases": [
+        "custom",
+        "personalizado"
+      ]
+    }
+  },
+  "types": {
+    "qualifier": "Obtiene una clasificación de entrada o plazas hacia otros eventos. No implica proclamar automáticamente un campeón.",
+    "tournament": "Competición independiente cuyo sistema define rondas, cruces y campeón.",
+    "league": "Competición con tabla y posible organización por divisiones. El sistema indica una vuelta, ida y vuelta o una estructura por etapas.",
+    "cup": "Competición por un título; puede utilizar eliminatoria o grupos con fase final según la configuración.",
+    "world": "Categoría de campeonato mundial dentro de la organización de Station X. El nombre no certifica un reglamento oficial.",
+    "final": "Evento decisivo entre clasificados. El sistema y las fuentes determinan sus participantes y resolución.",
+    "friendly": "Combate o evento de práctica sin impacto en el Ranking Global competitivo.",
+    "special": "Categoría para desafíos y modalidades particulares, como Pegasus Challenge o Battle Royale. Debe conservar un sistema definido."
+  },
+  "choices": {
+    "advancement_rule": {
+      "FINAL_STANDINGS": "El evento termina con su tabla. No se crea una eliminatoria ni otra fase interna.",
+      "SOURCE_ADMISSION": "La tabla sirve de fuente para otro evento. Las plazas y los criterios se guardan en Fuentes y clasificados del destino; no se adjudican cupos implicitos.",
+      "MANUAL_ENTRIES": "La seleccion manual fija los participantes de entrada. No genera emparejamientos ni avances automaticos; los titulos manuales requieren adjudicacion expresa en Palmares.",
+      "GROUP_TOP_K": "Clasifican los cupos configurados de cada grupo; despues avanza el ganador de cada cruce de la llave.",
+      "MANUAL_SELECTION": "El organizador elige los clasificados. Esta opcion no calcula por si sola un corte automatico.",
+      "TOP_N": "Clasifican los primeros puestos hasta completar el cupo. La cantidad depende del sistema competitivo y de sus parametros.",
+      "TOP_PERCENTAGE": "En Fuentes y clasificados, distribuye el total de plazas entre fuentes mediante porcentajes que sumen 100. Los cupos se llenan con los primeros puestos; no calcula un porcentaje de todos los inscritos de cada fuente.",
+      "MINIMUM_POINTS": "En Fuentes y clasificados, define puntos minimos y plazas exactas. Solo se admiten puestos con al menos esos puntos; si no hay suficientes, se rechaza la carga sin sustitutos.",
+      "GROUP_POSITION": "La clasificacion depende del puesto dentro de cada grupo; no de una tabla que mezcle todos los grupos.",
+      "WINNER_ONLY": "El ganador es quien avanza. En una eliminatoria, el resultado debe quedar resuelto antes de crear el siguiente cruce.",
+      "RUNNER_UP": "El criterio selecciona al segundo puesto del evento de origen, en lugar del campeon.",
+      "RANKING_THRESHOLD": "La clasificacion se decide por una posicion de corte en la tabla. Debes indicar hasta que puesto se acepta.",
+      "BEST_RECORD": "En Fuentes y clasificados, se ordena por proporcion de victorias sobre encuentros disputados; despues por menor numero de derrotas y por el orden verificado de la fuente. Se carga el numero exacto de plazas configurado.",
+      "CUSTOM": "El avance requiere una regla propia y parametros definidos; elegir Personalizado no crea esa regla automaticamente."
+    },
+    "draw_policy": {
+      "ALLOWED": "La politica admite un resultado empatado. Las rondas de eliminacion necesitan un ganador aunque la fase de tabla admita empates.",
+      "NOT_ALLOWED": "No se acepta cerrar el enfrentamiento con empate; debe registrarse un ganador valido.",
+      "EXTRA_DUEL": "Un empate queda pendiente de un duelo de desempate antes de cerrar el resultado.",
+      "EXTRA_MATCH": "Un empate queda pendiente de desempate. Esta seleccion no crea automaticamente otro enfrentamiento en el calendario.",
+      "SUDDEN_DEATH": "Un empate requiere resolverse con muerte subita segun el reglamento; no se sortea un ganador.",
+      "USE_TIEBREAKER": "Si el resultado termina igualado, se debe completar el desempate antes de cerrarlo. El orden de una tabla usa los criterios del sistema competitivo.",
+      "MANUAL_DECISION": "El organizador revisa el empate. Las restricciones de una fase eliminatoria siguen exigiendo un ganador.",
+      "CUSTOM": "La politica de empate requiere una definicion propia. Las reglas de resultado y de la fase siguen vigentes."
+    },
+    "ranking_impact": {
+      "NONE": "No suma al Ranking Global individual. Battle Royale tiene su propio Elo independiente de este campo.",
+      "FULL": "Usa el K de impacto completo de la política de Ranking Global fijada. Su valor inicial es 20.",
+      "REDUCED": "Usa el K de impacto reducido de la política fijada. Su valor inicial también es 20: el nombre no implica automáticamente la mitad de puntos.",
+      "BONUS": "Usa el K de bonificación de la política fijada; su valor inicial es 25. No equivale al bono de una medalla de campeón.",
+      "CUSTOM": "Requiere una política explícita para ser puntuable; un texto personalizado no define por sí mismo una fórmula."
+    },
+    "participation": {
+      "INDIVIDUAL_1V1": "Un participante por lado; el resultado corresponde a esos dos participantes.",
+      "TAG_2V2": "Dos integrantes por lado comparten una serie y su resultado. No son dos matches individuales.",
+      "TEAM_3V3": "Tres integrantes por lado y tres resultados por puestos fijos. Ganar dos puestos decide el ganador colectivo.",
+      "FREE_FOR_ALL": "Tres o cuatro jugadores independientes; gana el único superviviente. Se consulta en Battle Royale y su Elo propio.",
+      "CUSTOM_TEAM": "La etiqueta no define una cantidad ni una regla de agregación nueva. Debe existir un contrato ejecutable antes de programar."
+    },
+    "construction": {
+      "CONSTRUCTED": "Modalidad declarada donde se utiliza un deck preparado con anterioridad. Station X organiza participantes y resultados, sin validar sus cartas.",
+      "SEALED": "Modalidad declarada donde el deck se construye con material recibido para la actividad. La plataforma no controla sobres, pools ni legalidad de cartas.",
+      "DRAFT": "Modalidad declarada en la que se eligen cartas durante una selección previa a construir el deck. La plataforma no controla picks, pools ni elecciones.",
+      "STRUCTURE_DECK": "Actividad declarada alrededor de decks de estructura. No valida productos ni listas de cartas.",
+      "DIGITAL": "Construcción o actividad declarada en un entorno digital. El sistema competitivo sigue definiendo rondas y cruces.",
+      "CUSTOM": "Descripción particular de construcción; no activa controles de cartas ni un algoritmo nuevo."
+    }
+  },
+  "choice_labels": {
+    "advancement_rule": "Regla de avance",
+    "draw_policy": "Política de empate",
+    "ranking_impact": "Impacto en Ranking Global",
+    "participation": "Participación",
+    "construction": "Construcción declarada"
+  }
+}

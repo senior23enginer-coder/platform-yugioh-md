@@ -1,0 +1,878 @@
+STATION X | CATÁLOGO EDITORIAL DE ESTILO Y ESTRATEGIA
+Revisión: 24-10-2026 | 67 decks (TCG 56, RUSH DUEL 4, GOAT 7)
+Perfil basado en lista validada: TCG #28 Kashtira Pure (Main 42, Extra 15, reserva 19).
+
+OBJETIVO
+Sustituir la mezcla actual de datos de perfil y resultados por descripciones comparables del funcionamiento de cada deck. Estas fichas son propuestas editoriales, NO estadísticas verificadas, ni una tier list, ni una validación de legalidad de cartas. Su precisión depende de la decklist exacta, la banlist y las reglas del evento. Si falta esa información, la clasificación es provisional.
+
+MODELO RECOMENDADO PARA LA PLATAFORMA
+1. Identidad estable: formato, nombre del deck, equipo, arquetipo principal, motores secundarios, mecánicas de invocación y versión de decklist. Liga y equipo son asociaciones, no propiedades intrínsecas del arquetipo.
+2. Perfil editorial versionado: estilo principal (Combo, Control, Midrange, Aggro/OTK, Stun o Toolbox), estilo secundario opcional, velocidad (lento, medio, rápido), complejidad (baja, media, alta), plan principal, recursos, fortalezas, vulnerabilidades y enfoque al ir primero o segundo. Las etiquetas son orientativas; no son puntuaciones de rendimiento.
+3. Resultados observados, calculados por plataforma: partidas, win rate, rendimiento primero/segundo, duración, consistencia observada, enfrentamientos, rango y rating. Mostrar 'sin muestra' cuando falten partidas. No inferir 'brick rate' a partir del nombre de un arquetipo: requiere decklist y definición medible.
+4. Evaluación editorial opcional: si se mantienen notas 1–5, indicar autor, fecha, parche/banlist y justificación; separarlas de métricas. No fijar supuestos 5/5 universales de consistencia, resiliencia o poder.
+5. No asumir Side Deck en Rush Duel; en GOAT usar las reglas y el pool del formato GOAT. El perfil no valida contenido de listas ni sustituye reglas competitivas.
+6. AISLAMIENTO ESTRICTO POR FORMATO: TCG, GOAT y RUSH DUEL se estudian como ecosistemas distintos. Nunca recomendar a GOAT una carta, mecánica, texto moderno, arquetipo, invocación o banlist del TCG actual. Nunca recomendar a Rush Duel una carta o procedimiento del TCG si no existe con ese texto/regla en Rush Duel. Antes de cualquier cambio, validar pool, reglas, versión y lista del formato del deck; cuando no estén definidos, las recomendaciones son hipótesis condicionadas, NO compras, legalidad ni cambios ejecutados.
+7. Cada deck con lista aprobada tendrá ANÁLISIS DE SINERGIA Y OPTIMIZACIÓN: cartas activas o muertas, conflictos de motores/restricciones, redundancias, alternativas, propuestas de cambio 'entra/sale', efecto esperado, tradeoffs, paquetes desde toda la reserva disponible y pruebas recomendadas. La lista original y su reserva nunca se modifican sin aprobación expresa del usuario.
+
+LECTURA DE CADA FICHA
+ESTILO = principal / secundario; RITMO = tendencia, no tiempo de partida medido.
+PLAN = cómo suele generar ventaja y ganar. RECURSOS = principal motor de juego.
+FORTALEZA / RIESGO = lectura cualitativa. 1.º / 2.º = orientación estratégica, no probabilidad de victoria.
+
+============================================================
+TCG — 56 DECKS
+============================================================
+
+01. ANCIENT MACHINE
+ESTILO: Aggro/OTK / Fusión; RITMO: explosivo; COMPLEJIDAD: media.
+PLAN: preparar máquinas grandes, convertir recursos en Fusiones y cerrar mediante daño de batalla. RECURSOS: buscadores y apoyos Ancient Gear, acceso a Fusión.
+FORTALEZA: gran capacidad de remate; RIESGO: dependencia de piezas y de atravesar interrupciones. 1.º: reunir recursos; 2.º: abrir paso a la ofensiva.
+
+02. BARRERA DE HIELO (ICE BARRIER)
+ESTILO: Control / Sincronía; RITMO: medio; COMPLEJIDAD: media.
+PLAN: combinar monstruos Ice Barrier con restricciones e invocaciones Synchro para limitar las opciones rivales. RECURSOS: búsquedas, extensores y Extra Deck.
+FORTALEZA: presión de control; RIESGO: manos desiguales y dependencia de que el motor funcione. 1.º: establecer interacción; 2.º: romper mesa antes de estabilizar.
+
+03. BLUE DRAGON
+ESTILO: pendiente de precisar / Dragón; RITMO: sin determinar; COMPLEJIDAD: sin determinar.
+PLAN: nombre no inequívoco: confirmar si corresponde a Blue-Eyes, Blue Dragon Summoner u otra construcción personalizada. RECURSOS: requiere decklist.
+FORTALEZA / RIESGO: sin evaluación fiable. 1.º / 2.º: pendiente de identificar la identidad exacta.
+
+04. BRANDED
+ESTILO: Midrange / Fusión; RITMO: medio; COMPLEJIDAD: alta.
+PLAN: usar el motor Branded/Albaz para producir Fusiones, intercambiar recursos y sostener presión durante varios turnos. RECURSOS: Branded Fusion y acceso recurrente a materiales según lista.
+FORTALEZA: juego de recursos y herramientas de Fusión; RIESGO: puntos de interrupción reconocibles. 1.º: construir interacción; 2.º: usar Fusiones para desmontar mesa.
+
+05. CHAOS RITUAL
+ESTILO: Combo / Ritual; RITMO: medio; COMPLEJIDAD: alta.
+PLAN: coordinar búsquedas, tributos y Ritual Summons con posibles monstruos LIGHT/DARK. RECURSOS: motor ritual concreto aún no especificado.
+FORTALEZA: acceso a amenazas especializadas; RIESGO: varias piezas en mano. 1.º: preparar campo; 2.º: explotar herramientas rituales. PERFIL PROVISIONAL: solicitar decklist.
+
+06. CRYSTAL BEAST
+ESTILO: Midrange / Toolbox; RITMO: medio; COMPLEJIDAD: media.
+PLAN: situar Crystal Beasts en la zona de Magia/Trampa como recursos y convertirlos en extensiones o condiciones de cierre. RECURSOS: Crystal Beast, Rainbow Bridge y soportes según variante.
+FORTALEZA: aprovechamiento de recursos persistentes; RIESGO: espacio de zonas y cartas de soporte. 1.º: instalar motor; 2.º: buscar una vía de ruptura.
+
+07. CRYSTRON
+ESTILO: Combo / Sincronía reactiva; RITMO: medio; COMPLEJIDAD: alta.
+PLAN: administrar Tuners, no Tuners y efectos para invocar Synchros en ventanas útiles, incluso durante el turno rival según las cartas. RECURSOS: Cementerio y reciclaje Crystron.
+FORTALEZA: juego técnico y flexible; RIESGO: secuencias exigentes y efectos restringidos. 1.º: dejar acceso a respuestas; 2.º: secuenciar para superar interacción.
+
+08. CYBER DRAGON K9
+ESTILO: Midrange / Xyz-Fusión híbrido; RITMO: rápido; COMPLEJIDAD: alta.
+PLAN: mezclar la presión de Cyber Dragon con líneas de interacción K9. RECURSOS: buscadores Cyber, cuerpos para Extra Deck y núcleo K9.
+FORTALEZA: varios caminos de amenaza; RIESGO: tensiones entre motores y manos inconsistentes según proporciones. 1.º: priorizar interacción; 2.º: presión y remate.
+
+09. CYBER DRAGON PURE
+ESTILO: Aggro/OTK / Fusión-Xyz; RITMO: explosivo; COMPLEJIDAD: media.
+PLAN: aprovechar la facilidad de despliegue Cyber Dragon y Fusiones o Xyz para superar un campo y hacer daño. RECURSOS: buscadores Cyber y herramientas Machine.
+FORTALEZA: remates directos; RIESGO: interrupción de accesos clave. 1.º: preparar recursos y protección; 2.º: favorecer ruptura y OTK.
+
+10. DARK WORLD
+ESTILO: Combo / Recursos; RITMO: explosivo; COMPLEJIDAD: alta.
+PLAN: descartar por efectos que habiliten los Dark World, encadenar extensiones y convertir ventaja en presión. RECURSOS: descartes por efecto, Cementerio y reciclaje.
+FORTALEZA: techo de combo y generación de cartas; RIESGO: dependencia de habilitadores y disrupción del Cementerio. 1.º: desplegar campo; 2.º: extender para romperlo.
+
+11. DEMONHERRERO BYSTIAL
+ESTILO: Midrange / Combo híbrido; RITMO: rápido; COMPLEJIDAD: alta.
+PLAN: articular motor Fiendsmith/Demonherrero con Bystials para extender, interactuar con LIGHT/DARK y sostener recursos. RECURSOS: Cementerio y paquetes de motor.
+FORTALEZA: interacción de varios ejes; RIESGO: compatibilidad y proporciones de motores. 1.º: establecer presión; 2.º: usar interrupciones y extensores.
+
+12. DOGMATIKA
+ESTILO: Control / Anti-Extra Deck; RITMO: medio; COMPLEJIDAD: media-alta.
+PLAN: explotar interacciones con el Extra Deck y convertir sus envíos/restricciones en ventaja. RECURSOS: búsquedas Dogmatika y efectos relacionados con Extra Deck.
+FORTALEZA: castiga estrategias dependientes del Extra Deck; RIESGO: menor eficacia ante ciertos rivales o bloqueos propios. 1.º: condicionar jugadas; 2.º: forzar intercambios.
+
+13. DOOMZ
+ESTILO: Combo / Xyz; RITMO: medio-rápido; COMPLEJIDAD: alta.
+PLAN: transformar monstruos adecuados en Xyz DoomZ y aprovechar interacciones con equipamientos/soportes del motor. RECURSOS: acceso a piezas DoomZ y líneas Xyz.
+FORTALEZA: líneas alternativas de Extra Deck; RIESGO: dependencia de ensamblar el motor. 1.º: preparar interacción; 2.º: aprovechar rutas de conversión. REVISAR contra decklist.
+
+14. DOOMZ ARTMAGE
+ESTILO: Combo / Híbrido; RITMO: medio-rápido; COMPLEJIDAD: alta.
+PLAN: combinar conversiones Xyz DoomZ con la extensión y el uso de recursos del paquete Artmage. RECURSOS: dos motores y sus accesos.
+FORTALEZA: versatilidad potencial; RIESGO: manos con piezas incompatibles. 1.º: priorizar la línea estable; 2.º: desarrollar el motor que mejor rompa campo. REVISAR lista.
+
+15. DRACOTAIL
+ESTILO: Midrange / Fusión; RITMO: medio; COMPLEJIDAD: alta.
+PLAN: utilizar el núcleo Dracotail para habilitar Fusiones e intercambiar recursos entre mano, campo y Cementerio. RECURSOS: efectos de materiales y soporte de Fusión.
+FORTALEZA: presión recurrente; RIESGO: secuencias y puntos de interrupción. 1.º: preparar interacciones; 2.º: generar acceso de Fusión para contestar mesa.
+
+16. ELFNOTE
+ESTILO: Combo / Sincronía (provisional); RITMO: medio-rápido; COMPLEJIDAD: alta.
+PLAN: desarrollar el motor Elfnote para acceso a invocaciones y continuidad. RECURSOS: piezas propias por confirmar en lista exacta.
+FORTALEZA / RIESGO: valoración provisional por identidad/versiones de cartas. 1.º / 2.º: definir tras revisar decklist; evitar notas numéricas ahora.
+
+17. EXODIA
+ESTILO: Combo / Condición de victoria alternativa; RITMO: variable; COMPLEJIDAD: media-alta.
+PLAN: reunir las cinco piezas de Exodia o emplear un plan alternativo basado en soporte Exodia. RECURSOS: robo, búsqueda, defensa y recuperación, según construcción.
+FORTALEZA: condición de victoria singular; RIESGO: manos atascadas e interrupciones. 1.º: acelerar o defender; 2.º: sobrevivir y resolver el plan. REVISAR variante exacta.
+
+18. EXOSISTER
+ESTILO: Control / Xyz; RITMO: medio; COMPLEJIDAD: media.
+PLAN: aprovechar movimientos del Cementerio enemigo y Xyz Exosister para negar opciones y desterrar amenazas. RECURSOS: parejas Exosister y Xyz temáticos.
+FORTALEZA: presión contra uso de Cementerio; RIESGO: matchups que no activan sus mejores condiciones. 1.º: establecer interrupciones; 2.º: responder con Xyz.
+
+19. FIRE KING
+ESTILO: Midrange / Destrucción-recursión; RITMO: medio; COMPLEJIDAD: media-alta.
+PLAN: destruir cartas propias de manera rentable para disparar efectos Fire King y mantener flujo de amenazas. RECURSOS: Cementerio y efectos al destruirse.
+FORTALEZA: recursión y valor en intercambios; RIESGO: destierros y negaciones oportunas. 1.º: preparar destrucciones; 2.º: usar el motor para deshacer mesa.
+
+20. GOUKI
+ESTILO: Combo / Link; RITMO: rápido; COMPLEJIDAD: alta.
+PLAN: encadenar monstruos Gouki que sustituyen recursos para escalar a Link y una condición de cierre. RECURSOS: búsquedas al salir del campo y extensores Warrior.
+FORTALEZA: continuidad de combo; RIESGO: interrupción de eslabones esenciales. 1.º: preparar tablero; 2.º: buscar ruptura/remate.
+
+21. HORUS
+ESTILO: Midrange / Rango 8; RITMO: medio-rápido; COMPLEJIDAD: media.
+PLAN: utilizar el paquete Horus y sus resurrecciones para generar presencia, cuerpos de nivel 8 y amenazas Xyz. RECURSOS: King's Sarcophagus y Cementerio.
+FORTALEZA: presencia persistente; RIESGO: dependencia del habilitador y respuesta al Cementerio. 1.º: montar motor; 2.º: materializar presión.
+
+22. INFERNOBLE
+ESTILO: Combo / Sincronía-Equip; RITMO: rápido; COMPLEJIDAD: alta.
+PLAN: equipar, buscar y reciclar Guerreros FIRE para construir cadenas de Synchro y negaciones. RECURSOS: equipamientos, Cementerio y buscadores Warrior.
+FORTALEZA: gran densidad de líneas; RIESGO: secuencias largas vulnerables a ciertas interrupciones. 1.º: tablero de interacción; 2.º: abrir líneas con extensores.
+
+23. INVOKED
+ESTILO: Midrange / Fusión; RITMO: medio; COMPLEJIDAD: media.
+PLAN: obtener acceso a Aleister/Invocation y Fusionar con atributos adecuados para contestar situaciones. RECURSOS: motor compacto de Fusión y reutilización de Invocation.
+FORTALEZA: consistencia del núcleo; RIESGO: dependencia de Normal Summon y atributos disponibles. 1.º: amenaza de interacción; 2.º: seleccionar Fusión adecuada.
+
+24. INZEKTOR
+ESTILO: Combo / Equip-desencadenamiento; RITMO: rápido; COMPLEJIDAD: alta.
+PLAN: equipar Inzektors entre sí, activar efectos de destrucción/búsqueda y convertir la cadena en ventaja. RECURSOS: equipamientos de monstruos y búsquedas.
+FORTALEZA: combos de gran recompensa; RIESGO: interrupciones en pieza inicial. 1.º: generar recursos; 2.º: destruir obstáculos y presionar.
+
+25. JINZO
+ESTILO: Aggro / Anti-Trampas; RITMO: medio; COMPLEJIDAD: media.
+PLAN: desplegar Jinzo y aprovechar la supresión de Trampas para habilitar ataques. RECURSOS: acceso a Jinzo, soportes de Máquina y protección.
+FORTALEZA: castiga tableros cargados de Trampas; RIESGO: respuestas de Monstruo/Magia y acceso irregular. 1.º: instalar bloqueo situacional; 2.º: explotar ventanas.
+
+26. K9 PURE
+ESTILO: Midrange / Xyz reactivo; RITMO: medio-rápido; COMPLEJIDAD: media-alta.
+PLAN: explotar herramientas K9 para desarrollar Xyz y responder a los movimientos del rival. RECURSOS: monstruos K9 y sus apoyos.
+FORTALEZA: interacción flexible; RIESGO: requisitos y secuencias vinculadas al estado rival. 1.º: preparar respuestas; 2.º: usar aperturas del oponente.
+
+27. KASHTIRA DEMONHERRERO
+ESTILO: Midrange / Control de zonas y combo; RITMO: medio-rápido; COMPLEJIDAD: alta.
+PLAN: combinar amenazas Kashtira (destierro/presión de zonas) con extensiones Fiendsmith. RECURSOS: motores separados y Extra Deck.
+FORTALEZA: amenaza por ejes distintos; RIESGO: restricciones cruzadas y distribución de manos. 1.º: establecer control; 2.º: romper mesa y preservar acceso.
+
+28. KASHTIRA PURE
+ESTILO: Control / Xyz; RITMO: medio; COMPLEJIDAD: media.
+PLAN: desplegar Kashtira para desterrar cartas, amenazar zonas y sostener Xyz. RECURSOS: buscadores Kashtira, cuerpos de nivel 7.
+FORTALEZA: presión sin necesidad de combos excesivos; RIESGO: dependencia de monstruos clave y respuesta a efectos. 1.º: limitar opciones; 2.º: desterrar y atacar.
+ESTADO: REEMPLAZADO POR PERFIL COMPLETO VALIDADO AL FINAL DEL DOCUMENTO. Consultar ANEXO A; no usar estos tres renglones como evaluación definitiva de esta decklist.
+
+29. KEWL TUNE
+ESTILO: pendiente de validar / motor temático; RITMO: sin determinar; COMPLEJIDAD: sin determinar.
+PLAN: falta la lista para identificar si es una versión Synchro/combo u otra variante. RECURSOS: por identificar.
+FORTALEZA / RIESGO: no atribuir capacidades o valores sin verificar cartas. 1.º / 2.º: pendiente de decklist.
+
+30. MAGIKEY
+ESTILO: Combo / Ritual-Fusión-Sincronía-Xyz; RITMO: medio; COMPLEJIDAD: alta.
+PLAN: explotar monstruos normales y atributos en Cementerio para acceder a varias invocaciones temáticas. RECURSOS: Normal Monsters, Ritual y Extra Deck.
+FORTALEZA: caja de herramientas multimecánica; RIESGO: manos de piezas y gestión de atributos. 1.º: seleccionar interrupciones; 2.º: recurrir al recurso oportuno.
+
+31. MALISS
+ESTILO: Combo / Link-Cyberse; RITMO: rápido; COMPLEJIDAD: alta.
+PLAN: utilizar el destierro y retorno de piezas Maliss para enlazar monstruos y mantener presión. RECURSOS: efectos al ser desterrados, Links y soporte Cyberse.
+FORTALEZA: extensión y resiliencia situacional; RIESGO: interrupción de puntos clave y restricciones de motor. 1.º: crear interacción; 2.º: desarrollar líneas de ruptura.
+
+32. MANNADIUM
+ESTILO: Combo / Sincronía; RITMO: explosivo; COMPLEJIDAD: alta.
+PLAN: desplegar Tuners y extensores Mannadium para escalar en Synchros. RECURSOS: destrucción/activación de piezas y motores relacionados.
+FORTALEZA: techo alto de campo; RIESGO: vulnerabilidad a interrupciones en combo. 1.º: terminar en tablero; 2.º: gastar recursos para superar defensa.
+
+33. MATHMECH
+ESTILO: Combo / Cyberse-Xyz-Link; RITMO: rápido; COMPLEJIDAD: alta.
+PLAN: ensamblar líneas Cyberse con Mathmech y convertir piezas en interacción o remate. RECURSOS: Circular y demás iniciadores según legalidad, Cementerio y Extra Deck.
+FORTALEZA: líneas compactas y OTK potencial; RIESGO: puntos de corte en buscadores/efectos. 1.º: sostener respuestas; 2.º: buscar daño decisivo.
+
+34. MEGALITH
+ESTILO: Combo / Ritual; RITMO: medio; COMPLEJIDAD: alta.
+PLAN: utilizar monstruos Megalith como habilitadores de Ritual y controlar el valor de tributos. RECURSOS: efectos Ritual desde mano/campo y reciclaje.
+FORTALEZA: motor ritual flexible; RIESGO: planificación de niveles y manos específicas. 1.º: preparar interacción; 2.º: encadenar Ritual y eliminación.
+
+35. MEMENTO
+ESTILO: Midrange / Destrucción-recursión; RITMO: medio; COMPLEJIDAD: alta.
+PLAN: destruir piezas Memento, poblar Cementerio y centralizar presión en sus amenazas. RECURSOS: búsquedas y recuperación del núcleo.
+FORTALEZA: ventaja a partir de destrucción propia; RIESGO: negación/destierro de recursos principales. 1.º: construir red de efectos; 2.º: abrir campo y recuperar.
+
+36. MITSURUGI PURE
+ESTILO: Combo / Ritual; RITMO: medio-rápido; COMPLEJIDAD: alta.
+PLAN: emplear el motor Mitsurugi para Ritual Summons y efectos asociados a tributos/recursos. RECURSOS: búsquedas y piezas rituales propias.
+FORTALEZA: continuidad ritual; RIESGO: ensamblaje y ventanas de interrupción. 1.º: interacción desde motor; 2.º: romper mesa con efectos rituales.
+
+37. P.U.N.K.
+ESTILO: Combo / Sincronía-Rango 8; RITMO: rápido; COMPLEJIDAD: alta.
+PLAN: pagar LP para buscar/extender, habilitar Synchros y generar ventaja con cuerpos de diferentes niveles. RECURSOS: motores P.U.N.K., E-Tele y Cementerio según lista.
+FORTALEZA: alta capacidad de extensión; RIESGO: Normal Summon o punto inicial vulnerable. 1.º: interacción Synchro; 2.º: presionar con extensores.
+
+38. PURRELY
+ESTILO: Control / Xyz; RITMO: medio; COMPLEJIDAD: alta.
+PLAN: acumular materiales y Memories sobre Xyz Purrely para generar valor y amenazas difíciles de contestar. RECURSOS: Quick-Play Spells y materiales Xyz.
+FORTALEZA: juego prolongado y protección situacional; RIESGO: dependencia de Memories/acceso al motor. 1.º: desarrollar Xyz; 2.º: elegir líneas para penetrar defensa.
+
+39. RESONATOR RDA HORUS
+ESTILO: Combo / Sincronía-Rango 8 híbrido; RITMO: rápido; COMPLEJIDAD: alta.
+PLAN: juntar escalera Synchro Resonator/Red Dragon Archfiend con extensión Horus. RECURSOS: Tuners, cuerpos de apoyo y Cementerio.
+FORTALEZA: variedad de amenazas; RIESGO: restricciones Synchro y proporciones de dos motores. 1.º: campo Synchro; 2.º: presión y ruptura.
+
+40. RESONATOR RED DRAGON ARCHFIEND
+ESTILO: Combo / Sincronía; RITMO: rápido; COMPLEJIDAD: media-alta.
+PLAN: escalar con Resonators hasta grandes Synchros DARK Dragon y amenazas Red Dragon Archfiend. RECURSOS: buscadores Resonator y Extra Deck.
+FORTALEZA: capacidad de explosión; RIESGO: dependencia de Tuners/extensores clave. 1.º: establecer negaciones/presión; 2.º: atacar con Synchros grandes.
+
+41. RYZEAL
+ESTILO: Midrange / Xyz rango 4; RITMO: rápido; COMPLEJIDAD: media.
+PLAN: colocar cuerpos compatibles, producir Xyz de rango 4 e intercambiar recursos con interacción y seguimiento. RECURSOS: iniciadores Ryzeal y Extra Deck Xyz.
+FORTALEZA: eficiencia y continuidad; RIESGO: límites del motor y de su acceso a Xyz. 1.º: tablero flexible; 2.º: desmontar interacción paso a paso.
+
+42. SALAMANGREAT
+ESTILO: Midrange / Link-Cyberse; RITMO: medio; COMPLEJIDAD: alta.
+PLAN: realizar Link Summons, reutilizar piezas y acumular intercambios positivos con el Cementerio. RECURSOS: recursion Salamangreat y Links temáticos.
+FORTALEZA: juego de desgaste; RIESGO: bloqueo de Cementerio y puntos críticos de búsqueda. 1.º: preparar interrupción; 2.º: enlazar para atacar o responder.
+
+43. SC MANNADIUM
+ESTILO: Combo / Sincronía híbrida; RITMO: rápido; COMPLEJIDAD: alta.
+PLAN: versión Mannadium con motor 'SC' aún no identificado; estrategia probable de extensiones Synchro, sujeta a lista. RECURSOS: confirmar significado de SC.
+FORTALEZA / RIESGO: no confundir con Mannadium puro; falta composición. 1.º / 2.º: determinar una vez aclarado el motor SC.
+
+44. SIX SAMURAI
+ESTILO: Combo / Warrior; RITMO: rápido; COMPLEJIDAD: alta.
+PLAN: combinar invocaciones de Six Samurai para generar recursos y llegar a Synchro/Link/Xyz según variante. RECURSOS: Gateway of the Six y soportes Six Samurai cuando estén disponibles.
+FORTALEZA: grandes turnos de extensión; RIESGO: dependencia de ciertas cartas y vulnerabilidad a interrupciones. 1.º: levantar tablero; 2.º: buscar aperturas.
+
+45. SKY STRIKER
+ESTILO: Control / Magias de recurso; RITMO: medio-lento; COMPLEJIDAD: alta.
+PLAN: intercambiar eficientemente con Magias Sky Striker, administrar el Cementerio y convertir ventaja acumulada en cierre. RECURSOS: Magias temáticas y Links Sky Striker.
+FORTALEZA: respuestas variadas y juego técnico; RIESGO: requisitos de zona y dependencia de acceso a Magias. 1.º: preservar interacción; 2.º: contestar piezas una a una.
+
+46. SNAKE-EYES
+ESTILO: Combo / Midrange; RITMO: rápido; COMPLEJIDAD: alta.
+PLAN: mover recursos entre monstruos y zonas de Magia/Trampa, extender y reutilizar piezas Snake-Eyes. RECURSOS: iniciadores FIRE y recursión según lista.
+FORTALEZA: continuidad de motor; RIESGO: respuestas a accesos clave y restricciones de banlist. 1.º: presión interactiva; 2.º: secuenciar remoción.
+
+47. SWORDSOUL
+ESTILO: Midrange / Sincronía; RITMO: medio-rápido; COMPLEJIDAD: media.
+PLAN: generar Tokens Tuner con Swordsoul y producir Synchros útiles sin excesivos eslabones. RECURSOS: monstruos Wyrm, búsquedas y Cementerio Tenyi si se usa.
+FORTALEZA: líneas claras y consistentes; RIESGO: dependencia de habilitadores y de un tablero relativamente directo. 1.º: establecer Synchro; 2.º: usar remociones Wyrm/Synchro.
+
+48. TEARLAMENTS
+ESTILO: Midrange / Fusión-Cementerio; RITMO: medio-rápido; COMPLEJIDAD: muy alta.
+PLAN: activar efectos al enviarse cartas al Cementerio y fusionar reciclando recursos. RECURSOS: milling, Cementerio y material de Fusión.
+FORTALEZA: juego reactivo y valor de Cementerio; RIESGO: variancia del envío y disrupción del Cementerio. 1.º: preparar interacciones; 2.º: convertir envíos en respuesta.
+
+49. TRAPTRIX RAGNARAIKA
+ESTILO: Control / Link-Xyz híbrido; RITMO: medio; COMPLEJIDAD: alta.
+PLAN: combinar Trampas Hole y Xyz Traptrix con extensión Link Ragnaraika. RECURSOS: Trampas normales y cuerpos Plant/Insect/Reptile.
+FORTALEZA: control de mesa de varios ejes; RIESGO: balance de motores y necesidad de establecerse. 1.º: trampas e interacción; 2.º: líneas Link para presionar.
+
+50. UNCHAINED
+ESTILO: Midrange / Link-destrucción; RITMO: medio; COMPLEJIDAD: alta.
+PLAN: destruir piezas propias para activar extensiones y utilizar monstruos rivales en jugadas Link cuando proceda. RECURSOS: Cementerio, destrucción y Links Unchained.
+FORTALEZA: castiga intercambios y recupera presencia; RIESGO: destierro/negaciones antes de generar valor. 1.º: preparar respuestas; 2.º: aprovechar monstruos contrarios.
+
+51. VANQUISH SOUL K9
+ESTILO: Midrange / Control reactivo-Xyz; RITMO: medio-rápido; COMPLEJIDAD: muy alta.
+PLAN: revelar atributos para efectos Vanquish Soul y complementar con líneas de interacción K9. RECURSOS: gestión de mano, cambios de monstruos y núcleo K9.
+FORTALEZA: decisiones tácticas flexibles; RIESGO: composición de atributos y sincronización de motores. 1.º: interacción; 2.º: intercambiar eficientemente.
+
+52. VANQUISH SOUL ZOODIAC
+ESTILO: Midrange / Xyz híbrido; RITMO: medio; COMPLEJIDAD: alta.
+PLAN: utilizar efectos Vanquish Soul basados en atributos y Xyz Zoodiac compactos para complementar presión. RECURSOS: composición de mano, Rank 4 y paquete Zoodiac.
+FORTALEZA: opciones de campo variadas; RIESGO: espacio de motor y disponibilidad legal de Xyz. 1.º: preparar respuestas; 2.º: elegir intercambios/ruptura.
+
+53. VOLCANIC
+ESTILO: Control / Burn; RITMO: medio; COMPLEJIDAD: media-alta.
+PLAN: administrar monstruos Pyro y munición Volcanic para quitar amenazas e infligir daño de efecto. RECURSOS: Blaze Accelerator y reciclaje de munición.
+FORTALEZA: daño sin combate y remoción; RIESGO: dependencia de soportes específicos. 1.º: preparar presión; 2.º: limpiar amenazas y acumular burn.
+
+54. WHITE FOREST AZAMINA
+ESTILO: Combo / Sincronía-Fusión híbrido; RITMO: medio-rápido; COMPLEJIDAD: muy alta.
+PLAN: usar interacciones de White Forest con Magias/Trampas y motor Azamina para construir respuestas. RECURSOS: cartas que se envían y recuperan, Extra Deck.
+FORTALEZA: interacciones por varias rutas; RIESGO: secuencias complejas y manos de dos motores. 1.º: montar interacción; 2.º: secuenciar respuestas y extensiones.
+
+55. ZOODIAC
+ESTILO: Midrange / Xyz; RITMO: medio; COMPLEJIDAD: media.
+PLAN: apilar Xyz Zoodiac con pocos monstruos y convertir el espacio restante del deck en interacción. RECURSOS: cuerpo Zoodiac, Xyz temáticos y staples.
+FORTALEZA: economía de cartas para acceso a Extra Deck; RIESGO: dependencia de un cuerpo y legalidad de ciertas piezas. 1.º: presión e interrupción; 2.º: ruptura puntual.
+
+56. RAINBOW BEAST
+ESTILO: pendiente de identificar / probablemente variante Crystal Beast; RITMO: sin determinar; COMPLEJIDAD: sin determinar.
+PLAN: confirmar qué distingue 'Rainbow Beast' de 'Crystal Beast' (Rainbow Dragon, Rainbow Dark Dragon, foco de OTK, etc.). RECURSOS: requieren lista y concepto del equipo.
+FORTALEZA / RIESGO: pendiente. 1.º / 2.º: pendiente. LIGA: SIN ASIGNAR. Mantenerlo como equipo/deck distinto en Station X, sin presumir que usa un arquetipo diferente al de Crystal Beast.
+
+============================================================
+RUSH DUEL — 4 DECKS
+============================================================
+
+01. DARK MAGICIAN
+ESTILO: Midrange / Lanzador de Conjuros; RITMO: medio; COMPLEJIDAD: media.
+PLAN: desarrollar soporte Dark Magician para invocar amenazas y aprovechar Magias/Trampas temáticas. RECURSOS: buscadores, tributos y cartas de apoyo de Rush Duel.
+FORTALEZA: sinergia de soporte; RIESGO: necesidad de cartas concretas. 1.º: desarrollar campo; 2.º: retirar amenazas para atacar. NO extrapolar efectos TCG.
+
+02. HERO
+ESTILO: Aggro / Fusión (según variante); RITMO: rápido; COMPLEJIDAD: media.
+PLAN: desplegar Warriors/HERO y buscar daño de batalla o Fusion Summons disponibles en Rush Duel. RECURSOS: soportes HERO propios del formato.
+FORTALEZA: presión ofensiva; RIESGO: piezas de Fusión o tributos. 1.º: presencia; 2.º: ofensiva. CONFIRMAR subtipo y lista.
+
+03. PYRO
+ESTILO: Aggro / Burn (según variante); RITMO: medio-rápido; COMPLEJIDAD: media.
+PLAN: usar monstruos Pyro y herramientas de daño/limpieza según la variante Rush Duel. RECURSOS: soporte Pyro específico de la lista.
+FORTALEZA: presión por combate y/o efectos; RIESGO: falta de precisión sin nombres de cartas. 1.º: desarrollar campo; 2.º: presionar.
+
+04. ROYAL
+ESTILO: por identificar; RITMO: sin determinar; COMPLEJIDAD: sin determinar.
+PLAN: 'Royal' no determina por sí solo un arquetipo inequívoco de Rush Duel. RECURSOS: pendiente de decklist o nombre del arquetipo.
+FORTALEZA / RIESGO: sin evaluación. 1.º / 2.º: pendiente. NO inventar estrategia.
+
+============================================================
+GOAT — 7 DECKS
+============================================================
+
+01. CHAOS CONTROL
+ESTILO: Control / LIGHT-DARK; RITMO: medio-lento; COMPLEJIDAD: alta.
+PLAN: obtener ventaja con intercambios, efectos Flip y Cementerio para habilitar Chaos Sorcerer/BLS según lista. RECURSOS: monstruos LIGHT/DARK, cartas de control y removal clásico.
+FORTALEZA: flexibilidad y cierre fuerte; RIESGO: preparación de Cementerio y ritmo inicial. 1.º: generar valor; 2.º: controlar amenazas y estabilizar.
+
+02. GOAT CONTROL
+ESTILO: Control / Toolbox; RITMO: lento; COMPLEJIDAD: muy alta.
+PLAN: administrar intercambios con Scapegoat, Metamorphosis y Thousand-Eyes Restrict mientras construye ventaja. RECURSOS: respuestas de mano, Flip y Fusiones del formato.
+FORTALEZA: profundidad táctica; RIESGO: recursos y tiempos mal gestionados. 1.º: proteger respuestas; 2.º: recuperar tempo.
+
+03. MONARCH
+ESTILO: Control / Tributos; RITMO: medio; COMPLEJIDAD: media-alta.
+PLAN: usar generadores de tributo y Monarchs para extraer valor de invocaciones por tributo. RECURSOS: monstruos que permanecen/reemplazan cuerpo y remoción Monarch.
+FORTALEZA: efectos directos y presión de cuerpo; RIESGO: manos con tributos sin material. 1.º: asegurar tributo; 2.º: quitar cartas y conservar campo.
+
+04. REASONING
+ESTILO: Combo / Reasoning Gate; RITMO: explosivo; COMPLEJIDAD: alta.
+PLAN: usar Reasoning y/o Monster Gate para enviar cartas del deck y habilitar amenazas desde Cementerio, según lista de época. RECURSOS: hechizos de excavación, niveles variados y Cementerio.
+FORTALEZA: turnos grandes; RIESGO: aleatoriedad y respuesta a la carta clave. 1.º: desarrollar motor; 2.º: explotar secuencia de ruptura.
+
+05. RELINQUISHED
+ESTILO: Control / Ritual-absorción; RITMO: medio; COMPLEJIDAD: media-alta.
+PLAN: traer Relinquished y utilizar su habilidad de equipar monstruos contrarios para controlar el tablero. RECURSOS: Ritual y soporte de búsqueda, más Metamorphosis si corresponde a la variante.
+FORTALEZA: respuesta a amenazas individuales; RIESGO: acceso a piezas rituales y removal. 1.º: conservar herramientas; 2.º: absorber amenazas relevantes.
+
+06. THUNDER CHAOS
+ESTILO: Midrange / Chaos con Thunder Dragon; RITMO: medio; COMPLEJIDAD: alta.
+PLAN: aprovechar Thunder Dragon para ajustar mano/Cementerio y preparar Invocaciones Chaos junto con herramientas de control. RECURSOS: descarte de Thunder Dragon, LIGHT/DARK y buscadores.
+FORTALEZA: abastecimiento de material LIGHT y presión Chaos; RIESGO: manos con piezas redundantes y ritmo inicial. 1.º: preparar recursos; 2.º: intercambio y cierre.
+
+07. WARRIOR
+ESTILO: Aggro-Midrange / Toolbox Warrior; RITMO: medio; COMPLEJIDAD: media-alta.
+PLAN: seleccionar Guerreros y respuestas apropiadas mediante buscadores, sostener ventaja de combate y castigar campos abiertos. RECURSOS: Reinforcement of the Army y opciones Warrior del periodo.
+FORTALEZA: respuestas concretas y presión por batalla; RIESGO: competir en ventaja prolongada contra controles especializados. 1.º: desarrollo seguro; 2.º: elegir removal antes del combate.
+
+============================================================
+TAREAS PENDIENTES PARA VALIDACIÓN FINAL
+============================================================
+- Confirmar decklists o identidad específica de Blue Dragon, Chaos Ritual, Elfnote, Kewl Tune, SC Mannadium y Rainbow Beast en TCG; Royal, HERO y Pyro en Rush Duel; y variantes específicas de los demás decks híbridos.
+- Registrar fecha, autor, banlist y versión del perfil; cualquier cambio de motor/decklist relevante genera una nueva revisión.
+- Completar métricas únicamente desde duelos reales de Station X y separar muestras pequeñas del comportamiento consolidado.
+- Para el formulario: usar campos estructurados con catálogos limitados y texto libre breve para el plan, recursos, fortalezas, riesgos y decisiones de turno. Permitir 'pendiente' y evitar obligar a inventar una puntuación.
+
+REFERENCIAS GENERALES DE CONTRASTE (no sustituyen una lista concreta):
+- Base de datos oficial Konami/Neuron: https://www.db.yugioh-card.com/yugiohdb/
+- Cobertura oficial TCG: https://yugiohblog.konami.com/
+- Análisis histórico GOAT: https://www.goatformat.com/
+
+FIN DEL DOCUMENTO
+
+
+####################################################################
+ANEXO A — PERFIL COMPLETO VALIDADO: TCG #28 KASHTIRA PURE
+####################################################################
+Fecha de análisis: 24-10-2026
+Estado de transcripción: Main Deck 42/42 y Extra Deck 15/15 aprobados expresamente por el usuario. Reserva de 19 cartas fotografiada; el usuario confirma que son opciones y NO una selección definitiva de Side Deck.
+Tipo de evaluación: editorial de estructura y efectos; NO sustituye partidas, ni certifica legalidad según la banlist vigente, ni es una tasa de victorias.
+Identidad: arquetipo principal Kashtira, sin motor externo central. Se incluyen hand traps y magias genéricas de interacción/ruptura.
+Liga: conservar la asignación vigente en Station X; esta actualización no cambia ligas ni rating.
+
+A1. MAIN DECK — EXACTAMENTE 42 CARTAS
+
+MONSTRUOS (15)
+3 × Kashtira Fenrir
+2 × Kashtira Unicornio
+3 × Kashtira Riseheart
+1 × Kashtira Ogre
+1 × Terrogarras Kashtira / Scareclaw Kashtira
+1 × Tiagrimentos Kashtira / Tearlaments Kashtira
+3 × Flor de Ceniza y Primavera Feliz / Ash Blossom & Joyous Spring
+1 × Variador Dimensional / Dimension Shifter
+Subtotal monstruos: 15
+
+MÁGICAS (22)
+3 × Planeta Bajo Presión Wraitsoth / Pressured Planet Wraitsoth
+3 × Nacimiento Kashtira / Kashtira Birth
+3 × Kashtirateosis / Kashtiratheosis
+1 × Terraformación / Terraforming
+2 × Libro de la Luna / Book of Moon
+3 × Agujero Oscuro / Dark Hole
+2 × Olla de la Prosperidad / Pot of Prosperity
+2 × Ciclón del Cosmos / Cosmic Cyclone
+2 × Lanza Prohibida / Forbidden Lance
+1 × Talento de Tácticas Triples / Triple Tactics Talent
+Subtotal mágicas: 22
+
+TRAMPAS (5)
+3 × Infinito Temporal / Infinite Impermanence
+1 × Preparaciones Kashtira / Kashtira Preparations
+1 × Big Bang Kashtira / Kashtira Big Bang
+Subtotal trampas: 5
+TOTAL MAIN = 15 + 22 + 5 = 42
+
+A2. EXTRA DECK — EXACTAMENTE 15 CARTAS
+3 × Kashtira Shangri-Ira [Xyz rango 7]
+2 × Kashtira Arise-Heart [Xyz rango 7]
+2 × Número 11: Ojo Grande / Number 11: Big Eye [Xyz rango 7]
+2 × Divino Arsenal AA-ZEUS – Trueno del Cielo / Divine Arsenal AA-ZEUS – Sky Thunder [Xyz]
+1 × Armado Oscuro, el Dragón de la Aniquilación / Dark Armed, the Dragon of Annihilation [Xyz rango 7]
+1 × Baronesa de la Flor / Baronne de Fleur [Synchro nivel 10]
+1 × Donner, Daga Mascota a Sueldo / Donner, Dagger Fur Hire [Link-2]
+1 × Diosa del Inframundo del Mundo Cerrado / Underworld Goddess of the Closed World [Link-5]
+1 × Guerrero Fósil Caballero del Cráneo / Fossil Warrior Skull Knight [Fusión]
+1 × Máquina Fósil Vagón del Cráneo / Fossil Machine Skull Wagon [Fusión]
+TOTAL EXTRA = 3 + 2 + 2 + 2 + 1 + 1 + 1 + 1 + 1 + 1 = 15
+
+NOTAS DE ACCESIBILIDAD DEL EXTRA:
+- Los Xyz rango 7 son la ruta natural de los cuerpos Kashtira. Shangri-Ira ayuda a proyectar presión sobre zonas; Arise-Heart modifica globalmente el destino de cartas que irían al Cementerio y proporciona interacción mediante destierro boca abajo.
+- El acceso alternativo de Arise-Heart con un solo Kashtira tiene condición: un efecto de Shangri-Ira debe haberse activado exitosamente ese turno. No debe tratarse como invocación libre con un solo monstruo.
+- Número 11: Ojo Grande roba temporalmente el control de un monstruo; su efecto no es equivalente a destruirlo. ZEUS es un recurso de reinicio de tablero, condicionado por sus requisitos de invocación/activación.
+- Baronesa es una ruta situacional: Ash Blossom es un Tuner de nivel 3 y puede combinarse, si las condiciones del campo permiten, con un no-Tuner nivel 7 para sumar 10. No es el plan principal del deck.
+- Skull Knight y Skull Wagon, sin un acceso a Fossil Fusion en el Main mostrado, no son condiciones de invocación normales de esta lista. Pueden desempeñar el papel de cartas prescindibles a desterrar desde Extra con Olla de la Prosperidad; no atribuirles presión en campo sin una ruta real.
+- Donner y Underworld Goddess son herramientas Link situacionales; Kashtiratheosis impone una restricción de invocación desde Extra a Xyz tras resolver, por lo que no se deben prometer Links ni Synchros en esa ventana restringida.
+
+A3. RESERVA PARA SIDE DECK — EXACTAMENTE 19 CARTAS
+Estas 19 NO se reducen a 15 ni se declaran como Side Deck definitivo. La plataforma debe permitir una colección de reservas separada de una alineación competitiva de Side.
+
+1 × Libro de la Luna / Book of Moon
+1 × Talento de Tácticas Triples / Triple Tactics Talent
+2 × Virus Epidémico Erradicador / Eradicator Epidemic Virus
+2 × Variador Dimensional / Dimension Shifter
+1 × Lanza Prohibida / Forbidden Lance
+1 × Kashtira Unicornio / Kashtira Unicorn
+1 × Dinoluchador Pankratops / Dinowrestler Pankratops
+2 × Barrera Dimensional / Dimensional Barrier
+1 × Olla de la Prosperidad / Pot of Prosperity
+1 × Nibiru, el Ser Primitivo / Nibiru, the Primal Being
+3 × El Bufón y el Pájaro del Candado / Droll & Lock Bird
+2 × Bella Fantasma y Mansión Embrujada / Ghost Belle & Haunted Mansion
+1 × Infinitrack Goliath [monstruo Link para intercambio con Extra Deck]
+TOTAL RESERVA = 19 (18 cartas no-Extra + 1 carta de Extra).
+
+PROPÓSITO DE LA RESERVA (NO SIDE DEFINITIVO):
+- Anti-combo: Nibiru, Droll, Ash ya en Main, Imperm ya en Main; elección depende de si el rival roba, busca o invoca repetidamente.
+- Anti-Cementerio: Dimension Shifter, Ghost Belle. Shifter puede ser favorable al enfoque de destierro, pero su activación exige condiciones propias y no conviene asumir que está siempre disponible.
+- Contra Magia/Trampa: Eradicator Epidemic Virus (requiere tributar un monstruo DARK con 2500 ATK o más; NO basta cualquier Kashtira). Big Eye, Dark Armed Xyz o Arise-Heart pueden ofrecer DARK adecuados si están presentes y cumplen condición.
+- Contra Extra Deck: Dimensional Barrier elige tipos legales según su texto; no impide Link Summons, así que no sirve como bloqueo universal del Extra Deck.
+- Juego segundo: Pankratops, Book of Moon, Forbidden Lance, Talento; ajuste situacional.
+- Intercambio de consistencia: tercera Prosperidad, tercer Unicornio y tercer Shifter potencial; valorar qué carta se retira y si el formato particular permite su uso.
+- Infinitrack Goliath solo entraría reemplazando una carta del Extra Deck antes de la partida pertinente; no es un monstruo del Main Deck.
+
+A4. CLASIFICACIÓN DE ESTILO — DERIVADA DE LAS 42+15 CARTAS
+Estilo principal: CONTROL DE RECURSOS / DESTIERRO.
+Estilo secundario: MIDRANGE XYZ RANGO 7, con capacidad de ruptura de mesa.
+Subetiquetas: Zone denial, Face-down banish, Toolbox rango 7, Recursión, Board breaker.
+Ritmo editorial: MEDIO con aperturas explosivas. No confundir 'rápido' con duración media observada.
+Complejidad editorial: MEDIA-ALTA. Las líneas base son manejables; el orden de búsquedas, los destierros, la gestión de zonas y la preservación de respuestas elevan la dificultad.
+Condición de victoria principal: restringir opciones del rival con cuerpos Kashtira, destierro boca abajo e interacción sostenida, después convertir la ventaja en daño de combate.
+Condición secundaria: superar un campo ya establecido usando Dark Hole, Book of Moon, Cosmic Cyclone, Impermanence, Ojo Grande o Zeus, y ganar la partida por control/tempo o ataque.
+NO clasificarlo como OTK puro: contiene remates posibles, pero la construcción invierte muchas plazas en control y herramientas defensivas.
+
+A5. MOTORES Y DISTRIBUCIÓN
+- Núcleo Kashtira: 11 monstruos Kashtira (Fenrir 3, Unicornio 2, Riseheart 3, Ogre 1, Scareclaw 1, Tearlaments 1) + 3 Wraitsoth + 3 Birth + 3 Theosis + 1 Preparations + 1 Big Bang = 22 cartas relacionadas directamente con Kashtira.
+- Consistencia/búsqueda: Terraforming 1, Prosperity 2; Wraitsoth y Unicornio acceden a piezas; Fenrir permite buscar monstruos Kashtira.
+- Interacción genérica: Ash 3, Impermanence 3, Shifter 1, Book 2, Cosmic 2, Lance 2, Triple Tactics 1.
+- Rompe-campos explícitos: Dark Hole 3 y herramientas flexibles (Book, Cosmic, Lance, Triple Tactics) según situación.
+- Extra: 9 Xyz (Shangri 3, Arise 2, Big Eye 2, ZEUS 2) + Dark Armed Xyz 1 = 10 Xyz; 2 Link; 1 Synchro; 2 Fusion.
+
+A6. PLAN PRINCIPAL Y LÍNEAS REPRESENTATIVAS
+Línea A, apertura con Unicornio:
+1) Si no se controla monstruo, Invocar Especialmente Unicornio usando su propia condición, cuando proceda.
+2) Usar su búsqueda para obtener una Mágica Kashtira apropiada, normalmente Theosis o Birth según mano.
+3) Theosis selecciona un Kashtira propio e Invoca del Deck un Kashtira de atributo diferente en Defensa; a partir de su resolución, el resto del turno solo se puede Invocar desde el Extra Deck monstruos Xyz.
+4) Dos cuerpos de nivel 7 permiten Shangri-Ira; gestionar la zona y los efectos según el estado real. No prometer Arise-Heart de un solo material sin cumplir su condición alternativa.
+
+Línea B, apertura con Fenrir:
+1) Utilizar su acceso autónomo cuando el campo propio esté vacío.
+2) Buscar el Kashtira que complete la mano (con frecuencia Riseheart o Unicornio), sin asumir que todo buscador equivale a un segundo cuerpo gratis.
+3) Aprovechar Birth, Theosis u otras piezas efectivamente disponibles para producir el segundo nivel 7; Riseheart puede modificar su nivel y aportar destierro de recursos.
+4) Priorizar el Xyz y la interacción que resulte posible, en vez de forzar una secuencia única.
+
+Línea C, recuperación con Birth:
+1) Conservar o recuperar acceso a Birth.
+2) Revivir Kashtira no-Xyz del Cementerio o destierro según efecto y límites.
+3) Reestablecer presión de nivel 7 y sacar ventaja si el rival usa efectos de Magia mientras se cumplen las condiciones de Birth.
+
+Línea D, juego segundo:
+1) Elegir orden de respuestas: Cosmic para soporte permanente, Imperm/Book para monstruos, Dark Hole para campo de monstruos que pueda destruirse.
+2) Forzar interrupciones rivales con recursos de bajo compromiso antes de usar la carta que conecta el motor.
+3) Usar Big Eye para tomar un monstruo problemático cuando se accede al Xyz y se puede activar su efecto; considerar ZEUS después de combate Xyz bajo sus condiciones.
+
+A7. APERTURA, JUEGO MEDIO Y JUEGO TARDÍO
+APERTURA: buscar acceso a un Kashtira nivel 7 y un segundo cuerpo, localizar Birth/Theosis y decidir si Shangri-Ira o Arise-Heart aporta mejor interacción según situación y reglas de invocación. Preservar Ash, Imperm o Shifter en ventanas de mayor impacto.
+JUEGO MEDIO: intercambiar cartas de forma rentable, presionar con destierros boca abajo, limitar zonas mediante Shangri-Ira cuando se disparen sus condiciones, reutilizar cuerpos por Birth y conservar recursos del Extra para el siguiente intercambio.
+JUEGO TARDÍO: maximizar la recurrencia de Birth y cuerpos nivel 7; cerrar por ventaja acumulada o por presión de ataque. Si se agotan las piezas temáticas o el rival suprime el destierro, el plan se deteriora.
+
+A8. FORTALEZAS CONCRETAS
+1) Múltiples accesos al motor por Fenrir, Unicornio, Wraitsoth, Terraforming y Prosperity, con redundancia de objetivos.
+2) Destierro boca abajo que reduce recuperación del oponente y castiga dependencia de Cementerio.
+3) Xyz de rango 7 con funciones distintas: control de zonas, destierro, apropiación y reinicio de tablero.
+4) Birth permite recuperar presión después de perder un Xyz o un cuerpo temático, si persisten recursos.
+5) Buen número de cartas de ruptura para juego segundo: 3 Dark Hole, 2 Book, 2 Cosmic, 2 Lance, 3 Imperm.
+6) Reserva amplia de 19 opciones para estudiar respuestas por matchup, sin convertirla prematuramente en Side definitivo.
+
+A9. DEBILIDADES Y PUNTOS DE INTERRUPCIÓN
+1) Si Fenrir/Unicornio/Wraitsoth o Theosis no resuelven, la mano puede carecer del segundo nivel 7 necesario.
+2) Dependencia estratégica de invocaciones especiales, monstruos en campo y Extra Xyz; negaciones y remociones bien temporizadas reducen el techo.
+3) El campo con una sola amenaza grande puede ser menos robusto frente a respuestas no destructivas, volteo boca abajo o tributos/uso como material rival según texto.
+4) Theosis puede cerrar rutas Link/Synchro del Extra durante ese turno; ojo con Baronne, Donner y Underworld Goddess.
+5) Dark Hole (3) es potencialmente incómodo después de haber montado campo propio; debe secuenciarse antes de establecer amenazas o usarse cuando convenga un reinicio.
+6) Prosperity puede competir con planes que necesiten conservar piezas específicas de Extra y restringe ciertos efectos/daño según su texto; seleccionar costes con cuidado.
+7) Tearlaments Kashtira envía cartas al Cementerio, pero bajo efectos que destierran en vez de enviar (por ejemplo Arise-Heart o Shifter) sus resultados cambian; no presentarla como sinergia automática sin analizar la ventana.
+8) Dos Fossil Fusion del Extra pueden ser plazas de coste para Prosperity, pero tienen utilidad activa limitada al faltar su invocador; la utilidad de dos ZEUS o tres Shangri-Ira depende del horizonte real de duelos.
+
+A10. PRIMERO VS. SEGUNDO
+PRIMERO: crear presión Xyz y preservar la interacción. Shangri-Ira + mecanismos de destierro puede condicionar zonas; si se cumple la alternativa, Arise-Heart amenaza el Cementerio y cartas en campo. Preparations/Big Bang añaden interacción situacional.
+SEGUNDO: combinación alta de board breakers sin renunciar al motor. Dark Hole no supera por sí solo protección contra destrucción; Book no responde a todo tipo de amenaza; Cosmic exige escoger el soporte correcto. Ordenar las respuestas antes de desplegar niveles 7 y valorar Big Eye/ZEUS.
+MATCHUP vs. combo: Shifter, Ash, Imperm y opciones Droll/Nibiru/Barrier de reserva, según compatibilidad.
+MATCHUP vs. control de trampas: Cosmic, Lance, Pankratops y Virus si se puede cumplir su tributo; escoger según tipo de mesa, no por etiqueta universal.
+MATCHUP vs. Cementerio: Arise-Heart, Birth y Shifter pueden ser muy relevantes, aunque rivales que emplean destierros o herramientas anti-Kashtira pueden neutralizar esa ventaja.
+
+A11. CONSISTENCIA TEÓRICA Y LO QUE NO SE PUEDE INFERIR
+Con 42 cartas y mano inicial hipotética de 5 (sin robo adicional, sin mulligan):
+- Probabilidad de abrir al menos 1 copia de una carta que se juega a 3 = 32,32 %.
+- Abrir al menos 1 Fenrir O 1 Unicornio entre sus 5 copias conjuntas = 48,76 %.
+- Abrir al menos 1 carta del conjunto de 9 cartas [Fenrir 3, Unicornio 2, Wraitsoth 3, Terraforming 1] = 72,10 %.
+Fórmula: P(≥1) = 1 − C(42−k,5)/C(42,5).
+ADVERTENCIA: 72,10 % es acceso nominal a una de esas 9 cartas; NO equivale a 72,10 % de campo completo, no incluye la probabilidad de buscar satisfactoriamente y no prueba 'consistencia 5/5'. Las interacciones, restricciones, cartas redundantes y la banlist vigente alteran el resultado práctico.
+
+A12. EVALUACIÓN EDITORIAL — SIN CONFUNDIRLA CON DESEMPEÑO OBSERVADO
+Control de recursos: ALTO (varios destierros y presión de zonas).
+Presión de primer turno: ALTA SI SE ENSAMBLAN DOS NIVELES 7; condicionada a acceso y resolución.
+Capacidad de romper mesa: MEDIA-ALTA por cartas genéricas, pero sensible a protección y negaciones.
+Recuperación: MEDIA-ALTA con Birth activo y recursos disponibles; disminuye ante destierro inaccesible o pérdida del motor.
+Complejidad: MEDIA-ALTA por secuenciación y administración de costes, restricciones y respuestas.
+Consistencia: NO CALIFICADA con 1–5; se aporta cálculo parcial de accesos, no simulación completa.
+Techo de poder / resiliencia / desempeño primero-segundo: sin nota numérica universal hasta definir rúbrica y probar manos/partidas.
+Ranking, tier, WR, brick rate, matchups reales y tasa de duelo primero/segundo: SIN COBERTURA EMPÍRICA. Deben calcularse a partir de los resultados reales de Station X, no copiar estas inferencias.
+
+A13. HIPÓTESIS DE PRUEBA Y MÉTRICAS PARA STATION X
+Registrar por duelo: versión de decklist, rival/arquetipo, turno inicial, mano inicial (solo en pruebas consentidas), acceso a Kashtira inicial, si se estableció Xyz rango 7, cantidad de interrupciones recibidas, activaciones de Birth, recursos desterrados boca abajo, victoria/derrota y duración.
+Pruebas sugeridas (sin fabricar resultados): 100–200 manos de cinco cartas para medir acceso real a un segundo nivel 7 y cantidad de cartas muertas; partidas frente a varios perfiles de rival para medir frecuencia de salida y recuperación; guardar versión de banlist.
+No usar una estadística sin denominador, ventana temporal, formato y muestra. No atribuir al arquetipo todo resultado derivado de quien lo juega.
+
+A14. DECISIONES EDITORIALES Y PENDIENTES
+- Main 42, Extra 15 y reserva 19: conservar EXACTAMENTE estas cantidades hasta una nueva aprobación explícita.
+- Side competitivo definitivo: NO SE HA ELEGIDO. Las 19 opciones son un inventario de reserva, no 19 cartas simultáneamente habilitadas en un Side competitivo TCG normal.
+- Antes de un evento oficial, comprobar la lista de prohibidas/limitadas y las reglas aplicables; este inventario es descriptivo, no una aprobación de legalidad.
+- La especificidad del análisis corresponde a ESTA construcción; no extrapolarlo automáticamente a Kashtira Demonherrero ni a Rainbow Beast.
+
+FIN ANEXO A
+
+
+####################################################################
+ANEXO B — MANUAL AVANZADO DE JUEGO: KASHTIRA PURE (42/15/19)
+####################################################################
+Propósito: que un lector nuevo comprenda el motor y que un jugador experimentado pueda estudiar secuencias, reglas, riesgos y decisiones. No sustituye el texto vigente de las cartas ni las reglas oficiales. Esta guía describe la construcción aprobada, no una lista optimizada ni una certificación de legalidad.
+
+B1. LA IDEA QUE DEFINE EL DECK
+Kashtira no gana solo por invocar monstruos de ATK elevado. Convierte cada activación rival y cada carta desterrada boca abajo en una pérdida de opciones: cartas del campo, del Deck o del Extra Deck, y zonas potencialmente inutilizables. Esa presión fuerza al oponente a jugar fuera de su secuencia habitual. Mientras tanto, Birth y las búsquedas reponen cuerpos de nivel 7, los Xyz convierten esos cuerpos en respuestas y las cartas genéricas cubren amenazas que el arquetipo no puede resolver solo.
+
+Plan maestro en cinco verbos: ACCEDER (buscador) -> EXTENDER (segundo nivel 7) -> ESTABLECER (Shangri/Arise u otra amenaza) -> INTERRUMPIR (Fenrir, Arise, Imperm, Ash) -> RECONSTRUIR (Birth). En juego segundo, insertar ROMPER CAMPO antes de ESTABLECER. Esta es una heurística, no una secuencia obligatoria.
+
+B2. CARTAS DEL NÚCLEO: QUÉ BUSCAR Y POR QUÉ
+KASHTIRA UNICORNIO (2): acceso a Magia Kashtira, sobre todo Theosis cuando se necesita un segundo cuerpo y Birth cuando se requiere seguimiento. Si el adversario activa un efecto de monstruo, puede examinar su Extra Deck y desterrar una carta boca abajo. Elige una carta que interrumpa una ruta real del rival, no simplemente la de mayor ATK. Su invocación especial autónoma exige campo propio sin monstruos.
+KASHTIRA FENRIR (3): busca monstruos Kashtira y amenaza desterrar boca abajo una carta boca arriba en campo rival al declarar ataque o ante una activación de efecto de monstruo rival. La elección de objetivo debe considerar qué protección, negación y efectos de salida posee el rival. También usa la condición de invocación especial autónoma con campo propio sin monstruos; no se pueden hacer las dos invocaciones autónomas seguidas si la primera permanece en el campo.
+KASHTIRA RISEHEART (3): con un Kashtira propio en campo puede invocarse de la mano, aplicando la restricción de Extra Deck indicada en su texto. Si fue invocado ese turno, destierra una carta Kashtira del Deck (excepto Riseheart); luego destierra tres cartas superiores del Deck contrario boca abajo; si efectivamente destierra cartas, pasa a nivel 7. Su destierro del Deck no es un coste genérico: la elección de Big Bang, Theosis u otra carta determina la secuencia y su recuperación.
+KASHTIRA OGRE (1): búsqueda de Trampa Kashtira; su presión sobre el tope del Deck contrario durante la batalla puede proporcionar destierro selectivo. Suele ser pieza de apoyo, no iniciador prioritario frente a Unicornio/Fenrir.
+SCARECLAW KASHTIRA (1): acceso rápido desde mano desterrando la carta temática adecuada, puede atacar en Defensa utilizando DEF para calcular daño; al combatir un Kashtira/Scareclaw con monstruo enemigo afecta temporalmente los efectos de ese monstruo. Elige el objetivo de batalla con intención; no es negación global de monstruos del rival.
+TEARLAMENTS KASHTIRA (1): extensor rápido mediante destierro de carta temática. Cuando se invoca, puede enviar las tres primeras cartas de uno de los Decks al Cementerio. Con Shifter/Arise-Heart u otro reemplazo, las cartas que habrían ido al Cementerio pueden acabar desterradas: distinguir el resultado y no prometer efectos de 'enviado al Cementerio' cuando no ocurrió.
+WRAITSOTH (3): busca un Kashtira al activarse, mejora ATK/DEF según atributos, y permite destruir una carta del campo si Shangri-Ira activa un efecto mientras se cumplen sus condiciones. Es un buscador y multiplicador de valor, no otra copia gratuita de un monstruo en campo.
+BIRTH (3): posibilita Invocar Normalmente un nivel 7 sin tributo y revive un Kashtira no-Xyz desde Cementerio o destierro. También puede afectar cartas del Cementerio rival cuando se activa una Magia/efecto de Magia del oponente y se cumplen condiciones. Cuidado: si su revivir ya se usó este turno, no vuelve a estar disponible por mantenerla boca arriba.
+THEOSIS (3): sobre un Kashtira propio, invoca del Deck otro de atributo diferente en Defensa. Tiene importante restricción posterior de invocaciones desde Extra solo Xyz. Si Theosis es desterrada, puede recuperar una carta Kashtira desterrada que no sea Theosis, cumpliendo condiciones; por ello es a veces elección de destierro deliberado con Riseheart.
+PREPARATIONS (1): extensión desde mano o destierro en turno propio o rival; puede interactuar con la mano enemiga cuando activa una Trampa bajo condiciones específicas. Requiere planificación y que permanezca disponible, no funciona como una interrupción universal en mano.
+BIG BANG (1): presión de reducción de monstruos cuando hay Xyz Kashtira y se cumplen las condiciones de activación; si se destierra, puede convertir material Kashtira adherido a un Xyz propio en un monstruo recuperado a la mano y potencialmente Invocado. Esta segunda función suele explicar por qué el deck quiere desterrarla con Riseheart.
+
+B3. OBJETIVOS DE BÚSQUEDA: ÁRBOL DE DECISIÓN
+SI ABRES UNICORNIO SIN THEOSIS NI BIRTH: suele ser razonable buscar Theosis para crear segundo nivel 7. Confirmar que exista objetivo del atributo adecuado en Deck y que no haya restricción previa.
+SI ABRES UNICORNIO Y THEOSIS PERO SIN SEGUIMIENTO: buscar Birth para habilitar normal/revivir y ganar recurso después del Xyz.
+SI ABRES FENRIR Y YA TIENES UN SEGUNDO NIVEL 7: buscar el monstruo que mejore recuperación, interacción o nombre disponible, no automáticamente Riseheart.
+SI ABRES FENRIR PERO NO TIENES EXTENSIÓN: Riseheart puede funcionar si permanece Fenrir en campo y si se puede ejecutar su efecto; una línea con solo Fenrir/Riseheart exige gestionar la restricción Xyz.
+SI ABRES WRAITSOTH: la búsqueda dependerá de si puedes producir dos niveles 7 sin sacrificar la única interrupción. El campo vacío y los buscadores rivales pueden cambiar la mejor elección.
+SI YA TIENES SHANGRI E INTENCIÓN DE ARISE-HEART CON UN MATERIAL: necesitas que un efecto de Shangri-Ira se haya activado exitosamente ese turno. Evita confundir que Shangri esté boca arriba con haber satisfecho ese requisito.
+
+B4. COMBO 1 — UNICORNIO + THEOSIS Y MOTOR COMPLETO (LÍNEA ILUSTRATIVA)
+CONDICIONES: mano inicial con Unicornio; Theosis accesible por búsqueda; Fenrir y Riseheart disponibles en Deck; sin negaciones, sin restricciones incompatibles y con suficientes zonas y cartas restantes. La legalidad de cartas del formato se comprueba separadamente.
+1. Campo vacío: Invoca Especialmente Unicornio desde la mano por su condición.
+2. Activa Unicornio y añade Theosis desde el Deck.
+3. Activa Theosis seleccionando Unicornio. Invoca Fenrir del Deck en Defensa (Fenrir EARTH frente a Unicornio WIND), aplicando la restricción de Extra solo Xyz después de resolver Theosis.
+4. Usa el efecto de búsqueda de Fenrir para añadir Riseheart, si su efecto está disponible.
+5. Superpone Unicornio + Fenrir para Invocar Xyz Shangri-Ira. Conserva mentalmente cuál material es cada monstruo, porque Big Bang puede recuperarlo más adelante.
+6. Con Shangri-Ira (Kashtira) en campo, Invoca Especialmente Riseheart de la mano usando su efecto correspondiente.
+7. Activa Riseheart y destierra Big Bang del Deck; si el efecto resuelve desterrando tres cartas superiores del Deck enemigo boca abajo, Riseheart pasa a nivel 7.
+8. En la cadena posterior, considera los efectos activables: Shangri-Ira puede cerrar UNA zona libre a raíz del evento de cartas desterradas boca abajo; Big Bang desterrado puede recuperar un Kashtira material de tu Xyz y potencialmente Invocarlo. Organiza la cadena según simultaneidad y reglas aplicables; el orden puede importar frente a respuestas.
+9. Una vez resuelto exitosamente un efecto de Shangri-Ira este turno, puedes evaluar Invocar Arise-Heart usando un Kashtira que controles como material único mediante su método alternativo (si está disponible); no lo confundas con la condición ordinaria de tres nivel 7.
+10. Resultado orientativo: presión de Shangri-Ira y Arise-Heart, posible recuperación de material y reducción de zonas. El resultado exacto depende de lo que eliges en el paso 8 y de las respuestas del rival.
+PUNTOS VULNERABLES: negación de Unicornio, Theosis, Fenrir, Riseheart o Shangri; remoción del monstruo seleccionado por Theosis; pérdida del segundo nivel 7; falta de Big Bang u objetivo. Si falla un paso, no se presume que los siguientes ocurren.
+
+B5. COMBO 2 — FENRIR + RISEHEART, SIN BUSCADOR ADICIONAL
+CONDICIONES: campo vacío y ambas cartas en mano, efectos disponibles.
+1. Invoca Especialmente Fenrir desde mano al campo vacío.
+2. Fenrir puede buscar otro Kashtira para el turno siguiente; no hace falta prometer un tercer monstruo ahora.
+3. Como controlas Kashtira, Invoca Especialmente Riseheart de la mano. Recuerda restricción de Extra solo Xyz.
+4. Activa Riseheart: destierra una carta Kashtira adecuada del Deck, tres cartas superiores del Deck del rival boca abajo y, si se cumple, convierte Riseheart en nivel 7.
+5. Superpone Fenrir y Riseheart: Shangri-Ira, Ojo Grande o Dark Armed Xyz según material/requisitos y situación. La elección no es siempre Shangri; contra un tablero establecido, otra herramienta puede ser preferible.
+6. Si invocaste Shangri después del destierro de Riseheart, ese destierro anterior NO disparó su efecto de cerrar zona: Shangri-Ira no estaba boca arriba entonces. Por tanto, NO habilita por sí mismo el método alternativo de Arise-Heart en ese momento. Necesitarás otro efecto de Shangri resuelto ese turno.
+VENTAJA: obtiene un Xyz rango 7 con dos cartas sin requerir Theosis.
+DESVENTAJA: no produce automáticamente el mismo campo que el Combo 1; fácil confundir la cronología.
+
+B6. COMBO 3 — RISEHEART DESTIERRA THEOSIS EN VEZ DE BIG BANG
+CONDICIONES: hay una carta Kashtira útil ya desterrada que Theosis pueda recuperar, Riseheart puede activar su efecto y hay rutas suficientes para estabilizar campo.
+1. Activa Riseheart y selecciona Theosis del Deck para desterrarla.
+2. Resuelve los tres destierros boca abajo del Deck rival y el cambio a nivel 7 si corresponde.
+3. Theosis, cuando se destierra, puede seleccionar y recuperar de destierro otra carta Kashtira que no sea Theosis, conforme a su texto.
+4. Si Shangri ya estaba boca arriba cuando se desterraron las tres cartas rivales, evalúa su disparo para bloquear una zona; si no, no retroactives el efecto.
+USO: recuperación ante partidas largas y manos con piezas desterradas. COSTE DE OPORTUNIDAD: renuncias a la extensión potencial de Big Bang en esa activación de Riseheart.
+
+B7. COMBO 4 — PRESIÓN EN STANDBY DEL OPONENTE
+CONDICIONES: Shangri-Ira sobrevive hasta una Standby Phase, tiene acceso a monstruo Kashtira en Deck y no está negado.
+1. En cada Standby Phase, Shangri-Ira puede Invocar Especialmente un Kashtira desde el Deck. Si se invocó en tu Main Phase, no existe una Standby Phase posterior en ese mismo turno: normalmente se espera a la del oponente.
+2. Escoge Fenrir si quieres interacción/amenaza de destierro o Unicornio si quieres condicionar efectos de monstruo del rival; otras elecciones dependen del matchup.
+3. Si Wraitsoth está boca arriba, la activación de un efecto de Shangri-Ira puede permitir activar el efecto de destrucción del Campo, bajo su texto. No equivale a que Shangri destruya por sí solo.
+4. Conserva recursos para tu siguiente turno; no superpongas inmediatamente por inercia una presencia útil en medio del turno rival.
+
+B8. COMBO 5 — REMOCIÓN CON ARISE-HEART Y CICLO DE MATERIALES
+1. Arise-Heart transforma en destierros las cartas que serían enviadas al Cementerio mientras su efecto continuo esté aplicándose.
+2. Cuando se destierra una o más cartas, puede activar su efecto para adjuntar material de destierro, respetando sus condiciones de activación por cadena.
+3. Su efecto rápido de separar materiales puede desterrar una carta del campo boca abajo, pero exige la cantidad de materiales indicada por el texto; no supongas que un Arise recién invocado con un material ya dispone de ese coste.
+4. Prioriza blancos cuya permanencia impida el plan Kashtira; valorar resistencia a seleccionar, protección y efectos al salir.
+5. No conviertas los destierros producidos por Arise-Heart en varios bloqueos automáticos: Shangri-Ira tiene su propia condición y la cantidad de eventos de destierro boca abajo importa.
+
+B9. RULINGS Y MALENTENDIDOS QUE DECIDEN DUELOS
+- SHANGRI-IRA NO CIERRA UNA ZONA POR CADA CARTA EN UN MISMO GRUPO DESTERRADO: al desterrar tres cartas boca abajo a la vez por Riseheart, ese suceso puede habilitar una activación de Shangri y elegir UNA zona libre, no tres. Distintos sucesos posteriores pueden habilitar activaciones adicionales.
+- Sus zonas bloqueadas dependen de que el monstruo siga boca arriba en campo; si deja de estarlo, no son un bloqueo permanente asociado al duelista.
+- Shangri-Ira también tiene condición de protección contra destrucción usando material; gestionar los materiales evita perder control de zonas por removal de destrucción.
+- ARISE-HEART no es un 'macro' opcional al enviarse cartas al Cementerio mientras su continuo aplica: la sustitución por destierro afecta a ambos jugadores, incluidos tus intentos de activar sinergias de Cementerio.
+- El efecto de destierro de Arise-Heart no es una negación. Desterrar la carta a la que se refiere un efecto no implica negar su efecto ya activado, salvo que ese efecto necesite permanecer en un lugar concreto para resolver.
+- FENRIR responde a activación de efecto de monstruo enemigo (o a declarar su propio ataque); no responde a cada invocación ni a una Magia/Trampa por ese solo hecho.
+- UNICORNIO no borra el Extra Deck entero; en su condición, examina ese Extra y destierra un monstruo elegido boca abajo.
+- PREPARATIONS necesita sus condiciones para la interacción con mano y debe estar ya boca arriba según texto; no lo confundas con negación de Trampas.
+- BIG BANG no es una destrucción masiva: hace desterrar boca abajo para que se conserve un monstruo bajo sus condiciones de campo; su efecto al ser desterrada opera por separado.
+- LANCE PROHIBIDA afecta a monstruo boca arriba y modifica ATK/protección frente a Magia/Trampa; no sirve como 'negador de monstruos'.
+- BOOK OF MOON puede neutralizar un monstruo boca arriba cambiándolo a Defensa boca abajo, pero no se puede seleccionar un Link ni un monstruo que no pueda ponerse boca abajo. Considera también el efecto sobre materiales Xyz y protecciones.
+- IMPERMANENCE niega efectos de monstruo seleccionable según su texto y, si fue activada tras estar Colocada, tiene interacción con la columna; desde mano exige la condición de control de cartas correspondiente.
+- DARK HOLE destruye monstruos en campo; no derrota automáticamente protecciones contra destrucción ni efectos flotantes.
+- OLLA DE LA PROSPERIDAD usa cartas del Extra como coste para excavar; elegir 3 o 6 cartas tiene un coste real de flexibilidad. Respeta sus restricciones de robo y daño.
+- Si la banlist u otra regla impide jugar una carta concreta, no reinterpretar su texto ni recalcular un combo como si siguiera habilitada: crear una nueva versión de lista.
+
+B10. TURNOS DE EJEMPLO COMENTADOS
+EJEMPLO A — JUEGAS PRIMERO CON UNICORNIO, THEOSIS, IMPERM, BOOK Y COSMIC:
+Puedes usar Unicornio para buscar Birth, ya que Theosis está en mano. Invoca con Theosis un nivel 7 de atributo distinto, prepara Shangri y decide si guardar piezas para el turno siguiente. Colocar Imperm ofrece interacción; conservar Book y Cosmic puede ser prudente si temes ruptura. El buen jugador pregunta qué respuesta necesitará para preservar la presión, no únicamente cuántos monstruos puede invocar.
+EJEMPLO B — JUEGAS SEGUNDO CON FENRIR, DARK HOLE, COSMIC, RISEHEART Y ASH:
+Si el rival tiene protección mágica/trampa a la destrucción, Cosmic puede abrir la secuencia. Dark Hole intenta limpiar cuerpos destructibles. Después Fenrir + Riseheart puede crear Xyz; Ash queda para una búsqueda/efecto rival que amenace la remontada. Si Dark Hole puede provocar efectos de Cementerio adversos, la secuencia cambia. No garantiza OTK.
+EJEMPLO C — TE NIEGAN UNICORNIO:
+Evalúa si Birth ya está en mano o si puedes acceder a un segundo nivel 7 por Riseheart; no lances automáticamente Theosis si su objetivo carece de protección frente a removal y es el único camino. Si no puedes construir Xyz, un Fenrir con Imperm puede sostener una ronda mejor que sobreextenderte sin respuesta.
+EJEMPLO D — VAS GANANDO CON ARISE-HEART EN CAMPO:
+No actives cada respuesta en la primera ventana. Reserva el destierro selectivo para la pieza que realmente permita al rival recuperarse. Monitorea materiales disponibles, quién es dueño de cartas desterradas y qué pasaría si Arise abandona campo. Ganar tiempo es un recurso; no toda activación rival merece coste inmediato.
+
+B11. CÓMO SEGUIR EL COMBATE: MATRIZ DE DECISIÓN
+SITUACIÓN: rival basa combos en efectos de monstruo -> PRIORIDAD: Fenrir, Unicornio, Ash, Imperm; ELEGIR MOMENTO: motor crítico o efecto que abre extensiones; RIESGO: gastar antes de la verdadera amenaza.
+SITUACIÓN: rival depende del Cementerio -> PRIORIDAD: Arise/Shifter cuando posibles; ELEGIR MOMENTO: antes del envío central; RIESGO: inhibir tu propio uso de Cementerio/recuperación.
+SITUACIÓN: rival posee una amenaza ininterrumpible por destrucción -> PRIORIDAD: destierro/Big Eye/otras respuestas legales; ELEGIR MOMENTO: tras forzar protecciones; RIESGO: seleccionar objetivo no válido.
+SITUACIÓN: rival genera campo de múltiples monstruos -> PRIORIDAD: Dark Hole si puede destruir; ELEGIR MOMENTO: antes de desplegar campo propio; RIESGO: efectos que se activan al ser destruidos.
+SITUACIÓN: rival depende de Magias/Trampas persistentes -> PRIORIDAD: Cosmic, Lance para defensa contextual; ELEGIR MOMENTO: proteger secuencia clave; RIESGO: desperdiciar la respuesta en soporte secundario.
+SITUACIÓN: tienes Birth activo y pocas cartas -> PRIORIDAD: reconstrucción paso a paso; ELEGIR MOMENTO: reservar búsqueda para extensor necesario; RIESGO: agotar monstruos de Deck o zonas.
+SITUACIÓN: rival fuerza juego prolongado -> PRIORIDAD: materiales del Extra y economía de recursos; ELEGIR MOMENTO: no desterrar con Prosperity todo el acceso futuro; RIESGO: cerrar tu propia ruta de remontada.
+
+B12. ANALIZAR Y EXPLOTAR MATCHUPS (HIPÓTESIS, NO PORCENTAJES)
+CONTRA COMBO CON BÚSQUEDAS REPETIDAS: Droll puede detener cadenas de añadir de Deck a mano después de la primera adición bajo sus condiciones. Ash/Imperm ayudan sobre eslabones específicos y Nibiru puede castigar expansión excesiva. El objetivo no es añadir todas las cartas de reserva, sino escoger un paquete coherente sin destruir tu densidad de iniciadores.
+CONTRA ESTRATEGIAS DE CEMENTERIO: Shifter/Arise pueden desplazar la partida a un eje que el rival no puede reciclar. Ghost Belle responde solo a efectos contemplados por su texto, no a cualquier efecto del Cementerio. Cosmic puede apartar continuas de soporte.
+CONTRA LINK-COMBO: Dimensional Barrier no selecciona Link como tipo de invocación prohibido; preferir respuestas compatibles (Imperm, Ash, Nibiru, Droll según jugadas). Underworld Goddess puede ser salida si hay materiales y condiciones y no se aplicó bloqueo Xyz previo.
+CONTRA CONTROL DE TRAMPAS: reservar Cosmic, analizar la condición de Preparations; Eradicator Virus exige un DARK de al menos 2500 ATK que pueda tributarse, y sacrificar una amenaza grande puede empeorar tu propio campo. No meter Virus simplemente porque existe Arise-Heart en Extra.
+CONTRA OTROS XYZ: Barrier puede ser relevante si permite declarar Xyz; Book, Imperm y Big Eye pueden responder según tablero. La batalla Xyz habilita líneas Zeus si se cumplen las condiciones; los Xyz del propio rival también pueden crear oportunidades dependiendo del estado.
+CONTRA AGGRO/OTK: conserva interacción y prioriza que sobrevivan Fenrir/Shangri; no quedarte sin defensa por buscar una zona bloqueada más.
+CONTRA OTRO KASHTIRA: evaluar la simetría de Arise y el destino de tus propias cartas. Big Eye y otras respuestas de campo pueden valer más que construir una mesa idéntica; el orden de activación decide mucho.
+
+B13. VENTAJAS FINAS DE ESTA LISTA, NO DEL ARQUETIPO GENÉRICO
+- 42 cartas: margen ligeramente mayor que 40 para incluir 3 Dark Hole, 2 Cosmic y 2 Book, a costa de diluir ligeramente la frecuencia de ciertas cartas individuales.
+- 3 Dark Hole: expresa una preferencia clara por juego segundo/ruptura; es una identidad táctica concreta, aunque puede ser carta incómoda en mano con campo ya construido.
+- 3 Fenrir y 3 Riseheart: alta densidad de nombres principales; 2 Unicornio se compensa parcialmente con tres Campo y Terraforming, pero siguen siendo buscadores con distintas limitaciones.
+- 3 Birth + 3 Theosis: motor preparado para reconstrucción, pero roba varias cartas continuas o mágicas de extensión que no hacen lo mismo sin cuerpos objetivo.
+- 2 Zeus + 2 Big Eye: apuesta por utilidad en duelos largos, a costa de plazas Extra que podrían ser de toolbox distinto.
+- 2 Fósiles sin Fusion: previsiblemente costes cómodos para Prosperity, no rutas activas; conservarlos solo si esa función compensa la plaza.
+- 1 Baronne accesible de manera ocasional con Ash Tuner y nivel 7 sin bloqueo Xyz: línea marginal, no razón central para considerar el deck Synchro.
+- 19 reservas heterogéneas: flexibilidad para probar contra distintos tipos de rival, pero todavía no establece una filosofía de Side definitivo.
+
+B14. DESVENTAJAS FINAS Y CÓMO MITIGARLAS
+PROBLEMA: múltiples copias de Campo/Birth/Theosis y pocos monstruos útiles. MITIGACIÓN: registrar porcentaje de manos con buscador + objetivo real; no basta contar cartas verdes como starters.
+PROBLEMA: manos con Dark Hole al ir primero. MITIGACIÓN: reservar para remontada o reconsiderar proporción en revisión futura, nunca alterar esta lista sin aprobación.
+PROBLEMA: rival niega Theosis cuando solo existe un objetivo Kashtira. MITIGACIÓN: presentar Fenrir/Unicornio como cebo cuando sea razonable; guardar Riseheart y Birth para línea de emergencia.
+PROBLEMA: se destierra Big Bang pero no existe Xyz con material Kashtira para recuperarlo. MITIGACIÓN: ordenar primero el Xyz, después el disparador de Big Bang cuando la línea lo permita.
+PROBLEMA: agotas Extra con Prosperity o repites Zeus/Big Eye sin propósito. MITIGACIÓN: identificar tu herramienta de salida para los siguientes dos turnos antes de pagar coste.
+PROBLEMA: rival no depende del Cementerio. MITIGACIÓN: desplazar prioridad hacia destierro de campo, Big Eye, interruptores específicos y presión de batalla; Arise no gana solo el duelo.
+PROBLEMA: confiar en Shifter después de acumular cartas en Cementerio. MITIGACIÓN: recordar sus condiciones exactas y distinguir cartas MAIN de cartas de reserva; no planificarlo como carta libre universal.
+
+B15. ENTRENAMIENTO DE JUGADOR 'MASTER': PRÁCTICAS RECOMENDADAS
+PRÁCTICA 1 — 30 manos de apertura: anotar iniciador, segundo nivel 7, acceso a Theosis/Birth, protección, carta muerta y campo real al terminar. Medir resultado, no una clasificación imaginaria.
+PRÁCTICA 2 — 10 simulaciones con interrupción a Unicornio: buscar línea B y decidir si el turno termina en Fenrir o Xyz.
+PRÁCTICA 3 — 10 simulaciones con interrupción a Theosis: comparar recursos si se gastó búsqueda y objetivo vs. conservar Birth/Riseheart.
+PRÁCTICA 4 — 10 partidas de juego segundo: describir motivo y orden de Cosmic, Dark Hole, Book, Imperm y motor.
+PRÁCTICA 5 — escenarios de timing: tres cartas desterradas por Riseheart = un evento; reconocer cuándo Shangri ya estaba boca arriba y si su efecto se activó/resolvió.
+PRÁCTICA 6 — materiales Xyz: registrar cuáles están adheridos antes de Big Bang, Arise o ZEUS. No perder la cuenta tras cada separación y transferencia.
+PRÁCTICA 7 — side testing: escoger una configuración de hasta 15 desde las 19 reservas para un matchup concreto; registrar cambios 'entra/sale' sin modificar la reserva maestra.
+PRÁCTICA 8 — revisión crítica: anotar los errores que costaron el duelo, separando mal timing, mano mala, matchup adverso y lectura errónea de carta.
+
+B16. GLOSARIO COMPETITIVO DE KASHTIRA
+STARTER: carta que permite comenzar una secuencia (puede necesitar condiciones).
+EXTENDER: carta que añade cuerpos o efectos a una secuencia ya iniciada.
+BOARD BREAKER: carta que elimina o neutraliza varios obstáculos de una mesa rival.
+FOLLOW-UP: recurso reservado para reconstrucción del turno siguiente.
+TEMPO: capacidad de obligar al rival a invertir más acciones que tú para igualar la mesa.
+CEILING: mejor campo o presión razonable que puede producir una mano/línea.
+FLOOR: resultado mínimo útil de una mano con interrupción o poco acceso.
+CHOKE POINT: punto crítico cuya interrupción hace perder muchas continuaciones.
+BANISH FACE-DOWN: desterrar boca abajo, donde la información y recuperación de la carta son más restringidas.
+ZONE LOCK: zona que no puede utilizarse mientras siga aplicándose el efecto correspondiente de Shangri-Ira.
+
+B17. CHECKLIST ANTES DE CADA DUELO
+[ ] Conozco si voy primero o segundo y qué plan es más probable.
+[ ] Identifiqué qué mano produce dos niveles 7 legalmente.
+[ ] Distingo qué efectos requieren campo vacío, control de Kashtira o un objetivo con atributo diferente.
+[ ] Tengo claro si activé Theosis/Riseheart y qué restricciones de Extra aplican.
+[ ] Sé en qué momento estuvo Shangri en campo antes del destierro boca abajo.
+[ ] Verifiqué si Arise puede usar el método alternativo este turno y cuántos materiales tiene.
+[ ] Sé qué cartas del Extra no debería perder ante Prosperity.
+[ ] Sé cuál es la respuesta más importante que guardo para el turno rival.
+[ ] Si uso cartas de reserva, registré la configuración de juego y no la confundo con las 19 disponibles.
+[ ] Después del duelo registro decisiones y datos sin convertir impresiones en métricas.
+
+B18. VERIFICACIONES DE EFECTOS Y FUENTES
+Fuente primaria para textos: Konami Yu-Gi-Oh! Neuron, base de datos oficial de cartas: https://www.db.yugioh-card.com/yugiohdb/
+Kashtira Shangri-Ira: https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17800&ope=2
+Kashtira Unicorn: https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17769&ope=2&request_locale=en
+Kashtira Fenrir: https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17768&ope=2&request_locale=en
+Kashtiratheosis: https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18203&ope=2
+La legalidad, textos actualizados, cadenas y situaciones ambiguas deben resolverse según las fuentes oficiales y el evento concreto. Los ejemplos de líneas son ilustrativos, condicionados a efectos disponibles y ausencia de respuestas no especificadas.
+
+FIN ANEXO B
+
+
+####################################################################
+ANEXO C — AUDITORÍA DE SINERGIAS Y PROPUESTAS DE CAMBIOS
+KASHTIRA PURE — TCG, MAIN 42 / EXTRA 15 / RESERVA 19
+####################################################################
+ESTADO: Recomendaciones editoriales, no modificaciones aprobadas. El Main 42, Extra 15 y las 19 cartas de reserva siguen EXACTAMENTE como fueron validados. No se eliminan opciones por superar 15 en la reserva; el Side definitivo es una elección posterior y separada.
+FILTRO: propuestas para TCG, sujetas al reglamento y lista de prohibidas/limitadas de la versión de evento. NO reutilizar automáticamente estas cartas para GOAT ni Rush Duel.
+
+C1. DIAGNÓSTICO DE SINERGIA, CONFLICTOS Y CARTAS POTENCIALMENTE MUERTAS
+ESCALA: ALTA (integrada al plan), CONDICIONAL (útil solo en algunos tableros/turnos), BAJA EN ESTA LISTA (sin ruta normal o redundancia). 'Muerta' significa que no cumple función útil en esa mano/situación: no necesariamente una carta mala siempre.
+
+ALTA: Fenrir, Unicornio, Riseheart, Wraitsoth, Theosis, Birth, Shangri-Ira. Forman la base de buscar, extender, desterrar, estabilizar y reconstruir. Una carta de este grupo también puede atascarse si falta un blanco legal o ya se gastó su efecto; no equivale a consistencia perfecta.
+ALTA-CONDICIONAL: Ogre (busca Trampa Kashtira, no siempre acelera combo), Scareclaw Kashtira (batalla y extensión), Tearlaments Kashtira (extiende y manda cartas bajo condiciones), Big Bang (excelente si se destierra con Xyz/material adecuado; pobre si se roba sin plan), Preparations (seguimiento, pero lento cuando urge romper mesa).
+CONDICIONAL: 3 Dark Hole. Gran cobertura contra mesas destructibles, pero puede ser redundante en dos o tres copias, puede destruir tus propios monstruos y pierde valor ante indestructibilidad; investigar si las manos con dos Dark Hole afectan el acceso a motor.
+CONDICIONAL: 2 Cosmic Cyclone. Importantes frente a continuas/campo/trampas; bajas contra decks con pocas Magias/Trampas relevantes. Pagan LP y seleccionan una Magia/Trampa objetivo; no niegan su activación por sí solos.
+CONDICIONAL: 2 Book of Moon. Muy útiles al interrumpir Xyz/Synchro o salvar recursos según cadena; no pueden poner boca abajo monstruos Link. A veces ocultan tu propio atacante y reducen presión inmediata.
+CONDICIONAL: 2 Forbidden Lance. Protegen un monstruo frente a Magias/Trampas, modifican su ATK; no lo protegen de cualquier efecto de monstruo. Si se usa al atacar, contabilizar reducción de ATK antes del daño.
+CONDICIONAL: 1 Triple Tactics Talent. No se activa libremente: depende de activación de efecto de monstruo del rival durante tu Main Phase y demás texto. Puede ser carta de bajo valor contra ciertos decks o si el rival espera a otra fase.
+CONDICIONAL: 1 Dimension Shifter en Main. Poderoso al alterar el Cementerio, pero requiere cumplir condición de activación; robarlo tras haber llenado tu Cementerio lo puede hacer inútil. Además puede dificultar la propia sinergia Tearlaments Kashtira.
+CONDICIONAL: 2 Pot of Prosperity. Mejoran selección pero consumen Extra y generan restricciones ese turno; las cartas retiradas boca abajo no se recuperan normalmente. No lanzar una copia sin decidir qué piezas futuras sacrificar.
+CONDICIONAL: 3 Infinite Impermanence y 3 Ash Blossom. Interacción de propósito general, pero robar muchas interrupciones sin acceso a un nivel 7 deja un campo pasivo. Ash además es el Tuner nivel 3 que podría habilitar Baronne; eso no justifica tratarla como combo Synchro principal.
+BAJA ACTIVA EN ESTA LISTA: Fossil Warrior Skull Knight y Fossil Machine Skull Wagon. No aparece Fossil Fusion ni otro efecto demostrado que los invoque correctamente; su valor más claro es ser material prescindible para la activación de Prosperity. No atribuirles remoción desde Cementerio si nunca fueron enviados allí por un procedimiento que habilite el efecto. Desterrarlos boca abajo para Prosperity no es enviarlos al Cementerio.
+BAJA/CONDICIONAL: Baronne de Fleur. Hay forma teórica nivel 3 Ash + nivel 7 no-Tuner, pero Ash suele valer más como interrupción y Theosis/Riseheart pueden bloquear Synchros del Extra ese turno. Considerar su frecuencia real antes de dedicarle plaza.
+CONDICIONAL: dos ZEUS. Pueden ser útiles en duelos largos o como recurso tras gastar el primero, pero cada copia adicional compite con otro Xyz de rango 7 o salida especializada. ZEUS exige condiciones de acceso; no es carta que se invoque desde un campo vacío sin antes cumplirlas.
+CONDICIONAL: tres Shangri-Ira. Apoyan partidas extensas y costes de Prosperity, pero si solo llegas a una o dos copias por duelo, la tercera puede ser plaza flexible. Evaluar sin eliminar por intuición.
+MUY BAJA EN RESERVA ACTUAL: Infinitrack Goliath. Su Link Summon requiere UN monstruo Infinitrack que no sea Link, y no hay monstruos Infinitrack en el Main aprobado. Por tanto, no es una línea de Link accesible normalmente; su efecto de acoplarse como material requiere primero haber estado en campo y luego haber sido enviado al Cementerio. No sugerir meter Goliath en Extra como mejora automática. Es un candidato claro a permanecer inactivo en la reserva o a necesitar un motor Infinitrack nuevo, que alteraría mucho la identidad del deck.
+CONDICIONAL EN RESERVA: Eradicator Epidemic Virus. Necesita un monstruo DARK tributado con 2500 o más ATK; Arise-Heart, Big Eye y Dark Armed Xyz pueden cumplir el atributo/ATK en circunstancias adecuadas, pero sacrificar uno puede destruir tu propia presión. Si no se forma ese monstruo, la Trampa es carta muerta.
+CONDICIONAL EN RESERVA: Dimensional Barrier. Muy poderosa contra una invocación del Extra designada, pero NO cubre Link. No recomendarla contra un rival principalmente Link salvo que su otra estrategia dependa del tipo elegido.
+CONDICIONAL EN RESERVA: Droll & Lock Bird y Nibiru. Droll depende de que ya se haya añadido una carta de Deck a mano bajo las condiciones de su efecto; Nibiru depende de umbral de invocaciones y puede regalar un token de ATK/DEF significativos. Deben probarse por matchup, no usarse siempre.
+
+C2. CAMBIOS POSIBLES DENTRO DEL MAIN — NO APLICADOS
+Opción A: pasar de 42 a 40 cartas para reducir dilución. Ejemplo de prueba: -1 Dark Hole y -1 Cosmic Cyclone (40). BENEFICIO: leve aumento en frecuencia de otras piezas. COSTE: menos ruptura frente a monstruos y Magias/Trampas. NO afirmar que 40 es necesariamente superior sin test; escoger según metajuego local.
+Opción B: conservar 42 pero orientar juego primero. Ejemplo de test: -2 Dark Hole; +2 cartas de interrupción o de continuidad legalmente habilitadas entre las reservas (por ejemplo 1 Unicornio y 1 Dimension Shifter si sus cantidades totales son compatibles con la lista aplicable). BENEFICIO: aumenta densidad de motor/interrupción inicial. COSTE: menos ruptura de campo. Verificar si las opciones son legales y que Shifter no perjudique tu propia mano.
+Opción C: orientar juego segundo con las 19 reservas. Mantener 3 Dark Hole si el metajuego tiene tableros destructibles; probar -1 Birth o -1 Preparations cuando estén sobrando en manos, +1 Pankratops o +1 Nibiru según rival. BENEFICIO: más herramientas contra un campo ya establecido. COSTE: recursión o follow-up más débil; Nibiru puede no ser óptimo ante control de pocas invocaciones.
+Opción D: ajustar la composición de monstruos sin perder Pure. Probar +1 Unicornio desde reserva a cambio de -1 Ogre o -1 carta reactiva de escasa incidencia. BENEFICIO: más acceso a Theosis/Birth. COSTE: menos búsquedas de Trampa u otra cobertura. Registrar 50 manos antes de decidir; un tercer Unicornio no garantiza por sí solo la ruta completa.
+Opción E: si Prosperity consume Extra demasiado y pierde herramientas, estudiar reducir una copia para otra búsqueda/extensor autorizado en TCG. BENEFICIO: preserva opciones del Extra. COSTE: baja capacidad de seleccionar entre cartas excavadas. No recomendar carta nueva sin verificar disponibilidad y normativa de la edición.
+
+C3. CAMBIOS PROPUESTOS DEL EXTRA — NO APLICADOS
+PRIORIDAD 1: cuestionar los dos monstruos Fósil. Si la única finalidad práctica es el coste de Prosperity, estudiar reemplazar uno o ambos por Rank 7 genéricos, Xyz temáticos o respuestas situacionales accesibles bajo Theosis. Requisito: confirmar que la carta candidata sea realmente invocable con los materiales/niveles de esta lista y legal en TCG del evento; no introducir una Fusión aleatoria.
+PRIORIDAD 2: probar 1 ZEUS en vez de 2 si se observa que la segunda copia no se utiliza y el Extra necesita rutas adicionales. Preservar 2 si el duelo largo o Prosperity lo justifican.
+PRIORIDAD 3: probar 2 Shangri-Ira en vez de 3 si el tercer ejemplar se destierra constantemente con Prosperity o nunca se invoca; mantener 3 si la presión de zonas en duelos largos es esencial.
+PRIORIDAD 4: Baronne es prescindible si la ruta Ash + nivel 7 casi nunca ocurre o las restricciones Xyz la bloquean. Su sustitución prioritaria debería ofrecer utilidad consistente sin obligar a gastar la única Ash de mano como Tuner.
+PRIORIDAD 5: Underworld Goddess/Donner son salidas Link valiosas solo cuando puedes reunir materiales legales y antes de aplicar restricciones de Extra que no permiten Link; si casi nunca se invocan, probar cartas Xyz más alineadas con el motor.
+ADVERTENCIA: no sustituir automáticamente los Fósiles por Goliath. Goliath no es Link genérico: necesita Infinitrack no-Link. Primero demostrar la ruta.
+
+C4. CAMBIOS DESDE LA RESERVA DE 19: EJEMPLOS DE PAQUETES
+Estos son ESCENARIOS DE PRUEBA 'ENTRAN/SALEN', NO una lista final de 15. Las 19 cartas de reserva se conservan aunque algunas se incorporen temporalmente a una variante. En cada experimento, el Main conserva 42 si entran y salen cantidades iguales; si una carta de Extra entra, debe salir otra de Extra y no necesariamente puede invocarse.
+
+PAQUETE R1 — ADVERSARIO COMBO QUE BUSCA MUCHAS CARTAS:
+ENTRAN: 3 Droll & Lock Bird + 1 Nibiru (4).
+SALEN, como ejemplo: 2 Cosmic Cyclone + 2 Dark Hole (4).
+OBJETIVO: frenar búsquedas y extensiones durante turno enemigo.
+TRADEOFF: pierdes salidas contra Magias/Trampas y parte de la ruptura del campo establecido. Droll no siempre interrumpe una línea que no añade cartas desde Deck a mano; Nibiru no siempre supera negaciones o tableros protegidos.
+
+PAQUETE R2 — RIVAL CENTRADO EN CEMENTERIO:
+ENTRAN: 2 Dimension Shifter + 2 Ghost Belle & Haunted Mansion (4).
+SALEN, ejemplo: 2 Cosmic Cyclone + 2 Dark Hole (4).
+OBJETIVO: reforzar prevención de Cementerio e interrupción de efectos específicos.
+TRADEOFF: menos respuesta a continuas y campos ya armados; Shifter puede ser carta muerta si ya tienes cartas en Cementerio y cambia tu propia Tearlaments Kashtira.
+
+PAQUETE R3 — RIVAL DE XYZ/SYNCHRO/FUSIÓN CONOCIDO:
+ENTRAN: 2 Dimensional Barrier + 1 Book of Moon (3).
+SALEN, ejemplo: 2 Cosmic Cyclone + 1 Dark Hole (3).
+OBJETIVO: restringir tipo de invocación decisivo y romper material de combo.
+TRADEOFF: Barrier no frena Links; identificar formato y mecánica real del oponente antes de añadir.
+
+PAQUETE R4 — CONTRA UNA MESA GRANDE AL IR SEGUNDO:
+ENTRAN: 1 Dinowrestler Pankratops + 1 Nibiru + 1 Triple Tactics Talent (3).
+SALEN, ejemplo: 1 Preparations Kashtira + 1 Big Bang Kashtira + 1 Dimension Shifter (3).
+OBJETIVO: presión, remoción y castigo al efecto del rival.
+TRADEOFF: perjudica tu combo al eliminar Big Bang (pierdes la línea de Riseheart que la destierra) y reduces seguimiento de Preparations. Es un paquete agresivo de ensayo, NO recomendación general ni automático.
+
+PAQUETE R5 — FORTALECER NOMBRES DE MOTOR Y ACCESO:
+ENTRAN: 1 Kashtira Unicornio + 1 Pot of Prosperity (2).
+SALEN, ejemplo: 2 Dark Hole (2).
+OBJETIVO: buscar más el motor o tener acceso a la pieza necesaria.
+TRADEOFF: menos capacidad de limpiar múltiples monstruos; Prosperity sacrifica Extra. Revisar límites autorizados del evento antes de probar copias adicionales.
+
+PAQUETE R6 — JUEGO SEGUNDO CONTRA DEFENSAS DE MAGIA/TRAMPA:
+ENTRAN: 1 Forbidden Lance + 1 Book of Moon + 1 Pankratops (3).
+SALEN, ejemplo: 1 Dimension Shifter + 1 Birth + 1 Preparations (3).
+OBJETIVO: secuenciar protección y remoción ante respuestas enemigas.
+TRADEOFF: debilita recuperación y puede quitar un recurso que hace viable el turno 2. Lance no responde a toda clase de interacción.
+
+PAQUETE R7 — VIRUS CONTRA DECK MUY APOYADO EN MAGIAS/TRAMPAS:
+ENTRAN: 2 Eradicator Epidemic Virus (2).
+SALEN, ejemplo: 2 Dark Hole (2).
+OBJETIVO: castigar una clase de carta si puedes habilitar el tributo DARK de ATK suficiente.
+TRADEOFF: si no hay tributo legal, te quedas con dos cartas muertas; sacrificar Arise-Heart/Big Eye puede abrir la mesa. No asumir que el paquete es mejor que Cosmic Cyclone por defecto.
+
+PAQUETE R8 — GOLIATH:
+NO RECOMENDADO COMO CAMBIO DIRECTO. No existe Infinitrack no-Link en Main. Cualquier propuesta de Goliath exigiría rediseñar motor, verificar reglas y comparar coste de quitar cartas. Mantenerlo como carta de reserva/inventario sin fingir una línea activa.
+
+C5. CÓMO DECIDIR QUÉ SACAR AL SIDING
+PRIMERO: ¿qué cartas del Main tienen objetivo real contra este rival? Dark Hole ante destrucción inútil, Cosmic ante ausencia de Magias/Trampas, Talento si el rival no activa monstruos en tu Main, Shifter si perjudica tu estrategia.
+SEGUNDO: ¿qué carta quitada rompe tu motor? Reducir Theosis, Birth, Fenrir, Unicornio o Riseheart perjudica la continuidad; hacerlo solo por una razón estratégica demostrable.
+TERCERO: ¿necesitas ganar una respuesta o construir un campo? No llenar el Main de hand traps si se queda sin starter y segundo nivel 7.
+CUARTO: calcular cantidad exacta que entra y sale. Los ejemplos R1–R7 son independientes, NO acumulativos; una misma copia de reserva no puede incorporarse simultáneamente dos veces.
+QUINTO: anotar estado del Side elegido para el duelo sin borrar que la reserva total de Station X sigue siendo 19.
+
+C6. PRIORIDAD DE INVESTIGACIÓN Y REVISIÓN DE CARTAS
+ALTA: validar utilidad real de 3 Dark Hole, los 2 monstruos Fósil del Extra Deck, 2 Zeus, 3 Shangri-Ira y la ruta de Baronne. Son mayores candidatos a optimización sin alterar el motor puro.
+ALTA: medir frecuencia de manos con iniciador+extensor frente a manos de solo interacción. Comparar 42 cartas actuales contra una simulación de 40 sin dar por sentado que una gana.
+MEDIA: comprobar cuánto aporta Ogre/Preparations frente a una tercera copia de Unicornio según experiencia de duelo.
+MEDIA: probar paquetes R1–R7 en enfrentamientos concretos, al menos varias partidas antes de reemplazar el plan central.
+BAJA: Goliath como carta activa; sin Infinitrack es una ruta no demostrada.
+
+C7. PROTOCOLO FORMAT-AWARE PARA LOS SIGUIENTES 66 DECKS
+ANTES DE ANALIZAR: registrar FORMATO EXACTO (TCG Advanced, GOAT histórico con corte temporal acordado, Rush Duel con edición/pool aplicable), versión del reglamento, pool permitido, banlist y decklist aprobada. Si no se conoce, preguntar o escribir 'pendiente'; no inventar compatibilidad.
+TCG: evaluar Main/Extra/Side conforme al formato concreto, invocaciones y cadenas TCG, motores modernos, hand traps, restricciones, side y matchups del TCG. Las cartas de reserva del usuario se conservan aunque superen 15; la alineación competitiva será otra entidad.
+GOAT: evaluar exclusivamente cartas, textos, reglas, métodos de invocación, prioridades/rulings históricas y banlist del GOAT acordado. No importar Kashtira, Link, Xyz, Synchro, Ash, Infinite Impermanence ni estrategias modernas. Valorar tempo, ventaja de cartas, Flip, Metamorphosis, Scapegoat, tributos, Chaos y recursos del periodo, según decklist.
+RUSH DUEL: evaluar el juego específico de Rush (reglas de mano/robo y normal summons, Legend, Maximum, Fusion, etc., únicamente según variantes aplicables). No copiar Main/Extra/Side TCG ni asumir hand traps, cadenas o nombres de carta con efectos idénticos; verificar cartas Rush y no recomendar Side si el evento no lo contempla.
+SALIDA UNIFORME EN LOS TRES: identidad; lista verificada; mapa de sinergias; cartas flojas/muertas con explicación; plan primero/segundo si aplica; combos legales; contingencias; recomendaciones concretas entra/sale dentro de SU formato; costes/tradeoffs; reservas propias; pruebas; y resultados observados separados del juicio editorial.
+
+FIN ANEXO C

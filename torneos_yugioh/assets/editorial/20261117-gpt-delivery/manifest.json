@@ -1,0 +1,40 @@
+{
+  "version": "20261117-gpt-delivery",
+  "decks": {
+    "671": {
+      "path": "./assets/editorial/20261117-gpt-delivery/671.json",
+      "cards": 39,
+      "routes": 12,
+      "sha256": "25983a0393ecbafcb3fcc18f9c79b3ca5dc21fc3ae251036a75bedb4daaed3e9",
+      "presentation": "curated-v62"
+    },
+    "677": {
+      "path": "./assets/editorial/20261117-gpt-delivery/677.json",
+      "cards": 39,
+      "routes": 14,
+      "sha256": "5ba62ef49d7c87935bc88c9aabaa6d1bfbbf79c1fd290f88be3369e6a0a12072",
+      "presentation": "curated-v62"
+    },
+    "660": {
+      "path": "./assets/editorial/20261117-gpt-delivery/660.json",
+      "cards": 36,
+      "routes": 5,
+      "sha256": "812083608f2d970049e6b7960a60231bdb8fec2c11d0f5ebac237e90f967f486",
+      "presentation": "curated-v62"
+    },
+    "673": {
+      "path": "./assets/editorial/20261117-gpt-delivery/673.json",
+      "cards": 39,
+      "routes": 5,
+      "sha256": "08d300b06474c730bf150a2139b7a06577de53a993256cf6fdbce24253158391",
+      "presentation": "curated-v62"
+    },
+    "699": {
+      "path": "./assets/editorial/20261117-gpt-delivery/699.json",
+      "cards": 39,
+      "routes": 5,
+      "sha256": "af9710dc77721659f5e65235fdff56c974a38a2eae3d9b0cb466f2ab0859bf07",
+      "presentation": "curated-v62"
+    }
+  }
+}

@@ -1,0 +1,1319 @@
+{
+  "schema": "station-x-curated-v62",
+  "deck_id": 705,
+  "name": "Royal",
+  "format": "rush_duel",
+  "cards": [
+    {
+      "id": "705:A08:C001",
+      "cid": 16344,
+      "name": "Kheiron el Caballero Estelar",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 466
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16344.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Elegir un Demonio de Nivel 5 o superior boca arriba propio; sus ataques infligen daño de penetración este turno."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — presión de combate / modificación de estadísticas."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Si el rival controla un monstruo, enviar la carta superior del Deck al Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Elegir un Demonio de Nivel 5 o superior boca arriba propio; sus ataques infligen daño de penetración este turno."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16344&ope=2"
+      ],
+      "role": "Monstruo de Efecto — presión de combate / modificación de estadísticas.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Monstruo de Efecto — presión de combate / modificación de estadísticas",
+        "relation": "Elegir un Demonio de Nivel 5 o superior boca arriba propio; sus ataques infligen daño de penetración este turno",
+        "risk": "Si el rival controla un monstruo, enviar la carta superior del Deck al Cementerio",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Elegir un Demonio de Nivel 5 o superior boca arriba propio; sus ataques infligen daño de penetración este turno."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Elegir un Demonio de Nivel 5 o superior boca arriba propio; sus ataques infligen daño de penetración este turno."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        }
+      ]
+    },
+    {
+      "id": "705:A08:C002",
+      "cid": 16330,
+      "name": "Phaser del Rebelde Real",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 467
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16330.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Invocar de Modo Especial en Defensa boca arriba un Demonio de Nivel 7+ del Cementerio."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — extensor / habilitador de material."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Controlar un Demonio de Nivel 7+ boca arriba y enviar este Phaser boca arriba del Campo al Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Invocar de Modo Especial en Defensa boca arriba un Demonio de Nivel 7+ del Cementerio."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16330&ope=2"
+      ],
+      "role": "Monstruo de Efecto — extensor / habilitador de material.",
+      "synergy": {
+        "function": "Sinergia directa descrita",
+        "resource": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución",
+        "labels": [
+          "Sinergia directa"
+        ],
+        "reason": "Monstruo de Efecto — extensor / habilitador de material",
+        "relation": "Invocar de Modo Especial en Defensa boca arriba un Demonio de Nivel 7+ del Cementerio",
+        "risk": "Controlar un Demonio de Nivel 7+ boca arriba y enviar este Phaser boca arriba del Campo al Cementerio",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Invocar de Modo Especial en Defensa boca arriba un Demonio de Nivel 7+ del Cementerio."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Invocar de Modo Especial en Defensa boca arriba un Demonio de Nivel 7+ del Cementerio."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        }
+      ]
+    },
+    {
+      "id": "705:A08:C003",
+      "cid": 19760,
+      "name": "Impasse Ignoto",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 468
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19760.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Mientras permanezca boca arriba, aumenta en 300 el ATK de todos tus Demonios boca arriba, incluido él mismo."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — presión de combate / modificación de estadísticas."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Mostrar al rival otro Demonio de la mano para Invocar esta carta de Modo Especial desde la mano."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Mientras permanezca boca arriba, aumenta en 300 el ATK de todos tus Demonios boca arriba, incluido él mismo."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19760&ope=2"
+      ],
+      "role": "Monstruo de Efecto — presión de combate / modificación de estadísticas.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Monstruo de Efecto — presión de combate / modificación de estadísticas",
+        "relation": "Mientras permanezca boca arriba, aumenta en 300 el ATK de todos tus Demonios boca arriba, incluido él mismo",
+        "risk": "Mostrar al rival otro Demonio de la mano para Invocar esta carta de Modo Especial desde la mano",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Mientras permanezca boca arriba, aumenta en 300 el ATK de todos tus Demonios boca arriba, incluido él mismo."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Mientras permanezca boca arriba, aumenta en 300 el ATK de todos tus Demonios boca arriba, incluido él mismo."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        }
+      ]
+    },
+    {
+      "id": "705:A08:C004",
+      "cid": 16331,
+      "name": "Metal Maldito del Rebelde Real",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 469
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16331.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Destruye todos los monstruos boca arriba rivales; después inflige 100 LP por la suma de sus Niveles originales."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — removal / apertura de campo."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Haber Invocado esta carta por Sacrificio durante este turno usando DOS Demonios de Nivel 7+."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Destruye todos los monstruos boca arriba rivales; después inflige 100 LP por la suma de sus Niveles originales."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. la Skill que pone monstruos en Defensa NO equivale a Invocación por Sacrificio; sus efectos de tributo requieren el procedimiento específico."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16331&ope=2"
+      ],
+      "role": "Monstruo de Efecto — removal / apertura de campo.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. la Skill que pone monstruos…",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Monstruo de Efecto — removal / apertura de campo",
+        "relation": "Destruye todos los monstruos boca arriba rivales; después inflige 100 LP por la suma de sus Niveles originales",
+        "risk": "Haber Invocado esta carta por Sacrificio durante este turno usando DOS Demonios de Nivel 7+",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Destruye todos los monstruos boca arriba rivales; después inflige 100 LP por la suma de sus Niveles originales."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Destruye todos los monstruos boca arriba rivales; después inflige 100 LP por la suma de sus Niveles originales."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. la Skill que pone monstruos…."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. la Skill que pone monstruos en Defensa NO equivale a Invocación por Sacrificio; sus efectos de tributo requieren el procedimiento específico."
+        }
+      ]
+    },
+    {
+      "id": "705:A08:C005",
+      "cid": 15441,
+      "name": "Heavy Metal del Rebelde Real",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 470
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/15441.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Entre los monstruos boca arriba rivales de Nivel 8 o menor, elegir uno del Nivel más bajo; gana su ATK hasta fin del turno y lo destruye."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — removal / apertura de campo."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Haber Invocado esta carta por Sacrificio este turno usando al menos un monstruo de Nivel 5+."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Entre los monstruos boca arriba rivales de Nivel 8 o menor, elegir uno del Nivel más bajo; gana su ATK hasta fin del turno y lo destruye."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. la Skill que pone monstruos en Defensa NO equivale a Invocación por Sacrificio; sus efectos de tributo requieren el procedimiento específico."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15441&ope=2"
+      ],
+      "role": "Monstruo de Efecto — removal / apertura de campo.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. la Skill que pone monstruos…",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Monstruo de Efecto — removal / apertura de campo",
+        "relation": "Entre los monstruos boca arriba rivales de Nivel 8 o menor, elegir uno del Nivel más bajo; gana su ATK hasta fin del turno y lo destruye",
+        "risk": "Haber Invocado esta carta por Sacrificio este turno usando al menos un monstruo de Nivel 5+",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Entre los monstruos boca arriba rivales de Nivel 8 o menor, elegir uno del Nivel más bajo; gana su ATK hasta fin del turno y lo destruye."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Entre los monstruos boca arriba rivales de Nivel 8 o menor, elegir uno del Nivel más bajo; gana su ATK hasta fin del turno y lo destruye."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. la Skill que pone monstruos…."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. la Skill que pone monstruos en Defensa NO equivale a Invocación por Sacrificio; sus efectos de tributo requieren el procedimiento específico."
+        }
+      ]
+    },
+    {
+      "id": "705:A08:C006",
+      "cid": 19761,
+      "name": "Progrock del Rebelde Real",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 471
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19761.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Destruye una Mágica/Trampa rival; después puede destruir otra carta boca abajo rival."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — removal / apertura de campo."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Haber Invocado esta carta por Sacrificio este turno usando al menos un monstruo de Nivel 5+."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Destruye una Mágica/Trampa rival; después puede destruir otra carta boca abajo rival. Este turno solo pueden atacar tus Demonios."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. la Skill que pone monstruos en Defensa NO equivale a Invocación por Sacrificio; sus efectos de tributo requieren el procedimiento específico."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19761&ope=2"
+      ],
+      "role": "Monstruo de Efecto — removal / apertura de campo.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. la Skill que pone monstruos…",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Monstruo de Efecto — removal / apertura de campo",
+        "relation": "Destruye una Mágica/Trampa rival; después puede destruir otra carta boca abajo rival",
+        "risk": "Haber Invocado esta carta por Sacrificio este turno usando al menos un monstruo de Nivel 5+",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Destruye una Mágica/Trampa rival; después puede destruir otra carta boca abajo rival. Este turno solo pueden atacar tus Demonios."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Destruye una Mágica/Trampa rival; después puede destruir otra carta boca abajo rival."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. la Skill que pone monstruos…."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. la Skill que pone monstruos en Defensa NO equivale a Invocación por Sacrificio; sus efectos de tributo requieren el procedimiento específico."
+        }
+      ]
+    },
+    {
+      "id": "705:A08:C007",
+      "cid": 16135,
+      "name": "Descendiente de Titanes",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 472
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16135.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Monstruo Normal sin efecto."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "No tiene activación de efecto de monstruo."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Monstruo Normal sin efecto."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16135&ope=2"
+      ],
+      "role": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado",
+        "relation": "Monstruo Normal sin efecto",
+        "risk": "No tiene activación de efecto de monstruo",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Monstruo Normal sin efecto."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Monstruo Normal sin efecto."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte."
+        }
+      ]
+    },
+    {
+      "id": "705:A08:C008",
+      "cid": 17721,
+      "name": "Canjear",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 473
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/17721.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Roba dos cartas."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Enviar al Cementerio un monstruo de Nivel 8 de la mano."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Roba dos cartas."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17721&ope=2"
+      ],
+      "role": "Carta Mágica Normal — consistencia / reciclaje.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo…",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Carta Mágica Normal — consistencia / reciclaje",
+        "relation": "Roba dos cartas",
+        "risk": "Enviar al Cementerio un monstruo de Nivel 8 de la mano",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Roba dos cartas."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Roba dos cartas."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo…."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ]
+    },
+    {
+      "id": "705:A08:C009",
+      "cid": 15673,
+      "name": "Aliento de Fuego del Genio",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 474
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/15673.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Devuelve a la mano del dueño una Mágica o Trampa del rival."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — apoyo situacional sujeto a condición escrita."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Controlar un Demonio boca arriba."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Devuelve a la mano del dueño una Mágica o Trampa del rival."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15673&ope=2"
+      ],
+      "role": "Carta Mágica Normal — apoyo situacional sujeto a condición escrita.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Carta Mágica Normal — apoyo situacional sujeto a condición escrita",
+        "relation": "Devuelve a la mano del dueño una Mágica o Trampa del rival",
+        "risk": "Controlar un Demonio boca arriba",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Devuelve a la mano del dueño una Mágica o Trampa del rival."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Devuelve a la mano del dueño una Mágica o Trampa del rival."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        }
+      ]
+    },
+    {
+      "id": "705:A08:C010",
+      "cid": 17543,
+      "name": "Restauración de Cartas",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 475
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/17543.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Roba hasta tener cinco cartas en mano, revela toda la mano y recupera 200 LP por cada monstruo revelado."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta de Trampa Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Cuando un monstruo rival declara ataque."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Roba hasta tener cinco cartas en mano, revela toda la mano y recupera 200 LP por cada monstruo revelado."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17543&ope=2"
+      ],
+      "role": "Carta de Trampa Normal — consistencia / reciclaje.",
+      "synergy": {
+        "function": "Sinergia directa descrita",
+        "resource": "Coste o consumo descrito en : disponer de cartas suficientes en Deck y distinguir robo de búsqueda",
+        "labels": [
+          "Sinergia directa"
+        ],
+        "reason": "Carta de Trampa Normal — consistencia / reciclaje",
+        "relation": "Roba hasta tener cinco cartas en mano, revela toda la mano y recupera 200 LP por cada monstruo revelado",
+        "risk": "Cuando un monstruo rival declara ataque",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Roba hasta tener cinco cartas en mano, revela toda la mano y recupera 200 LP por cada monstruo revelado."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Roba hasta tener cinco cartas en mano, revela toda la mano y recupera 200 LP por cada monstruo revelado."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ]
+    },
+    {
+      "id": "705:A08:C011",
+      "cid": 21007,
+      "name": "Maldición de la Luz Ascendente",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 476
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/21007.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Cambia un monstruo rival a Ataque boca arriba o Defensa boca abajo."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "El rival debe tener una o ninguna carta en mano."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Cambia un monstruo rival a Ataque boca arriba o Defensa boca abajo. Si el rival activó una Trampa ese turno o es el primer turno del jugador segundo, ambos roban dos."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=21007&ope=2"
+      ],
+      "role": "Carta Mágica Normal — consistencia / reciclaje.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : disponer de cartas suficientes en Deck y distinguir robo de búsqueda",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Carta Mágica Normal — consistencia / reciclaje",
+        "relation": "Cambia un monstruo rival a Ataque boca arriba o Defensa boca abajo",
+        "risk": "El rival debe tener una o ninguna carta en mano",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Cambia un monstruo rival a Ataque boca arriba o Defensa boca abajo. Si el rival activó una Trampa ese turno o es el primer turno del jugador segundo, ambos roban dos."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Cambia un monstruo rival a Ataque boca arriba o Defensa boca abajo."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ]
+    },
+    {
+      "id": "705:A08:C012",
+      "cid": 18646,
+      "name": "Gelatina Defensiva",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 477
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/18646.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Envía al Cementerio la carta superior de tu Deck y evita todo el daño de batalla ese turno; si tienes 3000 LP o más, recibes además 2000 de daño de efecto."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta de Trampa Normal — defensa ante ataque y prevención de daño de batalla."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Cuando un monstruo rival de Nivel 8 o inferior declara ataque."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Envía al Cementerio la carta superior de tu Deck y evita todo el daño de batalla ese turno; si tienes 3000 LP o más, recibes además 2000 de daño de efecto."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18646&ope=2"
+      ],
+      "role": "Carta de Trampa Normal — defensa ante ataque y prevención de daño de batalla.",
+      "synergy": {
+        "function": "Sinergia directa descrita",
+        "resource": "Envío mencionado en la interacción; no equivale por sí mismo a descarte desde la mano",
+        "labels": [
+          "Sinergia directa"
+        ],
+        "reason": "Carta de Trampa Normal — defensa ante ataque y prevención de daño de batalla",
+        "relation": "Envía al Cementerio la carta superior de tu Deck y evita todo el daño de batalla ese turno; si tienes 3000 LP o más, recibes además 2000 de daño de efecto",
+        "risk": "Cuando un monstruo rival de Nivel 8 o inferior declara ataque",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Envía al Cementerio la carta superior de tu Deck y evita todo el daño de batalla ese turno; si tienes 3000 LP o más, recibes además 2000 de daño de efecto."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Envía al Cementerio la carta superior de tu Deck y evita todo el daño de batalla ese turno; si tienes 3000 LP o más, recibes además 2000 de daño de efecto."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Envío mencionado en la interacción; no equivale por sí mismo a descarte desde la mano."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        }
+      ]
+    },
+    {
+      "id": "705:A08:C013",
+      "cid": 19799,
+      "name": "Avaricia del Rey",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 478
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19799.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Cambia a Defensa boca arriba un Demonio LUZ propio que esté en Ataque y, si se desea, roba dos cartas."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Enviar de la mano un Demonio LUZ de Nivel 5+ al Cementerio, o devolver del Cementerio al Deck tres Demonios LUZ de Nivel 7+."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Cambia a Defensa boca arriba un Demonio LUZ propio que esté en Ataque y, si se desea, roba dos cartas."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19799&ope=2"
+      ],
+      "role": "Carta Mágica Normal — consistencia / reciclaje.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo…",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Carta Mágica Normal — consistencia / reciclaje",
+        "relation": "Cambia a Defensa boca arriba un Demonio LUZ propio que esté en Ataque y, si se desea, roba dos cartas",
+        "risk": "Enviar de la mano un Demonio LUZ de Nivel 5+ al Cementerio, o devolver del Cementerio al Deck tres Demonios LUZ de Nivel 7+",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Cambia a Defensa boca arriba un Demonio LUZ propio que esté en Ataque y, si se desea, roba dos cartas."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Cambia a Defensa boca arriba un Demonio LUZ propio que esté en Ataque y, si se desea, roba dos cartas."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo…."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ]
+    },
+    {
+      "id": "705:A08:C014",
+      "cid": 15913,
+      "name": "Agujero Trampa",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 479
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/15913.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Destruye ese monstruo invocado."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta de Trampa Normal — extensor / habilitador de material."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Cuando el rival Invoca de Modo Normal un monstruo de al menos 1000 ATK."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Destruye ese monstruo invocado."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15913&ope=2"
+      ],
+      "role": "Carta de Trampa Normal — extensor / habilitador de material.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Carta de Trampa Normal — extensor / habilitador de material",
+        "relation": "Destruye ese monstruo invocado",
+        "risk": "Cuando el rival Invoca de Modo Normal un monstruo de al menos 1000 ATK",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Destruye ese monstruo invocado."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Destruye ese monstruo invocado."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        }
+      ]
+    },
+    {
+      "id": "705:A08:C015",
+      "cid": 15674,
+      "name": "Esplendor del Rey",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 480
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/15674.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Niega el ataque declarado."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta de Trampa Normal — apoyo situacional sujeto a condición escrita."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Ante declaración de ataque rival, devolver al Deck un Demonio Normal de Nivel 1 del propio Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Niega el ataque declarado."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15674&ope=2"
+      ],
+      "role": "Carta de Trampa Normal — apoyo situacional sujeto a condición escrita.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Carta de Trampa Normal — apoyo situacional sujeto a condición escrita",
+        "relation": "Niega el ataque declarado",
+        "risk": "Ante declaración de ataque rival, devolver al Deck un Demonio Normal de Nivel 1 del propio Cementerio",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Niega el ataque declarado."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Niega el ataque declarado."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        }
+      ]
+    },
+    {
+      "id": "705:A08:C016",
+      "cid": 16305,
+      "name": "Monstruo Reencarnado",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 481
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16305.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Recupera a la mano un monstruo del Cementerio; es la versión Rush, no un efecto idéntico por defecto al TCG."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Tener un monstruo en el Cementerio y enviar una carta de la mano al Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Recupera a la mano un monstruo del Cementerio; es la versión Rush, no un efecto idéntico por defecto al TCG."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16305&ope=2"
+      ],
+      "role": "Carta Mágica Normal — consistencia / reciclaje.",
+      "synergy": {
+        "function": "Sinergia directa descrita",
+        "resource": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución",
+        "labels": [
+          "Sinergia directa"
+        ],
+        "reason": "Carta Mágica Normal — consistencia / reciclaje",
+        "relation": "Recupera a la mano un monstruo del Cementerio; es la versión Rush, no un efecto idéntico por defecto al TCG",
+        "risk": "Tener un monstruo en el Cementerio y enviar una carta de la mano al Cementerio",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Recupera a la mano un monstruo del Cementerio; es la versión Rush, no un efecto idéntico por defecto al TCG."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Recupera a la mano un monstruo del Cementerio; es la versión Rush, no un efecto idéntico por defecto al TCG."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        }
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "HARD ROCK OVERTURE",
+      "image": "./assets/editorial/20261108-synergies/skills/705_HARD_ROCK_OVERTURE.jpeg"
+    }
+  ],
+  "profile": {
+    "Arquetipo": "Royal Rebel de Rush Duel, con habilidad Hard Rock Overture.",
+    "Tipo de estrategia": "Sacrificios e Invocación de jefes que presionan el campo rival.",
+    "Estilo de juego": "combate y retirada selectiva según el jefe disponible.",
+    "Cómo se juega": "los cuerpos de apoyo preparan Sacrificios para monstruos Royal Rebel como Heavy Metal o Progrock. La habilidad y la recuperación de recursos aportan opciones bajo sus condiciones propias.",
+    "Cartas representativas": "Heavy Metal, Progrock, Phaser y Hard Rock Overture.",
+    "Qué vigilar": "Nivel exigido por efectos de apoyo, materiales sacrificados y monstruos puestos en Defensa. Este inventario no posee Extra Deck."
+  },
+  "summary": [
+    {
+      "title": "Dictamen de conjunto",
+      "text": "plan de Sacrificios Rush coherente; los jefes comparten cuerpos, pero sus efectos y requisitos NO son equivalentes."
+    },
+    {
+      "title": "Motor que mueve el deck",
+      "text": "Demonios Nivel 7/8 y cuerpos de apoyo se convierten en Sacrificios para jefes Royal Rebel; la retirada de monstruos o M/T depende del jefe elegido."
+    },
+    {
+      "title": "Puentes reales",
+      "text": "HARD ROCK OVERTURE puede colocar cuerpos en Defensa desde turno 2 bajo requisitos locales; Canjear y Monstruo Reencarnado preparan mano/GY."
+    },
+    {
+      "title": "Sinergia indirecta",
+      "text": "un Demonio alto enviado al GY puede ser recurso posterior; Canjear necesita exactamente Nivel 8, no cualquier jefe alto."
+    },
+    {
+      "title": "Conflicto decisivo",
+      "text": "el procedimiento de colocación por Skill no equivale a Invocación ni permite atacar inmediatamente; cada Sacrificio consume cuerpos que dejan de estar disponibles."
+    },
+    {
+      "title": "Decisión concreta",
+      "text": "seleccionar jefe por objetivos reales en campo, no por ATK solamente; no recomendar cartas Extra porque el Extra confirmado de esta lista está vacío."
+    },
+    {
+      "title": "Qué aprender después",
+      "text": "comparar Death Doom, Heavy Metal y Progrock según monstruo/M/T rival y Sacrificios disponibles."
+    }
+  ],
+  "engine_maps": [
+    {
+      "title": "Canjear (17721) → Demonio Nivel 8 en GY → Phaser (16330)",
+      "category": "INTERACCIÓN",
+      "result": "Cambiar pieza alta por robo y posible recuperación posterior.",
+      "requirements": "Canjear requiere Nivel 8; Phaser necesita Nivel 7+ propio en Campo.",
+      "photos": [
+        {
+          "name": "Canjear",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/17721.png"
+        },
+        {
+          "name": "Phaser del Rebelde Real",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/16330.png"
+        }
+      ]
+    },
+    {
+      "title": "Dos Demonios Nivel 7+ → Metal Maldito (16331)",
+      "category": "INTERACCIÓN",
+      "result": "Posible retirada masiva de monstruos boca arriba.",
+      "requirements": "Invocación por Sacrificio de Metal Maldito ese turno usando ambos cuerpos altos.",
+      "photos": [
+        {
+          "name": "Metal Maldito del Rebelde Real",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/16331.png"
+        }
+      ]
+    },
+    {
+      "title": "Un monstruo Nivel 5+ tributado → Heavy Metal (15441) / Progrock (19761)",
+      "category": "INTERACCIÓN",
+      "result": "Retirada de monstruo o M/T según el jefe.",
+      "requirements": "Cada jefe debe ser Invocado por Sacrificio cumpliendo el texto propio.",
+      "photos": [
+        {
+          "name": "Heavy Metal del Rebelde Real",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/15441.png"
+        },
+        {
+          "name": "Progrock del Rebelde Real",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/19761.png"
+        }
+      ]
+    },
+    {
+      "title": "Kheiron (16344) → Demonio Nivel 5+",
+      "category": "INTERACCIÓN",
+      "result": "Penetración de combate.",
+      "requirements": "Rival controla monstruo, envío superior de Deck, objetivo propio apropiado.",
+      "photos": [
+        {
+          "name": "Kheiron el Caballero Estelar",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/16344.png"
+        }
+      ]
+    }
+  ],
+  "routes": [],
+  "decisions": [
+    {
+      "id": "R1",
+      "title": "Elegir jefe por la situación",
+      "situation": "puedes preparar Sacrificios para Heavy Metal o Progrock; el adversario presenta amenazas de tipo distinto.",
+      "options": [
+        {
+          "id": "A",
+          "text": "elegir únicamente por mayor ATK"
+        },
+        {
+          "id": "B",
+          "text": "comparar el texto de cada jefe y qué carta rival o recurso puede afectar realmente."
+        }
+      ],
+      "answer": "B. Un jefe de retirada de monstruos no resuelve necesariamente una amenaza de M/T y viceversa.",
+      "error": "",
+      "routes": []
+    },
+    {
+      "id": "R2",
+      "title": "Skill en Defensa no equivale a ataque",
+      "situation": "Hard Rock Overture coloca cuerpos en Defensa bajo su ventana local.",
+      "options": [
+        {
+          "id": "A",
+          "text": "atacarlos inmediatamente como si se hubieran Invocado en Ataque"
+        },
+        {
+          "id": "B",
+          "text": "aprovecharlos según las condiciones descritas para posteriores Sacrificios/recursos."
+        }
+      ],
+      "answer": "B. No traducir «colocar» en «Invocar» sin texto que lo permita.",
+      "error": "",
+      "routes": []
+    },
+    {
+      "id": "R3",
+      "title": "Canjear necesita Nivel 8",
+      "situation": "tienes un jefe alto en mano y quieres usar Canjear.",
+      "options": [
+        {
+          "id": "A",
+          "text": "descartar cualquier monstruo de nivel elevado"
+        },
+        {
+          "id": "B",
+          "text": "comprobar específicamente Nivel 8 y el coste real."
+        }
+      ],
+      "answer": "B. Otro nivel no satisface la carta aunque sea un jefe Royal Rebel.",
+      "error": "",
+      "routes": []
+    },
+    {
+      "id": "R4",
+      "title": "Sin Extra Deck",
+      "situation": "una propuesta del visor intenta terminar una línea Royal Rebel con Fusión/Xyz del Extra.",
+      "options": [
+        {
+          "id": "A",
+          "text": "aceptarla"
+        },
+        {
+          "id": "B",
+          "text": "conservar el plan de Sacrificios y efectos del Main Deck confirmado."
+        }
+      ],
+      "answer": "B. Este inventario tiene Extra vacío.",
+      "error": "",
+      "routes": []
+    }
+  ],
+  "practice": [
+    {
+      "id": "R1",
+      "title": "La Skill es posterior",
+      "challenge": "estás en el primer turno y un escenario exige Overture desde turno 2. ¿Puedes activar la habilidad ya?",
+      "answer": "no; esperar la ventana declarada.",
+      "explanation": "",
+      "routes": []
+    },
+    {
+      "id": "R2",
+      "title": "Recurso de Canjear",
+      "challenge": "solo tienes un monstruo Nivel 7 en mano y Canjear pide Nivel 8. ¿El descarte es válido?",
+      "answer": "no, salvo que otro efecto cambie legalmente la condición antes de jugarla.",
+      "explanation": "",
+      "routes": []
+    },
+    {
+      "id": "R3",
+      "title": "Cuerpos para Sacrificio",
+      "challenge": "consumes dos cuerpos para un jefe y luego otro jefe los utiliza de nuevo. ¿Qué falta?",
+      "answer": "una nueva generación/recuperación de cuerpos; los Sacrificios ya se consumieron. ---",
+      "explanation": "",
+      "routes": []
+    }
+  ]
+}

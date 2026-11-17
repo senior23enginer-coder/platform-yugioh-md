@@ -1,0 +1,82 @@
+{
+  "version": "20261108-synergies-150",
+  "decks": {
+    "650": {
+      "path": "./assets/editorial/20261108-synergies/650.json",
+      "cards": 42,
+      "routes": 6,
+      "sha256": "2b77974f038f8c5422f48ca0cc324de5d10e38e28269f9f4e810c00303408cac",
+      "presentation": "curated-v62"
+    },
+    "653": {
+      "path": "./assets/editorial/20261108-synergies/653.json",
+      "cards": 37,
+      "routes": 7,
+      "sha256": "1375fac92885c8723fb29ded9a62831053c38137b0367dd6b21056dc64a56354",
+      "presentation": "curated-v62"
+    },
+    "656": {
+      "path": "./assets/editorial/20261108-synergies/656.json",
+      "cards": 50,
+      "routes": 9,
+      "sha256": "939509f352670823ac6fcf688103eece269b381885516ba72ef8d5a81dc1321b",
+      "presentation": "curated-v62"
+    },
+    "665": {
+      "path": "./assets/editorial/20261108-synergies/665.json",
+      "cards": 38,
+      "routes": 9,
+      "sha256": "5d08d68a01a739c408ff5277514cf2df1d51856123e0c6af8e9a1d576a820857",
+      "presentation": "curated-v62"
+    },
+    "670": {
+      "path": "./assets/editorial/20261108-synergies/670.json",
+      "cards": 45,
+      "routes": 7,
+      "sha256": "4a6c753d983575d96eadf60fb12ae79825e887013b9b48408716d06da43033aa",
+      "presentation": "curated-v62"
+    },
+    "684": {
+      "path": "./assets/editorial/20261108-synergies/684.json",
+      "cards": 52,
+      "routes": 8,
+      "sha256": "86421abf550f2c91fb47eb099bd04f1b4f555ab98e14ac88b72910bcd5971422",
+      "presentation": "curated-v62"
+    },
+    "687": {
+      "path": "./assets/editorial/20261108-synergies/687.json",
+      "cards": 36,
+      "routes": 13,
+      "sha256": "6019e0adbfdebcd65dcab838917238fbb7a5224d62d23a95338b6e221859f504",
+      "presentation": "curated-v62"
+    },
+    "704": {
+      "path": "./assets/editorial/20261108-synergies/704.json",
+      "cards": 17,
+      "routes": 0,
+      "sha256": "f0e0635eb189a5979f36c230a72278c1644fc4b742fde9cdc59734f0cc072c37",
+      "presentation": "curated-v62"
+    },
+    "705": {
+      "path": "./assets/editorial/20261108-synergies/705.json",
+      "cards": 16,
+      "routes": 0,
+      "sha256": "70e286e56c319ece1566f5fc7e3bf2fcf3ae43ae063b6898e5a1898b6a534d35",
+      "presentation": "curated-v62"
+    },
+    "706": {
+      "path": "./assets/editorial/20261108-synergies/706.json",
+      "cards": 17,
+      "routes": 0,
+      "sha256": "8c7179b2efddd2870c755aa4a8c72e7208156ba5cc3d3eece0f9e3a614f6e3f6",
+      "presentation": "curated-v62"
+    },
+    "707": {
+      "path": "./assets/editorial/20261108-synergies/707.json",
+      "cards": 20,
+      "routes": 0,
+      "sha256": "efb2ce27c0b98a74851b86a8a469d1459f527b5fff731ea0505bf86912eac0e6",
+      "presentation": "curated-v62"
+    }
+  }
+}

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#07101f" />
+    <title>Calculador de jugadas · Station X</title>
+    <link
+      rel="stylesheet"
+      href="./assets/modules/play-calculator/styles.css?v=20261116-workspace-1"
+    />
+    <style>
+      body {
+        margin: 0;
+        background: #07101f;
+        color: #e4effa;
+        font-family: system-ui, sans-serif;
+      }
+      main {
+        max-width: 1800px;
+        margin: auto;
+        padding: 20px;
+      }
+      a {
+        color: #83dfee;
+      }
+      header.offline-nav {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 20px;
+        align-items: center;
+      }
+      label {
+        font-size: 0.85rem;
+      }
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+      .btn {
+        display: inline-block;
+        border: 1px solid #32708b;
+        border-radius: 8px;
+        padding: 10px 14px;
+        color: #b6edfa;
+        background: #10283c;
+        cursor: pointer;
+        text-decoration: none;
+      }
+      .btn-primary,
+      .btn-info {
+        background: #087b9d;
+        color: white;
+      }
+      .btn:disabled {
+        opacity: 0.4;
+        cursor: default;
+      }
+      .form-control,
+      .form-select {
+        display: block;
+        padding: 10px;
+        width: 100%;
+        background: #071323;
+        color: #e4effa;
+        border: 1px solid #2b4c64;
+        border-radius: 7px;
+      }
+      .btn-outline-danger {
+        color: #ffc7ce;
+        border-color: #b26077;
+      }
+      .learn-kicker {
+        font-size: 0.8rem;
+        color: #7bdded;
+      }
+      .offline-nav select {
+        max-width: 400px;
+      }
+      #offline-status {
+        color: #a3cad9;
+        font-size: 0.85rem;
+        line-height: 1.7;
+      }
+      @media (max-width: 650px) {
+        main {
+          padding: 12px;
+        }
+        header.offline-nav {
+          display: block;
+        }
+        .offline-nav label {
+          display: block;
+          margin-top: 14px;
+        }
+      }
+    </style>
+    <script
+      src="./assets/modules/play-calculator/engine.js?v=20261116-actions-1"
+      defer
+    ></script>
+    <script src="./assets/modules/play-calculator/hand-practice.js?v=20261113-hand-practice-170" defer></script>
+    <script
+      src="./assets/modules/play-calculator/storage.js?v=20261103-board-129"
+      defer
+    ></script>
+    <script
+      src="./assets/modules/deck-guide/deck-deliveries.js?v=20261102-r10-128"
+      defer
+    ></script>
+    <script src="./assets/modules/play-calculator/card-menu.js?v=20261116-actions-1" defer></script>
+    <script src="./assets/modules/play-calculator/planner.js?v=20261116-actions-1" defer></script><script
+      src="./assets/modules/play-calculator/ui.js?v=20261116-actions-1"
+      defer
+    ></script>
+    <script
+      src="./assets/modules/play-calculator/offline.js?v=20261103-board-129"
+      defer
+    ></script>
+  <link href="./assets/modules/play-calculator/card-menu.css?v=20261116-actions-1" rel="stylesheet">
+</head>
+  <body>
+    <main>
+      <header class="offline-nav">
+        <a href="./#deck_ficha">← Volver a la plataforma</a
+        ><label
+          >Mi deck guardado<select
+            class="form-select"
+            data-offline-deck
+          ></select
+        ></label>
+      </header>
+      <p id="offline-status" role="status">
+        Preparando los datos guardados en este navegador…
+      </p>
+      <div data-play-calculator></div>
+    </main>
+  </body>
+</html>

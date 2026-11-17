@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="420" viewBox="0 0 1400 420">
+  <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#07101f"/><stop offset=".5" stop-color="#14264f"/><stop offset="1" stop-color="#1b0d28"/></linearGradient></defs>
+  <rect width="1400" height="420" fill="url(#g)"/>
+  <g fill="none" stroke="#ffd25f" stroke-opacity=".32"><path d="M1000 50c120 40 210 138 250 276M930 70c96 84 158 176 192 276"/><circle cx="1080" cy="214" r="156"/><circle cx="1080" cy="214" r="88"/></g>
+  <path d="M1064 86c62 38 104 86 126 144-48-22-90-18-126 12 18-58 18-110 0-156Z" fill="#2bdcff" opacity=".36"/>
+  <text x="70" y="126" fill="#ffd25f" font-family="Arial" font-size="24" font-weight="900" letter-spacing="7">WORLD DUEL CHAMPIONSHIP</text>
+  <text x="70" y="215" fill="#ffffff" font-family="Arial" font-size="64" font-weight="900">ULTIMATE CHAMPIONS</text>
+  <text x="74" y="270" fill="#b9c6df" font-family="Arial" font-size="25">6 grupos de 4, top 2 y eliminacion directa</text>
+</svg>

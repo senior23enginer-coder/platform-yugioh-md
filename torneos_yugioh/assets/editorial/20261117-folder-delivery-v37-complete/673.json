@@ -1,0 +1,2663 @@
+{
+  "schema": "station-x-curated-v62",
+  "deck_id": 673,
+  "name": "Salamangreat",
+  "format": "tcg_advanced",
+  "cards": [
+    {
+      "id": "673:CARD:4678",
+      "cid": 4678,
+      "name": "Polvo de Pluma de Arpía",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/4678.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/4678.jpg",
+      "slots": [
+        {
+          "section": "side",
+          "quantity": 1,
+          "card_id": 632
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Side elimina M/T rivales"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No niega efectos ya resueltos"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Side elimina M/T rivales"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No niega efectos ya resueltos"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Side elimina M/T rivales",
+        "explanation": "No niega efectos ya resueltos"
+      },
+      "role": "Side elimina M/T rivales",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4678&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Polvo de Pluma de Arpía"
+      ]
+    },
+    {
+      "id": "673:CARD:5102",
+      "cid": 5102,
+      "name": "Máscara de la Debilidad",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/5102.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/5102.png",
+      "slots": [
+        {
+          "section": "side",
+          "quantity": 3,
+          "card_id": 633
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Side reduce ataque de monstruo atacante en batalla"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Reactiva, depende de fase de batalla"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Side reduce ataque de monstruo atacante en batalla"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Reactiva, depende de fase de batalla"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Side reduce ataque de monstruo atacante en batalla",
+        "explanation": "Reactiva, depende de fase de batalla"
+      },
+      "role": "Side reduce ataque de monstruo atacante en batalla",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5102&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Máscara de la Debilidad"
+      ]
+    },
+    {
+      "id": "673:CARD:6441",
+      "cid": 6441,
+      "name": "Arte Espiritual del Fuego - Kurenai",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/6441.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/6441.png",
+      "slots": [
+        {
+          "section": "side",
+          "quantity": 1,
+          "card_id": 635
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Side inflige daño por sacrificio FIRE"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Debes tener FIRE sacrificable; no es negate"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Side inflige daño por sacrificio FIRE"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Debes tener FIRE sacrificable; no es negate"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Side inflige daño por sacrificio FIRE",
+        "explanation": "Debes tener FIRE sacrificable; no es negate"
+      },
+      "role": "Side inflige daño por sacrificio FIRE",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=6441&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Arte Espiritual del Fuego - Kurenai"
+      ]
+    },
+    {
+      "id": "673:CARD:7934",
+      "cid": 7934,
+      "name": "Emparejamiento de Atributos",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/7934.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/7934.png",
+      "slots": [
+        {
+          "section": "side",
+          "quantity": 1,
+          "card_id": 636
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Trampa Continua, Gozen Match (CID oficial 7934): cada jugador solo puede controlar monstruos de un Atributo."
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Bloqueo simétrico: afecta también a nuestros monstruos de FUEGO; verificar el Atributo del campo antes de activarla."
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Trampa Continua, Gozen Match (CID oficial 7934): cada jugador solo puede controlar monstruos de un Atributo."
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Bloqueo simétrico: afecta también a nuestros monstruos de FUEGO; verificar el Atributo del campo antes de activarla."
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Trampa Continua, Gozen Match (CID oficial 7934): cada jugador solo puede controlar monstruos de un Atributo.",
+        "explanation": "Bloqueo simétrico: afecta también a nuestros monstruos de FUEGO; verificar el Atributo del campo antes de activarla."
+      },
+      "role": "Trampa Continua, Gozen Match (CID oficial 7934): cada jugador solo puede controlar monstruos de un Atributo.",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7934&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Emparejamiento de Atributos"
+      ]
+    },
+    {
+      "id": "673:CARD:9279",
+      "cid": 9279,
+      "name": "El Bufón y el Pájaro del Candado",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/9279.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/9279.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 608
+        }
+      ],
+      "fields": [],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {},
+      "role": "",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=9279&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "El Bufón y el Pájaro del Candado"
+      ]
+    },
+    {
+      "id": "673:CARD:11243",
+      "cid": 11243,
+      "name": "Artefacto Lancea",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/671/11243.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/671/11243.png",
+      "slots": [
+        {
+          "section": "side",
+          "quantity": 3,
+          "card_id": 629
+        }
+      ],
+      "fields": [],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {},
+      "role": "",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=11243&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Artefacto Lancea"
+      ]
+    },
+    {
+      "id": "673:CARD:12950",
+      "cid": 12950,
+      "name": "Flor de Ceniza & Primavera Feliz",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/12950.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/12950.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 607
+        }
+      ],
+      "fields": [],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {},
+      "role": "",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12950&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Flor de Ceniza & Primavera Feliz"
+      ]
+    },
+    {
+      "id": "673:CARD:13293",
+      "cid": 13293,
+      "name": "Pelea Pareja",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/13293.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/13293.jpg",
+      "slots": [
+        {
+          "section": "side",
+          "quantity": 3,
+          "card_id": 634
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Side remoción masiva boca abajo al final de Battle"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Rival elige qué conserva; desde mano, campo propio vacío"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Side remoción masiva boca abajo al final de Battle"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Rival elige qué conserva; desde mano, campo propio vacío"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Side remoción masiva boca abajo al final de Battle",
+        "explanation": "Rival elige qué conserva; desde mano, campo propio vacío"
+      },
+      "role": "Side remoción masiva boca abajo al final de Battle",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13293&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Pelea Pareja"
+      ]
+    },
+    {
+      "id": "673:CARD:13619",
+      "cid": 13619,
+      "name": "Llamado por la Tumba",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/13619.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/13619.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 616
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Interacción contra monstruo del GY"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "PROHIBIDA en TCG Advanced actual; conservar físicamente"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Interacción contra monstruo del GY"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "PROHIBIDA en TCG Advanced actual; conservar físicamente"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Interacción contra monstruo del GY",
+        "explanation": "PROHIBIDA en TCG Advanced actual; conservar físicamente"
+      },
+      "role": "Interacción contra monstruo del GY",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13619&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Llamado por la Tumba"
+      ]
+    },
+    {
+      "id": "673:CARD:13631",
+      "cid": 13631,
+      "name": "Infinito Temporal",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/13631.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/13631.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 617
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Negar efecto de monstruo en Campo"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Uso desde mano solo con campo propio vacío"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Negar efecto de monstruo en Campo"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Uso desde mano solo con campo propio vacío"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Negar efecto de monstruo en Campo",
+        "explanation": "Uso desde mano solo con campo propio vacío"
+      },
+      "role": "Negar efecto de monstruo en Campo",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13631&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Infinito Temporal"
+      ]
+    },
+    {
+      "id": "673:CARD:13890",
+      "cid": 13890,
+      "name": "Salamangrande Zorro",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13890.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13890.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 602
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Excavación/recursos al invocar y acceso complementario al GY"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No garantiza añadir una carta elegida"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Excavación/recursos al invocar y acceso complementario al GY"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No garantiza añadir una carta elegida"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Excavación/recursos al invocar y acceso complementario al GY",
+        "explanation": "No garantiza añadir una carta elegida"
+      },
+      "role": "Excavación/recursos al invocar y acceso complementario al GY",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13890&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Salamangrande Zorro",
+        "Zorro"
+      ]
+    },
+    {
+      "id": "673:CARD:13891",
+      "cid": 13891,
+      "name": "Salamangrande Halcón",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13891.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13891.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 604
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Recuperar/reciclar carta Salamangrande según condición de GY"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Elegir entre valor inmediato y continuidad"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Recuperar/reciclar carta Salamangrande según condición de GY"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Elegir entre valor inmediato y continuidad"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Recuperar/reciclar carta Salamangrande según condición de GY",
+        "explanation": "Elegir entre valor inmediato y continuidad"
+      },
+      "role": "Recuperar/reciclar carta Salamangrande según condición de GY",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13891&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Salamangrande Halcón",
+        "Halcón"
+      ]
+    },
+    {
+      "id": "673:CARD:13892",
+      "cid": 13892,
+      "name": "Salamangrande Jaque Jaguar",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13892.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13892.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 603
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Recicla Salamangrande del GY al Deck para revivir a zona apuntada por Link"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Requiere objetivo en GY y zona señalada"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Recicla Salamangrande del GY al Deck para revivir a zona apuntada por Link"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Requiere objetivo en GY y zona señalada"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Recicla Salamangrande del GY al Deck para revivir a zona apuntada por Link",
+        "explanation": "Requiere objetivo en GY y zona señalada"
+      },
+      "role": "Recicla Salamangrande del GY al Deck para revivir a zona apuntada por Link",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13892&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Salamangrande Jaque Jaguar",
+        "Jaque Jaguar"
+      ]
+    },
+    {
+      "id": "673:CARD:13938",
+      "cid": 13938,
+      "name": "Santuario Salamangrande",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13938.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13938.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 614
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Link «reencarnado»: usar Link Salamangrande homónimo como todo el material"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Solo 1 copia real; requiere Link homónimo del Extra"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Link «reencarnado»: usar Link Salamangrande homónimo como todo el material"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Solo 1 copia real; requiere Link homónimo del Extra"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Link «reencarnado»: usar Link Salamangrande homónimo como todo el material",
+        "explanation": "Solo 1 copia real; requiere Link homónimo del Extra"
+      },
+      "role": "Link «reencarnado»: usar Link Salamangrande homónimo como todo el material",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13938&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Santuario Salamangrande",
+        "Santuario"
+      ]
+    },
+    {
+      "id": "673:CARD:13940",
+      "cid": 13940,
+      "name": "Voluntad de la Salamangrande",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13940.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13940.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 615
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Revivir monstruo Salamangrande desde GY según sus modos"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Condición del modo elegido; no la confundir con Fusión"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Revivir monstruo Salamangrande desde GY según sus modos"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Condición del modo elegido; no la confundir con Fusión"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Revivir monstruo Salamangrande desde GY según sus modos",
+        "explanation": "Condición del modo elegido; no la confundir con Fusión"
+      },
+      "role": "Revivir monstruo Salamangrande desde GY según sus modos",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13940&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Voluntad de la Salamangrande"
+      ]
+    },
+    {
+      "id": "673:CARD:14111",
+      "cid": 14111,
+      "name": "Salamangrande Quimera Violeta",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14111.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14111.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 628
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "1 Salamangrande + 1 monstruo Link + efecto de fusión disponible"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Remate de batalla condicionado; no se fusiona desde Deck"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "1 Salamangrande + 1 monstruo Link + efecto de fusión disponible"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Remate de batalla condicionado; no se fusiona desde Deck"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "1 Salamangrande + 1 monstruo Link + efecto de fusión disponible",
+        "explanation": "Remate de batalla condicionado; no se fusiona desde Deck"
+      },
+      "role": "1 Salamangrande + 1 monstruo Link + efecto de fusión disponible",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14111&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Salamangrande Quimera Violeta",
+        "Quimera Violeta"
+      ]
+    },
+    {
+      "id": "673:CARD:14125",
+      "cid": 14125,
+      "name": "Salamangrande Lobo de la Luz Solar",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14125.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14125.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 2,
+          "card_id": 620
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Link2 con recuperación de FUEGO del GY al invocar a zona apuntada"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Reencarnación y posición de flechas son relevantes"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Link2 con recuperación de FUEGO del GY al invocar a zona apuntada"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Reencarnación y posición de flechas son relevantes"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Link2 con recuperación de FUEGO del GY al invocar a zona apuntada",
+        "explanation": "Reencarnación y posición de flechas son relevantes"
+      },
+      "role": "Link2 con recuperación de FUEGO del GY al invocar a zona apuntada",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14125&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Salamangrande Lobo de la Luz Solar",
+        "Lobo de la Luz Solar"
+      ]
+    },
+    {
+      "id": "673:CARD:14133",
+      "cid": 14133,
+      "name": "Hiita la Encantadora del Fuego, Encendida",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14133.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14133.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 626
+        }
+      ],
+      "fields": [],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {},
+      "role": "",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14133&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Hiita la Encantadora del Fuego, Encendida"
+      ]
+    },
+    {
+      "id": "673:CARD:14239",
+      "cid": 14239,
+      "name": "Salamangrande Topo",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14239.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14239.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 605
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Extensión en campo según existan Link y recursos"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Carta situacional; no sumar por inercia"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Extensión en campo según existan Link y recursos"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Carta situacional; no sumar por inercia"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Extensión en campo según existan Link y recursos",
+        "explanation": "Carta situacional; no sumar por inercia"
+      },
+      "role": "Extensión en campo según existan Link y recursos",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14239&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Salamangrande Topo",
+        "Topo"
+      ]
+    },
+    {
+      "id": "673:CARD:14240",
+      "cid": 14240,
+      "name": "Salamangrande Gacela",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14240.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14240.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 598
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Invoca desde mano cuando otro Salamangrande llega a GY; al invocar manda 1 Salamangrande del Deck a GY"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No puedes enviar Gacela por su propio efecto; no repetir el efecto en ese turno"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Invoca desde mano cuando otro Salamangrande llega a GY; al invocar manda 1 Salamangrande del Deck a GY"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No puedes enviar Gacela por su propio efecto; no repetir el efecto en ese turno"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Invoca desde mano cuando otro Salamangrande llega a GY; al invocar manda 1 Salamangrande del Deck a GY",
+        "explanation": "No puedes enviar Gacela por su propio efecto; no repetir el efecto en ese turno"
+      },
+      "role": "Invoca desde mano cuando otro Salamangrande llega a GY; al invocar manda 1 Salamangrande del Deck a GY",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14240&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Salamangrande Gacela",
+        "Gacela",
+        "Gacela"
+      ]
+    },
+    {
+      "id": "673:CARD:14241",
+      "cid": 14241,
+      "name": "Salamangrande Rotante",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14241.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14241.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 600
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Descarte propio y resurrección desde GY si controlas otro Salamangrande"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Si revive por sí mismo, desterrarlo cuando abandone campo"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Descarte propio y resurrección desde GY si controlas otro Salamangrande"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Si revive por sí mismo, desterrarlo cuando abandone campo"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Descarte propio y resurrección desde GY si controlas otro Salamangrande",
+        "explanation": "Si revive por sí mismo, desterrarlo cuando abandone campo"
+      },
+      "role": "Descarte propio y resurrección desde GY si controlas otro Salamangrande",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14241&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Salamangrande Rotante",
+        "Rotante",
+        "Rotante"
+      ]
+    },
+    {
+      "id": "673:CARD:14244",
+      "cid": 14244,
+      "name": "Círculo Salamangrande",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14244.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14244.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 611
+        }
+      ],
+      "fields": [],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {},
+      "role": "",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14244&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Círculo Salamangrande"
+      ]
+    },
+    {
+      "id": "673:CARD:14247",
+      "cid": 14247,
+      "name": "Rugido Salamangrande",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14247.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14247.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 618
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Negar activación rival si controlas Link Salamangrande"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No está automáticamente buscada por el combo Gacela→Rotante"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Negar activación rival si controlas Link Salamangrande"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "No está automáticamente buscada por el combo Gacela→Rotante"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Negar activación rival si controlas Link Salamangrande",
+        "explanation": "No está automáticamente buscada por el combo Gacela→Rotante"
+      },
+      "role": "Negar activación rival si controlas Link Salamangrande",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14247&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Rugido Salamangrande"
+      ]
+    },
+    {
+      "id": "673:CARD:14248",
+      "cid": 14248,
+      "name": "Salamangrande Espejismetal",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14248.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14248.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 623
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Xyz Rango3 para extender desde Deck"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Deben existir dos Nivel3 y aplican sus límites posteriores"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Xyz Rango3 para extender desde Deck"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Deben existir dos Nivel3 y aplican sus límites posteriores"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Xyz Rango3 para extender desde Deck",
+        "explanation": "Deben existir dos Nivel3 y aplican sus límites posteriores"
+      },
+      "role": "Xyz Rango3 para extender desde Deck",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14248&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Salamangrande Espejismetal",
+        "Espejismetal",
+        "Espejismetal"
+      ]
+    },
+    {
+      "id": "673:CARD:14249",
+      "cid": 14249,
+      "name": "Salamangrande Lincefogata",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14249.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14249.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 3,
+          "card_id": 619
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "1 Cyberse Level4 o menor"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Busca Santuario y protege Salamangrande desde GY"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "1 Cyberse Level4 o menor"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Busca Santuario y protege Salamangrande desde GY"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "1 Cyberse Level4 o menor",
+        "explanation": "Busca Santuario y protege Salamangrande desde GY"
+      },
+      "role": "1 Cyberse Level4 o menor",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14249&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Salamangrande Lincefogata",
+        "Lincefogata"
+      ]
+    },
+    {
+      "id": "673:CARD:14301",
+      "cid": 14301,
+      "name": "Cinet-Minado",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14301.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14301.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 612
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Descartar para buscar Cyberse Nivel4 o menor"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Coste: descartar antes de resolución; Ash puede negar búsqueda"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Descartar para buscar Cyberse Nivel4 o menor"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Coste: descartar antes de resolución; Ash puede negar búsqueda"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Descartar para buscar Cyberse Nivel4 o menor",
+        "explanation": "Coste: descartar antes de resolución; Ash puede negar búsqueda"
+      },
+      "role": "Descartar para buscar Cyberse Nivel4 o menor",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14301&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Cinet-Minado"
+      ]
+    },
+    {
+      "id": "673:CARD:14666",
+      "cid": 14666,
+      "name": "Salamangrande Piro Fénix",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14666.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14666.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 2,
+          "card_id": 621
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Link4 mediante 2+ monstruos de efecto FIRE (revisar texto oficial)"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Limpieza de campo rival tras invocación usando Piro Fénix homónimo"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Link4 mediante 2+ monstruos de efecto FIRE (revisar texto oficial)"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Limpieza de campo rival tras invocación usando Piro Fénix homónimo"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Link4 mediante 2+ monstruos de efecto FIRE (revisar texto oficial)",
+        "explanation": "Limpieza de campo rival tras invocación usando Piro Fénix homónimo"
+      },
+      "role": "Link4 mediante 2+ monstruos de efecto FIRE (revisar texto oficial)",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14666&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Salamangrande Piro Fénix",
+        "Piro Fénix"
+      ]
+    },
+    {
+      "id": "673:CARD:14742",
+      "cid": 14742,
+      "name": "Gobernante Oscuro No Más",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/14742.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/660/14742.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 613
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Neutralizar monstruos rivales para remontar"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "El rival no recibe daño ese turno"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Neutralizar monstruos rivales para remontar"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "El rival no recibe daño ese turno"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Neutralizar monstruos rivales para remontar",
+        "explanation": "El rival no recibe daño ese turno"
+      },
+      "role": "Neutralizar monstruos rivales para remontar",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14742&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Gobernante Oscuro No Más"
+      ]
+    },
+    {
+      "id": "673:CARD:14855",
+      "cid": 14855,
+      "name": "Fénix de Fuego @Ignister",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14855.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14855.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 625
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Requisitos Link3 propios del texto"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Presión lateral; no es carta homónima Salamangrande"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Requisitos Link3 propios del texto"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Presión lateral; no es carta homónima Salamangrande"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Requisitos Link3 propios del texto",
+        "explanation": "Presión lateral; no es carta homónima Salamangrande"
+      },
+      "role": "Requisitos Link3 propios del texto",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14855&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Fénix de Fuego @Ignister"
+      ]
+    },
+    {
+      "id": "673:CARD:14876",
+      "cid": 14876,
+      "name": "Tormenta de Relámpagos",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/14876.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/14876.jpg",
+      "slots": [
+        {
+          "section": "side",
+          "quantity": 2,
+          "card_id": 631
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Side rompe monstruos ATK o M/T boca arriba según modo"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Condición de no controlar cartas boca arriba y restricción propia"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Side rompe monstruos ATK o M/T boca arriba según modo"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Condición de no controlar cartas boca arriba y restricción propia"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Side rompe monstruos ATK o M/T boca arriba según modo",
+        "explanation": "Condición de no controlar cartas boca arriba y restricción propia"
+      },
+      "role": "Side rompe monstruos ATK o M/T boca arriba según modo",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14876&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Tormenta de Relámpagos"
+      ]
+    },
+    {
+      "id": "673:CARD:15033",
+      "cid": 15033,
+      "name": "Mago Proxy F",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/15033.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/15033.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 627
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "2 monstruos de efecto"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Puede fusionar Quimera Violeta con 1 Salamangrande + 1 Link aún en Campo"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "2 monstruos de efecto"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Puede fusionar Quimera Violeta con 1 Salamangrande + 1 Link aún en Campo"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "2 monstruos de efecto",
+        "explanation": "Puede fusionar Quimera Violeta con 1 Salamangrande + 1 Link aún en Campo"
+      },
+      "role": "2 monstruos de efecto",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15033&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Mago Proxy F",
+        "Mago Proxy F"
+      ]
+    },
+    {
+      "id": "673:CARD:15406",
+      "cid": 15406,
+      "name": "Despertar del Poseído - Inari de Fuego Superior",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/15406.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/15406.png",
+      "slots": [
+        {
+          "section": "side",
+          "quantity": 1,
+          "card_id": 630
+        }
+      ],
+      "fields": [],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {},
+      "role": "",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15406&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Despertar del Poseído - Inari de Fuego Superior"
+      ]
+    },
+    {
+      "id": "673:CARD:18813",
+      "cid": 18813,
+      "name": "Hiita la Canalizadora del Fuego",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18813.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18813.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 606
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Herramienta de mano FIRE; acceso a un FIRE por texto"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Comprobar coste/restricciones antes de buscar"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Herramienta de mano FIRE; acceso a un FIRE por texto"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Comprobar coste/restricciones antes de buscar"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Herramienta de mano FIRE; acceso a un FIRE por texto",
+        "explanation": "Comprobar coste/restricciones antes de buscar"
+      },
+      "role": "Herramienta de mano FIRE; acceso a un FIRE por texto",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18813&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Hiita la Canalizadora del Fuego"
+      ]
+    },
+    {
+      "id": "673:CARD:18908",
+      "cid": 18908,
+      "name": "Salamangrande de Fuego",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18908.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18908.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 599
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Normal/Especial busca Salamangrande Nivel4 o menos excepto sí mismo"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Bloquea Invocaciones Especiales posteriores a FUEGO"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Normal/Especial busca Salamangrande Nivel4 o menos excepto sí mismo"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Bloquea Invocaciones Especiales posteriores a FUEGO"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Normal/Especial busca Salamangrande Nivel4 o menos excepto sí mismo",
+        "explanation": "Bloquea Invocaciones Especiales posteriores a FUEGO"
+      },
+      "role": "Normal/Especial busca Salamangrande Nivel4 o menos excepto sí mismo",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18908&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Salamangrande de Fuego",
+        "de Fuego",
+        "Salamangrande de Fuego"
+      ]
+    },
+    {
+      "id": "673:CARD:18909",
+      "cid": 18909,
+      "name": "Salamangrande Comadreja",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18909.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18909.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 601
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "Recurso de reciclaje y extensión de motor si hay condiciones"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Confirmar posición y condiciones al reutilizar"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "Recurso de reciclaje y extensión de motor si hay condiciones"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Confirmar posición y condiciones al reutilizar"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "Recurso de reciclaje y extensión de motor si hay condiciones",
+        "explanation": "Confirmar posición y condiciones al reutilizar"
+      },
+      "role": "Recurso de reciclaje y extensión de motor si hay condiciones",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18909&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Salamangrande Comadreja",
+        "Comadreja"
+      ]
+    },
+    {
+      "id": "673:CARD:18912",
+      "cid": 18912,
+      "name": "Salamangrande Fénix Furioso",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18912.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18912.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 2,
+          "card_id": 622
+        }
+      ],
+      "fields": [
+        {
+          "title": "Función en este deck",
+          "text": "2+ monstruos de efecto FIRE; Link4"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Reencarnación y búsqueda 1 carta Salamangrande"
+        }
+      ],
+      "practical": [
+        {
+          "title": "Función en este deck",
+          "text": "2+ monstruos de efecto FIRE; Link4"
+        },
+        {
+          "title": "Cómo usarla y qué vigilar",
+          "text": "Reencarnación y búsqueda 1 carta Salamangrande"
+        }
+      ],
+      "operational": {},
+      "learning": {},
+      "functional": {
+        "purpose": "2+ monstruos de efecto FIRE; Link4",
+        "explanation": "Reencarnación y búsqueda 1 carta Salamangrande"
+      },
+      "role": "2+ monstruos de efecto FIRE; Link4",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18912&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Salamangrande Fénix Furioso",
+        "Fénix Furioso",
+        "Fénix Furioso"
+      ]
+    },
+    {
+      "id": "673:CARD:19507",
+      "cid": 19507,
+      "name": "Princesa Prometeica, Otorgadora de Llamas",
+      "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/19507.png",
+      "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/19507.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 624
+        }
+      ],
+      "fields": [],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {},
+      "role": "",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19507&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Princesa Prometeica, Otorgadora de Llamas"
+      ]
+    },
+    {
+      "id": "673:CARD:20206",
+      "cid": 20206,
+      "name": "Purulia Multivadora",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/20206.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20206.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 610
+        }
+      ],
+      "fields": [],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {},
+      "role": "",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20206&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Purulia Multivadora"
+      ]
+    },
+    {
+      "id": "673:CARD:20500",
+      "cid": 20500,
+      "name": "Fuwalos Multivadora",
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/20500.jpg",
+      "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20500.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 609
+        }
+      ],
+      "fields": [],
+      "practical": [],
+      "operational": {},
+      "learning": {},
+      "functional": {},
+      "role": "",
+      "synergy": {
+        "labels": [],
+        "resource": "",
+        "relation": ""
+      },
+      "sources": [
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20500&ope=2&request_locale=es"
+      ],
+      "source_aliases": [
+        "Fuwalos Multivadora"
+      ]
+    }
+  ],
+  "skills": [],
+  "profile": {
+    "Arquetipo": "Salamangreat",
+    "Estilo de juego": "Estilo: deck de FUEGO/Cyberse con encadenamientos de material Link, reciclaje de recursos, invocación «de reencarnación» mediante Santuario Salamangrande y finales con Lobo de la Luz Solar, Fénix Furioso, Piro Fénix y Rugido Salamangrande. La búsqueda/ventaja de Gacela y los Level3 habilitan Espejismetal. No depende de incorporar cartas que no estén en el inventario.",
+    "Cómo se juega": "Estilo: deck de FUEGO/Cyberse con encadenamientos de material Link, reciclaje de recursos, invocación «de reencarnación» mediante Santuario Salamangrande y finales con Lobo de la Luz Solar, Fénix Furioso, Piro Fénix y Rugido Salamangrande. La búsqueda/ventaja de Gacela y los Level3 habilitan Espejismetal. No depende de incorporar cartas que no estén en el inventario.\n\n- Primero: activar motor, obtener Santuario, preparar cartas en GY, establecer Lobo + recurso recurrente o Rugido si se obtiene de manera legal; Fénix Furioso buscará solo tras usarse otro Fénix Furioso como material.\n- Segundo: medir amenazas; Gobernante Oscuro No Más para quitar efectos, Tormenta de Relámpagos/Polvo de Pluma del Side para M/T, Fénix Furioso o Piro Fénix para presión según recursos.\n- Ventaja estructural: múltiples accesos a Santuario (3 Lincefogata), 3 Gacela y 3 de Fuego; hay dos copias de cada Link4 «jefe» para reencarnación.\n- Debilidades: comprometer Normal; handtrap sobre de Fuego/Gacela/Lincefogata; lock de FUEGO; muchas interacciones sin motor; acceso a Quimera Violeta condicionado por Mago Proxy F, pues Fusión de Fuego NO está en el Main. No hacer afirmaciones de OTK sin cálculo."
+  },
+  "summary": "",
+  "engine_maps": [],
+  "routes": [
+    {
+      "id": "673:A09:S-C01",
+      "name": "«Gacela → Espejismetal → Lobo reencarnado», complejidad media",
+      "title": "«Gacela → Espejismetal → Lobo reencarnado», complejidad media",
+      "family": "Desarrollo de la jugada",
+      "purpose": "«Gacela → Espejismetal → Lobo reencarnado», complejidad media",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [
+        {
+          "cid": 13892,
+          "name": "Salamangrande Jaque Jaguar",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13892.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13892.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 13938,
+          "name": "Santuario Salamangrande",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13938.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13938.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 14240,
+          "name": "Salamangrande Gacela",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14240.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14240.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 14241,
+          "name": "Salamangrande Rotante",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14241.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14241.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 14248,
+          "name": "Salamangrande Espejismetal",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14248.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14248.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 14249,
+          "name": "Salamangrande Lincefogata",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14249.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14249.png",
+          "label": "Carta mencionada en el paso"
+        }
+      ],
+      "result": "Salida documentada: segundo Lobo + Jaque Jaguar en zona apuntada; Gacela recuperable del GY; Santuario. No prometemos Rugido, pues no se envió ni buscó. 0 simulaciones.",
+      "opening": "Entrada: Gacela en mano; Rotante y Jaque Jaguar en Deck; Espejismetal, Lincefogata y dos Lobo en Extra; Santuario en Deck. Campo propio vacío. No se presupone monstruo rival.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Normal Gacela. Activa su efecto y envía Rotante del Deck al Cementerio.",
+          "detail": "Normal Gacela. Activa su efecto y envía Rotante del Deck al Cementerio.",
+          "photos": [
+            {
+              "cid": 14240,
+              "name": "Salamangrande Gacela",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14240.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14240.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 14241,
+              "name": "Salamangrande Rotante",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14241.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14241.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Controlas Gacela: activa el efecto de Rotante en GY e Invócalo Especial.",
+          "detail": "Controlas Gacela: activa el efecto de Rotante en GY e Invócalo Especial.",
+          "photos": [
+            {
+              "cid": 14240,
+              "name": "Salamangrande Gacela",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14240.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14240.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 14241,
+              "name": "Salamangrande Rotante",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14241.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14241.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "Superpón Gacela Nivel3 + Rotante Nivel3 para invocar Espejismetal Rango3.",
+          "detail": "Superpón Gacela Nivel3 + Rotante Nivel3 para invocar Espejismetal Rango3.",
+          "photos": [
+            {
+              "cid": 14240,
+              "name": "Salamangrande Gacela",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14240.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14240.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 14241,
+              "name": "Salamangrande Rotante",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14241.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14241.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 14248,
+              "name": "Salamangrande Espejismetal",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14248.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14248.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Desacopla un material (por ejemplo Rotante); Invoca Jaque Jaguar del Deck en Defensa. Desde ahora, este turno solo activa efectos de monstruos FUEGO.",
+          "detail": "Desacopla un material (por ejemplo Rotante); Invoca Jaque Jaguar del Deck en Defensa. Desde ahora, este turno solo activa efectos de monstruos FUEGO.",
+          "photos": [
+            {
+              "cid": 13892,
+              "name": "Salamangrande Jaque Jaguar",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13892.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13892.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 14241,
+              "name": "Salamangrande Rotante",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14241.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14241.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 5,
+          "action": "Usa Jaque Jaguar (Cyberse Nivel4) para Link Invocar Lincefogata; busca Santuario desde Deck si la carta sigue allí y no te niegan.",
+          "detail": "Usa Jaque Jaguar (Cyberse Nivel4) para Link Invocar Lincefogata; busca Santuario desde Deck si la carta sigue allí y no te niegan.",
+          "photos": [
+            {
+              "cid": 13892,
+              "name": "Salamangrande Jaque Jaguar",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13892.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13892.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 13938,
+              "name": "Santuario Salamangrande",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13938.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13938.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 14249,
+              "name": "Salamangrande Lincefogata",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14249.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14249.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 6,
+          "action": "Activa Santuario. Usa Espejismetal + Lincefogata como materiales FUEGO para Link Invocar el primer Lobo de la Luz Solar. Si hubiera un monstruo válido del rival, Espejismetal podría activar su retorno a mano cuando se envía como material; en turno1 vacío no hay ese objetivo.",
+          "detail": "Activa Santuario. Usa Espejismetal + Lincefogata como materiales FUEGO para Link Invocar el primer Lobo de la Luz Solar. Si hubiera un monstruo válido del rival, Espejismetal podría activar su retorno a mano cuando se envía como material; en turno1 vacío no hay ese objetivo.",
+          "photos": [
+            {
+              "cid": 13938,
+              "name": "Santuario Salamangrande",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13938.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13938.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 14125,
+              "name": "Salamangrande Lobo de la Luz Solar",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14125.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14125.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 14248,
+              "name": "Salamangrande Espejismetal",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14248.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14248.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 14249,
+              "name": "Salamangrande Lincefogata",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14249.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14249.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 7,
+          "action": "Usa el Lobo como material completo y Link Invoca el segundo Lobo por Santuario (reencarnación homónima).",
+          "detail": "Usa el Lobo como material completo y Link Invoca el segundo Lobo por Santuario (reencarnación homónima).",
+          "photos": [
+            {
+              "cid": 13938,
+              "name": "Santuario Salamangrande",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13938.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13938.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 8,
+          "action": "En GY, Jaque Jaguar selecciona el primer Lobo del GY, lo devuelve al Extra y se Invoca a una zona a la que apunte el segundo Lobo. Esto puede disparar a Lobo para añadir Gacela de tu GY a mano, si terminó allí y la zona/efecto son correctos.\nSalida documentada: segundo Lobo + Jaque Jaguar en zona apuntada; Gacela recuperable del GY; Santuario. No prometemos Rugido, pues no se envió ni buscó. 0 simulaciones.",
+          "detail": "En GY, Jaque Jaguar selecciona el primer Lobo del GY, lo devuelve al Extra y se Invoca a una zona a la que apunte el segundo Lobo. Esto puede disparar a Lobo para añadir Gacela de tu GY a mano, si terminó allí y la zona/efecto son correctos.\nSalida documentada: segundo Lobo + Jaque Jaguar en zona apuntada; Gacela recuperable del GY; Santuario. No prometemos Rugido, pues no se envió ni buscó. 0 simulaciones.",
+          "photos": [
+            {
+              "cid": 13892,
+              "name": "Salamangrande Jaque Jaguar",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13892.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13892.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 13938,
+              "name": "Santuario Salamangrande",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13938.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13938.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 14240,
+              "name": "Salamangrande Gacela",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14240.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14240.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "**Entrada:** Gacela en mano; Rotante y Jaque Jaguar en Deck; Espejismetal, Lincefogata y dos Lobo en Extra; Santuario en Deck. Campo propio vacío. No se presupone monstruo rival.\n1. **Normal Gacela**. Activa su efecto y envía **Rotante** del Deck al Cementerio.\n2. Controlas Gacela: activa el efecto de **Rotante en GY** e Invócalo Especial.\n3. Superpón **Gacela Nivel3 + Rotante Nivel3** para invocar **Espejismetal Rango3**.\n4. Desacopla un material (por ejemplo Rotante); Invoca **Jaque Jaguar** del Deck en Defensa. Desde ahora, este turno solo activa efectos de monstruos FUEGO.\n5. Usa Jaque Jaguar (Cyberse Nivel4) para Link Invocar **Lincefogata**; busca **Santuario** desde Deck si la carta sigue allí y no te niegan.\n6. Activa Santuario. Usa **Espejismetal + Lincefogata** como materiales FUEGO para Link Invocar el primer **Lobo de la Luz Solar**. Si hubiera un monstruo válido del rival, Espejismetal podría activar su retorno a mano cuando se envía como material; en turno1 vacío no hay ese objetivo.\n7. Usa el **Lobo** como material completo y Link Invoca el **segundo Lobo** por Santuario (reencarnación homónima).\n8. En GY, Jaque Jaguar selecciona el **primer Lobo** del GY, lo devuelve al Extra y se Invoca a una zona a la que apunte el segundo Lobo. Esto puede disparar a Lobo para añadir **Gacela** de tu GY a mano, si terminó allí y la zona/efecto son correctos.\n**Salida documentada:** segundo Lobo + Jaque Jaguar en zona apuntada; Gacela recuperable del GY; Santuario. **No prometemos Rugido**, pues no se envió ni buscó. **0 simulaciones**.\n\n",
+      "initial_details": "Entrada: Gacela en mano; Rotante y Jaque Jaguar en Deck; Espejismetal, Lincefogata y dos Lobo en Extra; Santuario en Deck. Campo propio vacío. No se presupone monstruo rival.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": [],
+      "technical": "Entrada: Gacela en mano; Rotante y Jaque Jaguar en Deck; Espejismetal, Lincefogata y dos Lobo en Extra; Santuario en Deck. Campo propio vacío. No se presupone monstruo rival.\n1. Normal Gacela. Activa su efecto y envía Rotante del Deck al Cementerio.\n2. Controlas Gacela: activa el efecto de Rotante en GY e Invócalo Especial.\n3. Superpón Gacela Nivel3 + Rotante Nivel3 para invocar Espejismetal Rango3.\n4. Desacopla un material (por ejemplo Rotante); Invoca Jaque Jaguar del Deck en Defensa. Desde ahora, este turno solo activa efectos de monstruos FUEGO.\n5. Usa Jaque Jaguar (Cyberse Nivel4) para Link Invocar Lincefogata; busca Santuario desde Deck si la carta sigue allí y no te niegan.\n6. Activa Santuario. Usa Espejismetal + Lincefogata como materiales FUEGO para Link Invocar el primer Lobo de la Luz Solar. Si hubiera un monstruo válido del rival, Espejismetal podría activar su retorno a mano cuando se envía como material; en turno1 vacío no hay ese objetivo.\n7. Usa el Lobo como material completo y Link Invoca el segundo Lobo por Santuario (reencarnación homónima).\n8. En GY, Jaque Jaguar selecciona el primer Lobo del GY, lo devuelve al Extra y se Invoca a una zona a la que apunte el segundo Lobo. Esto puede disparar a Lobo para añadir Gacela de tu GY a mano, si terminó allí y la zona/efecto son correctos.\nSalida documentada: segundo Lobo + Jaque Jaguar en zona apuntada; Gacela recuperable del GY; Santuario. No prometemos Rugido, pues no se envió ni buscó. 0 simulaciones.\n\n- S-V01 — Ash a Gacela: si se niega el envío desde Deck, no hay Rotante en GY por esa línea; con Rotante ya en mano u otro recurso podría reconstruirse, pero no se inventa.\n- S-V02 — Santuario removido: aun si los Link se invocan, no se usa un solo Link como material entero de su homónimo sin la habilitación válida. La búsqueda del segundo Fénix Furioso no está garantizada.\n- S-V03 — Sin materiales Xyz: si Gacela y Rotante no están ambos Nivel3 disponibles en Campo, Espejismetal es ilegal. La mano sin Rotante/segundo Level3 debe pasar a plan Link1 / defensa.\n\nCobertura honesta: 5 rutas documentales (C04 y C05 condicionales) + 3 variantes, 0/8 simuladas. Los cinco combo títulos llevan propósito, manos, pasos y resultados para la guía visual."
+    },
+    {
+      "id": "673:A09:S-C02",
+      "name": "«de Fuego → búsqueda Gacela → Espejismetal», complejidad media",
+      "title": "«de Fuego → búsqueda Gacela → Espejismetal», complejidad media",
+      "family": "Desarrollo de la jugada",
+      "purpose": "«de Fuego → búsqueda Gacela → Espejismetal», complejidad media",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [
+        {
+          "cid": 14240,
+          "name": "Salamangrande Gacela",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14240.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14240.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 14241,
+          "name": "Salamangrande Rotante",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14241.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14241.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 14248,
+          "name": "Salamangrande Espejismetal",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14248.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14248.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 14249,
+          "name": "Salamangrande Lincefogata",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14249.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14249.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 18908,
+          "name": "Salamangrande de Fuego",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18908.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18908.png",
+          "label": "Carta mencionada en el paso"
+        }
+      ],
+      "result": "Salida: Link1 y Rank3, con bloqueo FIRE. No se fuerza Link4 sin suficientes recursos adicionales.",
+      "opening": "Entrada: Salamangrande de Fuego en mano; Gacela y Rotante disponibles en Deck; Lincefogata y Espejismetal en Extra.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Normal de Fuego, activa y busca Gacela Nivel3 del Deck (suponiendo que aún esté ahí).",
+          "detail": "Normal de Fuego, activa y busca Gacela Nivel3 del Deck (suponiendo que aún esté ahí).",
+          "photos": [
+            {
+              "cid": 14240,
+              "name": "Salamangrande Gacela",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14240.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14240.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 18908,
+              "name": "Salamangrande de Fuego",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18908.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18908.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "En resto del turno solo podrás Invocar Especial FUEGO.",
+          "detail": "En resto del turno solo podrás Invocar Especial FUEGO.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "Usa de Fuego para Link Invocar Lincefogata; se ha enviado otro Salamangrande al GY.",
+          "detail": "Usa de Fuego para Link Invocar Lincefogata; se ha enviado otro Salamangrande al GY.",
+          "photos": [
+            {
+              "cid": 14249,
+              "name": "Salamangrande Lincefogata",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14249.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14249.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 18908,
+              "name": "Salamangrande de Fuego",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18908.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18908.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Activa el efecto de Gacela en mano en ventana legal para Invocarla Especial. En cadena/tras resolución, Lincefogata puede buscar Santuario si no fue negado.",
+          "detail": "Activa el efecto de Gacela en mano en ventana legal para Invocarla Especial. En cadena/tras resolución, Lincefogata puede buscar Santuario si no fue negado.",
+          "photos": [
+            {
+              "cid": 13938,
+              "name": "Santuario Salamangrande",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13938.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13938.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 14240,
+              "name": "Salamangrande Gacela",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14240.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14240.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 14249,
+              "name": "Salamangrande Lincefogata",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14249.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14249.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 5,
+          "action": "Con Gacela invocada, envía Rotante del Deck a GY; revívelo porque controlas Gacela.",
+          "detail": "Con Gacela invocada, envía Rotante del Deck a GY; revívelo porque controlas Gacela.",
+          "photos": [
+            {
+              "cid": 14240,
+              "name": "Salamangrande Gacela",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14240.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14240.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 14241,
+              "name": "Salamangrande Rotante",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14241.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14241.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 6,
+          "action": "Invoca Espejismetal Rango3 usando los dos Nivel3; ahora tienes Balelynx y Espejismetal. Decide si inviertes la Xyz para extender o conservas recursos.\nSalida: Link1 y Rank3, con bloqueo FIRE. No se fuerza Link4 sin suficientes recursos adicionales.",
+          "detail": "Invoca Espejismetal Rango3 usando los dos Nivel3; ahora tienes Balelynx y Espejismetal. Decide si inviertes la Xyz para extender o conservas recursos.\nSalida: Link1 y Rank3, con bloqueo FIRE. No se fuerza Link4 sin suficientes recursos adicionales.",
+          "photos": [
+            {
+              "cid": 14248,
+              "name": "Salamangrande Espejismetal",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14248.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14248.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "**Entrada:** Salamangrande de Fuego en mano; Gacela y Rotante disponibles en Deck; Lincefogata y Espejismetal en Extra.\n1. **Normal de Fuego**, activa y busca **Gacela** Nivel3 del Deck (suponiendo que aún esté ahí).\n2. En resto del turno solo podrás Invocar Especial **FUEGO**.\n3. Usa **de Fuego** para Link Invocar **Lincefogata**; se ha enviado otro Salamangrande al GY.\n4. Activa el efecto de **Gacela en mano** en ventana legal para Invocarla Especial. En cadena/tras resolución, Lincefogata puede buscar Santuario si no fue negado.\n5. Con Gacela invocada, envía **Rotante** del Deck a GY; revívelo porque controlas Gacela.\n6. Invoca **Espejismetal Rango3** usando los dos Nivel3; ahora tienes Balelynx y Espejismetal. Decide si inviertes la Xyz para extender o conservas recursos.\n**Salida:** Link1 y Rank3, con bloqueo FIRE. No se fuerza Link4 sin suficientes recursos adicionales.\n\n",
+      "initial_details": "Entrada: Salamangrande de Fuego en mano; Gacela y Rotante disponibles en Deck; Lincefogata y Espejismetal en Extra.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": [],
+      "technical": "Entrada: Salamangrande de Fuego en mano; Gacela y Rotante disponibles en Deck; Lincefogata y Espejismetal en Extra.\n1. Normal de Fuego, activa y busca Gacela Nivel3 del Deck (suponiendo que aún esté ahí).\n2. En resto del turno solo podrás Invocar Especial FUEGO.\n3. Usa de Fuego para Link Invocar Lincefogata; se ha enviado otro Salamangrande al GY.\n4. Activa el efecto de Gacela en mano en ventana legal para Invocarla Especial. En cadena/tras resolución, Lincefogata puede buscar Santuario si no fue negado.\n5. Con Gacela invocada, envía Rotante del Deck a GY; revívelo porque controlas Gacela.\n6. Invoca Espejismetal Rango3 usando los dos Nivel3; ahora tienes Balelynx y Espejismetal. Decide si inviertes la Xyz para extender o conservas recursos.\nSalida: Link1 y Rank3, con bloqueo FIRE. No se fuerza Link4 sin suficientes recursos adicionales.\n\n- S-V01 — Ash a Gacela: si se niega el envío desde Deck, no hay Rotante en GY por esa línea; con Rotante ya en mano u otro recurso podría reconstruirse, pero no se inventa.\n- S-V02 — Santuario removido: aun si los Link se invocan, no se usa un solo Link como material entero de su homónimo sin la habilitación válida. La búsqueda del segundo Fénix Furioso no está garantizada.\n- S-V03 — Sin materiales Xyz: si Gacela y Rotante no están ambos Nivel3 disponibles en Campo, Espejismetal es ilegal. La mano sin Rotante/segundo Level3 debe pasar a plan Link1 / defensa.\n\nCobertura honesta: 5 rutas documentales (C04 y C05 condicionales) + 3 variantes, 0/8 simuladas. Los cinco combo títulos llevan propósito, manos, pasos y resultados para la guía visual."
+    },
+    {
+      "id": "673:A09:S-C03",
+      "name": "«Jaque Jaguar devuelve recurso y reactiva Lobo», complejidad media",
+      "title": "«Jaque Jaguar devuelve recurso y reactiva Lobo», complejidad media",
+      "family": "Desarrollo de la jugada",
+      "purpose": "«Jaque Jaguar devuelve recurso y reactiva Lobo», complejidad media",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [
+        {
+          "cid": 13892,
+          "name": "Salamangrande Jaque Jaguar",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13892.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13892.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 14125,
+          "name": "Salamangrande Lobo de la Luz Solar",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14125.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14125.png",
+          "label": "Carta mencionada en el paso"
+        }
+      ],
+      "result": "Salida: reciclaje y ventaja incremental. Si la flecha no apunta zona libre, la ruta no está disponible.",
+      "opening": "Entrada: un Lobo de la Luz Solar en Campo con flecha hacia una zona libre; Jaque Jaguar en GY; otro monstruo Salamangrande en GY que sea objetivo legal (por ejemplo un Lobo ya usado); un monstruo FUEGO recuperable en GY; efecto de Jaque sin usar.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Selecciona con Jaque Jaguar en GY un monstruo Salamangrande disponible en GY y barájalo al Deck/Extra conforme a tipo.",
+          "detail": "Selecciona con Jaque Jaguar en GY un monstruo Salamangrande disponible en GY y barájalo al Deck/Extra conforme a tipo.",
+          "photos": [
+            {
+              "cid": 13892,
+              "name": "Salamangrande Jaque Jaguar",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13892.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13892.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Invoca a Jaque Jaguar del GY a una zona que apunte Lobo.",
+          "detail": "Invoca a Jaque Jaguar del GY a una zona que apunte Lobo.",
+          "photos": [
+            {
+              "cid": 13892,
+              "name": "Salamangrande Jaque Jaguar",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13892.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13892.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "Si el efecto de Lobo está disponible y ocurrió invocación a su zona, selecciona y añade un monstruo FUEGO del GY a mano.",
+          "detail": "Si el efecto de Lobo está disponible y ocurrió invocación a su zona, selecciona y añade un monstruo FUEGO del GY a mano.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Mantén Jaque como material potencial del siguiente Link, si su estado lo permite.\nSalida: reciclaje y ventaja incremental. Si la flecha no apunta zona libre, la ruta no está disponible.",
+          "detail": "Mantén Jaque como material potencial del siguiente Link, si su estado lo permite.\nSalida: reciclaje y ventaja incremental. Si la flecha no apunta zona libre, la ruta no está disponible.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "**Entrada:** un Lobo de la Luz Solar en Campo con flecha hacia una zona libre; Jaque Jaguar en GY; otro monstruo Salamangrande en GY que sea objetivo legal (por ejemplo un Lobo ya usado); un monstruo FUEGO recuperable en GY; efecto de Jaque sin usar.\n1. Selecciona con **Jaque Jaguar en GY** un monstruo Salamangrande disponible en GY y barájalo al Deck/Extra conforme a tipo.\n2. Invoca a Jaque Jaguar del GY a una **zona que apunte Lobo**.\n3. Si el efecto de Lobo está disponible y ocurrió invocación a su zona, selecciona y añade un monstruo FUEGO del GY a mano.\n4. Mantén Jaque como material potencial del siguiente Link, si su estado lo permite.\n**Salida:** reciclaje y ventaja incremental. Si la flecha no apunta zona libre, la ruta no está disponible.\n\n",
+      "initial_details": "Entrada: un Lobo de la Luz Solar en Campo con flecha hacia una zona libre; Jaque Jaguar en GY; otro monstruo Salamangrande en GY que sea objetivo legal (por ejemplo un Lobo ya usado); un monstruo FUEGO recuperable en GY; efecto de Jaque sin usar.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": [],
+      "technical": "Entrada: un Lobo de la Luz Solar en Campo con flecha hacia una zona libre; Jaque Jaguar en GY; otro monstruo Salamangrande en GY que sea objetivo legal (por ejemplo un Lobo ya usado); un monstruo FUEGO recuperable en GY; efecto de Jaque sin usar.\n1. Selecciona con Jaque Jaguar en GY un monstruo Salamangrande disponible en GY y barájalo al Deck/Extra conforme a tipo.\n2. Invoca a Jaque Jaguar del GY a una zona que apunte Lobo.\n3. Si el efecto de Lobo está disponible y ocurrió invocación a su zona, selecciona y añade un monstruo FUEGO del GY a mano.\n4. Mantén Jaque como material potencial del siguiente Link, si su estado lo permite.\nSalida: reciclaje y ventaja incremental. Si la flecha no apunta zona libre, la ruta no está disponible.\n\n- S-V01 — Ash a Gacela: si se niega el envío desde Deck, no hay Rotante en GY por esa línea; con Rotante ya en mano u otro recurso podría reconstruirse, pero no se inventa.\n- S-V02 — Santuario removido: aun si los Link se invocan, no se usa un solo Link como material entero de su homónimo sin la habilitación válida. La búsqueda del segundo Fénix Furioso no está garantizada.\n- S-V03 — Sin materiales Xyz: si Gacela y Rotante no están ambos Nivel3 disponibles en Campo, Espejismetal es ilegal. La mano sin Rotante/segundo Level3 debe pasar a plan Link1 / defensa.\n\nCobertura honesta: 5 rutas documentales (C04 y C05 condicionales) + 3 variantes, 0/8 simuladas. Los cinco combo títulos llevan propósito, manos, pasos y resultados para la guía visual."
+    },
+    {
+      "id": "673:A09:S-C04",
+      "name": "«Fénix Furioso con búsqueda REAL», complejidad alta y estado PRECONDICIONAL",
+      "title": "«Fénix Furioso con búsqueda REAL», complejidad alta y estado PRECONDICIONAL",
+      "family": "Desarrollo de la jugada",
+      "purpose": "«Fénix Furioso con búsqueda REAL», complejidad alta y estado PRECONDICIONAL",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [
+        {
+          "cid": 13938,
+          "name": "Santuario Salamangrande",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13938.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13938.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 18912,
+          "name": "Salamangrande Fénix Furioso",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18912.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18912.png",
+          "label": "Carta mencionada en el paso"
+        }
+      ],
+      "result": "Salida: Fénix Furioso reencarnado + carta buscada. No es combo de una carta; el primer Link4 debe existir previamente.",
+      "opening": "Entrada: Santuario activo; primer Fénix Furioso ya Link Invocado en Campo legalmente; segunda copia en Extra; efecto de búsqueda no usado; no hay lock que lo impida.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Comprueba que Fénix Furioso en Campo es Link4 y Salamangrande.",
+          "detail": "Comprueba que Fénix Furioso en Campo es Link4 y Salamangrande.",
+          "photos": [
+            {
+              "cid": 18912,
+              "name": "Salamangrande Fénix Furioso",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18912.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18912.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Invoca al segundo Fénix Furioso usando el primero como todo el material mediante Santuario.",
+          "detail": "Invoca al segundo Fénix Furioso usando el primero como todo el material mediante Santuario.",
+          "photos": [
+            {
+              "cid": 13938,
+              "name": "Santuario Salamangrande",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13938.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/13938.png",
+              "label": "Carta mencionada en el paso"
+            },
+            {
+              "cid": 18912,
+              "name": "Salamangrande Fénix Furioso",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18912.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18912.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "La nueva invocación por Link usó un Fénix Furioso como material: activa búsqueda y añade 1 carta Salamangrande válida del Deck.",
+          "detail": "La nueva invocación por Link usó un Fénix Furioso como material: activa búsqueda y añade 1 carta Salamangrande válida del Deck.",
+          "photos": [
+            {
+              "cid": 18912,
+              "name": "Salamangrande Fénix Furioso",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18912.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18912.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Si eliges Rugido del Deck, puede añadirse por el texto de Fénix; colócala si se desea, respetando regla de Trampas.\nSalida: Fénix Furioso reencarnado + carta buscada. No es combo de una carta; el primer Link4 debe existir previamente.",
+          "detail": "Si eliges Rugido del Deck, puede añadirse por el texto de Fénix; colócala si se desea, respetando regla de Trampas.\nSalida: Fénix Furioso reencarnado + carta buscada. No es combo de una carta; el primer Link4 debe existir previamente.",
+          "photos": [
+            {
+              "cid": 18912,
+              "name": "Salamangrande Fénix Furioso",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18912.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18912.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "**Entrada:** Santuario activo; primer **Fénix Furioso** ya Link Invocado en Campo legalmente; **segunda copia** en Extra; efecto de búsqueda no usado; no hay lock que lo impida.\n1. Comprueba que **Fénix Furioso en Campo** es Link4 y Salamangrande.\n2. Invoca al **segundo Fénix Furioso** usando el primero como *todo* el material mediante Santuario.\n3. La nueva invocación por Link usó un **Fénix Furioso** como material: activa búsqueda y añade 1 carta Salamangrande válida del Deck.\n4. Si eliges **Rugido** del Deck, puede añadirse por el texto de Fénix; colócala si se desea, respetando regla de Trampas.\n**Salida:** Fénix Furioso reencarnado + carta buscada. **No es combo de una carta**; el primer Link4 debe existir previamente.\n\n",
+      "initial_details": "Entrada: Santuario activo; primer Fénix Furioso ya Link Invocado en Campo legalmente; segunda copia en Extra; efecto de búsqueda no usado; no hay lock que lo impida.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": [],
+      "technical": "Entrada: Santuario activo; primer Fénix Furioso ya Link Invocado en Campo legalmente; segunda copia en Extra; efecto de búsqueda no usado; no hay lock que lo impida.\n1. Comprueba que Fénix Furioso en Campo es Link4 y Salamangrande.\n2. Invoca al segundo Fénix Furioso usando el primero como todo el material mediante Santuario.\n3. La nueva invocación por Link usó un Fénix Furioso como material: activa búsqueda y añade 1 carta Salamangrande válida del Deck.\n4. Si eliges Rugido del Deck, puede añadirse por el texto de Fénix; colócala si se desea, respetando regla de Trampas.\nSalida: Fénix Furioso reencarnado + carta buscada. No es combo de una carta; el primer Link4 debe existir previamente.\n\n- S-V01 — Ash a Gacela: si se niega el envío desde Deck, no hay Rotante en GY por esa línea; con Rotante ya en mano u otro recurso podría reconstruirse, pero no se inventa.\n- S-V02 — Santuario removido: aun si los Link se invocan, no se usa un solo Link como material entero de su homónimo sin la habilitación válida. La búsqueda del segundo Fénix Furioso no está garantizada.\n- S-V03 — Sin materiales Xyz: si Gacela y Rotante no están ambos Nivel3 disponibles en Campo, Espejismetal es ilegal. La mano sin Rotante/segundo Level3 debe pasar a plan Link1 / defensa.\n\nCobertura honesta: 5 rutas documentales (C04 y C05 condicionales) + 3 variantes, 0/8 simuladas. Los cinco combo títulos llevan propósito, manos, pasos y resultados para la guía visual."
+    },
+    {
+      "id": "673:A09:S-C05",
+      "name": "«Quimera Violeta con el ÚNICO habilitador de Fusión», complejidad alta",
+      "title": "«Quimera Violeta con el ÚNICO habilitador de Fusión», complejidad alta",
+      "family": "Desarrollo de la jugada",
+      "purpose": "«Quimera Violeta con el ÚNICO habilitador de Fusión», complejidad alta",
+      "category": "APERTURA",
+      "board": [],
+      "resources": [],
+      "hand_photos": [
+        {
+          "cid": 14111,
+          "name": "Salamangrande Quimera Violeta",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14111.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14111.png",
+          "label": "Carta mencionada en el paso"
+        },
+        {
+          "cid": 15033,
+          "name": "Mago Proxy F",
+          "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/15033.png",
+          "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/15033.png",
+          "label": "Carta mencionada en el paso"
+        }
+      ],
+      "result": "Salida: Quimera; el efecto adicional de Proxy F solo opera si cumple zona y hay monstruo en mano adecuado. No se utiliza Fusión de Fuego, ausente del Main.",
+      "opening": "Entrada: Mago Proxy F legalmente Link Invocado; 1 monstruo Salamangrande y 1 monstruo Link en tu Campo además de Mago Proxy F, utilizables como materiales; Quimera Violeta en Extra. Si el monstruo Link también es Salamangrande, igualmente sirve.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Revisa que Mago Proxy F siga boca arriba y que sus condiciones de efecto estén disponibles.",
+          "detail": "Revisa que Mago Proxy F siga boca arriba y que sus condiciones de efecto estén disponibles.",
+          "photos": [
+            {
+              "cid": 15033,
+              "name": "Mago Proxy F",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/15033.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/15033.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 2,
+          "action": "Activa su efecto en Main Phase para Invocar por Fusión un monstruo del Extra usando monstruos de tu Campo.",
+          "detail": "Activa su efecto en Main Phase para Invocar por Fusión un monstruo del Extra usando monstruos de tu Campo.",
+          "photos": [],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 3,
+          "action": "Envía 1 Salamangrande y 1 Link del Campo como materiales que exige Quimera Violeta.",
+          "detail": "Envía 1 Salamangrande y 1 Link del Campo como materiales que exige Quimera Violeta.",
+          "photos": [
+            {
+              "cid": 14111,
+              "name": "Salamangrande Quimera Violeta",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14111.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/14111.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        },
+        {
+          "number": 4,
+          "action": "Invoca Quimera en zona legal, idealmente una zona apuntada por Proxy F si deseas considerar su otro efecto de Invocar desde mano monstruo de ATK ≤1000.\nSalida: Quimera; el efecto adicional de Proxy F solo opera si cumple zona y hay monstruo en mano adecuado. No se utiliza Fusión de Fuego, ausente del Main.",
+          "detail": "Invoca Quimera en zona legal, idealmente una zona apuntada por Proxy F si deseas considerar su otro efecto de Invocar desde mano monstruo de ATK ≤1000.\nSalida: Quimera; el efecto adicional de Proxy F solo opera si cumple zona y hay monstruo en mano adecuado. No se utiliza Fusión de Fuego, ausente del Main.",
+          "photos": [
+            {
+              "cid": 18908,
+              "name": "Salamangrande de Fuego",
+              "image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18908.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37-complete/images/673/18908.png",
+              "label": "Carta mencionada en el paso"
+            }
+          ],
+          "requirements": [],
+          "resources": [],
+          "board": []
+        }
+      ],
+      "documentary_source": "**Entrada:** **Mago Proxy F** legalmente Link Invocado; **1 monstruo Salamangrande y 1 monstruo Link en tu Campo** además de Mago Proxy F, utilizables como materiales; Quimera Violeta en Extra. Si el monstruo Link también es Salamangrande, igualmente sirve.\n1. Revisa que Mago Proxy F siga boca arriba y que sus condiciones de efecto estén disponibles.\n2. Activa su efecto en Main Phase para **Invocar por Fusión** un monstruo del Extra usando **monstruos de tu Campo**.\n3. Envía **1 Salamangrande y 1 Link** del Campo como materiales que exige **Quimera Violeta**.\n4. Invoca Quimera en zona legal, idealmente una zona apuntada por Proxy F si deseas considerar su otro efecto de Invocar desde mano monstruo de ATK ≤1000.\n**Salida:** Quimera; el efecto adicional de Proxy F solo opera si cumple zona y hay monstruo en mano adecuado. **No se utiliza Fusión de Fuego**, ausente del Main.\n\n",
+      "initial_details": "Entrada: Mago Proxy F legalmente Link Invocado; 1 monstruo Salamangrande y 1 monstruo Link en tu Campo además de Mago Proxy F, utilizables como materiales; Quimera Violeta en Extra. Si el monstruo Link también es Salamangrande, igualmente sirve.",
+      "editorial_status": "pending",
+      "notice": "Secuencia documental condicionada al estado descrito. No es una simulación de partida.",
+      "sources": [],
+      "technical": "Entrada: Mago Proxy F legalmente Link Invocado; 1 monstruo Salamangrande y 1 monstruo Link en tu Campo además de Mago Proxy F, utilizables como materiales; Quimera Violeta en Extra. Si el monstruo Link también es Salamangrande, igualmente sirve.\n1. Revisa que Mago Proxy F siga boca arriba y que sus condiciones de efecto estén disponibles.\n2. Activa su efecto en Main Phase para Invocar por Fusión un monstruo del Extra usando monstruos de tu Campo.\n3. Envía 1 Salamangrande y 1 Link del Campo como materiales que exige Quimera Violeta.\n4. Invoca Quimera en zona legal, idealmente una zona apuntada por Proxy F si deseas considerar su otro efecto de Invocar desde mano monstruo de ATK ≤1000.\nSalida: Quimera; el efecto adicional de Proxy F solo opera si cumple zona y hay monstruo en mano adecuado. No se utiliza Fusión de Fuego, ausente del Main.\n\n- S-V01 — Ash a Gacela: si se niega el envío desde Deck, no hay Rotante en GY por esa línea; con Rotante ya en mano u otro recurso podría reconstruirse, pero no se inventa.\n- S-V02 — Santuario removido: aun si los Link se invocan, no se usa un solo Link como material entero de su homónimo sin la habilitación válida. La búsqueda del segundo Fénix Furioso no está garantizada.\n- S-V03 — Sin materiales Xyz: si Gacela y Rotante no están ambos Nivel3 disponibles en Campo, Espejismetal es ilegal. La mano sin Rotante/segundo Level3 debe pasar a plan Link1 / defensa.\n\nCobertura honesta: 5 rutas documentales (C04 y C05 condicionales) + 3 variantes, 0/8 simuladas. Los cinco combo títulos llevan propósito, manos, pasos y resultados para la guía visual."
+    }
+  ],
+  "decisions": [],
+  "practice": [],
+  "motor": "",
+  "side_plans": [],
+  "matchup_plans": [],
+  "format_context": {},
+  "improvement_experiments": [],
+  "decision_exercises": [],
+  "rule_scenarios": [],
+  "rule_controls": [],
+  "general_rules": [],
+  "causal_relations": [],
+  "causal_skills": [],
+  "rule_variants": [],
+  "situational_decisions": [],
+  "folder_delivery": {
+    "source_sha256": "972c6c93f3fd7da6768164ee14c7e3df3307c978bbd97357d03e0b91bdbc96de",
+    "reader": "./assets/editorial/20261117-folder-delivery-v37-complete/673-guide.html",
+    "source_file": "torneos_yugioh/context/gpt/01_INFORMACION_PARA_IMPORTAR/decks/DECK_NUEVO_15_SALAMANGRANDE/DECK_NUEVO_15_SALAMANGRANDE_CONTENIDO_CURADO.md"
+  }
+}

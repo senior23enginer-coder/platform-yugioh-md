@@ -1,0 +1,2718 @@
+{
+  "schema": "station-x-curated-v62",
+  "deck_id": 704,
+  "name": "Pyro",
+  "format": "rush_duel",
+  "cards": [
+    {
+      "id": "704:A08:C001",
+      "cid": 15204,
+      "name": "¡Atraviesa!",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 429
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/15204.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Otorga daño de penetración este turno a un monstruo propio boca arriba."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — presión de combate / modificación de estadísticas."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Otorga daño de penetración este turno a un monstruo propio boca arriba."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15204&ope=2"
+      ],
+      "role": "Carta Mágica Normal — presión de combate / modificación de estadísticas.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Carta Mágica Normal — presión de combate / modificación de estadísticas",
+        "relation": "Otorga daño de penetración este turno a un monstruo propio boca arriba",
+        "risk": "Sin requisito de activación",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Otorga daño de penetración este turno a un monstruo propio boca arriba."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Otorga daño de penetración este turno a un monstruo propio boca arriba."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        }
+      ],
+      "operational": {
+        "Acción": "Otorga daño de penetración este turno a un monstruo propio boca arriba.",
+        "Uso en este deck": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.",
+        "Condición y ventana": "Sin requisito de activación.",
+        "Coste y materiales": "Coste o consumo descrito en : comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+      },
+      "learning": {
+        "Para qué sirve": "Carta Mágica Normal — presión de combate / modificación de estadísticas..",
+        "Aplicación concreta registrada": "Otorga daño de penetración este turno a un monstruo propio boca arriba.",
+        "Limitación a respetar": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [
+        "704:A09:ALCHEMY:SALAMANDRA02"
+      ],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": [
+        {
+          "id": "704:A09:ALCHEMY:SALAMANDRA02",
+          "step": 3
+        }
+      ],
+      "construction": [
+        {
+          "zone": "Main",
+          "copies": "1",
+          "label": "INDIRECTA REGISTRADA",
+          "proposal": "Mantener provisional; revisar",
+          "reason": "Carta Mágica Normal — presión de combate / modificación de est; la ruta relacionada"
+        }
+      ]
+    },
+    {
+      "id": "704:A08:C002",
+      "cid": 17285,
+      "name": "Germalewe",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 430
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/17285.png",
+      "fields": [
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "No tiene efecto."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Monstruo Normal; recurso para sacrificar o emplear como material."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17285&ope=2"
+      ],
+      "role": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado.",
+      "synergy": {
+        "function": "Sinergia indirecta de recursos",
+        "resource": "Material o destino del Extra condicionado a los requisitos de invocación",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado",
+        "relation": "Monstruo Normal; recurso para sacrificar o emplear como material. Aportación posible como material, coste o objetivo; verificar consumidor",
+        "risk": "No tiene efecto",
+        "decision": "Conservar si existe consumidor legal"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Monstruo Normal; recurso para sacrificar o emplear como material."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Monstruo Normal; recurso para sacrificar o emplear como material. Aportación posible como material, coste o objetivo; verificar consumidor."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Material o destino del Extra condicionado a los requisitos de invocación."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual."
+        }
+      ],
+      "operational": {
+        "Acción": "Monstruo Normal; recurso para sacrificar o emplear como material.",
+        "Uso en este deck": "Monstruo Normal; recurso para sacrificar o emplear como material. Aportación posible como material, coste o objetivo; verificar consumidor.",
+        "Condición y ventana": "No tiene efecto.",
+        "Coste y materiales": "Material o destino del Extra condicionado a los requisitos de invocación."
+      },
+      "learning": {
+        "Para qué sirve": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado..",
+        "Aplicación concreta registrada": "Monstruo Normal; recurso para sacrificar o emplear como material. Aportación posible como material, coste o objetivo; verificar consumidor.",
+        "Limitación a respetar": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": [],
+      "construction": [
+        {
+          "zone": "Main",
+          "copies": "3",
+          "label": "INDIRECTA REGISTRADA",
+          "proposal": "Mantener provisional; revisar",
+          "reason": "Monstruo Normal — material de Fusión/Sacrificio o presencia de; sin ruta vinculada"
+        }
+      ]
+    },
+    {
+      "id": "704:A08:C003",
+      "cid": 17212,
+      "name": "Orden Secreta",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 431
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/17212.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Invoca un monstruo Normal de Nivel 7 desde mano o Cementerio; le da 700 ATK ese turno y lo protege frente a destrucción por Trampas rivales."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — recurso táctico cuya condición y resultado están descritos en su ficha."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Invoca un monstruo Normal de Nivel 7 desde mano o Cementerio; le da 700 ATK ese turno y lo protege frente a destrucción por Trampas rivales."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "la condición de una Mágica/Trampa y sus blancos deben cumplirse antes de resolver. No confundir esta carta con un monstruo ni usarla como material."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17212&ope=2"
+      ],
+      "role": "Carta Mágica Normal — recurso táctico cuya condición y resultado están descritos en su ficha.",
+      "synergy": {
+        "function": "Sinergia directa descrita",
+        "resource": "Coste o consumo descrito en : la condición de una Mágica/Trampa y sus blancos deben cumplirse antes de resolver. No confundir esta carta con un monstruo…",
+        "labels": [
+          "Sinergia directa"
+        ],
+        "reason": "Carta Mágica Normal — recurso táctico cuya condición y resultado están descritos en su ficha",
+        "relation": "Invoca un monstruo Normal de Nivel 7 desde mano o Cementerio; le da 700 ATK ese turno y lo protege frente a destrucción por Trampas rivales",
+        "risk": "Sin requisito de activación",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Invoca un monstruo Normal de Nivel 7 desde mano o Cementerio; le da 700 ATK ese turno y lo protege frente a destrucción por Trampas rivales."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Invoca un monstruo Normal de Nivel 7 desde mano o Cementerio; le da 700 ATK ese turno y lo protege frente a destrucción por Trampas rivales."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : la condición de una Mágica/Trampa y sus blancos deben cumplirse antes de resolver. No confundir esta carta con un monstruo…."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "la condición de una Mágica/Trampa y sus blancos deben cumplirse antes de resolver. No confundir esta carta con un monstruo ni usarla como material."
+        }
+      ],
+      "operational": {
+        "Acción": "Invoca un monstruo Normal de Nivel 7 desde mano o Cementerio; le da 700 ATK ese turno y lo protege frente a destrucción por Trampas rivales.",
+        "Uso en este deck": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.",
+        "Condición y ventana": "Sin requisito de activación.",
+        "Coste y materiales": "Coste o consumo descrito en : la condición de una Mágica/Trampa y sus blancos deben cumplirse antes de resolver. No confundir esta carta con un monstruo…."
+      },
+      "learning": {
+        "Para qué sirve": "Carta Mágica Normal — recurso táctico cuya condición y resultado están descritos en su ficha..",
+        "Aplicación concreta registrada": "Invoca un monstruo Normal de Nivel 7 desde mano o Cementerio; le da 700 ATK ese turno y lo protege frente a destrucción por Trampas rivales.",
+        "Limitación a respetar": "la condición de una Mágica/Trampa y sus blancos deben cumplirse antes de resolver. No confundir esta carta con un monstruo ni usarla como material.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [
+        "704:A09:ALCHEMY:ARCHER01",
+        "704:A09:ALCHEMY:SALAMANDRA02"
+      ],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": [
+        {
+          "id": "704:A09:ALCHEMY:ARCHER01",
+          "step": 1
+        },
+        {
+          "id": "704:A09:ALCHEMY:SALAMANDRA02",
+          "step": 0
+        }
+      ],
+      "construction": [
+        {
+          "zone": "Main",
+          "copies": "3",
+          "label": "DIRECTA REGISTRADA",
+          "proposal": "Mantener provisional; revisar",
+          "reason": "Carta Mágica Normal — recurso táctico cuya condición y resulta; la ruta relacionada / la ruta relacionada"
+        }
+      ]
+    },
+    {
+      "id": "704:A08:C004",
+      "cid": 19291,
+      "name": "Hiperasistente Ember",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 432
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19291.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Invoca desde la mano un Piro de Nivel 7+; si SP Assistant Archer está en el Cementerio, ese monstruo gana 800 ATK este turno."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — extensor / habilitador de material."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "El rival debe controlar un monstruo; enviar esta carta boca arriba propia al Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Invoca desde la mano un Piro de Nivel 7+; si SP Assistant Archer está en el Cementerio, ese monstruo gana 800 ATK este turno."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19291&ope=2"
+      ],
+      "role": "Monstruo de Efecto — extensor / habilitador de material.",
+      "synergy": {
+        "function": "Sinergia directa descrita",
+        "resource": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución",
+        "labels": [
+          "Sinergia directa"
+        ],
+        "reason": "Monstruo de Efecto — extensor / habilitador de material",
+        "relation": "Invoca desde la mano un Piro de Nivel 7+; si SP Assistant Archer está en el Cementerio, ese monstruo gana 800 ATK este turno",
+        "risk": "El rival debe controlar un monstruo; enviar esta carta boca arriba propia al Cementerio",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Invoca desde la mano un Piro de Nivel 7+; si SP Assistant Archer está en el Cementerio, ese monstruo gana 800 ATK este turno."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Invoca desde la mano un Piro de Nivel 7+; si SP Assistant Archer está en el Cementerio, ese monstruo gana 800 ATK este turno."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        }
+      ],
+      "operational": {
+        "Acción": "Invoca desde la mano un Piro de Nivel 7+; si SP Assistant Archer está en el Cementerio, ese monstruo gana 800 ATK este turno.",
+        "Uso en este deck": "Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales.",
+        "Condición y ventana": "El rival debe controlar un monstruo; enviar esta carta boca arriba propia al Cementerio.",
+        "Coste y materiales": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución."
+      },
+      "learning": {
+        "Para qué sirve": "Monstruo de Efecto — extensor / habilitador de material..",
+        "Aplicación concreta registrada": "Invoca desde la mano un Piro de Nivel 7+; si SP Assistant Archer está en el Cementerio, ese monstruo gana 800 ATK este turno.",
+        "Limitación a respetar": "pagar/cumplir el requisito escrito antes de prometer la resolución.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [
+        "704:A09:ALCHEMY:SALAMANDRA02"
+      ],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": [
+        {
+          "id": "704:A09:ALCHEMY:SALAMANDRA02",
+          "step": 1
+        }
+      ],
+      "construction": [
+        {
+          "zone": "Main",
+          "copies": "3",
+          "label": "DIRECTA REGISTRADA",
+          "proposal": "Mantener provisional; revisar",
+          "reason": "Monstruo de Efecto — extensor / habilitador de material; la ruta relacionada"
+        }
+      ]
+    },
+    {
+      "id": "704:A08:C005",
+      "cid": 18583,
+      "name": "Cromatográfagas",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 433
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/18583.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Monstruo Normal de Nivel 7 y material nombrado de Supergráfagas Archer."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "No tiene efecto."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Monstruo Normal de Nivel 7 y material nombrado de Supergráfagas Archer."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18583&ope=2"
+      ],
+      "role": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Material o destino del Extra condicionado a los requisitos de invocación",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado",
+        "relation": "Monstruo Normal de Nivel 7 y material nombrado de Supergráfagas Archer",
+        "risk": "No tiene efecto",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Monstruo Normal de Nivel 7 y material nombrado de Supergráfagas Archer."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Monstruo Normal de Nivel 7 y material nombrado de Supergráfagas Archer."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Material o destino del Extra condicionado a los requisitos de invocación."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual."
+        }
+      ],
+      "operational": {
+        "Acción": "Monstruo Normal de Nivel 7 y material nombrado de Supergráfagas Archer.",
+        "Uso en este deck": "Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza.",
+        "Condición y ventana": "No tiene efecto.",
+        "Coste y materiales": "Material o destino del Extra condicionado a los requisitos de invocación."
+      },
+      "learning": {
+        "Para qué sirve": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado..",
+        "Aplicación concreta registrada": "Monstruo Normal de Nivel 7 y material nombrado de Supergráfagas Archer.",
+        "Limitación a respetar": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [
+        "704:A09:ALCHEMY:ARCHER01",
+        "704:A09:ALCHEMY:SALAMANDRA02"
+      ],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": [
+        {
+          "id": "704:A09:ALCHEMY:ARCHER01",
+          "step": 0
+        },
+        {
+          "id": "704:A09:ALCHEMY:SALAMANDRA02",
+          "step": 0
+        }
+      ],
+      "construction": [
+        {
+          "zone": "Main",
+          "copies": "3",
+          "label": "INDIRECTA REGISTRADA",
+          "proposal": "Mantener provisional; revisar",
+          "reason": "Monstruo Normal — material de Fusión/Sacrificio o presencia de; la ruta relacionada / la ruta relacionada"
+        }
+      ]
+    },
+    {
+      "id": "704:A08:C006",
+      "cid": 17963,
+      "name": "Superasistente Ember",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 434
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/17963.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Monstruo Normal de Nivel 1, material nombrado de dos Fusiones del Extra."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "No tiene efecto."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Monstruo Normal de Nivel 1, material nombrado de dos Fusiones del Extra."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17963&ope=2"
+      ],
+      "role": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Material o destino del Extra condicionado a los requisitos de invocación",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado",
+        "relation": "Monstruo Normal de Nivel 1, material nombrado de dos Fusiones del Extra",
+        "risk": "No tiene efecto",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Monstruo Normal de Nivel 1, material nombrado de dos Fusiones del Extra."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Monstruo Normal de Nivel 1, material nombrado de dos Fusiones del Extra."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Material o destino del Extra condicionado a los requisitos de invocación."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual."
+        }
+      ],
+      "operational": {
+        "Acción": "Monstruo Normal de Nivel 1, material nombrado de dos Fusiones del Extra.",
+        "Uso en este deck": "Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza.",
+        "Condición y ventana": "No tiene efecto.",
+        "Coste y materiales": "Material o destino del Extra condicionado a los requisitos de invocación."
+      },
+      "learning": {
+        "Para qué sirve": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado..",
+        "Aplicación concreta registrada": "Monstruo Normal de Nivel 1, material nombrado de dos Fusiones del Extra.",
+        "Limitación a respetar": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [
+        "704:A09:ALCHEMY:ARCHER01",
+        "704:A09:ALCHEMY:SALAMANDRA02"
+      ],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": [
+        {
+          "id": "704:A09:ALCHEMY:ARCHER01",
+          "step": 0
+        },
+        {
+          "id": "704:A09:ALCHEMY:SALAMANDRA02",
+          "step": 0
+        }
+      ],
+      "construction": [
+        {
+          "zone": "Main",
+          "copies": "3",
+          "label": "INDIRECTA REGISTRADA",
+          "proposal": "Mantener provisional; revisar",
+          "reason": "Monstruo Normal — material de Fusión/Sacrificio o presencia de; la ruta relacionada / la ruta relacionada"
+        }
+      ]
+    },
+    {
+      "id": "704:A08:C007",
+      "cid": 16934,
+      "name": "Fusión",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 435
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16934.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Usa monstruos boca arriba del Campo propio como materiales, enviándolos al Cementerio para una Invocación por Fusión válida; no usa automáticamente materiales de la mano."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — extensor / habilitador de material."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Usa monstruos boca arriba del Campo propio como materiales, enviándolos al Cementerio para una Invocación por Fusión válida; no usa automáticamente materiales de la mano."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16934&ope=2"
+      ],
+      "role": "Carta Mágica Normal — extensor / habilitador de material.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Material o destino del Extra condicionado a los requisitos de invocación",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Carta Mágica Normal — extensor / habilitador de material",
+        "relation": "Usa monstruos boca arriba del Campo propio como materiales, enviándolos al Cementerio para una Invocación por Fusión válida; no usa automáticamente materiales de la mano",
+        "risk": "Sin requisito de activación",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Usa monstruos boca arriba del Campo propio como materiales, enviándolos al Cementerio para una Invocación por Fusión válida; no usa automáticamente materiales de la mano."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Usa monstruos boca arriba del Campo propio como materiales, enviándolos al Cementerio para una Invocación por Fusión válida; no usa automáticamente materiales de la mano."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Material o destino del Extra condicionado a los requisitos de invocación."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual."
+        }
+      ],
+      "operational": {
+        "Acción": "Usa monstruos boca arriba del Campo propio como materiales, enviándolos al Cementerio para una Invocación por Fusión válida; no usa automáticamente materiales de la mano.",
+        "Uso en este deck": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.",
+        "Condición y ventana": "Sin requisito de activación.",
+        "Coste y materiales": "Material o destino del Extra condicionado a los requisitos de invocación."
+      },
+      "learning": {
+        "Para qué sirve": "Carta Mágica Normal — extensor / habilitador de material..",
+        "Aplicación concreta registrada": "Usa monstruos boca arriba del Campo propio como materiales, enviándolos al Cementerio para una Invocación por Fusión válida; no usa automáticamente materiales de la mano.",
+        "Limitación a respetar": "verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [
+        "704:A09:ALCHEMY:SALAMANDRA02"
+      ],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": [
+        {
+          "id": "704:A09:ALCHEMY:SALAMANDRA02",
+          "step": 4
+        }
+      ],
+      "construction": [
+        {
+          "zone": "Main",
+          "copies": "2",
+          "label": "INDIRECTA REGISTRADA",
+          "proposal": "2 → 3 — Prueba condicional: mejorar la disponibilidad del destino Archer/Salamandra.",
+          "reason": "Carta Mágica Normal — extensor / habilitador de material; la ruta relacionada"
+        }
+      ]
+    },
+    {
+      "id": "704:A08:C008",
+      "cid": 16171,
+      "name": "Fuego Ardiente",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 436
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16171.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Inflige 300 puntos de daño; después puede destruir una Mágica/Trampa rival."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — apoyo situacional sujeto a condición escrita."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Controlar dos o más monstruos Piro boca arriba."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Inflige 300 puntos de daño; después puede destruir una Mágica/Trampa rival."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16171&ope=2"
+      ],
+      "role": "Carta Mágica Normal — apoyo situacional sujeto a condición escrita.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Carta Mágica Normal — apoyo situacional sujeto a condición escrita",
+        "relation": "Inflige 300 puntos de daño; después puede destruir una Mágica/Trampa rival",
+        "risk": "Controlar dos o más monstruos Piro boca arriba",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Inflige 300 puntos de daño; después puede destruir una Mágica/Trampa rival."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Inflige 300 puntos de daño; después puede destruir una Mágica/Trampa rival."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        }
+      ],
+      "operational": {
+        "Acción": "Inflige 300 puntos de daño; después puede destruir una Mágica/Trampa rival.",
+        "Uso en este deck": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.",
+        "Condición y ventana": "Controlar dos o más monstruos Piro boca arriba.",
+        "Coste y materiales": "Coste o consumo descrito en : el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+      },
+      "learning": {
+        "Para qué sirve": "Carta Mágica Normal — apoyo situacional sujeto a condición escrita..",
+        "Aplicación concreta registrada": "Inflige 300 puntos de daño; después puede destruir una Mágica/Trampa rival.",
+        "Limitación a respetar": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": [],
+      "construction": [
+        {
+          "zone": "Main",
+          "copies": "3",
+          "label": "INDIRECTA REGISTRADA",
+          "proposal": "3 → 2 — Prueba condicional: liberar espacio si la tercera copia no habilita una Fusión.",
+          "reason": "Carta Mágica Normal — apoyo situacional sujeto a condición esc; sin ruta vinculada"
+        }
+      ]
+    },
+    {
+      "id": "704:A08:C009",
+      "cid": 17868,
+      "name": "Salamandra Quimicalizada",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 437
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/17868.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Todos los monstruos boca arriba rivales pierden 100 ATK por cada monstruo en el Cementerio rival hasta fin de turno."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — presión de combate / modificación de estadísticas."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Devolver al Deck tres monstruos Piro del propio Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Todos los monstruos boca arriba rivales pierden 100 ATK por cada monstruo en el Cementerio rival hasta fin de turno."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17868&ope=2"
+      ],
+      "role": "Monstruo de Efecto — presión de combate / modificación de estadísticas.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Monstruo de Efecto — presión de combate / modificación de estadísticas",
+        "relation": "Todos los monstruos boca arriba rivales pierden 100 ATK por cada monstruo en el Cementerio rival hasta fin de turno",
+        "risk": "Devolver al Deck tres monstruos Piro del propio Cementerio",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Todos los monstruos boca arriba rivales pierden 100 ATK por cada monstruo en el Cementerio rival hasta fin de turno."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Todos los monstruos boca arriba rivales pierden 100 ATK por cada monstruo en el Cementerio rival hasta fin de turno."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        }
+      ],
+      "operational": {
+        "Acción": "Todos los monstruos boca arriba rivales pierden 100 ATK por cada monstruo en el Cementerio rival hasta fin de turno.",
+        "Uso en este deck": "Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales.",
+        "Condición y ventana": "Devolver al Deck tres monstruos Piro del propio Cementerio.",
+        "Coste y materiales": "Coste o consumo descrito en : pagar/cumplir el requisito escrito antes de prometer la resolución."
+      },
+      "learning": {
+        "Para qué sirve": "Monstruo de Efecto — presión de combate / modificación de estadísticas..",
+        "Aplicación concreta registrada": "Todos los monstruos boca arriba rivales pierden 100 ATK por cada monstruo en el Cementerio rival hasta fin de turno.",
+        "Limitación a respetar": "pagar/cumplir el requisito escrito antes de prometer la resolución.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [
+        "704:A09:ALCHEMY:SALAMANDRA02"
+      ],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": [
+        {
+          "id": "704:A09:ALCHEMY:SALAMANDRA02",
+          "step": 0
+        }
+      ],
+      "construction": [
+        {
+          "zone": "Main",
+          "copies": "2",
+          "label": "INDIRECTA REGISTRADA",
+          "proposal": "Mantener provisional; revisar",
+          "reason": "Monstruo de Efecto — presión de combate / modificación de esta; la ruta relacionada"
+        }
+      ]
+    },
+    {
+      "id": "704:A08:C010",
+      "cid": 18646,
+      "name": "Gelatina Defensiva",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 438
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/18646.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Envía al Cementerio la carta superior de tu Deck y evita todo el daño de batalla ese turno; si tienes 3000 LP o más, recibes además 2000 de daño de efecto."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta de Trampa Normal — defensa ante ataque y prevención de daño de batalla."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Cuando un monstruo rival de Nivel 8 o inferior declara ataque."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Envía al Cementerio la carta superior de tu Deck y evita todo el daño de batalla ese turno; si tienes 3000 LP o más, recibes además 2000 de daño de efecto."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18646&ope=2"
+      ],
+      "role": "Carta de Trampa Normal — defensa ante ataque y prevención de daño de batalla.",
+      "synergy": {
+        "function": "Sinergia directa descrita",
+        "resource": "Envío mencionado en la interacción; no equivale por sí mismo a descarte desde la mano",
+        "labels": [
+          "Sinergia directa"
+        ],
+        "reason": "Carta de Trampa Normal — defensa ante ataque y prevención de daño de batalla",
+        "relation": "Envía al Cementerio la carta superior de tu Deck y evita todo el daño de batalla ese turno; si tienes 3000 LP o más, recibes además 2000 de daño de efecto",
+        "risk": "Cuando un monstruo rival de Nivel 8 o inferior declara ataque",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Envía al Cementerio la carta superior de tu Deck y evita todo el daño de batalla ese turno; si tienes 3000 LP o más, recibes además 2000 de daño de efecto."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Envía al Cementerio la carta superior de tu Deck y evita todo el daño de batalla ese turno; si tienes 3000 LP o más, recibes además 2000 de daño de efecto."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Envío mencionado en la interacción; no equivale por sí mismo a descarte desde la mano."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        }
+      ],
+      "operational": {
+        "Acción": "Envía al Cementerio la carta superior de tu Deck y evita todo el daño de batalla ese turno; si tienes 3000 LP o más, recibes además 2000 de daño de efecto.",
+        "Uso en este deck": "Primero: construir la condición de activación; segundo: verificar que la jugada responde al estado rival actual; tardío: ahorrar el recurso si todavía no se cumple el requisito.",
+        "Condición y ventana": "Cuando un monstruo rival de Nivel 8 o inferior declara ataque.",
+        "Coste y materiales": "Envío mencionado en la interacción; no equivale por sí mismo a descarte desde la mano."
+      },
+      "learning": {
+        "Para qué sirve": "Carta de Trampa Normal — defensa ante ataque y prevención de daño de batalla..",
+        "Aplicación concreta registrada": "Envía al Cementerio la carta superior de tu Deck y evita todo el daño de batalla ese turno; si tienes 3000 LP o más, recibes además 2000 de daño de efecto.",
+        "Limitación a respetar": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": [],
+      "construction": [
+        {
+          "zone": "Main",
+          "copies": "1",
+          "label": "DIRECTA REGISTRADA",
+          "proposal": "Mantener provisional; revisar",
+          "reason": "Carta de Trampa Normal — defensa ante ataque y prevención de d; sin ruta vinculada"
+        }
+      ]
+    },
+    {
+      "id": "704:A08:C011",
+      "cid": 19700,
+      "name": "Amparo del Protector Estelar",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 439
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19700.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "El rival solo puede declarar un ataque en ese turno."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta de Trampa Normal — presión de combate / modificación de estadísticas."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "En el turno rival, cuando roba o Invoca un monstruo; enviar un monstruo propio del Campo al Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "El rival solo puede declarar un ataque en ese turno. Opcionalmente permite tomar control de una Fusión Caballero Mágico rival de Nivel 9+ y ATK original 3000."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19700&ope=2"
+      ],
+      "role": "Carta de Trampa Normal — presión de combate / modificación de estadísticas.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso…",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Carta de Trampa Normal — presión de combate / modificación de estadísticas",
+        "relation": "El rival solo puede declarar un ataque en ese turno",
+        "risk": "En el turno rival, cuando roba o Invoca un monstruo; enviar un monstruo propio del Campo al Cementerio",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "El rival solo puede declarar un ataque en ese turno. Opcionalmente permite tomar control de una Fusión Caballero Mágico rival de Nivel 9+ y ATK original 3000."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "El rival solo puede declarar un ataque en ese turno."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso…."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual. pagar/cumplir el requisito escrito antes de prometer la resolución."
+        }
+      ],
+      "operational": {
+        "Acción": "El rival solo puede declarar un ataque en ese turno. Opcionalmente permite tomar control de una Fusión Caballero Mágico rival de Nivel 9+ y ATK original 3000.",
+        "Uso en este deck": "El rival solo puede declarar un ataque en ese turno.",
+        "Condición y ventana": "En el turno rival, cuando roba o Invoca un monstruo; enviar un monstruo propio del Campo al Cementerio.",
+        "Coste y materiales": "Coste o consumo descrito en : verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso…."
+      },
+      "learning": {
+        "Para qué sirve": "Carta de Trampa Normal — presión de combate / modificación de estadísticas..",
+        "Aplicación concreta registrada": "El rival solo puede declarar un ataque en ese turno.",
+        "Limitación a respetar": "verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual. pagar/cumplir el requisito escrito antes de prometer la resolución.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": [],
+      "construction": [
+        {
+          "zone": "Main",
+          "copies": "2",
+          "label": "INDIRECTA REGISTRADA",
+          "proposal": "Mantener provisional; revisar",
+          "reason": "Carta de Trampa Normal — presión de combate / modificación de ; sin ruta vinculada"
+        }
+      ]
+    },
+    {
+      "id": "704:A08:C012",
+      "cid": 16776,
+      "name": "Parar la Defensa",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 440
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16776.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Cambia un monstruo rival que esté en Defensa a Ataque boca arriba."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — presión de combate / modificación de estadísticas."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Cambia un monstruo rival que esté en Defensa a Ataque boca arriba."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16776&ope=2"
+      ],
+      "role": "Carta Mágica Normal — presión de combate / modificación de estadísticas.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Carta Mágica Normal — presión de combate / modificación de estadísticas",
+        "relation": "Cambia un monstruo rival que esté en Defensa a Ataque boca arriba",
+        "risk": "Sin requisito de activación",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Cambia un monstruo rival que esté en Defensa a Ataque boca arriba."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Cambia un monstruo rival que esté en Defensa a Ataque boca arriba."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        }
+      ],
+      "operational": {
+        "Acción": "Cambia un monstruo rival que esté en Defensa a Ataque boca arriba.",
+        "Uso en este deck": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.",
+        "Condición y ventana": "Sin requisito de activación.",
+        "Coste y materiales": "Coste o consumo descrito en : comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+      },
+      "learning": {
+        "Para qué sirve": "Carta Mágica Normal — presión de combate / modificación de estadísticas..",
+        "Aplicación concreta registrada": "Cambia un monstruo rival que esté en Defensa a Ataque boca arriba.",
+        "Limitación a respetar": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": [],
+      "construction": [
+        {
+          "zone": "Main",
+          "copies": "1",
+          "label": "INDIRECTA REGISTRADA",
+          "proposal": "Mantener provisional; revisar",
+          "reason": "Carta Mágica Normal — presión de combate / modificación de est; sin ruta vinculada"
+        }
+      ]
+    },
+    {
+      "id": "704:A08:C013",
+      "cid": 15913,
+      "name": "Agujero Trampa",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 441
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/15913.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Destruye ese monstruo invocado."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta de Trampa Normal — interrupción defensiva de Invocación Normal."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Cuando el rival Invoca de Modo Normal un monstruo de al menos 1000 ATK."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Destruye ese monstruo invocado."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15913&ope=2"
+      ],
+      "role": "Carta de Trampa Normal — interrupción defensiva de Invocación Normal.",
+      "synergy": {
+        "function": "Sinergia indirecta (soporte o recursos)",
+        "resource": "Coste o consumo descrito en : el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Carta de Trampa Normal — extensor / habilitador de material",
+        "relation": "Destruye ese monstruo invocado",
+        "risk": "Cuando el rival Invoca de Modo Normal un monstruo de al menos 1000 ATK",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Destruye ese monstruo invocado."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Destruye ese monstruo invocado."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        }
+      ],
+      "operational": {
+        "Acción": "Destruye ese monstruo invocado.",
+        "Uso en este deck": "Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo.",
+        "Condición y ventana": "Cuando el rival Invoca de Modo Normal un monstruo de al menos 1000 ATK.",
+        "Coste y materiales": "Coste o consumo descrito en : el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+      },
+      "learning": {
+        "Para qué sirve": "defensa reactiva; destruir al monstruo que acaba de Invocar Normalmente el adversario cuando tenga al menos 1000 ATK; no extiende Invocaciones ni produce material.",
+        "Aplicación concreta registrada": "Destruye ese monstruo invocado.",
+        "Limitación a respetar": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [
+        "704:A09:ALCHEMY:ARCHER01",
+        "704:A09:ALCHEMY:SALAMANDRA02"
+      ],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": [
+        {
+          "id": "704:A09:ALCHEMY:ARCHER01",
+          "step": 1
+        },
+        {
+          "id": "704:A09:ALCHEMY:SALAMANDRA02",
+          "step": 0
+        }
+      ],
+      "construction": [
+        {
+          "zone": "Main",
+          "copies": "1",
+          "label": "INDIRECTA REGISTRADA",
+          "proposal": "Mantener provisional; revisar",
+          "reason": "Carta de Trampa Normal — extensor / habilitador de material; la ruta relacionada / la ruta relacionada"
+        }
+      ]
+    },
+    {
+      "id": "704:A08:C014",
+      "cid": 17926,
+      "name": "Gobernante de las Llamas",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 442
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/17926.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Esta carta boca arriba cuenta por dos Sacrificios para Invocar por Sacrificio en Ataque un monstruo de FUEGO."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — extensor / habilitador de material."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "No necesita activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Esta carta boca arriba cuenta por dos Sacrificios para Invocar por Sacrificio en Ataque un monstruo de FUEGO."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17926&ope=2"
+      ],
+      "role": "Monstruo de Efecto — extensor / habilitador de material.",
+      "synergy": {
+        "function": "Sinergia directa descrita",
+        "resource": "Coste o consumo descrito en : comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto",
+        "labels": [
+          "Sinergia directa"
+        ],
+        "reason": "Monstruo de Efecto — extensor / habilitador de material",
+        "relation": "Esta carta boca arriba cuenta por dos Sacrificios para Invocar por Sacrificio en Ataque un monstruo de FUEGO",
+        "risk": "No necesita activación",
+        "decision": "Conservar; verificar coste y orden"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Esta carta boca arriba cuenta por dos Sacrificios para Invocar por Sacrificio en Ataque un monstruo de FUEGO."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Esta carta boca arriba cuenta por dos Sacrificios para Invocar por Sacrificio en Ataque un monstruo de FUEGO."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Coste o consumo descrito en : comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        }
+      ],
+      "operational": {
+        "Acción": "Esta carta boca arriba cuenta por dos Sacrificios para Invocar por Sacrificio en Ataque un monstruo de FUEGO.",
+        "Uso en este deck": "Primero: construir la condición de activación; segundo: verificar que la jugada responde al estado rival actual; tardío: ahorrar el recurso si todavía no se cumple el requisito.",
+        "Condición y ventana": "No necesita activación.",
+        "Coste y materiales": "Coste o consumo descrito en : comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+      },
+      "learning": {
+        "Para qué sirve": "Monstruo de Efecto — extensor / habilitador de material..",
+        "Aplicación concreta registrada": "Esta carta boca arriba cuenta por dos Sacrificios para Invocar por Sacrificio en Ataque un monstruo de FUEGO.",
+        "Limitación a respetar": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": [],
+      "construction": [
+        {
+          "zone": "Main",
+          "copies": "1",
+          "label": "DIRECTA REGISTRADA",
+          "proposal": "Mantener provisional; revisar",
+          "reason": "Monstruo de Efecto — extensor / habilitador de material; sin ruta vinculada"
+        }
+      ]
+    },
+    {
+      "id": "704:A08:C015",
+      "cid": 16372,
+      "name": "Olla de la Codicia",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 443
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16372.png",
+      "fields": [
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Roba dos cartas."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16372&ope=2"
+      ],
+      "role": "Carta Mágica Normal — consistencia / reciclaje.",
+      "synergy": {
+        "function": "Sinergia indirecta de recursos",
+        "resource": "Material o destino del Extra condicionado a los requisitos de invocación",
+        "labels": [
+          "Sinergia indirecta"
+        ],
+        "reason": "Carta Mágica Normal — consistencia / reciclaje",
+        "relation": "Roba dos cartas. Aportación posible como material, coste o objetivo; verificar consumidor",
+        "risk": "Sin requisito de activación",
+        "decision": "Conservar si existe consumidor legal"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Roba dos cartas."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Roba dos cartas. Aportación posible como material, coste o objetivo; verificar consumidor."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Material o destino del Extra condicionado a los requisitos de invocación."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ],
+      "operational": {
+        "Acción": "Roba dos cartas.",
+        "Uso en este deck": "Roba dos cartas. Aportación posible como material, coste o objetivo; verificar consumidor.",
+        "Condición y ventana": "Sin requisito de activación.",
+        "Coste y materiales": "Material o destino del Extra condicionado a los requisitos de invocación."
+      },
+      "learning": {
+        "Para qué sirve": "Carta Mágica Normal — consistencia / reciclaje..",
+        "Aplicación concreta registrada": "Roba dos cartas. Aportación posible como material, coste o objetivo; verificar consumidor.",
+        "Limitación a respetar": "disponer de cartas suficientes en Deck y distinguir robo de búsqueda.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [],
+      "related_decisions": [],
+      "related_practice": [],
+      "route_links": [],
+      "construction": [
+        {
+          "zone": "Main",
+          "copies": "1",
+          "label": "INDIRECTA REGISTRADA",
+          "proposal": "Mantener provisional; revisar",
+          "reason": "Carta Mágica Normal — consistencia / reciclaje; sin ruta vinculada"
+        }
+      ]
+    },
+    {
+      "id": "704:A08:C016",
+      "cid": 19990,
+      "name": "Arquero Ígneo Supergráfagas",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 2,
+          "card_id": 444
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19990.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Gana 2500 ATK este turno; opcionalmente reduce en 1500 ATK un monstruo rival boca arriba de Nivel 9 o inferior. identifica su destino, condicionado a material/procedimiento."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Fusionar Chromatographagas + SP Assistant Archer. Devolver al tope del Deck un Piro Normal de Nivel 7 del Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Gana 2500 ATK este turno; opcionalmente reduce en 1500 ATK un monstruo rival boca arriba de Nivel 9 o inferior."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19990&ope=2"
+      ],
+      "role": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre.",
+      "synergy": {
+        "function": "Destino Extra condicionado",
+        "resource": "Material o destino del Extra condicionado a los requisitos de invocación",
+        "labels": [
+          "Destino Extra condicionado"
+        ],
+        "reason": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre",
+        "relation": "Gana 2500 ATK este turno; opcionalmente reduce en 1500 ATK un monstruo rival boca arriba de Nivel 9 o inferior",
+        "risk": "Fusionar Chromatographagas + SP Assistant Archer. Devolver al tope del Deck un Piro Normal de Nivel 7 del Cementerio",
+        "decision": "Conservar si hay materiales legales"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Gana 2500 ATK este turno; opcionalmente reduce en 1500 ATK un monstruo rival boca arriba de Nivel 9 o inferior."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Gana 2500 ATK este turno; opcionalmente reduce en 1500 ATK un monstruo rival boca arriba de Nivel 9 o inferior. identifica su destino, condicionado a material/procedimiento."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Material o destino del Extra condicionado a los requisitos de invocación."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        }
+      ],
+      "operational": {
+        "Acción": "Gana 2500 ATK este turno; opcionalmente reduce en 1500 ATK un monstruo rival boca arriba de Nivel 9 o inferior.",
+        "Uso en este deck": "Gana 2500 ATK este turno; opcionalmente reduce en 1500 ATK un monstruo rival boca arriba de Nivel 9 o inferior. identifica su destino, condicionado a material/procedimiento.",
+        "Condición y ventana": "Fusionar Chromatographagas + SP Assistant Archer. Devolver al tope del Deck un Piro Normal de Nivel 7 del Cementerio.",
+        "Coste y materiales": "Material o destino del Extra condicionado a los requisitos de invocación."
+      },
+      "learning": {
+        "Para qué sirve": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre..",
+        "Aplicación concreta registrada": "Gana 2500 ATK este turno; opcionalmente reduce en 1500 ATK un monstruo rival boca arriba de Nivel 9 o inferior. identifica su destino, condicionado a material/procedimiento.",
+        "Limitación a respetar": "pagar/cumplir el requisito escrito antes de prometer la resolución.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [
+        "704:A09:ALCHEMY:ARCHER01"
+      ],
+      "related_decisions": [],
+      "related_practice": [],
+      "extra_navigation": true,
+      "extra_explanation": "Jugadas que la mencionan (comprobar uso exacto):\n- la ruta relacionada — propósito: Preparación de recursos / despliegue; entrada: Cromatográfagas (18583, monstruo Normal Piro FUEGO Nivel 7) + Orden Secreta (17212). Campo y GY propios vacíos; turno de duelo 2 o posterior; Alchemy Blaze (RD/SK01-001) no usada y disponible conforme a las reglas personalizadas de la liga. SP Assistant Archer / Superasistente Ember (17963) y Fusión (16934) todavía en Deck; Fusión 19990 en Extra; rival sin interrupción en la ruta base..",
+      "route_links": [
+        {
+          "id": "704:A09:ALCHEMY:ARCHER01",
+          "step": 3
+        }
+      ],
+      "construction": [
+        {
+          "zone": "Extra",
+          "copies": "2",
+          "label": "RUTA REFERENCIADA (sin certificación)",
+          "proposal": "Mantener provisional; revisar",
+          "reason": "Monstruo de Fusión — objetivo de Fusión con materiales expreso; la ruta relacionada"
+        }
+      ]
+    },
+    {
+      "id": "704:A08:C017",
+      "cid": 18614,
+      "name": "Salamandra Alquimicalizada",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 3,
+          "card_id": 445
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/18614.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Destruye todas las Mágicas/Trampas de ambos Campos y opcionalmente reduce 1000 ATK a los monstruos rivales por cada Mágica destruida. identifica su destino, condicionado a material/procedimiento."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Fusionar Chemicalized Salamander + SP Assistant Archer; usar efecto en la Main Phase en que se invocó de Modo Especial."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Destruye todas las Mágicas/Trampas de ambos Campos y opcionalmente reduce 1000 ATK a los monstruos rivales por cada Mágica destruida."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18614&ope=2"
+      ],
+      "role": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre.",
+      "synergy": {
+        "function": "Destino Extra condicionado",
+        "resource": "Material o destino del Extra condicionado a los requisitos de invocación",
+        "labels": [
+          "Destino Extra condicionado"
+        ],
+        "reason": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre",
+        "relation": "Destruye todas las Mágicas/Trampas de ambos Campos y opcionalmente reduce 1000 ATK a los monstruos rivales por cada Mágica destruida",
+        "risk": "Fusionar Chemicalized Salamander + SP Assistant Archer; usar efecto en la Main Phase en que se invocó de Modo Especial",
+        "decision": "Conservar si hay materiales legales"
+      },
+      "practical": [
+        {
+          "title": "Qué hace",
+          "text": "Destruye todas las Mágicas/Trampas de ambos Campos y opcionalmente reduce 1000 ATK a los monstruos rivales por cada Mágica destruida."
+        },
+        {
+          "title": "Cómo aprovecharla en este deck",
+          "text": "Destruye todas las Mágicas/Trampas de ambos Campos y opcionalmente reduce 1000 ATK a los monstruos rivales por cada Mágica destruida. identifica su destino, condicionado a material/procedimiento."
+        },
+        {
+          "title": "Uso y consumo de recursos",
+          "text": "Material o destino del Extra condicionado a los requisitos de invocación."
+        },
+        {
+          "title": "Cuándo tener precaución",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        }
+      ],
+      "operational": {
+        "Acción": "Destruye todas las Mágicas/Trampas de ambos Campos y opcionalmente reduce 1000 ATK a los monstruos rivales por cada Mágica destruida.",
+        "Uso en este deck": "Destruye todas las Mágicas/Trampas de ambos Campos y opcionalmente reduce 1000 ATK a los monstruos rivales por cada Mágica destruida. identifica su destino, condicionado a material/procedimiento.",
+        "Condición y ventana": "Fusionar Chemicalized Salamander + SP Assistant Archer; usar efecto en la Main Phase en que se invocó de Modo Especial.",
+        "Coste y materiales": "Material o destino del Extra condicionado a los requisitos de invocación."
+      },
+      "learning": {
+        "Para qué sirve": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre..",
+        "Aplicación concreta registrada": "Destruye todas las Mágicas/Trampas de ambos Campos y opcionalmente reduce 1000 ATK a los monstruos rivales por cada Mágica destruida. identifica su destino, condicionado a material/procedimiento.",
+        "Limitación a respetar": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.",
+        "Cuándo jugarla primero": "",
+        "Cuándo jugarla segundo": ""
+      },
+      "related_routes": [
+        "704:A09:ALCHEMY:SALAMANDRA02"
+      ],
+      "related_decisions": [],
+      "related_practice": [],
+      "extra_navigation": true,
+      "extra_explanation": "Jugadas que la mencionan (comprobar uso exacto):\n- la ruta relacionada — propósito: Ofensivo condicional; entrada: Salamandra 1× Salamandra Quimicalizada / Chemicalized Salamander, Hiperasistente 1× Hiperasistente Ember / HP Assistant Archer, Atraviesa 1× ¡Atraviesa! como descarte de Skill. Deck: Superasistente 1× Superasistente Ember / SP Assistant Archer + Fusión 1× Fusión disponibles. Extra: Salamandra Fusion 1× Salamandra Alquimicalizada disponible. Skill: ALCHEMY BLAZE sin usar, turno 2 o posterior; todas las seis identidades de monstruo del Main satisfacen Piro/FUEGO y DEF ≥ 100 según inventario. Campo/GY/destierro propios: vacíos, Normal libre, ninguna restricción precedente. Rival: controla un monstruo boca arriba; además, para cuantificar el efecto, una Mágica boca arriba destruible y ninguna otra M/T. Rival no responde en esta línea de referencia..",
+      "route_links": [
+        {
+          "id": "704:A09:ALCHEMY:SALAMANDRA02",
+          "step": 3
+        }
+      ],
+      "construction": [
+        {
+          "zone": "Extra",
+          "copies": "3",
+          "label": "RUTA REFERENCIADA (sin certificación)",
+          "proposal": "Mantener provisional; revisar",
+          "reason": "Monstruo de Fusión — objetivo de Fusión con materiales expreso; la ruta relacionada"
+        }
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "ALCHEMY BLAZE",
+      "image": "./assets/editorial/20261109-v14/skills/704_ALCHEMY_BLAZE.jpeg"
+    }
+  ],
+  "profile": {
+    "Arquetipo": "Piro/FUEGO de Rush Duel con la habilidad Alchemy Blaze.",
+    "Tipo de estrategia": "Invocaciones por Fusión a partir de materiales nombrados.",
+    "Estilo de juego": "despliegue de cuerpos, preparación de materiales y presión de combate.",
+    "Cómo se juega": "los monstruos Piro permiten reunir los materiales que exige cada Fusión; las cartas de apoyo y Alchemy Blaze amplían las opciones solo al cumplir sus requisitos locales.",
+    "Cartas representativas": "Germalewe, Ember, Chemicalized Salamander y la habilidad Alchemy Blaze.",
+    "Qué vigilar": "materiales boca arriba, momento de Fusión y disponibilidad de la habilidad; la Skill no pertenece a la mano."
+  },
+  "summary": [
+    {
+      "title": "Dictamen de conjunto",
+      "text": "Fusiones Piro Rush coherentes; los monstruos normales cumplen función de material y la Skill solo participa cuando su ventana local se abre."
+    },
+    {
+      "title": "Motor que mueve el deck",
+      "text": "materiales Piro/FUEGO propios y carta de Fusión convierten cuerpos boca arriba en Arquero o Salamandra Alquimicalizada, según nombres exactos."
+    },
+    {
+      "title": "Puentes reales",
+      "text": "ALCHEMY BLAZE habilita piezas desde turno 2 si cumple su construcción y coste; Orden Secreta y otros cuerpos apoyan el despliegue, no sustituyen materiales nombrados."
+    },
+    {
+      "title": "Sinergia indirecta",
+      "text": "los Normales sin texto de efecto pueden ser materiales imprescindibles; no recomendar retirarlos por no producir ventaja individual."
+    },
+    {
+      "title": "Conflicto decisivo",
+      "text": "materiales requeridos deben estar boca arriba en Campo; Skill no es carta robable ni jugada garantizada del primer turno. Extra y Skill deben respetar reglamento Rush local."
+    }
+  ],
+  "engine_maps": [
+    {
+      "title": "Orden Secreta (17212) → Cromatográfagas (18583)",
+      "category": "INTERACCIÓN",
+      "result": "Poner material Normal Nivel 7 en campo.",
+      "requirements": "Carta disponible y condiciones de Orden Secreta.",
+      "photos": [
+        {
+          "name": "Orden Secreta",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/17212.png"
+        },
+        {
+          "name": "Cromatográfagas",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/18583.png"
+        }
+      ]
+    },
+    {
+      "title": "Cromatográfagas (18583) + SP Assistant Archer (17963) + Fusión (16934) → Arquero (19990)",
+      "category": "INTERACCIÓN",
+      "result": "Invocar la Fusión del Extra.",
+      "requirements": "Ambos materiales boca arriba en Campo; Fusión en mano activable.",
+      "photos": [
+        {
+          "name": "Cromatográfagas",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/18583.png"
+        },
+        {
+          "name": "Superasistente Ember",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/17963.png"
+        },
+        {
+          "name": "Fusión",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/16934.png"
+        },
+        {
+          "name": "Arquero Ígneo Supergráfagas",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/19990.png"
+        }
+      ]
+    },
+    {
+      "title": "Salamandra Quimicalizada (17868) + Archer (17963) + Fusión → Salamandra Alquimicalizada (18614)",
+      "category": "INTERACCIÓN",
+      "result": "Fusión con retirada de M/T de ambos campos.",
+      "requirements": "Materiales en campo y efecto dentro de Main Phase adecuada.",
+      "photos": [
+        {
+          "name": "Salamandra Quimicalizada",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/17868.png"
+        },
+        {
+          "name": "Superasistente Ember",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/17963.png"
+        },
+        {
+          "name": "Salamandra Alquimicalizada",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/18614.png"
+        }
+      ]
+    },
+    {
+      "title": "Hiperasistente Ember (19291) → Piro Nivel 7+ de mano",
+      "category": "INTERACCIÓN",
+      "result": "Extender cuerpo apto para Sacrificio/Fusión.",
+      "requirements": "Monstruo rival presente; Hiperasistente propio boca arriba para enviar.",
+      "photos": [
+        {
+          "name": "Hiperasistente Ember",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/19291.png"
+        }
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "id": "704:A09:ALCHEMY:ARCHER01",
+      "name": "ALCHEMY → ARCHER01",
+      "title": "Alchemy Blaze: reunir materiales de Fusión Arquero",
+      "family": "Fusión Rush",
+      "purpose": "Preparación de recursos / despliegue",
+      "category": "APERTURA",
+      "opening": "Cromatográfagas (18583, monstruo Normal Piro FUEGO Nivel 7) + Orden Secreta (17212). Campo y GY propios vacíos; turno de duelo 2 o posterior; Alchemy Blaze (RD/SK01-001) no usada y disponible conforme a las reglas personalizadas de la liga. SP Assistant Archer / Superasistente Ember (17963) y Fusión (16934) todavía en Deck; Fusión 19990 en Extra; rival sin interrupción en la ruta base.",
+      "hand_photos": [
+        {
+          "name": "Cromatográfagas",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/18583.png",
+          "label": ""
+        },
+        {
+          "name": "Orden Secreta",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/17212.png",
+          "label": ""
+        }
+      ],
+      "result": "Resultado final demostrable: solo Archer 19990 en Campo con 5500 ATK este turno; Superasistente en GY, Cromatográfagas arriba del Deck, Orden Secreta y Fusión usadas en GY. No hay cartas adicionales en mano. No asimilar el efecto de Skill a una carta robada ni interpretar la elección de 2 cartas como azar.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "Activar ALCHEMY BLAZE, revelando Cromatográfagas en mano y cumpliendo turno y construcción. Elegir del Deck Superasistente Ember (Normal, DEF 1500) y Fusión (nombre permitido). Luego mandar Cromatográfagas de la mano al GY como parte obligatoria del efecto de Skill.",
+          "detail": "Elegir del Deck Superasistente Ember (Normal, DEF 1500) y Fusión (nombre permitido). Luego mandar Cromatográfagas de la mano al GY como parte obligatoria del efecto de Skill. Mano: Orden Secreta + Superasistente Ember + Fusión; GY: Cromatográfagas. La Skill queda usada en esta ruta; no se la vuelve a activar.",
+          "photos": [
+            {
+              "name": "Cromatográfagas",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/18583.png",
+              "label": "REVELAR"
+            },
+            {
+              "name": "Superasistente Ember",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/17963.png",
+              "label": "ESTADO / CONTEXTO"
+            },
+            {
+              "name": "ALCHEMY BLAZE",
+              "image": "./assets/editorial/20261109-v14/skills/704_ALCHEMY_BLAZE.jpeg",
+              "label": "REFERENCIA"
+            }
+          ],
+          "requirements": [],
+          "resources": [
+            {
+              "zone": "Mano",
+              "text": "Orden Secreta #17212, Superasistente Ember #17963 y Fusión #16934"
+            },
+            {
+              "zone": "Monstruos",
+              "text": ""
+            },
+            {
+              "zone": "Mágicas y trampas",
+              "text": ""
+            },
+            {
+              "zone": "Cementerio",
+              "text": "Cromatográfagas #18583 en GY por Skill"
+            },
+            {
+              "zone": "Destierro propio",
+              "text": ""
+            },
+            {
+              "zone": "Campo y estado rival",
+              "text": "Ninguna modificación rival demostrada"
+            },
+            {
+              "zone": "Materiales Xyz/Fusión/Sincro",
+              "text": ""
+            },
+            {
+              "zone": "Normal, Extra, fase y restricciones",
+              "text": "Rush: Normales disponibles; Skill Alchemy Blaze local usada una vez; Archer en Extra"
+            }
+          ],
+          "board": [],
+          "compact_action": "Activar ALCHEMY BLAZE, revelando Cromatográfagas en mano y cumpliendo turno y construcción."
+        },
+        {
+          "number": 2,
+          "action": "Activar Orden Secreta y seleccionar a Cromatográfagas, Normal Nivel 7, desde el GY: Invocarlo Especialmente boca arriba.",
+          "detail": "Cromatográfagas en Campo, +700 ATK en este turno y no puede ser destruido por efectos de Trampa rival mientras permanezca protegido. Orden Secreta va a GY.",
+          "photos": [
+            {
+              "name": "Orden Secreta",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/17212.png",
+              "label": "ACTIVAR"
+            },
+            {
+              "name": "Cromatográfagas",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/18583.png",
+              "label": "OBJETIVO"
+            },
+            {
+              "name": "Agujero Trampa",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/15913.png",
+              "label": "YA EN CAMPO"
+            }
+          ],
+          "requirements": [
+            "Cromatográfagas en Campo, +700 ATK en este turno y no puede ser destruido por efectos de Trampa rival mientras permanezca protegido."
+          ],
+          "resources": [
+            {
+              "zone": "Mano",
+              "text": "Superasistente Ember #17963 y Fusión #16934"
+            },
+            {
+              "zone": "Monstruos",
+              "text": "Cromatográfagas #18583 (Ataque, +700 ATK temporal por Orden Secreta)"
+            },
+            {
+              "zone": "Mágicas y trampas",
+              "text": ""
+            },
+            {
+              "zone": "Cementerio",
+              "text": "Orden Secreta #17212 en GY"
+            },
+            {
+              "zone": "Destierro propio",
+              "text": ""
+            },
+            {
+              "zone": "Campo y estado rival",
+              "text": "Ninguna modificación rival demostrada"
+            },
+            {
+              "zone": "Materiales Xyz/Fusión/Sincro",
+              "text": ""
+            },
+            {
+              "zone": "Normal, Extra, fase y restricciones",
+              "text": "Rush permite Normal posterior; Skill usada; Archer sigue en Extra"
+            }
+          ],
+          "board": [
+            {
+              "name": "Cromatográfagas",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/18583.png",
+              "label": "Cromatográfagas (Ataque, +700 ATK temporal por Orden Secreta)",
+              "zone": "MONSTER"
+            }
+          ],
+          "compact_action": "Activar Orden Secreta y seleccionar a Cromatográfagas, Normal Nivel 7, desde el GY: Invocarlo Especialmente boca arriba."
+        },
+        {
+          "number": 3,
+          "action": "Invocar Normalmente a Superasistente Ember (Normal Nivel 1) desde mano en otra zona.",
+          "detail": "Dos materiales nombrados boca arriba en Campo.",
+          "photos": [
+            {
+              "name": "Superasistente Ember",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/17963.png",
+              "label": "NORMAL"
+            }
+          ],
+          "requirements": [],
+          "resources": [
+            {
+              "zone": "Mano",
+              "text": "Fusión #16934"
+            },
+            {
+              "zone": "Monstruos",
+              "text": "Cromatográfagas #18583 (Ataque, +700 ATK temporal), Superasistente Ember #17963 (Normal, Ataque)"
+            },
+            {
+              "zone": "Mágicas y trampas",
+              "text": ""
+            },
+            {
+              "zone": "Cementerio",
+              "text": "Orden Secreta en GY"
+            },
+            {
+              "zone": "Destierro propio",
+              "text": ""
+            },
+            {
+              "zone": "Campo y estado rival",
+              "text": "Ninguna modificación rival demostrada"
+            },
+            {
+              "zone": "Materiales Xyz/Fusión/Sincro",
+              "text": ""
+            },
+            {
+              "zone": "Normal, Extra, fase y restricciones",
+              "text": "Rush: se realizó Normal de Superasistente sin límite TCG; Skill usada"
+            }
+          ],
+          "board": [
+            {
+              "name": "Cromatográfagas",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/18583.png",
+              "label": "Cromatográfagas (Ataque, +700 ATK temporal)",
+              "zone": "MONSTER"
+            },
+            {
+              "name": "Superasistente Ember",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/17963.png",
+              "label": "Superasistente Ember (Normal, Ataque)",
+              "zone": "MONSTER"
+            }
+          ],
+          "compact_action": "Invocar Normalmente a Superasistente Ember (Normal Nivel 1) desde mano en otra zona."
+        },
+        {
+          "number": 4,
+          "action": "Activar Fusión en la Main Phase y usar ambos monstruos boca arriba del propio Campo, enviándolos al GY para Invocar del Extra Arquero Ígneo Supergráfagas (19990).",
+          "detail": "Fusión 19990 (ATK 3000) en Campo; Cromatográfagas y Superasistente en GY; la Mágica Fusión usada al GY. El +700 ATK de Orden Secreta no se hereda por el monstruo de Fusión.",
+          "photos": [
+            {
+              "name": "Arquero Ígneo Supergráfagas",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/19990.png",
+              "label": "ESTADO / CONTEXTO"
+            },
+            {
+              "name": "Cromatográfagas",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/18583.png",
+              "label": "ESTADO / CONTEXTO"
+            },
+            {
+              "name": "Orden Secreta",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/17212.png",
+              "label": "ESTADO / CONTEXTO"
+            }
+          ],
+          "requirements": [],
+          "resources": [
+            {
+              "zone": "Mano",
+              "text": ""
+            },
+            {
+              "zone": "Monstruos",
+              "text": "Arquero Ígneo Supergráfagas #19990 (Ataque, 3000 ATK; no hereda +700)"
+            },
+            {
+              "zone": "Mágicas y trampas",
+              "text": ""
+            },
+            {
+              "zone": "Cementerio",
+              "text": "Cromatográfagas #18583, Superasistente #17963, Orden Secreta #17212 y Fusión #16934 en GY"
+            },
+            {
+              "zone": "Destierro propio",
+              "text": ""
+            },
+            {
+              "zone": "Campo y estado rival",
+              "text": "No se adjudica remoción ni daño rival"
+            },
+            {
+              "zone": "Materiales Xyz/Fusión/Sincro",
+              "text": "Fusión: los dos cuerpos propios enviados a GY; no quedan materiales Xyz"
+            },
+            {
+              "zone": "Normal, Extra, fase y restricciones",
+              "text": "Skill usada; Archer salió del Extra; en Rush no se agota una Normal única"
+            }
+          ],
+          "board": [
+            {
+              "name": "Arquero Ígneo Supergráfagas",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/19990.png",
+              "label": "Arquero Ígneo Supergráfagas (Ataque, 3000 ATK; no hereda +700)",
+              "zone": "MONSTER"
+            }
+          ],
+          "compact_action": "Activar Fusión en la Main Phase y usar ambos monstruos boca arriba del propio Campo, enviándolos al GY para Invocar del Extra Arquero Ígneo Supergráfagas (19990)."
+        },
+        {
+          "number": 5,
+          "action": "Activar el efecto de Arquero Ígneo Supergráfagas, devolviendo al tope del Deck el Cromatográfagas Nivel 7/Piro Normal que volvió al GY como material.",
+          "detail": "Archer aumenta 2500 ATK, total 5500 ATK hasta fin de turno. Solo si el rival controla un monstruo boca arriba Nivel 9 o menor, puede además reducirle 1500 ATK hasta fin de turno.",
+          "photos": [
+            {
+              "name": "Arquero Ígneo Supergráfagas",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/19990.png",
+              "label": "ACTIVAR"
+            },
+            {
+              "name": "Cromatográfagas",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/18583.png",
+              "label": "ACTIVAR"
+            }
+          ],
+          "requirements": [],
+          "resources": [
+            {
+              "zone": "Mano",
+              "text": ""
+            },
+            {
+              "zone": "Monstruos",
+              "text": "Arquero Ígneo Supergráfagas #19990 (Ataque, 5500 ATK temporal este turno)"
+            },
+            {
+              "zone": "Mágicas y trampas",
+              "text": ""
+            },
+            {
+              "zone": "Cementerio",
+              "text": "Superasistente #17963, Orden Secreta #17212 y Fusión #16934 en GY; Cromatográfagas ya salió del GY"
+            },
+            {
+              "zone": "Destierro propio",
+              "text": ""
+            },
+            {
+              "zone": "Campo y estado rival",
+              "text": "Solo si existe monstruo rival boca arriba con Nivel 9 o menor se puede aplicarle -1500 ATK temporal; identidad y presencia no garantizadas"
+            },
+            {
+              "zone": "Materiales Xyz/Fusión/Sincro",
+              "text": "Sin materiales Xyz; Cromatográfagas fue colocado en la parte superior del Deck"
+            },
+            {
+              "zone": "Normal, Extra, fase y restricciones",
+              "text": "Skill Alchemy Blaze usada; Archer ya salió del Extra; no prometer ataque fuera de Battle Phase"
+            }
+          ],
+          "board": [
+            {
+              "name": "Arquero Ígneo Supergráfagas",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/19990.png",
+              "label": "Arquero Ígneo Supergráfagas (Ataque, 5500 ATK temporal este turno)",
+              "zone": "MONSTER"
+            }
+          ],
+          "compact_action": "Activar el efecto de Arquero Ígneo Supergráfagas, devolviendo al tope del Deck el Cromatográfagas Nivel 7/Piro Normal que volvió al GY como material."
+        }
+      ],
+      "board": [
+        {
+          "name": "Arquero Ígneo Supergráfagas",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/19990.png",
+          "label": "Arquero Ígneo Supergráfagas (Ataque, 5500 ATK temporal este turno)",
+          "zone": "MONSTER"
+        }
+      ],
+      "resources": [
+        {
+          "zone": "Mano",
+          "text": ""
+        },
+        {
+          "zone": "Monstruos",
+          "text": "Arquero Ígneo Supergráfagas #19990 (Ataque, 5500 ATK temporal este turno)"
+        },
+        {
+          "zone": "Mágicas y trampas",
+          "text": ""
+        },
+        {
+          "zone": "Cementerio",
+          "text": "Superasistente #17963, Orden Secreta #17212 y Fusión #16934 en GY; Cromatográfagas ya salió del GY"
+        },
+        {
+          "zone": "Destierro propio",
+          "text": ""
+        },
+        {
+          "zone": "Campo y estado rival",
+          "text": "Solo si existe monstruo rival boca arriba con Nivel 9 o menor se puede aplicarle -1500 ATK temporal; identidad y presencia no garantizadas"
+        },
+        {
+          "zone": "Materiales Xyz/Fusión/Sincro",
+          "text": "Sin materiales Xyz; Cromatográfagas fue colocado en la parte superior del Deck"
+        },
+        {
+          "zone": "Normal, Extra, fase y restricciones",
+          "text": "Skill Alchemy Blaze usada; Archer ya salió del Extra; no prometer ataque fuera de Battle Phase"
+        }
+      ],
+      "notice": "Estudio documental con Skill local. Requiere que la liga admita esa Skill y que se cumplan las condiciones indicadas. La secuencia no acredita por sí sola su legalidad ni se ejecuta mediante un motor de reglas."
+    },
+    {
+      "id": "704:A09:ALCHEMY:SALAMANDRA02",
+      "name": "ALCHEMY → SALAMANDRA02",
+      "title": "Alchemy Blaze: reunir materiales de Salamandra",
+      "family": "Otra Fusión Rush",
+      "purpose": "Ofensivo condicional",
+      "category": "APERTURA",
+      "opening": "Salamandra 1× Salamandra Quimicalizada / Chemicalized Salamander, Hiperasistente 1× Hiperasistente Ember / HP Assistant Archer, Atraviesa 1× ¡Atraviesa! como descarte de Skill. Deck: Superasistente 1× Superasistente Ember / SP Assistant Archer + Fusión 1× Fusión disponibles. Extra: Salamandra Fusion 1× Salamandra Alquimicalizada disponible. Skill: ALCHEMY BLAZE sin usar, turno 2 o posterior; todas las seis identidades de monstruo del Main satisfacen Piro/FUEGO y DEF ≥ 100 según inventario. Campo/GY/destierro propios: vacíos, Normal libre, ninguna restricción precedente. Rival: controla un monstruo boca arriba; además, para cuantificar el efecto, una Mágica boca arriba destruible y ninguna otra M/T. Rival no responde en esta línea de referencia.",
+      "hand_photos": [
+        {
+          "name": "Salamandra Quimicalizada",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/17868.png",
+          "label": ""
+        },
+        {
+          "name": "Hiperasistente Ember",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/19291.png",
+          "label": ""
+        },
+        {
+          "name": "¡Atraviesa!",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/15204.png",
+          "label": ""
+        }
+      ],
+      "result": "Endboard tras Main Phase: Salamandra Alquimicalizada 3000 ATK boca arriba en Zona Principal; M/T de ambos Campos destruidas, incluyendo exactamente una Mágica del rival en el ejemplo; rival mantiene su monstruo con -1000 ATK temporal, salvo que otro efecto lo modifique. GY propio: Hiperasistente, Quimicalizada, Superasistente, Fusión, ¡Atraviesa!; destierro: vacío; mano: vacía; Skill: usada; daño de batalla directo o por efecto: 0 garantizado; negaciones propias: ninguna demostrada. La reducción desaparece al final del turno. Vulnerable a negar efecto de Hiperasistente/Skill o retirar cualquiera de los materiales antes de Fusión.",
+      "steps": [
+        {
+          "number": 1,
+          "action": "En Main Phase propia, activar ALCHEMY BLAZE; revelar Salamandra Quimicalizada en mano para satisfacer el requisito de Skill. Elegir Superasistente Ember y Fusión del Deck, y mandar ¡Atraviesa! al GY según el texto local de Skill.",
+          "detail": "Elegir Superasistente Ember y Fusión del Deck, y mandar ¡Atraviesa! al GY según el texto local de Skill. Superasistente y Fusión pasan Deck→mano; Salamandra e Hiperasistente siguen en mano; ¡Atraviesa! en GY. Skill marcada usada una vez; no se le atribuye otra activación.",
+          "photos": [
+            {
+              "name": "Salamandra Quimicalizada",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/17868.png",
+              "label": "REVELAR"
+            },
+            {
+              "name": "Superasistente Ember",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/17963.png",
+              "label": "ESTADO / CONTEXTO"
+            },
+            {
+              "name": "ALCHEMY BLAZE",
+              "image": "./assets/editorial/20261109-v14/skills/704_ALCHEMY_BLAZE.jpeg",
+              "label": "REFERENCIA"
+            }
+          ],
+          "requirements": [],
+          "resources": [
+            {
+              "zone": "Mano",
+              "text": "Salamandra Quimicalizada #17868, Hiperasistente Ember #19291, Superasistente Ember #17963 y Fusión #16934"
+            },
+            {
+              "zone": "Monstruos",
+              "text": ""
+            },
+            {
+              "zone": "Mágicas y trampas",
+              "text": ""
+            },
+            {
+              "zone": "Cementerio",
+              "text": "¡Atraviesa! #15204 en GY por efecto de Skill"
+            },
+            {
+              "zone": "Destierro propio",
+              "text": ""
+            },
+            {
+              "zone": "Campo y estado rival",
+              "text": "Rival mantiene monstruo boca arriba de identidad variable y una Mágica boca arriba de identidad variable"
+            },
+            {
+              "zone": "Materiales Xyz/Fusión/Sincro",
+              "text": ""
+            },
+            {
+              "zone": "Normal, Extra, fase y restricciones",
+              "text": "Rush: Normales disponibles; Skill Alchemy Blaze local usada; Salamandra Fusión en Extra"
+            }
+          ],
+          "board": [],
+          "compact_action": "En Main Phase propia, activar ALCHEMY BLAZE; revelar Salamandra Quimicalizada en mano para satisfacer el requisito de Skill."
+        },
+        {
+          "number": 2,
+          "action": "Invocar Normalmente Hiperasistente Ember (Nivel 4, Piro/FUEGO) desde mano. Como el rival controla un monstruo, activar su efecto en Main Phase, enviándolo del Campo al GY como COSTE.",
+          "detail": "Al resolver, Invocar Especialmente Salamandra Quimicalizada Nivel 7/Piro desde mano boca arriba. Hiperasistente GY; no se acredita aumento de 800 ATK, porque Superasistente no estaba previamente en el GY al resolver este efecto.",
+          "photos": [
+            {
+              "name": "Hiperasistente Ember",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/19291.png",
+              "label": "NORMAL"
+            },
+            {
+              "name": "Salamandra Quimicalizada",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/17868.png",
+              "label": "ESPECIAL"
+            }
+          ],
+          "requirements": [],
+          "resources": [
+            {
+              "zone": "Mano",
+              "text": "Superasistente Ember #17963 y Fusión #16934"
+            },
+            {
+              "zone": "Monstruos",
+              "text": "Salamandra Quimicalizada #17868 (Ataque, Nivel 7)"
+            },
+            {
+              "zone": "Mágicas y trampas",
+              "text": ""
+            },
+            {
+              "zone": "Cementerio",
+              "text": "¡Atraviesa! #15204 e Hiperasistente Ember #19291 en GY (este último como coste)"
+            },
+            {
+              "zone": "Destierro propio",
+              "text": ""
+            },
+            {
+              "zone": "Campo y estado rival",
+              "text": "Rival conserva su monstruo y su Mágica boca arriba; sin remoción en P2"
+            },
+            {
+              "zone": "Materiales Xyz/Fusión/Sincro",
+              "text": ""
+            },
+            {
+              "zone": "Normal, Extra, fase y restricciones",
+              "text": "Normal de Hiperasistente realizada; Rush permite más Normales; Skill usada"
+            }
+          ],
+          "board": [
+            {
+              "name": "Salamandra Quimicalizada",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/17868.png",
+              "label": "Salamandra Quimicalizada (Ataque, Nivel 7)",
+              "zone": "MONSTER"
+            }
+          ],
+          "compact_action": "Invocar Normalmente Hiperasistente Ember (Nivel 4, Piro/FUEGO) desde mano. Como el rival controla un monstruo, activar su efecto en Main Phase, enviándolo del Campo al GY como COSTE."
+        },
+        {
+          "number": 3,
+          "action": "En Rush Duel efectuar otra Invocación Normal de Superasistente Ember (monstruo Normal Nivel 1) desde mano, sin gastar una limitación TCG inexistente.",
+          "detail": "Materiales exactos boca arriba en Campo: Salamandra Quimicalizada + Superasistente Ember.",
+          "photos": [
+            {
+              "name": "Superasistente Ember",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/17963.png",
+              "label": "NORMAL"
+            },
+            {
+              "name": "Salamandra Quimicalizada",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/17868.png",
+              "label": "YA EN CAMPO"
+            }
+          ],
+          "requirements": [],
+          "resources": [
+            {
+              "zone": "Mano",
+              "text": "Fusión #16934"
+            },
+            {
+              "zone": "Monstruos",
+              "text": "Salamandra Quimicalizada #17868 (Ataque), Superasistente Ember #17963 (Normal, Ataque)"
+            },
+            {
+              "zone": "Mágicas y trampas",
+              "text": ""
+            },
+            {
+              "zone": "Cementerio",
+              "text": "¡Atraviesa! e Hiperasistente en GY"
+            },
+            {
+              "zone": "Destierro propio",
+              "text": ""
+            },
+            {
+              "zone": "Campo y estado rival",
+              "text": "Rival conserva su monstruo y Mágica boca arriba"
+            },
+            {
+              "zone": "Materiales Xyz/Fusión/Sincro",
+              "text": ""
+            },
+            {
+              "zone": "Normal, Extra, fase y restricciones",
+              "text": "Segunda Normal del turno Rush realizada legalmente; Skill usada; Extra intacto"
+            }
+          ],
+          "board": [
+            {
+              "name": "Salamandra Quimicalizada",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/17868.png",
+              "label": "Salamandra Quimicalizada (Ataque)",
+              "zone": "MONSTER"
+            },
+            {
+              "name": "Superasistente Ember",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/17963.png",
+              "label": "Superasistente Ember (Normal, Ataque)",
+              "zone": "MONSTER"
+            }
+          ],
+          "compact_action": "En Rush Duel efectuar otra Invocación Normal de Superasistente Ember (monstruo Normal Nivel 1) desde mano, sin gastar una limitación TCG inexistente."
+        },
+        {
+          "number": 4,
+          "action": "Activar Fusión desde mano durante Main Phase; usar ambos materiales de tu Campo y enviarlos al GY; Invocar por Fusión Salamandra Alquimicalizada desde Extra.",
+          "detail": "Campo propio: Salamandra Alquimicalizada ATK 3000; GY: Hiperasistente, Quimicalizada, Superasistente, Fusión y ¡Atraviesa!; mano vacía en esta apertura.",
+          "photos": [
+            {
+              "name": "Salamandra Alquimicalizada",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/18614.png",
+              "label": "FUSIÓN"
+            },
+            {
+              "name": "Salamandra Quimicalizada",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/17868.png",
+              "label": "ESTADO / CONTEXTO"
+            },
+            {
+              "name": "¡Atraviesa!",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/15204.png",
+              "label": "ESTADO / CONTEXTO"
+            }
+          ],
+          "requirements": [],
+          "resources": [
+            {
+              "zone": "Mano",
+              "text": ""
+            },
+            {
+              "zone": "Monstruos",
+              "text": "Salamandra Alquimicalizada #18614 (Ataque, 3000 ATK)"
+            },
+            {
+              "zone": "Mágicas y trampas",
+              "text": ""
+            },
+            {
+              "zone": "Cementerio",
+              "text": "¡Atraviesa! #15204, Hiperasistente #19291, Salamandra Quimicalizada #17868, Superasistente #17963 y Fusión #16934 en GY"
+            },
+            {
+              "zone": "Destierro propio",
+              "text": ""
+            },
+            {
+              "zone": "Campo y estado rival",
+              "text": "Monstruo rival y una Mágica boca arriba aún presentes; no se destruyeron por la Invocación"
+            },
+            {
+              "zone": "Materiales Xyz/Fusión/Sincro",
+              "text": "Fusión: Salamandra y Superasistente enviados a GY; no materiales Xyz"
+            },
+            {
+              "zone": "Normal, Extra, fase y restricciones",
+              "text": "Skill usada; Salamandra Fusión salió del Extra; Rush permite Normales sucesivas"
+            }
+          ],
+          "board": [
+            {
+              "name": "Salamandra Alquimicalizada",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/18614.png",
+              "label": "Salamandra Alquimicalizada (Ataque, 3000 ATK)",
+              "zone": "MONSTER"
+            }
+          ],
+          "compact_action": "Activar Fusión desde mano durante Main Phase; usar ambos materiales de tu Campo y enviarlos al GY; Invocar por Fusión Salamandra Alquimicalizada desde Extra."
+        },
+        {
+          "number": 5,
+          "action": "En la Main Phase en que fue Invocada especialmente la Fusión, activar su efecto (sin coste de descarte ni objetivo seleccionado).",
+          "detail": "Destruye las Mágicas y Trampas de ambos Campos. En el estado rival especificado, destruye una Mágica, de modo que los monstruos rivales boca arriba pueden perder 1000 ATK hasta fin de turno. Destruir Trampas no aumenta ese descuento. Sin cartas en M/T, la pérdida sería 0 y no se inventa daño.",
+          "photos": [
+            {
+              "name": "Fusión",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/16934.png",
+              "label": "ESTADO / CONTEXTO"
+            }
+          ],
+          "requirements": [],
+          "resources": [
+            {
+              "zone": "Mano",
+              "text": ""
+            },
+            {
+              "zone": "Monstruos",
+              "text": "Salamandra Alquimicalizada #18614 (Ataque, 3000 ATK)"
+            },
+            {
+              "zone": "Mágicas y trampas",
+              "text": ""
+            },
+            {
+              "zone": "Cementerio",
+              "text": "¡Atraviesa!, Hiperasistente, Quimicalizada, Superasistente y Fusión en GY"
+            },
+            {
+              "zone": "Destierro propio",
+              "text": ""
+            },
+            {
+              "zone": "Campo y estado rival",
+              "text": "La única Mágica rival boca arriba fue destruida y enviada a su GY; el monstruo rival permanece boca arriba con -1000 ATK temporal"
+            },
+            {
+              "zone": "Materiales Xyz/Fusión/Sincro",
+              "text": "Efecto de Fusión destruye M/T de ambos Campos; 1 Mágica rival y 0 propias en escenario explícito"
+            },
+            {
+              "zone": "Normal, Extra, fase y restricciones",
+              "text": "Skill usada; Salamandra salió del Extra; no hay daño de batalla ni de efecto garantizado"
+            }
+          ],
+          "board": [
+            {
+              "name": "Salamandra Alquimicalizada",
+              "image": "./assets/editorial/20261104-checked-study/images/rush/18614.png",
+              "label": "Salamandra Alquimicalizada (Ataque, 3000 ATK)",
+              "zone": "MONSTER"
+            }
+          ],
+          "compact_action": "En la Main Phase en que fue Invocada especialmente la Fusión, activar su efecto (sin coste de descarte ni objetivo seleccionado)."
+        }
+      ],
+      "board": [
+        {
+          "name": "Salamandra Alquimicalizada",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/18614.png",
+          "label": "Salamandra Alquimicalizada (Ataque, 3000 ATK)",
+          "zone": "MONSTER"
+        }
+      ],
+      "resources": [
+        {
+          "zone": "Mano",
+          "text": ""
+        },
+        {
+          "zone": "Monstruos",
+          "text": "Salamandra Alquimicalizada #18614 (Ataque, 3000 ATK)"
+        },
+        {
+          "zone": "Mágicas y trampas",
+          "text": ""
+        },
+        {
+          "zone": "Cementerio",
+          "text": "¡Atraviesa!, Hiperasistente, Quimicalizada, Superasistente y Fusión en GY"
+        },
+        {
+          "zone": "Destierro propio",
+          "text": ""
+        },
+        {
+          "zone": "Campo y estado rival",
+          "text": "La única Mágica rival boca arriba fue destruida y enviada a su GY; el monstruo rival permanece boca arriba con -1000 ATK temporal"
+        },
+        {
+          "zone": "Materiales Xyz/Fusión/Sincro",
+          "text": "Efecto de Fusión destruye M/T de ambos Campos; 1 Mágica rival y 0 propias en escenario explícito"
+        },
+        {
+          "zone": "Normal, Extra, fase y restricciones",
+          "text": "Skill usada; Salamandra salió del Extra; no hay daño de batalla ni de efecto garantizado"
+        }
+      ],
+      "notice": "Estudio documental con Skill local. Requiere que la liga admita esa Skill y que se cumplan las condiciones indicadas. La secuencia no acredita por sí sola su legalidad ni se ejecuta mediante un motor de reglas."
+    }
+  ],
+  "decisions": [
+    {
+      "id": "P1",
+      "title": "Objetivo de Fusión y materiales exactos",
+      "situation": "puedes reunir cuerpos Piro/FUEGO, pero los dos destinos de Fusión piden materiales diferentes.",
+      "options": [
+        {
+          "id": "A",
+          "text": "invocar cualquiera por compartir Tipo"
+        },
+        {
+          "id": "B",
+          "text": "seleccionar primero el destino y comprobar los nombres/materiales boca arriba de la receta."
+        }
+      ],
+      "answer": "B. La estrategia se decide por las piezas que tienes, no por el nombre del arquetipo.",
+      "error": "",
+      "routes": [
+        "704:A09:ALCHEMY:ARCHER01",
+        "704:A09:ALCHEMY:SALAMANDRA02"
+      ]
+    },
+    {
+      "id": "P2",
+      "title": "La habilidad tiene ventana",
+      "situation": "estás en turno 1 y pretendes utilizar Alchemy Blaze como si fuera una carta normal de mano.",
+      "options": [
+        {
+          "id": "A",
+          "text": "incluirla entre las cartas robadas y activar libremente"
+        },
+        {
+          "id": "B",
+          "text": "leer el requisito de turno/estado local y desarrollar cuerpos mientras esperas su ventana válida."
+        }
+      ],
+      "answer": "B. La Skill es externa y no sustituye cartas de mano.",
+      "error": "",
+      "routes": []
+    },
+    {
+      "id": "P3",
+      "title": "Un monstruo Normal también puede ser clave",
+      "situation": "una pieza sin texto de efecto tiene el nombre requerido para la Fusión que quieres realizar.",
+      "options": [
+        {
+          "id": "A",
+          "text": "sacrificarla sin evaluar su función"
+        },
+        {
+          "id": "B",
+          "text": "reservarla como material hasta tener otra vía de acceso."
+        }
+      ],
+      "answer": "B si esa es la condición de victoria escogida.",
+      "error": "",
+      "routes": []
+    },
+    {
+      "id": "P4",
+      "title": "Una ruta falló por falta de material",
+      "situation": "tienes Fusión, pero falta una de las cartas que deben estar boca arriba.",
+      "options": [
+        {
+          "id": "A",
+          "text": "declarar el campo final igual"
+        },
+        {
+          "id": "B",
+          "text": "preparar una recuperación legal o terminar el turno con el recurso alcanzado."
+        }
+      ],
+      "answer": "B. Evitar tratar una carta en mano/GY como material en Campo sin un efecto que la coloque allí.",
+      "error": "",
+      "routes": []
+    }
+  ],
+  "practice": [
+    {
+      "id": "P1",
+      "title": "¿Dónde está la Skill?",
+      "challenge": "se reparten cinco cartas y alguien suma Alchemy Blaze como sexta carta de mano. ¿Es correcto?",
+      "answer": "no. Es una habilidad externa a la baraja y a la mano.",
+      "explanation": "",
+      "routes": []
+    },
+    {
+      "id": "P2",
+      "title": "Material disponible",
+      "challenge": "una Fusión exige monstruo boca arriba en Campo y el único ejemplar está en Cementerio. ¿Puedes usarlo directamente?",
+      "answer": "no; necesitas un procedimiento que lo haga elegible según la Fusión concreta.",
+      "explanation": "",
+      "routes": []
+    },
+    {
+      "id": "P3",
+      "title": "Selección entre dos Fusiones",
+      "challenge": "tienes materiales de Arquero pero no de Salamandra. ¿Qué destino puedes intentar primero?",
+      "answer": "solo el que reúne requisitos; consultar la lección Arquero para su procedimiento. ---",
+      "explanation": "",
+      "routes": []
+    }
+  ],
+  "motor": {
+    "introduction": "Motor principal: Alchemy Blaze + materiales Piro → Fusión ofensiva. La Skill no se roba ni está en el Main; sus requisitos de personaje, construcción y activación deben comprobarse antes de la ruta.",
+    "choices": [
+      {
+        "text": "Campo ofensivo Archer: la ruta enlazada, Fusión que prepara una amenaza de ATK condicionado y usa materiales específicos.",
+        "routes": [
+          "704:A09:ALCHEMY:ARCHER01"
+        ]
+      },
+      {
+        "text": "Campo ofensivo Salamandra: la ruta enlazada, alternativa que exige los recursos y el estado rival definidos en la guía.",
+        "routes": [
+          "704:A09:ALCHEMY:SALAMANDRA02"
+        ]
+      },
+      {
+        "text": "Elección táctica: escoger el destino por materiales en campo y objetivo de combate; una Fusión del Extra no se invoca solo por estar registrada.",
+        "routes": []
+      }
+    ],
+    "precaution": ""
+  },
+  "optimization": {
+    "main_identities": 15,
+    "direct": 4,
+    "indirect": 11,
+    "labelled": 15,
+    "proposals": [
+      {
+        "name": "Fusión",
+        "card_id": "704:A08:C007",
+        "zone": "main",
+        "current": 2,
+        "proposed": 3,
+        "group": "Aumentar copias",
+        "reason": "Prueba condicional: mejorar la disponibilidad del destino Archer/Salamandra.",
+        "routes": [
+          "704:A09:ALCHEMY:SALAMANDRA02"
+        ]
+      },
+      {
+        "name": "Fuego Ardiente",
+        "card_id": "704:A08:C008",
+        "zone": "main",
+        "current": 3,
+        "proposed": 2,
+        "group": "Reducir",
+        "reason": "Prueba condicional: liberar espacio si la tercera copia no habilita una Fusión.",
+        "routes": []
+      }
+    ],
+    "extra_advice": [],
+    "context": "Propósito de la optimización: llegar más a menudo a Fusión Archer/Salamandra sin perder recursos de la Skill.",
+    "precautions": "Balance neto de Main de esta propuesta: +0 cartas. No cambia el tamaño total del Main; sujeto a comprobación.\nExtra / Side / Reserva y restricciones importantes: Rush Duel: verificar texto y condiciones de Skill Alchemy Blaze, formato de Duel Links y acceso real a Fusiones antes de aplicar el intercambio. No usar lista TCG para Rush."
+  }
+}

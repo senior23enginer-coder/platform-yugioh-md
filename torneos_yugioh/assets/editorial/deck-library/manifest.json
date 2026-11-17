@@ -1,0 +1,217 @@
+{
+  "schema": "station-x-deck-library/1",
+  "decks": {
+    "665": {
+      "chapters": 36,
+      "skills": 0,
+      "cards": 44,
+      "routes": 8,
+      "hands": 10,
+      "original_record_preserved": true
+    },
+    "670": {
+      "chapters": 36,
+      "skills": 0,
+      "cards": 45,
+      "routes": 8,
+      "hands": 10,
+      "original_record_preserved": true
+    },
+    "650": {
+      "chapters": 36,
+      "skills": 0,
+      "cards": 43,
+      "routes": 10,
+      "hands": 10,
+      "original_record_preserved": true
+    },
+    "684": {
+      "chapters": 36,
+      "skills": 0,
+      "cards": 60,
+      "routes": 11,
+      "hands": 10,
+      "original_record_preserved": true
+    },
+    "687": {
+      "chapters": 36,
+      "skills": 0,
+      "cards": 38,
+      "routes": 10,
+      "hands": 10,
+      "original_record_preserved": true
+    },
+    "653": {
+      "chapters": 36,
+      "skills": 0,
+      "cards": 37,
+      "routes": 14,
+      "hands": 10,
+      "original_record_preserved": true
+    },
+    "656": {
+      "chapters": 36,
+      "skills": 0,
+      "cards": 53,
+      "routes": 27,
+      "hands": 10,
+      "original_record_preserved": true
+    },
+    "706": {
+      "chapters": 36,
+      "skills": 1,
+      "cards": 17,
+      "routes": 5,
+      "hands": 10,
+      "original_record_preserved": true
+    },
+    "704": {
+      "chapters": 36,
+      "skills": 1,
+      "cards": 17,
+      "routes": 7,
+      "hands": 10,
+      "original_record_preserved": true
+    },
+    "707": {
+      "chapters": 36,
+      "skills": 1,
+      "cards": 20,
+      "routes": 10,
+      "hands": 10,
+      "original_record_preserved": true
+    },
+    "705": {
+      "chapters": 36,
+      "skills": 1,
+      "cards": 16,
+      "routes": 16,
+      "hands": 10,
+      "original_record_preserved": true
+    }
+  },
+  "source_files": [
+    {
+      "path": "LEEME_STATION_X_PARA_CODEX.md",
+      "bytes": 3742,
+      "sha256": "48ef5fcac30c3157fb702bf6b3efb07418dde7a77b2cf94bf0f75487676ed800"
+    },
+    {
+      "path": "PROMPT_MAESTRO_36_APARTADOS_ACTUALIZADO.txt",
+      "bytes": 77739,
+      "sha256": "ee2b33eae747495681c15f5c45b15f95d34edf8e8b0f3adb03411edd5db278c4"
+    },
+    {
+      "path": "Rush_Duel_Atlas_Visual_Skills_HERO_Quimicalizada.html",
+      "bytes": 13473056,
+      "sha256": "f630ac2eb0188c3862276d40f222f4f166ca780c3dc97e1872ab39172b1cf105"
+    },
+    {
+      "path": "Rush_Duel_Mago_Oscuro_Gaia_Atlas_Skill.html",
+      "bytes": 6761490,
+      "sha256": "f1b35ac3fbdde8932cf6e8680cf2a06040498ffeadf0abc698a5360d8d3e9af8"
+    },
+    {
+      "path": "Rush_Duel_Mago_Oscuro_Gaia_Registro.json",
+      "bytes": 4478,
+      "sha256": "fd931252013d9b57abba3e363786a624db58aedbb00af58e827f6c794f43640a"
+    },
+    {
+      "path": "Rush_Duel_Royal_Rebels_Analisis_36_Apartados.md",
+      "bytes": 47099,
+      "sha256": "cfbd0afa3133ae68dd71529909c504baff6f555baac32397648fe4215dd80384"
+    },
+    {
+      "path": "Rush_Duel_Royal_Rebels_Atlas_Skill_Hard_Rock.html",
+      "bytes": 7014736,
+      "sha256": "7f9c4614411ccf18493c6aaf31c27ad3b7836343f5cee1be4b663c06f5aef105"
+    },
+    {
+      "path": "Rush_Duel_Royal_Rebels_Registro_Analitico.json",
+      "bytes": 89849,
+      "sha256": "16a11dd8c9a95048497352203bf4ab076a85942a56f250fa6a67a4df04241333"
+    },
+    {
+      "path": "Skills_Originales/01-1000249895.png",
+      "bytes": 5208051,
+      "sha256": "8e5bae71cbd3a9b927e327d994036dbdcbefdd6fd526b5597e92e282726b44e7"
+    },
+    {
+      "path": "Skills_Originales/02-1000249894.png",
+      "bytes": 5076053,
+      "sha256": "70815d67845610fcb0616ad96321817f0bc5bdf43778d7546045fc3bd4cdff58"
+    },
+    {
+      "path": "Skills_Originales/03-1000249897.png",
+      "bytes": 4932217,
+      "sha256": "8a0c100f893ba1456eae609224f9d7c519ac6e40020f57e0037877f1f2affdfc"
+    },
+    {
+      "path": "Skills_Originales/04-1000249896.png",
+      "bytes": 5019680,
+      "sha256": "8c1a76f70c16cb276f0361300fe9a11af542a21acdb180e8869afea2a4ec0a06"
+    },
+    {
+      "path": "Station_X_Analisis_11_Decks_Completos_36_Apartados.json",
+      "bytes": 4998768,
+      "sha256": "68235c68eec2c1ef4222bdb972504f76df25d9ca8a73e3cf9a0b1e1bcac75513"
+    },
+    {
+      "path": "Station_X_Atlas_Visual_7_Decks_31Oct2026.html",
+      "bytes": 3088149,
+      "sha256": "bd114246c35ab9035493f762530943e1cc4fc6de63384f22ad9455b0cc93d768"
+    },
+    {
+      "path": "Station_X_Auditoria_11_Decks.json",
+      "bytes": 1059,
+      "sha256": "16b70e80ca8754f8c858328258f913c353e106dd80050eea7710445196cac363"
+    },
+    {
+      "path": "Station_X_Auditoria_Profunda_11_Decks_2026-11-01.json",
+      "bytes": 446293,
+      "sha256": "dee9608be7dda169b553785a41ea1c70417ff0c056b97aa595c4420784ffb6c6"
+    },
+    {
+      "path": "Station_X_Estado_Real_11_Decks_2026-11-01.md",
+      "bytes": 4719,
+      "sha256": "4c62347c9622d957176fbd1a185737e66dcad45c077fe98f63cf8b149232bc83"
+    },
+    {
+      "path": "Station_X_Guia_11_Decks_390_Cartas_126_Combos_2026-11-01.md",
+      "bytes": 297208,
+      "sha256": "eb2e81d81f359daab1a708e9deb68b03dc7ab8801d89ef16bb41285840c3bae4"
+    },
+    {
+      "path": "Station_X_Indice_Fuentes_y_Rutas_11_Decks_2026-11-01.json",
+      "bytes": 287269,
+      "sha256": "fe91936ea04c8754cd500510eaa4928f70bcd8e24b77814f14f0d7d6db73ca15"
+    },
+    {
+      "path": "Station_X_Resumen_11_Decks_Completos.md",
+      "bytes": 3965,
+      "sha256": "ba6d86d64a97de297ef0536986ba2427d3ddf142939e681a628aef74b22d5917"
+    }
+  ],
+  "totals": {
+    "chapters": 396,
+    "cards": 390,
+    "routes": 126,
+    "hands": 110
+  },
+  "source_records_equal_consolidated": true,
+  "scope": "Individual decks plus explicitly labelled general criteria and historical notes; no shared deck navigator",
+  "artifacts": {
+    "deck-665.json": "598c386d0f6e3b3123eb4f89bc56dd479708d1ee2a4f825763fafbc1acd84328",
+    "deck-670.json": "c46e0369ab1cee9ec6e6897f84a800898ce57f6b5746584131bc82aede9fe53b",
+    "deck-650.json": "ed267a3053293c3b846b6d2edf47a3d7764bd7f76a3de1a7d729d3471e69aabf",
+    "deck-684.json": "23577ae6c5b27b5bca10193012cb9c7bab246316a44d56e5c1760f96e61be439",
+    "deck-687.json": "4feaee81c7c12ce7c4c0e1b47c2d84f9100a184ebfcf4b6aa77afd1a5fbe6d2c",
+    "deck-653.json": "b40c32717ebedb314435df7c11df4774f1c5fd4d16e8f8597077d93fe3b07ca6",
+    "deck-656.json": "455663f91264b2687627fed23160e4a27d0ab8b5850bcce89949fdbc5ecea0db",
+    "deck-706.json": "a6e29e59e00e54c30b8e75092f2d94030b9bb40e9975866d4eadbfc0fd8325ef",
+    "deck-704.json": "d16b6f9129d871d91f4481b320b86229b3280e95a7c66e8637c912b94e641e9c",
+    "deck-707.json": "8637a219b55792521bfe8d31d2d4244e051f0d9df3a1c958112128046a837257",
+    "deck-705.json": "af9bce860ea73c03a0e2e8a7a4e2d872dd198c81cd10fce78a1f19f819f00a07",
+    "general.json": "776b1e6b34c3203932cde3500a014967b1c0c2a9f0280bcd78731d486eda5cb3"
+  }
+}

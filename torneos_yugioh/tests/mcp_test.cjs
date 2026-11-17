@@ -1,0 +1,75 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const crypto = require('node:crypto');
+const net = require('node:net');
+const { spawn, spawnSync } = require('node:child_process');
+const { Client } = require('@modelcontextprotocol/sdk/client/index.js');
+const { StreamableHTTPClientTransport } = require('@modelcontextprotocol/sdk/client/streamableHttp.js');
+
+(async () => {
+  const root=path.resolve(__dirname,'../..'), app=path.join(root,'torneos_yugioh');
+  const out=fs.mkdtempSync(path.join(root,'outputs','mcp-test-'));
+  const listener=net.createServer();await new Promise(r=>listener.listen(0,'127.0.0.1',r));const port=listener.address().port;await new Promise(r=>listener.close(r));
+  const resource=`http://127.0.0.1:${port}/mcp/`, owner=crypto.randomBytes(32).toString('base64url');
+  const php=process.env.PHP_BINARY || 'C:\\laragon\\bin\\php\\php-8.3.26-Win32-vs16-x64\\php.exe';
+  const config=path.join(out,'private.php'), state=path.join(out,'state','oauth.json');
+  const env={...process.env,MCP_TEST_DB:path.join(out,'db.sqlite'),STATION_X_CHATGPT_CONFIG:config,MCP_TEST_RESOURCE:resource};
+  const published=path.join(out,'published');env.MCP_TEST_EDITORIAL_APP=published;
+  for(const relative of ['assets/editorial/deck-deliveries.json','assets/editorial/20261101-11-decks/deck-665.json','assets/editorial/deck-library/deck-665.json']){
+    const git=spawnSync('git',['show','HEAD:torneos_yugioh/'+relative],{cwd:root,maxBuffer:32000000});assert.equal(git.status,0);
+    const target=path.join(published,relative);fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,git.stdout);
+  }
+  const fixture=path.join(__dirname,'mcp_fixture.php');
+  const setup=spawnSync(php,[fixture],{env,input:owner,encoding:'utf8'});assert.equal(setup.status,0,setup.stderr);
+  const server=spawn(php,['-S',`127.0.0.1:${port}`,'-t',app,fixture],{env,stdio:['ignore','ignore','pipe']});let errors='';server.stderr.on('data',d=>errors+=d);
+  const clients=[];
+  const json=async(url,init={})=>{const response=await fetch(url,init);return {response,body:await response.json()};};
+  const post=(data)=>({method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+  try {
+    let ready=false;for(let i=0;i<80;i++){try{const r=await fetch(resource+'status');if(r.ok){ready=true;break;}}catch{}await new Promise(r=>setTimeout(r,100));}assert(ready,'PHP server not ready');
+    const protectedMeta=await json(resource+'.well-known/oauth-protected-resource');assert.equal(protectedMeta.body.resource,resource);
+    const meta=await json(resource+'.well-known/oauth-authorization-server');assert.equal(meta.body.issuer,resource+'oauth');assert.deepEqual(meta.body.code_challenge_methods_supported,['S256']);
+    let r=await json(resource,post({jsonrpc:'2.0',id:1,method:'tools/call',params:{name:'list_decks',arguments:{}}}));assert.equal(r.response.status,401);assert(r.response.headers.get('www-authenticate').includes('resource_metadata='));
+    r=await json(resource,{...post({jsonrpc:'2.0',id:1,method:'initialize'}),headers:{'Content-Type':'application/json',Origin:'https://evil.example'}});assert.equal(r.response.status,403);
+    const publicClient=new Client({name:'station-x-test',version:'1.0.0'});clients.push(publicClient);await publicClient.connect(new StreamableHTTPClientTransport(new URL(resource)));
+    const list=await publicClient.listTools();assert.equal(list.tools.length,7);assert(list.tools.every(t=>t.annotations.readOnlyHint&&!t.annotations.destructiveHint));
+    const callback='https://chatgpt.com/connector_platform_oauth_redirect';
+    r=await json(resource+'oauth/register',post({redirect_uris:['https://evil.example/callback']}));assert.equal(r.response.status,400);
+    r=await json(resource+'oauth/register',post({redirect_uris:[callback],token_endpoint_auth_method:'none'}));assert.equal(r.response.status,201);const client=r.body.client_id;
+    const verifier=crypto.randomBytes(48).toString('base64url'), challenge=crypto.createHash('sha256').update(verifier).digest('base64url');
+    const authParams={client_id:client,redirect_uri:callback,response_type:'code',code_challenge_method:'S256',code_challenge:challenge,scope:'stationx:read',resource,state:'test-state'};
+    let authResponse=await fetch(resource+'oauth/authorize?'+new URLSearchParams(authParams));assert.equal(authResponse.status,200);const cookie=authResponse.headers.get('set-cookie').split(';')[0];const form=await authResponse.text();const pending=form.match(/name="request" value="([^"]+)"/)[1];
+    const approve=async(code,customCookie=cookie)=>fetch(resource+'oauth/authorize',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded',Cookie:customCookie},body:new URLSearchParams({request:pending,owner_code:code,decision:'approve'}),redirect:'manual'});
+    assert.equal((await approve(owner,'')).status,400,'Approval must bind to initiating session');assert.equal((await approve('incorrect')).status,400);
+    authResponse=await approve(owner);assert.equal(authResponse.status,303);const redirect=new URL(authResponse.headers.get('location'));assert.equal(redirect.searchParams.get('iss'),resource+'oauth');assert.equal(redirect.searchParams.get('state'),'test-state');
+    const code=redirect.searchParams.get('code');
+    const exchange=async(fields)=>json(resource+'oauth/token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fields)});
+    const fields={grant_type:'authorization_code',client_id:client,redirect_uri:callback,code,code_verifier:verifier,resource};
+    assert.equal((await exchange({...fields,code_verifier:'x'.repeat(64)})).response.status,400);
+    assert.equal((await exchange({...fields,resource:'https://evil.example/'})).response.status,400);
+    r=await exchange(fields);assert.equal(r.response.status,200);const token=r.body;assert.equal((await exchange(fields)).response.status,400,'Codes must be single-use');
+    assert.equal((await approve(owner)).status,400,'Approval must be single-use');
+    const privateClient=new Client({name:'station-x-authenticated-test',version:'1.0.0'});clients.push(privateClient);await privateClient.connect(new StreamableHTTPClientTransport(new URL(resource),{requestInit:{headers:{Authorization:`Bearer ${token.access_token}`}}}));
+    const call=async(name,args)=>{const value=await privateClient.callTool({name,arguments:args});assert(!value.isError,JSON.stringify(value));return value.structuredContent;};
+    const decks=await call('list_decks',{});assert(decks.decks.some(d=>d.id===665&&d.cards_loaded));assert(decks.decks.some(d=>d.id===999&&!d.cards_loaded));
+    const deck=await call('get_deck',{deck_id:665});assert(deck.cards.length>0);assert.equal(deck.deck.name,'Kashtira Pure');assert(deck.cards.every(c=>c.deck_id===665));
+    const guide=await call('get_guide',{deck_id:665,section:'combos'});assert.equal(guide.deck_id,665);assert(guide.text.length>0);
+    if(guide.next_offset!==null){const next=await call('get_guide',{deck_id:665,section:'combos',offset:guide.next_offset});assert.equal(next.offset,guide.next_offset);}
+    assert((await privateClient.callTool({name:'get_guide',arguments:{deck_id:999,section:'combos'}})).isError);
+    assert((await privateClient.callTool({name:'get_deck',arguments:{deck_id:'665'}})).isError);
+    assert((await privateClient.callTool({name:'get_deck',arguments:{deck_id:665,path:'../../private.php'}})).isError);
+    const combo=await call('get_combo',{combo_id:'test-combo-1234567'});assert.equal(combo.inventory_changed,false);assert.equal(combo.deck_id,665);
+    assert.equal((await call('list_combos',{deck_id:665})).total,1);
+    const search=await call('search',{query:'Kashtira'});assert(search.results.some(d=>d.id==='deck:665'));
+    assert.equal((await call('fetch',{id:'deck:665'})).title,'Kashtira Pure');
+    assert.equal((await call('fetch',{id:'guide:665:combos:0'})).metadata.next_id,guide.next_offset===null?null:`guide:665:combos:${guide.next_offset}`);
+    const raw=fs.readFileSync(state,'utf8');assert(!raw.includes(owner)&&!raw.includes(token.access_token)&&!raw.includes(token.refresh_token)&&!raw.includes(code),'Secrets must not be stored in plaintext');
+    const refreshed=await exchange({grant_type:'refresh_token',client_id:client,refresh_token:token.refresh_token,resource});assert.equal(refreshed.response.status,200);assert.notEqual(refreshed.body.refresh_token,token.refresh_token);
+    assert.equal((await exchange({grant_type:'refresh_token',client_id:client,refresh_token:token.refresh_token,resource})).response.status,400);
+    await fetch(resource+'oauth/revoke',{method:'POST',body:new URLSearchParams({client_id:client,token:refreshed.body.refresh_token})});
+    r=await json(resource,{...post({jsonrpc:'2.0',id:99,method:'tools/call',params:{name:'list_decks',arguments:{}}}),headers:{'Content-Type':'application/json',Authorization:`Bearer ${token.access_token}`}});assert.equal(r.response.status,401,'Revoke invalidates access family');
+    assert(!/Fatal error|Warning:|Uncaught/.test(errors),errors);
+    console.log('MCP: official SDK negotiation, 7 read-only tools, inventory isolation, guide pagination, OAuth PKCE/session binding, code replay, audience, rotation, revocation and secret storage passed.');
+  } finally {for(const c of clients)await c.close().catch(()=>{});server.kill();}
+})().catch(e=>{console.error(e);process.exitCode=1;});

@@ -1,0 +1,1800 @@
+{
+  "deck_id": 687,
+  "name": "Volcanic",
+  "format": "tcg_advanced",
+  "source_file": "DECK_687_VOLCANIC.md",
+  "source_sha256": "3e360acf429cf7ee34f7dead9718d06a42a5d5cd28a71e5de1893c77e7faab96",
+  "inventory": [
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 284,
+      "name": "Soldado Volcánico / Volcanic Trooper"
+    },
+    {
+      "section": "main",
+      "quantity": 2,
+      "card_id": 285,
+      "name": "Emperador Volcánico / Volcanic Emperor"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 286,
+      "name": "Misil Volcánico / Volcanic Rocket"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 287,
+      "name": "Percusión Anular Volcánica / Volcanic Rimfire"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 288,
+      "name": "Disparo Disperso Volcánico / Volcanic Scattershot"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 289,
+      "name": "Cartucho Volcánico / Volcanic Shell"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 290,
+      "name": "Estatua-Barrera del Infierno / Barrier Statue of the Inferno"
+    },
+    {
+      "section": "main",
+      "quantity": 2,
+      "card_id": 291,
+      "name": "\"C\" Maxx / Maxx \"C\""
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 292,
+      "name": "Acelerador de Llama Volcánico / Volcanic Blaze Accelerator"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 293,
+      "name": "Acelerador de Llama / Blaze Accelerator"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 294,
+      "name": "Eyección de Fuego / Fire Ejection"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 295,
+      "name": "Gotas Prohibidas / Forbidden Droplet"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 296,
+      "name": "Hoguera / Bonfire"
+    },
+    {
+      "section": "main",
+      "quantity": 2,
+      "card_id": 297,
+      "name": "Olla de la Extravagancia / Pot of Extravagance"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 298,
+      "name": "Recarga del Acelerador de Llama / Blaze Accelerator Reload"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 299,
+      "name": "Infierno Volcánico / Volcanic Inferno"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 300,
+      "name": "Emisión Volcánica / Volcanic Emission"
+    },
+    {
+      "section": "main",
+      "quantity": 2,
+      "card_id": 301,
+      "name": "Emparejamiento de Atributos / Gozen Match"
+    },
+    {
+      "section": "extra",
+      "quantity": 2,
+      "card_id": 302,
+      "name": "I:P Enmascarada / I:P Masquerena"
+    },
+    {
+      "section": "extra",
+      "quantity": 1,
+      "card_id": 303,
+      "name": "Hiita, la Encantadora del Fuego Encendida / Hiita the Fire Charmer, Ablaze"
+    },
+    {
+      "section": "extra",
+      "quantity": 1,
+      "card_id": 304,
+      "name": "Caballero de Pesadilla Unicornio / Knightmare Unicorn"
+    },
+    {
+      "section": "extra",
+      "quantity": 1,
+      "card_id": 305,
+      "name": "Diosa del Inframundo del Mundo Cerrado / Underworld Goddess of the Closed World"
+    },
+    {
+      "section": "extra",
+      "quantity": 1,
+      "card_id": 306,
+      "name": "Caballero de Pesadilla Fénix / Knightmare Phoenix"
+    },
+    {
+      "section": "extra",
+      "quantity": 1,
+      "card_id": 307,
+      "name": "Enlacekuriboh / Linkuriboh"
+    },
+    {
+      "section": "extra",
+      "quantity": 3,
+      "card_id": 308,
+      "name": "Súper Asesino Estelar TY-PHON – Crisis Celeste / Super Starslayer TY-PHON - Sky Crisis"
+    },
+    {
+      "section": "extra",
+      "quantity": 3,
+      "card_id": 309,
+      "name": "S:P Pequeña Caballera / S:P Little Knight"
+    },
+    {
+      "section": "extra",
+      "quantity": 1,
+      "card_id": 310,
+      "name": "Salamangrande Almiraj / Salamangreat Almiraj"
+    },
+    {
+      "section": "extra",
+      "quantity": 1,
+      "card_id": 311,
+      "name": "Princesa Prometea, Otorgadora de Llamas / Promethean Princess, Bestower of Flames"
+    },
+    {
+      "section": "reserve",
+      "quantity": 3,
+      "card_id": 312,
+      "name": "Infinito Temporal / Infinite Impermanence"
+    },
+    {
+      "section": "reserve",
+      "quantity": 2,
+      "card_id": 313,
+      "name": "Flor de Ceniza y Primavera Feliz / Ash Blossom & Joyous Spring"
+    },
+    {
+      "section": "reserve",
+      "quantity": 2,
+      "card_id": 314,
+      "name": "Corona Prohibida / Forbidden Chalice"
+    },
+    {
+      "section": "reserve",
+      "quantity": 1,
+      "card_id": 315,
+      "name": "Almas en Choque / Clash of Souls"
+    },
+    {
+      "section": "reserve",
+      "quantity": 1,
+      "card_id": 316,
+      "name": "Pelea Pareja / Evenly Matched"
+    },
+    {
+      "section": "reserve",
+      "quantity": 1,
+      "card_id": 317,
+      "name": "Rivalidad de los Señores de la Guerra / Rivalry of Warlords"
+    },
+    {
+      "section": "reserve",
+      "quantity": 1,
+      "card_id": 318,
+      "name": "Polvo de Pluma de Arpía / Harpie's Feather Duster"
+    },
+    {
+      "section": "reserve",
+      "quantity": 1,
+      "card_id": 319,
+      "name": "\"C\" Maxx / Maxx \"C\""
+    },
+    {
+      "section": "reserve",
+      "quantity": 1,
+      "card_id": 320,
+      "name": "Emparejamiento de Atributos / Gozen Match"
+    },
+    {
+      "section": "reserve",
+      "quantity": 1,
+      "card_id": 321,
+      "name": "Olla de la Prosperidad / Pot of Prosperity"
+    }
+  ],
+  "cards": [
+    {
+      "id": "687:A08:C001",
+      "name": "Volcanic Trooper — Soldado Volcánico",
+      "cid": 18916,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/18916.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 284
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Main **3x**; **starter / buscador / creador de objetivos Pyro rivales**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "al ser Invocado Normal o Especialmente puede añadir del Deck **1 carta «Volcanic» distinta de Trooper**. Con otro efecto independiente, **descarta 1 carta** y coloca una **Ficha Bomba Pyro/FUEGO** en el campo del oponente; su controlador recibe **500 daños cuando es destruida**. Cada efecto de Trooper se usa **una vez por turno**."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "primero obtiene pieza del motor (por ejemplo, Volcanic Blaze Accelerator, Emission o Inferno) según la mano; segundo puede dar una Ficha susceptible de ser destruida o seleccionada; en turnos largos sigue buscando si quedan objetivos en el Deck."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "**Volcanic Emission** puede seleccionar una Ficha Pyro del rival para daño según su ATK original; **Volcanic Blaze Accelerator** puede seleccionar un monstruo rival boca arriba. Descartar **Rimfire/Scattershot/Shell** sirve para situarlos en GY, pero no equivale a envío **por un Blaze Accelerator**."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "necesita una Invocación efectiva para buscar; la Ficha ocupa un espacio rival y puede ser aprovechada por este. Si la Ficha no se destruye, no aplica su daño por destrucción; cuidar qué carta se descarta."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18916&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Main **3x**; **starter / buscador / creador de objetivos Pyro rivales**.\n- **Efecto y requisito:** al ser Invocado Normal o Especialmente puede añadir del Deck **1 carta «Volcanic» distinta de Trooper**. Con otro efecto independiente, **descarta 1 carta** y coloca una **Ficha Bomba Pyro/FUEGO** en el campo del oponente; su controlador recibe **500 daños cuando es destruida**. Cada efecto de Trooper se usa **una vez por turno**.\n- **Primero / segundo / tardío:** primero obtiene pieza del motor (por ejemplo, Volcanic Blaze Accelerator, Emission o Inferno) según la mano; segundo puede dar una Ficha susceptible de ser destruida o seleccionada; en turnos largos sigue buscando si quedan objetivos en el Deck.\n- **Sinergias verificables:** **Volcanic Emission** puede seleccionar una Ficha Pyro del rival para daño según su ATK original; **Volcanic Blaze Accelerator** puede seleccionar un monstruo rival boca arriba. Descartar **Rimfire/Scattershot/Shell** sirve para situarlos en GY, pero no equivale a envío **por un Blaze Accelerator**.\n- **Riesgo / recurso:** necesita una Invocación efectiva para buscar; la Ficha ocupa un espacio rival y puede ser aprovechada por este. Si la Ficha no se destruye, no aplica su daño por destrucción; cuidar qué carta se descarta.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18916&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C002",
+      "name": "Volcanic Emperor — Emperador Volcánico",
+      "cid": 18915,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/18915.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 285
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Main **2x**; **jefe de campo / finisher de daño / acceso a trampas Volcanic**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "**no puede ser Invocado Normalmente**. Se Invoca Especialmente desde mano o GY por su procedimiento propio desterrando **3 monstruos Pyro o 1 carta «Blaze Accelerator»** del campo propio boca arriba y/o GY; como máximo **1 Invocación Especial de Emperor por turno**. Al ser Invocado **de esa manera**, puede hacer **500 de daño por cada Pyro desterrado** y después **Colocar 1 Trampa «Volcanic» del Deck**. Cada evento de Invocación Especial del rival provoca **500 de daño**, no 500 por cada monstruo de un mismo evento."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "primero establece presión y prepara **Volcanic Inferno** o **Volcanic Emission**; segundo aporta 3100 ATK y presión de daño si se pagó su coste. En juego tardío puede volver del GY por su propio método si hay recursos."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "**Fire Ejection, Rimfire, Reload y Scattershot** suministran Pyro al GY; **Volcanic Inferno** recicla algunos recursos y disputa efectos de monstruo. Con destierro de **solo 1 Blaze Accelerator** no se generan automáticamente los 1500 daños ligados a **3 Pyro desterrados**."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "desterrar 3 Pyro compite con munición de Shell/Scattershot y coste de Inferno. **Volcanic Emission** puede Invocarlo ignorando condiciones, pero esa Invocación **no cumple «Invocado de esta manera»**: no se le atribuye la Colocación de Trampa del procedimiento propio."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18915&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Main **2x**; **jefe de campo / finisher de daño / acceso a trampas Volcanic**.\n- **Efecto y requisito:** **no puede ser Invocado Normalmente**. Se Invoca Especialmente desde mano o GY por su procedimiento propio desterrando **3 monstruos Pyro o 1 carta «Blaze Accelerator»** del campo propio boca arriba y/o GY; como máximo **1 Invocación Especial de Emperor por turno**. Al ser Invocado **de esa manera**, puede hacer **500 de daño por cada Pyro desterrado** y después **Colocar 1 Trampa «Volcanic» del Deck**. Cada evento de Invocación Especial del rival provoca **500 de daño**, no 500 por cada monstruo de un mismo evento.\n- **Primero / segundo / tardío:** primero establece presión y prepara **Volcanic Inferno** o **Volcanic Emission**; segundo aporta 3100 ATK y presión de daño si se pagó su coste. En juego tardío puede volver del GY por su propio método si hay recursos.\n- **Sinergias verificables:** **Fire Ejection, Rimfire, Reload y Scattershot** suministran Pyro al GY; **Volcanic Inferno** recicla algunos recursos y disputa efectos de monstruo. Con destierro de **solo 1 Blaze Accelerator** no se generan automáticamente los 1500 daños ligados a **3 Pyro desterrados**.\n- **Riesgo / recurso:** desterrar 3 Pyro compite con munición de Shell/Scattershot y coste de Inferno. **Volcanic Emission** puede Invocarlo ignorando condiciones, pero esa Invocación **no cumple «Invocado de esta manera»**: no se le atribuye la Colocación de Trampa del procedimiento propio.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18915&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C003",
+      "name": "Volcanic Rocket — Misil Volcánico",
+      "cid": 7243,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/7243.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 286
+        }
+      ],
+      "classification": "BUSCADOR_INTERACCION",
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Main **3x**; **buscador de motor / recuperación de aceleradores**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "cuando es Invocado, puede añadir **1 carta «Blaze Accelerator» desde Deck o GY**; no hay que inventar coste de descarte para esa búsqueda."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "primero proporciona la pieza continua o la trampa Reload que falte; segundo recompone el motor tras gastarlo; tardío convierte otra Invocación de Rocket en recuperación del GY."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "recupera **Blaze Accelerator**, **Blaze Accelerator Reload** o **Volcanic Blaze Accelerator** según sus nombres disponibles y la situación; las copias de la última necesitan además un coste de activación legal."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "depende de que queden aceleradores en Deck/GY; no recupera una carta desterrada, y no sustituye la exigencia de recursos para activar VBA."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7243&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Main **3x**; **buscador de motor / recuperación de aceleradores**.\n- **Efecto y requisito:** cuando es Invocado, puede añadir **1 carta «Blaze Accelerator» desde Deck o GY**; no hay que inventar coste de descarte para esa búsqueda.\n- **Primero / segundo / tardío:** primero proporciona la pieza continua o la trampa Reload que falte; segundo recompone el motor tras gastarlo; tardío convierte otra Invocación de Rocket en recuperación del GY.\n- **Sinergias verificables:** recupera **Blaze Accelerator**, **Blaze Accelerator Reload** o **Volcanic Blaze Accelerator** según sus nombres disponibles y la situación; las copias de la última necesitan además un coste de activación legal.\n- **Riesgo / recurso:** depende de que queden aceleradores en Deck/GY; no recupera una carta desterrada, y no sustituye la exigencia de recursos para activar VBA.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7243&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C004",
+      "name": "Volcanic Rimfire — Percusión Anular Volcánica",
+      "cid": 18917,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/18917.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 287
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Main **3x**; **enabler de GY / puente hacia Scattershot o aceleradores continuos**; **Pyro Nivel 1**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "cuando va al GY puede elegir **un efecto**: (a) desterrarse para enviar **otro monstruo Volcanic** del Deck al GY, o (b) desterrar **1 carta Blaze Accelerator** del campo propio boca arriba/GY y **colocar boca arriba** desde mano/Deck **1 Mágica/Trampa Continua Blaze Accelerator**. **Cada opción**, máximo una vez por turno."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "primero inicia el circuito de GY y acceso a Reload; segundo prepara el envío de Scattershot y presión sobre monstruos; tardío debe valorarse si merece gastar acelerador para abrir una carta continua."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "**Fire Ejection** puede enviarlo desde Deck; el envío de Rimfire por **VBA** es legal porque es **Nivel 1**; su opción (a) puede enviar **Scattershot** y causar 500 daños, pero al ser efecto **de Rimfire**, por sí sola **no cumple** la condición del barrido de Scattershot ligado a Blaze Accelerator."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "desterrarlo impide usar esa misma copia para **Volcanic Inferno** o como parte de los tres Pyro de Emperor; la opción (b) necesita un acelerador disponible para desterrar y un continuo objetivo realmente existente."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18917&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Main **3x**; **enabler de GY / puente hacia Scattershot o aceleradores continuos**; **Pyro Nivel 1**.\n- **Efecto y requisito:** cuando va al GY puede elegir **un efecto**: (a) desterrarse para enviar **otro monstruo Volcanic** del Deck al GY, o (b) desterrar **1 carta Blaze Accelerator** del campo propio boca arriba/GY y **colocar boca arriba** desde mano/Deck **1 Mágica/Trampa Continua Blaze Accelerator**. **Cada opción**, máximo una vez por turno.\n- **Primero / segundo / tardío:** primero inicia el circuito de GY y acceso a Reload; segundo prepara el envío de Scattershot y presión sobre monstruos; tardío debe valorarse si merece gastar acelerador para abrir una carta continua.\n- **Sinergias verificables:** **Fire Ejection** puede enviarlo desde Deck; el envío de Rimfire por **VBA** es legal porque es **Nivel 1**; su opción (a) puede enviar **Scattershot** y causar 500 daños, pero al ser efecto **de Rimfire**, por sí sola **no cumple** la condición del barrido de Scattershot ligado a Blaze Accelerator.\n- **Riesgo / recurso:** desterrarlo impide usar esa misma copia para **Volcanic Inferno** o como parte de los tres Pyro de Emperor; la opción (b) necesita un acelerador disponible para desterrar y un continuo objetivo realmente existente.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18917&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C005",
+      "name": "Volcanic Scattershot — Disparo Disperso Volcánico",
+      "cid": 7083,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/7083.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 288
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Main **3x**; **removal masivo / daño por efecto / munición crítica**; **Pyro Nivel 2**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "cada copia enviada al GY inflige **500 daños**. Si se envía al GY **por efecto de una carta Blaze Accelerator**, puede enviar **otras 2 copias** desde mano y/o Deck al GY para **destruir todos los monstruos que controla el rival**. Si las tres copias llegan al GY por esa resolución y disparan sus efectos de daño, el potencial conjunto es **1500 daños**, sujeto a resolución real."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "segundo es limpieza de tablero; primero es amenaza a conservar vía Reload; tardío necesita comprobar que las dos copias adicionales siguen en mano/Deck."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "**Blaze Accelerator** lo puede enviar **desde la mano** si satisface su requisito de ATK; **Blaze Accelerator Reload**, mediante su efecto desde GY, lo envía **desde Deck** y habilita la condición de barrido; **Fire Ejection/Rimfire/Forbidden Droplet** pueden mandarlo al GY para 500, pero **no** activan por sí mismos el barrido."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "**Volcanic Blaze Accelerator** solo envía **Pyro Nivel 1 desde Deck**, por lo que **no puede elegir Scattershot Nivel 2**. Destrucción no es negación ni afecta automáticamente a monstruos protegidos. Si ya no quedan las otras 2 copias elegibles, no prometer la limpieza."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7083&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Main **3x**; **removal masivo / daño por efecto / munición crítica**; **Pyro Nivel 2**.\n- **Efecto y requisito:** cada copia enviada al GY inflige **500 daños**. Si se envía al GY **por efecto de una carta Blaze Accelerator**, puede enviar **otras 2 copias** desde mano y/o Deck al GY para **destruir todos los monstruos que controla el rival**. Si las tres copias llegan al GY por esa resolución y disparan sus efectos de daño, el potencial conjunto es **1500 daños**, sujeto a resolución real.\n- **Primero / segundo / tardío:** segundo es limpieza de tablero; primero es amenaza a conservar vía Reload; tardío necesita comprobar que las dos copias adicionales siguen en mano/Deck.\n- **Sinergias verificables:** **Blaze Accelerator** lo puede enviar **desde la mano** si satisface su requisito de ATK; **Blaze Accelerator Reload**, mediante su efecto desde GY, lo envía **desde Deck** y habilita la condición de barrido; **Fire Ejection/Rimfire/Forbidden Droplet** pueden mandarlo al GY para 500, pero **no** activan por sí mismos el barrido.\n- **Riesgo / recurso:** **Volcanic Blaze Accelerator** solo envía **Pyro Nivel 1 desde Deck**, por lo que **no puede elegir Scattershot Nivel 2**. Destrucción no es negación ni afecta automáticamente a monstruos protegidos. Si ya no quedan las otras 2 copias elegibles, no prometer la limpieza.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7083&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C006",
+      "name": "Volcanic Shell — Cartucho Volcánico",
+      "cid": 7082,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/7082.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 289
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Main **3x**; **recurso reciclable / munición / ventaja incremental**; **Pyro Nivel 1**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "**una vez por turno** paga **500 LP** para añadir **otra Shell del Deck** a la mano. La copia que usa ese efecto **debe permanecer en GY tanto al activarlo como al resolverlo**."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "primero convierte un envío al GY en carta adicional para coste futuro; segundo abastece recursos, no rompe por sí sola el tablero; tardío pierde valor si no quedan Shell en Deck."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "**VBA** puede enviarla desde Deck por exigir Pyro Nivel 1 y un objetivo rival boca arriba; **Blaze Accelerator** puede enviarla desde mano; las copias obtenidas pueden alimentar **Reload** o el coste de descarte de Trooper."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "cada uso consume LP y una copia que permanezca en Deck; si un efecto rival mueve la Shell del GY antes de resolver, falla su requisito. Su búsqueda no añade un «Volcanic» cualquiera."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7082&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Main **3x**; **recurso reciclable / munición / ventaja incremental**; **Pyro Nivel 1**.\n- **Efecto y requisito:** **una vez por turno** paga **500 LP** para añadir **otra Shell del Deck** a la mano. La copia que usa ese efecto **debe permanecer en GY tanto al activarlo como al resolverlo**.\n- **Primero / segundo / tardío:** primero convierte un envío al GY en carta adicional para coste futuro; segundo abastece recursos, no rompe por sí sola el tablero; tardío pierde valor si no quedan Shell en Deck.\n- **Sinergias verificables:** **VBA** puede enviarla desde Deck por exigir Pyro Nivel 1 y un objetivo rival boca arriba; **Blaze Accelerator** puede enviarla desde mano; las copias obtenidas pueden alimentar **Reload** o el coste de descarte de Trooper.\n- **Riesgo / recurso:** cada uso consume LP y una copia que permanezca en Deck; si un efecto rival mueve la Shell del GY antes de resolver, falla su requisito. Su búsqueda no añade un «Volcanic» cualquiera.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7082&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C007",
+      "name": "Barrier Statue of the Inferno — Estatua-Barrera del Infierno",
+      "cid": 6884,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/6884.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 290
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Main **1x**; **bloqueo de Invocaciones Especiales / presión al ir primero**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "mientras esté en campo, **ningún jugador puede Invocar Especialmente monstruos que no sean FUEGO**. No niega monstruos que ya estaban en campo y afecta también al controlador."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "primero dificulta la expansión de rivales no FUEGO; segundo no retira un tablero establecido y expone un cuerpo frágil; tardío depende de su supervivencia."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "convive con buena parte del Main Pyro/FUEGO y con **Hiita, Knightmare Phoenix, Salamangreat Almiraj y Promethean Princess**; impide mientras se aplica Invocaciones de **I:P, S:P, Linkuriboh, Unicorn, Underworld Goddess o TY-PHON** por no ser FUEGO."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "es una restricción **simétrica**; no convocar piezas incompatibles como si la Estatua no estuviese presente. No genera recursos ni daño por sí misma."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=6884&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Main **1x**; **bloqueo de Invocaciones Especiales / presión al ir primero**.\n- **Efecto y requisito:** mientras esté en campo, **ningún jugador puede Invocar Especialmente monstruos que no sean FUEGO**. No niega monstruos que ya estaban en campo y afecta también al controlador.\n- **Primero / segundo / tardío:** primero dificulta la expansión de rivales no FUEGO; segundo no retira un tablero establecido y expone un cuerpo frágil; tardío depende de su supervivencia.\n- **Sinergias verificables:** convive con buena parte del Main Pyro/FUEGO y con **Hiita, Knightmare Phoenix, Salamangreat Almiraj y Promethean Princess**; impide mientras se aplica Invocaciones de **I:P, S:P, Linkuriboh, Unicorn, Underworld Goddess o TY-PHON** por no ser FUEGO.\n- **Riesgo / recurso:** es una restricción **simétrica**; no convocar piezas incompatibles como si la Estatua no estuviese presente. No genera recursos ni daño por sí misma.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=6884&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C008",
+      "name": "Maxx \"C\" — «C» Maxx",
+      "cid": 9455,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/9455.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 291
+        },
+        {
+          "section": "reserve",
+          "quantity": 1,
+          "card_id": 319
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Main **2x**, **Reserva 1x adicional**; **handtrap de ventaja / disuasión ante extensión rival**. La Reserva **no participa** en partidas actuales."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "como **efecto rápido**, se envía de la mano al GY; durante ese turno, cada vez que el rival **realiza un evento de Invocación Especial**, se roba **1 carta**. Máximo un uso por turno. **No es negación** y no roba por Invocaciones anteriores a su resolución."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "sirve especialmente cuando el rival intenta prolongar su turno; primero se reserva para turno rival, segundo puede presionar su siguiente turno; tardío vale si aún hay Deck y jugadas rivales."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "puede aportar nuevas cartas del motor, pero **Pot of Extravagance** impide robar por efectos **después de resolver**, y **Pot of Prosperity** impide robar por efectos durante **todo el turno** de activación; evaluar conflictos temporales."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "el rival puede detenerse; puede ser negada o quedarse sin valor si el oponente no Invoca Especialmente. **No se revisa aquí estatus de banlist** por instrucción de alcance."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=9455&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Main **2x**, **Reserva 1x adicional**; **handtrap de ventaja / disuasión ante extensión rival**. La Reserva **no participa** en partidas actuales.\n- **Efecto y requisito:** como **efecto rápido**, se envía de la mano al GY; durante ese turno, cada vez que el rival **realiza un evento de Invocación Especial**, se roba **1 carta**. Máximo un uso por turno. **No es negación** y no roba por Invocaciones anteriores a su resolución.\n- **Primero / segundo / tardío:** sirve especialmente cuando el rival intenta prolongar su turno; primero se reserva para turno rival, segundo puede presionar su siguiente turno; tardío vale si aún hay Deck y jugadas rivales.\n- **Sinergias verificables:** puede aportar nuevas cartas del motor, pero **Pot of Extravagance** impide robar por efectos **después de resolver**, y **Pot of Prosperity** impide robar por efectos durante **todo el turno** de activación; evaluar conflictos temporales.\n- **Riesgo / recurso:** el rival puede detenerse; puede ser negada o quedarse sin valor si el oponente no Invoca Especialmente. **No se revisa aquí estatus de banlist** por instrucción de alcance.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=9455&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C009",
+      "name": "Volcanic Blaze Accelerator — Acelerador de Llama Volcánico",
+      "cid": 18918,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/18918.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 292
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Main **3x**; **núcleo continuo / extensor de Invocación / removal puntual con envío al GY**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "para activarlo debe enviar **1 carta «Blaze Accelerator» de mano, Deck o campo propio boca arriba al GY**; solo puede controlarse **1 VBA**. Una vez por turno durante la propia Main Phase Invoca Especialmente **1 Volcanic de la mano**. Por separado, una vez por turno puede seleccionar **1 monstruo rival boca arriba**, enviar **1 Pyro Nivel 1 del Deck al GY** y, si el envío se efectúa, destruir el objetivo."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "primero extiende la presencia en campo y carga Rimfire/Shell; segundo aporta destrucción selectiva; tardío depende de una fuente real de cartas «Blaze Accelerator» para activar y de objetivos que puedan resolverse."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "enviar **Rimfire Nivel 1** habilita su efecto de GY; enviar **Shell Nivel 1** prepara recursión; su Invocación desde mano puede desplegar Trooper para buscar."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "**Scattershot es Nivel 2**: nunca representarlo como envío legal de este efecto. Sin acelerador que pueda enviarse como coste, no se activa VBA. Si el rival niega el efecto o protege el objetivo, no prometer destrucción."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18918&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Main **3x**; **núcleo continuo / extensor de Invocación / removal puntual con envío al GY**.\n- **Efecto y requisito:** para activarlo debe enviar **1 carta «Blaze Accelerator» de mano, Deck o campo propio boca arriba al GY**; solo puede controlarse **1 VBA**. Una vez por turno durante la propia Main Phase Invoca Especialmente **1 Volcanic de la mano**. Por separado, una vez por turno puede seleccionar **1 monstruo rival boca arriba**, enviar **1 Pyro Nivel 1 del Deck al GY** y, si el envío se efectúa, destruir el objetivo.\n- **Primero / segundo / tardío:** primero extiende la presencia en campo y carga Rimfire/Shell; segundo aporta destrucción selectiva; tardío depende de una fuente real de cartas «Blaze Accelerator» para activar y de objetivos que puedan resolverse.\n- **Sinergias verificables:** enviar **Rimfire Nivel 1** habilita su efecto de GY; enviar **Shell Nivel 1** prepara recursión; su Invocación desde mano puede desplegar Trooper para buscar.\n- **Riesgo / recurso:** **Scattershot es Nivel 2**: nunca representarlo como envío legal de este efecto. Sin acelerador que pueda enviarse como coste, no se activa VBA. Si el rival niega el efecto o protege el objetivo, no prometer destrucción.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18918&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C010",
+      "name": "Blaze Accelerator — Acelerador de Llama",
+      "cid": 7086,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/7086.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 293
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Main **1x**; **pieza de acceso / removal de monstruo a costa de munición**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "Mágica Continua que selecciona **1 monstruo rival**, envía al GY **1 Pyro con 500 ATK o menos desde la mano** y, si se envía, destruye el objetivo. **Los monstruos propios no pueden atacar el turno que se activa este efecto**."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "primero puede servir como coste de activación de VBA; segundo es destrucción a cambio de perder la oportunidad de atacar; tardío puede ser recuperada por Rocket si está en GY."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "**Scattershot** reúne el requisito de hasta 500 ATK y, si este efecto lo envía al GY, puede disparar el envío de otras dos copias y destrucción masiva. **Shell/Rimfire** también son munición apropiada."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "consume carta de mano y bloquea ataques **ese turno**; en planes de daño de combate se debe preferir otra vía o posponerla. También es recurso para el método propio de Emperor."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7086&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Main **1x**; **pieza de acceso / removal de monstruo a costa de munición**.\n- **Efecto y requisito:** Mágica Continua que selecciona **1 monstruo rival**, envía al GY **1 Pyro con 500 ATK o menos desde la mano** y, si se envía, destruye el objetivo. **Los monstruos propios no pueden atacar el turno que se activa este efecto**.\n- **Primero / segundo / tardío:** primero puede servir como coste de activación de VBA; segundo es destrucción a cambio de perder la oportunidad de atacar; tardío puede ser recuperada por Rocket si está en GY.\n- **Sinergias verificables:** **Scattershot** reúne el requisito de hasta 500 ATK y, si este efecto lo envía al GY, puede disparar el envío de otras dos copias y destrucción masiva. **Shell/Rimfire** también son munición apropiada.\n- **Riesgo / recurso:** consume carta de mano y bloquea ataques **ese turno**; en planes de daño de combate se debe preferir otra vía o posponerla. También es recurso para el método propio de Emperor.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7086&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C011",
+      "name": "Fire Ejection — Eyección de Fuego",
+      "cid": 18919,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/18919.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 294
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Main **3x**; **envío preciso Pyro desde Deck / habilitador de GY / generador de Ficha**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "Mágica Normal que envía **1 Pyro del Deck al GY**. Si fue un **Volcanic**, se elige **una** de dos opciones: quemar **Nivel × 100**, o Invocar al campo rival **1 Ficha Bomba Pyro/FUEGO** que inflige **500 a su controlador al ser destruida**. Solo puede activarse **1 Fire Ejection por turno**."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "primero priorizar **Rimfire** o Shell por continuidad, según los recursos; segundo enviar **Scattershot** produce al menos su daño de envío, pero no el barrido; tardío depende de qué Pyro quede en Deck."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "prepara un Rimfire de GY para colocar acelerador; envía Shell al GY para obtener otra copia; pone Ficha rival para efectos que seleccionan Pyro, como **Volcanic Emission**."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "no se puede elegir **a la vez** daño por nivel y Ficha; enviar Scattershot por Fire Ejection **no** satisface «enviada por efecto Blaze Accelerator»; la Ficha puede favorecer al rival si no se explota."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18919&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Main **3x**; **envío preciso Pyro desde Deck / habilitador de GY / generador de Ficha**.\n- **Efecto y requisito:** Mágica Normal que envía **1 Pyro del Deck al GY**. Si fue un **Volcanic**, se elige **una** de dos opciones: quemar **Nivel × 100**, o Invocar al campo rival **1 Ficha Bomba Pyro/FUEGO** que inflige **500 a su controlador al ser destruida**. Solo puede activarse **1 Fire Ejection por turno**.\n- **Primero / segundo / tardío:** primero priorizar **Rimfire** o Shell por continuidad, según los recursos; segundo enviar **Scattershot** produce al menos su daño de envío, pero no el barrido; tardío depende de qué Pyro quede en Deck.\n- **Sinergias verificables:** prepara un Rimfire de GY para colocar acelerador; envía Shell al GY para obtener otra copia; pone Ficha rival para efectos que seleccionan Pyro, como **Volcanic Emission**.\n- **Riesgo / recurso:** no se puede elegir **a la vez** daño por nivel y Ficha; enviar Scattershot por Fire Ejection **no** satisface «enviada por efecto Blaze Accelerator»; la Ficha puede favorecer al rival si no se explota.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18919&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C012",
+      "name": "Forbidden Droplet — Gotas Prohibidas",
+      "cid": 15299,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/15299.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 295
+        }
+      ],
+      "classification": "INTERACCION_DEFENSIVA",
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Main **3x**; **board breaker / negación de monstruos / apoyo ofensivo**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "Mágica de Juego Rápido: envía **otras cartas de mano y/o campo** al GY, luego escoge igual cantidad de **monstruos de efecto rivales**; hasta final de turno reduce sus ATK a la mitad y niega sus efectos. En respuesta a su activación, el rival no puede activar cartas/efectos de los **tipos originales** (Monstruo/Mágica/Trampa) enviados para activarla. Solo 1 activación por turno."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "segundo desactiva varios bloqueos para jugar; primero puede guardarse para defenderse en turno rival si estuvo Colocada de antes; tardío convierte cartas sobrantes en acceso al combate."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "enviar **Rimfire o Scattershot** como recurso de la mano al GY puede preparar sus disparadores propios; **no** transforma el envío en «efecto Blaze Accelerator». Reducir ATK favorece al Emperor y ataques subsiguientes."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "el número de monstruos afectados depende de cuántas cartas **se envíen realmente**; no destruye ni destierra; gastar varias piezas Volcanic podría dejar sin motor. No trata monstruos que carecen de efecto como blancos adecuados."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15299&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Main **3x**; **board breaker / negación de monstruos / apoyo ofensivo**.\n- **Efecto y requisito:** Mágica de Juego Rápido: envía **otras cartas de mano y/o campo** al GY, luego escoge igual cantidad de **monstruos de efecto rivales**; hasta final de turno reduce sus ATK a la mitad y niega sus efectos. En respuesta a su activación, el rival no puede activar cartas/efectos de los **tipos originales** (Monstruo/Mágica/Trampa) enviados para activarla. Solo 1 activación por turno.\n- **Primero / segundo / tardío:** segundo desactiva varios bloqueos para jugar; primero puede guardarse para defenderse en turno rival si estuvo Colocada de antes; tardío convierte cartas sobrantes en acceso al combate.\n- **Sinergias verificables:** enviar **Rimfire o Scattershot** como recurso de la mano al GY puede preparar sus disparadores propios; **no** transforma el envío en «efecto Blaze Accelerator». Reducir ATK favorece al Emperor y ataques subsiguientes.\n- **Riesgo / recurso:** el número de monstruos afectados depende de cuántas cartas **se envíen realmente**; no destruye ni destierra; gastar varias piezas Volcanic podría dejar sin motor. No trata monstruos que carecen de efecto como blancos adecuados.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15299&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C013",
+      "name": "Bonfire — Hoguera",
+      "cid": 19027,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/19027.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 296
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Main **3x**; **starter genérico / tutor de Pyro pequeño**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "añade a la mano **1 monstruo Pyro de Nivel 4 o inferior** desde el Deck; se activa como máximo **1 Bonfire por turno**."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "primero busca **Trooper** para abrir motor o **Rocket** para buscar un acelerador; segundo puede elegir **Rimfire / Scattershot / Shell** si falta munición concreta; tardío depende de objetivos remanentes."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "ofrece acceso a todas las piezas **Pyro Nivel 1–4** de esta lista; **NO** puede añadir **Volcanic Emperor (Nivel 8)** ni cartas Mágicas/Trampa."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "gastar Bonfire para una pieza que ya está duplicada reduce capacidad de resolver una mano difícil; si el acceso al Deck está negado, no aporta alternativa de GY."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19027&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Main **3x**; **starter genérico / tutor de Pyro pequeño**.\n- **Efecto y requisito:** añade a la mano **1 monstruo Pyro de Nivel 4 o inferior** desde el Deck; se activa como máximo **1 Bonfire por turno**.\n- **Primero / segundo / tardío:** primero busca **Trooper** para abrir motor o **Rocket** para buscar un acelerador; segundo puede elegir **Rimfire / Scattershot / Shell** si falta munición concreta; tardío depende de objetivos remanentes.\n- **Sinergias verificables:** ofrece acceso a todas las piezas **Pyro Nivel 1–4** de esta lista; **NO** puede añadir **Volcanic Emperor (Nivel 8)** ni cartas Mágicas/Trampa.\n- **Riesgo / recurso:** gastar Bonfire para una pieza que ya está duplicada reduce capacidad de resolver una mano difícil; si el acceso al Deck está negado, no aporta alternativa de GY.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19027&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C014",
+      "name": "Pot of Extravagance — Olla de la Extravagancia",
+      "cid": 14144,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/14144.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 297
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Main **2x**; **robo / impulso de consistencia con coste de Extra Deck**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "**al comienzo de Main Phase 1**, destierra **3 o 6 cartas aleatorias del Extra Deck boca abajo**, y roba **1 por cada 3**. Después de resolver, no puede **robar por efectos de cartas** por el resto de ese turno."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "primero mejora la mano antes de dedicar Invocación Normal, si se acepta el coste; segundo ayuda a reunir respuestas; tardío puede no activarse si ya no hay suficientes cartas de Extra."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "puede hallar Trooper/Bonfire/Droplet, pero compite con **I:P / S:P / TY-PHON / Promethean Princess** por el Extra y deshabilita el robo posterior de **Blaze Accelerator Reload** en el mismo turno."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "el destierro es **aleatorio**: no garantizar que quede una ruta Extra concreta. Si ya se realizó otra jugada de Main Phase 1, se pierde la ventana de activación. Evaluar la presión del rival antes de comprometer seis cartas."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14144&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Main **2x**; **robo / impulso de consistencia con coste de Extra Deck**.\n- **Efecto y requisito:** **al comienzo de Main Phase 1**, destierra **3 o 6 cartas aleatorias del Extra Deck boca abajo**, y roba **1 por cada 3**. Después de resolver, no puede **robar por efectos de cartas** por el resto de ese turno.\n- **Primero / segundo / tardío:** primero mejora la mano antes de dedicar Invocación Normal, si se acepta el coste; segundo ayuda a reunir respuestas; tardío puede no activarse si ya no hay suficientes cartas de Extra.\n- **Sinergias verificables:** puede hallar Trooper/Bonfire/Droplet, pero compite con **I:P / S:P / TY-PHON / Promethean Princess** por el Extra y deshabilita el robo posterior de **Blaze Accelerator Reload** en el mismo turno.\n- **Riesgo / recurso:** el destierro es **aleatorio**: no garantizar que quede una ruta Extra concreta. Si ya se realizó otra jugada de Main Phase 1, se pierde la ventana de activación. Evaluar la presión del rival antes de comprometer seis cartas.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14144&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C015",
+      "name": "Blaze Accelerator Reload — Recarga del Acelerador de Llama",
+      "cid": 11597,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/11597.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 298
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Main **3x**; **motor de robo / remitente de munición al GY / activador de Scattershot**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "Trampa Continua cuyo nombre pasa a **Tri-Blaze Accelerator** mientras está en zona Mágica/Trampa. En Main Phase puede **enviar 1 carta Volcanic de la mano al GY** para **robar 1** (este efecto, una vez por turno). Desde GY, durante Main Phase puede **desterrar Reload** para **enviar 1 carta Volcanic del Deck al GY**."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "primero colocarla o acceder a ella con Rimfire; durante turno rival, si ya está activa y es Main Phase, puede convertir mano en GY/robo. Segundo o tardío su efecto en GY habilita daño y despeje de Scattershot."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "enviar **Scattershot** desde Deck por efecto de esta carta puede habilitar su **barrido** si quedan otras dos copias; mandar Rimfire al GY inicia una de sus opciones. **Rocket** puede recuperarla de GY cuando convenga más colocarla que desterrarla."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "robo desde mano y envío desde Deck **son efectos distintos**; no confundir el primero con enviar del Deck gratis. El descarte no es su coste: el efecto dice **enviar**; **Extravagance/Prosperity** pueden prohibir el robo por efecto según su ventana. El efecto desde GY exige que Reload esté efectivamente ahí."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=11597&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Main **3x**; **motor de robo / remitente de munición al GY / activador de Scattershot**.\n- **Efecto y requisito:** Trampa Continua cuyo nombre pasa a **Tri-Blaze Accelerator** mientras está en zona Mágica/Trampa. En Main Phase puede **enviar 1 carta Volcanic de la mano al GY** para **robar 1** (este efecto, una vez por turno). Desde GY, durante Main Phase puede **desterrar Reload** para **enviar 1 carta Volcanic del Deck al GY**.\n- **Primero / segundo / tardío:** primero colocarla o acceder a ella con Rimfire; durante turno rival, si ya está activa y es Main Phase, puede convertir mano en GY/robo. Segundo o tardío su efecto en GY habilita daño y despeje de Scattershot.\n- **Sinergias verificables:** enviar **Scattershot** desde Deck por efecto de esta carta puede habilitar su **barrido** si quedan otras dos copias; mandar Rimfire al GY inicia una de sus opciones. **Rocket** puede recuperarla de GY cuando convenga más colocarla que desterrarla.\n- **Riesgo / recurso:** robo desde mano y envío desde Deck **son efectos distintos**; no confundir el primero con enviar del Deck gratis. El descarte no es su coste: el efecto dice **enviar**; **Extravagance/Prosperity** pueden prohibir el robo por efecto según su ventana. El efecto desde GY exige que Reload esté efectivamente ahí.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=11597&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C016",
+      "name": "Volcanic Inferno — Infierno Volcánico",
+      "cid": 18921,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/18921.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 299
+        }
+      ],
+      "classification": "INTERACCION_DEFENSIVA",
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Main **1x**; **interrupción de efecto de monstruo / reciclaje para juego tardío**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "Trampa Continua: cuando el rival **activa un efecto de monstruo en campo**, puede **desterrar 1 Pyro de su GY** para infligir **500 de daño**; si el desterrado era **Volcanic**, puede además **negar ese efecto**. Durante la End Phase rival puede devolver al **fondo del Deck hasta 2 Volcanic** propios desterrados o del GY. **Cada efecto**, una vez por turno."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "primero es excelente objetivo para **Emperor**, que puede Colocarla si usó su procedimiento; segundo reacciona a un campo aún activo tras instalarla; tardío recicla piezas como Scattershot/Shell y evita agotamiento."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "el primer efecto consume el mismo GY de Pyro que **Emperor** y **Rimfire**; el segundo puede volver a habilitar copias de Scattershot en Deck para otro envío legal."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "con Pyro **no Volcanic** solo hay 500 de daño, **no negación**; no niega efectos de monstruos activados exclusivamente en mano o GY por esa condición. No puede activar normalmente una Trampa recién Colocada en ese mismo turno."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18921&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Main **1x**; **interrupción de efecto de monstruo / reciclaje para juego tardío**.\n- **Efecto y requisito:** Trampa Continua: cuando el rival **activa un efecto de monstruo en campo**, puede **desterrar 1 Pyro de su GY** para infligir **500 de daño**; si el desterrado era **Volcanic**, puede además **negar ese efecto**. Durante la End Phase rival puede devolver al **fondo del Deck hasta 2 Volcanic** propios desterrados o del GY. **Cada efecto**, una vez por turno.\n- **Primero / segundo / tardío:** primero es excelente objetivo para **Emperor**, que puede Colocarla si usó su procedimiento; segundo reacciona a un campo aún activo tras instalarla; tardío recicla piezas como Scattershot/Shell y evita agotamiento.\n- **Sinergias verificables:** el primer efecto consume el mismo GY de Pyro que **Emperor** y **Rimfire**; el segundo puede volver a habilitar copias de Scattershot en Deck para otro envío legal.\n- **Riesgo / recurso:** con Pyro **no Volcanic** solo hay 500 de daño, **no negación**; no niega efectos de monstruos activados exclusivamente en mano o GY por esa condición. No puede activar normalmente una Trampa recién Colocada en ese mismo turno.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18921&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C017",
+      "name": "Volcanic Emission — Emisión Volcánica",
+      "cid": 18920,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/18920.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 300
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Main **1x**; **extensión puntual / daño de Pyro en campo**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "Trampa Normal que **elige una opción por activación**: (a) tomar del Deck **1 monstruo Volcanic**, añadirlo a mano o Invocarlo Especialmente **ignorando sus condiciones**, pero si se Invocó devolverlo a mano en End Phase; (b) seleccionar **1 Pyro en campo** y quemar su **ATK original**, o **la mitad** si es uno propio. Cada opción como máximo **una vez por turno**."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "primero se prepara como acceso a motor en turno posterior; segundo puede capitalizar una Ficha Bomba rival o enemigo Pyro de alto ATK; tardío es recurso flexible mientras haya Volcanic en Deck o objetivo Pyro en campo."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "puede elegir **Emperor** desde Deck ignorando condiciones como cuerpo temporal, pero **NO** dispara el efecto que Emperor reserva para su propia Invocación; el objetivo **Ficha Bomba** del rival tiene ATK original 1000, por lo que su modo de daño puede hacer 1000 si la carta resuelve."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "carta Colocada debe esperar normalmente turno permitido; la Invocación temporal vuelve a mano al final y no se convierte mágicamente en Invocación del procedimiento de Emperor. Distinguir el daño por ATK **original**, no actual."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18920&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Main **1x**; **extensión puntual / daño de Pyro en campo**.\n- **Efecto y requisito:** Trampa Normal que **elige una opción por activación**: (a) tomar del Deck **1 monstruo Volcanic**, añadirlo a mano o Invocarlo Especialmente **ignorando sus condiciones**, pero si se Invocó devolverlo a mano en End Phase; (b) seleccionar **1 Pyro en campo** y quemar su **ATK original**, o **la mitad** si es uno propio. Cada opción como máximo **una vez por turno**.\n- **Primero / segundo / tardío:** primero se prepara como acceso a motor en turno posterior; segundo puede capitalizar una Ficha Bomba rival o enemigo Pyro de alto ATK; tardío es recurso flexible mientras haya Volcanic en Deck o objetivo Pyro en campo.\n- **Sinergias verificables:** puede elegir **Emperor** desde Deck ignorando condiciones como cuerpo temporal, pero **NO** dispara el efecto que Emperor reserva para su propia Invocación; el objetivo **Ficha Bomba** del rival tiene ATK original 1000, por lo que su modo de daño puede hacer 1000 si la carta resuelve.\n- **Riesgo / recurso:** carta Colocada debe esperar normalmente turno permitido; la Invocación temporal vuelve a mano al final y no se convierte mágicamente en Invocación del procedimiento de Emperor. Distinguir el daño por ATK **original**, no actual.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18920&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C018",
+      "name": "Gozen Match — Emparejamiento de Atributos",
+      "cid": 7934,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/7934.jpg",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 301
+        },
+        {
+          "section": "reserve",
+          "quantity": 1,
+          "card_id": 320
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Main **2x**, **Reserva 1x adicional**; **control de Atributos / limitación simétrica de campo**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "Trampa Continua: cada jugador solo puede controlar monstruos boca arriba de **1 Atributo**; los otros propios boca arriba van al GY. También restringe las futuras Invocaciones de Atributo distinto mientras se controla alguno boca arriba."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "primero puede fijar FUEGO y recortar rutas del rival; segundo exige evaluar si ya se puede resolver sin perder piezas propias; tardío sirve mientras el oponente necesite desplegar varios atributos."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "Main Volcanic es predominantemente **FUEGO**; en Extra **Hiita, Knightmare Phoenix, Salamangreat Almiraj y Promethean Princess** también son FUEGO, mientras **I:P, S:P, Linkuriboh, Unicorn, Goddess y TY-PHON** usan otros atributos."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "**no confundir Atributo (Gozen) con Tipo (Rivalry)**; tampoco suponer que se puede usar libremente un Link no FUEGO cuando ya se controla FUEGO bajo Gozen. La tercera copia registrada es solo Reserva."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7934&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Main **2x**, **Reserva 1x adicional**; **control de Atributos / limitación simétrica de campo**.\n- **Efecto y requisito:** Trampa Continua: cada jugador solo puede controlar monstruos boca arriba de **1 Atributo**; los otros propios boca arriba van al GY. También restringe las futuras Invocaciones de Atributo distinto mientras se controla alguno boca arriba.\n- **Primero / segundo / tardío:** primero puede fijar FUEGO y recortar rutas del rival; segundo exige evaluar si ya se puede resolver sin perder piezas propias; tardío sirve mientras el oponente necesite desplegar varios atributos.\n- **Sinergias verificables:** Main Volcanic es predominantemente **FUEGO**; en Extra **Hiita, Knightmare Phoenix, Salamangreat Almiraj y Promethean Princess** también son FUEGO, mientras **I:P, S:P, Linkuriboh, Unicorn, Goddess y TY-PHON** usan otros atributos.\n- **Riesgo / recurso:** **no confundir Atributo (Gozen) con Tipo (Rivalry)**; tampoco suponer que se puede usar libremente un Link no FUEGO cuando ya se controla FUEGO bajo Gozen. La tercera copia registrada es solo Reserva.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7934&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C019",
+      "name": "I:P Masquerena — I:P Enmascarada",
+      "cid": 14676,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/14676.jpg",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 2,
+          "card_id": 302
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Extra **2x**; **interrupción Link durante Main Phase rival / protección al nuevo Link**. **OSCURIDAD, Ciberso, Link 2**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "se Invoca por Enlace con **2 monstruos que no sean Link**. Durante la **Main Phase rival**, como efecto rápido y máximo una vez por turno, permite **Invocar por Enlace después de resolver** usando los materiales propios que incluya a I:P. El Link que use a I:P como material **no puede ser destruido por efectos de cartas del rival**."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "primero es objetivo de campo defensivo si hay dos cuerpos no Link; segundo puede convertir excedente de campo en utilidad del Extra; tardío depende de que queden materiales y Link posteriores."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "con suficientes materiales del campo propio, durante Main rival puede conducir a **Knightmare Unicorn** (barajar una carta) o a **Underworld Goddess** (requisitos superiores), según legalidad en ese estado. Los cuerpos Volcanic proporcionan materiales si las Invocaciones fueron válidas."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "**Gozen Match** y **Barrier Statue of the Inferno** activas junto a monstruos FUEGO restringen su Invocación OSCURIDAD; **Rivalry** puede bloquearla por ser Ciberso frente a Pyro. I:P no convierte por sí sola una secuencia incompleta en Link legal."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14676&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Extra **2x**; **interrupción Link durante Main Phase rival / protección al nuevo Link**. **OSCURIDAD, Ciberso, Link 2**.\n- **Efecto y requisito:** se Invoca por Enlace con **2 monstruos que no sean Link**. Durante la **Main Phase rival**, como efecto rápido y máximo una vez por turno, permite **Invocar por Enlace después de resolver** usando los materiales propios que incluya a I:P. El Link que use a I:P como material **no puede ser destruido por efectos de cartas del rival**.\n- **Primero / segundo / tardío:** primero es objetivo de campo defensivo si hay dos cuerpos no Link; segundo puede convertir excedente de campo en utilidad del Extra; tardío depende de que queden materiales y Link posteriores.\n- **Sinergias verificables:** con suficientes materiales del campo propio, durante Main rival puede conducir a **Knightmare Unicorn** (barajar una carta) o a **Underworld Goddess** (requisitos superiores), según legalidad en ese estado. Los cuerpos Volcanic proporcionan materiales si las Invocaciones fueron válidas.\n- **Riesgo / recurso:** **Gozen Match** y **Barrier Statue of the Inferno** activas junto a monstruos FUEGO restringen su Invocación OSCURIDAD; **Rivalry** puede bloquearla por ser Ciberso frente a Pyro. I:P no convierte por sí sola una secuencia incompleta en Link legal.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14676&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C020",
+      "name": "Hiita the Fire Charmer, Ablaze — Hiita, la Encantadora del Fuego Encendida",
+      "cid": 14133,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/14133.jpg",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 303
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Extra **1x**; **aprovechar GY rival / puente de Link FUEGO**. **FUEGO, Lanzador de Conjuros, Link 2**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "requiere **2 monstruos, incluido uno FUEGO**. Puede seleccionar **1 FUEGO del GY rival** e Invocarlo Especialmente a una zona apuntada por Hiita. Si esta Hiita Invocada por Enlace es destruida por batalla o por efecto rival en la Zona de Monstruos de su dueño, puede añadir del Deck **1 monstruo FUEGO de DEF 1500 o menos**. Cada efecto, una vez por turno."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "primero es situacional si aún no hay GY FUEGO rival; segundo gana material usando la destrucción previa de monstruos oponentes; tardío puede convertir un GY rival acumulado en presencia adicional."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "utiliza cualquier FUEGO que permitan las zonas y el GY enemigo; bajo **Gozen/Barrier Statue** es una opción FUEGO compatible, pero bajo **Rivalry** debe comprobarse su Tipo Lanzador de Conjuros frente a Pyro."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "si no existe objetivo FUEGO rival o zona apuntada libre, no hay Invocación; el efecto buscador no se dispara por destruirla uno mismo arbitrariamente."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14133&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Extra **1x**; **aprovechar GY rival / puente de Link FUEGO**. **FUEGO, Lanzador de Conjuros, Link 2**.\n- **Efecto y requisito:** requiere **2 monstruos, incluido uno FUEGO**. Puede seleccionar **1 FUEGO del GY rival** e Invocarlo Especialmente a una zona apuntada por Hiita. Si esta Hiita Invocada por Enlace es destruida por batalla o por efecto rival en la Zona de Monstruos de su dueño, puede añadir del Deck **1 monstruo FUEGO de DEF 1500 o menos**. Cada efecto, una vez por turno.\n- **Primero / segundo / tardío:** primero es situacional si aún no hay GY FUEGO rival; segundo gana material usando la destrucción previa de monstruos oponentes; tardío puede convertir un GY rival acumulado en presencia adicional.\n- **Sinergias verificables:** utiliza cualquier FUEGO que permitan las zonas y el GY enemigo; bajo **Gozen/Barrier Statue** es una opción FUEGO compatible, pero bajo **Rivalry** debe comprobarse su Tipo Lanzador de Conjuros frente a Pyro.\n- **Riesgo / recurso:** si no existe objetivo FUEGO rival o zona apuntada libre, no hay Invocación; el efecto buscador no se dispara por destruirla uno mismo arbitrariamente.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14133&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C021",
+      "name": "Knightmare Unicorn — Caballero de Pesadilla Unicornio",
+      "cid": 13601,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/13601.jpg",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 304
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Extra **1x**; **removal por barajar / interrupción con I:P**. **OSCURIDAD, Demonio, Link 3**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "requiere **2 o más monstruos de nombres diferentes** y material suficiente para Link 3. Si fue Invocado por Enlace, puede **descartar 1 carta**, seleccionar **1 carta en el campo** y **barajarla al Deck**; si estaba coenlazado al activar, **roba 1 carta**. El efecto es una vez por turno."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "primero se prepara a través de **I:P** para usar en Main rival si hay materiales; segundo retira amenaza que pueda devolverse al Deck; tardío resuelve cartas difíciles sin exigir destrucción."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "descartes de **Rimfire/Scattershot** pueden activar sus efectos generales de GY; **I:P** puede darle protección contra destrucción por efecto rival cuando es material. Barajar no es desterrar ni destruir."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "necesita descarte, objetivo seleccionable y requisitos Link; su **robo solo se obtiene si está coenlazado en la activación**. Puede estar bloqueado por Estatua/Gozen y por Rivalry cuando se mantiene Pyro."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13601&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Extra **1x**; **removal por barajar / interrupción con I:P**. **OSCURIDAD, Demonio, Link 3**.\n- **Efecto y requisito:** requiere **2 o más monstruos de nombres diferentes** y material suficiente para Link 3. Si fue Invocado por Enlace, puede **descartar 1 carta**, seleccionar **1 carta en el campo** y **barajarla al Deck**; si estaba coenlazado al activar, **roba 1 carta**. El efecto es una vez por turno.\n- **Primero / segundo / tardío:** primero se prepara a través de **I:P** para usar en Main rival si hay materiales; segundo retira amenaza que pueda devolverse al Deck; tardío resuelve cartas difíciles sin exigir destrucción.\n- **Sinergias verificables:** descartes de **Rimfire/Scattershot** pueden activar sus efectos generales de GY; **I:P** puede darle protección contra destrucción por efecto rival cuando es material. Barajar no es desterrar ni destruir.\n- **Riesgo / recurso:** necesita descarte, objetivo seleccionable y requisitos Link; su **robo solo se obtiene si está coenlazado en la activación**. Puede estar bloqueado por Estatua/Gozen y por Rivalry cuando se mantiene Pyro.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13601&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C022",
+      "name": "Underworld Goddess of the Closed World — Diosa del Inframundo del Mundo Cerrado",
+      "cid": 15741,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/15741.jpg",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 305
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Extra **1x**; **respuesta a monstruos problemáticos / negación de campo**. **LUZ, Demonio, Link 5**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "requiere **4 o más monstruos de Efecto** y material que sume Link 5; puede emplear **1 monstruo del rival** como parte de sus materiales. Al ser Invocada por Enlace, puede negar los efectos de todos los monstruos rivales que estén boca arriba en ese momento. Invocada por Enlace, es inmune a efectos rivales activados **salvo los que la seleccionen**. Una vez por turno, como efecto rápido, puede negar la **activación** de una carta/efecto rival que Invoque Especialmente desde GY."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "segundo ofrece forma de superar un monstruo rival al usarlo como material, si existen los otros materiales; primero normalmente requiere mucha inversión; tardío sirve de cierre si quedó material en campo."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "un campo propio de Volcanic extendido y Links intermedios puede contribuir; **I:P** tiene valor en rutas legales de Link si hay todos los materiales, pero no sustituye el requisito de **4+ monstruos de Efecto**."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "no basta un solo monstruo rival; solo permite **1 monstruo adversario** como material adicional. **Gozen (LUZ frente a FUEGO), Barrier Statue y Rivalry** pueden hacer ilegal la Invocación. No afirmar inmunidad universal ante efectos que sí la seleccionan."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15741&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Extra **1x**; **respuesta a monstruos problemáticos / negación de campo**. **LUZ, Demonio, Link 5**.\n- **Efecto y requisito:** requiere **4 o más monstruos de Efecto** y material que sume Link 5; puede emplear **1 monstruo del rival** como parte de sus materiales. Al ser Invocada por Enlace, puede negar los efectos de todos los monstruos rivales que estén boca arriba en ese momento. Invocada por Enlace, es inmune a efectos rivales activados **salvo los que la seleccionen**. Una vez por turno, como efecto rápido, puede negar la **activación** de una carta/efecto rival que Invoque Especialmente desde GY.\n- **Primero / segundo / tardío:** segundo ofrece forma de superar un monstruo rival al usarlo como material, si existen los otros materiales; primero normalmente requiere mucha inversión; tardío sirve de cierre si quedó material en campo.\n- **Sinergias verificables:** un campo propio de Volcanic extendido y Links intermedios puede contribuir; **I:P** tiene valor en rutas legales de Link si hay todos los materiales, pero no sustituye el requisito de **4+ monstruos de Efecto**.\n- **Riesgo / recurso:** no basta un solo monstruo rival; solo permite **1 monstruo adversario** como material adicional. **Gozen (LUZ frente a FUEGO), Barrier Statue y Rivalry** pueden hacer ilegal la Invocación. No afirmar inmunidad universal ante efectos que sí la seleccionan.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15741&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C023",
+      "name": "Knightmare Phoenix — Caballero de Pesadilla Fénix",
+      "cid": 13600,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/13600.jpg",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 306
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Extra **1x**; **removal de Mágicas/Trampas / Link FUEGO alternativo**. **FUEGO, Demonio, Link 2**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "necesita **2 monstruos de nombres diferentes**. Al ser Invocado por Enlace puede **descartar 1**, seleccionar **1 Mágica/Trampa rival** y destruirla; si estaba coenlazado cuando activó, puede **robar 1**. Efecto una vez por turno. Los monstruos propios coenlazados no pueden destruirse en batalla."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "segundo despeja backrow que estorbe al motor; primero es opción utilitaria antes de dejar restricciones; tardío convierte recursos sobrantes en acceso al campo."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "es **FUEGO** y puede ser compatible con **Gozen/Barrier Statue**; descartar **Rimfire** prepara un efecto de GY, pero no equivale a enviarlo por Blaze Accelerator. **I:P** puede Invocarlo en Main rival si se reúnen materiales legales."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "no destruye monstruos; si no se coenlaza **no roba**. Su Tipo **Demonio** choca con **Rivalry** si se mantienen Pyro propios en campo."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13600&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Extra **1x**; **removal de Mágicas/Trampas / Link FUEGO alternativo**. **FUEGO, Demonio, Link 2**.\n- **Efecto y requisito:** necesita **2 monstruos de nombres diferentes**. Al ser Invocado por Enlace puede **descartar 1**, seleccionar **1 Mágica/Trampa rival** y destruirla; si estaba coenlazado cuando activó, puede **robar 1**. Efecto una vez por turno. Los monstruos propios coenlazados no pueden destruirse en batalla.\n- **Primero / segundo / tardío:** segundo despeja backrow que estorbe al motor; primero es opción utilitaria antes de dejar restricciones; tardío convierte recursos sobrantes en acceso al campo.\n- **Sinergias verificables:** es **FUEGO** y puede ser compatible con **Gozen/Barrier Statue**; descartar **Rimfire** prepara un efecto de GY, pero no equivale a enviarlo por Blaze Accelerator. **I:P** puede Invocarlo en Main rival si se reúnen materiales legales.\n- **Riesgo / recurso:** no destruye monstruos; si no se coenlaza **no roba**. Su Tipo **Demonio** choca con **Rivalry** si se mantienen Pyro propios en campo.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13600&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C024",
+      "name": "Linkuriboh — Enlacekuriboh",
+      "cid": 13346,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/13346.jpg",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 307
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Extra **1x**; **conversión de Nivel 1 / protección de batalla / recurso desde GY**. **OSCURIDAD, Ciberso, Link 1**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "requiere **1 monstruo de Nivel 1**. Cuando un monstruo rival declara ataque puede Sacrificarse para que el ATK de ese atacante sea **0 hasta final del turno**. Desde GY, como efecto rápido y una vez por turno, puede Sacrificar **1 monstruo de Nivel 1 propio** para Invocarse Especialmente."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "primero transforma Shell o Rimfire en Link y defensa potencial; segundo puede consumir un Nivel 1 ya usado; tardío reaprovecha pequeños cuerpos si el bloqueo de Atributos/Tipos lo permite."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "**Volcanic Shell y Rimfire son Nivel 1**, pero la **Ficha Bomba creada por Trooper está en el campo rival**, por lo que no puede sacrificarse como monstruo propio para revivir Linkuriboh."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "la protección exige que esté presente cuando se declara ataque; el atacante no pierde permanentemente ATK. Es **OSCURIDAD/Ciberso**, incompatible con restricciones propias activas de FUEGO/Pyro."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13346&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Extra **1x**; **conversión de Nivel 1 / protección de batalla / recurso desde GY**. **OSCURIDAD, Ciberso, Link 1**.\n- **Efecto y requisito:** requiere **1 monstruo de Nivel 1**. Cuando un monstruo rival declara ataque puede Sacrificarse para que el ATK de ese atacante sea **0 hasta final del turno**. Desde GY, como efecto rápido y una vez por turno, puede Sacrificar **1 monstruo de Nivel 1 propio** para Invocarse Especialmente.\n- **Primero / segundo / tardío:** primero transforma Shell o Rimfire en Link y defensa potencial; segundo puede consumir un Nivel 1 ya usado; tardío reaprovecha pequeños cuerpos si el bloqueo de Atributos/Tipos lo permite.\n- **Sinergias verificables:** **Volcanic Shell y Rimfire son Nivel 1**, pero la **Ficha Bomba creada por Trooper está en el campo rival**, por lo que no puede sacrificarse como monstruo propio para revivir Linkuriboh.\n- **Riesgo / recurso:** la protección exige que esté presente cuando se declara ataque; el atacante no pierde permanentemente ATK. Es **OSCURIDAD/Ciberso**, incompatible con restricciones propias activas de FUEGO/Pyro.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13346&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C025",
+      "name": "Super Starslayer TY-PHON - Sky Crisis — Súper Asesino Estelar TY-PHON",
+      "cid": 19184,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/19184.jpg",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 3,
+          "card_id": 308
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Extra **3x**; **respuesta Xyz de emergencia / devolución de monstruos**. **OSCURIDAD, Demonio, Rango 12; 2900 ATK**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "normalmente exige **2 monstruos Nivel 12**. Como alternativa, durante el turno en que el rival Invocó Especialmente **2 o más monstruos del Extra Deck**, o **el turno siguiente**, puede hacerse Xyz sobre **1 monstruo propio de mayor ATK** (a elección en empate), heredando sus materiales. Si usa ese método, **no puede Invocar Normal ni Especialmente otros monstruos por el resto del turno**. Mientras esta Xyz esté en campo, ninguno puede activar efectos de monstruos con **3000 ATK o más**. Una vez por turno, desprende **1 material** para devolver **1 monstruo del campo a la mano**."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "es más relevante **yendo segundo** tras expansión rival de Extra; en turno siguiente aún puede servir; primero no presupone que el rival haya cumplido la condición."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "transforma un cuerpo propio superviviente en amenaza de devolución sin exigir dos Nivel 12; las **3 copias** ofrecen redundancia ante el destierro aleatorio de **Extravagance**, sin garantizar que sobreviva alguna."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "la sustitución usa **el propio monstruo de mayor ATK**, que podría ser **Emperor**; no permite extender después. Su bloqueo de **efectos activados por monstruos de ≥3000 ATK** también puede perjudicar al propio Emperor. Es OSCURIDAD y choca con **Gozen/Barrier Statue**."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19184&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Extra **3x**; **respuesta Xyz de emergencia / devolución de monstruos**. **OSCURIDAD, Demonio, Rango 12; 2900 ATK**.\n- **Efecto y requisito:** normalmente exige **2 monstruos Nivel 12**. Como alternativa, durante el turno en que el rival Invocó Especialmente **2 o más monstruos del Extra Deck**, o **el turno siguiente**, puede hacerse Xyz sobre **1 monstruo propio de mayor ATK** (a elección en empate), heredando sus materiales. Si usa ese método, **no puede Invocar Normal ni Especialmente otros monstruos por el resto del turno**. Mientras esta Xyz esté en campo, ninguno puede activar efectos de monstruos con **3000 ATK o más**. Una vez por turno, desprende **1 material** para devolver **1 monstruo del campo a la mano**.\n- **Primero / segundo / tardío:** es más relevante **yendo segundo** tras expansión rival de Extra; en turno siguiente aún puede servir; primero no presupone que el rival haya cumplido la condición.\n- **Sinergias verificables:** transforma un cuerpo propio superviviente en amenaza de devolución sin exigir dos Nivel 12; las **3 copias** ofrecen redundancia ante el destierro aleatorio de **Extravagance**, sin garantizar que sobreviva alguna.\n- **Riesgo / recurso:** la sustitución usa **el propio monstruo de mayor ATK**, que podría ser **Emperor**; no permite extender después. Su bloqueo de **efectos activados por monstruos de ≥3000 ATK** también puede perjudicar al propio Emperor. Es OSCURIDAD y choca con **Gozen/Barrier Statue**.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19184&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C026",
+      "name": "S:P Little Knight — S:P Pequeña Caballera",
+      "cid": 19188,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/19188.jpg",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 3,
+          "card_id": 309
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Extra **3x**; **interrupción temporal / removal de campo o GY**. **OSCURIDAD, Guerrero, Link 2**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "usa **2 monstruos de Efecto**. Si fue Invocada por Enlace utilizando como material un **Fusión, Sincronía, Xyz o Link**, puede seleccionar **1 carta del campo o de cualquier GY** y desterrarla; sus monstruos no pueden atacar directamente ese turno. Cuando el rival activa una carta o efecto, puede como efecto rápido seleccionar **2 monstruos boca arriba en el campo, incluido uno propio**, y desterrarlos **hasta la End Phase**. Cada efecto, una vez por turno."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "primero es pieza de interrupción si se crea un Link legal; segundo puede retirar recursos clave, con coste estratégico de ataques directos; tardío vuelve a dar tiempo para reconstruirse."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "puede utilizar un Link previo del Extra como material para habilitar su destierro inicial; su destierro temporal de un monstruo propio puede preservarlo frente a un enfrentamiento, sujeto a la ventana de activación."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "la salida de **dos monstruos** requiere objetivos legales y el segundo efecto no es destierro definitivo; no inventar destierro al Invocar si se usaron solo dos monstruos del Main sin material del Extra listado. **Gozen/Barrier/Rivalry** limitan esta carta OSCURIDAD/Guerrero."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19188&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Extra **3x**; **interrupción temporal / removal de campo o GY**. **OSCURIDAD, Guerrero, Link 2**.\n- **Efecto y requisito:** usa **2 monstruos de Efecto**. Si fue Invocada por Enlace utilizando como material un **Fusión, Sincronía, Xyz o Link**, puede seleccionar **1 carta del campo o de cualquier GY** y desterrarla; sus monstruos no pueden atacar directamente ese turno. Cuando el rival activa una carta o efecto, puede como efecto rápido seleccionar **2 monstruos boca arriba en el campo, incluido uno propio**, y desterrarlos **hasta la End Phase**. Cada efecto, una vez por turno.\n- **Primero / segundo / tardío:** primero es pieza de interrupción si se crea un Link legal; segundo puede retirar recursos clave, con coste estratégico de ataques directos; tardío vuelve a dar tiempo para reconstruirse.\n- **Sinergias verificables:** puede utilizar un Link previo del Extra como material para habilitar su destierro inicial; su destierro temporal de un monstruo propio puede preservarlo frente a un enfrentamiento, sujeto a la ventana de activación.\n- **Riesgo / recurso:** la salida de **dos monstruos** requiere objetivos legales y el segundo efecto no es destierro definitivo; no inventar destierro al Invocar si se usaron solo dos monstruos del Main sin material del Extra listado. **Gozen/Barrier/Rivalry** limitan esta carta OSCURIDAD/Guerrero.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19188&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C027",
+      "name": "Salamangreat Almiraj — Salamangrande Almiraj",
+      "cid": 14338,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/14338.jpg",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 310
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Extra **1x**; **salida de monstruo pequeño / protección puntual**. **FUEGO, Ciberso, Link 1**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "requiere **1 monstruo que haya sido Invocado Normalmente y posea ATK 1000 o menor**. Como efecto rápido puede **Sacrificarse y seleccionar otro monstruo propio** para protegerlo frente a destrucción por efectos rivales ese turno. Si un monstruo propio Invocado Normalmente es destruido en batalla mientras Almiraj está en GY, puede Invocarse Especialmente del GY (una vez por turno para esta última habilidad)."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "primero permite convertir un pequeño Pyro Normal en Link y proteger un monstruo relevante; segundo da cuerpo FUEGO para rutas legales; tardío puede retornar bajo la condición concreta de destrucción en batalla."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "**Rimfire, Shell y Scattershot** con Invocación Normal y ATK adecuado pueden alimentar este Link; su Atributo **FUEGO** combina con Gozen/Barrier, pero su Tipo **Ciberso** puede chocar con Rivalry."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "no vale cualquier Invocación Especial ni monstruo de más de 1000 ATK como único material; su efecto protector exige **otro monstruo propio** al resolver el sacrificio. El efecto desde GY no se dispara por destrucción por efecto."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14338&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Extra **1x**; **salida de monstruo pequeño / protección puntual**. **FUEGO, Ciberso, Link 1**.\n- **Efecto y requisito:** requiere **1 monstruo que haya sido Invocado Normalmente y posea ATK 1000 o menor**. Como efecto rápido puede **Sacrificarse y seleccionar otro monstruo propio** para protegerlo frente a destrucción por efectos rivales ese turno. Si un monstruo propio Invocado Normalmente es destruido en batalla mientras Almiraj está en GY, puede Invocarse Especialmente del GY (una vez por turno para esta última habilidad).\n- **Primero / segundo / tardío:** primero permite convertir un pequeño Pyro Normal en Link y proteger un monstruo relevante; segundo da cuerpo FUEGO para rutas legales; tardío puede retornar bajo la condición concreta de destrucción en batalla.\n- **Sinergias verificables:** **Rimfire, Shell y Scattershot** con Invocación Normal y ATK adecuado pueden alimentar este Link; su Atributo **FUEGO** combina con Gozen/Barrier, pero su Tipo **Ciberso** puede chocar con Rivalry.\n- **Riesgo / recurso:** no vale cualquier Invocación Especial ni monstruo de más de 1000 ATK como único material; su efecto protector exige **otro monstruo propio** al resolver el sacrificio. El efecto desde GY no se dispara por destrucción por efecto.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14338&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C028",
+      "name": "Promethean Princess, Bestower of Flames — Princesa Prometea",
+      "cid": 19507,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/19507.jpg",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 311
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "Extra **1x**; **extensor FUEGO / reaparición desde GY y destrucción reactiva**. **FUEGO, Demonio, Link 3**."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "exige **2 o más monstruos de Efecto** para Link 3. Mientras está en campo, **no permite Invocaciones Especiales propias salvo monstruos FUEGO**. Una vez por turno, en Main Phase propia, puede Invocar Especialmente **1 FUEGO del GY propio**. Desde su GY, si un monstruo fue Invocado Especialmente al campo rival fuera de Damage Step, puede seleccionar **1 FUEGO propio y 1 monstruo rival**, destruir ambos y, si lo logra, **Invocarse desde GY**. Cada efecto, una vez por turno."
+        },
+        {
+          "title": "Primero / segundo / tardío",
+          "text": "primero revive recursos FUEGO y permite presión; segundo puede destruir una amenaza en respuesta a una Invocación Especial al campo adversario; tardío aprovecha GY si aún se controla FUEGO para el intercambio."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "las Fichas Bomba que **Trooper/Fire Ejection** Invocan Especialmente al rival pueden cumplir el evento de disparo desde GY; la destrucción de Ficha rival puede generar su daño propio si se cumple también el requisito de destruir un FUEGO aliado."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "está limitada a **FUEGO** mientras permanece en campo: no proyectar I:P/S:P/TY-PHON OSCURIDAD ni Goddess LUZ después. El efecto desde GY requiere **dos objetivos válidos** y destruirlos; por **Rivalry** (Demonio) puede ser incompatible con monstruos Pyro propios."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19507&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** Extra **1x**; **extensor FUEGO / reaparición desde GY y destrucción reactiva**. **FUEGO, Demonio, Link 3**.\n- **Efecto y requisito:** exige **2 o más monstruos de Efecto** para Link 3. Mientras está en campo, **no permite Invocaciones Especiales propias salvo monstruos FUEGO**. Una vez por turno, en Main Phase propia, puede Invocar Especialmente **1 FUEGO del GY propio**. Desde su GY, si un monstruo fue Invocado Especialmente al campo rival fuera de Damage Step, puede seleccionar **1 FUEGO propio y 1 monstruo rival**, destruir ambos y, si lo logra, **Invocarse desde GY**. Cada efecto, una vez por turno.\n- **Primero / segundo / tardío:** primero revive recursos FUEGO y permite presión; segundo puede destruir una amenaza en respuesta a una Invocación Especial al campo adversario; tardío aprovecha GY si aún se controla FUEGO para el intercambio.\n- **Sinergias verificables:** las Fichas Bomba que **Trooper/Fire Ejection** Invocan Especialmente al rival pueden cumplir el evento de disparo desde GY; la destrucción de Ficha rival puede generar su daño propio si se cumple también el requisito de destruir un FUEGO aliado.\n- **Riesgo / recurso:** está limitada a **FUEGO** mientras permanece en campo: no proyectar I:P/S:P/TY-PHON OSCURIDAD ni Goddess LUZ después. El efecto desde GY requiere **dos objetivos válidos** y destruirlos; por **Rivalry** (Demonio) puede ser incompatible con monstruos Pyro propios.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19507&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C029",
+      "name": "Infinite Impermanence — Infinito Temporal",
+      "cid": 13631,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/13631.jpg",
+      "slots": [
+        {
+          "section": "reserve",
+          "quantity": 3,
+          "card_id": 312
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "**Reserva 3x, NO en Main ni Side**; **opción de handtrap / negación puntual** para evaluar incorporación, no carta disponible actualmente."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "Trampa Normal que selecciona **1 monstruo rival boca arriba** y niega sus efectos hasta fin de turno. Si fue **Colocada antes**, y aún está en el campo al resolver, niega por el resto del turno los **otros efectos de Mágicas/Trampas en su misma columna**. Si **no controlas cartas**, puede activarse desde la mano."
+        },
+        {
+          "title": "Uso potencial",
+          "text": "al ir segundo, desde mano vacía de campo puede interrumpir un primer efecto rival; al ir primero, si se incorpora y se coloca, puede abrir respuesta durante turno rival."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "protege la activación de Trooper/Reload al negar una amenaza de monstruo, sin generar Pyro ni daño propio. La columna ofrece valor táctico si estaba colocada de antes."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "con cartas controladas **no** se usa desde mano; la cláusula de columna **no** se aplica a una activación desde mano. La Reserva debe incorporarse mediante decisión posterior, sin añadirla aquí a Main."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13631&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** **Reserva 3x, NO en Main ni Side**; **opción de handtrap / negación puntual** para evaluar incorporación, no carta disponible actualmente.\n- **Efecto y requisito:** Trampa Normal que selecciona **1 monstruo rival boca arriba** y niega sus efectos hasta fin de turno. Si fue **Colocada antes**, y aún está en el campo al resolver, niega por el resto del turno los **otros efectos de Mágicas/Trampas en su misma columna**. Si **no controlas cartas**, puede activarse desde la mano.\n- **Uso potencial:** al ir segundo, desde mano vacía de campo puede interrumpir un primer efecto rival; al ir primero, si se incorpora y se coloca, puede abrir respuesta durante turno rival.\n- **Sinergias verificables:** protege la activación de Trooper/Reload al negar una amenaza de monstruo, sin generar Pyro ni daño propio. La columna ofrece valor táctico si estaba colocada de antes.\n- **Riesgo / recurso:** con cartas controladas **no** se usa desde mano; la cláusula de columna **no** se aplica a una activación desde mano. La Reserva debe incorporarse mediante decisión posterior, sin añadirla aquí a Main.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13631&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C030",
+      "name": "Ash Blossom & Joyous Spring — Flor de Ceniza y Primavera Feliz",
+      "cid": 12950,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/12950.jpg",
+      "slots": [
+        {
+          "section": "reserve",
+          "quantity": 2,
+          "card_id": 313
+        }
+      ],
+      "classification": "RESERVA (no disponible en el deck actual)",
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "**Reserva 2x**; **handtrap de acceso al Deck**, **no disponible** mientras siga en Reserva."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "como efecto rápido, se **descarta de mano** para negar el **efecto** que incluya añadir carta del Deck a mano, Invocar Especialmente desde Deck o enviar carta del Deck al GY. Solo usa su efecto una vez por turno."
+        },
+        {
+          "title": "Uso potencial",
+          "text": "primero y segundo puede cortar una búsqueda o un envío rival clave si previamente se incorpora al Main; no cancela todas las cartas del rival ni las Invocaciones desde GY por el solo hecho de ser Invocaciones."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "protege indirectamente el plan Volcanic al impedir que el oponente encuentre piezas; es **FUEGO** pero **Zombi**, por lo que no se confunde con **Pyro** para costes de Emperor o activación de Shell."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "no debe presentarse como negación genérica de cualquier efecto; como carta de Reserva no forma parte de probabilidades de mano ni de las rutas actuales."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12950&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** **Reserva 2x**; **handtrap de acceso al Deck**, **no disponible** mientras siga en Reserva.\n- **Efecto y requisito:** como efecto rápido, se **descarta de mano** para negar el **efecto** que incluya añadir carta del Deck a mano, Invocar Especialmente desde Deck o enviar carta del Deck al GY. Solo usa su efecto una vez por turno.\n- **Uso potencial:** primero y segundo puede cortar una búsqueda o un envío rival clave si previamente se incorpora al Main; no cancela todas las cartas del rival ni las Invocaciones desde GY por el solo hecho de ser Invocaciones.\n- **Sinergias verificables:** protege indirectamente el plan Volcanic al impedir que el oponente encuentre piezas; es **FUEGO** pero **Zombi**, por lo que no se confunde con **Pyro** para costes de Emperor o activación de Shell.\n- **Riesgo / recurso:** no debe presentarse como negación genérica de cualquier efecto; como carta de Reserva no forma parte de probabilidades de mano ni de las rutas actuales.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12950&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C031",
+      "name": "Forbidden Chalice — Corona Prohibida",
+      "cid": 8213,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/8213.jpg",
+      "slots": [
+        {
+          "section": "reserve",
+          "quantity": 2,
+          "card_id": 314
+        }
+      ],
+      "classification": "RESERVA (no disponible en el deck actual)",
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "**Reserva 2x**; **Mágica de Juego Rápido / negación temporal**, solo si luego se aprueba incorporación."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "selecciona **1 monstruo boca arriba de cualquier campo**; hasta fin de turno le da **400 ATK** y **niega sus efectos**. No requiere enviar carta al GY."
+        },
+        {
+          "title": "Uso potencial",
+          "text": "segundo ayuda a frenar un monstruo rival; primero puede servir como interrupción si se Colocó legalmente el turno anterior; tardío es respuesta económica frente a un solo efecto."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "reduce bloqueos que impedirían resolver Trooper/VBA; al dar también 400 ATK al objetivo rival, debe recalcularse combate y daño en vez de considerar el ataque sin cambios."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "no destruye ni elimina al monstruo, y seleccionar un monstruo propio normalmente también lo niega; no proponer usarla en la mano durante turno rival sin haberla Colocado cuando las reglas lo exigen."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=8213&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** **Reserva 2x**; **Mágica de Juego Rápido / negación temporal**, solo si luego se aprueba incorporación.\n- **Efecto y requisito:** selecciona **1 monstruo boca arriba de cualquier campo**; hasta fin de turno le da **400 ATK** y **niega sus efectos**. No requiere enviar carta al GY.\n- **Uso potencial:** segundo ayuda a frenar un monstruo rival; primero puede servir como interrupción si se Colocó legalmente el turno anterior; tardío es respuesta económica frente a un solo efecto.\n- **Sinergias verificables:** reduce bloqueos que impedirían resolver Trooper/VBA; al dar también 400 ATK al objetivo rival, debe recalcularse combate y daño en vez de considerar el ataque sin cambios.\n- **Riesgo / recurso:** no destruye ni elimina al monstruo, y seleccionar un monstruo propio normalmente también lo niega; no proponer usarla en la mano durante turno rival sin haberla Colocado cuando las reglas lo exigen.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=8213&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C032",
+      "name": "Clashing Souls — Almas en Choque",
+      "cid": 13002,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/13002.jpg",
+      "slots": [
+        {
+          "section": "reserve",
+          "quantity": 1,
+          "card_id": 315
+        }
+      ],
+      "classification": "RESERVA (no disponible en el deck actual)",
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "**Reserva 1x**; Mágica de Juego Rápido para situaciones de batalla; **no disponible para el duelo actual** mientras permanezca en Reserva."
+        },
+        {
+          "title": "Identidad confirmada",
+          "text": "Miguel confirmó que la carta antes transcrita como «Clash of Souls» es **«Clashing Souls» / «Almas en Choque»** (**CID 13002**). Ambos nombres oficiales constan en **Yu-Gi-Oh! Neuron**; la cantidad y zona registradas permanecen intactas."
+        },
+        {
+          "title": "Efecto y condición",
+          "text": "Mágica de Juego Rápido utilizable durante cálculo de daño cuando un monstruo propio en ataque batalla con otro en ataque y ATK mayor; el controlador del monstruo de menor ATK puede pagar **500 LP para darle +500 ATK** y continuar con ese intercambio hasta que no paguen. Ese combate no inflige daño de batalla; tras el cálculo, si un monstruo fuera destruido por ese combate, **todas las cartas que controla ese jugador se envían al GY**."
+        },
+        {
+          "title": "Uso potencial / sinergia",
+          "text": "carta **muy situacional**, quizá respuesta ante batalla desfavorable, pero consume LP y el desenlace depende de ambos jugadores. No es pieza del motor Blaze Accelerator ni ruta comprobada."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "una resolución mal calculada podría provocar la pérdida de **todo el campo propio**; para proponer un combo será necesario comprobar los estados de batalla y pagos en el caso concreto, aunque la identidad de la carta ya está confirmada."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO — IDENTIDAD_CONFIRMADA_POR_MIGUEL** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13002&ope=2&request_locale=es"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** **Reserva 1x**; Mágica de Juego Rápido para situaciones de batalla; **no disponible para el duelo actual** mientras permanezca en Reserva.\n- **Identidad confirmada:** Miguel confirmó que la carta antes transcrita como «Clash of Souls» es **«Clashing Souls» / «Almas en Choque»** (**CID 13002**). Ambos nombres oficiales constan en **Yu-Gi-Oh! Neuron**; la cantidad y zona registradas permanecen intactas.\n- **Efecto y condición:** Mágica de Juego Rápido utilizable durante cálculo de daño cuando un monstruo propio en ataque batalla con otro en ataque y ATK mayor; el controlador del monstruo de menor ATK puede pagar **500 LP para darle +500 ATK** y continuar con ese intercambio hasta que no paguen. Ese combate no inflige daño de batalla; tras el cálculo, si un monstruo fuera destruido por ese combate, **todas las cartas que controla ese jugador se envían al GY**.\n- **Uso potencial / sinergia:** carta **muy situacional**, quizá respuesta ante batalla desfavorable, pero consume LP y el desenlace depende de ambos jugadores. No es pieza del motor Blaze Accelerator ni ruta comprobada.\n- **Riesgo / recurso:** una resolución mal calculada podría provocar la pérdida de **todo el campo propio**; para proponer un combo será necesario comprobar los estados de batalla y pagos en el caso concreto, aunque la identidad de la carta ya está confirmada.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO — IDENTIDAD_CONFIRMADA_POR_MIGUEL** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13002&ope=2&request_locale=es",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C033",
+      "name": "Evenly Matched — Pelea Pareja",
+      "cid": 13293,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/13293.jpg",
+      "slots": [
+        {
+          "section": "reserve",
+          "quantity": 1,
+          "card_id": 316
+        }
+      ],
+      "classification": "RESERVA (no disponible en el deck actual)",
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "**Reserva 1x**; **board breaker al final de Battle Phase**, únicamente como opción futura."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "al **final de la Battle Phase**, si el oponente controla más cartas que tú, puede obligársele a **desterrar boca abajo cartas de su propio campo** hasta controlar **la misma cantidad**. Si **no controlas cartas**, puede activarse desde la mano."
+        },
+        {
+          "title": "Uso potencial",
+          "text": "al ir segundo y si se incorpora, penaliza campos grandes **antes de desarrollar el motor**; tardío puede reiniciar una situación desfavorable si se alcanza la ventana de Battle Phase."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "abre espacio para el posterior desarrollo de Trooper/Emperor; es removal por **destierro boca abajo**, distinto de la destrucción de Scattershot."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "no actúa durante Main Phase ni elimina automáticamente todas las cartas rivales; la propia Trampa activada desde el campo cuenta al comparar cartas si permanece allí. Como Reserva, **no forma parte de la mano actual**."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13293&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** **Reserva 1x**; **board breaker al final de Battle Phase**, únicamente como opción futura.\n- **Efecto y requisito:** al **final de la Battle Phase**, si el oponente controla más cartas que tú, puede obligársele a **desterrar boca abajo cartas de su propio campo** hasta controlar **la misma cantidad**. Si **no controlas cartas**, puede activarse desde la mano.\n- **Uso potencial:** al ir segundo y si se incorpora, penaliza campos grandes **antes de desarrollar el motor**; tardío puede reiniciar una situación desfavorable si se alcanza la ventana de Battle Phase.\n- **Sinergias verificables:** abre espacio para el posterior desarrollo de Trooper/Emperor; es removal por **destierro boca abajo**, distinto de la destrucción de Scattershot.\n- **Riesgo / recurso:** no actúa durante Main Phase ni elimina automáticamente todas las cartas rivales; la propia Trampa activada desde el campo cuenta al comparar cartas si permanece allí. Como Reserva, **no forma parte de la mano actual**.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13293&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C034",
+      "name": "Rivalry of Warlords — Rivalidad de los Señores de la Guerra",
+      "cid": 5622,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/5622.jpg",
+      "slots": [
+        {
+          "section": "reserve",
+          "quantity": 1,
+          "card_id": 317
+        }
+      ],
+      "classification": "RESERVA (no disponible en el deck actual)",
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "**Reserva 1x**; **bloqueo por Tipo**, no puede utilizarse hasta que se incorpore en una configuración permitida."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "Trampa Continua: cada jugador puede controlar solo monstruos boca arriba de **1 Tipo** (Pyro, Demonio, Ciberso, etc.); los demás que controla se envían al GY, y restringe futuras Invocaciones de otros Tipos mientras se mantienen monstruos boca arriba."
+        },
+        {
+          "title": "Uso potencial",
+          "text": "al ir primero con mesa de **Pyro Volcanic** puede imponer limitación al oponente; segundo puede perjudicar la mesa propia si ya se usaron Links de Tipos diferentes."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "Main **Trooper, Emperor, Rocket, Rimfire, Scattershot y Shell** son **Pyro**; el Extra usa **Ciberso (I:P, Almiraj, Linkuriboh), Demonio (Phoenix, Unicorn, TY-PHON, Princess, Goddess), Lanzador de Conjuros (Hiita), Guerrero (S:P)**."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "**Rivalry no es Gozen**: comparte un tipo, no un atributo. La interacción de bloqueo de Invocaciones está explicada en el **FAQ oficial**; no recomendar activarla como si todos los Links FUEGO fueran Pyro."
+        },
+        {
+          "title": "Fuentes / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5622&ope=2&request_locale=en ; FAQ Konami: https://www.yugioh-card.com/en/play/card-faq-1/"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** **Reserva 1x**; **bloqueo por Tipo**, no puede utilizarse hasta que se incorpore en una configuración permitida.\n- **Efecto y requisito:** Trampa Continua: cada jugador puede controlar solo monstruos boca arriba de **1 Tipo** (Pyro, Demonio, Ciberso, etc.); los demás que controla se envían al GY, y restringe futuras Invocaciones de otros Tipos mientras se mantienen monstruos boca arriba.\n- **Uso potencial:** al ir primero con mesa de **Pyro Volcanic** puede imponer limitación al oponente; segundo puede perjudicar la mesa propia si ya se usaron Links de Tipos diferentes.\n- **Sinergias verificables:** Main **Trooper, Emperor, Rocket, Rimfire, Scattershot y Shell** son **Pyro**; el Extra usa **Ciberso (I:P, Almiraj, Linkuriboh), Demonio (Phoenix, Unicorn, TY-PHON, Princess, Goddess), Lanzador de Conjuros (Hiita), Guerrero (S:P)**.\n- **Riesgo / recurso:** **Rivalry no es Gozen**: comparte un tipo, no un atributo. La interacción de bloqueo de Invocaciones está explicada en el **FAQ oficial**; no recomendar activarla como si todos los Links FUEGO fueran Pyro.\n- **Fuentes / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5622&ope=2&request_locale=en ; FAQ Konami: https://www.yugioh-card.com/en/play/card-faq-1/",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C035",
+      "name": "Harpie's Feather Duster — Polvo de Pluma de Arpía",
+      "cid": 4678,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/4678.jpg",
+      "slots": [
+        {
+          "section": "reserve",
+          "quantity": 1,
+          "card_id": 318
+        }
+      ],
+      "classification": "RESERVA (no disponible en el deck actual)",
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "**Reserva 1x**; **limpieza masiva de Mágicas/Trampas**, no integra la mano ni el Deck actual."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "Mágica Normal: **destruye todas las Mágicas y Trampas que controla el rival**; no se exige descarte ni selecciona una por una."
+        },
+        {
+          "title": "Uso potencial",
+          "text": "segundo retira protección de backrow antes de activar las piezas Volcanic; tardío abre tablero cuando quedan varias cartas continuas rivales."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "complementa **Knightmare Phoenix**, que destruye una Mágica/Trampa concreta con material Link y descarte; esta opción cubre múltiples cartas sin generar material."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "no destruye monstruos y puede tropezar con inmunidades, respuestas o negaciones; tampoco recupera recursos Volcanic. No convertirla en herramienta actual sin moverla desde Reserva."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4678&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** **Reserva 1x**; **limpieza masiva de Mágicas/Trampas**, no integra la mano ni el Deck actual.\n- **Efecto y requisito:** Mágica Normal: **destruye todas las Mágicas y Trampas que controla el rival**; no se exige descarte ni selecciona una por una.\n- **Uso potencial:** segundo retira protección de backrow antes de activar las piezas Volcanic; tardío abre tablero cuando quedan varias cartas continuas rivales.\n- **Sinergias verificables:** complementa **Knightmare Phoenix**, que destruye una Mágica/Trampa concreta con material Link y descarte; esta opción cubre múltiples cartas sin generar material.\n- **Riesgo / recurso:** no destruye monstruos y puede tropezar con inmunidades, respuestas o negaciones; tampoco recupera recursos Volcanic. No convertirla en herramienta actual sin moverla desde Reserva.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4678&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "687:A08:C036",
+      "name": "Pot of Prosperity — Olla de la Prosperidad",
+      "cid": 15756,
+      "image": "./assets/editorial/20261104-checked-study/images/tcg/15756.jpg",
+      "slots": [
+        {
+          "section": "reserve",
+          "quantity": 1,
+          "card_id": 321
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Disponibilidad / papel",
+          "text": "**Reserva 1x**; **búsqueda de consistencia con coste de Extra Deck**. No disponible en el Main actual."
+        },
+        {
+          "title": "Efecto y requisito",
+          "text": "destierra **3 o 6 cartas escogidas del Extra Deck boca abajo**, excava igual cantidad de cartas del Deck, **añade solo 1** a la mano y devuelve las demás al fondo en orden elegido. Desde que resuelve, **todo daño que recibe el rival se reduce a la mitad ese turno**. Solo una activación por turno; **no se pueden robar cartas por efectos durante el turno en que se activa**."
+        },
+        {
+          "title": "Uso potencial",
+          "text": "si se incorpora, ayuda a buscar Volcanic Trooper, Bonfire o una respuesta; es útil primero para consistencia, pero **menos favorable en el turno de daño letal** por su reducción de daño."
+        },
+        {
+          "title": "Sinergias verificables",
+          "text": "permite escoger cuáles piezas Extra perder, a diferencia de **Extravagance** (azar); sin embargo, impide el robo de **Blaze Accelerator Reload** ese turno y recorta la **presión de daño por efecto** de Emperor/Scattershot/Emission."
+        },
+        {
+          "title": "Riesgo / recurso",
+          "text": "no es un robo de varias cartas, sino **excavar y elegir una**; sus restricciones dañan dos pilares del plan Volcanic. Requiere aprobación de incorporación desde Reserva y comprobación del efecto en el momento."
+        },
+        {
+          "title": "Fuente / confianza",
+          "text": "**TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15756&ope=2&request_locale=en"
+        }
+      ],
+      "text": "- **Disponibilidad / papel:** **Reserva 1x**; **búsqueda de consistencia con coste de Extra Deck**. No disponible en el Main actual.\n- **Efecto y requisito:** destierra **3 o 6 cartas escogidas del Extra Deck boca abajo**, excava igual cantidad de cartas del Deck, **añade solo 1** a la mano y devuelve las demás al fondo en orden elegido. Desde que resuelve, **todo daño que recibe el rival se reduce a la mitad ese turno**. Solo una activación por turno; **no se pueden robar cartas por efectos durante el turno en que se activa**.\n- **Uso potencial:** si se incorpora, ayuda a buscar Volcanic Trooper, Bonfire o una respuesta; es útil primero para consistencia, pero **menos favorable en el turno de daño letal** por su reducción de daño.\n- **Sinergias verificables:** permite escoger cuáles piezas Extra perder, a diferencia de **Extravagance** (azar); sin embargo, impide el robo de **Blaze Accelerator Reload** ese turno y recorta la **presión de daño por efecto** de Emperor/Scattershot/Emission.\n- **Riesgo / recurso:** no es un robo de varias cartas, sino **excavar y elegir una**; sus restricciones dañan dos pilares del plan Volcanic. Requiere aprobación de incorporación desde Reserva y comprobación del efecto en el momento.\n- **Fuente / confianza:** **TEXTO_OFICIAL_COTEJADO** — https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15756&ope=2&request_locale=en",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    }
+  ],
+  "combos": [],
+  "engine_relations": [],
+  "scope": "Fichas editoriales individuales respaldadas por checks A08:FICHA_A05; sin certificación de combos."
+}

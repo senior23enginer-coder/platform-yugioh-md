@@ -1,0 +1,744 @@
+[
+  {
+    "original_id": "1",
+    "name": "World Championship (WCS)",
+    "source_class": "O",
+    "suggested_engine": "M6",
+    "suggested_modules": "R1, R4, R8"
+  },
+  {
+    "original_id": "2",
+    "name": "World Championship Qualifier",
+    "source_class": "O",
+    "suggested_engine": "M5+M3",
+    "suggested_modules": "R1, R4"
+  },
+  {
+    "original_id": "3",
+    "name": "Yu-Gi-Oh! Championship Series",
+    "source_class": "O",
+    "suggested_engine": "M5+M3",
+    "suggested_modules": "R1, R3, R8"
+  },
+  {
+    "original_id": "4",
+    "name": "Team YCS",
+    "source_class": "O",
+    "suggested_engine": "M9",
+    "suggested_modules": "R7, R8"
+  },
+  {
+    "original_id": "5",
+    "name": "Remote Duel YCS",
+    "source_class": "O",
+    "suggested_engine": "M5+M3",
+    "suggested_modules": "R12, R8"
+  },
+  {
+    "original_id": "6",
+    "name": "Regional Qualifier",
+    "source_class": "O",
+    "suggested_engine": "M5",
+    "suggested_modules": "R1, R11"
+  },
+  {
+    "original_id": "7",
+    "name": "National Qualifier",
+    "source_class": "O",
+    "suggested_engine": "M5+M3",
+    "suggested_modules": "R1, R4"
+  },
+  {
+    "original_id": "8",
+    "name": "OTS Championship",
+    "source_class": "O",
+    "suggested_engine": "M5+M3",
+    "suggested_modules": "R1, R8"
+  },
+  {
+    "original_id": "9",
+    "name": "OTS Tournament Series",
+    "source_class": "C",
+    "suggested_engine": "M5",
+    "suggested_modules": "R3, R11"
+  },
+  {
+    "original_id": "10",
+    "name": "YCS VIP Qualifier",
+    "source_class": "O",
+    "suggested_engine": "M5",
+    "suggested_modules": "R1, R8"
+  },
+  {
+    "original_id": "11",
+    "name": "Dragon Duel",
+    "source_class": "O",
+    "suggested_engine": "M5",
+    "suggested_modules": "R4, R1"
+  },
+  {
+    "original_id": "12",
+    "name": "Dragon Duel Championship",
+    "source_class": "O",
+    "suggested_engine": "M5+M3",
+    "suggested_modules": "R4, R8"
+  },
+  {
+    "original_id": "13",
+    "name": "Dragon Duel Last Chance Qualifier",
+    "source_class": "O",
+    "suggested_engine": "M5",
+    "suggested_modules": "R1, R4"
+  },
+  {
+    "original_id": "14",
+    "name": "Ranking Tournament (OCG)",
+    "source_class": "O",
+    "suggested_engine": "M5",
+    "suggested_modules": "R3"
+  },
+  {
+    "original_id": "15",
+    "name": "World Qualifying Points",
+    "source_class": "S",
+    "suggested_engine": "M7",
+    "suggested_modules": "R1, R3"
+  },
+  {
+    "original_id": "16",
+    "name": "Win-A-Mat",
+    "source_class": "O",
+    "suggested_engine": "M3",
+    "suggested_modules": "R8"
+  },
+  {
+    "original_id": "17",
+    "name": "Attack of the Giant Card!!",
+    "source_class": "O",
+    "suggested_engine": "M3",
+    "suggested_modules": "R8"
+  },
+  {
+    "original_id": "18",
+    "name": "Rivalry of Warlords",
+    "source_class": "O",
+    "suggested_engine": "M3",
+    "suggested_modules": "R5, R8"
+  },
+  {
+    "original_id": "19",
+    "name": "Structure Deck Tournament",
+    "source_class": "O",
+    "suggested_engine": "M3",
+    "suggested_modules": "R5"
+  },
+  {
+    "original_id": "20",
+    "name": "THE CHRONICLES DECK Tournament",
+    "source_class": "O",
+    "suggested_engine": "M3",
+    "suggested_modules": "R5, R8"
+  },
+  {
+    "original_id": "21",
+    "name": "Genesys Tournament",
+    "source_class": "O",
+    "suggested_engine": "M5",
+    "suggested_modules": "R6, R5"
+  },
+  {
+    "original_id": "22",
+    "name": "Time Wizard Tournament",
+    "source_class": "O",
+    "suggested_engine": "M5",
+    "suggested_modules": "R6"
+  },
+  {
+    "original_id": "23",
+    "name": "Speed Duel Tournament",
+    "source_class": "O",
+    "suggested_engine": "M3",
+    "suggested_modules": "R6"
+  },
+  {
+    "original_id": "24",
+    "name": "3 vs. 3 Team Duel",
+    "source_class": "O",
+    "suggested_engine": "M9",
+    "suggested_modules": "R7"
+  },
+  {
+    "original_id": "25",
+    "name": "Tag Duel Tournament",
+    "source_class": "O",
+    "suggested_engine": "M9",
+    "suggested_modules": "R7, R6"
+  },
+  {
+    "original_id": "26",
+    "name": "MASTER DUEL Tournament",
+    "source_class": "O",
+    "suggested_engine": "M3",
+    "suggested_modules": "R6"
+  },
+  {
+    "original_id": "27",
+    "name": "DUEL LINKS Tournament",
+    "source_class": "O",
+    "suggested_engine": "M3",
+    "suggested_modules": "R6"
+  },
+  {
+    "original_id": "28",
+    "name": "Charity Tournament",
+    "source_class": "O",
+    "suggested_engine": "M3",
+    "suggested_modules": "R8"
+  },
+  {
+    "original_id": "29",
+    "name": "Public Events Playoff",
+    "source_class": "O",
+    "suggested_engine": "M3",
+    "suggested_modules": "R1"
+  },
+  {
+    "original_id": "30",
+    "name": "Yu-Gi-Oh! Extravaganza",
+    "source_class": "O",
+    "suggested_engine": "M7",
+    "suggested_modules": "R8, R9"
+  },
+  {
+    "original_id": "31",
+    "name": "OTS Local Tournament",
+    "source_class": "O",
+    "suggested_engine": "M5",
+    "suggested_modules": "R3"
+  },
+  {
+    "original_id": "32",
+    "name": "Core Booster Premiere!",
+    "source_class": "O",
+    "suggested_engine": "M3",
+    "suggested_modules": "R8"
+  },
+  {
+    "original_id": "33",
+    "name": "Yu-Gi-Oh! Day",
+    "source_class": "O",
+    "suggested_engine": "M3",
+    "suggested_modules": "R8"
+  },
+  {
+    "original_id": "34",
+    "name": "World Championship Celebration",
+    "source_class": "O",
+    "suggested_engine": "M3",
+    "suggested_modules": "R8"
+  },
+  {
+    "original_id": "35",
+    "name": "Demo Duel",
+    "source_class": "C",
+    "suggested_engine": "M1",
+    "suggested_modules": "R10"
+  },
+  {
+    "original_id": "36",
+    "name": "Release Tournament",
+    "source_class": "C",
+    "suggested_engine": "M3",
+    "suggested_modules": "R8"
+  },
+  {
+    "original_id": "37",
+    "name": "Community Tournament",
+    "source_class": "C",
+    "suggested_engine": "M3",
+    "suggested_modules": "R8"
+  },
+  {
+    "original_id": "38",
+    "name": "Anniversary Tournament",
+    "source_class": "C",
+    "suggested_engine": "M3",
+    "suggested_modules": "R8"
+  },
+  {
+    "original_id": "39",
+    "name": "Promotional Tournament",
+    "source_class": "C",
+    "suggested_engine": "M3",
+    "suggested_modules": "R8"
+  },
+  {
+    "original_id": "40",
+    "name": "Liga regular",
+    "source_class": "C",
+    "suggested_engine": "M2",
+    "suggested_modules": "R3, R9"
+  },
+  {
+    "original_id": "41",
+    "name": "Liga ida y vuelta",
+    "source_class": "S",
+    "suggested_engine": "M2",
+    "suggested_modules": "R9"
+  },
+  {
+    "original_id": "42",
+    "name": "Liga por divisiones",
+    "source_class": "C",
+    "suggested_engine": "M2",
+    "suggested_modules": "R2, R9"
+  },
+  {
+    "original_id": "43",
+    "name": "Liga de campeones",
+    "source_class": "P",
+    "suggested_engine": "M6",
+    "suggested_modules": "R1, R8"
+  },
+  {
+    "original_id": "44",
+    "name": "Liga de aspirantes",
+    "source_class": "P",
+    "suggested_engine": "M2",
+    "suggested_modules": "R1, R2"
+  },
+  {
+    "original_id": "45",
+    "name": "Liga de desarrollo",
+    "source_class": "C",
+    "suggested_engine": "M2",
+    "suggested_modules": "R4"
+  },
+  {
+    "original_id": "46",
+    "name": "Copa nacional",
+    "source_class": "C",
+    "suggested_engine": "M3",
+    "suggested_modules": "R8"
+  },
+  {
+    "original_id": "47",
+    "name": "Copa internacional",
+    "source_class": "C",
+    "suggested_engine": "M3",
+    "suggested_modules": "R8"
+  },
+  {
+    "original_id": "48",
+    "name": "Copa de campeones",
+    "source_class": "C",
+    "suggested_engine": "M3",
+    "suggested_modules": "R1"
+  },
+  {
+    "original_id": "49",
+    "name": "Supercopa",
+    "source_class": "C",
+    "suggested_engine": "M1/M3",
+    "suggested_modules": "R4, R8"
+  },
+  {
+    "original_id": "50",
+    "name": "Masters",
+    "source_class": "C",
+    "suggested_engine": "M6",
+    "suggested_modules": "R3, R4"
+  },
+  {
+    "original_id": "51",
+    "name": "Grand Prix",
+    "source_class": "C",
+    "suggested_engine": "M5+M3",
+    "suggested_modules": "R8"
+  },
+  {
+    "original_id": "52",
+    "name": "Clasificatorio abierto",
+    "source_class": "S",
+    "suggested_engine": "M5",
+    "suggested_modules": "R1"
+  },
+  {
+    "original_id": "53",
+    "name": "Clasificatorio cerrado",
+    "source_class": "S",
+    "suggested_engine": "M5",
+    "suggested_modules": "R1, R4"
+  },
+  {
+    "original_id": "54",
+    "name": "Repechaje",
+    "source_class": "S",
+    "suggested_engine": "M3",
+    "suggested_modules": "R1"
+  },
+  {
+    "original_id": "55",
+    "name": "Playoffs",
+    "source_class": "S",
+    "suggested_engine": "M3",
+    "suggested_modules": "R1"
+  },
+  {
+    "original_id": "56",
+    "name": "Play-in",
+    "source_class": "S",
+    "suggested_engine": "M3",
+    "suggested_modules": "R1"
+  },
+  {
+    "original_id": "57",
+    "name": "Promoción",
+    "source_class": "S",
+    "suggested_engine": "M3",
+    "suggested_modules": "R2"
+  },
+  {
+    "original_id": "58",
+    "name": "Permanencia",
+    "source_class": "S",
+    "suggested_engine": "M3",
+    "suggested_modules": "R2"
+  },
+  {
+    "original_id": "59",
+    "name": "Torneo de campeones",
+    "source_class": "C",
+    "suggested_engine": "M3",
+    "suggested_modules": "R4, R8"
+  },
+  {
+    "original_id": "60",
+    "name": "Circuito de puntos",
+    "source_class": "C",
+    "suggested_engine": "M7",
+    "suggested_modules": "R3, R9"
+  },
+  {
+    "original_id": "61",
+    "name": "Singleton",
+    "source_class": "C",
+    "suggested_engine": "M5",
+    "suggested_modules": "R5"
+  },
+  {
+    "original_id": "62",
+    "name": "Commander",
+    "source_class": "P",
+    "suggested_engine": "M5",
+    "suggested_modules": "R5, R6, R10"
+  },
+  {
+    "original_id": "63",
+    "name": "Draft",
+    "source_class": "C",
+    "suggested_engine": "M5",
+    "suggested_modules": "R5"
+  },
+  {
+    "original_id": "64",
+    "name": "Sealed",
+    "source_class": "C",
+    "suggested_engine": "M5",
+    "suggested_modules": "R5"
+  },
+  {
+    "original_id": "65",
+    "name": "Archetype Only",
+    "source_class": "C",
+    "suggested_engine": "M5",
+    "suggested_modules": "R5"
+  },
+  {
+    "original_id": "66",
+    "name": "Mono-Attribute",
+    "source_class": "C",
+    "suggested_engine": "M5",
+    "suggested_modules": "R5"
+  },
+  {
+    "original_id": "67",
+    "name": "Mono-Type",
+    "source_class": "C",
+    "suggested_engine": "M5",
+    "suggested_modules": "R5"
+  },
+  {
+    "original_id": "68",
+    "name": "Highlander",
+    "source_class": "S",
+    "suggested_engine": "M5",
+    "suggested_modules": "R5"
+  },
+  {
+    "original_id": "69",
+    "name": "Common Only",
+    "source_class": "C",
+    "suggested_engine": "M5",
+    "suggested_modules": "R5"
+  },
+  {
+    "original_id": "70",
+    "name": "Budget Deck",
+    "source_class": "C",
+    "suggested_engine": "M5",
+    "suggested_modules": "R5"
+  },
+  {
+    "original_id": "71",
+    "name": "No Extra Deck",
+    "source_class": "C",
+    "suggested_engine": "M5",
+    "suggested_modules": "R5"
+  },
+  {
+    "original_id": "72",
+    "name": "Fusion Only",
+    "source_class": "C",
+    "suggested_engine": "M5",
+    "suggested_modules": "R5"
+  },
+  {
+    "original_id": "73",
+    "name": "Synchro Only",
+    "source_class": "C",
+    "suggested_engine": "M5",
+    "suggested_modules": "R5"
+  },
+  {
+    "original_id": "74",
+    "name": "Xyz Only",
+    "source_class": "C",
+    "suggested_engine": "M5",
+    "suggested_modules": "R5"
+  },
+  {
+    "original_id": "75",
+    "name": "Link Only",
+    "source_class": "C",
+    "suggested_engine": "M5",
+    "suggested_modules": "R5"
+  },
+  {
+    "original_id": "76",
+    "name": "Ritual Only",
+    "source_class": "C",
+    "suggested_engine": "M5",
+    "suggested_modules": "R5"
+  },
+  {
+    "original_id": "77",
+    "name": "No Hand Traps",
+    "source_class": "C",
+    "suggested_engine": "M5",
+    "suggested_modules": "R5"
+  },
+  {
+    "original_id": "78",
+    "name": "Custom Banlist",
+    "source_class": "S",
+    "suggested_engine": "M5",
+    "suggested_modules": "R5"
+  },
+  {
+    "original_id": "79",
+    "name": "Random Deck",
+    "source_class": "C",
+    "suggested_engine": "M5",
+    "suggested_modules": "R5, R10"
+  },
+  {
+    "original_id": "80",
+    "name": "Mirror Match",
+    "source_class": "C",
+    "suggested_engine": "M5",
+    "suggested_modules": "R5"
+  },
+  {
+    "original_id": "81",
+    "name": "King of the Hill",
+    "source_class": "C",
+    "suggested_engine": "M8",
+    "suggested_modules": "R10"
+  },
+  {
+    "original_id": "82",
+    "name": "Gauntlet",
+    "source_class": "C",
+    "suggested_engine": "M10",
+    "suggested_modules": "R10"
+  },
+  {
+    "original_id": "83",
+    "name": "Survival",
+    "source_class": "C",
+    "suggested_engine": "M10",
+    "suggested_modules": "R10"
+  },
+  {
+    "original_id": "84",
+    "name": "Boss Challenge",
+    "source_class": "C",
+    "suggested_engine": "M8",
+    "suggested_modules": "R10"
+  },
+  {
+    "original_id": "85",
+    "name": "Battle Royale",
+    "source_class": "P",
+    "suggested_engine": "M10\\*",
+    "suggested_modules": "R6, R10"
+  },
+  {
+    "original_id": "86",
+    "name": "Free-for-All",
+    "source_class": "P",
+    "suggested_engine": "M10\\*",
+    "suggested_modules": "R6, R10"
+  },
+  {
+    "original_id": "87",
+    "name": "Team Battle",
+    "source_class": "C",
+    "suggested_engine": "M9",
+    "suggested_modules": "R7"
+  },
+  {
+    "original_id": "88",
+    "name": "Crew Battle",
+    "source_class": "C",
+    "suggested_engine": "M10",
+    "suggested_modules": "R7, R10"
+  },
+  {
+    "original_id": "89",
+    "name": "Relay Duel",
+    "source_class": "P",
+    "suggested_engine": "M10",
+    "suggested_modules": "R7, R10"
+  },
+  {
+    "original_id": "90",
+    "name": "Best-of-Series",
+    "source_class": "S",
+    "suggested_engine": "M1",
+    "suggested_modules": "R10"
+  },
+  {
+    "original_id": "91",
+    "name": "Challenge Ladder",
+    "source_class": "C",
+    "suggested_engine": "M8",
+    "suggested_modules": "R3"
+  },
+  {
+    "original_id": "92",
+    "name": "Bounty Tournament",
+    "source_class": "C",
+    "suggested_engine": "M8",
+    "suggested_modules": "R8, R10"
+  },
+  {
+    "original_id": "93",
+    "name": "Seasonal Championship",
+    "source_class": "C",
+    "suggested_engine": "M6",
+    "suggested_modules": "R9"
+  },
+  {
+    "original_id": "94",
+    "name": "Opening Tournament",
+    "source_class": "C",
+    "suggested_engine": "M3",
+    "suggested_modules": "R9"
+  },
+  {
+    "original_id": "95",
+    "name": "Closing Tournament",
+    "source_class": "C",
+    "suggested_engine": "M3",
+    "suggested_modules": "R9"
+  },
+  {
+    "original_id": "96",
+    "name": "All-Star Tournament",
+    "source_class": "C",
+    "suggested_engine": "M3",
+    "suggested_modules": "R4"
+  },
+  {
+    "original_id": "97",
+    "name": "Invitational",
+    "source_class": "C",
+    "suggested_engine": "M5",
+    "suggested_modules": "R4"
+  },
+  {
+    "original_id": "98",
+    "name": "Legends Tournament",
+    "source_class": "C",
+    "suggested_engine": "M5",
+    "suggested_modules": "R6"
+  },
+  {
+    "original_id": "99",
+    "name": "Rookie Tournament",
+    "source_class": "C",
+    "suggested_engine": "M5",
+    "suggested_modules": "R4"
+  },
+  {
+    "original_id": "100",
+    "name": "Redemption Tournament",
+    "source_class": "C",
+    "suggested_engine": "M3",
+    "suggested_modules": "R1"
+  },
+  {
+    "original_id": "101",
+    "name": "Anniversary Cup",
+    "source_class": "C",
+    "suggested_engine": "M3",
+    "suggested_modules": "R8"
+  },
+  {
+    "original_id": "102",
+    "name": "Community Cup",
+    "source_class": "C",
+    "suggested_engine": "M3",
+    "suggested_modules": "R8"
+  },
+  {
+    "original_id": "103",
+    "name": "Rivalry Cup",
+    "source_class": "C",
+    "suggested_engine": "M3",
+    "suggested_modules": "R4"
+  },
+  {
+    "original_id": "104",
+    "name": "Interleague Cup",
+    "source_class": "C",
+    "suggested_engine": "M6",
+    "suggested_modules": "R1"
+  },
+  {
+    "original_id": "105",
+    "name": "Champions Invitational",
+    "source_class": "C",
+    "suggested_engine": "M6",
+    "suggested_modules": "R4"
+  },
+  {
+    "original_id": "106",
+    "name": "Last Chance Qualifier",
+    "source_class": "C",
+    "suggested_engine": "M5",
+    "suggested_modules": "R1"
+  }
+]

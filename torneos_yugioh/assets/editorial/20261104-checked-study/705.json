@@ -1,0 +1,990 @@
+{
+  "deck_id": 705,
+  "name": "Royal",
+  "format": "rush_duel",
+  "source_file": "DECK_705_ROYAL.md",
+  "source_sha256": "068d7900b98245010378f9d6e68e372d88eb3ef12d2d2ab064abec981b64fb8b",
+  "inventory": [
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 466,
+      "name": "Kheiron el Caballero Estelar"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 467,
+      "name": "Phaser del Rebelde Real"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 468,
+      "name": "Impasse Ignoto"
+    },
+    {
+      "section": "main",
+      "quantity": 2,
+      "card_id": 469,
+      "name": "Metal Maldito del Rebelde Real"
+    },
+    {
+      "section": "main",
+      "quantity": 2,
+      "card_id": 470,
+      "name": "Heavy Metal del Rebelde Real"
+    },
+    {
+      "section": "main",
+      "quantity": 2,
+      "card_id": 471,
+      "name": "Progrock del Rebelde Real"
+    },
+    {
+      "section": "main",
+      "quantity": 2,
+      "card_id": 472,
+      "name": "Descendiente de Titanes"
+    },
+    {
+      "section": "main",
+      "quantity": 2,
+      "card_id": 473,
+      "name": "Canjear"
+    },
+    {
+      "section": "main",
+      "quantity": 2,
+      "card_id": 474,
+      "name": "Aliento de Fuego del Genio"
+    },
+    {
+      "section": "main",
+      "quantity": 2,
+      "card_id": 475,
+      "name": "Restauración de Cartas"
+    },
+    {
+      "section": "main",
+      "quantity": 2,
+      "card_id": 476,
+      "name": "Maldición de la Luz Ascendente"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 477,
+      "name": "Gelatina Defensiva"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 478,
+      "name": "Avaricia del Rey"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 479,
+      "name": "Agujero Trampa"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 480,
+      "name": "Esplendor del Rey"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 481,
+      "name": "Monstruo Reencarnado"
+    }
+  ],
+  "cards": [
+    {
+      "id": "705:A08:C001",
+      "name": "Kheiron el Caballero Estelar",
+      "cid": 16344,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16344.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 466
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **3x**. CID Rush: **16344**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — presión de combate / modificación de estadísticas."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Si el rival controla un monstruo, enviar la carta superior del Deck al Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Elegir un Demonio de Nivel 5 o superior boca arriba propio; sus ataques infligen daño de penetración este turno."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**HARD ROCK OVERTURE** puede colocar Nivel 7/8 en Defensa, pero colocar por Skill no cuenta como Invocación por Sacrificio de los jefes Royal Rebel's."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16344&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 16344: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **3x**. CID Rush: **16344**.\n- **Rol funcional:** Monstruo de Efecto — presión de combate / modificación de estadísticas.\n- **Requisito específico:** Si el rival controla un monstruo, enviar la carta superior del Deck al Cementerio.\n- **Efecto / resultado concreto:** Elegir un Demonio de Nivel 5 o superior boca arriba propio; sus ataques infligen daño de penetración este turno.\n- **Ir primero, segundo y juego tardío:** Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales.\n- **Relación con habilidad y otras piezas:** **HARD ROCK OVERTURE** puede colocar Nivel 7/8 en Defensa, pero colocar por Skill no cuenta como Invocación por Sacrificio de los jefes Royal Rebel's.\n- **Riesgos y dependencias:** pagar/cumplir el requisito escrito antes de prometer la resolución.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16344&ope=2\n- **Contraste de fuente Rush:** CID 16344: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "705:A08:C002",
+      "name": "Phaser del Rebelde Real",
+      "cid": 16330,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16330.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 467
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **3x**. CID Rush: **16330**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — extensor / habilitador de material."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Controlar un Demonio de Nivel 7+ boca arriba y enviar este Phaser boca arriba del Campo al Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Invocar de Modo Especial en Defensa boca arriba un Demonio de Nivel 7+ del Cementerio."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: construir la condición de activación; segundo: verificar que la jugada responde al estado rival actual; tardío: ahorrar el recurso si todavía no se cumple el requisito."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**HARD ROCK OVERTURE** puede colocar Nivel 7/8 en Defensa, pero colocar por Skill no cuenta como Invocación por Sacrificio de los jefes Royal Rebel's."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16330&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 16330: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **3x**. CID Rush: **16330**.\n- **Rol funcional:** Monstruo de Efecto — extensor / habilitador de material.\n- **Requisito específico:** Controlar un Demonio de Nivel 7+ boca arriba y enviar este Phaser boca arriba del Campo al Cementerio.\n- **Efecto / resultado concreto:** Invocar de Modo Especial en Defensa boca arriba un Demonio de Nivel 7+ del Cementerio.\n- **Ir primero, segundo y juego tardío:** Primero: construir la condición de activación; segundo: verificar que la jugada responde al estado rival actual; tardío: ahorrar el recurso si todavía no se cumple el requisito.\n- **Relación con habilidad y otras piezas:** **HARD ROCK OVERTURE** puede colocar Nivel 7/8 en Defensa, pero colocar por Skill no cuenta como Invocación por Sacrificio de los jefes Royal Rebel's.\n- **Riesgos y dependencias:** pagar/cumplir el requisito escrito antes de prometer la resolución.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16330&ope=2\n- **Contraste de fuente Rush:** CID 16330: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "705:A08:C003",
+      "name": "Impasse Ignoto",
+      "cid": 19760,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19760.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 468
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **3x**. CID Rush: **19760**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — presión de combate / modificación de estadísticas."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Mostrar al rival otro Demonio de la mano para Invocar esta carta de Modo Especial desde la mano."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Mientras permanezca boca arriba, aumenta en 300 el ATK de todos tus Demonios boca arriba, incluido él mismo."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **HARD ROCK OVERTURE** exige Demonios/LUZ y un Nivel 7/8 en mano para enviar al GY; no se roba."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19760&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 19760: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **3x**. CID Rush: **19760**.\n- **Rol funcional:** Monstruo de Efecto — presión de combate / modificación de estadísticas.\n- **Requisito específico:** Mostrar al rival otro Demonio de la mano para Invocar esta carta de Modo Especial desde la mano.\n- **Efecto / resultado concreto:** Mientras permanezca boca arriba, aumenta en 300 el ATK de todos tus Demonios boca arriba, incluido él mismo.\n- **Ir primero, segundo y juego tardío:** Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales.\n- **Relación con habilidad y otras piezas:** La Skill **HARD ROCK OVERTURE** exige Demonios/LUZ y un Nivel 7/8 en mano para enviar al GY; no se roba.\n- **Riesgos y dependencias:** comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19760&ope=2\n- **Contraste de fuente Rush:** CID 19760: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "705:A08:C004",
+      "name": "Metal Maldito del Rebelde Real",
+      "cid": 16331,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16331.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 469
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **2x**. CID Rush: **16331**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — removal / apertura de campo."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Haber Invocado esta carta por Sacrificio durante este turno usando DOS Demonios de Nivel 7+."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Destruye todos los monstruos boca arriba rivales; después inflige 100 LP por la suma de sus Niveles originales."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**HARD ROCK OVERTURE** puede colocar Nivel 7/8 en Defensa, pero colocar por Skill no cuenta como Invocación por Sacrificio de los jefes Royal Rebel's."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. la Skill que pone monstruos en Defensa NO equivale a Invocación por Sacrificio; sus efectos de tributo requieren el procedimiento específico."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16331&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 16331: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **2x**. CID Rush: **16331**.\n- **Rol funcional:** Monstruo de Efecto — removal / apertura de campo.\n- **Requisito específico:** Haber Invocado esta carta por Sacrificio durante este turno usando DOS Demonios de Nivel 7+.\n- **Efecto / resultado concreto:** Destruye todos los monstruos boca arriba rivales; después inflige 100 LP por la suma de sus Niveles originales.\n- **Ir primero, segundo y juego tardío:** Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales.\n- **Relación con habilidad y otras piezas:** **HARD ROCK OVERTURE** puede colocar Nivel 7/8 en Defensa, pero colocar por Skill no cuenta como Invocación por Sacrificio de los jefes Royal Rebel's.\n- **Riesgos y dependencias:** el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. la Skill que pone monstruos en Defensa NO equivale a Invocación por Sacrificio; sus efectos de tributo requieren el procedimiento específico.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16331&ope=2\n- **Contraste de fuente Rush:** CID 16331: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "705:A08:C005",
+      "name": "Heavy Metal del Rebelde Real",
+      "cid": 15441,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/15441.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 470
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **2x**. CID Rush: **15441**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — removal / apertura de campo."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Haber Invocado esta carta por Sacrificio este turno usando al menos un monstruo de Nivel 5+."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Entre los monstruos boca arriba rivales de Nivel 8 o menor, elegir uno del Nivel más bajo; gana su ATK hasta fin del turno y lo destruye."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**HARD ROCK OVERTURE** puede colocar Nivel 7/8 en Defensa, pero colocar por Skill no cuenta como Invocación por Sacrificio de los jefes Royal Rebel's."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. la Skill que pone monstruos en Defensa NO equivale a Invocación por Sacrificio; sus efectos de tributo requieren el procedimiento específico."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15441&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 15441: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **2x**. CID Rush: **15441**.\n- **Rol funcional:** Monstruo de Efecto — removal / apertura de campo.\n- **Requisito específico:** Haber Invocado esta carta por Sacrificio este turno usando al menos un monstruo de Nivel 5+.\n- **Efecto / resultado concreto:** Entre los monstruos boca arriba rivales de Nivel 8 o menor, elegir uno del Nivel más bajo; gana su ATK hasta fin del turno y lo destruye.\n- **Ir primero, segundo y juego tardío:** Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales.\n- **Relación con habilidad y otras piezas:** **HARD ROCK OVERTURE** puede colocar Nivel 7/8 en Defensa, pero colocar por Skill no cuenta como Invocación por Sacrificio de los jefes Royal Rebel's.\n- **Riesgos y dependencias:** el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. la Skill que pone monstruos en Defensa NO equivale a Invocación por Sacrificio; sus efectos de tributo requieren el procedimiento específico.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15441&ope=2\n- **Contraste de fuente Rush:** CID 15441: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "705:A08:C006",
+      "name": "Progrock del Rebelde Real",
+      "cid": 19761,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19761.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 471
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **2x**. CID Rush: **19761**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — removal / apertura de campo."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Haber Invocado esta carta por Sacrificio este turno usando al menos un monstruo de Nivel 5+."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Destruye una Mágica/Trampa rival; después puede destruir otra carta boca abajo rival. Este turno solo pueden atacar tus Demonios."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**HARD ROCK OVERTURE** puede colocar Nivel 7/8 en Defensa, pero colocar por Skill no cuenta como Invocación por Sacrificio de los jefes Royal Rebel's."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. la Skill que pone monstruos en Defensa NO equivale a Invocación por Sacrificio; sus efectos de tributo requieren el procedimiento específico."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19761&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 19761: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **2x**. CID Rush: **19761**.\n- **Rol funcional:** Monstruo de Efecto — removal / apertura de campo.\n- **Requisito específico:** Haber Invocado esta carta por Sacrificio este turno usando al menos un monstruo de Nivel 5+.\n- **Efecto / resultado concreto:** Destruye una Mágica/Trampa rival; después puede destruir otra carta boca abajo rival. Este turno solo pueden atacar tus Demonios.\n- **Ir primero, segundo y juego tardío:** Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales.\n- **Relación con habilidad y otras piezas:** **HARD ROCK OVERTURE** puede colocar Nivel 7/8 en Defensa, pero colocar por Skill no cuenta como Invocación por Sacrificio de los jefes Royal Rebel's.\n- **Riesgos y dependencias:** el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. la Skill que pone monstruos en Defensa NO equivale a Invocación por Sacrificio; sus efectos de tributo requieren el procedimiento específico.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19761&ope=2\n- **Contraste de fuente Rush:** CID 19761: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "705:A08:C007",
+      "name": "Descendiente de Titanes",
+      "cid": 16135,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16135.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 472
+        }
+      ],
+      "classification": "RECURSO_MATERIAL",
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **2x**. CID Rush: **16135**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "No tiene activación de efecto de monstruo."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Monstruo Normal sin efecto."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **HARD ROCK OVERTURE** exige Demonios/LUZ y un Nivel 7/8 en mano para enviar al GY; no se roba."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16135&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 16135: fuente oficial Rush consultada en japonés; tipo Monstruo Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **2x**. CID Rush: **16135**.\n- **Rol funcional:** Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado.\n- **Requisito específico:** No tiene activación de efecto de monstruo.\n- **Efecto / resultado concreto:** Monstruo Normal sin efecto.\n- **Ir primero, segundo y juego tardío:** Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza.\n- **Relación con habilidad y otras piezas:** La Skill **HARD ROCK OVERTURE** exige Demonios/LUZ y un Nivel 7/8 en mano para enviar al GY; no se roba.\n- **Riesgos y dependencias:** no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16135&ope=2\n- **Contraste de fuente Rush:** CID 16135: fuente oficial Rush consultada en japonés; tipo Monstruo Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "705:A08:C008",
+      "name": "Canjear",
+      "cid": 17721,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/17721.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 473
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **2x**. CID Rush: **17721**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Enviar al Cementerio un monstruo de Nivel 8 de la mano."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Roba dos cartas."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **HARD ROCK OVERTURE** exige Demonios/LUZ y un Nivel 7/8 en mano para enviar al GY; no se roba."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17721&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 17721: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **2x**. CID Rush: **17721**.\n- **Rol funcional:** Carta Mágica Normal — consistencia / reciclaje.\n- **Requisito específico:** Enviar al Cementerio un monstruo de Nivel 8 de la mano.\n- **Efecto / resultado concreto:** Roba dos cartas.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** La Skill **HARD ROCK OVERTURE** exige Demonios/LUZ y un Nivel 7/8 en mano para enviar al GY; no se roba.\n- **Riesgos y dependencias:** pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17721&ope=2\n- **Contraste de fuente Rush:** CID 17721: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "705:A08:C009",
+      "name": "Aliento de Fuego del Genio",
+      "cid": 15673,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/15673.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 474
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **2x**. CID Rush: **15673**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — apoyo situacional sujeto a condición escrita."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Controlar un Demonio boca arriba."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Devuelve a la mano del dueño una Mágica o Trampa del rival."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **HARD ROCK OVERTURE** exige Demonios/LUZ y un Nivel 7/8 en mano para enviar al GY; no se roba."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15673&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 15673: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **2x**. CID Rush: **15673**.\n- **Rol funcional:** Carta Mágica Normal — apoyo situacional sujeto a condición escrita.\n- **Requisito específico:** Controlar un Demonio boca arriba.\n- **Efecto / resultado concreto:** Devuelve a la mano del dueño una Mágica o Trampa del rival.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** La Skill **HARD ROCK OVERTURE** exige Demonios/LUZ y un Nivel 7/8 en mano para enviar al GY; no se roba.\n- **Riesgos y dependencias:** comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15673&ope=2\n- **Contraste de fuente Rush:** CID 15673: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "705:A08:C010",
+      "name": "Restauración de Cartas",
+      "cid": 17543,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/17543.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 475
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **2x**. CID Rush: **17543**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta de Trampa Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Cuando un monstruo rival declara ataque."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Roba hasta tener cinco cartas en mano, revela toda la mano y recupera 200 LP por cada monstruo revelado."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **HARD ROCK OVERTURE** exige Demonios/LUZ y un Nivel 7/8 en mano para enviar al GY; no se roba."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17543&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 17543: fuente oficial Rush consultada en japonés; tipo Carta de Trampa Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **2x**. CID Rush: **17543**.\n- **Rol funcional:** Carta de Trampa Normal — consistencia / reciclaje.\n- **Requisito específico:** Cuando un monstruo rival declara ataque.\n- **Efecto / resultado concreto:** Roba hasta tener cinco cartas en mano, revela toda la mano y recupera 200 LP por cada monstruo revelado.\n- **Ir primero, segundo y juego tardío:** Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo.\n- **Relación con habilidad y otras piezas:** La Skill **HARD ROCK OVERTURE** exige Demonios/LUZ y un Nivel 7/8 en mano para enviar al GY; no se roba.\n- **Riesgos y dependencias:** disponer de cartas suficientes en Deck y distinguir robo de búsqueda.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17543&ope=2\n- **Contraste de fuente Rush:** CID 17543: fuente oficial Rush consultada en japonés; tipo Carta de Trampa Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "705:A08:C011",
+      "name": "Maldición de la Luz Ascendente",
+      "cid": 21007,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/21007.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 476
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **2x**. CID Rush: **21007**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "El rival debe tener una o ninguna carta en mano."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Cambia un monstruo rival a Ataque boca arriba o Defensa boca abajo. Si el rival activó una Trampa ese turno o es el primer turno del jugador segundo, ambos roban dos."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **HARD ROCK OVERTURE** exige Demonios/LUZ y un Nivel 7/8 en mano para enviar al GY; no se roba."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=21007&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 21007: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **2x**. CID Rush: **21007**.\n- **Rol funcional:** Carta Mágica Normal — consistencia / reciclaje.\n- **Requisito específico:** El rival debe tener una o ninguna carta en mano.\n- **Efecto / resultado concreto:** Cambia un monstruo rival a Ataque boca arriba o Defensa boca abajo. Si el rival activó una Trampa ese turno o es el primer turno del jugador segundo, ambos roban dos.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** La Skill **HARD ROCK OVERTURE** exige Demonios/LUZ y un Nivel 7/8 en mano para enviar al GY; no se roba.\n- **Riesgos y dependencias:** disponer de cartas suficientes en Deck y distinguir robo de búsqueda.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=21007&ope=2\n- **Contraste de fuente Rush:** CID 21007: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "705:A08:C012",
+      "name": "Gelatina Defensiva",
+      "cid": 18646,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/18646.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 477
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **1x**. CID Rush: **18646**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta de Trampa Normal — defensa ante ataque y prevención de daño de batalla."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Cuando un monstruo rival de Nivel 8 o inferior declara ataque."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Envía al Cementerio la carta superior de tu Deck y evita todo el daño de batalla ese turno; si tienes 3000 LP o más, recibes además 2000 de daño de efecto."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: construir la condición de activación; segundo: verificar que la jugada responde al estado rival actual; tardío: ahorrar el recurso si todavía no se cumple el requisito."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **HARD ROCK OVERTURE** exige Demonios/LUZ y un Nivel 7/8 en mano para enviar al GY; no se roba."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18646&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 18646, nombre japonés **バッファード・スライム** (Buffered Slime): texto oficial localizado con `request_locale=ja`, tipo Carta de Trampa Normal. La condición de ataque de monstruo rival de Nivel 8 o inferior, el envío de la carta superior del Deck, la prevención de daño de batalla del turno y el daño de efecto de 2000 si los LP propios son al menos 3000 coinciden con el resumen previo. La denominación española «Gelatina Defensiva» sigue siendo un alias del inventario; no se impone traducción oficial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **1x**. CID Rush: **18646**.\n- **Rol funcional:** Carta de Trampa Normal — defensa ante ataque y prevención de daño de batalla.\n- **Requisito específico:** Cuando un monstruo rival de Nivel 8 o inferior declara ataque.\n- **Efecto / resultado concreto:** Envía al Cementerio la carta superior de tu Deck y evita todo el daño de batalla ese turno; si tienes 3000 LP o más, recibes además 2000 de daño de efecto.\n- **Ir primero, segundo y juego tardío:** Primero: construir la condición de activación; segundo: verificar que la jugada responde al estado rival actual; tardío: ahorrar el recurso si todavía no se cumple el requisito.\n- **Relación con habilidad y otras piezas:** La Skill **HARD ROCK OVERTURE** exige Demonios/LUZ y un Nivel 7/8 en mano para enviar al GY; no se roba.\n- **Riesgos y dependencias:** comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18646&ope=2\n- **Contraste de fuente Rush:** CID 18646, nombre japonés **バッファード・スライム** (Buffered Slime): texto oficial localizado con `request_locale=ja`, tipo Carta de Trampa Normal. La condición de ataque de monstruo rival de Nivel 8 o inferior, el envío de la carta superior del Deck, la prevención de daño de batalla del turno y el daño de efecto de 2000 si los LP propios son al menos 3000 coinciden con el resumen previo. La denominación española «Gelatina Defensiva» sigue siendo un alias del inventario; no se impone traducción oficial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "705:A08:C013",
+      "name": "Avaricia del Rey",
+      "cid": 19799,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19799.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 478
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **1x**. CID Rush: **19799**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Enviar de la mano un Demonio LUZ de Nivel 5+ al Cementerio, o devolver del Cementerio al Deck tres Demonios LUZ de Nivel 7+."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Cambia a Defensa boca arriba un Demonio LUZ propio que esté en Ataque y, si se desea, roba dos cartas."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **HARD ROCK OVERTURE** exige Demonios/LUZ y un Nivel 7/8 en mano para enviar al GY; no se roba."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19799&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 19799: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **1x**. CID Rush: **19799**.\n- **Rol funcional:** Carta Mágica Normal — consistencia / reciclaje.\n- **Requisito específico:** Enviar de la mano un Demonio LUZ de Nivel 5+ al Cementerio, o devolver del Cementerio al Deck tres Demonios LUZ de Nivel 7+.\n- **Efecto / resultado concreto:** Cambia a Defensa boca arriba un Demonio LUZ propio que esté en Ataque y, si se desea, roba dos cartas.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** La Skill **HARD ROCK OVERTURE** exige Demonios/LUZ y un Nivel 7/8 en mano para enviar al GY; no se roba.\n- **Riesgos y dependencias:** pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19799&ope=2\n- **Contraste de fuente Rush:** CID 19799: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "705:A08:C014",
+      "name": "Agujero Trampa",
+      "cid": 15913,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/15913.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 479
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **1x**. CID Rush: **15913**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta de Trampa Normal — extensor / habilitador de material."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Cuando el rival Invoca de Modo Normal un monstruo de al menos 1000 ATK."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Destruye ese monstruo invocado."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **HARD ROCK OVERTURE** exige Demonios/LUZ y un Nivel 7/8 en mano para enviar al GY; no se roba."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15913&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 15913: fuente oficial Rush consultada en japonés; tipo Carta de Trampa Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **1x**. CID Rush: **15913**.\n- **Rol funcional:** Carta de Trampa Normal — extensor / habilitador de material.\n- **Requisito específico:** Cuando el rival Invoca de Modo Normal un monstruo de al menos 1000 ATK.\n- **Efecto / resultado concreto:** Destruye ese monstruo invocado.\n- **Ir primero, segundo y juego tardío:** Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo.\n- **Relación con habilidad y otras piezas:** La Skill **HARD ROCK OVERTURE** exige Demonios/LUZ y un Nivel 7/8 en mano para enviar al GY; no se roba.\n- **Riesgos y dependencias:** el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15913&ope=2\n- **Contraste de fuente Rush:** CID 15913: fuente oficial Rush consultada en japonés; tipo Carta de Trampa Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "705:A08:C015",
+      "name": "Esplendor del Rey",
+      "cid": 15674,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/15674.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 480
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **1x**. CID Rush: **15674**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta de Trampa Normal — apoyo situacional sujeto a condición escrita."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Ante declaración de ataque rival, devolver al Deck un Demonio Normal de Nivel 1 del propio Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Niega el ataque declarado."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **HARD ROCK OVERTURE** exige Demonios/LUZ y un Nivel 7/8 en mano para enviar al GY; no se roba."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15674&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 15674: fuente oficial Rush consultada en japonés; tipo Carta de Trampa Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **1x**. CID Rush: **15674**.\n- **Rol funcional:** Carta de Trampa Normal — apoyo situacional sujeto a condición escrita.\n- **Requisito específico:** Ante declaración de ataque rival, devolver al Deck un Demonio Normal de Nivel 1 del propio Cementerio.\n- **Efecto / resultado concreto:** Niega el ataque declarado.\n- **Ir primero, segundo y juego tardío:** Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo.\n- **Relación con habilidad y otras piezas:** La Skill **HARD ROCK OVERTURE** exige Demonios/LUZ y un Nivel 7/8 en mano para enviar al GY; no se roba.\n- **Riesgos y dependencias:** pagar/cumplir el requisito escrito antes de prometer la resolución.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15674&ope=2\n- **Contraste de fuente Rush:** CID 15674: fuente oficial Rush consultada en japonés; tipo Carta de Trampa Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "705:A08:C016",
+      "name": "Monstruo Reencarnado",
+      "cid": 16305,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16305.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 481
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **1x**. CID Rush: **16305**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Tener un monstruo en el Cementerio y enviar una carta de la mano al Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Recupera a la mano un monstruo del Cementerio; es la versión Rush, no un efecto idéntico por defecto al TCG."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **HARD ROCK OVERTURE** exige Demonios/LUZ y un Nivel 7/8 en mano para enviar al GY; no se roba."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16305&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 16305: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **1x**. CID Rush: **16305**.\n- **Rol funcional:** Carta Mágica Normal — consistencia / reciclaje.\n- **Requisito específico:** Tener un monstruo en el Cementerio y enviar una carta de la mano al Cementerio.\n- **Efecto / resultado concreto:** Recupera a la mano un monstruo del Cementerio; es la versión Rush, no un efecto idéntico por defecto al TCG.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** La Skill **HARD ROCK OVERTURE** exige Demonios/LUZ y un Nivel 7/8 en mano para enviar al GY; no se roba.\n- **Riesgos y dependencias:** pagar/cumplir el requisito escrito antes de prometer la resolución.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16305&ope=2\n- **Contraste de fuente Rush:** CID 16305: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    }
+  ],
+  "combos": [],
+  "engine_relations": [],
+  "scope": "Fichas editoriales individuales respaldadas por checks A08:FICHA_A05; sin certificación de combos."
+}

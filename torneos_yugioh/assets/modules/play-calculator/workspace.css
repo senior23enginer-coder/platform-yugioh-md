@@ -1,0 +1,49 @@
+.calculator-workspace {
+  max-width: 1800px;
+  margin-inline: auto;
+  min-width: 0;
+}
+.calculator-deck-picker {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(150px, 0.6fr) minmax(
+      240px,
+      1.4fr
+    );
+  gap: 16px;
+  align-items: end;
+}
+.calculator-deck-picker label {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+.calculator-deck-picker p {
+  grid-column: 1/-1;
+  margin: 0;
+}
+.calculator-workspace .play-calculator {
+  min-width: 0;
+}
+.calculator-workspace .play-empty button {
+  min-height: 44px;
+}
+@media (max-width: 800px) {
+  .calculator-deck-picker {
+    grid-template-columns: 1fr 1fr;
+  }
+  .calculator-deck-picker label:last-of-type {
+    grid-column: 1/-1;
+  }
+}
+@media (max-width: 480px) {
+  .calculator-deck-picker {
+    grid-template-columns: 1fr;
+  }
+}
+
+.calculator-deck-picker select,
+.calculator-deck-picker input {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}

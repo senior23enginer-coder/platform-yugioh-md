@@ -1,0 +1,25 @@
+const {chromium}=require('playwright'),fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{spawnSync}=require('node:child_process');
+const root=path.resolve(__dirname,'../..'),app=path.join(root,'torneos_yugioh'),release=path.resolve(process.env.DECK_METADATA_RELEASE_DIR||app),out=path.join(root,'outputs/deck-metadata-20261113');
+const index=fs.readFileSync(path.join(release,'index.php'),'utf8'),js=fs.readFileSync(path.join(release,'assets/app.js'),'utf8');
+const start=index.indexOf('            <div class="deck-list-filters mb-3">'),end=index.indexOf('</tbody>',start)+8;
+const fragment=index.slice(start,end)+'</table></div>';
+const php=`<?php require ${JSON.stringify(path.join(app,'includes/decks/public-metadata.php'))}; function e($s){return htmlspecialchars((string)$s,ENT_QUOTES,'UTF-8');} $f=json_decode(file_get_contents(${JSON.stringify(path.join(app,'tests/fixtures/calculator_inventory.json'))}),true);$f['allDecks'][]=['id'=>99999,'name'=>'Deck vacío','style'=>'Editable'];$allDecks=ygo_deck_list_metadata($f['allDecks'],$f['cards'],[]);$displayDivisions=[];$teams=[];$deckMatchCounts=[]; ?>${fragment}`;
+fs.mkdirSync(out,{recursive:true});const file=path.join(out,'list-fixture.php');fs.writeFileSync(file,php);
+const run=spawnSync(process.env.PHP_BINARY||'php',[file],{encoding:'utf8'});assert.equal(run.status,0,run.stderr);
+const filters=js.slice(js.indexOf('  const deckListSearch ='),js.indexOf('  const teamListSearch ='));
+const profile=js.slice(js.indexOf("    document.querySelector('[data-profile-archetype]').textContent"),js.indexOf("    document.querySelector('[data-profile-cards]').textContent"));
+(async()=>{const browser=await chromium.launch({headless:true});try{
+ const page=await browser.newPage({viewport:{width:1500,height:1000}});await page.setContent('<style>body{background:#071321;color:white;font:14px system-ui}button,input,select{padding:8px}td{padding:10px}img{width:48px}.deck-list-filters{display:grid;gap:10px}.deck-table-identity{display:flex;align-items:center;gap:10px}.deck-list-description{display:grid}</style>'+run.stdout+'<span data-profile-archetype></span><span data-profile-style></span>');
+ await page.addStyleTag({path:path.join(app,'assets/modules/deck-guide/list-metadata.css')});
+ await page.addScriptTag({content:String.raw`const normalize=s=>String(s).normalize('NFD').replace(/\p{Diacritic}/gu,'').toLowerCase().trim();const search=null;${filters}`});
+ const rows=page.locator('[data-deck-list-row]'),total=await rows.count(),loaded=await page.locator('[data-deck-list-row][data-has-cards="1"]').count();assert.equal(total,12);assert.equal(loaded,11);
+ const kashtira=page.locator('[data-deck-list-id="665"]');assert((await kashtira.locator('[data-deck-list-style]').innerText()).includes('control'));assert((await kashtira.locator('[data-deck-list-archetype]').innerText()).includes('Kashtira'));
+ assert(!(await rows.allTextContents()).join(' ').includes('Editable'));
+ await kashtira.locator('[data-deck-loaded-filter]').click();assert.equal(await page.locator('[data-deck-list-row]:visible').count(),loaded);assert.equal(await page.locator('[data-deck-list-cards-filter]').inputValue(),'with_cards');
+ await page.locator('[data-deck-list-search]').fill('Kashtira');assert.equal(await page.locator('[data-deck-list-row]:visible').count(),1);
+ await page.locator('[data-deck-list-clear]').click();assert.equal(await page.locator('[data-deck-list-row]:visible').count(),total);
+ await page.locator('[data-deck-list-cards-filter]').selectOption('without_cards');assert.equal(await page.locator('[data-deck-list-row]:visible').count(),1);
+ await page.locator('[data-deck-list-clear]').click();await page.addScriptTag({content:`const deck={id:665,name:'Kashtira',display_archetype:'Kashtira',display_style:'Control del campo y Xyz'},data={deckAnalysisProfiles:[]};${profile}`});assert.equal(await page.locator('[data-profile-style]').innerText(),'Control del campo y Xyz');
+ await page.screenshot({path:path.join(out,'list-desktop.png'),fullPage:true});await page.setViewportSize({width:390,height:844});await page.screenshot({path:path.join(out,'list-mobile.png'),fullPage:true});
+ console.log(JSON.stringify({ok:true,documentedStyle:true,archetype:true,greenMarkers:loaded,loadedFilter:true,emptyFilter:true,combinedSearch:true,clear:true,profileStyle:true}));
+}finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

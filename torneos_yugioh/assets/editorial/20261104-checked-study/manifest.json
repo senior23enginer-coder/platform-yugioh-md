@@ -1,0 +1,61 @@
+{
+  "version": "20261104-checked-study-136",
+  "scope": "checked_card_studies_only",
+  "decks": {
+    "650": {
+      "path": "./assets/editorial/20261104-checked-study/650.json",
+      "cards": 42,
+      "sha256": "a8e2944d85e2c0a4f65164519c18de71f1ce80765e5e8a4df110429a50916426"
+    },
+    "653": {
+      "path": "./assets/editorial/20261104-checked-study/653.json",
+      "cards": 37,
+      "sha256": "1234756bec7146c58e7667f74515b3fc818eb0fbac32df2702835b0350f036a9"
+    },
+    "656": {
+      "path": "./assets/editorial/20261104-checked-study/656.json",
+      "cards": 50,
+      "sha256": "796469ddd563ccb4eda2051b38ab9703c1380efce6365f9882a6ef9115b9766a"
+    },
+    "665": {
+      "path": "./assets/editorial/20261104-checked-study/665.json",
+      "cards": 38,
+      "sha256": "d9ec868a5e5717ac0e7feabeac0439c07c852be93947ed41b5646383ad2266db"
+    },
+    "670": {
+      "path": "./assets/editorial/20261104-checked-study/670.json",
+      "cards": 45,
+      "sha256": "97ce6ed05f78885e2e89385d91aa9d16732205a1b93a5161723c94b96f47b04c"
+    },
+    "684": {
+      "path": "./assets/editorial/20261104-checked-study/684.json",
+      "cards": 52,
+      "sha256": "0d5ebaebebfbb2fdaa495575867292145b06dbd2f45f299ae57d12830afbea89"
+    },
+    "687": {
+      "path": "./assets/editorial/20261104-checked-study/687.json",
+      "cards": 36,
+      "sha256": "4111f505e98e503d1bb27741da4e95a321caf07683769ebc712b9b0a69f1b7aa"
+    },
+    "704": {
+      "path": "./assets/editorial/20261104-checked-study/704.json",
+      "cards": 17,
+      "sha256": "436eec64fe51f67f85dd294badb55a8c2ef311d5610ffef29ceb42f4776958f9"
+    },
+    "705": {
+      "path": "./assets/editorial/20261104-checked-study/705.json",
+      "cards": 16,
+      "sha256": "d981d21c5581857188e56c2ed53e060dfc0253ab9886591a884886466be878e5"
+    },
+    "706": {
+      "path": "./assets/editorial/20261104-checked-study/706.json",
+      "cards": 17,
+      "sha256": "3a4fbbe52d79f54cf091c1a03888e59ac30dd44ce81153e77416cf148edb4467"
+    },
+    "707": {
+      "path": "./assets/editorial/20261104-checked-study/707.json",
+      "cards": 20,
+      "sha256": "ece6322196f15bf8729d0ac9c3cac5522a6f12feffe8550e0fa31744cdccca95"
+    }
+  }
+}

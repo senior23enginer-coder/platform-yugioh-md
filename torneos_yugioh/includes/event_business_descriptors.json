@@ -1,0 +1,138 @@
+[
+  {
+    "source": "tipos_17",
+    "original_id": 1,
+    "name": "Liga",
+    "definition": "TIPO 01: Liga | Definición: Temporada con tabla. Modelos/modos compatibles: Round Robin, Double Round Robin, por divisiones, playoffs. Condición de validez: Jornadas cerradas, puntos y campeón o posición final; promoción/descenso si configurados. [PROPUESTA] Los atributos no deben borrar ni renombrar el tipo actualmente guardado.",
+    "persisted_type": "league",
+    "semantic_attribute": "tipo"
+  },
+  {
+    "source": "tipos_17",
+    "original_id": 2,
+    "name": "Torneo",
+    "definition": "TIPO 02: Torneo | Definición: Competencia independiente. Modelos/modos compatibles: Suizo, eliminación directa/doble, todos contra todos, Suizo+Top Cut. Condición de validez: Ganador y progresión coherentes al motor. [PROPUESTA] Los atributos no deben borrar ni renombrar el tipo actualmente guardado.",
+    "persisted_type": "tournament",
+    "semantic_attribute": "tipo"
+  },
+  {
+    "source": "tipos_17",
+    "original_id": 3,
+    "name": "Copa",
+    "definition": "TIPO 03: Copa | Definición: Título con uno o más cuadros. Modelos/modos compatibles: Eliminación, grupos + eliminación, ida y vuelta por llave. Condición de validez: Cruces definidos; resultados terminales para avanzar. [PROPUESTA] Los atributos no deben borrar ni renombrar el tipo actualmente guardado.",
+    "persisted_type": "cup",
+    "semantic_attribute": "tipo"
+  },
+  {
+    "source": "tipos_17",
+    "original_id": 4,
+    "name": "Clasificatorio",
+    "definition": "TIPO 04: Clasificatorio | Definición: Otorga acceso. Modelos/modos compatibles: Suizo, Round Robin, Top Cut, repechaje. Condición de validez: Destino, cupos, desempate, no duplicar plaza. [PROPUESTA] Los atributos no deben borrar ni renombrar el tipo actualmente guardado.",
+    "persisted_type": "qualifier",
+    "semantic_attribute": "tipo"
+  },
+  {
+    "source": "tipos_17",
+    "original_id": 5,
+    "name": "Campeonato",
+    "definition": "TIPO 05: Campeonato | Definición: Campeón de categoría. Modelos/modos compatibles: Suizo + Top Cut, grupos+llave, eliminación. Condición de validez: Categoría, elegibilidad y título validado. [PROPUESTA] Los atributos no deben borrar ni renombrar el tipo actualmente guardado.",
+    "persisted_type": "tournament",
+    "semantic_attribute": "denominacion"
+  },
+  {
+    "source": "tipos_17",
+    "original_id": 6,
+    "name": "Supercopa",
+    "definition": "TIPO 06: Supercopa | Definición: Enfrenta campeones. Modelos/modos compatibles: Final única, ida-vuelta, minicopa. Condición de validez: Campeones de origen y desempate de título. [PROPUESTA] Los atributos no deben borrar ni renombrar el tipo actualmente guardado.",
+    "persisted_type": "cup",
+    "semantic_attribute": "denominacion"
+  },
+  {
+    "source": "tipos_17",
+    "original_id": 7,
+    "name": "Champions",
+    "definition": "TIPO 07: Champions | Definición: Participación entre ligas. Modelos/modos compatibles: Grupos+eliminación, fase liga+playoffs. Condición de validez: Cupos por liga, plazas únicas y clasificación fuente. [PROPUESTA] Los atributos no deben borrar ni renombrar el tipo actualmente guardado.",
+    "persisted_type": "cup",
+    "semantic_attribute": "clasificacion_entre_ligas"
+  },
+  {
+    "source": "tipos_17",
+    "original_id": 8,
+    "name": "Mundial",
+    "definition": "TIPO 08: Mundial | Definición: Final superior de circuito. Modelos/modos compatibles: Grupos+eliminación, eliminación. Condición de validez: Clasificación documentada y campeón. [PROPUESTA] Los atributos no deben borrar ni renombrar el tipo actualmente guardado.",
+    "persisted_type": "world",
+    "semantic_attribute": "tipo"
+  },
+  {
+    "source": "tipos_17",
+    "original_id": 9,
+    "name": "Regional",
+    "definition": "TIPO 09: Regional | Definición: Ámbito regional. Modelos/modos compatibles: Combinable con Torneo/Copa/Campeonato/Clasificatorio. Condición de validez: Definir región y elegibilidad; no inventar motor. [PROPUESTA] Los atributos no deben borrar ni renombrar el tipo actualmente guardado.",
+    "persisted_type": null,
+    "semantic_attribute": "ambito"
+  },
+  {
+    "source": "tipos_17",
+    "original_id": 10,
+    "name": "Nacional",
+    "definition": "TIPO 10: Nacional | Definición: Ámbito nacional. Modelos/modos compatibles: Combinable con varios tipos. Condición de validez: Definir país y elegibilidad; no inventar motor. [PROPUESTA] Los atributos no deben borrar ni renombrar el tipo actualmente guardado.",
+    "persisted_type": null,
+    "semantic_attribute": "ambito"
+  },
+  {
+    "source": "tipos_17",
+    "original_id": 11,
+    "name": "Internacional",
+    "definition": "TIPO 11: Internacional | Definición: Ámbito multinacional. Modelos/modos compatibles: Combinable con varios tipos. Condición de validez: Definir países elegibles; no inventar motor. [PROPUESTA] Los atributos no deben borrar ni renombrar el tipo actualmente guardado.",
+    "persisted_type": null,
+    "semantic_attribute": "ambito"
+  },
+  {
+    "source": "tipos_17",
+    "original_id": 12,
+    "name": "Open / Abierto",
+    "definition": "TIPO 12: Open / Abierto | Definición: Acceso abierto. Modelos/modos compatibles: Combinable con varios tipos. Condición de validez: Inscripción abierta y requisitos de elegibilidad. [PROPUESTA] Los atributos no deben borrar ni renombrar el tipo actualmente guardado.",
+    "persisted_type": null,
+    "semantic_attribute": "acceso"
+  },
+  {
+    "source": "tipos_17",
+    "original_id": 13,
+    "name": "Invitacional",
+    "definition": "TIPO 13: Invitacional | Definición: Acceso por invitación. Modelos/modos compatibles: Combinable con varios tipos. Condición de validez: Registro contra invitaciones autorizadas. [PROPUESTA] Los atributos no deben borrar ni renombrar el tipo actualmente guardado.",
+    "persisted_type": null,
+    "semantic_attribute": "acceso"
+  },
+  {
+    "source": "tipos_17",
+    "original_id": 14,
+    "name": "Exhibición",
+    "definition": "TIPO 14: Exhibición | Definición: Demostración. Modelos/modos compatibles: Partido libre o serie amistosa. Condición de validez: No contaminar ranking oficial salvo política existente. [PROPUESTA] Los atributos no deben borrar ni renombrar el tipo actualmente guardado.",
+    "persisted_type": "friendly",
+    "semantic_attribute": "modalidad"
+  },
+  {
+    "source": "tipos_17",
+    "original_id": 15,
+    "name": "Amistoso",
+    "definition": "TIPO 15: Amistoso | Definición: Resultados informales. Modelos/modos compatibles: 1v1, series, amistoso colectivo. Condición de validez: Sin puntos oficiales predeterminados. [PROPUESTA] Los atributos no deben borrar ni renombrar el tipo actualmente guardado.",
+    "persisted_type": "friendly",
+    "semantic_attribute": "tipo"
+  },
+  {
+    "source": "tipos_17",
+    "original_id": 16,
+    "name": "Evento especial",
+    "definition": "TIPO 16: Evento especial | Definición: Normativa extraordinaria. Modelos/modos compatibles: Cualquier motor compatible con módulo especial. Condición de validez: Exigir definición de regla especial y su validador o revisión manual. [PROPUESTA] Los atributos no deben borrar ni renombrar el tipo actualmente guardado.",
+    "persisted_type": "special",
+    "semantic_attribute": "tipo"
+  },
+  {
+    "source": "tipos_17",
+    "original_id": 17,
+    "name": "Pretemporada",
+    "definition": "TIPO 17: Pretemporada | Definición: Etapa preparatoria. Modelos/modos compatibles: Liga/Copa/Torneo de preparación. Condición de validez: No afectar la liga oficial salvo configuración explícita. [PROPUESTA] Los atributos no deben borrar ni renombrar el tipo actualmente guardado.",
+    "persisted_type": null,
+    "semantic_attribute": "etapa"
+  }
+]

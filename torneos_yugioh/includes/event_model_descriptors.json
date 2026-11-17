@@ -1,0 +1,457 @@
+{
+  "clasificatorio_divisiones_3_duelos": {
+    "purpose": "Clasificatorio. Organizar un ranking de entrada para colocar decks en divisiones, no proclamar campeón automáticamente.",
+    "difference": "La limitación de tres combates por deck no equivale a tres juegos D1-D3; es un límite de encuentros distintos. El motor anunciado como suizo debe comprobarse: si programa todos los rivales antes de conocer resultados, no hay suizo auténtico.",
+    "official": false
+  },
+  "clasificatorio": {
+    "purpose": "Clasificatorio. Obtener plazas mediante suizo seguido de una eliminatoria de los mejores.",
+    "difference": "No permitir que el Top Cut comience con mesas pendientes.",
+    "official": false
+  },
+  "regional_qualifier": {
+    "purpose": "Clasificatorio. Obtener una invitación o plaza desde una fase regional, no simular un campeonato mundial.",
+    "difference": "Regional describe el ámbito. La cantidad de rondas y de plazas depende de la convocatoria y no se deduce del nombre.",
+    "official": false
+  },
+  "national_qualifier": {
+    "purpose": "Clasificatorio. Clasificar desde una convocatoria nacional hacia una competición superior.",
+    "difference": "Nacional es ámbito, no otro algoritmo; conservar el código y requisitos propios de la convocatoria.",
+    "official": false
+  },
+  "wcq_world_championship_qualifier": {
+    "purpose": "Clasificatorio. Entregar invitaciones para la ruta clasificatoria del Campeonato Mundial, no organizar el Mundial mismo.",
+    "difference": "WCQ es finalidad de acceso; sin evento destino y cupos explícitos no se puede completar la adjudicación.",
+    "official": false
+  },
+  "ycs_vip_qualifier": {
+    "purpose": "Clasificatorio. Competición clasificatoria cuyo beneficio es un acceso VIP definido por la organización.",
+    "difference": "VIP no cambia el emparejador. No inventar ventajas, número de rondas ni beneficios oficiales.",
+    "official": false
+  },
+  "remote_duel_regional": {
+    "purpose": "Clasificatorio. Clasificatorio regional desarrollado a distancia.",
+    "difference": "Remoto modifica logística, no crea un motor competitivo. No agregar controles no solicitados de vigilancia.",
+    "official": false
+  },
+  "genesys_regional_qualifier": {
+    "purpose": "Clasificatorio. Clasificatorio regional bajo etiqueta/formato Genesys, sin inspeccionar cartas.",
+    "difference": "Quedan fuera puntos por carta, presupuesto de construcción y legalidad de listas.",
+    "official": false
+  },
+  "last_chance_qualifier": {
+    "purpose": "Clasificatorio. Última oportunidad de acceder a otro evento, normalmente después de otras vías de clasificación.",
+    "difference": "Es crítico evitar adjudicar una segunda plaza al ya clasificado, definir cómo se ocupan plazas rechazadas y congelar el cierre.",
+    "official": false
+  },
+  "online_qualifier": {
+    "purpose": "Clasificatorio. Clasificatorio a distancia que concede plazas reales.",
+    "difference": "Online no justifica convertir suizo en eliminación ni asumir fecha/ventaja especial.",
+    "official": false
+  },
+  "ladder": {
+    "purpose": "Clasificatorio. Escalera competitiva donde se asciende o desciende en posiciones a través de desafíos.",
+    "difference": "No es un suizo estático: necesita reglas de rango de reto, plazos, frecuencia y resolución de desafíos concurrentes.",
+    "official": false
+  },
+  "torneo_local": {
+    "purpose": "Torneo. Ofrecer una competición identificable por su nombre, formato o tema.",
+    "difference": "Ningún nombre de marca o modalidad garantiza un algoritmo, premio o norma oficial que no esté documentada.",
+    "official": false
+  },
+  "ycs_yu_gi_oh_championship_series": {
+    "purpose": "Torneo. Definir el acceso y propósito competitivo anunciados sin atribuirle un algoritmo exclusivo.",
+    "difference": "Open e Invitacional son reglas de acceso; Masters puede necesitar requisitos especiales definidos.",
+    "official": false
+  },
+  "team_ycs": {
+    "purpose": "Torneo. Organizar enfrentamientos entre lados con varios decks cuando el modelo lo exige.",
+    "difference": "Una batalla Tag compartida no equivale a sumar dos duelos independientes. Nunca deducir tamaño 2v2 o 3v3 únicamente de Team.",
+    "official": false
+  },
+  "ots_championship": {
+    "purpose": "Torneo. Campeonato vinculado a la comunidad OTS, bajo condiciones de convocatoria.",
+    "difference": "OTS define entorno/organización; no implica un motor universal ni invitaciones inventadas.",
+    "official": false
+  },
+  "ots_tournament_series": {
+    "purpose": "Torneo. Conjunto de torneos vinculados a una serie OTS; puede acumular resultados entre eventos.",
+    "difference": "No confundir un circuito multi-evento con una sola jornada Round Robin.",
+    "official": false
+  },
+  "dragon_duel": {
+    "purpose": "Torneo. Torneo juvenil Dragon Duel cuyo rasgo distintivo es elegibilidad por edad, no un algoritmo exclusivo.",
+    "difference": "La plataforma actualmente representa equipos/decks, no identidades personales verificadas: sin fuente fiable no anunciar comprobación automática de edad; puede requerir validación externa o manual.",
+    "official": false
+  },
+  "dragon_duel_championship": {
+    "purpose": "Torneo. Campeonato juvenil Dragon Duel que puede añadir una fase final al torneo suizo.",
+    "difference": "Top Cut, edad y número de rondas proceden del evento concreto: no fijarlos automáticamente desde el nombre.",
+    "official": false
+  },
+  "remote_duel_ycs": {
+    "purpose": "Torneo. Variante a distancia del torneo o liga de su mismo sistema.",
+    "difference": "El entorno remoto no cambia por sí solo Round Robin, Suizo o Knockout; las divergencias deben mostrarse.",
+    "official": false
+  },
+  "genesys_championship": {
+    "purpose": "Torneo. Campeonato que agrupa participantes bajo formato Genesys declarado.",
+    "difference": "PROHIBIDO validar presupuesto de puntos de cartas Genesys; solo validar compatibilidad declarada entre deck y formato.",
+    "official": false
+  },
+  "yugioh_day": {
+    "purpose": "Torneo. Jornada de celebración Yu-Gi-Oh! Day, no un campeonato clasificatorio por defecto.",
+    "difference": "La categorización original puede apuntar a tipo Torneo por un código distinto.",
+    "official": false
+  },
+  "win_a_mat": {
+    "purpose": "Torneo. Minitorneo promocional cuyo premio principal puede ser una alfombrilla.",
+    "difference": "El premio no cambia el motor; no atribuir condición de clasificación sin configurarla.",
+    "official": false
+  },
+  "public_event_playoff": {
+    "purpose": "Torneo. Fase de desempate o eliminatoria entre clasificados de eventos públicos.",
+    "difference": "Debe acreditarse de qué evento procede cada clasificado.",
+    "official": false
+  },
+  "structure_deck_tournament": {
+    "purpose": "Torneo. Ofrecer una competición identificable por su nombre, formato o tema.",
+    "difference": "Ningún nombre de marca o modalidad garantiza un algoritmo, premio o norma oficial que no esté documentada.",
+    "official": false
+  },
+  "team_3v3": {
+    "purpose": "Torneo. Organizar enfrentamientos entre lados con varios decks cuando el modelo lo exige.",
+    "difference": "Una batalla Tag compartida no equivale a sumar dos duelos independientes. Nunca deducir tamaño 2v2 o 3v3 únicamente de Team.",
+    "official": false
+  },
+  "tag_duel": {
+    "purpose": "Torneo. Organizar enfrentamientos entre lados con varios decks cuando el modelo lo exige.",
+    "difference": "Una batalla Tag compartida no equivale a sumar dos duelos independientes. Nunca deducir tamaño 2v2 o 3v3 únicamente de Team.",
+    "official": false
+  },
+  "rivalry_of_warlords": {
+    "purpose": "Torneo. Evento temático Rivalry of Warlords, con restricciones acordadas por el organizador.",
+    "difference": "La regla temática no autoriza inspección de tipos o atributos de cartas dentro de los decks.",
+    "official": false
+  },
+  "time_wizard": {
+    "purpose": "Torneo. Ofrecer una competición identificable por su nombre, formato o tema.",
+    "difference": "Ningún nombre de marca o modalidad garantiza un algoritmo, premio o norma oficial que no esté documentada.",
+    "official": false
+  },
+  "time_travel": {
+    "purpose": "Torneo. Ofrecer una competición identificable por su nombre, formato o tema.",
+    "difference": "Ningún nombre de marca o modalidad garantiza un algoritmo, premio o norma oficial que no esté documentada.",
+    "official": false
+  },
+  "goat_format_tournament": {
+    "purpose": "Torneo. Torneo bajo formato GOAT declarado.",
+    "difference": "No revisar carta por carta ni exigir lista; la fecha/regla efectiva se declara a nivel formato.",
+    "official": false
+  },
+  "edison_format_tournament": {
+    "purpose": "Torneo. Torneo con formato Edison declarado.",
+    "difference": "Sin validador de cartas ni reproducción automática de una banlist histórica.",
+    "official": false
+  },
+  "heart_of_the_underdog": {
+    "purpose": "Torneo. Torneo de formato alternativo Heart of the Underdog anunciado.",
+    "difference": "No inferir reglas de cartas prohibidas ni automatizar validación de arquetipos.",
+    "official": false
+  },
+  "common_charity": {
+    "purpose": "Torneo. Modalidad Common Charity identificada como formato especial.",
+    "difference": "No comprobar rareza común de cada carta; esa comprobación permanece fuera de la plataforma.",
+    "official": false
+  },
+  "deck_master": {
+    "purpose": "Torneo. Variante anunciada Deck Master, cuya regla de juego se acuerda fuera del verificador de cartas.",
+    "difference": "No agregar campo de carta comandante/maestro ni validación de su legalidad como condición de cierre.",
+    "official": false
+  },
+  "speed_duel_tournament": {
+    "purpose": "Torneo. Ofrecer una competición identificable por su nombre, formato o tema.",
+    "difference": "Ningún nombre de marca o modalidad garantiza un algoritmo, premio o norma oficial que no esté documentada.",
+    "official": false
+  },
+  "speed_duel_main_event": {
+    "purpose": "Torneo. Ofrecer una competición identificable por su nombre, formato o tema.",
+    "difference": "Ningún nombre de marca o modalidad garantiza un algoritmo, premio o norma oficial que no esté documentada.",
+    "official": false
+  },
+  "master_duel_tournament": {
+    "purpose": "Torneo. Ofrecer una competición identificable por su nombre, formato o tema.",
+    "difference": "Ningún nombre de marca o modalidad garantiza un algoritmo, premio o norma oficial que no esté documentada.",
+    "official": false
+  },
+  "duel_links_tournament": {
+    "purpose": "Torneo. Ofrecer una competición identificable por su nombre, formato o tema.",
+    "difference": "Ningún nombre de marca o modalidad garantiza un algoritmo, premio o norma oficial que no esté documentada.",
+    "official": false
+  },
+  "sealed_deck_tournament": {
+    "purpose": "Torneo. Torneo de modalidad Sealed; Station X gestiona la competición, no el contenido de los sobres.",
+    "difference": "PROHIBIDO incorporar registro de productos, pools, número de cartas, apertura de sobres o validador de mazos.",
+    "official": false
+  },
+  "draft_tournament": {
+    "purpose": "Torneo. Torneo etiquetado Draft, con construcción de cartas fuera de Station X.",
+    "difference": "PROHIBIDO gestionar selección de cartas, propiedad, turnos del draft o requisitos de decklist.",
+    "official": false
+  },
+  "invitational": {
+    "purpose": "Torneo. Definir el acceso y propósito competitivo anunciados sin atribuirle un algoritmo exclusivo.",
+    "difference": "Open e Invitacional son reglas de acceso; Masters puede necesitar requisitos especiales definidos.",
+    "official": false
+  },
+  "open_tournament": {
+    "purpose": "Torneo. Definir el acceso y propósito competitivo anunciados sin atribuirle un algoritmo exclusivo.",
+    "difference": "Open e Invitacional son reglas de acceso; Masters puede necesitar requisitos especiales definidos.",
+    "official": false
+  },
+  "championship": {
+    "purpose": "Torneo. Definir el acceso y propósito competitivo anunciados sin atribuirle un algoritmo exclusivo.",
+    "difference": "Open e Invitacional son reglas de acceso; Masters puede necesitar requisitos especiales definidos.",
+    "official": false
+  },
+  "flight_tournament": {
+    "purpose": "Torneo. Crear un recorrido competitivo por rondas o estaciones para grupos de participantes.",
+    "difference": "Flight puede significar franja/torneo paralelo; no implica un sistema de clasificación universal.",
+    "official": false
+  },
+  "single_elimination_tournament": {
+    "purpose": "Torneo. Ofrecer una competición identificable por su nombre, formato o tema.",
+    "difference": "Ningún nombre de marca o modalidad garantiza un algoritmo, premio o norma oficial que no esté documentada.",
+    "official": false
+  },
+  "double_elimination_tournament": {
+    "purpose": "Torneo. Ofrecer una competición identificable por su nombre, formato o tema.",
+    "difference": "Ningún nombre de marca o modalidad garantiza un algoritmo, premio o norma oficial que no esté documentada.",
+    "official": false
+  },
+  "group_stage_tournament": {
+    "purpose": "Torneo. Ofrecer una competición identificable por su nombre, formato o tema.",
+    "difference": "Ningún nombre de marca o modalidad garantiza un algoritmo, premio o norma oficial que no esté documentada.",
+    "official": false
+  },
+  "groups_knockout": {
+    "purpose": "Torneo. Determinar un campeón mediante un cuadro, una serie o el sistema exacto anunciado.",
+    "difference": "Una copa puede tener suizo o grupos previos: no reducirla a knockout sin consentimiento.",
+    "official": false
+  },
+  "swiss_tournament": {
+    "purpose": "Torneo. Ofrecer una competición identificable por su nombre, formato o tema.",
+    "difference": "Ningún nombre de marca o modalidad garantiza un algoritmo, premio o norma oficial que no esté documentada.",
+    "official": false
+  },
+  "bracket_tournament": {
+    "purpose": "Torneo. Determinar un campeón mediante un cuadro, una serie o el sistema exacto anunciado.",
+    "difference": "Una copa puede tener suizo o grupos previos: no reducirla a knockout sin consentimiento.",
+    "official": false
+  },
+  "best_of_1_event": {
+    "purpose": "Torneo. Torneo donde un enfrentamiento se decide mediante un solo duelo cuando la regla aplicada lo permite.",
+    "difference": "Corregir el defecto conocido: la plantilla actual puede cargar BO3. Si CUSTOM_XP u otra regla impide el cierre BO1, mostrar incompatibilidad clara en vez de ignorarla.",
+    "official": false
+  },
+  "best_of_3_event": {
+    "purpose": "Torneo. Torneo cuyos encuentros suelen decidirse con hasta tres duelos por combate.",
+    "difference": "BO3 no significa tres enfrentamientos contra tres rivales ni necesariamente ignora la regla CUSTOM_XP; comprobar precedencia.",
+    "official": false
+  },
+  "match_play": {
+    "purpose": "Torneo. Ofrecer una competición identificable por su nombre, formato o tema.",
+    "difference": "Ningún nombre de marca o modalidad garantiza un algoritmo, premio o norma oficial que no esté documentada.",
+    "official": false
+  },
+  "team_championship": {
+    "purpose": "Torneo. Organizar enfrentamientos entre lados con varios decks cuando el modelo lo exige.",
+    "difference": "Una batalla Tag compartida no equivale a sumar dos duelos independientes. Nunca deducir tamaño 2v2 o 3v3 únicamente de Team.",
+    "official": false
+  },
+  "ranking_tournament": {
+    "purpose": "Torneo. Definir el acceso y propósito competitivo anunciados sin atribuirle un algoritmo exclusivo.",
+    "difference": "Open e Invitacional son reglas de acceso; Masters puede necesitar requisitos especiales definidos.",
+    "official": false
+  },
+  "gauntlet": {
+    "purpose": "Torneo. Formato de supervivencia contra rivales sucesivos.",
+    "difference": "La secuencia y regla de permanencia no están determinadas por el nombre: requieren configuración.",
+    "official": false
+  },
+  "masters_tournament": {
+    "purpose": "Torneo. Definir el acceso y propósito competitivo anunciados sin atribuirle un algoritmo exclusivo.",
+    "difference": "Open e Invitacional son reglas de acceso; Masters puede necesitar requisitos especiales definidos.",
+    "official": false
+  },
+  "rookie_tournament": {
+    "purpose": "Torneo. Competición destinada a formación, principiantes o exhibición según el modelo.",
+    "difference": "No sumar automáticamente puntos de ranking competitivo si el evento declara exclusión; un nombre promocional no sustituye reglas de puntuación.",
+    "official": false
+  },
+  "beginner_tournament": {
+    "purpose": "Torneo. Competición destinada a formación, principiantes o exhibición según el modelo.",
+    "difference": "No sumar automáticamente puntos de ranking competitivo si el evento declara exclusión; un nombre promocional no sustituye reglas de puntuación.",
+    "official": false
+  },
+  "academy_tournament": {
+    "purpose": "Torneo. Competición destinada a formación, principiantes o exhibición según el modelo.",
+    "difference": "No sumar automáticamente puntos de ranking competitivo si el evento declara exclusión; un nombre promocional no sustituye reglas de puntuación.",
+    "official": false
+  },
+  "liga": {
+    "purpose": "Liga. Organizar una competición de temporada o fase posterior, determinada por tabla o corte.",
+    "difference": "Separar temporada regular de playoffs; no ejecutar promoción si plazas están en cero.",
+    "official": false
+  },
+  "round_robin_tournament": {
+    "purpose": "Liga. Ofrecer una competición identificable por su nombre, formato o tema.",
+    "difference": "Ningún nombre de marca o modalidad garantiza un algoritmo, premio o norma oficial que no esté documentada.",
+    "official": false
+  },
+  "double_round_robin": {
+    "purpose": "Liga. Ofrecer una competición identificable por su nombre, formato o tema.",
+    "difference": "Ningún nombre de marca o modalidad garantiza un algoritmo, premio o norma oficial que no esté documentada.",
+    "official": false
+  },
+  "league_table": {
+    "purpose": "Liga. Organizar una competición de temporada o fase posterior, determinada por tabla o corte.",
+    "difference": "Separar temporada regular de playoffs; no ejecutar promoción si plazas están en cero.",
+    "official": false
+  },
+  "team_league": {
+    "purpose": "Liga. Organizar enfrentamientos entre lados con varios decks cuando el modelo lo exige.",
+    "difference": "Una batalla Tag compartida no equivale a sumar dos duelos independientes. Nunca deducir tamaño 2v2 o 3v3 únicamente de Team.",
+    "official": false
+  },
+  "online_league": {
+    "purpose": "Liga. Variante a distancia del torneo o liga de su mismo sistema.",
+    "difference": "El entorno remoto no cambia por sí solo Round Robin, Suizo o Knockout; las divergencias deben mostrarse.",
+    "official": false
+  },
+  "group_league": {
+    "purpose": "Liga. Organizar una competición de temporada o fase posterior, determinada por tabla o corte.",
+    "difference": "Separar temporada regular de playoffs; no ejecutar promoción si plazas están en cero.",
+    "official": false
+  },
+  "season_tournament": {
+    "purpose": "Liga. Organizar una competición de temporada o fase posterior, determinada por tabla o corte.",
+    "difference": "Separar temporada regular de playoffs; no ejecutar promoción si plazas están en cero.",
+    "official": false
+  },
+  "regular_season": {
+    "purpose": "Liga. Organizar una competición de temporada o fase posterior, determinada por tabla o corte.",
+    "difference": "Separar temporada regular de playoffs; no ejecutar promoción si plazas están en cero.",
+    "official": false
+  },
+  "postseason": {
+    "purpose": "Liga. Organizar una competición de temporada o fase posterior, determinada por tabla o corte.",
+    "difference": "Separar temporada regular de playoffs; no ejecutar promoción si plazas están en cero.",
+    "official": false
+  },
+  "copa": {
+    "purpose": "Copa. Determinar un campeón mediante un cuadro, una serie o el sistema exacto anunciado.",
+    "difference": "Una copa puede tener suizo o grupos previos: no reducirla a knockout sin consentimiento.",
+    "official": false
+  },
+  "team_cup": {
+    "purpose": "Copa. Organizar enfrentamientos entre lados con varios decks cuando el modelo lo exige.",
+    "difference": "Una batalla Tag compartida no equivale a sumar dos duelos independientes. Nunca deducir tamaño 2v2 o 3v3 únicamente de Team.",
+    "official": false
+  },
+  "online_cup": {
+    "purpose": "Copa. Copa disputada remotamente, con fase suiza y Top Cut si así anuncia la plantilla.",
+    "difference": "Bug observado: el formulario puede convertirla silenciosamente en eliminación directa sin fase suiza.",
+    "official": false
+  },
+  "knockout_cup": {
+    "purpose": "Copa. Determinar un campeón mediante un cuadro, una serie o el sistema exacto anunciado.",
+    "difference": "Una copa puede tener suizo o grupos previos: no reducirla a knockout sin consentimiento.",
+    "official": false
+  },
+  "super_cup": {
+    "purpose": "Copa. Competición entre campeones acreditados de eventos fuente; no equivale automáticamente a copa abierta.",
+    "difference": "La Copa Leyendas actual usa el código super_cup pero ya tiene eliminatoria y calendario activo: no convertirla de manera retroactiva.",
+    "official": false
+  },
+  "champions_cup": {
+    "purpose": "Copa. Competición que recibe clasificados de varias ligas o campeonatos.",
+    "difference": "La pertenencia a múltiples ligas fuente no sustituye un criterio de cupos; resolver empates y duplicados antes del sorteo.",
+    "official": false
+  },
+  "world_championship": {
+    "purpose": "Mundial. Evento final de alcance mundial con acceso clasificado o invitado según convocatoria.",
+    "difference": "El preset existente anuncia varias fases y puede guardar solo eliminación directa: no declarar estructura mixta implementada sin prueba.",
+    "official": false
+  },
+  "finals": {
+    "purpose": "Final. Determinar un campeón mediante un cuadro, una serie o el sistema exacto anunciado.",
+    "difference": "Una copa puede tener suizo o grupos previos: no reducirla a knockout sin consentimiento.",
+    "official": false
+  },
+  "playoffs": {
+    "purpose": "Final. Organizar una competición de temporada o fase posterior, determinada por tabla o corte.",
+    "difference": "Separar temporada regular de playoffs; no ejecutar promoción si plazas están en cero.",
+    "official": false
+  },
+  "top_cut": {
+    "purpose": "Final. Ofrecer una competición identificable por su nombre, formato o tema.",
+    "difference": "Ningún nombre de marca o modalidad garantiza un algoritmo, premio o norma oficial que no esté documentada.",
+    "official": false
+  },
+  "swiss_top_cut": {
+    "purpose": "Final. Ofrecer una competición identificable por su nombre, formato o tema.",
+    "difference": "Ningún nombre de marca o modalidad garantiza un algoritmo, premio o norma oficial que no esté documentada.",
+    "official": false
+  },
+  "grand_final": {
+    "purpose": "Final. Enfrentamiento terminal entre los finalistas ya determinados.",
+    "difference": "Manual es estrategia de programación, no explicación de cómo se resuelve una final; exigir un vencedor inequívoco.",
+    "official": false
+  },
+  "casual_tournament": {
+    "purpose": "Amistoso. Competición destinada a formación, principiantes o exhibición según el modelo.",
+    "difference": "No sumar automáticamente puntos de ranking competitivo si el evento declara exclusión; un nombre promocional no sustituye reglas de puntuación.",
+    "official": false
+  },
+  "exhibition_match": {
+    "purpose": "Amistoso. Competición destinada a formación, principiantes o exhibición según el modelo.",
+    "difference": "No sumar automáticamente puntos de ranking competitivo si el evento declara exclusión; un nombre promocional no sustituye reglas de puntuación.",
+    "official": false
+  },
+  "king_of_the_hill": {
+    "purpose": "Amistoso. Modalidad del rey de la colina: defensor mantiene el puesto hasta perder.",
+    "difference": "Definir cola de retadores, límite de repeticiones y desempate; no inventar un todos-contra-todos.",
+    "official": false
+  },
+  "core_booster_premiere": {
+    "purpose": "Especial. Evento de lanzamiento asociado a una edición; Station X registra participantes y resultados.",
+    "difference": "No inspeccionar productos ni cartas; el contexto señala discrepancia Constructed vs Sealed anunciado.",
+    "official": false
+  },
+  "world_championship_celebration": {
+    "purpose": "Especial. Definir el acceso y propósito competitivo anunciados sin atribuirle un algoritmo exclusivo.",
+    "difference": "Open e Invitacional son reglas de acceso; Masters puede necesitar requisitos especiales definidos.",
+    "official": false
+  },
+  "attack_of_the_giant_card": {
+    "purpose": "Especial. Torneo especial cuya identidad incluye un premio de carta gigante.",
+    "difference": "El premio no determina por sí mismo emparejamientos, edad ni formato.",
+    "official": false
+  },
+  "charity_tournament": {
+    "purpose": "Especial. Competición con finalidad benéfica; la causa no redefine la puntuación.",
+    "difference": "No inferir cobros ni automatizar dinero/donaciones.",
+    "official": false
+  },
+  "pegasus_challenge": {
+    "purpose": "Especial. Reto especial Pegasus Challenge sujeto a reglas de la convocatoria.",
+    "difference": "Si las reglas especiales no están definidas, indicar REQUIERE CONFIGURACION, sin inventar efectos.",
+    "official": false
+  },
+  "all_star_event": {
+    "purpose": "Especial. Competición de invitados destacados por un criterio explícito.",
+    "difference": "All-Star no implica 3v3 ni participación colaborativa por defecto.",
+    "official": false
+  }
+}

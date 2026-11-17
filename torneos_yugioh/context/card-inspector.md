@@ -1,0 +1,14 @@
+# Inspector de cartas
+
+Entrada: **Herramientas → Inspector de cartas** (`#inspector_cartas`). Consulta de solo lectura, sin modificaciones de inventario.
+
+- **Local**: usa `DML_DATA.cards` y los decks reales en `allDecks`. Incluye Main, Extra, Side y Reserva. Enriquece nombres y fotografías desde las fichas activas indicadas en `strategy-content-state.json`, vinculadas por ID de fila del inventario. El texto de la carta se lee exclusivamente del catálogo API ya guardado mediante `?api=deck_builder&op=detail&local=1&id=ID`; no usa resúmenes editoriales como efecto. Si no existe, lo indica. Buscar por nombre, ID API, CID o función; no solicita cartas al proveedor de forma automática.
+- **API**: reutiliza `?api=deck_builder&op=search`, la caché, limitación de peticiones y proxy de imágenes existentes. Nombre en inglés o ID de YGOPRODeck, paginación de veinte resultados, estado de error explícito. No añade cartas a decks ni al inventario.
+- **Detalle**: texto íntegro de la carta recibido de YGOPRODeck, con fuente e idioma inglés explícitos; atributos, decks asociados, copias por zona y acceso a `?deck_id=ID#deck_ficha`. Se eliminan los desplegables de consejos, costes y propósitos editoriales. Si falta el texto o la imagen grande, el botón **Obtener texto e imagen desde API** hace una consulta explícita de esa identidad, sin modificar inventarios. Sin ID API, se ofrece la fuente oficial por CID cuando está disponible.
+- **Imagen**: prioriza el archivo completo guardado (`image-full-ID.jpg`), no la miniatura; las imágenes locales pequeñas no se convierten en alta resolución mediante interpolación. Visor dentro del Inspector con acercar, alejar, ajustar, tamaño natural, desplazamiento y Escape. Informa las dimensiones reales; la lectura del efecto no depende de descifrar el texto de la fotografía.
+- **Identidad**: CID Konami e ID YGOPRODeck son identificadores diferentes. Las asociaciones de resultados API requieren ID YGOPRODeck coincidente; no se deducen por nombre parecido. Una carta registrada sin ese ID puede localizarse en modo Local. Las identidades locales sin identificador se separan también por formato.
+- Las búsquedas y selecciones se mantienen en memoria mientras la pantalla sigue abierta, sin persistencia propia en el navegador. La API requiere red. El modo Local no es un simulador de efectos.
+
+Implementación: `assets/modules/card-inspector/{model.js,ui.js,styles.css}` y `includes/decks/card-inspector-view.php`.
+
+Pruebas: `node torneos_yugioh/tests/card_inspector_test.cjs`, `node torneos_yugioh/tests/card_inspector_ui_test.cjs` y `php torneos_yugioh/tests/card_inspector_cache_test.php`. Datos aislados: agrupación de identidades, separación de formatos y zonas, no confundir CID/ID API, paginación, efecto íntegro en lugar del resumen, ausencia de apartados editoriales, zoom/tamaño natural/Escape, enlace exacto a deck, fallo del proveedor y ancho 390/1440 px. No escriben en producción.

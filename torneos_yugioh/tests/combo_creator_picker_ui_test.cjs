@@ -1,0 +1,17 @@
+const {chromium}=require('playwright'),fs=require('node:fs'),path=require('node:path'),net=require('node:net'),{spawn}=require('node:child_process'),assert=require('node:assert/strict');
+const app=path.resolve(__dirname,'..'),out=path.resolve(__dirname,'../../outputs/combo-creator-picker-20261116');
+(async()=>{fs.mkdirSync(out,{recursive:true});const db=path.join(out,'test-'+Date.now()+'.sqlite');
+  const port=await new Promise(resolve=>{const s=net.createServer();s.listen(0,'127.0.0.1',()=>{const port=s.address().port;s.close(()=>resolve(port));});});
+  const origin='http://127.0.0.1:'+port,server=spawn(process.env.PHP_BINARY||'php',['-S','127.0.0.1:'+port,'-t',app,path.join(__dirname,'combo_creator_router.php')],{env:{...process.env,COMBO_TEST_DB:db,COMBO_TEST_ROSTER:'1'},stdio:'ignore'});let browser;
+  try{for(let i=0;i<60;i++){try{if((await fetch(origin)).ok)break;}catch{}await new Promise(r=>setTimeout(r,100));}
+    browser=await chromium.launch();for(const width of [1440,390]){const page=await browser.newPage({viewport:{width,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.route('**/*',r=>r.request().url().startsWith(origin)?r.continue():r.abort());await page.goto(origin,{waitUntil:'networkidle'});
+      const count=await page.evaluate(()=>DML_DATA.allDecks.length),deck=page.locator('[data-cc-deck]'),format=page.locator('[data-cc-format]');assert.equal(await deck.locator('option').count(),count+1);assert.match(await deck.locator('option[value="99991"]').textContent(),/sin cartas cargadas/);
+      await format.selectOption('rush_duel');assert.equal(await deck.locator('option').count(),5);
+      await format.selectOption('goat');assert.equal(await deck.locator('option').count(),2);await deck.selectOption('99991');await page.locator('[data-cc-work]:visible').waitFor();await page.locator('[data-cc-inventory-note]:visible').waitFor();assert.equal(await page.locator('[data-cc-card]').count(),0);
+      await page.locator('[data-cc-meta="title"]').fill('Borrador sin cartas');await format.selectOption('rush_duel');assert.equal(await deck.inputValue(),'99991');assert.equal(await deck.locator('optgroup[label="Deck abierto (fuera del filtro)"]').count(),1);assert.equal(await page.locator('[data-cc-meta="title"]').inputValue(),'Borrador sin cartas');
+      page.once('dialog',d=>d.dismiss());await deck.selectOption('706');assert.equal(await deck.inputValue(),'99991');page.once('dialog',d=>d.accept());await deck.selectOption('706');await page.waitForFunction(()=>document.querySelector('[data-cc-card]'));assert.equal(await page.locator('[data-cc-inventory-note]').isVisible(),false);
+      await format.selectOption('');await page.locator('[data-cc-deck-search]').fill('sin cartas');assert.match(await page.locator('[data-cc-deck-count]').textContent(),/^2 de /);assert.equal(await deck.inputValue(),'706');await page.locator('[data-cc-deck-search]').fill('');assert.equal(await deck.locator('option').count(),count+1);
+      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);assert.deepEqual(errors,[]);await page.close();}
+    console.log('Combo deck picker: PASS complete roster, format/search filters, empty decks, preserved draft, cancel/accept selection and desktop/mobile.');
+  }finally{await browser?.close();server.kill();}
+})().catch(e=>{console.error(e);process.exitCode=1;});

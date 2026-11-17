@@ -1,0 +1,37 @@
+.editorial-reference {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.editorial-reference-text {
+  white-space: pre-wrap;
+  line-height: 1.65;
+  color: #c5d4e8;
+  margin: 10px 0 18px;
+}
+.editorial-reference details {
+  margin: 10px 0;
+  border: 1px solid #29405d;
+  border-radius: 8px;
+  padding: 12px;
+  background: #0b182a;
+}
+.editorial-reference summary {
+  color: #6ee7ff;
+  cursor: pointer;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.editorial-reference details[open] > summary {
+  margin-bottom: 12px;
+}
+.editorial-reference h5 {
+  color: #ffd166;
+  margin: 24px 0 12px;
+  line-height: 1.5;
+}
+.editorial-reference details .editorial-reference-text {
+  margin-bottom: 0;
+}
+.editorial-reference details:focus-within {
+  border-color: #36d8ff;
+}

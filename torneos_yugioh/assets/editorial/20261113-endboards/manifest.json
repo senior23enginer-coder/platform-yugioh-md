@@ -1,0 +1,82 @@
+{
+  "version": "20261113-kashtira-combos-171",
+  "decks": {
+    "650": {
+      "path": "./assets/editorial/20261113-endboards/650.json",
+      "cards": 42,
+      "routes": 9,
+      "sha256": "d4262ee0fa0a8948f0afde1e3b00a69ba7db879b10f8a2182122c234f99fa25c",
+      "presentation": "curated-v62"
+    },
+    "653": {
+      "path": "./assets/editorial/20261113-endboards/653.json",
+      "cards": 37,
+      "routes": 8,
+      "sha256": "024015a0d1ab808ea64e94524ccb9d04d39346edfc338551f7df41e46adfd911",
+      "presentation": "curated-v62"
+    },
+    "656": {
+      "path": "./assets/editorial/20261113-endboards/656.json",
+      "cards": 50,
+      "routes": 12,
+      "sha256": "51badf7e89408c714b9c1be4c0d78407b8b4da601a4d7ccff682fc14c87669f2",
+      "presentation": "curated-v62"
+    },
+    "665": {
+      "path": "./assets/editorial/20261113-endboards/665.json",
+      "cards": 38,
+      "routes": 15,
+      "sha256": "9618d0ac0430b954c680668a4850f76b9316b23492a335f81861c1a44b3492c6",
+      "presentation": "curated-v62"
+    },
+    "670": {
+      "path": "./assets/editorial/20261113-endboards/670.json",
+      "cards": 45,
+      "routes": 10,
+      "sha256": "2b119f9ebd77468541f362ce7a5a918d14f04227c4684a2a221b061c8d509603",
+      "presentation": "curated-v62"
+    },
+    "684": {
+      "path": "./assets/editorial/20261113-endboards/684.json",
+      "cards": 52,
+      "routes": 16,
+      "sha256": "47a7075b3b2d51c2313ab8070161696b3b0bd660c1118d01de48942edd781079",
+      "presentation": "curated-v62"
+    },
+    "687": {
+      "path": "./assets/editorial/20261113-endboards/687.json",
+      "cards": 36,
+      "routes": 19,
+      "sha256": "e4bc4da6636f3e57e36a4a3f9a6702e6ea7a54673c4abc1340f1220bd8cec782",
+      "presentation": "curated-v62"
+    },
+    "704": {
+      "path": "./assets/editorial/20261113-endboards/704.json",
+      "cards": 17,
+      "routes": 2,
+      "sha256": "a6ab9ebf31bc590005de7e827f4a366587006594d3aa3eca1ebbe49b69ed6c16",
+      "presentation": "curated-v62"
+    },
+    "705": {
+      "path": "./assets/editorial/20261113-endboards/705.json",
+      "cards": 16,
+      "routes": 4,
+      "sha256": "1bbb021a94c691bf00dae4dee8d9a1449ea78a35e56e9dc6c42fd4cffdf94e93",
+      "presentation": "curated-v62"
+    },
+    "706": {
+      "path": "./assets/editorial/20261113-endboards/706.json",
+      "cards": 17,
+      "routes": 6,
+      "sha256": "5bd7c4c5cf6bb23a627903c0f516f96dee9e3a69983d59722193f8fefc466b02",
+      "presentation": "curated-v62"
+    },
+    "707": {
+      "path": "./assets/editorial/20261113-endboards/707.json",
+      "cards": 20,
+      "routes": 7,
+      "sha256": "710691da8884209b0cf711343e4469e23f654c98fb6adc6c9084bb9ac44bf694",
+      "presentation": "curated-v62"
+    }
+  }
+}

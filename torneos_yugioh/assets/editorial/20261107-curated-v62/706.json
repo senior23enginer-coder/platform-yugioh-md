@@ -1,0 +1,777 @@
+{
+  "schema": "station-x-curated-v62",
+  "deck_id": 706,
+  "name": "Hero",
+  "format": "rush_duel",
+  "cards": [
+    {
+      "id": "706:A08:C001",
+      "cid": 20460,
+      "name": "Héroe Elemental Avian",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 412
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20460.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Monstruo Normal; material nombrado para las Fusiones Wingman y Heliosfera."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "No tiene efecto."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Monstruo Normal; material nombrado para las Fusiones Wingman y Heliosfera."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20460&ope=2"
+      ]
+    },
+    {
+      "id": "706:A08:C002",
+      "cid": 20457,
+      "name": "Héroe Elemental Sparkman",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 413
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20457.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Monstruo Normal de 1600 ATK; se emplea como material nombrado de Voltic Wingman, Heliosfera y Shining Flare Wingman."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "No tiene efecto."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Monstruo Normal de 1600 ATK; se emplea como material nombrado de Voltic Wingman, Heliosfera y Shining Flare Wingman."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20457&ope=2"
+      ]
+    },
+    {
+      "id": "706:A08:C003",
+      "cid": 20459,
+      "name": "Héroe Elemental Burstinatrix",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 414
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20459.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Monstruo Normal; material nombrado de Burst Wingman, Flame Wingman y Heliosfera."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "No tiene efecto."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Monstruo Normal; material nombrado de Burst Wingman, Flame Wingman y Heliosfera."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20459&ope=2"
+      ]
+    },
+    {
+      "id": "706:A08:C004",
+      "cid": 20461,
+      "name": "Héroe Ascendente de Argen",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 415
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20461.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Revelar las cuatro cartas superiores del Deck; añadir hasta dos monstruos Normales nombrados como material de esa Fusión y colocar las restantes en el fondo del Deck en el orden elegido."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Revelar un monstruo Fusión Guerrero de Nivel 6 o 7 del Extra Deck."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Revelar las cuatro cartas superiores del Deck; añadir hasta dos monstruos Normales nombrados como material de esa Fusión y colocar las restantes en el fondo del Deck en el orden elegido."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: priorizar consistencia sin comprometer piezas de Fusión; segundo: buscar la carta que falta para superar el campo rival; tardío: solo aporta ventaja si queda un objetivo y su coste puede pagarse."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20461&ope=2"
+      ]
+    },
+    {
+      "id": "706:A08:C005",
+      "cid": 16929,
+      "name": "Inicio Reinicio",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 416
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16929.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Invoca un monstruo Normal de Nivel 5 o menor del Cementerio y opcionalmente recupera una Fusión de ese Cementerio."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — recurso táctico cuya condición y resultado están descritos en su ficha."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Colocar una carta de la mano al fondo del Deck."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Invoca un monstruo Normal de Nivel 5 o menor del Cementerio y opcionalmente recupera una Fusión de ese Cementerio."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "la condición de una Mágica/Trampa y sus blancos deben cumplirse antes de resolver. No confundir esta carta con un monstruo ni usarla como material."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16929&ope=2"
+      ]
+    },
+    {
+      "id": "706:A08:C006",
+      "cid": 20665,
+      "name": "Descenso de Héroe",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 417
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20665.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Invoca desde el Cementerio, en Defensa boca arriba, hasta dos objetivos permitidos (Neo-Espaciales específicos o Guerreros Normales) cuyos Niveles sumen como máximo siete."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — extensor / habilitador de material."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Invoca desde el Cementerio, en Defensa boca arriba, hasta dos objetivos permitidos (Neo-Espaciales específicos o Guerreros Normales) cuyos Niveles sumen como máximo siete. Ese turno solo pueden atacar tus Guerreros."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20665&ope=2"
+      ]
+    },
+    {
+      "id": "706:A08:C007",
+      "cid": 20151,
+      "name": "Brillo Sombrío",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 418
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20151.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Pone hasta dos monstruos de Efecto boca arriba de cualquier Campo boca abajo en Defensa; si incluyó un monstruo rival con ATK original de al menos 2600, recupera 1500 LP."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta de Trampa Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Cuando el rival Invoca un monstruo en su turno; enviar una carta de la mano al Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Pone hasta dos monstruos de Efecto boca arriba de cualquier Campo boca abajo en Defensa; si incluyó un monstruo rival con ATK original de al menos 2600, recupera 1500 LP."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20151&ope=2"
+      ]
+    },
+    {
+      "id": "706:A08:C008",
+      "cid": 20465,
+      "name": "Circulación Elemental",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 419
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20465.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Roba tres, luego manda una carta de la mano al Cementerio."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Revelar una Fusión Guerrero de Nivel 6 o 7 del Extra y enviar de la mano un Guerrero cuyo nombre sea material de esa Fusión."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Roba tres, luego manda una carta de la mano al Cementerio. Durante el resto del turno impide activar efectos de monstruos que no sean Guerreros."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20465&ope=2"
+      ]
+    },
+    {
+      "id": "706:A08:C009",
+      "cid": 16358,
+      "name": "Estrategia Mágica Aviar",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 420
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16358.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Destruye una Mágica/Trampa rival; luego puedes devolver al tope del Deck un Guerrero o Bestia Alada de Nivel 8 o menor del Cementerio."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — removal / apertura de campo."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Controlar en conjunto dos o más Guerreros y/o Bestias Aladas boca arriba."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Destruye una Mágica/Trampa rival; luego puedes devolver al tope del Deck un Guerrero o Bestia Alada de Nivel 8 o menor del Cementerio."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16358&ope=2"
+      ]
+    },
+    {
+      "id": "706:A08:C010",
+      "cid": 16934,
+      "name": "Fusión",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 421
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16934.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Usa monstruos boca arriba del Campo propio como materiales, enviándolos al Cementerio para una Invocación por Fusión válida; no usa automáticamente materiales de la mano."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — extensor / habilitador de material."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Usa monstruos boca arriba del Campo propio como materiales, enviándolos al Cementerio para una Invocación por Fusión válida; no usa automáticamente materiales de la mano."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16934&ope=2"
+      ]
+    },
+    {
+      "id": "706:A08:C011",
+      "cid": 15913,
+      "name": "Agujero Trampa",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 422
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/15913.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Destruye ese monstruo invocado."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta de Trampa Normal — extensor / habilitador de material."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Cuando el rival Invoca de Modo Normal un monstruo de al menos 1000 ATK."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Destruye ese monstruo invocado."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15913&ope=2"
+      ]
+    },
+    {
+      "id": "706:A08:C012",
+      "cid": 16372,
+      "name": "Olla de la Codicia",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 423
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16372.png",
+      "fields": [
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Roba dos cartas."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16372&ope=2"
+      ]
+    },
+    {
+      "id": "706:A08:C013",
+      "cid": 21316,
+      "name": "Héroe Elemental Voltic Wingman",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 2,
+          "card_id": 424
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/21316.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Devuelve al Deck monstruos del Cementerio empleados como materiales y realiza una Fusión de un monstruo Guerrero Nivel 6 a 8 que solo se pueda Invocar por Fusión. identifica su destino, condicionado a material/procedimiento."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Solo Invocación por Fusión; materiales Sparkman + Avian. Efecto en Main Phase propia en que fue Invocado de Modo Especial."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Devuelve al Deck monstruos del Cementerio empleados como materiales y realiza una Fusión de un monstruo Guerrero Nivel 6 a 8 que solo se pueda Invocar por Fusión."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=21316&ope=2"
+      ]
+    },
+    {
+      "id": "706:A08:C014",
+      "cid": 20454,
+      "name": "Héroe Elemental del Estallido Wingman",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 2,
+          "card_id": 425
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20454.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Aumenta 1000 ATK de un Guerrero propio boca arriba hasta el final del siguiente turno rival; después puede destruir una Mágica/Trampa rival. identifica su destino, condicionado a material/procedimiento."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Solo Invocación por Fusión; materiales Avian + Burstinatrix. Enviar la primera carta del Deck al Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Aumenta 1000 ATK de un Guerrero propio boca arriba hasta el final del siguiente turno rival; después puede destruir una Mágica/Trampa rival."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20454&ope=2"
+      ]
+    },
+    {
+      "id": "706:A08:C015",
+      "cid": 20453,
+      "name": "Héroe Elemental de la Llama Wingman",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 426
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20453.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Si destruye en batalla un monstruo y lo manda al Cementerio, inflige daño igual al ATK original de ese monstruo. identifica su destino, condicionado a material/procedimiento."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Solo Invocación por Fusión; materiales Avian + Burstinatrix. Efecto continuo sin requisito activado."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Si destruye en batalla un monstruo y lo manda al Cementerio, inflige daño igual al ATK original de ese monstruo."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20453&ope=2"
+      ]
+    },
+    {
+      "id": "706:A08:C016",
+      "cid": 21501,
+      "name": "Héroe Elemental Heliosfera",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 427
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/21501.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Robar y revelar una carta; si resulta ser monstruo, además puede destruir una carta del Campo rival. identifica su destino, condicionado a material/procedimiento."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Solo Invocación por Fusión; materiales Sparkman + Avian + Burstinatrix. Tener al menos diez cartas en el Deck."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Robar y revelar una carta; si resulta ser monstruo, además puede destruir una carta del Campo rival."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=21501&ope=2"
+      ]
+    },
+    {
+      "id": "706:A08:C017",
+      "cid": 20610,
+      "name": "Héroe Elemental Shining Flare Wingman",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 2,
+          "card_id": 428
+        }
+      ],
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20610.png",
+      "fields": [
+        {
+          "title": "Aplicación concreta dentro de este deck",
+          "text": "Gana 300 ATK por cada Guerrero en tu Cementerio; al destruir en batalla y enviar al Cementerio un monstruo, inflige daño igual a su ATK original. identifica su destino, condicionado a material/procedimiento."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Solo Invocación por Fusión; materiales Flame Wingman + Sparkman; efecto continuo."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Gana 300 ATK por cada Guerrero en tu Cementerio; al destruir en batalla y enviar al Cementerio un monstruo, inflige daño igual a su ATK original."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        }
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20610&ope=2"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "HERO RUSH RISING",
+      "image": "./assets/editorial/20261107-curated-v62/skills/706_HERO_RUSH_RISING.jpeg"
+    }
+  ],
+  "summary": [
+    {
+      "title": "Dictamen de conjunto",
+      "text": "Fusion HERO Rush funcional, condicionado a materiales nombrados y recuperación; el núcleo depende de Normales que deben estar disponibles en Campo."
+    },
+    {
+      "title": "Motor que mueve el deck",
+      "text": "Avian, Sparkman y Burstinatrix aportan materiales nombrados para Wingman, Voltic y otras Fusiones según texto, carta Fusión y objetivo correcto."
+    },
+    {
+      "title": "Puentes reales",
+      "text": "Argen, Inicio Reinicio, Descenso y Circulación Elemental mejoran acceso o reciclaje; la Skill HERO RUSH RISING recupera Fusión y afecta un objetivo cuando cumple sus requisitos."
+    },
+    {
+      "title": "Sinergia indirecta",
+      "text": "conservar Normales por ser materiales, aunque no tengan efecto; un extensor que busca no garantiza reunir simultáneamente la pareja de Fusión."
+    },
+    {
+      "title": "Conflicto decisivo",
+      "text": "Shining Flare Wingman requiere al propio Flame Wingman según su texto; Argen excava y no promete búsqueda garantizada; Descenso impone límites de nivel/ataque."
+    },
+    {
+      "title": "Decisión concreta",
+      "text": "revisar copias de Normales y su recuperación antes de sustituirlos; no atribuir Fusiones extra a una sola carta de búsqueda."
+    },
+    {
+      "title": "Qué aprender después",
+      "text": "elegir qué Fusión puede construirse con la mano/campo actuales y luego seguir los pasos exactos."
+    }
+  ],
+  "engine_maps": [
+    {
+      "title": "Argen (20461) → Avian (20460) / Sparkman (20457) / Burstinatrix (20459)",
+      "category": "INTERACCIÓN",
+      "result": "Excavar cuatro cartas para encontrar hasta dos Normales nombrados.",
+      "requirements": "Revelar Fusión Guerrero Nivel 6 o 7 apropiada; resultado no garantizado.",
+      "photos": [
+        {
+          "name": "Héroe Ascendente de Argen",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/20461.png"
+        },
+        {
+          "name": "Héroe Elemental Avian",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/20460.png"
+        },
+        {
+          "name": "Héroe Elemental Sparkman",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/20457.png"
+        },
+        {
+          "name": "Héroe Elemental Burstinatrix",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/20459.png"
+        }
+      ]
+    },
+    {
+      "title": "Inicio Reinicio (16929) / Descenso de Héroe (20665) → Normales al Campo",
+      "category": "INTERACCIÓN",
+      "result": "Recuperar materiales del Cementerio.",
+      "requirements": "Normal Nivel ≤5 o dos Guerreros con suma ≤7; destino Defensa donde corresponda.",
+      "photos": [
+        {
+          "name": "Inicio Reinicio",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/16929.png"
+        },
+        {
+          "name": "Descenso de Héroe",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/20665.png"
+        }
+      ]
+    },
+    {
+      "title": "Avian + Burstinatrix + Fusión (16934) → Llama (20453) / Estallido (20454)",
+      "category": "INTERACCIÓN",
+      "result": "Elegir una de dos Fusiones con mismos materiales.",
+      "requirements": "Ambas cartas boca arriba en tu Campo y Fusión activable.",
+      "photos": [
+        {
+          "name": "Fusión",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/16934.png"
+        },
+        {
+          "name": "Héroe Elemental de la Llama Wingman",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/20453.png"
+        },
+        {
+          "name": "Héroe Elemental del Estallido Wingman",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/20454.png"
+        }
+      ]
+    },
+    {
+      "title": "Sparkman + Avian + Fusión → Voltic (21316)",
+      "category": "INTERACCIÓN",
+      "result": "Fusión con potencial extensión desde GY.",
+      "requirements": "Materiales en Campo y condiciones de su efecto de continuación.",
+      "photos": [
+        {
+          "name": "Héroe Elemental Voltic Wingman",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/21316.png"
+        }
+      ]
+    },
+    {
+      "title": "Llama Wingman (20453) + Sparkman (20457) → Shining Flare (20610)",
+      "category": "INTERACCIÓN",
+      "result": "Segunda Fusión de materiales nombrados.",
+      "requirements": "Obtener efectivamente Llama Wingman como material y usar Fusión válida.",
+      "photos": [
+        {
+          "name": "Héroe Elemental de la Llama Wingman",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/20453.png"
+        },
+        {
+          "name": "Héroe Elemental Sparkman",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/20457.png"
+        },
+        {
+          "name": "Héroe Elemental Shining Flare Wingman",
+          "image": "./assets/editorial/20261104-checked-study/images/rush/20610.png"
+        }
+      ]
+    }
+  ],
+  "routes": []
+}

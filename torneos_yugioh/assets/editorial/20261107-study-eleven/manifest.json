@@ -1,0 +1,94 @@
+{
+  "version": "20261107-study-eleven-139",
+  "scope": "received_sections_01_to_11",
+  "decks": {
+    "650": {
+      "path": "./assets/editorial/20261107-study-eleven/650.json",
+      "cards": 42,
+      "sections": 11,
+      "routes": 6,
+      "steps": 35,
+      "sha256": "6f04176323caf901cf9e261f2d30fad7ed01c2e398b1661adf5042e332037bae"
+    },
+    "653": {
+      "path": "./assets/editorial/20261107-study-eleven/653.json",
+      "cards": 37,
+      "sections": 11,
+      "routes": 7,
+      "steps": 44,
+      "sha256": "060bd89652cad18a77372f4414c9f935eaa2defe7a97a3a29856a0caafc69bfe"
+    },
+    "656": {
+      "path": "./assets/editorial/20261107-study-eleven/656.json",
+      "cards": 50,
+      "sections": 11,
+      "routes": 9,
+      "steps": 42,
+      "sha256": "3c95855316eee78f83cb9f181ffeb556786db49e8d8b4c4977e4b1b916c0a9de"
+    },
+    "665": {
+      "path": "./assets/editorial/20261107-study-eleven/665.json",
+      "cards": 38,
+      "sections": 11,
+      "routes": 9,
+      "steps": 49,
+      "sha256": "bd1f3c4b2827a560dfd2f5ea11986e238e09c0be54fb8d01b712b1d688a8ec07"
+    },
+    "670": {
+      "path": "./assets/editorial/20261107-study-eleven/670.json",
+      "cards": 45,
+      "sections": 11,
+      "routes": 7,
+      "steps": 33,
+      "sha256": "edd405e746372b57b26ee85232920f95abd2db64b4f1fd3960da3388e34ba9dc"
+    },
+    "684": {
+      "path": "./assets/editorial/20261107-study-eleven/684.json",
+      "cards": 52,
+      "sections": 11,
+      "routes": 8,
+      "steps": 33,
+      "sha256": "496b54773ebf3e4e50cc10cb8b587e93eb140e6254575fb964b1cbd174a0644b"
+    },
+    "687": {
+      "path": "./assets/editorial/20261107-study-eleven/687.json",
+      "cards": 36,
+      "sections": 11,
+      "routes": 13,
+      "steps": 56,
+      "sha256": "a540daaac3398ab2e45f662e0650ff2181666e796647ee445510b84a106aba62"
+    },
+    "704": {
+      "path": "./assets/editorial/20261107-study-eleven/704.json",
+      "cards": 17,
+      "sections": 11,
+      "routes": 2,
+      "steps": 10,
+      "sha256": "aeaa34d541b0817c894b1ec899f756271ebfaff00784bc07402d285d6861acff"
+    },
+    "705": {
+      "path": "./assets/editorial/20261107-study-eleven/705.json",
+      "cards": 16,
+      "sections": 11,
+      "routes": 4,
+      "steps": 20,
+      "sha256": "9dd40a67638360dedf8873a49dc7a639b6bd26b804bbddd51a7001df0da4dca9"
+    },
+    "706": {
+      "path": "./assets/editorial/20261107-study-eleven/706.json",
+      "cards": 17,
+      "sections": 11,
+      "routes": 6,
+      "steps": 25,
+      "sha256": "61447a817fc27113e272f355dba68c04096cb011101b610544093a8673891acc"
+    },
+    "707": {
+      "path": "./assets/editorial/20261107-study-eleven/707.json",
+      "cards": 20,
+      "sections": 11,
+      "routes": 7,
+      "steps": 26,
+      "sha256": "1807256ccac1f131188f4b924fbcc05b980113b31d68e79bd83156b0c513af82"
+    }
+  }
+}

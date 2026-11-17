@@ -1,0 +1,117 @@
+{
+  "version": "20261117-folder-delivery-v37-complete",
+  "decks": {
+    "650": {
+      "path": "./assets/editorial/20261117-folder-delivery-v37-complete/650.json",
+      "cards": 42,
+      "routes": 20,
+      "sha256": "1af131eba195402633dec13863f9cfa4d4d26fea0c7127ead87f7a08257ffff2",
+      "presentation": "curated-v62"
+    },
+    "653": {
+      "path": "./assets/editorial/20261117-folder-delivery-v37-complete/653.json",
+      "cards": 37,
+      "routes": 16,
+      "sha256": "d01bc453694fe2a889cc1bba9143a0a4038e6fb4edc10ff88cc40d4acfa00dff",
+      "presentation": "curated-v62"
+    },
+    "656": {
+      "path": "./assets/editorial/20261117-folder-delivery-v37-complete/656.json",
+      "cards": 50,
+      "routes": 23,
+      "sha256": "93d45ff4f0496c065032b9f0f1b1ca225722f56f562c3954bcc19672be412e31",
+      "presentation": "curated-v62"
+    },
+    "665": {
+      "path": "./assets/editorial/20261117-folder-delivery-v37-complete/665.json",
+      "cards": 38,
+      "routes": 16,
+      "sha256": "697ac31cbfa179e6bcb1198fdcd0994bf361abd3a072f41d583cebc9f46c9cf0",
+      "presentation": "curated-v62"
+    },
+    "670": {
+      "path": "./assets/editorial/20261117-folder-delivery-v37-complete/670.json",
+      "cards": 45,
+      "routes": 11,
+      "sha256": "4962906f6ff4daa748c814ff028b0e33fc669f6ad5285b159218f7b4ba4ff128",
+      "presentation": "curated-v62"
+    },
+    "684": {
+      "path": "./assets/editorial/20261117-folder-delivery-v37-complete/684.json",
+      "cards": 52,
+      "routes": 17,
+      "sha256": "70798af74733baff287f1389b393778366f859a7d12b2a922ffcb5651368ba16",
+      "presentation": "curated-v62"
+    },
+    "687": {
+      "path": "./assets/editorial/20261117-folder-delivery-v37-complete/687.json",
+      "cards": 36,
+      "routes": 22,
+      "sha256": "918cc19a3b7255427a4b1f8045aa812edb7b5e6aead03b4523347964ae719857",
+      "presentation": "curated-v62"
+    },
+    "704": {
+      "path": "./assets/editorial/20261117-folder-delivery-v37-complete/704.json",
+      "cards": 17,
+      "routes": 3,
+      "sha256": "13ebf79a6b173edd3a114a6ca5f191ae5a113d969399536db55966a90e6f8387",
+      "presentation": "curated-v62"
+    },
+    "705": {
+      "path": "./assets/editorial/20261117-folder-delivery-v37-complete/705.json",
+      "cards": 16,
+      "routes": 6,
+      "sha256": "76c89c5d8b5db9302b90cdac0082af06d2bc852bd4fab158d0e2e4b6f15d6d24",
+      "presentation": "curated-v62"
+    },
+    "706": {
+      "path": "./assets/editorial/20261117-folder-delivery-v37-complete/706.json",
+      "cards": 17,
+      "routes": 9,
+      "sha256": "4f57c1c7a23e1c2bd9fa352f946afcd47574fbb6d9dbb0c10c4cb3de9b93a675",
+      "presentation": "curated-v62"
+    },
+    "707": {
+      "path": "./assets/editorial/20261117-folder-delivery-v37-complete/707.json",
+      "cards": 20,
+      "routes": 9,
+      "sha256": "78af15d158ec199553c6fd3bf2a4ad7fc5767327a6f7271ca461907de3a8bf24",
+      "presentation": "curated-v62"
+    },
+    "671": {
+      "path": "./assets/editorial/20261117-folder-delivery-v37-complete/671.json",
+      "cards": 39,
+      "routes": 12,
+      "sha256": "82d7cc5c9f9998af3e3cddcb9590666bd8b127a9885e350604f1a5f67c9482d1",
+      "presentation": "curated-v62"
+    },
+    "677": {
+      "path": "./assets/editorial/20261117-folder-delivery-v37-complete/677.json",
+      "cards": 39,
+      "routes": 11,
+      "sha256": "b37fb9418c8ca8f7301e8a8d19796e299d5502ec989dcce3d54d3250dd5adb90",
+      "presentation": "curated-v62"
+    },
+    "660": {
+      "path": "./assets/editorial/20261117-folder-delivery-v37-complete/660.json",
+      "cards": 36,
+      "routes": 5,
+      "sha256": "4f75c7446b80ffc9b7d82ce56671f7e797190f38af4677dbef9e1a1d665079ff",
+      "presentation": "curated-v62"
+    },
+    "673": {
+      "path": "./assets/editorial/20261117-folder-delivery-v37-complete/673.json",
+      "cards": 39,
+      "routes": 5,
+      "sha256": "4291e947681937bffb3b8a94306d5aaa28884e5839bf51c3afab0bba71f23e35",
+      "presentation": "curated-v62"
+    },
+    "699": {
+      "path": "./assets/editorial/20261117-folder-delivery-v37-complete/699.json",
+      "cards": 39,
+      "routes": 5,
+      "sha256": "f74a3db5b8bfe00935c046eab458160bb85734f3cb1838505a5e81fdb3fe6643",
+      "presentation": "curated-v62"
+    }
+  }
+}

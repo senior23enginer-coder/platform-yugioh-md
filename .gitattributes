@@ -1,0 +1,25 @@
+* text=auto
+*.php text eol=lf
+*.js text eol=lf
+*.cjs text eol=lf
+*.css text eol=lf
+*.py text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.woff binary
+*.woff2 binary
+# Editorial source hashes include exact bytes and original line endings.
+*.txt -text
+*.json -text
+torneos_yugioh/assets/editorial/** -text
+station_x_perfiles_67_decks.txt -text
+torneos_yugioh/assets/editorial/station_x_perfiles_67_decks.txt -text
+outputs/ygo-editorial-sync-20261030/baseline/station_x_perfiles_67_decks.txt -text
+torneos_yugioh/assets/editorial/20261101-11-decks/source.json -text
+torneos_yugioh/assets/editorial/20261101-11-decks/deck-*.json -text
+torneos_yugioh/context/gpt/** -text

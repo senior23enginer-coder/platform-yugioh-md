@@ -1,0 +1,26 @@
+[data-checked-study]{font-family:system-ui,sans-serif;color:#eaf3ff;min-width:0}
+/* The legacy comparison header is moved beside the strategy section by the
+   native category modal. It is unrelated to this deck's checked card library. */
+.deck-analysis-header:has(+ .deck-strategy-profile > [data-checked-study]:not([hidden])),
+.deck-analysis-header:has(+ .deck-strategy-profile > [data-strategy-empty]:not([hidden])){display:none!important}
+[data-checked-study] [hidden]{display:none!important}
+.checked-hero,.checked-detail{padding:24px;background:#0a1b2e;border:1px solid #285771;border-radius:14px;min-width:0}
+.checked-hero h2{font-size:clamp(1.4rem,2.4vw,2rem);margin:12px 0}
+.checked-hero>span{color:#56d9ef;font-weight:700}
+.checked-counts{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}
+.checked-counts span{padding:8px 12px;border:1px solid #285771;border-radius:8px}
+.checked-notice{color:#b5ccdf;font-size:.95rem}
+.checked-controls{display:flex;gap:18px;align-items:end;flex-wrap:wrap;margin:24px 0}
+.checked-controls label:first-child{flex:1;min-width:200px}
+.checked-controls label{display:grid;gap:8px}.checked-controls input,.checked-controls select{min-height:44px}
+.checked-layout{display:grid;grid-template-columns:minmax(240px,.7fr) minmax(0,1.6fr);gap:22px;align-items:start}
+.checked-cards{max-height:650px;overflow-y:auto;display:grid;gap:8px;padding:2px 8px 2px 2px}
+.checked-card{display:flex;gap:12px;align-items:center;text-align:left;background:#091b2b;border:1px solid #285771;border-radius:10px;color:inherit;padding:12px;min-width:0;width:100%}
+.checked-card.is-selected{border-color:#40d9f5;background:#123c4a}.checked-card img{object-fit:contain;flex-shrink:0}.checked-card span{overflow-wrap:anywhere}.checked-card small{display:block;color:#b5ccdf;margin-top:8px}
+.checked-card-heading{display:flex;gap:22px;align-items:start}.checked-card-heading h3{font-size:1.35rem}.checked-card-heading>div{min-width:0;overflow-wrap:anywhere}
+.checked-photo{padding:0;background:none;border:0;flex-shrink:0;cursor:zoom-in}.checked-photo img{object-fit:contain;max-width:100%}
+.checked-fields{margin-top:22px}.checked-fields details{border-top:1px solid #285771;padding:15px 0}.checked-fields summary{font-weight:650;cursor:pointer}.checked-fields p{line-height:1.75;margin:14px 0 0;overflow-wrap:anywhere}
+.checked-provenance{margin:24px 0;padding:16px;border:1px solid #285771;border-radius:10px;overflow-wrap:anywhere}
+.checked-zoom{background:#071321;color:#eaf3ff;border:1px solid #40d9f5;border-radius:12px;max-width:94vw;max-height:94dvh;padding:16px}.checked-zoom::backdrop{background:#000b}.checked-zoom img{display:block;max-width:82vw;max-height:70dvh;object-fit:contain;margin:12px auto}.checked-zoom p{max-width:500px}
+[data-checked-study] button:focus-visible,[data-checked-study] summary:focus-visible{outline:3px solid #ffda6a;outline-offset:3px}
+@media(max-width:760px){.checked-layout{grid-template-columns:minmax(0,1fr)}.checked-cards{max-height:310px;grid-template-columns:minmax(0,1fr)}.checked-card img{width:54px;height:78px}.checked-hero,.checked-detail{padding:16px}.checked-card-heading{gap:12px}.checked-photo{width:94px}.checked-photo img{height:auto}.checked-controls{align-items:stretch}.checked-controls label{width:100%}}

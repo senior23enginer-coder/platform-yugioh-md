@@ -1,0 +1,2165 @@
+{
+  "version": 1,
+  "cards": {
+    "665:92": "./assets/cards/originals/yugiohdb-17768.jpg",
+    "665:93": "./assets/cards/originals/yugiohdb-17769.jpg",
+    "665:94": "./assets/cards/originals/yugiohdb-18151.jpg",
+    "665:95": "./assets/cards/originals/yugiohdb-17770.jpg",
+    "665:96": "./assets/cards/originals/yugiohdb-18152.jpg",
+    "665:97": "./assets/cards/originals/yugiohdb-18153.jpg",
+    "665:98": "./assets/cards/originals/yugiohdb-12950.jpg",
+    "665:99": "./assets/cards/originals/yugiohdb-14740.jpg",
+    "665:100": "./assets/cards/originals/yugiohdb-18204.jpg",
+    "665:101": "./assets/cards/originals/yugiohdb-17815.jpg",
+    "665:102": "./assets/cards/originals/yugiohdb-18203.jpg",
+    "665:103": "./assets/cards/originals/yugiohdb-5537.jpg",
+    "665:104": "./assets/cards/originals/yugiohdb-5432.jpg",
+    "665:105": "./assets/cards/originals/yugiohdb-4342.jpg",
+    "665:106": "./assets/cards/originals/yugiohdb-15756.jpg",
+    "665:107": "./assets/cards/originals/yugiohdb-12464.jpg",
+    "665:108": "./assets/cards/originals/yugiohdb-9352.jpg",
+    "665:109": "./assets/cards/originals/yugiohdb-15296.jpg",
+    "665:110": "./assets/cards/originals/yugiohdb-13631.jpg",
+    "665:111": "./assets/cards/originals/yugiohdb-17831.jpg",
+    "665:112": "./assets/cards/originals/yugiohdb-18220.jpg",
+    "665:113": "./assets/cards/originals/yugiohdb-17800.jpg",
+    "665:114": "./assets/cards/originals/yugiohdb-18191.jpg",
+    "665:115": "./assets/cards/originals/yugiohdb-9861.jpg",
+    "665:116": "./assets/cards/originals/yugiohdb-15524.jpg",
+    "665:117": "./assets/cards/originals/yugiohdb-13974.jpg",
+    "665:118": "./assets/cards/originals/yugiohdb-16386.jpg",
+    "665:119": "./assets/cards/originals/yugiohdb-17804.jpg",
+    "665:120": "./assets/cards/originals/yugiohdb-15741.jpg",
+    "665:121": "./assets/cards/originals/yugiohdb-15366.jpg",
+    "665:122": "./assets/cards/originals/yugiohdb-15882.jpg",
+    "665:123": "./assets/cards/originals/yugiohdb-5432.jpg",
+    "665:124": "./assets/cards/originals/yugiohdb-15296.jpg",
+    "665:125": "./assets/cards/originals/yugiohdb-7153.jpg",
+    "665:126": "./assets/cards/originals/yugiohdb-14740.jpg",
+    "665:127": "./assets/cards/originals/yugiohdb-9352.jpg",
+    "665:128": "./assets/cards/originals/yugiohdb-17769.jpg",
+    "665:129": "./assets/cards/originals/yugiohdb-13896.jpg",
+    "665:130": "./assets/cards/originals/yugiohdb-12668.jpg",
+    "665:131": "./assets/cards/originals/yugiohdb-15756.jpg",
+    "665:132": "./assets/cards/originals/yugiohdb-14741.jpg",
+    "665:133": "./assets/cards/originals/yugiohdb-9279.jpg",
+    "665:134": "./assets/cards/originals/yugiohdb-13587.jpg",
+    "665:135": "./assets/cards/originals/yugiohdb-14400.jpg",
+    "670:136": "./assets/cards/originals/yugiohdb-17768.jpg",
+    "670:137": "./assets/cards/originals/yugiohdb-18151.jpg",
+    "670:138": "./assets/cards/originals/yugiohdb-19148.jpg",
+    "670:139": "./assets/cards/originals/yugiohdb-14801.jpg",
+    "670:140": "./assets/cards/originals/yugiohdb-18801.jpg",
+    "670:141": "./assets/cards/originals/yugiohdb-15249.jpg",
+    "670:142": "./assets/cards/originals/yugiohdb-15247.jpg",
+    "670:143": "./assets/cards/originals/yugiohdb-18800.jpg",
+    "670:144": "./assets/cards/originals/yugiohdb-15082.jpg",
+    "670:145": "./assets/cards/originals/yugiohdb-15248.jpg",
+    "670:146": "./assets/cards/originals/yugiohdb-14085.jpg",
+    "670:147": "./assets/cards/originals/yugiohdb-6768.jpg",
+    "670:148": "./assets/cards/originals/yugiohdb-15392.jpg",
+    "670:149": "./assets/cards/originals/yugiohdb-9279.jpg",
+    "670:150": "./assets/cards/originals/yugiohdb-8933.jpg",
+    "670:151": "./assets/cards/originals/yugiohdb-12950.jpg",
+    "670:152": "./assets/cards/originals/yugiohdb-19207.jpg",
+    "670:153": "./assets/cards/originals/yugiohdb-18843.jpg",
+    "670:154": "./assets/cards/originals/yugiohdb-15287.jpg",
+    "670:155": "./assets/cards/originals/yugiohdb-18844.jpg",
+    "670:156": "./assets/cards/originals/yugiohdb-6458.jpg",
+    "670:157": "./assets/cards/originals/yugiohdb-7519.jpg",
+    "670:158": "./assets/cards/originals/yugiohdb-19196.jpg",
+    "670:159": "./assets/cards/originals/yugiohdb-14075.jpg",
+    "670:160": "./assets/cards/originals/yugiohdb-5328.jpg",
+    "670:161": "./assets/cards/originals/yugiohdb-19199.jpg",
+    "670:162": "./assets/cards/originals/yugiohdb-15275.jpg",
+    "670:163": "./assets/cards/originals/yugiohdb-16386.jpg",
+    "670:164": "./assets/cards/originals/yugiohdb-15276.jpg",
+    "670:165": "./assets/cards/originals/yugiohdb-18926.jpg",
+    "670:166": "./assets/cards/originals/yugiohdb-19184.jpg",
+    "670:167": "./assets/cards/originals/yugiohdb-18827.jpg",
+    "670:168": "./assets/cards/originals/yugiohdb-13500.jpg",
+    "670:169": "./assets/cards/originals/yugiohdb-18835.jpg",
+    "670:170": "./assets/cards/originals/yugiohdb-14496.jpg",
+    "670:171": "./assets/cards/originals/yugiohdb-13841.jpg",
+    "670:172": "./assets/cards/originals/yugiohdb-13034.jpg",
+    "670:173": "./assets/cards/originals/yugiohdb-19188.jpg",
+    "670:174": "./assets/cards/originals/yugiohdb-14741.jpg",
+    "670:175": "./assets/cards/originals/yugiohdb-6980.jpg",
+    "670:176": "./assets/cards/originals/yugiohdb-13950.jpg",
+    "670:177": "./assets/cards/originals/yugiohdb-15296.jpg",
+    "670:178": "./assets/cards/originals/yugiohdb-18214.jpg",
+    "670:179": "./assets/cards/originals/yugiohdb-13293.jpg",
+    "670:180": "./assets/cards/originals/yugiohdb-12668.jpg",
+    "650:181": "./assets/cards/originals/yugiohdb-22523.jpg",
+    "650:182": "./assets/cards/originals/yugiohdb-22116.jpg",
+    "650:183": "./assets/cards/originals/yugiohdb-22117.jpg",
+    "650:184": "./assets/cards/originals/yugiohdb-22119.jpg",
+    "650:185": "./assets/cards/originals/yugiohdb-22118.jpg",
+    "650:186": "./assets/cards/originals/yugiohdb-22533.jpg",
+    "650:187": "./assets/cards/originals/yugiohdb-21419.jpg",
+    "650:188": "./assets/cards/originals/yugiohdb-22519.jpg",
+    "650:189": "./assets/cards/originals/yugiohdb-17762.jpg",
+    "650:190": "./assets/cards/originals/yugiohdb-15239.jpg",
+    "650:191": "./assets/cards/originals/yugiohdb-22520.jpg",
+    "650:192": "./assets/cards/originals/yugiohdb-12950.jpg",
+    "650:193": "./assets/cards/originals/yugiohdb-20500.jpg",
+    "650:194": "./assets/cards/originals/yugiohdb-20206.jpg",
+    "650:195": "./assets/cards/originals/yugiohdb-13587.jpg",
+    "650:196": "./assets/cards/originals/yugiohdb-22565.jpg",
+    "650:197": "./assets/cards/originals/yugiohdb-22089.jpg",
+    "650:198": "./assets/cards/originals/yugiohdb-22159.jpg",
+    "650:199": "./assets/cards/originals/yugiohdb-22173.jpg",
+    "650:200": "./assets/cards/originals/yugiohdb-22356.jpg",
+    "650:201": "./assets/cards/originals/yugiohdb-18666.jpg",
+    "650:202": "./assets/cards/originals/yugiohdb-22335.jpg",
+    "650:203": "./assets/cards/originals/yugiohdb-22144.jpg",
+    "650:204": "./assets/cards/originals/yugiohdb-22143.jpg",
+    "650:205": "./assets/cards/originals/yugiohdb-22984.jpg",
+    "650:206": "./assets/cards/originals/yugiohdb-19188.jpg",
+    "650:207": "./assets/cards/originals/yugiohdb-18505.jpg",
+    "650:208": "./assets/cards/originals/yugiohdb-8038.jpg",
+    "650:209": "./assets/cards/originals/yugiohdb-12321.jpg",
+    "650:210": "./assets/cards/originals/yugiohdb-13710.jpg",
+    "650:211": "./assets/cards/originals/yugiohdb-15996.jpg",
+    "650:212": "./assets/cards/originals/yugiohdb-15994.jpg",
+    "650:213": "./assets/cards/originals/yugiohdb-18507.jpg",
+    "650:214": "./assets/cards/originals/yugiohdb-22142.jpg",
+    "650:215": "./assets/cards/originals/yugiohdb-17764.jpg",
+    "650:216": "./assets/cards/originals/yugiohdb-13587.jpg",
+    "650:217": "./assets/cards/originals/yugiohdb-9279.jpg",
+    "650:218": "./assets/cards/originals/yugiohdb-11708.jpg",
+    "650:219": "./assets/cards/originals/yugiohdb-13619.jpg",
+    "650:220": "./assets/cards/originals/yugiohdb-15296.jpg",
+    "650:221": "./assets/cards/originals/yugiohdb-13407.jpg",
+    "650:222": "./assets/cards/originals/yugiohdb-4861.jpg",
+    "650:223": "./assets/cards/originals/yugiohdb-6511.jpg",
+    "684:224": "./assets/cards/originals/yugiohdb-10866.jpg",
+    "684:225": "./assets/cards/originals/yugiohdb-6390.jpg",
+    "684:226": "./assets/cards/originals/yugiohdb-14047.jpg",
+    "684:227": "./assets/cards/originals/yugiohdb-13723.jpg",
+    "684:228": "./assets/cards/originals/yugiohdb-16296.jpg",
+    "684:229": "./assets/cards/originals/yugiohdb-6830.jpg",
+    "684:230": "./assets/cards/originals/yugiohdb-21164.jpg",
+    "684:231": "./assets/cards/originals/yugiohdb-13181.jpg",
+    "684:232": "./assets/cards/originals/yugiohdb-6663.jpg",
+    "684:233": "./assets/cards/originals/yugiohdb-21163.jpg",
+    "684:234": "./assets/cards/originals/yugiohdb-17119.jpg",
+    "684:235": "./assets/cards/originals/yugiohdb-12950.jpg",
+    "684:236": "./assets/cards/originals/yugiohdb-13587.jpg",
+    "684:237": "./assets/cards/originals/yugiohdb-20205.jpg",
+    "684:238": "./assets/cards/originals/yugiohdb-8428.jpg",
+    "684:239": "./assets/cards/originals/yugiohdb-16298.jpg",
+    "684:240": "./assets/cards/originals/yugiohdb-13770.jpg",
+    "684:241": "./assets/cards/originals/yugiohdb-16301.jpg",
+    "684:242": "./assets/cards/originals/yugiohdb-17625.jpg",
+    "684:243": "./assets/cards/originals/yugiohdb-6398.jpg",
+    "684:244": "./assets/cards/originals/yugiohdb-5129.jpg",
+    "684:245": "./assets/cards/originals/yugiohdb-13849.jpg",
+    "684:246": "./assets/cards/originals/yugiohdb-6783.jpg",
+    "684:247": "./assets/cards/originals/yugiohdb-16297.jpg",
+    "684:248": "./assets/cards/originals/yugiohdb-4909.jpg",
+    "684:249": "./assets/cards/originals/yugiohdb-12464.jpg",
+    "684:250": "./assets/cards/originals/yugiohdb-13631.jpg",
+    "684:251": "./assets/cards/originals/yugiohdb-13787.jpg",
+    "684:252": "./assets/cards/originals/yugiohdb-11764.jpg",
+    "684:253": "./assets/cards/originals/yugiohdb-13758.jpg",
+    "684:254": "./assets/cards/originals/yugiohdb-7403.jpg",
+    "684:255": "./assets/cards/originals/yugiohdb-20787.jpg",
+    "684:256": "./assets/cards/originals/yugiohdb-14710.jpg",
+    "684:257": "./assets/cards/originals/yugiohdb-10870.jpg",
+    "684:258": "./assets/cards/originals/yugiohdb-20511.jpg",
+    "684:259": "./assets/cards/originals/yugiohdb-13502.jpg",
+    "684:260": "./assets/cards/originals/yugiohdb-13358.jpg",
+    "684:261": "./assets/cards/originals/yugiohdb-18448.jpg",
+    "684:262": "./assets/cards/originals/yugiohdb-16233.jpg",
+    "684:263": "./assets/cards/originals/yugiohdb-11765.jpg",
+    "684:264": "./assets/cards/originals/yugiohdb-19188.jpg",
+    "684:265": "./assets/cards/originals/yugiohdb-13847.jpg",
+    "684:266": "./assets/cards/originals/yugiohdb-7436.jpg",
+    "684:267": "./assets/cards/originals/yugiohdb-7400.jpg",
+    "684:268": "./assets/cards/originals/yugiohdb-20500.jpg",
+    "684:269": "./assets/cards/originals/yugiohdb-9279.jpg",
+    "684:270": "./assets/cards/originals/yugiohdb-16301.jpg",
+    "684:271": "./assets/cards/originals/yugiohdb-14876.jpg",
+    "684:272": "./assets/cards/originals/yugiohdb-12464.jpg",
+    "684:273": "./assets/cards/originals/yugiohdb-12872.jpg",
+    "684:274": "./assets/cards/originals/yugiohdb-15296.jpg",
+    "684:275": "./assets/cards/originals/yugiohdb-16298.jpg",
+    "684:276": "./assets/cards/originals/yugiohdb-6398.jpg",
+    "684:277": "./assets/cards/originals/yugiohdb-13723.jpg",
+    "684:278": "./assets/cards/originals/yugiohdb-13851.jpg",
+    "684:279": "./assets/cards/originals/yugiohdb-13758.jpg",
+    "684:280": "./assets/cards/originals/yugiohdb-6397.jpg",
+    "684:281": "./assets/cards/originals/yugiohdb-20787.jpg",
+    "684:282": "./assets/cards/originals/yugiohdb-6734.jpg",
+    "684:283": "./assets/cards/originals/yugiohdb-10870.jpg",
+    "687:284": "./assets/cards/originals/yugiohdb-18916.jpg",
+    "687:285": "./assets/cards/originals/yugiohdb-18915.jpg",
+    "687:286": "./assets/cards/originals/yugiohdb-7243.jpg",
+    "687:287": "./assets/cards/originals/yugiohdb-18917.jpg",
+    "687:288": "./assets/cards/originals/yugiohdb-7083.jpg",
+    "687:289": "./assets/cards/originals/yugiohdb-7082.jpg",
+    "687:290": "./assets/cards/originals/yugiohdb-6884.jpg",
+    "687:291": "./assets/cards/originals/yugiohdb-9455.jpg",
+    "687:292": "./assets/cards/originals/yugiohdb-18918.jpg",
+    "687:293": "./assets/cards/originals/yugiohdb-7086.jpg",
+    "687:294": "./assets/cards/originals/yugiohdb-18919.jpg",
+    "687:295": "./assets/cards/originals/yugiohdb-15299.jpg",
+    "687:296": "./assets/cards/originals/yugiohdb-19027.jpg",
+    "687:297": "./assets/cards/originals/yugiohdb-14144.jpg",
+    "687:298": "./assets/cards/originals/yugiohdb-11597.jpg",
+    "687:299": "./assets/cards/originals/yugiohdb-18921.jpg",
+    "687:300": "./assets/cards/originals/yugiohdb-18920.jpg",
+    "687:301": "./assets/cards/originals/yugiohdb-7934.jpg",
+    "687:302": "./assets/cards/originals/yugiohdb-14676.jpg",
+    "687:303": "./assets/cards/originals/yugiohdb-14133.jpg",
+    "687:304": "./assets/cards/originals/yugiohdb-13601.jpg",
+    "687:305": "./assets/cards/originals/yugiohdb-15741.jpg",
+    "687:306": "./assets/cards/originals/yugiohdb-13600.jpg",
+    "687:307": "./assets/cards/originals/yugiohdb-13346.jpg",
+    "687:308": "./assets/cards/originals/yugiohdb-19184.jpg",
+    "687:309": "./assets/cards/originals/yugiohdb-19188.jpg",
+    "687:310": "./assets/cards/originals/yugiohdb-14338.jpg",
+    "687:311": "./assets/cards/originals/yugiohdb-19507.jpg",
+    "687:312": "./assets/cards/originals/yugiohdb-13631.jpg",
+    "687:313": "./assets/cards/originals/yugiohdb-12950.jpg",
+    "687:314": "./assets/cards/originals/yugiohdb-8213.jpg",
+    "687:315": "./assets/cards/originals/yugiohdb-13002.jpg",
+    "687:316": "./assets/cards/originals/yugiohdb-13293.jpg",
+    "687:317": "./assets/cards/originals/yugiohdb-5622.jpg",
+    "687:318": "./assets/cards/originals/yugiohdb-4678.jpg",
+    "687:319": "./assets/cards/originals/yugiohdb-9455.jpg",
+    "687:320": "./assets/cards/originals/yugiohdb-7934.jpg",
+    "687:321": "./assets/cards/originals/yugiohdb-15756.jpg",
+    "653:322": "./assets/cards/originals/yugiohdb-21419.jpg",
+    "653:323": "./assets/cards/originals/yugiohdb-21824.jpg",
+    "653:324": "./assets/cards/originals/yugiohdb-21777.jpg",
+    "653:325": "./assets/cards/originals/yugiohdb-9279.jpg",
+    "653:326": "./assets/cards/originals/yugiohdb-22521.jpg",
+    "653:327": "./assets/cards/originals/yugiohdb-12950.jpg",
+    "653:328": "./assets/cards/originals/yugiohdb-17119.jpg",
+    "653:329": "./assets/cards/originals/yugiohdb-21774.jpg",
+    "653:330": "./assets/cards/originals/yugiohdb-21775.jpg",
+    "653:331": "./assets/cards/originals/yugiohdb-21776.jpg",
+    "653:332": "./assets/cards/originals/yugiohdb-13631.jpg",
+    "653:333": "./assets/cards/originals/yugiohdb-20500.jpg",
+    "653:334": "./assets/cards/originals/yugiohdb-22565.jpg",
+    "653:335": "./assets/cards/originals/yugiohdb-21823.jpg",
+    "653:336": "./assets/cards/originals/yugiohdb-22519.jpg",
+    "653:337": "./assets/cards/originals/yugiohdb-22158.jpg",
+    "653:338": "./assets/cards/originals/yugiohdb-21840.jpg",
+    "653:339": "./assets/cards/originals/yugiohdb-22567.jpg",
+    "653:340": "./assets/cards/originals/yugiohdb-14958.jpg",
+    "653:341": "./assets/cards/originals/yugiohdb-16002.jpg",
+    "653:342": "./assets/cards/originals/yugiohdb-18190.jpg",
+    "653:343": "./assets/cards/originals/yugiohdb-21811.jpg",
+    "653:344": "./assets/cards/originals/yugiohdb-22554.jpg",
+    "653:345": "./assets/cards/originals/yugiohdb-21812.jpg",
+    "653:346": "./assets/cards/originals/yugiohdb-21810.jpg",
+    "653:347": "./assets/cards/originals/yugiohdb-21453.jpg",
+    "653:348": "./assets/cards/originals/yugiohdb-19886.jpg",
+    "653:349": "./assets/cards/originals/yugiohdb-15524.jpg",
+    "653:350": "./assets/cards/originals/yugiohdb-11413.jpg",
+    "653:351": "./assets/cards/originals/yugiohdb-14920.jpg",
+    "653:352": "./assets/cards/originals/yugiohdb-11708.jpg",
+    "653:353": "./assets/cards/originals/yugiohdb-15296.jpg",
+    "653:354": "./assets/cards/originals/yugiohdb-14564.jpg",
+    "653:355": "./assets/cards/originals/yugiohdb-13619.jpg",
+    "653:356": "./assets/cards/originals/yugiohdb-14876.jpg",
+    "653:357": "./assets/cards/originals/yugiohdb-14741.jpg",
+    "653:358": "./assets/cards/originals/yugiohdb-19184.jpg",
+    "656:359": "./assets/cards/originals/yugiohdb-7445.jpg",
+    "656:360": "./assets/cards/originals/yugiohdb-20490.jpg",
+    "656:361": "./assets/cards/originals/yugiohdb-17416.jpg",
+    "656:362": "./assets/cards/originals/yugiohdb-17462.jpg",
+    "656:363": "./assets/cards/originals/yugiohdb-17768.jpg",
+    "656:364": "./assets/cards/originals/yugiohdb-12950.jpg",
+    "656:365": "./assets/cards/originals/yugiohdb-17417.jpg",
+    "656:366": "./assets/cards/originals/yugiohdb-17415.jpg",
+    "656:367": "./assets/cards/originals/yugiohdb-17414.jpg",
+    "656:368": "./assets/cards/originals/yugiohdb-12800.jpg",
+    "656:369": "./assets/cards/originals/yugiohdb-18219.jpg",
+    "656:370": "./assets/cards/originals/yugiohdb-17475.jpg",
+    "656:371": "./assets/cards/originals/yugiohdb-17813.jpg",
+    "656:372": "./assets/cards/originals/yugiohdb-17604.jpg",
+    "656:373": "./assets/cards/originals/yugiohdb-19153.jpg",
+    "656:374": "./assets/cards/originals/yugiohdb-8933.jpg",
+    "656:375": "./assets/cards/originals/yugiohdb-22169.jpg",
+    "656:376": "./assets/cards/originals/yugiohdb-18153.jpg",
+    "656:377": "./assets/cards/originals/yugiohdb-18204.jpg",
+    "656:378": "./assets/cards/originals/yugiohdb-17473.jpg",
+    "656:379": "./assets/cards/originals/yugiohdb-20196.jpg",
+    "656:380": "./assets/cards/originals/yugiohdb-19200.jpg",
+    "656:381": "./assets/cards/originals/yugiohdb-19155.jpg",
+    "656:382": "./assets/cards/originals/yugiohdb-20240.jpg",
+    "656:383": "./assets/cards/originals/yugiohdb-8092.jpg",
+    "656:384": "./assets/cards/originals/yugiohdb-17603.jpg",
+    "656:385": "./assets/cards/originals/yugiohdb-20521.jpg",
+    "656:386": "./assets/cards/originals/yugiohdb-17803.jpg",
+    "656:387": "./assets/cards/originals/yugiohdb-19188.jpg",
+    "656:388": "./assets/cards/originals/yugiohdb-20225.jpg",
+    "656:389": "./assets/cards/originals/yugiohdb-17746.jpg",
+    "656:390": "./assets/cards/originals/yugiohdb-12870.jpg",
+    "656:391": "./assets/cards/originals/yugiohdb-17445.jpg",
+    "656:392": "./assets/cards/originals/yugiohdb-14676.jpg",
+    "656:393": "./assets/cards/originals/yugiohdb-20226.jpg",
+    "656:394": "./assets/cards/originals/yugiohdb-13454.jpg",
+    "656:395": "./assets/cards/originals/yugiohdb-20214.jpg",
+    "656:396": "./assets/cards/originals/yugiohdb-11005.jpg",
+    "656:397": "./assets/cards/originals/yugiohdb-16850.jpg",
+    "656:398": "./assets/cards/originals/yugiohdb-10942.jpg",
+    "656:399": "./assets/cards/originals/yugiohdb-14356.jpg",
+    "656:400": "./assets/cards/originals/yugiohdb-17416.jpg",
+    "656:401": "./assets/cards/originals/yugiohdb-20500.jpg",
+    "656:402": "./assets/cards/originals/yugiohdb-14856.jpg",
+    "656:403": "./assets/cards/originals/yugiohdb-18807.jpg",
+    "656:404": "./assets/cards/originals/yugiohdb-13619.jpg",
+    "656:405": "./assets/cards/originals/yugiohdb-12464.jpg",
+    "656:406": "./assets/cards/originals/yugiohdb-4678.jpg",
+    "656:407": "./assets/cards/originals/yugiohdb-5537.jpg",
+    "656:408": "./assets/cards/originals/yugiohdb-15296.jpg",
+    "656:409": "./assets/cards/originals/yugiohdb-17813.jpg",
+    "656:410": "./assets/cards/originals/yugiohdb-7445.jpg",
+    "656:411": "./assets/cards/originals/yugiohdb-13587.jpg",
+    "706:412": "./assets/cards/originals/rushdb-20460.jpg",
+    "706:413": "./assets/cards/originals/rushdb-20457.jpg",
+    "706:414": "./assets/cards/originals/rushdb-20459.jpg",
+    "706:415": "./assets/cards/originals/rushdb-20461.jpg",
+    "706:416": "./assets/cards/originals/rushdb-16929.jpg",
+    "706:417": "./assets/cards/originals/rushdb-20665.jpg",
+    "706:418": "./assets/cards/originals/rushdb-20151.jpg",
+    "706:419": "./assets/cards/originals/rushdb-20465.jpg",
+    "706:420": "./assets/cards/originals/rushdb-16358.jpg",
+    "706:421": "./assets/cards/originals/rushdb-16934.jpg",
+    "706:422": "./assets/cards/originals/rushdb-15913.jpg",
+    "706:423": "./assets/cards/originals/rushdb-16372.jpg",
+    "706:424": "./assets/cards/originals/rushdb-21316.jpg",
+    "706:425": "./assets/cards/originals/rushdb-20454.jpg",
+    "706:426": "./assets/cards/originals/rushdb-20453.jpg",
+    "706:427": "./assets/cards/originals/rushdb-21501.jpg",
+    "706:428": "./assets/cards/originals/rushdb-20610.jpg",
+    "704:429": "./assets/cards/originals/rushdb-15204.jpg",
+    "704:430": "./assets/cards/originals/rushdb-17285.jpg",
+    "704:431": "./assets/cards/originals/rushdb-17212.jpg",
+    "704:432": "./assets/cards/originals/rushdb-19291.jpg",
+    "704:433": "./assets/cards/originals/rushdb-18583.jpg",
+    "704:434": "./assets/cards/originals/rushdb-17963.jpg",
+    "704:435": "./assets/cards/originals/rushdb-16934.jpg",
+    "704:436": "./assets/cards/originals/rushdb-16171.jpg",
+    "704:437": "./assets/cards/originals/rushdb-17868.jpg",
+    "704:438": "./assets/cards/originals/rushdb-18646.jpg",
+    "704:439": "./assets/cards/originals/rushdb-19700.jpg",
+    "704:440": "./assets/cards/originals/rushdb-16776.jpg",
+    "704:441": "./assets/cards/originals/rushdb-15913.jpg",
+    "704:442": "./assets/cards/originals/rushdb-17926.jpg",
+    "704:443": "./assets/cards/originals/rushdb-16372.jpg",
+    "704:444": "./assets/cards/originals/rushdb-19990.jpg",
+    "704:445": "./assets/cards/originals/rushdb-18614.jpg",
+    "707:446": "./assets/cards/originals/rushdb-15451.jpg",
+    "707:447": "./assets/cards/originals/rushdb-16772.jpg",
+    "707:448": "./assets/cards/originals/rushdb-18685.jpg",
+    "707:449": "./assets/cards/originals/rushdb-19597.jpg",
+    "707:450": "./assets/cards/originals/rushdb-19329.jpg",
+    "707:451": "./assets/cards/originals/rushdb-19773.jpg",
+    "707:452": "./assets/cards/originals/rushdb-17209.jpg",
+    "707:453": "./assets/cards/originals/rushdb-20151.jpg",
+    "707:454": "./assets/cards/originals/rushdb-19598.jpg",
+    "707:455": "./assets/cards/originals/rushdb-15410.jpg",
+    "707:456": "./assets/cards/originals/rushdb-20305.jpg",
+    "707:457": "./assets/cards/originals/rushdb-16371.jpg",
+    "707:458": "./assets/cards/originals/rushdb-15450.jpg",
+    "707:459": "./assets/cards/originals/rushdb-19341.jpg",
+    "707:460": "./assets/cards/originals/rushdb-17212.jpg",
+    "707:461": "./assets/cards/originals/rushdb-16372.jpg",
+    "707:462": "./assets/cards/originals/rushdb-21007.jpg",
+    "707:463": "./assets/cards/originals/rushdb-19995.jpg",
+    "707:464": "./assets/cards/originals/rushdb-18298.jpg",
+    "707:465": "./assets/cards/originals/rushdb-19323.jpg",
+    "705:466": "./assets/cards/originals/rushdb-16344.jpg",
+    "705:467": "./assets/cards/originals/rushdb-16330.jpg",
+    "705:468": "./assets/cards/originals/rushdb-19760.jpg",
+    "705:469": "./assets/cards/originals/rushdb-16331.jpg",
+    "705:470": "./assets/cards/originals/rushdb-15441.jpg",
+    "705:471": "./assets/cards/originals/rushdb-19761.jpg",
+    "705:472": "./assets/cards/originals/rushdb-16135.jpg",
+    "705:473": "./assets/cards/originals/rushdb-17721.jpg",
+    "705:474": "./assets/cards/originals/rushdb-15673.jpg",
+    "705:475": "./assets/cards/originals/rushdb-17543.jpg",
+    "705:476": "./assets/cards/originals/rushdb-21007.jpg",
+    "705:477": "./assets/cards/originals/rushdb-18646.jpg",
+    "705:478": "./assets/cards/originals/rushdb-19799.jpg",
+    "705:479": "./assets/cards/originals/rushdb-15913.jpg",
+    "705:480": "./assets/cards/originals/rushdb-15674.jpg",
+    "705:481": "./assets/cards/originals/rushdb-16305.jpg"
+  },
+  "sources": {
+    "rushdb-15204": {
+      "file": "./assets/cards/originals/rushdb-15204.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15204&ope=2",
+      "sha256": "9047506aeff92a2aa89ccb94ae9294f123f41192264e394889fd950defb0d01e"
+    },
+    "rushdb-15410": {
+      "file": "./assets/cards/originals/rushdb-15410.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15410&ope=2",
+      "sha256": "650a1c8a61c22e5f845ead027abaf3d1a28205ecab2ba639c8da96fe89cf4e64"
+    },
+    "rushdb-15441": {
+      "file": "./assets/cards/originals/rushdb-15441.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15441&ope=2",
+      "sha256": "b1b5af840ca8eb822fd7da75474b3379569bfc12ef0c13405224c69512b79d0f"
+    },
+    "rushdb-15450": {
+      "file": "./assets/cards/originals/rushdb-15450.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15450&ope=2",
+      "sha256": "cb50ccda4a54e432e5f52a4656c2e44138ae9f6a260890b7c3e5822b48ab0e35"
+    },
+    "rushdb-15451": {
+      "file": "./assets/cards/originals/rushdb-15451.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15451&ope=2",
+      "sha256": "9c947cbea64312e4b48495e3d23974d1dcac80c132d671ece596045d3badaf8a"
+    },
+    "rushdb-15673": {
+      "file": "./assets/cards/originals/rushdb-15673.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15673&ope=2",
+      "sha256": "8d4cc158032e348def0264732aa918cddf2fd337f56b893222403381b4e8e9ee"
+    },
+    "rushdb-15674": {
+      "file": "./assets/cards/originals/rushdb-15674.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15674&ope=2",
+      "sha256": "1f1c0ad5bd3fc5d12abc36e07f7cebcaddf178d4a1a59140513641d41a7b6f2f"
+    },
+    "rushdb-15913": {
+      "file": "./assets/cards/originals/rushdb-15913.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15913&ope=2",
+      "sha256": "802bbebb81c133d06dd34aff4442af43c99343c1f8363fd5e340acc39e3cc660"
+    },
+    "rushdb-16135": {
+      "file": "./assets/cards/originals/rushdb-16135.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16135&ope=2",
+      "sha256": "7227051af6c4c79530dc88f80d107d6acc6e470c206915c51ac541511384485f"
+    },
+    "rushdb-16171": {
+      "file": "./assets/cards/originals/rushdb-16171.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16171&ope=2",
+      "sha256": "2bf9011a7d4999c41c4d155a3c8d9a139d5783e37c94c480d4e0c57a818154d9"
+    },
+    "rushdb-16305": {
+      "file": "./assets/cards/originals/rushdb-16305.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16305&ope=2",
+      "sha256": "0752e29f24ed61b3341831034d7035ac2e4d67a32bf5550d3c83e409f5af617d"
+    },
+    "rushdb-16330": {
+      "file": "./assets/cards/originals/rushdb-16330.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16330&ope=2",
+      "sha256": "9e6b4bf9e9b65f591094c0872cc2f38814917e832974bdb12cb7c870ec2992a2"
+    },
+    "rushdb-16331": {
+      "file": "./assets/cards/originals/rushdb-16331.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16331&ope=2",
+      "sha256": "d6f6c274f6e7e3f27bceb30a34f966da25d6d847ed279fac618d566c56407907"
+    },
+    "rushdb-16344": {
+      "file": "./assets/cards/originals/rushdb-16344.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16344&ope=2",
+      "sha256": "4dc03ba26ca9ed57da8516605bfe3b47f5a133ba7a6164f1854f433c9c2f956a"
+    },
+    "rushdb-16358": {
+      "file": "./assets/cards/originals/rushdb-16358.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16358&ope=2",
+      "sha256": "43dd51b3e26710eeb38459102ad10af72452c8188b72e9771c04c7930d1b2602"
+    },
+    "rushdb-16371": {
+      "file": "./assets/cards/originals/rushdb-16371.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16371&ope=2",
+      "sha256": "61f0b79410a73eccf01bb0846b97322a889bd4286011a0b166322d8e2b4d1282"
+    },
+    "rushdb-16372": {
+      "file": "./assets/cards/originals/rushdb-16372.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16372&ope=2",
+      "sha256": "6281f547436082c6c4e1e69acb7c6717fcb286c7ca93314d9993dd25640af9ef"
+    },
+    "rushdb-16772": {
+      "file": "./assets/cards/originals/rushdb-16772.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16772&ope=2",
+      "sha256": "113ea6663f50d05783d1c6a9f2e478b8216c4dca824e9c68651dc56b6460606c"
+    },
+    "rushdb-16776": {
+      "file": "./assets/cards/originals/rushdb-16776.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16776&ope=2",
+      "sha256": "32780b2216a550483a125788030dbc9de77ec46979158f5bd4543b872222e1ba"
+    },
+    "rushdb-16929": {
+      "file": "./assets/cards/originals/rushdb-16929.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16929&ope=2",
+      "sha256": "d723e8c9c088da7fd9caab7e3b3b1a4ce3990e1a623d9762ae1c60120cd22a64"
+    },
+    "rushdb-16934": {
+      "file": "./assets/cards/originals/rushdb-16934.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16934&ope=2",
+      "sha256": "f841abc33db64a64fbe3a84cc007f204268d489be42752dc609a4b25eff87713"
+    },
+    "rushdb-17209": {
+      "file": "./assets/cards/originals/rushdb-17209.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17209&ope=2",
+      "sha256": "670c0d22f4eebec476164f376807bfc3d23dfa9f3dbda51f5e8fe530bd7d841d"
+    },
+    "rushdb-17212": {
+      "file": "./assets/cards/originals/rushdb-17212.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17212&ope=2",
+      "sha256": "de22de7e9fb8fe859e7a619a9fb00909bcbf75a7cc3b2fcbed18a5f138c02830"
+    },
+    "rushdb-17285": {
+      "file": "./assets/cards/originals/rushdb-17285.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17285&ope=2",
+      "sha256": "6124bd9d6864a65444a2b51273832be63b4350f9c0809c51354a44466f254d41"
+    },
+    "rushdb-17543": {
+      "file": "./assets/cards/originals/rushdb-17543.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17543&ope=2",
+      "sha256": "8d14d5bcef38560615c74552bf6eaf240d1f1566ea03c3870d1dd8fee751256f"
+    },
+    "rushdb-17721": {
+      "file": "./assets/cards/originals/rushdb-17721.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17721&ope=2",
+      "sha256": "0bb851cd0ebc2c524d599b49eb2d67a7e4a366b5ef02f206d66c7416be45147e"
+    },
+    "rushdb-17868": {
+      "file": "./assets/cards/originals/rushdb-17868.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17868&ope=2",
+      "sha256": "54504fb7552ef40c050312c9609ae9c359af54291ceae9d00aab19a5242fdba8"
+    },
+    "rushdb-17926": {
+      "file": "./assets/cards/originals/rushdb-17926.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17926&ope=2",
+      "sha256": "b3c3a97dd312ac5ca4b5e8c337924322731a0e7f84378cd4f09ad8a7acca0159"
+    },
+    "rushdb-17963": {
+      "file": "./assets/cards/originals/rushdb-17963.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17963&ope=2",
+      "sha256": "46b0b23da39c2226059782123e92ceb0ead91b4043cf59ce566722d15a581e2e"
+    },
+    "rushdb-18298": {
+      "file": "./assets/cards/originals/rushdb-18298.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18298&ope=2",
+      "sha256": "76d9f47aca90e31006920b915f130951ef9ddb9135af4a2bfda2a601e184f05e"
+    },
+    "rushdb-18583": {
+      "file": "./assets/cards/originals/rushdb-18583.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18583&ope=2",
+      "sha256": "fda4a8a6e288292c08301c4e41b42a47c27133887589357d2daf95301f07fba1"
+    },
+    "rushdb-18614": {
+      "file": "./assets/cards/originals/rushdb-18614.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18614&ope=2",
+      "sha256": "7074ca2313941aafd31d78b7466bde9f315994c96356087489d5c0b5c54b3ade"
+    },
+    "rushdb-18646": {
+      "file": "./assets/cards/originals/rushdb-18646.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18646&ope=2",
+      "sha256": "639f9981b1c389626095c66fc21ac29cc12ab513ae9e02844531e0ca4cf4482b"
+    },
+    "rushdb-18685": {
+      "file": "./assets/cards/originals/rushdb-18685.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18685&ope=2",
+      "sha256": "c64e4b1fa55541bfa7b1d463b1f2094fbd64f836b102a2ab9f6efb800a59ed57"
+    },
+    "rushdb-19291": {
+      "file": "./assets/cards/originals/rushdb-19291.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19291&ope=2",
+      "sha256": "6787036bba22835e13392afd1a4319fa5895014c842dc6777ad017765cd09754"
+    },
+    "rushdb-19323": {
+      "file": "./assets/cards/originals/rushdb-19323.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19323&ope=2",
+      "sha256": "dd964d947e43be2b56de4757a4cf91e0088a6e5a40a84911034e89d9455599d2"
+    },
+    "rushdb-19329": {
+      "file": "./assets/cards/originals/rushdb-19329.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19329&ope=2",
+      "sha256": "4c54dda165cad8f3658e5fe1093c98a1fbf7792eea4b1c7934c61f4585a291b4"
+    },
+    "rushdb-19341": {
+      "file": "./assets/cards/originals/rushdb-19341.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19341&ope=2",
+      "sha256": "49a1252234eefa75481070b953bf45cb8a8c71850e1c533b9583e9391b2717a8"
+    },
+    "rushdb-19597": {
+      "file": "./assets/cards/originals/rushdb-19597.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19597&ope=2",
+      "sha256": "cae822b96e124f832ec21aa4a32054dad77cb336f791ff3dcbc7ef86d000216b"
+    },
+    "rushdb-19598": {
+      "file": "./assets/cards/originals/rushdb-19598.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19598&ope=2",
+      "sha256": "fe760e898a3acd6f1b12dbbfb3ce8a169f50e3c4fe463b33fec8173fec9e03b1"
+    },
+    "rushdb-19700": {
+      "file": "./assets/cards/originals/rushdb-19700.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19700&ope=2",
+      "sha256": "97455334fda87ea3a0c8a999f10a4b82007b84cffb54db2c4ffd1dc1b60a4f29"
+    },
+    "rushdb-19760": {
+      "file": "./assets/cards/originals/rushdb-19760.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19760&ope=2",
+      "sha256": "3580326d26e599f6c24f344bcc33efdd8c75e0d723c4f96136fa8732e68f6dff"
+    },
+    "rushdb-19761": {
+      "file": "./assets/cards/originals/rushdb-19761.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19761&ope=2",
+      "sha256": "9ae5a9e4ecca8e321b4c3e7958332ad79fcf90b8588005c7cf267060d66ed45a"
+    },
+    "rushdb-19773": {
+      "file": "./assets/cards/originals/rushdb-19773.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19773&ope=2",
+      "sha256": "7e3fbabf21ffa51462c7600a2480068d17d3e8ab219d049773df8c57b9859452"
+    },
+    "rushdb-19799": {
+      "file": "./assets/cards/originals/rushdb-19799.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19799&ope=2",
+      "sha256": "29e0393bf842301375db4ff4bf506e5a57bb666dca8dc996f4420f4e3210e0a2"
+    },
+    "rushdb-19990": {
+      "file": "./assets/cards/originals/rushdb-19990.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19990&ope=2",
+      "sha256": "f4bb9074cb74e2af85f3b27b8b1c3f8918b400f8e7313f9513e1bc9e5faa007e"
+    },
+    "rushdb-19995": {
+      "file": "./assets/cards/originals/rushdb-19995.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19995&ope=2",
+      "sha256": "b7c799c40814b207edb9d8223ad76bc95d90ef06d7195c3469e316191eb67913"
+    },
+    "rushdb-20151": {
+      "file": "./assets/cards/originals/rushdb-20151.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20151&ope=2",
+      "sha256": "1618932fd3ea9b1b13eb78a612902e0f30d2ec25f99d742f3bedbdc43a92be37"
+    },
+    "rushdb-20305": {
+      "file": "./assets/cards/originals/rushdb-20305.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20305&ope=2",
+      "sha256": "50d1a5b0d4c67901f2b1a8ccbacf2fd5a5b22244f523c81dbb75ef2dd1767a17"
+    },
+    "rushdb-20453": {
+      "file": "./assets/cards/originals/rushdb-20453.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20453&ope=2",
+      "sha256": "cd41a85abf587ecf2d3ba408ad4f82e9f503d10df3b523249ba027947c4bb9a6"
+    },
+    "rushdb-20454": {
+      "file": "./assets/cards/originals/rushdb-20454.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20454&ope=2",
+      "sha256": "b19069195965f90f821da77e27c31563dc723944c02b52632f4ebdfcfd9f3884"
+    },
+    "rushdb-20457": {
+      "file": "./assets/cards/originals/rushdb-20457.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20457&ope=2",
+      "sha256": "65ac82d3e68d7a14bd5ddf385c7276c0f61dfdaad62032c087c92d323f1a3a55"
+    },
+    "rushdb-20459": {
+      "file": "./assets/cards/originals/rushdb-20459.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20459&ope=2",
+      "sha256": "4241a41587c2145b5c9070c3a5cb155416e89a174c70d949bb62f33ca2549610"
+    },
+    "rushdb-20460": {
+      "file": "./assets/cards/originals/rushdb-20460.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20460&ope=2",
+      "sha256": "1e79398e96cc7680dfa9f38532fba95a4ccdbca4c0ae1d390bb5657e5b852611"
+    },
+    "rushdb-20461": {
+      "file": "./assets/cards/originals/rushdb-20461.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20461&ope=2",
+      "sha256": "561a6c4beb4e2d5404b81b4ff72b7dfa522647e20ff3b6a1ea73150acd6127ac"
+    },
+    "rushdb-20465": {
+      "file": "./assets/cards/originals/rushdb-20465.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20465&ope=2",
+      "sha256": "85977992e4bd26618723015bb3c35cc71098f94099f8953f6ae0620373c50944"
+    },
+    "rushdb-20610": {
+      "file": "./assets/cards/originals/rushdb-20610.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20610&ope=2",
+      "sha256": "899c7ae63c0a3af3a11a8a634405edbd4eeb4033540a88f811cda20689910605"
+    },
+    "rushdb-20665": {
+      "file": "./assets/cards/originals/rushdb-20665.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20665&ope=2",
+      "sha256": "773ddaaed14df349d7b9a6a9d8e67176efc4ade0946a4df45d21fff076d55e88"
+    },
+    "rushdb-21007": {
+      "file": "./assets/cards/originals/rushdb-21007.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=21007&ope=2",
+      "sha256": "c8d989531fcdb41dcf0195fb69a725a80c9201276fdac2fa64e1099612752c12"
+    },
+    "rushdb-21316": {
+      "file": "./assets/cards/originals/rushdb-21316.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=21316&ope=2",
+      "sha256": "7cb821a4bb2efd4e6d4c4b5deb01c354823c54731539e421f4ebb78a6e469a59"
+    },
+    "rushdb-21501": {
+      "file": "./assets/cards/originals/rushdb-21501.jpg",
+      "source": "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=21501&ope=2",
+      "sha256": "2fd13769e178a3cfbf05f7bdf6dfda212c296b8ad6804efab903e1851becffcb"
+    },
+    "yugiohdb-10866": {
+      "file": "./assets/cards/originals/yugiohdb-10866.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=10866&ope=2&request_locale=en",
+      "sha256": "0e0a6e15f6f2fcad5ea781644555cc6a108c1a508e681900bb51e618ae077fce"
+    },
+    "yugiohdb-10870": {
+      "file": "./assets/cards/originals/yugiohdb-10870.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=10870&ope=2&request_locale=es",
+      "sha256": "52fb1d8eb96485000b1b45d497a2ebd0e5481d691a5587c5c6029a6ab62915d1"
+    },
+    "yugiohdb-10942": {
+      "file": "./assets/cards/originals/yugiohdb-10942.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=10942&ope=2&request_locale=es",
+      "sha256": "837a2087dc4de090c454733ed5b9c5288afbd684b803434cf49c44c98d3bdfc4"
+    },
+    "yugiohdb-11005": {
+      "file": "./assets/cards/originals/yugiohdb-11005.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=11005&ope=2&request_locale=es",
+      "sha256": "da325b656612736f3191f96c9afe01a002494a5fbdf6b99a104ce585cd896689"
+    },
+    "yugiohdb-11413": {
+      "file": "./assets/cards/originals/yugiohdb-11413.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=11413&ope=2&request_locale=es",
+      "sha256": "0f284413d6b0f42d4897f10eace8794f4e6f920d1f3d6948edce09a12ef0c4f5"
+    },
+    "yugiohdb-11597": {
+      "file": "./assets/cards/originals/yugiohdb-11597.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=11597&ope=2&request_locale=en",
+      "sha256": "e9c846fd546360b3663625f3ec7bf1d917cf5a22f2fda502a3da8e8daff1f106"
+    },
+    "yugiohdb-11708": {
+      "file": "./assets/cards/originals/yugiohdb-11708.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=11708&ope=2&request_locale=es",
+      "sha256": "4d5db6e94adee51008842c6196a8a8fa9e43d91044ba6775ebd3def182009aa9"
+    },
+    "yugiohdb-11764": {
+      "file": "./assets/cards/originals/yugiohdb-11764.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=11764&ope=2&request_locale=es",
+      "sha256": "d798cee25f64cf5bb68595f1608a86132c83530756d86a3a50d9692ecb393896"
+    },
+    "yugiohdb-11765": {
+      "file": "./assets/cards/originals/yugiohdb-11765.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=11765&ope=2&request_locale=es",
+      "sha256": "0fb4ad41658b3256befbd2ee975e26c1de25327132feec8e7fd4a125546bbf7b"
+    },
+    "yugiohdb-12321": {
+      "file": "./assets/cards/originals/yugiohdb-12321.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12321&ope=2&request_locale=en",
+      "sha256": "da461d1ace0be351140ce764bc6352da228f009fcc08d2f8343a52eacf933c5d"
+    },
+    "yugiohdb-12464": {
+      "file": "./assets/cards/originals/yugiohdb-12464.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12464&ope=2&request_locale=es",
+      "sha256": "3ce380b9b5e95df268ff0779d14a58ad3a78fb808c744c5d07d892d24a7f8f34"
+    },
+    "yugiohdb-12668": {
+      "file": "./assets/cards/originals/yugiohdb-12668.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12668&ope=2&request_locale=en",
+      "sha256": "4cc45c65c3cb7c7a0dc665efe1c29b2624a0df7c0c7cafffcb22dbd56cefbcaa"
+    },
+    "yugiohdb-12800": {
+      "file": "./assets/cards/originals/yugiohdb-12800.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12800&ope=2&request_locale=es",
+      "sha256": "63ccc296174d5129d3a7e8d1e04d02d144b9ef8fb539db29358a4a1cb3b8a17e"
+    },
+    "yugiohdb-12870": {
+      "file": "./assets/cards/originals/yugiohdb-12870.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12870&ope=2&request_locale=es",
+      "sha256": "8a2c13e6c08f4f2db8259e97b93c44058e687ab856ef9ad7254d1acde909d5c3"
+    },
+    "yugiohdb-12872": {
+      "file": "./assets/cards/originals/yugiohdb-12872.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12872&ope=2&request_locale=en",
+      "sha256": "f5dff9afe5207d8ce26a8b38db8213b1848e8b3f54685d68c39fb558e9d27c35"
+    },
+    "yugiohdb-12950": {
+      "file": "./assets/cards/originals/yugiohdb-12950.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12950&ope=2&request_locale=es",
+      "sha256": "5d988c709f4a2dd40f9fddeaa68c307a058ce3032b81f5809ef12f01c83870d8"
+    },
+    "yugiohdb-13002": {
+      "file": "./assets/cards/originals/yugiohdb-13002.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13002&ope=2&request_locale=es",
+      "sha256": "201ef7f7f4d58c84dce7d7b32e28739dca94b101ba06d96650bc86f4d1c91c2d"
+    },
+    "yugiohdb-13034": {
+      "file": "./assets/cards/originals/yugiohdb-13034.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13034&ope=2&request_locale=en",
+      "sha256": "1bf2117cec974ad51cdfde75eb143947c7e3f640789121d58d34c7cf47b9a43c"
+    },
+    "yugiohdb-13181": {
+      "file": "./assets/cards/originals/yugiohdb-13181.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13181&ope=2&request_locale=en",
+      "sha256": "ebbf17462702a6bb65f04c349053312175942c2b1c0857f64abfdb084b5fcdef"
+    },
+    "yugiohdb-13293": {
+      "file": "./assets/cards/originals/yugiohdb-13293.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13293&ope=2&request_locale=en",
+      "sha256": "55854e1432aaee015da3554cf94b437af5879f7167414c7cb95e1e4105e5c66e"
+    },
+    "yugiohdb-13346": {
+      "file": "./assets/cards/originals/yugiohdb-13346.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13346&ope=2&request_locale=en",
+      "sha256": "9838e471264ba79102b18f7bcde3a318477e98f143607122506014661ce2fd6c"
+    },
+    "yugiohdb-13358": {
+      "file": "./assets/cards/originals/yugiohdb-13358.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13358&ope=2&request_locale=en",
+      "sha256": "337b0fce16688137c11f5352a0c1dc5562fae27b4d7ac624ce0daac141bf468e"
+    },
+    "yugiohdb-13407": {
+      "file": "./assets/cards/originals/yugiohdb-13407.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13407&ope=2&request_locale=en",
+      "sha256": "03c71457ca64ede0239fdb93f505f2e13158fff716ef097a5caf19850c151777"
+    },
+    "yugiohdb-13454": {
+      "file": "./assets/cards/originals/yugiohdb-13454.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13454&ope=2&request_locale=es",
+      "sha256": "0fc5a133ce90297ca23202621a4ed31b453fae3bea7671782d9e7791578ea459"
+    },
+    "yugiohdb-13500": {
+      "file": "./assets/cards/originals/yugiohdb-13500.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13500&ope=2&request_locale=en",
+      "sha256": "3ea9e9a26f12cd85926a7777a106aa41f25086ab8c28ba4cb3f502b1b9f9eeda"
+    },
+    "yugiohdb-13502": {
+      "file": "./assets/cards/originals/yugiohdb-13502.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13502&ope=2&request_locale=en",
+      "sha256": "1f98287135e20ac49ccf761f2e3495781fc0ce7c2cec75ddbd372bcd8758ca19"
+    },
+    "yugiohdb-13587": {
+      "file": "./assets/cards/originals/yugiohdb-13587.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13587&ope=2&request_locale=es",
+      "sha256": "ba2f099c2afd3fa76505244b3dd483661f8b480d5792e3a7a7bc9595586c0ff3"
+    },
+    "yugiohdb-13600": {
+      "file": "./assets/cards/originals/yugiohdb-13600.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13600&ope=2&request_locale=en",
+      "sha256": "f16d286301ee565401b22148928b42fbbdb3ea6018dfae13eb95b6dbc6a6ab5f"
+    },
+    "yugiohdb-13601": {
+      "file": "./assets/cards/originals/yugiohdb-13601.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13601&ope=2&request_locale=en",
+      "sha256": "ebd9a7121e845cc58952904c6ca42afaaaa0eca24015e93bc6bc4effa580e8c5"
+    },
+    "yugiohdb-13619": {
+      "file": "./assets/cards/originals/yugiohdb-13619.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13619&ope=2&request_locale=es",
+      "sha256": "e799140177f5de51a705baf7233086ae76a80dc13bbdbaa2b3bb4d02dc2beb4b"
+    },
+    "yugiohdb-13631": {
+      "file": "./assets/cards/originals/yugiohdb-13631.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13631&ope=2&request_locale=es",
+      "sha256": "612c87341eefeedc3a417d6b32f0fd1af28fc39e3cb8cc15d83020ae7f4193d2"
+    },
+    "yugiohdb-13710": {
+      "file": "./assets/cards/originals/yugiohdb-13710.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13710&ope=2&request_locale=en",
+      "sha256": "d323f61ce4b75a8b482ab1e5c03cbb74ceaf420e7e413dea1fc1e1e7f1041f1f"
+    },
+    "yugiohdb-13723": {
+      "file": "./assets/cards/originals/yugiohdb-13723.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13723&ope=2&request_locale=es",
+      "sha256": "5cd0d637edb26247944fa126620be72dc85497623132ef375068b4da4fed0055"
+    },
+    "yugiohdb-13758": {
+      "file": "./assets/cards/originals/yugiohdb-13758.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13758&ope=2&request_locale=es",
+      "sha256": "6645c008d405768820d86d0071f7734c2485130e65dc0884de464455dcfc8c53"
+    },
+    "yugiohdb-13770": {
+      "file": "./assets/cards/originals/yugiohdb-13770.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13770&ope=2&request_locale=en",
+      "sha256": "279da115a9d7cb204e12a35f15824468ac4f1aed392ed1f2f65f6473d28ee4f4"
+    },
+    "yugiohdb-13787": {
+      "file": "./assets/cards/originals/yugiohdb-13787.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13787&ope=2&request_locale=en",
+      "sha256": "f787e96c218049f0ae1cca67041ba93fbd46b3685c6f96132abc051b3edf02a0"
+    },
+    "yugiohdb-13841": {
+      "file": "./assets/cards/originals/yugiohdb-13841.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13841&ope=2&request_locale=en",
+      "sha256": "ee1d75954d8be26ab8b7d7de4eeb00c49839a233b7ac120af72e06e79b4a465c"
+    },
+    "yugiohdb-13847": {
+      "file": "./assets/cards/originals/yugiohdb-13847.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13847&ope=2&request_locale=en",
+      "sha256": "a9af1f264f76fd3748675416576b462c12e903f3b68cf7d63c2f418ca8634415"
+    },
+    "yugiohdb-13849": {
+      "file": "./assets/cards/originals/yugiohdb-13849.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13849&ope=2&request_locale=en",
+      "sha256": "c4259f21113118cd456a42e886e11c24f8a9236435c036ae46ab250cf0c9104c"
+    },
+    "yugiohdb-13851": {
+      "file": "./assets/cards/originals/yugiohdb-13851.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13851&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=18597560&size=full",
+      "native_image_id": 18597560,
+      "sha256": "cbf93cc80ec4b74c88e77e53f9bb6922fba1c725d66b877c456044dc91bbf0a7"
+    },
+    "yugiohdb-13896": {
+      "file": "./assets/cards/originals/yugiohdb-13896.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13896&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=82385847&size=full",
+      "native_image_id": 82385847,
+      "sha256": "4221d62586e946eb2250728658c167a62c62f9d297124544514d063bef7f9566"
+    },
+    "yugiohdb-13950": {
+      "file": "./assets/cards/originals/yugiohdb-13950.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13950&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=94016752&size=full",
+      "native_image_id": 94016752,
+      "sha256": "a5b140c1404ae213aacf07d2aa1a1c3d8bf7fce5b3241f8488314866fc6abf2a"
+    },
+    "yugiohdb-13974": {
+      "file": "./assets/cards/originals/yugiohdb-13974.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13974&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=78144171&size=full",
+      "native_image_id": 78144171,
+      "sha256": "320e142a94a365d17b5fbda1f25f6cad3830b19606b946e827d8bfc8e9dfda61"
+    },
+    "yugiohdb-14047": {
+      "file": "./assets/cards/originals/yugiohdb-14047.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14047&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=1142880&size=full",
+      "native_image_id": 1142880,
+      "sha256": "37754a2aed64f276fdf24ac07bb48e4c61c9c6dd0e5c240c92daf3887dec0c14"
+    },
+    "yugiohdb-14075": {
+      "file": "./assets/cards/originals/yugiohdb-14075.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14075&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=51412776&size=full",
+      "native_image_id": 51412776,
+      "sha256": "d637a8c0bc8f4e3eff5a491e7e6e6fd8e87ccc906d65f6d3a6aa77611ccf4198"
+    },
+    "yugiohdb-14085": {
+      "file": "./assets/cards/originals/yugiohdb-14085.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14085&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=85840608&size=full",
+      "native_image_id": 85840608,
+      "sha256": "4a5846c44dcacd0a08dc42bb667af96418aff6da77a8dc32130dcef158a917ca"
+    },
+    "yugiohdb-14133": {
+      "file": "./assets/cards/originals/yugiohdb-14133.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14133&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=48815792&size=full",
+      "native_image_id": 48815792,
+      "sha256": "fabfcdcf741983f5a9cd55eb8779a187612d6282a93c1d51a5e8256ea5816f3b"
+    },
+    "yugiohdb-14144": {
+      "file": "./assets/cards/originals/yugiohdb-14144.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14144&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=49238328&size=full",
+      "native_image_id": 49238328,
+      "sha256": "f211c946f75683f831615d16258cb01f38db8d7cc6107a15265f69861a221ab8"
+    },
+    "yugiohdb-14338": {
+      "file": "./assets/cards/originals/yugiohdb-14338.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14338&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=60303245&size=full",
+      "native_image_id": 60303245,
+      "sha256": "c00951fbefe3255a37095e661c61d3dcbc00273be14d37bd5c7f3aac2d6b2b4e"
+    },
+    "yugiohdb-14356": {
+      "file": "./assets/cards/originals/yugiohdb-14356.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14356&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=55285840&size=full",
+      "native_image_id": 55285840,
+      "sha256": "86a179e8942177183c4747cdec6d4d4ca4a7aa93c5a95969c1bf2974ba42d3b8"
+    },
+    "yugiohdb-14400": {
+      "file": "./assets/cards/originals/yugiohdb-14400.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14400&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=23689428&size=full",
+      "native_image_id": 23689428,
+      "sha256": "c58fd18d8abd90d663ab9d3b678e5ed0dd90f69bdce7d3dae2ed84f6298a063c"
+    },
+    "yugiohdb-14496": {
+      "file": "./assets/cards/originals/yugiohdb-14496.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14496&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=4280258&size=full",
+      "native_image_id": 4280258,
+      "sha256": "2922e2c0f8884c32b522ba33b17dc850a74e948f284dc7ed4f2f8844aab2ff45"
+    },
+    "yugiohdb-14564": {
+      "file": "./assets/cards/originals/yugiohdb-14564.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14564&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=66011101&size=full",
+      "native_image_id": 66011101,
+      "sha256": "214911b1ae67986c16c474fcb2b082ae5e4a63b54ce775600925ca54faaacdd8"
+    },
+    "yugiohdb-14676": {
+      "file": "./assets/cards/originals/yugiohdb-14676.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14676&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=65741786&size=full",
+      "native_image_id": 65741786,
+      "sha256": "201385c77631bc7d63a36aedfe416eed465bd92b9adcb2734e4638701986967a"
+    },
+    "yugiohdb-14710": {
+      "file": "./assets/cards/originals/yugiohdb-14710.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14710&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=13117073&size=full",
+      "native_image_id": 13117073,
+      "sha256": "9edc518089bbdcfb24f0fb11385b61716ea9f303c011c45a5be947adff866a2f"
+    },
+    "yugiohdb-14740": {
+      "file": "./assets/cards/originals/yugiohdb-14740.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14740&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=91800273&size=full",
+      "native_image_id": 91800273,
+      "sha256": "99d116d87068216686f1093d80e1dc55c8ecb3338477296e42faa5fec34a9fb1"
+    },
+    "yugiohdb-14741": {
+      "file": "./assets/cards/originals/yugiohdb-14741.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14741&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=27204311&size=full",
+      "native_image_id": 27204311,
+      "sha256": "411bbc7d0e685215da90426dea71066a643718c0b530aace26c35717c092e099"
+    },
+    "yugiohdb-14801": {
+      "file": "./assets/cards/originals/yugiohdb-14801.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14801&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=22091647&size=full",
+      "native_image_id": 22091647,
+      "sha256": "d234c7379ec478fd6f1ef102c7476acfdbede0389a023a73b592d3fce2502733"
+    },
+    "yugiohdb-14856": {
+      "file": "./assets/cards/originals/yugiohdb-14856.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14856&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=50277355&size=full",
+      "native_image_id": 50277355,
+      "sha256": "7e8586c498e386ca542a6c54103664809f1149de763ecc395bbd57901cbecde5"
+    },
+    "yugiohdb-14876": {
+      "file": "./assets/cards/originals/yugiohdb-14876.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14876&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=14532163&size=full",
+      "native_image_id": 14532163,
+      "sha256": "740619a6a471a54ad51508452a7b2d686c79f48217dcda9c800715208d799e94"
+    },
+    "yugiohdb-14920": {
+      "file": "./assets/cards/originals/yugiohdb-14920.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14920&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=86331741&size=full",
+      "native_image_id": 86331741,
+      "sha256": "65cbbbc092fefd84d921bc9ccb227da60ce535125e2b1cbf4f3a13338132f63d"
+    },
+    "yugiohdb-14958": {
+      "file": "./assets/cards/originals/yugiohdb-14958.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14958&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=26973555&size=full",
+      "native_image_id": 26973555,
+      "sha256": "aee7ef608b4aa8cc67dae78a26f5e6b8ceb6057858592c021346ff065262fc9c"
+    },
+    "yugiohdb-15082": {
+      "file": "./assets/cards/originals/yugiohdb-15082.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15082&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=56824871&size=full",
+      "native_image_id": 56824871,
+      "sha256": "ac485ffdbc6c80f590628e059457a485ae9e7b6237f689f46b96a7fa8dd84658"
+    },
+    "yugiohdb-15239": {
+      "file": "./assets/cards/originals/yugiohdb-15239.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15239&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=60303688&size=full",
+      "native_image_id": 60303688,
+      "sha256": "3f2a5f366f7b7ccfe25a06e83c5373510f712bb97c1b6d621964b5437f7f192f"
+    },
+    "yugiohdb-15247": {
+      "file": "./assets/cards/originals/yugiohdb-15247.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15247&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=21351206&size=full",
+      "native_image_id": 21351206,
+      "sha256": "dc2af354cd260805e54e91ee6101158948798857841121657911c07518b52bc1"
+    },
+    "yugiohdb-15248": {
+      "file": "./assets/cards/originals/yugiohdb-15248.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15248&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=58346901&size=full",
+      "native_image_id": 58346901,
+      "sha256": "72d42409ab517844fc2ab38dc2124eb3ab2a2fd60beace978bd8d5e86c442596"
+    },
+    "yugiohdb-15249": {
+      "file": "./assets/cards/originals/yugiohdb-15249.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15249&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=94730900&size=full",
+      "native_image_id": 94730900,
+      "sha256": "278ab8dd899cf715461dcf80334de4832816f9e57163fcd2cd2b6414bc09df9a"
+    },
+    "yugiohdb-15275": {
+      "file": "./assets/cards/originals/yugiohdb-15275.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15275&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=40251688&size=full",
+      "native_image_id": 40251688,
+      "sha256": "30077143d26239009e5a08c8360b51da018c518936758b0174f694997487d62b"
+    },
+    "yugiohdb-15276": {
+      "file": "./assets/cards/originals/yugiohdb-15276.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15276&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=77656797&size=full",
+      "native_image_id": 77656797,
+      "sha256": "7c742c1785512a06c551c6077d8127e729b2770f0bcfd02342e3fc466b81e547"
+    },
+    "yugiohdb-15287": {
+      "file": "./assets/cards/originals/yugiohdb-15287.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15287&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=37478723&size=full",
+      "native_image_id": 37478723,
+      "sha256": "10e3d020232fbad40c0c12f09310afab4d2ddb9897be9daf44d199370032af4e"
+    },
+    "yugiohdb-15296": {
+      "file": "./assets/cards/originals/yugiohdb-15296.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15296&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=25311006&size=full",
+      "native_image_id": 25311006,
+      "sha256": "d64e5396e51d6686348c599416543b2dda692a729915573751bea2658bcd0995"
+    },
+    "yugiohdb-15299": {
+      "file": "./assets/cards/originals/yugiohdb-15299.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15299&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=24299458&size=full",
+      "native_image_id": 24299458,
+      "sha256": "ba512804ad3f05865d0d98e8062397d865bac2d3385cb1f9f5eadc4fdbfb6009"
+    },
+    "yugiohdb-15366": {
+      "file": "./assets/cards/originals/yugiohdb-15366.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15366&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=59531356&size=full",
+      "native_image_id": 59531356,
+      "sha256": "14b901aaa5ffae6a141b4ac22052b3f94c48f5c304cbb0f3c87b00eeb221887e"
+    },
+    "yugiohdb-15392": {
+      "file": "./assets/cards/originals/yugiohdb-15392.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15392&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=42052439&size=full",
+      "native_image_id": 42052439,
+      "sha256": "67302f278d8593fff3cb8e6f123f27cea8e52f18970c71c3567662b311b5639f"
+    },
+    "yugiohdb-15524": {
+      "file": "./assets/cards/originals/yugiohdb-15524.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15524&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=90448279&size=full",
+      "native_image_id": 90448279,
+      "sha256": "e11c49d871836e10ae95fba758f277b02ee2341425675aa64ab4f84f72df8346"
+    },
+    "yugiohdb-15741": {
+      "file": "./assets/cards/originals/yugiohdb-15741.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15741&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=98127546&size=full",
+      "native_image_id": 98127546,
+      "sha256": "2e8c89e0f55d24514c82832055ac7a636b235b5b3f7ee06da1c3a22901c1f760"
+    },
+    "yugiohdb-15756": {
+      "file": "./assets/cards/originals/yugiohdb-15756.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15756&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=84211599&size=full",
+      "native_image_id": 84211599,
+      "sha256": "89122ff725982053881b81f56e52efe74b4c3472af80fa63df8e1e4639ab72a5"
+    },
+    "yugiohdb-15882": {
+      "file": "./assets/cards/originals/yugiohdb-15882.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15882&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=83656563&size=full",
+      "native_image_id": 83656563,
+      "sha256": "06deebc22f65862181b4de0c11934fe57841cda05fd6e47af4e81097c193dd17"
+    },
+    "yugiohdb-15994": {
+      "file": "./assets/cards/originals/yugiohdb-15994.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15994&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=87746184&size=full",
+      "native_image_id": 87746184,
+      "sha256": "e6c7159d569f433d2179ac7e2d9ced097d94989be51cd664dab01d372433e4f4"
+    },
+    "yugiohdb-15996": {
+      "file": "./assets/cards/originals/yugiohdb-15996.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=15996&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=40139997&size=full",
+      "native_image_id": 40139997,
+      "sha256": "657cdc0f940d69993d4b9365c0a308b8a1b89ce51fa5625d74a7aab6b8929d77"
+    },
+    "yugiohdb-16002": {
+      "file": "./assets/cards/originals/yugiohdb-16002.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=16002&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=48285768&size=full",
+      "native_image_id": 48285768,
+      "sha256": "71e4d62090895cf4ef1c82e7102f3b73b78d8b4c6461b820e7299639481615b1"
+    },
+    "yugiohdb-16233": {
+      "file": "./assets/cards/originals/yugiohdb-16233.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=16233&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=2609443&size=full",
+      "native_image_id": 2609443,
+      "sha256": "7a1ed3e461d42d3d62c9270734d698b0c849ae2786a588161cd389a6fad141b0"
+    },
+    "yugiohdb-16296": {
+      "file": "./assets/cards/originals/yugiohdb-16296.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=16296&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=5370235&size=full",
+      "native_image_id": 5370235,
+      "sha256": "42b8ce71cfc8289a1bb947f50d469a27d8385037fcbf7ca708f5389007a4096a"
+    },
+    "yugiohdb-16297": {
+      "file": "./assets/cards/originals/yugiohdb-16297.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=16297&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=32768230&size=full",
+      "native_image_id": 32768230,
+      "sha256": "5e49a1bbeadf37aa822d0fd70163998c48b313390e093908d26dd3a0881a3553"
+    },
+    "yugiohdb-16298": {
+      "file": "./assets/cards/originals/yugiohdb-16298.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=16298&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=64753988&size=full",
+      "native_image_id": 64753988,
+      "sha256": "68c6f34767151ba78adaffff2dc41a982d1be135e4eea18c615b2683a152872e"
+    },
+    "yugiohdb-16301": {
+      "file": "./assets/cards/originals/yugiohdb-16301.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=16301&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=63031396&size=full",
+      "native_image_id": 63031396,
+      "sha256": "0159bf4e684993c5a9b0d2f0e9ec9ec1ddd5df1fea14525173f0d5e7dda44ac3"
+    },
+    "yugiohdb-16386": {
+      "file": "./assets/cards/originals/yugiohdb-16386.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=16386&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=84815190&size=full",
+      "native_image_id": 84815190,
+      "sha256": "2deb85d29e56b1a0d790f79d303a35fc73c30079522997b8468f6c344f123cf9"
+    },
+    "yugiohdb-16850": {
+      "file": "./assets/cards/originals/yugiohdb-16850.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=16850&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=73082255&size=full",
+      "native_image_id": 73082255,
+      "sha256": "5b1bcb306e970a36e4f341c6127d761ea158d5ef5d4c146c90f1898bcf91ea52"
+    },
+    "yugiohdb-17119": {
+      "file": "./assets/cards/originals/yugiohdb-17119.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17119&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=10604644&size=full",
+      "native_image_id": 10604644,
+      "sha256": "46d41159ee57ae6a59d70c8389caee1998f0d92fad077852e750b28edd8f9dcb"
+    },
+    "yugiohdb-17414": {
+      "file": "./assets/cards/originals/yugiohdb-17414.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17414&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=74078255&size=full",
+      "native_image_id": 74078255,
+      "sha256": "b1aa607623ff6b40f08a6f8bd79d63a8e6c2f50c1844c48436d6cd627f5a00ed"
+    },
+    "yugiohdb-17415": {
+      "file": "./assets/cards/originals/yugiohdb-17415.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17415&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=572850&size=full",
+      "native_image_id": 572850,
+      "sha256": "b1d7dca6afad5622dbf51bd31c1eba7fca781f3ceef3e743bd8fbe6d9c09a46c"
+    },
+    "yugiohdb-17416": {
+      "file": "./assets/cards/originals/yugiohdb-17416.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17416&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=37961969&size=full",
+      "native_image_id": 37961969,
+      "sha256": "e2b9ddbf133b1039a1990ab5546c06e9badb04a9cfe75020ada39f2c20f23048"
+    },
+    "yugiohdb-17417": {
+      "file": "./assets/cards/originals/yugiohdb-17417.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17417&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=73956664&size=full",
+      "native_image_id": 73956664,
+      "sha256": "70d905adc5ff83800ba01318ecaec663da7e780e0b70888ea5509ab414cb9d1a"
+    },
+    "yugiohdb-17445": {
+      "file": "./assets/cards/originals/yugiohdb-17445.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17445&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=28226490&size=full",
+      "native_image_id": 28226490,
+      "sha256": "afea154fe0ae0b78cd6cbc9e119f679d7c9cf416af67749521c95efc3931056f"
+    },
+    "yugiohdb-17462": {
+      "file": "./assets/cards/originals/yugiohdb-17462.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17462&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=77103950&size=full",
+      "native_image_id": 77103950,
+      "sha256": "b8636fca8433c603e677cb556ef0983936b1ddac1ec5006b703c73a328a373b0"
+    },
+    "yugiohdb-17473": {
+      "file": "./assets/cards/originals/yugiohdb-17473.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17473&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=38436986&size=full",
+      "native_image_id": 38436986,
+      "sha256": "b46273ae0fb80ffec6aa89328a61dca3e90f98aa2d0886ec22ad02b9f1e564d2"
+    },
+    "yugiohdb-17475": {
+      "file": "./assets/cards/originals/yugiohdb-17475.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17475&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=1329620&size=full",
+      "native_image_id": 1329620,
+      "sha256": "688170f9890f9b4c44f5230332b1b616eee2f6aa0ddaa59b2ed211c64e4e23a1"
+    },
+    "yugiohdb-17603": {
+      "file": "./assets/cards/originals/yugiohdb-17603.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17603&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=63542003&size=full",
+      "native_image_id": 63542003,
+      "sha256": "ab5eda218c92ad637a4211c2cbc8b5939bdb3e52344ce1b288d91157876ed5c2"
+    },
+    "yugiohdb-17604": {
+      "file": "./assets/cards/originals/yugiohdb-17604.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17604&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=99937011&size=full",
+      "native_image_id": 99937011,
+      "sha256": "1fc445fe9d9d69e64449928c434acb3148b4d7603f7261366cd32535729838bc"
+    },
+    "yugiohdb-17625": {
+      "file": "./assets/cards/originals/yugiohdb-17625.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17625&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=84797028&size=full",
+      "native_image_id": 84797028,
+      "sha256": "86b7e435ff4d12e032a1dac97658d17ae7e8bde514d1bc32de3c55dd0e71caa5"
+    },
+    "yugiohdb-17746": {
+      "file": "./assets/cards/originals/yugiohdb-17746.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17746&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=11765832&size=full",
+      "native_image_id": 11765832,
+      "sha256": "2945c0e7fe52531d9ffde0cfe342e9682ab38fcc4f1c9129fd8d6bac185a3ee8"
+    },
+    "yugiohdb-17762": {
+      "file": "./assets/cards/originals/yugiohdb-17762.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17762&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=33854624&size=full",
+      "native_image_id": 33854624,
+      "sha256": "777f3797f58166af5f2cc3ed6eeb4bef8a918ae6837aa6270e47dccc34b88f78"
+    },
+    "yugiohdb-17764": {
+      "file": "./assets/cards/originals/yugiohdb-17764.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17764&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=6637331&size=full",
+      "native_image_id": 6637331,
+      "sha256": "24a9f1539bf0c6daf026ad5ce79265544bef8d9adf788084c6e671f4ee378f1c"
+    },
+    "yugiohdb-17768": {
+      "file": "./assets/cards/originals/yugiohdb-17768.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17768&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=32909498&size=full",
+      "native_image_id": 32909498,
+      "sha256": "d67401517e3ec010a03d243ce32c544544f065f8426cead052dbe1b9d2a1faf7"
+    },
+    "yugiohdb-17769": {
+      "file": "./assets/cards/originals/yugiohdb-17769.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17769&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=68304193&size=full",
+      "native_image_id": 68304193,
+      "sha256": "3440385be47f8289e4220b325e6cf85ade4a164bea832989d7fc5e3b21d4863f"
+    },
+    "yugiohdb-17770": {
+      "file": "./assets/cards/originals/yugiohdb-17770.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17770&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=94392192&size=full",
+      "native_image_id": 94392192,
+      "sha256": "985b17e552293dbc4861cf347404ffe1df74c3afbb472cf4d624450b4a78b59c"
+    },
+    "yugiohdb-17800": {
+      "file": "./assets/cards/originals/yugiohdb-17800.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17800&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=73542331&size=full",
+      "native_image_id": 73542331,
+      "sha256": "579241df04acd0b1c950afd2649cae90da18c08fdf3a76294c1e174db6936648"
+    },
+    "yugiohdb-17803": {
+      "file": "./assets/cards/originals/yugiohdb-17803.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17803&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=72329844&size=full",
+      "native_image_id": 72329844,
+      "sha256": "c753c2d9dd04d168a74a378b0b069eeec5a8bf494658511f7b8649c794ad0395"
+    },
+    "yugiohdb-17804": {
+      "file": "./assets/cards/originals/yugiohdb-17804.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17804&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=8728498&size=full",
+      "native_image_id": 8728498,
+      "sha256": "af1ed59ec6ee8a28030adc8aed6edc57b8bd9a56f3b585719a578c29a33397ce"
+    },
+    "yugiohdb-17813": {
+      "file": "./assets/cards/originals/yugiohdb-17813.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17813&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=6767771&size=full",
+      "native_image_id": 6767771,
+      "sha256": "8a9200f9846a2e5f391da0c022b395946c41b546e0be26c55184d93b38913306"
+    },
+    "yugiohdb-17815": {
+      "file": "./assets/cards/originals/yugiohdb-17815.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17815&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=69540484&size=full",
+      "native_image_id": 69540484,
+      "sha256": "d6fdde47e73225c7ee9169d6e13f302ad1b3bce4df932344b1fbd0f83c58a48b"
+    },
+    "yugiohdb-17831": {
+      "file": "./assets/cards/originals/yugiohdb-17831.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=17831&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=21639276&size=full",
+      "native_image_id": 21639276,
+      "sha256": "b978c8634b449c3bd807b496ce406b37d36e3d76ad248dcbd2bb2b1993862449"
+    },
+    "yugiohdb-18151": {
+      "file": "./assets/cards/originals/yugiohdb-18151.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18151&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=31149212&size=full",
+      "native_image_id": 31149212,
+      "sha256": "d5ad2bdc343e0e3f55e6cf3b10f3bda66a9005a9fe5f8748b0ca5066ae4ec5c5"
+    },
+    "yugiohdb-18152": {
+      "file": "./assets/cards/originals/yugiohdb-18152.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18152&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=78534861&size=full",
+      "native_image_id": 78534861,
+      "sha256": "1528a51d166c3be11957cb7586cdb50e41c9a471dffcd5e27cf4fcfa731c7310"
+    },
+    "yugiohdb-18153": {
+      "file": "./assets/cards/originals/yugiohdb-18153.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18153&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=4928565&size=full",
+      "native_image_id": 4928565,
+      "sha256": "3a9a99d86698b9c071948babce8f7125d4a7e46d55525b50a7ad7ed6b353a551"
+    },
+    "yugiohdb-18190": {
+      "file": "./assets/cards/originals/yugiohdb-18190.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18190&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=11132674&size=full",
+      "native_image_id": 11132674,
+      "sha256": "d04d153277aede4e5f128f863df2016fef90bf78ff0a84a36684e85434e5068d"
+    },
+    "yugiohdb-18191": {
+      "file": "./assets/cards/originals/yugiohdb-18191.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18191&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=48626373&size=full",
+      "native_image_id": 48626373,
+      "sha256": "6fae757921a996784da5af977874e99bb5c296d22b1baee9f47a5b6886c12754"
+    },
+    "yugiohdb-18203": {
+      "file": "./assets/cards/originals/yugiohdb-18203.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18203&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=34447918&size=full",
+      "native_image_id": 34447918,
+      "sha256": "892be789a73627fea655c06fd81cd7d5e91fc48995a7eb948e4463cf576deda6"
+    },
+    "yugiohdb-18204": {
+      "file": "./assets/cards/originals/yugiohdb-18204.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18204&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=71832012&size=full",
+      "native_image_id": 71832012,
+      "sha256": "e3765724f67fea422ea1678bd12142cb428ca57df0477c3dceac160effc63c3c"
+    },
+    "yugiohdb-18214": {
+      "file": "./assets/cards/originals/yugiohdb-18214.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18214&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=35269904&size=full",
+      "native_image_id": 35269904,
+      "sha256": "5667ef9c5c7b8d5b506edec2fa99d1043535582133b5ddfe2da8ce66e3ba31ac"
+    },
+    "yugiohdb-18219": {
+      "file": "./assets/cards/originals/yugiohdb-18219.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18219&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=7436169&size=full",
+      "native_image_id": 7436169,
+      "sha256": "63a2c32a6d4269ef0b930e294cc3c91802d8e5acaab34ff0f75a25d68c08dffd"
+    },
+    "yugiohdb-18220": {
+      "file": "./assets/cards/originals/yugiohdb-18220.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18220&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=33925864&size=full",
+      "native_image_id": 33925864,
+      "sha256": "927f9525810cd34a12a611cfaf8842942fdb4e869002d2b6e3898bef4fd71870"
+    },
+    "yugiohdb-18448": {
+      "file": "./assets/cards/originals/yugiohdb-18448.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18448&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=98462037&size=full",
+      "native_image_id": 98462037,
+      "sha256": "9175d827f84579d46d87ebefe92f5f5413347fdce962aade74701413b1560f96"
+    },
+    "yugiohdb-18505": {
+      "file": "./assets/cards/originals/yugiohdb-18505.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18505&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=53971455&size=full",
+      "native_image_id": 53971455,
+      "sha256": "9c74d7a788ba6e64f9b001d3a0b4fa2411e28e8cabf3275fcc05c8f0059b6e01"
+    },
+    "yugiohdb-18507": {
+      "file": "./assets/cards/originals/yugiohdb-18507.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18507&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=22850702&size=full",
+      "native_image_id": 22850702,
+      "sha256": "e647f272b68cbdcedd767390ff8a22bb60ec8a6ca8df7e4ff41840979370782f"
+    },
+    "yugiohdb-18666": {
+      "file": "./assets/cards/originals/yugiohdb-18666.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18666&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=93125329&size=full",
+      "native_image_id": 93125329,
+      "sha256": "d08c71e9f04430ee05aabb348c3cea43959de02a7a6de7cd42ee04a56f57ad4a"
+    },
+    "yugiohdb-18800": {
+      "file": "./assets/cards/originals/yugiohdb-18800.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18800&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=53404966&size=full",
+      "native_image_id": 53404966,
+      "sha256": "2ee0a0dd3b4591473c0d0abf4c948295e77c2a272f9f8cf759ce9447ac3c70f0"
+    },
+    "yugiohdb-18801": {
+      "file": "./assets/cards/originals/yugiohdb-18801.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18801&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=89809665&size=full",
+      "native_image_id": 89809665,
+      "sha256": "df86f74e277cffe2a8923c128b2116404fdd0608ff7e5d4792ae41aa72cd9fb4"
+    },
+    "yugiohdb-18807": {
+      "file": "./assets/cards/originals/yugiohdb-18807.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18807&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=88554436&size=full",
+      "native_image_id": 88554436,
+      "sha256": "f9710d1a25b898afed8770a3a022a2ea3114746566a7538028026645c02128c9"
+    },
+    "yugiohdb-18827": {
+      "file": "./assets/cards/originals/yugiohdb-18827.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18827&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=36320744&size=full",
+      "native_image_id": 36320744,
+      "sha256": "69817b109dbb138dc6898a62964420c38e9463ff60fadc265fe38650d8c0d993"
+    },
+    "yugiohdb-18835": {
+      "file": "./assets/cards/originals/yugiohdb-18835.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18835&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=97864322&size=full",
+      "native_image_id": 97864322,
+      "sha256": "836cc46fa0d92d21c56090d38ed277adfae2e224f7a9edd714c71afdff7a5a10"
+    },
+    "yugiohdb-18843": {
+      "file": "./assets/cards/originals/yugiohdb-18843.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18843&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=98319530&size=full",
+      "native_image_id": 98319530,
+      "sha256": "41e43075941b2abf9391b4e79325d6df9c75c4e155a064fb551d4c75dd3f7eb7"
+    },
+    "yugiohdb-18844": {
+      "file": "./assets/cards/originals/yugiohdb-18844.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18844&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=25807544&size=full",
+      "native_image_id": 25807544,
+      "sha256": "71ee3e18a7825fe5234b2c048aafbb7f87ed9bb739d1f013f5268baa442e8f08"
+    },
+    "yugiohdb-18915": {
+      "file": "./assets/cards/originals/yugiohdb-18915.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18915&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=46412900&size=full",
+      "native_image_id": 46412900,
+      "sha256": "77cbb399b09a13f0a7bb9ebd99d01045d09f795513cfe438dcfb837d9d63f0e1"
+    },
+    "yugiohdb-18916": {
+      "file": "./assets/cards/originals/yugiohdb-18916.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18916&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=22411609&size=full",
+      "native_image_id": 22411609,
+      "sha256": "f18df0c81ef92753806bf619969f784fe836a1481f063a693e26bd518ee33f61"
+    },
+    "yugiohdb-18917": {
+      "file": "./assets/cards/originals/yugiohdb-18917.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18917&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=59805313&size=full",
+      "native_image_id": 59805313,
+      "sha256": "7ef60d307efcd9cdd092317337c862fcc9eaf326cf6966095d00ce2bd8e21902"
+    },
+    "yugiohdb-18918": {
+      "file": "./assets/cards/originals/yugiohdb-18918.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18918&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=85250352&size=full",
+      "native_image_id": 85250352,
+      "sha256": "37f016b27ca96b84a1e7e337fc4dcc1fee0f7ae0a93ec8531142a3e8063ec1da"
+    },
+    "yugiohdb-18919": {
+      "file": "./assets/cards/originals/yugiohdb-18919.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18919&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=11654067&size=full",
+      "native_image_id": 11654067,
+      "sha256": "b9b155602b0beab4249b7bb1d2b3610ce04e472c104dd75b41dbe74a684ceefe"
+    },
+    "yugiohdb-18920": {
+      "file": "./assets/cards/originals/yugiohdb-18920.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18920&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=58143766&size=full",
+      "native_image_id": 58143766,
+      "sha256": "0b1532e50290e3ea24985b1b00154a39b9b58a1981de1514698d07c8730dceae"
+    },
+    "yugiohdb-18921": {
+      "file": "./assets/cards/originals/yugiohdb-18921.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18921&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=84138874&size=full",
+      "native_image_id": 84138874,
+      "sha256": "1ae48e3e1aaae6f93b51ca386f36653587185ea6f6d2831f72c12336f48f3b43"
+    },
+    "yugiohdb-18926": {
+      "file": "./assets/cards/originals/yugiohdb-18926.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=18926&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=46804536&size=full",
+      "native_image_id": 46804536,
+      "sha256": "46bd91dfa2d79bbc2308c36a6342071c8afa244728ab7633b69b2f53b8250ab4"
+    },
+    "yugiohdb-19027": {
+      "file": "./assets/cards/originals/yugiohdb-19027.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19027&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=85106525&size=full",
+      "native_image_id": 85106525,
+      "sha256": "817495f103e1cedd1c70ded9aa4150b05da694173b4c3bce5c9ab371b8d50f08"
+    },
+    "yugiohdb-19148": {
+      "file": "./assets/cards/originals/yugiohdb-19148.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19148&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=72270339&size=full",
+      "native_image_id": 72270339,
+      "sha256": "1fbdab7581c17dfeb2db459c74030f4db9b2bd3c57e54ab7ec121c032c50a692"
+    },
+    "yugiohdb-19153": {
+      "file": "./assets/cards/originals/yugiohdb-19153.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19153&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=84941194&size=full",
+      "native_image_id": 84941194,
+      "sha256": "c637e7ee28eb3e6aed93f0a2e052f119651a9869bfc5adf7a654774d71570e78"
+    },
+    "yugiohdb-19155": {
+      "file": "./assets/cards/originals/yugiohdb-19155.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19155&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=47330808&size=full",
+      "native_image_id": 47330808,
+      "sha256": "829b9cfc6781a71607beac8cda218a64cfb51215f893e0b3a6865a638fe41cd7"
+    },
+    "yugiohdb-19184": {
+      "file": "./assets/cards/originals/yugiohdb-19184.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19184&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=93039339&size=full",
+      "native_image_id": 93039339,
+      "sha256": "2abe233befddf902ce6e1f98bbece0637d49a23027d78e6061cb665348d8c23a"
+    },
+    "yugiohdb-19188": {
+      "file": "./assets/cards/originals/yugiohdb-19188.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19188&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=29301450&size=full",
+      "native_image_id": 29301450,
+      "sha256": "fac4ace8f67ec54c3ef34654a54e13b7fd379503b1c935523b98772916abeb1d"
+    },
+    "yugiohdb-19196": {
+      "file": "./assets/cards/originals/yugiohdb-19196.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19196&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=80845034&size=full",
+      "native_image_id": 80845034,
+      "sha256": "db3646d3c1e6a6184e114f933c3405a647e6a4b200ce863b91bb72a466812ea1"
+    },
+    "yugiohdb-19199": {
+      "file": "./assets/cards/originals/yugiohdb-19199.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19199&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=89023486&size=full",
+      "native_image_id": 89023486,
+      "sha256": "935f7c591536a061b48813344219a7af1950f9fcdcea690b84dd3a895f6917a6"
+    },
+    "yugiohdb-19200": {
+      "file": "./assets/cards/originals/yugiohdb-19200.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19200&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=16528181&size=full",
+      "native_image_id": 16528181,
+      "sha256": "746646cd91529b6aaceb0c53711e531323e52a469fe3d7868a20950d1149909e"
+    },
+    "yugiohdb-19207": {
+      "file": "./assets/cards/originals/yugiohdb-19207.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19207&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=40678060&size=full",
+      "native_image_id": 40678060,
+      "sha256": "e8050880af84b5e7e67f9f56a30f9abaef64b4ae00ede0bc6e869ab67d1831ae"
+    },
+    "yugiohdb-19507": {
+      "file": "./assets/cards/originals/yugiohdb-19507.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19507&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=2772337&size=full",
+      "native_image_id": 2772337,
+      "sha256": "0bcb66f2d54d616097db27e65d31f6519c3f67b632475fd70ad7448a55d17374"
+    },
+    "yugiohdb-19886": {
+      "file": "./assets/cards/originals/yugiohdb-19886.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19886&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=70636044&size=full",
+      "native_image_id": 70636044,
+      "sha256": "a004601e432c82f0a2a1a457b570cc9319b53f546224fac15b44499370f96014"
+    },
+    "yugiohdb-20196": {
+      "file": "./assets/cards/originals/yugiohdb-20196.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20196&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=60764609&size=full",
+      "native_image_id": 60764609,
+      "sha256": "9b10f4df0dae7c38152c6e379425ee338e5a344bbe623089dc5e34c58a1914a6"
+    },
+    "yugiohdb-20205": {
+      "file": "./assets/cards/originals/yugiohdb-20205.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20205&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=58707981&size=full",
+      "native_image_id": 58707981,
+      "sha256": "aa378a1ee8f4ce8179b27d92cc0916b1ebc1dc2e81f149dee68259237c441118"
+    },
+    "yugiohdb-20206": {
+      "file": "./assets/cards/originals/yugiohdb-20206.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20206&ope=2&request_locale=en",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=84192580&size=full",
+      "native_image_id": 84192580,
+      "sha256": "34f5a4659153a273688b8946ee48a67f4e9d63a05b30e32b3d6174aaedb45cc4"
+    },
+    "yugiohdb-20214": {
+      "file": "./assets/cards/originals/yugiohdb-20214.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20214&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=46640168&size=full",
+      "native_image_id": 46640168,
+      "sha256": "70b592a0c8c170bbf0c0496139dbb2b61f7d2dbfceda8bcbd3b828d7d65670e7"
+    },
+    "yugiohdb-20225": {
+      "file": "./assets/cards/originals/yugiohdb-20225.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20225&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=2463794&size=full",
+      "native_image_id": 2463794,
+      "sha256": "942343244b8421286aff01162a55c092d7c4d3591be172466efded43a5628cc8"
+    },
+    "yugiohdb-20226": {
+      "file": "./assets/cards/originals/yugiohdb-20226.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20226&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=49867899&size=full",
+      "native_image_id": 49867899,
+      "sha256": "3a366d1b9e258b0269bc3801a382ff209ed7388de0eb74b9ae10bcfe133aa0ec"
+    },
+    "yugiohdb-20240": {
+      "file": "./assets/cards/originals/yugiohdb-20240.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20240&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=98567237&size=full",
+      "native_image_id": 98567237,
+      "sha256": "7290aae192f9e757f1aaee8d5b3b233ab09ac4f9348fa65657e039f810c4579c"
+    },
+    "yugiohdb-20490": {
+      "file": "./assets/cards/originals/yugiohdb-20490.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20490&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=28803166&size=full",
+      "native_image_id": 28803166,
+      "sha256": "f834386406ad18d31862b9844871ab92399ed79ea6d8658f57b02ff463a5c7e9"
+    },
+    "yugiohdb-20500": {
+      "file": "./assets/cards/originals/yugiohdb-20500.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20500&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=42141493&size=full",
+      "native_image_id": 42141493,
+      "sha256": "41eb9a5a3113cc8f338661d2d37e80e47c65a202b0687bc778eac8632e401ac8"
+    },
+    "yugiohdb-20511": {
+      "file": "./assets/cards/originals/yugiohdb-20511.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20511&ope=2&request_locale=es",
+      "image_source": "https://stationxtulua.com/yugioh/?api=deck_builder&op=image&id=8963089&size=full",
+      "native_image_id": 8963089,
+      "sha256": "9a75cec10549cbf559412d92603678814d6d8e351320a2d8d3ef4b78d6c7e829"
+    },
+    "yugiohdb-20521": {
+      "file": "./assets/cards/originals/yugiohdb-20521.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20521&ope=2&request_locale=es",
+      "sha256": "6938d26ca3ff200e22a36ac7a94dcee5383d1dddc7cf4d6df6b7ccf6fc1255b4"
+    },
+    "yugiohdb-20787": {
+      "file": "./assets/cards/originals/yugiohdb-20787.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20787&ope=2&request_locale=es",
+      "sha256": "1a0ca300f6b537e2aeea31a22d3114cbc1b4e769853438038a6137325d98e9d4"
+    },
+    "yugiohdb-21163": {
+      "file": "./assets/cards/originals/yugiohdb-21163.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21163&ope=2&request_locale=en",
+      "sha256": "6d89ecdbd99378ecdf3d8dcc5027dd3ad230ec83cc4a74be1b979b1db6e5666e"
+    },
+    "yugiohdb-21164": {
+      "file": "./assets/cards/originals/yugiohdb-21164.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21164&ope=2&request_locale=en",
+      "sha256": "6d6733679653ea4743d3f90d57c3f9f6792a6f367497f63fdc237feb9f26acca"
+    },
+    "yugiohdb-21419": {
+      "file": "./assets/cards/originals/yugiohdb-21419.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21419&ope=2&request_locale=es",
+      "sha256": "c93983b8729e48ae2e3c00b6713eac376a3b3e989d947d595dcdfb5860967d62"
+    },
+    "yugiohdb-21453": {
+      "file": "./assets/cards/originals/yugiohdb-21453.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21453&ope=2&request_locale=es",
+      "sha256": "eed967a046f9f5c03b60997ea2499b9bc45139b8a23fe336fd0b4203ac9eaf79"
+    },
+    "yugiohdb-21774": {
+      "file": "./assets/cards/originals/yugiohdb-21774.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21774&ope=2&request_locale=es",
+      "sha256": "78d4fc36cbd08f96c70e37d75dcb2205766fa6abdac8ee731c878ad53be947a4"
+    },
+    "yugiohdb-21775": {
+      "file": "./assets/cards/originals/yugiohdb-21775.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21775&ope=2&request_locale=es",
+      "sha256": "e979be9d3d70173a5b26843ef75cde34e3a309002d0c72102fe0e2d2e41befe3"
+    },
+    "yugiohdb-21776": {
+      "file": "./assets/cards/originals/yugiohdb-21776.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21776&ope=2&request_locale=es",
+      "sha256": "02ca8887db28f9485ba88eab7e51eea90c8fa3dfb49fbb6430903f75399f51f2"
+    },
+    "yugiohdb-21777": {
+      "file": "./assets/cards/originals/yugiohdb-21777.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21777&ope=2&request_locale=es",
+      "sha256": "4c934ed952e847cadf889bea07f2eab18672e76c62dc58942ce783094f08e034"
+    },
+    "yugiohdb-21810": {
+      "file": "./assets/cards/originals/yugiohdb-21810.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21810&ope=2&request_locale=es",
+      "sha256": "c1e4b52e7a5fc852fd81befaf694bda4be8083cd5aa2da51e66b272e07835b59"
+    },
+    "yugiohdb-21811": {
+      "file": "./assets/cards/originals/yugiohdb-21811.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21811&ope=2&request_locale=es",
+      "sha256": "e4eb885ce6182d310c689b19c1cd558e47fc870430b09f59476438a0ea6c4fb7"
+    },
+    "yugiohdb-21812": {
+      "file": "./assets/cards/originals/yugiohdb-21812.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21812&ope=2&request_locale=es",
+      "sha256": "f91bfcd488b62977abc3eb4c1e5b5986495ad59be7d3b49e9e985d9a97e5b6c1"
+    },
+    "yugiohdb-21823": {
+      "file": "./assets/cards/originals/yugiohdb-21823.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21823&ope=2&request_locale=es",
+      "sha256": "8d193e7f213bdf9317dbd3fe5bf76ba5d5dfb030ede60254b650e22bd6fbad4e"
+    },
+    "yugiohdb-21824": {
+      "file": "./assets/cards/originals/yugiohdb-21824.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21824&ope=2&request_locale=en",
+      "sha256": "cffcdd5bb3dadb0edb29ecc7de9b713af93bfd7f87a4dc9569bdf70bffeedd08"
+    },
+    "yugiohdb-21840": {
+      "file": "./assets/cards/originals/yugiohdb-21840.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21840&ope=2&request_locale=es",
+      "sha256": "d47a2f94bb45495f091e43b3c9eacae8aaad8d6d5c846e778c35feac5409e00f"
+    },
+    "yugiohdb-22089": {
+      "file": "./assets/cards/originals/yugiohdb-22089.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22089&ope=2&request_locale=en",
+      "sha256": "8d1cbc5152886d27dca2de7bdabe0c7cbf8efe9b5ded928e43add80d82eec80f"
+    },
+    "yugiohdb-22116": {
+      "file": "./assets/cards/originals/yugiohdb-22116.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22116&ope=2&request_locale=en",
+      "sha256": "49fd5b52724c35dbc907ec75cd2ce9eef45de10445eb4d6497064c4634992097"
+    },
+    "yugiohdb-22117": {
+      "file": "./assets/cards/originals/yugiohdb-22117.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22117&ope=2&request_locale=en",
+      "sha256": "667173754b944287d4873c4046b603e87fec4503c84667f5707ec8546d1e2e71"
+    },
+    "yugiohdb-22118": {
+      "file": "./assets/cards/originals/yugiohdb-22118.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22118&ope=2&request_locale=en",
+      "sha256": "32da3ffd826223da048ce0805074a9b8a68b6eb3a90317b021cb32bebb592a28"
+    },
+    "yugiohdb-22119": {
+      "file": "./assets/cards/originals/yugiohdb-22119.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22119&ope=2&request_locale=en",
+      "sha256": "fff8587477b92889a0406f3ee93db7917967eb2c2233e72fbaef9d340477e188"
+    },
+    "yugiohdb-22142": {
+      "file": "./assets/cards/originals/yugiohdb-22142.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22142&ope=2&request_locale=en",
+      "sha256": "75944d5017ca53680f35cb680662e3d8013c85882ac98fa1c4f2afe97c15ebd3"
+    },
+    "yugiohdb-22143": {
+      "file": "./assets/cards/originals/yugiohdb-22143.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22143&ope=2&request_locale=en",
+      "sha256": "989c28c4bdac7bf085f499e86039e2f2d35645b55c13b73e525729cf8c186930"
+    },
+    "yugiohdb-22144": {
+      "file": "./assets/cards/originals/yugiohdb-22144.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22144&ope=2&request_locale=en",
+      "sha256": "13e3aa99ffb0afea1a8c9d71b36569dabbb720f3d7005b8fb08f2f529309d7d1"
+    },
+    "yugiohdb-22158": {
+      "file": "./assets/cards/originals/yugiohdb-22158.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22158&ope=2&request_locale=es",
+      "sha256": "e556d8b63ab6b85453e5b9f9dd44fe52af59bcd477cec549580feb7508c75a10"
+    },
+    "yugiohdb-22159": {
+      "file": "./assets/cards/originals/yugiohdb-22159.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22159&ope=2&request_locale=en",
+      "sha256": "946c6c198b51f402b631fd8b1e1c221319b920e302fa36ddaf34c470193499a9"
+    },
+    "yugiohdb-22169": {
+      "file": "./assets/cards/originals/yugiohdb-22169.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22169&ope=2&request_locale=es",
+      "sha256": "d6af2cd4682ebe99c23c602ec504d93bb9e1a2eae3bbf755450f095a14cf5682"
+    },
+    "yugiohdb-22173": {
+      "file": "./assets/cards/originals/yugiohdb-22173.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22173&ope=2&request_locale=en",
+      "sha256": "2b29f1dd948e00b6dcdb2d2edd2a3aef25feeb0c6e3000f57187412fb23fd780"
+    },
+    "yugiohdb-22335": {
+      "file": "./assets/cards/originals/yugiohdb-22335.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22335&ope=2&request_locale=en",
+      "sha256": "0aa5632a06518df7564b05ceec6bd996aa2b46baebc716d200dbe910c7d1b9db"
+    },
+    "yugiohdb-22356": {
+      "file": "./assets/cards/originals/yugiohdb-22356.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22356&ope=2&request_locale=en",
+      "sha256": "460846d83408582bf7f8801fcba8da8d3165bfc616a2bf9354de9379fad47bce"
+    },
+    "yugiohdb-22519": {
+      "file": "./assets/cards/originals/yugiohdb-22519.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22519&ope=2&request_locale=ja",
+      "sha256": "1704a7dd26567ddc8dc16c6b80510c5960cc3f78deb396fa8f8a03a8751a90a3"
+    },
+    "yugiohdb-22520": {
+      "file": "./assets/cards/originals/yugiohdb-22520.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22520&ope=2&request_locale=en",
+      "sha256": "ccb6f895979b66879f135925e01061fb8119d24b6b6e6a397ad5f8e313f61a5b"
+    },
+    "yugiohdb-22521": {
+      "file": "./assets/cards/originals/yugiohdb-22521.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22521&ope=2&request_locale=en",
+      "sha256": "ba0583eab6b0ab284164395948fb22f586d2f545db6f0ad703742499d1788ebb"
+    },
+    "yugiohdb-22523": {
+      "file": "./assets/cards/originals/yugiohdb-22523.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22523&ope=2&request_locale=en",
+      "sha256": "e98da407dc4ca56433f2bc1f15568c75b5bfae4666fab9c7140989a850d5bc4a"
+    },
+    "yugiohdb-22533": {
+      "file": "./assets/cards/originals/yugiohdb-22533.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22533&ope=2&request_locale=en",
+      "sha256": "32fb336af112a8695107a283ec3a285e139a3b2fc0d8d470d1db62f299b46a23"
+    },
+    "yugiohdb-22554": {
+      "file": "./assets/cards/originals/yugiohdb-22554.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22554&ope=2&request_locale=en",
+      "sha256": "185dccc978d75d572c241a8c7c89f88042bb731e99f84a99813fabc2a8d54bf8"
+    },
+    "yugiohdb-22565": {
+      "file": "./assets/cards/originals/yugiohdb-22565.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22565&ope=2&request_locale=en",
+      "sha256": "70292bf134efd57c5e136aeefbaa45a28591b4c20fc92793989408ffcc688266"
+    },
+    "yugiohdb-22567": {
+      "file": "./assets/cards/originals/yugiohdb-22567.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22567&ope=2&request_locale=en",
+      "sha256": "6589768ceb3951e87013a92c1b59d2383ac8765c5a5c0d66262175403f8335c5"
+    },
+    "yugiohdb-22984": {
+      "file": "./assets/cards/originals/yugiohdb-22984.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=22984&ope=2&request_locale=en",
+      "sha256": "da57b1f8ceaaeecd2c4016fe6106716c99d8c0c59948447ed57b518396f429d4"
+    },
+    "yugiohdb-4342": {
+      "file": "./assets/cards/originals/yugiohdb-4342.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4342&ope=2&request_locale=en",
+      "sha256": "92af0273f7e84d385806b661d37e3df16debaaf3b49d368abaad442a9708d6f2"
+    },
+    "yugiohdb-4678": {
+      "file": "./assets/cards/originals/yugiohdb-4678.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4678&ope=2&request_locale=es",
+      "sha256": "66c93370875d39a204d00a32a8a831946d4b5fe1154b8c616a67962d0fcceaa2"
+    },
+    "yugiohdb-4861": {
+      "file": "./assets/cards/originals/yugiohdb-4861.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4861&ope=2&request_locale=en",
+      "sha256": "522aaaff8b39ca6dd7c50391f6129e9f667aea4cd739f750618a28c95d2aff5d"
+    },
+    "yugiohdb-4909": {
+      "file": "./assets/cards/originals/yugiohdb-4909.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4909&ope=2&request_locale=en",
+      "sha256": "0a10774e08f2654822f6a4f2e192366c8f98f99e63cbe859ff1758c1368a414c"
+    },
+    "yugiohdb-5129": {
+      "file": "./assets/cards/originals/yugiohdb-5129.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5129&ope=2&request_locale=en",
+      "sha256": "ce7ee82ec49898ab4118aedfb998e724eb2707999583020fbe53fed636933854"
+    },
+    "yugiohdb-5328": {
+      "file": "./assets/cards/originals/yugiohdb-5328.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5328&ope=2&request_locale=en",
+      "sha256": "aefc486b208b5399736244d039b189b48f0be7db67c79070df986217c5c6c72f"
+    },
+    "yugiohdb-5432": {
+      "file": "./assets/cards/originals/yugiohdb-5432.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5432&ope=2&request_locale=en",
+      "sha256": "b149f66ac144fd9f7de9bc41501ed420238967696fcf955b7850c90ff1282d34"
+    },
+    "yugiohdb-5537": {
+      "file": "./assets/cards/originals/yugiohdb-5537.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5537&ope=2&request_locale=es",
+      "sha256": "f96143f77634b1daaabc277a9d059a132f87f309d505a5866a09d436da28b1cc"
+    },
+    "yugiohdb-5622": {
+      "file": "./assets/cards/originals/yugiohdb-5622.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5622&ope=2&request_locale=en",
+      "sha256": "c4fecd22611a209e0321e89fc7bdf131c37100d9013540424a9228f88e3f9239"
+    },
+    "yugiohdb-6390": {
+      "file": "./assets/cards/originals/yugiohdb-6390.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=6390&ope=2&request_locale=en",
+      "sha256": "21c3b4cd304b51151f0d09d24009a05ee07a5ad58d324d31eae9c769f7af8d6b"
+    },
+    "yugiohdb-6397": {
+      "file": "./assets/cards/originals/yugiohdb-6397.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=6397&ope=2&request_locale=es",
+      "sha256": "dcece0d920b3f6f1c847cef49c19082b9c8777190919e4aa6dcb327af60ad2e0"
+    },
+    "yugiohdb-6398": {
+      "file": "./assets/cards/originals/yugiohdb-6398.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=6398&ope=2&request_locale=es",
+      "sha256": "af1639678788d58619bd48701ededf57f37f36e61eba3a22fe1ad1132740ae5c"
+    },
+    "yugiohdb-6458": {
+      "file": "./assets/cards/originals/yugiohdb-6458.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=6458&ope=2&request_locale=en",
+      "sha256": "d309f36d45a591d6576197c49484b14acabbec35b61cc4a59db8a0c8801514e2"
+    },
+    "yugiohdb-6511": {
+      "file": "./assets/cards/originals/yugiohdb-6511.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=6511&ope=2&request_locale=en",
+      "sha256": "661ebf2e2f2268b43a9e239ff11219fa9451574d6d53be790a4d93b9fdb02676"
+    },
+    "yugiohdb-6663": {
+      "file": "./assets/cards/originals/yugiohdb-6663.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=6663&ope=2&request_locale=en",
+      "sha256": "efbfecd1d65ca79009678f8b27eb79dfcd79f1b7240fba48c74071c8aab01eca"
+    },
+    "yugiohdb-6734": {
+      "file": "./assets/cards/originals/yugiohdb-6734.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=6734&ope=2&request_locale=en",
+      "sha256": "1e81a8738e35a84070fee2967c5c32268b99c4cda0c653aaefb3af70195a8c9f"
+    },
+    "yugiohdb-6768": {
+      "file": "./assets/cards/originals/yugiohdb-6768.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=6768&ope=2&request_locale=en",
+      "sha256": "32fa41eb80b8a40dd277920188c9fc99b8b607db51abaded58e47aa4bfe8759d"
+    },
+    "yugiohdb-6783": {
+      "file": "./assets/cards/originals/yugiohdb-6783.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=6783&ope=2&request_locale=en",
+      "sha256": "b1183e571914037fa22a7ac41fccac417eca6d5a4320fa1481dc1ea877203cf9"
+    },
+    "yugiohdb-6830": {
+      "file": "./assets/cards/originals/yugiohdb-6830.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=6830&ope=2&request_locale=en",
+      "sha256": "5d0ddd54e88f599d383b9fe2afc148e1361744fedcfaca97993d4aec68c6670c"
+    },
+    "yugiohdb-6884": {
+      "file": "./assets/cards/originals/yugiohdb-6884.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=6884&ope=2&request_locale=en",
+      "sha256": "122830168c200856ec695cd2f2a669562617d360affcfd96b0de7b1a64ddb2d1"
+    },
+    "yugiohdb-6980": {
+      "file": "./assets/cards/originals/yugiohdb-6980.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=6980&ope=2&request_locale=en",
+      "sha256": "0ea0f6c3303d51e038b27cea743124e8e4d6a900834aca38360aa2a59e2bdaf7"
+    },
+    "yugiohdb-7082": {
+      "file": "./assets/cards/originals/yugiohdb-7082.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7082&ope=2&request_locale=en",
+      "sha256": "557193ca6576ed80087ea7cbd74816d04c31b7155f74938a8552ce55cd79fb34"
+    },
+    "yugiohdb-7083": {
+      "file": "./assets/cards/originals/yugiohdb-7083.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7083&ope=2&request_locale=en",
+      "sha256": "e715fc7c8926c5c6d6481cc655fe91495a8d6ab61b939ac54e588aaac5e376fb"
+    },
+    "yugiohdb-7086": {
+      "file": "./assets/cards/originals/yugiohdb-7086.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7086&ope=2&request_locale=en",
+      "sha256": "74fa7ae4a3bd24fd591d4b1907a23ff44b667983fe5aafbfd5cc3f412c426ad7"
+    },
+    "yugiohdb-7153": {
+      "file": "./assets/cards/originals/yugiohdb-7153.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7153&ope=2&request_locale=en",
+      "sha256": "c1d4585e5adbcfa91be687a1260bb16720f7d8d71f002756e0b93e54ec1d474a"
+    },
+    "yugiohdb-7243": {
+      "file": "./assets/cards/originals/yugiohdb-7243.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7243&ope=2&request_locale=en",
+      "sha256": "bc764ce7be621b20614ffc1ce2f1611a71ec12a4bd9eb4b644e4f5ad2eac1dda"
+    },
+    "yugiohdb-7400": {
+      "file": "./assets/cards/originals/yugiohdb-7400.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7400&ope=2&request_locale=es",
+      "sha256": "04fd59e0bf17910a5a594ed92d7e26e293d911ff2105280ca71fa8b6906bddd8"
+    },
+    "yugiohdb-7403": {
+      "file": "./assets/cards/originals/yugiohdb-7403.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7403&ope=2&request_locale=en",
+      "sha256": "f8208e99dc7b212ebd13f56c3850bf914621cb0fed1c70ede00a1653a47d3012"
+    },
+    "yugiohdb-7436": {
+      "file": "./assets/cards/originals/yugiohdb-7436.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7436&ope=2&request_locale=es",
+      "sha256": "dcb70d8fbeb7b996e159a4815a03a887f69a7d88dd9f909ed815628d496c834d"
+    },
+    "yugiohdb-7445": {
+      "file": "./assets/cards/originals/yugiohdb-7445.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7445&ope=2&request_locale=es",
+      "sha256": "6ff8e37d04aa77162981a123394acd19784fa9a722e019d92f94214679808b78"
+    },
+    "yugiohdb-7519": {
+      "file": "./assets/cards/originals/yugiohdb-7519.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7519&ope=2&request_locale=en",
+      "sha256": "66724345bce1a04e0781fa38b3aa4d4fcd7361dfa003082e30668ce63e7ebc65"
+    },
+    "yugiohdb-7934": {
+      "file": "./assets/cards/originals/yugiohdb-7934.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7934&ope=2&request_locale=en",
+      "sha256": "85688bb8b72760ec319e6fb9312ae7eab6f6496c212d9fe878e5f0a4ed38b153"
+    },
+    "yugiohdb-8038": {
+      "file": "./assets/cards/originals/yugiohdb-8038.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=8038&ope=2&request_locale=en",
+      "sha256": "56cdb30b3b0c0c594ef79f50fff2201f7083d9da5d4a33d950c1129892837778"
+    },
+    "yugiohdb-8092": {
+      "file": "./assets/cards/originals/yugiohdb-8092.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=8092&ope=2&request_locale=es",
+      "sha256": "bf115a40118d9cf70b1eef191b86e742e9a1f75254b8fb0293f5826846ae4385"
+    },
+    "yugiohdb-8213": {
+      "file": "./assets/cards/originals/yugiohdb-8213.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=8213&ope=2&request_locale=en",
+      "sha256": "f57620b143f8615e4aadb12a2ddc5dbda1962833c52991b08e63ec8eb0f3b811"
+    },
+    "yugiohdb-8428": {
+      "file": "./assets/cards/originals/yugiohdb-8428.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=8428&ope=2&request_locale=en",
+      "sha256": "2b5bd763bd84f4bb36591fff279e34b539e8d4fa003c4eac38415b0234751b33"
+    },
+    "yugiohdb-8933": {
+      "file": "./assets/cards/originals/yugiohdb-8933.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=8933&ope=2&request_locale=es",
+      "sha256": "fe71895b31ac7352547acefce9f13e4430f082d64ca013f63cac323a7934736f"
+    },
+    "yugiohdb-9279": {
+      "file": "./assets/cards/originals/yugiohdb-9279.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=9279&ope=2&request_locale=es",
+      "sha256": "64bb0da292040a2ea47b7d0e6534a41f8f727b8508b7344d7ec50514a7a2a3f6"
+    },
+    "yugiohdb-9352": {
+      "file": "./assets/cards/originals/yugiohdb-9352.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=9352&ope=2&request_locale=en",
+      "sha256": "220b4f9932a54144190c21b9f2f37b5d6b8a4ad9ab53ea8c3b6d6ecb72c427de"
+    },
+    "yugiohdb-9455": {
+      "file": "./assets/cards/originals/yugiohdb-9455.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=9455&ope=2&request_locale=en",
+      "sha256": "8f2b35d40e240d1ae254867b9cfe82646236e966f40d376370eb0fe4db2b20ec"
+    },
+    "yugiohdb-9861": {
+      "file": "./assets/cards/originals/yugiohdb-9861.jpg",
+      "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=9861&ope=2&request_locale=en",
+      "sha256": "2aa2ecea822210afaa05693031555e19551641049dbfd8198f607f5d29841384"
+    }
+  }
+}

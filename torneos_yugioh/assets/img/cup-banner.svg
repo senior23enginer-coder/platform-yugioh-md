@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="420" viewBox="0 0 1400 420">
+  <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#120b05"/><stop offset=".45" stop-color="#332008"/><stop offset="1" stop-color="#07101f"/></linearGradient></defs>
+  <rect width="1400" height="420" fill="url(#g)"/>
+  <g opacity=".28" fill="none" stroke="#ffd25f"><circle cx="1030" cy="210" r="170"/><circle cx="1030" cy="210" r="118"/><path d="M0 340C260 250 350 420 590 300S980 120 1400 260"/></g>
+  <g transform="translate(890 70)" fill="#ffd25f" stroke="#fff2b2" stroke-width="5">
+    <path d="M90 20h180v52c0 86-42 152-90 152S90 158 90 72z"/>
+    <path d="M90 58H35c0 55 27 90 72 102M270 58h55c0 55-27 90-72 102" fill="none"/>
+    <path d="M168 224h24v52h68v36H100v-36h68z"/>
+  </g>
+  <text x="70" y="150" fill="#ffd25f" font-family="Arial" font-size="28" font-weight="900" letter-spacing="8">COPA DESTACADA</text>
+  <text x="70" y="230" fill="#ffffff" font-family="Arial" font-size="82" font-weight="900">APEX</text>
+  <text x="74" y="282" fill="#b9c6df" font-family="Arial" font-size="25">Eliminacion directa de alto nivel</text>
+</svg>

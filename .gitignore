@@ -1,0 +1,56 @@
+# Local configuration and credentials
+**/config/database.local.php
+**/config/chatgpt.local.php
+.env
+.env.*
+!.env.example
+config/database.local.php
+config/chatgpt.local.php
+/yugioh-chatgpt-config.php
+**/yugioh-chatgpt-state/
+store-private.php
+conexiones.md
+htdocs/
+**/*connection-state.json
+**/credentials*.json
+**/*.pem
+**/*.key
+
+# Generated dependencies, caches and temporary state
+# Research deliveries are local inputs; keep this directory empty in Git.
+/torneos_yugioh/context/gpt/**
+!/torneos_yugioh/context/gpt/.gitkeep
+node_modules/
+__pycache__/
+*.pyc
+*.lock.tmp
+torneos_yugioh/assets/cache/
+torneos_yugioh/.deployment-backups/
+torneos_yugioh/artifacts/
+torneos_yugioh/test-results/
+test-results/
+playwright-report/
+torneos_yugioh/qa-*.png
+torneos_yugioh/tests-*.png
+torneos_yugioh/tmp_*
+torneos_yugioh/tmp-*
+torneos_yugioh/.tmp_*
+
+# Keep only the editorial dependencies and reports intentionally imported into outputs.
+/outputs/*
+!/outputs/ygo-editorial-sync-20261030/
+!/outputs/ygo-import-11-decks-20261101/
+/outputs/ygo-editorial-sync-20261030/*
+!/outputs/ygo-editorial-sync-20261030/baseline/
+!/outputs/ygo-editorial-sync-20261030/MANIFIESTO_ACTUAL.json
+!/outputs/ygo-editorial-sync-20261030/CONTEXTO_PARA_CHATGPT.txt
+!/outputs/ygo-editorial-sync-20261030/LEEME_SINCRONIZACION.txt
+!/outputs/ygo-editorial-sync-20261030/actualizacion.schema.json
+/outputs/ygo-import-11-decks-20261101/*
+!/outputs/ygo-import-11-decks-20261101/INVENTARIO_LISTAS_CARGADAS.json
+!/outputs/ygo-import-11-decks-20261101/import-verification.json
+!/outputs/ygo-import-11-decks-20261101/production-ui.json
+!/outputs/ygo-import-11-decks-20261101/verification.json
+!/outputs/ygo-import-11-decks-20261101/CONTEXTO_PARA_CHATGPT_VIGENTE.txt
+!/outputs/ygo-import-11-decks-20261101/ui.cjs
+!/outputs/ygo-import-11-decks-20261101/backend-test.php

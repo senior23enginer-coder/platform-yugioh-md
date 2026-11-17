@@ -1,0 +1,32 @@
+{
+  "name": "YUGIOH MD - Station X Tulua",
+  "short_name": "YUGIOH MD",
+  "description": "Registro competitivo, calendario, rankings y resultados de Station X Tulua.",
+  "start_url": "./?#dashboard",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07101f",
+  "theme_color": "#07101f",
+  "shortcuts": [
+    {
+      "name": "Calculador de jugadas",
+      "short_name": "Jugadas",
+      "description": "Abrir escenarios preparados para uso offline",
+      "url": "./play-calculator.html"
+    }
+  ],
+  "icons": [
+    {
+      "src": "./assets/imagenes%20eventos/torneo/00-default-torneo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/imagenes%20eventos/torneo/00-default-torneo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

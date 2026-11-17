@@ -1,0 +1,94 @@
+{
+  "version": "20261107-study-ten-143",
+  "scope": "received_sections_01_to_10",
+  "decks": {
+    "650": {
+      "path": "./assets/editorial/20261107-study-ten/650.json",
+      "cards": 42,
+      "sections": 10,
+      "routes": 6,
+      "steps": 35,
+      "sha256": "113bdc475ada0c774da7973cb8d2f6dbc6b44042ae91682b7e1fcd4007102bc3"
+    },
+    "653": {
+      "path": "./assets/editorial/20261107-study-ten/653.json",
+      "cards": 37,
+      "sections": 10,
+      "routes": 7,
+      "steps": 44,
+      "sha256": "a477f15e8a3aafb1b526d77c15c17b11cd9fd913f126808062111c847aca5f90"
+    },
+    "656": {
+      "path": "./assets/editorial/20261107-study-ten/656.json",
+      "cards": 50,
+      "sections": 10,
+      "routes": 9,
+      "steps": 42,
+      "sha256": "60685eb9ea19fa67fa15bd5e6150ba1adfe49aa3aed35ff1fe6e61eb78247539"
+    },
+    "665": {
+      "path": "./assets/editorial/20261107-study-ten/665.json",
+      "cards": 38,
+      "sections": 10,
+      "routes": 9,
+      "steps": 49,
+      "sha256": "0ed6736db0c97e01abe9488be8076c1d056b573bfac64f9361e60bd12b571dc7"
+    },
+    "670": {
+      "path": "./assets/editorial/20261107-study-ten/670.json",
+      "cards": 45,
+      "sections": 10,
+      "routes": 7,
+      "steps": 33,
+      "sha256": "7a6f492cac0a13f9a9bec694919b53a01e391b3977c77bdb51da96d11601c6db"
+    },
+    "684": {
+      "path": "./assets/editorial/20261107-study-ten/684.json",
+      "cards": 52,
+      "sections": 10,
+      "routes": 8,
+      "steps": 33,
+      "sha256": "d2145c02208276cbe26d61ddea6268196d47a08f11c3690b4c1ed5ecd62af598"
+    },
+    "687": {
+      "path": "./assets/editorial/20261107-study-ten/687.json",
+      "cards": 36,
+      "sections": 10,
+      "routes": 13,
+      "steps": 56,
+      "sha256": "8063a5a648d36942534840454dda20593a05ff43966cdd7489d737640924fa3f"
+    },
+    "704": {
+      "path": "./assets/editorial/20261107-study-ten/704.json",
+      "cards": 17,
+      "sections": 10,
+      "routes": 2,
+      "steps": 10,
+      "sha256": "95a39f8ba3dc011c72d8f7eb4d20288a6436c8b09b94557fbae0b3add6ec8321"
+    },
+    "705": {
+      "path": "./assets/editorial/20261107-study-ten/705.json",
+      "cards": 16,
+      "sections": 10,
+      "routes": 4,
+      "steps": 20,
+      "sha256": "386b0358dd6eec5b1f71d5946ed4dc3408c3d65e46957498acecfc7eff74bcb0"
+    },
+    "706": {
+      "path": "./assets/editorial/20261107-study-ten/706.json",
+      "cards": 17,
+      "sections": 10,
+      "routes": 6,
+      "steps": 25,
+      "sha256": "8beac45a84eba8724facc26c778b248ed2d4df75b46619d7b1d7fa5025009c1a"
+    },
+    "707": {
+      "path": "./assets/editorial/20261107-study-ten/707.json",
+      "cards": 20,
+      "sections": 10,
+      "routes": 7,
+      "steps": 26,
+      "sha256": "932cb95590e1f334049b7ad8ea07f4304487d2583722815e9ddb01dd989820ae"
+    }
+  }
+}

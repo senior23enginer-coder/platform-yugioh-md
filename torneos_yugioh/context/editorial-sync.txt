@@ -1,0 +1,236 @@
+STATION X — CONTEXTO VIGENTE DEL MÓDULO DE DECKS PARA CHATGPT
+Edición 3. Actualizado 2026-11-02, America/Bogota.
+
+ESTA ES LA REFERENCIA ACTIVA
+Se aplicó por orden expresa del propietario la entrega Station_X_Entrega_FINAL_11_Decks_Completa_Para_Codex. Sus inventarios y análisis REEMPLAZAN la información activa anterior de esos 11 decks. No se mezclan sus capítulos/rutas con los anexos del 30 de octubre. La documentación anterior se conserva como historial, no como versión vigente de esas fichas.
+La fuente es Station_X_Analisis_11_Decks_Completos_36_Apartados.json. Las declaraciones internas «no importado» y «sin autorización actual» describían el momento de generación del documento. La orden posterior del propietario autorizó esta importación; se conserva el original sin falsificar esas declaraciones.
+
+ESTADO REAL COMPROBADO
+67 decks en el catálogo. 11 con inventario guardado; los otros 56 no se completan por intuición. Hay 390 filas de cartas/fichas, 396 capítulos (36 por deck), 126 rutas, 110 manos y 4 Skills externas al Main. Una fila puede agrupar varias copias. Se conservaron los mismos IDs, nombres de catálogo, equipos, divisiones, logos, calendario, resultados y datos competitivos.
+El historial de perfiles registra una nueva revisión por cada deck. La guía usa la entrega nueva para sus cartas, rutas, temas y Skills; el perfil nativo sigue siendo editable. «Ver información completa» muestra el registro de la nueva entrega, no el TXT anterior. Los cuatro atlas se conservan como referencias visuales aisladas sin scripts; si hay diferencias, prevalece el consolidado reciente.
+Las 70 fichas de cartas Rush tienen datos y fuentes pero no IDs de imagen YGOPRODeck; no se suplantan con cartas TCG ni se inventan miniaturas. Las cuatro imágenes originales de Skill sí están cargadas.
+
+POLÍTICA DEL PROPIETARIO
+Publicar TODO el contenido entregado con sus estados visibles: pendiente, no verificado, condicional, hipótesis y no ejecutable. La ausencia de certificación no bloquea la importación autorizada. Mostrar una ruta no significa que pueda ejecutarse legalmente. Una Skill no cuenta como carta del Main ni mano inicial. Extra vacío de Royal es intencional y no es error. Reserva no es Side.
+La regla de listas cargadas evita inventar una construcción: esta entrega contenía inventarios aprobados y se guardaron con ella. No exigir que esos inventarios existieran antes de recibir la orden explícita de importarlos. No alterar cartas o cantidades para completar reglas, materiales o banlist. Conservar cualquier problema indicado con su etiqueta y motivo.
+No inventar resultados, rating, simulaciones, legalidad ni porcentajes de victoria. No presentar las 126 rutas como plenamente reproducidas: el documento no certifica esa ejecución. No combinar formatos TCG/GOAT/Rush ni confundir Konami CID con YGOPRODeck ID.
+
+MAPA COMPLETO DEL MÓDULO
+Entrada: catálogo de decks → selección de una ficha → información de identidad y equipo → nueve apartados navegables. La ficha distingue información administrativa, lista real, conocimiento editorial y actividad competitiva.
+
+1. Identidad de la ficha
+ID real, nombre, formato(s), arquetipo, estilo, división, asociación a equipo, código/símbolo/colores y logos/cobertura según datos existentes. El equipo es una asociación competitiva, no la identidad de las cartas. No renombrar un deck o equipo ni sustituir logos como efecto de editar una guía.
+
+2. Rendimiento (performance)
+Partidas y duelos, indicadores de resultados, ritmo, puntos de vida y formas de cierre disponibles. Se deriva de actividad registrada, no del juicio editorial. ChatGPT puede explicar las métricas que recibe, pero no fabricar muestras, win rate, duraciones ni datos por turno.
+
+3. Historial y agenda (history)
+Fechas, rivales, estado, resultados y acceso a cada partida. Una guía o una propuesta de optimización no modifica ninguna partida, su estado ni el calendario.
+
+4. Historial de eventos (events)
+Participaciones e inscripciones por evento/temporada y acceso al evento. No confundir formato de cartas, modalidad de evento y división de liga. No cambiar inscripciones para completar una guía.
+
+5. Decklist y multimedia (decklist)
+Fuente de verdad de las cartas utilizadas: filas guardadas asociadas por deck_id, con card_name, ygoprodeck_id, quantity, section y anotaciones/función cuando existan. Secciones separadas: main, extra, side, reserve.
+La ficha permite ver Main, Extra, Side y reserva. El editor conserva un borrador hasta guardar. Soporta cantidades, movimiento entre secciones por arrastre y selector, búsqueda paginada de catálogo e inspector de imagen con zoom. No considerar un borrador sin guardar como la lista vigente.
+Las cartas clave, variaciones y archivos/media son información adicional: no completan una lista ni cambian sus cantidades. Si una variación tiene otras cartas, debe identificar versión/lista propia y no mezclarse silenciosamente con la principal.
+La reserva es inventario de opciones. El Side es una selección específica; no derivarlo automáticamente de toda la reserva. Un Extra vacío puede ser intencional o no aplicable; pedir confirmación según formato/construcción. Nunca completar slots para llegar a una cantidad teórica.
+Las imágenes de cartas y sus IDs oficiales permiten reconocer piezas, pero no certifican disponibilidad, pertenencia a un deck ni legalidad. Las referencias visuales de learning-guides.json no sustituyen las filas guardadas de la decklist.
+Los archivos/Skill/atlas de la entrega se publicaron como recursos de la guía; no inventar inscripciones ni listas de jugadores a partir de ellos.
+
+6. Ranking y tier (ranking)
+Posición, tier y trayectoria que produzca la plataforma. La opinión sobre poder o dificultad de un deck no sobrescribe ranking/rating ni crea una tier list como hecho observado.
+
+7. Logros (achievements)
+Títulos, subcampeonatos, medallas y progreso según reglas y actividad. ChatGPT no concede premios a partir de una guía.
+
+8. Estilo y estrategia (strategy; título interior «Guía de juego»)
+Es la sección formativa que se desarrolla a continuación. Consume identidad, lista exacta guardada y perfil editorial. Los cambios del perfil tienen revisión e historial nativos; una edición no se registra como resultado competitivo.
+
+9. Matchups (matchups)
+Apartado de contraste entre teoría y resultados observados por rival. Es diferente del selector «Contra otros decks» de la guía: allí se estudia el plan cualitativo; aquí se compara con evidencia de partidas cuando exista. Sin muestras, mantener «sin muestra». Sin lista rival confirmada, no afirmar que se conoce su construcción exacta.
+
+10. Editar deck (edit)
+Datos administrativos, división, arquetipo, logos y notas. Es distinto de editar decklist y de editar perfil estratégico. Una actualización editorial no autoriza cambios administrativos o deportivos.
+
+RELACIÓN ENTRE LAS FUENTES
+Identidad → dice qué deck/entidad se está viendo.
+Decklist guardada → dice qué cartas y cantidades tiene esa versión.
+Perfil editorial → explica cómo funciona esa lista y con qué limitaciones.
+Guía visual → presenta una selección para aprender, con acceso al detalle íntegro.
+Resultados reales → permiten estudiar rendimiento; no se infieren del texto.
+Documento fuente → conserva conocimiento y procedencia; no importa cartas por sí mismo.
+No intercambiar estos papeles. Una referencia documental puede estar desactualizada respecto a la lista guardada.
+
+ORGANIZACIÓN EXACTA DE ESTILO Y ESTRATEGIA
+Nivel principal de aprendizaje:
+- Empieza aquí: objetivo de victoria, estilo y piezas representativas; fortalezas/riesgos completos y accesos a aprender una jugada o preparar un rival.
+- Cartas y funciones: carta ampliable, nombre/ID, cantidad y sección documentada, función, buscadores/objetivos, costes, restricciones y sinergias; búsqueda por nombre o función. Separar carta realmente guardada de carta alternativa/referencia.
+- Combos paso a paso: selector de ruta, cartas/estado inicial, condiciones, flujo visual de acciones, detalle de cada paso, cartas implicadas, paso anterior/siguiente y contingencias. Los requisitos deben indicar si una carta se necesita en mano, Deck, Cementerio, campo o como objetivo alternativo.
+- Contra otros decks: selector del rival, qué intenta hacer, plan propio y respuestas/ventanas documentadas. Un rival del mismo formato no significa que su lista esté conocida. Para un plan específico a su construcción exigir su lista guardada/confirmada; sin ella, conservar información arquetípica solo como referencia general condicionada y marcar el cruce pendiente.
+- Si te interrumpen: punto de corte, recurso comprometido, qué pierde la ruta, alternativas legales y cuándo detenerse.
+- Primero o segundo: prioridades, interacciones, ruptura, recursos para seguimiento y ajustes entre duelos con Side confirmado.
+
+Nivel de profundización:
+- Plan y recursos: identidad/ritmo/dificultad; plan principal, condición de victoria, motor, apertura, juego medio, juego tardío, fortalezas/riesgos y etiquetas.
+- Construcción y Side: lista exacta, distribución, función individual, Extra, sinergias, conflictos, alternativas y propuestas entra/sale. Propuestas separadas de cambios ejecutados.
+- Consistencia y evaluación: probabilidades con supuestos y fórmula; límites de la interpretación; valoraciones editoriales justificadas y fuente/revisión. Las valoraciones no son porcentajes de victoria.
+- Práctica y reglas: manos de prueba, decisiones, contingencias, rulings, rutas completas como referencia, qué está comprobado y qué falta validar.
+
+Interacción actualmente disponible: temas seleccionables, búsqueda dentro de cada área, detalle íntegro, texto por bloques, tablas a partir de estructura tabular, barras para puntuaciones presentes, imágenes de referencia ampliables, navegación de pasos y retorno a guía/documento. No existe un simulador completo de jugadas, validación automática de reglas, calculadora de probabilidades editable ni corrector interactivo de manos de práctica.
+La clasificación actual de temas técnicos usa grupos y palabras del título. El campo section del contrato expresa el destino lógico; la integración debe comprobar el destino real y adaptar el mapeo cuando haga falta. No afirmar que toda la taxonomía se consume automáticamente.
+
+
+ESTÁNDAR ACTUAL: LOS MISMOS 36 APARTADOS PARA CADA LISTA CARGADA
+El contenido depende de las cartas reales; igualdad de estructura no exige igual número de combos ni inventar datos. Preservar las condiciones y el texto completo. Cada carta tiene su ficha de 18 campos y estado. Los campos pendientes se muestran como pendientes, no se rellenan por suposición.
+1. Rol y objetivo principal
+2. Recepción obligatoria de un nuevo deck
+3. Validación de cartas
+4. Main, Extra, Side y Reserva
+5. Análisis individual de cartas
+6. Análisis de sinergias
+7. Mecánicas de invocación
+8. Todas las líneas de combo
+9. Documentación de cada combo
+10. Guía visual de combos
+11. Cadenas de efectos
+12. Interrupciones del oponente
+13. Recuperación de combos
+14. Plan para ir primero
+15. Plan para ir segundo
+16. Estrategias ante situaciones adversas
+17. Fortalezas
+18. Debilidades
+19. Brick y manos problemáticas
+20. Gestión de recursos
+21. Condiciones de victoria
+22. Cantidades y sustituciones
+23. Optimización del Side Deck
+24. Contra otros decks
+25. Calificación del 1 al 10
+26. Cálculo del promedio
+27. Probabilidades y consistencia
+28. Simulaciones de manos
+29. Errores comunes
+30. Verificación obligatoria
+31. Confianza de los resultados
+32. Control de versiones
+33. Resumen obligatorio
+34. Todos los decks registrados
+35. Estadísticas del catálogo
+36. Confirmación final
+
+DATOS QUE DEBE ENTREGAR CHATGPT
+Inventario exacto por main/extra/side/reserve, con cantidades y nombres; Skill aparte. Fichas individuales de 18 campos: identidad, efecto/condiciones, función principal/secundaria, sinergias, combos, dependencias, restricciones, ventajas, debilidades, primero, segundo, turnos posteriores, riesgo de carta muerta, cantidad actual, cantidad sugerida, alternativas e importancia. No reemplazar una cantidad aprobada con una sugerencia.
+Rutas: ID estable, título, estado inicial, condiciones, pasos completos, costes/zonas/materiales/restricciones, resultado condicionado, rama de fallo, estado de ejecución/verificación y fuentes. Una ilustración no reemplaza la secuencia técnica.
+Matchups: identidad/formato y lista asumida del rival, plan y ventanas, condiciones y fuentes; distinguir referencia arquetípica de una lista conocida. No convertir hipótesis en estadísticas.
+Manos: cartas de la lista, tamaño de mano declarado, orden de turno, decisiones documentadas, incertidumbres y Skill aparte. Son muestras, no partidas completas.
+Probabilidades: Main N, mano h, copias/conjuntos e intersecciones, evento, fórmula, resultado, redondeo y límite. No confundir robar una carta con ejecutar una ruta o ganar.
+Evaluación: conservar la escala del documento y la justificación. El consolidado documenta 1–10 en sus capítulos; no convertirlo silenciosamente en los campos nativos antiguos 1–5 ni fabricar notas. Las notas sin evidencia siguen sin calificar.
+
+SINCRONIZACIÓN: SIEMPRE REEMPLAZAR LA VERSIÓN ACTIVA DEL DECK AFECTADO
+La entrega de 11 decks es un formato consolidado completo; no es un delta station-x-editorial/1. No generar parches doc:H8/doc:B4 para las versiones reemplazadas. Los antiguos hashes sx-caf34dbb8b5ed6a08721 y bfaf3d... identifican el TXT histórico, NO la fuente activa de estos 11 decks.
+La plataforma entrega el registro vigente del deck/tema, su huella de archivo y la huella actual de su lista. ChatGPT debe copiar esas referencias exactas y entregar solo los decks/campos/rutas que se quieren corregir, preservando todo lo demás. Una entrega completa de un deck reemplaza su contenido activo; una parcial requiere alcance explícito y no borra campos omitidos.
+No crear un deck duplicado cuando ya existe su ID. No modificar otros decks, participantes, equipos o resultados. Mantener un registro previo y una nueva revisión/auditoría nativa. Una exportación de contexto no autoriza por sí sola una carga futura.
+No afirmar que un JSON arbitrario se aplica solo: validar estructura, identidad, inventarios, dependencias y estados, adaptar derivados y probar UI. La validación de reglas es independiente y no bloquea publicar estados no verificados cuando el propietario autoriza la importación.
+Para decks todavía sin lista, pedir que se cargue o que el propietario entregue un inventario aprobado con autorización de carga. No inventar una decklist genérica.
+
+REFERENCIAS ACTIVAS PARA CODEX
+Manifiesto de las entregas: torneos_yugioh/assets/editorial/deck-deliveries.json
+Registros por deck: torneos_yugioh/assets/editorial/20261101-11-decks/deck-ID.json
+Fuente original consolidada: torneos_yugioh/assets/editorial/20261101-11-decks/source.json
+Estado de sincronización: torneos_yugioh/context/editorial-sync-state.json
+Inventario confirmado: outputs/ygo-import-11-decks-20261101/INVENTARIO_LISTAS_CARGADAS.json
+Evidencia de escritura: outputs/ygo-import-11-decks-20261101/import-verification.json
+Evidencia de UI: outputs/ygo-import-11-decks-20261101/production-ui.json
+El exportador editorial_sync.py usa los registros actuales para estos 11 decks y rechaza parches basados en sus bloques antiguos. No publica automáticamente.
+
+HUELLA DE LA ENTREGA ORIGINAL
+68235c68eec2c1ef4222bdb972504f76df25d9ca8a73e3cf9a0b1e1bcac75513
+
+DECKS REEMPLAZADOS Y LISTAS GUARDADAS
+665 | Kashtira Pure | catálogo: Kashtira Pure | tcg_advanced | {"main": 42, "extra": 15, "side": 0, "reserve": 19} | 44 fichas | 8 rutas | list_sha256=e434965a2feda4aaa5bee42dd22bc0b0791712a9d8b1673413af5e4467db0eab
+670 | Infernoble | catálogo: Infernoble | tcg_advanced | {"main": 42, "extra": 15, "side": 0, "reserve": 12} | 45 fichas | 8 rutas | list_sha256=3385904766cefcac8caab67c09dfc94b562ea85e6fd9ee5b3fd0441c6a347e77
+650 | Elfnote | catálogo: Elfnote | tcg_advanced | {"main": 40, "extra": 15, "side": 15, "reserve": 0} | 43 fichas | 10 rutas | list_sha256=f6f411586d06f5cdf71f83a6378f3a1ba003721c9573365368a0f7a108c07296
+684 | Cyber Dragon Pure | catálogo: Cyber Dragon Pure | tcg_advanced | {"main": 42, "extra": 15, "side": 0, "reserve": 24} | 60 fichas | 11 rutas | list_sha256=70a9c9069dfe3bf79c7f2923fd5366c2fd9c2c256fd4cb26183872ff7fa6e8f4
+687 | Volcanic | catálogo: Volcanic | tcg_advanced | {"main": 42, "extra": 15, "side": 0, "reserve": 14} | 38 fichas | 10 rutas | list_sha256=6e70d77ccbda48bde051da0bbb95a189023ae61a254903b67bc0a4e9b6470622
+653 | DoomZ | catálogo: DoomZ | tcg_advanced | {"main": 40, "extra": 15, "side": 9, "reserve": 0} | 37 fichas | 14 rutas | list_sha256=ddfa9a4ccacd4357a2bcff44d616c7d46418401427ed02b1231abd9e375e714e
+656 | Tearlaments híbrido | catálogo: Tearlaments | tcg_advanced | {"main": 44, "extra": 15, "side": 0, "reserve": 16} | 53 fichas | 27 rutas | list_sha256=37b0f2a0df074aedd38e3ce26e4c77ea69d14013e7d3122e47794450be1b2c3b
+706 | HERO Elemental Rush | catálogo: Hero | rush_duel | {"main": 30, "extra": 8, "side": 0, "reserve": 0} | 17 fichas | 5 rutas | list_sha256=6ec6477c1b4d12894f42608fa8f7b749abe791cbf027e210b71f08b86e83f332
+704 | Quimicalizada Rush | catálogo: Pyro | rush_duel | {"main": 30, "extra": 5, "side": 0, "reserve": 0} | 17 fichas | 7 rutas | list_sha256=0b9768f21858c499bcce45d0190e064b92f6d95b08fb48ccba675e68cd452e24
+707 | Mago Oscuro / Gaia Rush | catálogo: Dark Magician | rush_duel | {"main": 30, "extra": 7, "side": 0, "reserve": 0} | 20 fichas | 10 rutas | list_sha256=6c907cf1a251729fd03578a179b92ade20079c26f6c7f80387422c66d072ab7a
+705 | Royal Rebel's / Kheiron Rush | catálogo: Royal | rush_duel | {"main": 30, "extra": 0, "side": 0, "reserve": 0} | 16 fichas | 16 rutas | list_sha256=56218a502a4a8df0f442d8ed97141dee6d9de79bfa6422c4999682cd023ce78a
+
+CATÁLOGO COMPLETO: ID | NOMBRE | FORMATO | ESTADO DE LISTA
+646 | Kewl Tune | tcg_advanced | pending_decklist
+647 | Branded | tcg_advanced | pending_decklist
+648 | Vanquish Soul K9 | tcg_advanced | pending_decklist
+649 | Mitsurugi Pure | tcg_advanced | pending_decklist
+650 | Elfnote | tcg_advanced | loaded_needs_validation
+651 | Chaos Ritual | tcg_advanced | pending_decklist
+652 | Dracotail | tcg_advanced | pending_decklist
+653 | DoomZ | tcg_advanced | loaded_needs_validation
+654 | Ryzeal | tcg_advanced | pending_decklist
+655 | Maliss | tcg_advanced | pending_decklist
+656 | Tearlaments | tcg_advanced | loaded_needs_validation
+657 | Snake-Eyes | tcg_advanced | pending_decklist
+658 | Fire King | tcg_advanced | pending_decklist
+659 | Unchained | tcg_advanced | pending_decklist
+660 | Purrely | tcg_advanced | pending_decklist
+661 | Swordsoul | tcg_advanced | pending_decklist
+662 | Sky Striker | tcg_advanced | pending_decklist
+663 | DoomZ Artmage | tcg_advanced | pending_decklist
+664 | White Forest Azamina | tcg_advanced | pending_decklist
+665 | Kashtira Pure | tcg_advanced | loaded_needs_validation
+666 | Demonherrero Bystial | tcg_advanced | pending_decklist
+667 | Cyber Dragon K9 | tcg_advanced | pending_decklist
+668 | Invoked | tcg_advanced | pending_decklist
+669 | Mathmech | tcg_advanced | pending_decklist
+670 | Infernoble | tcg_advanced | loaded_needs_validation
+671 | Memento | tcg_advanced | pending_decklist
+672 | Exosister | tcg_advanced | pending_decklist
+673 | Salamangreat | tcg_advanced | pending_decklist
+674 | K9 Pure | tcg_advanced | pending_decklist
+675 | Kashtira Demonherrero | tcg_advanced | pending_decklist
+676 | Resonator RDA Horus | tcg_advanced | pending_decklist
+677 | Crystron | tcg_advanced | pending_decklist
+678 | Vanquish Soul Zoodiac | tcg_advanced | pending_decklist
+679 | Exodia | tcg_advanced | pending_decklist
+680 | Blue Dragon | tcg_advanced | pending_decklist
+681 | Dark World | tcg_advanced | pending_decklist
+682 | Resonator Red Dragon Archfiend | tcg_advanced | pending_decklist
+683 | Traptrix Ragnaraika | tcg_advanced | pending_decklist
+684 | Cyber Dragon Pure | tcg_advanced | loaded_needs_validation
+685 | Six Samurai | tcg_advanced | pending_decklist
+686 | Barrera de Hielo | tcg_advanced | pending_decklist
+687 | Volcanic | tcg_advanced | loaded_needs_validation
+688 | Horus | tcg_advanced | pending_decklist
+697 | Relinquished | goat | pending_decklist
+698 | Reasoning | goat | pending_decklist
+699 | Goat Control | goat | pending_decklist
+700 | Thunder Chaos | goat | pending_decklist
+701 | Chaos Control | goat | pending_decklist
+702 | Monarch | goat | pending_decklist
+703 | Warrior | goat | pending_decklist
+704 | Pyro | rush_duel | loaded_needs_validation
+705 | Royal | rush_duel | loaded_needs_validation
+706 | Hero | rush_duel | loaded_needs_validation
+707 | Dark Magician | rush_duel | loaded_needs_validation
+720 | Jinzo | tcg_advanced | pending_decklist
+721 | SC Mannadium | tcg_advanced | pending_decklist
+722 | Gouki | tcg_advanced | pending_decklist
+723 | P.U.N.K. | tcg_advanced | pending_decklist
+724 | Ancient Machine | tcg_advanced | pending_decklist
+725 | Dogmatika | tcg_advanced | pending_decklist
+726 | Crystal Beast | tcg_advanced | pending_decklist
+727 | Megalith | tcg_advanced | pending_decklist
+728 | Zoodiac | tcg_advanced | pending_decklist
+729 | Mannadium | tcg_advanced | pending_decklist
+730 | Inzektor | tcg_advanced | pending_decklist
+731 | Magikey | tcg_advanced | pending_decklist
+733 | Rainbow Beast | tcg_advanced | pending_decklist
+
+EJEMPLOS ACTUALES DE PROFUNDIDAD
+Kashtira Pure (665): 42 Main, 15 Extra, 0 Side, reserva 19; 44 fichas, 8 rutas y 36 capítulos. El registro vigente reemplaza las cinco rutas visuales antiguas; consultar condiciones, costes, resultantes, fallos y las fichas de cartas de la entrega actual.
+Cyber Dragon Pure (684): 42 Main, 15 Extra, 0 Side, reserva 24; 60 fichas, 11 rutas y 36 capítulos. Su lista YA ESTÁ GUARDADA por esta importación; dejó de ser un caso pendiente. La composición Cyber/Cyberdark se conserva exactamente como entregada. No asignarla a Cyber Dragon K9 (667).
+Para conocer todos los detalles, pedir el contexto vigente de esos IDs; los ejemplos del 30 de octubre son históricos y no se deben volver a importar como si fueran la versión actual.

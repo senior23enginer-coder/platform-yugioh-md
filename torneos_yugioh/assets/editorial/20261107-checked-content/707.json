@@ -1,0 +1,1285 @@
+{
+  "deck_id": 707,
+  "name": "Dark Magician",
+  "format": "rush_duel",
+  "source_file": "DECK_707_DARK_MAGICIAN.md",
+  "source_sha256": "6f710cf0b915cdf1a37190b0ae255ffc9430f255ba0ebeb7f1e4018dd02102fc",
+  "guide_sha256": "31f594944e531932397e3b011cb9dd9bf1532ce32ab85f0fb0ebb5770e84ccc5",
+  "eligibility_policy": "checked-only-v1",
+  "inventory": [
+    {
+      "section": "main",
+      "quantity": 2,
+      "card_id": 446,
+      "name": "Ataque Mágico Oscuro"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 447,
+      "name": "Distribuidor Maravilloso"
+    },
+    {
+      "section": "main",
+      "quantity": 2,
+      "card_id": 448,
+      "name": "Maga Legendaria"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 449,
+      "name": "Mago Oscuro Sabio"
+    },
+    {
+      "section": "main",
+      "quantity": 2,
+      "card_id": 450,
+      "name": "Grito de Monstruo"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 451,
+      "name": "Hechicero Eliminador Oscuro"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 452,
+      "name": "Ráfaga de Resonancia Oscura"
+    },
+    {
+      "section": "main",
+      "quantity": 2,
+      "card_id": 453,
+      "name": "Brillo Sombrío"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 454,
+      "name": "Piedra de los Magos Oscuros"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 455,
+      "name": "Mago Oscuro"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 456,
+      "name": "Lily Aniquiladora"
+    },
+    {
+      "section": "main",
+      "quantity": 3,
+      "card_id": 457,
+      "name": "Chica Maga Oscura"
+    },
+    {
+      "section": "main",
+      "quantity": 2,
+      "card_id": 458,
+      "name": "Mil Cuchillos"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 459,
+      "name": "¡Equitación Lindasesina!"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 460,
+      "name": "Orden Secreta"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 461,
+      "name": "Olla de la Codicia"
+    },
+    {
+      "section": "main",
+      "quantity": 1,
+      "card_id": 462,
+      "name": "Maldición de la Luz Ascendente"
+    },
+    {
+      "section": "extra",
+      "quantity": 3,
+      "card_id": 463,
+      "name": "Gaia el Campeón Dragón Rápido"
+    },
+    {
+      "section": "extra",
+      "quantity": 3,
+      "card_id": 464,
+      "name": "Gaia el Campeón Dragón"
+    },
+    {
+      "section": "extra",
+      "quantity": 1,
+      "card_id": 465,
+      "name": "Gaia, el Conquistador de Campeones"
+    }
+  ],
+  "cards": [
+    {
+      "id": "707:A08:C001",
+      "name": "Ataque Mágico Oscuro",
+      "cid": 15451,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/15451.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 446
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **2x**. CID Rush: **15451**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — removal / apertura de campo."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Controlar un Mago Oscuro boca arriba."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Destruye todas las cartas Mágicas y Trampas del campo rival."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **ILLUSION OF EXECUTION** se aplica desde turno 2, una vez por duelo, después de comprobar sus restricciones de construcción."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15451&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 15451: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **2x**. CID Rush: **15451**.\n- **Rol funcional:** Carta Mágica Normal — removal / apertura de campo.\n- **Requisito específico:** Controlar un Mago Oscuro boca arriba.\n- **Efecto / resultado concreto:** Destruye todas las cartas Mágicas y Trampas del campo rival.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** La Skill **ILLUSION OF EXECUTION** se aplica desde turno 2, una vez por duelo, después de comprobar sus restricciones de construcción.\n- **Riesgos y dependencias:** el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15451&ope=2\n- **Contraste de fuente Rush:** CID 15451: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "707:A08:C002",
+      "name": "Distribuidor Maravilloso",
+      "cid": 16772,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16772.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 447
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **1x**. CID Rush: **16772**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Tener hasta tres monstruos en el Cementerio y pagar 300 LP."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Enviar tres cartas de la mano al Cementerio y robar tres cartas."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: priorizar consistencia sin comprometer piezas de Fusión; segundo: buscar la carta que falta para superar el campo rival; tardío: solo aporta ventaja si queda un objetivo y su coste puede pagarse."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16772&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 16772: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **1x**. CID Rush: **16772**.\n- **Rol funcional:** Monstruo de Efecto — consistencia / reciclaje.\n- **Requisito específico:** Tener hasta tres monstruos en el Cementerio y pagar 300 LP.\n- **Efecto / resultado concreto:** Enviar tres cartas de la mano al Cementerio y robar tres cartas.\n- **Ir primero, segundo y juego tardío:** Primero: priorizar consistencia sin comprometer piezas de Fusión; segundo: buscar la carta que falta para superar el campo rival; tardío: solo aporta ventaja si queda un objetivo y su coste puede pagarse.\n- **Relación con habilidad y otras piezas:** **ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo.\n- **Riesgos y dependencias:** pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16772&ope=2\n- **Contraste de fuente Rush:** CID 16772: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "707:A08:C003",
+      "name": "Maga Legendaria",
+      "cid": 18685,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/18685.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 448
+        }
+      ],
+      "classification": "RECURSO_MATERIAL",
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **2x**. CID Rush: **18685**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — monstruo de apoyo/material o recurso de Sacrificio."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "No tiene requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Revelar las tres cartas superiores; puede enviar un monstruo revelado al Cementerio y recuperar un monstruo Normal LEGEND del Cementerio."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18685&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 18685: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **2x**. CID Rush: **18685**.\n- **Rol funcional:** Monstruo de Efecto — monstruo de apoyo/material o recurso de Sacrificio.\n- **Requisito específico:** No tiene requisito de activación.\n- **Efecto / resultado concreto:** Revelar las tres cartas superiores; puede enviar un monstruo revelado al Cementerio y recuperar un monstruo Normal LEGEND del Cementerio.\n- **Ir primero, segundo y juego tardío:** Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza.\n- **Relación con habilidad y otras piezas:** **ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo.\n- **Riesgos y dependencias:** no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18685&ope=2\n- **Contraste de fuente Rush:** CID 18685: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "707:A08:C004",
+      "name": "Mago Oscuro Sabio",
+      "cid": 19597,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19597.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 449
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **1x**. CID Rush: **19597**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — extensión de campo y recuperación de recursos."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Enviar desde la mano al Cementerio un Lanzador de Conjuros/OSCURIDAD."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Roba una carta; después puede Invocar de Modo Especial un Mago Oscuro del Cementerio."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: priorizar consistencia sin comprometer piezas de Fusión; segundo: buscar la carta que falta para superar el campo rival; tardío: solo aporta ventaja si queda un objetivo y su coste puede pagarse."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19597&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 19597: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **1x**. CID Rush: **19597**.\n- **Rol funcional:** Monstruo de Efecto — extensión de campo y recuperación de recursos.\n- **Requisito específico:** Enviar desde la mano al Cementerio un Lanzador de Conjuros/OSCURIDAD.\n- **Efecto / resultado concreto:** Roba una carta; después puede Invocar de Modo Especial un Mago Oscuro del Cementerio.\n- **Ir primero, segundo y juego tardío:** Primero: priorizar consistencia sin comprometer piezas de Fusión; segundo: buscar la carta que falta para superar el campo rival; tardío: solo aporta ventaja si queda un objetivo y su coste puede pagarse.\n- **Relación con habilidad y otras piezas:** **ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo.\n- **Riesgos y dependencias:** pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19597&ope=2\n- **Contraste de fuente Rush:** CID 19597: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "707:A08:C005",
+      "name": "Grito de Monstruo",
+      "cid": 19329,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19329.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 450
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **2x**. CID Rush: **19329**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — extensión de campo y recuperación de recursos."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Enviar de la mano un monstruo al Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Roba una carta; después puede Invocar del Cementerio un monstruo sin efecto que tenga ATK 2000 o DEF 2100."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19329&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 19329: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **2x**. CID Rush: **19329**.\n- **Rol funcional:** Carta Mágica Normal — extensión de campo y recuperación de recursos.\n- **Requisito específico:** Enviar de la mano un monstruo al Cementerio.\n- **Efecto / resultado concreto:** Roba una carta; después puede Invocar del Cementerio un monstruo sin efecto que tenga ATK 2000 o DEF 2100.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** **ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo.\n- **Riesgos y dependencias:** pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19329&ope=2\n- **Contraste de fuente Rush:** CID 19329: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "707:A08:C006",
+      "name": "Hechicero Eliminador Oscuro",
+      "cid": 19773,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19773.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 451
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **3x**. CID Rush: **19773**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — apoyo situacional sujeto a condición escrita."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Enviar la primera carta de tu Deck al Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Se llama Mago Oscuro ese turno; puede devolver diez Mágicas del Cementerio al Deck para destruir un monstruo rival boca arriba de Nivel 8 o inferior."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: construir la condición de activación; segundo: verificar que la jugada responde al estado rival actual; tardío: ahorrar el recurso si todavía no se cumple el requisito."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19773&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 19773: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **3x**. CID Rush: **19773**.\n- **Rol funcional:** Monstruo de Efecto — apoyo situacional sujeto a condición escrita.\n- **Requisito específico:** Enviar la primera carta de tu Deck al Cementerio.\n- **Efecto / resultado concreto:** Se llama Mago Oscuro ese turno; puede devolver diez Mágicas del Cementerio al Deck para destruir un monstruo rival boca arriba de Nivel 8 o inferior.\n- **Ir primero, segundo y juego tardío:** Primero: construir la condición de activación; segundo: verificar que la jugada responde al estado rival actual; tardío: ahorrar el recurso si todavía no se cumple el requisito.\n- **Relación con habilidad y otras piezas:** **ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo.\n- **Riesgos y dependencias:** pagar/cumplir el requisito escrito antes de prometer la resolución. el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19773&ope=2\n- **Contraste de fuente Rush:** CID 19773: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "707:A08:C007",
+      "name": "Ráfaga de Resonancia Oscura",
+      "cid": 17209,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/17209.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 452
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **3x**. CID Rush: **17209**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — presión de combate / modificación de estadísticas."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Otorga 1000 ATK por el turno a un Lanzador de Conjuros OSCURIDAD propio de Nivel 6+; otorga otros 1000 si controlas Mago Oscuro o Chica Maga Oscura."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17209&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 17209: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **3x**. CID Rush: **17209**.\n- **Rol funcional:** Carta Mágica Normal — presión de combate / modificación de estadísticas.\n- **Requisito específico:** Sin requisito de activación.\n- **Efecto / resultado concreto:** Otorga 1000 ATK por el turno a un Lanzador de Conjuros OSCURIDAD propio de Nivel 6+; otorga otros 1000 si controlas Mago Oscuro o Chica Maga Oscura.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** **ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo.\n- **Riesgos y dependencias:** comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17209&ope=2\n- **Contraste de fuente Rush:** CID 17209: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "707:A08:C008",
+      "name": "Brillo Sombrío",
+      "cid": 20151,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20151.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 453
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **2x**. CID Rush: **20151**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta de Trampa Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Cuando el rival Invoca un monstruo en su turno; enviar una carta de la mano al Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Pone hasta dos monstruos de Efecto boca arriba de cualquier Campo boca abajo en Defensa; si incluyó un monstruo rival con ATK original de al menos 2600, recupera 1500 LP."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20151&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 20151: fuente oficial Rush consultada en japonés; tipo Carta de Trampa Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **2x**. CID Rush: **20151**.\n- **Rol funcional:** Carta de Trampa Normal — consistencia / reciclaje.\n- **Requisito específico:** Cuando el rival Invoca un monstruo en su turno; enviar una carta de la mano al Cementerio.\n- **Efecto / resultado concreto:** Pone hasta dos monstruos de Efecto boca arriba de cualquier Campo boca abajo en Defensa; si incluyó un monstruo rival con ATK original de al menos 2600, recupera 1500 LP.\n- **Ir primero, segundo y juego tardío:** Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo.\n- **Relación con habilidad y otras piezas:** **ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo.\n- **Riesgos y dependencias:** pagar/cumplir el requisito escrito antes de prometer la resolución.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20151&ope=2\n- **Contraste de fuente Rush:** CID 20151: fuente oficial Rush consultada en japonés; tipo Carta de Trampa Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "707:A08:C009",
+      "name": "Piedra de los Magos Oscuros",
+      "cid": 19598,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19598.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 454
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **3x**. CID Rush: **19598**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — extensor / habilitador de material."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Invoca desde la mano y/o Cementerio hasta un Lanzador de Conjuros OSCURIDAD con 2500 ATK y hasta otro con 2000 ATK, boca arriba."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19598&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 19598: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **3x**. CID Rush: **19598**.\n- **Rol funcional:** Carta Mágica Normal — extensor / habilitador de material.\n- **Requisito específico:** Sin requisito de activación.\n- **Efecto / resultado concreto:** Invoca desde la mano y/o Cementerio hasta un Lanzador de Conjuros OSCURIDAD con 2500 ATK y hasta otro con 2000 ATK, boca arriba.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** **ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo.\n- **Riesgos y dependencias:** comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19598&ope=2\n- **Contraste de fuente Rush:** CID 19598: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "707:A08:C010",
+      "name": "Mago Oscuro",
+      "cid": 15410,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/15410.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 455
+        }
+      ],
+      "classification": "RECURSO_MATERIAL",
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **1x**. CID Rush: **15410**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "No tiene efecto."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Monstruo Normal LEGEND."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15410&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 15410: fuente oficial Rush consultada en japonés; tipo Monstruo Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **1x**. CID Rush: **15410**.\n- **Rol funcional:** Monstruo Normal — material de Fusión/Sacrificio o presencia de combate; sin efecto activado.\n- **Requisito específico:** No tiene efecto.\n- **Efecto / resultado concreto:** Monstruo Normal LEGEND.\n- **Ir primero, segundo y juego tardío:** Primero: conservarlo si es material expresamente exigido por una Fusión o Sacrificio; segundo: emplearlo como cuerpo solo tras calcular ATK y riesgo de batalla; tardío: recurso para reconstruir material desde el GY si una carta lo autoriza.\n- **Relación con habilidad y otras piezas:** **ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo.\n- **Riesgos y dependencias:** no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15410&ope=2\n- **Contraste de fuente Rush:** CID 15410: fuente oficial Rush consultada en japonés; tipo Monstruo Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "707:A08:C011",
+      "name": "Lily Aniquiladora",
+      "cid": 20305,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/20305.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 456
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **1x**. CID Rush: **20305**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — apoyo situacional sujeto a condición escrita."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Haber sido Invocada de Modo Normal este turno."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Envía la primera carta del Deck al Cementerio; si era Lanzador de Conjuros, esta carta cuenta por dos Sacrificios para un Lanzador de Conjuros/OSCURIDAD en Ataque este turno."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: construir la condición de activación; segundo: verificar que la jugada responde al estado rival actual; tardío: ahorrar el recurso si todavía no se cumple el requisito."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20305&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 20305: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **1x**. CID Rush: **20305**.\n- **Rol funcional:** Monstruo de Efecto — apoyo situacional sujeto a condición escrita.\n- **Requisito específico:** Haber sido Invocada de Modo Normal este turno.\n- **Efecto / resultado concreto:** Envía la primera carta del Deck al Cementerio; si era Lanzador de Conjuros, esta carta cuenta por dos Sacrificios para un Lanzador de Conjuros/OSCURIDAD en Ataque este turno.\n- **Ir primero, segundo y juego tardío:** Primero: construir la condición de activación; segundo: verificar que la jugada responde al estado rival actual; tardío: ahorrar el recurso si todavía no se cumple el requisito.\n- **Relación con habilidad y otras piezas:** **ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo.\n- **Riesgos y dependencias:** comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20305&ope=2\n- **Contraste de fuente Rush:** CID 20305: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "707:A08:C012",
+      "name": "Chica Maga Oscura",
+      "cid": 16371,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16371.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 3,
+          "card_id": 457
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **3x**. CID Rush: **16371**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Efecto — presión de combate / modificación de estadísticas."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "No necesita activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Gana 500 ATK por cada Mago Oscuro en ambos Cementerios."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16371&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 16371: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **3x**. CID Rush: **16371**.\n- **Rol funcional:** Monstruo de Efecto — presión de combate / modificación de estadísticas.\n- **Requisito específico:** No necesita activación.\n- **Efecto / resultado concreto:** Gana 500 ATK por cada Mago Oscuro en ambos Cementerios.\n- **Ir primero, segundo y juego tardío:** Primero: preparar acceso y campo necesario sin gastar la respuesta antes de tiempo; segundo: usarla para abrir combate o retirar la amenaza que cumple su condición; tardío: evaluar si quedan objetivos reales.\n- **Relación con habilidad y otras piezas:** **ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo.\n- **Riesgos y dependencias:** comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16371&ope=2\n- **Contraste de fuente Rush:** CID 16371: fuente oficial Rush consultada en japonés; tipo Monstruo de Efecto; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "707:A08:C013",
+      "name": "Mil Cuchillos",
+      "cid": 15450,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/15450.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 2,
+          "card_id": 458
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **2x**. CID Rush: **15450**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — removal / apertura de campo."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Controlar un Mago Oscuro boca arriba."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Destruye un monstruo del Campo rival."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **ILLUSION OF EXECUTION** se aplica desde turno 2, una vez por duelo, después de comprobar sus restricciones de construcción."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15450&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 15450: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **2x**. CID Rush: **15450**.\n- **Rol funcional:** Carta Mágica Normal — removal / apertura de campo.\n- **Requisito específico:** Controlar un Mago Oscuro boca arriba.\n- **Efecto / resultado concreto:** Destruye un monstruo del Campo rival.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** La Skill **ILLUSION OF EXECUTION** se aplica desde turno 2, una vez por duelo, después de comprobar sus restricciones de construcción.\n- **Riesgos y dependencias:** el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15450&ope=2\n- **Contraste de fuente Rush:** CID 15450: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "707:A08:C014",
+      "name": "¡Equitación Lindasesina!",
+      "cid": 19341,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19341.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 459
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **1x**. CID Rush: **19341**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta de Trampa Normal — extensor / habilitador de material."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Cuando el rival Invoca boca arriba un monstruo de Efecto."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Invoca del Cementerio en Ataque propio un monstruo cuyo ATK no supere el del recién invocado; después puede reducir en 1800 ATK hasta dos monstruos rivales boca arriba ese turno."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19341&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 19341: fuente oficial Rush consultada en japonés; tipo Carta de Trampa Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **1x**. CID Rush: **19341**.\n- **Rol funcional:** Carta de Trampa Normal — extensor / habilitador de material.\n- **Requisito específico:** Cuando el rival Invoca boca arriba un monstruo de Efecto.\n- **Efecto / resultado concreto:** Invoca del Cementerio en Ataque propio un monstruo cuyo ATK no supere el del recién invocado; después puede reducir en 1800 ATK hasta dos monstruos rivales boca arriba ese turno.\n- **Ir primero, segundo y juego tardío:** Primero: Colocar y reservar la respuesta para la ventana legal; segundo: tras side y cambio de turno, evaluar si puede activarse a tiempo; tardío: no asumir efecto si falta el objetivo o el estado de campo.\n- **Relación con habilidad y otras piezas:** **ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo.\n- **Riesgos y dependencias:** comprobar zona, objetivos y ventana; el nombre de la carta no reemplaza su texto.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19341&ope=2\n- **Contraste de fuente Rush:** CID 19341: fuente oficial Rush consultada en japonés; tipo Carta de Trampa Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "707:A08:C015",
+      "name": "Orden Secreta",
+      "cid": 17212,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/17212.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 460
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **1x**. CID Rush: **17212**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — recurso táctico cuya condición y resultado están descritos en su ficha."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Invoca un monstruo Normal de Nivel 7 desde mano o Cementerio; le da 700 ATK ese turno y lo protege frente a destrucción por Trampas rivales."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "**ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "la condición de una Mágica/Trampa y sus blancos deben cumplirse antes de resolver. No confundir esta carta con un monstruo ni usarla como material."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17212&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 17212: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **1x**. CID Rush: **17212**.\n- **Rol funcional:** Carta Mágica Normal — recurso táctico cuya condición y resultado están descritos en su ficha.\n- **Requisito específico:** Sin requisito de activación.\n- **Efecto / resultado concreto:** Invoca un monstruo Normal de Nivel 7 desde mano o Cementerio; le da 700 ATK ese turno y lo protege frente a destrucción por Trampas rivales.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** **ILLUSION OF EXECUTION** permite enviar «Mago Oscuro» desde Deck al GY bajo sus condiciones; puede alimentar recuperación, pero la Skill solo se usa una vez por duelo.\n- **Riesgos y dependencias:** la condición de una Mágica/Trampa y sus blancos deben cumplirse antes de resolver. No confundir esta carta con un monstruo ni usarla como material.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17212&ope=2\n- **Contraste de fuente Rush:** CID 17212: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "707:A08:C016",
+      "name": "Olla de la Codicia",
+      "cid": 16372,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/16372.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 461
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **1x**. CID Rush: **16372**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Sin requisito de activación."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Roba dos cartas."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **ILLUSION OF EXECUTION** se aplica desde turno 2, una vez por duelo, después de comprobar sus restricciones de construcción."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16372&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 16372: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **1x**. CID Rush: **16372**.\n- **Rol funcional:** Carta Mágica Normal — consistencia / reciclaje.\n- **Requisito específico:** Sin requisito de activación.\n- **Efecto / resultado concreto:** Roba dos cartas.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** La Skill **ILLUSION OF EXECUTION** se aplica desde turno 2, una vez por duelo, después de comprobar sus restricciones de construcción.\n- **Riesgos y dependencias:** disponer de cartas suficientes en Deck y distinguir robo de búsqueda.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=16372&ope=2\n- **Contraste de fuente Rush:** CID 16372: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "707:A08:C017",
+      "name": "Maldición de la Luz Ascendente",
+      "cid": 21007,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/21007.png",
+      "slots": [
+        {
+          "section": "main",
+          "quantity": 1,
+          "card_id": 462
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Main **1x**. CID Rush: **21007**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Carta Mágica Normal — consistencia / reciclaje."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "El rival debe tener una o ninguna carta en mano."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Cambia un monstruo rival a Ataque boca arriba o Defensa boca abajo. Si el rival activó una Trampa ese turno o es el primer turno del jugador segundo, ambos roban dos."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **ILLUSION OF EXECUTION** se aplica desde turno 2, una vez por duelo, después de comprobar sus restricciones de construcción."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "disponer de cartas suficientes en Deck y distinguir robo de búsqueda."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=21007&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 21007: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Main **1x**. CID Rush: **21007**.\n- **Rol funcional:** Carta Mágica Normal — consistencia / reciclaje.\n- **Requisito específico:** El rival debe tener una o ninguna carta en mano.\n- **Efecto / resultado concreto:** Cambia un monstruo rival a Ataque boca arriba o Defensa boca abajo. Si el rival activó una Trampa ese turno o es el primer turno del jugador segundo, ambos roban dos.\n- **Ir primero, segundo y juego tardío:** Primero: usarla si su efecto abre recursos o deja protección aprovechable; segundo: priorizar su resultado concreto frente a las amenazas rivales; tardío: comprobar materiales, objetivos y si aún quedan recursos en Deck o Cementerio.\n- **Relación con habilidad y otras piezas:** La Skill **ILLUSION OF EXECUTION** se aplica desde turno 2, una vez por duelo, después de comprobar sus restricciones de construcción.\n- **Riesgos y dependencias:** disponer de cartas suficientes en Deck y distinguir robo de búsqueda.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=21007&ope=2\n- **Contraste de fuente Rush:** CID 21007: fuente oficial Rush consultada en japonés; tipo Carta Mágica Normal; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "707:A08:C018",
+      "name": "Gaia el Campeón Dragón Rápido",
+      "cid": 19995,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19995.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 3,
+          "card_id": 463
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Extra **3x**. CID Rush: **19995**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Fusionar un Guerrero con DEF 2100 y Maldición de Dragón; para el efecto, enviar la carta superior del Deck al Cementerio."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Inflige daño de penetración este turno y, si la mano está vacía, puede robar una carta."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **ILLUSION OF EXECUTION** se aplica desde turno 2, una vez por duelo, después de comprobar sus restricciones de construcción."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda. las tres Fusiones Gaia del Extra mencionan materiales que no aparecen completos en el Main fotografiado; NO asumir Invocación ejecutable."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19995&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 19995: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Extra **3x**. CID Rush: **19995**.\n- **Rol funcional:** Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre.\n- **Requisito específico:** Fusionar un Guerrero con DEF 2100 y Maldición de Dragón; para el efecto, enviar la carta superior del Deck al Cementerio.\n- **Efecto / resultado concreto:** Inflige daño de penetración este turno y, si la mano está vacía, puede robar una carta.\n- **Ir primero, segundo y juego tardío:** Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra.\n- **Relación con habilidad y otras piezas:** La Skill **ILLUSION OF EXECUTION** se aplica desde turno 2, una vez por duelo, después de comprobar sus restricciones de construcción.\n- **Riesgos y dependencias:** pagar/cumplir el requisito escrito antes de prometer la resolución. disponer de cartas suficientes en Deck y distinguir robo de búsqueda. las tres Fusiones Gaia del Extra mencionan materiales que no aparecen completos en el Main fotografiado; NO asumir Invocación ejecutable.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19995&ope=2\n- **Contraste de fuente Rush:** CID 19995: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "707:A08:C019",
+      "name": "Gaia el Campeón Dragón",
+      "cid": 18298,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/18298.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 3,
+          "card_id": 464
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Extra **3x**. CID Rush: **18298**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Materiales nombrados: Gaia el Caballero Feroz y Maldición de Dragón."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Monstruo Fusión sin efecto activado."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **ILLUSION OF EXECUTION** se aplica desde turno 2, una vez por duelo, después de comprobar sus restricciones de construcción."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual. las tres Fusiones Gaia del Extra mencionan materiales que no aparecen completos en el Main fotografiado; NO asumir Invocación ejecutable."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18298&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 18298: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Extra **3x**. CID Rush: **18298**.\n- **Rol funcional:** Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre.\n- **Requisito específico:** Materiales nombrados: Gaia el Caballero Feroz y Maldición de Dragón.\n- **Efecto / resultado concreto:** Monstruo Fusión sin efecto activado.\n- **Ir primero, segundo y juego tardío:** Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra.\n- **Relación con habilidad y otras piezas:** La Skill **ILLUSION OF EXECUTION** se aplica desde turno 2, una vez por duelo, después de comprobar sus restricciones de construcción.\n- **Riesgos y dependencias:** no atribuirle un efecto activado inexistente; comprobar su función como material y las cartas de soporte. verificar en campo los materiales nombrados y el momento legal de la Fusión Rush; no usar materiales de mano sin permiso textual. las tres Fusiones Gaia del Extra mencionan materiales que no aparecen completos en el Main fotografiado; NO asumir Invocación ejecutable.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=18298&ope=2\n- **Contraste de fuente Rush:** CID 18298: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    },
+    {
+      "id": "707:A08:C020",
+      "name": "Gaia, el Conquistador de Campeones",
+      "cid": 19323,
+      "image": "./assets/editorial/20261104-checked-study/images/rush/19323.png",
+      "slots": [
+        {
+          "section": "extra",
+          "quantity": 1,
+          "card_id": 465
+        }
+      ],
+      "classification": null,
+      "fields": [
+        {
+          "title": "Zona y copias",
+          "text": "Extra **1x**. CID Rush: **19323**."
+        },
+        {
+          "title": "Rol funcional",
+          "text": "Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre."
+        },
+        {
+          "title": "Requisito específico",
+          "text": "Fusionar Gaia el Caballero Feroz y Maldición de Dragón; el turno que fue Invocado de Modo Especial, devolver al Deck un monstruo del Cementerio que no sea Caballero Mágico."
+        },
+        {
+          "title": "Efecto / resultado concreto",
+          "text": "Elegir entre atacar directamente este turno o destruir una Mágica/Trampa rival."
+        },
+        {
+          "title": "Ir primero, segundo y juego tardío",
+          "text": "Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra."
+        },
+        {
+          "title": "Relación con habilidad y otras piezas",
+          "text": "La Skill **ILLUSION OF EXECUTION** se aplica desde turno 2, una vez por duelo, después de comprobar sus restricciones de construcción."
+        },
+        {
+          "title": "Riesgos y dependencias",
+          "text": "pagar/cumplir el requisito escrito antes de prometer la resolución. el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. las tres Fusiones Gaia del Extra mencionan materiales que no aparecen completos en el Main fotografiado; NO asumir Invocación ejecutable."
+        },
+        {
+          "title": "Confianza",
+          "text": "**RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19323&ope=2"
+        },
+        {
+          "title": "Contraste de fuente Rush",
+          "text": "CID 19323: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial."
+        }
+      ],
+      "text": "- **Zona y copias:** Extra **1x**. CID Rush: **19323**.\n- **Rol funcional:** Monstruo de Fusión — objetivo de Fusión con materiales expresos y efecto de cierre.\n- **Requisito específico:** Fusionar Gaia el Caballero Feroz y Maldición de Dragón; el turno que fue Invocado de Modo Especial, devolver al Deck un monstruo del Cementerio que no sea Caballero Mágico.\n- **Efecto / resultado concreto:** Elegir entre atacar directamente este turno o destruir una Mágica/Trampa rival.\n- **Ir primero, segundo y juego tardío:** Primero: preparar materiales y «Fusión» si es alcanzable; segundo: considerar el efecto de campo o daño que se produzca tras una Fusión legal; tardío: comprobar si quedan materiales nombrados en campo y Extra.\n- **Relación con habilidad y otras piezas:** La Skill **ILLUSION OF EXECUTION** se aplica desde turno 2, una vez por duelo, después de comprobar sus restricciones de construcción.\n- **Riesgos y dependencias:** pagar/cumplir el requisito escrito antes de prometer la resolución. el resultado está sujeto a monstruos/cartas que puedan ser afectados y a respuestas del rival. las tres Fusiones Gaia del Extra mencionan materiales que no aparecen completos en el Main fotografiado; NO asumir Invocación ejecutable.\n- **Confianza:** **RESUMEN_FUNCIONAL_DE_GUIA_PREVIA_CON_FUENTE_KONAMI**; pendiente cotejo adicional de traducción/ventanas según la liga. Fuente Rush oficial: https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19323&ope=2\n- **Contraste de fuente Rush:** CID 19323: fuente oficial Rush consultada en japonés; tipo Monstruo de Fusión; descripción funcional en español procede de la guía previa y sigue siendo interpretación editorial.",
+      "check": "FICHA_A05",
+      "rules_certified": false
+    }
+  ],
+  "combos": [],
+  "engine_relations": [],
+  "routes": [],
+  "checked_interactions": [
+    {
+      "id": "707:A08:05",
+      "kind": "blocker",
+      "title": "Gaia Rápido (19995) / Gaia (18298) / Gaia Conquistador (19323)",
+      "result": "**Sin relación operativa actualmente demostrada**.",
+      "requirements": "Faltan material «Maldición de Dragón» y método «Fusión» registrado.",
+      "check": "[X] BLOQUEO_CHEQUEADO (no importable como jugada)"
+    }
+  ],
+  "checked_cases": [
+    {
+      "id": "707:A11:3e2a896079a9",
+      "title": "Ventanas exactas de la ruta Rush",
+      "text": "#### A11 — Ventanas exactas de la ruta Rush\n\n- **Orden Secreta (`SECRETORDER:DM01`):** es una Mágica Normal que elige un **Nivel 7 Normal en mano o GY**. En esta ruta solo se usa Mago Oscuro en mano; su ATK pasa a **3200** temporalmente y su protección es exclusiva contra **destrucción por efecto de Trampa rival durante este turno**. No convierte la Invocación Especial en Normal ni consume Sacrificios. La segunda Mágica, Ataque Mágico Oscuro, se activa una vez Mago Oscuro está boca arriba. `[X] ORDEN_Y_BONOS_CONTRASTADOS`.",
+      "check": [
+        "ORDEN_Y_BONOS_CONTRASTADOS"
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15410&ope=2",
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15451&ope=2",
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=17212&ope=2"
+      ],
+      "reference_ids": [
+        "707:A09:SECRETORDER:DM01"
+      ],
+      "full_combo_certified": false
+    },
+    {
+      "id": "707:A11:5908269a92af",
+      "title": "Resolución separada de Piedra y nombre temporal del Hechicero",
+      "text": "#### A11 — Resolución separada de Piedra y nombre temporal del Hechicero\n\n- **Piedra (`JEWEL:PAIR01`):** Mágica Normal sin requisito, permite elegir de **mano o GY** hasta una carta de cada categoría de atributos, tipo y ATK impresos descritos; ambos cuerpos se Invocan **Especialmente** boca arriba. No se consideran dos Invocaciones **Normales** ni se crea una ventana ficticia de cadena TCG entre los dos elegidos.\n- **Hechicero (`EXECUTOR:*`):** primero son **dos Invocaciones Normales** de cuerpos bajos y después **una Invocación Normal por Sacrificio** de Nivel 7. El nombre solo cambia tras pagar el coste de enviar al GY la carta superior del Deck **y resolver su efecto**. Las Mágicas de Mago Oscuro se activan solo **después** y **dentro del mismo turno**. No es necesario devolver 10 Mágicas: esa opción de destrucción propia es adicional, no requisito para cambiar el nombre. `[X] VENTANAS_Y_COSTE_DE_AMBAS_FAMILIAS_CONTRASTADOS`.",
+      "check": [
+        "VENTANAS_Y_COSTE_DE_AMBAS_FAMILIAS_CONTRASTADOS"
+      ],
+      "sources": [
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15450&ope=2",
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=15451&ope=2",
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19597&ope=2",
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=19773&ope=2",
+        "https://www.db.yugioh-card.com/rushdb/card_search.action?cid=20305&ope=2"
+      ],
+      "reference_ids": [
+        "707:A09:EXECUTOR:KNIVES01",
+        "707:A09:EXECUTOR:DARKMAGIC01"
+      ],
+      "full_combo_certified": false
+    }
+  ]
+}

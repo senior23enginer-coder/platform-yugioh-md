@@ -1,0 +1,1078 @@
+{
+  "contract": "station-x-endboard-bindings/1",
+  "note": "Bindings from the named A10 routes. Illustrative placement never asserts an undocumented physical column. Optional outcomes remain separate.",
+  "aliases": {
+    "650": {
+      "Regina": 22523,
+      "Lucina": 22116,
+      "Tinia": 22117,
+      "Power Patron": 22119,
+      "Fortuna": 22118,
+      "Strelitzia": 22143,
+      "Junora": 22142,
+      "Welcome Home": 22159,
+      "Bienvenidos a Casa": 22159,
+      "Rapsodia": 22173
+    },
+    "653": {
+      "Jupredo": 22521,
+      "Drastrius": 21811,
+      "Drastea": 21774,
+      "Mando": 21824,
+      "Incursores": 21823,
+      "Cambio": 22158,
+      "Amalthe": 21775,
+      "Elara": 21776
+    },
+    "656": {
+      "Grabador": 20196,
+      "Lurrie": 8092,
+      "Tracto": 20240,
+      "Reinoheart": 17417,
+      "Havnis": 17416,
+      "Merrli": 17414,
+      "Scheiren": 17415,
+      "Fenrir": 17768,
+      "Veiler": 8933,
+      "Imsety": 19153,
+      "Amset": 19153,
+      "Hapi": 19155
+    },
+    "665": {
+      "Fenrir": 17768,
+      "Unicornio": 17769,
+      "Unicorn": 17769,
+      "Riseheart": 18151,
+      "Ogro": 17770,
+      "Ogre": 17770,
+      "Teosis": 18203,
+      "Big Bang": 18220,
+      "Shangri-Ira": 17800,
+      "Arise-Heart": 18191,
+      "Ojo Grande": 9861,
+      "Nacimiento": 17815,
+      "Preparaciones": 17831,
+      "Wraitsoth": 18204
+    },
+    "670": {
+      "Charles": 15276,
+      "Great Charles": 18835,
+      "Museo": 18844,
+      "Ogier": 15247,
+      "Renaud": 15082,
+      "Durendal": 15287,
+      "Almace": 18843,
+      "Roland": 15275,
+      "Angélica": 18827
+    },
+    "684": {
+      "Core": 10866,
+      "Herz": 13723,
+      "Nachster": 14047,
+      "Cyber Dragon original": 6390,
+      "Cyber Dragon": 6390,
+      "Claw": 13181,
+      "Ciclón": 12464,
+      "Power Bond": 6398,
+      "Chimera": 16296,
+      "Rampage": 11764,
+      "Realm": 16298,
+      "Cyber Revsystem": 13770,
+      "Nova": 10870,
+      "Clockwork Night": 17625
+    },
+    "687": {
+      "Shell": 7082,
+      "Rimfire": 18917,
+      "Blaze Accelerator original": 7086,
+      "Blaze original": 7086,
+      "Fire Ejection": 18919,
+      "Trooper": 18916,
+      "Rocket": 7243,
+      "Emperor": 18915,
+      "Emission": 18920,
+      "Reload": 11597
+    },
+    "704": {
+      "Superasistente": 17963,
+      "Hiperasistente": 19291,
+      "Quimicalizada": 17868,
+      "Fusión": 16934,
+      "¡Atraviesa!": 15204,
+      "Cromatográfagas": 18583,
+      "Orden Secreta": 17212
+    },
+    "705": {
+      "Heavy Metal": 15441,
+      "Progrock": 19761,
+      "Death Doom": 16331
+    },
+    "706": {
+      "Avian": 20460,
+      "Burstinatrix": 20459,
+      "Sparkman": 20457,
+      "Fusión": 16934
+    },
+    "707": {
+      "Sabio": 19597,
+      "Lily": 20305,
+      "Chica Maga Oscura": 16371,
+      "Ataque Mágico Oscuro": 15451,
+      "Mil Cuchillos": 15450,
+      "Orden Secreta": 17212
+    }
+  },
+  "cases": {
+    "650:A09:LUCINA:PATRON:JUNE_PRIDE07": {
+      "source": "DECK_650_LUCINA_PATRON_TRES_SINCRONIAS_ALTERNATIVAS_GUIA.md#Ruta07",
+      "monster": [
+        {
+          "cid": 22984,
+          "fixed_slot": 3,
+          "statistic": "3100 ATK"
+        }
+      ],
+      "hand": [
+        22523
+      ],
+      "graveyard": [
+        22116,
+        22119
+      ],
+      "spell": [],
+      "banished": []
+    },
+    "650:A09:LUCINA:PATRON:ARCANITE08": {
+      "source": "DECK_650_LUCINA_PATRON_TRES_SINCRONIAS_ALTERNATIVAS_GUIA.md#Ruta08",
+      "monster": [
+        {
+          "cid": 8038,
+          "statistic": "2400 ATK · 2 contadores"
+        }
+      ],
+      "hand": [
+        22523
+      ],
+      "graveyard": [
+        22116,
+        22119
+      ],
+      "spell": [],
+      "banished": [],
+      "variants": [
+        {
+          "label": "Si gastas un contador para destruir una carta rival",
+          "monster": [
+            {
+              "cid": 8038,
+              "statistic": "1400 ATK · 1 contador"
+            }
+          ],
+          "opponent": "Una carta rival seleccionable destruida si el efecto resuelve."
+        },
+        {
+          "label": "Si gastas ambos contadores en dos activaciones",
+          "monster": [
+            {
+              "cid": 8038,
+              "statistic": "400 ATK · sin contadores"
+            }
+          ],
+          "opponent": "Hasta dos objetivos destruidos, solo si hubo objetivos y ambas activaciones resolvieron."
+        }
+      ]
+    },
+    "650:A09:LUCINA:PATRON:DAWN_DRAGSTER09": {
+      "source": "DECK_650_LUCINA_PATRON_TRES_SINCRONIAS_ALTERNATIVAS_GUIA.md#Ruta09",
+      "monster": [
+        {
+          "cid": 13710,
+          "statistic": "2100 ATK · Nivel 7"
+        }
+      ],
+      "hand": [
+        22523
+      ],
+      "graveyard": [
+        22116,
+        22119
+      ],
+      "spell": [],
+      "banished": [],
+      "note": "Reconstrucción histórica. No se habilita para TCG Advanced.",
+      "variants": [
+        {
+          "label": "Hipótesis histórica tras negar una activación M/T",
+          "monster": [
+            {
+              "cid": 13710,
+              "statistic": "1500 ATK · Nivel 5"
+            }
+          ],
+          "opponent": "Activación de M/T negada y carta destruida si el efecto se resuelve. Solo referencia histórica."
+        }
+      ]
+    },
+    "653:A09:MEDIUS:JUPREDO:JUPITER04": {
+      "source": "DECK_653_GUIAS_A10.md#MEDIUS:JUPREDO:JUPITER04",
+      "hand": [],
+      "graveyard": [],
+      "extra": [
+        {
+          "cid": 22521,
+          "position": "Boca arriba"
+        }
+      ],
+      "banished": [
+        {
+          "unknown": "Tres cartas superiores del Deck desterradas sin identificarse",
+          "quantity": 3,
+          "position": "Boca abajo"
+        }
+      ],
+      "variants": [
+        {
+          "label": "Si la extensión con Cambio y Amalthe se resuelve",
+          "hand": [
+            21774
+          ],
+          "graveyard": [
+            22158,
+            21775
+          ]
+        }
+      ],
+      "monster": [
+        {
+          "cid": 21419,
+          "statistic": "1800 ATK"
+        },
+        {
+          "cid": 21810,
+          "materials": [],
+          "statistic": "3500 ATK"
+        }
+      ]
+    },
+    "653:A09:RAIDERS:ELARA:DRASTRIUS_BATTLE_ZEUS08": {
+      "source": "DECK_653_DRASTRIUS_BATALLA_ZEUS_GUIA.md#Paso7",
+      "monster": [
+        {
+          "cid": 15524,
+          "statistic": "3000 ATK / 3000 DEF",
+          "materials": [
+            21811,
+            21774,
+            21824
+          ]
+        }
+      ],
+      "spell": [
+        {
+          "cid": 21823,
+          "position": "Boca arriba"
+        }
+      ],
+      "graveyard": [
+        21776
+      ],
+      "hand": [],
+      "banished": [],
+      "opponent": "El monstruo rival del ejemplo fue destruido en batalla; el resto de sus cartas no se presupone vacío.",
+      "note": "Antes de activar el barrido. No se acumula con la alternativa de conservar Drastrius."
+    },
+    "656:A09:ENGRAVER:LACRIMA01": {
+      "source": "DECK_656_GUIAS_A10.md#ENGRAVER:LACRIMA01",
+      "graveyard": [
+        20240
+      ],
+      "deck": [
+        8092,
+        {
+          "cid": 20196,
+          "quantity": 2
+        }
+      ]
+    },
+    "656:A09:GOODS:SCREAM:CRYME:KALEIDO02": {
+      "source": "DECK_656_GUIAS_A10.md#GOODS:SCREAM:CRYME:KALEIDO02",
+      "deck": [
+        17417,
+        17416,
+        17414
+      ]
+    },
+    "656:A09:SUPERPOLY:GARURA10": {
+      "source": "DECK_656_GARURA_SUPERPOLY_GUIA_ADICIONAL.md#Campofinal",
+      "monster": [
+        17746
+      ],
+      "graveyard": [
+        7445,
+        {
+          "unknown": "Carta descartada como coste; identidad no especificada"
+        }
+      ],
+      "opponent": "Dos monstruos rivales se consumen como materiales. Su destino depende de los reemplazos aplicables; no son materiales Xyz bajo Garura.",
+      "hand": []
+    },
+    "656:A09:FENRIR:REINO:SP_DIRECTA11": {
+      "source": "DECK_656_FENRIR_REINO_SP_DIRECTA_GUIA.md#Paso5",
+      "monster": [
+        {
+          "cid": 19188,
+          "position": "Ataque",
+          "statistic": "1600 ATK"
+        }
+      ],
+      "graveyard": [
+        17768,
+        17417
+      ],
+      "spell": [],
+      "banished": [],
+      "hand": [],
+      "note": "Antes del efecto rápido opcional de S:P; no se ejecuta un destierro al Invocar usando dos monstruos de Main."
+    },
+    "656:A09:FENRIR:REINO:SCHEIREN:IP_SP12": {
+      "source": "DECK_656_FENRIR_REINO_SCHEIREN_IP_SP_GUIA.md#Pasos5-7",
+      "monster": [
+        {
+          "cid": 19188,
+          "position": "Ataque"
+        }
+      ],
+      "graveyard": [
+        17417,
+        17415,
+        8933,
+        14676,
+        17768,
+        {
+          "unknown": "Tres envíos del Deck sin identificar",
+          "quantity": 3
+        }
+      ],
+      "hand": [
+        {
+          "cid": 18153,
+          "conditional": true,
+          "note": "Solo si Fenrir buscó esta carta y la búsqueda resolvió."
+        }
+      ],
+      "spell": [],
+      "opponent": "Puede desterrarse una carta rival elegible al resolver el primer efecto de S:P. No se elige una identidad no documentada.",
+      "variants": [
+        {
+          "label": "Al cerrar tu turno, antes de usar I:P en turno rival",
+          "monster": [
+            17768,
+            {
+              "cid": 14676,
+              "position": "Ataque"
+            }
+          ],
+          "graveyard": [
+            17417,
+            17415,
+            8933,
+            {
+              "unknown": "Tres envíos del Deck sin identificar",
+              "quantity": 3
+            }
+          ],
+          "opponent": "Antes del enlace en Main Phase rival; no se suma S:P a este campo."
+        }
+      ]
+    },
+    "665:A09:FENRIR:BIRTH:DARKARMED10": {
+      "source": "DECK_665_DARK_ARMED_GUIA_ADICIONAL.md#Pasos4-5",
+      "monster": [
+        {
+          "cid": 13974,
+          "statistic": "2800 ATK / 1000 DEF",
+          "materials": [
+            17769
+          ]
+        }
+      ],
+      "spell": [
+        {
+          "cid": 17815,
+          "position": "Boca arriba"
+        }
+      ],
+      "banished": [
+        17768
+      ],
+      "graveyard": [],
+      "hand": [],
+      "note": "Ejemplo excluyente: desacoplas Fenrir y destierras ese mismo material tras destruir el objetivo; Unicornio queda acoplado.",
+      "variants": [
+        {
+          "label": "Desacoplar y desterrar Unicornio en vez de Fenrir",
+          "monster": [
+            {
+              "cid": 13974,
+              "statistic": "2800 ATK / 1000 DEF",
+              "materials": [
+                17768
+              ]
+            }
+          ],
+          "banished": [
+            17769
+          ],
+          "note": "La misma elección de coste con el otro material. No se conserva Fenrir como monstruo independiente."
+        }
+      ]
+    },
+    "665:A09:BIGEYE:BATTLE:ZEUS11": {
+      "source": "DECK_665_BIGEYE_ZEUS_CONTINUACION_VERIFICADA.md#Paso5",
+      "monster": [
+        {
+          "cid": 15524,
+          "statistic": "3000 ATK / 3000 DEF",
+          "materials": [
+            9861,
+            17768,
+            17770
+          ]
+        },
+        17769
+      ],
+      "spell": [
+        {
+          "cid": 17815,
+          "position": "Boca arriba"
+        },
+        {
+          "cid": 17831,
+          "position": "Colocada"
+        }
+      ],
+      "graveyard": [
+        18203
+      ],
+      "hand": [],
+      "banished": [],
+      "note": "Final de Main Phase 2, antes del barrido de ZEUS. El mismo estado no conserva a Ojo Grande como monstruo."
+    },
+    "665:A09:DONNER:FENRIR:UNICORN:GODDESS12": {
+      "source": "DECK_665_670_687_TYPHON_GODDESS_GUIA_V13.md#665:A09:DONNER:FENRIR:UNICORN:GODDESS12",
+      "monster": [
+        {
+          "cid": 15741,
+          "position": "Ataque",
+          "statistic": "3000 ATK"
+        }
+      ],
+      "graveyard": [
+        17804,
+        17768,
+        17769
+      ],
+      "opponent": "Un monstruo rival de Efecto fue usado como material, con destino a su propietario salvo reemplazos. No queda acoplado a Diosa."
+    },
+    "670:A09:CHARLES:EQUIPPED:LINK01": {
+      "source": "DECK_670_GUIAS_A10.md#CHARLES:EQUIPPED:LINK01",
+      "graveyard": [
+        15287
+      ],
+      "variants": [
+        {
+          "label": "Si paga el Equipo para negar una activación M/T",
+          "monster": [
+            {
+              "cid": 18835,
+              "position": "Ataque",
+              "statistic": "3000 ATK"
+            }
+          ],
+          "spell": [],
+          "graveyard": [
+            15287,
+            15276
+          ],
+          "opponent": "La respuesta depende de una activación rival y resolución legal. El Charles Sincronía deja de estar equipado."
+        }
+      ]
+    },
+    "670:A09:OGIER:RENAUD:SP_DEFENSA08": {
+      "source": "DECK_670_OGIER_RENAUD_SP_DEFENSA_GUIA.md#Paso5",
+      "monster": [
+        {
+          "cid": 19188,
+          "position": "Ataque"
+        }
+      ],
+      "hand": [
+        15287
+      ],
+      "graveyard": [
+        15247,
+        15082
+      ],
+      "spell": [],
+      "banished": []
+    },
+    "670:A09:OGIER:RENAUD:ANIMA:SP09": {
+      "source": "DECK_670_OGIER_RENAUD_ANIMA_SP_GUIA.md#Paso6",
+      "monster": [
+        {
+          "cid": 19188,
+          "position": "Ataque"
+        }
+      ],
+      "hand": [
+        15287
+      ],
+      "graveyard": [
+        15247,
+        15082,
+        13841
+      ],
+      "spell": [],
+      "opponent": "El monstruo equipado por Anima deja de estar equipado al salir Anima, normalmente va al GY de su dueño. El destierro posterior requiere un objetivo todavía elegible."
+    },
+    "670:A09:RENAUD:TYPHON10": {
+      "source": "DECK_665_670_687_TYPHON_GODDESS_GUIA_V13.md#670:A09:RENAUD:TYPHON10",
+      "monster": [
+        {
+          "cid": 19184,
+          "materials": [],
+          "statistic": "2900 ATK · 0 materiales"
+        }
+      ],
+      "graveyard": [
+        15082
+      ],
+      "hand": [],
+      "spell": [],
+      "banished": [],
+      "opponent": "Un monstruo devuelto a mano/Extra si el efecto resuelve; las otras cartas rivales no se inventan."
+    },
+    "684:A09:POWERBOND:CYBER_NACHSTER:HEOS09": {
+      "source": "DECK_684_HEOSVAROG_POWERBOND_NEGADOR_GUIA.md#Paso5",
+      "monster": [
+        {
+          "cid": 20511,
+          "position": "Defensa",
+          "statistic": "2800 DEF"
+        }
+      ],
+      "graveyard": [
+        6390,
+        14047,
+        6398
+      ],
+      "hand": [],
+      "spell": [],
+      "banished": []
+    },
+    "684:A09:POWERBOND:CYBER_HERZ_NACHSTER:ETERNITY10": {
+      "source": "DECK_684_ETERNITY_POWERBOND_PRESION_GUIA.md#Paso5",
+      "monster": [
+        {
+          "cid": 13847,
+          "position": "Ataque",
+          "statistic": "5600 ATK"
+        }
+      ],
+      "graveyard": [
+        13723,
+        14047,
+        6398
+      ],
+      "hand": [
+        6390
+      ],
+      "spell": [],
+      "banished": [],
+      "note": "Cyber Dragon original se recupera a mano; no se duplica en el GY. Power Bond exige considerar su daño de End Phase."
+    },
+    "684:A09:CYBER:CORE:SP_DEFENSA11": {
+      "source": "DECK_684_CYBER_CORE_SP_DEFENSA_GUIA.md#Paso5",
+      "monster": [
+        {
+          "cid": 19188,
+          "position": "Ataque"
+        }
+      ],
+      "hand": [
+        8428
+      ],
+      "graveyard": [
+        6390,
+        10866
+      ],
+      "spell": [],
+      "banished": []
+    },
+    "684:A09:CYBER:CORE:CLOCKWORK:GENIUS12": {
+      "source": "DECK_684_CLOCKWORK_CORE_GENIUS_NEGACION_GUIA.md#Paso5",
+      "monster": [
+        {
+          "cid": 13502,
+          "position": "Ataque",
+          "statistic": "1800 ATK"
+        }
+      ],
+      "hand": [
+        8428
+      ],
+      "graveyard": [
+        6390,
+        10866
+      ],
+      "spell": [
+        {
+          "cid": 17625,
+          "position": "Boca arriba",
+          "note": "Efectos negados hasta el final del turno según esta rama."
+        }
+      ],
+      "banished": []
+    },
+    "684:A09:CORE:NIGHT:CLOCKWORK_KNIGHT13": {
+      "source": "DECK_684_CLOCKWORK_KNIGHT_Y_BARRICADEBORG_ALTERNATIVAS_GUIA.md#Ruta13",
+      "monster": [
+        {
+          "cid": 20787,
+          "position": "Ataque",
+          "statistic": "500 ATK"
+        }
+      ],
+      "hand": [
+        8428,
+        17625
+      ],
+      "graveyard": [
+        10866,
+        17625
+      ],
+      "spell": [],
+      "banished": []
+    },
+    "684:A09:CYBER:HORN:NIGHT:BARRICADEBORG14": {
+      "source": "DECK_684_CLOCKWORK_KNIGHT_Y_BARRICADEBORG_ALTERNATIVAS_GUIA.md#Ruta14",
+      "monster": [
+        {
+          "cid": 14710,
+          "position": "Ataque",
+          "statistic": "1500 ATK bajo Clockwork Night"
+        }
+      ],
+      "graveyard": [
+        6390,
+        6830
+      ],
+      "spell": [
+        {
+          "cid": 17625,
+          "position": "Boca arriba"
+        }
+      ],
+      "hand": [],
+      "banished": []
+    },
+    "684:A09:CYBER:CORE:AZALEA15": {
+      "source": "DECK_684_687_AZALEA_VIMANA_PRINCESS_GUIA_V12.md#684:A09:CYBER:CORE:AZALEA15",
+      "monster": [],
+      "graveyard": [
+        6390,
+        10866,
+        18448
+      ],
+      "hand": [
+        8428
+      ],
+      "spell": [],
+      "banished": [],
+      "note": "Caso base con 0 Mágicas inicialmente en GY: Azalea se envía al GY después de destruir. No se dibuja en campo junto a su propia copia en GY."
+    },
+    "684:A09:JORMUNGARDR:VIMANA16": {
+      "source": "DECK_684_687_AZALEA_VIMANA_PRINCESS_GUIA_V12.md#684:A09:JORMUNGARDR:VIMANA16",
+      "monster": [
+        {
+          "cid": 16233,
+          "statistic": "2300 ATK",
+          "materials": [
+            21163,
+            6390
+          ]
+        }
+      ],
+      "hand": [],
+      "graveyard": [],
+      "spell": [],
+      "banished": []
+    },
+    "687:A09:IP:EMPEROR:UNICORN14": {
+      "source": "DECK_687_IP_EMPEROR_UNICORN_RESPUESTA_GUIA.md#Paso5",
+      "monster": [
+        {
+          "cid": 13601,
+          "position": "Ataque"
+        }
+      ],
+      "graveyard": [
+        14676,
+        18915,
+        15299
+      ],
+      "spell": [],
+      "hand": [],
+      "opponent": "Una carta objetivo barajada al Deck si resolvió el efecto de Unicornio."
+    },
+    "687:A09:SHELL:LINKURIBOH:DEFENSA15": {
+      "source": "DECK_687_SHELL_LINKURIBOH_DEFENSA_GUIA.md#Pasos4-5",
+      "monster": [
+        {
+          "cid": 13346,
+          "position": "Ataque",
+          "statistic": "300 ATK"
+        }
+      ],
+      "graveyard": [
+        7082
+      ],
+      "hand": [
+        {
+          "cid": 7082,
+          "note": "Segunda copia, si la búsqueda por 500 LP resolvió.",
+          "conditional": true
+        }
+      ],
+      "spell": [],
+      "variants": [
+        {
+          "label": "Después de Sacrificar Linkuriboh ante un ataque",
+          "monster": [],
+          "graveyard": [
+            7082,
+            13346
+          ],
+          "opponent": "ATK del atacante pasa a 0 hasta fin del turno si resolvió. No se niega el ataque."
+        }
+      ]
+    },
+    "687:A09:IP:EMPEROR:SP_DEFENSA16": {
+      "source": "DECK_687_IP_EMPEROR_SP_RESPUESTA_GUIA.md#Paso5",
+      "monster": [
+        {
+          "cid": 19188,
+          "position": "Ataque"
+        }
+      ],
+      "graveyard": [
+        14676,
+        18915
+      ],
+      "spell": [],
+      "opponent": "Una carta elegible desterrada si el primer efecto resolvió. El segundo destierro temporal de S:P no se ejecuta automáticamente."
+    },
+    "687:A09:TROOPER:ROCKET:SHELL:PRINCESS17": {
+      "source": "DECK_684_687_AZALEA_VIMANA_PRINCESS_GUIA_V12.md#687:A09:TROOPER:ROCKET:SHELL:PRINCESS17",
+      "monster": [
+        {
+          "cid": 19507,
+          "position": "Ataque",
+          "statistic": "2700 ATK"
+        },
+        {
+          "cid": 7243,
+          "statistic": "1900 ATK"
+        }
+      ],
+      "graveyard": [
+        18916,
+        7082
+      ],
+      "spell": [],
+      "hand": [
+        {
+          "unknown": "Búsqueda opcional de Rocket: solo si existe un objetivo elegible",
+          "conditional": true
+        }
+      ]
+    },
+    "687:A09:SHELL:TYPHON18": {
+      "source": "DECK_665_670_687_TYPHON_GODDESS_GUIA_V13.md#687:A09:SHELL:TYPHON18",
+      "monster": [
+        {
+          "cid": 19184,
+          "materials": [],
+          "statistic": "2900 ATK · 0 materiales"
+        }
+      ],
+      "graveyard": [
+        7082
+      ],
+      "hand": [
+        {
+          "cid": 7082,
+          "conditional": true,
+          "note": "Otra copia solo si se pagaron 500 LP y la búsqueda resolvió."
+        }
+      ],
+      "spell": [],
+      "banished": []
+    },
+    "687:A09:IP:TROOPER:ROCKET:GODDESS19": {
+      "source": "DECK_665_670_687_TYPHON_GODDESS_GUIA_V13.md#687:A09:IP:TROOPER:ROCKET:GODDESS19",
+      "monster": [
+        {
+          "cid": 15741,
+          "position": "Ataque",
+          "statistic": "3000 ATK"
+        }
+      ],
+      "graveyard": [
+        14676,
+        18916,
+        7243
+      ],
+      "spell": [],
+      "opponent": "Un monstruo rival de Efecto usado como material va a su propietario salvo reemplazos. No permanece como material Xyz."
+    },
+    "704:A09:ALCHEMY:ARCHER01": {
+      "source": "DECK_704_GUIAS_A10.md#ALCHEMY:ARCHER01",
+      "graveyard": [
+        17963,
+        17212,
+        16934
+      ],
+      "deck": [
+        {
+          "cid": 18583,
+          "note": "Parte superior del Deck, no en GY."
+        }
+      ]
+    },
+    "706:A09:VOLTIC:SECOND01C": {
+      "source": "DECK_706_GUIAS_A10.md#VOLTIC:SECOND01C",
+      "graveyard": [],
+      "deck": [
+        20457,
+        20460,
+        20459
+      ]
+    },
+    "706:A09:SHINING:DOUBLE01": {
+      "source": "DECK_706_GUIAS_A10.md#SHINING:DOUBLE01",
+      "graveyard": [
+        20460,
+        20459,
+        20457,
+        20453,
+        {
+          "cid": 16934,
+          "quantity": 2
+        }
+      ]
+    },
+    "687:A09:SITUACION:OPPONENT_TURN:TROOPER_VBA_EJECTION_EMISSION06": {
+      "source": "DECK_687_GUIAS_A10.md#SITUACION:OPPONENT_TURN:TROOPER_VBA_EJECTION_EMISSION06",
+      "hand": [
+        {
+          "cid": 18915,
+          "note": "Segunda copia devuelta en End Phase rival."
+        }
+      ],
+      "note": "Resultado despues de la devolucion de End Phase; la copia en mano no sigue simultaneamente en campo.",
+      "variants": [
+        {
+          "label": "Durante Main Phase rival, antes de la devolucion",
+          "monster": [
+            {
+              "cid": 18915,
+              "quantity": 2
+            },
+            14338
+          ],
+          "hand": []
+        }
+      ]
+    },
+    "707:A09:ILLUSION:SAGE01": {
+      "source": "DECK_707_GUIAS_A10.md#ILLUSION:SAGE01",
+      "hand": [
+        {
+          "unknown": "Carta robada sin identificar",
+          "quantity": 1
+        },
+        {
+          "unknown": "Magica excavada, solo si se obtuvo",
+          "quantity": 1,
+          "conditional": true
+        }
+      ]
+    },
+    "707:A09:ILLUSION:SAGE:KNIVES02": {
+      "source": "DECK_707_GUIAS_A10.md#ILLUSION:SAGE:KNIVES02",
+      "hand": [
+        {
+          "unknown": "Carta robada sin identificar",
+          "quantity": 1
+        },
+        {
+          "unknown": "Magica excavada, solo si se obtuvo",
+          "quantity": 1,
+          "conditional": true
+        }
+      ]
+    },
+    "665:A09:FENRIR:BIRTH:BIGEYE06": {
+      "source": "DECK_665_GUIAS_A10.md#FENRIR:BIRTH:BIGEYE06",
+      "monster": [
+        {
+          "cid": 9861,
+          "position": "Ataque",
+          "materials": [
+            17768
+          ]
+        },
+        {
+          "cid": 17769,
+          "position": "Ataque"
+        },
+        {
+          "unknown": "Monstruo rival tomado bajo tu control; identidad no documentada",
+          "quantity": 1
+        }
+      ],
+      "graveyard": [
+        18203,
+        17770
+      ]
+    },
+    "656:A09:REINO:SCHEIREN:KALEIDO01": {
+      "source": "DECK_656_GUIAS_A10.md#REINO:SCHEIREN:KALEIDO01",
+      "deck": [
+        {
+          "cid": 17417,
+          "note": "Devuelto al fondo del Deck por la Fusion documentada."
+        },
+        {
+          "cid": 17415,
+          "note": "Devuelto al fondo del Deck por la Fusion documentada."
+        },
+        {
+          "cid": 17416,
+          "note": "Devuelto al fondo del Deck por la Fusion documentada."
+        }
+      ]
+    },
+    "656:A09:REINO:MERRLI:KALEIDO01": {
+      "source": "DECK_656_GUIAS_A10.md#REINO:MERRLI:KALEIDO01",
+      "deck": [
+        {
+          "cid": 17417,
+          "note": "Devuelto al fondo del Deck por la Fusion documentada."
+        },
+        {
+          "cid": 17414,
+          "note": "Devuelto al fondo del Deck por la Fusion documentada."
+        },
+        {
+          "cid": 17416,
+          "note": "Devuelto al fondo del Deck por la Fusion documentada."
+        }
+      ]
+    },
+    "656:A09:REINO:SCHEIREN:HAVNIS_HAND01": {
+      "source": "DECK_656_GUIAS_A10.md#REINO:SCHEIREN:HAVNIS_HAND01",
+      "deck": [
+        {
+          "cid": 17417,
+          "note": "Devuelto al fondo del Deck por la Fusion documentada."
+        },
+        {
+          "cid": 17415,
+          "note": "Devuelto al fondo del Deck por la Fusion documentada."
+        },
+        {
+          "cid": 17416,
+          "note": "Devuelto al fondo del Deck por la Fusion documentada."
+        }
+      ]
+    },
+    "656:A09:REINO:MERRLI:SCHEIREN_HAND01": {
+      "source": "DECK_656_GUIAS_A10.md#REINO:MERRLI:SCHEIREN_HAND01",
+      "deck": [
+        {
+          "cid": 17417,
+          "note": "Devuelto al fondo del Deck por la Fusion documentada."
+        },
+        {
+          "cid": 17414,
+          "note": "Devuelto al fondo del Deck por la Fusion documentada."
+        },
+        {
+          "cid": 17415,
+          "note": "Devuelto al fondo del Deck por la Fusion documentada."
+        }
+      ]
+    },
+    "656:A09:GOODS:SCREAM:METANOISE:KALEIDO01": {
+      "source": "DECK_656_GUIAS_A10.md#GOODS:SCREAM:METANOISE:KALEIDO01",
+      "deck": [
+        {
+          "cid": 17417,
+          "note": "Devuelto al fondo del Deck por la Fusion documentada."
+        },
+        {
+          "cid": 17416,
+          "note": "Devuelto al fondo del Deck por la Fusion documentada."
+        },
+        {
+          "cid": 17414,
+          "note": "Devuelto al fondo del Deck por la Fusion documentada."
+        }
+      ]
+    },
+    "706:A09:VOLTIC:SECOND01A": {
+      "source": "DECK_706_GUIAS_A10.md#VOLTIC:SECOND01A",
+      "deck": [
+        20460,
+        20459
+      ]
+    },
+    "706:A09:VOLTIC:SECOND01B": {
+      "source": "DECK_706_GUIAS_A10.md#VOLTIC:SECOND01B",
+      "deck": [
+        20460,
+        20459
+      ]
+    },
+    "684:A09:OVERLOAD:CYBERLOAD:DOUBLE_RAMPAGE01": {
+      "source": "DECK_684_GUIAS_A10.md#OVERLOAD:CYBERLOAD:DOUBLE_RAMPAGE01",
+      "deck": [
+        10866
+      ],
+      "monster": [
+        {
+          "cid": 11764,
+          "position": "Ataque",
+          "statistic": "2100 ATK",
+          "note": "Rampage A: no puede atacar en este turno."
+        },
+        {
+          "cid": 11764,
+          "position": "Ataque",
+          "statistic": "2100 ATK",
+          "note": "Rampage B: unico monstruo que puede atacar este turno tras Cyberload Fusion."
+        }
+      ]
+    }
+  },
+  "active_face_up_cards": [
+    22159,
+    22173,
+    21823,
+    19200,
+    18844,
+    18918
+  ]
+}

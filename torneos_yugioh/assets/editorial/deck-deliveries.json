@@ -1,0 +1,62 @@
+{
+  "version": "20261102-r10-128",
+  "source_sha256": "6411557bf02719b05443a0fd32cb84ffb6e6a98d7bc2e2a29c9a9d9353ec2528",
+  "replace_not_merge": true,
+  "decks": {
+    "665": {
+      "url": "./assets/editorial/20261102-r10/deck-665.json?v=dec37a3b6f400822",
+      "name": "Kashtira Pure",
+      "source_key": 665
+    },
+    "670": {
+      "url": "./assets/editorial/20261102-r10/deck-670.json?v=f93d630a0c1b77d4",
+      "name": "Infernoble",
+      "source_key": 670
+    },
+    "650": {
+      "url": "./assets/editorial/20261102-r10/deck-650.json?v=cb0ab31438fd344c",
+      "name": "Elfnote",
+      "source_key": 650
+    },
+    "684": {
+      "url": "./assets/editorial/20261102-r10/deck-684.json?v=443f5f1d11aeb639",
+      "name": "Cyber Dragon Pure",
+      "source_key": 684
+    },
+    "687": {
+      "url": "./assets/editorial/20261102-r10/deck-687.json?v=d46728d8e936f709",
+      "name": "Volcanic",
+      "source_key": 687
+    },
+    "653": {
+      "url": "./assets/editorial/20261102-r10/deck-653.json?v=840ec9037f665982",
+      "name": "DoomZ",
+      "source_key": 653
+    },
+    "656": {
+      "url": "./assets/editorial/20261102-r10/deck-656.json?v=58e7bffa062e797d",
+      "name": "Tearlaments híbrido",
+      "source_key": 656
+    },
+    "706": {
+      "url": "./assets/editorial/20261102-r10/deck-706.json?v=5dbfb43a1c76a0e3",
+      "name": "HERO Elemental Rush",
+      "source_key": 706
+    },
+    "704": {
+      "url": "./assets/editorial/20261102-r10/deck-704.json?v=d2dda4b4ba2e74a7",
+      "name": "Quimicalizada Rush",
+      "source_key": 704
+    },
+    "707": {
+      "url": "./assets/editorial/20261102-r10/deck-707.json?v=3adf661fa0c5c919",
+      "name": "Mago Oscuro / Gaia Rush",
+      "source_key": 707
+    },
+    "705": {
+      "url": "./assets/editorial/20261102-r10/deck-705.json?v=cb99f0b1c4630db7",
+      "name": "Royal Rebel's / Kheiron Rush",
+      "source_key": 705
+    }
+  }
+}
