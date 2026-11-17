@@ -1,5 +1,7 @@
 # Canonical Yu-Gi-Oh repository
 
+Work and commit on `base`. Keep `main`, `develop` and `test` at their clean initial baseline; do not put implementation changes on those branches or merge into them unless Miguel explicitly requests it. Finish each authorized change with its commit on `base` and report whether the push actually succeeded.
+
 This application repository does not contain a `gpt` directory, even as an empty placeholder. Research, prompts and source deliveries belong exclusively to the sibling `gpt-yugioh-promps-platform` repository. Active import/sync tools resolve that sibling by default or use `YGO_PROMPTS_ROOT`. Do not recreate an internal GPT folder. Preserve deployed editorial runtime assets; they are application resources. Historical source-dependent tests are opt-in and require their separate external inputs.
 
 This repository is the source of truth for Station X's Yu-Gi-Oh platform. Save all platform code, tests, editorial inputs and maintained context here. Do not continue editing the old sibling `xstation/torneos_yugioh` copy.
