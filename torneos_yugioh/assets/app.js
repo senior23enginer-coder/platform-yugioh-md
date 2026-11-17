@@ -5321,18 +5321,8 @@
     window.YgoDeckData?.mount(deck);
     window.YgoComboCreator?.mountViewer(document.querySelector('[data-deck-created-combos]'), deck);
     window.YgoPlayCalculator?.mount(document.querySelector('[data-play-calculator]'), deck, data);
-    const r10Node = document.querySelector('[data-play-calculator]');
-    if (r10Node) r10Node.dataset.r10Deck = String(deck.id);
     renderDeckAnalysis(deck);
-    window.YgoR10Guide?.decorate(deck, data);
   }
-
-  window.addEventListener('ygo:r10-practice', (event) => {
-    const own = (data.allDecks || []).find(d => Number(d.id) === Number(event.detail.deckId));
-    if (!own || deckSelect?.value !== own.name) return;
-    document.querySelector('[data-deck-category-open="play-calculator"]')?.click();
-    window.YgoPlayCalculator?.practice(document.querySelector('[data-play-calculator]'), event.detail.hand);
-  });
 
   const statsBody = document.querySelector('[data-stats-body]');
   const statsDivisionBars = document.querySelector('[data-stats-division-bars]');

@@ -9538,7 +9538,6 @@ if ($dbStatus['connected'] && isset($_GET['export'])) {
 <link href="./assets/modules/combo-creator/styles.css?v=20261116-deck-picker-1" rel="stylesheet">
 <link href="./assets/modules/play-calculator/styles.css?v=20261116-workspace-1" rel="stylesheet">
 <link href="./assets/modules/deck-guide/learning-guide.css?v=20261102-library-125" rel="stylesheet">
-<link href="./assets/modules/deck-guide/r10-guide.css?v=20261102-r10-128" rel="stylesheet">
 <link href="./assets/result-context.css?v=20261026-divisions-100" rel="stylesheet">
 <link href="./assets/app.css?v=20261024-event-filters-90" rel="stylesheet">
 <link href="./assets/modules/navigation/sidebar.css?v=20261117-sidebar-arrow" rel="stylesheet">
@@ -13243,17 +13242,16 @@ $routes = [
 <script src="./assets/card-inspector.js?v=20261028-inspector-111" defer></script>
 <script src="./assets/deck-builder.js?v=20261028-inspector-111" defer></script>
 <script src="./assets/deck-history.js?v=20261024-history-92" defer></script>
-<script src="./assets/modules/deck-guide/strategy-workspace.js?v=20261116-actions-1" defer></script>
-<script src="./assets/modules/deck-guide/deck-deliveries.js?v=20261102-r10-128" defer></script>
+<script src="./assets/modules/deck-guide/strategy-workspace.js?v=20261030-depth-122" defer></script>
+<script src="./assets/modules/deck-guide/deck-deliveries.js?v=20261102-library-125" defer></script>
 <script src="./assets/modules/deck-export/export.js?v=20261102-export-127" defer></script>
 <link rel="stylesheet" href="./assets/modules/deck-data/styles.css?v=20261117-data-1">
 <script src="./assets/modules/deck-data/ui.js?v=20261117-data-folder-2" defer></script>
 <script src="./assets/modules/deck-guide/deck-study.js?v=20261102-library-125" defer></script>
-<script src="./assets/modules/deck-guide/learning-guide.js?v=20261102-r10-128" defer></script>
-<script src="./assets/modules/deck-guide/r10-guide.js?v=20261102-r10-128" defer></script>
+<script src="./assets/modules/deck-guide/learning-guide.js?v=20261102-library-125" defer></script>
 <script src="./assets/result-desktop.js?v=20261109-result-button-158" defer></script>
 <script src="./assets/participant-labels.js?v=20261027-participants-103" defer></script>
-<script src="./assets/lp-workspace.js?v=20261116-actions-1" defer></script>
+<script src="./assets/lp-workspace.js?v=20261027-lp-105" defer></script>
 <script src="./assets/lp-sound.js?v=20261027-sound-106" defer></script>
 <script src="./assets/storage-maintenance.js?v=20261028-cleanup-113" defer></script>
 <script src="./assets/news.js?v=20261028-news-115" defer></script>
@@ -13264,7 +13262,7 @@ $routes = [
 <script src="./assets/modules/play-calculator/planner.js?v=20261116-actions-1" defer></script><script src="./assets/modules/play-calculator/ui.js?v=20261116-actions-1" defer></script>
 <script src="./assets/modules/combo-creator/model.js?v=20261103-combos-133" defer></script>
 <script src="./assets/modules/combo-creator/step-lesson.js?v=20261113-step-lessons-173" defer></script>
-<script src="./assets/modules/combo-creator/documented-import.js?v=20261114-delivery-v12-186" defer></script>
+<script src="./assets/modules/combo-creator/documented-import.js?v=20261116-folder-import-1" defer></script>
 <script src="./assets/modules/play-calculator/workspace.js?v=20261116-actions-1" defer></script>
 <script src="./assets/modules/card-inspector/model.js?v=20261116-readable-3" defer></script>
 <script src="./assets/modules/card-inspector/ui.js?v=20261116-readable-3" defer></script>
@@ -13281,19 +13279,19 @@ $routes = [
 <script src="./assets/modules/deck-guide/endboard.js?v=20261113-combo-library-164" defer></script>
 <link href="./assets/modules/deck-guide/curated-visual.css?v=20261113-combo-library-164" rel="stylesheet">
 <link href="./assets/modules/deck-guide/delivery-extensions.css?v=20261114-delivery-v12-186" rel="stylesheet">
-<script src="./assets/modules/deck-guide/delivery-extensions.js?v=20261114-delivery-v12-186" defer></script>
+<script src="./assets/modules/deck-guide/delivery-extensions.js?v=20261116-folder-import-1" defer></script>
 <script src="./assets/modules/deck-guide/curated-visual.js?v=20261114-delivery-v12-186" defer></script>
-<script src="./assets/modules/deck-guide/functional-role.js?v=20261114-delivery-v12-186" defer></script>
+<script src="./assets/modules/deck-guide/functional-role.js?v=20261116-folder-import-1" defer></script>
 <script src="./assets/modules/deck-guide/card-detail.js?v=20261115-card-detail-196" defer></script>
-<script src="./assets/modules/deck-guide/curated-study.js?v=20261114-delivery-v12-186" defer></script>
+<script src="./assets/modules/deck-guide/curated-study.js?v=20261117-folder-delivery-v37-complete" defer></script>
 <script src="./assets/modules/combo-creator/editorial-library.js?v=20261113-combo-library-164" defer></script>
 <script src="./assets/modules/deck-guide/checked-study.js?v=20261108-curated-147" defer></script>
 <script src="./assets/modules/deck-guide/content-state.js?v=20261113-combo-library-164" defer></script>
 <script src="./assets/modules/dashboard/ranking-scopes.js?v=20261107-ranking-divisions-146" defer></script>
 <script src="./assets/modules/navigation/global-search.js?v=20261113-global-search-167" defer></script>
 <link rel="stylesheet" href="./assets/modules/deck-guide/league-position.css?v=20261113-match-positions-183">
-<link rel="stylesheet" href="./assets/modules/deck-attributes/style.css?v=20261114-worlds-188">
-<script src="./assets/modules/deck-attributes/model.js?v=20261114-worlds-188"></script>
+<link rel="stylesheet" href="./assets/modules/deck-attributes/style.css?v=20261115-card-detail-196">
+<script src="./assets/modules/deck-attributes/model.js?v=20261115-card-detail-196"></script>
 <script src="./assets/modules/deck-attributes/ui.js?v=20261115-card-detail-196"></script>
 <script src="./assets/modules/deck-guide/league-position.js?v=20261113-match-positions-182" defer></script>
 <script src="./assets/app.js?v=20261117-match-entities" defer></script>
