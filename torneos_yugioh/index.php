@@ -9000,6 +9000,13 @@ $deckWithMediaCount = count(array_filter($allDecks, static fn(array $deck): bool
 $eventsWithoutDateCount = count(array_filter($competitions, static fn(array $competition): bool => empty($competition['starts_on'])));
 $scheduledFixtureMatches = array_sum(array_map(static fn(array $rounds): int => array_sum(array_map(static fn(array $round): int => count(array_filter($round['matches'] ?? [], static fn(array $match): bool => !empty($match['scheduled_on']))), $rounds)), $fixtures));
 $nextDashboardEvent = $activeDashboardEvents[0] ?? ($competitions[0] ?? null);
+$dashboardSeasonName = '2027 B';
+foreach ($seasons as $dashboardSeason) {
+    if (($dashboardSeason['status'] ?? '') === 'active' && trim((string) ($dashboardSeason['name'] ?? '')) !== '') {
+        $dashboardSeasonName = trim((string) $dashboardSeason['name']);
+        break;
+    }
+}
 $dashboardMatches = [];
 $dashboardMatchStatsByCompetition = [];
 $dashboardMatchStatsByPhase = [];
@@ -9618,7 +9625,7 @@ $routes = [
             <img class="side-logo" src="./assets/img/dml-logo.svg" alt="YUGIOH MD">
             <div>
                 <strong>YUGIOH MD</strong>
-                <small><?php echo e((string) ($dbStatus['connected'] ? ((ygo_season_find($pdo, ygo_current_season_id($pdo)))['name'] ?? 'Temporadas') : 'Temporadas')); ?></small>
+                <small><?php echo e($dashboardSeasonName); ?></small>
             </div>
         </div>
         <nav class="side-menu" aria-label="Pantallas principales">
@@ -9674,7 +9681,7 @@ $routes = [
                     <article>
                         <i class="bi bi-shield-shaded"></i>
                         <small>Temporada actual</small>
-                        <strong><?php echo e((string) ($nextDashboardEvent['name'] ?? 'Temporada YUGIOH MD')); ?></strong>
+                        <strong><?php echo e($dashboardSeasonName); ?></strong>
                     </article>
                     <article>
                         <i class="bi bi-calendar2-event"></i>
