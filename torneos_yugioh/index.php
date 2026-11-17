@@ -9528,7 +9528,7 @@ if ($dbStatus['connected'] && isset($_GET['export'])) {
 <meta name="theme-color" content="#07101f">
 <link href="./assets/deck-builder.css?v=20261028-inspector-111" rel="stylesheet">
 <link href="./assets/deck-history.css?v=20261024-history-92" rel="stylesheet">
-<link href="./assets/modules/statistics/workspace.css?v=20261113-stats-workspace-176" rel="stylesheet">
+<link href="./assets/modules/statistics/workspace.css?v=20261117-global-catalog" rel="stylesheet">
 <link href="./assets/modules/deck-guide/list-metadata.css?v=20261113-deck-metadata-172" rel="stylesheet">
 <link href="./assets/modules/deck-guide/strategy-workspace.css?v=20261024-strategy-95" rel="stylesheet">
 <link href="./assets/modules/combo-creator/step-lesson.css?v=20261113-step-lessons-173" rel="stylesheet">
@@ -13231,8 +13231,9 @@ $routes = [
 <script src="./assets/event-teams.js?v=20261018-ranking-47" defer></script>
 <script src="./assets/event-recovery.js?v=20261018-ranking-47" defer></script>
 <script src="./assets/event-models.js?v=20261018-ranking-47" defer></script>
-<script src="./assets/modules/statistics/workspace.js?v=20261113-profile-ranking-179"></script>
-<script src="./assets/statistics-v8.js?v=20261113-ranking-simple-181"></script>
+<script src="./assets/modules/statistics/global-ranking.js?v=20261117-global-catalog"></script>
+<script src="./assets/modules/statistics/workspace.js?v=20261117-global-catalog"></script>
+<script src="./assets/statistics-v8.js?v=20261117-global-catalog"></script>
 <script src="./assets/modules/statistics/live.js?v=20261113-stats-live-180"></script>
 <script src="./assets/library-search.js?v=20261018-library-48" defer></script>
 <script src="./assets/library.js?v=20261018-library-48" defer></script>

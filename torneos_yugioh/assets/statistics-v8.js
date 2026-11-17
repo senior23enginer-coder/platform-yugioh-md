@@ -81,6 +81,19 @@
   function profileRankInfo(deck){
     const stats=source().statisticsV8,formats=[...new Set(deck.format_codes||[])];
     if(!formats.length)return {label:'Ranking global: sin formato',detail:'El deck no tiene un formato registrado.'};
+    if (formats.some(format => root.YgoGlobalRanking?.isConstructed(format))) {
+      const label = 'Ranking global TCG/OCG';
+      if (!deck.team_id) return {label:label+': sin puesto',detail:'Asocia un equipo para consultar su clasificaci\u00f3n.'};
+      if (!stats) return {label:label+': sin datos',detail:'No se ha podido consultar la clasificación actual.'};
+      const pool = root.YgoGlobalRanking.build({...source(), allDecks:[...(source().allDecks || []), deck]});
+      const row = pool.rows.find(row => row.deck_id === Number(deck.id));
+      const coverage = `Catálogo completo: ${pool.total} decks TCG/OCG. Excluye Rush y GOAT.`;
+      if (row?.position != null) return {label:`${label}: #${row.position} de ${pool.total}`,detail:coverage+' Puesto según resultados confirmados; incluye todas las ligas y divisiones.'};
+      if (row?.state === 'INACTIVO') return {label:label+': inactivo',detail:coverage+' Sin puesto por inactividad.'};
+      if (row?.state === 'REACTIVACION PENDIENTE') return {label:label+': pendiente de reactivación',detail:coverage+' Debe completar las partidas de reactivación.'};
+      if (!deck.team_id) return {label:label+': sin puesto',detail:coverage+' Asocia un equipo para consultar su clasificación.'};
+      return {label:label+': sin clasificar',detail:coverage+` En evaluación: ${row?.J || 0}/${stats.policy?.minimum_matches || 2} partidas confirmadas.`};
+    }
     const views=formats.map(format=>{
       const label='Ranking global '+rankFormatLabel(format);
       if(!deck.team_id)return {label:label+': sin puesto',detail:'Asocia un equipo para consultar su clasificación.'};

@@ -11,6 +11,7 @@ Documentacion vigente de la plataforma competitiva Yu-Gi-Oh de Station X Tulua.
 - `requirements.md`: requisitos funcionales y no funcionales.
 - `rules.md`: reglas de eventos, partidas y duelos D1-D5.
 - `architecture.md`: arquitectura implementada.
+- `global-ranking.md`: catalogo completo TCG/OCG, alcance compartido de ficha y ranking global; excluye Rush y GOAT.
 - `database.md`: modelo de persistencia real.
 - `api.md`: interfaz HTTP implementada.
 - `frontend.md`: pantallas, navegacion y comportamiento responsive.

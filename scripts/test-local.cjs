@@ -18,7 +18,7 @@ for (const name of ['event_admission', 'event_business_rules', 'event_contracts'
   run(php, [`torneos_yugioh/tests/${name}_test.php`]);
 }
 for (const name of ['best_of_rule_regression_test.js', 'event_model_parity_test.cjs',
-  'event_admission_parity_test.cjs', 'play_calculator_engine_test.cjs', 'hand_practice_test.cjs', 'deck_attributes_model_test.cjs', 'deck_league_position_test.cjs', 'profile_global_rank_test.cjs', 'statistics_live_test.cjs', 'planner_test.cjs', 'step_lesson_test.cjs']) {
+  'event_admission_parity_test.cjs', 'play_calculator_engine_test.cjs', 'hand_practice_test.cjs', 'deck_attributes_model_test.cjs', 'deck_league_position_test.cjs', 'global_ranking_scope_test.cjs', 'profile_global_rank_test.cjs', 'statistics_live_test.cjs', 'planner_test.cjs', 'step_lesson_test.cjs']) {
   run(process.execPath, [`torneos_yugioh/tests/${name}`]);
 }
 run(php, ['torneos_yugioh/tests/statistics_no_cuts_test.php']);

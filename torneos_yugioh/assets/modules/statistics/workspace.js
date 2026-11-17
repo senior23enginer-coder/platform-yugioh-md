@@ -34,7 +34,7 @@
     const progress = r => r.state === 'INACTIVO' ? 'Inactivo' : r.state === 'REACTIVACION PENDIENTE' ? 'Pendiente de reactivación' : `En evaluación: ${r.J || 0}/${data.policy?.minimum_matches || 2} partidas`;
     const columns = [
       ['Posición', r => r.position == null ? '—' : num(r.position)],
-      ['Equipo / deck', r => `${esc(name(r.team_id))} / ${esc(name(r.deck_id, 'deck'))}${r.state !== 'CLASIFICADO' ? `<small class="d-block">${esc(progress(r))}</small>` : ''}`],
+      ['Equipo / deck', r => `${r.team_id ? esc(name(r.team_id)) : 'Sin equipo'} / ${esc(name(r.deck_id, 'deck'))}${r.state !== 'CLASIFICADO' ? `<small class="d-block">${esc(progress(r))}</small>` : ''}`],
       ['Puntuación', r => `<span title="${esc('Elo: '+r.rating+' · Bonos de campeonato: '+(r.bonus_medallas || 0))}">${num(r.total)}</span>`],
       ['Partidas', r => num(r.J)]
     ];
@@ -45,15 +45,21 @@
         b.classList.toggle('active', selected);b.setAttribute('aria-selected', String(selected));b.tabIndex = selected ? 0 : -1;
       });
       panel.setAttribute('aria-labelledby', `stats-tab-${tab}`);
-      controls.hidden = tab === 'tables';body.hidden = tab === 'tables';context.hidden = tab === 'tables';
+      controls.hidden = tab === 'tables' || tab === 'global';body.hidden = tab === 'tables';context.hidden = tab === 'tables';
       if (standingPanel) standingPanel.hidden = tab !== 'tables';
       screen.querySelector('[data-stats-season-control]').hidden = tab !== 'meta';
+      screen.querySelector('[data-stats-format-control]').hidden = tab === 'global';
       if (tab === 'tables') return;
       const formatSelect = screen.querySelector('[data-v8-format]');
       formatSelect.innerHTML = (tab === 'global' ? '<option value="">Todos los formatos · separados</option>' : '') + formats.map(f => `<option value="${esc(f)}">${esc(formatName(f))}</option>`).join('');
       formatSelect.value = format;screen.querySelector('[data-v8-meta-season]').value = season;
       context.textContent = `Actualización automática con resultados confirmados · Última actualización: ${data.cutoff || 'Sin datos'}`;
       body.innerHTML = '<p role="status">Cargando clasificación…</p>';
+      if (tab === 'global') {
+        const pool = root.YgoGlobalRanking.build(source());
+        body.innerHTML = `<h2>Ranking global TCG/OCG</h2><p>${pool.total} decks de todas las ligas y divisiones. Excluye Rush y GOAT. Puesto desde 2 partidas confirmadas; los decks sin partidas también forman parte del listado.</p><section data-stats-format="tcg_ocg"><h3>TCG / OCG</h3><h4>Clasificados</h4>${table(pool.rows.filter(row => row.position != null), columns)}<h4>En evaluación y fuera de clasificación</h4>${table(pool.rows.filter(row => row.position == null), columns)}</section>`;
+        return;
+      }
       const wanted = tab === 'global' && !format ? formats : [format].filter(Boolean);
       if (!wanted.length) {body.innerHTML = '<p>No hay formatos con datos para consultar.</p>'; return;}
       try {
