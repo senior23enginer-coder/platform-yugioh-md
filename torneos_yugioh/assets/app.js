@@ -49,12 +49,13 @@
 
   function syncSidebarCollapseControl() {
     if (!sidebarToggle) return;
-    const collapsed = document.body.classList.contains('sidebar-collapsed');
-    sidebarToggle.title = collapsed ? 'Expandir menu' : 'Contraer menu';
+    const desktop = window.innerWidth > 1200;
+    const collapsed = desktop && document.body.classList.contains('sidebar-collapsed');
+    sidebarToggle.title = desktop ? (collapsed ? 'Expandir menu' : 'Contraer menu') : 'Cerrar menu';
     sidebarToggle.setAttribute('aria-label', sidebarToggle.title);
     sidebarToggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
     const icon = sidebarToggle.querySelector('i');
-    if (icon) icon.className = `bi ${collapsed ? 'bi-layout-sidebar' : 'bi-layout-sidebar-inset'}`;
+    if (icon) icon.className = `bi ${collapsed ? 'bi-chevron-right' : 'bi-chevron-left'}`;
     document.querySelectorAll('.side-menu [data-route], .side-group summary').forEach((button) => {
       const label = button.querySelector('span')?.textContent?.trim() || '';
       if (label) { button.title = collapsed ? label : ''; button.setAttribute('aria-label', label); }
@@ -97,9 +98,14 @@
 
   syncMobileCollapsibles();
   window.addEventListener('resize', syncMobileCollapsibles);
+  window.addEventListener('resize', syncSidebarCollapseControl);
 
   if (sidebarToggle) {
     sidebarToggle.addEventListener('click', () => {
+      if (window.innerWidth <= 1200) {
+        document.body.classList.remove('sidebar-open');
+        return;
+      }
       document.body.classList.toggle('sidebar-collapsed');
       localStorage.setItem('dml_sidebar_collapsed', document.body.classList.contains('sidebar-collapsed') ? '1' : '0');
       syncSidebarCollapseControl();

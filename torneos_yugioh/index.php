@@ -9541,7 +9541,7 @@ if ($dbStatus['connected'] && isset($_GET['export'])) {
 <link href="./assets/modules/deck-guide/r10-guide.css?v=20261102-r10-128" rel="stylesheet">
 <link href="./assets/result-context.css?v=20261026-divisions-100" rel="stylesheet">
 <link href="./assets/app.css?v=20261024-event-filters-90" rel="stylesheet">
-<link href="./assets/modules/navigation/sidebar.css?v=20261113-sidebar-165" rel="stylesheet">
+<link href="./assets/modules/navigation/sidebar.css?v=20261117-sidebar-arrow" rel="stylesheet">
 <link href="./assets/modules/navigation/global-search.css?v=20261113-global-search-166" rel="stylesheet">
 <link href="./assets/modules/match-sheet/layout.css?v=20261104-match-sheet-134" rel="stylesheet">
 <link href="./assets/library.css?v=20261018-library-48" rel="stylesheet">
@@ -9617,16 +9617,13 @@ $routes = [
 
 <div class="app-shell">
     <aside class="side-nav" aria-label="Menu principal">
-        <div class="side-tools">
-            <button class="side-tool side-collapse" type="button" data-sidebar-toggle title="Contraer menu" aria-label="Contraer menu" aria-expanded="true"><i class="bi bi-layout-sidebar-inset"></i></button>
-            <button class="side-tool side-close" type="button" data-sidebar-close title="Cerrar menu" aria-label="Cerrar menu"><i class="bi bi-x-lg"></i></button>
-        </div>
-        <div class="side-card">
+        <div class="side-card side-header">
             <img class="side-logo" src="./assets/img/dml-logo.svg" alt="YUGIOH MD">
-            <div>
+            <div class="side-heading">
                 <strong>YUGIOH MD</strong>
                 <small><?php echo e($dashboardSeasonName); ?></small>
             </div>
+            <button class="side-tool side-collapse" type="button" data-sidebar-toggle title="Contraer menu" aria-label="Contraer menu" aria-expanded="true"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
         </div>
         <nav class="side-menu" aria-label="Pantallas principales">
             <details class="side-group">
@@ -13299,7 +13296,7 @@ $routes = [
 <script src="./assets/modules/deck-attributes/model.js?v=20261114-worlds-188"></script>
 <script src="./assets/modules/deck-attributes/ui.js?v=20261115-card-detail-196"></script>
 <script src="./assets/modules/deck-guide/league-position.js?v=20261113-match-positions-182" defer></script>
-<script src="./assets/app.js?v=20261114-worlds-188" defer></script>
+<script src="./assets/app.js?v=20261117-sidebar-arrow" defer></script>
 <script src="./assets/match-editor.js?v=20261027-participants-103" defer></script>
 <script src="./assets/event-audit.js?v=20261021-audit-55" defer></script>
 <script src="./assets/seasons.js?v=20261016-season-editor-4" defer></script>
