@@ -10779,9 +10779,6 @@ $routes = [
                     <p data-profile-division></p>
                     <span class="status-chip" data-profile-rank></span>
                     <p class="note mt-2" data-profile-rank-detail></p>
-                    <div class="deck-rating">
-                        <strong data-profile-activity>0</strong><span><i class="bi bi-controller"></i> combates</span><small data-profile-activity-note>Actividad registrada en BD</small>
-                    </div>
                     <div class="profile-meta mt-3">
                         <span class="deck-team-profile-card"><b>Equipo asociado</b><small data-profile-team></small></span>
                         <span><b>Arquetipo</b><small data-profile-archetype></small></span>
@@ -13297,7 +13294,7 @@ $routes = [
 <script src="./assets/modules/deck-attributes/model.js?v=20261114-worlds-188"></script>
 <script src="./assets/modules/deck-attributes/ui.js?v=20261115-card-detail-196"></script>
 <script src="./assets/modules/deck-guide/league-position.js?v=20261113-match-positions-182" defer></script>
-<script src="./assets/app.js?v=20261117-sidebar-arrow" defer></script>
+<script src="./assets/app.js?v=20261117-profile-clean" defer></script>
 <script src="./assets/match-editor.js?v=20261027-participants-103" defer></script>
 <script src="./assets/event-audit.js?v=20261021-audit-55" defer></script>
 <script src="./assets/seasons.js?v=20261016-season-editor-4" defer></script>

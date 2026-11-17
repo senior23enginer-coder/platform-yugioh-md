@@ -5202,7 +5202,6 @@
         || Number(left.ronda || 0) - Number(right.ronda || 0)
         || Number(left.mesa || 0) - Number(right.mesa || 0)
       );
-    const scheduledCount = deckHistory.filter((match) => match.scheduled_on).length;
     const nextMatch = deckHistory.find((match) => match.scheduled_on && match.scheduled_on >= serverToday && !['FINALIZADA', 'completed', 'finalizada'].includes(String(match.estado || match.status || '')));
     const doneCount = deckHistory.filter((match) => ['FINALIZADA', 'completed', 'finalizada'].includes(String(match.estado || match.status || '')) || match.score).length;
     const pendingCount = deckHistory.length - doneCount;
@@ -5292,10 +5291,6 @@
         button.addEventListener('click', () => openMatchSheet(button.dataset.profileOpenMatch));
       });
     }
-    const profileActivity = document.querySelector('[data-profile-activity]');
-    const profileActivityNote = document.querySelector('[data-profile-activity-note]');
-    if (profileActivity) profileActivity.textContent = String(deckHistory.length);
-    if (profileActivityNote) profileActivityNote.textContent = deckHistory.length ? `${scheduledCount} con fecha persistida en BD` : 'Sin combates registrados';
     setProfileText('[data-profile-history-count]', `${deckHistory.length} ${deckHistory.length === 1 ? 'partida' : 'partidas'}`);
     window.YgoDeckHistory?.mount(historyBody, deck.id);
     const honorsCount = (data.honors || []).filter((honor) => String(honor.champion_deck_id || '') === String(deck.id || '') || String(honor.runner_up_deck_id || '') === String(deck.id || '')).length;
