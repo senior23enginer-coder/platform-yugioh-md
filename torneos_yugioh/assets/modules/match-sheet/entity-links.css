@@ -1,0 +1,21 @@
+#matchSheetModal .match-sheet-entity-link {
+  appearance: none;
+  border: 0;
+  border-radius: 4px;
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  font-weight: inherit;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-color: rgba(75, 222, 255, .5);
+  text-underline-offset: .2em;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+#matchSheetModal .match-sheet-entity-link:hover { color: #4bdeff; }
+#matchSheetModal .match-sheet-entity-link:focus-visible { outline: 2px solid #ffd263; outline-offset: 5px; }
+#matchSheetModal .match-sheet-duel article.has-deck-link { position: relative; }
+#matchSheetModal .has-deck-link .match-sheet-entity-link::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
+#matchSheetModal .has-deck-link:focus-within { outline: 2px solid #ffd263; outline-offset: 2px; }

@@ -4403,6 +4403,11 @@
     setMatchSheetLogo('[data-match-sheet-logo-b]', matchSideLogoUrl(match, 'b'), matchSideFallback(match, 'b') || 'B', deckB.team || match.b || 'Equipo B');
     setMatchSheetText('[data-match-sheet-a]', matchSideDecks(match, 'a').join(' + '));
     setMatchSheetText('[data-match-sheet-b]', matchSideDecks(match, 'b').join(' + '));
+    window.YgoMatchSheetLinks?.render({
+      modal: matchSheetModalNode, match, decks: data.allDecks || [], competitions: data.competitions || [],
+      onDeck(id) { openSearchItem({type:'Deck', id}); },
+      onEvent(id) { openSearchItem({type:'Evento', id}); }
+    });
     setMatchSheetText('[data-match-sheet-id]', `#${match.id}`);
     setMatchSheetText('[data-match-sheet-status]', match.estado || evaluated.state || 'PENDIENTE');
     setMatchSheetText('[data-match-sheet-score]', match.score || evaluated.score || '0-0');

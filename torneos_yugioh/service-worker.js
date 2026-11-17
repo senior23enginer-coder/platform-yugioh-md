@@ -1,5 +1,7 @@
-const CACHE_NAME = 'yugioh-md-match-v190';
+const CACHE_NAME = 'yugioh-md-match-v191';
 const APP_SHELL = [
+  './assets/modules/match-sheet/entity-links.js?v=20261117-entity-links',
+  './assets/modules/match-sheet/entity-links.css?v=20261117-entity-links',
   './assets/modules/deck-data/ui.js?v=20261117-data-folder-2',
   './assets/modules/deck-data/styles.css?v=20261117-data-1',
   './assets/modules/play-calculator/card-menu.js?v=20261116-actions-1',
@@ -111,7 +113,7 @@ const APP_SHELL = [
   './assets/storage-maintenance.js?v=20261028-cleanup-113',
   './assets/news.css?v=20261028-news-116',
   './assets/news.js?v=20261028-news-115',
-  './assets/app.js?v=20261117-profile-clean',
+  './assets/app.js?v=20261117-match-entities',
   './assets/seasons.js?v=20261016-season-editor-4',
   './manifest.webmanifest'
 ];

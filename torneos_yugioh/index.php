@@ -9544,6 +9544,7 @@ if ($dbStatus['connected'] && isset($_GET['export'])) {
 <link href="./assets/modules/navigation/sidebar.css?v=20261117-sidebar-arrow" rel="stylesheet">
 <link href="./assets/modules/navigation/global-search.css?v=20261113-global-search-166" rel="stylesheet">
 <link href="./assets/modules/match-sheet/layout.css?v=20261104-match-sheet-134" rel="stylesheet">
+<link href="./assets/modules/match-sheet/entity-links.css?v=20261117-entity-links" rel="stylesheet">
 <link href="./assets/library.css?v=20261018-library-48" rel="stylesheet">
 <link href="./assets/match-editor.css?v=20261020-match-49" rel="stylesheet">
 <link rel="stylesheet" href="./assets/result-desktop.css?v=20261109-result-button-158">
@@ -13269,6 +13270,7 @@ $routes = [
 <script src="./assets/modules/card-inspector/ui.js?v=20261116-readable-3" defer></script>
 <script src="./assets/modules/combo-creator/ui.js?v=20261116-deck-picker-1" defer></script>
 <script src="./assets/modules/match-sheet/navigation.js?v=20261104-match-sheet-134" defer></script>
+<script src="./assets/modules/match-sheet/entity-links.js?v=20261117-entity-links" defer></script>
 <link href="./assets/modules/deck-guide/checked-study.css?v=20261104-checked-study-137" rel="stylesheet">
 <link href="./assets/modules/deck-guide/study-sections.css?v=20261107-study-eleven-139" rel="stylesheet">
 <script src="./assets/modules/deck-guide/study-eleven.js?v=20261107-study-ten-143" defer></script>
@@ -13294,7 +13296,7 @@ $routes = [
 <script src="./assets/modules/deck-attributes/model.js?v=20261114-worlds-188"></script>
 <script src="./assets/modules/deck-attributes/ui.js?v=20261115-card-detail-196"></script>
 <script src="./assets/modules/deck-guide/league-position.js?v=20261113-match-positions-182" defer></script>
-<script src="./assets/app.js?v=20261117-profile-clean" defer></script>
+<script src="./assets/app.js?v=20261117-match-entities" defer></script>
 <script src="./assets/match-editor.js?v=20261027-participants-103" defer></script>
 <script src="./assets/event-audit.js?v=20261021-audit-55" defer></script>
 <script src="./assets/seasons.js?v=20261016-season-editor-4" defer></script>

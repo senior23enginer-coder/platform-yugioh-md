@@ -82,6 +82,8 @@ El código nuevo se agrupa por función. Las fuentes editoriales y los datos gen
 
 ## `match-sheet/`
 
+- `entity-links.js` / `entity-links.css`: enlaces de los participantes y del evento hacia sus fichas nativas; resuelve IDs reales, conserva los decks de equipos y espera el cierre del modal antes de navegar. Prueba local: `tests/match_sheet_entity_links_test.cjs`.
+
 - `layout.css`: distribución de la ficha del combate desde 761 px; conserva el flujo móvil existente y utiliza fondo opaco, cabecera separada, resumen equilibrado y notas a todo el ancho.
 - `navigation.js`: coordina la apertura de ficha/captura con Bootstrap; cierra la ventana anterior y espera `hidden.bs.modal` antes de mostrar la siguiente. No escribe resultados ni datos del calendario.
 - `tests/match_sheet_layout_test.cjs`: prueba HTTP/Playwright de solo lectura, con POST bloqueados. `MATCH_SHEET_PREVIEW=1` inyecta los dos archivos locales para previsualizar sin publicar; sin esa variable comprueba los recursos desplegados.
