@@ -9793,25 +9793,6 @@ $routes = [
                         </div>
                     </section>
 
-                    <div class="dashboard-bottom-grid">
-                        <section class="panel dashboard-top-cut">
-                            <div class="panel-head"><div><h2><?php echo $dashboardLiveRanking ? 'Top por resultados' : 'Decks registrados'; ?></h2><p><?php echo $dashboardLiveRanking ? e($dashboardRankingSource) : 'Orden actual por seed/rank guardado en BD.'; ?></p></div><button class="btn btn-outline-warning btn-sm" type="button" data-route="tabla">Ver tabla</button></div>
-                            <div class="mini-bracket">
-                                <?php foreach (array_slice($dashboardLiveRanking ?: $topDashboardDecks, 0, 8) as $index => $deck): ?>
-                                    <span><b><?php echo $index + 1; ?></b><?php echo e((string) $deck['name']); ?><?php if ($dashboardLiveRanking): ?><em><?php echo (int) $deck['pts']; ?> pts</em><?php endif; ?></span>
-                                <?php endforeach; ?>
-                            </div>
-                        </section>
-                        <section class="panel dashboard-quick-actions">
-                            <div class="panel-head"><div><h2>Acciones rapidas</h2><p>Operaciones principales del organizador.</p></div></div>
-                            <div class="dashboard-quick-grid">
-                                <button type="button" data-route="crear_evento"><i class="bi bi-plus-lg"></i><span>Crear evento</span></button>
-                                <button type="button" data-route="calendario"><i class="bi bi-shuffle"></i><span>Emparejamientos</span></button>
-                                <button type="button" data-route="resultados"><i class="bi bi-clipboard-check"></i><span>Subir resultados</span></button>
-                                <button type="button" data-route="reglamento"><i class="bi bi-gear"></i><span>Configurar reglas</span></button>
-                            </div>
-                        </section>
-                    </div>
                 </div>
 
                 <aside class="dashboard-side-stack">
