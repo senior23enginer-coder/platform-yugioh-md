@@ -43,7 +43,7 @@ for (const [id, entry] of Object.entries(registry.checked_studies)) {
     routes: study.routes.length,
     duelIdentities: catalog.cards.length,
     partialActions: audit.modelled,
-    structuredRules: db.rules.length,
+    structuredRules: new Set(db.rules.map((r) => r.id)).size,
     missing: audit.cards
       .filter((c) => ["missing", "response-pending"].includes(c.scope))
       .map((c) => ({ cid: c.cid, name: c.name })),

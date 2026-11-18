@@ -1,9 +1,9 @@
 /* Resolve the active study registry for every loaded deck, not the historical eleven-deck index. */
 (function (root, factory) {
   if (typeof module === "object" && module.exports)
-    module.exports = factory(require("./engine.js"));
-  else root.YgoCalculatorStudy = factory(root.YgoPlayEngine);
-})(typeof globalThis !== "undefined" ? globalThis : this, function (E) {
+    module.exports = factory(require("./engine.js"), require("./verified-rules.js"));
+  else root.YgoCalculatorStudy = factory(root.YgoPlayEngine, root.YgoVerifiedCalculatorRules);
+})(typeof globalThis !== "undefined" ? globalThis : this, function (E, Verified) {
   "use strict";
   const requests = new Map();
   async function json(url) {
@@ -94,6 +94,9 @@
       }
       for (const rule of study.calculator?.rules || [])
         if (rule.deckId === catalog.id) db.rules.push(E.clone(rule));
+      for (const rule of Verified?.forDeck(catalog.id) || [])
+        if (!(study.calculator?.rules || []).some((r) => r.id === rule.id))
+          db.rules.push(E.clone(rule));
     }
     return db;
   }

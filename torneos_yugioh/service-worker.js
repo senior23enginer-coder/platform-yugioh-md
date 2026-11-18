@@ -1,4 +1,4 @@
-const CACHE_NAME = 'yugioh-md-match-v212';
+const CACHE_NAME = 'yugioh-md-match-v213';
 const APP_SHELL = [
   './assets/modules/match-sheet/entity-links.js?v=20261117-entity-links',
   './assets/modules/match-sheet/entity-links.css?v=20261117-entity-links',
@@ -32,6 +32,7 @@ const APP_SHELL = [
   './assets/modules/cup-bracket/navigation.js?v=20261108-cup-open-155',
   './assets/modules/cup-bracket/navigation.css?v=20261108-cup-open-155',
   './assets/modules/play-calculator/rules.js?v=20261118-scenario-1',
+  './assets/modules/play-calculator/verified-rules.js?v=20261118-verified-1',
   './assets/modules/play-calculator/study.js?v=20261118-scenario-1',
   './assets/modules/play-calculator/scenario.js?v=20261118-scenario-1',
   './assets/modules/play-calculator/battle.js?v=20261118-battle-1',
