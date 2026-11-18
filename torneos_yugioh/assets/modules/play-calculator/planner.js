@@ -263,18 +263,36 @@
             combinations(items.slice(i + 1), n - 1).map((xs) => [x, ...xs]),
           );
     const startingEnemy = enemy(root).length;
-    function score(s) {
-      return (
-        (startingEnemy - enemy(s).length) *
-          (options.goal === "resources" ? 60 : 150) +
-        faceMons(s).reduce(
-          (v, t) =>
-            v + (fact(s, t)?.rank ? 90 : 20) + (fact(s, t)?.atk || 0) / 200,
+    const goals = {
+      balanced: { removal: 150, field: 1, hand: 12, tempo: 2 },
+      removal: { removal: 300, field: 0.65, hand: 8, tempo: 2 },
+      board: { removal: 70, field: 1.8, hand: 6, tempo: 2 },
+      resources: { removal: 60, field: 0.65, hand: 35, tempo: 5 },
+    };
+    const goal = Object.hasOwn(goals, options.goal) ? options.goal : "balanced";
+    const weights = goals[goal];
+    base.goal = goal;
+    base.goalLabels = {
+      balanced: "Equilibrar presencia de campo, remoción y recursos",
+      removal: "Priorizar retirada de cartas rivales conocidas",
+      board: "Priorizar desarrollo de monstruos propios",
+      resources: "Conservar cartas en mano y reducir acciones",
+    };
+    function metrics(s) {
+      return {
+        removed: startingEnemy - enemy(s).length,
+        field: faceMons(s).reduce(
+          (v, t) => v + (fact(s, t)?.rank ? 90 : 20) + (fact(s, t)?.atk || 0) / 200,
           0,
-        ) +
-        own(s, (t) => t.zone === "hand").length * 12 -
-        s._steps.length * 2
-      );
+        ),
+        hand: own(s, (t) => t.zone === "hand").length,
+        actions: s._steps.length,
+      };
+    }
+    function score(s) {
+      const m = metrics(s);
+      return m.removed * weights.removal + m.field * weights.field +
+        m.hand * weights.hand - m.actions * weights.tempo;
     }
     function stateKey(s) {
       return JSON.stringify([
@@ -766,6 +784,7 @@
         used: s._used,
         priority: Math.round(score(s) - score(root)),
         removed: startingEnemy - enemy(s).length,
+        metrics: metrics(s),
       });
       if (base.plans.length >= 6) break;
     }
