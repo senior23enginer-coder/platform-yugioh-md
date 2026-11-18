@@ -1,9 +1,9 @@
 /* Declarative effect adapter. Data never becomes JavaScript; unknown operations fail closed. */
 (function (root, factory) {
   if (typeof module === "object" && module.exports)
-    module.exports = factory(require("./engine.js"));
-  else root.YgoPlayRules = factory(root.YgoPlayEngine);
-})(typeof globalThis !== "undefined" ? globalThis : this, function (E) {
+    module.exports = factory(require("./engine.js"), require("./operations.js"));
+  else root.YgoPlayRules = factory(root.YgoPlayEngine, root.YgoCalculatorOperations);
+})(typeof globalThis !== "undefined" ? globalThis : this, function (E, Operations) {
   "use strict";
   const field = (z) => E.isMonster(z) || /^s[1-5]$/.test(z) || z === "field";
   const zones = [
@@ -270,7 +270,8 @@
         rule.costs.length + rule.resolve.length <= 30,
       "Faltan coste o resolucion",
     );
-    for (const op of [...rule.costs, ...rule.resolve]) {
+    for (const [phase, operations] of [["costs", rule.costs], ["resolve", rule.resolve]]) for (const op of operations) {
+      Operations.assertSupported(op, phase);
       if (op.op === "shuffle")
         check(
           Array.isArray(op.refs) && op.refs.length >= 2 && op.refs.length <= 5 &&

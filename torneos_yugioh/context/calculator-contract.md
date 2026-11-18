@@ -55,6 +55,24 @@ explícita probada y soporte simultáneo durante la migración. Los adaptadores
 particulares existentes en `verified-rules.js` se conservan hasta que haya
 paridad funcional y pruebas que permitan sustituirlos por datos declarativos.
 
+## Registro de operaciones (tarea general 03)
+
+`assets/modules/play-calculator/operations.js` define el catálogo inmutable
+de 21 nombres de operaciones de `costs` y `resolve`. `Rules.validate` consulta
+este registro antes de validar la estructura particular de cada operación.
+Los nombres desconocidos y las operaciones ubicadas en un bloque prohibido se
+rechazan sin ejecutar el efecto. El navegador carga el registro antes de
+`rules.js`; Node lo importa como dependencia explícita.
+
+`coverage: "generic"` indica que el operador no contiene en su validación
+un requisito fijo de identidad de carta; **no** certifica todos los casos ni
+la legalidad de una jugada. `coverage: "restricted"` señala un operador con
+límites expresos de cartas, recetas o procedimientos que todavía requieren
+generalización y pruebas. En particular `shuffle`, `link`, `xyzOverlay`,
+`fusion`, `equip`, `counter` y `banishExtraFaceDown` son restringidos.
+El registro documenta la deuda, sin eliminar las barreras actuales ni
+modificar resultados de efectos existentes.
+
 `tests/calculator_contract_test.cjs` prueba el mismo contrato con dos decks
 sintéticos diferentes, ejecuta una operación compartida sin cambiar código
 por deck, y rechaza versión, identidad, campos, duplicados y operaciones
