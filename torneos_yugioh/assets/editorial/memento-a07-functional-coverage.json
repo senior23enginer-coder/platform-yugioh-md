@@ -352,6 +352,12 @@
       "status": "FIXED_STATE_NO_CHAIN_REPLAY",
       "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
       "scope": "Nueve resoluciones consecutivas: Normal Angbruja, búsqueda, Especial Tatsun, destrucción y envío de dos CID, Desvantasma, recuperación, Fusión, envío de Rey y cinco barajados. Rama con búsqueda negada detiene la ruta sin inventar Tatsun; es inyección de negación, no cadena resuelta por motor. Sin adversario completo, selección general de niveles ni HOPT de todos los efectos; NO_REPLAY_CERTIFIED permanece."
+    },
+    {
+      "id": "C02",
+      "status": "FIXED_STATE_NO_CHAIN_REPLAY",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "Normal Angbruja, búsqueda de Creación Combinada, Fiesta destruye Witch y trae Tatsun en DEF, Tatsun se destruye y manda tres nombres, cinco nombres se barajan y queda solo el jefe. Sin resolución general de cadenas, niveles, objetivo variable ni respuesta rival; NO_REPLAY_CERTIFIED permanece."
     }
   ],
   "missing_capabilities": [
