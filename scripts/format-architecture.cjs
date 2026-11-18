@@ -12,7 +12,9 @@ const paths = [
   php + 'src/Infrastructure/Composition',
   php + 'src/Infrastructure/Editorial',
   php + 'src/Infrastructure/Http/DeckWorlds',
+  php + 'src/Infrastructure/Http/FormActions',
   php + 'src/Infrastructure/Persistence/DeckWorlds',
+  php + 'src/Infrastructure/Persistence/Combos',
   php + 'src/Infrastructure/Persistence/LoadedSeasonRepository.php',
   php + 'src/Infrastructure/Time',
   php + 'src/Infrastructure/Transactions',
@@ -24,6 +26,26 @@ const paths = [
   php + 'tests/deck_worlds_application_test.php',
   php + 'tests/deck_worlds_persistence_test.php',
   php + 'tests/source_architecture_test.php',
+  php + 'tests/domain_extractions_test.php',
+  php + 'tests/combo_ports_test.php',
+  php + 'tests/form_command_architecture_test.php',
+  php + 'includes/event_workflows.php',
+  php + 'includes/event_qualification.php',
+  php + 'includes/event_recovery.php',
+  php + 'includes/event_teams.php',
+  php + 'includes/free_for_all.php',
+  php + 'includes/turns.php',
+  php + 'includes/completion_times.php',
+  php + 'includes/match_editor.php',
+  php + 'includes/decks/combo-creator.php',
+  php + 'includes/decks/combo-creator-details.php',
+  php + 'includes/decks/combo-creator-http.php',
+  php + 'includes/decks/combo-source.php',
+  php + 'includes/statistics_v8.php',
+  php + 'includes/statistics_multiplayer.php',
+  php + 'includes/deck_builder.php',
+  php + 'includes/league_configuration.php',
+  php + 'includes/event_models.php',
 ];
 function files(relative) {
   const file = path.join(root, relative);
@@ -43,7 +65,14 @@ function files(relative) {
         console.error('Unformatted source: ' + path.relative(root, file));
       }
     } else {
-      fs.writeFileSync(file, await prettier.format(original, options));
+      let formatted = original;
+      for (let pass = 0; pass < 4; pass++) {
+        const next = await prettier.format(formatted, options);
+        if (next === formatted) break;
+        formatted = next;
+        if (pass === 3) throw Error('Formatting did not converge: ' + file);
+      }
+      fs.writeFileSync(file, formatted);
     }
   }
   if (failures) process.exitCode = 1;

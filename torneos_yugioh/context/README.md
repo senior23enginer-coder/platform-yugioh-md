@@ -10,6 +10,7 @@ Documentacion vigente de la plataforma competitiva Yu-Gi-Oh de Station X Tulua.
 - `editorial-sync-state.json`: referencia de la instantanea editorial confirmada, su manifiesto y bloques completos. Actualizar esta referencia solo despues de integrar y verificar una revision.
 - `requirements.md`: requisitos funcionales y no funcionales.
 - `rules.md`: reglas de eventos, partidas y duelos D1-D5.
+- `architecture-migration-status.md`: migraciones verificadas y deuda real que falta para completar toda la plataforma.
 - `source-architecture.md`: fuentes editables, capas, dependencias, compatibilidad y validacion de la reorganizacion.
 - `architecture.md`: arquitectura implementada.
 - `global-ranking.md`: catalogo completo TCG/OCG, alcance compartido de ficha y ranking global; excluye Rush y GOAT.

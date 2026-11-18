@@ -99,6 +99,10 @@ foreach (['Domain', 'Application'] as $layer) {
                 $name = strtolower(ltrim($token[1], '\\'));
                 architectureCheck($name !== 'pdo', 'PDO dependency in ' . $file->getPathname());
                 architectureCheck(
+                    !str_starts_with($name, 'ygo_'),
+                    'Native helper dependency in ' . $file->getPathname(),
+                );
+                architectureCheck(
                     !in_array(
                         $name,
                         [

@@ -1,0 +1,287 @@
+{
+    "baseline_commit": "da558b9",
+    "function": "ygo_handle_post_serialized",
+    "dispatcher_sha256": "7a76245dd36e430996a6c34cdbc5c709cd8d4497a7e937c62ab92b4b7bbda0b6",
+    "actions": {
+        "configure_statistics_global": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\ConfigureStatisticsGlobalHandler",
+            "phase": "early",
+            "file": "src\/Infrastructure\/Http\/FormActions\/ConfigureStatisticsGlobalHandler.php"
+        },
+        "publish_statistics_cut": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\PublishStatisticsCutHandler",
+            "phase": "early",
+            "file": "src\/Infrastructure\/Http\/FormActions\/PublishStatisticsCutHandler.php"
+        },
+        "sync_offline_form": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SyncOfflineFormHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SyncOfflineFormHandler.php"
+        },
+        "save_settings": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveSettingsHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveSettingsHandler.php"
+        },
+        "save_ui_labels": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveUiLabelsHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveUiLabelsHandler.php"
+        },
+        "save_catalog_items": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveCatalogItemsHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveCatalogItemsHandler.php"
+        },
+        "save_team": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveTeamHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveTeamHandler.php"
+        },
+        "save_player": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SavePlayerHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SavePlayerHandler.php"
+        },
+        "select_logo_history": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SelectLogoHistoryHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SelectLogoHistoryHandler.php"
+        },
+        "save_team_deck_links": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveTeamDeckLinksHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveTeamDeckLinksHandler.php"
+        },
+        "save_division": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveDivisionHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveDivisionHandler.php"
+        },
+        "save_match_schedule": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveMatchScheduleHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveMatchScheduleHandler.php"
+        },
+        "generate_friendlies": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\GenerateFriendliesHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/GenerateFriendliesHandler.php"
+        },
+        "generate_leagues": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\GenerateLeaguesHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/GenerateLeaguesHandler.php"
+        },
+        "generate_cups": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\GenerateCupsHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/GenerateCupsHandler.php"
+        },
+        "generate_world": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\GenerateWorldHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/GenerateWorldHandler.php"
+        },
+        "auto_schedule_qualifier": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\AutoScheduleQualifierHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/AutoScheduleQualifierHandler.php"
+        },
+        "rebuild_qualifier_calendar": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\RebuildQualifierCalendarHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/RebuildQualifierCalendarHandler.php"
+        },
+        "finalize_ffa": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\FinalizeFfaHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/FinalizeFfaHandler.php"
+        },
+        "create_ffa_match": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\CreateFfaMatchHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/CreateFfaMatchHandler.php"
+        },
+        "save_ffa_action": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveFfaActionHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveFfaActionHandler.php"
+        },
+        "save_team_lineups": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveTeamLineupsHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveTeamLineupsHandler.php"
+        },
+        "save_team_result": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveTeamResultHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveTeamResultHandler.php"
+        },
+        "freeze_event_card_rules": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\FreezeEventCardRulesHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/FreezeEventCardRulesHandler.php"
+        },
+        "save_event_card_rules": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\FreezeEventCardRulesHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/FreezeEventCardRulesHandler.php"
+        },
+        "save_event_admission": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveEventAdmissionHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveEventAdmissionHandler.php"
+        },
+        "configure_competition": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\ConfigureCompetitionHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/ConfigureCompetitionHandler.php"
+        },
+        "finalize_competition": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\FinalizeCompetitionHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/FinalizeCompetitionHandler.php"
+        },
+        "revert_event_stage": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\RevertEventStageHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/RevertEventStageHandler.php"
+        },
+        "advance_competition": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\AdvanceCompetitionHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/AdvanceCompetitionHandler.php"
+        },
+        "apply_qualifier_divisions": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\ApplyQualifierDivisionsHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/ApplyQualifierDivisionsHandler.php"
+        },
+        "apply_league_movements": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\ApplyLeagueMovementsHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/ApplyLeagueMovementsHandler.php"
+        },
+        "recalculate_competition_standings": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\RecalculateCompetitionStandingsHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/RecalculateCompetitionStandingsHandler.php"
+        },
+        "archive_qa_codex_data": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\ArchiveQaCodexDataHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/ArchiveQaCodexDataHandler.php"
+        },
+        "delete_competition": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\DeleteCompetitionHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/DeleteCompetitionHandler.php"
+        },
+        "delete_manual_friendly": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\DeleteManualFriendlyHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/DeleteManualFriendlyHandler.php"
+        },
+        "advance_phase": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\AdvancePhaseHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/AdvancePhaseHandler.php"
+        },
+        "create_match": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\CreateMatchHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/CreateMatchHandler.php"
+        },
+        "save_deck_card": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveDeckCardHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveDeckCardHandler.php"
+        },
+        "import_deck_cards": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\ImportDeckCardsHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/ImportDeckCardsHandler.php"
+        },
+        "save_deck_media": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveDeckMediaHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveDeckMediaHandler.php"
+        },
+        "save_honor": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveHonorHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveHonorHandler.php"
+        },
+        "save_checkin": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveCheckinHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveCheckinHandler.php"
+        },
+        "save_match_result": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveMatchResultHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveMatchResultHandler.php"
+        },
+        "save_deck_analysis_profile": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveDeckAnalysisProfileHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveDeckAnalysisProfileHandler.php"
+        },
+        "save_matchup_analysis": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveMatchupAnalysisHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveMatchupAnalysisHandler.php"
+        },
+        "save_deck": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveDeckHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveDeckHandler.php"
+        },
+        "remove_deck": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\RemoveDeckHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/RemoveDeckHandler.php"
+        },
+        "save_competition": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveCompetitionHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveCompetitionHandler.php"
+        },
+        "save_ruleset": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveRulesetHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveRulesetHandler.php"
+        },
+        "save_game_rule": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveGameRuleHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveGameRuleHandler.php"
+        },
+        "archive_game_rule": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\ArchiveGameRuleHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/ArchiveGameRuleHandler.php"
+        },
+        "archive_competition": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\ArchiveCompetitionHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/ArchiveCompetitionHandler.php"
+        },
+        "save_competition_dependency": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SaveCompetitionDependencyHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SaveCompetitionDependencyHandler.php"
+        },
+        "delete_competition_dependency": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\DeleteCompetitionDependencyHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/DeleteCompetitionDependencyHandler.php"
+        },
+        "set_qualifier_status": {
+            "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\SetQualifierStatusHandler",
+            "phase": "regular",
+            "file": "src\/Infrastructure\/Http\/FormActions\/SetQualifierStatusHandler.php"
+        }
+    }
+}

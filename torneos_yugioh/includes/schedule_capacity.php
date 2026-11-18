@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+require_once dirname(__DIR__, 1) . '/src/autoload.php';
+
 function ygo_ensure_schedule_capacity_tables(PDO $pdo): void
 {
     $pdo->exec("
@@ -26,7 +28,7 @@ function ygo_schedule_capacity_limit(PDO $pdo): int
 
 function ygo_schedule_available_quota(int $globalLimit, int $occupied, int $eventLimit, int $remaining): int
 {
-    return max(0, min($eventLimit, $globalLimit - $occupied, $remaining));
+    return \StationX\Yugioh\Domain\Calendar\ScheduleQuota::availableQuota($globalLimit, $occupied, $eventLimit, $remaining);
 }
 
 function ygo_activate_due_scheduled_competitions(PDO $pdo): int

@@ -55,7 +55,7 @@ La deuda que sigue existiendo es visible: algunos controladores heredados todavi
 
 `index.php` mantiene primero el rechazo del API de Reportes retirado, antes de cargar dependencias. Luego registra clases y funciones de compatibilidad, carga dependencias y defaults, procesa la solicitud y lee datos (`bootstrap/load-state.php`), construye las proyecciones, despacha respuestas HTTP y finalmente renderiza `presentation/page.php`. Los includes mantienen el ambito original: no envolverlos en funciones ni reordenarlos sin caracterizar los datos compartidos.
 
-El mapa cubre 132 funciones publicas extraidas y hay 21 pantallas separadas. Las 37 fuentes JavaScript comparten el cierre anterior; los 37 segmentos CSS conservan la cascada. La separacion no implica que cada adaptador procedimental sea un repositorio o caso de uso independiente.
+El mapa conserva 132 contratos publicos originales; las delegaciones nuevas se cotejan con sus implementaciones y evidencias de origen. La extraccion inicial cubrio 132 funciones publicas y hay 21 pantallas separadas. Las 37 fuentes JavaScript comparten el cierre anterior; los 37 segmentos CSS conservan la cascada. La separacion no implica que cada adaptador procedimental sea un repositorio o caso de uso independiente.
 
 ## Mundos: primera migración completa de una funcionalidad con persistencia
 
@@ -90,3 +90,25 @@ El recorrido de lectura ahora es `ygo_deck_list_metadata → BuildDeckListMetada
 Las ocho caracterizaciones en `tests/fixtures/deck-metadata-characterization.json` se capturaron con la función original antes de sustituirla. Cubren prioridades, revisiones retiradas, claves/orden del catálogo, cantidades, fuentes ausentes o malformadas y rechazo de rutas o identidades ajenas. `deck_metadata_architecture_test.php` las ejecuta en carpetas temporales aisladas, además de probar el caso de uso con un puerto en memoria y la actualización de fuentes sin caché obsoleta.
 
 El control arquitectónico de `source_architecture_test.php` rechaza acceso directo a archivos/red/sesión y PDO en Domain/Application, infraestructura en ambas capas y Application dentro del dominio. El formateador incluye estos nuevos archivos y el adaptador existente de temporadas.
+
+## Reglas de dominio y comandos nativos · 18 de noviembre de 2026
+
+Se extrajeron 42 algoritmos existentes a 19 clases de dominio: definición/ejecución/recuperación de fases, clasificación desde fuentes verificadas, alineaciones, multijugador, movimientos de división, secuencias BO1/BO3/BO5, turnos, fechas de cierre, límites de edición, detalles de pasos, cuotas de calendario, fórmulas y proyecciones estadísticas y anotaciones de cartas. Las funciones públicas conservan parámetros, referencias y valores predeterminados, y delegan al dominio. No se modificaron reglas deportivas ni fórmulas.
+
+`context/domain-extractions.json` registra destinos y huellas originales. `tests/fixtures/domain-originals.json` conserva la evidencia previa. La prueba verifica primero esa evidencia contra las huellas intactas y luego compara ambos algoritmos con el mismo formato canónico estable, restaurando solo los nombres de llamadas extraídas. No se sustituyen las huellas originales para aceptar el formateador. Los contratos iniciales de las otras funciones siguen vigentes.
+
+El antiguo despachador POST, de unas 1.900 líneas, ahora conserva las guardas, inicialización de temporada y bloqueo externo y delega 56 acciones a 55 adaptadores específicos. `Application/Commands` contiene el comando capturado, su puerto y el despachador sin PDO ni superglobales. `Infrastructure/Composition/NativeFormCommands` mantiene dos fases de registro: estadísticas antes de las guardas de temporada y el resto después, igual que antes.
+
+`Infrastructure/Http/FormActions/NativeFormHandler` restaura el contexto PHP en `finally`, incluso en comandos anidados de sincronización offline. Los manejadores usan el formulario capturado y conservan SQL, auditoría y transacciones nativas. Son **adaptadores heredados segregados**, no casos de uso íntegramente migrados. Las 55 implementaciones se comparan con la evidencia original, y se comprueban las 56 rutas y su fase de autorización. El bloqueo MySQL externo no fue trasladado ni reducido.
+
+## Creador de combos: guardado y lectura por puertos
+
+`Application/Combos/SaveCreatedCombo` coordina inventario bloqueado, revisión esperada, validación del grafo, persistencia, Markdown de origen e historial atómico. Sus dependencias son `ComboInventory`, `ComboRepository`, `ComboSources`, `TransactionBoundary` y `Clock`. `PrepareComboDocument` valida primero con `Domain/Combos/ComboGraphPolicy` y verifica después la identidad documental mediante el puerto de fuentes. `ComboQueries` limita listado e historial al deck seleccionado.
+
+Los adaptadores PDO están en `Infrastructure/Persistence/Combos`; los constructores no crean tablas ni abren transacciones. Se conserva UTC para fechas del editor y la política original de requerir una transacción propia al guardar: una transacción preexistente se rechaza sin confirmarla ni revertirla. Un reintento obsoleto idéntico no genera una revisión nueva; un cambio concurrente o de inventario sigue rechazándose. El historial y su fuente se guardan juntos o se revierten juntos. `NativeComboSources` adapta todavía el lector editorial y renderizador previos; su presencia hace explícita esa dependencia pendiente.
+
+La nueva prueba `combo_ports_test.php` usa puertos en memoria y SQLite temporal. La regresión de navegador usa PHP/SQLite local y comprueba edición, drag/drop, conexiones, guía, guardado, CSRF, conflicto y móvil. Ninguna de estas pruebas certifica integración MySQL de producción.
+
+## Inventario y deuda pendiente
+
+`php scripts/source-inventory.php --summary` permite revisar funciones nativas y dependencias sin ejecutar el arranque ni abrir la BD. Es un inventario estático: la ausencia de I/O directo no certifica por sí sola separación de dominio. El seguimiento completo y los límites pendientes están en `architecture-migration-status.md`.

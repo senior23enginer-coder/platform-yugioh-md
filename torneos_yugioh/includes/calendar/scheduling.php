@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+require_once dirname(__DIR__, 2) . '/src/autoload.php';
+
 /**
  * calendar-scheduling: compatibility services extracted from the web entry point.
  * Preserve public functions, transaction scopes and serialized write locks.
@@ -477,11 +479,5 @@ function ygo_apply_division_from_qualifier(PDO $pdo, int $divisionId): int
 
 function ygo_expected_qualifier_match_count(int $selectedDeckCount, int $participantsPerSide, int $duelsPerDeck): int
 {
-    $participantsPerSide = max(1, min(3, $participantsPerSide));
-    $groupCount = $participantsPerSide > 0 ? intdiv($selectedDeckCount, $participantsPerSide) : 0;
-    if ($groupCount < 2 || $duelsPerDeck < 2 || $duelsPerDeck > ($groupCount - 1)) {
-        return 0;
-    }
-    $roundLimit = min(max(2, min(5, $duelsPerDeck)), $groupCount - 1);
-    return intdiv($groupCount, 2) * $roundLimit;
+    return \StationX\Yugioh\Domain\Calendar\ScheduleQuota::expectedQualifierMatchCount($selectedDeckCount, $participantsPerSide, $duelsPerDeck);
 }

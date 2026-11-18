@@ -1,0 +1,338 @@
+{
+    "ygo_workflow_models": {
+        "facade": "includes\/event_workflows.php",
+        "class": "StationX\\Yugioh\\Domain\\Competitions\\WorkflowDefinition",
+        "method": "models",
+        "file": "src\/Domain\/Competitions\/WorkflowDefinition.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "26ada68bb7b31c3d05832f7acd5016428dc37d27d913637c1936e1d59c206ab9"
+    },
+    "ygo_execution_parameter_fields": {
+        "facade": "includes\/event_workflows.php",
+        "class": "StationX\\Yugioh\\Domain\\Competitions\\WorkflowDefinition",
+        "method": "executionParameterFields",
+        "file": "src\/Domain\/Competitions\/WorkflowDefinition.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "8134d182ec6606663d25879fdad6fb35b40a7210a5661dc7acc1ac8eae193410"
+    },
+    "ygo_workflow_policy": {
+        "facade": "includes\/event_workflows.php",
+        "class": "StationX\\Yugioh\\Domain\\Competitions\\WorkflowDefinition",
+        "method": "policy",
+        "file": "src\/Domain\/Competitions\/WorkflowDefinition.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "9702b45166b78102c8a9cb131d526508d8c76a42370053798a58dffab5667143"
+    },
+    "ygo_workflow_begin": {
+        "facade": "includes\/event_workflows.php",
+        "class": "StationX\\Yugioh\\Domain\\Competitions\\WorkflowDefinition",
+        "method": "begin",
+        "file": "src\/Domain\/Competitions\/WorkflowDefinition.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "0bb7fed3124da5215b944aa084b1413f0f01273ce0a7b22c3b6fb070adf57db0"
+    },
+    "ygo_workflow_ranking": {
+        "facade": "includes\/event_workflows.php",
+        "class": "StationX\\Yugioh\\Domain\\Competitions\\WorkflowEngine",
+        "method": "ranking",
+        "file": "src\/Domain\/Competitions\/WorkflowEngine.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "c8f584a93a3c9c623b5b5f959e73a33f3fdb7cf9372a085e93a58492939b8442"
+    },
+    "ygo_workflow_pair": {
+        "facade": "includes\/event_workflows.php",
+        "class": "StationX\\Yugioh\\Domain\\Competitions\\WorkflowEngine",
+        "method": "pair",
+        "file": "src\/Domain\/Competitions\/WorkflowEngine.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "9ab776c4c0e3eb9fd7c50326ee46e1c559530e5bc347943c8bee6ba8efff60f3"
+    },
+    "ygo_workflow_rr": {
+        "facade": "includes\/event_workflows.php",
+        "class": "StationX\\Yugioh\\Domain\\Competitions\\WorkflowEngine",
+        "method": "rr",
+        "file": "src\/Domain\/Competitions\/WorkflowEngine.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "2b628296f5e8f396b79789130884259a8dc03d66de2c1932649a5ec06aca2ede"
+    },
+    "ygo_workflow_ladder_order": {
+        "facade": "includes\/event_workflows.php",
+        "class": "StationX\\Yugioh\\Domain\\Competitions\\WorkflowEngine",
+        "method": "ladderOrder",
+        "file": "src\/Domain\/Competitions\/WorkflowEngine.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "03db427da2f7dc2470652253a71f5279d7519ec4628981b6f12654bbb9286f0a"
+    },
+    "ygo_workflow_next": {
+        "facade": "includes\/event_workflows.php",
+        "class": "StationX\\Yugioh\\Domain\\Competitions\\WorkflowEngine",
+        "method": "next",
+        "file": "src\/Domain\/Competitions\/WorkflowEngine.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "a18215247b04fd9e9dd8a454f4bfa62f0fc1f139a503c53775921b19681bb1df"
+    },
+    "ygo_workflow_accept": {
+        "facade": "includes\/event_workflows.php",
+        "class": "StationX\\Yugioh\\Domain\\Competitions\\WorkflowEngine",
+        "method": "accept",
+        "file": "src\/Domain\/Competitions\/WorkflowEngine.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "39ae65f5bd1c8bec8bf7e5effbe15a4dbffd698ee962a1966d7ec1e48c6cd873"
+    },
+    "ygo_workflow_recovery_plan": {
+        "facade": "includes\/event_recovery.php",
+        "class": "StationX\\Yugioh\\Domain\\Competitions\\WorkflowRecovery",
+        "method": "recoveryPlan",
+        "file": "src\/Domain\/Competitions\/WorkflowRecovery.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "c25088e3728afb4465ea70cd38a0230ed67039f76551c337bb5fb8a211b63549"
+    },
+    "ygo_workflow_recovery_token": {
+        "facade": "includes\/event_recovery.php",
+        "class": "StationX\\Yugioh\\Domain\\Competitions\\WorkflowRecovery",
+        "method": "recoveryToken",
+        "file": "src\/Domain\/Competitions\/WorkflowRecovery.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "639a0dda506eae1cecc718de438da1234e2d01faf5d7e1bb2671a8147bc2683c"
+    },
+    "ygo_qualification_candidates": {
+        "facade": "includes\/event_qualification.php",
+        "class": "StationX\\Yugioh\\Domain\\Competitions\\QualificationPolicy",
+        "method": "candidates",
+        "file": "src\/Domain\/Competitions\/QualificationPolicy.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "445e9d8ee226e27d04963b58b84b44ca633eb8bd7b5e37d54ec7f609875627d6"
+    },
+    "ygo_qualification_mode": {
+        "facade": "includes\/event_qualification.php",
+        "class": "StationX\\Yugioh\\Domain\\Competitions\\QualificationPolicy",
+        "method": "mode",
+        "file": "src\/Domain\/Competitions\/QualificationPolicy.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "ad1c5621db27cada020b82240b7ea2189d92e3eee2ea345c938a55774bdcedcd"
+    },
+    "ygo_team_lineups": {
+        "facade": "includes\/event_teams.php",
+        "class": "StationX\\Yugioh\\Domain\\Competitions\\TeamLineupPolicy",
+        "method": "lineups",
+        "file": "src\/Domain\/Competitions\/TeamLineupPolicy.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "272f94063d7689bc9df895947c57e1d66dbb4af3ced653c89a609c274fe08b54"
+    },
+    "ygo_team_all_ids": {
+        "facade": "includes\/event_teams.php",
+        "class": "StationX\\Yugioh\\Domain\\Competitions\\TeamLineupPolicy",
+        "method": "allIds",
+        "file": "src\/Domain\/Competitions\/TeamLineupPolicy.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "5c4a5e89d1568d1b39efd0fc168eee83a3a224372747a1325bd8dfd9dbdf2318"
+    },
+    "ygo_team_lineup": {
+        "facade": "includes\/event_teams.php",
+        "class": "StationX\\Yugioh\\Domain\\Competitions\\TeamLineupPolicy",
+        "method": "lineup",
+        "file": "src\/Domain\/Competitions\/TeamLineupPolicy.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "2a5b8b4fc1fa3f69433347ce41bf398b6c1760848cfa290e565b5aa3c3612dd2"
+    },
+    "ygo_team_aggregate": {
+        "facade": "includes\/event_teams.php",
+        "class": "StationX\\Yugioh\\Domain\\Competitions\\TeamLineupPolicy",
+        "method": "aggregate",
+        "file": "src\/Domain\/Competitions\/TeamLineupPolicy.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "b886c7d2ef9e89be6bd170967ba7a85f3ddc59d8f24a6b92c8dd0aa18de7d2f3"
+    },
+    "ygo_ffa_begin": {
+        "facade": "includes\/free_for_all.php",
+        "class": "StationX\\Yugioh\\Domain\\Competitions\\MultiplayerMatch",
+        "method": "begin",
+        "file": "src\/Domain\/Competitions\/MultiplayerMatch.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "72e6114739b5581fd5551b0ca0507c8f7391c1bda4d500d42ff6193f6a7f2ec9"
+    },
+    "ygo_ffa_apply": {
+        "facade": "includes\/free_for_all.php",
+        "class": "StationX\\Yugioh\\Domain\\Competitions\\MultiplayerMatch",
+        "method": "apply",
+        "file": "src\/Domain\/Competitions\/MultiplayerMatch.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "fa555d5908a2764d4bfdeced274ed015ba8b796625b80e21592d4bb1bd7af2d8"
+    },
+    "ygo_validate_division_movements": {
+        "facade": "includes\/league_configuration.php",
+        "class": "StationX\\Yugioh\\Domain\\Competitions\\DivisionMovementPolicy",
+        "method": "validateDivisionMovements",
+        "file": "src\/Domain\/Competitions\/DivisionMovementPolicy.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "53c257aaa1046ca99c8278b921daf97e01ba7878f8bd623698598a469c49fe79"
+    },
+    "ygo_evaluate_sequence": {
+        "facade": "includes\/event_models.php",
+        "class": "StationX\\Yugioh\\Domain\\Matches\\DuelSequence",
+        "method": "evaluateSequence",
+        "file": "src\/Domain\/Matches\/DuelSequence.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "2e816a056267e14cc135e6ada4730fa12728767c5f3af0296e55e87b9a7807de"
+    },
+    "ygo_normalize_turn_history": {
+        "facade": "includes\/turns.php",
+        "class": "StationX\\Yugioh\\Domain\\Matches\\TurnHistory",
+        "method": "normalizeTurnHistory",
+        "file": "src\/Domain\/Matches\/TurnHistory.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "a2df25d0425ecf3647ffc2ffbb8c73a6c7cedc999682ad41e5813ad0322c30fe"
+    },
+    "ygo_merge_monotonic_turns": {
+        "facade": "includes\/turns.php",
+        "class": "StationX\\Yugioh\\Domain\\Matches\\TurnHistory",
+        "method": "mergeMonotonicTurns",
+        "file": "src\/Domain\/Matches\/TurnHistory.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "31bbcb741ed0612f51358fb61035a0acefe9d28bc8cce6b7833720f760fe1359"
+    },
+    "ygo_completion_games": {
+        "facade": "includes\/completion_times.php",
+        "class": "StationX\\Yugioh\\Domain\\Matches\\CompletionPolicy",
+        "method": "completionGames",
+        "file": "src\/Domain\/Matches\/CompletionPolicy.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "9bcea3014334975107f8b3a05fac900f3fb34b434c189584e5dbebf5f7fedc50"
+    },
+    "ygo_match_editor_int": {
+        "facade": "includes\/match_editor.php",
+        "class": "StationX\\Yugioh\\Domain\\Matches\\DuelEditingPolicy",
+        "method": "int",
+        "file": "src\/Domain\/Matches\/DuelEditingPolicy.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "854dd380f3361e364e0b919f9236dfaadebd94bdcc99f34b4caec0d7a0fb2b1d"
+    },
+    "ygo_match_editor_current": {
+        "facade": "includes\/match_editor.php",
+        "class": "StationX\\Yugioh\\Domain\\Matches\\DuelEditingPolicy",
+        "method": "current",
+        "file": "src\/Domain\/Matches\/DuelEditingPolicy.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "ba57d526a3f58297a31c54d3357754afd0b4afddaeb76e43731d9627af775ff4"
+    },
+    "ygo_combo_text": {
+        "facade": "includes\/decks\/combo-creator.php",
+        "class": "StationX\\Yugioh\\Domain\\Combos\\ComboStepPolicy",
+        "method": "text",
+        "file": "src\/Domain\/Combos\/ComboStepPolicy.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "8c8537bf46c245aae364b37f0551e8b9f789cfffa35bbeecde6981028cc0878f"
+    },
+    "ygo_combo_details": {
+        "facade": "includes\/decks\/combo-creator-details.php",
+        "class": "StationX\\Yugioh\\Domain\\Combos\\ComboStepPolicy",
+        "method": "details",
+        "file": "src\/Domain\/Combos\/ComboStepPolicy.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "7ef1bd527643f5ac35bf705d13a1820d1af95f79bb7c4d28552f9a57011e6589"
+    },
+    "ygo_schedule_available_quota": {
+        "facade": "includes\/schedule_capacity.php",
+        "class": "StationX\\Yugioh\\Domain\\Calendar\\ScheduleQuota",
+        "method": "availableQuota",
+        "file": "src\/Domain\/Calendar\/ScheduleQuota.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "f5fd589b0f422654e96c76de25627b8a5919fd105c9dd901af2324c906d66dd6"
+    },
+    "ygo_expected_qualifier_match_count": {
+        "facade": "includes\/calendar\/scheduling.php",
+        "class": "StationX\\Yugioh\\Domain\\Calendar\\ScheduleQuota",
+        "method": "expectedQualifierMatchCount",
+        "file": "src\/Domain\/Calendar\/ScheduleQuota.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "2f9a53fd4e4af1ac6ede7f733e40af3530dde1e586c7e3166cc1653744837754"
+    },
+    "ygo_stats_ratio": {
+        "facade": "includes\/statistics_v8.php",
+        "class": "StationX\\Yugioh\\Domain\\Statistics\\RatingMath",
+        "method": "ratio",
+        "file": "src\/Domain\/Statistics\/RatingMath.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "e0a7e0d6aadb67e993974492cac9cd2d7f064fa9641592d3f1bb110d565044c0"
+    },
+    "ygo_stats_wilson": {
+        "facade": "includes\/statistics_v8.php",
+        "class": "StationX\\Yugioh\\Domain\\Statistics\\RatingMath",
+        "method": "wilson",
+        "file": "src\/Domain\/Statistics\/RatingMath.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "20062b517a5e1c60928af2b2cbbdc91dded1d486803f38a3da79935a3bf4190f"
+    },
+    "ygo_stats_elo": {
+        "facade": "includes\/statistics_v8.php",
+        "class": "StationX\\Yugioh\\Domain\\Statistics\\RatingMath",
+        "method": "elo",
+        "file": "src\/Domain\/Statistics\/RatingMath.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "26a277112178799e3a24201e2ec448f9016e4b60aeaaef3d72f5e3319e4e5463"
+    },
+    "ygo_stats_tag_elo": {
+        "facade": "includes\/statistics_multiplayer.php",
+        "class": "StationX\\Yugioh\\Domain\\Statistics\\RatingMath",
+        "method": "tagElo",
+        "file": "src\/Domain\/Statistics\/RatingMath.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "676ffb5c97576997bdb15db61c48978abfc899f22990e86e47620bb86b8de678"
+    },
+    "ygo_stats_metric": {
+        "facade": "includes\/statistics_v8.php",
+        "class": "StationX\\Yugioh\\Domain\\Statistics\\MetricFactory",
+        "method": "metric",
+        "file": "src\/Domain\/Statistics\/MetricFactory.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "5ce97a7898e7b8883677409077b145647db101d70021c2a9ab7f8bfc951f2370"
+    },
+    "ygo_stats_lp_history_known": {
+        "facade": "includes\/statistics_v8.php",
+        "class": "StationX\\Yugioh\\Domain\\Statistics\\LifePointPolicy",
+        "method": "lpHistoryKnown",
+        "file": "src\/Domain\/Statistics\/LifePointPolicy.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "076543315daa6a9fe342109467c1cf5e8ba48c7035e584f0a772610a96b09c0d"
+    },
+    "ygo_stats_flawless": {
+        "facade": "includes\/statistics_v8.php",
+        "class": "StationX\\Yugioh\\Domain\\Statistics\\LifePointPolicy",
+        "method": "flawless",
+        "file": "src\/Domain\/Statistics\/LifePointPolicy.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "7b625ca7f63ce3d4c4eaeec4469e5349345354a20aedf29af87d845f996ef2bf"
+    },
+    "ygo_stats_historical_tier": {
+        "facade": "includes\/statistics_v8.php",
+        "class": "StationX\\Yugioh\\Domain\\Statistics\\HistoricalMetrics",
+        "method": "historicalTier",
+        "file": "src\/Domain\/Statistics\/HistoricalMetrics.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "e5a3077f25c70675b403d21a74d62f0b63542737989fb98d70df0d7745861dbc"
+    },
+    "ygo_stats_championships": {
+        "facade": "includes\/statistics_v8.php",
+        "class": "StationX\\Yugioh\\Domain\\Statistics\\HistoricalMetrics",
+        "method": "championships",
+        "file": "src\/Domain\/Statistics\/HistoricalMetrics.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "073f1c58d97617913943aa4441232818551f79cb279c065dc9f7a0d29b303555"
+    },
+    "ygo_stats_analytics": {
+        "facade": "includes\/statistics_v8.php",
+        "class": "StationX\\Yugioh\\Domain\\Statistics\\Analytics",
+        "method": "analytics",
+        "file": "src\/Domain\/Statistics\/Analytics.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "e92ea92880545d31b7536fc3e55791ca13145d75ab558c03e971c50ca392d431"
+    },
+    "ygo_card_merge_annotations": {
+        "facade": "includes\/deck_builder.php",
+        "class": "StationX\\Yugioh\\Domain\\Decks\\CardAnnotations",
+        "method": "cardMergeAnnotations",
+        "file": "src\/Domain\/Decks\/CardAnnotations.php",
+        "baseline_commit": "da558b9",
+        "original_body_sha256": "39253fcae27dca1bfa8fe4db10872312035e62de80edec6148a70c27960653cd"
+    }
+}

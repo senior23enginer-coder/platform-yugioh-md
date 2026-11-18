@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace StationX\Yugioh\Application\Seasons;
 
 use StationX\Yugioh\Domain\Seasons\Season;

@@ -73,3 +73,5 @@ La guia de edicion y limites de dependencia esta en [source-architecture.md](tor
 Las fuentes del frontend existente se editan en `torneos_yugioh/assets/source/`. Ejecuta `npm run build` antes de publicar y `npm run build:check` para detectar bundles desactualizados. `assets/app.js` y `assets/app.css` son salidas publicas generadas; los modulos independientes de `assets/modules/` se editan directamente.
 
 El recorrido hexagonal de Mundos, sus puertos y las reglas de transacción están documentados en `torneos_yugioh/context/source-architecture.md`. Usa `npm run format:architecture` y `npm run format:architecture:check` para el formato de las fuentes migradas; no aplican a plantillas mixtas ni a bundles generados.
+
+El avance y la deuda real de la migración completa a puertos/adaptadores se detallan en `torneos_yugioh/context/architecture-migration-status.md`. El dominio no debe llamar funciones nativas `ygo_*`, PDO, archivos ni HTTP; ese límite se comprueba en la suite. `php scripts/source-inventory.php --summary` inventaría las dependencias nativas sin inicializar la aplicación.

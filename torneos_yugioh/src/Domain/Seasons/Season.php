@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace StationX\Yugioh\Domain\Seasons;
 
 /** Season identity independent of its persistence or delivery format. */
