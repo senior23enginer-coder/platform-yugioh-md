@@ -74,6 +74,24 @@ for (const format of ["goat", "rush_duel"]) {
   }
 }
 rejects(() => E.patch(s, { turn: 0 }));
+let timed = E.cardStatus(s, 1, { negation: { active: true, duration: "turn", reason: "Test" } });
+timed = E.cardStatus(timed, 2, { negation: { active: true, duration: "manual", reason: "Test" } });
+const beforeAdvance = JSON.stringify(timed);
+const nextTurn = E.advanceTurn({ ...timed, normalAvailable: false, phase: "end" });
+ok(nextTurn.turn === timed.turn + 1 && nextTurn.active === "opponent" &&
+  nextTurn.phase === "draw" && nextTurn.normalAvailable, "Turn transition resets generic turn controls");
+ok(!nextTurn.tokens.find(t => t.uid === 1).negation &&
+  nextTurn.tokens.find(t => t.uid === 2).negation.duration === "manual",
+  "Only turn-scoped negations expire");
+ok(JSON.stringify(timed) === beforeAdvance && nextTurn.tokens.length === timed.tokens.length,
+  "Advancing does not mutate or draw cards");
+rejects(() => E.advanceTurn(E.appendChain(timed, { side: "self", effect: "Pendiente" })));
+rejects(() => E.advanceTurn({ ...timed, turn: 999 }));
+const practiceTurn = E.advanceTurn(E.create(a));
+ok(practiceTurn.active === "self" && practiceTurn.turn === 2, "Practice retains its only player");
+const turnUi = fs.readFileSync(path.join(__dirname, "../assets/modules/play-calculator/ui.js"), "utf8");
+ok(turnUi.includes("data-play-next-turn") && turnUi.includes("E.advanceTurn(state.scenario)"),
+  "Turn advance is exposed in the calculator UI");
 rejects(() => E.patch(s, { unknown: { hand: -1 } }));
 rejects(() => E.patch(s, { lp: { self: -1 } }));
 rejects(() => E.position(s, 1, "invalid"));

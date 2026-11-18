@@ -374,6 +374,23 @@
       if (values.unknown) n.unknown = { ...n.unknown, ...values.unknown };
     });
   }
+  // Advance the capture clock only. Drawing and resolving end-of-turn effects
+  // require explicit player input, so neither is inferred here.
+  function advanceTurn(s) {
+    validate(s);
+    assert(!(s.chain || []).length, "Resuelve o retira la cadena pendiente antes de avanzar turno.");
+    assert(s.turn < 999, "Se alcanzó el máximo de turnos del escenario.");
+    return change(s, (n) => {
+      n.turn += 1;
+      n.active = s.practice ? "self" : (s.active === "self" ? "opponent" : "self");
+      n.phase = "draw";
+      n.normalAvailable = true;
+      for (const token of n.tokens) {
+        if (token.negation?.duration === "turn" && token.negation.turn < n.turn)
+          delete token.negation;
+      }
+    });
+  }
   // A witness of an opponent's Extra Deck summon, not a proof of the materials
   // or the full legal summoning procedure. Record it only with an identified
   // Extra Deck card and an actual occupied monster zone in the resulting state.
@@ -711,6 +728,7 @@
     validate,
     place,
     patch,
+    advanceTurn,
     observeExtraSummon,
     appendChain,
     removeChain,

@@ -1,5 +1,14 @@
 # Calculador de jugadas
 
+**Avance controlado de turno (módulo genérico):** el botón «Siguiente turno» alterna
+el jugador activo en Duelo (en Práctica conserva el lado propio), incrementa
+el turno, establece la fase de Robo y restituye la Invocación Normal.
+Retira únicamente las negaciones declaradas para el turno anterior, conservando
+las de duración manual. Rechaza avanzar con cadena pendiente o después del
+turno 999. No roba cartas, ejecuta efectos de End/Standby, vence automáticamente
+otras restricciones declarativas ni altera LP; esas acciones requieren captura
+explícita. El cambio conserva el tablero y puede deshacerse.
+
 Sección independiente de la ficha del deck, junto a la Guía de juego. El módulo es una herramienta de captura y estudio del duelo físico. No escribe decklists, resultados, LP oficiales ni tablas de competición.
 
 ## Uso
