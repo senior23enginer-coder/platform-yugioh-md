@@ -296,6 +296,71 @@ assert(R.actions(sentAfterDestroy.state, memento.db).actions.some((a) =>
   a.event.ruleId === "671:ghattic:revive"),
 "Desvantasma must be able to revive following the verified Dormiveja send");
 
+const fusionSpell = card(memento.catalog, memento.db, 19904);
+const creationKing = card(memento.catalog, memento.db, 20216);
+const mictlan = card(memento.catalog, memento.db, 19367);
+let fuseFromSpell = E.create(memento.catalog);
+for (const c of [fusionSpell, angwitch, ghattic, shleepy])
+  fuseFromSpell = E.place(fuseFromSpell, { key: c.key, owner: "self", zone: "hand" });
+const spellFusion = R.actions(fuseFromSpell, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:memento-fusion:king");
+assert(spellFusion, "Mementotlan Fusion must use three identified Memento materials");
+assert(spellFusion.state.tokens.some((t) => t.key === creationKing.key && E.isMonster(t.zone)));
+for (const c of [fusionSpell, angwitch, ghattic, shleepy])
+  assert(spellFusion.state.tokens.some((t) => t.key === c.key && t.zone === "graveyard"));
+assert.equal(R.actions(fuseFromSpell, memento.db, { noExtra: true }).actions.filter((a) =>
+  a.event.ruleId === "671:memento-fusion:king").length, 0);
+const negatedSpell = R.actions(fuseFromSpell, memento.db,
+  { negateEffectRuleIds: ["671:memento-fusion:king"] }).actions.find((a) =>
+    a.event.ruleId === "671:memento-fusion:king");
+assert(negatedSpell && negatedSpell.state.tokens.some((t) =>
+  t.key === fusionSpell.key && t.zone === "graveyard") &&
+  !negatedSpell.state.tokens.some((t) => t.key === creationKing.key),
+"Negating the Fusion Spell must leave the Spell in GY without fusing materials");
+
+let fusionGraveyard = E.create(memento.catalog);
+fusionGraveyard = E.place(fusionGraveyard, { key: fusionSpell.key, owner: "self", zone: "graveyard" });
+fusionGraveyard = E.place(fusionGraveyard, { key: angwitch.key, owner: "self", zone: "m1" });
+const fusionGraveSearch = R.actions(fusionGraveyard, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:memento-fusion:graveyard-search" && a.state.tokens.some((t) =>
+    t.key === mictlan.key && t.zone === "hand"));
+assert(fusionGraveSearch, "Mementotlan Fusion must banish from GY, destroy own monster and search Field Spell");
+assert(fusionGraveSearch.state.tokens.some((t) => t.key === fusionSpell.key && t.zone === "banished"));
+assert(fusionGraveSearch.state.tokens.some((t) => t.key === angwitch.key && t.zone === "graveyard"));
+assert.equal(R.actions(fusionGraveyard, memento.db, { banishBlocked: true }).actions.filter((a) =>
+  a.event.ruleId === "671:memento-fusion:graveyard-search").length, 0);
+const negatedGraveSearch = R.actions(fusionGraveyard, memento.db,
+  { negateEffectRuleIds: ["671:memento-fusion:graveyard-search"] }).actions.find((a) =>
+    a.event.ruleId === "671:memento-fusion:graveyard-search");
+assert(negatedGraveSearch && negatedGraveSearch.state.tokens.some((t) =>
+  t.key === fusionSpell.key && t.zone === "banished") &&
+  negatedGraveSearch.state.tokens.some((t) => t.key === angwitch.key && t.zone === "m1"),
+"The Spell's GY banish cost persists when its destruction/search effect is negated");
+
+let kingGraveyard = E.create(memento.catalog);
+kingGraveyard = E.place(kingGraveyard, { key: creationKing.key, owner: "self", zone: "graveyard" });
+const kingSearch = R.actions(kingGraveyard, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:creation-king:graveyard-search");
+assert(kingSearch, "Creation King must search Mementomictlan by banishing itself from GY");
+assert(kingSearch.state.tokens.some((t) => t.key === creationKing.key && t.zone === "banished"));
+assert(kingSearch.state.tokens.some((t) => t.key === mictlan.key && t.zone === "hand"));
+assert.equal(R.actions(kingGraveyard, memento.db, { noDeckToHand: true }).actions.filter((a) =>
+  a.event.ruleId === "671:creation-king:graveyard-search").length, 0);
+
+let kingOnField = E.create(memento.catalog, memento.catalog);
+kingOnField = E.place(kingOnField, { key: creationKing.key, owner: "self", zone: "m1" });
+kingOnField = E.place(kingOnField, { key: angwitch.key, owner: "opponent", zone: "m1" });
+const kingDestruction = R.actions(kingOnField, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:creation-king:destroy");
+assert(kingDestruction, "Creation King must select one own Memento and one known opponent monster");
+assert(kingDestruction.state.tokens.some((t) => t.key === creationKing.key && t.zone === "graveyard"));
+assert(kingDestruction.state.tokens.some((t) => t.key === angwitch.key && t.owner === "opponent" && t.zone === "graveyard"));
+const noEnemy = E.clone(kingOnField);
+noEnemy.tokens = noEnemy.tokens.filter((t) => t.owner !== "opponent");
+assert.equal(R.actions(noEnemy, memento.db).actions.filter((a) =>
+  a.event.ruleId === "671:creation-king:destroy").length, 0,
+"Creation King cannot destroy itself with no matching opponent card");
+
 const kashtira = loaded(665);
 let k = E.create(kashtira.catalog);
 const fenrir = card(kashtira.catalog, kashtira.db, 17768);
