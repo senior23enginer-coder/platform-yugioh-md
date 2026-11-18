@@ -569,9 +569,9 @@
               "Destierro impedido para ambos jugadores");
           }
           if (op.op === "shuffle") {
-            const targets=op.refs.map(ref=>n.tokens.find(t=>t.uid===refs[ref]));
-            check(targets.every(t=>t && t.owner==="self" && t.controller==="self" &&
-              ["hand","graveyard"].includes(t.zone)), "Material de barajado fuera de mano/Cementerio propio");
+            const targets=Resources.requireTokens(n,refs,op.refs,t=>t.owner==="self" &&
+              t.controller==="self" && ["hand","graveyard"].includes(t.zone),
+              "Material de barajado fuera de mano/Cementerio propio");
             const cids=targets.map(t=>db.bindings[t.key]);
             check(new Set(cids).size===cids.length && cids.every(cid=>op.allowedCids.includes(cid)),
               "Nombres repetidos o materiales ajenos al requisito");
@@ -580,8 +580,8 @@
           } else if (op.op === "link") {
             check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.xyzOnly),"Link bloqueado por restricción de Extra o Especial");
             check(!(options.blockedZones||[]).includes(op.to),"Zona de Link bloqueada");
-            const selected=op.materials.map(ref=>n.tokens.find(t=>t.uid===refs[ref]));
-            check(selected.every(t=>t&&t.owner==="self"&&t.controller==="self"&&E.isMonster(t.zone)&&t.position!=="set"),
+            const selected=Resources.requireTokens(n,refs,op.materials,t=>t.owner==="self"&&
+              t.controller==="self"&&E.isMonster(t.zone)&&t.position!=="set",
               "Material Link no disponible boca arriba en campo propio");
             const actual=selected.map(t=>db.bindings[t.key]).sort((a,b)=>a-b);
             const required=[...op.materialCids].sort((a,b)=>a-b);
@@ -597,8 +597,8 @@
           } else if (op.op === "xyz") {
             check(!(f.noExtra || f.specialBlocked || f.noMoreSummons),"Xyz bloqueado por restricción de Extra o Especial");
             check(!(options.blockedZones||[]).includes(op.to),"Zona Extra bloqueada");
-            const selected=op.materials.map(ref=>n.tokens.find(t=>t.uid===refs[ref]));
-            check(selected.every(t=>t&&t.owner==="self"&&t.controller==="self"&&E.isMonster(t.zone)&&t.position!=="set"),
+            const selected=Resources.requireTokens(n,refs,op.materials,t=>t.owner==="self"&&
+              t.controller==="self"&&E.isMonster(t.zone)&&t.position!=="set",
               "Material Xyz no disponible boca arriba en campo propio");
             const actual=selected.map(t=>db.bindings[t.key]).sort((a,b)=>a-b);
             const required=[...op.materialCids].sort((a,b)=>a-b);
@@ -652,9 +652,9 @@
           } else if (op.op === "fusion") {
             check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.xyzOnly), "Fusión bloqueada por restricción de Extra o Especial");
             check(!(options.blockedZones || []).includes(op.to), "Zona Extra bloqueada");
-            const selected = op.materials.map(ref=>n.tokens.find(t=>t.uid===refs[ref]));
-            check(selected.every(t=>t && t.owner==="self" && t.controller==="self" &&
-              (t.zone==="hand" || E.isMonster(t.zone) || (op.allowGraveyard && t.zone==="graveyard"))),
+            const selected = Resources.requireTokens(n,refs,op.materials,t=>t.owner==="self" &&
+              t.controller==="self" && (t.zone==="hand" || E.isMonster(t.zone) ||
+                (op.allowGraveyard && t.zone==="graveyard")),
               "Material no disponible en zona autorizada");
             if (selected.some(t=>t.zone==="graveyard"))
               check(op.allowGraveyard && (op.graveyardPolicy === "fiendsmith-sequence" ||
@@ -692,9 +692,8 @@
             n = E.place(n, {uid:t.uid,zone:"graveyard",controller:t.owner});
             n._ruleEvents = [...(n._ruleEvents||[]),event];
           } else if (op.op === "tribute") {
-            const t=n.tokens.find(t=>t.uid===refs[op.ref]);
-            check(t && t.controller==="self" && (E.isMonster(t.zone) && t.position!=="set" ||
-              op.allowHand === true && t.zone==="hand"),
+            const [t]=Resources.requireTokens(n,refs,[op.ref],t=>t.controller==="self" &&
+              (E.isMonster(t.zone) && t.position!=="set" || op.allowHand===true && t.zone==="hand"),
               "Sacrificio exige monstruo propio boca arriba en campo");
             check(!f.graveyardBlocked,"Destino del coste de Sacrificio no acreditado");
             const event={kind:"tribute",uid:t.uid,cid:db.bindings[t.key],from:t.zone,by:"cost",stage:opStage};
@@ -724,9 +723,8 @@
             t.counters={...(t.counters||{}),predator:(t.counters?.predator||0)+1};
           } else if (op.op === "banishExtraFaceDown") {
             check(!f.banishBlocked,"Lancea impide desterrar los seis costes del Extra");
-            const targets=op.refs.map(ref=>n.tokens.find(t=>t.uid===refs[ref]));
-            check(targets.every(t=>t && t.owner==="self" && t.zone==="extra" &&
-              E.definition(n,t.key,t.owner)?.section==="extra"),
+            const targets=Resources.requireTokens(n,refs,op.refs,t=>t.owner==="self" &&
+              t.zone==="extra" && E.definition(n,t.key,t.owner)?.section==="extra",
               "Se requieren seis cartas físicas distintas del Extra propio");
             for(const t of targets){
               n=E.place(n,{uid:t.uid,zone:"banished",controller:"self"});

@@ -31,5 +31,17 @@
     }
     return next;
   }
-  return Object.freeze({ version: 1, MAX_LP, applyLP });
+  // Resolve physical cards by their chosen UID. No CID or deck name is assumed.
+  function requireTokens(state, refs, names, eligible, message) {
+    if (!state || !Array.isArray(state.tokens) || !refs ||
+      !Array.isArray(names) || names.length === 0 ||
+      names.some(name => typeof name !== "string" || !Number.isInteger(refs[name])))
+      throw Error(message || "Recursos físicos no identificados");
+    const found = names.map(name => state.tokens.find(t => t.uid === refs[name]));
+    if (new Set(found.map(t => t?.uid)).size !== names.length ||
+      found.some(t => !t || !eligible(t)))
+      throw Error(message || "Recursos físicos no disponibles");
+    return found;
+  }
+  return Object.freeze({ version: 1, MAX_LP, applyLP, requireTokens });
 });

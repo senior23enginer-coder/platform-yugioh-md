@@ -96,6 +96,12 @@ la resolución. No se modifican las reglas de materiales, tributos, zonas o
 costes específicos de cartas; su generalización requiere evidencias y pruebas
 adicionales. El módulo no sustituye la comprobación de legalidad de cartas.
 
+`requireTokens` comprueba copias físicas seleccionadas por UID sin asociarlas
+a ningún deck. Rechaza referencias inexistentes, duplicadas o que no cumplen
+la condición de zona/controlador definida por el operador. Las operaciones
+`shuffle`, `link`, `xyz`, `fusion`, `tribute` y `banishExtraFaceDown` usan esta función
+antes de mover materiales. Sus recetas y restricciones siguen vigentes.
+
 `tests/calculator_contract_test.cjs` prueba el mismo contrato con dos decks
 sintéticos diferentes, ejecuta una operación compartida sin cambiar código
 por deck, y rechaza versión, identidad, campos, duplicados y operaciones
