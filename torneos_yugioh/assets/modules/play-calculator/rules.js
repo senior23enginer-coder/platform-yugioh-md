@@ -58,9 +58,6 @@
       q.cid === undefined || (Number.isInteger(q.cid) && q.cid > 0),
       "CID incorrecto",
     );
-    check(q.cids === undefined || (Array.isArray(q.cids) && q.cids.length > 0 &&
-      q.cids.length <= 60 && q.cids.every((id) => Number.isInteger(id) && id > 0) &&
-      new Set(q.cids).size === q.cids.length), "Lista CID incorrecta");
     check(
       q.faceUp === undefined || typeof q.faceUp === "boolean",
       "Posicion incorrecta",
@@ -68,7 +65,7 @@
     check(q.key === undefined || typeof q.key === "string", "Clave incorrecta");
     check(
       Object.keys(q).every((k) =>
-        ["side", "zones", "cid", "cids", "key", "faceUp", "notNegated"].includes(k),
+        ["side", "zones", "cid", "key", "faceUp", "notNegated"].includes(k),
       ),
       "Selector desconocido",
     );
@@ -83,7 +80,6 @@
           (z === "field-all" && field(t.zone)),
       ) &&
       (q.cid === undefined || db.bindings[t.key] === q.cid) &&
-      (q.cids === undefined || q.cids.includes(db.bindings[t.key])) &&
       (q.key === undefined || q.key === t.key) &&
       (q.faceUp === undefined || q.faceUp === (t.position !== "set")) &&
       (!q.notNegated || !E.negated(s, t))
@@ -165,8 +161,6 @@
       Array.isArray(rule.select) && rule.select.length <= 6,
       "Selecciones incorrectas",
     );
-    check(rule.distinctSelectedNames === undefined || typeof rule.distinctSelectedNames === "boolean",
-      "Restriccion de nombres incorrecta");
     const refs = new Set(["actor"]);
     for (const x of rule.select) {
       check(
@@ -232,6 +226,9 @@
           refs.has(op.ref) && op.reason === "effect",
           "Destrucción no acreditada",
         );
+      else if (op.op === "tribute")
+        check(refs.has(op.ref) && op.reason === "cost" && rule.costs.includes(op),
+          "Sacrificar como coste exige un monstruo identificado y el bloque costs");
       else if (op.op === "move")
         check(
           refs.has(op.ref) &&
@@ -303,7 +300,6 @@
       _xyz: s._xyz,
       _used: E.clone(s._used || []),
       _ruleFlags: E.clone(s._ruleFlags || {}),
-      _ruleEvents: E.clone(s._ruleEvents || []),
     };
   }
   function actions(s, db, options = {}) {
@@ -318,9 +314,11 @@
         rejected.push({ id: rule.id, message: e.message });
         continue;
       }
-      const used = "rule:" + rule.id + ":turn:" + s.turn;
-      if (rule.oncePerTurn && (s._used || []).some((id) =>
-        id === used || id === "rule:" + rule.id)) continue;
+      const used = "rule:" + rule.id;
+      // El límite por nombre se reinicia por turno, pero no por nueva copia.
+      if (rule.oncePerTurn && (s._ruleUseTurns?.[used] !== undefined
+        ? s._ruleUseTurns[used] === s.turn
+        : (s._used || []).includes(used))) continue;
       if (rule.trigger && !(s._ruleEvents || []).some(e =>
         e.kind === "sent_to_graveyard" && e.cid === rule.trigger.actorCid &&
         e.sourceCid === rule.trigger.sourceCid && e.turn === s.turn &&
@@ -352,14 +350,7 @@
         bindings = bindings
           .flatMap((b) =>
             candidates(s, item.selector, db)
-              .filter((t) => {
-                if (Object.values(b).includes(t.uid)) return false;
-                if (!rule.distinctSelectedNames) return true;
-                const earlier = Object.entries(b).filter(([ref]) => ref !== "actor")
-                  .map(([, uid]) => s.tokens.find((token) => token.uid === uid));
-                return earlier.every((other) => db.bindings[other.key] !== db.bindings[t.key]) &&
-                  (!earlier.length || t.uid > earlier[earlier.length - 1].uid);
-              })
+              .filter((t) => !Object.values(b).includes(t.uid))
               .map((t) => ({ ...b, [item.ref]: t.uid })),
           )
           .slice(0, 40);
@@ -372,6 +363,10 @@
             (E.isMonster(actor.zone) && actor.position === "set"))
         )
           continue;
+        // Las Mágicas Rápidas colocadas no pueden activarse ese mismo turno.
+        // Sin procedencia temporal de la carta colocada, se falla cerrado.
+        if (rule.activation && /^s[1-5]$/.test(actor.zone) && actor.position === "set" &&
+          (!Number.isInteger(actor.setTurn) || actor.setTurn >= s.turn)) continue;
         let n = E.clone(s);
         n._normal ??= !n.normalAvailable;
         let opStage = "cost";
@@ -453,6 +448,14 @@
             const event = {kind:"destroy",uid:t.uid,cid:db.bindings[t.key],from:t.zone,by:"effect",stage:opStage};
             n = E.place(n, {uid:t.uid,zone:"graveyard",controller:t.owner});
             n._ruleEvents = [...(n._ruleEvents||[]),event];
+          } else if (op.op === "tribute") {
+            const t=n.tokens.find(t=>t.uid===refs[op.ref]);
+            check(t && t.controller==="self" && E.isMonster(t.zone) && t.position!=="set",
+              "Sacrificio exige monstruo propio boca arriba en campo");
+            check(!f.graveyardBlocked,"Destino del coste de Sacrificio no acreditado");
+            const event={kind:"tribute",uid:t.uid,cid:db.bindings[t.key],from:t.zone,by:"cost",stage:opStage};
+            n=E.place(n,{uid:t.uid,zone:"graveyard",controller:t.owner});
+            n._ruleEvents=[...(n._ruleEvents||[]),event];
           } else if (op.op === "move") {
             const t = n.tokens.find((t) => t.uid === refs[op.ref]);
             check(t, "Copia ausente");
@@ -552,8 +555,10 @@
           const activationNegated=(options.negateActivationRuleIds||[]).includes(rule.id);
           check(!activationNegated || (rule.activation && typeof rule.activationNegatedConsumesUse === "boolean"),
             "La negación de activación exige el límite explícito de esa carta");
-          if (rule.oncePerTurn && (!activationNegated || rule.activationNegatedConsumesUse))
-            n._used = [...(n._used || []), used];
+          if (rule.oncePerTurn && (!activationNegated || rule.activationNegatedConsumesUse)) {
+            n._used = [...new Set([...(n._used || []), used])];
+            n._ruleUseTurns = { ...n._ruleUseTurns, [used]: n.turn };
+          }
           const paid = checkpoint(n);
           const effectNegated = (options.negateEffectRuleIds || []).includes(rule.id);
           check(!(activationNegated&&effectNegated),"No se puede negar simultáneamente activación y efecto");
