@@ -314,6 +314,12 @@
       "status": "ENGINE_TESTED_RESTRICTED_CASE",
       "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
       "scope": "Diferencia entre negar activación y efecto con coste previo; exige declaración expresa del límite de uso, sin modelar aún resolución íntegra de cadenas"
+    },
+    {
+      "id": "671:A07:R17:main-material-link-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "S:P Link-2 con Angbruja y Tatsun de Main; los materiales van a GY y no se presume su destierro inicial"
     }
   ],
   "missing_capabilities": [
