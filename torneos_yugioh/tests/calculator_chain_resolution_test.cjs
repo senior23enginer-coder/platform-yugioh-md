@@ -38,6 +38,25 @@ assert.equal(C.resolve(unmodelled, db).status, "unresolved");
 const activation = E.appendChain(first, { side: "opponent", effect: "Niego activación", outcome: "negate-activation" });
 assert.equal(C.resolve(activation, db).status, "unresolved",
   "Do not invent the once-per-turn outcome of activation negation");
+const priced = { ...db.rules.find((r) => r.id === "665:fenrir:search"),
+  id: "665:test:priced-search", costs: [{ op: "payLP", amount: 500 }],
+  activationNegatedConsumesUse: true };
+assert(priced.actor);
+const pricedDb = { ...db, rules: [priced] };
+const pricedFirst = E.appendChain(scenario, { side: "self", cardName: "Coste de prueba",
+  effect: "Buscar después de pagar 500 LP", ruleId: priced.id, actorUid: uid });
+const pricedSecond = E.appendChain(pricedFirst, { side: "opponent", effect: "Niego la activación",
+  outcome: "negate-activation" });
+const pricedResult = C.resolve(pricedSecond, pricedDb);
+assert.equal(pricedResult.status, "conditional");
+assert(pricedResult.branches.every((b) => b.state.lp.self === 7500),
+  "A negated activation does not refund a paid LP cost");
+assert(pricedResult.branches.every((b) => b.state._used.includes("rule:" + priced.id + ":turn:1")),
+  "Explicit activation-negation usage semantics are preserved");
+assert(pricedResult.branches.every((b) => !b.state.tokens.some((t) =>
+  db.bindings[t.key] === 18151 && t.zone === "hand")));
+assert.throws(() => E.appendChain(scenario, { side: "opponent", effect: "x", outcome: "arbitrary" }),
+  /Cadena pendiente inválida/);
 const ui = fs.readFileSync(`${__dirname}/../assets/modules/play-calculator/ui.js`, "utf8");
 for (const hook of ["data-chain-rule", "data-chain-actor", "data-chain-outcome", "data-chain-preview", "data-chain-apply"])
   assert(ui.includes(hook), "Missing structured chain UI control: " + hook);
