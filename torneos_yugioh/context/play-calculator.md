@@ -126,3 +126,11 @@ de combate hasta acreditar sus particularidades. `scenario.js` conserva las
 respuestas conocidas, presenta ramas sin resolución y permite un objetivo de
 resistencia que penaliza las respuestas modeladas sin continuación; no asume
 que el rival carezca de otras interrupciones.
+
+El intérprete `rules.js` admite ahora operaciones estructuradas de daño,
+recuperación de LP, negación con duración y cambio de posición, con validación
+de tipos y condiciones de zona. Aplica intrínsecamente el bloqueo de añadir del
+Deck a la mano y rechaza Invocaciones directas desde Extra sin un procedimiento
+acreditado. Esto amplía el lenguaje de efectos, **no crea automáticamente las
+reglas individuales de las cartas**. La prueba
+`tests/calculator_rule_operations_test.cjs` comprueba estos contratos.

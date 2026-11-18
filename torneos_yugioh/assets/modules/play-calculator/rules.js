@@ -194,6 +194,23 @@
           Number.isInteger(op.amount) && op.amount > 0,
           "Coste LP incorrecto",
         );
+      else if (op.op === "damage" || op.op === "recoverLP")
+        check(
+          ["self", "opponent"].includes(op.side) &&
+            Number.isInteger(op.amount) && op.amount > 0 && op.amount <= 999999,
+          "Modificacion de LP incorrecta",
+        );
+      else if (op.op === "negate")
+        check(
+          refs.has(op.ref) && ["turn", "manual"].includes(op.duration) &&
+            typeof op.reason === "string" && op.reason.length <= 300,
+          "Negacion incorrecta",
+        );
+      else if (op.op === "position")
+        check(
+          refs.has(op.ref) && ["attack", "defense", "set"].includes(op.position),
+          "Cambio de posicion incorrecto",
+        );
       else if (op.op === "flag")
         check(
           flags.includes(op.flag) && typeof op.value === "boolean",
@@ -303,6 +320,14 @@
             if (n.tokens.some((x) => x.uid === t.uid))
               n = E.position(n, t.uid, op.position);
           } else if (op.op === "take") {
+            check(
+              !(f.noDeckToHand && op.from === "deck" && op.to === "hand"),
+              "La restriccion de añadir del Deck impide esta resolucion",
+            );
+            check(
+              !(op.from === "extra" && (E.isMonster(op.to) || op.to === "hand")),
+              "Invocacion o retorno desde Extra requiere un procedimiento de materiales acreditado",
+            );
             const cards = n[op.side].cards.filter(
               (c) =>
                 db.bindings[c.key] === op.cid &&
@@ -332,6 +357,29 @@
           } else if (op.op === "payLP") {
             check(n.lp.self > op.amount, "LP insuficientes");
             n.lp.self -= op.amount;
+          } else if (op.op === "damage") {
+            n.lp[op.side] = Math.max(0, n.lp[op.side] - op.amount);
+          } else if (op.op === "recoverLP") {
+            n.lp[op.side] += op.amount;
+            check(n.lp[op.side] <= 999999, "LP exceden el limite de escenario");
+          } else if (op.op === "negate") {
+            const t = n.tokens.find((t) => t.uid === refs[op.ref]);
+            check(t && field(t.zone) && t.position !== "set", "Objetivo de negacion no acreditado");
+            t.negation = {
+              active: true,
+              duration: op.duration,
+              reason: op.reason,
+              turn: n.turn,
+            };
+          } else if (op.op === "position") {
+            const t = n.tokens.find((t) => t.uid === refs[op.ref]);
+            check(t && E.isMonster(t.zone), "Cambio de posicion necesita monstruo en campo");
+            const fact = db.facts[db.bindings[t.key]];
+            check(
+              !(fact?.species?.includes("Link") && op.position !== "attack"),
+              "Un monstruo Link no puede colocarse en Defensa",
+            );
+            t.position = op.position;
           } else if (op.op === "normal") {
             check(!n._normal, "Normal usada");
             n._normal = true;
@@ -375,7 +423,7 @@
             !(
               f.xyzOnly &&
               extra.some(
-                (t) => !db.facts[db.bindings[t.key]]?.species?.includes("Xyz"),
+                (t) => !/xyz/i.test(db.facts[db.bindings[t.key]]?.species || ""),
               )
             ),
             "Requisito Xyz no acreditado",
