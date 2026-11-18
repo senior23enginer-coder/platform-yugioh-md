@@ -61,6 +61,7 @@
       plannerFacts: null,
       planResult: null,
       planBusy: false,
+      chainPreview: null,
       planRequest: 0,
       planWorker: null,
       planOptions: { used: [], blockedZones: [], goal: "balanced" },
@@ -163,6 +164,7 @@
       state.history.push(E.clone(state.scenario));
       if (state.history.length > 30) state.history.shift();
       state.scenario = next;
+      state.chainPreview = null;
       invalidatePlan();
       state.selection = null;
       draw();
@@ -607,10 +609,20 @@
       const chains = (s.chain || []).map((link) => `<li>CL${link.link} · ${link.side === "self" ? "Tú" : "Rival"}${link.cardName ? " · " + esc(link.cardName) : ""}: ${esc(link.effect)} <button type="button" data-chain-remove="${link.link}" aria-label="Eliminar eslabón ${link.link}">Eliminar</button></li>`).join("");
       return `<section class="play-turn-bar" aria-label="Turno del duelo"><label>Número de turno<input class="form-control" type="number" min="1" max="999" data-play-setting="turn" value="${s.turn}"></label><label>Quién tiene el turno<select class="form-select" data-play-setting="active"><option value="self" ${s.active === "self" ? "selected" : ""}>${esc(s.self.name)} - tu lado</option>${s.practice ? "" : `<option value="opponent" ${s.active === "opponent" ? "selected" : ""}>${esc(s.opponent.name)} - rival</option>`}</select></label><strong>Turno ${s.turn} - ${esc(s[s.active].name)}</strong><details class="play-chain-capture"><summary>Cadena pendiente · ${(s.chain || []).length} eslabones</summary><p>Selecciona una carta del tablero o catálogo si conoces su identidad. Captura los eslabones en orden de activación; esta sección no resuelve sus efectos.</p><ol>${chains}</ol><label>Jugador<select class="form-select" data-chain-side><option value="self">Yo</option>${s.practice ? "" : '<option value="opponent">Rival</option>'}</select></label><label>Activación o efecto pendiente<input class="form-control" maxlength="300" data-chain-effect placeholder="Ej.: activa efecto al ser invocado"></label><button type="button" class="btn btn-outline-info" data-chain-add>Añadir eslabón</button></details></section>`;
     }
+    function chainControls(s) {
+      const unique = new Map();
+      for (const rule of state.plannerFacts?.rules || [])
+        if (rule.deckId === s.self.id && rule.format === s.format && rule.activation && !unique.has(rule.id))
+          unique.set(rule.id, rule.label);
+      const actors = s.tokens.filter((t) => t.controller === "self");
+      const preview = state.chainPreview;
+      return `<div class="play-chain-executable"><p><b>Resolución condicional:</b> selecciona el efecto acreditado de CL1 y su copia. Para CL2 registra solo una negación que hayas comprobado. No se valida automáticamente la carta rival.</p><label>Regla verificada de CL1<select data-chain-rule><option value="">Sin regla ejecutable</option>${[...unique].map(([id, label]) => `<option value="${esc(id)}">${esc(label)}</option>`).join("")}</select></label><label>Copia de CL1<select data-chain-actor><option value="">Selecciona copia</option>${actors.map((t) => `<option value="${t.uid}">#${t.uid} · ${esc(E.definition(s, t.key, t.owner)?.name || t.key)} (${esc(zoneName(t.zone))})</option>`).join("")}</select></label><label>Resultado conocido de CL2<select data-chain-outcome><option value="">Sin resolución acreditada</option><option value="negate-effect">Niega el efecto (declarado)</option><option value="negate-activation">Niega la activación (declarado)</option></select></label><button type="button" class="btn btn-outline-info" data-chain-preview>Calcular eslabones acreditados</button>${preview ? `<p>${esc(preview.status === "conditional" ? preview.warning : preview.reason)}</p>${preview.branches.map((b, i) => `<div><span>${esc(b.label)} · ${b.effectNegated ? "Efecto negado" : "Efecto resuelto"}</span> <button type="button" class="btn btn-outline-info" data-chain-apply="${i}">Aplicar estado ${i + 1}</button></div>`).join("")}` : ""}</div>`;
+    }
     function draw() {
       if (instances.get(node) !== state) return;
       const s = state.scenario;
       node.innerHTML = `<header class="play-heading"><div><span class="learn-kicker">Herramienta local de estudio</span><h3>Calculador de jugadas · ${esc(native.name)}</h3><p>Reproduce lo que conoces del duelo. La captura del tablero no ejecuta cartas ni valida automáticamente sus efectos.</p></div><span class="play-offline">${navigator.onLine ? "Cálculo local" : "Sin conexión · cálculo local"}</span></header>${state.externalMode ? "" : `<nav class="play-mode-tabs" aria-label="Modo del calculador"><button type="button" class="btn btn-outline-info" data-play-mode="duel" aria-pressed="${state.mode === "duel"}">Duelo</button><button type="button" class="btn btn-outline-info" data-play-mode="practice" aria-pressed="${state.mode === "practice"}">Práctica</button></nav>`}${state.mode === "duel" ? `<label class="play-opponent">Deck oponente<select class="form-select" data-play-opponent><option value="">Selecciona un oponente</option>${state.opponents.map((o) => opponentOption(o, s)).join("")}</select></label>` : '<p class="play-practice-intro">Práctica sin oponente: genera una mano y explora tus opciones.</p>'}<p data-play-message role="${state.error ? "alert" : "status"}">${esc(state.message)}</p>${s ? `${turnBar(s)}<details class="play-context"><summary>Turno ${s.turn} · ${s.active === "self" ? "Tu turno" : "Turno rival"} · Ajustar estado del duelo</summary><section class="play-setup"><label>Orden inicial<select class="form-select" data-play-setting="goesFirst"><option value="true" ${s.goesFirst ? "selected" : ""}>Empiezo primero</option><option value="false" ${s.goesFirst ? "" : "selected"}>Empiezo segundo</option></select></label><label>Fase<select class="form-select" data-play-setting="phase">${[["draw", "Robo"], ["standby", "Espera"], ["main1", "Main / principal"], ["battle", "Batalla"], ...(s.format === "rush_duel" ? [] : [["main2", "Main 2"]]), ["end", "Final"]].map(([k, v]) => `<option value="${k}" ${s.phase === k ? "selected" : ""}>${v}</option>`).join("")}</select></label><label>Mis LP<input class="form-control" type="number" min="0" max="999999" data-play-lp="self" value="${s.lp.self}"></label><label>LP rival<input class="form-control" type="number" min="0" max="999999" data-play-lp="opponent" value="${s.lp.opponent}"></label><label><input type="checkbox" data-play-setting="normalAvailable" ${s.normalAvailable ? "checked" : ""}> Puedo usar la Invocación Normal</label><label>Mano rival desconocida<input class="form-control" type="number" min="0" max="99" data-play-unknown="hand" value="${s.unknown.hand}"></label><label>Desterradas desconocidas<input class="form-control" type="number" min="0" max="99" data-play-unknown="banished" value="${s.unknown.banished}"></label><label><input type="checkbox" data-play-setting="opponentHandComplete" ${s.opponentHandComplete ? "checked" : ""}> Conozco toda la mano rival</label></section></details>${state.mode === "practice" ? handPractice() : ""}<div class="play-workspace">${positionTools()}<div class="play-board-scroll" tabindex="0" aria-label="Tablero de duelo"><div class="play-board">${s.practice ? '<p class="play-free-field">Práctica libre · sin campo rival</p>' : half("opponent")}${s.format === "tcg_advanced" ? `<div class="play-shared">${slot("self", "emz1")}${slot("self", "emz2")}</div>` : '<div class="play-center">' + (s.format === "rush_duel" ? "RUSH DUEL · 3 zonas por fila" : "GOAT · 5 zonas por fila") + "</div>"}${half("self")}</div></div><aside class="play-tools">${catalogView()}${selectedView()}</aside></div><section class="play-notes"><label>Efectos ya utilizados y restricciones conocidas<textarea class="form-control" maxlength="2000" data-play-setting="usedEffects">${esc(s.usedEffects)}</textarea></label><label>Notas del estado físico<textarea class="form-control" maxlength="4000" data-play-setting="notes">${esc(s.notes)}</textarea></label></section>${plannerSettings()}<div class="play-actions"><button class="btn btn-primary" type="button" data-play-analyze>Analizar escenario y opciones</button><button class="btn btn-outline-info" type="button" data-play-undo ${state.history.length ? "" : "disabled"}>Deshacer</button><button class="btn btn-outline-danger" type="button" data-play-reset>Vaciar tablero</button></div><section class="play-results" aria-live="polite"><h3>Opciones según el estado aportado</h3><p>El motor busca secuencias con las acciones implementadas desde tu mano y campo, y muestra sus estados posteriores. Las respuestas rivales, protecciones y efectos sin modelar requieren comprobación; no se calculan todas las jugadas legales.</p>${auditView()}${plannerView()}<details><summary>Rutas documentadas de referencia</summary>${recommendations()}</details></section>` : '<div class="play-empty"><h4>Elige práctica libre o un rival para preparar el tablero</h4><p>En práctica libre puedes generar aperturas con tu Main y explorar líneas sin seleccionar un oponente. Al elegir un rival se cargan las cartas de ambos decks.</p></div>'}`;
+      if (s) node.querySelector(".play-chain-capture")?.insertAdjacentHTML("beforeend", chainControls(s));
       if (s?.practice) {
         for (const selector of [
           '[data-play-lp="opponent"]',
@@ -657,11 +669,29 @@
               const selectedToken = state.scenario.tokens.find((t) => t.uid === selected?.uid);
               const selectedSide = selectedToken?.controller || selected?.owner;
               const card = selectedSide === side && selected ? E.definition(state.scenario, selected.key, selected.owner) : null;
+              const ruleId = side === "self" ? node.querySelector("[data-chain-rule]")?.value : "";
+              const actorUid = Number(node.querySelector("[data-chain-actor]")?.value);
+              const outcome = side === "opponent" ? node.querySelector("[data-chain-outcome]")?.value : "";
               commit(E.appendChain(state.scenario, {
                 side,
                 cardName: card?.name === "Carta rival desconocida" ? "" : card?.name || "",
                 effect: node.querySelector("[data-chain-effect]").value,
+                ...(ruleId ? { ruleId, actorUid } : {}),
+                ...(outcome ? { outcome } : {}),
               }));
+              return;
+            }
+            if (b.hasAttribute("data-chain-preview")) {
+              state.chainPreview = root.YgoPlayChain?.resolve(state.scenario, state.plannerFacts || { rules: [], bindings: {} }) ||
+                { status: "unresolved", reason: "Resolución estructurada no disponible", branches: [] };
+              draw();
+              return;
+            }
+            if (b.hasAttribute("data-chain-apply")) {
+              const choice = state.chainPreview?.branches[Number(b.dataset.chainApply)];
+              if (!choice) throw Error("La opción de cadena ya no está disponible");
+              commit(E.clone(choice.state));
+              notice("Resolución condicional aplicada. Comprueba los efectos del rival antes de continuar.");
               return;
             }
             if (b.hasAttribute("data-chain-remove")) {
