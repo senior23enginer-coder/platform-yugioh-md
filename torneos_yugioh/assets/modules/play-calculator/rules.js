@@ -33,6 +33,7 @@
     "graveyardBlocked",
     "effectsNegated",
     "noDeckToHand",
+    "banishBlocked",
   ];
   const tags = [
     "addFromDeck",
@@ -153,6 +154,21 @@
             g.max >= g.min,
           "Conteo incorrecto",
         );
+      } else if (g.kind === "distinctCount") {
+        selector(g.selector);
+        check(Number.isInteger(g.min) && g.min >= 0 && g.min <= 10,
+          "Conteo de nombres diferentes incorrecto");
+      } else if (g.kind === "event") {
+        check(["destroy", "summon", "fusion_summon"].includes(g.event) &&
+          (g.event !== "destroy" || g.by === "effect") &&
+          ["self", "opponent"].includes(g.side) && g.currentTurn === true,
+          "Condición de evento desconocida");
+      } else if (g.kind === "phaseStart") {
+        check(Object.keys(g).length === 1,
+          "Inicio de fase requiere historial de acciones sin parámetros");
+      } else if (g.kind === "extraSummonHistory") {
+        check(g.side === "opponent" && g.min === 2 && g.turns === 2,
+          "Historial rival de Extra solo acreditado con dos invocaciones en dos turnos");
       } else if (g.kind === "state")
         check(
           ["active", "phase", "normalAvailable", "turn"].includes(g.field) &&
@@ -168,7 +184,7 @@
       else throw Error("Condicion no implementada");
     }
     check(
-      Array.isArray(rule.select) && rule.select.length <= 6,
+      Array.isArray(rule.select) && rule.select.length <= 7,
       "Selecciones incorrectas",
     );
     check(rule.distinctSelectedNames === undefined || typeof rule.distinctSelectedNames === "boolean",
@@ -202,12 +218,14 @@
       else if (op.op === "link")
         check(
           Number.isInteger(op.cid) && op.cid>0 &&
-          Array.isArray(op.materials) && op.materials.length>=2 && op.materials.length<=4 &&
+          Array.isArray(op.materials) && op.materials.length>=1 && op.materials.length<=4 &&
           new Set(op.materials).size===op.materials.length && op.materials.every(ref=>refs.has(ref)) &&
           Array.isArray(op.materialCids) && op.materialCids.length===op.materials.length &&
           op.materialCids.every(cid=>Number.isInteger(cid)&&cid>0) &&
           ["m1","m2","m3","m4","m5","emz1","emz2"].includes(op.to) &&
-          op.recipe==="exact-cids" && Number.isInteger(op.linkRating) && op.linkRating===op.materials.length,
+          op.recipe==="exact-cids" && Number.isInteger(op.linkRating) && op.linkRating===op.materials.length &&
+          (op.materials.length>1 || (op.cid===20225 && rule.actor.cid===19932 &&
+            op.materialCids[0]===19932)),
           "Link requiere rating y materiales exactos acreditados",
         );
       else if (op.op === "xyz")
@@ -230,7 +248,11 @@
           Array.isArray(op.materialCids) && op.materialCids.length === op.materials.length &&
           op.materialCids.every(cid => Number.isInteger(cid) && cid > 0) &&
           ["m1","m2","m3","m4","m5","emz1","emz2"].includes(op.to) &&
-          op.recipe === "exact-cids" && op.allowGraveyard === false,
+          op.recipe === "exact-cids" && typeof op.allowGraveyard === "boolean" &&
+          (op.requiredOrigins === undefined || op.requiredOrigins === "hand-and-field") &&
+          (op.distinctCids === undefined || op.distinctCids === true) &&
+          (op.graveyardPolicy === undefined ||
+            (op.graveyardPolicy === "fiendsmith-sequence" && rule.actor.cid === 20226 && op.cid === 20389 && op.allowGraveyard)),
           "Fusión requiere materiales exactos, identificados y de mano/campo",
         );
       else if (op.op === "destroy")
@@ -239,8 +261,26 @@
           "Destrucción no acreditada",
         );
       else if (op.op === "tribute")
-        check(refs.has(op.ref) && op.reason === "cost" && rule.costs.includes(op),
+        check(refs.has(op.ref) && op.reason === "cost" && rule.costs.includes(op) &&
+          (op.allowHand === undefined || op.allowHand === true),
           "Sacrificar como coste exige un monstruo identificado y el bloque costs");
+      else if (op.op === "changeControl")
+        check(refs.has(op.ref) && ["self", "opponent"].includes(op.to) &&
+          typeof op.reason === "string" && op.reason.length > 0,
+          "Cambio de control no acreditado");
+      else if (op.op === "equip")
+        check(refs.has(op.ref) && refs.has(op.target) && op.to === "s1" &&
+          rule.actor.cid === 20225 && op.ref === "actor" && op.targetCid === 20196,
+          "Equipamiento de Réquiem requiere Grabador LUZ/Demonio fijado");
+      else if (op.op === "counter")
+        check(refs.has(op.ref) && op.kind === "predator" && op.amount === 1 &&
+          rule.actor.cid === 12870,
+          "Contador Depredador exige Dragostapelia y objetivo concreto");
+      else if (op.op === "banishExtraFaceDown")
+        check(rule.costs.includes(op) && op.count === 6 && Array.isArray(op.refs) &&
+          op.refs.length === 6 && new Set(op.refs).size === 6 &&
+          op.refs.every(ref=>ref!=="actor" && refs.has(ref)),
+          "Gordiano debe costear seis cartas del Extra identificadas por objetivo");
       else if (op.op === "move")
         check(
           refs.has(op.ref) &&
@@ -257,9 +297,11 @@
             ["deck", "extra"].includes(op.from) &&
             zones.includes(op.to) &&
             ["attack", "defense", "set"].includes(op.position) &&
-            (op.cause === undefined || (op.cause === "monster_effect" &&
+          (op.cause === undefined || (op.cause === "monster_effect" &&
               op.from === "deck" && op.to === "graveyard" &&
-              rule.actor.side === op.side && Array.isArray(rule.tags) && rule.tags.includes("monsterEffect"))),
+              rule.actor.side === op.side && Array.isArray(rule.tags) && rule.tags.includes("monsterEffect"))) &&
+          (op.summonMethod === undefined || (op.summonMethod === "special" &&
+            op.from === "deck" && ["m1","m2","m3","m4","m5"].includes(op.to))),
           "Recurso incorrecto",
         );
       else if (op.op === "payLP")
@@ -364,6 +406,20 @@
                 const n = candidates(s, g.selector, db).length;
                 return n >= g.min && n <= g.max;
               })()
+            : g.kind === "distinctCount"
+              ? new Set(candidates(s, g.selector, db).map(t => db.bindings[t.key])).size >= g.min
+            : g.kind === "event"
+              ? (s._ruleEvents || []).some(e => e.kind === g.event &&
+                  e.turn === s.turn && e.side === g.side &&
+                  (g.by === undefined || e.by === g.by))
+            : g.kind === "phaseStart"
+              ? !(s._rulePhaseActions && s._rulePhaseActions.turn === s.turn &&
+                  s._rulePhaseActions.phase === s.phase &&
+                  s._rulePhaseActions.side === s.active && s._rulePhaseActions.count > 0)
+            : g.kind === "extraSummonHistory"
+              ? (s._ruleEvents || []).filter(e => e.side === "opponent" &&
+                  ["fusion_summon","link_summon","xyz_summon"].includes(e.kind) &&
+                  [s.turn,s.turn-1].includes(e.turn)).length >= 2
             : g.kind === "state"
               ? g.values.includes(
                   g.field === "normalAvailable" ? (s._normal === undefined ? s.normalAvailable : !s._normal) : s[g.field],
@@ -420,6 +476,8 @@
               !(f.graveyardBlocked && op.to === "graveyard"),
               "Destino de Cementerio pendiente por bloqueo",
             );
+            check(!(f.banishBlocked && op.to === "banished"),
+              "Destierro impedido para ambos jugadores");
           }
           if (op.op === "shuffle") {
             const targets=op.refs.map(ref=>n.tokens.find(t=>t.uid===refs[ref]));
@@ -469,13 +527,30 @@
             check(!(options.blockedZones || []).includes(op.to), "Zona Extra bloqueada");
             const selected = op.materials.map(ref=>n.tokens.find(t=>t.uid===refs[ref]));
             check(selected.every(t=>t && t.owner==="self" && t.controller==="self" &&
-              (t.zone==="hand" || E.isMonster(t.zone))), "Material no disponible en mano/campo propio");
+              (t.zone==="hand" || E.isMonster(t.zone) || (op.allowGraveyard && t.zone==="graveyard"))),
+              "Material no disponible en zona autorizada");
+            if (selected.some(t=>t.zone==="graveyard"))
+              check(op.allowGraveyard && (op.graveyardPolicy === "fiendsmith-sequence" ||
+                (n._ruleEvents||[]).some(e=>e.kind==="destroy" && e.turn===n.turn &&
+                  e.side==="self" && e.by==="effect")),
+                "Material del Cementerio requiere destrucción propia por efecto este turno");
+            if (op.graveyardPolicy === "fiendsmith-sequence")
+              check(selected.every(t=>t.zone==="graveyard") &&
+                op.materialCids.every(cid=>[20196,19366].includes(cid)),
+                "Secuencia requiere dos Demonios fijados en Cementerio");
+            if (op.requiredOrigins === "hand-and-field")
+              check(selected.some(t=>t.zone==="hand") && selected.some(t=>E.isMonster(t.zone)),
+                "La receta exige material de mano y de campo");
+            if (op.distinctCids)
+              check(new Set(selected.map(t=>db.bindings[t.key])).size===selected.length,
+                "La receta exige nombres distintos");
             const actual = selected.map(t=>db.bindings[t.key]).sort((a,b)=>a-b);
             const required = [...op.materialCids].sort((a,b)=>a-b);
             check(actual.every((cid,i)=>cid===required[i]), "Materiales no coinciden con la receta exacta");
             const extraCard=n.self.cards.filter(c=>c.section==="extra" && db.bindings[c.key]===op.cid);
             check(extraCard.length===1,"Monstruo de Fusión no encontrado de forma única en el Extra");
-            for(const t of selected)n=E.place(n,{uid:t.uid,zone:"graveyard",controller:t.owner});
+            for(const t of selected)n=E.place(n,{uid:t.uid,
+              zone:op.allowGraveyard && t.zone==="graveyard"?"deck":"graveyard",controller:t.owner});
             const previous=n.tokens.find(t=>t.owner==="self" && t.key===extraCard[0].key && t.zone==="extra");
             n=E.place(n,previous?{uid:previous.uid,zone:op.to,controller:"self"}:{key:extraCard[0].key,owner:"self",controller:"self",zone:op.to});
             const summoned=n.tokens.find(t=>t.key===extraCard[0].key && t.zone===op.to);
@@ -485,17 +560,53 @@
             const t = n.tokens.find((t) => t.uid === refs[op.ref]);
             check(t && (field(t.zone) || t.zone === "hand"), "Objetivo de destrucción fuera de campo/mano");
             check(!(f.graveyardBlocked), "Destrucción hacia Cementerio bloqueada");
-            const event = {kind:"destroy",uid:t.uid,cid:db.bindings[t.key],from:t.zone,by:"effect",stage:opStage};
+            const event = {kind:"destroy",uid:t.uid,cid:db.bindings[t.key],from:t.zone,
+              side:t.controller,turn:n.turn,by:"effect",stage:opStage};
             n = E.place(n, {uid:t.uid,zone:"graveyard",controller:t.owner});
             n._ruleEvents = [...(n._ruleEvents||[]),event];
           } else if (op.op === "tribute") {
             const t=n.tokens.find(t=>t.uid===refs[op.ref]);
-            check(t && t.controller==="self" && E.isMonster(t.zone) && t.position!=="set",
+            check(t && t.controller==="self" && (E.isMonster(t.zone) && t.position!=="set" ||
+              op.allowHand === true && t.zone==="hand"),
               "Sacrificio exige monstruo propio boca arriba en campo");
             check(!f.graveyardBlocked,"Destino del coste de Sacrificio no acreditado");
             const event={kind:"tribute",uid:t.uid,cid:db.bindings[t.key],from:t.zone,by:"cost",stage:opStage};
             n=E.place(n,{uid:t.uid,zone:"graveyard",controller:t.owner});
             n._ruleEvents=[...(n._ruleEvents||[]),event];
+          } else if (op.op === "changeControl") {
+            const t=n.tokens.find(t=>t.uid===refs[op.ref]);
+            check(t && E.isMonster(t.zone) && t.position!=="set",
+              "Cambiar control exige monstruo boca arriba en campo");
+            check(!n.tokens.some(x=>x.uid!==t.uid && x.controller===op.to && x.zone===t.zone),
+              "Zona ocupada por el nuevo controlador");
+            n=E.place(n,{uid:t.uid,zone:t.zone,controller:op.to});
+          } else if (op.op === "equip") {
+            const t=n.tokens.find(t=>t.uid===refs[op.ref]);
+            const target=n.tokens.find(t=>t.uid===refs[op.target]);
+            check(t && t.owner==="self" && t.zone==="graveyard" &&
+              target && target.controller==="self" && E.isMonster(target.zone) &&
+              target.position!=="set" && db.bindings[target.key]===op.targetCid &&
+              !n.tokens.some(x=>x.controller==="self"&&x.zone===op.to),
+              "Réquiem requiere Cementerio, Grabador visible y zona de equipo libre");
+            n=E.place(n,{uid:t.uid,zone:op.to,controller:"self"});
+            n.tokens.find(x=>x.uid===t.uid).equippedToUid=target.uid;
+          } else if (op.op === "counter") {
+            const t=n.tokens.find(t=>t.uid===refs[op.ref]);
+            check(t && E.isMonster(t.zone) && t.position!=="set",
+              "Contador requiere monstruo boca arriba en campo");
+            t.counters={...(t.counters||{}),predator:(t.counters?.predator||0)+1};
+          } else if (op.op === "banishExtraFaceDown") {
+            check(!f.banishBlocked,"Lancea impide desterrar los seis costes del Extra");
+            const targets=op.refs.map(ref=>n.tokens.find(t=>t.uid===refs[ref]));
+            check(targets.every(t=>t && t.owner==="self" && t.zone==="extra" &&
+              E.definition(n,t.key,t.owner)?.section==="extra"),
+              "Se requieren seis cartas físicas distintas del Extra propio");
+            for(const t of targets){
+              n=E.place(n,{uid:t.uid,zone:"banished",controller:"self"});
+              n=E.position(n,t.uid,"set");
+            }
+            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"banish_extra_face_down_cost",
+              uids:targets.map(t=>t.uid),turn:n.turn,side:"self",stage:opStage}];
           } else if (op.op === "move") {
             const t = n.tokens.find((t) => t.uid === refs[op.ref]);
             check(t, "Copia ausente");
@@ -557,6 +668,12 @@
               const sent=n.tokens.find(x=>x.key===c.key && x.zone==="graveyard" && x.owner===op.side);
               check(sent,"Carta enviada por efecto no identificada");
               n._ruleEvents=[...(n._ruleEvents||[]),{kind:"sent_to_graveyard",uid:sent.uid,cid:op.cid,sourceCid:db.bindings[actor.key],turn:n.turn,stage:opStage}];
+            }
+            if (op.summonMethod) {
+              check(!f.specialBlocked,"Invocación Especial desde Deck bloqueada");
+              const summoned=n.tokens.find(x=>x.key===c.key && x.zone===op.to && x.owner===op.side);
+              n._ruleEvents=[...(n._ruleEvents||[]),{kind:"summon",method:"special",
+                uid:summoned.uid,cid:op.cid,side:op.side,turn:n.turn,stage:opStage}];
             }
           } else if (op.op === "payLP") {
             check(n.lp.self > op.amount, "LP insuficientes");
@@ -665,6 +782,12 @@
             "Requisito Xyz no acreditado",
           );
           E.validate(n);
+          if (!options.prepared && ["main1","main2"].includes(n.phase)) {
+            const previous=n._rulePhaseActions;
+            const count=previous && previous.turn===n.turn && previous.phase===n.phase &&
+              previous.side===n.active ? previous.count : 0;
+            n._rulePhaseActions={turn:n.turn,phase:n.phase,side:n.active,count:count+1};
+          }
           actions.push({
             state: n,
             label: activationNegated?`Activación negada · ${rule.label}`:effectNegated ? `Efecto negado · ${rule.label}` : rule.label,
