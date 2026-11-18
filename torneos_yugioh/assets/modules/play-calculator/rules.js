@@ -187,6 +187,17 @@
           op.allowedCids.every(cid=>Number.isInteger(cid) && cid>0),
           "Barajado requiere cartas propias identificadas y nombres diferentes",
         );
+      else if (op.op === "link")
+        check(
+          Number.isInteger(op.cid) && op.cid>0 &&
+          Array.isArray(op.materials) && op.materials.length>=2 && op.materials.length<=4 &&
+          new Set(op.materials).size===op.materials.length && op.materials.every(ref=>refs.has(ref)) &&
+          Array.isArray(op.materialCids) && op.materialCids.length===op.materials.length &&
+          op.materialCids.every(cid=>Number.isInteger(cid)&&cid>0) &&
+          ["m1","m2","m3","m4","m5","emz1","emz2"].includes(op.to) &&
+          op.recipe==="exact-cids" && Number.isInteger(op.linkRating) && op.linkRating===op.materials.length,
+          "Link requiere rating y materiales exactos acreditados",
+        );
       else if (op.op === "xyz")
         check(
           Number.isInteger(op.cid) && op.cid>0 &&
@@ -366,6 +377,23 @@
               "Nombres repetidos o materiales ajenos al requisito");
             for(const t of targets)n=E.place(n,{uid:t.uid,zone:"deck",controller:t.owner});
             n._ruleEvents=[...(n._ruleEvents||[]),{kind:"shuffle_distinct",cids,stage:opStage}];
+          } else if (op.op === "link") {
+            check(!(f.noExtra || f.specialBlocked || f.xyzOnly),"Link bloqueado por restricción de Extra o Especial");
+            check(!(options.blockedZones||[]).includes(op.to),"Zona de Link bloqueada");
+            const selected=op.materials.map(ref=>n.tokens.find(t=>t.uid===refs[ref]));
+            check(selected.every(t=>t&&t.owner==="self"&&t.controller==="self"&&E.isMonster(t.zone)&&t.position!=="set"),
+              "Material Link no disponible boca arriba en campo propio");
+            const actual=selected.map(t=>db.bindings[t.key]).sort((a,b)=>a-b);
+            const required=[...op.materialCids].sort((a,b)=>a-b);
+            check(actual.every((cid,i)=>cid===required[i]),"Materiales Link no coinciden con receta exacta");
+            const extraCard=n.self.cards.filter(c=>c.section==="extra"&&db.bindings[c.key]===op.cid);
+            check(extraCard.length===1,"Link no encontrado de forma única en Extra");
+            for(const t of selected)n=E.place(n,{uid:t.uid,zone:"graveyard",controller:t.owner});
+            const previous=n.tokens.find(t=>t.owner==="self"&&t.key===extraCard[0].key&&t.zone==="extra");
+            n=E.place(n,previous?{uid:previous.uid,zone:op.to,controller:"self"}:{key:extraCard[0].key,owner:"self",controller:"self",zone:op.to});
+            const summoned=n.tokens.find(t=>t.key===extraCard[0].key&&t.zone===op.to);
+            n=E.position(n,summoned.uid,"attack");
+            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"link_summon",cid:op.cid,uid:summoned.uid,materials:selected.map(t=>t.uid),stage:opStage}];
           } else if (op.op === "xyz") {
             check(!(f.noExtra || f.specialBlocked),"Xyz bloqueado por restricción de Extra o Especial");
             check(!(options.blockedZones||[]).includes(op.to),"Zona Extra bloqueada");
