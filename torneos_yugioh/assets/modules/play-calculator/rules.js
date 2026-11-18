@@ -118,9 +118,12 @@
     );
     selector(rule.actor);
     if (rule.trigger !== undefined)
-      check(rule.trigger && rule.trigger.kind === "sent_by_monster_effect" &&
-        Number.isInteger(rule.trigger.sourceCid) && rule.trigger.sourceCid > 0 &&
-        rule.trigger.actorCid === rule.actor.cid,
+      check(rule.trigger && rule.trigger.actorCid === rule.actor.cid &&
+        (rule.trigger.kind === "sent_by_monster_effect"
+          ? Number.isInteger(rule.trigger.sourceCid) && rule.trigger.sourceCid > 0
+          : rule.trigger.kind === "summoned" &&
+            Array.isArray(rule.trigger.methods) && rule.trigger.methods.length > 0 &&
+            rule.trigger.methods.every(m => ["normal", "special"].includes(m))),
         "Disparador causal incorrecto");
     check(
       rule.actor.side === "self",
@@ -277,6 +280,12 @@
         );
       else if (op.op === "normal")
         check(typeof op.available === "boolean", "Normal incorrecta");
+      else if (op.op === "summon")
+        check(refs.has(op.ref) && ["normal", "special"].includes(op.method) &&
+          ["m1", "m2", "m3", "m4", "m5"].includes(op.to) &&
+          op.from === "hand" && op.position === "attack" &&
+          rule.resolve.includes(op),
+          "Invocación desde mano requiere procedimiento explícito y zona libre");
       else throw Error("Operacion no implementada: " + op.op);
     }
     check(
@@ -302,6 +311,16 @@
       _ruleFlags: E.clone(s._ruleFlags || {}),
     };
   }
+  function triggerMatches(s, rule, uid) {
+    if (!rule.trigger) return true;
+    return (s._ruleEvents || []).some(e => e.uid === uid &&
+      e.turn === s.turn && e.cid === rule.trigger.actorCid &&
+      (rule.trigger.kind === "sent_by_monster_effect"
+        ? e.kind === "sent_to_graveyard" && e.sourceCid === rule.trigger.sourceCid &&
+          s.tokens.some(t => t.uid === uid && t.zone === "graveyard")
+        : e.kind === "summon" && rule.trigger.methods.includes(e.method) &&
+          s.tokens.some(t => t.uid === uid && E.isMonster(t.zone))));
+  }
   function actions(s, db, options = {}) {
     const actions = [],
       rejected = [];
@@ -319,10 +338,7 @@
       if (rule.oncePerTurn && (s._ruleUseTurns?.[used] !== undefined
         ? s._ruleUseTurns[used] === s.turn
         : (s._used || []).includes(used))) continue;
-      if (rule.trigger && !(s._ruleEvents || []).some(e =>
-        e.kind === "sent_to_graveyard" && e.cid === rule.trigger.actorCid &&
-        e.sourceCid === rule.trigger.sourceCid && e.turn === s.turn &&
-        s.tokens.some(t => t.uid === e.uid && t.zone === "graveyard"))) continue;
+      if (rule.trigger && !s.tokens.some(t => triggerMatches(s, rule, t.uid))) continue;
       const f = { ...options, ...s._ruleFlags };
       if (rule.activation && f.effectsNegated) continue;
       if (
@@ -343,9 +359,7 @@
       let bindings = candidates(s, rule.actor, db).map((t) => ({
         actor: t.uid,
       }));
-      if(rule.trigger)bindings=bindings.filter(b=>(s._ruleEvents||[]).some(e=>
-        e.uid===b.actor && e.kind==="sent_to_graveyard" &&
-        e.cid===rule.trigger.actorCid && e.sourceCid===rule.trigger.sourceCid && e.turn===s.turn));
+      if (rule.trigger) bindings=bindings.filter(b=>triggerMatches(s,rule,b.actor));
       for (const item of rule.select)
         bindings = bindings
           .flatMap((b) =>
@@ -545,6 +559,22 @@
               n._normal = false;
             }
             n.normalAvailable = !n._normal;
+          } else if (op.op === "summon") {
+            const t=n.tokens.find(t=>t.uid===refs[op.ref]);
+            check(t && t.owner==="self" && t.controller==="self" && t.zone===op.from,
+              "La copia a Invocar no está en la mano propia");
+            check(!n.tokens.some(x=>x.controller==="self"&&x.zone===op.to),
+              "Zona de Invocación ocupada");
+            if(op.method==="normal") {
+              check(n.active==="self" && ["main1","main2"].includes(n.phase) && !n._normal,
+                "Invocación Normal indisponible en esta ventana");
+              n._normal=true;
+              n.normalAvailable=false;
+            } else check(!f.specialBlocked,"Invocación Especial bloqueada");
+            n=E.place(n,{uid:t.uid,zone:op.to,controller:"self"});
+            n=E.position(n,t.uid,op.position);
+            n._ruleEvents=[...(n._ruleEvents||[]),
+              {kind:"summon",method:op.method,uid:t.uid,cid:db.bindings[t.key],turn:n.turn,stage:opStage}];
           } else {
             n._ruleFlags = { ...n._ruleFlags, [op.flag]: op.value };
             if (op.flag === "xyzOnly") n._xyz = op.value;
@@ -571,7 +601,7 @@
           );
           const normal = rule.costs
             .concat(rule.resolve)
-            .some((op) => op.op === "normal");
+            .some((op) => op.op === "normal" || (op.op === "summon" && op.method === "normal"));
           check(
             !(
               f.specialBlocked &&
