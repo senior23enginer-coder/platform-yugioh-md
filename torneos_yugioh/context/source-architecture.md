@@ -77,3 +77,16 @@ Pruebas aisladas: `deck_worlds_application_test.php` usa dobles de puertos sin P
 ## Formato reproducible del código migrado
 
 `npm run format:architecture` aplica formato; `npm run format:architecture:check` detecta deriva y forma parte de `npm test`. La lista explícita está en `scripts/format-architecture.cjs`: incluye PHP puro migrado y el módulo frontend de Mundos. Excluye plantillas mixtas PHP/HTML, bundles generados y contenido editorial. El formato consistente no sustituye la revisión de responsabilidades y contratos.
+
+## Estilo, arquetipo e inventario visible del catálogo
+
+El recorrido de lectura ahora es `ygo_deck_list_metadata → BuildDeckListMetadata → DeckStudyReader`. La fachada conserva su firma y los campos que consumen listado y ficha (`display_style`, `display_archetype`, `card_count`, `has_cards`). Reutiliza decks, perfiles y cartas ya cargados; no agrega consultas SQL ni escrituras.
+
+- `Domain/DeckMetadata/DeckMetadataResolver`: decide la prioridad entre estilo manual vigente, estilo nativo y estudio identificado. Los formatos y textos vacíos administrativos no se convierten en estilos. El arquetipo nativo específico se conserva; si está vacío o repite el nombre, usa el arquetipo documentado cuando exista.
+- `Application/DeckMetadata/BuildDeckListMetadata`: combina el catálogo con una instantánea editorial por ejecución. Respeta el orden recibido de perfiles, descarta las revisiones retiradas y cuenta únicamente filas guardadas con nombre y cantidad positiva, manteniendo todas las zonas como antes.
+- `Application/DeckMetadata/DeckStudyReader`: puerto de lectura sustituible en pruebas; `DeckStudySnapshot` contiene perfiles identificados y la política de revisiones retiradas.
+- `Infrastructure/Editorial/FilesystemDeckStudyReader`: lee el registro activo de `assets/editorial`, resuelve rutas reales y exige pertenencia a esa carpeta e igualdad de ID antes de devolver un perfil. No lee prompts ni crea cachés persistentes; cada nueva ejecución observa la versión actual del registro.
+
+Las ocho caracterizaciones en `tests/fixtures/deck-metadata-characterization.json` se capturaron con la función original antes de sustituirla. Cubren prioridades, revisiones retiradas, claves/orden del catálogo, cantidades, fuentes ausentes o malformadas y rechazo de rutas o identidades ajenas. `deck_metadata_architecture_test.php` las ejecuta en carpetas temporales aisladas, además de probar el caso de uso con un puerto en memoria y la actualización de fuentes sin caché obsoleta.
+
+El control arquitectónico de `source_architecture_test.php` rechaza acceso directo a archivos/red/sesión y PDO en Domain/Application, infraestructura en ambas capas y Application dentro del dominio. El formateador incluye estos nuevos archivos y el adaptador existente de temporadas.

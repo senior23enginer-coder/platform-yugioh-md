@@ -95,11 +95,42 @@ foreach (['Domain', 'Application'] as $layer) {
                 !($token[0] === T_VARIABLE && str_starts_with($token[1], '$_')),
                 'HTTP/session global in domain',
             );
-            architectureCheck(!($token[0] === T_STRING && $token[1] === 'PDO'), 'PDO in domain');
-            if (in_array($token[0], [T_NAME_QUALIFIED, T_NAME_FULLY_QUALIFIED], true)) {
+            if (in_array($token[0], [T_STRING, T_NAME_QUALIFIED, T_NAME_FULLY_QUALIFIED], true)) {
+                $name = strtolower(ltrim($token[1], '\\'));
+                architectureCheck($name !== 'pdo', 'PDO dependency in ' . $file->getPathname());
                 architectureCheck(
-                    !str_contains($token[1], '\\Infrastructure\\'),
-                    'Infrastructure dependency in domain',
+                    !in_array(
+                        $name,
+                        [
+                            'file_get_contents',
+                            'file_put_contents',
+                            'fopen',
+                            'readfile',
+                            'file_exists',
+                            'is_file',
+                            'is_dir',
+                            'realpath',
+                            'scandir',
+                            'glob',
+                            'mkdir',
+                            'unlink',
+                            'getenv',
+                            'session_start',
+                            'header',
+                            'curl_init',
+                            'curl_exec',
+                        ],
+                        true,
+                    ),
+                    'Direct I/O in ' . $file->getPathname(),
+                );
+                architectureCheck(
+                    !str_contains($name, '\\infrastructure\\'),
+                    'Infrastructure dependency in ' . $file->getPathname(),
+                );
+                architectureCheck(
+                    $layer !== 'Domain' || !str_contains($name, '\\application\\'),
+                    'Application dependency in domain: ' . $file->getPathname(),
                 );
             }
         }

@@ -32,7 +32,7 @@ El código nuevo se agrupa por función. Las fuentes editoriales y los datos gen
 
 - `league-position.js`: proyecta la posición del deck dentro de su liga activa y división desde el orden de la clasificación enviada por el servidor. No usa ranking global ni semilla; una división sin resultados no recibe puestos inventados. El listado muestra esta columna en lugar de los dos resúmenes de duelos.
 
-- `list-metadata.css`: estilo/arquetipo en la lista e indicador verde de cartas guardadas. `includes/decks/public-metadata.php` resuelve datos nativos y perfil documental activo sin modificar registros; la ficha reutiliza los mismos campos de presentación.
+- `list-metadata.css`: estilo/arquetipo en la lista e indicador verde de cartas guardadas. `includes/decks/public-metadata.php` delega en el caso de uso `BuildDeckListMetadata`, con reglas de dominio y un puerto de lectura editorial, sin modificar registros; la ficha reutiliza los mismos campos de presentación.
 
 `combo-creator/editorial-library.js` conecta la biblioteca documentada activa con «Mis combos y estrategias», reutilizando este lector con identificadores de interfaz separados de la ficha de estrategia. Conserva la carga y edición independiente de las creaciones manuales.
 

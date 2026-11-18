@@ -13,7 +13,11 @@ final readonly class LoadedSeasonRepository implements SeasonRepository
     public function newestFirst(): iterable
     {
         foreach ($this->rows as $row) {
-            yield new Season((int) ($row['id'] ?? 0), (string) ($row['name'] ?? ''), (string) ($row['status'] ?? ''));
+            yield new Season(
+                (int) ($row['id'] ?? 0),
+                (string) ($row['name'] ?? ''),
+                (string) ($row['status'] ?? ''),
+            );
         }
     }
 }

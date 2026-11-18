@@ -1,0 +1,592 @@
+[
+    {
+        "name": "priority-card-count-and-archetype",
+        "decks": [
+            {
+                "id": 1,
+                "name": "Alpha",
+                "style": "Native",
+                "archetype": "Alpha"
+            },
+            {
+                "id": 2,
+                "name": "Beta",
+                "style": "Editable",
+                "archetype": "Custom"
+            },
+            {
+                "id": 3,
+                "name": "Gamma",
+                "style": "Rush Duel",
+                "archetype": "Gamma"
+            },
+            {
+                "id": 4,
+                "name": "Delta",
+                "style": "",
+                "archetype": ""
+            },
+            {
+                "id": 5,
+                "name": "Empty",
+                "style": "Pendiente de documentar",
+                "archetype": ""
+            }
+        ],
+        "cards": [
+            {
+                "deck_id": 1,
+                "card_name": "A",
+                "quantity": 3
+            },
+            {
+                "deck_id": 1,
+                "card_name": "B",
+                "quantity": 2
+            },
+            {
+                "deck_id": 1,
+                "card_name": "  ",
+                "quantity": 9
+            },
+            {
+                "deck_id": 2,
+                "card_name": "C",
+                "quantity": 0
+            },
+            {
+                "deck_id": 3,
+                "card_name": "D",
+                "quantity": -2
+            },
+            {
+                "deck_id": 5,
+                "card_name": "E",
+                "quantity": 1
+            }
+        ],
+        "profiles": [
+            {
+                "deck_id": 1,
+                "play_style": "Manual",
+                "revision": 5
+            },
+            {
+                "deck_id": 1,
+                "play_style": "Older",
+                "revision": 4
+            },
+            {
+                "deck_id": 2,
+                "play_style": "null"
+            },
+            {
+                "deck_id": 2,
+                "play_style": "Later ignored"
+            }
+        ],
+        "policy": {
+            "checked_studies": {
+                "1": {
+                    "path": "assets\/editorial\/1.json"
+                },
+                "2": {
+                    "path": "assets\/editorial\/2.json"
+                },
+                "3": {
+                    "path": "assets\/editorial\/3.json"
+                }
+            }
+        },
+        "files": {
+            "assets\/editorial\/1.json": {
+                "deck_id": 1,
+                "profile": {
+                    "Tipo de estrategia": "Study",
+                    "Arquetipo": "Documented Alpha"
+                }
+            },
+            "assets\/editorial\/2.json": {
+                "deck_id": 2,
+                "profile": {
+                    "Tipo de estrategia": "Control",
+                    "Arquetipo": "Documented Beta"
+                }
+            },
+            "assets\/editorial\/3.json": {
+                "deck_id": 3,
+                "profile": {
+                    "Tipo de estrategia": "null",
+                    "Estilo de juego": "Fusión",
+                    "Arquetipo": "Gamma Fusion"
+                }
+            }
+        },
+        "expected": [
+            {
+                "id": 1,
+                "name": "Alpha",
+                "style": "Native",
+                "archetype": "Alpha",
+                "display_style": "Manual",
+                "display_archetype": "Documented Alpha",
+                "card_count": 5,
+                "has_cards": true
+            },
+            {
+                "id": 2,
+                "name": "Beta",
+                "style": "Editable",
+                "archetype": "Custom",
+                "display_style": "Control",
+                "display_archetype": "Custom",
+                "card_count": 0,
+                "has_cards": false
+            },
+            {
+                "id": 3,
+                "name": "Gamma",
+                "style": "Rush Duel",
+                "archetype": "Gamma",
+                "display_style": "Fusión",
+                "display_archetype": "Gamma Fusion",
+                "card_count": 0,
+                "has_cards": false
+            },
+            {
+                "id": 4,
+                "name": "Delta",
+                "style": "",
+                "archetype": "",
+                "display_style": "",
+                "display_archetype": "Delta",
+                "card_count": 0,
+                "has_cards": false
+            },
+            {
+                "id": 5,
+                "name": "Empty",
+                "style": "Pendiente de documentar",
+                "archetype": "",
+                "display_style": "",
+                "display_archetype": "Empty",
+                "card_count": 1,
+                "has_cards": true
+            }
+        ]
+    },
+    {
+        "name": "retired-profiles-and-first-usable-revision",
+        "decks": [
+            {
+                "id": 1,
+                "name": "Deck",
+                "style": "",
+                "archetype": ""
+            },
+            {
+                "id": 2,
+                "name": "Deck",
+                "style": "",
+                "archetype": ""
+            },
+            {
+                "id": 3,
+                "name": "Deck",
+                "style": "",
+                "archetype": ""
+            }
+        ],
+        "profiles": [
+            {
+                "deck_id": 1,
+                "play_style": "Retired",
+                "revision": 4
+            },
+            {
+                "deck_id": 1,
+                "play_style": "Current",
+                "revision": 5
+            },
+            {
+                "deck_id": 2,
+                "play_style": "Editable",
+                "revision": 8
+            },
+            {
+                "deck_id": 2,
+                "play_style": "Later",
+                "revision": 9
+            },
+            {
+                "deck_id": 3,
+                "play_style": "String id not retired",
+                "revision": 1
+            }
+        ],
+        "policy": {
+            "cleared_deck_ids": [
+                1,
+                2,
+                "3"
+            ],
+            "cleared_profile_revisions": {
+                "1": 4,
+                "2": 7,
+                "3": 5
+            }
+        },
+        "files": [],
+        "cards": [],
+        "expected": [
+            {
+                "id": 1,
+                "name": "Deck",
+                "style": "",
+                "archetype": "",
+                "display_style": "Current",
+                "display_archetype": "Deck",
+                "card_count": 0,
+                "has_cards": false
+            },
+            {
+                "id": 2,
+                "name": "Deck",
+                "style": "",
+                "archetype": "",
+                "display_style": "",
+                "display_archetype": "Deck",
+                "card_count": 0,
+                "has_cards": false
+            },
+            {
+                "id": 3,
+                "name": "Deck",
+                "style": "",
+                "archetype": "",
+                "display_style": "String id not retired",
+                "display_archetype": "Deck",
+                "card_count": 0,
+                "has_cards": false
+            }
+        ]
+    },
+    {
+        "name": "untrusted-path-and-foreign-identity",
+        "decks": [
+            {
+                "id": 1,
+                "name": "Deck",
+                "style": "",
+                "archetype": ""
+            },
+            {
+                "id": 2,
+                "name": "Deck",
+                "style": "",
+                "archetype": ""
+            },
+            {
+                "id": 3,
+                "name": "Deck",
+                "style": "",
+                "archetype": ""
+            },
+            {
+                "id": 4,
+                "name": "Deck",
+                "style": "",
+                "archetype": ""
+            }
+        ],
+        "policy": {
+            "checked_studies": {
+                "1": {
+                    "path": "outside.json"
+                },
+                "2": {
+                    "path": "assets\/editorial-outside\/data.json"
+                },
+                "3": {
+                    "path": "assets\/editorial\/wrong.json"
+                },
+                "4": {
+                    "path": "assets\/editorial\/malformed.json"
+                }
+            }
+        },
+        "files": {
+            "outside.json": {
+                "deck_id": 1,
+                "profile": {
+                    "Tipo de estrategia": "MUST NOT LEAK"
+                }
+            },
+            "assets\/editorial-outside\/data.json": {
+                "deck_id": 2,
+                "profile": {
+                    "Tipo de estrategia": "MUST NOT LEAK"
+                }
+            },
+            "assets\/editorial\/wrong.json": {
+                "deck_id": 999,
+                "profile": {
+                    "Tipo de estrategia": "MUST NOT LEAK"
+                }
+            },
+            "assets\/editorial\/malformed.json": "{ broken"
+        },
+        "cards": [],
+        "profiles": [],
+        "expected": [
+            {
+                "id": 1,
+                "name": "Deck",
+                "style": "",
+                "archetype": "",
+                "display_style": "",
+                "display_archetype": "Deck",
+                "card_count": 0,
+                "has_cards": false
+            },
+            {
+                "id": 2,
+                "name": "Deck",
+                "style": "",
+                "archetype": "",
+                "display_style": "",
+                "display_archetype": "Deck",
+                "card_count": 0,
+                "has_cards": false
+            },
+            {
+                "id": 3,
+                "name": "Deck",
+                "style": "",
+                "archetype": "",
+                "display_style": "",
+                "display_archetype": "Deck",
+                "card_count": 0,
+                "has_cards": false
+            },
+            {
+                "id": 4,
+                "name": "Deck",
+                "style": "",
+                "archetype": "",
+                "display_style": "",
+                "display_archetype": "Deck",
+                "card_count": 0,
+                "has_cards": false
+            }
+        ]
+    },
+    {
+        "name": "traversal-and-missing-profile",
+        "decks": [
+            {
+                "id": 1,
+                "name": "Deck",
+                "style": "",
+                "archetype": ""
+            },
+            {
+                "id": 2,
+                "name": "Deck",
+                "style": "",
+                "archetype": ""
+            },
+            {
+                "id": 3,
+                "name": "Deck",
+                "style": "",
+                "archetype": ""
+            }
+        ],
+        "policy": {
+            "checked_studies": {
+                "1": {
+                    "path": "assets\/editorial\/..\/..\/outside.json"
+                },
+                "2": {
+                    "path": "assets\/editorial\/missing.json"
+                },
+                "3": {
+                    "path": "assets\/editorial\/no-profile.json"
+                }
+            }
+        },
+        "files": {
+            "outside.json": {
+                "deck_id": 1,
+                "profile": {
+                    "Tipo de estrategia": "MUST NOT LEAK"
+                }
+            },
+            "assets\/editorial\/no-profile.json": {
+                "deck_id": 3,
+                "profile": "not a profile"
+            }
+        },
+        "cards": [],
+        "profiles": [],
+        "expected": [
+            {
+                "id": 1,
+                "name": "Deck",
+                "style": "",
+                "archetype": "",
+                "display_style": "",
+                "display_archetype": "Deck",
+                "card_count": 0,
+                "has_cards": false
+            },
+            {
+                "id": 2,
+                "name": "Deck",
+                "style": "",
+                "archetype": "",
+                "display_style": "",
+                "display_archetype": "Deck",
+                "card_count": 0,
+                "has_cards": false
+            },
+            {
+                "id": 3,
+                "name": "Deck",
+                "style": "",
+                "archetype": "",
+                "display_style": "",
+                "display_archetype": "Deck",
+                "card_count": 0,
+                "has_cards": false
+            }
+        ]
+    },
+    {
+        "name": "keys-case-and-placeholders",
+        "decks": {
+            "7": {
+                "id": 1,
+                "name": "Álpha",
+                "style": "TCG Advanced",
+                "archetype": "álpha"
+            },
+            "20": {
+                "id": 2,
+                "name": "Beta",
+                "style": "Control",
+                "archetype": "Independent"
+            }
+        },
+        "profiles": [
+            {
+                "deck_id": 1,
+                "play_style": "  N\/A  "
+            }
+        ],
+        "policy": {
+            "checked_studies": {
+                "1": {
+                    "path": ".\/assets\/editorial\/data.json"
+                }
+            }
+        },
+        "files": {
+            "assets\/editorial\/data.json": {
+                "deck_id": 1,
+                "profile": {
+                    "Tipo de estrategia": "  ",
+                    "Estilo de juego": "  Combo  ",
+                    "Arquetipo": "  Actual  "
+                }
+            }
+        },
+        "cards": [],
+        "expected": {
+            "7": {
+                "id": 1,
+                "name": "Álpha",
+                "style": "TCG Advanced",
+                "archetype": "álpha",
+                "display_style": "Combo",
+                "display_archetype": "Actual",
+                "card_count": 0,
+                "has_cards": false
+            },
+            "20": {
+                "id": 2,
+                "name": "Beta",
+                "style": "Control",
+                "archetype": "Independent",
+                "display_style": "Control",
+                "display_archetype": "Independent",
+                "card_count": 0,
+                "has_cards": false
+            }
+        }
+    },
+    {
+        "name": "missing-state",
+        "decks": [
+            {
+                "id": 1,
+                "name": "Native",
+                "style": "Control",
+                "archetype": ""
+            }
+        ],
+        "policy": null,
+        "files": [],
+        "cards": [],
+        "profiles": [],
+        "expected": [
+            {
+                "id": 1,
+                "name": "Native",
+                "style": "Control",
+                "archetype": "",
+                "display_style": "Control",
+                "display_archetype": "Native",
+                "card_count": 0,
+                "has_cards": false
+            }
+        ]
+    },
+    {
+        "name": "malformed-state",
+        "decks": [
+            {
+                "id": 1,
+                "name": "Native",
+                "style": "Sin estilo",
+                "archetype": ""
+            }
+        ],
+        "policy": "broken",
+        "files": [],
+        "cards": [],
+        "profiles": [],
+        "expected": [
+            {
+                "id": 1,
+                "name": "Native",
+                "style": "Sin estilo",
+                "archetype": "",
+                "display_style": "",
+                "display_archetype": "Native",
+                "card_count": 0,
+                "has_cards": false
+            }
+        ]
+    },
+    {
+        "name": "empty-catalog",
+        "decks": [],
+        "policy": [],
+        "files": [],
+        "cards": [],
+        "profiles": [],
+        "expected": []
+    }
+]
