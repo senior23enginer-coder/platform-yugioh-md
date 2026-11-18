@@ -15,9 +15,10 @@ const rows = [
   {deck_id:671,id:9,section:'main',card_name:'Tecuhtlica - Creación Combinada',quantity:1},
   {deck_id:671,id:10,section:'main',card_name:'Demoniherrero Grabador',quantity:1},
   {deck_id:671,id:11,section:'extra',card_name:'D/D/D César, Alto Rey de las Olas',quantity:1},
+  {deck_id:671,id:12,section:'extra',card_name:'S:P Pequeña Caballera',quantity:1},
 ];
 const catalog = E.catalog(deck,rows);
-const db = {bindings:Object.fromEntries(catalog.cards.map((c,i)=>[c.key,[19362,19364,19472,20199,19904,20216,20389,19366,19360,20196,13081][i]])),facts:{},rules:[]};
+const db = {bindings:Object.fromEntries(catalog.cards.map((c,i)=>[c.key,[19362,19364,19472,20199,19904,20216,20389,19366,19360,20196,13081,19188][i]])),facts:{},rules:[]};
 let scenario = E.create(catalog);
 scenario = E.place(scenario,{key:catalog.cards[0].key,owner:'self',zone:'m1'});
 scenario = E.place(scenario,{key:catalog.cards[1].key,owner:'self',zone:'m2'});
@@ -208,8 +209,35 @@ const badXyz=structuredClone(xyzRule);
 badXyz.resolve[0].materialCids=[20196,19364];
 db.rules=[badXyz];
 assert.equal(R.actions(xyzState,db).actions.length,0,'No acreditar César con materiales equivocados');
+const linkRule={
+ version:1,id:'671:A07:R17:main-material-link-test',deckId:671,format:'tcg_advanced',
+ scope:'single-effect',label:'S:P con Angbruja y Tatsun de Main',
+ source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19188&ope=2',
+ assumptions:['Ambos materiales de efecto están boca arriba en campo, sin material del Extra; no se atribuye destierro inicial de S:P'],
+ actor:{side:'self',zones:['monsters'],cid:19364},
+ guards:[{kind:'state',field:'active',values:['self']}],
+ select:[{ref:'tatsun',selector:{side:'self',zones:['monsters'],cid:19362}}],
+ costs:[],resolve:[{op:'link',cid:19188,materials:['actor','tatsun'],materialCids:[19364,19362],to:'emz1',recipe:'exact-cids',linkRating:2}],
+ tags:[],activation:false,oncePerTurn:false,
+};
+let linkState=E.create(catalog);
+linkState=E.place(linkState,{key:catalog.cards[1].key,owner:'self',zone:'m1'});
+linkState=E.place(linkState,{key:catalog.cards[0].key,owner:'self',zone:'m2'});
+db.rules=[linkRule];
+const linked=R.actions(linkState,db);
+assert.equal(linked.actions.length,1,JSON.stringify(linked.rejected));
+const linkAfter=linked.actions[0].state;
+assert.equal(linkAfter.tokens.filter(t=>E.isMonster(t.zone)).length,1);
+assert.equal(linkAfter.tokens.find(t=>db.bindings[t.key]===19188).zone,'emz1');
+assert.deepEqual([19364,19362].map(cid=>linkAfter.tokens.find(t=>db.bindings[t.key]===cid).zone),['graveyard','graveyard']);
+assert.equal(linkAfter._ruleEvents[0].kind,'link_summon');
+const badRating=structuredClone(linkRule);
+badRating.resolve[0].linkRating=3;
+db.rules=[badRating];
+assert.equal(R.actions(linkState,db).actions.length,0,'Link-2 no se acredita con rating incompatible');
 console.log('Memento A07: destrucción por efecto, envío fijado y negación con costes conservados: OK');
 console.log('Memento A07: Fusión con materiales exactos, bloqueo de Extra y falta de material: OK');
 console.log('Memento A07: Normal adicional de Duque con estado usado y límite por turno: OK');
 console.log('Memento A07: cinco nombres distintos para Creación Combinada: OK');
 console.log('Memento A07: César Xyz con materiales acoplados y requisitos exactos: OK');
+console.log('Memento A07: S:P Link-2 con dos materiales Main y sin destierro inicial: OK');
