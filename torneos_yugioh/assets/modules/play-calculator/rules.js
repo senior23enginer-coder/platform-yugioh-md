@@ -58,9 +58,6 @@
       q.cid === undefined || (Number.isInteger(q.cid) && q.cid > 0),
       "CID incorrecto",
     );
-    check(q.cids === undefined || (Array.isArray(q.cids) && q.cids.length > 0 &&
-      q.cids.length <= 60 && q.cids.every((id) => Number.isInteger(id) && id > 0) &&
-      new Set(q.cids).size === q.cids.length), "Lista CID incorrecta");
     check(
       q.faceUp === undefined || typeof q.faceUp === "boolean",
       "Posicion incorrecta",
@@ -68,7 +65,7 @@
     check(q.key === undefined || typeof q.key === "string", "Clave incorrecta");
     check(
       Object.keys(q).every((k) =>
-        ["side", "zones", "cid", "cids", "key", "faceUp", "notNegated"].includes(k),
+        ["side", "zones", "cid", "key", "faceUp", "notNegated"].includes(k),
       ),
       "Selector desconocido",
     );
@@ -83,7 +80,6 @@
           (z === "field-all" && field(t.zone)),
       ) &&
       (q.cid === undefined || db.bindings[t.key] === q.cid) &&
-      (q.cids === undefined || q.cids.includes(db.bindings[t.key])) &&
       (q.key === undefined || q.key === t.key) &&
       (q.faceUp === undefined || q.faceUp === (t.position !== "set")) &&
       (!q.notNegated || !E.negated(s, t))
@@ -165,8 +161,6 @@
       Array.isArray(rule.select) && rule.select.length <= 6,
       "Selecciones incorrectas",
     );
-    check(rule.distinctSelectedNames === undefined || typeof rule.distinctSelectedNames === "boolean",
-      "Restriccion de nombres incorrecta");
     const refs = new Set(["actor"]);
     for (const x of rule.select) {
       check(
@@ -248,7 +242,7 @@
             ["attack", "defense", "set"].includes(op.position) &&
             (op.cause === undefined || (op.cause === "monster_effect" &&
               op.from === "deck" && op.to === "graveyard" &&
-              rule.actor.side === op.side && rule.tags.includes("monsterEffect"))),
+              rule.actor.side === op.side && Array.isArray(rule.tags) && rule.tags.includes("monsterEffect"))),
           "Recurso incorrecto",
         );
       else if (op.op === "payLP")
@@ -317,9 +311,8 @@
         rejected.push({ id: rule.id, message: e.message });
         continue;
       }
-      const used = "rule:" + rule.id + ":turn:" + s.turn;
-      if (rule.oncePerTurn && (s._used || []).some((id) =>
-        id === used || id === "rule:" + rule.id)) continue;
+      const used = "rule:" + rule.id;
+      if (rule.oncePerTurn && (s._used || []).includes(used)) continue;
       if (rule.trigger && !(s._ruleEvents || []).some(e =>
         e.kind === "sent_to_graveyard" && e.cid === rule.trigger.actorCid &&
         e.sourceCid === rule.trigger.sourceCid && e.turn === s.turn &&
@@ -344,18 +337,14 @@
       let bindings = candidates(s, rule.actor, db).map((t) => ({
         actor: t.uid,
       }));
+      if(rule.trigger)bindings=bindings.filter(b=>(s._ruleEvents||[]).some(e=>
+        e.uid===b.actor && e.kind==="sent_to_graveyard" &&
+        e.cid===rule.trigger.actorCid && e.sourceCid===rule.trigger.sourceCid && e.turn===s.turn));
       for (const item of rule.select)
         bindings = bindings
           .flatMap((b) =>
             candidates(s, item.selector, db)
-              .filter((t) => {
-                if (Object.values(b).includes(t.uid)) return false;
-                if (!rule.distinctSelectedNames) return true;
-                const earlier = Object.entries(b).filter(([ref]) => ref !== "actor")
-                  .map(([, uid]) => s.tokens.find((token) => token.uid === uid));
-                return earlier.every((other) => db.bindings[other.key] !== db.bindings[t.key]) &&
-                  (!earlier.length || t.uid > earlier[earlier.length - 1].uid);
-              })
+              .filter((t) => !Object.values(b).includes(t.uid))
               .map((t) => ({ ...b, [item.ref]: t.uid })),
           )
           .slice(0, 40);
