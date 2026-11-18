@@ -334,5 +334,13 @@
         "file": "src\/Domain\/Decks\/CardAnnotations.php",
         "baseline_commit": "da558b9",
         "original_body_sha256": "39253fcae27dca1bfa8fe4db10872312035e62de80edec6148a70c27960653cd"
+    },
+    "ygo_next_competition_match_date": {
+        "facade": "includes/calendar/scheduling.php",
+        "class": "StationX\\Yugioh\\Domain\\Calendar\\MatchDatePattern",
+        "method": "date",
+        "file": "src/Domain/Calendar/MatchDatePattern.php",
+        "baseline_commit": "324ff84",
+        "original_body_sha256": "337b75acd8908e6072cf701cfd67b853de19479639498b95b6d7682ed30d967d"
     }
 }

@@ -112,3 +112,9 @@ La nueva prueba `combo_ports_test.php` usa puertos en memoria y SQLite temporal.
 ## Inventario y deuda pendiente
 
 `php scripts/source-inventory.php --summary` permite revisar funciones nativas y dependencias sin ejecutar el arranque ni abrir la BD. Es un inventario estático: la ausencia de I/O directo no certifica por sí sola separación de dominio. El seguimiento completo y los límites pendientes están en `architecture-migration-status.md`.
+
+## Calendario compartido y coordinación de clasificatorios
+
+El reflujo automático, la asignación explícita de cupos y la prioridad de clasificatorios tienen casos de uso en `Application/Calendar`, reglas deterministas en `Domain/Calendar` y adaptadores PDO/configuración/tiempo en Infrastructure. Las fachadas existentes conservan sus firmas y los llamadores siguen siendo dueños de bloqueos y transacciones. El detalle del contrato, pruebas y límites está en `calendar-scheduling.md`.
+
+`calendar_architecture_test.php` contrasta 13 escenarios originales y comprueba puertos en memoria, orden de operaciones y reversión por el llamador. La comparación de firmas y algoritmos originales incluye ahora 43 entradas. No se reemplazó ninguna huella anterior. El formateador controla 186 fuentes migradas.
