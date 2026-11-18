@@ -278,6 +278,30 @@
       "status": "ENGINE_TESTED_RESTRICTED_CASE",
       "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
       "scope": "Negación de efecto que conserva costes; no acredita negación de activación ni cadenas completas"
+    },
+    {
+      "id": "671:A07:R06:exact-materials-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "Fusión del caso C01 con tres CID exactos de mano/campo; no acredita recetas generales ni Fusión desde Cementerio"
+    },
+    {
+      "id": "671:A07:R21:additional-normal-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "Normal adicional de Duque condicionada a Normal previa consumida; no acredita la obtención previa de Duque ni su coste de Standby"
+    },
+    {
+      "id": "671:A07:R08:five-names-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "Creación Combinada desde GY con cinco CID diferentes fijados; no acredita todas las combinaciones ni restricciones de otros estados"
+    },
+    {
+      "id": "671:A07:R27:two-level-six-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "César Xyz con Duque y Grabador ya presentes y acoplamiento real; no demuestra cómo obtener ambos ni su negación de activación"
     }
   ],
   "missing_capabilities": [
