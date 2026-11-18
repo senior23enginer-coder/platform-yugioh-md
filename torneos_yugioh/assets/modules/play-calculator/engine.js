@@ -148,10 +148,7 @@
         s.chain.every((link, i) => link.link === i + 1 &&
           SIDES.includes(link.side) &&
           typeof link.cardName === "string" && link.cardName.length <= 250 &&
-          typeof link.effect === "string" && link.effect.trim().length > 0 && link.effect.length <= 300 &&
-          (link.ruleId === undefined || (typeof link.ruleId === "string" && link.ruleId.length <= 100 && link.ruleId.length > 0)) &&
-          (link.actorUid === undefined || (Number.isInteger(link.actorUid) && link.actorUid > 0)) &&
-          (link.outcome === undefined || ["negate-effect", "negate-activation"].includes(link.outcome))),
+          typeof link.effect === "string" && link.effect.trim().length > 0 && link.effect.length <= 300),
       "Cadena pendiente inválida.");
     for (const side of SIDES) {
       assert(
@@ -234,6 +231,10 @@
       "La práctica libre solo utiliza tus cartas y tu lado del tablero.");
     const ids = new Set();
     for (const t of s.tokens) {
+      if (t.setTurn !== undefined)
+        assert(Number.isInteger(t.setTurn) && t.setTurn > 0 &&
+          /^s[1-5]$/.test(t.zone) && t.position === "set",
+        "Turno de colocación inválido.");
       if(t.negation){assert(typeof t.negation.active==='boolean'&&['turn','manual'].includes(t.negation.duration)&&Number.isInteger(t.negation.turn)&&t.negation.turn>0&&typeof t.negation.reason==='string'&&t.negation.reason.length<=300,'Estado de negación inválido.');}
       assert(
         Number.isInteger(t.uid) && t.uid > 0 && !ids.has(t.uid),
@@ -341,6 +342,8 @@
         if((isMonster(token.zone)||/^s[1-5]$/.test(token.zone)||token.zone==='field')&&!(isMonster(zone)||/^s[1-5]$/.test(zone)||zone==='field'))delete token.negation;
         token.zone = zone;
         token.controller = controller;
+        // Una carta colocada abandona su ventana de Set al salir de M/T.
+        if (!/^s[1-5]$/.test(zone)) delete token.setTurn;
       }
     });
   }
@@ -361,7 +364,7 @@
       if (values.unknown) n.unknown = { ...n.unknown, ...values.unknown };
     });
   }
-  function appendChain(s, { side, cardName = "", effect, ruleId, actorUid, outcome }) {
+  function appendChain(s, { side, cardName = "", effect }) {
     return change(s, (n) => {
       assert(SIDES.includes(side), "Selecciona el jugador que activó el eslabón.");
       assert(typeof effect === "string" && effect.trim() && effect.length <= 300,
@@ -369,8 +372,7 @@
       n.chain ||= [];
       assert(n.chain.length < 20, "La cadena alcanzó el límite de captura.");
       n.chain.push({ link: n.chain.length + 1, side,
-        cardName: String(cardName).slice(0, 250), effect: effect.trim(),
-        ...(ruleId ? { ruleId, actorUid } : {}), ...(outcome ? { outcome } : {}) });
+        cardName: String(cardName).slice(0, 250), effect: effect.trim() });
     });
   }
   function removeChain(s, link) {
@@ -385,6 +387,9 @@
     return change(s, (n) => {
       const t = n.tokens.find((t) => t.uid === uid);
       assert(t, "Selecciona una copia.");
+      if (value === "set" && /^s[1-5]$/.test(t.zone)) {
+        if (t.position !== "set" || !Number.isInteger(t.setTurn)) t.setTurn = n.turn;
+      } else if (value !== "set") delete t.setTurn;
       t.position = value;
     });
   }
