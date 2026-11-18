@@ -234,6 +234,9 @@
       "La práctica libre solo utiliza tus cartas y tu lado del tablero.");
     const ids = new Set();
     for (const t of s.tokens) {
+      if (t.currentATK !== undefined)
+        assert(Number.isInteger(t.currentATK) && t.currentATK >= 0 && t.currentATK <= 999999,
+          "ATK actual del monstruo no acreditado.");
       if (t.setTurn !== undefined)
         assert(Number.isInteger(t.setTurn) && t.setTurn > 0 &&
           /^s[1-5]$/.test(t.zone) && t.position === "set",
@@ -343,6 +346,10 @@
             "Mueve los materiales antes de retirar su monstruo.",
           );
         if((isMonster(token.zone)||/^s[1-5]$/.test(token.zone)||token.zone==='field')&&!(isMonster(zone)||/^s[1-5]$/.test(zone)||zone==='field'))delete token.negation;
+        if (token.xyzSummoned && isMonster(token.zone) && !isMonster(zone))
+          delete token.xyzSummoned;
+        if (token.currentATK !== undefined && isMonster(token.zone) && !isMonster(zone))
+          delete token.currentATK;
         token.zone = zone;
         token.controller = controller;
         // Una carta colocada abandona su ventana de Set al salir de M/T.
@@ -366,6 +373,28 @@
       if (values.lp) n.lp = { ...n.lp, ...values.lp };
       if (values.unknown) n.unknown = { ...n.unknown, ...values.unknown };
     });
+  }
+  // A witness of an opponent's Extra Deck summon, not a proof of the materials
+  // or the full legal summoning procedure. Record it only with an identified
+  // Extra Deck card and an actual occupied monster zone in the resulting state.
+  function observeExtraSummon(s, { key, uid = null, zone }) {
+    assert(!s.practice, "La observación exige un rival identificado.");
+    const card = definition(s, key, "opponent");
+    assert(card && card.section === "extra" && isMonster(zone),
+      "La observación exige una carta rival identificada del Extra Deck.");
+    const prev = uid === null ? s.tokens.find(t => t.key === key &&
+      t.owner === "opponent" && t.zone === "extra") : s.tokens.find(t => t.uid === uid);
+    if (uid !== null) assert(prev && prev.key === key && prev.owner === "opponent" &&
+      prev.zone === "extra", "La copia observada no estaba en el Extra rival.");
+    const next = place(s, { key, uid: prev?.uid ?? null, owner: "opponent",
+      controller: "opponent", zone });
+    const token = next.tokens.find(t => t.key === key && t.owner === "opponent" && t.zone === zone);
+    assert(token, "No se pudo acreditar la Invocación del rival.");
+    next._ruleEvents = [...(next._ruleEvents || []), {
+      kind: "observed_extra_summon", side: "opponent", from: "extra",
+      uid: token.uid, key, turn: next.turn,
+    }];
+    return validate(next);
   }
   function appendChain(s, { side, cardName = "", effect, ruleId, actorUid, outcome }) {
     return change(s, (n) => {
@@ -682,6 +711,7 @@
     validate,
     place,
     patch,
+    observeExtraSummon,
     appendChain,
     removeChain,
     position,
