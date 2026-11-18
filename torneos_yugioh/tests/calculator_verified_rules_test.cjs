@@ -303,20 +303,65 @@ let fuseFromSpell = E.create(memento.catalog);
 for (const c of [fusionSpell, angwitch, ghattic, shleepy])
   fuseFromSpell = E.place(fuseFromSpell, { key: c.key, owner: "self", zone: "hand" });
 const spellFusion = R.actions(fuseFromSpell, memento.db).actions.find((a) =>
-  a.event.ruleId === "671:memento-fusion:king");
+  a.event.ruleId === "671:memento-fusion:fuse" && a.state.tokens.some((t) =>
+    t.key === creationKing.key && E.isMonster(t.zone)));
 assert(spellFusion, "Mementotlan Fusion must use three identified Memento materials");
 assert(spellFusion.state.tokens.some((t) => t.key === creationKing.key && E.isMonster(t.zone)));
 for (const c of [fusionSpell, angwitch, ghattic, shleepy])
   assert(spellFusion.state.tokens.some((t) => t.key === c.key && t.zone === "graveyard"));
 assert.equal(R.actions(fuseFromSpell, memento.db, { noExtra: true }).actions.filter((a) =>
-  a.event.ruleId === "671:memento-fusion:king").length, 0);
+  a.event.ruleId === "671:memento-fusion:fuse").length, 0);
 const negatedSpell = R.actions(fuseFromSpell, memento.db,
-  { negateEffectRuleIds: ["671:memento-fusion:king"] }).actions.find((a) =>
-    a.event.ruleId === "671:memento-fusion:king");
+  { negateEffectRuleIds: ["671:memento-fusion:fuse"] }).actions.find((a) =>
+    a.event.ruleId === "671:memento-fusion:fuse");
 assert(negatedSpell && negatedSpell.state.tokens.some((t) =>
   t.key === fusionSpell.key && t.zone === "graveyard") &&
   !negatedSpell.state.tokens.some((t) => t.key === creationKing.key),
 "Negating the Fusion Spell must leave the Spell in GY without fusing materials");
+const twinDragon = card(memento.catalog, memento.db, 19878);
+const twinFusion = R.actions(fuseFromSpell, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:memento-fusion:fuse" && a.state.tokens.some((t) =>
+    t.key === twinDragon.key && E.isMonster(t.zone)));
+assert(twinFusion, "Mementotlan Fusion must also allow Twin Dragon with two exact materials");
+assert(twinFusion.state._ruleEvents.some((e) =>
+  e.kind === "fusion_summon" && e.cid === 19878));
+const twinSearch = R.actions(twinFusion.state, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:twin-dragon:fusion-search");
+assert(twinSearch, "Fusion-Summoned Twin Dragon must destroy Dormiveja and add two named Mementos");
+assert(twinSearch.state.tokens.some((t) => t.key === shleepy.key && t.zone === "graveyard"));
+for (const cid of [19362, 19366])
+  assert(twinSearch.state.tokens.some((t) =>
+    memento.db.bindings[t.key] === cid && t.zone === "hand"));
+assert.equal(R.actions(twinFusion.state, memento.db, { noDeckToHand: true }).actions.filter((a) =>
+  a.event.ruleId === "671:twin-dragon:fusion-search").length, 0);
+const illegalTwinTrigger = E.clone(twinFusion.state);
+illegalTwinTrigger._ruleEvents = [];
+assert.equal(R.actions(illegalTwinTrigger, memento.db).actions.filter((a) =>
+  a.event.ruleId === "671:twin-dragon:fusion-search").length, 0,
+"Twin Dragon cannot search without its recorded Fusion Summon");
+
+let mictlanHand = E.create(memento.catalog);
+mictlanHand = E.place(mictlanHand, { key: mictlan.key, owner: "self", zone: "hand" });
+const activateMictlan = R.actions(mictlanHand, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:mictlan:activate");
+assert(activateMictlan && activateMictlan.state.tokens.some((t) =>
+  t.key === mictlan.key && t.zone === "field"),
+"The verified Field Spell can be activated from hand to its own Field Zone");
+let mictlanEnd = E.place(activateMictlan.state,
+  { key: boneParty.key, owner: "self", zone: "graveyard" });
+mictlanEnd = E.patch(mictlanEnd, { phase: "end" });
+const setBoneParty = R.actions(mictlanEnd, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:mictlan:end-set" && a.state.tokens.some((t) =>
+    t.key === boneParty.key && t.zone === "s1" && t.position === "set"));
+assert(setBoneParty, "Mementomictlan can Set Bone Party from GY during own End Phase");
+assert.equal(setBoneParty.state.tokens.find((t) => t.key === boneParty.key).setTurn, 1,
+  "The copied Spell must remember its Set turn for Quick-Play activation limits");
+assert.equal(R.actions(mictlanEnd, memento.db).actions.filter((a) =>
+  a.event.ruleId === "671:mictlan:activate").length, 0,
+"The Field Spell is no longer available in hand after activation");
+assert.equal(R.actions(E.patch(mictlanEnd, { phase: "main1" }), memento.db).actions.filter((a) =>
+  a.event.ruleId === "671:mictlan:end-set").length, 0,
+"The GY-to-Set effect is only available during own End Phase");
 
 let fusionGraveyard = E.create(memento.catalog);
 fusionGraveyard = E.place(fusionGraveyard, { key: fusionSpell.key, owner: "self", zone: "graveyard" });
@@ -360,6 +405,104 @@ noEnemy.tokens = noEnemy.tokens.filter((t) => t.owner !== "opponent");
 assert.equal(R.actions(noEnemy, memento.db).actions.filter((a) =>
   a.event.ruleId === "671:creation-king:destroy").length, 0,
 "Creation King cannot destroy itself with no matching opponent card");
+
+const horned = card(memento.catalog, memento.db, 19361);
+let hornedHand = E.create(memento.catalog);
+hornedHand = E.place(hornedHand, { key: horned.key, owner: "self", zone: "hand" });
+for (const c of [blade, goblin, ghattic])
+  hornedHand = E.place(hornedHand, { key: c.key, owner: "self", zone: "graveyard" });
+const hornedSpecial = R.actions(hornedHand, memento.db).actions.filter((a) =>
+  a.event.ruleId === "671:horned:special");
+assert.equal(hornedSpecial.length, 5,
+"Horned Dragon can Special Summon with three distinct Memento names in GY");
+const noThirdName = E.clone(hornedHand);
+noThirdName.tokens = noThirdName.tokens.filter((t) => t.key !== ghattic.key);
+noThirdName.tokens.push({ ...noThirdName.tokens.find((t) => t.key === blade.key),
+  uid: noThirdName.nextId++, zone: "graveyard" });
+assert.equal(R.actions(noThirdName, memento.db).actions.filter((a) =>
+  a.event.ruleId === "671:horned:special").length, 0,
+"A repeated Memento name is not a third distinct name");
+assert.equal(R.actions(hornedHand, memento.db, { specialBlocked: true }).actions.filter((a) =>
+  a.event.ruleId === "671:horned:special").length, 0);
+
+let hornedDestroyStart = E.create(memento.catalog, memento.catalog);
+hornedDestroyStart = E.place(hornedDestroyStart, { key: boneParty.key, owner: "self", zone: "hand" });
+hornedDestroyStart = E.place(hornedDestroyStart, { key: horned.key, owner: "self", zone: "m1" });
+hornedDestroyStart = E.place(hornedDestroyStart, { key: ghattic.key, owner: "self", zone: "m2" });
+hornedDestroyStart = E.place(hornedDestroyStart, { key: mace.key, owner: "opponent", zone: "m1" });
+hornedDestroyStart = E.place(hornedDestroyStart, { key: goblin.key, owner: "opponent", zone: "m2" });
+const destroyedHorned = R.actions(hornedDestroyStart, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:bone-party:main" && a.state.tokens.some((t) =>
+    t.key === horned.key && t.zone === "graveyard"));
+assert(destroyedHorned, "The verified Bone Party choice can destroy Horned Dragon in the field");
+const hornedThree = R.actions(destroyedHorned.state, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:horned:destruction");
+assert(hornedThree, "Destroyed Horned Dragon can destroy one own Memento and two known opponent cards");
+for (const [c, owner] of [[ghattic, "self"], [mace, "opponent"], [goblin, "opponent"]])
+  assert(hornedThree.state.tokens.some((t) => t.key === c.key &&
+    t.owner === owner && t.zone === "graveyard"));
+const hornedFromHand = E.clone(hornedDestroyStart);
+hornedFromHand.tokens.find((t) => t.key === horned.key).zone = "hand";
+const destroyedFromHand = R.actions(hornedFromHand, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:bone-party:main" && a.state.tokens.some((t) =>
+    t.key === horned.key && t.zone === "graveyard"));
+assert(destroyedFromHand);
+assert.equal(R.actions(destroyedFromHand.state, memento.db).actions.filter((a) =>
+  a.event.ruleId === "671:horned:destruction").length, 0,
+"Horned Dragon destroyed in hand cannot trigger its field-only effect");
+
+const akihiron = card(memento.catalog, memento.db, 20491);
+let akihironStart = E.create(memento.catalog);
+akihironStart = E.place(akihironStart, { key: boneParty.key, owner: "self", zone: "hand" });
+akihironStart = E.place(akihironStart, { key: akihiron.key, owner: "self", zone: "hand" });
+akihironStart = E.place(akihironStart, { key: mace.key, owner: "self", zone: "graveyard" });
+const destroyedAkihiron = R.actions(akihironStart, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:bone-party:main" && a.state.tokens.some((t) =>
+    t.key === akihiron.key && t.zone === "graveyard"));
+assert(destroyedAkihiron, "Bone Party may destroy Akihiron in hand by card effect");
+const akihironRecover = R.actions(destroyedAkihiron.state, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:akihiron:recover" && a.state.tokens.some((t) =>
+    t.key === mace.key && t.zone === "hand"));
+assert(akihironRecover, "Akihiron can recover another Memento card after its own destruction");
+assert.equal(R.actions(akihironRecover.state, memento.db).actions.filter((a) =>
+  a.event.ruleId === "671:akihiron:recover").length, 0,
+"Akihiron's different GY choices must share the once-per-turn limit");
+
+const sp = card(memento.catalog, memento.db, 19188);
+let spStart = E.create(memento.catalog);
+spStart = E.place(spStart, { key: angwitch.key, owner: "self", zone: "m1" });
+spStart = E.place(spStart, { key: tatsun.key, owner: "self", zone: "m2" });
+const spLink = R.actions(spStart, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:sp:link-procedure");
+assert(spLink, "Two face-up Effect Monsters can Link Summon S:P using the Main-only recipe");
+assert(spLink.state.tokens.some((t) => t.key === sp.key &&
+  ["emz1", "emz2"].includes(t.zone)));
+for (const c of [angwitch, tatsun])
+  assert(spLink.state.tokens.some((t) => t.key === c.key && t.zone === "graveyard"));
+assert(!spLink.state._ruleEvents.some((e) => e.kind === "banish"),
+  "Using only Main Deck monsters does not grant S:P's conditional on-Link banish");
+assert.equal(R.actions(spStart, memento.db, { noExtra: true }).actions.filter((a) =>
+  a.event.ruleId === "671:sp:link-procedure").length, 0);
+
+const requiem = card(memento.catalog, memento.db, 20225);
+let requiemStart = E.create(memento.catalog);
+requiemStart = E.place(requiemStart, { key: requiem.key, owner: "self", zone: "emz1" });
+const requiemAction = R.actions(requiemStart, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:requiem:tribute");
+assert(requiemAction, "Fiendsmith Requiem must Tribute itself to Special Summon Engraver from Deck");
+assert(requiemAction.paid.tokens.some((t) => t.key === requiem.key && t.zone === "graveyard"));
+assert(requiemAction.state.tokens.some((t) => t.key === grabber.key && E.isMonster(t.zone)));
+assert(requiemAction.state._ruleEvents.some((e) => e.kind === "tribute" &&
+  e.by === "cost" && e.cid === 20225));
+const requiemDenied = R.actions(requiemStart, memento.db,
+  { negateEffectRuleIds: ["671:requiem:tribute"] }).actions.find((a) =>
+    a.event.ruleId === "671:requiem:tribute");
+assert(requiemDenied && requiemDenied.state.tokens.some((t) =>
+  t.key === requiem.key && t.zone === "graveyard") &&
+  !requiemDenied.state.tokens.some((t) => t.key === grabber.key),
+"Negating Requiem's effect must not refund its Tribute cost or Summon Engraver");
+assert.equal(R.actions(requiemStart, memento.db, { specialBlocked: true }).actions.filter((a) =>
+  a.event.ruleId === "671:requiem:tribute").length, 0);
 
 const kashtira = loaded(665);
 let k = E.create(kashtira.catalog);

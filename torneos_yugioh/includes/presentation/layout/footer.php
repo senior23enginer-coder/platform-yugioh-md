@@ -44,10 +44,10 @@
 <script src="./assets/modules/play-calculator/hand-practice.js?v=20261113-hand-practice-170" defer></script>
 <script src="./assets/modules/play-calculator/storage.js?v=20261103-board-129" defer></script>
 <script src="./assets/modules/play-calculator/card-menu.js?v=20261116-actions-1" defer></script>
-<script src="./assets/modules/play-calculator/rules.js?v=20261118-block1-4" defer></script>
+<script src="./assets/modules/play-calculator/rules.js?v=20261118-block1-5" defer></script>
 <script src="./assets/modules/play-calculator/planner.js?v=20261118-block1-2" defer></script>
-<script src="./assets/modules/play-calculator/verified-rules.js?v=20261118-memento-effects-3" defer></script>
-<script src="./assets/modules/play-calculator/study.js?v=20261118-verified-1" defer></script><script src="./assets/modules/play-calculator/chain.js?v=20261118-chain-2" defer></script><script src="./assets/modules/play-calculator/ui.js?v=20261118-memento-effects-2" defer></script>
+<script src="./assets/modules/play-calculator/verified-rules.js?v=20261118-memento-effects-4" defer></script>
+<script src="./assets/modules/play-calculator/study.js?v=20261118-verified-1" defer></script><script src="./assets/modules/play-calculator/chain.js?v=20261118-chain-2" defer></script><script src="./assets/modules/play-calculator/ui.js?v=20261118-memento-effects-4" defer></script>
 <script src="./assets/modules/combo-creator/model.js?v=20261103-combos-133" defer></script>
 <script src="./assets/modules/combo-creator/step-lesson.js?v=20261113-step-lessons-173" defer></script>
 <script src="./assets/modules/combo-creator/documented-import.js?v=20261116-folder-import-1" defer></script>
