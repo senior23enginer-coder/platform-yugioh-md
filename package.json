@@ -18,7 +18,7 @@
     "build:check": "node scripts/build-frontend.cjs --check",
     "format:architecture": "node scripts/format-architecture.cjs",
     "format:architecture:check": "node scripts/format-architecture.cjs --check",
-    "test:a07:memento": "node torneos_yugioh/tests/memento_a07_coverage_test.cjs && node torneos_yugioh/tests/memento_a07_resolution_test.cjs"
+    "test:a07:memento": "node torneos_yugioh/tests/memento_a07_coverage_test.cjs && node torneos_yugioh/tests/memento_a07_resolution_test.cjs && node torneos_yugioh/tests/memento_a07_remaining_rules_test.cjs"
   },
   "devDependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2",
