@@ -18,9 +18,10 @@ const rows = [
   {deck_id:671,id:12,section:'extra',card_name:'S:P Pequeña Caballera',quantity:1},
   {deck_id:671,id:13,section:'extra',card_name:'Réquiem Demoniherrero',quantity:1},
   {deck_id:671,id:14,section:'main',card_name:'Mementotlán Maza',quantity:1},
+  {deck_id:671,id:15,section:'main',card_name:'Fiesta de Huesos Mementotlán',quantity:1},
 ];
 const catalog = E.catalog(deck,rows);
-const db = {bindings:Object.fromEntries(catalog.cards.map((c,i)=>[c.key,[19362,19364,19472,20199,19904,20216,20389,19366,19360,20196,13081,19188,20225,19365][i]])),facts:{},rules:[]};
+const db = {bindings:Object.fromEntries(catalog.cards.map((c,i)=>[c.key,[19362,19364,19472,20199,19904,20216,20389,19366,19360,20196,13081,19188,20225,19365,19368][i]])),facts:{},rules:[]};
 let scenario = E.create(catalog);
 scenario = E.place(scenario,{key:catalog.cards[0].key,owner:'self',zone:'m1'});
 scenario = E.place(scenario,{key:catalog.cards[1].key,owner:'self',zone:'m2'});
@@ -432,6 +433,47 @@ assert.equal(c01.tokens.find(t=>db.bindings[t.key]===19904).zone,'graveyard',
 assert.equal(c01.tokens.filter(t=>db.bindings[t.key]===19362).length,0,
  'Tatsun barajado al Deck ya no está representado en el campo/GY');
 assert.equal(c01._ruleEvents.filter(e=>e.kind==='fusion_summon').length,1);
+// C02: ventana de Fiesta y jefe aislado, con nombres exactos del Deck.
+let c02=E.create(catalog);
+c02=E.place(c02,{key:catalog.cards[1].key,owner:'self',zone:'hand'});
+c02=E.place(c02,{key:catalog.cards[14].key,owner:'self',zone:'hand'});
+c02=c01Step(c02,normalWitchRule);
+const searchBoss={...witchSearchRule,id:'671:A07:C02:search-boss',
+ label:'Angbruja añade Creación Combinada tras su Normal',
+ resolve:[{op:'take',side:'self',cid:19360,from:'deck',to:'hand',position:'attack'}]};
+c02=c01Step(c02,searchBoss);
+const boneParty={...witchSearchRule,id:'671:A07:C02:bone-party',
+ label:'Fiesta destruye Angbruja y trae Tatsun del Deck en Defensa',
+ source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2',
+ actor:{side:'self',zones:['hand'],cid:19368},trigger:undefined,
+ assumptions:['Fiesta desde mano en Main; Angbruja boca arriba en campo y Tatsun aún en Deck; sin respuesta rival'],
+ select:[{ref:'victim',selector:{side:'self',zones:['monsters'],cid:19364}}],
+ resolve:[
+  {op:'destroy',ref:'victim',reason:'effect'},
+  {op:'take',side:'self',cid:19362,from:'deck',to:'m1',position:'defense'},
+  {op:'move',ref:'actor',to:'graveyard',position:'attack'},
+ ],tags:['summonFromDeck']};
+c02=c01Step(c02,boneParty);
+assert.equal(c02.tokens.find(t=>db.bindings[t.key]===19362).position,'defense');
+const c02Tatsun={...tatsunSend,id:'671:A07:C02:tatsun-send',
+ assumptions:['Tatsun original Nivel 5; Goblin Nivel 1 + Maza Nivel 1 + Desvantasma Nivel 2 fijados, sin suma general'],
+ resolve:[
+  {op:'destroy',ref:'actor',reason:'effect'},
+  ...[19366,19365,19472].map(cid=>({op:'take',side:'self',cid,from:'deck',to:'graveyard',position:'attack',cause:'monster_effect'})),
+ ]};
+c02=c01Step(c02,c02Tatsun);
+const c02Boss={...bossRule,id:'671:A07:C02:five-name-boss',
+ actor:{side:'self',zones:['hand'],cid:19360},
+ select:[19364,19362,19366,19365,19472].map((cid,i)=>({ref:'n'+i,selector:{side:'self',zones:['graveyard'],cid}})),
+ resolve:[
+  {op:'shuffle',refs:['n0','n1','n2','n3','n4'],distinctCids:true,allowedCids:[19364,19362,19366,19365,19472]},
+  {op:'move',ref:'actor',to:'m1',position:'attack',summonMethod:'special'},
+ ]};
+c02=c01Step(c02,c02Boss);
+assert.deepEqual(c02.tokens.filter(t=>E.isMonster(t.zone)).map(t=>db.bindings[t.key]),[19360],
+ 'C02 termina con Creación Combinada como único monstruo');
+assert.equal(c02.tokens.find(t=>db.bindings[t.key]===19368).zone,'graveyard');
+assert.equal(c02.tokens.filter(t=>t.zone==='graveyard'&&[19364,19362,19366,19365,19472].includes(db.bindings[t.key])).length,0);
 console.log('Memento A07: destrucción por efecto, envío fijado y negación con costes conservados: OK');
 console.log('Memento A07: Fusión con materiales exactos, bloqueo de Extra y falta de material: OK');
 console.log('Memento A07: Normal adicional de Duque con estado usado y límite por turno: OK');
@@ -442,3 +484,4 @@ console.log('Memento A07: R31 turno de Set y R34 reinicio de una vez por nombre:
 console.log('Memento A07: R26 Sacrificio de Réquiem como coste, distinto de destrucción: OK');
 console.log('Memento A07: R02 Normal de Angbruja y búsqueda posterior disparada por UID: OK');
 console.log('Memento A07: C01 secuencia fija de nueve resoluciones hasta dos jefes: OK, sin certificación de cadenas');
+console.log('Memento A07: C02 secuencia fija de Fiesta a jefe aislado: OK, sin certificación de ventanas generales');
