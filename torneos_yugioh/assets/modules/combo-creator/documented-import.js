@@ -46,17 +46,25 @@
       const explicit=photoRefs(step.photos),seen=new Set(explicit);
       const narration=norm([step.action,step.detail,step.visual_detail].filter(Boolean).join(' '));
       const candidates=(data.cards||[]).filter(c=>c.name&&norm(c.name).length>=4)
-        .map(c=>({card:c,name:norm(c.name)}))
-        .filter(({name})=>{
-          let offset=narration.indexOf(name);
-          while(offset>=0){
-            const before=narration[offset-1]||' ',after=narration[offset+name.length]||' ';
-            if(!/[a-z0-9]/.test(before)&&!/[a-z0-9]/.test(after))return true;
-            offset=narration.indexOf(name,offset+1);
+        .map(c=>({card:c,names:[norm(c.name),...(
+          deck===671?({
+            'tatsunootoshigo':['tatsun'],
+            'demoniherrero grabador':['grabador'],
+            'requiem del demoniherrero':['requiem'],
+            's:p pequena caballera':['s:p']
+          }[norm(c.name)]||[]):[]
+        )]}))
+        .map(({card,names})=>({card,offset:Math.min(...names.map(name=>{
+          let at=narration.indexOf(name);
+          while(at>=0){
+            const left=narration[at-1]||' ',right=narration[at+name.length]||' ';
+            if(!/[a-z0-9]/.test(left)&&!/[a-z0-9]/.test(right))return at;
+            at=narration.indexOf(name,at+1);
           }
-          return false;
-        })
-        .sort((a,b)=>narration.indexOf(a.name)-narration.indexOf(b.name));
+          return Infinity;
+        }))}))
+        .filter(({offset})=>Number.isFinite(offset))
+        .sort((a,b)=>a.offset-b.offset);
       for(const {card} of candidates){
         const bound=bind({image:card.image,full_image:card.full_image});
         if(bound&&!seen.has(bound.id)){seen.add(bound.id);explicit.push(bound.id);}
