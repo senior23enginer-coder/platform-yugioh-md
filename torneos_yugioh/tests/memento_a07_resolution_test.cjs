@@ -17,9 +17,10 @@ const rows = [
   {deck_id:671,id:11,section:'extra',card_name:'D/D/D César, Alto Rey de las Olas',quantity:1},
   {deck_id:671,id:12,section:'extra',card_name:'S:P Pequeña Caballera',quantity:1},
   {deck_id:671,id:13,section:'extra',card_name:'Réquiem Demoniherrero',quantity:1},
+  {deck_id:671,id:14,section:'main',card_name:'Mementotlán Maza',quantity:1},
 ];
 const catalog = E.catalog(deck,rows);
-const db = {bindings:Object.fromEntries(catalog.cards.map((c,i)=>[c.key,[19362,19364,19472,20199,19904,20216,20389,19366,19360,20196,13081,19188,20225][i]])),facts:{},rules:[]};
+const db = {bindings:Object.fromEntries(catalog.cards.map((c,i)=>[c.key,[19362,19364,19472,20199,19904,20216,20389,19366,19360,20196,13081,19188,20225,19368][i]])),facts:{},rules:[]};
 let scenario = E.create(catalog);
 scenario = E.place(scenario,{key:catalog.cards[0].key,owner:'self',zone:'m1'});
 scenario = E.place(scenario,{key:catalog.cards[1].key,owner:'self',zone:'m2'});
@@ -359,6 +360,78 @@ assert.equal(R.actions(withoutSummon,db).actions.length,0,
 const previousTurn=E.patch(witchField,{turn:3});
 assert.equal(R.actions(previousTurn,db).actions.length,0,
  'Una Invocación del turno anterior no dispara una búsqueda tardía');
+// C01: prueba secuencial cerrada sin respuestas ni selección general de materiales.
+// No equivale a certificación integral de la ruta: faltan cadenas y validación de niveles.
+function c01Step(state, r) {
+ db.rules=[r];
+ const result=R.actions(state,db);
+ assert.equal(result.actions.length,1,`${r.id}: ${JSON.stringify(result.rejected)}`);
+ return result.actions[0].state;
+}
+let c01=E.create(catalog);
+c01=E.place(c01,{key:catalog.cards[1].key,owner:'self',zone:'hand'});
+c01=E.place(c01,{key:catalog.cards[4].key,owner:'self',zone:'hand'});
+c01=c01Step(c01,normalWitchRule);
+const c01AfterNormal=c01;
+c01=c01Step(c01,witchSearchRule);
+const specialTatsun={...normalWitchRule,
+ id:'671:A07:C01:tatsun-special',label:'Especial Tatsun con solo Memento propios',
+ actor:{side:'self',zones:['hand'],cid:19362},
+ assumptions:['No existe otro monstruo propio boca arriba que no sea Memento'],
+ resolve:[{op:'summon',ref:'actor',method:'special',from:'hand',to:'m2',position:'attack'}]};
+db.rules=[witchSearchRule];
+const c01Ash=R.actions(c01AfterNormal,db,{negateEffectRuleIds:[witchSearchRule.id]});
+assert.equal(c01Ash.actions.length,1);
+assert(!c01Ash.actions[0].state.tokens.some(t=>db.bindings[t.key]===19362),
+ 'Negar la búsqueda de Angbruja impide añadir Tatsun');
+db.rules=[specialTatsun];
+assert.equal(R.actions(c01Ash.actions[0].state,db).actions.length,0,
+ 'C01 debe detenerse después de Ash, sin inventar Tatsun');
+c01=c01Step(c01,specialTatsun);
+const tatsunSend={...rule,id:'671:A07:C01:tatsun-send',
+ actor:{side:'self',zones:['monsters'],cid:19362},select:[],
+ assumptions:['Tatsun original Nivel 5 y objetivos Desvantasma Nivel 2 + Dormiveja Nivel 3 fijados; la suma no se valida genéricamente'],
+ resolve:[
+  {op:'destroy',ref:'actor',reason:'effect'},
+  {op:'take',side:'self',cid:19472,from:'deck',to:'graveyard',position:'attack',cause:'monster_effect'},
+  {op:'take',side:'self',cid:20199,from:'deck',to:'graveyard',position:'attack',cause:'monster_effect'},
+ ]};
+c01=c01Step(c01,tatsunSend);
+const ghostSummon={...ghostRule,id:'671:A07:C01:ghost-special',
+ resolve:[{op:'move',ref:'actor',to:'m2',position:'attack',summonMethod:'special'}]};
+c01=c01Step(c01,ghostSummon);
+const ghostRecover={...witchSearchRule,id:'671:A07:C01:ghost-recover',
+ label:'Desvantasma recupera Dormiveja tras su Invocación',
+ source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19472&ope=2',
+ actor:{side:'self',zones:['monsters'],cid:19472},
+ trigger:{kind:'summoned',actorCid:19472,methods:['special']},
+ select:[{ref:'recover',selector:{side:'self',zones:['graveyard'],cid:20199}}],
+ resolve:[{op:'move',ref:'recover',to:'hand',position:'attack'}],
+ tags:['monsterEffect']};
+c01=c01Step(c01,ghostRecover);
+const c01Fusion={...fusionRule,id:'671:A07:C01:fusion',
+ resolve:[...fusionRule.resolve,{op:'move',ref:'actor',to:'graveyard',position:'attack'}]};
+c01=c01Step(c01,c01Fusion);
+const kingSend={...witchSearchRule,id:'671:A07:C01:king-send',
+ label:'Rey Creación envía tres nombres Memento tras ser Fusionado',
+ source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20216&ope=2',
+ actor:{side:'self',zones:['monsters'],cid:20216},
+ trigger:{kind:'fusion_summoned',actorCid:20216},
+ select:[],tags:['monsterEffect','sendFromDeck'],
+ resolve:[19360,19368,19366].map(cid=>({op:'take',side:'self',cid,from:'deck',to:'graveyard',position:'attack',cause:'monster_effect'}))};
+c01=c01Step(c01,kingSend);
+const c01Boss={...bossRule,id:'671:A07:C01:five-name-boss'};
+c01=c01Step(c01,c01Boss);
+assert.equal(c01.normalAvailable,false);
+assert.deepEqual(c01.tokens.filter(t=>E.isMonster(t.zone)).map(t=>db.bindings[t.key]).sort((a,b)=>a-b),
+ [19360,20216].sort((a,b)=>a-b),'C01 termina en Rey + Creación Combinada');
+assert.equal(c01.tokens.find(t=>db.bindings[t.key]===19368).zone,'graveyard',
+ 'Maza se conserva en GY para una respuesta posterior');
+assert.equal(c01.tokens.find(t=>db.bindings[t.key]===19904).zone,'graveyard',
+ 'Fusión se consumió y no se reutilizó');
+assert.equal(c01.tokens.filter(t=>db.bindings[t.key]===19362).length,0,
+ 'Tatsun barajado al Deck ya no está representado en el campo/GY');
+assert.equal(c01._ruleEvents.filter(e=>e.kind==='fusion_summon').length,1);
 console.log('Memento A07: destrucción por efecto, envío fijado y negación con costes conservados: OK');
 console.log('Memento A07: Fusión con materiales exactos, bloqueo de Extra y falta de material: OK');
 console.log('Memento A07: Normal adicional de Duque con estado usado y límite por turno: OK');
@@ -368,3 +441,4 @@ console.log('Memento A07: S:P Link-2 con dos materiales Main y sin destierro ini
 console.log('Memento A07: R31 turno de Set y R34 reinicio de una vez por nombre: OK');
 console.log('Memento A07: R26 Sacrificio de Réquiem como coste, distinto de destrucción: OK');
 console.log('Memento A07: R02 Normal de Angbruja y búsqueda posterior disparada por UID: OK');
+console.log('Memento A07: C01 secuencia fija de nueve resoluciones hasta dos jefes: OK, sin certificación de cadenas');
