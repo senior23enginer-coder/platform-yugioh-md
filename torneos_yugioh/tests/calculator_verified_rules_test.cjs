@@ -47,13 +47,39 @@ let goblinStart = E.create(memento.catalog);
 const goblin = card(memento.catalog, memento.db, 19366);
 goblinStart = E.place(goblinStart, { key: goblin.key, owner: "self", zone: "m3" });
 const goblinActions = R.actions(goblinStart, memento.db).actions.filter((a) => a.event.ruleId === "671:goblin:send-two");
-assert.equal(goblinActions.length, 1);
-const sent = goblinActions[0].state.tokens;
+assert.equal(goblinActions.length, 2, "Two verified Goblin send-pairs share one effect use");
+const toAngwitch = goblinActions.find((a) => a.state.tokens.some((t) =>
+  t.zone === "graveyard" && memento.db.bindings[t.key] === 19364));
+const toGhattic = goblinActions.find((a) => a.state.tokens.some((t) =>
+  t.zone === "graveyard" && memento.db.bindings[t.key] === 19472));
+assert(toAngwitch && toGhattic);
+const sent = toAngwitch.state.tokens;
 for (const cid of [19366, 19363, 19364])
   assert(sent.some((t) => memento.db.bindings[t.key] === cid && t.zone === "graveyard"));
+assert.deepEqual(toAngwitch.state._ruleEvents.filter((e) => e.kind === "sent_to_graveyard")
+  .map((e) => e.cid), [19363, 19364], "The Goblin effect must record causal GY sends");
 const goblinNegated = R.actions(goblinStart, memento.db, { negateEffectRuleIds: ["671:goblin:send-two"] });
-assert.equal(goblinNegated.actions.length, 1);
+assert.equal(goblinNegated.actions.length, 2);
 assert(goblinNegated.actions[0].state.tokens.every((t) => t.zone !== "graveyard"));
+const ghatticRevivals = R.actions(toGhattic.state, memento.db).actions.filter((a) =>
+  a.event.ruleId === "671:ghattic:revive");
+assert.equal(ghatticRevivals.length, 5,
+  "Ghattic can be Special Summoned to any free zone after Goblin sends it by effect");
+const revived = ghatticRevivals[0].state;
+assert(revived.tokens.some((t) => t.zone === "m1" && memento.db.bindings[t.key] === 19472));
+assert(revived._ruleEvents.some((e) => e.kind === "summon" &&
+  e.method === "special" && e.cid === 19472));
+assert(R.actions(revived, memento.db).actions.some((a) =>
+  a.event.ruleId === "671:ghattic:recover" && a.state.tokens.some((t) =>
+    t.zone === "hand" && memento.db.bindings[t.key] === 19363)),
+"Ghattic's search must be available after its proved Special Summon");
+assert.equal(R.actions(toGhattic.state, memento.db, { specialBlocked: true }).actions
+  .filter((a) => a.event.ruleId === "671:ghattic:revive").length, 0);
+const fakeSent = E.clone(toGhattic.state);
+fakeSent._ruleEvents = fakeSent._ruleEvents.filter((e) => e.kind !== "sent_to_graveyard");
+assert.equal(R.actions(fakeSent, memento.db).actions.filter((a) =>
+  a.event.ruleId === "671:ghattic:revive").length, 0,
+"A Ghattic card in GY cannot revive without an identified source effect");
 const creation = card(memento.catalog, memento.db, 19360);
 let five = E.create(memento.catalog);
 five = E.place(five, { key: creation.key, owner: "self", zone: "hand" });
@@ -76,6 +102,67 @@ assert.equal(R.actions(repeated, memento.db).actions.filter((a) => a.event.ruleI
   "Five cards with only four distinct names cannot summon Combined Creation");
 assert.equal(R.actions(five, memento.db, { specialBlocked: true }).actions.filter((a) => a.event.ruleId === "671:tecuhtlica:five-names").length, 0);
 assert.equal(R.actions(five, memento.db, { blockedZones: ["m1", "m2", "m3", "m4", "m5"] }).actions.filter((a) => a.event.ruleId === "671:tecuhtlica:five-names").length, 0);
+
+// Unlike test-only A07 contracts, these rules are bound to the real study.
+const angwitch = card(memento.catalog, memento.db, 19364);
+let angHand = E.create(memento.catalog);
+angHand = E.place(angHand, { key: angwitch.key, owner: "self", zone: "hand" });
+assert.equal(R.actions(angHand, memento.db).actions.filter((a) => a.event.ruleId === "671:angwitch:search").length, 0,
+  "A card merely in hand must not obtain a summon-triggered search");
+const angNormal = R.actions(angHand, memento.db).actions.find((a) => a.event.ruleId === "671:19364:normal");
+assert(angNormal, "The verified Angwitch Normal Summon procedure must be available");
+assert(angNormal.state._ruleEvents.some((e) => e.kind === "summon" && e.cid === 19364 && e.method === "normal"));
+const angSearches = R.actions(angNormal.state, memento.db).actions
+  .filter((a) => a.event.ruleId === "671:angwitch:search");
+assert(angSearches.some((a) => a.state.tokens.some((t) =>
+  t.zone === "hand" && memento.db.bindings[t.key] === 19366)),
+  "The summon-triggered Angwitch search must find Goblin in the real Main Deck");
+assert.equal(R.actions(angNormal.state, memento.db, { noDeckToHand: true }).actions
+  .filter((a) => a.event.ruleId === "671:angwitch:search").length, 0,
+"Droll's Deck-to-hand restriction must prevent the search");
+const completedAng = angSearches.find((a) => a.state.tokens.some((t) =>
+  t.zone === "hand" && memento.db.bindings[t.key] === 19366)).state;
+assert.equal(R.actions(completedAng, memento.db).actions
+  .filter((a) => a.event.ruleId === "671:angwitch:search").length, 0,
+  "Every Angwitch search target shares a single use per turn");
+const falseEvent = E.clone(angNormal.state);
+falseEvent._ruleEvents[0].uid += 500;
+assert.equal(R.actions(falseEvent, memento.db).actions
+  .filter((a) => a.event.ruleId === "671:angwitch:search").length, 0,
+  "An unrelated summon event must not authorize Angwitch's effect");
+
+const ghattic = card(memento.catalog, memento.db, 19472);
+let ghatticHand = E.create(memento.catalog);
+ghatticHand = E.place(ghatticHand, { key: ghattic.key, owner: "self", zone: "hand" });
+ghatticHand = E.place(ghatticHand, { key: blade.key, owner: "self", zone: "graveyard" });
+assert.equal(R.actions(ghatticHand, memento.db).actions
+  .filter((a) => a.event.ruleId === "671:ghattic:recover").length, 0);
+const ghatticNormal = R.actions(ghatticHand, memento.db).actions
+  .find((a) => a.event.ruleId === "671:19472:normal");
+assert(ghatticNormal, "The Ghattic summon procedure must be available");
+const ghatticRecover = R.actions(ghatticNormal.state, memento.db).actions
+  .find((a) => a.event.ruleId === "671:ghattic:recover");
+assert(ghatticRecover, "Ghattic must recover an eligible Memento card after being Summoned");
+assert(ghatticRecover.state.tokens.some((t) => t.key === blade.key && t.zone === "hand"));
+assert.equal(R.actions(ghatticRecover.state, memento.db).actions
+  .filter((a) => a.event.ruleId === "671:ghattic:recover").length, 0,
+  "Ghattic cannot recover a second card on the same turn");
+
+const mace = card(memento.catalog, memento.db, 19365);
+let maceStart = E.create(memento.catalog);
+maceStart = E.place(maceStart, { key: mace.key, owner: "self", zone: "m1" });
+const maceAction = R.actions(maceStart, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:mace:search" && a.state.tokens.some((t) =>
+    t.zone === "hand" && memento.db.bindings[t.key] === 19366));
+assert(maceAction, "Mace must be able to destroy itself and search Goblin");
+assert(maceAction.state.tokens.some((t) => t.key === mace.key && t.zone === "graveyard"));
+assert.equal(R.actions(maceStart, memento.db, { noDeckToHand: true }).actions
+  .filter((a) => a.event.ruleId === "671:mace:search").length, 0);
+const maceNegated = R.actions(maceStart, memento.db, { negateEffectRuleIds: ["671:mace:search"] });
+assert(maceNegated.actions.some((a) => a.event.effectNegated &&
+  a.state.tokens.some((t) => t.key === mace.key && t.zone === "m1")),
+  "Negating Mace's effect must also stop the destruction that occurs on resolution");
+
 const kashtira = loaded(665);
 let k = E.create(kashtira.catalog);
 const fenrir = card(kashtira.catalog, kashtira.db, 17768);
