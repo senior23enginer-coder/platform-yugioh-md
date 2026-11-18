@@ -257,6 +257,12 @@
       refs.add(x.ref);
       selector(x.selector);
     }
+    check(rule.equippedToActorRef === undefined ||
+      (rule.actor.cid === 20196 && rule.equippedToActorRef === "gear" &&
+        rule.select.some((x) => x.ref === "gear" && x.selector.side === "self" &&
+          x.selector.cid === 20225 && x.selector.zones.length === 1 &&
+          x.selector.zones[0] === "s1")),
+    "Un equipo sólo puede referirse a Réquiem acreditado sobre Grabador");
     check(
       Array.isArray(rule.costs) &&
         Array.isArray(rule.resolve) &&
@@ -528,6 +534,9 @@
         const actor = s.tokens.find((t) => t.uid === refs.actor) ||
           (options.prepared?.actorKey ? { key: options.prepared.actorKey } : null);
         if (!actor) continue;
+        if (rule.equippedToActorRef &&
+          s.tokens.find((t) => t.uid === refs[rule.equippedToActorRef])?.equippedToUid !== actor.uid)
+          continue;
         if (
           !options.prepared &&
           rule.activation &&

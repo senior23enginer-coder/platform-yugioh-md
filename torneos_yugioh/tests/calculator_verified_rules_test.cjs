@@ -504,6 +504,141 @@ assert(requiemDenied && requiemDenied.state.tokens.some((t) =>
 assert.equal(R.actions(requiemStart, memento.db, { specialBlocked: true }).actions.filter((a) =>
   a.event.ruleId === "671:requiem:tribute").length, 0);
 
+const moon = card(memento.catalog, memento.db, 19932);
+let fiendLine = E.create(memento.catalog, memento.catalog);
+fiendLine = E.place(fiendLine, { key: angwitch.key, owner: "self", zone: "m1" });
+fiendLine = E.place(fiendLine, { key: tatsun.key, owner: "self", zone: "m2" });
+fiendLine = E.place(fiendLine, { key: mace.key, owner: "opponent", zone: "m1" });
+const moonLink = R.actions(fiendLine, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:moon:link-requiem" || a.event.ruleId === "671:sp:link-procedure");
+// Luna and S:P are alternative Link-2 recipes, never both from the same materials.
+assert(moonLink && moonLink.event.ruleId === "671:sp:link-procedure");
+assert.equal(R.actions(fiendLine, memento.db).actions.filter((a) =>
+  a.event.ruleId === "671:moon:link-requiem").length, 0,
+"A Moon-to-Requiem link cannot skip the physical Moon card");
+let moonField = E.place(fiendLine, { key: moon.key, owner: "self", zone: "emz1" });
+const moonToRequiem = R.actions(moonField, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:moon:link-requiem");
+assert(moonToRequiem, "Moon is a LIGHT Fiend Link monster legal as Requiem's single material");
+assert(moonToRequiem.state.tokens.some((t) => t.key === moon.key && t.zone === "graveyard"));
+assert(moonToRequiem.state.tokens.some((t) => t.key === requiem.key && E.isMonster(t.zone)));
+assert.equal(R.actions(moonField, memento.db, { noExtra: true }).actions.filter((a) =>
+  a.event.ruleId === "671:moon:link-requiem").length, 0);
+
+const fiendFromRequiem = R.actions(moonToRequiem.state, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:requiem:tribute");
+assert(fiendFromRequiem, "Link-Summoned Requiem can Tribute itself to summon Engraver");
+const equips = R.actions(fiendFromRequiem.state, memento.db).actions.filter((a) =>
+  a.event.ruleId === "671:requiem:equip");
+assert.equal(equips.length, 1, "Requiem in GY can equip only to the verified face-up Engraver");
+const fiendEquipped = equips[0].state;
+const equippedRequiem = fiendEquipped.tokens.find((t) => t.key === requiem.key);
+const faceupEngraver = fiendEquipped.tokens.find((t) => t.key === grabber.key);
+assert.equal(equippedRequiem.zone, "s1");
+assert.equal(equippedRequiem.equippedToUid, faceupEngraver.uid);
+const removed = R.actions(fiendEquipped, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:engraver:remove");
+assert(removed, "Engraver may send its own Requiem Equip and an identified enemy monster to GY");
+assert(removed.state.tokens.some((t) => t.key === requiem.key && t.zone === "graveyard"));
+assert(removed.state.tokens.some((t) => t.key === mace.key && t.owner === "opponent" && t.zone === "graveyard"));
+assert(removed.state.tokens.some((t) => t.key === grabber.key && E.isMonster(t.zone)));
+assert(!removed.state._ruleEvents.some((e) => e.kind === "destroy" && e.cid === 19365),
+"Engraver sends a monster to the GY without destroying it");
+const unequipped = E.clone(fiendEquipped);
+delete unequipped.tokens.find((t) => t.key === requiem.key).equippedToUid;
+assert.equal(R.actions(unequipped, memento.db).actions.filter((a) =>
+  a.event.ruleId === "671:engraver:remove").length, 0,
+"A Requiem in S1 without an actual equip relationship cannot remove a rival monster");
+const invalidEquip = E.clone(fiendEquipped);
+invalidEquip.tokens.find((t) => t.key === requiem.key).equippedToUid += 100;
+assert.equal(R.actions(invalidEquip, memento.db).actions.filter((a) =>
+  a.event.ruleId === "671:engraver:remove").length, 0);
+
+let engraverGrave = E.create(memento.catalog);
+engraverGrave = E.place(engraverGrave, { key: requiem.key, owner: "self", zone: "graveyard" });
+engraverGrave = E.place(engraverGrave, { key: grabber.key, owner: "self", zone: "graveyard" });
+const graveRevive = R.actions(engraverGrave, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:engraver:revive");
+assert(graveRevive, "Engraver's GY effect requires another LIGHT Fiend in GY");
+assert(graveRevive.paid.tokens.some((t) => t.key === requiem.key && t.zone === "extra"));
+assert(graveRevive.state.tokens.some((t) => t.key === grabber.key && E.isMonster(t.zone)));
+const graveNegated = R.actions(engraverGrave, memento.db,
+  { negateEffectRuleIds: ["671:engraver:revive"] }).actions.find((a) =>
+    a.event.ruleId === "671:engraver:revive");
+assert(graveNegated && graveNegated.state.tokens.some((t) =>
+  t.key === requiem.key && t.zone === "extra") && graveNegated.state.tokens.some((t) =>
+    t.key === grabber.key && t.zone === "graveyard"),
+"Negating the resurrection cannot refund the LIGHT Fiend shuffle cost");
+assert.equal(R.actions(engraverGrave, memento.db, { specialBlocked: true }).actions.filter((a) =>
+  a.event.ruleId === "671:engraver:revive").length, 0);
+const noLightFiend = E.clone(engraverGrave);
+noLightFiend.tokens = noLightFiend.tokens.filter((t) => t.key !== requiem.key);
+assert.equal(R.actions(noLightFiend, memento.db).actions.filter((a) =>
+  a.event.ruleId === "671:engraver:revive").length, 0);
+
+const sequence = card(memento.catalog, memento.db, 20226);
+const duke = card(memento.catalog, memento.db, 20389);
+let sequenceStart = E.create(memento.catalog);
+sequenceStart = E.place(sequenceStart, { key: moon.key, owner: "self", zone: "emz1" });
+sequenceStart = E.place(sequenceStart, { key: goblin.key, owner: "self", zone: "m2" });
+const linkedSequence = R.actions(sequenceStart, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:moon:link-sequence");
+assert(linkedSequence, "Moon and Goblin are exact two Link materials for Fiendsmith's Sequence");
+assert(linkedSequence.state.tokens.some((t) => t.key === sequence.key && E.isMonster(t.zone)));
+assert(linkedSequence.state.tokens.some((t) => t.key === goblin.key && t.zone === "graveyard"));
+const missingGoblin = E.clone(sequenceStart);
+missingGoblin.tokens = missingGoblin.tokens.filter((t) => t.key !== goblin.key);
+assert.equal(R.actions(missingGoblin, memento.db).actions.filter((a) =>
+  a.event.ruleId === "671:moon:link-sequence").length, 0);
+
+let fusionBySequence = E.place(linkedSequence.state,
+  { key: grabber.key, owner: "self", zone: "graveyard" });
+const dukeFusion = R.actions(fusionBySequence, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:sequence:duke-fusion");
+assert(dukeFusion, "Sequence uses Engraver and Goblin from GY to Fusion Summon Duke");
+assert(dukeFusion.state.tokens.some((t) => t.key === duke.key && E.isMonster(t.zone)));
+assert(!dukeFusion.state.tokens.some((t) =>
+  [grabber.key, goblin.key].includes(t.key) && t.zone === "graveyard"),
+"Sequence must shuffle both named Fiend materials back to Main Deck");
+assert.equal(R.actions(fusionBySequence, memento.db, { noExtra: true }).actions.filter((a) =>
+  a.event.ruleId === "671:sequence:duke-fusion").length, 0);
+const noEngraver = E.clone(fusionBySequence);
+noEngraver.tokens = noEngraver.tokens.filter((t) => t.key !== grabber.key);
+assert.equal(R.actions(noEngraver, memento.db).actions.filter((a) =>
+  a.event.ruleId === "671:sequence:duke-fusion").length, 0);
+
+let dukeGrave = E.create(memento.catalog);
+dukeGrave = E.place(dukeGrave, { key: duke.key, owner: "self", zone: "graveyard" });
+dukeGrave = E.place(dukeGrave, { key: grabber.key, owner: "self", zone: "graveyard" });
+const dukeRecovery = R.actions(dukeGrave, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:duke:recover-engraver");
+assert(dukeRecovery, "Duke can banish itself to retrieve a known Level-6 Fiend from GY");
+assert(dukeRecovery.state.tokens.some((t) => t.key === duke.key && t.zone === "banished"));
+assert(dukeRecovery.state.tokens.some((t) => t.key === grabber.key && t.zone === "hand"));
+const dukeNegation = R.actions(dukeGrave, memento.db,
+  { negateEffectRuleIds: ["671:duke:recover-engraver"] }).actions.find((a) =>
+    a.event.ruleId === "671:duke:recover-engraver");
+assert(dukeNegation && dukeNegation.state.tokens.some((t) =>
+  t.key === duke.key && t.zone === "banished") && dukeNegation.state.tokens.some((t) =>
+    t.key === grabber.key && t.zone === "graveyard"),
+"Duke's GY banish cost remains paid on effect negation");
+
+const dragostapelia = card(memento.catalog, memento.db, 12870);
+let predatorState = E.create(memento.catalog, memento.catalog);
+predatorState = E.place(predatorState, { key: dragostapelia.key, owner: "self", zone: "emz1" });
+predatorState = E.place(predatorState, { key: ghattic.key, owner: "opponent", zone: "m2" });
+const predatorCounter = R.actions(predatorState, memento.db).actions.find((a) =>
+  a.event.ruleId === "671:dragostapelia:counter");
+assert(predatorCounter, "Dragostapelia can place a Predator Counter on a known enemy face-up monster");
+assert.equal(predatorCounter.state.tokens.find((t) => t.key === ghattic.key &&
+  t.owner === "opponent").counters.predator, 1);
+const opponentSet = E.clone(predatorState);
+opponentSet.tokens.find((t) => t.owner === "opponent").position = "set";
+assert.equal(R.actions(opponentSet, memento.db).actions.filter((a) =>
+  a.event.ruleId === "671:dragostapelia:counter").length, 0);
+assert.equal(R.actions(predatorCounter.state, memento.db).actions.filter((a) =>
+  a.event.ruleId === "671:dragostapelia:counter").length, 0);
+
 const kashtira = loaded(665);
 let k = E.create(kashtira.catalog);
 const fenrir = card(kashtira.catalog, kashtira.db, 17768);

@@ -464,7 +464,7 @@
       state.planBusy = true;
       const id = state.planRequest;
       const worker = new Worker(
-        "./assets/modules/play-calculator/planner-worker.js?v=20261118-memento-effects-4",
+        "./assets/modules/play-calculator/planner-worker.js?v=20261118-memento-effects-5",
       );
       state.planWorker = worker;
       worker.onmessage = (e) => {
