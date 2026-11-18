@@ -391,6 +391,17 @@
       }
     });
   }
+  function advancePhase(s) {
+    validate(s);
+    assert(!(s.chain || []).length, "Resuelve o retira la cadena pendiente antes de cambiar fase.");
+    const phases = s.format === "rush_duel"
+      ? ["draw", "main1", "battle", "end"]
+      : ["draw", "standby", "main1", "battle", "main2", "end"];
+    const index = phases.indexOf(s.phase);
+    assert(index >= 0 && index < phases.length - 1,
+      "La fase Final requiere avanzar al turno siguiente.");
+    return change(s, (n) => { n.phase = phases[index + 1]; });
+  }
   // A witness of an opponent's Extra Deck summon, not a proof of the materials
   // or the full legal summoning procedure. Record it only with an identified
   // Extra Deck card and an actual occupied monster zone in the resulting state.
@@ -729,6 +740,7 @@
     place,
     patch,
     advanceTurn,
+    advancePhase,
     observeExtraSummon,
     appendChain,
     removeChain,

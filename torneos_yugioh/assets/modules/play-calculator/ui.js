@@ -625,6 +625,8 @@
       if (s) node.querySelector(".play-chain-capture")?.insertAdjacentHTML("beforeend", chainControls(s));
       if (s) node.querySelector(".play-turn-bar")?.insertAdjacentHTML("beforeend",
         `<button type="button" class="btn btn-outline-info" data-play-next-turn ${s.turn >= 999 || (s.chain || []).length ? "disabled" : ""}>Siguiente turno · sin robo automático</button>`);
+      if (s) node.querySelector(".play-turn-bar")?.insertAdjacentHTML("beforeend",
+        `<button type="button" class="btn btn-outline-info" data-play-next-phase ${(s.phase === "end" || (s.chain || []).length) ? "disabled" : ""}>Siguiente fase · manual</button>`);
       if (s) node.querySelector(".play-chain-executable")?.insertAdjacentHTML("afterbegin",
         "<p>Hasta CL20 con reglas propias verificadas; CL2–CL20 necesitan velocidad 2 acreditada. Las negaciones rivales se simulan únicamente como declaraciones condicionales y no se inventan sus efectos.</p>");
       if (s?.practice) {
@@ -670,6 +672,11 @@
             if (b.hasAttribute("data-play-next-turn")) {
               commit(E.advanceTurn(state.scenario));
               notice("Turno avanzado. Declara manualmente el robo y los efectos de transición.");
+              return;
+            }
+            if (b.hasAttribute("data-play-next-phase")) {
+              commit(E.advancePhase(state.scenario));
+              notice("Fase avanzada. No se ejecutaron efectos ni acciones automáticas.");
               return;
             }
             if (b.hasAttribute("data-chain-add")) {

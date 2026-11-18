@@ -92,6 +92,26 @@ ok(practiceTurn.active === "self" && practiceTurn.turn === 2, "Practice retains 
 const turnUi = fs.readFileSync(path.join(__dirname, "../assets/modules/play-calculator/ui.js"), "utf8");
 ok(turnUi.includes("data-play-next-turn") && turnUi.includes("E.advanceTurn(state.scenario)"),
   "Turn advance is exposed in the calculator UI");
+ok(turnUi.includes("data-play-next-phase") && turnUi.includes("E.advancePhase(state.scenario)"),
+  "Phase advance is exposed in the calculator UI");
+const phaseStart = E.patch(s, { phase: "draw" });
+let phaseState = phaseStart;
+for (const expected of ["standby", "main1", "battle", "main2", "end"]) {
+  phaseState = E.advancePhase(phaseState);
+  ok(phaseState.phase === expected && phaseState.turn === phaseStart.turn &&
+    phaseState.tokens.length === phaseStart.tokens.length, "Phase transition " + expected);
+}
+rejects(() => E.advancePhase(phaseState));
+rejects(() => E.advancePhase(E.appendChain(phaseStart, { side: "self", effect: "Sin resolver" })));
+const rushPhases = E.create(E.catalog(deck(1, "rush_duel"), rows),
+  E.catalog(deck(2, "rush_duel"), rows));
+let rushPhase = E.patch(rushPhases, { phase: "draw" });
+for (const expected of ["main1", "battle", "end"]) {
+  rushPhase = E.advancePhase(rushPhase);
+  ok(rushPhase.phase === expected, "Rush transition " + expected);
+}
+ok(JSON.stringify(phaseStart) === JSON.stringify(E.patch(s, { phase: "draw" })),
+  "Phase progression does not mutate the source state");
 rejects(() => E.patch(s, { unknown: { hand: -1 } }));
 rejects(() => E.patch(s, { lp: { self: -1 } }));
 rejects(() => E.position(s, 1, "invalid"));

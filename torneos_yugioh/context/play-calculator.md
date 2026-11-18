@@ -9,6 +9,12 @@ turno 999. No roba cartas, ejecuta efectos de End/Standby, vence automáticament
 otras restricciones declarativas ni altera LP; esas acciones requieren captura
 explícita. El cambio conserva el tablero y puede deshacerse.
 
+**Avance de fase:** «Siguiente fase» sigue el orden Robo → Espera → Main 1
+→ Batalla → Main 2 → Final para TCG/GOAT; Rush omite Espera y Main 2. El botón se
+bloquea si hay una cadena pendiente o si ya se alcanzó Final. No decide
+automáticamente si el jugador puede entrar a Batalla, ni ejecuta disparadores,
+robos o efectos; sirve exclusivamente como reloj de captura manual.
+
 Sección independiente de la ficha del deck, junto a la Guía de juego. El módulo es una herramienta de captura y estudio del duelo físico. No escribe decklists, resultados, LP oficiales ni tablas de competición.
 
 ## Uso
