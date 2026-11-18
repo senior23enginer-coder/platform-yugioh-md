@@ -20,7 +20,9 @@ const rows=rowIds.map((cid,i)=>({deck_id:671,id:i+1,card_name:'CID '+cid,
   section:extras.has(cid)?'extra':'main',quantity:cid===ids.fusion||cid===ids.witch?3:cid===ids.tatsun?2:1}));
 const own=E.catalog(deck,rows);
 const rival=E.catalog({id:672,name:'Rival sintético',format_codes:['tcg_advanced']},
-  [{deck_id:672,id:1,card_name:'Monstruo rival sintético',section:'main',quantity:2}]);
+  [{deck_id:672,id:1,card_name:'Monstruo rival sintético',section:'main',quantity:2},
+    {deck_id:672,id:2,card_name:'Fusión rival observada',section:'extra',quantity:1},
+    {deck_id:672,id:3,card_name:'Enlace rival observado',section:'extra',quantity:1}]);
 const keys=new Map(own.cards.map((c,i)=>[rowIds[i],c.key]));
 const bindings=Object.fromEntries([...rowIds.map(cid=>[keys.get(cid),cid]),[rival.cards[0].key,ids.opponent]]);
 const db={bindings,facts:{},rules:[]};
@@ -320,13 +322,19 @@ passed(24,()=>{
     resolve:[{op:'flag',flag:'noExtra',value:false}],
     activation:false,oncePerTurn:false,
   });
-  const s=state([[ids.typhon,'extra']]);s.turn=2;
+  const s=state([[ids.typhon,'extra']],true);s.turn=2;
   denied(s,r,'cero Invocaciones rivales desde el Extra no habilitan TY-PHON');
-  s._ruleEvents=[{kind:'link_summon',side:'opponent',turn:1},
-    {kind:'fusion_summon',side:'opponent',turn:2}];
-  assert.equal(run(s,r).actions.length,1,'dos eventos acreditados abren condición de historial');
-  s._ruleEvents[0].turn=0;
-  denied(s,r,'evento dos turnos atrás ya no habilita superposición');
+  const two=E.clone(s);two.active='opponent';
+  let observed=E.observeExtraSummon(two,{key:rival.cards[1].key,zone:'m1'});
+  observed=E.observeExtraSummon(observed,{key:rival.cards[2].key,zone:'m2'});
+  observed.active='self';
+  assert.equal(run(observed,r).actions.length,1,'dos eventos observados el mismo turno abren condición de historial');
+  let split=E.clone(two);split.turn=1;
+  split=E.observeExtraSummon(split,{key:rival.cards[1].key,zone:'m1'});
+  split.turn=2;
+  split=E.observeExtraSummon(split,{key:rival.cards[2].key,zone:'m2'});
+  split.active='self';
+  denied(split,r,'una Invocación en cada turno no suma dos: impedir falso positivo anterior');
 });
 
 passed(25,()=>{
@@ -418,11 +426,11 @@ passed(33,()=>{
   denied(s,r,'sin Extra no hay Xyz',{noExtra:true});
 });
 
-/* These cases do not confer full mechanical certification: R12 checks only
- * inventory failure, R24 only a synthetic history guard. */
+/* First-pass cases are deliberately limited. R12 and R24 now receive a
+ * separate focused fixture covering the approved inventory and TY-PHON. */
 assert.deepEqual(covered,['R01','R03','R07','R09','R10','R11','R12','R13','R14','R15','R16',
   'R18','R19','R20','R22','R23','R24','R25','R29','R30','R28','R33']);
 assert.equal(covered.length,22);
-console.log('Memento A07 punto 1: 22/22 reglas antes sin caso clasificadas y probadas: '+
-  '20 efectos parciales, R12 guardia negativa, R24 historial sintético. 0/34 certificación integral.');
+console.log('Memento A07 punto 1: 22/22 reglas antes sin caso probadas; '+
+  'R12/R24 ampliadas en suite específica. 0/34 certificación integral.');
 module.exports={covered};
