@@ -9,7 +9,7 @@ const release=process.env.CALCULATOR_RELEASE_DIR?path.resolve(process.env.CALCUL
 const asset=name=>fs.existsSync(path.join(release,name))?path.join(release,name):path.join(app,name);
 const source=fs.readFileSync(asset('assets/modules/play-calculator/ui.js'),'utf8');
 const imageIndex=JSON.parse(fs.readFileSync(path.join(app,'assets/cards/originals/index.json'),'utf8'));
-const markup=`<!doctype html><html lang="es"><meta charset="utf-8"><link rel="stylesheet" href="./assets/modules/play-calculator/styles.css?v=20261108-planner-152"><style>body{margin:0;background:#06101f;color:#e4effa;font-family:system-ui}main{max-width:1500px;margin:auto;padding:20px}.btn{padding:8px;border:1px solid #286080;border-radius:6px;background:#0b2438;color:#9be6ff;cursor:pointer}.btn:disabled{opacity:.4}input,select,textarea{background:#091d2e;color:#e4effa;border:1px solid #345369;border-radius:5px;padding:8px}label{display:grid;gap:5px}h4{margin:5px 0}button{cursor:pointer}</style><main><div data-play-calculator></div></main><script>window.DML_DATA=${JSON.stringify(data)};</script><script src="./assets/modules/play-calculator/engine.js?v=20261103-board-129"></script><script src="./assets/modules/play-calculator/storage.js?v=20261103-board-129"></script><script>window.YgoDeckDeliveries={load:async()=>null};</script><script src="./assets/modules/play-calculator/planner.js?v=20261108-planner-152" ></script><script src="./assets/modules/play-calculator/hand-practice.js?v=20261113-hand-practice-170"></script><script src="./assets/modules/play-calculator/card-menu.js"></script><script src="./assets/modules/play-calculator/ui.js?v=20261108-planner-152"></script><script>window.mountDeck=id=>YgoPlayCalculator.mount(document.querySelector('[data-play-calculator]'),DML_DATA.allDecks.find(d=>d.id===id),DML_DATA);mountDeck(650);navigator.serviceWorker?.register('./service-worker.js');</script></html>`;
+const markup=`<!doctype html><html lang="es"><meta charset="utf-8"><link rel="stylesheet" href="./assets/modules/play-calculator/styles.css?v=20261108-planner-152"><style>body{margin:0;background:#06101f;color:#e4effa;font-family:system-ui}main{max-width:1500px;margin:auto;padding:20px}.btn{padding:8px;border:1px solid #286080;border-radius:6px;background:#0b2438;color:#9be6ff;cursor:pointer}.btn:disabled{opacity:.4}input,select,textarea{background:#091d2e;color:#e4effa;border:1px solid #345369;border-radius:5px;padding:8px}label{display:grid;gap:5px}h4{margin:5px 0}button{cursor:pointer}</style><main><div data-play-calculator></div></main><script>window.DML_DATA=${JSON.stringify(data)};</script><script src="./assets/modules/play-calculator/engine.js?v=20261103-board-129"></script><script src="./assets/modules/play-calculator/storage.js?v=20261103-board-129"></script><script>window.YgoDeckDeliveries={load:async()=>null};</script><script src="./assets/modules/play-calculator/rules.js"></script><script src="./assets/modules/play-calculator/study.js"></script><script src="./assets/modules/play-calculator/planner.js?v=20261108-planner-152" ></script><script src="./assets/modules/play-calculator/hand-practice.js?v=20261113-hand-practice-170"></script><script src="./assets/modules/play-calculator/card-menu.js"></script><script src="./assets/modules/play-calculator/ui.js?v=20261108-planner-152"></script><script>window.mountDeck=id=>YgoPlayCalculator.mount(document.querySelector('[data-play-calculator]'),DML_DATA.allDecks.find(d=>d.id===id),DML_DATA);mountDeck(650);navigator.serviceWorker?.register('./service-worker.js');</script></html>`;
 const server=http.createServer((req,res)=>{
  const url=new URL(req.url,'http://localhost');
  if(url.pathname==='/'){res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'});return res.end(markup);}
@@ -73,8 +73,19 @@ const server=http.createServer((req,res)=>{
     await page.locator(`.play-catalog [data-play-card="665:${row.id}"]`).click();
     await page.locator('[data-play-place="hand"][data-play-side="self"]').click();
   }
+  // A known response must be in the captured hand, not inferred from the rival list.
+  const ash=data.cards.find(c=>Number(c.deck_id)===656&&facts.bindings[`656:${c.id}`]===12950);assert(ash);
+  await page.locator('[data-play-pool]').selectOption('opponent');
+  await page.locator('[data-play-search]').fill(ash.card_name);
+  await page.locator(`.play-catalog [data-play-card="656:${ash.id}"]`).click();
+  await page.locator('[data-play-place="hand"][data-play-side="opponent"]').click();
   await page.locator('[data-play-analyze]').click();
   await page.locator('.play-computed-plan').first().waitFor({timeout:20000});
+  await page.getByRole('heading',{name:'Qué se analizó y qué falta',exact:true}).waitFor();
+  assert((await page.locator('.play-scenario-audit').innerText()).includes(ash.card_name));
+  assert(await page.locator('.play-response-branches article').count()>0,'Known Ash branches must be rendered');
+  assert((await page.locator('.play-response-branches').allTextContents()).some(t=>t.includes('CL2')));
+
   assert((await page.locator('.play-computed-plan').allTextContents()).some(t=>t.includes('Xyz')));
   assert.equal(await page.locator('[data-play-zone="hand"][data-play-side="self"] [data-play-token]').count(),2,'Worker must leave capture unchanged');
   await page.locator('.play-computed-plan > details > summary').first().click();

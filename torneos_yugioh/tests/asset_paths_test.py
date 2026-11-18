@@ -9,7 +9,7 @@ ROOT=Path(__file__).resolve().parents[1]
 
 def composed_entry_source():
     """Inspect the actual presentation include order without initializing a database."""
-    pattern = r"<\?php require YGO_APP_ROOT\s*\.\s*'(/includes/presentation/[^']+)'\s*;\s*\?>"
+    pattern = r"(?:<\?php\s+)?require\s+YGO_APP_ROOT\s*\.\s*'(/includes/presentation/[^']+)'\s*;(?:\s*\?>)?"
     def expand(relative):
         text = (ROOT / relative).read_text(encoding='utf-8-sig')
         return re.sub(pattern, lambda match: expand(match[1].lstrip('/')), text)
@@ -46,6 +46,8 @@ class AssetPathsTests(unittest.TestCase):
         self.assertLess(urls.index('./assets/modules/play-calculator/engine.js'),urls.index('./assets/modules/play-calculator/ui.js'))
         self.assertLess(urls.index('./assets/modules/play-calculator/storage.js'),urls.index('./assets/modules/play-calculator/ui.js'))
         self.assertLess(urls.index('./assets/modules/play-calculator/ui.js'),urls.index('./assets/app.js'))
+        for first, second in [('engine', 'rules'), ('rules', 'planner'), ('planner', 'ui'), ('study', 'ui')]:
+            self.assertLess(urls.index(f'./assets/modules/play-calculator/{first}.js'), urls.index(f'./assets/modules/play-calculator/{second}.js'))
         self.assertIn('data-deck-category-open="play-calculator"',index)
         self.assertIn("'/includes/decks/play-calculator-view.php'",index)
         app=(ROOT/'assets/app.js').read_text(encoding='utf-8-sig')

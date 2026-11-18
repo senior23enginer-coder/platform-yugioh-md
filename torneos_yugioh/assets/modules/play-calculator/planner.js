@@ -1,8 +1,8 @@
 (function (root, factory) {
   if (typeof module === "object" && module.exports)
-    module.exports = factory(require("./engine.js"));
-  else root.YgoPlayPlanner = factory(root.YgoPlayEngine);
-})(typeof globalThis !== "undefined" ? globalThis : this, function (E) {
+    module.exports = factory(require("./engine.js"), require("./rules.js"));
+  else root.YgoPlayPlanner = factory(root.YgoPlayEngine, root.YgoPlayRules);
+})(typeof globalThis !== "undefined" ? globalThis : this, function (E, R) {
   "use strict";
   const effects = {
     17768: [["search", "Buscar un monstruo Kashtira"]],
@@ -31,18 +31,60 @@
     if (!fact) return null;
     const names = [fact.name, db.names?.[card.key]].filter(Boolean).map(E.norm);
     if (!names.includes(E.norm(card.name))) return null;
-    if (card.imageId && db.imageIds?.[card.key] && card.imageId !== db.imageIds[card.key]) return null;
+    if (
+      card.imageId &&
+      db.imageIds?.[card.key] &&
+      card.imageId !== db.imageIds[card.key]
+    )
+      return null;
     return fact;
   }
   function capabilities(s, db) {
-    return s.self.cards.flatMap((c) => {
+    const own = s.self.cards.flatMap((c) => {
       const p = profile(c, db);
-      return (effects[p?.cid] || []).map(([key, label]) => ({
+      const builtIn = (effects[p?.cid] || []).map(([key, label]) => ({
         id: `${p.cid}:${key}`,
         cardKey: c.key,
         label: `${c.name}: ${label}`,
       }));
+      const declared = (db.rules || [])
+        .filter((r) => {
+          try {
+            R.validate(r);
+            return (
+              r.deckId === s.self.id &&
+              r.format === s.format &&
+              r.actor.cid ===
+                (db.identities?.[c.key]?.cid || db.bindings[c.key])
+            );
+          } catch {
+            return false;
+          }
+        })
+        .map((r) => ({
+          id: "rule:" + r.id,
+          cardKey: c.key,
+          label: c.name + ": " + r.label,
+        }));
+      return [...builtIn, ...declared];
     });
+    const replies = {
+      12950: "Ash Blossom & Joyous Spring",
+      14741: "Nibiru, the Primal Being",
+    };
+    const opponent = (s.opponent?.cards || []).flatMap((c) => {
+      const id = db.identities?.[c.key]?.cid || db.bindings[c.key];
+      return s.format === "tcg_advanced" && replies[id]
+        ? [
+            {
+              id: "response:opponent:" + id,
+              cardKey: c.key,
+              label: "Rival: " + c.name + " · efecto utilizado este turno",
+            },
+          ]
+        : [];
+    });
+    return [...own, ...opponent];
   }
   function snapshot(s, db) {
     return s.tokens.map((t) => ({
@@ -53,8 +95,24 @@
   }
   function solve(input, db, options = {}) {
     E.validate(input);
+    const structured = (db.rules || []).filter((r) => {
+      try {
+        R.validate(r);
+        return r.deckId === input.self.id && r.format === input.format;
+      } catch {
+        return false;
+      }
+    });
     const unsupported = input.self.cards
-      .filter((c) => !modelled.has(profile(c, db)?.cid))
+      .filter(
+        (c) =>
+          !modelled.has(profile(c, db)?.cid) &&
+          !structured.some(
+            (r) =>
+              r.actor.cid ===
+              (db.identities?.[c.key]?.cid || db.bindings[c.key]),
+          ),
+      )
       .map((c) => ({ name: c.name, normal: !!profile(c, db)?.normalAllowed }));
     const base = {
       plans: [],
@@ -68,7 +126,12 @@
         "La prioridad es una valoración de recursos y retirada rival, no probabilidad de ganar ni garantía de la mejor jugada.",
       ],
     };
-    if (input.format === "rush_duel")
+    if (
+      input.format === "rush_duel" &&
+      !(db.rules || []).some(
+        (r) => r.deckId === input.self.id && r.format === input.format,
+      )
+    )
       return {
         ...base,
         reason:
@@ -96,7 +159,7 @@
       (t) =>
         field(t) &&
         t.position !== "set" &&
-        !E.negated(input,t) &&
+        !E.negated(input, t) &&
         [18191].includes(db.bindings[t.key]),
     );
     if (blockers.length)
@@ -106,7 +169,14 @@
           "Arise-Heart está boca arriba: su reemplazo de Cementerio y sus disparos aún requieren modelado. No se inventa un estado posterior.",
       };
     const root = clone(input);
-    root._used = [...new Set([...(options.used || []),...(input.effectUsage||[]).filter(e=>e.turn===input.turn&&e.id).map(e=>e.id)])];
+    root._used = [
+      ...new Set([
+        ...(options.used || []),
+        ...(input.effectUsage || [])
+          .filter((e) => e.turn === input.turn && e.id)
+          .map((e) => e.id),
+      ]),
+    ];
     root._normal = !root.normalAvailable;
     root._xyz = !!options.xyzOnly;
     root._steps = [];
@@ -172,7 +242,11 @@
     function move(s, uid, zone, position) {
       const t = s.tokens.find((t) => t.uid === uid);
       if (!t) return;
-      if(field(t)&&!(monster(zone)||/^s[1-5]$/.test(zone)||zone==='field'))delete t.negation;
+      if (
+        field(t) &&
+        !(monster(zone) || /^s[1-5]$/.test(zone) || zone === "field")
+      )
+        delete t.negation;
       t.zone = zone;
       t.controller =
         zone === "graveyard" || zone === "banished" ? t.owner : t.controller;
@@ -205,7 +279,14 @@
     function stateKey(s) {
       return JSON.stringify([
         s.tokens
-          .map((t) => [t.key, t.owner, t.controller, t.zone, t.position,E.negated(s,t)])
+          .map((t) => [
+            t.key,
+            t.owner,
+            t.controller,
+            t.zone,
+            t.position,
+            E.negated(s, t),
+          ])
           .sort(),
         s._used.slice().sort(),
         s._normal,
@@ -213,14 +294,25 @@
         s.lp.self,
       ]);
     }
+    const baseOptions = options;
     function actions(s) {
+      const options = { ...baseOptions, ...s._ruleFlags };
       const out = [],
         mz = free(s, "m"),
         sz = free(s, "s");
-      function add(label, ids, change, used, source) {
+      function add(label, ids, change, used, source, metadata = {}) {
         const n = clone(s);
         change(n);
-        if (used) n._used.push(used);
+        if (used && !n._used.includes(used)) n._used.push(used);
+        const deckHand = n.tokens.some(
+          (t) =>
+            t.zone === "hand" &&
+            t.owner === "self" &&
+            definition(n, t)?.section === "main" &&
+            !s.tokens.some((b) => b.uid === t.uid && b.zone !== "deck"),
+        );
+        if ((options.noDeckToHand || s._ruleFlags?.noDeckToHand) && deckHand)
+          return;
         try {
           E.validate(n);
         } catch {
@@ -237,7 +329,58 @@
             );
           })
           .map((t) => t.uid);
+        const actor = s.tokens.find((t) => t.uid === ids[0]);
+        const ap = actor && fact(s, actor);
+        const activation =
+          metadata.event?.activation ??
+          !!(
+            used ||
+            (actor &&
+              actor.zone === "hand" &&
+              ["spell", "trap"].includes(ap?.kind))
+          );
+        const tags = [];
+        if (activation) {
+          if (deckHand) tags.push("addFromDeck");
+          if (
+            n.tokens.some(
+              (t) =>
+                monster(t.zone) &&
+                !s.tokens.some((b) => b.uid === t.uid) &&
+                definition(n, t)?.section === "main",
+            )
+          )
+            tags.push("summonFromDeck");
+          if (actor && monster(actor.zone) && ap?.kind === "monster")
+            tags.push("monsterEffect");
+        }
+        const paid = R.checkpoint(s);
+        if (used && !paid._used.includes(used)) paid._used.push(used);
+        if (
+          activation &&
+          actor?.zone === "hand" &&
+          ["spell", "trap"].includes(ap?.kind)
+        ) {
+          const token = paid.tokens.find((t) => t.uid === actor.uid),
+            end = n.tokens.find((t) => t.uid === actor.uid);
+          if (token && end) {
+            token.zone = end.zone;
+            token.position = end.position;
+          }
+        }
+        if (activation) {
+          paid.lp = E.clone(n.lp);
+          for (const token of paid.tokens) {
+            const end = n.tokens.find((t) => t.uid === token.uid);
+            if (token.zone.startsWith("material:") && end?.zone === "graveyard")
+              token.zone = "graveyard";
+          }
+        }
         n._steps.push({
+          before: R.checkpoint(s),
+          paid: metadata.paid || paid,
+          afterState: R.checkpoint(n),
+          event: metadata.event || { activation, actor: actor?.uid, tags },
           label,
           cards: [...new Set([...ids, ...changed])]
             .map((uid) => {
@@ -265,6 +408,16 @@
         });
         out.push(n);
       }
+      for (const action of R.actions(s, db, options).actions)
+        add(
+          action.label,
+          action.ids,
+          (n) => Object.assign(n, action.state),
+          action.used,
+          action.source,
+          action,
+        );
+      if (s.format === "rush_duel") return out;
       for (const t of own(s, (t) => t.zone === "hand")) {
         const p = fact(s, t);
         if (!p) continue;
@@ -274,7 +427,10 @@
             own(
               s,
               (t) =>
-                field(t) && t.position !== "set" && !E.negated(s,t) && fact(s, t)?.cid === 17815,
+                field(t) &&
+                t.position !== "set" &&
+                !E.negated(s, t) &&
+                fact(s, t)?.cid === 17815,
             ).length > 0;
           const count = p.level >= 7 ? 2 : p.level >= 5 ? 1 : 0;
           for (const tribute of combinations(
@@ -442,7 +598,7 @@
       if (!options.effectsNegated)
         for (const t of faceMons(s)) {
           const p = fact(s, t);
-          if (!p || E.negated(s,t)) continue;
+          if (!p || E.negated(s, t)) continue;
           if (
             [17768, 17769, 17770].includes(p.cid) &&
             unused(s, `${p.cid}:search`)
@@ -494,7 +650,11 @@
         unused(s, "17815:revive") &&
         own(
           s,
-          (t) => field(t) && t.position !== "set" && !E.negated(s,t) && fact(s, t)?.cid === 17815,
+          (t) =>
+            field(t) &&
+            t.position !== "set" &&
+            !E.negated(s, t) &&
+            fact(s, t)?.cid === 17815,
         ).length
       )
         for (const target of s.tokens.filter(
@@ -507,7 +667,17 @@
         ))
           add(
             `Birth recupera ${definition(s, target).name} de ${target.zone === "graveyard" ? "Cementerio" : "destierro boca arriba"}`,
-            [target.uid],
+            [
+              own(
+                s,
+                (t) =>
+                  field(t) &&
+                  t.position !== "set" &&
+                  fact(s, t)?.cid === 17815 &&
+                  !E.negated(s, t),
+              )[0].uid,
+              target.uid,
+            ],
             (n) => move(n, target.uid, mz),
             "17815:revive",
             fact(s, target).source,
@@ -604,5 +774,5 @@
         "No hay acciones calculables con los efectos implementados y el estado capturado. Esto no demuestra que no existan otras jugadas.";
     return base;
   }
-  return { solve, profile, capabilities };
+  return { solve, profile, capabilities, modelled: [...modelled] };
 });

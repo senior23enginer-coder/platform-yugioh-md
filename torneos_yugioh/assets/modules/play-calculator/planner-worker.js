@@ -1,14 +1,16 @@
-/* Static local worker: no requests to AI or rules services. */
+/* Static local worker: deterministic rules and bounded response branches, no AI service. */
 importScripts(
   "./engine.js?v=20261116-actions-1",
-  "./planner.js?v=20261116-actions-1",
+  "./rules.js?v=20261118-scenario-1",
+  "./planner.js?v=20261118-scenario-1",
+  "./scenario.js?v=20261118-scenario-1",
 );
 self.onmessage = (event) => {
   const { id, scenario, facts, options } = event.data;
   try {
     self.postMessage({
       id,
-      result: self.YgoPlayPlanner.solve(scenario, facts, options),
+      result: self.YgoScenarioAnalysis.solve(scenario, facts, options),
     });
   } catch (error) {
     self.postMessage({ id, error: error.message });

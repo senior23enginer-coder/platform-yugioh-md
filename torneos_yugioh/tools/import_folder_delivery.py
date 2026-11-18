@@ -47,6 +47,35 @@ def write(p, value):
     return hashlib.sha256(raw).hexdigest()
 
 
+def calculator_contract(raw, data, deck_id):
+    """Import declared data only; the browser validates every operation before execution."""
+    found = []
+    for block in re.findall(r'```json\s*\n(.*?)\n```', raw, re.S):
+        try:
+            value = json.loads(block)
+        except ValueError:
+            if 'station-x-calculator/1' in block:
+                raise ValueError('Malformed calculator JSON; do not discard it silently')
+            continue
+        if not isinstance(value, dict) or value.get('schema') != 'station-x-calculator/1':
+            continue
+        assert len(block.encode('utf8')) <= 131072
+        assert value.get('deck_id') == deck_id and value.get('format') == data['format']
+        assert isinstance(value.get('rules'), list) and len(value['rules']) <= 100
+        ids = set()
+        for rule in value['rules']:
+            assert rule.get('version') == 1 and rule.get('deckId') == deck_id and rule.get('format') == data['format']
+            assert isinstance(rule.get('id'), str) and rule['id'] not in ids
+            assert rule.get('actor', {}).get('cid') in {c['cid'] for c in data['cards']}
+            assert all(isinstance(rule.get(k), list) for k in ('guards', 'select', 'costs', 'resolve', 'tags', 'assumptions'))
+            ids.add(rule['id'])
+        found.append(value)
+    assert len(found) <= 1, 'Duplicate calculator contract'
+    if found:
+        data['calculator'] = found[0]
+    return data
+
+
 def plain(s):
     return re.sub(r'[*`]', '', s).strip()
 
@@ -315,6 +344,7 @@ def build():
         data['folder_delivery']={'source_sha256':hashlib.sha256(file.read_bytes()).hexdigest(),'reader':'./'+(TARGET/f'{id}-guide.html').relative_to(APP).as_posix(),'source_repository':'gpt-yugioh-promps-platform','source_file':file.relative_to(PROMPTS).as_posix()}
         page=render_page(data['name'],player,file)
         (TARGET/f'{id}-guide.html').write_text(page,encoding='utf8')
+        data=calculator_contract(raw,data,id)
         digest=write(TARGET/f'{id}.json',data)
         manifest['decks'][str(id)]={'path':f'./assets/editorial/{VERSION}/{id}.json','cards':len(data['cards']),'routes':len(data['routes']),'sha256':digest,'presentation':'curated-v62'}
         report.append({'id':id,'name':data['name'],'cards':len(data['cards']),'routes':len(data['routes']),'updated_routes':len(set(updated)),'native_revisions_preserved':sum((id,r['id']) in overrides for r in data['routes'])})

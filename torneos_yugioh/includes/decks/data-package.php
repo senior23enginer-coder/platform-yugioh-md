@@ -53,8 +53,32 @@ function ygo_data_photos(string $text,array $cards): array {
         if($found)$photos[]=array_intersect_key($c,array_flip(['cid','name','image','full_image']))+['label'=>'Carta mencionada en el paso'];
     }return $photos;
 }
+/** Preserve one explicit simulator contract; prose never becomes an executable effect. */
+function ygo_data_calculator(string $raw,array $data,int $deckId): array {
+    preg_match_all('~```json\s*\R(.*?)\R```~s',$raw,$blocks,PREG_SET_ORDER);$found=false;
+    foreach($blocks as $block){
+        $value=json_decode($block[1],true);
+        if(json_last_error()!==JSON_ERROR_NONE&&str_contains($block[1],'station-x-calculator/1'))throw new InvalidArgumentException('JSON de calculadora dañado; no se descartará silenciosamente.');
+        if(!is_array($value)||($value['schema']??'')!=='station-x-calculator/1')continue;
+        if($found||strlen($block[1])>131072||(int)($value['deck_id']??0)!==$deckId||($value['format']??'')!==($data['format']??'')||!is_array($value['rules']??null)||count($value['rules'])>100)throw new InvalidArgumentException('Contrato de calculadora duplicado, de otro deck o incompleto.');
+        $found=true;$ids=[];$cids=array_column($data['cards']??[],'cid');
+        foreach($value['rules'] as $rule){
+            if(!is_array($rule)||($rule['version']??0)!==1||($rule['deckId']??0)!==$deckId||($rule['format']??'')!==$value['format']||!is_string($rule['id']??null)||isset($ids[$rule['id']])||!in_array($rule['actor']['cid']??null,$cids,true))throw new InvalidArgumentException('Regla de calculadora de otro deck o carta no identificada.');
+            $ids[$rule['id']]=true;
+            foreach(['guards','select','costs','resolve','tags','assumptions'] as $field)if(!is_array($rule[$field]??null))throw new InvalidArgumentException('Regla sin '.$field);
+        }
+        $data['calculator']=$value;
+    }
+    return $data;
+}
+/** Keep simulator metadata in the package, outside player-facing explanations. */
+function ygo_data_without_calculator(string $raw): string {
+    return preg_replace_callback('~```json\s*\R(.*?)\R```~s',static function(array $m):string{
+        $v=json_decode($m[1],true);return is_array($v)&&($v['schema']??'')==='station-x-calculator/1'?'':$m[0];
+    },$raw);
+}
 function ygo_data_markdown(string $raw,array $base,int $deckId): array {
-    $data=$base;$by=[];foreach($data['routes']??[] as $r)$by[$r['id']]=$r;
+    $data=ygo_data_calculator($raw,$base,$deckId);$raw=ygo_data_without_calculator($raw);$by=[];foreach($data['routes']??[] as $r)$by[$r['id']]=$r;
     $parsed=0;
     foreach(ygo_data_sections($raw) as $part){
         [,,$title,$body]=$part;$rid=null;
@@ -95,6 +119,7 @@ function ygo_data_markdown(string $raw,array $base,int $deckId): array {
 function ygo_data_validate(array $record,array $inventory): void {
     $id=(int)$inventory['deck']['id'];
     if(($record['schema']??'')!=='station-x-curated-v62'||(int)($record['deck_id']??0)!==$id)throw new InvalidArgumentException('El contenido no corresponde al deck de esta ficha.');
+    if(isset($record['calculator']))ygo_data_calculator("```json\n".ygo_data_json($record['calculator'])."\n```",$record,$id);
     foreach(['cards','routes','skills','profile','engine_maps','decisions','practice'] as $key)if(!isset($record[$key])||!is_array($record[$key]))throw new InvalidArgumentException('Falta la sección '.$key.'.');
     if(count($record['cards'])>300||count($record['routes'])>500)throw new InvalidArgumentException('Demasiadas cartas o rutas.');
     $native=[];foreach($inventory['cards'] as $c)$native[(int)$c['id']]=$c;
@@ -118,6 +143,7 @@ function ygo_data_validate(array $record,array $inventory): void {
     array_walk_recursive($record,static function($value){if(is_string($value)&&(preg_match('~(?:javascript|vbscript|data|file):~i',$value)||preg_match('~<\s*/?\s*(script|iframe|object|embed|svg|img|style|link)\b~i',$value)))throw new InvalidArgumentException('El contenido contiene HTML o enlaces ejecutables no admitidos.');});
 }
 function ygo_data_reader(string $name,string $raw): string {
+    $raw=ygo_data_without_calculator($raw);
     $e=static fn($v)=>htmlspecialchars($v,ENT_QUOTES|ENT_SUBSTITUTE,'UTF-8');$html='';
     foreach(explode("\n",$raw) as $line){if(preg_match('/^(#{1,6})\s+(.*)$/u',$line,$m)){$n=min(6,strlen($m[1])+1);$html.='<h'.$n.'>'.$e(ygo_data_plain($m[2])).'</h'.$n.'>';}
         else $html.='<div class="line">'.$e($line).'</div>';

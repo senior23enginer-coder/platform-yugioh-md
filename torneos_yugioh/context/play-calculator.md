@@ -86,3 +86,17 @@ Código en `assets/modules/play-calculator/`: motor, almacenamiento, UI, arranqu
 - `npm run test:guide`: regresión de los 11 decks y 126 rutas tras reorganizar la guía.
 
 Los resultados de navegador quedan en `outputs/play-calculator/`, excluido de Git. No equivalen a publicación ni a validación manual del sitio de producción.
+
+## Análisis de escenario por todos los decks — 18-11-2026
+
+La calculadora consulta `strategy-content-state.json`, igual que la biblioteca vigente, y valida el ID de cada estudio. Se retiró su dependencia del índice histórico de once decks. La comprobación local cubre 16 estudios y 193 rutas; el alcance se adapta al índice, no a una lista fija de IDs. Los slots nativos y alias exactos enlazan identidades. Un cambio de carta en un slot invalida la correspondencia anterior.
+
+`study.js` adapta el estudio actual, conserva sus condiciones textuales y usa como mano explícita solo las fotos rotuladas «En mano». Las imágenes que solo mencionan una carta en un paso no se convierten en mano mínima. Las listas y referencias se preparan para consulta offline; el escenario sigue siendo efímero.
+
+`rules.js` interpreta contratos `station-x-calculator/1` asociados al deck/formato. Tiene selectores y condiciones enumeradas y operadores de movimiento, obtención de recursos, coste LP, consumo de Normal y restricciones. Las operaciones desconocidas se rechazan. Costes y resolución son fases separadas; no hay `eval` ni traducción automática de prosa a efectos. `data-package.php` conserva el bloque JSON opcional del documento canónico al importar por ZIP y comprueba identidad/formato. La herramienta de importación local admite el mismo contrato.
+
+`scenario.js` añade cobertura por ambos decks, cartas sin efectos modelados, campo con interacciones pendientes e información oculta. Para las activaciones implementadas calcula ramas condicionales con Ash conocida en mano, Impermanence conocida en mano y campo rival vacío, o Droll tras una adición. Conserva costes/usos y busca hasta dos continuaciones desde ese estado. Droll mantiene la primera adición y bloquea las posteriores. Una carta únicamente presente en la lista rival no genera una respuesta.
+
+Se estudia una respuesta por rama, con hasta doce ramas entre todas las propuestas y búsqueda acotada de continuaciones. No acredita cadenas arbitrarias, inmunidades, efectos simultáneos ni una segunda respuesta. Nibiru se identifica como respuesta pendiente: no se inventa el conteo de Invocaciones, Sacrificios ni Ficha. Las Skills y efectos Rush siguen requiriendo sus contratos y operadores específicos; no se aplican reglas TCG por analogía.
+
+Los datos actuales aportan **cero reglas declarativas**: el nuevo intérprete está probado, pero la documentación previa no equivale a su implementación. `node torneos_yugioh/tools/calculator_coverage.cjs` produce un informe local por cada deck y la lista de efectos faltantes; no conecta con la BD, no modifica inventarios y no escribe en la carpeta importable de prompts. `scenario_analysis_test.cjs` verifica los 16 estudios, respuestas, atomicidad, identidades y separación de formatos. `calculator_import_test.php` verifica el contrato ZIP/Markdown.
