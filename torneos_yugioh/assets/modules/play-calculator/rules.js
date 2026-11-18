@@ -125,9 +125,10 @@
       check(rule.trigger && rule.trigger.actorCid === rule.actor.cid &&
         (rule.trigger.kind === "sent_by_monster_effect"
           ? Number.isInteger(rule.trigger.sourceCid) && rule.trigger.sourceCid > 0
-          : rule.trigger.kind === "summoned" &&
-            Array.isArray(rule.trigger.methods) && rule.trigger.methods.length > 0 &&
-            rule.trigger.methods.every(m => ["normal", "special"].includes(m))),
+          : rule.trigger.kind === "fusion_summoned" ||
+            (rule.trigger.kind === "summoned" &&
+              Array.isArray(rule.trigger.methods) && rule.trigger.methods.length > 0 &&
+              rule.trigger.methods.every(m => ["normal", "special"].includes(m)))),
         "Disparador causal incorrecto");
     check(
       rule.actor.side === "self",
@@ -244,7 +245,9 @@
         check(
           refs.has(op.ref) &&
             zones.includes(op.to) &&
-            ["attack", "defense", "set"].includes(op.position),
+            ["attack", "defense", "set"].includes(op.position) &&
+            (op.summonMethod === undefined ||
+              (op.summonMethod === "special" && ["m1","m2","m3","m4","m5"].includes(op.to))),
           "Movimiento incorrecto",
         );
       else if (op.op === "take")
@@ -328,7 +331,9 @@
       (rule.trigger.kind === "sent_by_monster_effect"
         ? e.kind === "sent_to_graveyard" && e.sourceCid === rule.trigger.sourceCid &&
           s.tokens.some(t => t.uid === uid && t.zone === "graveyard")
-        : e.kind === "summon" && rule.trigger.methods.includes(e.method) &&
+        : (rule.trigger.kind === "fusion_summoned"
+          ? e.kind === "fusion_summon"
+          : e.kind === "summon" && rule.trigger.methods.includes(e.method)) &&
           s.tokens.some(t => t.uid === uid && E.isMonster(t.zone))));
   }
   function actions(s, db, options = {}) {
@@ -441,7 +446,7 @@
             n=E.place(n,previous?{uid:previous.uid,zone:op.to,controller:"self"}:{key:extraCard[0].key,owner:"self",controller:"self",zone:op.to});
             const summoned=n.tokens.find(t=>t.key===extraCard[0].key&&t.zone===op.to);
             n=E.position(n,summoned.uid,"attack");
-            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"link_summon",cid:op.cid,uid:summoned.uid,materials:selected.map(t=>t.uid),stage:opStage}];
+            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"link_summon",cid:op.cid,uid:summoned.uid,materials:selected.map(t=>t.uid),turn:n.turn,stage:opStage}];
           } else if (op.op === "xyz") {
             check(!(f.noExtra || f.specialBlocked),"Xyz bloqueado por restricción de Extra o Especial");
             check(!(options.blockedZones||[]).includes(op.to),"Zona Extra bloqueada");
@@ -458,7 +463,7 @@
             const summoned=n.tokens.find(t=>t.key===extraCard[0].key&&t.zone===op.to);
             n=E.position(n,summoned.uid,"attack");
             for(const t of selected)n=E.place(n,{uid:t.uid,zone:"material:"+summoned.uid,controller:"self"});
-            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"xyz_summon",cid:op.cid,uid:summoned.uid,materials:selected.map(t=>t.uid),stage:opStage}];
+            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"xyz_summon",cid:op.cid,uid:summoned.uid,materials:selected.map(t=>t.uid),turn:n.turn,stage:opStage}];
           } else if (op.op === "fusion") {
             check(!(f.noExtra || f.specialBlocked || f.xyzOnly), "Fusión bloqueada por restricción de Extra o Especial");
             check(!(options.blockedZones || []).includes(op.to), "Zona Extra bloqueada");
@@ -475,7 +480,7 @@
             n=E.place(n,previous?{uid:previous.uid,zone:op.to,controller:"self"}:{key:extraCard[0].key,owner:"self",controller:"self",zone:op.to});
             const summoned=n.tokens.find(t=>t.key===extraCard[0].key && t.zone===op.to);
             n=E.position(n,summoned.uid,"attack");
-            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"fusion_summon",cid:op.cid,uid:summoned.uid,materials:selected.map(t=>t.uid),stage:opStage}];
+            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"fusion_summon",cid:op.cid,uid:summoned.uid,materials:selected.map(t=>t.uid),turn:n.turn,stage:opStage}];
           } else if (op.op === "destroy") {
             const t = n.tokens.find((t) => t.uid === refs[op.ref]);
             check(t && (field(t.zone) || t.zone === "hand"), "Objetivo de destrucción fuera de campo/mano");
@@ -494,6 +499,11 @@
           } else if (op.op === "move") {
             const t = n.tokens.find((t) => t.uid === refs[op.ref]);
             check(t, "Copia ausente");
+            if(op.summonMethod){
+              check(t.owner==="self" && t.controller==="self" &&
+                ["hand","graveyard"].includes(t.zone) && !f.specialBlocked,
+                "Invocación Especial desde zona no acreditada o bloqueada");
+            }
             n = E.place(n, {
               uid: t.uid,
               zone: op.to,
@@ -505,6 +515,9 @@
             });
             if (n.tokens.some((x) => x.uid === t.uid))
               n = E.position(n, t.uid, op.position);
+            if(op.summonMethod) n._ruleEvents=[...(n._ruleEvents||[]),
+              {kind:"summon",method:op.summonMethod,uid:t.uid,
+                cid:db.bindings[t.key],turn:n.turn,stage:opStage}];
           } else if (op.op === "take") {
             check(
               !(f.noDeckToHand && op.from === "deck" && op.to === "hand"),
