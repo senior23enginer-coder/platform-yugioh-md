@@ -346,6 +346,31 @@
       "scope": "Normal real de Angbruja en el motor seguida de búsqueda Tatsun solo después del evento de Invocación con UID y turno; no modela la respuesta de Ash ni todas las búsquedas posibles"
     }
   ],
+  "incremental_rule_cases_p1": [
+    {"id":"R01","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Oleada al inicio de Main1 antes de otra acción ejecutada por este adaptador: impide Especial propia y no se permite en Main2; no acredita normales de efecto ni aplicación bilateral"},
+    {"id":"R03","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Especial Tatsun desde mano cuando no hay Grabador ni Luna boca arriba; otros no-Memento aún no enumerados"},
+    {"id":"R07","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Rey Invocado mediante Fusión exacta envía tres CID fijos, no atribuye disparador sin evento; sin destrucción rápida de parejas variables"},
+    {"id":"R09","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Fiesta destruye Angbruja propia, invoca Tatsun desde Deck en Defensa y registra evento de Especial; sin elección de cartas variable"},
+    {"id":"R10","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Luna ya Invocada como Demonio LUZ se usa como único material exacto Link-1 de Réquiem; equipamiento y envío de equipo más monstruo pendientes"},
+    {"id":"R11","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Link S:P de dos materiales fijos bloqueado por noExtra; no valida ataque, materiales del Extra ni TY-PHON"},
+    {"id":"R12","status":"NEGATIVE_INVENTORY_GUARD_ONLY","scope":"Búsqueda de CID que no está en Main rechazada con error de recurso y catálogo del duelo sin importar Side; inventario completo y objetivo real Demoniherrero no reproducidos"},
+    {"id":"R13","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Fusión en GY se destierra como coste, destruye un Tatsun fijo y busca segunda copia; negación conserva destierro, no acredita toda separación de límites"},
+    {"id":"R14","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Fusión con una Witch en GY solo tras evento acreditado de destrucción propia por efecto en turno actual; baraja ese material al Deck; evento inyectado, sin cadenas"},
+    {"id":"R15","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Dragón Gemelo ya invocado por Fusión destruye Dormiveja en mano y busca jefe+Goblin; sin disparador secundario Dormiveja ni variación de objetivos"},
+    {"id":"R16","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Quimera fusionada con tres CID exactos diferentes y material de mano+campo; sin robo aleatorio ni destrucciones equivalentes"},
+    {"id":"R18","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Maza se descarta en Main rival con jefe propio y cambia control de monstruo rival fijo; retorno de control al final de turno sin temporización pendiente"},
+    {"id":"R19","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Réquiem desde GY se equipa en S1 a Grabador visible y registra vínculo al UID; Invocación alternativa de Princesa y pérdida de equipo siguen pendientes"},
+    {"id":"R20","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Secuencia previamente Invocada fusiona Duque usando Grabador y Goblin ya en GY, barajados al Deck sin destrucción previa; sin ruta Link previa ni recetas variables"},
+    {"id":"R22","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Horn se Invoca desde mano con tres nombres Memento distintos en GY, y rechaza duplicados; destrucción triple de segundo efecto pendiente"},
+    {"id":"R23","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Dragostapelia ya Invocada pone contador Predador a rival boca arriba; sin negación por contador ni Fusión/turno de Set completo"},
+    {"id":"R24","status":"CONDITION_GUARD_ONLY","scope":"Historial de dos Invocaciones del rival desde Extra en turno actual o anterior, con eventos inyectados; superposición, mayor ATK y cierre de Invocaciones pendientes"},
+    {"id":"R25","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Aero Tiburón Xyz con dos copias de Angbruja Nivel 3, materiales acoplados; desacoplamiento y daño por desterradas pendientes"},
+    {"id":"R28","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Gordiano post-Side paga seis cartas físicas del Extra, las destierra boca abajo y devuelve un objetivo rival al Deck; no cubre dos objetivos/coste 12"},
+    {"id":"R29","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Fuwalos desde mano en turno rival solo con cero cartas propias; no reproduce robos reactivos ni ajuste de End Phase"},
+    {"id":"R30","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Lancea en contexto sintético post-Side se Sacrifica desde mano y bloquea destierros propios; vencimiento automático del bloqueo al terminar turno pendiente"},
+    {"id":"R33","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Materiales Xyz de dos Angbruja Nivel 3 dejan de ocupar campo; noExtra impide la Invocación; niveles genéricos y otras recetas pendientes"}
+  ],
+  "blocked_rule_cases_p1": [],
   "partial_route_cases": [
     {
       "id": "C01",
@@ -374,6 +399,8 @@
   "notes": [
     "Ninguna fila DOCUMENTED_NOT_ENGINE_TESTED puede contarse como regla ejecutable probada.",
     "Los operadores move/take/normal/flag y efectos parciales no reproducen por sí solos estas mecánicas.",
-    "El manifiesto no publica combos ni cambia inventarios."
+    "El manifiesto no publica combos ni cambia inventarios.",
+    "Punto 1 A07: las 22 reglas antes sin prueba tienen casos: 20 efectos/procedimientos parciales, R12 solo guardia negativa de inventario y R24 solo condición de historial con eventos inyectados. Cero certificaciones integrales y cero replays certificados.",
+    "Los casos sintéticos con Lancea simulan exclusivamente una situación posterior a intercambio Side; el inventario aprobado no fue modificado."
   ]
 }
