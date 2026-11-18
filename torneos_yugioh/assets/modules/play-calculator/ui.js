@@ -63,7 +63,7 @@
       planBusy: false,
       planRequest: 0,
       planWorker: null,
-      planOptions: { used: [], blockedZones: [] },
+      planOptions: { used: [], blockedZones: [], goal: "balanced" },
       matchups: [],
       query: "",
       side: "both",
@@ -426,6 +426,12 @@
     }
     function plannerSettings() {
       const opts = state.planOptions,
+        goals = [
+          ["balanced", "Equilibrado · campo, remoción y recursos"],
+          ["removal", "Romper campo · retirar cartas rivales"],
+          ["board", "Desarrollar campo · presencia de monstruos"],
+          ["resources", "Conservar recursos · cartas en mano"],
+        ],
         flags = [
           ["specialBlocked", "No puedo Invocar Especialmente"],
           ["noExtra", "No puedo Invocar desde el Extra"],
@@ -440,7 +446,7 @@
             "No se puede añadir del Main a la mano (por ejemplo, Droll ya resuelto)",
           ],
         ];
-      return `<details class="play-planner-settings"><summary>Restricciones y efectos ya utilizados para calcular</summary><p>Declara los bloqueos actuales. Las notas libres no se interpretan como reglas.</p><div>${flags.map(([key, label]) => `<label><input type="checkbox" data-planner-flag="${key}" ${opts[key] ? "checked" : ""}> ${label}</label>`).join("")}</div><label>Zonas propias bloqueadas (por ejemplo: m1,s2)<input class="form-control" data-planner-zones value="${esc(opts.blockedZones.join(","))}" placeholder="m1,s2,emz1"></label><fieldset><legend>Efectos ya usados este turno</legend>${(root.YgoPlayPlanner?.capabilities(state.scenario, state.plannerFacts || { facts: {}, bindings: {} }) || []).map((e) => `<label><input type="checkbox" data-planner-used="${e.id}" ${opts.used.includes(e.id) ? "checked" : ""}> ${esc(e.label)}</label>`).join("") || "<p>No hay efectos específicos disponibles para marcar.</p>"}</fieldset></details>`;
+      return `<section class="play-planner-settings"><label>Objetivo estratégico de la búsqueda<select class="form-select" data-planner-goal>${goals.map(([value, label]) => `<option value="${value}" ${opts.goal === value ? "selected" : ""}>${label}</option>`).join("")}</select></label><p>La clasificación es una heurística de recursos visibles; no calcula OTK, probabilidades de victoria ni todas las interrupciones.</p><details><summary>Restricciones y efectos ya utilizados para calcular</summary><p>Declara los bloqueos actuales. Las notas libres no se interpretan como reglas.</p><div>${flags.map(([key, label]) => `<label><input type="checkbox" data-planner-flag="${key}" ${opts[key] ? "checked" : ""}> ${label}</label>`).join("")}</div><label>Zonas propias bloqueadas (por ejemplo: m1,s2)<input class="form-control" data-planner-zones value="${esc(opts.blockedZones.join(","))}" placeholder="m1,s2,emz1"></label><fieldset><legend>Efectos ya usados este turno</legend>${(root.YgoPlayPlanner?.capabilities(state.scenario, state.plannerFacts || { facts: {}, bindings: {} }) || []).map((e) => `<label><input type="checkbox" data-planner-used="${e.id}" ${opts.used.includes(e.id) ? "checked" : ""}> ${esc(e.label)}</label>`).join("") || "<p>No hay efectos específicos disponibles para marcar.</p>"}</fieldset></details></section>`;
     }
     function calculate() {
       invalidatePlan();
@@ -569,7 +575,7 @@
                 .join("")}</section>`,
           )
           .join("");
-      return `<h4>Secuencias calculadas desde tu estado</h4><p>${result.explored} estados explorados · ${result.plans.length} alternativas${result.limited ? " · búsqueda limitada, no exhaustiva" : ""}.</p>${result.reason ? `<p>${esc(result.reason)}</p>` : ""}<details open><summary>Supuestos y límites de estas propuestas</summary><ul>${result.assumptions.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></details>${result.plans.map((p, i) => `<article class="play-computed-plan"><details><summary><b>Opción ${i + 1}: ${p.removed > 0 ? "retirar o tomar " + p.removed + " carta(s) rival(es)" : "desarrollar campo y recursos"}</b></summary><p>${p.steps.length} acciones · prioridad heurística ${p.priority} · LP propios ${p.lp.self}${p.xyzOnly ? " · Extra limitado a Xyz" : ""}.</p><ol>${p.steps.map((step) => `<li><p>${esc(step.label)}</p><div class="play-plan-photos">${pics(step.cards)}</div><a href="${esc(step.source)}" target="_blank" rel="noopener">Fuente de la acción</a><details><summary>Estado después de esta acción</summary><div class="play-plan-state">${renderState(step.after)}</div></details></li>`).join("")}</ol>${responsesView(p, renderState)}<details><summary>Comparar con tu estado inicial y ver el resultado final</summary><h5>Estado capturado</h5><div class="play-plan-state">${renderState(state.scenario.tokens)}</div><h5>Resultado propuesto</h5><div class="play-plan-state">${renderState(p.final)}</div><p>Normal restante: ${p.normalAvailable ? "sí" : "no"}. Esta vista previa no modifica el tablero.</p></details></details></article>`).join("")}<details><summary>Efectos sin modelar en esta lista (${result.unsupported.length} cartas)</summary><p>Sus efectos específicos no se usan para construir estas líneas. Algunas cartas solo disponen del procedimiento básico de Invocación Normal.</p><ul>${result.unsupported.map((c) => `<li>${esc(c.name)}${c.normal ? " ? procedimiento Normal disponible" : ""}</li>`).join("")}</ul></details>`;
+      return `<h4>Secuencias calculadas desde tu estado</h4><p><b>Objetivo:</b> ${esc(result.goalLabels?.[result.goal] || "Equilibrado")}. ${result.explored} estados explorados · ${result.plans.length} alternativas${result.limited ? " · búsqueda limitada, no exhaustiva" : ""}.</p>${result.reason ? `<p>${esc(result.reason)}</p>` : ""}<details open><summary>Supuestos y límites de estas propuestas</summary><ul>${result.assumptions.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></details>${result.plans.map((p, i) => `<article class="play-computed-plan"><details><summary><b>Opción ${i + 1}: ${p.removed > 0 ? "retirar o tomar " + p.removed + " carta(s) rival(es)" : "desarrollar campo y recursos"}</b></summary><p>${p.steps.length} acciones · prioridad heurística ${p.priority} · LP propios ${p.lp.self}${p.xyzOnly ? " · Extra limitado a Xyz" : ""}.</p>${p.metrics ? `<p><b>Indicadores observables:</b> ${p.metrics.removed} cartas rivales retiradas · ${p.metrics.hand} cartas propias en mano · ${p.metrics.actions} acciones. No equivalen a una probabilidad de victoria.</p>` : ""}<ol>${p.steps.map((step) => `<li><p>${esc(step.label)}</p><div class="play-plan-photos">${pics(step.cards)}</div><a href="${esc(step.source)}" target="_blank" rel="noopener">Fuente de la acción</a><details><summary>Estado después de esta acción</summary><div class="play-plan-state">${renderState(step.after)}</div></details></li>`).join("")}</ol>${responsesView(p, renderState)}<details><summary>Comparar con tu estado inicial y ver el resultado final</summary><h5>Estado capturado</h5><div class="play-plan-state">${renderState(state.scenario.tokens)}</div><h5>Resultado propuesto</h5><div class="play-plan-state">${renderState(p.final)}</div><p>Normal restante: ${p.normalAvailable ? "sí" : "no"}. Esta vista previa no modifica el tablero.</p></details></details></article>`).join("")}<details><summary>Efectos sin modelar en esta lista (${result.unsupported.length} cartas)</summary><p>Sus efectos específicos no se usan para construir estas líneas. Algunas cartas solo disponen del procedimiento básico de Invocación Normal.</p><ul>${result.unsupported.map((c) => `<li>${esc(c.name)}${c.normal ? " ? procedimiento Normal disponible" : ""}</li>`).join("")}</ul></details>`;
     }
     function recommendations() {
       if (!state.analysis)
@@ -751,10 +757,12 @@
             }
             if (
               t.matches(
-                "[data-planner-flag], [data-planner-used], [data-planner-zones]",
+                "[data-planner-flag], [data-planner-used], [data-planner-zones], [data-planner-goal]",
               )
             ) {
-              if (t.dataset.plannerFlag)
+              if (t.matches("[data-planner-goal]"))
+                state.planOptions.goal = t.value;
+              else if (t.dataset.plannerFlag)
                 state.planOptions[t.dataset.plannerFlag] = t.checked;
               else if (t.dataset.plannerUsed)
                 state.planOptions.used = t.checked
