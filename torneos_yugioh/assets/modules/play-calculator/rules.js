@@ -117,6 +117,11 @@
       "Faltan limites del modelo",
     );
     selector(rule.actor);
+    if (rule.trigger !== undefined)
+      check(rule.trigger && rule.trigger.kind === "sent_by_monster_effect" &&
+        Number.isInteger(rule.trigger.sourceCid) && rule.trigger.sourceCid > 0 &&
+        rule.trigger.actorCid === rule.actor.cid,
+        "Disparador causal incorrecto");
     check(
       rule.actor.side === "self",
       "El actor del efecto propio debe pertenecer a tu lado",
@@ -223,7 +228,10 @@
             Number.isInteger(op.cid) &&
             ["deck", "extra"].includes(op.from) &&
             zones.includes(op.to) &&
-            ["attack", "defense", "set"].includes(op.position),
+            ["attack", "defense", "set"].includes(op.position) &&
+            (op.cause === undefined || (op.cause === "monster_effect" &&
+              op.from === "deck" && op.to === "graveyard" &&
+              rule.actor.side === op.side && rule.tags.includes("monsterEffect"))),
           "Recurso incorrecto",
         );
       else if (op.op === "payLP")
@@ -264,6 +272,8 @@
         typeof rule.oncePerTurn === "boolean",
       "Ventana o limite ausente",
     );
+    if (rule.activationNegatedConsumesUse !== undefined)
+      check(typeof rule.activationNegatedConsumesUse === "boolean", "Límite tras negación de activación no acreditado");
     return rule;
   }
   function checkpoint(s) {
@@ -292,6 +302,10 @@
       }
       const used = "rule:" + rule.id;
       if (rule.oncePerTurn && (s._used || []).includes(used)) continue;
+      if (rule.trigger && !(s._ruleEvents || []).some(e =>
+        e.kind === "sent_to_graveyard" && e.cid === rule.trigger.actorCid &&
+        e.sourceCid === rule.trigger.sourceCid && e.turn === s.turn &&
+        s.tokens.some(t => t.uid === e.uid && t.zone === "graveyard"))) continue;
       const f = { ...options, ...s._ruleFlags };
       if (rule.activation && f.effectsNegated) continue;
       if (
@@ -442,6 +456,11 @@
                   },
             );
             n = E.position(n, t ? t.uid : n.nextId - 1, op.position);
+            if (op.cause === "monster_effect") {
+              const sent=n.tokens.find(x=>x.key===c.key && x.zone==="graveyard" && x.owner===op.side);
+              check(sent,"Carta enviada por efecto no identificada");
+              n._ruleEvents=[...(n._ruleEvents||[]),{kind:"sent_to_graveyard",uid:sent.uid,cid:op.cid,sourceCid:db.bindings[actor.key],turn:n.turn,stage:opStage}];
+            }
           } else if (op.op === "payLP") {
             check(n.lp.self > op.amount, "LP insuficientes");
             n.lp.self -= op.amount;
@@ -484,11 +503,16 @@
         }
         try {
           for (const op of rule.costs) apply(op);
-          if (rule.oncePerTurn) n._used = [...(n._used || []), used];
+          const activationNegated=(options.negateActivationRuleIds||[]).includes(rule.id);
+          check(!activationNegated || (rule.activation && typeof rule.activationNegatedConsumesUse === "boolean"),
+            "La negación de activación exige el límite explícito de esa carta");
+          if (rule.oncePerTurn && (!activationNegated || rule.activationNegatedConsumesUse))
+            n._used = [...(n._used || []), used];
           const paid = checkpoint(n);
           const effectNegated = (options.negateEffectRuleIds || []).includes(rule.id);
+          check(!(activationNegated&&effectNegated),"No se puede negar simultáneamente activación y efecto");
           opStage = "resolve";
-          if (!effectNegated) for (const op of rule.resolve) apply(op);
+          if (!effectNegated&&!activationNegated) for (const op of rule.resolve) apply(op);
           const summoned = n.tokens.filter(
             (t) =>
               E.isMonster(t.zone) &&
@@ -527,7 +551,7 @@
           E.validate(n);
           actions.push({
             state: n,
-            label: effectNegated ? `Efecto negado · ${rule.label}` : rule.label,
+            label: activationNegated?`Activación negada · ${rule.label}`:effectNegated ? `Efecto negado · ${rule.label}` : rule.label,
             ids: Object.values(refs),
             used: rule.oncePerTurn ? used : null,
             source: rule.source,
@@ -539,6 +563,7 @@
               assumptions: rule.assumptions,
               ruleId: rule.id,
               effectNegated,
+              activationNegated,
             },
           });
         } catch (e) {
