@@ -118,3 +118,19 @@ La nueva prueba `combo_ports_test.php` usa puertos en memoria y SQLite temporal.
 El reflujo automático, la asignación explícita de cupos y la prioridad de clasificatorios tienen casos de uso en `Application/Calendar`, reglas deterministas en `Domain/Calendar` y adaptadores PDO/configuración/tiempo en Infrastructure. Las fachadas existentes conservan sus firmas y los llamadores siguen siendo dueños de bloqueos y transacciones. El detalle del contrato, pruebas y límites está en `calendar-scheduling.md`.
 
 `calendar_architecture_test.php` contrasta 13 escenarios originales y comprueba puertos en memoria, orden de operaciones y reversión por el llamador. La comparación de firmas y algoritmos originales incluye ahora 43 entradas. No se reemplazó ninguna huella anterior. El formateador controla 186 fuentes migradas.
+
+
+## Backend hexagonal de Noticias · 18 de noviembre de 2026
+
+- `Domain/News`: texto, clasificación, filtros, fusión/huella de contenido y política de URLs. Los hosts se inyectan; no conoce PDO, cURL, DOM, sesiones ni archivos.
+- `Application/News`: descubrir, normalizar, recopilar, sincronizar, consultar, marcar lectura/favoritos y obtener miniaturas. Sus puertos separan catálogo de proveedores, transporte, documentos, tiempo de publicaciones, consultas, escritura, bloqueo, estado de fuentes y caché.
+- `Infrastructure/Configuration/News`: configuración nativa de las cuatro fuentes. `Network/News`, `Syndication`, `Time` y `Cache/News` adaptan cURL, libxml, fechas y archivos; `Persistence/News` conserva SQL y esquema; `Http/News` recibe solicitudes capturadas y emite respuestas.
+- `Composition/NewsModule` conecta dependencias sin consultas ni creación de tablas. `includes/news.php` y `news_http.php` mantienen las funciones/endpoints existentes; únicamente el arranque HTTP captura sesión y conecta la BD.
+
+El intento de fuente se registra antes de consultar el proveedor. La importación completa y el estado de éxito comparten una transacción, bajo el mismo bloqueo MySQL. Se conservan los límites, reintentos, filtros, estados de lectura/favoritos y presupuesto de dos enriquecimientos. Las miniaturas mantienen bloqueo por archivo, MIME, límite de descarga y reemplazo atómico.
+
+Corrección explícita de propiedad: una sincronización requiere transacción propia. Si un llamador ya abrió una, se rechaza esa importación y se conserva abierta para su dueño. El código anterior podía revertir indebidamente la transacción prestada en un error; ese comportamiento no se reproduce. El endpoint nativo utiliza una conexión sin transacción iniciada.
+
+`news_architecture_test.php` comprueba 99 condiciones, incluidos 33 resultados capturados antes de sustituir las fachadas y 12 comparaciones canónicas de algoritmos originales. También verifica rollback, idempotencia, preservación de estado, filtros parametrizados, presupuesto de enriquecimiento fallido, errores HTTP, token y liberación de sesión, caché y aislamiento de URLs. Las huellas originales se conservan en `tests/fixtures/news-originals.json`; el mapa de destinos está en `context/news-extractions.json`.
+
+Se usan puertos en memoria, SQLite y una carpeta temporal aislada, sin proveedores externos ni producción. SQLite no certifica `GET_LOCK`, `DATE_ADD`/`DATE_SUB`, `INSERT IGNORE` o concurrencia MySQL. Esas expresiones se preservan y el esquema/transportes/parsers se comparan con la evidencia original; la integración MySQL sigue pendiente. No se cambió el frontend ni se desplegó esta reorganización.

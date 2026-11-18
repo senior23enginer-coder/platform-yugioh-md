@@ -1,0 +1,54 @@
+{
+  "ygo_news_sources": {
+    "class": "StationX\\Yugioh\\Infrastructure\\Configuration\\News\\NativeNewsProviders",
+    "method": "all"
+  },
+  "ygo_news_text": {
+    "class": "StationX\\Yugioh\\Domain\\News\\NewsText",
+    "method": "plain"
+  },
+  "ygo_news_url": {
+    "class": "StationX\\Yugioh\\Domain\\News\\NewsUrls",
+    "method": "normalize"
+  },
+  "ygo_news_classify": {
+    "class": "StationX\\Yugioh\\Domain\\News\\NewsClassifier",
+    "method": "classify"
+  },
+  "ygo_news_fetch": {
+    "class": "StationX\\Yugioh\\Infrastructure\\Network\\News\\CurlNewsFetcher",
+    "method": "fetch"
+  },
+  "ygo_news_date": {
+    "class": "StationX\\Yugioh\\Infrastructure\\Time\\NativePublicationDates",
+    "method": "parse"
+  },
+  "ygo_news_schema": {
+    "class": "StationX\\Yugioh\\Infrastructure\\Persistence\\News\\NewsSchema",
+    "method": "ensure"
+  },
+  "ygo_news_dom": {
+    "class": "StationX\\Yugioh\\Infrastructure\\Syndication\\NewsDocumentParser",
+    "method": "dom"
+  },
+  "ygo_news_parse_org": {
+    "class": "StationX\\Yugioh\\Infrastructure\\Syndication\\NewsDocumentParser",
+    "method": "parseOrg"
+  },
+  "ygo_news_org_images": {
+    "class": "StationX\\Yugioh\\Infrastructure\\Syndication\\NewsDocumentParser",
+    "method": "orgImages"
+  },
+  "ygo_news_parse_meta": {
+    "class": "StationX\\Yugioh\\Infrastructure\\Syndication\\NewsDocumentParser",
+    "method": "parseMeta"
+  },
+  "ygo_news_parse_listing": {
+    "class": "StationX\\Yugioh\\Infrastructure\\Syndication\\NewsDocumentParser",
+    "method": "parseListing"
+  },
+  "ygo_news_article_metadata": {
+    "class": "StationX\\Yugioh\\Infrastructure\\Syndication\\NewsDocumentParser",
+    "method": "articleMetadata"
+  }
+}

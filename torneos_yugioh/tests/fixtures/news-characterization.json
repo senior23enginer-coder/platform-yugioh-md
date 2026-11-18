@@ -1,0 +1,403 @@
+[
+    {
+        "function": "ygo_news_text",
+        "input": [
+            "<b>Hola &amp; mundo<\/b>   ahora",
+            350
+        ],
+        "result": "Hola & mundo ahora",
+        "error": null
+    },
+    {
+        "function": "ygo_news_text",
+        "input": [
+            [
+                "bad"
+            ],
+            350
+        ],
+        "result": "",
+        "error": null
+    },
+    {
+        "function": "ygo_news_text",
+        "input": [
+            null,
+            350
+        ],
+        "result": "",
+        "error": null
+    },
+    {
+        "function": "ygo_news_text",
+        "input": [
+            "uno\n  dos\t tres",
+            7
+        ],
+        "result": "uno dos",
+        "error": null
+    },
+    {
+        "function": "ygo_news_url",
+        "input": [
+            "\/article\/demo#fragment",
+            "https:\/\/ygoprodeck.com\/"
+        ],
+        "result": "https:\/\/ygoprodeck.com\/article\/demo",
+        "error": null
+    },
+    {
+        "function": "ygo_news_url",
+        "input": [
+            "https:\/\/ygoprodeck.com\/article\/demo?q=a#fragment",
+            ""
+        ],
+        "result": "https:\/\/ygoprodeck.com\/article\/demo?q=a",
+        "error": null
+    },
+    {
+        "function": "ygo_news_url",
+        "input": [
+            "https:\/\/evil.example\/article\/demo",
+            ""
+        ],
+        "result": "",
+        "error": null
+    },
+    {
+        "function": "ygo_news_url",
+        "input": [
+            "http:\/\/ygorganization.com\/feed",
+            ""
+        ],
+        "result": "",
+        "error": null
+    },
+    {
+        "function": "ygo_news_url",
+        "input": [
+            "https:\/\/user@ygorganization.com\/feed",
+            ""
+        ],
+        "result": "",
+        "error": null
+    },
+    {
+        "function": "ygo_news_url",
+        "input": [
+            "https:\/\/ygorganization.com:443\/feed",
+            ""
+        ],
+        "result": "",
+        "error": null
+    },
+    {
+        "function": "ygo_news_url",
+        "input": [
+            "\/\/s3.duellinksmeta.com\/a.png",
+            "",
+            true
+        ],
+        "result": "https:\/\/s3.duellinksmeta.com\/a.png",
+        "error": null
+    },
+    {
+        "function": "ygo_news_url",
+        "input": [
+            "https:\/\/images.ygoprodeck.com\/a.jpg",
+            "",
+            false
+        ],
+        "result": "",
+        "error": null
+    },
+    {
+        "function": "ygo_news_url",
+        "input": [
+            "https:\/\/images.ygoprodeck.com\/a.jpg",
+            "",
+            true
+        ],
+        "result": "https:\/\/images.ygoprodeck.com\/a.jpg",
+        "error": null
+    },
+    {
+        "function": "ygo_news_classify",
+        "input": [
+            "masterduelmeta",
+            "TCG OCG new card reveal RUSH DUEL",
+            ""
+        ],
+        "result": [
+            "master_duel",
+            "cards"
+        ],
+        "error": null
+    },
+    {
+        "function": "ygo_news_classify",
+        "input": [
+            "ygorganization",
+            "RUSH DUEL new card reveal",
+            ""
+        ],
+        "result": [
+            "rush_duel",
+            "cards"
+        ],
+        "error": null
+    },
+    {
+        "function": "ygo_news_classify",
+        "input": [
+            "ygoprodeck",
+            "TCG tournament YCS",
+            ""
+        ],
+        "result": [
+            "tcg",
+            "tournament"
+        ],
+        "error": null
+    },
+    {
+        "function": "ygo_news_classify",
+        "input": [
+            "yugiohmeta",
+            "OCG banlist guide",
+            ""
+        ],
+        "result": [
+            "ocg",
+            "banlist"
+        ],
+        "error": null
+    },
+    {
+        "function": "ygo_news_date",
+        "input": [
+            "2026-11-17T15:30:00+09:00"
+        ],
+        "result": [
+            "2026-11-17 06:30:00",
+            "instant"
+        ],
+        "error": null
+    },
+    {
+        "function": "ygo_news_date",
+        "input": [
+            "November 17, 2026"
+        ],
+        "result": [
+            "2026-11-17 00:00:00",
+            "date"
+        ],
+        "error": null
+    },
+    {
+        "function": "ygo_news_date",
+        "input": [
+            ""
+        ],
+        "result": [
+            null,
+            "unknown"
+        ],
+        "error": null
+    },
+    {
+        "function": "ygo_news_date",
+        "input": [
+            "not a date"
+        ],
+        "result": [
+            null,
+            "unknown"
+        ],
+        "error": null
+    },
+    {
+        "function": "ygo_news_normalize",
+        "input": [
+            "ygoprodeck",
+            {
+                "url": "\/article\/demo?q=a",
+                "title": "<b>Título del artículo<\/b>",
+                "excerpt": "TCG combo guide",
+                "image": "https:\/\/images.ygoprodeck.com\/a.jpg",
+                "date": "2026-11-17T15:30:00Z"
+            }
+        ],
+        "result": {
+            "source_key": "ygoprodeck",
+            "url": "https:\/\/ygoprodeck.com\/article\/demo",
+            "title": "Título del artículo",
+            "excerpt": "TCG combo guide",
+            "image_url": "https:\/\/images.ygoprodeck.com\/a.jpg",
+            "published_at": "2026-11-17 15:30:00",
+            "date_precision": "instant",
+            "format_code": "tcg",
+            "topic": "guides"
+        },
+        "error": null
+    },
+    {
+        "function": "ygo_news_normalize",
+        "input": [
+            "ygoprodeck",
+            {
+                "url": "https:\/\/ygorganization.com\/article\/demo",
+                "title": "Another source"
+            }
+        ],
+        "result": null,
+        "error": null
+    },
+    {
+        "function": "ygo_news_normalize",
+        "input": [
+            "yugiohmeta",
+            {
+                "url": "\/articles\/demo",
+                "title": "OCG cards",
+                "image": "\/mdm_img\/a.jpg"
+            }
+        ],
+        "result": {
+            "source_key": "yugiohmeta",
+            "url": "https:\/\/www.yugiohmeta.com\/articles\/demo",
+            "title": "OCG cards",
+            "excerpt": "",
+            "image_url": "https:\/\/s3.duellinksmeta.com\/mdm_img\/a.jpg",
+            "published_at": null,
+            "date_precision": "unknown",
+            "format_code": "ocg",
+            "topic": "news"
+        },
+        "error": null
+    },
+    {
+        "function": "ygo_news_normalize",
+        "input": [
+            "masterduelmeta",
+            {
+                "url": "\/articles\/demo",
+                "title": "x"
+            }
+        ],
+        "result": null,
+        "error": null
+    },
+    {
+        "function": "ygo_news_parse_meta",
+        "input": [
+            "[{\"url\":\"demo\",\"title\":\"OCG publication\",\"date\":\"2026-11-17\",\"image\":\"\/mdm_img\/a.jpg\",\"ocg\":true},{\"url\":\"hidden\",\"title\":\"Hidden\",\"hidden\":true}]"
+        ],
+        "result": [
+            {
+                "url": "\/articles\/demo",
+                "title": "OCG publication",
+                "excerpt": "",
+                "date": "2026-11-17",
+                "image": "\/mdm_img\/a.jpg",
+                "category": " OCG "
+            }
+        ],
+        "error": null
+    },
+    {
+        "function": "ygo_news_parse_meta",
+        "input": [
+            "{}"
+        ],
+        "result": [],
+        "error": null
+    },
+    {
+        "function": "ygo_news_article_metadata",
+        "input": [
+            "<html><head><meta property=\"og:description\" content=\"Description\"><meta property=\"og:image\" content=\"https:\/\/images.ygoprodeck.com\/a.jpg\"><script type=\"application\/ld+json\">{\"datePublished\":\"2026-11-17T00:00:00Z\"}<\/script><\/head><\/html>"
+        ],
+        "result": {
+            "excerpt": "Description",
+            "image": "https:\/\/images.ygoprodeck.com\/a.jpg",
+            "date": "2026-11-17T00:00:00Z"
+        },
+        "error": null
+    },
+    {
+        "function": "ygo_news_parse_org",
+        "input": [
+            "<rss><channel><item><link>https:\/\/ygorganization.com\/demo\/<\/link><title>TCG new card reveal<\/title><description><![CDATA[<img src=\"https:\/\/cdn.ygorganization.com\/a.jpg\"> Description]]><\/description><pubDate>Tue, 17 Nov 2026 12:00:00 GMT<\/pubDate><category>TCG<\/category><\/item><\/channel><\/rss>"
+        ],
+        "result": [
+            {
+                "url": "https:\/\/ygorganization.com\/demo\/",
+                "title": "TCG new card reveal",
+                "excerpt": "<img src=\"https:\/\/cdn.ygorganization.com\/a.jpg\"> Description",
+                "date": "Tue, 17 Nov 2026 12:00:00 GMT",
+                "image": "https:\/\/cdn.ygorganization.com\/a.jpg",
+                "category": "TCG"
+            }
+        ],
+        "error": null
+    },
+    {
+        "function": "ygo_news_parse_org",
+        "input": [
+            "<invalid\/>"
+        ],
+        "result": null,
+        "error": {
+            "class": "RuntimeException",
+            "message": "El RSS de la fuente cambió."
+        }
+    },
+    {
+        "function": "ygo_news_org_images",
+        "input": [
+            "<article><a href=\".\/demo\/\"><img src=\"https:\/\/cdn.ygorganization.com\/a.jpg\"><\/a><\/article>"
+        ],
+        "result": {
+            "https:\/\/ygorganization.com\/demo": "https:\/\/cdn.ygorganization.com\/a.jpg"
+        },
+        "error": null
+    },
+    {
+        "function": "ygo_news_parse_listing",
+        "input": [
+            "masterduelmeta",
+            "<a href=\"\/articles\/demo\"><div class=\"title\">Master Duel guide<\/div><div class=\"sub-text\">Published November 17, 2026<\/div><img src=\"https:\/\/s3.duellinksmeta.com\/a.jpg\"><\/a>"
+        ],
+        "result": [
+            {
+                "url": "\/articles\/demo",
+                "title": "Master Duel guide",
+                "excerpt": "",
+                "image": "https:\/\/s3.duellinksmeta.com\/a.jpg",
+                "date": "November 17, 2026",
+                "category": "Master Duel guidePublished November 17, 2026"
+            }
+        ],
+        "error": null
+    },
+    {
+        "function": "ygo_news_parse_listing",
+        "input": [
+            "ygoprodeck",
+            "<div><a href=\"\/article\/demo\">TCG article<\/a><div class=\"card-excerpt\">Article excerpt<\/div><img src=\"https:\/\/images.ygoprodeck.com\/images\/articles\/a.jpg\"><\/div>"
+        ],
+        "result": [
+            {
+                "url": "\/article\/demo",
+                "title": "TCG article",
+                "excerpt": "Article excerpt",
+                "image": "https:\/\/images.ygoprodeck.com\/images\/articles\/a.jpg",
+                "date": "",
+                "category": "TCG article"
+            }
+        ],
+        "error": null
+    }
+]
