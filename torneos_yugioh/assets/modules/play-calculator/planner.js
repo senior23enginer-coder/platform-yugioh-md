@@ -84,7 +84,13 @@
           ]
         : [];
     });
-    return [...own, ...opponent];
+    // A rule can expose several legal target/zone variants, but its use-once
+    // marker is shared. Show a single checkbox for that effect in the UI.
+    const unique = new Map();
+    for (const row of [...own, ...opponent])
+      if (!unique.has(row.cardKey + ":" + row.id))
+        unique.set(row.cardKey + ":" + row.id, row);
+    return [...unique.values()];
   }
   function snapshot(s, db) {
     return s.tokens.map((t) => ({

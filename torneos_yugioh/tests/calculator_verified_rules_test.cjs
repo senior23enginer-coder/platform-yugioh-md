@@ -2,6 +2,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const E = require("../assets/modules/play-calculator/engine.js");
 const R = require("../assets/modules/play-calculator/rules.js");
+const P = require("../assets/modules/play-calculator/planner.js");
 const S = require("../assets/modules/play-calculator/study.js");
 const base = require("../assets/modules/play-calculator/card-facts.json");
 
@@ -20,6 +21,10 @@ function card(catalog, db, cid) {
   return found;
 }
 const memento = loaded(671);
+const marked = P.capabilities(E.create(memento.catalog), memento.db);
+for (const id of ["671:dark-blade:goblin", "671:goblin:send-two", "671:tecuhtlica:five-names"])
+  assert.equal(marked.filter((row) => row.id === "rule:" + id).length, 1,
+    "One effect must have one shared used-effect checkbox: " + id);
 let s = E.create(memento.catalog);
 const blade = card(memento.catalog, memento.db, 19363);
 card(memento.catalog, memento.db, 19366);
@@ -28,6 +33,9 @@ const original = JSON.stringify(s);
 const result = R.actions(s, memento.db);
 const bladeActions = result.actions.filter((a) => a.event.ruleId === "671:dark-blade:goblin");
 assert.equal(bladeActions.length, 5, JSON.stringify(result.rejected));
+assert.equal(R.actions({ ...s, _used: ["rule:671:dark-blade:goblin"] }, memento.db)
+  .actions.filter((a) => a.event.ruleId === "671:dark-blade:goblin").length, 0,
+  "A declared manual used-effect marker must suppress every zone variant");
 const next = bladeActions[0].state;
 assert(next.tokens.some((t) => t.key === blade.key && t.zone === "graveyard"));
 assert(next.tokens.some((t) => memento.db.bindings[t.key] === 19366 && t.zone === "m1"));
