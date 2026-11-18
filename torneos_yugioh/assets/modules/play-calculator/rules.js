@@ -126,7 +126,7 @@
       check(rule.trigger && rule.trigger.actorCid === rule.actor.cid &&
         (rule.trigger.kind === "sent_by_monster_effect"
           ? Number.isInteger(rule.trigger.sourceCid) && rule.trigger.sourceCid > 0
-          : rule.trigger.kind === "fusion_summoned" ||
+          : rule.trigger.kind === "destroyed_by_effect" || rule.trigger.kind === "fusion_summoned" ||
             (rule.trigger.kind === "summoned" &&
               Array.isArray(rule.trigger.methods) && rule.trigger.methods.length > 0 &&
               rule.trigger.methods.every(m => ["normal", "special"].includes(m)))),
@@ -158,10 +158,20 @@
         selector(g.selector);
         check(Number.isInteger(g.min) && g.min >= 0 && g.min <= 10,
           "Conteo de nombres diferentes incorrecto");
+      } else if (g.kind === "onlyCids") {
+        selector(g.selector);
+        check(g.selector.side === "self" && g.selector.zones.length === 1 &&
+          g.selector.zones[0] === "monsters" && g.selector.faceUp === true &&
+          Array.isArray(g.allowedCids) && g.allowedCids.length > 0 &&
+          g.allowedCids.length <= 60 && new Set(g.allowedCids).size === g.allowedCids.length &&
+          g.allowedCids.every((cid) => Number.isInteger(cid) && cid > 0),
+        "El guardia de monstruos permitidos requiere identidades y campo boca arriba acreditados");
       } else if (g.kind === "event") {
-        check(["destroy", "summon", "fusion_summon"].includes(g.event) &&
-          (g.event !== "destroy" || g.by === "effect") &&
-          ["self", "opponent"].includes(g.side) && g.currentTurn === true,
+        check(g.event === "owned_monster_destroyed_by_effect_this_turn"
+          ? Object.keys(g).length === 2
+          : ["destroy", "summon", "fusion_summon"].includes(g.event) &&
+            (g.event !== "destroy" || g.by === "effect") &&
+            ["self", "opponent"].includes(g.side) && g.currentTurn === true,
           "Condición de evento desconocida");
       } else if (g.kind === "phaseStart") {
         check(Object.keys(g).length === 1,
@@ -297,11 +307,12 @@
             ["deck", "extra"].includes(op.from) &&
             zones.includes(op.to) &&
             ["attack", "defense", "set"].includes(op.position) &&
-          (op.cause === undefined || (op.cause === "monster_effect" &&
+            (op.summonMethod === undefined || (op.summonMethod === "special" &&
+              op.side === "self" && op.from === "deck" &&
+              ["m1", "m2", "m3", "m4", "m5"].includes(op.to))) &&
+            (op.cause === undefined || (op.cause === "monster_effect" &&
               op.from === "deck" && op.to === "graveyard" &&
               rule.actor.side === op.side && Array.isArray(rule.tags) && rule.tags.includes("monsterEffect"))) &&
-          (op.summonMethod === undefined || (op.summonMethod === "special" &&
-            op.from === "deck" && ["m1","m2","m3","m4","m5"].includes(op.to))),
           "Recurso incorrecto",
         );
       else if (op.op === "payLP")
@@ -368,15 +379,18 @@
   }
   function triggerMatches(s, rule, uid) {
     if (!rule.trigger) return true;
-    return (s._ruleEvents || []).some(e => e.uid === uid &&
-      e.turn === s.turn && e.cid === rule.trigger.actorCid &&
-      (rule.trigger.kind === "sent_by_monster_effect"
-        ? e.kind === "sent_to_graveyard" && e.sourceCid === rule.trigger.sourceCid &&
-          s.tokens.some(t => t.uid === uid && t.zone === "graveyard")
-        : (rule.trigger.kind === "fusion_summoned"
-          ? e.kind === "fusion_summon"
-          : e.kind === "summon" && rule.trigger.methods.includes(e.method)) &&
-          s.tokens.some(t => t.uid === uid && E.isMonster(t.zone))));
+    return (s._ruleEvents || []).some(e => {
+      if (e.uid !== uid || e.turn !== s.turn || e.cid !== rule.trigger.actorCid) return false;
+      if (rule.trigger.kind === "sent_by_monster_effect")
+        return e.kind === "sent_to_graveyard" && e.sourceCid === rule.trigger.sourceCid &&
+          s.tokens.some(t => t.uid === uid && t.zone === "graveyard");
+      if (rule.trigger.kind === "destroyed_by_effect")
+        return e.kind === "destroy" && e.by === "effect" &&
+          s.tokens.some(t => t.uid === uid && t.zone === "graveyard");
+      if (!s.tokens.some(t => t.uid === uid && E.isMonster(t.zone))) return false;
+      return rule.trigger.kind === "fusion_summoned" ? e.kind === "fusion_summon"
+        : e.kind === "summon" && rule.trigger.methods.includes(e.method);
+    });
   }
   function actions(s, db, options = {}) {
     const actions = [],
@@ -408,8 +422,13 @@
               })()
             : g.kind === "distinctCount"
               ? new Set(candidates(s, g.selector, db).map(t => db.bindings[t.key])).size >= g.min
+            : g.kind === "onlyCids"
+              ? candidates(s, g.selector, db).every((t) => g.allowedCids.includes(db.bindings[t.key]))
             : g.kind === "event"
-              ? (s._ruleEvents || []).some(e => e.kind === g.event &&
+              ? g.event === "owned_monster_destroyed_by_effect_this_turn"
+                ? (s._ruleEvents || []).some(e => e.kind === "destroy" &&
+                    e.by === "effect" && e.owner === "self" && e.turn === s.turn)
+                : (s._ruleEvents || []).some(e => e.kind === g.event &&
                   e.turn === s.turn && e.side === g.side &&
                   (g.by === undefined || e.by === g.by))
             : g.kind === "phaseStart"
@@ -561,7 +580,7 @@
             check(t && (field(t.zone) || t.zone === "hand"), "Objetivo de destrucción fuera de campo/mano");
             check(!(f.graveyardBlocked), "Destrucción hacia Cementerio bloqueada");
             const event = {kind:"destroy",uid:t.uid,cid:db.bindings[t.key],from:t.zone,
-              side:t.controller,turn:n.turn,by:"effect",stage:opStage};
+              side:t.controller,owner:t.owner,turn:n.turn,by:"effect",stage:opStage};
             n = E.place(n, {uid:t.uid,zone:"graveyard",controller:t.owner});
             n._ruleEvents = [...(n._ruleEvents||[]),event];
           } else if (op.op === "tribute") {
@@ -630,6 +649,8 @@
               {kind:"summon",method:op.summonMethod,uid:t.uid,
                 cid:db.bindings[t.key],turn:n.turn,stage:opStage}];
           } else if (op.op === "take") {
+            if (op.summonMethod) check(!f.specialBlocked,
+              "Invocación desde Deck bloqueada por restricción de Especial");
             check(
               !(f.noDeckToHand && op.from === "deck" && op.to === "hand"),
               "La restriccion de añadir del Deck impide esta resolucion",
