@@ -36,6 +36,19 @@ s = add(s, 18203, "hand");
 const before = JSON.stringify(s),
   result = P.solve(s, db, { depth: 5, budget: 6000, width: 80 });
 assert.equal(JSON.stringify(s), before, "Calculation must be immutable");
+assert.equal(result.goal, "balanced");
+for (const goal of ["balanced", "removal", "board", "resources"]) {
+  const ranked = P.solve(s, db, { depth: 3, budget: 400, goal });
+  assert.equal(ranked.goal, goal);
+  assert(ranked.plans.length);
+  assert(ranked.plans.every((p) =>
+    Number.isFinite(p.priority) &&
+    Number.isFinite(p.metrics.field) &&
+    Number.isInteger(p.metrics.hand) &&
+    p.metrics.actions === p.steps.length,
+  ));
+}
+assert.equal(P.solve(s, db, { goal: "nonexistent", depth: 1 }).goal, "balanced");
 assert(
   result.plans.some((p) => p.steps.some((step) => step.label.includes("Xyz"))),
   "Must derive an Xyz sequence without a documented route",
