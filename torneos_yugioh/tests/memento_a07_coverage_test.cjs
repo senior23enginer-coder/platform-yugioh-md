@@ -11,7 +11,7 @@ assert.equal(new Set(coverage.rules.map(r => r.capability)).size, 34);
 assert(coverage.rules.every(r => r.status === 'DOCUMENTED_NOT_ENGINE_TESTED' && r.engine_test_id === null));
 assert.equal(coverage.routes.length, 12);
 assert(coverage.routes.every(r => r.status === 'NO_REPLAY_CERTIFIED'));
-assert.equal(coverage.partial_engine_cases.length, 2);
+assert.equal(coverage.partial_engine_cases.length, 6);
 assert(coverage.partial_engine_cases.every(c => c.status === 'ENGINE_TESTED_RESTRICTED_CASE' && c.scope));
 assert(coverage.missing_capabilities.includes('fusion_material_constraints_and_resolution'));
 const skeleton = {
@@ -24,5 +24,5 @@ const skeleton = {
  select:[], costs:[], resolve:[{op:'fusion',materials:[]}],
  tags:[], activation:true, oncePerTurn:true
 };
-assert.throws(() => rules.validate(skeleton), /Operacion no implementada: fusion/);
-console.log('A07 Memento: 34 controles documentales; 0 probados en motor; 12 rutas sin replay; fusión no soportada (rechazo seguro).');
+assert.throws(() => rules.validate(skeleton), /Fusión requiere materiales exactos/);
+console.log('A07 Memento: 34 controles documentales sin certificación integral; 12 rutas sin replay; Fusión incompleta rechazada.');
