@@ -3,6 +3,7 @@ importScripts(
   "./engine.js?v=20261116-actions-1",
   "./rules.js?v=20261118-scenario-1",
   "./planner.js?v=20261118-scenario-1",
+  "./battle.js?v=20261118-battle-1",
   "./scenario.js?v=20261118-scenario-1",
 );
 self.onmessage = (event) => {

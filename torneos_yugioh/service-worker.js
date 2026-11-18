@@ -34,6 +34,7 @@ const APP_SHELL = [
   './assets/modules/play-calculator/rules.js?v=20261118-scenario-1',
   './assets/modules/play-calculator/study.js?v=20261118-scenario-1',
   './assets/modules/play-calculator/scenario.js?v=20261118-scenario-1',
+  './assets/modules/play-calculator/battle.js?v=20261118-battle-1',
   './assets/modules/play-calculator/planner.js?v=20261118-scenario-1',
   './assets/modules/play-calculator/planner-worker.js?v=20261118-scenario-1',
   './assets/modules/play-calculator/card-facts.json?v=20261108-planner-152',

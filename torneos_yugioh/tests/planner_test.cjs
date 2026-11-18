@@ -37,7 +37,7 @@ const before = JSON.stringify(s),
   result = P.solve(s, db, { depth: 5, budget: 6000, width: 80 });
 assert.equal(JSON.stringify(s), before, "Calculation must be immutable");
 assert.equal(result.goal, "balanced");
-for (const goal of ["balanced", "removal", "board", "resources"]) {
+for (const goal of ["balanced", "removal", "board", "resources", "resilience"]) {
   const ranked = P.solve(s, db, { depth: 3, budget: 400, goal });
   assert.equal(ranked.goal, goal);
   assert(ranked.plans.length);

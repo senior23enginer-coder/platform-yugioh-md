@@ -103,7 +103,8 @@ Los datos actuales aportan **cero reglas declarativas**: el nuevo intérprete es
 # Priorización estratégica local (rama calculator-combo-strategy)
 
 El jugador puede elegir entre objetivos **equilibrado**, **romper campo**,
-**desarrollar campo** y **conservar recursos** antes de analizar un escenario.
+**desarrollar campo**, **conservar recursos** y **resistencia a respuestas
+conocidas** antes de analizar un escenario.
 El mismo explorador acotado ordena estados mediante ponderaciones explícitas:
 cartas rivales retiradas del campo, valoración aproximada de monstruos propios,
 cartas propias conservadas en mano y número de acciones. El resultado muestra
@@ -116,3 +117,12 @@ Los efectos no modelados siguen excluidos y los estados con restricciones
 críticas sin interpretación se rechazan. Las rutas A08–A10 del repositorio
 externo son referencias documentales: solo una regla ejecutable con identidad,
 fuente, guardas, coste y resolución verificados puede incorporarse al motor.
+
+`battle.js` estudia aritméticamente ataques con ATK/DEF acreditados durante la
+Battle Phase TCG/GOAT; no ejecuta ataques, revela cartas colocadas, modifica LP,
+afirma OTK ni omite efectos de carta. Si no hay monstruos rivales calcula el
+techo hipotético de un ataque directo por monstruo. Rush permanece sin cálculo
+de combate hasta acreditar sus particularidades. `scenario.js` conserva las
+respuestas conocidas, presenta ramas sin resolución y permite un objetivo de
+resistencia que penaliza las respuestas modeladas sin continuación; no asume
+que el rival carezca de otras interrupciones.

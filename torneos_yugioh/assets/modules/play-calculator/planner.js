@@ -268,6 +268,7 @@
       removal: { removal: 300, field: 0.65, hand: 8, tempo: 2 },
       board: { removal: 70, field: 1.8, hand: 6, tempo: 2 },
       resources: { removal: 60, field: 0.65, hand: 35, tempo: 5 },
+      resilience: { removal: 110, field: 0.9, hand: 22, tempo: 3 },
     };
     const goal = Object.hasOwn(goals, options.goal) ? options.goal : "balanced";
     const weights = goals[goal];
@@ -277,6 +278,7 @@
       removal: "Priorizar retirada de cartas rivales conocidas",
       board: "Priorizar desarrollo de monstruos propios",
       resources: "Conservar cartas en mano y reducir acciones",
+      resilience: "Reducir exposición a las respuestas rivales conocidas y modeladas",
     };
     function metrics(s) {
       return {
