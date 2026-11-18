@@ -151,3 +151,12 @@ Los estados explorados incluyen ambos totales de LP en su clave de
 deduplicación. Cuando una regla verificada deja LP rivales en cero, la
 búsqueda prioriza ese estado y no genera acciones posteriores al final del
 duelo; una cifra de daño **condicional** no se presenta como victoria segura.
+
+La captura física ahora dispone de **cadena pendiente estructurada**:
+eslabones CL1–CL20 con jugador, identidad conocida opcional y descripción de
+la activación, eliminación individual y deshacer. No se inventa la identidad
+de una carta desconocida. `planner.js` se detiene con explicación mientras
+quede un eslabón pendiente: las cadenas deben resolverse y el estado debe
+actualizarse antes de calcular otras líneas. La prueba
+`calculator_chain_capture_test.cjs` cubre integridad, límites, inmutabilidad,
+numeración y bloqueo del planificador.

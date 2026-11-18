@@ -148,6 +148,11 @@
         ...base,
         reason: "Revisa los LP: el duelo ya tiene un participante con 0 LP.",
       };
+    if (input.chain?.length)
+      return {
+        ...base,
+        reason: "Hay una cadena pendiente registrada. Resuelve sus eslabones y actualiza el tablero antes de calcular otra secuencia; el motor no inventa su resolución.",
+      };
     if (input.usedEffects.trim())
       return {
         ...base,

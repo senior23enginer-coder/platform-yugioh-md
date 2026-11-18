@@ -98,6 +98,7 @@
       nextId: 1,
       confirmed: [],
       usedEffects: "",
+      chain: [],
     };
   }
   const allCards = (s) => [...s.self.cards, ...s.opponent.cards];
@@ -142,6 +143,13 @@
       "Formato de escenario incompatible.",
     );
     if(s.effectUsage!==undefined)assert(Array.isArray(s.effectUsage)&&s.effectUsage.length<=1800&&s.effectUsage.every(e=>Number.isInteger(e.uid)&&e.uid>0&&typeof e.key==='string'&&Number.isInteger(e.slot)&&e.slot>=1&&e.slot<=6&&typeof e.id==='string'&&e.id.length<=80&&Number.isInteger(e.turn)&&e.turn>0),'Efectos utilizados inválidos.');
+    if (s.chain !== undefined)
+      assert(Array.isArray(s.chain) && s.chain.length <= 20 &&
+        s.chain.every((link, i) => link.link === i + 1 &&
+          SIDES.includes(link.side) &&
+          typeof link.cardName === "string" && link.cardName.length <= 250 &&
+          typeof link.effect === "string" && link.effect.trim().length > 0 && link.effect.length <= 300),
+      "Cadena pendiente inválida.");
     for (const side of SIDES) {
       assert(
         Number.isInteger(s[side].id) &&
@@ -348,6 +356,25 @@
         if (Object.hasOwn(values, key)) n[key] = values[key];
       if (values.lp) n.lp = { ...n.lp, ...values.lp };
       if (values.unknown) n.unknown = { ...n.unknown, ...values.unknown };
+    });
+  }
+  function appendChain(s, { side, cardName = "", effect }) {
+    return change(s, (n) => {
+      assert(SIDES.includes(side), "Selecciona el jugador que activó el eslabón.");
+      assert(typeof effect === "string" && effect.trim() && effect.length <= 300,
+        "Describe el efecto o la activación pendiente (máximo 300 caracteres).");
+      n.chain ||= [];
+      assert(n.chain.length < 20, "La cadena alcanzó el límite de captura.");
+      n.chain.push({ link: n.chain.length + 1, side,
+        cardName: String(cardName).slice(0, 250), effect: effect.trim() });
+    });
+  }
+  function removeChain(s, link) {
+    return change(s, (n) => {
+      assert(Number.isInteger(link) && link >= 1 && link <= (n.chain || []).length,
+        "Eslabón inexistente.");
+      n.chain.splice(link - 1, 1);
+      n.chain.forEach((entry, i) => { entry.link = i + 1; });
     });
   }
   function position(s, uid, value) {
@@ -642,6 +669,8 @@
     validate,
     place,
     patch,
+    appendChain,
+    removeChain,
     position,
     cardStatus,
     negated,

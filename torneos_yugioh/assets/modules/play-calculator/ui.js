@@ -604,7 +604,8 @@
       return `<section class="play-hand-practice"><header><h4>${s.practice ? "Prueba tu mano sin oponente" : "Practicar aperturas"}</h4><span>${hand.length} en mano · ${left} en Main</span></header><p>Generar una apertura reinicia este tablero al turno 1 y toma ${s.format === "rush_duel" ? 4 : 5} cartas del Main según sus copias. Los robos de fase son manuales; Extra, Side, Reserva y Skills no se roban.</p><div class="play-actions"><button class="btn btn-primary" type="button" data-play-random-hand>Generar mano aleatoria</button><button class="btn btn-outline-info" type="button" data-play-draw-card ${left ? "" : "disabled"}>Robar 1 carta</button><button class="btn btn-outline-info" type="button" data-play-explore-hand ${hand.length ? "" : "disabled"}>Explorar líneas de esta mano</button></div><div class="play-opening-cards">${hand.map((t) => cardMarkup(E.definition(s, t.key, t.owner), t.owner, t)).join("") || "<p>Genera una apertura o coloca cartas en tu mano.</p>"}</div></section>`;
     }
     function turnBar(s) {
-      return `<section class="play-turn-bar" aria-label="Turno del duelo"><label>Número de turno<input class="form-control" type="number" min="1" max="999" data-play-setting="turn" value="${s.turn}"></label><label>Quién tiene el turno<select class="form-select" data-play-setting="active"><option value="self" ${s.active === "self" ? "selected" : ""}>${esc(s.self.name)} - tu lado</option>${s.practice ? "" : `<option value="opponent" ${s.active === "opponent" ? "selected" : ""}>${esc(s.opponent.name)} - rival</option>`}</select></label><strong>Turno ${s.turn} - ${esc(s[s.active].name)}</strong></section>`;
+      const chains = (s.chain || []).map((link) => `<li>CL${link.link} · ${link.side === "self" ? "Tú" : "Rival"}${link.cardName ? " · " + esc(link.cardName) : ""}: ${esc(link.effect)} <button type="button" data-chain-remove="${link.link}" aria-label="Eliminar eslabón ${link.link}">Eliminar</button></li>`).join("");
+      return `<section class="play-turn-bar" aria-label="Turno del duelo"><label>Número de turno<input class="form-control" type="number" min="1" max="999" data-play-setting="turn" value="${s.turn}"></label><label>Quién tiene el turno<select class="form-select" data-play-setting="active"><option value="self" ${s.active === "self" ? "selected" : ""}>${esc(s.self.name)} - tu lado</option>${s.practice ? "" : `<option value="opponent" ${s.active === "opponent" ? "selected" : ""}>${esc(s.opponent.name)} - rival</option>`}</select></label><strong>Turno ${s.turn} - ${esc(s[s.active].name)}</strong><details class="play-chain-capture"><summary>Cadena pendiente · ${(s.chain || []).length} eslabones</summary><p>Selecciona una carta del tablero o catálogo si conoces su identidad. Captura los eslabones en orden de activación; esta sección no resuelve sus efectos.</p><ol>${chains}</ol><label>Jugador<select class="form-select" data-chain-side><option value="self">Yo</option>${s.practice ? "" : '<option value="opponent">Rival</option>'}</select></label><label>Activación o efecto pendiente<input class="form-control" maxlength="300" data-chain-effect placeholder="Ej.: activa efecto al ser invocado"></label><button type="button" class="btn btn-outline-info" data-chain-add>Añadir eslabón</button></details></section>`;
     }
     function draw() {
       if (instances.get(node) !== state) return;
@@ -648,6 +649,23 @@
             if (!b) return;
             if (b.dataset.playMode) {
               state.setMode(b.dataset.playMode);
+              return;
+            }
+            if (b.hasAttribute("data-chain-add")) {
+              const side = node.querySelector("[data-chain-side]").value;
+              const selected = state.selection;
+              const selectedToken = state.scenario.tokens.find((t) => t.uid === selected?.uid);
+              const selectedSide = selectedToken?.controller || selected?.owner;
+              const card = selectedSide === side && selected ? E.definition(state.scenario, selected.key, selected.owner) : null;
+              commit(E.appendChain(state.scenario, {
+                side,
+                cardName: card?.name === "Carta rival desconocida" ? "" : card?.name || "",
+                effect: node.querySelector("[data-chain-effect]").value,
+              }));
+              return;
+            }
+            if (b.hasAttribute("data-chain-remove")) {
+              commit(E.removeChain(state.scenario, Number(b.dataset.chainRemove)));
               return;
             }
             if (b.hasAttribute("data-play-random-hand")) {
