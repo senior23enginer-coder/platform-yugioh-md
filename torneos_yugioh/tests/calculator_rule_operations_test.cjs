@@ -45,6 +45,8 @@ assert.equal(changed.position, "defense");
 assert.equal(changed.negation.duration, "turn");
 assert.equal(R.actions(next, { ...db, rules: [rule] }).actions.length, 0);
 assert.equal(R.actions(E.patch(s, { turn: 2 }), { ...db, rules: [rule] }).actions.length, 1);
+assert.equal(R.actions(E.patch(next, { turn: 2 }), { ...db, rules: [rule] }).actions.length, 1,
+  "An effect used in turn 1 must be available again in turn 2");
 assert.throws(() => R.validate({ ...rule, resolve: [{ op: "negate", ref: "target", duration: "eternal", reason: "" }] }), /Negacion/);
 assert.throws(() => R.validate({ ...rule, resolve: [{ op: "damage", side: "opponent", amount: -1 }] }), /LP/);
 const search = {

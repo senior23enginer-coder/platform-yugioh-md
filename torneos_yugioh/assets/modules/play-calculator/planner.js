@@ -317,6 +317,7 @@
         s._used.slice().sort(),
         s._normal,
         s._xyz,
+        Object.entries(s._ruleFlags || {}).sort(([a], [b]) => a.localeCompare(b)),
         s.lp.self,
         s.lp.opponent,
       ]);

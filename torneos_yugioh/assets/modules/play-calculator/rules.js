@@ -258,7 +258,7 @@
         rejected.push({ id: rule.id, message: e.message });
         continue;
       }
-      const used = "rule:" + rule.id;
+      const used = "rule:" + rule.id + ":turn:" + s.turn;
       if (rule.oncePerTurn && (s._used || []).includes(used)) continue;
       const f = { ...options, ...s._ruleFlags };
       if (rule.activation && f.effectsNegated) continue;
