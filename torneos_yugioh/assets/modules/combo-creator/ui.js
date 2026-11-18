@@ -229,8 +229,6 @@
       dirty: false,
       zoom: 0.8,
       view: "canvas",
-      libraryDeck: 0,
-      libraryTicket: 0,
       page: 0,
       query: "",
       section: "",
@@ -243,13 +241,13 @@
       if(target==='creador_combos'&&activeRoute!=='creador_combos')returnRoute=activeRoute;
       activeRoute=target;
     });
-    node.innerHTML = `<header class="cc-heading"><div><button type="button" class="btn btn-outline-info cc-back" data-cc-back aria-label="Volver a la pantalla anterior">← Volver</button><span class="cc-kicker">Herramientas · Tu laboratorio de jugadas</span><h1>Creador de combos y estrategias</h1><p>Construye tus líneas con las cartas de tu deck y explica cada decisión.</p></div><span class="cc-save-state" data-cc-status role="status">Elige un deck para empezar</span></header><div class="cc-deck-filters"><label>Formato<select data-cc-format><option value="">Todos los formatos</option>${formatCodes.map(f=>`<option value="${esc(f)}">${esc(formatLabels[f]||f)}</option>`).join('')}</select></label><label>Buscar deck o equipo<input type="search" data-cc-deck-search placeholder="Nombre del deck o equipo"></label><p role="status" data-cc-deck-count></p></div><div class="cc-start"><label>Deck<select data-cc-deck><option value="">Selecciona un deck</option></select></label><label>Combos y estrategias del deck<select data-cc-saved disabled><option value="">Nueva creación</option></select></label><button type="button" class="btn btn-outline-info" data-cc-new disabled>+ Nueva creación</button></div><p class="cc-inventory-note" data-cc-inventory-note hidden></p><div data-cc-work hidden><section class="cc-meta"><label>Título<input maxlength="160" data-cc-meta="title" placeholder="Ej.: Unicorn hacia tu campo final"></label><label>Tipo<select data-cc-meta="kind"><option value="combo">Combo</option><option value="strategy">Estrategia</option></select></label><label>Cuándo jugarlo<select data-cc-meta="turn_order"><option value="any">Cualquier orden</option><option value="first">Empezando primero</option><option value="second">Empezando segundo</option></select></label><details class="cc-details"><summary>Objetivo, requisitos y l\u00edmites</summary><div><label class="cc-wide">Objetivo<textarea rows="2" maxlength="4000" data-cc-meta="objective" placeholder="Qué consigues con esta línea y cuándo conviene usarla"></textarea></label><label class="cc-wide">Requisitos y límites<textarea rows="2" maxlength="6000" data-cc-meta="conditions" placeholder="Estado inicial, costes, restricciones, turno y respuestas que debes considerar"></textarea></label></div></details></section><div class="cc-toolbar"><div><button type="button" class="btn btn-outline-info" data-cc-add="opening">+ Mano inicial</button><button type="button" class="btn btn-outline-info" data-cc-add="step">+ Paso</button><button type="button" class="btn btn-outline-info" data-cc-add="decision">+ Decisión</button><button type="button" class="btn btn-outline-info" data-cc-add="result">+ Resultado</button></div><div><button type="button" class="btn btn-outline-info" data-cc-refresh>Actualizar cartas</button><button type="button" class="btn btn-outline-light" data-cc-undo>Deshacer</button><button type="button" class="btn btn-primary" data-cc-save>Guardar en el deck</button></div></div><div class="cc-tabs" role="group" aria-label="Vista de la creación"><button type="button" data-cc-view="canvas">Editor visual</button><button type="button" data-cc-view="guide">Guía paso a paso</button><button type="button" data-cc-view="matrix">Matriz de jugadas</button><button type="button" data-cc-view="library">Guías visuales documentadas</button></div><div class="cc-editor" data-cc-canvas-view><aside class="cc-palette"><h3>Cartas de tu deck</h3><p>Arrastra al lienzo o sobre un paso para agrupar cartas.</p><label>Buscar carta<input type="search" data-cc-search placeholder="Nombre de la carta"></label><label>Sección<select data-cc-section><option value="">Todas las secciones</option>${Object.entries(
+    node.innerHTML = `<header class="cc-heading"><div><button type="button" class="btn btn-outline-info cc-back" data-cc-back aria-label="Volver a la pantalla anterior">← Volver</button><span class="cc-kicker">Herramientas · Tu laboratorio de jugadas</span><h1>Creador de combos y estrategias</h1><p>Construye tus líneas con las cartas de tu deck y explica cada decisión.</p></div><span class="cc-save-state" data-cc-status role="status">Elige un deck para empezar</span></header><div class="cc-deck-filters"><label>Formato<select data-cc-format><option value="">Todos los formatos</option>${formatCodes.map(f=>`<option value="${esc(f)}">${esc(formatLabels[f]||f)}</option>`).join('')}</select></label><label>Buscar deck o equipo<input type="search" data-cc-deck-search placeholder="Nombre del deck o equipo"></label><p role="status" data-cc-deck-count></p></div><div class="cc-start"><label>Deck<select data-cc-deck><option value="">Selecciona un deck</option></select></label><label>Combos y estrategias del deck<select data-cc-saved disabled><option value="">Nueva creación</option></select></label><button type="button" class="btn btn-outline-info" data-cc-new disabled>+ Nueva creación</button></div><p class="cc-inventory-note" data-cc-inventory-note hidden></p><div data-cc-work hidden><section class="cc-meta"><label>Título<input maxlength="160" data-cc-meta="title" placeholder="Ej.: Unicorn hacia tu campo final"></label><label>Tipo<select data-cc-meta="kind"><option value="combo">Combo</option><option value="strategy">Estrategia</option></select></label><label>Cuándo jugarlo<select data-cc-meta="turn_order"><option value="any">Cualquier orden</option><option value="first">Empezando primero</option><option value="second">Empezando segundo</option></select></label><details class="cc-details"><summary>Objetivo, requisitos y l\u00edmites</summary><div><label class="cc-wide">Objetivo<textarea rows="2" maxlength="4000" data-cc-meta="objective" placeholder="Qué consigues con esta línea y cuándo conviene usarla"></textarea></label><label class="cc-wide">Requisitos y límites<textarea rows="2" maxlength="6000" data-cc-meta="conditions" placeholder="Estado inicial, costes, restricciones, turno y respuestas que debes considerar"></textarea></label></div></details></section><div class="cc-toolbar"><div><button type="button" class="btn btn-outline-info" data-cc-add="opening">+ Mano inicial</button><button type="button" class="btn btn-outline-info" data-cc-add="step">+ Paso</button><button type="button" class="btn btn-outline-info" data-cc-add="decision">+ Decisión</button><button type="button" class="btn btn-outline-info" data-cc-add="result">+ Resultado</button></div><div><button type="button" class="btn btn-outline-info" data-cc-refresh>Actualizar cartas</button><button type="button" class="btn btn-outline-light" data-cc-undo>Deshacer</button><button type="button" class="btn btn-primary" data-cc-save>Guardar en el deck</button></div></div><div class="cc-tabs" role="group" aria-label="Vista de la creación"><button type="button" data-cc-view="canvas">Editor visual</button><button type="button" data-cc-view="guide">Guía paso a paso</button><button type="button" data-cc-view="matrix">Matriz de jugadas</button></div><div class="cc-editor" data-cc-canvas-view><aside class="cc-palette"><h3>Cartas de tu deck</h3><p>Arrastra al lienzo o sobre un paso para agrupar cartas.</p><label>Buscar carta<input type="search" data-cc-search placeholder="Nombre de la carta"></label><label>Sección<select data-cc-section><option value="">Todas las secciones</option>${Object.entries(
       sections,
     )
       .map(([k, v]) => `<option value="${k}">${v}</option>`)
       .join(
         "",
-      )}</select></label><div data-cc-palette></div><div class="cc-page"><button type="button" data-cc-page="-1">Anterior</button><span data-cc-count></span><button type="button" data-cc-page="1">Siguiente</button></div><button type="button" class="btn btn-outline-info" data-cc-insert-card>Añadir carta como paso</button><p>También puedes seleccionar una carta y pulsar «Añadir al paso» en el panel derecho.</p></aside><div class="cc-stage-panel"><div class="cc-canvas-bar"><span data-cc-hint>Arrastra cartas para crear pasos. Usa «Conectar» para enlazarlos.</span><label>Zoom<select data-cc-zoom><option value="0.5">50%</option><option value="0.65">65%</option><option value="0.8" selected>80%</option><option value="1">100%</option></select></label></div><div class="cc-viewport" tabindex="0" aria-label="Lienzo del combo"><div class="cc-stage-space"><div class="cc-stage" data-cc-stage><svg class="cc-wires" aria-label="Conexiones entre pasos"></svg><div data-cc-nodes></div></div></div></div><p class="cc-help">Mueve los pasos por su cabecera. Cada flecha puede llevar una condición. Las conexiones organizan tu explicación.</p></div><aside class="cc-inspector" data-cc-inspector></aside></div><div class="cc-preview" data-cc-preview hidden></div><div class="cc-preview" data-cc-visual-library hidden></div></div>`;
+      )}</select></label><div data-cc-palette></div><div class="cc-page"><button type="button" data-cc-page="-1">Anterior</button><span data-cc-count></span><button type="button" data-cc-page="1">Siguiente</button></div><button type="button" class="btn btn-outline-info" data-cc-insert-card>Añadir carta como paso</button><p>También puedes seleccionar una carta y pulsar «Añadir al paso» en el panel derecho.</p></aside><div class="cc-stage-panel"><div class="cc-canvas-bar"><span data-cc-hint>Arrastra cartas para crear pasos. Usa «Conectar» para enlazarlos.</span><label>Zoom<select data-cc-zoom><option value="0.5">50%</option><option value="0.65">65%</option><option value="0.8" selected>80%</option><option value="1">100%</option></select></label></div><div class="cc-viewport" tabindex="0" aria-label="Lienzo del combo"><div class="cc-stage-space"><div class="cc-stage" data-cc-stage><svg class="cc-wires" aria-label="Conexiones entre pasos"></svg><div data-cc-nodes></div></div></div></div><p class="cc-help">Mueve los pasos por su cabecera. Cada flecha puede llevar una condición. Las conexiones organizan tu explicación.</p></div><aside class="cc-inspector" data-cc-inspector></aside></div><div class="cc-preview" data-cc-preview hidden></div></div>`;
     const $ = (s) => node.querySelector(s),
       $$ = (s) => [...node.querySelectorAll(s)];
     $(".cc-meta").insertAdjacentHTML(
@@ -352,10 +350,6 @@
     async function selectDeck(id) {
       const ticket = ++state.loading;
       state.deckId = Number(id);
-      state.libraryTicket++;
-      state.libraryDeck = 0;
-      state.view = "canvas";
-      $("[data-cc-visual-library]").replaceChildren();
       deckOptions();
       $("[data-cc-inventory-note]").hidden=true;
       state.doc = null;
@@ -554,9 +548,8 @@
         b.setAttribute("aria-pressed", b.dataset.ccView === state.view);
       });
       $("[data-cc-canvas-view]").hidden = state.view !== "canvas";
-      $("[data-cc-preview]").hidden = state.view === "canvas" || state.view === "library";
-      $("[data-cc-visual-library]").hidden = state.view !== "library";
-      if (state.view !== "canvas" && state.view !== "library")
+      $("[data-cc-preview]").hidden = state.view === "canvas";
+      if (state.view !== "canvas")
         $("[data-cc-preview]").innerHTML =
           state.view === "guide"
             ? guide(state.doc, state.cards, state.index)
@@ -711,16 +704,6 @@
         } else if (b.dataset.ccView) {
           state.view = b.dataset.ccView;
           draw();
-          if (state.view === "library" && state.libraryDeck !== state.deckId) {
-            const ticket = ++state.libraryTicket;
-            state.libraryDeck = state.deckId;
-            const host = $("[data-cc-visual-library]");
-            if (root.YgoComboEditorial && root.YgoCheckedStudy) {
-              root.YgoComboEditorial.mount(host, { id: state.deckId, name: decks.find(d => Number(d.id) === state.deckId)?.name || "Deck" }, () => ticket === state.libraryTicket);
-            } else {
-              host.textContent = "El visor documental no está disponible en esta versión de la plataforma.";
-            }
-          }
         } else if (b.dataset.ccSource) {
           state.from = b.dataset.ccSource;
           canvas();
