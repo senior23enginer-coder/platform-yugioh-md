@@ -153,7 +153,7 @@
       else throw Error("Condicion no implementada");
     }
     check(
-      Array.isArray(rule.select) && rule.select.length <= 4,
+      Array.isArray(rule.select) && rule.select.length <= 6,
       "Selecciones incorrectas",
     );
     const refs = new Set(["actor"]);
@@ -173,7 +173,39 @@
       "Faltan coste o resolucion",
     );
     for (const op of [...rule.costs, ...rule.resolve]) {
-      if (op.op === "destroy")
+      if (op.op === "shuffle")
+        check(
+          Array.isArray(op.refs) && op.refs.length >= 2 && op.refs.length <= 5 &&
+          new Set(op.refs).size === op.refs.length && op.refs.every(ref=>refs.has(ref) && ref!=="actor") &&
+          op.distinctCids === true && Array.isArray(op.allowedCids) &&
+          op.allowedCids.length >= op.refs.length &&
+          op.allowedCids.every(cid=>Number.isInteger(cid) && cid>0),
+          "Barajado requiere cartas propias identificadas y nombres diferentes",
+        );
+      else if (op.op === "xyz")
+        check(
+          Number.isInteger(op.cid) && op.cid>0 &&
+          Array.isArray(op.materials) && op.materials.length>=2 && op.materials.length<=4 &&
+          new Set(op.materials).size===op.materials.length && op.materials.every(ref=>refs.has(ref)) &&
+          Array.isArray(op.materialCids) && op.materialCids.length===op.materials.length &&
+          op.materialCids.every(cid=>Number.isInteger(cid)&&cid>0) &&
+          ["m1","m2","m3","m4","m5","emz1","emz2"].includes(op.to) &&
+          op.recipe==="exact-cids",
+          "Xyz requiere materiales acreditados por CID",
+        );
+      else if (op.op === "fusion")
+        check(
+          Number.isInteger(op.cid) && op.cid > 0 &&
+          Array.isArray(op.materials) && op.materials.length >= 2 && op.materials.length <= 5 &&
+          new Set(op.materials).size === op.materials.length &&
+          op.materials.every(ref => refs.has(ref)) &&
+          Array.isArray(op.materialCids) && op.materialCids.length === op.materials.length &&
+          op.materialCids.every(cid => Number.isInteger(cid) && cid > 0) &&
+          ["m1","m2","m3","m4","m5","emz1","emz2"].includes(op.to) &&
+          op.recipe === "exact-cids" && op.allowGraveyard === false,
+          "Fusión requiere materiales exactos, identificados y de mano/campo",
+        );
+      else if (op.op === "destroy")
         check(
           refs.has(op.ref) && op.reason === "effect",
           "Destrucción no acreditada",
@@ -222,7 +254,7 @@
           "Restriccion incorrecta",
         );
       else if (op.op === "normal")
-        check(op.available === false, "Normal incorrecta");
+        check(typeof op.available === "boolean", "Normal incorrecta");
       else throw Error("Operacion no implementada: " + op.op);
     }
     check(
@@ -258,7 +290,7 @@
         rejected.push({ id: rule.id, message: e.message });
         continue;
       }
-      const used = "rule:" + rule.id + ":turn:" + s.turn;
+      const used = "rule:" + rule.id;
       if (rule.oncePerTurn && (s._used || []).includes(used)) continue;
       const f = { ...options, ...s._ruleFlags };
       if (rule.activation && f.effectsNegated) continue;
@@ -271,7 +303,7 @@
               })()
             : g.kind === "state"
               ? g.values.includes(
-                  g.field === "normalAvailable" ? !s._normal : s[g.field],
+                  g.field === "normalAvailable" ? (s._normal === undefined ? s.normalAvailable : !s._normal) : s[g.field],
                 )
               : !!f[g.flag] === g.value,
         )
@@ -311,7 +343,50 @@
               "Destino de Cementerio pendiente por bloqueo",
             );
           }
-          if (op.op === "destroy") {
+          if (op.op === "shuffle") {
+            const targets=op.refs.map(ref=>n.tokens.find(t=>t.uid===refs[ref]));
+            check(targets.every(t=>t && t.owner==="self" && t.controller==="self" &&
+              ["hand","graveyard"].includes(t.zone)), "Material de barajado fuera de mano/Cementerio propio");
+            const cids=targets.map(t=>db.bindings[t.key]);
+            check(new Set(cids).size===cids.length && cids.every(cid=>op.allowedCids.includes(cid)),
+              "Nombres repetidos o materiales ajenos al requisito");
+            for(const t of targets)n=E.place(n,{uid:t.uid,zone:"deck",controller:t.owner});
+            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"shuffle_distinct",cids,stage:opStage}];
+          } else if (op.op === "xyz") {
+            check(!(f.noExtra || f.specialBlocked),"Xyz bloqueado por restricción de Extra o Especial");
+            check(!(options.blockedZones||[]).includes(op.to),"Zona Extra bloqueada");
+            const selected=op.materials.map(ref=>n.tokens.find(t=>t.uid===refs[ref]));
+            check(selected.every(t=>t&&t.owner==="self"&&t.controller==="self"&&E.isMonster(t.zone)&&t.position!=="set"),
+              "Material Xyz no disponible boca arriba en campo propio");
+            const actual=selected.map(t=>db.bindings[t.key]).sort((a,b)=>a-b);
+            const required=[...op.materialCids].sort((a,b)=>a-b);
+            check(actual.every((cid,i)=>cid===required[i]),"Materiales Xyz no coinciden con receta exacta");
+            const extraCard=n.self.cards.filter(c=>c.section==="extra"&&db.bindings[c.key]===op.cid);
+            check(extraCard.length===1,"Xyz no encontrado de forma única en Extra");
+            const previous=n.tokens.find(t=>t.owner==="self"&&t.key===extraCard[0].key&&t.zone==="extra");
+            n=E.place(n,previous?{uid:previous.uid,zone:op.to,controller:"self"}:{key:extraCard[0].key,owner:"self",controller:"self",zone:op.to});
+            const summoned=n.tokens.find(t=>t.key===extraCard[0].key&&t.zone===op.to);
+            n=E.position(n,summoned.uid,"attack");
+            for(const t of selected)n=E.place(n,{uid:t.uid,zone:"material:"+summoned.uid,controller:"self"});
+            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"xyz_summon",cid:op.cid,uid:summoned.uid,materials:selected.map(t=>t.uid),stage:opStage}];
+          } else if (op.op === "fusion") {
+            check(!(f.noExtra || f.specialBlocked || f.xyzOnly), "Fusión bloqueada por restricción de Extra o Especial");
+            check(!(options.blockedZones || []).includes(op.to), "Zona Extra bloqueada");
+            const selected = op.materials.map(ref=>n.tokens.find(t=>t.uid===refs[ref]));
+            check(selected.every(t=>t && t.owner==="self" && t.controller==="self" &&
+              (t.zone==="hand" || E.isMonster(t.zone))), "Material no disponible en mano/campo propio");
+            const actual = selected.map(t=>db.bindings[t.key]).sort((a,b)=>a-b);
+            const required = [...op.materialCids].sort((a,b)=>a-b);
+            check(actual.every((cid,i)=>cid===required[i]), "Materiales no coinciden con la receta exacta");
+            const extraCard=n.self.cards.filter(c=>c.section==="extra" && db.bindings[c.key]===op.cid);
+            check(extraCard.length===1,"Monstruo de Fusión no encontrado de forma única en el Extra");
+            for(const t of selected)n=E.place(n,{uid:t.uid,zone:"graveyard",controller:t.owner});
+            const previous=n.tokens.find(t=>t.owner==="self" && t.key===extraCard[0].key && t.zone==="extra");
+            n=E.place(n,previous?{uid:previous.uid,zone:op.to,controller:"self"}:{key:extraCard[0].key,owner:"self",controller:"self",zone:op.to});
+            const summoned=n.tokens.find(t=>t.key===extraCard[0].key && t.zone===op.to);
+            n=E.position(n,summoned.uid,"attack");
+            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"fusion_summon",cid:op.cid,uid:summoned.uid,materials:selected.map(t=>t.uid),stage:opStage}];
+          } else if (op.op === "destroy") {
             const t = n.tokens.find((t) => t.uid === refs[op.ref]);
             check(t && (field(t.zone) || t.zone === "hand"), "Objetivo de destrucción fuera de campo/mano");
             check(!(f.graveyardBlocked), "Destrucción hacia Cementerio bloqueada");
@@ -394,8 +469,14 @@
             );
             t.position = op.position;
           } else if (op.op === "normal") {
-            check(!n._normal, "Normal usada");
-            n._normal = true;
+            if (op.available === false) {
+              check(!n._normal, "Normal usada");
+              n._normal = true;
+            } else {
+              check(n._normal, "No se ha consumido la Normal que se recupera");
+              n._normal = false;
+            }
+            n.normalAvailable = !n._normal;
           } else {
             n._ruleFlags = { ...n._ruleFlags, [op.flag]: op.value };
             if (op.flag === "xyzOnly") n._xyz = op.value;
