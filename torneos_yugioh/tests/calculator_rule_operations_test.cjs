@@ -17,6 +17,11 @@ let s = E.create(self, opponent);
 s = E.place(s, { key: actor.key, owner: "self", zone: "m1" });
 s = E.place(s, { key: target.key, owner: "opponent", zone: "m1" });
 const snapshot = JSON.stringify(s);
+const causal = { kind: "sent_to_graveyard", uid: 1, cid: 19364, sourceUid: 2, sourceCid: 19366, turn: 1 };
+const causalCheckpoint = R.checkpoint({ ...s, _ruleEvents: [causal] });
+assert.deepEqual(causalCheckpoint._ruleEvents, [causal], "A paid-state snapshot must retain causal effect evidence");
+causalCheckpoint._ruleEvents[0].cid = 0;
+assert.equal(causal.cid, 19364, "Causal snapshots must not mutate the duel state");
 const rule = {
   version: 1, id: "verified-fixture", deckId: self.id, format: "tcg_advanced",
   scope: "single-effect", label: "Efecto declarado de prueba (no es el efecto de Fenrir)",

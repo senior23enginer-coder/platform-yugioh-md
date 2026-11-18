@@ -303,6 +303,7 @@
       _xyz: s._xyz,
       _used: E.clone(s._used || []),
       _ruleFlags: E.clone(s._ruleFlags || {}),
+      _ruleEvents: E.clone(s._ruleEvents || []),
     };
   }
   function actions(s, db, options = {}) {

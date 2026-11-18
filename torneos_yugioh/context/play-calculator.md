@@ -86,6 +86,8 @@ Creación Combinada (Memento) añade un procedimiento verificable de Invocación
 
 Bloque 1, seguimiento de efectos: los efectos declarativos con varias zonas o materiales comparten una sola marca de uso por turno en el panel y no generan casillas duplicadas. Se conserva el registro manual `rule:<id>` del turno actual y se restaura el permiso en el turno siguiente. Las listas de CID y la exigencia de nombres diferentes son validadas en el adaptador; no se aceptan identificadores ni selecciones libres sin acreditar. La captura CL1–CL20 sigue siendo descriptiva: si hay una cadena pendiente, la búsqueda se detiene hasta actualizar el estado; aún no hay un solucionador general de cadenas.
 
+La identidad de búsqueda también conserva los eventos causales `_ruleEvents` (destrucción, envío por efecto, materiales, disparadores), incluso cuando dos ramas llegan al mismo tablero visible. Los puntos de coste pagado conservan esos eventos sin mutar el estado original. Esto evita que una rama sin disparador acreditado herede acciones de otra rama causalmente distinta.
+
 - `npm run test:planner`: secuencias nuevas, HOPT, costes, materiales, zonas, información oculta, aislamiento de formato e inmutabilidad.
 - `npm test`: pruebas puras del motor, además de las suites de la plataforma y conservación editorial.
 - `npm run test:calculator`: Playwright local, arrastre real, selección de zonas, cartas desconocidas, cambio a Rush, independencia de escenarios, diseño móvil y reapertura con red desactivada mediante un service worker real. Sin solicitudes externas ni acceso a producción.

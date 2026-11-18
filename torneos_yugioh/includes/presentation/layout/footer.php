@@ -44,8 +44,8 @@
 <script src="./assets/modules/play-calculator/hand-practice.js?v=20261113-hand-practice-170" defer></script>
 <script src="./assets/modules/play-calculator/storage.js?v=20261103-board-129" defer></script>
 <script src="./assets/modules/play-calculator/card-menu.js?v=20261116-actions-1" defer></script>
-<script src="./assets/modules/play-calculator/rules.js?v=20261118-block1-1" defer></script>
-<script src="./assets/modules/play-calculator/planner.js?v=20261118-block1-1" defer></script>
+<script src="./assets/modules/play-calculator/rules.js?v=20261118-block1-2" defer></script>
+<script src="./assets/modules/play-calculator/planner.js?v=20261118-block1-2" defer></script>
 <script src="./assets/modules/play-calculator/verified-rules.js?v=20261118-five-names-1" defer></script>
 <script src="./assets/modules/play-calculator/study.js?v=20261118-verified-1" defer></script><script src="./assets/modules/play-calculator/ui.js?v=20261118-scenario-1" defer></script>
 <script src="./assets/modules/combo-creator/model.js?v=20261103-combos-133" defer></script>
