@@ -148,7 +148,10 @@
         s.chain.every((link, i) => link.link === i + 1 &&
           SIDES.includes(link.side) &&
           typeof link.cardName === "string" && link.cardName.length <= 250 &&
-          typeof link.effect === "string" && link.effect.trim().length > 0 && link.effect.length <= 300),
+          typeof link.effect === "string" && link.effect.trim().length > 0 && link.effect.length <= 300 &&
+          (link.ruleId === undefined || (typeof link.ruleId === "string" && link.ruleId.length <= 100 && link.ruleId.length > 0)) &&
+          (link.actorUid === undefined || (Number.isInteger(link.actorUid) && link.actorUid > 0)) &&
+          (link.outcome === undefined || ["negate-effect", "negate-activation"].includes(link.outcome))),
       "Cadena pendiente inválida.");
     for (const side of SIDES) {
       assert(
@@ -364,7 +367,7 @@
       if (values.unknown) n.unknown = { ...n.unknown, ...values.unknown };
     });
   }
-  function appendChain(s, { side, cardName = "", effect }) {
+  function appendChain(s, { side, cardName = "", effect, ruleId, actorUid, outcome }) {
     return change(s, (n) => {
       assert(SIDES.includes(side), "Selecciona el jugador que activó el eslabón.");
       assert(typeof effect === "string" && effect.trim() && effect.length <= 300,
@@ -372,7 +375,8 @@
       n.chain ||= [];
       assert(n.chain.length < 20, "La cadena alcanzó el límite de captura.");
       n.chain.push({ link: n.chain.length + 1, side,
-        cardName: String(cardName).slice(0, 250), effect: effect.trim() });
+        cardName: String(cardName).slice(0, 250), effect: effect.trim(),
+        ...(ruleId ? { ruleId, actorUid } : {}), ...(outcome ? { outcome } : {}) });
     });
   }
   function removeChain(s, link) {

@@ -1,5 +1,5 @@
-/* Conditional replay of one verified activation and an explicitly declared negation.
-   Unknown chain links fail closed. This is not an opponent-card rules engine. */
+/* Staged, bounded chain replay. Costs are paid in CL order; verified effects
+   resolve in reverse order. Opponent negations remain conditional declarations. */
 (function (root, factory) {
   if (typeof module === "object" && module.exports)
     module.exports = factory(require("./engine.js"), require("./rules.js"));
@@ -10,39 +10,82 @@
     E.validate(s);
     const links = s.chain || [];
     const blocked = (reason) => ({ status: "unresolved", reason, branches: [] });
-    if (!links.length || links.length > 2)
-      return blocked("Sólo se ejecutan cadenas de uno o dos eslabones acreditados.");
-    const first = links[0];
-    if (first.side !== "self" || !first.ruleId || !Number.isInteger(first.actorUid))
-      return blocked("CL1 necesita una regla ejecutable y una copia propia identificada.");
-    const rule = (db.rules || []).find((r) => r.id === first.ruleId &&
-      r.deckId === s.self.id && r.format === s.format && r.activation);
-    if (!rule) return blocked("La activación de CL1 no tiene una regla ejecutable acreditada.");
-    try { R.validate(rule); } catch (e) { return blocked(e.message); }
-    const actor = s.tokens.find((t) => t.uid === first.actorUid && t.controller === "self" &&
-      db.bindings[t.key] === rule.actor.cid);
-    if (!actor) return blocked("La copia de CL1 no coincide con el efecto declarado.");
-    let options = {}, warning = "Solo se verificó el efecto propio; las ventanas de respuesta ajenas no están certificadas.";
-    if (links.length === 2) {
-      const response = links[1];
-      if (response.side !== "opponent" || !["negate-effect", "negate-activation"].includes(response.outcome))
-        return blocked("CL2 exige una negación concreta declarada por el jugador.");
-      options = response.outcome === "negate-effect"
-        ? { negateEffectRuleIds: [rule.id] }
-        : { negateActivationRuleIds: [rule.id] };
-      warning = "Negación de CL2 declarada por el jugador: la carta rival, sus costes y su ventana aún deben verificarse.";
+    if (!links.length || links.length > 20)
+      return blocked("La cadena requiere entre uno y veinte eslabones.");
+    const start = E.clone(s);
+    start.chain = [];
+    let paths = [{ state: start, pending: [], negations: [] }];
+    let conditional = false;
+    for (const [index, link] of links.entries()) {
+      if (link.side === "opponent") {
+        if (!link.outcome || !["negate-effect", "negate-activation"].includes(link.outcome) ||
+          (index > 0 && links[index - 1].side === "opponent") ||
+          !paths.every((path) => path.pending.length > 0))
+          return blocked(`CL${index + 1}: respuesta rival sin negación acreditada o sin activación previa.`);
+        conditional = true;
+        paths = paths.map((path) => ({ ...path,
+          negations: [...path.negations, { target: path.pending.length - 1, outcome: link.outcome }],
+        }));
+        continue;
+      }
+      if (!link.ruleId || !Number.isInteger(link.actorUid))
+        return blocked(`CL${index + 1}: falta regla ejecutable o copia identificada.`);
+      const rule = (db.rules || []).find((r) => r.id === link.ruleId &&
+        r.deckId === s.self.id && r.format === s.format && r.activation);
+      if (!rule) return blocked(`CL${index + 1}: efecto no acreditado.`);
+      try { R.validate(rule); } catch (e) { return blocked(e.message); }
+      if (index > 0 && rule.chainSpeed !== 2)
+        return blocked(`CL${index + 1}: no se acreditó velocidad 2 para encadenar este efecto.`);
+      paths = paths.flatMap((path) => {
+        const actor = path.state.tokens.find((t) => t.uid === link.actorUid &&
+          t.controller === "self" && db.bindings[t.key] === rule.actor.cid);
+        if (!actor) return [];
+        const prepared = R.actions(path.state, db, { deferResolution: true });
+        return prepared.actions.filter((a) => a.event.ruleId === rule.id &&
+          a.event.actor === actor.uid && a.prepared).map((a) => ({
+          state: a.state, pending: [...path.pending, a.prepared], negations: path.negations,
+        }));
+      }).slice(0, 40);
+      if (!paths.length)
+        return blocked(`CL${index + 1}: no se pudieron pagar costes o acreditar objetivos y activación.`);
     }
-    const before = E.clone(s);
-    before.chain = [];
-    const result = R.actions(before, db, options);
-    const branches = result.actions.filter((a) => a.event.ruleId === rule.id &&
-      a.event.actor === actor.uid).map((a) => ({
-      label: a.label, state: { ...a.state, chain: [] }, paid: a.paid,
-      effectNegated: a.event.effectNegated, ruleId: rule.id,
-    }));
+    const branches = [];
+    for (const path of paths) {
+      let candidates = [{ state: path.state, labels: [], paid: null, effectNegated: false }];
+      for (let i = path.pending.length - 1; i >= 0; i--) {
+        const prepared = path.pending[i];
+        const response = path.negations.find((n) => n.target === i);
+        const options = { prepared };
+        if (response?.outcome === "negate-effect") options.negateEffectRuleIds = [prepared.ruleId];
+        if (response?.outcome === "negate-activation") options.negateActivationRuleIds = [prepared.ruleId];
+        candidates = candidates.flatMap((current) => {
+          const rule = (db.rules || []).find((r) => r.id === prepared.ruleId);
+          const state = response?.outcome === "negate-activation" && rule?.activationNegatedConsumesUse === false
+            ? { ...current.state, _used: (current.state._used || []).filter((id) =>
+              id !== "rule:" + prepared.ruleId && id !== "rule:" + prepared.ruleId + ":turn:" + current.state.turn),
+              _ruleUseTurns: Object.fromEntries(Object.entries(current.state._ruleUseTurns || {})
+                .filter(([id]) => id !== "rule:" + prepared.ruleId)) }
+            : current.state;
+          return R.actions(state, db, options).actions.filter((a) =>
+            a.event.ruleId === prepared.ruleId && a.event.actor === prepared.refs.actor)
+            .map((a) => ({ state: a.state, labels: [...current.labels, a.label],
+              paid: a.paid, effectNegated: current.effectNegated || a.event.effectNegated || a.event.activationNegated }));
+        }).slice(0, 40);
+        if (!candidates.length) break;
+      }
+      for (const candidate of candidates) branches.push({
+        label: candidate.labels.join(" ← "), state: { ...candidate.state, chain: [] },
+        paid: candidate.paid, effectNegated: candidate.effectNegated,
+      });
+      if (branches.length >= 40) break;
+    }
     if (!branches.length)
-      return blocked("No hay resolución legal acreditada para esta copia, sus costes y la respuesta declarada.");
-    return { status: "conditional", warning, branches };
+      return blocked("La resolución inversa no está acreditada con esos objetivos, costes y negaciones.");
+    return { status: "conditional",
+      warning: conditional
+        ? "Respuestas rivales declaradas por el jugador: la carta, sus costes y su ventana no están certificados."
+        : "Se verificaron costes y efectos propios; las ventanas de respuesta rivales no están certificadas.",
+      branches: branches.slice(0, 40) };
   }
   return { resolve };
 });

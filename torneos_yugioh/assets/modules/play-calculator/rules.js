@@ -58,6 +58,9 @@
       q.cid === undefined || (Number.isInteger(q.cid) && q.cid > 0),
       "CID incorrecto",
     );
+    check(q.cids === undefined || (Array.isArray(q.cids) && q.cids.length > 0 &&
+      q.cids.length <= 60 && q.cids.every((id) => Number.isInteger(id) && id > 0) &&
+      new Set(q.cids).size === q.cids.length), "Lista CID incorrecta");
     check(
       q.faceUp === undefined || typeof q.faceUp === "boolean",
       "Posicion incorrecta",
@@ -65,7 +68,7 @@
     check(q.key === undefined || typeof q.key === "string", "Clave incorrecta");
     check(
       Object.keys(q).every((k) =>
-        ["side", "zones", "cid", "key", "faceUp", "notNegated"].includes(k),
+        ["side", "zones", "cid", "cids", "key", "faceUp", "notNegated"].includes(k),
       ),
       "Selector desconocido",
     );
@@ -80,6 +83,7 @@
           (z === "field-all" && field(t.zone)),
       ) &&
       (q.cid === undefined || db.bindings[t.key] === q.cid) &&
+      (q.cids === undefined || q.cids.includes(db.bindings[t.key])) &&
       (q.key === undefined || q.key === t.key) &&
       (q.faceUp === undefined || q.faceUp === (t.position !== "set")) &&
       (!q.notNegated || !E.negated(s, t))
@@ -130,6 +134,8 @@
       "El actor del efecto propio debe pertenecer a tu lado",
     );
     check(Number.isInteger(rule.actor.cid), "Actor sin CID");
+    check(rule.chainSpeed === undefined || [1, 2].includes(rule.chainSpeed),
+      "Velocidad de efecto incorrecta");
     check(
       Array.isArray(rule.guards) &&
         rule.guards.length > 0 &&
@@ -164,6 +170,8 @@
       Array.isArray(rule.select) && rule.select.length <= 6,
       "Selecciones incorrectas",
     );
+    check(rule.distinctSelectedNames === undefined || typeof rule.distinctSelectedNames === "boolean",
+      "Restriccion de nombres incorrecta");
     const refs = new Set(["actor"]);
     for (const x of rule.select) {
       check(
@@ -309,6 +317,8 @@
       _xyz: s._xyz,
       _used: E.clone(s._used || []),
       _ruleFlags: E.clone(s._ruleFlags || {}),
+      _ruleEvents: E.clone(s._ruleEvents || []),
+      _ruleUseTurns: E.clone(s._ruleUseTurns || {}),
     };
   }
   function triggerMatches(s, rule, uid) {
@@ -325,7 +335,8 @@
     const actions = [],
       rejected = [];
     for (const rule of (db.rules || []).filter(
-      (r) => r.deckId === s.self.id && r.format === s.format,
+      (r) => r.deckId === s.self.id && r.format === s.format &&
+        (!options.prepared || r.id === options.prepared.ruleId),
     )) {
       try {
         validate(rule);
@@ -335,13 +346,13 @@
       }
       const used = "rule:" + rule.id;
       // El límite por nombre se reinicia por turno, pero no por nueva copia.
-      if (rule.oncePerTurn && (s._ruleUseTurns?.[used] !== undefined
+      if (!options.prepared && rule.oncePerTurn && (s._ruleUseTurns?.[used] !== undefined
         ? s._ruleUseTurns[used] === s.turn
-        : (s._used || []).includes(used))) continue;
-      if (rule.trigger && !s.tokens.some(t => triggerMatches(s, rule, t.uid))) continue;
+        : (s._used || []).includes(used) || (s._used || []).includes(used + ":turn:" + s.turn))) continue;
+      if (!options.prepared && rule.trigger && !s.tokens.some(t => triggerMatches(s, rule, t.uid))) continue;
       const f = { ...options, ...s._ruleFlags };
       if (rule.activation && f.effectsNegated) continue;
-      if (
+      if (!options.prepared &&
         !rule.guards.every((g) =>
           g.kind === "count"
             ? (() => {
@@ -356,21 +367,31 @@
         )
       )
         continue;
-      let bindings = candidates(s, rule.actor, db).map((t) => ({
+      let bindings = options.prepared ? [options.prepared.refs] : candidates(s, rule.actor, db).map((t) => ({
         actor: t.uid,
       }));
-      if (rule.trigger) bindings=bindings.filter(b=>triggerMatches(s,rule,b.actor));
-      for (const item of rule.select)
+      if (!options.prepared && rule.trigger) bindings=bindings.filter(b=>triggerMatches(s,rule,b.actor));
+      for (const item of options.prepared ? [] : rule.select)
         bindings = bindings
           .flatMap((b) =>
             candidates(s, item.selector, db)
-              .filter((t) => !Object.values(b).includes(t.uid))
+              .filter((t) => {
+                if (Object.values(b).includes(t.uid)) return false;
+                if (!rule.distinctSelectedNames) return true;
+                const earlier = Object.entries(b).filter(([ref]) => ref !== "actor")
+                  .map(([, uid]) => s.tokens.find((token) => token.uid === uid));
+                return earlier.every((other) => db.bindings[other.key] !== db.bindings[t.key]) &&
+                  (!earlier.length || t.uid > earlier[earlier.length - 1].uid);
+              })
               .map((t) => ({ ...b, [item.ref]: t.uid })),
           )
           .slice(0, 40);
       for (const refs of bindings.slice(0, 40)) {
-        const actor = s.tokens.find((t) => t.uid === refs.actor);
+        const actor = s.tokens.find((t) => t.uid === refs.actor) ||
+          (options.prepared?.actorKey ? { key: options.prepared.actorKey } : null);
+        if (!actor) continue;
         if (
+          !options.prepared &&
           rule.activation &&
           field(actor.zone) &&
           (E.negated(s, actor) ||
@@ -581,11 +602,11 @@
           }
         }
         try {
-          for (const op of rule.costs) apply(op);
+          if (!options.prepared) for (const op of rule.costs) apply(op);
           const activationNegated=(options.negateActivationRuleIds||[]).includes(rule.id);
           check(!activationNegated || (rule.activation && typeof rule.activationNegatedConsumesUse === "boolean"),
             "La negación de activación exige el límite explícito de esa carta");
-          if (rule.oncePerTurn && (!activationNegated || rule.activationNegatedConsumesUse)) {
+          if (!options.prepared && rule.oncePerTurn && (!activationNegated || rule.activationNegatedConsumesUse)) {
             n._used = [...new Set([...(n._used || []), used])];
             n._ruleUseTurns = { ...n._ruleUseTurns, [used]: n.turn };
           }
@@ -593,7 +614,8 @@
           const effectNegated = (options.negateEffectRuleIds || []).includes(rule.id);
           check(!(activationNegated&&effectNegated),"No se puede negar simultáneamente activación y efecto");
           opStage = "resolve";
-          if (!effectNegated&&!activationNegated) for (const op of rule.resolve) apply(op);
+          if (!options.deferResolution && !effectNegated&&!activationNegated)
+            for (const op of rule.resolve) apply(op);
           const summoned = n.tokens.filter(
             (t) =>
               E.isMonster(t.zone) &&
@@ -637,6 +659,9 @@
             used: rule.oncePerTurn ? used : null,
             source: rule.source,
             paid,
+            ...(options.deferResolution ? { prepared: {
+              ruleId: rule.id, refs: E.clone(refs), actorKey: actor.key,
+            } } : {}),
             event: {
               activation: rule.activation,
               actor: refs.actor,

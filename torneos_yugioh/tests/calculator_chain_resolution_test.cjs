@@ -19,7 +19,7 @@ const old = JSON.stringify(scenario);
 const first = E.appendChain(scenario, { side: "self", cardName: "Kashtira Fenrir",
   effect: "Añadir Riseheart", ruleId: "665:fenrir:search", actorUid: uid });
 const normal = C.resolve(first, db);
-assert.equal(normal.status, "conditional");
+assert.equal(normal.status, "conditional", JSON.stringify(normal));
 assert(normal.branches.some((b) => b.state.tokens.some((t) =>
   db.bindings[t.key] === 18151 && t.zone === "hand")));
 const second = E.appendChain(first, { side: "opponent", cardName: "Respuesta declarada",
@@ -29,7 +29,7 @@ assert.equal(negated.status, "conditional");
 assert(negated.branches.every((b) => b.effectNegated &&
   !b.state.tokens.some((t) => db.bindings[t.key] === 18151 && t.zone === "hand")));
 assert(negated.branches.every((b) => b.state.chain.length === 0));
-assert.match(negated.warning, /declarada por el jugador/i);
+assert.match(negated.warning, /declaradas por el jugador/i);
 assert.equal(JSON.stringify(scenario), old);
 const badResponse = E.appendChain(first, { side: "opponent", effect: "Respuesta sin resolver" });
 assert.equal(C.resolve(badResponse, db).status, "unresolved");
@@ -51,12 +51,56 @@ const pricedResult = C.resolve(pricedSecond, pricedDb);
 assert.equal(pricedResult.status, "conditional");
 assert(pricedResult.branches.every((b) => b.state.lp.self === 7500),
   "A negated activation does not refund a paid LP cost");
-assert(pricedResult.branches.every((b) => b.state._used.includes("rule:" + priced.id + ":turn:1")),
+assert(pricedResult.branches.every((b) => b.state._ruleUseTurns["rule:" + priced.id] === 1),
   "Explicit activation-negation usage semantics are preserved");
 assert(pricedResult.branches.every((b) => !b.state.tokens.some((t) =>
   db.bindings[t.key] === 18151 && t.zone === "hand")));
+const repeatAllowed = { ...priced, activationNegatedConsumesUse: false };
+const repeatResult = C.resolve(pricedSecond, { ...db, rules: [repeatAllowed] });
+assert.equal(repeatResult.status, "conditional");
+assert(repeatResult.branches.every((b) => !(b.state._used || []).includes("rule:" + priced.id) &&
+  b.state._ruleUseTurns?.["rule:" + priced.id] === undefined),
+  "Explicit activation-negation semantics can leave the effect available");
 assert.throws(() => E.appendChain(scenario, { side: "opponent", effect: "x", outcome: "arbitrary" }),
   /Cadena pendiente inválida/);
+const unicorn = catalog.cards.find((c) => db.bindings[c.key] === 17769);
+assert(unicorn);
+let multi = E.place(scenario, { key: unicorn.key, owner: "self", zone: "m2" });
+const unicornUid = multi.tokens.find((t) => t.key === unicorn.key).uid;
+const cl1Rule = { ...priced, id: "665:test:cl1-search" };
+const quick = { ...priced, id: "665:test:cl2-quick", label: "Efecto rápido de prueba",
+  actor: { side: "self", zones: ["monsters"], cid: 17769, faceUp: true },
+  chainSpeed: 2, costs: [{ op: "payLP", amount: 300 }],
+  resolve: [{ op: "damage", side: "opponent", amount: 1000 }], tags: ["monsterEffect"] };
+const multiDb = { ...db, rules: [cl1Rule, quick] };
+multi = E.appendChain(multi, { side: "self", effect: "CL1 busca", ruleId: cl1Rule.id, actorUid: uid });
+multi = E.appendChain(multi, { side: "self", effect: "CL2 rápido", ruleId: quick.id, actorUid: unicornUid });
+const multiResult = C.resolve(multi, multiDb);
+assert.equal(multiResult.status, "conditional", JSON.stringify(multiResult));
+assert(multiResult.branches.some((b) => b.state.lp.self === 7200 && b.state.lp.opponent === 7000 &&
+  b.state.tokens.some((t) => db.bindings[t.key] === 18151 && t.zone === "hand")));
+assert(multiResult.branches[0].label.indexOf("rápido") < multiResult.branches[0].label.indexOf("Fenrir"),
+  "The last chain link must resolve first");
+const lockQuick = { ...quick, id: "665:test:cl2-lock", resolve: [{ op: "flag", flag: "noDeckToHand", value: true }] };
+const locked = E.appendChain(E.removeChain(multi, 2), { side: "self", effect: "CL2 bloquea búsquedas",
+  ruleId: lockQuick.id, actorUid: unicornUid });
+assert.equal(C.resolve(locked, { ...db, rules: [cl1Rule, lockQuick] }).status, "unresolved",
+  "An earlier link cannot search after a later link resolves a deck-to-hand lock");
+const slow = { ...quick, id: "665:test:illegal-slow", chainSpeed: 1 };
+const slowChain = E.appendChain(E.removeChain(multi, 2), { side: "self", effect: "CL2 lento",
+  ruleId: slow.id, actorUid: unicornUid });
+assert.equal(C.resolve(slowChain, { ...db, rules: [cl1Rule, slow] }).status, "unresolved");
+const cl3 = { ...quick, id: "665:test:cl3-quick", label: "Tercer efecto rápido",
+  costs: [], resolve: [{ op: "damage", side: "opponent", amount: 200 }] };
+let three = E.appendChain(multi, { side: "self", effect: "CL3 rápido", ruleId: cl3.id, actorUid: unicornUid });
+three = E.appendChain(three, { side: "opponent", effect: "CL4 niega CL3", outcome: "negate-effect" });
+const longer = C.resolve(three, { ...db, rules: [cl1Rule, quick, cl3] });
+assert.equal(longer.status, "conditional", JSON.stringify(longer));
+assert(longer.branches.some((b) => b.state.lp.opponent === 7000),
+  "CL4 must negate CL3 without negating CL2 or CL1");
+const unknownCounter = E.appendChain(three, { side: "opponent", effect: "CL5 responde a CL4", outcome: "negate-effect" });
+assert.equal(C.resolve(unknownCounter, { ...db, rules: [cl1Rule, quick, cl3] }).status, "unresolved",
+  "Do not guess whether a response negates another opponent response");
 const ui = fs.readFileSync(`${__dirname}/../assets/modules/play-calculator/ui.js`, "utf8");
 for (const hook of ["data-chain-rule", "data-chain-actor", "data-chain-outcome", "data-chain-preview", "data-chain-apply"])
   assert(ui.includes(hook), "Missing structured chain UI control: " + hook);
