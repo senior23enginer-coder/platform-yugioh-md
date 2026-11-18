@@ -46,6 +46,28 @@ for (const cid of [19366, 19363, 19364])
 const goblinNegated = R.actions(goblinStart, memento.db, { negateEffectRuleIds: ["671:goblin:send-two"] });
 assert.equal(goblinNegated.actions.length, 1);
 assert(goblinNegated.actions[0].state.tokens.every((t) => t.zone !== "graveyard"));
+const creation = card(memento.catalog, memento.db, 19360);
+let five = E.create(memento.catalog);
+five = E.place(five, { key: creation.key, owner: "self", zone: "hand" });
+for (const id of [19362, 19363, 19364, 19366, 20199]) {
+  five = E.place(five, { key: card(memento.catalog, memento.db, id).key,
+    owner: "self", zone: id === 19364 ? "hand" : "graveyard" });
+}
+const fiveActions = R.actions(five, memento.db).actions.filter((a) => a.event.ruleId === "671:tecuhtlica:five-names");
+assert.equal(fiveActions.length, 5, "Five distinct Memento names must enable five free monster zones");
+const combined = fiveActions[0].state;
+assert(combined.tokens.some((t) => t.key === creation.key && t.zone === "m1"));
+assert.equal(combined.tokens.filter((t) => [19362, 19363, 19364, 19366, 20199]
+  .includes(memento.db.bindings[t.key])).length, 0, "All five resources were shuffled into the Deck");
+const four = E.clone(five);
+four.tokens = four.tokens.filter((t) => memento.db.bindings[t.key] !== 20199);
+assert.equal(R.actions(four, memento.db).actions.filter((a) => a.event.ruleId === "671:tecuhtlica:five-names").length, 0);
+const repeated = E.place(four, { key: card(memento.catalog, memento.db, 19363).key,
+  owner: "self", zone: "graveyard" });
+assert.equal(R.actions(repeated, memento.db).actions.filter((a) => a.event.ruleId === "671:tecuhtlica:five-names").length, 0,
+  "Five cards with only four distinct names cannot summon Combined Creation");
+assert.equal(R.actions(five, memento.db, { specialBlocked: true }).actions.filter((a) => a.event.ruleId === "671:tecuhtlica:five-names").length, 0);
+assert.equal(R.actions(five, memento.db, { blockedZones: ["m1", "m2", "m3", "m4", "m5"] }).actions.filter((a) => a.event.ruleId === "671:tecuhtlica:five-names").length, 0);
 const kashtira = loaded(665);
 let k = E.create(kashtira.catalog);
 const fenrir = card(kashtira.catalog, kashtira.db, 17768);
@@ -55,4 +77,4 @@ const search = R.actions(k, kashtira.db).actions.find((a) => a.event.ruleId === 
 assert(search, "Fenrir search is an executable rule");
 assert(search.state.tokens.some((t) => kashtira.db.bindings[t.key] === 18151 && t.zone === "hand"));
 assert.equal(R.actions(k, kashtira.db, { noDeckToHand: true }).actions.filter((a) => a.event.ruleId === "665:fenrir:search").length, 0);
-console.log("Verified declarative rules: Memento Dark Blade/Goblin and Kashtira Fenrir: OK");
+console.log("Verified rules: Memento Dark Blade/Goblin/Combined Creation and Kashtira Fenrir: OK");

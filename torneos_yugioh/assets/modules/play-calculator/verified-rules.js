@@ -39,6 +39,23 @@
         ["monsterEffect", "sendFromDeck"],
         ["Caso acotado: Goblin se destruye a sí mismo; Hoja Oscura y Angbruja están en Deck. No modela envíos alternativos ni disparadores posteriores."],
       ),
+      ...[1, 2, 3, 4, 5].map((zone) => ({
+        ...rule(671, "671:tecuhtlica:five-names", "Creación Combinada: barajar cinco nombres e Invocar", 19360,
+          "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+          [{ op: "move", ref: "actor", to: "m" + zone, position: "attack" }],
+          [],
+          ["Procedimiento de Invocación, no efecto activado. Las cinco cartas deben ser otros monstruos Memento de nombres distintos en mano o Cementerio. Sólo se modelan las cinco identidades verificadas de este estudio."],
+        ),
+        actor: { side: "self", zones: ["hand", "graveyard"], cid: 19360 },
+        select: [1, 2, 3, 4, 5].map((n) => ({
+          ref: "material" + n,
+          selector: { side: "self", zones: ["hand", "graveyard"], cids: [19362, 19363, 19364, 19366, 20199] },
+        })),
+        costs: [1, 2, 3, 4, 5].map((n) => ({ op: "move", ref: "material" + n, to: "deck", position: "attack" })),
+        activation: false,
+        oncePerTurn: false,
+        distinctSelectedNames: true,
+      })),
     ];
     return [];
   }
