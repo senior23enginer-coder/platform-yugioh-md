@@ -1,9 +1,9 @@
 /* Declarative effect adapter. Data never becomes JavaScript; unknown operations fail closed. */
 (function (root, factory) {
   if (typeof module === "object" && module.exports)
-    module.exports = factory(require("./engine.js"), require("./operations.js"), require("./guards.js"));
-  else root.YgoPlayRules = factory(root.YgoPlayEngine, root.YgoCalculatorOperations, root.YgoCalculatorGuards);
-})(typeof globalThis !== "undefined" ? globalThis : this, function (E, Operations, Guards) {
+    module.exports = factory(require("./engine.js"), require("./operations.js"), require("./guards.js"), require("./resources.js"));
+  else root.YgoPlayRules = factory(root.YgoPlayEngine, root.YgoCalculatorOperations, root.YgoCalculatorGuards, root.YgoCalculatorResources);
+})(typeof globalThis !== "undefined" ? globalThis : this, function (E, Operations, Guards, Resources) {
   "use strict";
   const field = (z) => E.isMonster(z) || /^s[1-5]$/.test(z) || z === "field";
   const zones = [
@@ -805,13 +805,11 @@
                 uid:summoned.uid,cid:op.cid,side:op.side,turn:n.turn,stage:opStage}];
             }
           } else if (op.op === "payLP") {
-            check(n.lp.self > op.amount, "LP insuficientes");
-            n.lp.self -= op.amount;
+            n.lp = Resources.applyLP(n.lp, op);
           } else if (op.op === "damage") {
-            n.lp[op.side] = Math.max(0, n.lp[op.side] - op.amount);
+            n.lp = Resources.applyLP(n.lp, op);
           } else if (op.op === "recoverLP") {
-            n.lp[op.side] += op.amount;
-            check(n.lp[op.side] <= 999999, "LP exceden el limite de escenario");
+            n.lp = Resources.applyLP(n.lp, op);
           } else if (op.op === "negate") {
             const t = n.tokens.find((t) => t.uid === refs[op.ref]);
             check(t && field(t.zone) && t.position !== "set", "Objetivo de negacion no acreditado");

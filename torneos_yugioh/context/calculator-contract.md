@@ -85,6 +85,17 @@ el historial disponible sólo acredita determinados eventos y ventanas. Este
 catálogo no interpreta automáticamente texto de cartas ni prueba condiciones
 de activación que todavía no están modeladas.
 
+## Recursos y costes (tarea general 05)
+
+`assets/modules/play-calculator/resources.js` encapsula el cálculo puro de
+LP para `payLP`, `damage` y `recoverLP`, sin modificar la entrada. Pagar LP
+requiere conservar al menos un LP; el daño nunca produce LP negativos; la
+recuperación no supera el máximo explícito de escenario (999999). El motor
+de reglas utiliza esta función tanto durante el pago de costes como durante
+la resolución. No se modifican las reglas de materiales, tributos, zonas o
+costes específicos de cartas; su generalización requiere evidencias y pruebas
+adicionales. El módulo no sustituye la comprobación de legalidad de cartas.
+
 `tests/calculator_contract_test.cjs` prueba el mismo contrato con dos decks
 sintéticos diferentes, ejecuta una operación compartida sin cambiar código
 por deck, y rechaza versión, identidad, campos, duplicados y operaciones
