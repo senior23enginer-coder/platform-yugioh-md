@@ -15,3 +15,7 @@ Se conserva el contrato interno `?api=deck_attributes`, los códigos de categor�
 No se modifican cartas, inventarios, ligas, resultados ni atributos individuales de las cartas. La asignación inicial de los 56 decks TCG actuales se basa en la naturaleza de su arquetipo o nombre, por orden de afinidad. Se documenta en `deck-worlds-nature.json`; no se fuerza equilibrio numérico ni se supone que todas sus cartas tengan esos atributos. Las elecciones manuales previas se conservan.
 
 Pruebas: `tests/deck_attributes_test.php`, `tests/deck_attributes_model_test.cjs`, `tests/deck_worlds_ui_test.cjs`. La última utiliza PHP y SQLite aislados y revisa tabla, miembros secundarios, altas/bajas, principal, límites, TCG, historial, conflictos, enlaces anteriores y móvil/escritorio. Las verificaciones públicas son de consulta y no guardan asignaciones de prueba.
+
+## Organización de implementación
+
+El backend está separado en `src/Domain/DeckWorlds`, `src/Application/DeckWorlds` e infraestructura HTTP/PDO. Los includes conservan la API nativa. La documentación de dependencias, bloqueos e historial está en `source-architecture.md`. El cliente HTTP frontend es `assets/modules/deck-attributes/api.js`, inyectado por la UI; las reglas puras permanecen en `model.js`.

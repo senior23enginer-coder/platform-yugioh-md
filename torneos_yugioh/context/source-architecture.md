@@ -36,7 +36,7 @@ Los estilos conservan reglas completas y el orden original de cascada. Sus nombr
 
 ## Transacciones, rutas y contratos
 
-- Los bloqueos, transacciones y limites de concurrencia permanecen en sus funciones originales.
+- Los adaptadores heredados conservan sus bloqueos y transacciones. En Mundos, el repositorio conserva los bloqueos y el adaptador transaccional controla exclusivamente la transaccion que inicia.
 - `src/legacy-functions.php` carga declaraciones; no inicia conexiones ni ejecuta comandos.
 - `src/autoload.php` registra clases y rutas estables de aplicacion; no inicializa HTTP ni persistencia.
 - Las vistas usan `YGO_APP_ROOT` cuando necesitan incluir otra vista, conservando el significado de las rutas antiguas.
@@ -56,3 +56,24 @@ La deuda que sigue existiendo es visible: algunos controladores heredados todavi
 `index.php` mantiene primero el rechazo del API de Reportes retirado, antes de cargar dependencias. Luego registra clases y funciones de compatibilidad, carga dependencias y defaults, procesa la solicitud y lee datos (`bootstrap/load-state.php`), construye las proyecciones, despacha respuestas HTTP y finalmente renderiza `presentation/page.php`. Los includes mantienen el ambito original: no envolverlos en funciones ni reordenarlos sin caracterizar los datos compartidos.
 
 El mapa cubre 132 funciones publicas extraidas y hay 21 pantallas separadas. Las 37 fuentes JavaScript comparten el cierre anterior; los 37 segmentos CSS conservan la cascada. La separacion no implica que cada adaptador procedimental sea un repositorio o caso de uso independiente.
+
+## Mundos: primera migración completa de una funcionalidad con persistencia
+
+El recorrido vigente es:
+
+`attributes-http.php → DeckWorldsController → AssignDeckWorlds / DeckWorldsQueries → puertos → adaptadores PDO`.
+
+- `src/Domain/DeckWorlds/`: selección ordenada de uno a tres mundos, catálogo e identidad/versionado de la asignación. Sin SQL, sesión ni HTTP.
+- `src/Application/DeckWorlds/`: comando tipado, asignación y consultas. Los puertos de lectura, escritura y elegibilidad son independientes; reloj y transacción se inyectan mediante `Application/Shared`.
+- `src/Infrastructure/Persistence/DeckWorlds/`: esquema explícito, consultas, bloqueos de fila e historial. `Composition/DeckWorldsModule` conecta las dependencias sin realizar consultas al construirse.
+- `src/Infrastructure/Http/DeckWorlds/`: autorización y conversión de solicitudes/respuestas. El include nativo captura sesión y variables HTTP; el controlador recibe un objeto de solicitud y una fábrica diferida.
+- `includes/decks/attributes.php`: compatibilidad con las funciones existentes, delegando a las capas anteriores.
+- `assets/modules/deck-attributes/`: `model.js` mantiene reglas puras; `api.js` encapsula el transporte con dependencias inyectadas; `ui.js` administra la interacción y el DOM.
+
+El comando bloquea el deck antes de consultar/modificar su asignación. Mantiene revisión esperada, guardados idempotentes e historial atómico. `PdoTransactionBoundary` confirma o revierte solo una transacción iniciada por él; si recibe una transacción del llamador, conserva su propiedad y propaga el error. No se crean tablas desde el dominio ni desde los constructores.
+
+Pruebas aisladas: `deck_worlds_application_test.php` usa dobles de puertos sin PDO; `deck_worlds_persistence_test.php` verifica SQLite, historial y transacciones propias/prestadas; `deck_worlds_api_test.cjs` verifica el contrato de transporte sin navegador. Las pruebas previas del módulo siguen vigentes.
+
+## Formato reproducible del código migrado
+
+`npm run format:architecture` aplica formato; `npm run format:architecture:check` detecta deriva y forma parte de `npm test`. La lista explícita está en `scripts/format-architecture.cjs`: incluye PHP puro migrado y el módulo frontend de Mundos. Excluye plantillas mixtas PHP/HTML, bundles generados y contenido editorial. El formato consistente no sustituye la revisión de responsabilidades y contratos.

@@ -10,16 +10,17 @@ function run(command, args) {
   if (result.error) console.error(result.error.message);
   if (result.status !== 0) process.exit(result.status || 1);
 }
+run(process.execPath, ['scripts/format-architecture.cjs', '--check']);
 run(process.execPath, ['scripts/build-frontend.cjs', '--check']);
 // Explicitly local checks only; production/browser scenarios are opt-in.
 for (const name of ['source_architecture', 'legacy_function_contract', 'calculator_import', 'event_admission', 'event_business_rules', 'event_contracts',
-  'combo_creator', 'deck_attributes', 'reports_removed', 'deck_public_metadata', 'event_model_sequence', 'event_recovery', 'event_teams', 'event_workflow',
+  'combo_creator', 'deck_attributes', 'deck_worlds_application', 'deck_worlds_persistence', 'reports_removed', 'deck_public_metadata', 'event_model_sequence', 'event_recovery', 'event_teams', 'event_workflow',
   'free_for_all', 'schedule_capacity_policy', 'simple_pdf',
   'statistics_multiplayer', 'statistics_v8', 'turn_monotonic']) {
   run(php, [`torneos_yugioh/tests/${name}_test.php`]);
 }
 for (const name of ['best_of_rule_regression_test.js', 'event_model_parity_test.cjs',
-  'event_admission_parity_test.cjs', 'play_calculator_engine_test.cjs', 'hand_practice_test.cjs', 'deck_attributes_model_test.cjs', 'deck_league_position_test.cjs', 'global_ranking_scope_test.cjs', 'profile_global_rank_test.cjs', 'statistics_live_test.cjs', 'planner_test.cjs', 'scenario_analysis_test.cjs', 'step_lesson_test.cjs']) {
+  'event_admission_parity_test.cjs', 'play_calculator_engine_test.cjs', 'hand_practice_test.cjs', 'deck_attributes_model_test.cjs', 'deck_worlds_api_test.cjs', 'deck_league_position_test.cjs', 'global_ranking_scope_test.cjs', 'profile_global_rank_test.cjs', 'statistics_live_test.cjs', 'planner_test.cjs', 'scenario_analysis_test.cjs', 'step_lesson_test.cjs']) {
   run(process.execPath, [`torneos_yugioh/tests/${name}`]);
 }
 run(php, ['torneos_yugioh/tests/statistics_no_cuts_test.php']);

@@ -77,9 +77,10 @@
 <script src="./assets/modules/dashboard/ranking-scopes.js?v=20261107-ranking-divisions-146" defer></script>
 <script src="./assets/modules/navigation/global-search.js?v=20261113-global-search-167" defer></script>
 <link rel="stylesheet" href="./assets/modules/deck-guide/league-position.css?v=20261113-match-positions-183">
-<link rel="stylesheet" href="./assets/modules/deck-attributes/style.css?v=20261115-card-detail-196">
-<script src="./assets/modules/deck-attributes/model.js?v=20261115-card-detail-196"></script>
-<script src="./assets/modules/deck-attributes/ui.js?v=20261115-card-detail-196"></script>
+<link rel="stylesheet" href="./assets/modules/deck-attributes/style.css?v=20261118-worlds-hexagonal">
+<script src="./assets/modules/deck-attributes/model.js?v=20261118-worlds-hexagonal"></script>
+<script src="./assets/modules/deck-attributes/api.js?v=20261118-worlds-hexagonal"></script>
+<script src="./assets/modules/deck-attributes/ui.js?v=20261118-worlds-hexagonal"></script>
 <script src="./assets/modules/deck-guide/league-position.js?v=20261113-match-positions-182" defer></script>
 <script src="./assets/app.js?v=20261117-match-entities" defer></script>
 <script src="./assets/match-editor.js?v=20261027-participants-103" defer></script>

@@ -37,7 +37,10 @@ final class RoundRobinPairings
         }
         if ($doubleRound) {
             foreach ($rounds as $pairs) {
-                $rounds[] = array_map(static fn(array $pair): array => [$pair[1], $pair[0]], $pairs);
+                $rounds[] = array_map(
+                    static fn(array $pair): array => [$pair[1], $pair[0]],
+                    $pairs,
+                );
             }
         }
         return $rounds;

@@ -71,3 +71,5 @@ Consultar [el mapa del código por módulos](torneos_yugioh/assets/modules/READM
 La guia de edicion y limites de dependencia esta en [source-architecture.md](torneos_yugioh/context/source-architecture.md). El nucleo PHP esta en `torneos_yugioh/src/`; los adaptadores funcionales permanecen en `includes/<feature>/` y las pantallas en `includes/presentation/screens/`.
 
 Las fuentes del frontend existente se editan en `torneos_yugioh/assets/source/`. Ejecuta `npm run build` antes de publicar y `npm run build:check` para detectar bundles desactualizados. `assets/app.js` y `assets/app.css` son salidas publicas generadas; los modulos independientes de `assets/modules/` se editan directamente.
+
+El recorrido hexagonal de Mundos, sus puertos y las reglas de transacción están documentados en `torneos_yugioh/context/source-architecture.md`. Usa `npm run format:architecture` y `npm run format:architecture:check` para el formato de las fuentes migradas; no aplican a plantillas mixtas ni a bundles generados.

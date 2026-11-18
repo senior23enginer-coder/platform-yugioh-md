@@ -28,7 +28,12 @@ final class FixtureBuilder
                     $rest = $a === 'DESCANSO' ? $b : $a;
                     continue;
                 }
-                $matches[] = ['mesa' => count($matches) + 1, 'a' => $a, 'b' => $b, 'estado' => 'PENDIENTE'];
+                $matches[] = [
+                    'mesa' => count($matches) + 1,
+                    'a' => $a,
+                    'b' => $b,
+                    'estado' => 'PENDIENTE',
+                ];
             }
             $fixture[] = ['ronda' => $round, 'descansa' => $rest, 'matches' => $matches];
             $fixed = array_shift($rotation);

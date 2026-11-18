@@ -30,3 +30,5 @@ This repository is the source of truth for Station X's Yu-Gi-Oh platform. Save a
 - Keep `src/Domain` free of HTTP globals, PDO and infrastructure imports. Application use cases depend on explicit ports; adapters implement them.
 - Preserve legacy transaction/lock boundaries. `context/source-function-map.json` tracks extracted bodies; intentional changes need reviewed tests and an explicit contract update.
 - Do not claim the remaining procedural adapters are fully SOLID or hexagonal. Migrate them by feature with characterization tests.
+
+- For the migrated DeckWorlds feature, keep HTTP capture in the native include, business decisions in Application/Domain and SQL in the PDO adapter. Inject time and transaction boundaries. Never commit or roll back a borrowed transaction. Run `npm run format:architecture:check`; extend its explicit pure-source whitelist when migrating another feature.

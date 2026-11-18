@@ -14,10 +14,13 @@
     "test:combos:regression": "node torneos_yugioh/tests/combo_creator_regression_test.cjs",
     "test:planner": "node torneos_yugioh/tests/planner_test.cjs",
     "build": "node scripts/build-frontend.cjs",
-    "build:check": "node scripts/build-frontend.cjs --check"
+    "build:check": "node scripts/build-frontend.cjs --check",
+    "format:architecture": "node scripts/format-architecture.cjs",
+    "format:architecture:check": "node scripts/format-architecture.cjs --check"
   },
   "devDependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2",
+    "@prettier/plugin-php": "0.26.0",
     "playwright": "1.46.1",
     "prettier": "3.6.2"
   }

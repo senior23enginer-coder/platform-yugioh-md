@@ -12,7 +12,9 @@ final readonly class GetCurrentSeason
     public function execute(): ?Season
     {
         foreach ($this->seasons->newestFirst() as $season) {
-            if ($season->isActive()) return $season;
+            if ($season->isActive()) {
+                return $season;
+            }
         }
         return null;
     }
