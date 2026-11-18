@@ -354,6 +354,7 @@
       state.deckId = Number(id);
       state.libraryTicket++;
       state.libraryDeck = 0;
+      state.view = "canvas";
       $("[data-cc-visual-library]").replaceChildren();
       deckOptions();
       $("[data-cc-inventory-note]").hidden=true;
