@@ -73,6 +73,18 @@ generalización y pruebas. En particular `shuffle`, `link`, `xyzOverlay`,
 El registro documenta la deuda, sin eliminar las barreras actuales ni
 modificar resultados de efectos existentes.
 
+## Registro de condiciones (tarea general 04)
+
+`assets/modules/play-calculator/guards.js` registra las nueve clases de
+condiciones admitidas: `count`, `distinctCount`, `onlyCids`, `event`,
+`phaseStart`, `extraSummonHistory`, `inventoryTarget`, `state` y `flag`.
+`Rules.validate` rechaza clases no registradas antes de evaluar sus detalles.
+El navegador carga `guards.js` antes de `rules.js` y Node lo importa como
+dependencia. `event` y `extraSummonHistory` mantienen cobertura restringida:
+el historial disponible sólo acredita determinados eventos y ventanas. Este
+catálogo no interpreta automáticamente texto de cartas ni prueba condiciones
+de activación que todavía no están modeladas.
+
 `tests/calculator_contract_test.cjs` prueba el mismo contrato con dos decks
 sintéticos diferentes, ejecuta una operación compartida sin cambiar código
 por deck, y rechaza versión, identidad, campos, duplicados y operaciones

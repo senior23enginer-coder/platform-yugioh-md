@@ -1,9 +1,9 @@
 /* Declarative effect adapter. Data never becomes JavaScript; unknown operations fail closed. */
 (function (root, factory) {
   if (typeof module === "object" && module.exports)
-    module.exports = factory(require("./engine.js"), require("./operations.js"));
-  else root.YgoPlayRules = factory(root.YgoPlayEngine, root.YgoCalculatorOperations);
-})(typeof globalThis !== "undefined" ? globalThis : this, function (E, Operations) {
+    module.exports = factory(require("./engine.js"), require("./operations.js"), require("./guards.js"));
+  else root.YgoPlayRules = factory(root.YgoPlayEngine, root.YgoCalculatorOperations, root.YgoCalculatorGuards);
+})(typeof globalThis !== "undefined" ? globalThis : this, function (E, Operations, Guards) {
   "use strict";
   const field = (z) => E.isMonster(z) || /^s[1-5]$/.test(z) || z === "field";
   const zones = [
@@ -183,6 +183,7 @@
       "Faltan condiciones",
     );
     for (const g of rule.guards) {
+      Guards.assertSupported(g);
       if (g.kind === "count") {
         selector(g.selector);
         check(
