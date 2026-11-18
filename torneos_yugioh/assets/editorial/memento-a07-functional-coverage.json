@@ -266,6 +266,20 @@
       "status": "NO_REPLAY_CERTIFIED"
     }
   ],
+  "partial_engine_cases": [
+    {
+      "id": "671:A07:R04:restricted-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "Destrucción por efecto de un objetivo fijo en campo y envío fijo desde Deck; no acredita selección general ni suma de niveles"
+    },
+    {
+      "id": "671:A07:R32:cost-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "Negación de efecto que conserva costes; no acredita negación de activación ni cadenas completas"
+    }
+  ],
   "missing_capabilities": [
     "event_trigger_after_summon",
     "destroy_vs_send_semantics",
