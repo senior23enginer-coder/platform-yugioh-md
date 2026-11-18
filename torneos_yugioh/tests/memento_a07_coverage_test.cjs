@@ -18,6 +18,19 @@ assert.equal(coverage.partial_route_cases[0].status,'FIXED_STATE_NO_CHAIN_REPLAY
 assert.equal(coverage.partial_engine_cases.length, 13);
 assert.equal(new Set(coverage.partial_engine_cases.map(c=>c.id.split(':')[2])).size, 12);
 assert(coverage.partial_engine_cases.every(c => c.status === 'ENGINE_TESTED_RESTRICTED_CASE' && c.scope));
+const already = new Set(coverage.partial_engine_cases.map(c => c.id.split(':')[2]));
+const added = new Set(coverage.incremental_rule_cases_p1.map(c => c.id));
+const blocked = new Set(coverage.blocked_rule_cases_p1.map(c => c.id));
+assert.equal(added.size,22);
+assert.equal(blocked.size,0);
+assert(coverage.incremental_rule_cases_p1.every(c =>
+  ['ENGINE_TESTED_RESTRICTED_CASE','NEGATIVE_INVENTORY_GUARD_ONLY','CONDITION_GUARD_ONLY'].includes(c.status) && c.scope));
+assert.deepEqual(coverage.incremental_rule_cases_p1.filter(c=>c.status==='NEGATIVE_INVENTORY_GUARD_ONLY').map(c=>c.id),['R12']);
+assert.deepEqual(coverage.incremental_rule_cases_p1.filter(c=>c.status==='CONDITION_GUARD_ONLY').map(c=>c.id),['R24']);
+assert(coverage.blocked_rule_cases_p1.every(c => c.status === 'OPERATOR_PENDING_FAIL_CLOSED' && c.operator));
+assert.equal([...already,...added,...blocked].length,34,'Ninguna regla R01-R34 puede estar duplicada entre estados');
+assert.equal(new Set([...already,...added,...blocked]).size,34,'Punto 1 debe clasificar exactamente R01-R34');
+assert.deepEqual([...new Set([...already,...added,...blocked])].sort(),coverage.rules.map(r=>r.id));
 assert(coverage.missing_capabilities.includes('fusion_material_constraints_and_resolution'));
 const skeleton = {
  version:1, id:'671:R06:test', deckId:671, format:'tcg_advanced',
