@@ -15,7 +15,7 @@ run(process.execPath, ['scripts/build-frontend.cjs', '--check']);
 // Explicitly local checks only; production/browser scenarios are opt-in.
 for (const name of ['source_architecture', 'domain_extractions', 'form_command_architecture', 'legacy_function_contract', 'calculator_import', 'event_admission', 'event_business_rules', 'event_contracts',
   'combo_creator', 'combo_ports', 'deck_attributes', 'deck_worlds_application', 'deck_worlds_persistence', 'reports_removed', 'deck_public_metadata', 'deck_metadata_architecture', 'event_model_sequence', 'event_recovery', 'event_teams', 'event_workflow',
-  'free_for_all', 'schedule_capacity_policy', 'calendar_architecture', 'news_architecture', 'card_catalog_architecture', 'simple_pdf',
+  'free_for_all', 'schedule_capacity_policy', 'calendar_architecture', 'news_architecture', 'card_catalog_architecture', 'decklist_architecture', 'simple_pdf',
   'statistics_multiplayer', 'statistics_v8', 'turn_monotonic']) {
   run(php, [`torneos_yugioh/tests/${name}_test.php`]);
 }

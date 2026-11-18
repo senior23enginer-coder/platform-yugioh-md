@@ -1,0 +1,3182 @@
+[
+    {
+        "name": "replace",
+        "input": {
+            "documented_import": true,
+            "cards": [
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                }
+            ],
+            "version": "2158d372a89be2251bfc1a8cde9c72ee4ec3d5f349c8d35b028ca096da379d17"
+        },
+        "result": null,
+        "error": {
+            "class": "InvalidArgumentException",
+            "message": "La misma carta está repetida en una sección. Ajusta su cantidad."
+        },
+        "cards": [
+            {
+                "id": 1,
+                "deck_id": 1,
+                "card_name": "Legacy card",
+                "role": "Starter",
+                "quantity": 2,
+                "section": "main",
+                "notes": "Original note",
+                "ygoprodeck_id": null
+            },
+            {
+                "id": 2,
+                "deck_id": 2,
+                "card_name": "Other card",
+                "role": null,
+                "quantity": 1,
+                "section": "main",
+                "notes": null,
+                "ygoprodeck_id": null
+            }
+        ],
+        "audit": []
+    },
+    {
+        "name": "legacy",
+        "input": {
+            "cards": [
+                {
+                    "existing_id": 1,
+                    "card_id": 0,
+                    "quantity": 1,
+                    "section": "reserve"
+                }
+            ],
+            "version": "2158d372a89be2251bfc1a8cde9c72ee4ec3d5f349c8d35b028ca096da379d17"
+        },
+        "result": {
+            "ok": true,
+            "deck": {
+                "id": 1,
+                "name": "Fixture deck"
+            },
+            "cards": [
+                {
+                    "id": 3,
+                    "deck_id": 1,
+                    "card_name": "Legacy card",
+                    "role": "Starter",
+                    "quantity": 1,
+                    "section": "reserve",
+                    "notes": "Original note",
+                    "ygoprodeck_id": null
+                }
+            ],
+            "version": "90450d9ff4fc6e063e67c2e6a17c4d2149358e5c191b4e727397e8ee5fb7c9fa"
+        },
+        "error": null,
+        "cards": [
+            {
+                "id": 2,
+                "deck_id": 2,
+                "card_name": "Other card",
+                "role": null,
+                "quantity": 1,
+                "section": "main",
+                "notes": null,
+                "ygoprodeck_id": null
+            },
+            {
+                "id": 3,
+                "deck_id": 1,
+                "card_name": "Legacy card",
+                "role": "Starter",
+                "quantity": 1,
+                "section": "reserve",
+                "notes": "Original note",
+                "ygoprodeck_id": null
+            }
+        ],
+        "audit": [
+            {
+                "id": 1,
+                "entity_type": "deck",
+                "entity_id": 1,
+                "action": "save_decklist",
+                "payload": "{\"before\":[{\"id\":1,\"deck_id\":1,\"card_name\":\"Legacy card\",\"role\":\"Starter\",\"quantity\":2,\"section\":\"main\",\"notes\":\"Original note\",\"ygoprodeck_id\":null}],\"after\":[{\"id\":3,\"deck_id\":1,\"card_name\":\"Legacy card\",\"role\":\"Starter\",\"quantity\":1,\"section\":\"reserve\",\"notes\":\"Original note\",\"ygoprodeck_id\":null}]}"
+            }
+        ]
+    },
+    {
+        "name": "empty",
+        "input": {
+            "cards": [],
+            "version": "2158d372a89be2251bfc1a8cde9c72ee4ec3d5f349c8d35b028ca096da379d17"
+        },
+        "result": {
+            "ok": true,
+            "deck": {
+                "id": 1,
+                "name": "Fixture deck"
+            },
+            "cards": [],
+            "version": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "error": null,
+        "cards": [
+            {
+                "id": 2,
+                "deck_id": 2,
+                "card_name": "Other card",
+                "role": null,
+                "quantity": 1,
+                "section": "main",
+                "notes": null,
+                "ygoprodeck_id": null
+            }
+        ],
+        "audit": [
+            {
+                "id": 1,
+                "entity_type": "deck",
+                "entity_id": 1,
+                "action": "save_decklist",
+                "payload": "{\"before\":[{\"id\":1,\"deck_id\":1,\"card_name\":\"Legacy card\",\"role\":\"Starter\",\"quantity\":2,\"section\":\"main\",\"notes\":\"Original note\",\"ygoprodeck_id\":null}],\"after\":[]}"
+            }
+        ]
+    },
+    {
+        "name": "stale",
+        "input": {
+            "version": "stale",
+            "cards": []
+        },
+        "result": null,
+        "error": {
+            "class": "InvalidArgumentException",
+            "message": "La lista cambió desde que la abriste. Recárgala antes de guardar."
+        },
+        "cards": [
+            {
+                "id": 1,
+                "deck_id": 1,
+                "card_name": "Legacy card",
+                "role": "Starter",
+                "quantity": 2,
+                "section": "main",
+                "notes": "Original note",
+                "ygoprodeck_id": null
+            },
+            {
+                "id": 2,
+                "deck_id": 2,
+                "card_name": "Other card",
+                "role": null,
+                "quantity": 1,
+                "section": "main",
+                "notes": null,
+                "ygoprodeck_id": null
+            }
+        ],
+        "audit": []
+    },
+    {
+        "name": "not_list",
+        "input": {
+            "cards": {
+                "row": {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                }
+            },
+            "version": "2158d372a89be2251bfc1a8cde9c72ee4ec3d5f349c8d35b028ca096da379d17"
+        },
+        "result": null,
+        "error": {
+            "class": "InvalidArgumentException",
+            "message": "Lista de cartas inválida."
+        },
+        "cards": [
+            {
+                "id": 1,
+                "deck_id": 1,
+                "card_name": "Legacy card",
+                "role": "Starter",
+                "quantity": 2,
+                "section": "main",
+                "notes": "Original note",
+                "ygoprodeck_id": null
+            },
+            {
+                "id": 2,
+                "deck_id": 2,
+                "card_name": "Other card",
+                "role": null,
+                "quantity": 1,
+                "section": "main",
+                "notes": null,
+                "ygoprodeck_id": null
+            }
+        ],
+        "audit": []
+    },
+    {
+        "name": "too_many",
+        "input": {
+            "cards": [
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                }
+            ],
+            "version": "2158d372a89be2251bfc1a8cde9c72ee4ec3d5f349c8d35b028ca096da379d17"
+        },
+        "result": null,
+        "error": {
+            "class": "InvalidArgumentException",
+            "message": "Lista de cartas inválida."
+        },
+        "cards": [
+            {
+                "id": 1,
+                "deck_id": 1,
+                "card_name": "Legacy card",
+                "role": "Starter",
+                "quantity": 2,
+                "section": "main",
+                "notes": "Original note",
+                "ygoprodeck_id": null
+            },
+            {
+                "id": 2,
+                "deck_id": 2,
+                "card_name": "Other card",
+                "role": null,
+                "quantity": 1,
+                "section": "main",
+                "notes": null,
+                "ygoprodeck_id": null
+            }
+        ],
+        "audit": []
+    },
+    {
+        "name": "invalid_row",
+        "input": {
+            "cards": [
+                "bad"
+            ],
+            "version": "2158d372a89be2251bfc1a8cde9c72ee4ec3d5f349c8d35b028ca096da379d17"
+        },
+        "result": null,
+        "error": {
+            "class": "InvalidArgumentException",
+            "message": "Carta inválida."
+        },
+        "cards": [
+            {
+                "id": 1,
+                "deck_id": 1,
+                "card_name": "Legacy card",
+                "role": "Starter",
+                "quantity": 2,
+                "section": "main",
+                "notes": "Original note",
+                "ygoprodeck_id": null
+            },
+            {
+                "id": 2,
+                "deck_id": 2,
+                "card_name": "Other card",
+                "role": null,
+                "quantity": 1,
+                "section": "main",
+                "notes": null,
+                "ygoprodeck_id": null
+            }
+        ],
+        "audit": []
+    },
+    {
+        "name": "quantity_zero",
+        "input": {
+            "documented_import": true,
+            "cards": [
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 0,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                }
+            ],
+            "version": "2158d372a89be2251bfc1a8cde9c72ee4ec3d5f349c8d35b028ca096da379d17"
+        },
+        "result": null,
+        "error": {
+            "class": "InvalidArgumentException",
+            "message": "Revisa la sección y la cantidad de cada carta (1 a 99)."
+        },
+        "cards": [
+            {
+                "id": 1,
+                "deck_id": 1,
+                "card_name": "Legacy card",
+                "role": "Starter",
+                "quantity": 2,
+                "section": "main",
+                "notes": "Original note",
+                "ygoprodeck_id": null
+            },
+            {
+                "id": 2,
+                "deck_id": 2,
+                "card_name": "Other card",
+                "role": null,
+                "quantity": 1,
+                "section": "main",
+                "notes": null,
+                "ygoprodeck_id": null
+            }
+        ],
+        "audit": []
+    },
+    {
+        "name": "quantity_high",
+        "input": {
+            "documented_import": true,
+            "cards": [
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 100,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                }
+            ],
+            "version": "2158d372a89be2251bfc1a8cde9c72ee4ec3d5f349c8d35b028ca096da379d17"
+        },
+        "result": null,
+        "error": {
+            "class": "InvalidArgumentException",
+            "message": "Revisa la sección y la cantidad de cada carta (1 a 99)."
+        },
+        "cards": [
+            {
+                "id": 1,
+                "deck_id": 1,
+                "card_name": "Legacy card",
+                "role": "Starter",
+                "quantity": 2,
+                "section": "main",
+                "notes": "Original note",
+                "ygoprodeck_id": null
+            },
+            {
+                "id": 2,
+                "deck_id": 2,
+                "card_name": "Other card",
+                "role": null,
+                "quantity": 1,
+                "section": "main",
+                "notes": null,
+                "ygoprodeck_id": null
+            }
+        ],
+        "audit": []
+    },
+    {
+        "name": "foreign",
+        "input": {
+            "cards": [
+                {
+                    "existing_id": 2,
+                    "quantity": 1,
+                    "section": "main"
+                }
+            ],
+            "version": "2158d372a89be2251bfc1a8cde9c72ee4ec3d5f349c8d35b028ca096da379d17"
+        },
+        "result": null,
+        "error": {
+            "class": "InvalidArgumentException",
+            "message": "La carta no pertenece a esta lista."
+        },
+        "cards": [
+            {
+                "id": 1,
+                "deck_id": 1,
+                "card_name": "Legacy card",
+                "role": "Starter",
+                "quantity": 2,
+                "section": "main",
+                "notes": "Original note",
+                "ygoprodeck_id": null
+            },
+            {
+                "id": 2,
+                "deck_id": 2,
+                "card_name": "Other card",
+                "role": null,
+                "quantity": 1,
+                "section": "main",
+                "notes": null,
+                "ygoprodeck_id": null
+            }
+        ],
+        "audit": []
+    },
+    {
+        "name": "no_catalog",
+        "input": {
+            "cards": [
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                }
+            ],
+            "version": "2158d372a89be2251bfc1a8cde9c72ee4ec3d5f349c8d35b028ca096da379d17"
+        },
+        "result": null,
+        "error": {
+            "class": "InvalidArgumentException",
+            "message": "Selecciona una carta del buscador."
+        },
+        "cards": [
+            {
+                "id": 1,
+                "deck_id": 1,
+                "card_name": "Legacy card",
+                "role": "Starter",
+                "quantity": 2,
+                "section": "main",
+                "notes": "Original note",
+                "ygoprodeck_id": null
+            },
+            {
+                "id": 2,
+                "deck_id": 2,
+                "card_name": "Other card",
+                "role": null,
+                "quantity": 1,
+                "section": "main",
+                "notes": null,
+                "ygoprodeck_id": null
+            }
+        ],
+        "audit": []
+    },
+    {
+        "name": "empty_name",
+        "input": {
+            "documented_import": true,
+            "cards": [
+                {
+                    "card_id": 0,
+                    "card_name": "",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                }
+            ],
+            "version": "2158d372a89be2251bfc1a8cde9c72ee4ec3d5f349c8d35b028ca096da379d17"
+        },
+        "result": null,
+        "error": {
+            "class": "InvalidArgumentException",
+            "message": "Nombre documental inválido."
+        },
+        "cards": [
+            {
+                "id": 1,
+                "deck_id": 1,
+                "card_name": "Legacy card",
+                "role": "Starter",
+                "quantity": 2,
+                "section": "main",
+                "notes": "Original note",
+                "ygoprodeck_id": null
+            },
+            {
+                "id": 2,
+                "deck_id": 2,
+                "card_name": "Other card",
+                "role": null,
+                "quantity": 1,
+                "section": "main",
+                "notes": null,
+                "ygoprodeck_id": null
+            }
+        ],
+        "audit": []
+    },
+    {
+        "name": "long_notes",
+        "input": {
+            "documented_import": true,
+            "cards": [
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+            ],
+            "version": "2158d372a89be2251bfc1a8cde9c72ee4ec3d5f349c8d35b028ca096da379d17"
+        },
+        "result": null,
+        "error": {
+            "class": "InvalidArgumentException",
+            "message": "La anotación documental supera el tamaño permitido."
+        },
+        "cards": [
+            {
+                "id": 1,
+                "deck_id": 1,
+                "card_name": "Legacy card",
+                "role": "Starter",
+                "quantity": 2,
+                "section": "main",
+                "notes": "Original note",
+                "ygoprodeck_id": null
+            },
+            {
+                "id": 2,
+                "deck_id": 2,
+                "card_name": "Other card",
+                "role": null,
+                "quantity": 1,
+                "section": "main",
+                "notes": null,
+                "ygoprodeck_id": null
+            }
+        ],
+        "audit": []
+    },
+    {
+        "name": "different_zones",
+        "input": {
+            "documented_import": true,
+            "cards": [
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "extra",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "side",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                },
+                {
+                    "card_id": 0,
+                    "card_name": "Documented card",
+                    "quantity": 3,
+                    "section": "reserve",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                }
+            ],
+            "version": "2158d372a89be2251bfc1a8cde9c72ee4ec3d5f349c8d35b028ca096da379d17"
+        },
+        "result": {
+            "ok": true,
+            "deck": {
+                "id": 1,
+                "name": "Fixture deck"
+            },
+            "cards": [
+                {
+                    "id": 3,
+                    "deck_id": 1,
+                    "card_name": "Documented card",
+                    "role": "Opener",
+                    "quantity": 3,
+                    "section": "main",
+                    "notes": "CID not image ID",
+                    "ygoprodeck_id": null
+                },
+                {
+                    "id": 4,
+                    "deck_id": 1,
+                    "card_name": "Documented card",
+                    "role": "Opener",
+                    "quantity": 3,
+                    "section": "extra",
+                    "notes": "CID not image ID",
+                    "ygoprodeck_id": null
+                },
+                {
+                    "id": 5,
+                    "deck_id": 1,
+                    "card_name": "Documented card",
+                    "role": "Opener",
+                    "quantity": 3,
+                    "section": "side",
+                    "notes": "CID not image ID",
+                    "ygoprodeck_id": null
+                },
+                {
+                    "id": 6,
+                    "deck_id": 1,
+                    "card_name": "Documented card",
+                    "role": "Opener",
+                    "quantity": 3,
+                    "section": "reserve",
+                    "notes": "CID not image ID",
+                    "ygoprodeck_id": null
+                }
+            ],
+            "version": "d2147c8536316e123432cbaa264c4f671c0d155cc29b6fcb3bb4d7982699696c"
+        },
+        "error": null,
+        "cards": [
+            {
+                "id": 2,
+                "deck_id": 2,
+                "card_name": "Other card",
+                "role": null,
+                "quantity": 1,
+                "section": "main",
+                "notes": null,
+                "ygoprodeck_id": null
+            },
+            {
+                "id": 3,
+                "deck_id": 1,
+                "card_name": "Documented card",
+                "role": "Opener",
+                "quantity": 3,
+                "section": "main",
+                "notes": "CID not image ID",
+                "ygoprodeck_id": null
+            },
+            {
+                "id": 4,
+                "deck_id": 1,
+                "card_name": "Documented card",
+                "role": "Opener",
+                "quantity": 3,
+                "section": "extra",
+                "notes": "CID not image ID",
+                "ygoprodeck_id": null
+            },
+            {
+                "id": 5,
+                "deck_id": 1,
+                "card_name": "Documented card",
+                "role": "Opener",
+                "quantity": 3,
+                "section": "side",
+                "notes": "CID not image ID",
+                "ygoprodeck_id": null
+            },
+            {
+                "id": 6,
+                "deck_id": 1,
+                "card_name": "Documented card",
+                "role": "Opener",
+                "quantity": 3,
+                "section": "reserve",
+                "notes": "CID not image ID",
+                "ygoprodeck_id": null
+            }
+        ],
+        "audit": [
+            {
+                "id": 1,
+                "entity_type": "deck",
+                "entity_id": 1,
+                "action": "save_decklist",
+                "payload": "{\"before\":[{\"id\":1,\"deck_id\":1,\"card_name\":\"Legacy card\",\"role\":\"Starter\",\"quantity\":2,\"section\":\"main\",\"notes\":\"Original note\",\"ygoprodeck_id\":null}],\"after\":[{\"id\":3,\"deck_id\":1,\"card_name\":\"Documented card\",\"role\":\"Opener\",\"quantity\":3,\"section\":\"main\",\"notes\":\"CID not image ID\",\"ygoprodeck_id\":null},{\"id\":4,\"deck_id\":1,\"card_name\":\"Documented card\",\"role\":\"Opener\",\"quantity\":3,\"section\":\"extra\",\"notes\":\"CID not image ID\",\"ygoprodeck_id\":null},{\"id\":5,\"deck_id\":1,\"card_name\":\"Documented card\",\"role\":\"Opener\",\"quantity\":3,\"section\":\"side\",\"notes\":\"CID not image ID\",\"ygoprodeck_id\":null},{\"id\":6,\"deck_id\":1,\"card_name\":\"Documented card\",\"role\":\"Opener\",\"quantity\":3,\"section\":\"reserve\",\"notes\":\"CID not image ID\",\"ygoprodeck_id\":null}]}"
+            }
+        ]
+    },
+    {
+        "name": "long_name",
+        "input": {
+            "documented_import": true,
+            "cards": [
+                {
+                    "card_id": 0,
+                    "card_name": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "quantity": 3,
+                    "section": "main",
+                    "role": "Opener",
+                    "notes": "CID not image ID"
+                }
+            ],
+            "version": "2158d372a89be2251bfc1a8cde9c72ee4ec3d5f349c8d35b028ca096da379d17"
+        },
+        "result": null,
+        "error": {
+            "class": "InvalidArgumentException",
+            "message": "Nombre documental inválido."
+        },
+        "cards": [
+            {
+                "id": 1,
+                "deck_id": 1,
+                "card_name": "Legacy card",
+                "role": "Starter",
+                "quantity": 2,
+                "section": "main",
+                "notes": "Original note",
+                "ygoprodeck_id": null
+            },
+            {
+                "id": 2,
+                "deck_id": 2,
+                "card_name": "Other card",
+                "role": null,
+                "quantity": 1,
+                "section": "main",
+                "notes": null,
+                "ygoprodeck_id": null
+            }
+        ],
+        "audit": []
+    }
+]

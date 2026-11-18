@@ -149,3 +149,18 @@ Se conservan búsqueda de veinte cartas, clave `pagination-v2`, frescura de 48 h
 `card_catalog_architecture_test.php` comprueba 71 condiciones con puertos en memoria y una carpeta temporal única: diez escenarios nativos, evidencia original intacta, tres comparaciones de algoritmos, validación, paginación, caché fresca/vencida, fallos, identidad, modo local, texto exacto, HTTP e imágenes. No se llamó a YGOPRODeck ni a producción. Quedan pendientes una comprobación de proveedor real y concurrencia multiproceso en el entorno objetivo; las pruebas locales no los certifican.
 
 Esta migración abarca el catálogo del inspector/editor. El guardado SQL de listas y sus transacciones permanece separado y pendiente de migración; no se modificaron inventarios, cantidades, anotaciones o fuentes de prompts. No se cambió la interfaz ni se desplegó este refactor.
+
+
+## Guardado y consulta de listas · 18 de noviembre de 2026
+
+La fachada `ygo_deck_builder_save` delega a `Application/Decklists/SaveDecklist`. El caso de uso depende de `DecklistReader`, `DecklistWriter`, `DeckCardCatalog`, `EventWriteLock` y `TransactionBoundary`; no recibe PDO ni accede a sesión, archivos o red. `Domain/Decks/DecklistRules` valida versión esperada, filas, cantidades técnicas, secciones, pertenencia, duplicados, nombres documentales y anotaciones. Los límites y el orden de las validaciones anteriores se conservan.
+
+La validación de una fila tiene dos fases explícitas: preparar antes de resolver su ID de catálogo y completar después de resolverlo. Así se mantiene el orden de errores y de consultas externas. El nombre documental no se sustituye por el nombre del catálogo de imágenes; Main, Extra, Side y Reserva siguen independientes. Se conserva la combinación de anotaciones ya implementada en `CardAnnotations`.
+
+`Infrastructure/Persistence/Decklists/PdoDecklists` conserva `FOR UPDATE`, el orden de filas, reemplazo y auditoría antes/después. `NativeEventWriteLock` es un puente al bloqueo MySQL reentrante existente, sin cambiar su conexión ni propietario. Se mantiene el orden completo: bloqueo externo → transacción → snapshot bloqueado → versión/filas/catálogo → reemplazo → snapshot final → auditoría → commit propio → liberar bloqueo. Si la transacción es prestada, solo su llamador confirma o revierte. Los fallos de catálogo ocurren antes de borrar cartas; un fallo posterior de persistencia/auditoría revierte toda la transacción propia.
+
+`Infrastructure/Http/Decklists/DecklistController` valida método, permiso, límite de cuerpo y token antes de guardar. El include nativo captura la sesión y el cuerpo; los errores de BD/JSON mantienen sus mensajes públicos existentes. `DecklistModule` compone sin inicializar esquema ni abrir transacciones.
+
+`decklist_architecture_test.php` ejecuta 88 comprobaciones, incluidas 15 caracterizaciones capturadas antes de sustituir las fachadas (respuesta, error, inventario y auditoría). Prueba además orden de puertos, identidad de catálogo, otros decks intactos, rollback, transacciones prestadas, versión obsoleta, HTTP y composición sin I/O. Sus originales y huellas permanecen en `tests/fixtures/decklist-originals.json`. No se accedió a producción ni a proveedores. La prueba SQLite elimina únicamente `FOR UPDATE` en un adaptador de pruebas y usa un sustituto del bloqueo MySQL; no certifica concurrencia MySQL real.
+
+La importación/exportación de paquetes ZIP y la sincronización de fuentes editoriales siguen siendo flujos distintos pendientes de migración. El frontend del editor también permanece en su fuente compartida; esta entrega no lo presenta como modularizado.
