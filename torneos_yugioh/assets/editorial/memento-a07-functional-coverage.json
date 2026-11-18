@@ -346,6 +346,14 @@
       "scope": "Normal real de Angbruja en el motor seguida de búsqueda Tatsun solo después del evento de Invocación con UID y turno; no modela la respuesta de Ash ni todas las búsquedas posibles"
     }
   ],
+  "partial_route_cases": [
+    {
+      "id": "C01",
+      "status": "FIXED_STATE_NO_CHAIN_REPLAY",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "Nueve resoluciones consecutivas: Normal Angbruja, búsqueda, Especial Tatsun, destrucción y envío de dos CID, Desvantasma, recuperación, Fusión, envío de Rey y cinco barajados. Rama con búsqueda negada detiene la ruta sin inventar Tatsun; es inyección de negación, no cadena resuelta por motor. Sin adversario completo, selección general de niveles ni HOPT de todos los efectos; NO_REPLAY_CERTIFIED permanece."
+    }
+  ],
   "missing_capabilities": [
     "event_trigger_after_summon",
     "destroy_vs_send_semantics",
