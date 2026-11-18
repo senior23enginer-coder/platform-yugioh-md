@@ -1,9 +1,9 @@
 /* Declarative effect adapter. Data never becomes JavaScript; unknown operations fail closed. */
 (function (root, factory) {
   if (typeof module === "object" && module.exports)
-    module.exports = factory(require("./engine.js"), require("./operations.js"), require("./guards.js"), require("./resources.js"));
-  else root.YgoPlayRules = factory(root.YgoPlayEngine, root.YgoCalculatorOperations, root.YgoCalculatorGuards, root.YgoCalculatorResources);
-})(typeof globalThis !== "undefined" ? globalThis : this, function (E, Operations, Guards, Resources) {
+    module.exports = factory(require("./engine.js"), require("./operations.js"), require("./guards.js"), require("./resources.js"), require("./transitions.js"));
+  else root.YgoPlayRules = factory(root.YgoPlayEngine, root.YgoCalculatorOperations, root.YgoCalculatorGuards, root.YgoCalculatorResources, root.YgoCalculatorTransitions);
+})(typeof globalThis !== "undefined" ? globalThis : this, function (E, Operations, Guards, Resources, Transitions) {
   "use strict";
   const field = (z) => E.isMonster(z) || /^s[1-5]$/.test(z) || z === "field";
   const zones = [
@@ -557,16 +557,7 @@
         let opStage = "cost";
         function apply(op) {
           if (op.to) {
-            check(
-              !(options.blockedZones || []).includes(op.to),
-              "Zona bloqueada",
-            );
-            check(
-              !(f.graveyardBlocked && op.to === "graveyard"),
-              "Destino de Cementerio pendiente por bloqueo",
-            );
-            check(!(f.banishBlocked && op.to === "banished"),
-              "Destierro impedido para ambos jugadores");
+            Transitions.assertDestination(op.to, options, f);
           }
           if (op.op === "shuffle") {
             const targets=Resources.requireTokens(n,refs,op.refs,t=>t.owner==="self" &&
@@ -703,8 +694,8 @@
             const t=n.tokens.find(t=>t.uid===refs[op.ref]);
             check(t && E.isMonster(t.zone) && t.position!=="set",
               "Cambiar control exige monstruo boca arriba en campo");
-            check(!n.tokens.some(x=>x.uid!==t.uid && x.controller===op.to && x.zone===t.zone),
-              "Zona ocupada por el nuevo controlador");
+            try { Transitions.assertVacant(n,op.to,t.zone,t.uid); }
+            catch { throw Error("Zona ocupada por el nuevo controlador"); }
             n=E.place(n,{uid:t.uid,zone:t.zone,controller:op.to});
           } else if (op.op === "equip") {
             const t=n.tokens.find(t=>t.uid===refs[op.ref]);
@@ -743,11 +734,7 @@
             n = E.place(n, {
               uid: t.uid,
               zone: op.to,
-              controller: ["graveyard", "banished", "deck", "extra"].includes(
-                op.to,
-              )
-                ? t.owner
-                : t.controller,
+              controller: Transitions.destinationController(t, op.to),
             });
             if (n.tokens.some((x) => x.uid === t.uid))
               n = E.position(n, t.uid, op.position);
@@ -839,8 +826,8 @@
             const t=n.tokens.find(t=>t.uid===refs[op.ref]);
             check(t && t.owner==="self" && t.controller==="self" && t.zone===op.from,
               "La copia a Invocar no está en la mano propia");
-            check(!n.tokens.some(x=>x.controller==="self"&&x.zone===op.to),
-              "Zona de Invocación ocupada");
+            try { Transitions.assertVacant(n,"self",op.to,t.uid); }
+            catch { throw Error("Zona de Invocación ocupada"); }
             if(op.method==="normal") {
               check(n.active==="self" && ["main1","main2"].includes(n.phase) && !n._normal,
                 "Invocación Normal indisponible en esta ventana");

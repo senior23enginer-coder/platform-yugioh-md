@@ -102,6 +102,16 @@ la condición de zona/controlador definida por el operador. Las operaciones
 `shuffle`, `link`, `xyz`, `fusion`, `tribute` y `banishExtraFaceDown` usan esta función
 antes de mover materiales. Sus recetas y restricciones siguen vigentes.
 
+## Destinos y transiciones (tarea general 06)
+
+`assets/modules/play-calculator/transitions.js` extrae comprobaciones puras
+de destinos bloqueados, ocupación de zona por controlador y retorno del
+control al propietario en `deck`, `extra`, `graveyard` y `banished`.
+`rules.js` utiliza estas políticas en movimientos, invocaciones desde mano y
+cambios de control. Se conservan las restricciones individuales de ventanas,
+materiales y procedimientos; la biblioteca no pretende resolver por sí sola
+las reglas de cada tipo de Invocación ni las sustituciones de destino.
+
 `tests/calculator_contract_test.cjs` prueba el mismo contrato con dos decks
 sintéticos diferentes, ejecuta una operación compartida sin cambiar código
 por deck, y rechaza versión, identidad, campos, duplicados y operaciones
