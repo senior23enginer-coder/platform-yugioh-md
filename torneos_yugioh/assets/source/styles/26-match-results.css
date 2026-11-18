@@ -1,0 +1,504 @@
+/* match-results: cascade segment 26. Keep manifest order to preserve responsive overrides. */
+/* @runtime-start */
+
+
+.result-dice-panel p,
+.result-turn-choice p {
+  margin: 0;
+  color: #b6c6e4;
+  font-weight: 800;
+}
+
+.result-dice-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.15rem;
+  min-width: 300px;
+  min-height: 108px;
+  padding: .9rem 1.15rem;
+  border: 1px solid rgba(255, 215, 104, .28);
+  border-radius: 16px;
+  background:
+    radial-gradient(ellipse at 50% 92%, rgba(255, 210, 95, .28), transparent 44%),
+    radial-gradient(ellipse at 18% 16%, rgba(54, 216, 255, .16), transparent 42%),
+    radial-gradient(ellipse at 50% 100%, rgba(255, 215, 104, .16), transparent 65%),
+    linear-gradient(180deg, rgba(12, 24, 45, .92), rgba(3, 9, 22, .78));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06), 0 18px 36px rgba(0, 0, 0, .28);
+  perspective: 840px;
+  transform-style: preserve-3d;
+}
+
+.result-dice-stage strong {
+  color: #ffd768;
+  font-size: .86rem;
+  font-weight: 1000;
+  text-shadow: 0 0 18px rgba(255, 210, 95, .7);
+}
+
+.result-die {
+  position: relative;
+  flex: 0 0 66px;
+  width: 66px;
+  height: 66px;
+  transform-style: preserve-3d;
+  transform: translateZ(0) rotateX(-18deg) rotateY(22deg);
+  will-change: transform, filter;
+  filter: drop-shadow(0 22px 20px rgba(0, 0, 0, .48));
+}
+
+.result-die:nth-of-type(2),
+.result-die[data-result-die-b] {
+  transform: translateZ(0) rotateX(-18deg) rotateY(-22deg);
+}
+
+.die-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, .52);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 32% 24%, rgba(255,255,255,.92), transparent 28%),
+    linear-gradient(145deg, #fffdf6 0%, #e7edf6 48%, #b7c1cf 100%);
+  box-shadow:
+    inset -10px -12px 20px rgba(15, 23, 42, .24),
+    inset 8px 8px 18px rgba(255,255,255,.8);
+  backface-visibility: hidden;
+}
+
+.die-face i {
+  display: block;
+  width: 9px;
+  height: 9px;
+  align-self: center;
+  justify-self: center;
+  border-radius: 999px;
+  background: radial-gradient(circle at 32% 28%, #4b5563, #050914 72%);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.28), 0 1px 1px rgba(255,255,255,.22);
+}
+
+.die-face-1 { transform: translateZ(33px); }
+.die-face-6 { transform: rotateY(180deg) translateZ(33px); }
+.die-face-2 { transform: rotateY(90deg) translateZ(33px); }
+.die-face-5 { transform: rotateY(-90deg) translateZ(33px); }
+.die-face-3 { transform: rotateX(90deg) translateZ(33px); }
+.die-face-4 { transform: rotateX(-90deg) translateZ(33px); }
+
+.die-face-1 i:nth-child(1) { grid-column: 2; grid-row: 2; }
+.die-face-2 i:nth-child(1) { grid-column: 1; grid-row: 1; }
+.die-face-2 i:nth-child(2) { grid-column: 3; grid-row: 3; }
+.die-face-3 i:nth-child(1) { grid-column: 1; grid-row: 1; }
+.die-face-3 i:nth-child(2) { grid-column: 2; grid-row: 2; }
+.die-face-3 i:nth-child(3) { grid-column: 3; grid-row: 3; }
+.die-face-4 i:nth-child(1) { grid-column: 1; grid-row: 1; }
+.die-face-4 i:nth-child(2) { grid-column: 3; grid-row: 1; }
+.die-face-4 i:nth-child(3) { grid-column: 1; grid-row: 3; }
+.die-face-4 i:nth-child(4) { grid-column: 3; grid-row: 3; }
+.die-face-5 i:nth-child(1) { grid-column: 1; grid-row: 1; }
+.die-face-5 i:nth-child(2) { grid-column: 3; grid-row: 1; }
+.die-face-5 i:nth-child(3) { grid-column: 2; grid-row: 2; }
+.die-face-5 i:nth-child(4) { grid-column: 1; grid-row: 3; }
+.die-face-5 i:nth-child(5) { grid-column: 3; grid-row: 3; }
+.die-face-6 i:nth-child(1) { grid-column: 1; grid-row: 1; }
+.die-face-6 i:nth-child(2) { grid-column: 3; grid-row: 1; }
+.die-face-6 i:nth-child(3) { grid-column: 1; grid-row: 2; }
+.die-face-6 i:nth-child(4) { grid-column: 3; grid-row: 2; }
+.die-face-6 i:nth-child(5) { grid-column: 1; grid-row: 3; }
+.die-face-6 i:nth-child(6) { grid-column: 3; grid-row: 3; }
+
+.result-die[data-value="1"] { transform: translateZ(0) rotateX(-18deg) rotateY(22deg); }
+.result-die[data-value="2"] { transform: translateZ(0) rotateX(-18deg) rotateY(-68deg); }
+.result-die[data-value="3"] { transform: translateZ(0) rotateX(-108deg) rotateY(22deg); }
+.result-die[data-value="4"] { transform: translateZ(0) rotateX(72deg) rotateY(22deg); }
+.result-die[data-value="5"] { transform: translateZ(0) rotateX(-18deg) rotateY(112deg); }
+.result-die[data-value="6"] { transform: translateZ(0) rotateX(-18deg) rotateY(202deg); }
+
+.result-die[data-result-die-b][data-value="1"] { transform: translateZ(0) rotateX(-18deg) rotateY(-22deg); }
+.result-die[data-result-die-b][data-value="2"] { transform: translateZ(0) rotateX(-18deg) rotateY(-112deg); }
+.result-die[data-result-die-b][data-value="3"] { transform: translateZ(0) rotateX(-108deg) rotateY(-22deg); }
+.result-die[data-result-die-b][data-value="4"] { transform: translateZ(0) rotateX(72deg) rotateY(-22deg); }
+.result-die[data-result-die-b][data-value="5"] { transform: translateZ(0) rotateX(-18deg) rotateY(68deg); }
+.result-die[data-result-die-b][data-value="6"] { transform: translateZ(0) rotateX(-18deg) rotateY(158deg); }
+
+.result-die::after {
+  content: "";
+  position: absolute;
+  inset: auto 7px -30px;
+  height: 18px;
+  border-radius: 999px;
+  background: radial-gradient(ellipse, rgba(0,0,0,.44), transparent 70%);
+  transform: rotateX(90deg) translateZ(-38px);
+}
+
+.result-die.is-rolling {
+  animation: result-die-roll 1.18s cubic-bezier(.14, .86, .22, 1) both;
+  filter: saturate(1.12) brightness(1.05);
+}
+
+@keyframes result-die-roll {
+  0% {
+    transform: translate3d(0, 0, 0) rotateX(-18deg) rotateY(22deg) rotateZ(0deg) scale(1);
+  }
+  15% {
+    transform: translate3d(-14px, -30px, 52px) rotateX(210deg) rotateY(160deg) rotateZ(22deg) scale(1.08);
+  }
+  36% {
+    transform: translate3d(18px, -8px, 26px) rotateX(505deg) rotateY(390deg) rotateZ(-18deg) scale(.98);
+  }
+  60% {
+    transform: translate3d(-8px, -22px, 38px) rotateX(760deg) rotateY(635deg) rotateZ(16deg) scale(1.04);
+  }
+  82% {
+    transform: translate3d(4px, 5px, 0) rotateX(1020deg) rotateY(850deg) rotateZ(-8deg) scale(.94);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotateX(1098deg) rotateY(1102deg) rotateZ(0deg) scale(1);
+  }
+}
+
+.result-turn-choice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  padding: .85rem;
+}
+
+.result-turn-ledger {
+  display: grid;
+  gap: .55rem;
+  padding: .65rem;
+  border: 1px solid rgba(54, 216, 255, .24);
+  border-radius: 8px;
+  background: rgba(4, 14, 30, .72);
+}
+
+.result-turn-ledger[hidden] {
+  display: none;
+}
+
+.result-turn-ledger span {
+  color: #b8c9e8;
+  font-size: .82rem;
+  font-weight: 850;
+  line-height: 1.35;
+}
+
+.result-turn-ledger-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .45rem;
+}
+
+.result-turn-ledger-actions .btn {
+  min-height: 38px;
+}
+
+.result-turn-ledger-actions .btn.active,
+.result-turn-ledger.is-complete {
+  border-color: rgba(35, 227, 144, .52);
+  background: rgba(35, 227, 144, .1);
+}
+
+.result-turn-ledger.is-pending {
+  border-color: rgba(255, 210, 95, .42);
+  background: rgba(255, 210, 95, .07);
+}
+
+.result-duel-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(170px, 1fr));
+  gap: .75rem;
+}
+
+.result-duel-detail-card {
+  display: grid;
+  gap: .55rem;
+  padding: .75rem;
+}
+
+.result-duel-detail-card h4 {
+  margin: 0;
+  color: #ffd25f;
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.result-lp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .5rem;
+}
+
+.result-capture-form label {
+  color: #cfd9f0;
+  font-weight: 800;
+}
+
+@media (max-width: 1280px) {
+  .deck-profile-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .deck-identity-panel {
+    position: static;
+  }
+
+  .deck-profile-detail-panel .profile-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .result-duel-detail-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .result-dice-panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .deck-form-grid,
+  .deck-profile-detail-panel .deck-detail-grid,
+  .deck-profile-detail-panel .profile-stats {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .deck-form-actions,
+  .deck-delete-form {
+    justify-content: stretch;
+  }
+
+  .deck-form-actions .btn,
+  .deck-delete-form .btn {
+    width: 100%;
+  }
+
+  .result-turn-choice {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .result-capture-duel article {
+    min-height: 130px;
+    padding-left: 5.5rem;
+  }
+
+  .result-capture-team-logo {
+    left: 1rem;
+    width: 62px;
+    height: 62px;
+  }
+
+  .result-duel-detail-grid,
+  .result-lp-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Final override for the result modal: this must stay at the end. */
+.result-capture-dialog {
+  max-width: min(1180px, calc(100vw - 24px));
+  margin: .35rem auto;
+}
+
+.dml-modal .result-capture-form {
+  max-height: calc(100vh - 14px);
+  overflow: hidden;
+}
+
+.result-console-head {
+  min-height: 78px;
+  padding: .7rem 1rem .65rem;
+}
+
+.result-console-title .tag {
+  margin-bottom: .28rem;
+  padding: .22rem .55rem;
+  font-size: .64rem;
+}
+
+.result-console-title h2 {
+  font-size: clamp(1.08rem, 1.75vw, 1.45rem);
+}
+
+.result-console-title p {
+  font-size: .78rem;
+}
+
+.result-capture-form .result-console-body {
+  height: calc(100vh - 152px);
+  max-height: 720px;
+  overflow: hidden;
+  grid-template-columns: 255px minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: .75rem;
+  padding: .75rem;
+}
+
+.result-versus-hero.result-capture-duel {
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, 1fr) 104px minmax(0, 1fr);
+  min-height: 88px;
+  padding: 0;
+}
+
+.result-versus-hero.result-capture-duel .result-side-card {
+  min-height: 84px;
+  grid-template-columns: 60px minmax(0, 1fr);
+  gap: .68rem;
+  padding: .58rem .72rem;
+}
+
+.result-versus-hero .result-capture-team-logo {
+  width: 54px;
+  height: 54px;
+  font-size: 1rem;
+}
+
+.result-side-copy b {
+  font-size: .68rem;
+}
+
+.result-side-copy strong {
+  font-size: clamp(.84rem, 1.2vw, 1.02rem);
+}
+
+.result-vs-core {
+  width: 104px;
+  height: 68px;
+}
+
+.result-vs-core em {
+  font-size: 1.7rem;
+}
+
+.result-vs-core i {
+  width: 36px;
+  height: 36px;
+  font-size: .78rem;
+}
+
+.result-dice-panel.result-step {
+  grid-column: 1;
+  grid-row: 2;
+  min-height: 0;
+  overflow: hidden;
+  gap: .52rem;
+  padding: .62rem;
+}
+
+.result-dice-copy {
+  order: 1;
+}
+
+.result-sidebar-subtitle {
+  order: 2;
+}
+
+.result-dice-panel .result-dice-stage {
+  order: 3;
+}
+
+.result-dice-panel .btn-warning {
+  order: 4;
+}
+
+.result-turn-choice {
+  order: 5;
+}
+
+.result-mini-duel-list {
+  order: 6;
+  max-height: 205px;
+  overflow: auto;
+  padding-right: .2rem;
+}
+
+.result-duel-section {
+  grid-column: 2;
+  grid-row: 2;
+  min-height: 0;
+  overflow: hidden;
+  padding: .62rem;
+}
+
+.result-dice-copy {
+  gap: .5rem;
+}
+
+.result-dice-copy i {
+  font-size: 1.05rem;
+}
+
+.result-dice-copy h3 {
+  font-size: .9rem;
+}
+
+.result-dice-copy p,
+.result-duel-section-head p {
+  font-size: .68rem;
+  line-height: 1.18;
+}
+
+.result-mini-duel-list {
+  gap: .26rem;
+}
+
+.result-mini-duel-list span {
+  min-height: 28px;
+  padding: .25rem .38rem;
+}
+
+.result-dice-panel .result-dice-stage {
+  position: relative;
+  min-height: 116px;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.result-dice-3d-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.result-dice-stage.has-real-3d .result-die,
+.result-dice-stage.has-real-3d > strong {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.result-dice-panel .btn-warning {
+  min-height: 38px;
+  font-size: .78rem;
+}
+
+.result-duel-section-head {
+  margin-bottom: .55rem;
+}
+
+.result-duel-section-head h3 {
+  font-size: .98rem;
+}
+
+.result-duel-progress {
+  grid-template-columns: auto 105px auto;
+  gap: .4rem;
+  font-size: .68rem;
+}
+
+.result-duel-detail-grid {
+  height: calc(100% - 46px);
+  overflow: hidden;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: .46rem;
+}

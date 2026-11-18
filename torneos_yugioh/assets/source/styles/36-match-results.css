@@ -1,0 +1,250 @@
+/* match-results: cascade segment 36. Keep manifest order to preserve responsive overrides. */
+/* @runtime-start */
+
+.stats-v8-award-group { min-width: 0; border: 1px solid #29405d; border-radius: 10px; padding: 12px; }
+.stats-v8-award-group > summary { cursor: pointer; color: #dce6f8; font-weight: 700; padding: 4px 0; }
+.stats-v8-award-group[open] > summary { margin-bottom: 12px; }
+.stats-v8-achievements { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,260px),1fr)); gap: 14px; min-width: 0; }
+.stats-v8-achievements > .stats-v8-achievement-card,
+.stats-v8-achievements > .stats-v8-championship-card { display: flex; flex-direction: column; align-items: stretch; gap: 12px; min-width: 0; padding: 18px; border: 1px solid #2b405f; border-radius: 10px; background: #101d34; overflow-wrap: anywhere; }
+.stats-v8-award-heading { display: flex; align-items: flex-start; gap: 10px; }
+.stats-v8-award-heading > i { flex: 0 0 28px; color: #ffd45f; font-size: 1.35rem; }
+.stats-v8-award-heading h4, .stats-v8-award-heading h5 { margin: 0; min-width: 0; color: #f5f8ff; font-size: 1rem; line-height: 1.45; }
+.stats-v8-award-status { display: inline-flex; align-self: flex-start; max-width: 100%; padding: 4px 9px; border: 1px solid #50607b; border-radius: 6px; color: #c8d3e6; font-size: .8rem; font-weight: 700; }
+.stats-v8-award-status.is-earned { border-color: #22b58a; color: #72efba; background: #0e322e; }
+.stats-v8-achievements p { margin: 0; line-height: 1.55; color: #d0daeb; }
+.stats-v8-achievements small { color: #aebbd4; line-height: 1.5; }
+.stats-v8-award-progress { display: grid; gap: 6px; margin-top: auto; color: #dce6f8; font-size: .85rem; }
+.stats-v8-progress-track { height: 7px; border-radius: 6px; overflow: hidden; background: #293850; }
+.stats-v8-progress-track > div { height: 100%; background: #25c8e8; }
+.stats-v8-catalog-modal .modal-content { background: #081526; color: #eef5ff; border: 1px solid #29405d; }
+.stats-v8-catalog-modal .modal-header { align-items: flex-start; gap: 16px; }
+.stats-v8-catalog-modal .modal-title { font-size: clamp(1.2rem,3vw,1.7rem); }
+.stats-v8-catalog-modal .modal-header p { margin: 8px 0 0; color: #aebbd4; }
+.stats-v8-catalog-modal .btn-close { filter: invert(1) grayscale(1); flex-shrink: 0; }
+.stats-v8-catalog-filters { display: grid; grid-template-columns: minmax(0,2fr) minmax(0,1fr); gap: 14px; margin-bottom: 16px; }
+.stats-v8-catalog-filters label { display: grid; gap: 6px; min-width: 0; }
+.stats-v8-catalog-modal [data-medal-catalog-results] { display: grid; gap: 16px; min-width: 0; }
+@media(max-width:600px) {
+  .stats-v8-catalog-filters { grid-template-columns: minmax(0,1fr); }
+  .stats-v8-awards-toolbar .btn { width: 100%; }
+  .stats-v8-achievements { grid-template-columns: minmax(0,1fr); }
+  .stats-v8-profile .stats-v8-table .table { min-width: 560px; }
+}
+.deck-events-section { min-width: 0; }
+.deck-events-filters { display: grid; grid-template-columns: minmax(0,2fr) repeat(2,minmax(0,1fr)); gap: 14px; margin: 16px 0; }
+.deck-events-filters label { display: grid; gap: 6px; min-width: 0; }
+.deck-events-list { display: grid; gap: 14px; }
+.deck-event-history-card { padding: 18px; border: 1px solid #29405d; border-radius: 10px; background: #101d34; min-width: 0; overflow-wrap: anywhere; }
+.deck-event-history-card.is-active { border-color: #35d399; border-left-width: 4px; background: linear-gradient(115deg, #35d39916, transparent 70%), #101d34; }
+.deck-event-history-card.is-upcoming { border-color: #ffd166; border-left-width: 4px; background: linear-gradient(115deg, #ffd16616, transparent 70%), #101d34; }
+.deck-event-history-badges { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; max-width: 100%; }
+.deck-event-state { display: inline-block; padding: 5px 10px; border: 1px solid #526783; border-radius: 7px; color: #c6d3e5; font-size: .8rem; font-weight: 700; }
+.is-active > .deck-event-history-heading .deck-event-state { color: #86efbd; border-color: #35d399; background: #35d39920; }
+.is-upcoming > .deck-event-history-heading .deck-event-state { color: #ffe29a; border-color: #ffd166; background: #ffd16620; }
+.deck-event-history-heading { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.deck-event-history-heading h4 { font-size: 1.15rem; margin: 6px 0; }
+.deck-event-history-heading p, .deck-events-summary { color: #b9c8de; }
+.deck-event-history-heading small { color: #b9c8de; }
+.deck-event-history-card dl { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; margin: 14px 0; }
+.deck-event-history-card dl > div { padding: 10px; background: #081526; border-radius: 6px; }
+.deck-event-history-card dt { color: #aebbd4; font-size: .8rem; font-weight: 500; }
+.deck-event-history-card dd { margin: 6px 0 0; color: #eef5ff; font-weight: 700; }
+@media(max-width:600px){.deck-events-filters{grid-template-columns:minmax(0,1fr)}.deck-event-history-card dl{grid-template-columns:repeat(2,minmax(0,1fr))}.deck-event-history-card > .btn{width:100%}}
+.daily-duels-modal .modal-content { background: #081526; color: #eef5ff; border: 1px solid #29405d; }
+.daily-duels-modal .modal-header { align-items: flex-start; gap: 12px; }
+.daily-duels-modal .modal-title { font-size: clamp(1.3rem,4vw,1.8rem); margin-top: 10px; }
+.daily-duels-modal .modal-header p { color: #b9c8de; margin: 8px 0 0; }
+.daily-duels-list { display: grid; gap: 14px; }
+.daily-duel-card { padding: 16px; border: 1px solid #29405d; border-radius: 10px; background: #101d34; min-width: 0; overflow-wrap: anywhere; }
+.daily-duel-meta { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.daily-duel-meta > strong { color: #ffd45f; }
+.daily-duel-card h3 { margin: 12px 0 8px; font-size: 1.1rem; line-height: 1.5; }
+.daily-duel-card p { color: #b9c8de; font-size: .9rem; }
+@media(max-width:600px){.daily-duel-card > .btn{width:100%}}
+
+/* Use the existing mobile result sheet on desktop as well. */
+@media (min-width: 601px) {
+  [data-result-capture-modal] .result-outcome-open {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    width: 100%;
+  }
+
+  [data-result-capture-modal] .result-outcome-sheet {
+    display: none;
+  }
+
+  [data-result-capture-modal] .result-outcome-sheet.is-open {
+    position: fixed;
+    inset: 0;
+    z-index: 1110;
+    display: grid;
+    place-items: center;
+    padding: 12px;
+  }
+
+  [data-result-capture-modal] .result-outcome-backdrop {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: rgba(1, 7, 16, .78);
+  }
+
+  [data-result-capture-modal] .result-outcome-panel {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 14px;
+    width: min(100%, 430px);
+    padding: 14px;
+    border: 1px solid rgba(54, 216, 255, .42);
+    border-radius: 8px;
+    background: #07162a;
+    box-shadow: 0 -16px 48px rgba(0, 0, 0, .45);
+  }
+
+  [data-result-capture-modal] .result-outcome-panel > header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  [data-result-capture-modal] .result-outcome-panel h3 {
+    margin: 2px 0 0;
+    color: #f5f8ff;
+    font-size: 1.15rem;
+  }
+
+  [data-result-capture-modal] .result-outcome-panel .result-duel-outcome-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  [data-result-capture-modal] .result-outcome-done {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    width: 100%;
+  }
+
+}
+.calendar-event-identity { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; margin: 14px 0 18px; }
+.calendar-event-identity > div { min-width: 0; padding: 12px; border: 1px solid #29405d; border-radius: 8px; background: rgba(5,16,35,.55); }
+.calendar-event-identity dt { color: #aebbd4; font-size: .8rem; font-weight: 600; margin-bottom: 6px; }
+.calendar-event-identity dd { margin: 0; color: #eef5ff; font-weight: 700; overflow-wrap: anywhere; }
+@media(max-width:600px){.calendar-event-identity{grid-template-columns:minmax(0,1fr)}}
+.match-header-identity .calendar-event-identity { margin: 10px 0 0; gap: 10px; }
+.match-header-identity .calendar-event-identity > div { padding: 7px 12px; }
+[data-result-capture-identity] .calendar-event-identity { grid-template-columns: repeat(2,minmax(0,1fr)); }
+.match-header-identity dt { font-size: .75rem; margin-bottom: 2px; }
+.match-header-identity dd { font-size: .9rem; }
+@media(max-width:600px){.match-header-identity .calendar-event-identity{grid-template-columns:minmax(0,1fr)}}
+#eventScheduleModal .modal-content { min-width: 0; max-height: calc(100dvh - 32px); display: flex; flex-direction: column; overflow: hidden; }
+#eventScheduleModal .modal-header { flex-shrink: 0; }
+#eventScheduleModal .modal-body { flex: 1 1 auto; min-height: 0; max-width: 100%; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+.schedule-division-browser, .schedule-division-panel { min-width: 0; }
+.schedule-division-panel[hidden] { display: none !important; }
+.schedule-division-nav { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+.schedule-division-nav button { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; flex: 1 1 220px; white-space: normal; text-align: left; padding: 12px 14px; }
+.schedule-division-nav button[aria-pressed="true"] { background: #103c50; color: #f5f8ff; border-color: #25c8e8; box-shadow: inset 0 -3px #25c8e8; }
+.schedule-division-nav small { color: inherit; }
+.schedule-division-panel > header h3 { margin: 0 0 6px; font-size: 1.15rem; }
+.schedule-division-panel > header p { color: #aebbd4; margin-bottom: 14px; }
+.schedule-match-cards { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+.schedule-match-card { min-width: 0; display: flex; flex-direction: column; gap: 10px; padding: 16px; border: 1px solid #29405d; border-radius: 10px; background: #101d34; overflow-wrap: anywhere; }
+.schedule-match-card-meta { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+.schedule-match-card-meta > strong { color: #ffd45f; font-size: .9rem; }
+.schedule-match-card .schedule-match-round { font-size: .85rem; color: #aebbd4; }
+.schedule-match-card h4 { margin: 0; font-size: 1rem; line-height: 1.5; }
+.schedule-match-card p { margin: 0; }
+.schedule-match-card > .btn { margin-top: auto; align-self: flex-start; }
+@media(max-width:600px){
+  #eventScheduleModal .modal-content { max-height: calc(100dvh - 16px); }
+  #eventScheduleModal .modal-body { padding: 12px; }
+  .schedule-match-cards { grid-template-columns: minmax(0,1fr); }
+  .schedule-division-nav button { flex-basis: 100%; }
+  .schedule-match-card > .btn { width: 100%; }
+}
+/* On small screens scroll the whole participant body: the controls can fill the viewport. */
+@media (max-width: 760px) {
+  #competitionDecksModal .modal-content { display: flex; flex-direction: column; height: calc(100dvh - 16px); max-height: calc(100dvh - 16px); overflow: hidden; }
+  #competitionDecksModal .modal-header { flex: 0 0 auto; }
+  #competitionDecksModal .modal-body { display: block; flex: 1 1 auto; min-height: 0; min-width: 0; overflow-y: auto !important; overflow-x: hidden !important; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+  #competitionDecksModal .event-deck-panel { display: block; flex: none; height: auto; min-height: 0; max-height: none; min-width: 0; overflow: visible; }
+  #competitionDecksModal .selected-deck-table-wrap { height: auto; max-height: none !important; overflow: visible !important; scrollbar-gutter: auto; }
+  #competitionDecksModal .selected-deck-table { min-width: 0; max-width: 100%; }
+}
+#eventRankingModal .modal-content { display: flex; flex-direction: column; min-width: 0; max-height: calc(100dvh - 32px); overflow: hidden; }
+#eventRankingModal .modal-header { flex: 0 0 auto; }
+#eventRankingModal .modal-body { flex: 1 1 auto; min-height: 0; min-width: 0; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+#eventRankingModal .ranking-phase-tabs { display: flex; flex-wrap: wrap; gap: 10px; }
+#eventRankingModal .ranking-phase-tabs button { white-space: normal; }
+.event-ranking-division-title h3 { margin: 8px 0 5px; font-size: 1.1rem; }
+.event-ranking-division-title p { color: #aebbd4; margin-bottom: 12px; }
+@media(max-width:600px){#eventRankingModal .modal-content{max-height:calc(100dvh - 16px)}#eventRankingModal .ranking-phase-tabs button{flex:1 1 auto}}
+
+/* Mobile match screens use one scroll flow, including their header and actions. */
+.result-filter-grid [data-result-period-field][hidden],
+.result-filter-grid [data-result-period-error][hidden] { display: none !important; }
+.result-filter-grid [data-result-period-error] { grid-column: 1 / -1; }
+.result-filter-grid input,
+.result-filter-grid select { min-width: 0; width: 100%; max-width: 100%; }
+@media (max-width: 760px) {
+  #resultCaptureModal .result-capture-form,
+  #matchSheetModal .modal-content {
+    display: block !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    scrollbar-gutter: auto;
+  }
+
+  #matchSheetModal .modal-content { max-height: calc(100dvh - 16px); }
+
+  #matchSheetModal .match-sheet-grid { grid-template-columns: minmax(0, 1fr); }
+  #matchSheetModal .match-sheet-grid > section,
+  #matchSheetModal .match-sheet-duel > article { min-width: 0; overflow-wrap: anywhere; }
+
+  #resultCaptureModal .result-console-head,
+  #matchSheetModal .modal-header {
+    position: relative !important;
+    top: auto !important;
+    flex: none;
+  }
+
+  #resultCaptureModal .result-console-body,
+  #matchSheetModal .modal-body {
+    height: auto !important;
+    max-height: none !important;
+    min-height: 0;
+    flex: none;
+    overflow: visible !important;
+  }
+
+  #resultCaptureModal .result-console-body { padding: 10px !important; }
+
+  #resultCaptureModal .result-console-footer {
+    position: static !important;
+    inset: auto !important;
+    transform: none !important;
+  }
+
+  #matchSheetModal .modal-header { padding-right: 44px; }
+  #matchSheetModal .modal-header > .btn-close {
+    position: absolute;
+    top: 16px;
+    right: 14px;
+    margin: 0;
+  }
+}

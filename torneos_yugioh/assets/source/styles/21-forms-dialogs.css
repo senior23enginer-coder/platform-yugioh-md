@@ -1,0 +1,599 @@
+/* forms-dialogs: cascade segment 21. Keep manifest order to preserve responsive overrides. */
+/* @runtime-start */
+
+
+@media (max-width: 390px) {
+  .dashboard-kpi-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .calendar-month-controls {
+    grid-template-columns: 36px minmax(0, 1fr) 36px !important;
+  }
+
+  .calendar-month-controls .btn {
+    grid-column: 1 / -1;
+  }
+
+  .calendar-view-tabs button {
+    flex-basis: 72px;
+  }
+}
+
+/* Qualifier screen coherence */
+.qualifier-page-title .tag {
+  width: max-content;
+  margin-bottom: .35rem;
+}
+
+.qualifier-title-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: .55rem;
+  flex-wrap: wrap;
+}
+
+.qualifier-action-tabs {
+  position: sticky;
+  top: 76px;
+  z-index: 4;
+  border: 1px solid rgba(84, 130, 220, .25);
+  border-radius: 10px;
+  padding: .45rem;
+  background:
+    linear-gradient(180deg, rgba(10, 20, 38, .94), rgba(4, 10, 21, .98));
+  box-shadow: 0 18px 36px rgba(0,0,0,.22);
+}
+
+.qualifier-action-tabs button {
+  min-width: 0;
+  flex: 1 1 160px;
+  border-radius: 8px;
+}
+
+.qualifier-command-deck {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.qualifier-command-deck article {
+  border-color: rgba(0, 255, 156, .26);
+  background:
+    linear-gradient(145deg, rgba(8, 28, 40, .82), rgba(5, 12, 26, .94));
+}
+
+.qualifier-manager-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.qualifier-manager-grid article {
+  border-radius: 8px;
+}
+
+.qualifier-panel .table-responsive {
+  border-radius: 9px;
+}
+
+@media (max-width: 640px) {
+  .qualifier-page-title h1 {
+    font-size: 1.35rem;
+  }
+
+  .qualifier-title-actions,
+  .qualifier-title-actions .btn {
+    width: 100%;
+  }
+
+  .qualifier-action-tabs {
+    top: 0;
+    display: flex;
+    gap: .38rem;
+    margin-inline: -.1rem;
+    overflow-x: auto;
+    border-radius: 8px;
+  }
+
+  .qualifier-action-tabs button {
+    flex: 0 0 132px;
+    min-height: 38px;
+    padding: .36rem .48rem;
+    font-size: .72rem;
+  }
+
+  .qualifier-command-deck {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: .5rem;
+  }
+
+  .qualifier-command-deck article {
+    min-height: 74px;
+    padding: .6rem;
+  }
+
+  .qualifier-command-deck strong {
+    font-size: 1.18rem;
+  }
+
+  .qualifier-command-deck span {
+    font-size: .7rem;
+  }
+
+  .qualifier-manager-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .qualifier-manager-grid article {
+    padding: .7rem;
+  }
+
+  .qualifier-manager-grid article > div:last-child {
+    grid-template-columns: 1fr;
+  }
+
+  .qualifier-panel .app-table,
+  .qualifier-panel .app-table thead,
+  .qualifier-panel .app-table tbody,
+  .qualifier-panel .app-table tr,
+  .qualifier-panel .app-table th,
+  .qualifier-panel .app-table td {
+    display: block;
+  }
+
+  .qualifier-panel .app-table {
+    min-width: 0 !important;
+  }
+
+  .qualifier-panel .app-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .qualifier-panel .app-table tbody {
+    display: grid;
+    gap: .62rem;
+  }
+
+  .qualifier-panel .app-table tr {
+    border: 1px solid rgba(0, 255, 156, .26);
+    border-left: 4px solid #00ff9c;
+    border-radius: 9px;
+    padding: .6rem;
+    background:
+      linear-gradient(145deg, rgba(7, 22, 36, .92), rgba(3, 9, 20, .97));
+  }
+
+  .qualifier-panel .app-table td {
+    display: grid;
+    grid-template-columns: 94px minmax(0, 1fr);
+    gap: .5rem;
+    align-items: center;
+    border: 0;
+    padding: .28rem 0;
+  }
+
+  .qualifier-panel .app-table td::before {
+    content: attr(data-label);
+    color: #8fb2ff;
+    font-size: .68rem;
+    font-weight: 950;
+    text-transform: uppercase;
+  }
+
+  .qualifier-panel .app-table td:not([data-label]) {
+    display: block;
+  }
+
+  .qualifier-panel .app-table td:not([data-label])::before {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .cup-db-hero,
+  .cup-event-head,
+  .cup-db-hero-main,
+  .cup-event-title,
+  .cup-event-actions,
+  .cup-db-hero-stats {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .cup-db-hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .cup-logo-mark {
+    width: 58px;
+    height: 58px;
+    flex-basis: 58px;
+  }
+
+  .cup-db-stats,
+  .cup-event-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cup-event-actions .btn,
+  .cup-db-hero-stats .btn {
+    width: 100%;
+  }
+
+  .cup-db-hero-stats .btn {
+    grid-column: 1 / -1;
+  }
+
+  .cup-bracket-shell {
+    padding: .75rem;
+  }
+
+  .cup-bracket-stage {
+    min-width: 0;
+    grid-template-columns: 1fr;
+    gap: .75rem;
+  }
+
+  .cup-bracket-match::after {
+    display: none;
+  }
+
+  .cup-bracket-meta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .25rem;
+  }
+
+  .cup-bracket-winner {
+    min-height: 132px;
+  }
+}
+
+@media (max-width: 420px) {
+  .cup-db-stats,
+  .cup-event-meta,
+  .cup-db-hero-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Final mobile drawer geometry; keep this after legacy responsive rules. */
+@media (max-width: 760px) {
+  body.sidebar-open .side-nav,
+  body.sidebar-collapsed.sidebar-open .side-nav {
+    display: block !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  body.sidebar-open .side-nav .side-menu,
+  body.sidebar-collapsed.sidebar-open .side-nav .side-menu {
+    display: grid !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  .result-queue-table.mobile-card-table tr.selected {
+    border-left-color: var(--gold);
+  }
+
+  .result-queue-table.mobile-card-table tr.selected td {
+    background: transparent;
+    box-shadow: none;
+  }
+}
+
+/* Sidebar collapse: desktop icon rail and mobile drawer controls. */
+.side-collapse,
+.side-close {
+  width: 40px;
+  height: 40px;
+  min-height: 40px;
+  padding: 0;
+}
+
+@media (min-width: 1201px) {
+  body.sidebar-collapsed .app-shell {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+
+  body.sidebar-collapsed .side-nav {
+    padding-inline: .45rem;
+  }
+
+  body.sidebar-collapsed .side-card {
+    display: none;
+  }
+
+  body.sidebar-collapsed .side-group {
+    padding: .2rem;
+    border-color: transparent;
+    background: transparent;
+  }
+
+  body.sidebar-collapsed .side-group summary {
+    min-height: 38px;
+    padding: .25rem;
+  }
+
+  body.sidebar-collapsed .side-menu .nav-pill {
+    width: 46px;
+    min-height: 42px;
+    margin-inline: auto;
+    padding: .3rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .side-collapse {
+    display: none !important;
+  }
+
+  .side-close {
+    display: inline-grid;
+    place-items: center;
+    margin-left: auto;
+  }
+}
+
+/* Mobile workflow polish: card tables, compact secondary modals and reachable actions. */
+@media (max-width: 760px) {
+  .mobile-card-table {
+    display: block;
+    min-width: 0 !important;
+    width: 100%;
+    margin: 0;
+  }
+
+  .mobile-card-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .mobile-card-table tbody,
+  .mobile-card-table tr,
+  .mobile-card-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .mobile-card-table tbody {
+    display: grid;
+    gap: .65rem;
+  }
+
+  .mobile-card-table tr {
+    padding: .25rem .72rem;
+    border: 1px solid rgba(87, 139, 201, .34);
+    border-radius: 8px;
+    background: rgba(8, 23, 45, .92);
+  }
+
+  .mobile-card-table td {
+    display: grid;
+    grid-template-columns: minmax(76px, .38fr) minmax(0, 1fr);
+    align-items: start;
+    gap: .65rem;
+    padding: .48rem 0 !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(87, 139, 201, .18) !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+  }
+
+  .mobile-card-table td:last-child {
+    border-bottom: 0 !important;
+  }
+
+  .mobile-card-table td::before {
+    content: attr(data-label);
+    color: #8da4c5;
+    font-size: .7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .mobile-card-table td[colspan] {
+    display: block;
+  }
+
+  .mobile-card-table td[colspan]::before {
+    content: none;
+  }
+
+  .mobile-card-table td .btn {
+    width: 100%;
+  }
+
+  .audit-mobile-table td[data-label="Detalle"] {
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: .76rem;
+  }
+
+  .event-decks-modal .modal-header,
+  [data-event-rule-modal] .modal-header,
+  [data-calendar-day-modal] .modal-header,
+  [data-calendar-modal] .modal-header,
+  [data-friendly-match-modal] .modal-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    padding: .72rem .8rem;
+  }
+
+  .event-decks-modal .modal-header .status-chip {
+    grid-column: 1;
+    justify-self: start;
+  }
+
+  .event-decks-modal .modal-header .btn-close,
+  [data-event-rule-modal] .modal-header .btn-close,
+  [data-calendar-day-modal] .modal-header .btn-close,
+  [data-calendar-modal] .modal-header .btn-close,
+  [data-friendly-match-modal] .modal-header .btn-close {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+  }
+
+  .event-decks-modal .modal-header p,
+  [data-event-rule-modal] .modal-header p,
+  [data-calendar-day-modal] .modal-header p,
+  [data-calendar-modal] .modal-header p,
+  [data-friendly-match-modal] .modal-header p {
+    margin: .2rem 0 0;
+    font-size: .78rem;
+    line-height: 1.25;
+  }
+
+  .event-decks-modal .modal-title,
+  [data-event-rule-modal] .modal-title,
+  [data-calendar-day-modal] .modal-title,
+  [data-calendar-modal] .modal-title,
+  [data-friendly-match-modal] .modal-title {
+    font-size: 1.22rem;
+    line-height: 1.1;
+  }
+
+  .event-decks-modal .modal-body,
+  [data-event-rule-modal] .modal-body,
+  [data-calendar-day-modal] .modal-body,
+  [data-calendar-modal] .modal-body,
+  [data-friendly-match-modal] .modal-body {
+    padding: .72rem;
+  }
+
+  .event-decks-modal .event-deck-panel {
+    padding: .65rem;
+    border: 0;
+    background: transparent;
+  }
+
+  .event-decks-modal .selected-deck-table-wrap,
+  .qualifier-history-table-wrap {
+    overflow: visible;
+  }
+
+  [data-event-rule-modal] .event-rule-detail,
+  [data-calendar-modal] .calendar-modal-grid,
+  [data-friendly-match-modal] .config-grid,
+  [data-friendly-match-modal] .two-col {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  [data-event-rule-modal] .event-rule-detail *,
+  [data-event-rule-modal] code,
+  [data-event-rule-modal] small,
+  [data-event-rule-modal] strong {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  [data-calendar-day-modal] .calendar-day-modal-list,
+  [data-calendar-modal] [data-calendar-modal-matches] {
+    display: grid;
+    gap: .65rem;
+  }
+
+  [data-calendar-day-modal] .day-event-card,
+  [data-calendar-modal] .modal-match-card {
+    padding: .72rem;
+    border-radius: 8px;
+  }
+
+  [data-calendar-day-modal] .day-event-head,
+  [data-calendar-modal] .modal-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: .45rem;
+  }
+
+  [data-calendar-day-modal] .day-event-head .btn,
+  [data-calendar-modal] .modal-actions .btn {
+    width: 100%;
+  }
+
+  [data-calendar-modal] .calendar-modal-form {
+    position: static;
+    order: -1;
+    padding: .72rem;
+  }
+
+  [data-friendly-match-modal] .modal-form {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    max-height: calc(100dvh - 16px);
+  }
+
+  [data-friendly-match-modal] .modal-footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: .62rem .72rem;
+  }
+
+  [data-friendly-match-modal] .modal-footer .btn {
+    width: 100%;
+  }
+
+  .gestion-tabs,
+  .calendar-view-tabs,
+  .event-config-actions,
+  .event-program-actions {
+    scrollbar-width: none;
+  }
+
+  .gestion-tabs::-webkit-scrollbar,
+  .calendar-view-tabs::-webkit-scrollbar,
+  .event-config-actions::-webkit-scrollbar,
+  .event-program-actions::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gestion-tabs,
+  .event-config-actions,
+  .event-program-actions {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: .45rem;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    padding-bottom: .3rem;
+  }
+
+  .gestion-tabs > *,
+  .event-config-actions > *,
+  .event-program-actions > * {
+    flex: 0 0 auto;
+    width: auto !important;
+    min-height: 38px;
+    scroll-snap-align: start;
+  }
+
+  .page-title,
+  .panel-head {
+    gap: .55rem;
+  }
+
+  .page-title h1 {
+    font-size: 1.5rem;
+    line-height: 1.08;
+  }
+
+  .page-title p,
+  .panel-head p {
+    margin-top: .18rem;
+    font-size: .78rem;
+    line-height: 1.3;
+  }
+}

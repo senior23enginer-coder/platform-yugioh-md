@@ -1,0 +1,506 @@
+/* match-results: cascade segment 29. Keep manifest order to preserve responsive overrides. */
+/* @runtime-start */
+
+
+.result-duel-start-box span {
+  min-height: 32px;
+  display: grid;
+  align-items: center;
+  border: 1px solid rgba(148, 180, 230, .16);
+  border-radius: 7px;
+  padding: .35rem .45rem;
+  color: #eaf1ff;
+  background: rgba(3, 10, 24, .72);
+  font-size: .72rem;
+  font-weight: 850;
+}
+
+.result-duel-detail-card label {
+  color: #c8d4ef;
+  font-size: .72rem;
+  font-weight: 950;
+}
+
+.result-capture-form .form-select,
+.result-capture-form .form-control {
+  min-height: 34px;
+  border-radius: 7px;
+  font-size: .78rem;
+  background-color: rgba(2, 10, 24, .86);
+}
+
+.result-lp-grid {
+  gap: .4rem;
+}
+
+.result-turn-ledger {
+  padding: .48rem;
+  order: 2;
+}
+
+.result-turn-ledger-actions {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.result-turn-ledger-actions .btn {
+  min-height: 30px;
+  padding: .25rem .45rem;
+  font-size: .68rem;
+}
+
+.result-duel-card-summary {
+  min-height: 34px;
+  font-size: .72rem;
+  border-radius: 7px;
+}
+
+.result-duel-note-field {
+  position: relative;
+}
+
+.result-duel-note-field::after {
+  content: "\F4CA";
+  position: absolute;
+  right: .55rem;
+  bottom: .47rem;
+  color: rgba(148,180,230,.7);
+  font-family: "bootstrap-icons";
+  font-size: .78rem;
+}
+
+.result-notes-section,
+.result-save-section {
+  grid-column: 1 / -1;
+  border-radius: 8px;
+}
+
+.result-console-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 4;
+  border-top: 1px solid rgba(148,180,230,.28);
+  background:
+    linear-gradient(180deg, rgba(3, 9, 22, .92), rgba(3, 9, 22, .99));
+  backdrop-filter: blur(10px);
+}
+
+.result-console-footer .btn-primary {
+  border: 0;
+  background: linear-gradient(180deg, #2993ff, #0865ff);
+  box-shadow: 0 0 0 1px rgba(54,216,255,.28), 0 12px 28px rgba(8,101,255,.28);
+}
+
+.result-duel-detail-card.is-complete {
+  border-color: rgba(35,227,144,.68);
+  box-shadow: inset 0 0 0 1px rgba(35,227,144,.18), 0 0 28px rgba(35,227,144,.08);
+}
+
+.result-duel-detail-card.is-complete header span {
+  color: #7dffb7;
+  border-color: rgba(35,227,144,.58);
+  background: rgba(35,227,144,.13);
+}
+
+.result-duel-detail-card.is-active {
+  border-color: rgba(0,198,255,.78);
+  box-shadow: inset 0 0 0 1px rgba(0,198,255,.18), 0 0 28px rgba(0,198,255,.13);
+}
+
+.result-duel-detail-card.is-active header span {
+  color: #58d7ff;
+  border-color: rgba(0,198,255,.58);
+  background: rgba(0,198,255,.13);
+}
+
+.result-duel-detail-card.is-locked {
+  opacity: .5;
+  filter: saturate(.75);
+}
+
+@media (max-width: 1320px) {
+  .result-dice-panel.result-step,
+  .result-save-section,
+  .result-notes-section {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .result-duel-section-head,
+  .result-duel-progress {
+    align-items: flex-start;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .result-duel-detail-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1120px) {
+  .result-capture-form .result-console-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .result-dice-panel.result-step,
+  .result-duel-section,
+  .result-notes-section,
+  .result-save-section {
+    grid-column: 1;
+  }
+
+  .result-duel-detail-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .result-capture-dialog {
+    max-width: calc(100vw - .75rem);
+    margin: .4rem auto;
+  }
+
+  .result-console-body,
+  .result-console-head {
+    padding-inline: 1rem;
+  }
+
+  .result-versus-hero.result-capture-duel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .result-capture-form .result-console-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .result-dice-panel.result-step,
+  .result-duel-section,
+  .result-notes-section,
+  .result-save-section {
+    grid-column: 1;
+  }
+
+  .result-vs-core {
+    width: 70px;
+    height: 70px;
+  }
+
+  .result-duel-detail-grid,
+  .result-lp-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* FINAL result modal override: keep this as the last block. */
+.result-capture-dialog {
+  max-width: min(1180px, calc(100vw - 24px));
+  margin: .35rem auto;
+}
+
+.dml-modal .result-capture-form {
+  max-height: calc(100vh - 14px);
+  overflow: hidden;
+}
+
+.result-console-head {
+  min-height: 78px;
+  padding: .7rem 1rem .65rem;
+}
+
+.result-console-title .tag {
+  margin-bottom: .28rem;
+  padding: .22rem .55rem;
+  font-size: .64rem;
+}
+
+.result-console-title h2 {
+  font-size: clamp(1.08rem, 1.75vw, 1.45rem);
+}
+
+.result-console-title p {
+  font-size: .78rem;
+}
+
+.result-capture-form .result-console-body {
+  height: calc(100vh - 152px);
+  max-height: 720px;
+  overflow: hidden;
+  grid-template-columns: 255px minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: .75rem;
+  padding: .75rem;
+}
+
+.result-versus-hero.result-capture-duel {
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, 1fr) 104px minmax(0, 1fr);
+  min-height: 88px;
+  padding: 0;
+}
+
+.result-versus-hero.result-capture-duel .result-side-card {
+  min-height: 84px;
+  grid-template-columns: 60px minmax(0, 1fr);
+  gap: .68rem;
+  padding: .58rem .72rem;
+}
+
+.result-versus-hero .result-capture-team-logo {
+  width: 54px;
+  height: 54px;
+  font-size: 1rem;
+}
+
+.result-side-copy b {
+  font-size: .68rem;
+}
+
+.result-side-copy strong {
+  font-size: clamp(.84rem, 1.2vw, 1.02rem);
+}
+
+.result-vs-core {
+  width: 104px;
+  height: 68px;
+}
+
+.result-vs-core em {
+  font-size: 1.7rem;
+}
+
+.result-vs-core i {
+  width: 36px;
+  height: 36px;
+  font-size: .78rem;
+}
+
+.result-dice-panel.result-step {
+  grid-column: 1;
+  grid-row: 2;
+  min-height: 0;
+  overflow: hidden;
+  gap: .52rem;
+  padding: .62rem;
+}
+
+.result-duel-section {
+  grid-column: 2;
+  grid-row: 2;
+  min-height: 0;
+  overflow: hidden;
+  padding: .62rem;
+}
+
+.result-dice-copy {
+  gap: .5rem;
+}
+
+.result-dice-copy i {
+  font-size: 1.05rem;
+}
+
+.result-dice-copy h3 {
+  font-size: .9rem;
+}
+
+.result-dice-copy p,
+.result-duel-section-head p {
+  font-size: .68rem;
+  line-height: 1.18;
+}
+
+.result-dice-panel .result-dice-stage {
+  position: relative;
+  min-height: 116px;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.result-dice-3d-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.result-dice-stage.has-real-3d .result-die,
+.result-dice-stage.has-real-3d > strong {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.result-duel-section-head {
+  margin-bottom: .55rem;
+}
+
+.result-duel-section-head h3 {
+  font-size: .98rem;
+}
+
+.result-duel-progress {
+  grid-template-columns: auto 105px auto;
+  gap: .4rem;
+  font-size: .68rem;
+}
+
+.result-duel-detail-grid {
+  height: calc(100% - 46px);
+  overflow: hidden;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: .46rem;
+}
+
+.result-duel-detail-card {
+  min-height: 0;
+  padding: .52rem;
+  gap: .34rem;
+}
+
+.result-duel-detail-card h3 {
+  font-size: 1.34rem;
+}
+
+.result-duel-detail-card header span {
+  min-height: 19px;
+  padding: .18rem .42rem;
+  font-size: .5rem;
+}
+
+.result-duel-start-box {
+  padding: .38rem;
+  gap: .22rem;
+}
+
+.result-duel-start-box small,
+.result-duel-detail-card label {
+  font-size: .6rem;
+}
+
+.result-duel-start-box b {
+  min-height: 30px;
+  font-size: .82rem;
+}
+
+.result-duel-start-box span {
+  min-height: 25px;
+  padding: .24rem .34rem;
+  font-size: .58rem;
+}
+
+.result-capture-form .form-select,
+.result-capture-form .form-control {
+  min-height: 30px;
+  padding: .28rem .45rem;
+  font-size: .68rem;
+}
+
+.result-lp-grid {
+  gap: .28rem;
+}
+
+.result-turn-ledger {
+  padding: .34rem;
+  gap: .32rem;
+}
+
+.result-turn-ledger span {
+  font-size: .6rem;
+}
+
+.result-turn-ledger-actions .btn {
+  min-height: 26px;
+  font-size: .58rem;
+}
+
+.result-duel-card-summary {
+  display: none;
+}
+
+.result-notes-section {
+  display: none;
+}
+
+.result-save-section {
+  display: none;
+}
+
+.result-validation-title h3 {
+  font-size: .9rem;
+}
+
+.result-validation-title p,
+.result-validation-pill small {
+  font-size: .66rem;
+}
+
+.result-score-pill,
+.result-validation-pill {
+  min-height: 48px;
+}
+
+.result-score-pill strong {
+  font-size: 1.15rem;
+}
+
+.result-console-footer {
+  min-height: 58px;
+  padding: .55rem .9rem;
+}
+
+.result-console-footer .btn {
+  min-height: 38px;
+}
+
+@media (max-width: 1120px) {
+  .result-capture-form .result-console-body {
+    height: calc(100vh - 146px);
+    overflow-y: auto;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto auto;
+  }
+
+  .result-dice-panel.result-step,
+  .result-duel-section,
+  .result-save-section {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .result-duel-detail-grid {
+    height: auto;
+    overflow: visible;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* FINAL fix for result modal overlaps. Must remain last. */
+.dml-modal .result-capture-form {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  max-height: calc(100vh - 12px);
+}
+
+.result-capture-form .result-console-body {
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  overflow: hidden;
+  grid-template-columns: 255px minmax(0, 1fr);
+  grid-template-rows: 88px minmax(0, 1fr);
+}
+
+.result-dice-panel.result-step {
+  display: grid;
+  grid-template-rows: auto auto 112px 38px minmax(0, 1fr);
+  gap: .44rem;
+  overflow: hidden;
+}
+
+.result-dice-copy { order: 1; }
+.result-sidebar-subtitle { order: 2; margin: 0; }
+
+.result-dice-panel .result-dice-stage {
+  order: 3;
+  min-height: 0;
+  height: 112px;
+}

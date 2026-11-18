@@ -1,0 +1,302 @@
+{
+  "javascript": [
+    {
+      "file": "javascript/00-startup.js",
+      "responsibility": "startup"
+    },
+    {
+      "file": "javascript/01-bootstrap.js",
+      "responsibility": "bootstrap"
+    },
+    {
+      "file": "javascript/02-navigation.js",
+      "responsibility": "navigation"
+    },
+    {
+      "file": "javascript/03-directory-search.js",
+      "responsibility": "directory-search"
+    },
+    {
+      "file": "javascript/04-fixtures.js",
+      "responsibility": "fixtures"
+    },
+    {
+      "file": "javascript/05-calendar-identity.js",
+      "responsibility": "calendar-identity"
+    },
+    {
+      "file": "javascript/06-calendar-views.js",
+      "responsibility": "calendar-views"
+    },
+    {
+      "file": "javascript/07-calendar-dialogs.js",
+      "responsibility": "calendar-dialogs"
+    },
+    {
+      "file": "javascript/08-results-directory.js",
+      "responsibility": "results-directory"
+    },
+    {
+      "file": "javascript/09-capture-dice.js",
+      "responsibility": "capture-dice"
+    },
+    {
+      "file": "javascript/10-live-duel-state.js",
+      "responsibility": "live-duel-state"
+    },
+    {
+      "file": "javascript/11-duel-timer.js",
+      "responsibility": "duel-timer"
+    },
+    {
+      "file": "javascript/12-capture-presenter.js",
+      "responsibility": "capture-presenter"
+    },
+    {
+      "file": "javascript/13-results-dashboard.js",
+      "responsibility": "results-dashboard"
+    },
+    {
+      "file": "javascript/14-life-point-calculator.js",
+      "responsibility": "life-point-calculator"
+    },
+    {
+      "file": "javascript/15-match-sheets.js",
+      "responsibility": "match-sheets"
+    },
+    {
+      "file": "javascript/16-deck-metrics.js",
+      "responsibility": "deck-metrics"
+    },
+    {
+      "file": "javascript/17-deck-categories.js",
+      "responsibility": "deck-categories"
+    },
+    {
+      "file": "javascript/18-matchup-analysis.js",
+      "responsibility": "matchup-analysis"
+    },
+    {
+      "file": "javascript/19-deck-profile.js",
+      "responsibility": "deck-profile"
+    },
+    {
+      "file": "javascript/20-analytics.js",
+      "responsibility": "analytics"
+    },
+    {
+      "file": "javascript/21-statistics-screen.js",
+      "responsibility": "statistics-screen"
+    },
+    {
+      "file": "javascript/22-dashboard.js",
+      "responsibility": "dashboard"
+    },
+    {
+      "file": "javascript/23-audit-search.js",
+      "responsibility": "audit-search"
+    },
+    {
+      "file": "javascript/24-team-management.js",
+      "responsibility": "team-management"
+    },
+    {
+      "file": "javascript/25-deck-team-directory.js",
+      "responsibility": "deck-team-directory"
+    },
+    {
+      "file": "javascript/26-event-creation.js",
+      "responsibility": "event-creation"
+    },
+    {
+      "file": "javascript/27-rule-editor.js",
+      "responsibility": "rule-editor"
+    },
+    {
+      "file": "javascript/28-event-directory.js",
+      "responsibility": "event-directory"
+    },
+    {
+      "file": "javascript/29-event-context.js",
+      "responsibility": "event-context"
+    },
+    {
+      "file": "javascript/30-participant-picker.js",
+      "responsibility": "participant-picker"
+    },
+    {
+      "file": "javascript/31-event-planning.js",
+      "responsibility": "event-planning"
+    },
+    {
+      "file": "javascript/32-event-configuration.js",
+      "responsibility": "event-configuration"
+    },
+    {
+      "file": "javascript/33-event-submission.js",
+      "responsibility": "event-submission"
+    },
+    {
+      "file": "javascript/34-manual-matches.js",
+      "responsibility": "manual-matches"
+    },
+    {
+      "file": "javascript/35-division-editor.js",
+      "responsibility": "division-editor"
+    },
+    {
+      "file": "javascript/36-life-point-tool.js",
+      "responsibility": "life-point-tool"
+    }
+  ],
+  "styles": [
+    {
+      "file": "styles/00-match-results.css",
+      "responsibility": "match-results"
+    },
+    {
+      "file": "styles/01-match-results.css",
+      "responsibility": "match-results"
+    },
+    {
+      "file": "styles/02-calendar.css",
+      "responsibility": "calendar"
+    },
+    {
+      "file": "styles/03-calendar.css",
+      "responsibility": "calendar"
+    },
+    {
+      "file": "styles/04-calendar.css",
+      "responsibility": "calendar"
+    },
+    {
+      "file": "styles/05-events.css",
+      "responsibility": "events"
+    },
+    {
+      "file": "styles/06-match-results.css",
+      "responsibility": "match-results"
+    },
+    {
+      "file": "styles/07-deck-profile.css",
+      "responsibility": "deck-profile"
+    },
+    {
+      "file": "styles/08-navigation.css",
+      "responsibility": "navigation"
+    },
+    {
+      "file": "styles/09-dashboard.css",
+      "responsibility": "dashboard"
+    },
+    {
+      "file": "styles/10-match-results.css",
+      "responsibility": "match-results"
+    },
+    {
+      "file": "styles/11-calendar.css",
+      "responsibility": "calendar"
+    },
+    {
+      "file": "styles/12-calendar.css",
+      "responsibility": "calendar"
+    },
+    {
+      "file": "styles/13-calendar.css",
+      "responsibility": "calendar"
+    },
+    {
+      "file": "styles/14-events.css",
+      "responsibility": "events"
+    },
+    {
+      "file": "styles/15-events.css",
+      "responsibility": "events"
+    },
+    {
+      "file": "styles/16-events.css",
+      "responsibility": "events"
+    },
+    {
+      "file": "styles/17-events.css",
+      "responsibility": "events"
+    },
+    {
+      "file": "styles/18-match-results.css",
+      "responsibility": "match-results"
+    },
+    {
+      "file": "styles/19-match-results.css",
+      "responsibility": "match-results"
+    },
+    {
+      "file": "styles/20-tables-controls.css",
+      "responsibility": "tables-controls"
+    },
+    {
+      "file": "styles/21-forms-dialogs.css",
+      "responsibility": "forms-dialogs"
+    },
+    {
+      "file": "styles/22-match-results.css",
+      "responsibility": "match-results"
+    },
+    {
+      "file": "styles/23-tables-controls.css",
+      "responsibility": "tables-controls"
+    },
+    {
+      "file": "styles/24-forms-dialogs.css",
+      "responsibility": "forms-dialogs"
+    },
+    {
+      "file": "styles/25-deck-profile.css",
+      "responsibility": "deck-profile"
+    },
+    {
+      "file": "styles/26-match-results.css",
+      "responsibility": "match-results"
+    },
+    {
+      "file": "styles/27-match-results.css",
+      "responsibility": "match-results"
+    },
+    {
+      "file": "styles/28-match-results.css",
+      "responsibility": "match-results"
+    },
+    {
+      "file": "styles/29-match-results.css",
+      "responsibility": "match-results"
+    },
+    {
+      "file": "styles/30-match-results.css",
+      "responsibility": "match-results"
+    },
+    {
+      "file": "styles/31-match-results.css",
+      "responsibility": "match-results"
+    },
+    {
+      "file": "styles/32-deck-profile.css",
+      "responsibility": "deck-profile"
+    },
+    {
+      "file": "styles/33-match-results.css",
+      "responsibility": "match-results"
+    },
+    {
+      "file": "styles/34-match-results.css",
+      "responsibility": "match-results"
+    },
+    {
+      "file": "styles/35-deck-profile.css",
+      "responsibility": "deck-profile"
+    },
+    {
+      "file": "styles/36-match-results.css",
+      "responsibility": "match-results"
+    }
+  ]
+}

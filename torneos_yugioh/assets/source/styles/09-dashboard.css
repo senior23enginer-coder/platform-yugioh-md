@@ -1,0 +1,503 @@
+/* dashboard: cascade segment 09. Keep manifest order to preserve responsive overrides. */
+/* @runtime-start */
+
+
+.calendar-side .panel-head {
+  margin-bottom: .8rem;
+}
+
+.calendar-side .panel-head a {
+  color: #67a5ff;
+  text-decoration: none;
+  font-weight: 850;
+}
+
+.calendar-legend {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .65rem;
+  margin-top: .85rem;
+  border: 1px solid var(--hf-border-soft);
+  border-radius: 9px;
+  padding: .75rem 1rem;
+  background: rgba(7, 14, 27, .66);
+}
+
+.calendar-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  color: #c8d4ee;
+  font-weight: 850;
+}
+
+.calendar-legend i {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 16px var(--accent);
+}
+
+.fullcalendar-shell {
+  padding: .5rem;
+  border: 1px solid var(--hf-border-soft);
+  border-radius: 9px;
+  background: rgba(6, 13, 25, .55);
+}
+
+.fullcalendar-shell .fc-toolbar-title {
+  color: #fff;
+  font-size: 1.35rem;
+}
+
+.fullcalendar-shell .fc-col-header-cell {
+  background: rgba(7, 14, 27, .85);
+}
+
+.fullcalendar-shell .fc-daygrid-day-frame {
+  min-height: 128px;
+}
+
+.fullcalendar-shell .fc-daygrid-event {
+  border-radius: 7px;
+  padding: .22rem .38rem;
+  color: #eaf2ff !important;
+  background-color: rgba(29, 117, 255, .34) !important;
+}
+
+.calendar-detail-card {
+  grid-template-columns: 72px minmax(0, 1fr);
+  border-color: rgba(61, 129, 255, .48);
+  background: linear-gradient(145deg, rgba(14, 28, 50, .96), rgba(6, 13, 25, .96));
+}
+
+.event-date-badge {
+  display: grid;
+  place-items: center;
+  align-self: start;
+  min-height: 72px;
+  border-right: 1px solid rgba(113,146,211,.2);
+}
+
+.event-date-badge b {
+  color: #fff;
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.event-date-badge small {
+  color: #b9c6df;
+  font-weight: 900;
+}
+
+.profile-panel {
+  min-height: 100%;
+}
+
+.deck-cover {
+  min-height: 260px;
+  background:
+    linear-gradient(180deg, rgba(7, 14, 27, .1), rgba(7, 14, 27, .92)),
+    radial-gradient(circle at 50% 35%, rgba(138, 77, 255, .32), transparent 14rem),
+    linear-gradient(145deg, rgba(19, 34, 61, .95), rgba(6, 13, 25, .96));
+}
+
+.deck-cover.has-deck-cover {
+  background-position: center, center;
+  background-size: 100% 100%, contain;
+  background-repeat: no-repeat, no-repeat;
+}
+
+.deck-rating {
+  display: grid;
+  gap: .25rem;
+  margin-top: 1rem;
+  border: 1px solid var(--hf-border-soft);
+  border-radius: 8px;
+  padding: .85rem;
+  background: rgba(7,14,27,.58);
+}
+
+.deck-rating strong {
+  font-size: 2rem;
+  color: #fff;
+}
+
+.deck-rating i {
+  color: var(--hf-yellow);
+  margin-right: .18rem;
+}
+
+.card-gallery {
+  display: grid;
+  gap: .95rem;
+}
+
+.card-gallery section h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .55rem;
+  color: #dbe7ff;
+  font-size: .9rem;
+  text-transform: uppercase;
+}
+
+.card-gallery section h3 span {
+  border: 1px solid var(--hf-border-soft);
+  border-radius: 999px;
+  padding: .08rem .5rem;
+  color: var(--hf-yellow);
+}
+
+.card-gallery section > div {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(54px, 1fr));
+  gap: .45rem;
+}
+
+.duel-card {
+  aspect-ratio: 59 / 86;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  border: 2px solid rgba(255,255,255,.16);
+  border-radius: 4px;
+  padding: .22rem;
+  color: #fff;
+  background:
+    linear-gradient(180deg, transparent 42%, rgba(0,0,0,.75)),
+    radial-gradient(circle at 40% 24%, rgba(255,255,255,.32), transparent 22%),
+    linear-gradient(calc(24deg + (var(--i, 0) * 27deg)), #ff8f3d, #895cff 42%, #23d6ff 72%, #111827);
+  box-shadow: 0 8px 18px rgba(0,0,0,.28);
+  overflow: hidden;
+}
+
+.duel-card b {
+  max-width: 100%;
+  font-size: .46rem;
+  line-height: 1.05;
+  text-align: center;
+}
+
+.duel-card small {
+  position: absolute;
+  opacity: 0;
+}
+
+.deck-detail-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.deck-detail-grid article,
+.profile-meta span,
+.group-card,
+.profile-list span,
+.profile-media a {
+  border-color: var(--hf-border-soft);
+  background: linear-gradient(145deg, rgba(14, 28, 50, .86), rgba(6, 13, 25, .86));
+}
+
+.report-card {
+  min-height: 210px;
+}
+
+.report-card i {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border: 1px solid rgba(255, 210, 95, .38);
+  border-radius: 10px;
+  color: var(--hf-yellow);
+  background: rgba(255, 210, 95, .08);
+}
+
+.rule-grid {
+  grid-template-columns: 260px minmax(0, 1fr) 300px;
+}
+
+.rule-grid > .panel:not(.rule-sidebar):not(.rule-doc-panel):not(.case-panel) {
+  grid-column: 2;
+}
+
+.rule-grid .case-panel {
+  grid-column: 2 / 4;
+}
+
+.rule-grid .rule-sidebar {
+  grid-column: 1;
+  grid-row: 1 / span 8;
+}
+
+.rule-grid .rule-doc-panel {
+  grid-column: 3;
+  grid-row: 1 / span 3;
+}
+
+.rule-grid .panel:first-child {
+  border-color: rgba(255, 210, 95, .58);
+}
+
+.app-footer {
+  max-width: 1670px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem;
+  border-top-color: rgba(104, 137, 202, .22);
+}
+
+.hifi-kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.dashboard-live-grid {
+  display: grid;
+  gap: .9rem;
+  grid-template-columns: 1.25fr 1fr .9fr;
+}
+
+.dashboard-event-list,
+.dashboard-result-list,
+.dashboard-top-list {
+  display: grid;
+  gap: .65rem;
+}
+
+.dashboard-event-list article,
+.dashboard-result-list article,
+.dashboard-top-list article {
+  background: rgba(255, 255, 255, .055);
+  border: 1px solid rgba(132, 166, 223, .18);
+  border-radius: 8px;
+  padding: .72rem;
+}
+
+.dashboard-event-list article {
+  display: grid;
+  gap: .45rem;
+}
+
+.dashboard-event-list b,
+.dashboard-result-list b,
+.dashboard-top-list b {
+  color: #fff;
+}
+
+.dashboard-event-list div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+}
+
+.dashboard-event-list span,
+.dashboard-result-list small,
+.dashboard-top-list small {
+  color: var(--muted);
+}
+
+.dashboard-event-list span {
+  background: rgba(54, 216, 255, .08);
+  border: 1px solid rgba(54, 216, 255, .18);
+  border-radius: 8px;
+  padding: .36rem .52rem;
+}
+
+.dashboard-event-list small {
+  color: var(--gold);
+  margin-left: .25rem;
+}
+
+.dashboard-result-list article,
+.dashboard-top-list article {
+  display: grid;
+  gap: .2rem;
+  grid-template-columns: auto 1fr;
+}
+
+.dashboard-result-list small,
+.dashboard-top-list small {
+  grid-column: 1 / -1;
+}
+
+.hifi-kpi {
+  min-height: 128px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 64px;
+  align-content: center;
+  gap: .25rem 1rem;
+  border: 1px solid var(--hf-border);
+  border-radius: 9px;
+  padding: 1.15rem 1.4rem;
+  background:
+    linear-gradient(145deg, rgba(13, 30, 57, .94), rgba(6, 13, 25, .96)),
+    radial-gradient(circle at 90% 20%, rgba(87, 93, 255, .2), transparent 8rem);
+  box-shadow: 0 18px 42px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+.hifi-kpi span {
+  grid-row: 1 / span 3;
+  grid-column: 2;
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(130, 101, 255, .52);
+  border-radius: 14px;
+  color: #9f8cff;
+  background: rgba(81, 63, 185, .16);
+  font-size: 1.8rem;
+}
+
+.hifi-kpi small,
+.hifi-kpi em {
+  color: #aebbd6;
+  font-style: normal;
+}
+
+.hifi-kpi strong {
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.dashboard-arena {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 420px;
+  gap: 1rem;
+}
+
+.arena-ranking {
+  display: grid;
+  gap: .55rem;
+}
+
+.arena-ranking article {
+  display: grid;
+  grid-template-columns: 28px 42px minmax(0, 1fr) auto;
+  gap: .7rem;
+  align-items: center;
+  border-bottom: 1px solid rgba(113, 146, 211, .16);
+  padding: .45rem 0;
+}
+
+.arena-ranking article > b {
+  color: var(--hf-yellow);
+  font-size: 1.15rem;
+}
+
+.arena-ranking strong,
+.arena-ranking small {
+  display: block;
+}
+
+.arena-ranking small {
+  color: #9eabc5;
+}
+
+.arena-ranking em {
+  color: var(--hf-yellow);
+  font-style: normal;
+  font-weight: 900;
+}
+
+.mini-card-art {
+  width: 38px;
+  height: 50px;
+  border: 2px solid rgba(255,255,255,.16);
+  border-radius: 3px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.18), transparent),
+    linear-gradient(calc(35deg + (var(--i, 0) * 19deg)), #ff8f3d, #895cff 42%, #23d6ff 72%, #111827);
+  box-shadow: 0 0 16px rgba(54,216,255,.12);
+  overflow: hidden;
+}
+
+.mini-card-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: rgba(3, 10, 24, .92);
+}
+
+.mini-card-art.has-media {
+  background: rgba(4, 12, 28, .92);
+}
+
+.player-medal,
+.rank-emblem {
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255,210,95,.6);
+  color: var(--hf-yellow);
+  background: radial-gradient(circle, rgba(255,210,95,.22), rgba(7,14,27,.84));
+  font-weight: 950;
+}
+
+.player-medal {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+}
+
+.rank-emblem {
+  width: 132px;
+  height: 132px;
+  margin: .4rem auto 1rem;
+  border-radius: 32px;
+  font-size: 1.55rem;
+  box-shadow: 0 0 38px rgba(255,210,95,.2);
+}
+
+.xp-bar {
+  height: 14px;
+  border: 1px solid rgba(113,146,211,.28);
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255,255,255,.06);
+}
+
+.xp-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--hf-blue), var(--hf-purple), var(--hf-yellow));
+  box-shadow: 0 0 18px rgba(138,77,255,.4);
+}
+
+.search-layout {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.search-filters {
+  display: grid;
+  align-content: start;
+  gap: .85rem;
+}
+
+.search-filters a {
+  color: #67a5ff;
+  text-decoration: none;
+  font-weight: 850;
+}
+
+.search-main {
+  min-height: 620px;
+}
+
+.search-hero {
+  min-height: 170px;
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(61,129,255,.34);
+  border-radius: 9px;
+  padding: 1.4rem;
+  background:
+    linear-gradient(90deg, rgba(7,14,27,.92), rgba(7,14,27,.52)),
+    url("https://images.unsplash.com/photo-1601987077677-5346c0c57d3f?auto=format&fit=crop&w=1400&q=80") center/cover;
+}

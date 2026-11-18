@@ -2,13 +2,15 @@
 
 ## Estado actual
 
+La reorganizacion vigente y sus limites estan descritos en `source-architecture.md`. El nucleo extraido vive en `src/Domain`, `src/Application` y `src/Infrastructure`; los modulos procedurales restantes son adaptadores de compatibilidad. Las pantallas se separan en `includes/presentation/screens` y el frontend se compila desde `assets/source`.
+
 La aplicacion es un modulo PHP monolitico, renderizado en servidor y enriquecido con JavaScript. No usa Angular ni expone una API REST general. Comparte la conexion MySQL de Station X, pero mantiene sus datos funcionales en tablas con prefijo `sx_ygo_`.
 
 ## Componentes principales
 
-- `index.php`: entrada web, bootstrap de esquema, acciones POST, consultas, vistas y endpoints JSON/descarga.
-- `assets/app.js`: navegacion, formularios, calendario, captura de resultados, estadisticas, PWA y sincronizacion del duelo.
-- `assets/app.css`: sistema visual y adaptaciones responsive.
+- `index.php`: composicion de la solicitud; delega bootstrap, proyecciones de lectura, endpoints y presentacion en archivos separados.
+- `assets/source/`: fuentes editables por area del frontend heredado; `assets/app.js` es el bundle generado.
+- `assets/source/styles/`: estilos editables en orden de cascada; `assets/app.css` es el bundle generado.
 - `includes/catalogs.php`: catalogos editables y normalizacion.
 - `includes/turns.php`: invariantes del contador e historial de turnos.
 - `includes/competitive_intelligence.php`: rankings, Elo, tiers, metagame, snapshots y resumenes.

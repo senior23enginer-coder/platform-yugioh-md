@@ -1,0 +1,507 @@
+/* match-results: cascade segment 19. Keep manifest order to preserve responsive overrides. */
+/* @runtime-start */
+
+
+.result-duel-section-head p {
+  font-size: .7rem;
+}
+
+.result-duel-progress {
+  grid-template-columns: auto 105px auto;
+  gap: .4rem;
+  font-size: .68rem;
+}
+
+.result-duel-detail-grid {
+  height: calc(100% - 46px);
+  overflow: hidden;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: .46rem;
+}
+
+.result-duel-detail-card {
+  min-height: 0;
+  padding: .52rem;
+  gap: .34rem;
+}
+
+.result-duel-detail-card header {
+  margin-bottom: .05rem;
+}
+
+.result-duel-detail-card h3 {
+  font-size: 1.34rem;
+}
+
+.result-duel-detail-card header span {
+  min-height: 19px;
+  padding: .18rem .42rem;
+  font-size: .5rem;
+}
+
+.result-duel-start-box {
+  padding: .38rem;
+  gap: .22rem;
+}
+
+.result-duel-start-box small,
+.result-duel-detail-card label {
+  font-size: .6rem;
+}
+
+.result-duel-start-box b {
+  min-height: 30px;
+  font-size: .82rem;
+}
+
+.result-duel-start-box b::after {
+  font-size: .48rem;
+}
+
+.result-duel-start-box span {
+  min-height: 25px;
+  padding: .24rem .34rem;
+  font-size: .58rem;
+}
+
+.result-capture-form .form-select,
+.result-capture-form .form-control {
+  min-height: 30px;
+  padding: .28rem .45rem;
+  font-size: .68rem;
+}
+
+.result-lp-grid {
+  gap: .28rem;
+}
+
+.result-turn-ledger {
+  padding: .34rem;
+  gap: .32rem;
+}
+
+.result-turn-ledger span {
+  font-size: .6rem;
+}
+
+.result-turn-ledger-actions .btn {
+  min-height: 26px;
+  font-size: .58rem;
+}
+
+.result-duel-card-summary {
+  display: none;
+}
+
+.result-notes-section {
+  display: none;
+}
+
+.result-save-section {
+  grid-row: 3;
+  padding: .55rem .7rem;
+  grid-template-columns: minmax(180px, .65fr) 150px minmax(0, 1fr);
+}
+
+.result-save-section .result-step-index {
+  display: none;
+}
+
+.result-validation-title h3 {
+  font-size: .9rem;
+}
+
+.result-validation-title p,
+.result-validation-pill small {
+  font-size: .66rem;
+}
+
+.result-score-pill {
+  min-height: 48px;
+}
+
+.result-score-pill strong {
+  font-size: 1.15rem;
+}
+
+.result-validation-pill {
+  min-height: 48px;
+}
+
+.result-console-footer {
+  min-height: 58px;
+  padding: .55rem .9rem;
+}
+
+.result-console-footer .btn {
+  min-height: 38px;
+}
+
+@media (max-width: 1120px) {
+  .result-capture-form .result-console-body {
+    height: calc(100vh - 146px);
+    overflow-y: auto;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto auto;
+  }
+
+  .result-dice-panel.result-step,
+  .result-duel-section,
+  .result-save-section {
+    grid-row: auto;
+  }
+
+  .result-duel-detail-grid {
+    height: auto;
+    overflow: visible;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* FINAL fix for result modal overlaps. Must remain last. */
+.dml-modal .result-capture-form {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  max-height: calc(100vh - 12px);
+}
+
+.result-capture-form .result-console-body {
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  overflow: hidden;
+  grid-template-columns: 255px minmax(0, 1fr);
+  grid-template-rows: 88px minmax(0, 1fr);
+}
+
+.result-dice-panel.result-step {
+  display: grid;
+  grid-template-rows: auto auto 112px 38px minmax(0, 1fr);
+  gap: .44rem;
+  overflow: hidden;
+}
+
+.result-dice-copy {
+  order: 1;
+}
+
+.result-sidebar-subtitle {
+  order: 2;
+  margin: 0;
+}
+
+.result-dice-panel .result-dice-stage {
+  order: 3;
+  min-height: 0;
+  height: 112px;
+}
+
+.result-dice-panel .btn-warning {
+  order: 4;
+  position: relative;
+  z-index: 2;
+  min-height: 38px;
+  margin: 0;
+}
+
+.result-turn-choice {
+  order: 4;
+}
+
+.result-mini-duel-list {
+  order: 5;
+  min-height: 0;
+  max-height: none;
+  overflow: auto;
+  padding-right: .25rem;
+  margin-top: .12rem;
+}
+
+.result-mini-duel-list span {
+  min-height: 29px;
+}
+
+.result-duel-section {
+  overflow: hidden;
+}
+
+.result-duel-detail-grid {
+  height: calc(100% - 42px);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.result-duel-detail-card {
+  overflow: hidden;
+}
+
+.result-duel-start-box {
+  padding: .32rem;
+}
+
+.result-duel-start-box b {
+  min-height: 28px;
+}
+
+.result-duel-start-box span {
+  min-height: 23px;
+}
+
+.result-capture-form .form-select,
+.result-capture-form .form-control {
+  min-height: 28px;
+}
+
+.result-console-footer {
+  position: static;
+  z-index: auto;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 1120px) {
+  .result-capture-form .result-console-body {
+    overflow-y: auto;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+  }
+}
+
+@media (max-width: 1320px) {
+  .dashboard-event-card-grid {
+    grid-template-columns: repeat(3, minmax(180px, 1fr));
+  }
+
+  .dashboard-command-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 980px) {
+  .dashboard-hero-pro,
+  .dashboard-kpi-row,
+  .dashboard-bottom-grid,
+  .event-config-hero,
+  .event-operational-grid,
+  .event-search-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .event-config-actions {
+    justify-content: stretch;
+  }
+
+  .event-config-actions .btn {
+    width: 100%;
+  }
+
+  .event-config-footer-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .event-footer-left,
+  .event-footer-tools,
+  .event-footer-main {
+    justify-content: stretch;
+    width: 100%;
+  }
+
+  .event-config-footer-actions .btn {
+    flex: 1 1 180px;
+  }
+
+  .dashboard-event-card-grid {
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .dashboard-hero-pro {
+    padding: 1rem;
+  }
+
+  .dashboard-hero-status,
+  .dashboard-event-card-grid,
+  .mini-bracket,
+  .dashboard-quick-grid,
+  .competition-config-grid,
+  .event-config-overview,
+  .event-schedule-fields,
+  .event-search-filters,
+  .status-action-row,
+  .deck-picker-row,
+  .ruleset-preview,
+  .event-admin-redirect {
+    grid-template-columns: 1fr;
+  }
+
+  .calendar-create-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .calendar-create-toolbar .btn {
+    width: 100%;
+  }
+
+  .event-footer-left,
+  .event-footer-tools,
+  .event-footer-main {
+    flex-direction: column;
+  }
+
+  .event-config-footer-actions .btn {
+    width: 100%;
+  }
+
+  .dashboard-kpi-row article,
+  .dashboard-hero-status article {
+    grid-template-columns: 46px minmax(0, 1fr);
+  }
+}
+
+/* Calendar UX polish */
+.calendar-panel {
+  overflow: visible;
+}
+
+.calendar-panel-head {
+  margin-bottom: .85rem;
+  padding-bottom: .85rem;
+  border-bottom: 1px solid rgba(84, 130, 220, .22);
+}
+
+.calendar-toolbar {
+  grid-template-columns: minmax(320px, .75fr) minmax(360px, 1fr);
+  gap: .75rem 1rem;
+  margin-bottom: .85rem;
+  padding: .85rem;
+  border-color: rgba(54, 216, 255, .28);
+  background:
+    linear-gradient(180deg, rgba(13, 25, 45, .86), rgba(5, 12, 25, .94)),
+    radial-gradient(circle at 100% 0%, rgba(255, 43, 214, .1), transparent 18rem);
+}
+
+.calendar-month-controls {
+  display: grid;
+  grid-template-columns: 44px minmax(150px, 1fr) 44px auto;
+  gap: .55rem;
+  align-items: center;
+}
+
+.calendar-month-controls strong {
+  min-width: 0;
+  color: #ffd45f;
+  font-size: 1.05rem;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.calendar-view-tabs {
+  justify-content: flex-end;
+  gap: .4rem;
+}
+
+.calendar-view-tabs button {
+  min-height: 38px;
+  border-radius: 8px;
+  padding: .36rem .72rem;
+}
+
+.calendar-filters {
+  grid-column: 1 / -1;
+  display: grid !important;
+  grid-template-columns: minmax(180px, .8fr) minmax(180px, .8fr) minmax(180px, .8fr) minmax(260px, 1.4fr);
+  gap: .6rem;
+}
+
+.calendar-create-match {
+  grid-template-columns: minmax(180px, 1.1fr) minmax(78px, .45fr) minmax(78px, .45fr) minmax(170px, 1fr) minmax(170px, 1fr);
+  gap: .55rem;
+  align-items: end;
+  margin-top: .85rem !important;
+  padding: .72rem;
+  border-color: rgba(0, 255, 156, .22);
+  background:
+    linear-gradient(145deg, rgba(7, 17, 32, .92), rgba(4, 10, 21, .96)),
+    radial-gradient(circle at 0% 0%, rgba(0, 255, 156, .1), transparent 15rem);
+}
+
+.calendar-create-match-intro h3,
+.calendar-create-match h3 {
+  font-size: .92rem;
+}
+
+.calendar-create-match-intro p,
+.calendar-create-match p {
+  max-width: 240px;
+  overflow: hidden;
+  color: #9caac5;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.calendar-create-match label {
+  display: grid;
+  gap: .28rem;
+  min-width: 0;
+}
+
+.calendar-create-match label:nth-of-type(5),
+.calendar-create-match label:nth-of-type(6) {
+  grid-column: span 1;
+}
+
+.calendar-create-match label:nth-of-type(7) {
+  grid-column: span 2;
+}
+
+.calendar-create-match button {
+  min-width: 0;
+  padding-inline: .72rem;
+  white-space: nowrap;
+}
+
+.calendar-create-match .form-control,
+.calendar-create-match .form-select {
+  min-height: 40px;
+  padding-block: .42rem;
+}
+
+.calendar-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(310px, 360px);
+  align-items: start;
+  gap: .85rem;
+}
+
+.calendar-main {
+  min-width: 0;
+  border: 1px solid rgba(84, 130, 220, .22);
+  border-radius: 10px;
+  padding: .75rem;
+  background: rgba(2, 8, 18, .36);
+}
+
+.calendar-weekdays.calendar-fallback,
+.calendar-month.calendar-fallback {
+  gap: .34rem;
+}
+
+.calendar-month.calendar-fallback:not([hidden]) {
+  grid-auto-rows: minmax(112px, 1fr);
+}
+
+.calendar-day {
+  display: flex;
+  flex-direction: column;
+  min-height: 112px;
+  padding: .55rem;
+  border-color: rgba(84, 130, 220, .28);
+  background:
+    linear-gradient(180deg, rgba(14, 28, 52, .9), rgba(4, 11, 23, .96));
+}
+
+.calendar-day b {
+  margin: 0;
+  color: #ffd45f;
+  line-height: 1;
+}

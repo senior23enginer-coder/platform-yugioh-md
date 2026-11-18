@@ -1,0 +1,507 @@
+/* calendar: cascade segment 13. Keep manifest order to preserve responsive overrides. */
+/* @runtime-start */
+
+
+@media (max-width: 390px) {
+  .brand-logo {
+    width: 92px !important;
+  }
+
+  .header-actions .icon-button {
+    display: none;
+  }
+
+  .header-actions .btn {
+    padding-inline: .55rem;
+  }
+
+  .calendar-month-controls {
+    grid-template-columns: 38px minmax(0, 1fr) 38px 58px;
+  }
+}
+
+/* Final DML polish layer: closer to the reference screens and safer on phones. */
+.app-shell {
+  max-width: 100vw;
+}
+
+.app-main {
+  min-width: 0;
+}
+
+.page-title {
+  display: flex;
+  flex-direction: column;
+  gap: .18rem;
+}
+
+.page-title h1 {
+  font-size: clamp(1.55rem, 2.2vw, 2.15rem);
+  letter-spacing: 0;
+}
+
+.panel,
+.league-card,
+.calendar-side {
+  border-color: rgba(84, 130, 220, .34);
+  background:
+    linear-gradient(180deg, rgba(14, 26, 47, .94), rgba(5, 12, 25, .97)),
+    radial-gradient(circle at 85% 8%, rgba(50, 121, 255, .13), transparent 16rem);
+}
+
+.panel-head {
+  gap: .75rem;
+  margin-bottom: .78rem;
+}
+
+.panel-head h2,
+.league-card h2,
+.cup-panel h2,
+.report-card h2,
+.profile-panel h2 {
+  font-size: .98rem;
+  letter-spacing: 0;
+}
+
+.panel-head p,
+.note {
+  margin-bottom: 0;
+}
+
+.btn,
+.form-control,
+.form-select,
+.nav-pill,
+.side-tool {
+  border-radius: 8px;
+}
+
+.status-chip,
+.tag {
+  border-radius: 7px;
+  white-space: nowrap;
+}
+
+.side-nav {
+  border-right: 1px solid rgba(84, 130, 220, .28);
+}
+
+.side-menu .nav-pill {
+  min-height: 42px;
+}
+
+.side-menu .nav-pill.active {
+  color: #06111f;
+  text-shadow: none;
+}
+
+.calendar-toolbar {
+  align-items: start;
+  padding: .9rem;
+  border: 1px solid rgba(84, 130, 220, .25);
+  border-radius: 8px;
+  background: rgba(3, 10, 22, .46);
+}
+
+.calendar-month-controls {
+  align-self: center;
+}
+
+.calendar-view-tabs {
+  justify-content: end;
+}
+
+.calendar-filters {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .6rem;
+}
+
+.calendar-filters .form-select,
+.calendar-filters .form-control {
+  width: 100%;
+  max-width: none;
+}
+
+.calendar-layout {
+  gap: .85rem;
+}
+
+.calendar-main {
+  min-width: 0;
+}
+
+.calendar-weekdays.calendar-fallback,
+.calendar-month.calendar-fallback {
+  gap: .32rem;
+}
+
+.calendar-month.calendar-fallback:not([hidden]) {
+  grid-auto-rows: minmax(96px, auto);
+}
+
+.calendar-day {
+  min-height: 96px;
+  border-color: rgba(84, 130, 220, .34);
+  background:
+    linear-gradient(180deg, rgba(17, 32, 58, .92), rgba(7, 16, 32, .96));
+}
+
+.calendar-day.selected {
+  background:
+    linear-gradient(180deg, rgba(31, 50, 86, .95), rgba(9, 20, 40, .98));
+}
+
+.calendar-side {
+  min-height: 0;
+}
+
+.calendar-day-detail {
+  max-height: 680px;
+  overflow-y: auto;
+  padding-right: .25rem;
+}
+
+.calendar-event {
+  min-height: 22px;
+  display: flex;
+  align-items: center;
+}
+
+.calendar-modal-grid {
+  align-items: start;
+}
+
+.dml-modal .modal-content {
+  border: 1px solid rgba(255, 211, 92, .28);
+  background:
+    linear-gradient(180deg, rgba(14, 26, 47, .98), rgba(4, 10, 21, .99)),
+    radial-gradient(circle at 85% 0%, rgba(255, 211, 92, .12), transparent 16rem);
+}
+
+.gestion-grid {
+  align-items: start;
+}
+
+.gestion-form label {
+  min-width: 0;
+}
+
+.report-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .5rem;
+}
+
+.report-actions .btn {
+  width: 100%;
+}
+
+@media (min-width: 1180px) {
+  .screen {
+    max-width: 1500px;
+  }
+
+  .app-main {
+    padding-top: 1.1rem;
+  }
+
+  .hero-panel {
+    min-height: 245px;
+    padding: 1.45rem;
+  }
+}
+
+@media (max-width: 960px) {
+  .tournament-hub-hero {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .tournament-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .competition-mini-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .result-dashboard {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .result-filter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-title.with-actions,
+  .match-sheet-grid,
+  .match-sheet-duel {
+    grid-template-columns: 1fr;
+  }
+
+  .qualifier-command-deck {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .qualifier-action-tabs {
+    top: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-title.with-actions {
+    display: grid;
+    align-items: stretch;
+  }
+
+  .match-sheet-duel > b {
+    justify-self: center;
+  }
+
+  .match-sheet-details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .day-match-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .tournament-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .competition-mini-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tournament-actions,
+  .tournament-card-actions {
+    flex-direction: column;
+  }
+
+  .tournament-actions .btn,
+  .tournament-card-actions .btn {
+    width: 100%;
+  }
+
+  .result-dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .result-kpi {
+    min-height: 104px;
+  }
+
+  .result-kpi strong {
+    font-size: 2rem;
+  }
+
+  .match-sheet-details {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-top-actions .btn,
+  .modal-actions-row .btn {
+    width: 100%;
+  }
+
+  .qualifier-command-deck {
+    grid-template-columns: 1fr;
+  }
+
+  .qualifier-action-tabs {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 960px) {
+  .calendar-filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .report-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .topbar {
+    position: relative;
+  }
+
+  .dependency-form {
+    grid-template-columns: 1fr;
+  }
+
+  .dependency-list article,
+  .qualifier-manager-grid header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .searchbox {
+    padding-inline: .75rem;
+  }
+
+  .search-result-item {
+    grid-template-columns: 72px minmax(0, 1fr);
+    padding: .62rem;
+  }
+
+  .screen {
+    padding-bottom: 1rem;
+  }
+
+  .calendar-toolbar {
+    padding: .65rem;
+  }
+
+  .calendar-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .calendar-weekdays.calendar-fallback,
+  .calendar-month.calendar-fallback {
+    gap: .2rem;
+  }
+
+  .calendar-month.calendar-fallback:not([hidden]) {
+    grid-auto-rows: minmax(70px, auto);
+  }
+
+  .calendar-day {
+    min-height: 70px !important;
+  }
+
+  .calendar-day b {
+    margin-bottom: .18rem;
+  }
+
+  .calendar-side {
+    padding: .75rem;
+  }
+
+  .calendar-day-detail {
+    max-height: none;
+  }
+
+  .gestion-grid .panel {
+    overflow: visible;
+  }
+
+  .gestion-command-grid article {
+    min-height: 94px;
+  }
+
+  .report-card {
+    padding: .85rem;
+  }
+}
+
+.fullcalendar-shell:not([hidden]) {
+  display: block !important;
+  min-height: 650px !important;
+}
+
+.fullcalendar-shell:not([hidden]) .fc,
+.fullcalendar-shell:not([hidden]) .fc-view-harness {
+  min-height: 620px !important;
+}
+
+.fullcalendar-shell:not([hidden]) .fc-timegrid,
+.fullcalendar-shell:not([hidden]) .fc-list,
+.fullcalendar-shell:not([hidden]) .fc-multimonth {
+  min-height: 620px !important;
+}
+
+.dashboard-pro {
+  display: grid;
+  gap: 1rem;
+}
+
+.dashboard-hero-pro {
+  position: relative;
+  min-height: 190px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+  align-items: center;
+  gap: 1.25rem;
+  overflow: hidden;
+  border: 1px solid rgba(54, 216, 255, .36);
+  border-radius: 10px;
+  padding: 1.55rem;
+  background:
+    linear-gradient(90deg, rgba(4, 8, 24, .98) 0%, rgba(11, 23, 58, .78) 48%, rgba(6, 13, 32, .92) 100%),
+    radial-gradient(circle at 74% 28%, rgba(255, 210, 95, .24), transparent 14rem),
+    radial-gradient(circle at 18% 20%, rgba(255, 45, 232, .2), transparent 13rem),
+    linear-gradient(135deg, #070a18, #0c2454 48%, #160b34);
+  box-shadow: 0 0 42px rgba(54, 216, 255, .16), inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.dashboard-hero-pro::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg, transparent 0 18%, rgba(54,216,255,.16) 19%, transparent 20% 54%, rgba(137,92,255,.2) 55%, transparent 57%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 84px);
+  opacity: .72;
+}
+
+.dashboard-hero-copy,
+.dashboard-hero-status {
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-hero-copy {
+  display: grid;
+  gap: .35rem;
+  max-width: 780px;
+}
+
+.hero-mark {
+  width: 4px;
+  height: 58px;
+  border-radius: 999px;
+  background: linear-gradient(#ff2de8, #36d8ff);
+  box-shadow: 0 0 22px rgba(255,45,232,.65);
+}
+
+.dashboard-hero-copy h1 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2rem, 3vw, 4rem);
+  line-height: .95;
+  text-transform: uppercase;
+  text-shadow: 0 0 24px rgba(137,92,255,.46);
+}
+
+.dashboard-hero-copy p:not(.eyebrow) {
+  max-width: 620px;
+  margin: 0;
+  color: #bac9ef;
+  font-size: 1rem;
+}
+
+.dashboard-hero-status {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .85rem;
+}
+
+.dashboard-hero-status article {
+  min-height: 92px;
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: .25rem .75rem;
+  align-content: center;
+  border: 1px solid rgba(93, 142, 255, .36);
+  border-radius: 8px;
+  padding: .9rem;
+  background: rgba(5, 12, 32, .72);
+  box-shadow: inset 0 0 24px rgba(54, 216, 255, .08);
+}

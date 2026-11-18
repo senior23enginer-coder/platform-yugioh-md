@@ -1,0 +1,504 @@
+/* tables-controls: cascade segment 23. Keep manifest order to preserve responsive overrides. */
+/* @runtime-start */
+
+
+.module-kpi-strip b {
+  grid-area: value;
+  color: #fff;
+  font-size: 1.55rem;
+  font-weight: 950;
+}
+
+.deck-command-strip {
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+
+.deck-command-strip label {
+  width: min(100%, 520px);
+  color: #9fb1db;
+  font-weight: 900;
+}
+
+.deck-command-strip .form-select {
+  margin-top: .35rem;
+}
+
+.profile-panel {
+  position: sticky;
+  top: 86px;
+}
+
+.deck-rating {
+  border: 1px solid rgba(255, 210, 95, .28);
+  border-radius: 8px;
+  padding: .85rem;
+  margin-top: .9rem;
+  background:
+    linear-gradient(135deg, rgba(255, 210, 95, .12), rgba(54, 216, 255, .06));
+}
+
+.deck-rating strong {
+  display: block;
+  color: var(--hf-yellow);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.deck-rating span,
+.deck-rating small {
+  display: block;
+  color: #b9c6df;
+  font-weight: 800;
+}
+
+.analytics-board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.analytics-board .span-2 {
+  grid-column: span 2;
+}
+
+.stat-insight-grid .stat-chart-card {
+  min-height: 178px;
+}
+
+.stat-chart-card {
+  overflow: hidden;
+}
+
+.stat-chart-card h2 {
+  margin-bottom: .35rem;
+}
+
+.stat-chart-card p {
+  color: #aebde6;
+}
+
+.report-console {
+  border-color: rgba(54, 216, 255, .3);
+}
+
+.report-console .report-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.report-card {
+  min-height: 230px;
+  display: grid;
+  align-content: space-between;
+  border-color: rgba(93, 142, 255, .24);
+  background:
+    linear-gradient(145deg, rgba(12, 25, 50, .92), rgba(6, 13, 28, .96));
+}
+
+.report-card > i {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  color: var(--hf-yellow);
+  background: rgba(255, 210, 95, .12);
+  font-size: 1.35rem;
+}
+
+.report-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .5rem;
+}
+
+.game-rules-layout {
+  align-items: stretch;
+}
+
+.game-rule-cards article {
+  border-left: 4px solid rgba(255, 210, 95, .65);
+}
+
+.game-rule-cards article.active {
+  border-left-color: #00ff9c;
+}
+
+.game-rule-cards article.inactive {
+  border-left-color: #8a93a8;
+  opacity: .72;
+}
+
+.rules-crud-panel {
+  border-color: rgba(54, 216, 255, .42);
+  box-shadow: 0 0 34px rgba(54, 216, 255, .1);
+}
+
+.rule-filter-row {
+  margin: .65rem 0 1rem;
+  grid-template-columns: minmax(260px, 1.5fr) minmax(150px, .7fr) minmax(150px, .7fr) auto;
+  align-items: end;
+}
+
+.rules-crud-panel .panel-head,
+.rule-detail-screen .page-title {
+  align-items: center;
+}
+
+.rule-crud-table {
+  table-layout: fixed;
+}
+
+.rule-crud-table th:first-child,
+.rule-crud-table td:first-child {
+  width: 30%;
+}
+
+.rule-crud-table th:last-child,
+.rule-crud-table td:last-child {
+  width: 168px;
+  text-align: right;
+}
+
+.rule-crud-table td {
+  vertical-align: middle;
+}
+
+.rule-crud-table tbody tr {
+  border-left: 4px solid rgba(54, 216, 255, .5);
+}
+
+.rule-crud-table tbody tr[data-rule-status="inactive"] {
+  border-left-color: #8a93a8;
+  opacity: .78;
+}
+
+.rule-crud-table td:first-child strong {
+  color: #eef5ff;
+}
+
+.rule-crud-table small {
+  color: #8fa4c9;
+  font-weight: 800;
+}
+
+.rule-detail-form {
+  padding: 1.15rem;
+  border-color: rgba(54, 216, 255, .42);
+  box-shadow: 0 0 34px rgba(54, 216, 255, .1);
+}
+
+.rule-detail-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.15rem;
+}
+
+.rule-detail-grid section {
+  display: grid;
+  gap: .9rem;
+}
+
+.rule-info-section,
+.rule-conditions-section {
+  border: 1px solid rgba(93, 142, 255, .22);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(9, 20, 43, .62), rgba(4, 10, 23, .54)),
+    radial-gradient(circle at 100% 0%, rgba(54, 216, 255, .08), transparent 18rem);
+  padding: 1rem;
+}
+
+.rule-detail-grid h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #eef5ff;
+}
+
+.rule-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .9rem;
+  align-items: end;
+}
+
+.rule-info-grid label {
+  min-width: 0;
+}
+
+.rule-info-grid .span-2 {
+  grid-column: span 2;
+}
+
+.rule-info-grid textarea {
+  min-height: 118px;
+}
+
+.rule-active-field {
+  min-height: 58px;
+  margin: 0;
+}
+
+.rule-condition-table-wrap {
+  max-height: min(58vh, 680px);
+  border: 1px solid rgba(93, 142, 255, .24);
+  border-radius: 8px;
+  overflow: auto;
+  background: rgba(3, 9, 22, .48);
+}
+
+.rule-condition-table {
+  margin: 0;
+  min-width: 980px;
+}
+
+.rule-condition-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #071126;
+}
+
+.rule-condition-table tbody tr {
+  border-left: 4px solid rgba(54, 216, 255, .55);
+}
+
+.rule-condition-table tbody tr.is-inactive {
+  border-left-color: #8a93a8;
+  opacity: .72;
+}
+
+.rule-condition-table tbody tr.is-invalid-condition {
+  border-left-color: #ff5c7a;
+  background: rgba(255, 92, 122, .055);
+}
+
+.rule-condition-table td {
+  vertical-align: middle;
+}
+
+.rule-condition-table strong,
+.rule-condition-table small {
+  display: block;
+}
+
+.rule-condition-table strong {
+  color: #eef5ff;
+}
+
+.rule-condition-table small {
+  color: #8fa4c9;
+  font-weight: 800;
+}
+
+.rule-condition-table code {
+  color: #ffe06f;
+  background: rgba(255, 210, 95, .09);
+  border: 1px solid rgba(255, 210, 95, .18);
+  border-radius: 6px;
+  padding: .16rem .38rem;
+}
+
+.rule-detail-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+}
+
+.rule-detail-actions {
+  margin-top: 1rem;
+  justify-content: flex-end;
+  border-top: 1px solid rgba(93, 142, 255, .22);
+  padding-top: 1rem;
+}
+
+.rule-archive-form {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: .75rem;
+}
+
+.rule-condition-modal .modal-content {
+  border: 1px solid rgba(54, 216, 255, .34);
+  background:
+    linear-gradient(145deg, rgba(9, 20, 46, .98), rgba(5, 10, 24, .98)),
+    radial-gradient(circle at 92% 0%, rgba(54, 216, 255, .12), transparent 14rem);
+}
+
+.rule-condition-modal .modal-header,
+.rule-condition-modal .modal-footer {
+  border-color: rgba(93, 142, 255, .22);
+}
+
+.rule-condition-modal .modal-title {
+  color: #f7fbff;
+  font-size: 1.15rem;
+}
+
+.rule-condition-modal .modal-header p {
+  margin: .2rem 0 0;
+  color: #9fb0d1;
+}
+
+@media (max-width: 1180px) {
+  .rule-filter-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rule-info-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rule-condition-table {
+    min-width: 760px;
+  }
+}
+
+@media (max-width: 720px) {
+  .rule-filter-row {
+    grid-template-columns: 1fr;
+  }
+
+  .rule-detail-form {
+    padding: .8rem;
+  }
+
+  .rule-info-section,
+  .rule-conditions-section {
+    padding: .8rem;
+  }
+
+  .rule-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rule-info-grid .span-2 {
+    grid-column: auto;
+  }
+
+  .rule-crud-table th:first-child,
+  .rule-crud-table td:first-child,
+  .rule-crud-table th:last-child,
+  .rule-crud-table td:last-child {
+    width: auto;
+    text-align: left;
+  }
+
+  .rule-detail-actions,
+  .rule-archive-form {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .rule-detail-actions .btn,
+  .rule-archive-form .btn {
+    width: 100%;
+  }
+}
+
+.divisions-crud-panel,
+.division-deck-admin,
+.league-movement-box {
+  border: 1px solid rgba(93,142,255,.28);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(9,20,46,.78), rgba(5,10,24,.9)),
+    radial-gradient(circle at 90% 0%, rgba(54,216,255,.12), transparent 10rem);
+}
+
+.division-deck-admin,
+.league-movement-box {
+  padding: .9rem;
+}
+
+.division-crud-table tbody tr {
+  border-left: 4px solid rgba(54,216,255,.55);
+}
+
+.division-table-identity {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  min-width: 0;
+}
+
+.division-table-logo {
+  width: 3rem;
+  height: 3rem;
+  flex: 0 0 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(54,216,255,.46);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(255,214,92,.95), rgba(54,216,255,.78));
+  color: #061126;
+  font-weight: 950;
+  overflow: hidden;
+}
+
+.division-table-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: rgba(3,8,18,.82);
+}
+
+.division-deck-checklist {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .6rem;
+  max-height: 360px;
+  overflow: auto;
+  padding-right: .25rem;
+  scrollbar-width: thin;
+}
+
+.division-deck-checklist label {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  min-height: 62px;
+  padding: .65rem;
+  border: 1px solid rgba(93,142,255,.28);
+  border-radius: 8px;
+  background: rgba(7,15,31,.72);
+}
+
+.division-deck-checklist span {
+  display: grid;
+  gap: .15rem;
+  min-width: 0;
+}
+
+.division-deck-checklist b,
+.division-deck-checklist small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.division-deck-checklist small {
+  color: #aebce0;
+}
+
+.gestion-command-panel,
+.gestion-module {
+  border-radius: 8px;
+}
+
+.gestion-tabs {
+  scrollbar-width: thin;
+}
+
+.gestion-grid {
+  align-items: start;
+}
+
+.gestion-module .panel-head {
+  padding-bottom: .65rem;
+  border-bottom: 1px solid rgba(93, 142, 255, .16);
+}

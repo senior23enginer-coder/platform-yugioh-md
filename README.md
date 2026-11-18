@@ -65,3 +65,9 @@ La copia antigua en `xstation/torneos_yugioh` queda como referencia de migració
 ## Módulos de guía y calculador
 
 Consultar [el mapa del código por módulos](torneos_yugioh/assets/modules/README.md). La guía mantiene la biblioteca completa por deck, y [Calculador de jugadas](torneos_yugioh/context/play-calculator.md) añade captura de mano/campo/Cementerio, rivales y consulta conservadora de rutas locales. Su entrada autónoma `play-calculator.html` permite reabrir los escenarios preparados con la red desactivada. El motor no simula todas las reglas de cartas ni certifica jugadas completas.
+
+## Codigo fuente y arquitectura
+
+La guia de edicion y limites de dependencia esta en [source-architecture.md](torneos_yugioh/context/source-architecture.md). El nucleo PHP esta en `torneos_yugioh/src/`; los adaptadores funcionales permanecen en `includes/<feature>/` y las pantallas en `includes/presentation/screens/`.
+
+Las fuentes del frontend existente se editan en `torneos_yugioh/assets/source/`. Ejecuta `npm run build` antes de publicar y `npm run build:check` para detectar bundles desactualizados. `assets/app.js` y `assets/app.css` son salidas publicas generadas; los modulos independientes de `assets/modules/` se editan directamente.

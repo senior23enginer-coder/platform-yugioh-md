@@ -10,8 +10,9 @@ function run(command, args) {
   if (result.error) console.error(result.error.message);
   if (result.status !== 0) process.exit(result.status || 1);
 }
+run(process.execPath, ['scripts/build-frontend.cjs', '--check']);
 // Explicitly local checks only; production/browser scenarios are opt-in.
-for (const name of ['event_admission', 'event_business_rules', 'event_contracts',
+for (const name of ['source_architecture', 'legacy_function_contract', 'event_admission', 'event_business_rules', 'event_contracts',
   'combo_creator', 'deck_attributes', 'reports_removed', 'deck_public_metadata', 'event_model_sequence', 'event_recovery', 'event_teams', 'event_workflow',
   'free_for_all', 'schedule_capacity_policy', 'simple_pdf',
   'statistics_multiplayer', 'statistics_v8', 'turn_monotonic']) {

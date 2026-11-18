@@ -1,0 +1,530 @@
+{
+  "ygo_event_model_options": {
+    "file": "includes/events/catalog-options.php",
+    "sha256": "ee0ad96e005a31410c104a11c81ba3c59518555a7bf4b6d2cdbe5472140b225c"
+  },
+  "ygo_allowed_execution_models_for_type": {
+    "file": "includes/events/catalog-options.php",
+    "sha256": "a6433b3cdfe1d7b16e6cfd2eea843e7b4ca4f61b47c1142185ae1ae566447d9b"
+  },
+  "ygo_event_template_type": {
+    "file": "includes/events/catalog-options.php",
+    "sha256": "dcc8a455f8b5907158a0221d1dd348e94188cd023bb20b1b61526acb2f46b66a"
+  },
+  "ygo_ruleset_version_catalog": {
+    "file": "includes/events/catalog-options.php",
+    "sha256": "659aa3da33945b3197fd2dcfa98062f4a969d3fef6b2dc8b3bb528ff0b113616"
+  },
+  "ygo_event_prompt_templates": {
+    "file": "includes/events/catalog-options.php",
+    "sha256": "35cb77250ae1a73bd8fb43747a807d1305961100c5dbb3d41c5dd81a181bea09"
+  },
+  "ygo_ruleset_version_option_label": {
+    "file": "includes/events/catalog-options.php",
+    "sha256": "5585a6b91a9de044488204481e2606a9f193a8cc99e351cb63e9eec83b69c8a3"
+  },
+  "evaluate_duel_server": {
+    "file": "includes/matches/evaluation.php",
+    "sha256": "971e360dc7f5df94454e5ae4cf042769444ba7297894d62fdf13280457775f1f"
+  },
+  "ygo_evaluate_duel_with_rule": {
+    "file": "includes/matches/evaluation.php",
+    "sha256": "d0eb917da86989e5982dbf42a16a7f3c05417de35c0da8fd2946798077617d31"
+  },
+  "ygo_competition_for_match": {
+    "file": "includes/matches/evaluation.php",
+    "sha256": "60b3e87bfc2a682750663f78cafbadb06655a9d706db1edc6093647e17ca40e6"
+  },
+  "ygo_apply_event_model_to_result": {
+    "file": "includes/matches/evaluation.php",
+    "sha256": "49f767986b5d551ef0da56ab1b7df7cdf06cf5a11a9989210dc658c3d38745bf"
+  },
+  "ygo_rule_id_for_match": {
+    "file": "includes/matches/evaluation.php",
+    "sha256": "6e088ef96d152aaa7ab7ff0866c975c8e723128af072f983d7b34901ef1f2e49"
+  },
+  "ygo_default_game_rule_id": {
+    "file": "includes/matches/evaluation.php",
+    "sha256": "00f25043078fd7051e29886df4d468bf5db196e55d0354fd5ab842b91ba37205"
+  },
+  "ygo_event_game_rule_id": {
+    "file": "includes/matches/evaluation.php",
+    "sha256": "a4e1f4a9a22f4e839d6afec3d12e4e2078370b469b31c8bcdc1ab3fdf6667eac"
+  },
+  "ygo_valid_game_rule_id": {
+    "file": "includes/matches/evaluation.php",
+    "sha256": "1a99fca604c24e8532b2d0eb9d81bf7fe3f71768de3ab9916a3073479ee171bb"
+  },
+  "ygo_valid_match_game_rule_id": {
+    "file": "includes/matches/evaluation.php",
+    "sha256": "1ff92c2c783295d144bd24bbe1455eb3e005c8015ccf62e41c48b9911e59fd13"
+  },
+  "ygo_can_edit": {
+    "file": "includes/settings/settings.php",
+    "sha256": "b868b872f90dd7f15a6d0703f6281d61c99873d9bfcea53769b0b74f5fa76a30"
+  },
+  "ygo_default_settings": {
+    "file": "includes/settings/settings.php",
+    "sha256": "19d868a550be2d79b8cb0bc525e7c0e04bc930dc3317a25c715c46a9423c6472"
+  },
+  "ygo_default_ui_labels": {
+    "file": "includes/settings/settings.php",
+    "sha256": "1ce2895ed8c5497d80f52670392780990792649b5e835b1ab34205e2781f4dce"
+  },
+  "ygo_settings": {
+    "file": "includes/settings/settings.php",
+    "sha256": "6eb6be040512053288788b401ec4edf8d09ee48bd9a587cbac708ffcb7e191b2"
+  },
+  "ygo_save_setting": {
+    "file": "includes/settings/settings.php",
+    "sha256": "fbb7bc94dc98ede1174783afc40838c8813efb1b42a39d302e39fb89324ebdad"
+  },
+  "ygo_ensure_default_settings": {
+    "file": "includes/settings/settings.php",
+    "sha256": "b1c583c5f27be8f20427c4c88761f6553057bfbddbc1d6f89642d542a3fdb284"
+  },
+  "ygo_ensure_default_ui_labels": {
+    "file": "includes/settings/settings.php",
+    "sha256": "fb414d7c47b85f06bb19e00099c5da5e5a857df15d16ea1943c56570e3065188"
+  },
+  "ygo_ui_labels": {
+    "file": "includes/settings/settings.php",
+    "sha256": "ab6d2912ebaaf5c94baa06eda1d86b385e5add526ad22ebf279a20cb8c8f0030"
+  },
+  "ygo_setting_enabled": {
+    "file": "includes/settings/settings.php",
+    "sha256": "365ca2db66f790ce64cdabd3e7552216b1474a473232098577b541f6af8da241"
+  },
+  "ygo_validate_match_result_date": {
+    "file": "includes/events/dependencies.php",
+    "sha256": "68edcf2429708a947999127d9eac4a4a39c3d687d4a88e8dd9d4813c0e600aa2"
+  },
+  "ygo_validate_match_schedule": {
+    "file": "includes/events/dependencies.php",
+    "sha256": "c6d6b59c0b4100352fb5e50a772370e1286830963826499d2e1d7179edab59bd"
+  },
+  "ygo_competition_dependencies": {
+    "file": "includes/events/dependencies.php",
+    "sha256": "d81ec10ed4e7b0b5fd452077c877277b1735ee10123176a39fab2370bd9bb05e"
+  },
+  "ygo_competition_result_count": {
+    "file": "includes/events/dependencies.php",
+    "sha256": "30521d30dd2e9383360457243edebabefdfff772d3f2dc9c0f7eb8c95c670679"
+  },
+  "ygo_competition_honor_count": {
+    "file": "includes/events/dependencies.php",
+    "sha256": "c44ba6b9695a32fc6a86f5ff4d71cca2088f9be4fea5e4d5cf2c59c7220bd301"
+  },
+  "ygo_competition_division_count": {
+    "file": "includes/events/dependencies.php",
+    "sha256": "d35a85653c394c7153b41fcada1c47af63b6c87b41e8dc0f627265eb40910803"
+  },
+  "ygo_competition_dependency_satisfied": {
+    "file": "includes/events/dependencies.php",
+    "sha256": "9ba34009f2e430f056c563218058656284d9b6dc55e4a6391ed785ee4ae80b1b"
+  },
+  "ygo_competition_gate": {
+    "file": "includes/events/dependencies.php",
+    "sha256": "67e595ee1a63a78854ca8c83f25b9a5440297e67ccd3ade28c7ce3a72045fc23"
+  },
+  "ygo_ruleset_division_code": {
+    "file": "includes/events/lifecycle.php",
+    "sha256": "639447795b9b3bb9a770681c0da0b33394b18161e6c66355b372e2e7df245002"
+  },
+  "ygo_slugify": {
+    "file": "includes/events/lifecycle.php",
+    "sha256": "375f0fcf2955d343007b6eb6f9d640d58903c391257797073cf427acf727ea38"
+  },
+  "ygo_normalize_status_key": {
+    "file": "includes/events/lifecycle.php",
+    "sha256": "5e47ce48f08aabfcbb6df78cdf308cb28cc40f05467d0929c21e93a656136fab"
+  },
+  "ygo_event_status_labels": {
+    "file": "includes/events/lifecycle.php",
+    "sha256": "32cbfbd4f2426dd2a728ab00408b6c8bcfbcc177ee44d43d44ecf7b54cfda097"
+  },
+  "ygo_event_status_class": {
+    "file": "includes/events/lifecycle.php",
+    "sha256": "1f240541f2e8823fc29e31858d6495dabef11bfeb3c273233fd1f7ef09d638ec"
+  },
+  "ygo_event_status_label": {
+    "file": "includes/events/lifecycle.php",
+    "sha256": "0ad996f8cea8a012f28f56d3febb7ecbf360de04fded0b151d2bf469bcc0327c"
+  },
+  "ygo_record_competition_status_history": {
+    "file": "includes/events/lifecycle.php",
+    "sha256": "ed31eb5d9162d68fa93874bba51cd62b79cbe943780510259e2b06cf28008a07"
+  },
+  "ygo_competition_ready_to_finish": {
+    "file": "includes/events/lifecycle.php",
+    "sha256": "6300be25e14c02e956db65e064d5e422da244d416fdf312ea0352fc14f8ee735"
+  },
+  "ygo_persist_competition_standings": {
+    "file": "includes/events/lifecycle.php",
+    "sha256": "aa6cf17547dfd556a407a90f5996bd93ec9a68a084d6f8c1aae982920bf00ecd"
+  },
+  "ygo_backfill_missing_standing_snapshots": {
+    "file": "includes/events/lifecycle.php",
+    "sha256": "45839b2383aff0cfb7fda2916741b560b5e335a4dffc39f7093e5692495da385"
+  },
+  "ygo_rebuild_competition_calendar_events_from_matches": {
+    "file": "includes/events/lifecycle.php",
+    "sha256": "2c9aa78a198ac3f731e370bef03965881b0fb4812bc979a7939f833770fc25e7"
+  },
+  "ygo_persist_competition_calendar_event": {
+    "file": "includes/events/lifecycle.php",
+    "sha256": "14d7a4ed25d0d16571643bd6fb52e247b050f2301d14551f3a6e91e4ff6b7458"
+  },
+  "ygo_is_pending_event_qualifier_candidate": {
+    "file": "includes/events/lifecycle.php",
+    "sha256": "9d60a994506ec0b0b2d45667cbb695ab9469e6428b050e333e43a0a6e950f89f"
+  },
+  "ygo_generate_competition_code": {
+    "file": "includes/events/lifecycle.php",
+    "sha256": "463e6846ce68393c589bc6f170f0c20ba252752ee76cbd590efe367f8a7b68a9"
+  },
+  "ygo_ensure_sequential_competition_codes": {
+    "file": "includes/events/lifecycle.php",
+    "sha256": "abe3f0a30ad27cf17766b7528f990b8393d944eabd33c02c70e26be80038acec"
+  },
+  "ygo_store_event_logo_upload": {
+    "file": "includes/media/uploads.php",
+    "sha256": "dec1c19f1ecdba704556bb32bf10770b84504b7ca68d93deab62cbdef8f0c8ad"
+  },
+  "ygo_media_src": {
+    "file": "includes/media/uploads.php",
+    "sha256": "18d08fd454af64d5d0d080a73145c1163896040e91ff0018a2e9cc7b40acb4a2"
+  },
+  "ygo_store_team_logo_upload": {
+    "file": "includes/media/uploads.php",
+    "sha256": "142f2d67f6fb024e7108d60b679ce6e6d2109de4ee002a3c9eb1f2211b0c660b"
+  },
+  "ygo_store_deck_logo_upload": {
+    "file": "includes/media/uploads.php",
+    "sha256": "958ea9e16b7f384eefa4025cc4abd4a413efccc5ebe9b32431c0b066d2c4081c"
+  },
+  "ygo_store_division_logo_upload": {
+    "file": "includes/media/uploads.php",
+    "sha256": "6731249eae5c14455bccec45d49d89af7719dfe9c1f0a636b8265e3195d8727e"
+  },
+  "ygo_event_logo_gallery": {
+    "file": "includes/media/uploads.php",
+    "sha256": "ad24e77ac6f1f4a2684053a47ec50683d1d1af75f1b43f2897a50f8b19a97c87"
+  },
+  "ygo_valid_event_gallery_logo": {
+    "file": "includes/media/uploads.php",
+    "sha256": "51f0d82d84e348d14984bc08ab0e6e522188989fec358da5e2a2e51a72517f85"
+  },
+  "ygo_record_logo_history": {
+    "file": "includes/media/uploads.php",
+    "sha256": "3f8c7bb82afd7950bcdb6b3818e603c895442a5cd37f324c3ef5c2a62265d673"
+  },
+  "ygo_competition_defaults": {
+    "file": "includes/teams/team-services.php",
+    "sha256": "468ad70fd755c9491267ba545a52abf340a63324544d8b89df9ce3b5c61a8a7b"
+  },
+  "ygo_team_name_for_deck": {
+    "file": "includes/teams/team-services.php",
+    "sha256": "e493f71f3db3902c4de205ee3d667d732d10f0836d4b3332a7f6b3a03f209658"
+  },
+  "ygo_team_profile_for_deck": {
+    "file": "includes/teams/team-services.php",
+    "sha256": "b73a9de062a71f7edd6539efc3b8bc3bd6be0643f39947c1a63f01b02100ddb2"
+  },
+  "ygo_find_or_create_team": {
+    "file": "includes/teams/team-services.php",
+    "sha256": "966009840bc1a69f6e54a7fe31ce432d4803a72f1133d79ebdeb8b1d9fe2390b"
+  },
+  "ygo_sync_deck_teams": {
+    "file": "includes/teams/team-services.php",
+    "sha256": "5bbfd9f204b4d17a6aee5ee89a9a9a4155a69062e492ae6f59a48b68e5b3b259"
+  },
+  "ygo_deck_delete_blocker": {
+    "file": "includes/decks/eligibility.php",
+    "sha256": "52ccd077fe7a68f27e829fb8b3c8e11e7c009145c741cfe0c241ce3bce2a82d1"
+  },
+  "ygo_allowed_deck_ids_for_competition": {
+    "file": "includes/decks/eligibility.php",
+    "sha256": "d9cdbb3dd8c7916ba83ee26e568b35a77fee15418025f2aae3be06a75aebe6d4"
+  },
+  "ygo_match_deck_validation": {
+    "file": "includes/decks/eligibility.php",
+    "sha256": "7df1ab0d4deb0bd9410a1b3f51448202e575cdce31012aa930992ab2bef939d1"
+  },
+  "ygo_match_decks_allowed": {
+    "file": "includes/decks/eligibility.php",
+    "sha256": "90eea157ef2f0b4ae4400fdd374279e5410e0e502f9e4b28174bd24dd6c07a81"
+  },
+  "ygo_roster_groups_for_match": {
+    "file": "includes/decks/eligibility.php",
+    "sha256": "e69b91082cc363501158ef00b421502d288aedb2b36e368043d66b975031807c"
+  },
+  "ygo_competition_standings": {
+    "file": "includes/events/standings.php",
+    "sha256": "a0e3ae1c0310dc0068182312d5a05396ff30599d93cda65a51a0a306bd8506c0"
+  },
+  "ygo_audit_label": {
+    "file": "includes/events/standings.php",
+    "sha256": "f2db7e7f08946f937c0eac67c6cfe8c4cc93f91924e7723f02eef61cc11b54b9"
+  },
+  "ygo_sync_format_categories": {
+    "file": "includes/leagues/structure.php",
+    "sha256": "8d711b7b219b68906f15a9f00d35a729a69e7d2a8978903b64e2530cca788aca"
+  },
+  "ygo_ensure_goat_league_structure": {
+    "file": "includes/leagues/structure.php",
+    "sha256": "6a83610295214d40615b2cfc767e27da48f74761477e9b6b55cae7114304c5c7"
+  },
+  "ygo_provisional_category_for_rank": {
+    "file": "includes/leagues/structure.php",
+    "sha256": "a165e4ef6ba720f1efd8f025f68b2c84ead4452cb1278b2283eaf01ea0461666"
+  },
+  "ygo_compute_standings": {
+    "file": "includes/leagues/structure.php",
+    "sha256": "dedd259c85f4a4b16aca0d749bd2f4bd874d4e673f0dd49f05919e4f7ad3aa8a"
+  },
+  "ygo_regenerate_league_matches": {
+    "file": "includes/events/generation.php",
+    "sha256": "13fcdee028f0a575d65124d0b5a8326f7446d761381761172ce7c71511919f14"
+  },
+  "ygo_qualifier_finalize_check": {
+    "file": "includes/events/generation.php",
+    "sha256": "bd5c064a18883a4b52759bb7419b27a61cb76eface13b62d9d8fd59ec02f563f"
+  },
+  "ygo_finalize_qualifier": {
+    "file": "includes/events/generation.php",
+    "sha256": "164eda80bb2b1dd3ef8408f74ff49c5ee21bad0582e6661e675de0bee62703de"
+  },
+  "ygo_first_division_id": {
+    "file": "includes/events/generation.php",
+    "sha256": "39ad8ea35719d841b5209ece3027a868460c25025d02352bcc4f3bc4c5311aba"
+  },
+  "ygo_decks_for_division": {
+    "file": "includes/events/generation.php",
+    "sha256": "9c1d96c5a5cc2f6a99ed9e56c29e4cae158ef713e04b646e4147b3bd6bcf4aec"
+  },
+  "ygo_clear_phase": {
+    "file": "includes/events/generation.php",
+    "sha256": "cab4b2ce7bc4bb7cf5f4935b5dc429bee911cabd497efb04e73830e08b9b2187"
+  },
+  "ygo_generate_knockout": {
+    "file": "includes/events/generation.php",
+    "sha256": "6ac6a5b17c849518128009ba091e9cf87f5a12f1704c772902f4d0d7a0dd6139"
+  },
+  "ygo_generate_friendlies": {
+    "file": "includes/events/generation.php",
+    "sha256": "d003b02fc32de3c842613516cbae55f3ae42090d4e1323655f3b4208ab9cd018"
+  },
+  "ygo_generate_cups": {
+    "file": "includes/events/generation.php",
+    "sha256": "c3107c4ba2dc2d378bc1d8904e66438b59a3699ab8ba269228cb24d8d1020959"
+  },
+  "ygo_generate_world": {
+    "file": "includes/events/generation.php",
+    "sha256": "05a8746c06a7e8d43e702f09cdeaf97b097c35accef209cce3883eccfa5adf2d"
+  },
+  "ygo_generate_leagues": {
+    "file": "includes/events/generation.php",
+    "sha256": "95ce85e2adab630b9d85cc0dc63f458bd960340cb148249f8eb4f35140892845"
+  },
+  "ygo_selected_qualifier_competition_id": {
+    "file": "includes/events/generation.php",
+    "sha256": "bd063b4d509d782940f76a882ae1846c1723f475cea1759a79e8acccf0704177"
+  },
+  "ygo_competition_phase_match_count": {
+    "file": "includes/events/generation.php",
+    "sha256": "763f85a8f7eb3803228b69dd2babaa9fc4e59f5801bcb156645a3e8e28122e36"
+  },
+  "ygo_competition_phase_finished": {
+    "file": "includes/events/generation.php",
+    "sha256": "3805168ad99c4aa58543d3e15f71d9ae79578ea4e56b8c8701342b7c2dc549db"
+  },
+  "ygo_competition_round_winners": {
+    "file": "includes/events/generation.php",
+    "sha256": "cbd1afe8666b73f7f7af5827b0fa142d4de709286a861e358f44f58a997c6646"
+  },
+  "ygo_deck_ids_for_ruleset": {
+    "file": "includes/events/generation.php",
+    "sha256": "20b3bd6ba5efbd9bf02c7db855d71c85f5b65d95255d17d39f9b9ee4aad1a48b"
+  },
+  "ygo_create_competition_knockout_round": {
+    "file": "includes/events/generation.php",
+    "sha256": "779731240871b37e6f1e86f6400d5db6d8e11b2fb680f38c7f6f2b4b7a737a44"
+  },
+  "ygo_record_competition_honor": {
+    "file": "includes/events/generation.php",
+    "sha256": "d4f5d22cc0a1e9211924cdefa2f924a15739d01ba822c660e88d206137fc6887"
+  },
+  "ygo_apply_league_division_movements": {
+    "file": "includes/events/generation.php",
+    "sha256": "f5cb64c84dff48cb19b393b902f6a809160e329c106bc8ddd6cba34613bbb337"
+  },
+  "ygo_advance_competition_phase": {
+    "file": "includes/events/generation.php",
+    "sha256": "4cb107a3c59d679dc6b14973516d52921e5d1fb3137ec4d9873abd77e0693901"
+  },
+  "ygo_advance_competition_phase_serialized": {
+    "file": "includes/events/generation.php",
+    "sha256": "59d038f2d880d0c74dcc0af37330650de44ef8c89d00aa398d0eef75119e9bca"
+  },
+  "ygo_advance_competition_phase_locked": {
+    "file": "includes/events/generation.php",
+    "sha256": "f5d0626044beee8eb02457aafcf5e39a4f95afec7a95004d3766bf4112ba1ba9"
+  },
+  "ygo_advance_phase": {
+    "file": "includes/events/generation.php",
+    "sha256": "4bc8a1f18c8e69424295db21043b3edcc334a292f8dec34210dafa3161070dbd"
+  },
+  "ygo_auto_schedule_qualifier": {
+    "file": "includes/events/generation.php",
+    "sha256": "ce745c3acff0e120cbcc321e306db9c593303333d41ab4373fa9ec2a24867bee"
+  },
+  "ygo_normalize_existing_decks_to_tcg_advanced": {
+    "file": "includes/calendar/scheduling.php",
+    "sha256": "432dd308aac824d911949d756d21153c2e0810fd1b1ee4b0da48c9bf3875a01e"
+  },
+  "ygo_rebuild_qualifier_calendar": {
+    "file": "includes/calendar/scheduling.php",
+    "sha256": "9bbac3607862e9dd497b52def94fb127e2a7fd4acc83327a0c7c543c5f87f400"
+  },
+  "ygo_next_competition_match_date": {
+    "file": "includes/calendar/scheduling.php",
+    "sha256": "96920d58ac70e00fe2c0ee03187a83a778635fb191c6b1bb50f9f07d977ed9a3"
+  },
+  "ygo_secure_shuffle": {
+    "file": "includes/calendar/scheduling.php",
+    "sha256": "95050c57b72454b8e6c7dd74ebd04ecc8584517fef1009eebdf7903b7831fc91"
+  },
+  "ygo_schedule_qualifier_duels": {
+    "file": "includes/calendar/scheduling.php",
+    "sha256": "4513d8478ef3270a2a88329b20e61a0f9b608ecc462136face3f523def3c5641"
+  },
+  "ygo_schedule_cup_duels": {
+    "file": "includes/calendar/scheduling.php",
+    "sha256": "e14912fc0b39804a94e664653b1f96a2b9f2cb2bafebcfebe119e19cfbe026c3"
+  },
+  "ygo_schedule_competition_by_model": {
+    "file": "includes/calendar/scheduling.php",
+    "sha256": "f61960553adaf6b49de74acaa6e2308c7249015a6dbe5654e4b7b36e05ef3fb1"
+  },
+  "ygo_schedule_competition_by_model_serialized": {
+    "file": "includes/calendar/scheduling.php",
+    "sha256": "ae09de79594f7849b2a921184b7e50d04aaf26878c4b4163126176db1596d073"
+  },
+  "ygo_apply_division_from_qualifier": {
+    "file": "includes/calendar/scheduling.php",
+    "sha256": "0e43e5445eaff5160f04b18eae397b595c98b96302a89545261e555dfee10230"
+  },
+  "ygo_expected_qualifier_match_count": {
+    "file": "includes/calendar/scheduling.php",
+    "sha256": "04c4f0c8916ce569b99c63b5f8447bf478528dd2527d78bcf43abb5ea70efe46"
+  },
+  "ygo_configure_competition": {
+    "file": "includes/events/configuration.php",
+    "sha256": "725da190013add34507b49947a8e7f3a18cd52166f58392017ff1366aa335419"
+  },
+  "ygo_delete_competition": {
+    "file": "includes/events/configuration.php",
+    "sha256": "6355a0b6030202bd389a1cc23481fb73788a7ca0e25d637e824a0a999b87c650"
+  },
+  "ygo_live_duel_match": {
+    "file": "includes/matches/live-duel.php",
+    "sha256": "47ecd105c6ff279eb426428b7e23d050348812e0202c5f1b343e9e8715f10668"
+  },
+  "ygo_live_duel_initial_state": {
+    "file": "includes/matches/live-duel.php",
+    "sha256": "e151a356c5b63493754c03013334ef4f129e6f3c9da3377a9394415f21239f62"
+  },
+  "ygo_live_duel_normalize_state": {
+    "file": "includes/matches/live-duel.php",
+    "sha256": "66e8024494dc707db84ca982514524b45cf8fcb2eecde807db6f675d0858b980"
+  },
+  "ygo_live_duel_get": {
+    "file": "includes/matches/live-duel.php",
+    "sha256": "78ff387081f3424b10e572c2fe45cf46f8d35c2c96f2191c5f3189c0023864e5"
+  },
+  "ygo_live_duel_api": {
+    "file": "includes/matches/live-duel.php",
+    "sha256": "03c09141eae4176042dace4918f15ab88f21241662b4bf992619146c3cce5a6f"
+  },
+  "ygo_column_exists": {
+    "file": "src/Infrastructure/Database/schema.php",
+    "sha256": "eab16cbb706efe8277ad663c0f7c7c027a88538d6bacb98054c626c956b30426"
+  },
+  "ygo_add_column": {
+    "file": "src/Infrastructure/Database/schema.php",
+    "sha256": "8f6203c6b7f516e9eafaafadcef4c73bdf26ac135b736c5ba93aaa7c91dbdd51"
+  },
+  "ygo_table_exists": {
+    "file": "src/Infrastructure/Database/schema.php",
+    "sha256": "8ec3909cb149004818d3f71641355a7d1fd3f25e845015869d96853aa87ad1b2"
+  },
+  "ygo_index_exists": {
+    "file": "src/Infrastructure/Database/schema.php",
+    "sha256": "26f9b48f0487b1eabdf1073eef08bf3c54fffd296f1e5fe782180530df5cd4d6"
+  },
+  "ygo_drop_index_if_exists": {
+    "file": "src/Infrastructure/Database/schema.php",
+    "sha256": "b137297f3e4c2517ac024821d11f6a150c1bdd11d6353906c23e3504e3f47522"
+  },
+  "ensure_ygo_tables": {
+    "file": "src/Infrastructure/Database/schema.php",
+    "sha256": "986aa1e92a0e98819be15db905314f2f4a816cde90ee80e227789e97bee4d53b"
+  },
+  "seed_ygo_database": {
+    "file": "src/Infrastructure/Database/seed.php",
+    "sha256": "f9364aa30c33500aae12fe0f1e969d62923ce253e798dd8727b7294e7e06590e"
+  },
+  "ygo_remove_seeded_divisions": {
+    "file": "src/Infrastructure/Database/seed.php",
+    "sha256": "aa57f44c0d564de0bc398ab1e42c4eb5ddbe1312d2c484c550099a6fe76f5f4e"
+  },
+  "ygo_ensure_default_events": {
+    "file": "src/Infrastructure/Database/seed.php",
+    "sha256": "ccfd286f36c109ce27739aafd9bb04a4d8b53058c2a28b8554c986dec1c794da"
+  },
+  "ygo_ensure_default_event_dependencies": {
+    "file": "src/Infrastructure/Database/seed.php",
+    "sha256": "493852293548d1c21d9c633223d9ac9e45cedb0fad9d4dd7287eda6e4d6ed33d"
+  },
+  "ygo_ensure_default_rulesets": {
+    "file": "src/Infrastructure/Database/seed.php",
+    "sha256": "53d7b7923df2918af8949dfb2ef6124a8b66b90a780014ce1c84605edf8d69b4"
+  },
+  "ygo_ensure_default_ruleset_versions": {
+    "file": "src/Infrastructure/Database/seed.php",
+    "sha256": "3854c049beb2cb7127b00a8f96d1bf99033454004a6b147c585305c9f75948a4"
+  },
+  "ygo_ensure_default_game_rules": {
+    "file": "src/Infrastructure/Database/seed.php",
+    "sha256": "f1753dccc095be5f202cb29b5866992604f7cfc6c6245071a0c37a44ed763bb3"
+  },
+  "ygo_ensure_default_match_types": {
+    "file": "src/Infrastructure/Database/seed.php",
+    "sha256": "d999d173375df46cf83ee9abd362747f54dc148695bd626cfe196a85d54fa9b5"
+  },
+  "ygo_handle_post": {
+    "file": "includes/http/post-actions.php",
+    "sha256": "1b9c4da43207b12c1f4218d07ee68a6462e86b7c115ab7ee4210db279302655e"
+  },
+  "ygo_handle_post_serialized": {
+    "file": "includes/http/post-actions.php",
+    "sha256": "78371b343a2a1ec82df6c5cdbea3460ffe5e694d7d0764d206b83b1a56570dce"
+  },
+  "ygo_load_data": {
+    "file": "src/Infrastructure/Persistence/legacy-read-model.php",
+    "sha256": "bfa3eba0355802ac160399219982cfbac062183d587016dc9e4445d6dc01e837"
+  },
+  "buildFixtures": {
+    "file": "includes/events/pairing-facades.php",
+    "sha256": "00b9704719f4cec4cc3259f32b285358a343460ec93c24ce51102921bb0352d6"
+  },
+  "ygo_knockout_target_size": {
+    "file": "includes/events/pairing-facades.php",
+    "sha256": "d09705a4b9a677daf67b5511858e780e4f48cf99f01779822abd90697b4536fd"
+  },
+  "ygo_round_robin_pairs": {
+    "file": "includes/events/pairing-facades.php",
+    "sha256": "89277cfdaa82a07836f36a21f667b880b13cdbbc234873ca0a829fe12d6284f6"
+  }
+}
