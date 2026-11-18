@@ -31,7 +31,7 @@ const rule = {
   guards:[{kind:'state',field:'active',values:['self']}],
   select:[{ref:'victim',selector:{side:'self',zones:['monsters'],cid:19364}}],
   costs:[],
-  resolve:[{op:'destroy',ref:'victim',reason:'effect'}, {op:'take',side:'self',cid:19472,from:'deck',to:'graveyard',position:'attack'}],
+  resolve:[{op:'destroy',ref:'victim',reason:'effect'}, {op:'take',side:'self',cid:19472,from:'deck',to:'graveyard',position:'attack',cause:'monster_effect'}],
   tags:['monsterEffect','sendFromDeck'],activation:true,oncePerTurn:true,
 };
 assert.equal(R.validate(rule),rule);
@@ -45,13 +45,33 @@ assert.equal(next._ruleEvents[0].kind,'destroy');
 assert.equal(next._ruleEvents[0].stage,'resolve');
 assert.equal(next._ruleEvents[0].cid,19364);
 assert.equal(R.actions(next,db).actions.length,0,'No repetir el mismo efecto sin reiniciar turno');
+const ghostRule={
+ version:1,id:'671:A07:R05:causal-trigger-test',deckId:671,format:'tcg_advanced',
+ scope:'single-effect',label:'Desvantasma vuelve desde GY tras envío por efecto de Tatsun',
+ source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19472&ope=2',
+ assumptions:['Estado inmediatamente posterior al envío por Tatsun; no modela aquí el efecto distinto de recuperar otra carta'],
+ actor:{side:'self',zones:['graveyard'],cid:19472},
+ trigger:{kind:'sent_by_monster_effect',sourceCid:19362,actorCid:19472},
+ guards:[{kind:'state',field:'active',values:['self']}],select:[],costs:[],
+ resolve:[{op:'move',ref:'actor',to:'m2',position:'attack'}],tags:['monsterEffect'],activation:true,oncePerTurn:true,
+};
+db.rules=[ghostRule];
+const triggered=R.actions(next,db);
+assert.equal(triggered.actions.length,1,JSON.stringify(triggered.rejected));
+assert.equal(triggered.actions[0].state.tokens.find(t=>db.bindings[t.key]===19472).zone,'m2');
+const withoutCause=E.clone(next);
+withoutCause._ruleEvents=withoutCause._ruleEvents.filter(e=>e.kind!=='sent_to_graveyard');
+assert.equal(R.actions(withoutCause,db).actions.length,0,'No atribuir autorresurrección sin procedencia');
 
+db.rules=[rule];
 const negated=R.actions(scenario,db,{negateEffectRuleIds:[rule.id]});
 assert.equal(negated.actions.length,1,JSON.stringify(negated.rejected));
 assert.equal(negated.actions[0].event.effectNegated,true);
 assert.equal(negated.actions[0].state.tokens.length,scenario.tokens.length);
 assert.equal(negated.actions[0].state._ruleEvents?.length||0,0);
 assert(negated.actions[0].state.tokens.every(t=>t.zone!=='graveyard'));
+db.rules=[ghostRule];
+assert.equal(R.actions(negated.actions[0].state,db).actions.length,0,'Negar Tatsun impide disparar Desvantasma');
 
 const withCost={...rule,id:'671:A07:R32:cost-test',costs:[{op:'move',ref:'victim',to:'graveyard',position:'attack'}],resolve:[{op:'take',side:'self',cid:19472,from:'deck',to:'hand',position:'attack'}]};
 db.rules=[withCost];
@@ -61,6 +81,17 @@ const costState=costNegated.actions[0].state;
 assert.equal(costState.tokens.find(t=>db.bindings[t.key]===19364).zone,'graveyard','Coste permanece pagado');
 assert(!costState.tokens.some(t=>db.bindings[t.key]===19472),'Resolución negada no toma carta del Deck');
 assert.equal(costNegated.actions[0].paid.tokens.find(t=>db.bindings[t.key]===19364).zone,'graveyard');
+const deniedActivation={...withCost,id:'671:A07:R32:activation-negated-test',activationNegatedConsumesUse:false};
+db.rules=[deniedActivation];
+const denied=R.actions(scenario,db,{negateActivationRuleIds:[deniedActivation.id]});
+assert.equal(denied.actions.length,1,JSON.stringify(denied.rejected));
+assert.equal(denied.actions[0].event.activationNegated,true);
+assert.equal(denied.actions[0].state.tokens.find(t=>db.bindings[t.key]===19364).zone,'graveyard');
+assert(!denied.actions[0].state.tokens.some(t=>db.bindings[t.key]===19472));
+assert(!denied.actions[0].state._used?.includes('rule:'+deniedActivation.id));
+const missingLimit={...deniedActivation,activationNegatedConsumesUse:undefined};
+db.rules=[missingLimit];
+assert.equal(R.actions(scenario,db,{negateActivationRuleIds:[missingLimit.id]}).actions.length,0,'El límite tras negar activación no se puede adivinar');
 
 let fusionState=E.create(catalog);
 fusionState=E.place(fusionState,{key:catalog.cards[1].key,owner:'self',zone:'m1'});
