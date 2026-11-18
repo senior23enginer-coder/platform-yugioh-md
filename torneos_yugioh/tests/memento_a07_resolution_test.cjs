@@ -308,6 +308,57 @@ illegalTribute.costs=[];
 illegalTribute.resolve.unshift({op:'tribute',ref:'actor',reason:'cost'});
 assert.throws(()=>R.validate(illegalTribute),/Sacrificar como coste/,
  'No permite disfrazar un Sacrificio de coste como destrucción en resolución');
+const normalWitchRule={
+ version:1,id:'671:A07:R02:witch-normal-window-test',deckId:671,format:'tcg_advanced',
+ scope:'single-effect',label:'Invocación Normal de Angbruja desde mano',
+ source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19364&ope=2',
+ assumptions:['Angbruja en mano; es un procedimiento de Invocación, no aún su efecto disparado'],
+ actor:{side:'self',zones:['hand'],cid:19364},
+ guards:[{kind:'state',field:'active',values:['self']},{kind:'state',field:'phase',values:['main1','main2']}],
+ select:[],costs:[],
+ resolve:[{op:'summon',ref:'actor',method:'normal',from:'hand',to:'m1',position:'attack'}],
+ tags:[],activation:false,oncePerTurn:false,
+};
+const witchSearchRule={
+ version:1,id:'671:A07:R02:witch-triggered-search-test',deckId:671,format:'tcg_advanced',
+ scope:'single-effect',label:'Angbruja busca Tatsun tras su Invocación Normal',
+ source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19364&ope=2',
+ assumptions:['Solo objetivo Tatsun; el evento de Invocación real precede a la búsqueda y el rival no responde'],
+ actor:{side:'self',zones:['monsters'],cid:19364},
+ trigger:{kind:'summoned',actorCid:19364,methods:['normal','special']},
+ guards:[{kind:'state',field:'active',values:['self']}],
+ select:[],costs:[],resolve:[{op:'take',side:'self',cid:19362,from:'deck',to:'hand',position:'attack'}],
+ tags:['monsterEffect','addFromDeck'],activation:true,oncePerTurn:true,
+};
+let witchOpening=E.create(catalog);
+witchOpening=E.place(witchOpening,{key:catalog.cards[1].key,owner:'self',zone:'hand'});
+db.rules=[witchSearchRule];
+assert.equal(R.actions(witchOpening,db).actions.length,0,
+ 'No hay búsqueda desde mano sin Invocación previa');
+db.rules=[normalWitchRule];
+const witchNormal=R.actions(witchOpening,db,{specialBlocked:true});
+assert.equal(witchNormal.actions.length,1,JSON.stringify(witchNormal.rejected));
+const witchField=witchNormal.actions[0].state;
+assert.equal(witchField.normalAvailable,false);
+assert.equal(witchField._ruleEvents.at(-1).kind,'summon');
+assert.equal(witchField._ruleEvents.at(-1).method,'normal');
+assert.equal(R.actions(witchOpening,db).actions.length,1);
+const normalConsumed=E.patch(witchOpening,{normalAvailable:false});
+assert.equal(R.actions(normalConsumed,db).actions.length,0,
+ 'No repetir la Normal original en este turno');
+db.rules=[witchSearchRule];
+const searched=R.actions(witchField,db);
+assert.equal(searched.actions.length,1,JSON.stringify(searched.rejected));
+assert.equal(searched.actions[0].state.tokens.find(t=>db.bindings[t.key]===19362).zone,'hand');
+assert.equal(R.actions(searched.actions[0].state,db).actions.length,0,
+ 'La búsqueda de Angbruja no se repite por nombre en este turno');
+const withoutSummon=structuredClone(witchField);
+withoutSummon._ruleEvents=[];
+assert.equal(R.actions(withoutSummon,db).actions.length,0,
+ 'Angbruja en campo no prueba que acaba de ser Invocada');
+const previousTurn=E.patch(witchField,{turn:3});
+assert.equal(R.actions(previousTurn,db).actions.length,0,
+ 'Una Invocación del turno anterior no dispara una búsqueda tardía');
 console.log('Memento A07: destrucción por efecto, envío fijado y negación con costes conservados: OK');
 console.log('Memento A07: Fusión con materiales exactos, bloqueo de Extra y falta de material: OK');
 console.log('Memento A07: Normal adicional de Duque con estado usado y límite por turno: OK');
@@ -316,3 +367,4 @@ console.log('Memento A07: César Xyz con materiales acoplados y requisitos exact
 console.log('Memento A07: S:P Link-2 con dos materiales Main y sin destierro inicial: OK');
 console.log('Memento A07: R31 turno de Set y R34 reinicio de una vez por nombre: OK');
 console.log('Memento A07: R26 Sacrificio de Réquiem como coste, distinto de destrucción: OK');
+console.log('Memento A07: R02 Normal de Angbruja y búsqueda posterior disparada por UID: OK');
