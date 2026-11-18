@@ -353,7 +353,7 @@
     {"id":"R09","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Fiesta destruye Angbruja propia, invoca Tatsun desde Deck en Defensa y registra evento de Especial; sin elección de cartas variable"},
     {"id":"R10","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Luna ya Invocada como Demonio LUZ se usa como único material exacto Link-1 de Réquiem; equipamiento y envío de equipo más monstruo pendientes"},
     {"id":"R11","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Link S:P de dos materiales fijos bloqueado por noExtra; no valida ataque, materiales del Extra ni TY-PHON"},
-    {"id":"R12","status":"NEGATIVE_INVENTORY_GUARD_ONLY","scope":"Búsqueda de CID que no está en Main rechazada con error de recurso y catálogo del duelo sin importar Side; inventario completo y objetivo real Demoniherrero no reproducidos"},
+    {"id":"R12","status":"ENGINE_TESTED_INVENTORY_GUARD","scope":"Fixture del inventario aprobado 41 Main/15 Extra/14 Side: la búsqueda de M/T Demoniherrero de Grabador no tiene objetivo en Main; la segunda vía GY de Gran Fuga tampoco tiene Xyz Goblin en Extra. Side excluido del duelo; las búsquedas se rechazan sin pagar coste; no existe caso positivo con esta lista"},
     {"id":"R13","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Fusión en GY se destierra como coste, destruye un Tatsun fijo y busca segunda copia; negación conserva destierro, no acredita toda separación de límites"},
     {"id":"R14","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Fusión con una Witch en GY solo tras evento acreditado de destrucción propia por efecto en turno actual; baraja ese material al Deck; evento inyectado, sin cadenas"},
     {"id":"R15","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Dragón Gemelo ya invocado por Fusión destruye Dormiveja en mano y busca jefe+Goblin; sin disparador secundario Dormiveja ni variación de objetivos"},
@@ -363,7 +363,7 @@
     {"id":"R20","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Secuencia previamente Invocada fusiona Duque usando Grabador y Goblin ya en GY, barajados al Deck sin destrucción previa; sin ruta Link previa ni recetas variables"},
     {"id":"R22","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Horn se Invoca desde mano con tres nombres Memento distintos en GY, y rechaza duplicados; destrucción triple de segundo efecto pendiente"},
     {"id":"R23","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Dragostapelia ya Invocada pone contador Predador a rival boca arriba; sin negación por contador ni Fusión/turno de Set completo"},
-    {"id":"R24","status":"CONDITION_GUARD_ONLY","scope":"Historial de dos Invocaciones del rival desde Extra en turno actual o anterior, con eventos inyectados; superposición, mayor ATK y cierre de Invocaciones pendientes"},
+    {"id":"R24","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Dos Especial rivales observadas desde Extra en un mismo turno actual o anterior habilitan superposición TY-PHON sobre el monstruo propio de mayor ATK declarado; transfiere materiales, bloquea posteriores Invocaciones de este turno y efectos de monstruos de 3000+ ATK mientras está boca arriba. Rechaza 1+1 entre turnos, ATK desconocido, objetivo inferior y zonas bloqueadas. Procedencia rival observada, no replay legal de sus materiales ni resolución de cadenas rivales"},
     {"id":"R25","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Aero Tiburón Xyz con dos copias de Angbruja Nivel 3, materiales acoplados; desacoplamiento y daño por desterradas pendientes"},
     {"id":"R28","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Gordiano post-Side paga seis cartas físicas del Extra, las destierra boca abajo y devuelve un objetivo rival al Deck; no cubre dos objetivos/coste 12"},
     {"id":"R29","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Fuwalos desde mano en turno rival solo con cero cartas propias; no reproduce robos reactivos ni ajuste de End Phase"},
@@ -371,6 +371,10 @@
     {"id":"R33","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Materiales Xyz de dos Angbruja Nivel 3 dejan de ocupar campo; noExtra impide la Invocación; niveles genéricos y otras recetas pendientes"}
   ],
   "blocked_rule_cases_p1": [],
+  "r12_r24_focused_evidence": [
+    {"id":"R12","status":"INVENTORY_ABSENCE_CERTIFIED_FOR_APPROVED_FIXTURE","test":"torneos_yugioh/tests/memento_a07_r12_r24_test.cjs","scope":"Coteja 41/15/14 y niega dos búsquedas sin destino; no convierte el Side en Main"},
+    {"id":"R24","status":"ALT_XYZ_ENGINE_TESTED_WITH_OBSERVED_OPPONENT","test":"torneos_yugioh/tests/memento_a07_r12_r24_test.cjs","catalog_rule_id":"671:typhon:highest-atk","scope":"Regla declarativa conectada al catálogo de producción, con siete destinos de zona. Observación identificada de Extra rival; dos invocaciones dentro de un mismo turno, comparación de ATK, superposición con transferencia, bloqueo de posteriores Invocaciones, restricción 3000+ y regresiones negativas. No prueba el procedimiento legal del rival ni motor integral de cadenas; la UI todavía no acredita un flujo de captura del evento observado"}
+  ],
   "partial_route_cases": [
     {
       "id": "C01",
@@ -400,7 +404,7 @@
     "Ninguna fila DOCUMENTED_NOT_ENGINE_TESTED puede contarse como regla ejecutable probada.",
     "Los operadores move/take/normal/flag y efectos parciales no reproducen por sí solos estas mecánicas.",
     "El manifiesto no publica combos ni cambia inventarios.",
-    "Punto 1 A07: las 22 reglas antes sin prueba tienen casos: 20 efectos/procedimientos parciales, R12 solo guardia negativa de inventario y R24 solo condición de historial con eventos inyectados. Cero certificaciones integrales y cero replays certificados.",
+    "Punto 1 A07: 22 reglas anteriormente sin caso; R12 ahora verifica la ausencia de objetivos contra los 41/15/14 aprobados y R24 ejecuta superposición TY-PHON bajo observaciones de Extra rival. La cobertura alcanza 33 reglas con alguna resolución/procedimiento restringido y R12 con rechazo de inventario verificable; ninguna es certificación integral. Cero replays certificados.",
     "Los casos sintéticos con Lancea simulan exclusivamente una situación posterior a intercambio Side; el inventario aprobado no fue modificado."
   ]
 }
