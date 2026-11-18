@@ -1,5 +1,49 @@
 # Calculador de jugadas
 
+## Auditoría del núcleo genérico — contratos de integración
+
+El flujo vigente es `study.js` (identidades y reglas del estudio) →
+`rules.js` (validación y acciones declarativas) → `planner.js` (exploración
+acotada); `chain.js` reutiliza `rules.js` para preparar costes y resolver
+en orden inverso. `engine.js` valida y modifica copias del escenario sin DOM.
+
+**Hallazgos verificados en el código:**
+
+1. **Entrada:** `study.calculator.rules` se incorpora por `deckId` y formato,
+   pero aún se complementa desde `verified-rules.js`. La guía A01–A10, por sí
+   sola, no acredita operaciones ejecutables. El contrato importable
+   `station-x-calculator/1` existe y es opcional.
+2. **Reglas:** `rules.js` rechaza operadores desconocidos y separa costes de
+   resolución, pero su validación contiene restricciones ligadas a CID y
+   recetas específicas (por ejemplo, equipamiento y superposición). No es
+   todavía un intérprete universal de todos los efectos.
+3. **Búsqueda:** `planner.js` combina `R.actions()` con acciones heredadas
+   codificadas por CID. La búsqueda tiene límites de profundidad, anchura y
+   estados, y no garantiza enumerar todas las líneas legales.
+4. **Cadenas:** `chain.js` prepara costes y resuelve efectos propios
+   acreditados de forma inversa; las respuestas rivales son declaraciones
+   condicionales. No hay reproducción general certificada de respuestas a
+   respuestas ni de ventanas y efectos completos del adversario.
+5. **Estado y causalidad:** `engine.js` valida zonas, copias y control;
+   `rules.js` conserva eventos causales y `planner.js` los incluye en su clave
+   de deduplicación. No existe aún un contrato unificado y versionado para
+   todos los eventos, restricciones temporales y efectos simultáneos.
+
+**Criterios de entrada para la siguiente tarea (contrato universal):**
+
+- Definir una única identidad de deck/formato, inventario exacto y referencias
+  oficiales por efecto; los alias no sustituyen un CID acreditado.
+- Publicar un esquema versionado con selectores, guardas, costes, resolución,
+  disparadores, límites, suposiciones, evidencia y resultado de cobertura.
+- Validar las referencias cruzadas y rechazar operaciones no reconocidas,
+  sin ejecutar texto libre ni aceptar casos parcialmente modelados como completos.
+- Probar con al menos dos decks sintéticos que importar reglas de operaciones
+  ya soportadas no exige cambiar `engine.js`, `rules.js` o `planner.js`.
+- Distinguir las reglas declarativas del estudio de los adaptadores heredados,
+  con plan de compatibilidad antes de retirar cualquiera de ellos.
+
+Esta auditoría no certifica el motor ni cambia inventarios, efectos o rutas.
+
 **Avance controlado de turno (módulo genérico):** el botón «Siguiente turno» alterna
 el jugador activo en Duelo (en Práctica conserva el lado propio), incrementa
 el turno, establece la fase de Robo y restituye la Invocación Normal.
