@@ -35,6 +35,17 @@ assert.equal(JSON.stringify(s), original, "Calculating actions must not mutate t
 assert.equal(R.actions(next, memento.db).actions.filter((a) => a.event.ruleId === "671:dark-blade:goblin").length, 0);
 const negated = R.actions(s, memento.db, { negateEffectRuleIds: ["671:dark-blade:goblin"] });
 assert(negated.actions.some((a) => a.event.effectNegated && a.state.tokens.some((t) => t.key === blade.key && t.zone === "m1")));
+let goblinStart = E.create(memento.catalog);
+const goblin = card(memento.catalog, memento.db, 19366);
+goblinStart = E.place(goblinStart, { key: goblin.key, owner: "self", zone: "m3" });
+const goblinActions = R.actions(goblinStart, memento.db).actions.filter((a) => a.event.ruleId === "671:goblin:send-two");
+assert.equal(goblinActions.length, 1);
+const sent = goblinActions[0].state.tokens;
+for (const cid of [19366, 19363, 19364])
+  assert(sent.some((t) => memento.db.bindings[t.key] === cid && t.zone === "graveyard"));
+const goblinNegated = R.actions(goblinStart, memento.db, { negateEffectRuleIds: ["671:goblin:send-two"] });
+assert.equal(goblinNegated.actions.length, 1);
+assert(goblinNegated.actions[0].state.tokens.every((t) => t.zone !== "graveyard"));
 const kashtira = loaded(665);
 let k = E.create(kashtira.catalog);
 const fenrir = card(kashtira.catalog, kashtira.db, 17768);
@@ -44,4 +55,4 @@ const search = R.actions(k, kashtira.db).actions.find((a) => a.event.ruleId === 
 assert(search, "Fenrir search is an executable rule");
 assert(search.state.tokens.some((t) => kashtira.db.bindings[t.key] === 18151 && t.zone === "hand"));
 assert.equal(R.actions(k, kashtira.db, { noDeckToHand: true }).actions.filter((a) => a.event.ruleId === "665:fenrir:search").length, 0);
-console.log("Verified declarative rules: Memento Dark Blade and Kashtira Fenrir: OK");
+console.log("Verified declarative rules: Memento Dark Blade/Goblin and Kashtira Fenrir: OK");

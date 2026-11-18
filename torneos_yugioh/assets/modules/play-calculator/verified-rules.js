@@ -22,14 +22,24 @@
       ["monsterEffect", "addFromDeck"],
       ["Sólo se modela la búsqueda de Riseheart; las otras elecciones y efectos de Fenrir siguen pendientes."],
     )];
-    if (id === 671) return [1, 2, 3, 4, 5].map((zone) => rule(
+    if (id === 671) return [
+      ...[1, 2, 3, 4, 5].map((zone) => rule(
       671, "671:dark-blade:goblin", "Hoja Oscura: destruirse e Invocar Goblin", 19363,
       "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19363&ope=2&request_locale=en",
       [{ op: "destroy", ref: "actor", reason: "effect" },
         { op: "take", side: "self", cid: 19366, from: "deck", to: "m" + zone, position: "attack" }],
       ["monsterEffect", "summonFromDeck"],
       ["Caso acotado: Hoja Oscura se destruye a sí misma, Goblin está en Deck y hay zona de monstruos libre. No representa otras elecciones ni disparadores."],
-    ));
+      )),
+      rule(671, "671:goblin:send-two", "Goblin: destruirse y enviar Hoja Oscura y Angbruja", 19366,
+        "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19366&ope=2&request_locale=en",
+        [{ op: "destroy", ref: "actor", reason: "effect" },
+          { op: "take", side: "self", cid: 19363, from: "deck", to: "graveyard", position: "attack" },
+          { op: "take", side: "self", cid: 19364, from: "deck", to: "graveyard", position: "attack" }],
+        ["monsterEffect", "sendFromDeck"],
+        ["Caso acotado: Goblin se destruye a sí mismo; Hoja Oscura y Angbruja están en Deck. No modela envíos alternativos ni disparadores posteriores."],
+      ),
+    ];
     return [];
   }
   return { forDeck };
