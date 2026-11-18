@@ -1,0 +1,285 @@
+{
+  "schema": "station-x-a07-coverage/1",
+  "deck_id": 671,
+  "format": "tcg_advanced",
+  "inventory": {
+    "main": 41,
+    "extra": 15,
+    "side": 14,
+    "reserve": 0
+  },
+  "source": "Memento A07 R01–R34, 18-11-2026",
+  "meaning": "Estado de cobertura ejecutable del motor, independiente de la comprobación documental oficial.",
+  "rules": [
+    {
+      "id": "R01",
+      "capability": "start_of_main1_and_continuous_summon_lock",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R02",
+      "capability": "summon_trigger_search",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R03",
+      "capability": "conditional_special_summon",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R04",
+      "capability": "destruction_then_level_bounded_deck_send",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R05",
+      "capability": "causality_sensitive_graveyard_trigger",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R06",
+      "capability": "fusion_materials_and_prior_destruction",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R07",
+      "capability": "fusion_trigger_multi_target_destroy",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R08",
+      "capability": "five_distinct_name_shuffle_summon",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R09",
+      "capability": "destroy_then_search_or_defense_summon",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R10",
+      "capability": "link_materials_equip_and_target_send",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R11",
+      "capability": "extra_summon_conditions_and_restrictions",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R12",
+      "capability": "deck_inventory_guard",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R13",
+      "capability": "two_named_effects_with_different_costs",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R14",
+      "capability": "conditional_graveyard_fusion_materials",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R15",
+      "capability": "fusion_trigger_hand_destruction",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R16",
+      "capability": "fusion_materials_draw_and_destroy",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R17",
+      "capability": "link_material_origin_and_quick_effect",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R18",
+      "capability": "discard_cost_zone_condition",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R19",
+      "capability": "equipped_monster_summon_procedure",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R20",
+      "capability": "link_then_graveyard_fusion",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R21",
+      "capability": "additional_normal_and_delayed_cost",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R22",
+      "capability": "three_distinct_graveyard_names_then_target_destroy",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R23",
+      "capability": "set_turn_quick_spell_and_counter",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R24",
+      "capability": "special_summon_count_history_xyz_overlay",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R25",
+      "capability": "xyz_materials_and_conditional_damage",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R26",
+      "capability": "tribute_cost_vs_destruction",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R27",
+      "capability": "xyz_materials_activation_negation",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R28",
+      "capability": "start_of_main_cost_choice_banish_face_down",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R29",
+      "capability": "no_cards_control_and_conditional_draw",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R30",
+      "capability": "both_sides_banish_prevention",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R31",
+      "capability": "set_turn_quick_spell_window",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R32",
+      "capability": "costs_persist_when_effect_negated",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R33",
+      "capability": "extra_material_types_and_placements",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R34",
+      "capability": "once_per_name_and_chain_separation",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    }
+  ],
+  "routes": [
+    {
+      "id": "C01",
+      "status": "NO_REPLAY_CERTIFIED"
+    },
+    {
+      "id": "C02",
+      "status": "NO_REPLAY_CERTIFIED"
+    },
+    {
+      "id": "C03",
+      "status": "NO_REPLAY_CERTIFIED"
+    },
+    {
+      "id": "C04",
+      "status": "NO_REPLAY_CERTIFIED"
+    },
+    {
+      "id": "C05",
+      "status": "NO_REPLAY_CERTIFIED"
+    },
+    {
+      "id": "C06",
+      "status": "NO_REPLAY_CERTIFIED"
+    },
+    {
+      "id": "C07",
+      "status": "NO_REPLAY_CERTIFIED"
+    },
+    {
+      "id": "C08",
+      "status": "NO_REPLAY_CERTIFIED"
+    },
+    {
+      "id": "C09",
+      "status": "NO_REPLAY_CERTIFIED"
+    },
+    {
+      "id": "C10",
+      "status": "NO_REPLAY_CERTIFIED"
+    },
+    {
+      "id": "C11",
+      "status": "NO_REPLAY_CERTIFIED"
+    },
+    {
+      "id": "C12",
+      "status": "NO_REPLAY_CERTIFIED"
+    }
+  ],
+  "missing_capabilities": [
+    "event_trigger_after_summon",
+    "destroy_vs_send_semantics",
+    "chain_link_negation_and_costs",
+    "fusion_material_constraints_and_resolution",
+    "link_and_xyz_full_summon_procedures",
+    "equip_as_spell_and_targeting",
+    "name_and_level_aggregate_guards",
+    "conditional_continuous_effects",
+    "summon_history_across_turns"
+  ],
+  "notes": [
+    "Ninguna fila DOCUMENTED_NOT_ENGINE_TESTED puede contarse como regla ejecutable probada.",
+    "Los operadores move/take/normal/flag y efectos parciales no reproducen por sí solos estas mecánicas.",
+    "El manifiesto no publica combos ni cambia inventarios."
+  ]
+}
