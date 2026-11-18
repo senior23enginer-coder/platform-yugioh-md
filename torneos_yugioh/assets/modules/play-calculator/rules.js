@@ -173,7 +173,12 @@
       "Faltan coste o resolucion",
     );
     for (const op of [...rule.costs, ...rule.resolve]) {
-      if (op.op === "move")
+      if (op.op === "destroy")
+        check(
+          refs.has(op.ref) && op.reason === "effect",
+          "Destrucción no acreditada",
+        );
+      else if (op.op === "move")
         check(
           refs.has(op.ref) &&
             zones.includes(op.to) &&
@@ -294,6 +299,7 @@
           continue;
         let n = E.clone(s);
         n._normal ??= !n.normalAvailable;
+        let opStage = "cost";
         function apply(op) {
           if (op.to) {
             check(
@@ -305,7 +311,14 @@
               "Destino de Cementerio pendiente por bloqueo",
             );
           }
-          if (op.op === "move") {
+          if (op.op === "destroy") {
+            const t = n.tokens.find((t) => t.uid === refs[op.ref]);
+            check(t && (field(t.zone) || t.zone === "hand"), "Objetivo de destrucción fuera de campo/mano");
+            check(!(f.graveyardBlocked), "Destrucción hacia Cementerio bloqueada");
+            const event = {kind:"destroy",uid:t.uid,cid:db.bindings[t.key],from:t.zone,by:"effect",stage:opStage};
+            n = E.place(n, {uid:t.uid,zone:"graveyard",controller:t.owner});
+            n._ruleEvents = [...(n._ruleEvents||[]),event];
+          } else if (op.op === "move") {
             const t = n.tokens.find((t) => t.uid === refs[op.ref]);
             check(t, "Copia ausente");
             n = E.place(n, {
@@ -392,7 +405,9 @@
           for (const op of rule.costs) apply(op);
           if (rule.oncePerTurn) n._used = [...(n._used || []), used];
           const paid = checkpoint(n);
-          for (const op of rule.resolve) apply(op);
+          const effectNegated = (options.negateEffectRuleIds || []).includes(rule.id);
+          opStage = "resolve";
+          if (!effectNegated) for (const op of rule.resolve) apply(op);
           const summoned = n.tokens.filter(
             (t) =>
               E.isMonster(t.zone) &&
@@ -431,7 +446,7 @@
           E.validate(n);
           actions.push({
             state: n,
-            label: rule.label,
+            label: effectNegated ? `Efecto negado · ${rule.label}` : rule.label,
             ids: Object.values(refs),
             used: rule.oncePerTurn ? used : null,
             source: rule.source,
@@ -442,6 +457,7 @@
               tags: rule.tags,
               assumptions: rule.assumptions,
               ruleId: rule.id,
+              effectNegated,
             },
           });
         } catch (e) {
