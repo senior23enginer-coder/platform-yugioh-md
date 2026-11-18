@@ -11,8 +11,8 @@ assert.equal(new Set(coverage.rules.map(r => r.capability)).size, 34);
 assert(coverage.rules.every(r => r.status === 'DOCUMENTED_NOT_ENGINE_TESTED' && r.engine_test_id === null));
 assert.equal(coverage.routes.length, 12);
 assert(coverage.routes.every(r => r.status === 'NO_REPLAY_CERTIFIED'));
-assert.equal(coverage.partial_engine_cases.length, 12);
-assert.equal(new Set(coverage.partial_engine_cases.map(c=>c.id.split(':')[2])).size, 11);
+assert.equal(coverage.partial_engine_cases.length, 13);
+assert.equal(new Set(coverage.partial_engine_cases.map(c=>c.id.split(':')[2])).size, 12);
 assert(coverage.partial_engine_cases.every(c => c.status === 'ENGINE_TESTED_RESTRICTED_CASE' && c.scope));
 assert(coverage.missing_capabilities.includes('fusion_material_constraints_and_resolution'));
 const skeleton = {
