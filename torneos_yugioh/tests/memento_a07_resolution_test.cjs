@@ -20,7 +20,7 @@ const rows = [
   {deck_id:671,id:14,section:'main',card_name:'Mementotlán Maza',quantity:1},
 ];
 const catalog = E.catalog(deck,rows);
-const db = {bindings:Object.fromEntries(catalog.cards.map((c,i)=>[c.key,[19362,19364,19472,20199,19904,20216,20389,19366,19360,20196,13081,19188,20225,19368][i]])),facts:{},rules:[]};
+const db = {bindings:Object.fromEntries(catalog.cards.map((c,i)=>[c.key,[19362,19364,19472,20199,19904,20216,20389,19366,19360,20196,13081,19188,20225,19365][i]])),facts:{},rules:[]};
 let scenario = E.create(catalog);
 scenario = E.place(scenario,{key:catalog.cards[0].key,owner:'self',zone:'m1'});
 scenario = E.place(scenario,{key:catalog.cards[1].key,owner:'self',zone:'m2'});
@@ -418,14 +418,14 @@ const kingSend={...witchSearchRule,id:'671:A07:C01:king-send',
  actor:{side:'self',zones:['monsters'],cid:20216},
  trigger:{kind:'fusion_summoned',actorCid:20216},
  select:[],tags:['monsterEffect','sendFromDeck'],
- resolve:[19360,19368,19366].map(cid=>({op:'take',side:'self',cid,from:'deck',to:'graveyard',position:'attack',cause:'monster_effect'}))};
+ resolve:[19360,19365,19366].map(cid=>({op:'take',side:'self',cid,from:'deck',to:'graveyard',position:'attack',cause:'monster_effect'}))};
 c01=c01Step(c01,kingSend);
 const c01Boss={...bossRule,id:'671:A07:C01:five-name-boss'};
 c01=c01Step(c01,c01Boss);
 assert.equal(c01.normalAvailable,false);
 assert.deepEqual(c01.tokens.filter(t=>E.isMonster(t.zone)).map(t=>db.bindings[t.key]).sort((a,b)=>a-b),
  [19360,20216].sort((a,b)=>a-b),'C01 termina en Rey + Creación Combinada');
-assert.equal(c01.tokens.find(t=>db.bindings[t.key]===19368).zone,'graveyard',
+assert.equal(c01.tokens.find(t=>db.bindings[t.key]===19365).zone,'graveyard',
  'Maza se conserva en GY para una respuesta posterior');
 assert.equal(c01.tokens.find(t=>db.bindings[t.key]===19904).zone,'graveyard',
  'Fusión se consumió y no se reutilizó');
