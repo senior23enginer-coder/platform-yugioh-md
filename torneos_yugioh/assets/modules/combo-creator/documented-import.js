@@ -39,6 +39,30 @@
       const refs=[];for(const p of photos||[]){const card=bind(p,opening?'hand':'');if(card){if(!refs.includes(card.id))refs.push(card.id);}else if(p.name)issues.push({name:p.name,reason:'Referencia sin vínculo nativo; se conserva en el texto.'});}
       return refs;
     };
+    // Algunas fuentes anteriores incluyen acciones completas pero no imágenes por paso.
+    // Vincular solo nombres exactos del catálogo editorial a cartas del propio deck;
+    // son referencias visuales, nunca ubicaciones ni movimientos inferidos.
+    const stepRefs=(step)=>{
+      const explicit=photoRefs(step.photos),seen=new Set(explicit);
+      const narration=norm([step.action,step.detail,step.visual_detail].filter(Boolean).join(' '));
+      const candidates=(data.cards||[]).filter(c=>c.name&&norm(c.name).length>=4)
+        .map(c=>({card:c,name:norm(c.name)}))
+        .filter(({name})=>{
+          let offset=narration.indexOf(name);
+          while(offset>=0){
+            const before=narration[offset-1]||' ',after=narration[offset+name.length]||' ';
+            if(!/[a-z0-9]/.test(before)&&!/[a-z0-9]/.test(after))return true;
+            offset=narration.indexOf(name,offset+1);
+          }
+          return false;
+        })
+        .sort((a,b)=>narration.indexOf(a.name)-narration.indexOf(b.name));
+      for(const {card} of candidates){
+        const bound=bind({image:card.image,full_image:card.full_image});
+        if(bound&&!seen.has(bound.id)){seen.add(bound.id);explicit.push(bound.id);}
+      }
+      return explicit;
+    };
     const names=photos=>(photos||[]).map(p=>[p.name,p.label].filter(Boolean).join(' · ')).join('\n');
     const resources=rows=>(rows||[]).map(r=>`${r.zone}: ${r.text}`).join('\n');
     const requirements=[route.opening,route.initial_details,route.restriction,route.notice,...(route.final_constraints||[]),route.next_phase,...(route.sources||[]),route.historical?'Condición de formato: esta secuencia requiere cartas que el formato indicado no permite; se conserva completa para consulta y edición.':''].filter(Boolean).join('\n\n');
@@ -48,7 +72,7 @@
     for(const part of requirementParts){const n=add('step','Requisitos · continuación',part);link(last,n.first);last=n.last;}
     for(const [i,s]of route.steps.entries()){
       const body=[...new Set([s.action,s.detail,s.visual_detail].filter(Boolean)),names(s.photos),...(s.requirements||[]),resources(s.resources)].filter(Boolean).join('\n\n');
-      const n=add('step',`Paso ${i+1}`,body,photoRefs(s.photos),[],s.photos?.[0]?.label||'Acción documentada');link(last,n.first);last=n.last;
+      const n=add('step',`Paso ${i+1}`,body,stepRefs(s),[],s.photos?.[0]?.label||'Acción documentada');link(last,n.first);last=n.last;
     }
     if(route.technical){const n=add('step','Notas y alternativas de la fuente',route.technical);link(last,n.first);last=n.last;}
     const variants=route.endboard?.variants||[];
