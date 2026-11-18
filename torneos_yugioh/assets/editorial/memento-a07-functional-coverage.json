@@ -320,6 +320,24 @@
       "status": "ENGINE_TESTED_RESTRICTED_CASE",
       "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
       "scope": "S:P Link-2 con Angbruja y Tatsun de Main; los materiales van a GY y no se presume su destierro inicial"
+    },
+    {
+      "id": "671:A07:R31:quick-spell-set-turn-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "La Mágica Rápida colocada en S/T no se activa el turno de Set ni si carece de historial; sí en un turno posterior; no reproduce materiales de Fusión"
+    },
+    {
+      "id": "671:A07:R34:once-per-name-turn-reset-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "El efecto de Duque no se repite en el mismo turno y vuelve a estar disponible en otro turno; no valida separación universal de cadenas"
+    },
+    {
+      "id": "671:A07:R26:requiem-tribute-cost-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "Réquiem ya Invocado tributa como coste, trae Grabador de Deck o conserva el tributo tras negar el efecto; no acredita su ruta Link ni el equipamiento posterior"
     }
   ],
   "missing_capabilities": [
