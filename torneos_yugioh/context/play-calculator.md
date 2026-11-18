@@ -100,3 +100,19 @@ La calculadora consulta `strategy-content-state.json`, igual que la biblioteca v
 Se estudia una respuesta por rama, con hasta doce ramas entre todas las propuestas y búsqueda acotada de continuaciones. No acredita cadenas arbitrarias, inmunidades, efectos simultáneos ni una segunda respuesta. Nibiru se identifica como respuesta pendiente: no se inventa el conteo de Invocaciones, Sacrificios ni Ficha. Las Skills y efectos Rush siguen requiriendo sus contratos y operadores específicos; no se aplican reglas TCG por analogía.
 
 Los datos actuales aportan **cero reglas declarativas**: el nuevo intérprete está probado, pero la documentación previa no equivale a su implementación. `node torneos_yugioh/tools/calculator_coverage.cjs` produce un informe local por cada deck y la lista de efectos faltantes; no conecta con la BD, no modifica inventarios y no escribe en la carpeta importable de prompts. `scenario_analysis_test.cjs` verifica los 16 estudios, respuestas, atomicidad, identidades y separación de formatos. `calculator_import_test.php` verifica el contrato ZIP/Markdown.
+# Priorización estratégica local (rama calculator-combo-strategy)
+
+El jugador puede elegir entre objetivos **equilibrado**, **romper campo**,
+**desarrollar campo** y **conservar recursos** antes de analizar un escenario.
+El mismo explorador acotado ordena estados mediante ponderaciones explícitas:
+cartas rivales retiradas del campo, valoración aproximada de monstruos propios,
+cartas propias conservadas en mano y número de acciones. El resultado muestra
+los indicadores observables por alternativa y la puntuación heurística relativa
+al estado inicial. Este orden **no** certifica legalidad integral, OTK,
+interrupciones disponibles, seguridad frente a respuestas desconocidas ni
+probabilidad de victoria. No debe etiquetarse como «mejor jugada» absoluta.
+
+Los efectos no modelados siguen excluidos y los estados con restricciones
+críticas sin interpretación se rechazan. Las rutas A08–A10 del repositorio
+externo son referencias documentales: solo una regla ejecutable con identidad,
+fuente, guardas, coste y resolución verificados puede incorporarse al motor.
