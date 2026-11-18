@@ -1,324 +1,57 @@
 <?php
 declare(strict_types=1);
 
-require_once dirname(__DIR__, 1) . '/src/autoload.php';
+require_once dirname(__DIR__) . '/src/autoload.php';
 
+use StationX\Yugioh\Infrastructure\Composition\CardCatalogModule;
+use StationX\Yugioh\Infrastructure\Cache\CardCatalog\{
+    FilesystemCatalogCache,
+    FilesystemCatalogImages,
+};
+use StationX\Yugioh\Infrastructure\Http\CardCatalog\CatalogController;
+use StationX\Yugioh\Application\CardCatalog\{CardSummary, InspectCachedCard};
+
+/** Compatibility entry points. Catalog rules, storage, transport and HTTP are independent. */
 function ygo_card_cache_dir(): string
 {
-    $dir = dirname(__DIR__) . '/assets/cache/ygoprodeck';
-    if (!is_dir($dir) && !mkdir($dir, 0755, true) && !is_dir($dir)) {
-        throw new RuntimeException('No se pudo preparar el catálogo de cartas.');
-    }
-    return $dir;
+    return CardCatalogModule::cache()->directory();
 }
-
-/** Fixed upstream endpoints only. Cached responses and a shared throttle protect the provider. */
 function ygo_card_download(string $url, int $max = 4000000): string
 {
-    $dir = ygo_card_cache_dir();
-    $lock = fopen($dir . '/upstream.lock', 'c+');
-    if (!$lock || !flock($lock, LOCK_EX)) {
-        throw new RuntimeException('El catálogo está ocupado. Inténtalo de nuevo.');
-    }
-    try {
-        $last = (float) stream_get_contents($lock);
-        $delay = 0.25 - (microtime(true) - $last);
-        if ($delay > 0) {
-            usleep((int) ($delay * 1000000));
-        }
-        $body = '';
-        $ch = curl_init($url);
-        curl_setopt_array($ch, [
-            CURLOPT_FOLLOWLOCATION => false,
-            CURLOPT_CONNECTTIMEOUT => 5,
-            CURLOPT_TIMEOUT => 15,
-            CURLOPT_USERAGENT => 'StationX-DeckBuilder/1.0',
-            CURLOPT_SSL_VERIFYPEER => true,
-            CURLOPT_WRITEFUNCTION => static function ($c, $chunk) use (&$body, $max) {
-                if (strlen($body) + strlen($chunk) > $max) {
-                    return 0;
-                }
-                $body .= $chunk;
-                return strlen($chunk);
-            },
-        ]);
-        $ok = curl_exec($ch);
-        $status = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
-        rewind($lock);
-        ftruncate($lock, 0);
-        fwrite($lock, (string) microtime(true));
-        if ($ok === false || !in_array($status, [200, 400], true)) {
-            throw new RuntimeException(
-                'YGOPRODeck no está disponible en este momento. Inténtalo de nuevo.',
-            );
-        }
-        return $body;
-    } finally {
-        flock($lock, LOCK_UN);
-        fclose($lock);
-    }
+    return CardCatalogModule::provider()->download($url, $max);
 }
-
 function ygo_card_cache_write(string $file, string $body): void
 {
-    $tmp = $file . '.' . bin2hex(random_bytes(6)) . '.tmp';
-    if (file_put_contents($tmp, $body, LOCK_EX) === false || !rename($tmp, $file)) {
-        @unlink($tmp);
-        throw new RuntimeException('No se pudo guardar el catálogo local.');
-    }
+    FilesystemCatalogCache::writeFile($file, $body);
 }
-
 function ygo_card_lookup(int $id): array
 {
-    if ($id < 1 || $id > 999999999) {
-        throw new InvalidArgumentException('Código de carta inválido.');
-    }
-    $file = ygo_card_cache_dir() . '/card-' . $id . '.json';
-    if (is_file($file)) {
-        return json_decode((string) file_get_contents($file), true, 32, JSON_THROW_ON_ERROR);
-    }
-    $answer = json_decode(
-        ygo_card_download('https://db.ygoprodeck.com/api/v7/cardinfo.php?id=' . $id),
-        true,
-        32,
-        JSON_THROW_ON_ERROR,
-    );
-    $card = $answer['data'][0] ?? null;
-    if (!$card || (int) $card['id'] !== $id) {
-        throw new InvalidArgumentException('No se encontró esta carta en YGOPRODeck.');
-    }
-    $card = ygo_card_summary($card);
-    ygo_card_cache_write($file, json_encode($card, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR));
-    return $card;
+    return CardCatalogModule::create()->lookup->execute($id);
 }
-
 function ygo_card_summary(array $card): array
 {
-    return [
-        'id' => (int) $card['id'],
-        'name' => (string) $card['name'],
-        'type' => (string) ($card['type'] ?? ''),
-        'description' => (string) ($card['desc'] ?? ''),
-        'race' => (string) ($card['race'] ?? ''),
-        'attribute' => (string) ($card['attribute'] ?? ''),
-        'atk' => $card['atk'] ?? null,
-        'def' => $card['def'] ?? null,
-        'level' => $card['level'] ?? null,
-        'image' => './?api=deck_builder&op=image&id=' . (int) $card['id'],
-    ];
+    return CardSummary::fromProvider($card);
 }
-
-/** Inspector reads exact catalog text, never a generated strategic summary. */
 function ygo_card_inspector_cached(int $id, string $dir): ?array
 {
-    if ($id < 1 || $id > 999999999) {
-        throw new InvalidArgumentException('Código de carta inválido.');
-    }
-    $file = $dir . '/card-' . $id . '.json';
-    if (!is_file($file)) {
-        return null;
-    }
-    $card = json_decode((string) file_get_contents($file), true, 32, JSON_THROW_ON_ERROR);
-    if (!is_array($card) || (int) ($card['id'] ?? 0) !== $id) {
-        throw new RuntimeException('La identidad del catálogo no coincide.');
-    }
-    $card['image'] = is_file($dir . '/image-full-' . $id . '.jpg')
-        ? './?api=deck_builder&op=image&size=full&local=1&id=' . $id
-        : null;
-    $card['text_source'] = 'YGOPRODeck';
-    $card['text_language'] = 'en';
-    return $card;
+    $cache = CardCatalogModule::cache($dir);
+    return (new InspectCachedCard(
+        $cache,
+        new FilesystemCatalogImages($cache, CardCatalogModule::provider()),
+    ))->execute($id);
 }
-
 function ygo_card_search(string $query, string $format, int $page): array
 {
-    $query = trim($query);
-    if (mb_strlen($query) < 2 || mb_strlen($query) > 100) {
-        throw new InvalidArgumentException('Escribe entre 2 y 100 caracteres para buscar.');
-    }
-    if (
-        !in_array($format, ['all', 'tcg', 'goat', 'rush duel'], true) ||
-        $page < 0 ||
-        $page > 1000
-    ) {
-        throw new InvalidArgumentException('Filtro de búsqueda inválido.');
-    }
-    $params = ['num' => 20, 'offset' => $page * 20, 'sort' => 'name'];
-    if (ctype_digit($query)) {
-        $params['id'] = $query;
-    } else {
-        $params['fname'] = $query;
-    }
-    if ($format !== 'all') {
-        $params['format'] = $format;
-    }
-    $file =
-        ygo_card_cache_dir() .
-        '/search-' .
-        hash('sha256', 'pagination-v2:' . json_encode($params)) .
-        '.json';
-    $lock = fopen($file . '.lock', 'c+');
-    if (!$lock || !flock($lock, LOCK_EX)) {
-        throw new RuntimeException('No se pudo abrir el catálogo.');
-    }
-    try {
-        if (is_file($file) && filemtime($file) > time() - 172800) {
-            return json_decode((string) file_get_contents($file), true, 32, JSON_THROW_ON_ERROR);
-        }
-        try {
-            $remote = json_decode(
-                ygo_card_download(
-                    'https://db.ygoprodeck.com/api/v7/cardinfo.php?' . http_build_query($params),
-                ),
-                true,
-                32,
-                JSON_THROW_ON_ERROR,
-            );
-        } catch (Throwable $e) {
-            if (is_file($file)) {
-                $cached = json_decode(
-                    (string) file_get_contents($file),
-                    true,
-                    32,
-                    JSON_THROW_ON_ERROR,
-                );
-                $cached['stale'] = true;
-                return $cached;
-            }
-            throw $e;
-        }
-        if (
-            !isset($remote['data']) &&
-            !str_contains(strtolower((string) ($remote['error'] ?? '')), 'no card matching')
-        ) {
-            throw new RuntimeException('No se pudo completar esta búsqueda.');
-        }
-        $rows = array_map('ygo_card_summary', $remote['data'] ?? []);
-        foreach ($rows as $card) {
-            ygo_card_cache_write(
-                ygo_card_cache_dir() . '/card-' . $card['id'] . '.json',
-                json_encode($card, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR),
-            );
-        }
-        // total_pages upstream counts page offsets, not the number of display pages.
-        $total = (int) ($remote['meta']['total_rows'] ?? count($rows));
-        $result = [
-            'ok' => true,
-            'cards' => $rows,
-            'page' => $page,
-            'page_size' => 20,
-            'total_rows' => $total,
-            'total_pages' => (int) ceil($total / 20),
-            'has_more' => ($page + 1) * 20 < $total,
-            'search_language' => 'en',
-            'spanish_supported' => false,
-        ];
-        ygo_card_cache_write(
-            $file,
-            json_encode($result, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR),
-        );
-        return $result;
-    } finally {
-        flock($lock, LOCK_UN);
-        fclose($lock);
-    }
+    return CardCatalogModule::create()->search->execute($query, $format, $page);
 }
-
 function ygo_card_catalog_api(): never
 {
     try {
-        if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
-            throw new InvalidArgumentException('Operación no permitida.');
-        }
-        if (($_GET['op'] ?? '') === 'detail') {
-            $id = filter_var($_GET['id'] ?? '', FILTER_VALIDATE_INT);
-            if (!$id || $id < 1 || $id > 999999999) {
-                throw new InvalidArgumentException('Código inválido.');
-            }
-            $localOnly = ($_GET['local'] ?? '1') === '1';
-            if ($localOnly) {
-                $card = ygo_card_inspector_cached($id, ygo_card_cache_dir());
-            } else {
-                $card = ygo_card_lookup($id);
-                $card['image'] = './?api=deck_builder&op=image&size=full&id=' . $id;
-                $card['text_source'] = 'YGOPRODeck';
-                $card['text_language'] = 'en';
-            }
-            header('Content-Type: application/json; charset=utf-8');
-            header('Cache-Control: no-store');
-            echo json_encode(
-                ['ok' => true, 'card' => $card],
-                JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR,
-            );
-            exit();
-        }
-        if (($_GET['op'] ?? '') === 'image') {
-            $id = filter_var($_GET['id'] ?? '', FILTER_VALIDATE_INT);
-            if (!$id || $id < 1 || $id > 999999999) {
-                throw new InvalidArgumentException('Código inválido.');
-            }
-            $size = (string) ($_GET['size'] ?? 'small');
-            if (!in_array($size, ['small', 'full'], true)) {
-                throw new InvalidArgumentException('Tamaño de imagen inválido.');
-            }
-            $dir = ygo_card_cache_dir();
-            $file = $dir . '/image-' . ($size === 'full' ? 'full-' : '') . $id . '.jpg';
-            if (!is_file($file)) {
-                if (($_GET['local'] ?? '') === '1') {
-                    throw new InvalidArgumentException(
-                        'La imagen original no está guardada localmente.',
-                    );
-                }
-                // Only download images for catalogued cards; never accept a client URL.
-                if (!is_file($dir . '/card-' . $id . '.json')) {
-                    throw new InvalidArgumentException('Carta no catalogada.');
-                }
-                $lock = fopen($file . '.lock', 'c+');
-                if (!$lock || !flock($lock, LOCK_EX)) {
-                    throw new RuntimeException('Imagen ocupada.');
-                }
-                try {
-                    if (!is_file($file)) {
-                        $image = ygo_card_download(
-                            'https://images.ygoprodeck.com/images/' .
-                                ($size === 'full' ? 'cards' : 'cards_small') .
-                                '/' .
-                                $id .
-                                '.jpg',
-                            1500000,
-                        );
-                        if (@getimagesizefromstring($image)['mime'] !== 'image/jpeg') {
-                            throw new RuntimeException('Imagen no disponible.');
-                        }
-                        ygo_card_cache_write($file, $image);
-                    }
-                } finally {
-                    flock($lock, LOCK_UN);
-                    fclose($lock);
-                }
-            }
-            header('Content-Type: image/jpeg');
-            header('Cache-Control: public, max-age=2592000, immutable');
-            header('X-Content-Type-Options: nosniff');
-            readfile($file);
-            exit();
-        }
-        header('Content-Type: application/json; charset=utf-8');
-        header('Cache-Control: no-store');
-        echo json_encode(
-            ygo_card_search(
-                (string) ($_GET['q'] ?? ''),
-                (string) ($_GET['format'] ?? 'all'),
-                (int) ($_GET['page'] ?? 0),
-            ),
-            JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR,
-        );
-    } catch (Throwable $e) {
-        http_response_code($e instanceof InvalidArgumentException ? 422 : 503);
-        header('Content-Type: application/json; charset=utf-8');
-        header('Cache-Control: no-store');
-        echo json_encode(['ok' => false, 'message' => $e->getMessage()], JSON_UNESCAPED_UNICODE);
+        (new CatalogController(CardCatalogModule::create()))
+            ->handle($_SERVER['REQUEST_METHOD'] ?? '', $_GET)
+            ->emit();
+    } catch (Throwable $error) {
+        CatalogController::failure($error)->emit();
     }
     exit();
 }

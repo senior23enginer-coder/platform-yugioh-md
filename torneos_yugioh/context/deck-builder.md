@@ -21,3 +21,18 @@ La API oficial admite nombres en ingl?s y c?digos. El espa?ol no est? soportado:
 ## Evidencia
 
 `outputs/ygo-builder-inspector-20261028/`: pruebas de arrastre nativo y por eventos, combinaci?n de grupos, cantidades y referencias; guardado interceptado sin escrituras; API real de 133 coincidencias en siete p?ginas, ?ltima p?gina de 13 cartas; visor en la ficha real, foco dentro de la modal, imagen de 813 ? 1185 y escritorio/m?vil. Publicaci?n con verificaci?n de bytes y comparaci?n de las 44 filas de cartas originales, perfiles y asignaciones deportivas.
+
+
+## Catálogo e inspector: arquitectura del backend · 18 de noviembre de 2026
+
+El recorrido HTTP conserva `?api=deck_builder`: `includes/deck_builder.php` captura la solicitud y delega a `Infrastructure/Http/CardCatalog/CatalogController`. El controlador mapea detalle local/proveedor, búsqueda e imagen y devuelve una respuesta; el emisor es responsable de cabeceras, JSON y bytes. Las fachadas nativas mantienen las firmas utilizadas por el editor existente.
+
+`Domain/CardCatalog` valida identidad y parámetros de búsqueda. `Application/CardCatalog` separa `SearchCards`, `LookupCard`, `InspectCachedCard` y `GetCardImage`; depende únicamente de los puertos `CatalogCache`, `CatalogProvider`, `CatalogImages` y `Clock`. `CardSummary` es una proyección del efecto original del proveedor, no un resumen estratégico inventado.
+
+`Infrastructure/Cache/CardCatalog` implementa archivos, lectura local sin crear carpetas, bloqueo por búsqueda/imagen y reemplazo atómico. `Infrastructure/Network/CardCatalog` conserva el bloqueo y espera compartidos del proveedor, límites de bytes, TLS, tiempos y estados HTTP admitidos. `Composition/CardCatalogModule` conecta las dependencias sin I/O en constructores.
+
+Se conservan búsqueda de veinte cartas, clave `pagination-v2`, frescura de 48 horas, recuperación de respuesta vencida únicamente ante fallo de descarga/JSON, identificación exacta, imágenes grandes y miniaturas separadas, JPEG y descargas solo para IDs catalogados. La consulta local nunca descarga ni fabrica texto. La política de caché y el reloj pueden sustituirse sin tocar el sistema de archivos.
+
+`card_catalog_architecture_test.php` comprueba 71 condiciones con puertos en memoria y una carpeta temporal única: diez escenarios nativos, evidencia original intacta, tres comparaciones de algoritmos, validación, paginación, caché fresca/vencida, fallos, identidad, modo local, texto exacto, HTTP e imágenes. No se llamó a YGOPRODeck ni a producción. Quedan pendientes una comprobación de proveedor real y concurrencia multiproceso en el entorno objetivo; las pruebas locales no los certifican.
+
+Esta migración abarca el catálogo del inspector/editor. El guardado SQL de listas y sus transacciones permanece separado y pendiente de migración; no se modificaron inventarios, cantidades, anotaciones o fuentes de prompts. No se cambió la interfaz ni se desplegó este refactor.

@@ -1,0 +1,150 @@
+[
+    {
+        "function": "ygo_card_summary",
+        "input": [
+            {
+                "id": 123,
+                "name": "Fixture",
+                "desc": "Exact effect",
+                "type": "Effect Monster",
+                "atk": 0,
+                "def": 200,
+                "level": 1
+            }
+        ],
+        "result": {
+            "id": 123,
+            "name": "Fixture",
+            "type": "Effect Monster",
+            "description": "Exact effect",
+            "race": "",
+            "attribute": "",
+            "atk": 0,
+            "def": 200,
+            "level": 1,
+            "image": ".\/?api=deck_builder&op=image&id=123"
+        },
+        "error": null
+    },
+    {
+        "function": "ygo_card_summary",
+        "input": [
+            {
+                "id": 124,
+                "name": "Spell"
+            }
+        ],
+        "result": {
+            "id": 124,
+            "name": "Spell",
+            "type": "",
+            "description": "",
+            "race": "",
+            "attribute": "",
+            "atk": null,
+            "def": null,
+            "level": null,
+            "image": ".\/?api=deck_builder&op=image&id=124"
+        },
+        "error": null
+    },
+    {
+        "function": "ygo_card_lookup",
+        "input": [
+            0
+        ],
+        "result": null,
+        "error": {
+            "class": "InvalidArgumentException",
+            "message": "Código de carta inválido."
+        }
+    },
+    {
+        "function": "ygo_card_lookup",
+        "input": [
+            1000000000
+        ],
+        "result": null,
+        "error": {
+            "class": "InvalidArgumentException",
+            "message": "Código de carta inválido."
+        }
+    },
+    {
+        "function": "ygo_card_search",
+        "input": [
+            "a",
+            "all",
+            0
+        ],
+        "result": null,
+        "error": {
+            "class": "InvalidArgumentException",
+            "message": "Escribe entre 2 y 100 caracteres para buscar."
+        }
+    },
+    {
+        "function": "ygo_card_search",
+        "input": [
+            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "all",
+            0
+        ],
+        "result": null,
+        "error": {
+            "class": "InvalidArgumentException",
+            "message": "Escribe entre 2 y 100 caracteres para buscar."
+        }
+    },
+    {
+        "function": "ygo_card_search",
+        "input": [
+            "fixture",
+            "ocg",
+            0
+        ],
+        "result": null,
+        "error": {
+            "class": "InvalidArgumentException",
+            "message": "Filtro de búsqueda inválido."
+        }
+    },
+    {
+        "function": "ygo_card_search",
+        "input": [
+            "fixture",
+            "all",
+            -1
+        ],
+        "result": null,
+        "error": {
+            "class": "InvalidArgumentException",
+            "message": "Filtro de búsqueda inválido."
+        }
+    },
+    {
+        "function": "ygo_card_search",
+        "input": [
+            "fixture",
+            "all",
+            1001
+        ],
+        "result": null,
+        "error": {
+            "class": "InvalidArgumentException",
+            "message": "Filtro de búsqueda inválido."
+        }
+    },
+    {
+        "function": "ygo_card_inspector_cached",
+        "input": [
+            0,
+            "unused"
+        ],
+        "result": null,
+        "error": {
+            "class": "InvalidArgumentException",
+            "message": "Código de carta inválido."
+        }
+    }
+]

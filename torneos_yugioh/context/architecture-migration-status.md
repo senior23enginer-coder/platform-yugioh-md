@@ -14,7 +14,8 @@ Fecha: 18 de noviembre de 2026. Repositorio de aplicación, rama `base`.
 | Comandos POST | 56 rutas en 55 adaptadores específicos detrás de un puerto | Comparación con las 55 ramas originales, guardas y contexto anidado |
 | Calendario compartido y clasificatorios | Cuatro casos de uso, reglas de fecha/cupo y puertos de lectura/escritura/tiempo | 49 comprobaciones y 13 escenarios originales; MySQL específico pendiente |
 | Noticias | Normalización, consulta, sincronización, lectura y miniaturas por puertos; adaptadores HTTP, PDO, cURL y parsers | 99 comprobaciones, 33 escenarios originales y 12 algoritmos comparados; sin producción |
-| Formato | 234 fuentes seleccionadas con formato estable y control en la suite | `npm run format:architecture:check` |
+| Catálogo e inspector de cartas (backend) | Búsqueda, identidad, lectura local, proveedor, caché e imágenes por puertos | 71 comprobaciones, diez escenarios y tres algoritmos originales; sin proveedor real |
+| Formato | 253 fuentes seleccionadas con formato estable y control en la suite | `npm run format:architecture:check` |
 
 ## Trabajo todavía pendiente para completar toda la plataforma
 
@@ -25,7 +26,7 @@ Estos elementos siguen siendo deuda real; no están certificados como migración
 3. Manejadores POST: ahora tienen límites por acción, pero varios aún realizan validación y coordinación dentro del adaptador. Migrar cada flujo restante a puertos y casos de uso; no mover el mismo cuerpo a Application con un PDO inyectado.
 4. Importación/exportación de decks y fuentes del editor: separar validación del paquete, sistema de archivos, BD y coordinación de reversión, preservando identidades, historial y sincronización con el repositorio independiente de prompts.
 5. Estadísticas: varias fórmulas están en dominio; acumulación/publicación y consultas todavía requieren separación de tiempo, fuentes y persistencia.
-6. Inspector de cartas: separar cliente externo, caché y controlador. Noticias ya tiene esa separación; quedan por certificar sus bloqueos, intervalos y concurrencia en MySQL de pruebas y sus proveedores actuales.
+6. Noticias y catálogo del inspector: backend separado. Quedan por certificar los bloqueos, intervalos y concurrencia de Noticias en MySQL de pruebas y la integración actual de ambos proveedores. La edición/persistencia de listas del deck sigue siendo un flujo nativo distinto; no se considera migrada por reorganizar el catálogo.
 7. Frontend legado de `assets/source/javascript`: conserva 37 fragmentos en un cierre compartido. Extraer estado, transporte y controladores por funcionalidad con pruebas; dividir archivos no equivale a módulos independientes.
 8. Plantillas mixtas PHP/HTML y puente `store-lib.php`: mantener composición y presentación fuera del dominio, y sustituir gradualmente las dependencias nativas. No aplicar masivamente un formateador experimental a plantillas.
 
