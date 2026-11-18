@@ -134,3 +134,8 @@ Deck a la mano y rechaza Invocaciones directas desde Extra sin un procedimiento
 acreditado. Esto amplía el lenguaje de efectos, **no crea automáticamente las
 reglas individuales de las cartas**. La prueba
 `tests/calculator_rule_operations_test.cjs` comprueba estos contratos.
+
+Los estados explorados incluyen ambos totales de LP en su clave de
+deduplicación. Cuando una regla verificada deja LP rivales en cero, la
+búsqueda prioriza ese estado y no genera acciones posteriores al final del
+duelo; una cifra de daño **condicional** no se presenta como victoria segura.

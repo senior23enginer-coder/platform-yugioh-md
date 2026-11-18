@@ -1,6 +1,7 @@
 const assert = require("node:assert/strict");
 const E = require("../assets/modules/play-calculator/engine.js");
 const R = require("../assets/modules/play-calculator/rules.js");
+const P = require("../assets/modules/play-calculator/planner.js");
 const db = require("../assets/modules/play-calculator/card-facts.json");
 const fixture = require("./fixtures/calculator_inventory.json");
 const self = E.catalog(fixture.allDecks.find((d) => d.id === 665), fixture.cards);
@@ -58,4 +59,11 @@ const unproven = { ...rule, select: [], costs: [], resolve: [
 ] };
 assert.equal(R.actions(s, { ...db, rules: [unproven] }).actions.length, 0,
   "An arbitrary Extra summon without materials must fail closed");
+const lethal = { ...rule, id: "lp-zero-fixture", select: [], costs: [], oncePerTurn: false,
+  resolve: [{ op: "damage", side: "opponent", amount: 8000 }] };
+const completed = P.solve(s, { ...db, rules: [lethal] }, { depth: 3, budget: 100 });
+assert(completed.plans.some((p) => p.lp.opponent === 0), "Modeled lethal damage is prioritized: " + JSON.stringify({reason:completed.reason, plans:completed.plans.map(p=>p.lp), actions:R.actions(s,{...db,rules:[lethal]}).actions.length}));
+assert(completed.plans.filter((p) => p.lp.opponent === 0).every((p) =>
+  p.steps[p.steps.length - 1].label === lethal.label),
+"No additional effects may resolve after modeled duel termination");
 console.log(JSON.stringify({ ok: true, lp: true, negate: true, position: true, locks: true, extraFailClosed: true }));

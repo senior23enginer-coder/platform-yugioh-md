@@ -294,7 +294,8 @@
     function score(s) {
       const m = metrics(s);
       return m.removed * weights.removal + m.field * weights.field +
-        m.hand * weights.hand - m.actions * weights.tempo;
+        m.hand * weights.hand - m.actions * weights.tempo +
+        (s.lp.opponent === 0 && s.lp.self > 0 ? 10000 : 0);
     }
     function stateKey(s) {
       return JSON.stringify([
@@ -312,10 +313,12 @@
         s._normal,
         s._xyz,
         s.lp.self,
+        s.lp.opponent,
       ]);
     }
     const baseOptions = options;
     function actions(s) {
+      if (s.lp.self <= 0 || s.lp.opponent <= 0) return [];
       const options = { ...baseOptions, ...s._ruleFlags };
       const out = [],
         mz = free(s, "m"),
