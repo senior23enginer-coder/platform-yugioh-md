@@ -158,7 +158,9 @@
           : rule.trigger.kind === "destroyed_by_effect" || rule.trigger.kind === "fusion_summoned" ||
             (rule.trigger.kind === "summoned" &&
               Array.isArray(rule.trigger.methods) && rule.trigger.methods.length > 0 &&
-              rule.trigger.methods.every(m => ["normal", "special"].includes(m)))),
+              rule.trigger.methods.every(m => ["normal", "special"].includes(m)))) &&
+        (rule.trigger.fromMonsters === undefined ||
+          (rule.trigger.kind === "destroyed_by_effect" && rule.trigger.fromMonsters === true)),
         "Disparador causal incorrecto");
     check(
       rule.actor.side === "self",
@@ -440,6 +442,7 @@
           s.tokens.some(t => t.uid === uid && t.zone === "graveyard");
       if (rule.trigger.kind === "destroyed_by_effect")
         return e.kind === "destroy" && e.by === "effect" &&
+          (!rule.trigger.fromMonsters || E.isMonster(e.from)) &&
           s.tokens.some(t => t.uid === uid && t.zone === "graveyard");
       if (!s.tokens.some(t => t.uid === uid && E.isMonster(t.zone))) return false;
       return rule.trigger.kind === "fusion_summoned" ? e.kind === "fusion_summon"
