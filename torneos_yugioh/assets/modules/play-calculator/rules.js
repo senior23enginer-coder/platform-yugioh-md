@@ -34,6 +34,7 @@
     "effectsNegated",
     "noDeckToHand",
     "banishBlocked",
+    "noMoreSummons",
   ];
   const tags = [
     "addFromDeck",
@@ -93,6 +94,34 @@
   function candidates(s, q, db) {
     return s.tokens.filter((t) => matches(s, t, q, db));
   }
+  function inventoryCandidates(s, db, query) {
+    const section = query.from === "extra" ? "extra" : "main";
+    const terms = query.nameTerms.map(E.norm);
+    return s.self.cards.filter(c => c.section === section &&
+      (E.remaining(s, c.key, "self") > 0 ||
+        s.tokens.some(t => t.key === c.key && t.owner === "self" && t.zone === query.from)) &&
+      terms.some(term => E.norm(c.name).includes(term)) &&
+      (!query.cardTypes || query.cardTypes.includes(db.facts?.[db.bindings[c.key]]?.cardType)) &&
+      (!query.species || E.norm(db.facts?.[db.bindings[c.key]]?.species || "").includes(E.norm(query.species))));
+  }
+  function extraSummonWindow(s) {
+    return [s.turn, s.turn - 1].some(turn =>
+      (s._ruleEvents || []).filter(e => e.kind === "observed_extra_summon" &&
+        e.side === "opponent" && e.from === "extra" && e.turn === turn &&
+        typeof e.key === "string" && Number.isInteger(e.uid) &&
+        s.opponent.cards.some(c => c.key === e.key && c.section === "extra")).length >= 2);
+  }
+  function monsterEffectBlockedByTyphon(s, db, token) {
+    if (!token || !E.isMonster(token.zone) || token.position === "set") return false;
+    const activeTyphon = s.tokens.some(t => db.bindings[t.key] === 19184 &&
+      t.xyzSummoned === true && E.isMonster(t.zone) && t.position !== "set");
+    if (!activeTyphon) return false;
+    const atk = Number.isInteger(token.currentATK) ? token.currentATK :
+      db.facts?.[db.bindings[token.key]]?.atk;
+    // Unknown current ATK needs a separate ruling/measurement, not a false
+    // claim that the monster is allowed to activate.
+    return !Number.isInteger(atk) || atk >= 3000;
+  }
   function validate(rule) {
     check(
       rule &&
@@ -129,15 +158,20 @@
           : rule.trigger.kind === "destroyed_by_effect" || rule.trigger.kind === "fusion_summoned" ||
             (rule.trigger.kind === "summoned" &&
               Array.isArray(rule.trigger.methods) && rule.trigger.methods.length > 0 &&
-              rule.trigger.methods.every(m => ["normal", "special"].includes(m)))) &&
-        (rule.trigger.fromMonsters === undefined ||
-          (rule.trigger.kind === "destroyed_by_effect" && rule.trigger.fromMonsters === true)),
+              rule.trigger.methods.every(m => ["normal", "special"].includes(m)))),
         "Disparador causal incorrecto");
     check(
       rule.actor.side === "self",
       "El actor del efecto propio debe pertenecer a tu lado",
     );
-    check(Number.isInteger(rule.actor.cid), "Actor sin CID");
+    const typhonProcedure = rule.resolve?.length === 1 &&
+      rule.resolve[0].op === "xyzOverlay" && rule.resolve[0].cid === 19184 &&
+      rule.source.includes("cid=19184") && rule.actor.cid === undefined &&
+      rule.actor.zones.length === 1 && rule.actor.zones[0] === "monsters" &&
+      rule.actor.faceUp === true && Array.isArray(rule.actor.cids) &&
+      rule.actor.cids.length > 0 && rule.actor.cids.length <= 60;
+    check(Number.isInteger(rule.actor.cid) || typhonProcedure,
+      "Actor sin CID o procedimiento TY-PHON sin materiales acreditados");
     check(rule.chainSpeed === undefined || [1, 2].includes(rule.chainSpeed),
       "Velocidad de efecto incorrecta");
     check(
@@ -180,7 +214,18 @@
           "Inicio de fase requiere historial de acciones sin parámetros");
       } else if (g.kind === "extraSummonHistory") {
         check(g.side === "opponent" && g.min === 2 && g.turns === 2,
-          "Historial rival de Extra solo acreditado con dos invocaciones en dos turnos");
+          "Historial rival de Extra exige dos Invocaciones en un mismo turno elegible");
+      } else if (g.kind === "inventoryTarget") {
+        check(g.from === "deck" || g.from === "extra", "Origen de inventario incorrecto");
+        check(Array.isArray(g.nameTerms) && g.nameTerms.length > 0 && g.nameTerms.length <= 5 &&
+          g.nameTerms.every(term => typeof term === "string" && term.trim().length >= 3 && term.length <= 60),
+          "Identidad del objetivo de inventario incorrecta");
+        check(g.cardTypes === undefined || (Array.isArray(g.cardTypes) && g.cardTypes.length > 0 &&
+          g.cardTypes.every(t => ["spell", "trap", "monster"].includes(t))),
+          "Tipo de carta buscada desconocido");
+        check(g.species === undefined || (typeof g.species === "string" && g.species.length <= 30 && g.species.length > 0),
+          "Tipo de Extra desconocido");
+        check(g.min === 1, "El objetivo a buscar debe existir en la lista disponible");
       } else if (g.kind === "state")
         check(
           ["active", "phase", "normalAvailable", "turn"].includes(g.field) &&
@@ -251,6 +296,13 @@
           op.recipe==="exact-cids",
           "Xyz requiere materiales acreditados por CID",
         );
+      else if (op.op === "xyzOverlay")
+        check(op.cid === 19184 && op.material === "actor" &&
+          ["m1","m2","m3","m4","m5","emz1","emz2"].includes(op.to) &&
+          op.recipe === "typhon-highest-atk" &&
+          rule.guards.some(g => g.kind === "extraSummonHistory") &&
+          rule.activation === false,
+          "TY-PHON requiere historial rival, monstruo mayor ATK y superposición explícita");
       else if (op.op === "fusion")
         check(
           Number.isInteger(op.cid) && op.cid > 0 &&
@@ -309,10 +361,10 @@
             ["deck", "extra"].includes(op.from) &&
             zones.includes(op.to) &&
             ["attack", "defense", "set"].includes(op.position) &&
-            (op.summonMethod === undefined || (op.summonMethod === "special" &&
-              op.side === "self" && op.from === "deck" &&
-              ["m1", "m2", "m3", "m4", "m5"].includes(op.to))) &&
-            (op.cause === undefined || (op.cause === "monster_effect" &&
+          (op.summonMethod === undefined || (op.summonMethod === "special" &&
+            op.side === "self" && op.from === "deck" &&
+            ["m1", "m2", "m3", "m4", "m5"].includes(op.to))) &&
+          (op.cause === undefined || (op.cause === "monster_effect" &&
               op.from === "deck" && op.to === "graveyard" &&
               rule.actor.side === op.side && Array.isArray(rule.tags) && rule.tags.includes("monsterEffect"))) &&
           "Recurso incorrecto",
@@ -388,7 +440,6 @@
           s.tokens.some(t => t.uid === uid && t.zone === "graveyard");
       if (rule.trigger.kind === "destroyed_by_effect")
         return e.kind === "destroy" && e.by === "effect" &&
-          (!rule.trigger.fromMonsters || E.isMonster(e.from)) &&
           s.tokens.some(t => t.uid === uid && t.zone === "graveyard");
       if (!s.tokens.some(t => t.uid === uid && E.isMonster(t.zone))) return false;
       return rule.trigger.kind === "fusion_summoned" ? e.kind === "fusion_summon"
@@ -415,6 +466,7 @@
         : (s._used || []).includes(used) || (s._used || []).includes(used + ":turn:" + s.turn))) continue;
       if (!options.prepared && rule.trigger && !s.tokens.some(t => triggerMatches(s, rule, t.uid))) continue;
       const f = { ...options, ...s._ruleFlags };
+      if (s._ruleFlagTurns?.noMoreSummons !== s.turn) delete f.noMoreSummons;
       if (rule.activation && f.effectsNegated) continue;
       if (!options.prepared &&
         !rule.guards.every((g) =>
@@ -432,16 +484,16 @@
                 ? (s._ruleEvents || []).some(e => e.kind === "destroy" &&
                     e.by === "effect" && e.owner === "self" && e.turn === s.turn)
                 : (s._ruleEvents || []).some(e => e.kind === g.event &&
-                  e.turn === s.turn && e.side === g.side &&
-                  (g.by === undefined || e.by === g.by))
+                    e.turn === s.turn && e.side === g.side &&
+                    (g.by === undefined || e.by === g.by))
             : g.kind === "phaseStart"
               ? !(s._rulePhaseActions && s._rulePhaseActions.turn === s.turn &&
                   s._rulePhaseActions.phase === s.phase &&
                   s._rulePhaseActions.side === s.active && s._rulePhaseActions.count > 0)
             : g.kind === "extraSummonHistory"
-              ? (s._ruleEvents || []).filter(e => e.side === "opponent" &&
-                  ["fusion_summon","link_summon","xyz_summon"].includes(e.kind) &&
-                  [s.turn,s.turn-1].includes(e.turn)).length >= 2
+              ? extraSummonWindow(s)
+            : g.kind === "inventoryTarget"
+              ? inventoryCandidates(s, db, g).length >= g.min
             : g.kind === "state"
               ? g.values.includes(
                   g.field === "normalAvailable" ? (s._normal === undefined ? s.normalAvailable : !s._normal) : s[g.field],
@@ -481,6 +533,7 @@
             (E.isMonster(actor.zone) && actor.position === "set"))
         )
           continue;
+        if (rule.activation && monsterEffectBlockedByTyphon(s, db, actor)) continue;
         // Las Mágicas Rápidas colocadas no pueden activarse ese mismo turno.
         // Sin procedencia temporal de la carta colocada, se falla cerrado.
         if (rule.activation && /^s[1-5]$/.test(actor.zone) && actor.position === "set" &&
@@ -511,7 +564,7 @@
             for(const t of targets)n=E.place(n,{uid:t.uid,zone:"deck",controller:t.owner});
             n._ruleEvents=[...(n._ruleEvents||[]),{kind:"shuffle_distinct",cids,stage:opStage}];
           } else if (op.op === "link") {
-            check(!(f.noExtra || f.specialBlocked || f.xyzOnly),"Link bloqueado por restricción de Extra o Especial");
+            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.xyzOnly),"Link bloqueado por restricción de Extra o Especial");
             check(!(options.blockedZones||[]).includes(op.to),"Zona de Link bloqueada");
             const selected=op.materials.map(ref=>n.tokens.find(t=>t.uid===refs[ref]));
             check(selected.every(t=>t&&t.owner==="self"&&t.controller==="self"&&E.isMonster(t.zone)&&t.position!=="set"),
@@ -528,7 +581,7 @@
             n=E.position(n,summoned.uid,"attack");
             n._ruleEvents=[...(n._ruleEvents||[]),{kind:"link_summon",cid:op.cid,uid:summoned.uid,materials:selected.map(t=>t.uid),turn:n.turn,stage:opStage}];
           } else if (op.op === "xyz") {
-            check(!(f.noExtra || f.specialBlocked),"Xyz bloqueado por restricción de Extra o Especial");
+            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons),"Xyz bloqueado por restricción de Extra o Especial");
             check(!(options.blockedZones||[]).includes(op.to),"Zona Extra bloqueada");
             const selected=op.materials.map(ref=>n.tokens.find(t=>t.uid===refs[ref]));
             check(selected.every(t=>t&&t.owner==="self"&&t.controller==="self"&&E.isMonster(t.zone)&&t.position!=="set"),
@@ -544,8 +597,46 @@
             n=E.position(n,summoned.uid,"attack");
             for(const t of selected)n=E.place(n,{uid:t.uid,zone:"material:"+summoned.uid,controller:"self"});
             n._ruleEvents=[...(n._ruleEvents||[]),{kind:"xyz_summon",cid:op.cid,uid:summoned.uid,materials:selected.map(t=>t.uid),turn:n.turn,stage:opStage}];
+          } else if (op.op === "xyzOverlay") {
+            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons),
+              "Superposición bloqueada por restricción de Invocaciones");
+            check(extraSummonWindow(n) && n.active === "self" && ["main1","main2"].includes(n.phase),
+              "TY-PHON exige dos Invocaciones rivales del Extra en un mismo turno válido");
+            const selected=n.tokens.find(t => t.uid === refs[op.material]);
+            check(selected && selected.owner === "self" && selected.controller === "self" &&
+              E.isMonster(selected.zone) && selected.position !== "set",
+              "La superposición exige monstruo propio boca arriba en campo");
+            const ownMonsters=n.tokens.filter(t => t.controller === "self" && E.isMonster(t.zone) &&
+              t.position !== "set");
+            check(ownMonsters.every(t => Number.isInteger(t.currentATK)),
+              "ATK actual de cada monstruo propio debe declararse para comparar");
+            check(selected.currentATK === Math.max(...ownMonsters.map(t => t.currentATK)),
+              "TY-PHON debe superponerse sobre un monstruo de mayor ATK");
+            check(!n.tokens.some(t => t.uid !== selected.uid && t.zone === op.to &&
+              t.controller === "self"), "Zona de destino ocupada");
+            check(!(options.blockedZones || []).includes(op.to),"Zona de superposición bloqueada");
+            const extraCard=n.self.cards.filter(c => c.section === "extra" && db.bindings[c.key] === op.cid);
+            const available=extraCard.length === 1 && n.tokens.find(t => t.key === extraCard[0].key &&
+              t.owner === "self" && t.zone === "extra");
+            check(extraCard.length === 1 && (available || E.remaining(n, extraCard[0].key,"self") > 0),
+              "TY-PHON no disponible en Extra propio");
+            const typhonUid=available ? available.uid : n.nextId++;
+            const oldZone=selected.zone;
+            for (const attached of n.tokens.filter(t => t.zone === "material:" + selected.uid))
+              attached.zone="material:"+typhonUid;
+            selected.zone="material:"+typhonUid;
+            delete selected.currentATK;
+            if(available) Object.assign(available,{zone:op.to,controller:"self",position:"attack",
+              xyzSummoned:true,currentATK:2900});
+            else n.tokens.push({uid:typhonUid,key:extraCard[0].key,owner:"self",controller:"self",
+              zone:op.to,position:"attack",xyzSummoned:true,currentATK:2900});
+            n._ruleFlags={...(n._ruleFlags||{}),noMoreSummons:true};
+            n._ruleFlagTurns={...(n._ruleFlagTurns||{}),noMoreSummons:n.turn};
+            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"xyz_summon",cid:19184,
+              uid:typhonUid,materials:[selected.uid],turn:n.turn,side:"self",
+              method:"typhon-alternate",from:oldZone,stage:opStage}];
           } else if (op.op === "fusion") {
-            check(!(f.noExtra || f.specialBlocked || f.xyzOnly), "Fusión bloqueada por restricción de Extra o Especial");
+            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.xyzOnly), "Fusión bloqueada por restricción de Extra o Especial");
             check(!(options.blockedZones || []).includes(op.to), "Zona Extra bloqueada");
             const selected = op.materials.map(ref=>n.tokens.find(t=>t.uid===refs[ref]));
             check(selected.every(t=>t && t.owner==="self" && t.controller==="self" &&
@@ -634,7 +725,7 @@
             check(t, "Copia ausente");
             if(op.summonMethod){
               check(t.owner==="self" && t.controller==="self" &&
-                ["hand","graveyard"].includes(t.zone) && !f.specialBlocked,
+                ["hand","graveyard"].includes(t.zone) && !f.specialBlocked && !f.noMoreSummons,
                 "Invocación Especial desde zona no acreditada o bloqueada");
             }
             n = E.place(n, {
@@ -694,7 +785,7 @@
               n._ruleEvents=[...(n._ruleEvents||[]),{kind:"sent_to_graveyard",uid:sent.uid,cid:op.cid,sourceCid:db.bindings[actor.key],turn:n.turn,stage:opStage}];
             }
             if (op.summonMethod) {
-              check(!f.specialBlocked,"Invocación Especial desde Deck bloqueada");
+              check(!f.specialBlocked && !f.noMoreSummons,"Invocación Especial desde Deck bloqueada");
               const summoned=n.tokens.find(x=>x.key===c.key && x.zone===op.to && x.owner===op.side);
               n._ruleEvents=[...(n._ruleEvents||[]),{kind:"summon",method:"special",
                 uid:summoned.uid,cid:op.cid,side:op.side,turn:n.turn,stage:opStage}];
@@ -743,9 +834,10 @@
             if(op.method==="normal") {
               check(n.active==="self" && ["main1","main2"].includes(n.phase) && !n._normal,
                 "Invocación Normal indisponible en esta ventana");
+              check(!f.noMoreSummons,"TY-PHON impide Invocaciones Normales restantes");
               n._normal=true;
               n.normalAvailable=false;
-            } else check(!f.specialBlocked,"Invocación Especial bloqueada");
+            } else check(!f.specialBlocked && !f.noMoreSummons,"Invocación Especial bloqueada");
             n=E.place(n,{uid:t.uid,zone:op.to,controller:"self"});
             n=E.position(n,t.uid,op.position);
             n._ruleEvents=[...(n._ruleEvents||[]),
@@ -780,7 +872,7 @@
             .some((op) => op.op === "normal" || (op.op === "summon" && op.method === "normal"));
           check(
             !(
-              f.specialBlocked &&
+              (f.specialBlocked || f.noMoreSummons) &&
               summoned.length &&
               !(
                 normal &&
@@ -839,5 +931,6 @@
     }
     return { actions, rejected };
   }
-  return { validate, actions, checkpoint, matches };
+  return { validate, actions, checkpoint, matches, inventoryCandidates,
+    monsterEffectBlockedByTyphon };
 });
