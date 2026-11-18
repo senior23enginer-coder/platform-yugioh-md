@@ -16,9 +16,10 @@ const rows = [
   {deck_id:671,id:10,section:'main',card_name:'Demoniherrero Grabador',quantity:1},
   {deck_id:671,id:11,section:'extra',card_name:'D/D/D César, Alto Rey de las Olas',quantity:1},
   {deck_id:671,id:12,section:'extra',card_name:'S:P Pequeña Caballera',quantity:1},
+  {deck_id:671,id:13,section:'extra',card_name:'Réquiem Demoniherrero',quantity:1},
 ];
 const catalog = E.catalog(deck,rows);
-const db = {bindings:Object.fromEntries(catalog.cards.map((c,i)=>[c.key,[19362,19364,19472,20199,19904,20216,20389,19366,19360,20196,13081,19188][i]])),facts:{},rules:[]};
+const db = {bindings:Object.fromEntries(catalog.cards.map((c,i)=>[c.key,[19362,19364,19472,20199,19904,20216,20389,19366,19360,20196,13081,19188,20225][i]])),facts:{},rules:[]};
 let scenario = E.create(catalog);
 scenario = E.place(scenario,{key:catalog.cards[0].key,owner:'self',zone:'m1'});
 scenario = E.place(scenario,{key:catalog.cards[1].key,owner:'self',zone:'m2'});
@@ -148,6 +149,13 @@ assert.equal(restored.actions[0].state._normal,false);
 assert.equal(restored.actions[0].state.normalAvailable,true,'La Normal vuelve a estar disponible');
 assert.equal(restored.actions[0].paid.normalAvailable,false);
 assert.equal(R.actions(restored.actions[0].state,db).actions.length,0,'No usar otra vez Duque este turno');
+const nextDukeTurn=E.patch(restored.actions[0].state,{turn:3});
+nextDukeTurn._normal=true;
+nextDukeTurn.normalAvailable=false;
+assert.equal(R.actions(nextDukeTurn,db).actions.length,1,
+ 'El límite una vez por nombre de Duque debe reiniciarse en otro turno');
+assert.equal(R.actions(restored.actions[0].state,db).actions.length,0,
+ 'Un cambio de copia sin cambio de turno no permitiría reutilizar el efecto');
 const noNormalUsed=E.create(catalog);
 const duquePresent=E.place(noNormalUsed,{key:catalog.cards[6].key,owner:'self',zone:'m1'});
 assert.equal(R.actions(duquePresent,db).actions.length,0,'No crear una Normal extra sin consumo previo');
@@ -235,9 +243,76 @@ const badRating=structuredClone(linkRule);
 badRating.resolve[0].linkRating=3;
 db.rules=[badRating];
 assert.equal(R.actions(linkState,db).actions.length,0,'Link-2 no se acredita con rating incompatible');
+const setSpellRule={
+ version:1,id:'671:A07:R31:quick-spell-set-turn-test',deckId:671,format:'tcg_advanced',
+ scope:'single-effect',label:'Fusión Mementotlán: activación desde zona M/T tras turno de Set',
+ source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2',
+ assumptions:['Solo se prueba ventana temporal de la Mágica Rápida; no se simula la Fusión ni su cadena'],
+ actor:{side:'self',zones:['s1','hand'],cid:19904},
+ guards:[{kind:'state',field:'active',values:['self']},{kind:'state',field:'phase',values:['main1','main2']}],
+ select:[],costs:[],resolve:[{op:'move',ref:'actor',to:'graveyard',position:'attack'}],
+ tags:[],activation:true,oncePerTurn:true,
+};
+let setSpell=E.create(catalog);
+setSpell=E.place(setSpell,{key:catalog.cards[4].key,owner:'self',zone:'s1'});
+setSpell=E.position(setSpell,setSpell.tokens[0].uid,'set');
+assert.equal(setSpell.tokens[0].setTurn,1);
+db.rules=[setSpellRule];
+assert.equal(R.actions(setSpell,db).actions.length,0,
+ 'La Mágica Rápida colocada no se activa el mismo turno');
+const unknownSetTurn=structuredClone(setSpell);
+delete unknownSetTurn.tokens[0].setTurn;
+assert.equal(R.actions(unknownSetTurn,db).actions.length,0,
+ 'Sin historial de colocación no se inventa una ventana legal');
+const nextSetTurn=E.patch(setSpell,{turn:3});
+const setResolved=R.actions(nextSetTurn,db);
+assert.equal(setResolved.actions.length,1,JSON.stringify(setResolved.rejected));
+assert.equal(setResolved.actions[0].state.tokens[0].zone,'graveyard');
+assert.equal(setResolved.actions[0].state.tokens[0].setTurn,undefined,
+ 'Salir de la zona M/T limpia la procedencia temporal de Set');
+let fromHand=E.create(catalog);
+fromHand=E.place(fromHand,{key:catalog.cards[4].key,owner:'self',zone:'hand'});
+assert.equal(R.actions(fromHand,db).actions.length,1,
+ 'La restricción de Set no impide activar la Mágica Rápida desde mano en tu Main');
+const requiemRule={
+ version:1,id:'671:A07:R26:requiem-tribute-cost-test',deckId:671,format:'tcg_advanced',
+ scope:'single-effect',label:'Réquiem tributa como coste y trae Grabador del Deck',
+ source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20225&ope=2',
+ assumptions:['Réquiem previamente Invocado por Enlace; m1 libre y Grabador disponible en Deck; no modela equipar Réquiem desde GY'],
+ actor:{side:'self',zones:['monsters'],cid:20225},
+ guards:[{kind:'state',field:'active',values:['self']}],select:[],
+ costs:[{op:'tribute',ref:'actor',reason:'cost'}],
+ resolve:[{op:'take',side:'self',cid:20196,from:'deck',to:'m1',position:'attack'}],
+ tags:['monsterEffect','summonFromDeck'],activation:true,oncePerTurn:true,
+};
+let requiemState=E.create(catalog);
+requiemState=E.place(requiemState,{key:catalog.cards[12].key,owner:'self',zone:'emz1'});
+db.rules=[requiemRule];
+const tributed=R.actions(requiemState,db);
+assert.equal(tributed.actions.length,1,JSON.stringify(tributed.rejected));
+assert.equal(tributed.actions[0].paid.tokens.find(t=>db.bindings[t.key]===20225).zone,'graveyard');
+assert.equal(tributed.actions[0].state.tokens.find(t=>db.bindings[t.key]===20196).zone,'m1');
+assert.equal(tributed.actions[0].state._ruleEvents[0].kind,'tribute');
+assert.equal(tributed.actions[0].state._ruleEvents[0].by,'cost');
+assert(!tributed.actions[0].state._ruleEvents.some(e=>e.kind==='destroy'),
+ 'Sacrificar a Réquiem no equivale a destruirlo');
+const tributeNegated=R.actions(requiemState,db,{negateEffectRuleIds:[requiemRule.id]});
+assert.equal(tributeNegated.actions.length,1);
+assert.equal(tributeNegated.actions[0].state.tokens.find(t=>db.bindings[t.key]===20225).zone,'graveyard');
+assert(!tributeNegated.actions[0].state.tokens.some(t=>db.bindings[t.key]===20196),
+ 'El efecto negado no trae Grabador, pero el coste se pagó');
+assert.equal(R.actions(requiemState,db,{specialBlocked:true}).actions.length,0,
+ 'El bloqueo de Especial impide resolver la Invocación de Grabador');
+const illegalTribute=structuredClone(requiemRule);
+illegalTribute.costs=[];
+illegalTribute.resolve.unshift({op:'tribute',ref:'actor',reason:'cost'});
+assert.throws(()=>R.validate(illegalTribute),/Sacrificar como coste/,
+ 'No permite disfrazar un Sacrificio de coste como destrucción en resolución');
 console.log('Memento A07: destrucción por efecto, envío fijado y negación con costes conservados: OK');
 console.log('Memento A07: Fusión con materiales exactos, bloqueo de Extra y falta de material: OK');
 console.log('Memento A07: Normal adicional de Duque con estado usado y límite por turno: OK');
 console.log('Memento A07: cinco nombres distintos para Creación Combinada: OK');
 console.log('Memento A07: César Xyz con materiales acoplados y requisitos exactos: OK');
 console.log('Memento A07: S:P Link-2 con dos materiales Main y sin destierro inicial: OK');
+console.log('Memento A07: R31 turno de Set y R34 reinicio de una vez por nombre: OK');
+console.log('Memento A07: R26 Sacrificio de Réquiem como coste, distinto de destrucción: OK');
