@@ -21,7 +21,7 @@ const server=http.createServer((req,res)=>{
 });
 (async()=>{
  fs.mkdirSync(out,{recursive:true});await new Promise(r=>server.listen(0,'127.0.0.1',r));
- const browser=await chromium.launch({headless:true}),context=await browser.newContext({viewport:{width:1600,height:1080}}),page=await context.newPage(),errors=[],external=[];
+ const browser=await chromium.launch({headless:true,...(process.env.CALCULATOR_CHROMIUM_PATH?{executablePath:process.env.CALCULATOR_CHROMIUM_PATH}:{})}),context=await browser.newContext({viewport:{width:1600,height:1080}}),page=await context.newPage(),errors=[],external=[];
  const origin=`http://127.0.0.1:${server.address().port}`;
  page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>d.accept());
  await page.route('**/*',r=>{if(!r.request().url().startsWith(origin)){external.push(r.request().url());return r.abort();}return r.continue();});

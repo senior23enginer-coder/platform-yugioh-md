@@ -62,7 +62,7 @@ const html =
     fs.createReadStream(f).pipe(res);
   });
   await new Promise((r) => server.listen(0, "127.0.0.1", r));
-  const browser = await chromium.launch();
+  const browser = await chromium.launch(process.env.CALCULATOR_CHROMIUM_PATH ? { executablePath: process.env.CALCULATOR_CHROMIUM_PATH } : {});
   try {
     for (const width of [1440, 390]) {
       const page = await browser.newPage({ viewport: { width, height: 1000 } }),

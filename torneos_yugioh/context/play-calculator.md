@@ -118,6 +118,18 @@ críticas sin interpretación se rechazan. Las rutas A08–A10 del repositorio
 externo son referencias documentales: solo una regla ejecutable con identidad,
 fuente, guardas, coste y resolución verificados puede incorporarse al motor.
 
+**Contrato verificable del objetivo estratégico:** `npm run test:strategy`
+comprueba los cinco objetivos (`balanced`, `removal`, `board`, `resources`,
+`resilience`), ordenación correcta para cada uno, cálculo determinista,
+inmutabilidad del tablero, trazabilidad de estados y fuentes por paso,
+identidad oculta no inventada y valor predeterminado para objetivos inválidos.
+Los tres tests puros del calculador (`calculator_strategy_test.cjs`,
+`calculator_battle_test.cjs`, `calculator_rule_operations_test.cjs`) forman
+parte de `npm test`. El criterio funcional de **selección y ordenación de
+objetivos** queda cubierto por esas pruebas; la inspección visual con
+Playwright sigue siendo un control independiente y obligatorio antes de
+declarar certificación integral de interfaz.
+
 `battle.js` estudia aritméticamente ataques con ATK/DEF acreditados durante la
 Battle Phase TCG/GOAT; no ejecuta ataques, revela cartas colocadas, modifica LP,
 afirma OTK ni omite efectos de carta. Si no hay monstruos rivales calcula el
