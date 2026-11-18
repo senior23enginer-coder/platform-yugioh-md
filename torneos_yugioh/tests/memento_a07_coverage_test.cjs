@@ -24,9 +24,10 @@ const blocked = new Set(coverage.blocked_rule_cases_p1.map(c => c.id));
 assert.equal(added.size,22);
 assert.equal(blocked.size,0);
 assert(coverage.incremental_rule_cases_p1.every(c =>
-  ['ENGINE_TESTED_RESTRICTED_CASE','NEGATIVE_INVENTORY_GUARD_ONLY','CONDITION_GUARD_ONLY'].includes(c.status) && c.scope));
-assert.deepEqual(coverage.incremental_rule_cases_p1.filter(c=>c.status==='NEGATIVE_INVENTORY_GUARD_ONLY').map(c=>c.id),['R12']);
-assert.deepEqual(coverage.incremental_rule_cases_p1.filter(c=>c.status==='CONDITION_GUARD_ONLY').map(c=>c.id),['R24']);
+  ['ENGINE_TESTED_RESTRICTED_CASE','ENGINE_TESTED_INVENTORY_GUARD'].includes(c.status) && c.scope));
+assert.deepEqual(coverage.incremental_rule_cases_p1.filter(c=>c.status==='ENGINE_TESTED_INVENTORY_GUARD').map(c=>c.id),['R12']);
+assert.deepEqual(coverage.r12_r24_focused_evidence.map(c=>c.id),['R12','R24']);
+assert(coverage.r12_r24_focused_evidence.every(c=>c.test==='torneos_yugioh/tests/memento_a07_r12_r24_test.cjs' && c.scope));
 assert(coverage.blocked_rule_cases_p1.every(c => c.status === 'OPERATOR_PENDING_FAIL_CLOSED' && c.operator));
 assert.equal([...already,...added,...blocked].length,34,'Ninguna regla R01-R34 puede estar duplicada entre estados');
 assert.equal(new Set([...already,...added,...blocked]).size,34,'Punto 1 debe clasificar exactamente R01-R34');
