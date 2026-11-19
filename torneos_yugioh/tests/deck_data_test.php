@@ -4,6 +4,27 @@ require_once __DIR__.'/../includes/decks/data-http.php';
 function check(bool $value,string $message): void { if(!$value)throw new RuntimeException($message); }
 function fails(callable $fn,string $message):void{try{$fn();}catch(InvalidArgumentException|DomainException $e){return;}throw new RuntimeException($message);}
 $app=dirname(__DIR__);$state=ygo_data_read($app.'/assets/editorial/strategy-content-state.json');$count=0;$raws=0;
+// Canonical pilot identities: the prompt generator must not replace these with invented IDs.
+foreach ([671=>['main'=>41,'extra'=>15,'side'=>14,'tech'=>0,'cards'=>39,'routes'=>12],677=>['main'=>40,'extra'=>15,'side'=>15,'tech'=>0,'cards'=>39,'routes'=>14]] as $pilotId=>$expected) {
+    check(isset($state['checked_studies'][(string)$pilotId]),'Missing canonical study for '.$pilotId);
+    $pilot=ygo_data_read(ygo_data_local($app,$state['checked_studies'][(string)$pilotId]['path']));
+    check((int)$pilot['deck_id']===$pilotId,'Incorrect pilot deck ID');
+    check(($pilot['schema']??'')==='station-x-curated-v62','Incorrect pilot record schema');
+    check(($pilot['format']??'')==='tcg_advanced','Incorrect pilot format');
+    check(count($pilot['cards'])===$expected['cards'],'Pilot card identity drift '.$pilotId);
+    check(count($pilot['routes'])===$expected['routes'],'Pilot route count drift '.$pilotId);
+    $zones=['main'=>0,'extra'=>0,'side'=>0,'tech'=>0];
+    foreach($pilot['cards'] as $card)foreach($card['slots'] as $slot){
+        $zone=$slot['section'];
+        check(isset($zones[$zone]),'Unknown zone in pilot '.$pilotId);
+        $zones[$zone]+=(int)$slot['quantity'];
+    }
+    check($zones===array_intersect_key($expected,$zones),'Pilot physical inventory drift '.$pilotId);
+    $sourceIds=array_column($pilot['routes'],'id');
+    check(count($sourceIds)===count(array_unique($sourceIds)),'Duplicate pilot route ID '.$pilotId);
+    // No calculator rules means these routes remain documentary, not engine-certified.
+    if(!isset($pilot['calculator']))check(!isset($pilot['calculator']['rules']),'Pilot calculator claim not justified');
+}
 foreach($state['checked_studies'] as $id=>$entry){
     $r=ygo_data_read(ygo_data_local($app,$entry['path']));$cards=[];
     foreach($r['cards'] as $card)foreach($card['slots'] as $s)$cards[]=['id'=>$s['card_id'],'deck_id'=>(int)$id,'card_name'=>$card['name'],'section'=>$s['section'],'quantity'=>$s['quantity'],'ygoprodeck_id'=>null];
