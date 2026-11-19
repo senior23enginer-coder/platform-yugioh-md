@@ -6,6 +6,18 @@ Las herramientas activas de importación y sincronización leen por defecto el c
 
 Repositorio oficial de la plataforma: https://github.com/senior23enginer-coder/platform-yugioh-md. Todo cambio de código, pruebas, documentación y contenido editorial de Yu-Gi-Oh se mantiene aquí.
 
+## Contrato único para entregas generadas por IA
+
+El idioma de explicación, guías y diagnósticos es **español**; los nombres oficiales de cartas y las claves de esquemas JSON no se traducen. El módulo «Importar / exportar Data» utiliza **una carpeta por deck**, conservando el nombre original `DECK_*` que entrega la exportación, incluso cuando tenga la forma histórica `DECK_NUEVO_12_*`.
+
+- **Crear deck nuevo:** usar primero la plantilla TXT nativa `# STATIONX-DECK-TEMPLATE/1` para dar de alta la identidad y cartas; luego abrir el deck y **exportar Data**. El paquete exportado provee un `deck_id` y una huella `inventory_sha256` reales. Una IA no debe inventarlos.
+- **Actualizar deck existente:** exportar Data desde el deck que se desea actualizar; entregar el ZIP a la IA, que debe devolver el mismo árbol con `datos/stationx-deck.json` y los archivos A01–A10 pertinentes. No cambiar la carpeta de origen, los IDs de cartas, CIDs, slots, inventario, Skills ni los IDs de las rutas.
+- **Fuente interactiva:** `station-x-deck-package/1` contiene `record.schema=station-x-curated-v62` con `profile`, `cards`, `skills`, `summary`, `engine_maps`, `routes`, `decisions` y `practice`. Los documentos Markdown y HTML son complementarios. Para editar el JSON, usar `content_mode=structured`; el modo `markdown` solo transforma una parte del material.
+- **Calculadora:** `record.calculator` es opcional y solo puede declarar `station-x-calculator/1` con reglas verificadas para ese deck y formato. La ausencia de reglas no impide documentar o importar, pero prohíbe afirmar que todos sus combos son ejecutables.
+- **Seguridad:** no sobrescribir inventarios ni revisiones manuales; el ZIP debe conservar `package_root`, `inventory`, `inventory_sha256`, `source_document` y `baseline` sin falsear hashes. Previsualizar y validar antes de confirmar la importación. La importación de contenidos y el despliegue de código son operaciones separadas.
+
+Las pruebas de regresión de `torneos_yugioh/tests/deck_data_test.php` incluyen los pilotos Memento (ID 671; 41/15/14/0; 12 rutas) y Crystron/Horus (ID 677; 40/15/15/0; 14 rutas). Estas pruebas validan estructura y paridad de datos, **no** jugadas completas del motor.
+
 ## Estructura
 
 - `torneos_yugioh/`: aplicación PHP, frontend, recursos, pruebas y herramientas editoriales.
