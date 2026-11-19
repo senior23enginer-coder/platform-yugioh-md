@@ -6,6 +6,16 @@ Las herramientas activas de importación y sincronización leen por defecto el c
 
 Repositorio oficial de la plataforma: https://github.com/senior23enginer-coder/platform-yugioh-md. Todo cambio de código, pruebas, documentación y contenido editorial de Yu-Gi-Oh se mantiene aquí.
 
+## Sincronización de decks TXT con el repositorio GPT
+
+En «Crear deck desde plantilla TXT», la acción **«Enviar al repositorio GPT»** es independiente de «Sincronizar listado». Solo admite decks dados de alta desde TXT (registrados en el registro de auditoría), exige permiso de edición y token CSRF, y hace llamadas **desde PHP** a GitHub. No utiliza ni publica tokens en el navegador, y no ejecuta prompts A01–A10.
+
+**Configuración necesaria en el servidor PHP:** establecer la variable de entorno `STATIONX_GITHUB_TOKEN` con un token limitado al repositorio `senior23enginer-coder/gpt-yugioh-promps-platform` y permiso Contents: Read and write. Habilitar PHP cURL y HTTPS. No almacenar el token en archivos públicos ni en el repositorio. Hasta configurarlo, el botón devolverá un error explicativo y no modificará GitHub.
+
+Al enviar un deck nuevo, la plataforma consulta la lista y los IDs reales en la base de datos, crea una carpeta única `01_INFORMACION_PARA_IMPORTAR/decks/DECK_<id>_<nombre>/` con `datos/stationx-deck.json`, el documento `*_CONTENIDO_CURADO.md` inicial y `datos/stationx-origen.json`. Un nuevo envío no modifica estudios, guías, fotos ni el paquete JSON ya existentes. Valida `deck_id` e `inventory_sha256` contra lo encontrado en GitHub, rechaza divergencias y usa el SHA de GitHub al actualizar el único manifiesto de origen.
+
+**No se ejecutan los prompts, no se importan estudios de vuelta a Station X y no se despliega código por esta acción.** Después, el propietario trabaja manualmente A01–A10 en GPT y utiliza «Importar / exportar Data» para traer un ZIP validado. Las pruebas de `deck_template_test.php` simulan GitHub sin red y comprueban creación, repetición idempotente, protección de contenido y rechazo de inventarios diferentes.
+
 ## Estructura
 
 - `torneos_yugioh/`: aplicación PHP, frontend, recursos, pruebas y herramientas editoriales.
