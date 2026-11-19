@@ -57,6 +57,11 @@ jobs:
       - name: Verify calculator contract
         run: node scripts/test-calculator-general.cjs
 
+      - name: Verify deck TXT template import
+        run: |
+          php -l torneos_yugioh/includes/decks/template-import.php
+          php torneos_yugioh/tests/deck_template_test.php
+
       - name: Prepare release identity
         if: github.event_name == 'pull_request'
         shell: bash

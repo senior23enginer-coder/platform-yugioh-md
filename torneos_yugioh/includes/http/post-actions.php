@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__ . '/../decks/template-import.php';
 
 /**
  * post-actions: compatibility services extracted from the web entry point.
@@ -24,6 +25,7 @@ function ygo_handle_post_serialized(PDO $pdo): ?string
     if (!ygo_can_edit()) {
         return 'gestion_no_disponible';
     }
+    if ($action === 'import_deck_template') return ygo_import_deck_template($pdo, $_FILES['deck_template_txt'] ?? []);
     if($action==='configure_statistics_global'){
         $mapping=[];foreach(['FULL','REDUCED','BONUS'] as $code)if(isset($_POST['statistics_k_'.$code])){$value=filter_var($_POST['statistics_k_'.$code],FILTER_VALIDATE_INT);if($value===false)throw new InvalidArgumentException('Importancia estadistica invalida.');$mapping[$code]=$value;}
         ygo_stats_configure_global($pdo,trim((string)($_POST['statistics_anchor']??'')),$mapping);
