@@ -66,7 +66,7 @@ if (is_file($stationxReleasePath)) {
 <script src="./assets/modules/play-calculator/workspace.js?v=20261116-actions-1" defer></script>
 <script src="./assets/modules/card-inspector/model.js?v=20261116-readable-3" defer></script>
 <script src="./assets/modules/card-inspector/ui.js?v=20261116-readable-3" defer></script>
-<script src="./assets/modules/combo-creator/ui.js?v=20261116-deck-picker-1" defer></script>
+<script src="./assets/modules/combo-creator/ui.js?v=20261119-local-study-photos-1" defer></script>
 <script src="./assets/modules/match-sheet/navigation.js?v=20261104-match-sheet-134" defer></script>
 <script src="./assets/modules/match-sheet/entity-links.js?v=20261117-entity-links" defer></script>
 <link href="./assets/modules/deck-guide/checked-study.css?v=20261104-checked-study-137" rel="stylesheet">
