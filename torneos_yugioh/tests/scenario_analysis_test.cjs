@@ -48,6 +48,10 @@ function setup(response) {
 let { s, db } = setup(12950);
 const original = JSON.stringify(s);
 let result = A.solve(s, db, { depth: 1, budget: 100 });
+const resistant = A.solve(s, db, { depth: 1, budget: 100, goal: "resilience" });
+assert.equal(resistant.goal, "resilience");
+assert(resistant.plans.every((p) => p.responseAudit && Number.isFinite(p.resilienceScore)));
+assert(resistant.plans.every((p, i, all) => i === 0 || all[i - 1].resilienceScore >= p.resilienceScore));
 const ash = result.plans
   .flatMap((p) => p.responses)
   .find((r) => r.cid === 12950 && r.state);

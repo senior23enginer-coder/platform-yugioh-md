@@ -1,5 +1,64 @@
 # Calculador de jugadas
 
+## Auditoría del núcleo genérico — contratos de integración
+
+El flujo vigente es `study.js` (identidades y reglas del estudio) →
+`rules.js` (validación y acciones declarativas) → `planner.js` (exploración
+acotada); `chain.js` reutiliza `rules.js` para preparar costes y resolver
+en orden inverso. `engine.js` valida y modifica copias del escenario sin DOM.
+
+**Hallazgos verificados en el código:**
+
+1. **Entrada:** `study.calculator.rules` se incorpora por `deckId` y formato,
+   pero aún se complementa desde `verified-rules.js`. La guía A01–A10, por sí
+   sola, no acredita operaciones ejecutables. El contrato importable
+   `station-x-calculator/1` existe y es opcional.
+2. **Reglas:** `rules.js` rechaza operadores desconocidos y separa costes de
+   resolución, pero su validación contiene restricciones ligadas a CID y
+   recetas específicas (por ejemplo, equipamiento y superposición). No es
+   todavía un intérprete universal de todos los efectos.
+3. **Búsqueda:** `planner.js` combina `R.actions()` con acciones heredadas
+   codificadas por CID. La búsqueda tiene límites de profundidad, anchura y
+   estados, y no garantiza enumerar todas las líneas legales.
+4. **Cadenas:** `chain.js` prepara costes y resuelve efectos propios
+   acreditados de forma inversa; las respuestas rivales son declaraciones
+   condicionales. No hay reproducción general certificada de respuestas a
+   respuestas ni de ventanas y efectos completos del adversario.
+5. **Estado y causalidad:** `engine.js` valida zonas, copias y control;
+   `rules.js` conserva eventos causales y `planner.js` los incluye en su clave
+   de deduplicación. No existe aún un contrato unificado y versionado para
+   todos los eventos, restricciones temporales y efectos simultáneos.
+
+**Criterios de entrada para la siguiente tarea (contrato universal):**
+
+- Definir una única identidad de deck/formato, inventario exacto y referencias
+  oficiales por efecto; los alias no sustituyen un CID acreditado.
+- Publicar un esquema versionado con selectores, guardas, costes, resolución,
+  disparadores, límites, suposiciones, evidencia y resultado de cobertura.
+- Validar las referencias cruzadas y rechazar operaciones no reconocidas,
+  sin ejecutar texto libre ni aceptar casos parcialmente modelados como completos.
+- Probar con al menos dos decks sintéticos que importar reglas de operaciones
+  ya soportadas no exige cambiar `engine.js`, `rules.js` o `planner.js`.
+- Distinguir las reglas declarativas del estudio de los adaptadores heredados,
+  con plan de compatibilidad antes de retirar cualquiera de ellos.
+
+Esta auditoría no certifica el motor ni cambia inventarios, efectos o rutas.
+
+**Avance controlado de turno (módulo genérico):** el botón «Siguiente turno» alterna
+el jugador activo en Duelo (en Práctica conserva el lado propio), incrementa
+el turno, establece la fase de Robo y restituye la Invocación Normal.
+Retira únicamente las negaciones declaradas para el turno anterior, conservando
+las de duración manual. Rechaza avanzar con cadena pendiente o después del
+turno 999. No roba cartas, ejecuta efectos de End/Standby, vence automáticamente
+otras restricciones declarativas ni altera LP; esas acciones requieren captura
+explícita. El cambio conserva el tablero y puede deshacerse.
+
+**Avance de fase:** «Siguiente fase» sigue el orden Robo → Espera → Main 1
+→ Batalla → Main 2 → Final para TCG/GOAT; Rush omite Espera y Main 2. El botón se
+bloquea si hay una cadena pendiente o si ya se alcanzó Final. No decide
+automáticamente si el jugador puede entrar a Batalla, ni ejecuta disparadores,
+robos o efectos; sirve exclusivamente como reloj de captura manual.
+
 Sección independiente de la ficha del deck, junto a la Guía de juego. El módulo es una herramienta de captura y estudio del duelo físico. No escribe decklists, resultados, LP oficiales ni tablas de competición.
 
 ## Uso
@@ -80,6 +139,32 @@ Las listas y rutas se preparan al visitar la ficha con conexion y se almacenan p
 
 Código en `assets/modules/play-calculator/`: motor, almacenamiento, UI, arranque offline y estilos. Vista PHP en `includes/decks/play-calculator-view.php`. Los puntos de integración en `app.js` se limitan a la nueva categoría y a llamar `mount`.
 
+Reglas ejecutables verificadas: `verified-rules.js` incorpora casos estrictamente acotados con fuente oficial de Memento (Hoja Oscura se destruye e Invoca Goblin del Deck; Goblin se destruye y envía dos nombres acreditados del Deck al Cementerio; Angbruja busca monstruos Memento tras una Invocación registrada; Desvantasma recupera una carta Memento al ser Invocado y puede revivir tras un envío identificado por Goblin; Maza se destruye a sí misma y busca una carta Memento) y Kashtira (Fenrir busca Riseheart). Se cargan mediante `study.js`, se someten a condiciones de fase, zonas, eventos causales y disponibilidad de copias, y no autorizan elecciones o cadenas no modeladas. Las variantes de un mismo efecto comparten un límite por turno y un único marcador en el tablero. Las Invocaciones Normales incluidas de Angbruja, Maza y Desvantasma son procedimientos distintos de la activación de sus efectos. `calculator_verified_rules_test.cjs` prueba el estudio editorial real, el bloqueo de adición al Deck, usos compartidos y la continuación Goblin → Desvantasma → recuperación. El resto de efectos, respuestas y replay de rutas A07–A10 sigue pendiente de certificación.
+
+Creación Combinada (Memento) añade un procedimiento verificable de Invocación Especial desde mano o Cementerio: el motor exige cinco monstruos Memento **distintos**, de identidad conocida y en mano/Cementerio, los baraja al Deck y comprueba la disponibilidad de la zona. No permite invocarla con cuatro nombres, cinco copias del mismo nombre o bajo bloqueo de Invocación Especial. Es un procedimiento, no una activación de efecto. El soporte está acotado a las cinco identidades Memento auditadas de este estudio; las demás variantes y efectos continuos siguen pendientes.
+
+Tatsunootoshigo añade dos efectos propios separados: Invocación Especial desde mano sólo si los monstruos propios boca arriba son Memento identificados (el desconocido o ajeno falla cerrado), y destrucción de Angbruja Nivel 3 con envío verificado de Desvantasma Nivel 2, sola o junto a Goblin Nivel 1. Ambos efectos tienen marcas de uso independientes; la segunda alternativa conserva causalidad para la Invocación de Desvantasma. Los demás niveles, víctimas y envíos de Tatsunootoshigo no se consideran aún implementados.
+
+Fiesta de Huesos tiene opciones ejecutables restringidas a cinco parejas verificadas de monstruos Memento de nombres diferentes, desde mano o campo propio boca arriba: destruir el primero y añadir el segundo del Deck o Invocarlo Especialmente en Defensa en una zona legal. La Mágica Rápida se consume al activarse, conserva su ida al Cementerio cuando se niega el efecto y registra el evento de Invocación; las parejas restantes, su efecto de perforación desde Cementerio y las demás ventanas rivales aún no están modeladas.
+
+Dormiveja posee tres efectos ejecutables acotados e independientes: Invocación Especial desde mano únicamente tras una destrucción de monstruo propio por efecto registrada **en el turno actual**; envío de Angbruja o Desvantasma del Deck tras destrucción propia por efecto; y Fusión de Rey Creación sólo mediante Dormiveja + Angbruja + Desvantasma conocidos en mano/campo. No se presenta como cobertura de todas las recetas, destrucción por batalla, ventanas de respuesta ni efectos posteriores del monstruo de Fusión. El guardia de destrucción incluye propietario y turno para no atribuir a un jugador eventos de otro.
+
+Fusión Mementotlán dispone de una receta verificable de Rey Creación usando Angbruja, Desvantasma y Dormiveja en mano/campo, y una variante de Cementerio que se destierra como coste, destruye una Angbruja propia y añade Mementomictlán o Fiesta de Huesos. Rey Creación puede desterrarse desde Cementerio como coste para buscar Mementomictlán, o destruirse a sí mismo junto con un monstruo rival boca arriba identificado mediante su efecto rápido. Las demás recetas, envíos del Extra, grupos de objetivos, prioridades de cadena y efectos simultáneos quedan explícitamente fuera de estos casos estrictos.
+
+La misma Fusión Mementotlán también permite una receta exacta de Dragón Gemelo con Angbruja y Desvantasma; cuando aparece por Fusión se acredita su variante de destruir Dormiveja y añadir Tatsunootoshigo y Goblin del Deck. Mementomictlán se activa desde mano si la zona de Campo está disponible y, al final de tu turno, puede colocar Fiesta de Huesos o Fusión Mementotlán desde el Cementerio con historial de colocación. Su bloqueo continuo de Magias/Trampas durante batalla y su efecto de Invocación posterior a una destrucción siguen sin simulación automática.
+
+Dragón de Cuerno puede Invocarse desde mano con tres nombres Memento distintos en Cementerio; si fue destruido en campo por efecto existe un caso verificable de tres objetivos boca arriba. Akhíron recupera una carta Memento del Main en Cementerio/destierro después de su propia destrucción por efecto. S:P Pequeña Caballera tiene procedimiento Link-2 exacto con Angbruja y Tatsun de Main, sin atribuir el destierro al Invocarla (requiere material del Extra); Réquiem del Demoniherrero puede Sacrificarse como coste y traer Grabador del Deck en zona libre. Todos estos casos son parciales y se comprueban sin interpretar prosa como código ni extender sus efectos no acreditados.
+
+La familia Demoniherrero incorpora dos procedimientos Link exactos desde Luna del Cielo Cerrado (a Réquiem o a Secuencia con Goblin), el equipamiento de Réquiem desde Cementerio a Grabador, el envío conjunto del equipo realmente vinculado y un monstruo rival desde campo al Cementerio por efecto de Grabador, y la Invocación Especial de Grabador tras devolver Réquiem del Cementerio al Extra como coste. Secuencia puede barajar Grabador y Goblin del Cementerio al Deck para Fusionar al Duque de la Defunción; el Duque puede desterrarse desde Cementerio como coste para recuperar Grabador. Dragostapelia coloca un contador Depredador sobre un monstruo rival boca arriba; aún no se aplica la reducción de Nivel ni la negación continua asociada al contador. Son recetas parciales y verificadas por tests del estudio real, no resolución universal de cadenas. **Atención a la legalidad del formato:** la base oficial muestra Luna del Cielo Cerrado y Llamado por la Tumba como Prohibidas en TCG a fecha de consulta; la captura del deck no constituye un certificado de lista de prohibiciones vigente.
+
+Bloque 1, seguimiento de efectos: los efectos declarativos con varias zonas o materiales comparten una sola marca de uso por turno en el panel y no generan casillas duplicadas. Se conserva el registro manual `rule:<id>` del turno actual y se restaura el permiso en el turno siguiente. Las listas de CID y la exigencia de nombres diferentes son validadas en el adaptador; no se aceptan identificadores ni selecciones libres sin acreditar. La captura CL1–CL20 sigue siendo descriptiva: si hay una cadena pendiente, la búsqueda se detiene hasta actualizar el estado; aún no hay un solucionador general de cadenas.
+
+La identidad de búsqueda también conserva los eventos causales `_ruleEvents` (destrucción, envío por efecto, materiales, disparadores), incluso cuando dos ramas llegan al mismo tablero visible. Los puntos de coste pagado conservan esos eventos sin mutar el estado original. Esto evita que una rama sin disparador acreditado herede acciones de otra rama causalmente distinta.
+
+La captura estructurada permite **reproducir condicionalmente** efectos propios acreditados y negaciones de efecto o activación declaradas por el jugador. El motor `chain.js` usa el adaptador de reglas para conservar costes, comprobar las copias exactas y ofrecer estados resultantes aplicables al tablero. Si el efecto, la copia, los costes o la semántica de negación no están acreditados, se rechaza el replay.
+
+Extensión de cadenas: el motor puede procesar hasta 20 eslabones estructurados cuando las activaciones propias tienen reglas verificadas, velocidad 2 en los eslabones posteriores al primero y coste pagable en el estado de activación. Primero paga costes CL1→CL20 y después resuelve efectos CL20→CL1; las negaciones rivales declaradas afectan únicamente a la activación propia inmediata anterior. Se conservan los límites expresos de uso tras negar activación. No certifica todavía cartas, costes, objetivos ni velocidades del rival ni respuestas a respuestas rivales; esas cadenas se rechazan. El caso CL1–CL4 del test demuestra resolución inversa, bloqueos y negación selectiva.
+
 - `npm run test:planner`: secuencias nuevas, HOPT, costes, materiales, zonas, información oculta, aislamiento de formato e inmutabilidad.
 - `npm test`: pruebas puras del motor, además de las suites de la plataforma y conservación editorial.
 - `npm run test:calculator`: Playwright local, arrastre real, selección de zonas, cartas desconocidas, cambio a Rush, independencia de escenarios, diseño móvil y reapertura con red desactivada mediante un service worker real. Sin solicitudes externas ni acceso a producción.
@@ -100,3 +185,63 @@ La calculadora consulta `strategy-content-state.json`, igual que la biblioteca v
 Se estudia una respuesta por rama, con hasta doce ramas entre todas las propuestas y búsqueda acotada de continuaciones. No acredita cadenas arbitrarias, inmunidades, efectos simultáneos ni una segunda respuesta. Nibiru se identifica como respuesta pendiente: no se inventa el conteo de Invocaciones, Sacrificios ni Ficha. Las Skills y efectos Rush siguen requiriendo sus contratos y operadores específicos; no se aplican reglas TCG por analogía.
 
 Los datos actuales aportan **cero reglas declarativas**: el nuevo intérprete está probado, pero la documentación previa no equivale a su implementación. `node torneos_yugioh/tools/calculator_coverage.cjs` produce un informe local por cada deck y la lista de efectos faltantes; no conecta con la BD, no modifica inventarios y no escribe en la carpeta importable de prompts. `scenario_analysis_test.cjs` verifica los 16 estudios, respuestas, atomicidad, identidades y separación de formatos. `calculator_import_test.php` verifica el contrato ZIP/Markdown.
+# Priorización estratégica local (rama calculator-combo-strategy)
+
+El jugador puede elegir entre objetivos **equilibrado**, **romper campo**,
+**desarrollar campo**, **conservar recursos** y **resistencia a respuestas
+conocidas** antes de analizar un escenario.
+El mismo explorador acotado ordena estados mediante ponderaciones explícitas:
+cartas rivales retiradas del campo, valoración aproximada de monstruos propios,
+cartas propias conservadas en mano y número de acciones. El resultado muestra
+los indicadores observables por alternativa y la puntuación heurística relativa
+al estado inicial. Este orden **no** certifica legalidad integral, OTK,
+interrupciones disponibles, seguridad frente a respuestas desconocidas ni
+probabilidad de victoria. No debe etiquetarse como «mejor jugada» absoluta.
+
+Los efectos no modelados siguen excluidos y los estados con restricciones
+críticas sin interpretación se rechazan. Las rutas A08–A10 del repositorio
+externo son referencias documentales: solo una regla ejecutable con identidad,
+fuente, guardas, coste y resolución verificados puede incorporarse al motor.
+
+**Contrato verificable del objetivo estratégico:** `npm run test:strategy`
+comprueba los cinco objetivos (`balanced`, `removal`, `board`, `resources`,
+`resilience`), ordenación correcta para cada uno, cálculo determinista,
+inmutabilidad del tablero, trazabilidad de estados y fuentes por paso,
+identidad oculta no inventada y valor predeterminado para objetivos inválidos.
+Los tres tests puros del calculador (`calculator_strategy_test.cjs`,
+`calculator_battle_test.cjs`, `calculator_rule_operations_test.cjs`) forman
+parte de `npm test`. El criterio funcional de **selección y ordenación de
+objetivos** queda cubierto por esas pruebas; la inspección visual con
+Playwright sigue siendo un control independiente y obligatorio antes de
+declarar certificación integral de interfaz.
+
+`battle.js` estudia aritméticamente ataques con ATK/DEF acreditados durante la
+Battle Phase TCG/GOAT; no ejecuta ataques, revela cartas colocadas, modifica LP,
+afirma OTK ni omite efectos de carta. Si no hay monstruos rivales calcula el
+techo hipotético de un ataque directo por monstruo. Rush permanece sin cálculo
+de combate hasta acreditar sus particularidades. `scenario.js` conserva las
+respuestas conocidas, presenta ramas sin resolución y permite un objetivo de
+resistencia que penaliza las respuestas modeladas sin continuación; no asume
+que el rival carezca de otras interrupciones.
+
+El intérprete `rules.js` admite ahora operaciones estructuradas de daño,
+recuperación de LP, negación con duración y cambio de posición, con validación
+de tipos y condiciones de zona. Aplica intrínsecamente el bloqueo de añadir del
+Deck a la mano y rechaza Invocaciones directas desde Extra sin un procedimiento
+acreditado. Esto amplía el lenguaje de efectos, **no crea automáticamente las
+reglas individuales de las cartas**. La prueba
+`tests/calculator_rule_operations_test.cjs` comprueba estos contratos.
+
+Los estados explorados incluyen ambos totales de LP en su clave de
+deduplicación. Cuando una regla verificada deja LP rivales en cero, la
+búsqueda prioriza ese estado y no genera acciones posteriores al final del
+duelo; una cifra de daño **condicional** no se presenta como victoria segura.
+
+La captura física ahora dispone de **cadena pendiente estructurada**:
+eslabones CL1–CL20 con jugador, identidad conocida opcional y descripción de
+la activación, eliminación individual y deshacer. No se inventa la identidad
+de una carta desconocida. `planner.js` se detiene con explicación mientras
+quede un eslabón pendiente: las cadenas deben resolverse y el estado debe
+actualizarse antes de calcular otras líneas. La prueba
+`calculator_chain_capture_test.cjs` cubre integridad, límites, inmutabilidad,
+numeración y bloqueo del planificador.

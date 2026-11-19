@@ -98,6 +98,7 @@
       nextId: 1,
       confirmed: [],
       usedEffects: "",
+      chain: [],
     };
   }
   const allCards = (s) => [...s.self.cards, ...s.opponent.cards];
@@ -142,6 +143,16 @@
       "Formato de escenario incompatible.",
     );
     if(s.effectUsage!==undefined)assert(Array.isArray(s.effectUsage)&&s.effectUsage.length<=1800&&s.effectUsage.every(e=>Number.isInteger(e.uid)&&e.uid>0&&typeof e.key==='string'&&Number.isInteger(e.slot)&&e.slot>=1&&e.slot<=6&&typeof e.id==='string'&&e.id.length<=80&&Number.isInteger(e.turn)&&e.turn>0),'Efectos utilizados inválidos.');
+    if (s.chain !== undefined)
+      assert(Array.isArray(s.chain) && s.chain.length <= 20 &&
+        s.chain.every((link, i) => link.link === i + 1 &&
+          SIDES.includes(link.side) &&
+          typeof link.cardName === "string" && link.cardName.length <= 250 &&
+          typeof link.effect === "string" && link.effect.trim().length > 0 && link.effect.length <= 300 &&
+          (link.ruleId === undefined || (typeof link.ruleId === "string" && link.ruleId.length <= 100 && link.ruleId.length > 0)) &&
+          (link.actorUid === undefined || (Number.isInteger(link.actorUid) && link.actorUid > 0)) &&
+          (link.outcome === undefined || ["negate-effect", "negate-activation"].includes(link.outcome))),
+      "Cadena pendiente inválida.");
     for (const side of SIDES) {
       assert(
         Number.isInteger(s[side].id) &&
@@ -223,6 +234,13 @@
       "La práctica libre solo utiliza tus cartas y tu lado del tablero.");
     const ids = new Set();
     for (const t of s.tokens) {
+      if (t.currentATK !== undefined)
+        assert(Number.isInteger(t.currentATK) && t.currentATK >= 0 && t.currentATK <= 999999,
+          "ATK actual del monstruo no acreditado.");
+      if (t.setTurn !== undefined)
+        assert(Number.isInteger(t.setTurn) && t.setTurn > 0 &&
+          /^s[1-5]$/.test(t.zone) && t.position === "set",
+        "Turno de colocación inválido.");
       if(t.negation){assert(typeof t.negation.active==='boolean'&&['turn','manual'].includes(t.negation.duration)&&Number.isInteger(t.negation.turn)&&t.negation.turn>0&&typeof t.negation.reason==='string'&&t.negation.reason.length<=300,'Estado de negación inválido.');}
       assert(
         Number.isInteger(t.uid) && t.uid > 0 && !ids.has(t.uid),
@@ -328,8 +346,14 @@
             "Mueve los materiales antes de retirar su monstruo.",
           );
         if((isMonster(token.zone)||/^s[1-5]$/.test(token.zone)||token.zone==='field')&&!(isMonster(zone)||/^s[1-5]$/.test(zone)||zone==='field'))delete token.negation;
+        if (token.xyzSummoned && isMonster(token.zone) && !isMonster(zone))
+          delete token.xyzSummoned;
+        if (token.currentATK !== undefined && isMonster(token.zone) && !isMonster(zone))
+          delete token.currentATK;
         token.zone = zone;
         token.controller = controller;
+        // Una carta colocada abandona su ventana de Set al salir de M/T.
+        if (!/^s[1-5]$/.test(zone)) delete token.setTurn;
       }
     });
   }
@@ -350,10 +374,83 @@
       if (values.unknown) n.unknown = { ...n.unknown, ...values.unknown };
     });
   }
+  // Advance the capture clock only. Drawing and resolving end-of-turn effects
+  // require explicit player input, so neither is inferred here.
+  function advanceTurn(s) {
+    validate(s);
+    assert(!(s.chain || []).length, "Resuelve o retira la cadena pendiente antes de avanzar turno.");
+    assert(s.turn < 999, "Se alcanzó el máximo de turnos del escenario.");
+    return change(s, (n) => {
+      n.turn += 1;
+      n.active = s.practice ? "self" : (s.active === "self" ? "opponent" : "self");
+      n.phase = "draw";
+      n.normalAvailable = true;
+      for (const token of n.tokens) {
+        if (token.negation?.duration === "turn" && token.negation.turn < n.turn)
+          delete token.negation;
+      }
+    });
+  }
+  function advancePhase(s) {
+    validate(s);
+    assert(!(s.chain || []).length, "Resuelve o retira la cadena pendiente antes de cambiar fase.");
+    const phases = s.format === "rush_duel"
+      ? ["draw", "main1", "battle", "end"]
+      : ["draw", "standby", "main1", "battle", "main2", "end"];
+    const index = phases.indexOf(s.phase);
+    assert(index >= 0 && index < phases.length - 1,
+      "La fase Final requiere avanzar al turno siguiente.");
+    return change(s, (n) => { n.phase = phases[index + 1]; });
+  }
+  // A witness of an opponent's Extra Deck summon, not a proof of the materials
+  // or the full legal summoning procedure. Record it only with an identified
+  // Extra Deck card and an actual occupied monster zone in the resulting state.
+  function observeExtraSummon(s, { key, uid = null, zone }) {
+    assert(!s.practice, "La observación exige un rival identificado.");
+    const card = definition(s, key, "opponent");
+    assert(card && card.section === "extra" && isMonster(zone),
+      "La observación exige una carta rival identificada del Extra Deck.");
+    const prev = uid === null ? s.tokens.find(t => t.key === key &&
+      t.owner === "opponent" && t.zone === "extra") : s.tokens.find(t => t.uid === uid);
+    if (uid !== null) assert(prev && prev.key === key && prev.owner === "opponent" &&
+      prev.zone === "extra", "La copia observada no estaba en el Extra rival.");
+    const next = place(s, { key, uid: prev?.uid ?? null, owner: "opponent",
+      controller: "opponent", zone });
+    const token = next.tokens.find(t => t.key === key && t.owner === "opponent" && t.zone === zone);
+    assert(token, "No se pudo acreditar la Invocación del rival.");
+    next._ruleEvents = [...(next._ruleEvents || []), {
+      kind: "observed_extra_summon", side: "opponent", from: "extra",
+      uid: token.uid, key, turn: next.turn,
+    }];
+    return validate(next);
+  }
+  function appendChain(s, { side, cardName = "", effect, ruleId, actorUid, outcome }) {
+    return change(s, (n) => {
+      assert(SIDES.includes(side), "Selecciona el jugador que activó el eslabón.");
+      assert(typeof effect === "string" && effect.trim() && effect.length <= 300,
+        "Describe el efecto o la activación pendiente (máximo 300 caracteres).");
+      n.chain ||= [];
+      assert(n.chain.length < 20, "La cadena alcanzó el límite de captura.");
+      n.chain.push({ link: n.chain.length + 1, side,
+        cardName: String(cardName).slice(0, 250), effect: effect.trim(),
+        ...(ruleId ? { ruleId, actorUid } : {}), ...(outcome ? { outcome } : {}) });
+    });
+  }
+  function removeChain(s, link) {
+    return change(s, (n) => {
+      assert(Number.isInteger(link) && link >= 1 && link <= (n.chain || []).length,
+        "Eslabón inexistente.");
+      n.chain.splice(link - 1, 1);
+      n.chain.forEach((entry, i) => { entry.link = i + 1; });
+    });
+  }
   function position(s, uid, value) {
     return change(s, (n) => {
       const t = n.tokens.find((t) => t.uid === uid);
       assert(t, "Selecciona una copia.");
+      if (value === "set" && /^s[1-5]$/.test(t.zone)) {
+        if (t.position !== "set" || !Number.isInteger(t.setTurn)) t.setTurn = n.turn;
+      } else if (value !== "set") delete t.setTurn;
       t.position = value;
     });
   }
@@ -642,6 +739,11 @@
     validate,
     place,
     patch,
+    advanceTurn,
+    advancePhase,
+    observeExtraSummon,
+    appendChain,
+    removeChain,
     position,
     cardStatus,
     negated,

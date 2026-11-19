@@ -1,0 +1,410 @@
+{
+  "schema": "station-x-a07-coverage/1",
+  "deck_id": 671,
+  "format": "tcg_advanced",
+  "inventory": {
+    "main": 41,
+    "extra": 15,
+    "side": 14,
+    "reserve": 0
+  },
+  "source": "Memento A07 R01–R34, 18-11-2026",
+  "meaning": "Estado de cobertura ejecutable del motor, independiente de la comprobación documental oficial.",
+  "rules": [
+    {
+      "id": "R01",
+      "capability": "start_of_main1_and_continuous_summon_lock",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R02",
+      "capability": "summon_trigger_search",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R03",
+      "capability": "conditional_special_summon",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R04",
+      "capability": "destruction_then_level_bounded_deck_send",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R05",
+      "capability": "causality_sensitive_graveyard_trigger",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R06",
+      "capability": "fusion_materials_and_prior_destruction",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R07",
+      "capability": "fusion_trigger_multi_target_destroy",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R08",
+      "capability": "five_distinct_name_shuffle_summon",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R09",
+      "capability": "destroy_then_search_or_defense_summon",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R10",
+      "capability": "link_materials_equip_and_target_send",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R11",
+      "capability": "extra_summon_conditions_and_restrictions",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R12",
+      "capability": "deck_inventory_guard",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R13",
+      "capability": "two_named_effects_with_different_costs",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R14",
+      "capability": "conditional_graveyard_fusion_materials",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R15",
+      "capability": "fusion_trigger_hand_destruction",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R16",
+      "capability": "fusion_materials_draw_and_destroy",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R17",
+      "capability": "link_material_origin_and_quick_effect",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R18",
+      "capability": "discard_cost_zone_condition",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R19",
+      "capability": "equipped_monster_summon_procedure",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R20",
+      "capability": "link_then_graveyard_fusion",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R21",
+      "capability": "additional_normal_and_delayed_cost",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R22",
+      "capability": "three_distinct_graveyard_names_then_target_destroy",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R23",
+      "capability": "set_turn_quick_spell_and_counter",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R24",
+      "capability": "special_summon_count_history_xyz_overlay",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R25",
+      "capability": "xyz_materials_and_conditional_damage",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R26",
+      "capability": "tribute_cost_vs_destruction",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R27",
+      "capability": "xyz_materials_activation_negation",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R28",
+      "capability": "start_of_main_cost_choice_banish_face_down",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R29",
+      "capability": "no_cards_control_and_conditional_draw",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R30",
+      "capability": "both_sides_banish_prevention",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R31",
+      "capability": "set_turn_quick_spell_window",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R32",
+      "capability": "costs_persist_when_effect_negated",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R33",
+      "capability": "extra_material_types_and_placements",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    },
+    {
+      "id": "R34",
+      "capability": "once_per_name_and_chain_separation",
+      "status": "DOCUMENTED_NOT_ENGINE_TESTED",
+      "engine_test_id": null
+    }
+  ],
+  "routes": [
+    {
+      "id": "C01",
+      "status": "NO_REPLAY_CERTIFIED"
+    },
+    {
+      "id": "C02",
+      "status": "NO_REPLAY_CERTIFIED"
+    },
+    {
+      "id": "C03",
+      "status": "NO_REPLAY_CERTIFIED"
+    },
+    {
+      "id": "C04",
+      "status": "NO_REPLAY_CERTIFIED"
+    },
+    {
+      "id": "C05",
+      "status": "NO_REPLAY_CERTIFIED"
+    },
+    {
+      "id": "C06",
+      "status": "NO_REPLAY_CERTIFIED"
+    },
+    {
+      "id": "C07",
+      "status": "NO_REPLAY_CERTIFIED"
+    },
+    {
+      "id": "C08",
+      "status": "NO_REPLAY_CERTIFIED"
+    },
+    {
+      "id": "C09",
+      "status": "NO_REPLAY_CERTIFIED"
+    },
+    {
+      "id": "C10",
+      "status": "NO_REPLAY_CERTIFIED"
+    },
+    {
+      "id": "C11",
+      "status": "NO_REPLAY_CERTIFIED"
+    },
+    {
+      "id": "C12",
+      "status": "NO_REPLAY_CERTIFIED"
+    }
+  ],
+  "partial_engine_cases": [
+    {
+      "id": "671:A07:R04:restricted-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "Destrucción por efecto de un objetivo fijo en campo y envío fijo desde Deck; no acredita selección general ni suma de niveles"
+    },
+    {
+      "id": "671:A07:R32:cost-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "Negación de efecto que conserva costes; no acredita negación de activación ni cadenas completas"
+    },
+    {
+      "id": "671:A07:R06:exact-materials-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "Fusión del caso C01 con tres CID exactos de mano/campo; no acredita recetas generales ni Fusión desde Cementerio"
+    },
+    {
+      "id": "671:A07:R21:additional-normal-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "Normal adicional de Duque condicionada a Normal previa consumida; no acredita la obtención previa de Duque ni su coste de Standby"
+    },
+    {
+      "id": "671:A07:R08:five-names-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "Creación Combinada desde GY con cinco CID diferentes fijados; no acredita todas las combinaciones ni restricciones de otros estados"
+    },
+    {
+      "id": "671:A07:R27:two-level-six-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "César Xyz con Duque y Grabador ya presentes y acoplamiento real; no demuestra cómo obtener ambos ni su negación de activación"
+    },
+    {
+      "id": "671:A07:R05:causal-trigger-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "Desvantasma revive solo si consta envío por efecto de Tatsun en este turno; no acredita todos los orígenes ni su recuperación posterior"
+    },
+    {
+      "id": "671:A07:R32:activation-negated-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "Diferencia entre negar activación y efecto con coste previo; exige declaración expresa del límite de uso, sin modelar aún resolución íntegra de cadenas"
+    },
+    {
+      "id": "671:A07:R17:main-material-link-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "S:P Link-2 con Angbruja y Tatsun de Main; los materiales van a GY y no se presume su destierro inicial"
+    },
+    {
+      "id": "671:A07:R31:quick-spell-set-turn-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "La Mágica Rápida colocada en S/T no se activa el turno de Set ni si carece de historial; sí en un turno posterior; no reproduce materiales de Fusión"
+    },
+    {
+      "id": "671:A07:R34:once-per-name-turn-reset-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "El efecto de Duque no se repite en el mismo turno y vuelve a estar disponible en otro turno; no valida separación universal de cadenas"
+    },
+    {
+      "id": "671:A07:R26:requiem-tribute-cost-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "Réquiem ya Invocado tributa como coste, trae Grabador de Deck o conserva el tributo tras negar el efecto; no acredita su ruta Link ni el equipamiento posterior"
+    },
+    {
+      "id": "671:A07:R02:witch-triggered-search-test",
+      "status": "ENGINE_TESTED_RESTRICTED_CASE",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "Normal real de Angbruja en el motor seguida de búsqueda Tatsun solo después del evento de Invocación con UID y turno; no modela la respuesta de Ash ni todas las búsquedas posibles"
+    }
+  ],
+  "incremental_rule_cases_p1": [
+    {"id":"R01","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Oleada al inicio de Main1 antes de otra acción ejecutada por este adaptador: impide Especial propia y no se permite en Main2; no acredita normales de efecto ni aplicación bilateral"},
+    {"id":"R03","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Especial Tatsun desde mano cuando no hay Grabador ni Luna boca arriba; otros no-Memento aún no enumerados"},
+    {"id":"R07","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Rey Invocado mediante Fusión exacta envía tres CID fijos, no atribuye disparador sin evento; sin destrucción rápida de parejas variables"},
+    {"id":"R09","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Fiesta destruye Angbruja propia, invoca Tatsun desde Deck en Defensa y registra evento de Especial; sin elección de cartas variable"},
+    {"id":"R10","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Luna ya Invocada como Demonio LUZ se usa como único material exacto Link-1 de Réquiem; equipamiento y envío de equipo más monstruo pendientes"},
+    {"id":"R11","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Link S:P de dos materiales fijos bloqueado por noExtra; no valida ataque, materiales del Extra ni TY-PHON"},
+    {"id":"R12","status":"ENGINE_TESTED_INVENTORY_GUARD","scope":"Fixture del inventario aprobado 41 Main/15 Extra/14 Side: la búsqueda de M/T Demoniherrero de Grabador no tiene objetivo en Main; la segunda vía GY de Gran Fuga tampoco tiene Xyz Goblin en Extra. Side excluido del duelo; las búsquedas se rechazan sin pagar coste; no existe caso positivo con esta lista"},
+    {"id":"R13","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Fusión en GY se destierra como coste, destruye un Tatsun fijo y busca segunda copia; negación conserva destierro, no acredita toda separación de límites"},
+    {"id":"R14","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Fusión con una Witch en GY solo tras evento acreditado de destrucción propia por efecto en turno actual; baraja ese material al Deck; evento inyectado, sin cadenas"},
+    {"id":"R15","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Dragón Gemelo ya invocado por Fusión destruye Dormiveja en mano y busca jefe+Goblin; sin disparador secundario Dormiveja ni variación de objetivos"},
+    {"id":"R16","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Quimera fusionada con tres CID exactos diferentes y material de mano+campo; sin robo aleatorio ni destrucciones equivalentes"},
+    {"id":"R18","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Maza se descarta en Main rival con jefe propio y cambia control de monstruo rival fijo; retorno de control al final de turno sin temporización pendiente"},
+    {"id":"R19","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Réquiem desde GY se equipa en S1 a Grabador visible y registra vínculo al UID; Invocación alternativa de Princesa y pérdida de equipo siguen pendientes"},
+    {"id":"R20","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Secuencia previamente Invocada fusiona Duque usando Grabador y Goblin ya en GY, barajados al Deck sin destrucción previa; sin ruta Link previa ni recetas variables"},
+    {"id":"R22","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Horn se Invoca desde mano con tres nombres Memento distintos en GY, y rechaza duplicados; destrucción triple de segundo efecto pendiente"},
+    {"id":"R23","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Dragostapelia ya Invocada pone contador Predador a rival boca arriba; sin negación por contador ni Fusión/turno de Set completo"},
+    {"id":"R24","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Dos Especial rivales observadas desde Extra en un mismo turno actual o anterior habilitan superposición TY-PHON sobre el monstruo propio de mayor ATK declarado; transfiere materiales, bloquea posteriores Invocaciones de este turno y efectos de monstruos de 3000+ ATK mientras está boca arriba. Rechaza 1+1 entre turnos, ATK desconocido, objetivo inferior y zonas bloqueadas. Procedencia rival observada, no replay legal de sus materiales ni resolución de cadenas rivales"},
+    {"id":"R25","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Aero Tiburón Xyz con dos copias de Angbruja Nivel 3, materiales acoplados; desacoplamiento y daño por desterradas pendientes"},
+    {"id":"R28","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Gordiano post-Side paga seis cartas físicas del Extra, las destierra boca abajo y devuelve un objetivo rival al Deck; no cubre dos objetivos/coste 12"},
+    {"id":"R29","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Fuwalos desde mano en turno rival solo con cero cartas propias; no reproduce robos reactivos ni ajuste de End Phase"},
+    {"id":"R30","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Lancea en contexto sintético post-Side se Sacrifica desde mano y bloquea destierros propios; vencimiento automático del bloqueo al terminar turno pendiente"},
+    {"id":"R33","status":"ENGINE_TESTED_RESTRICTED_CASE","scope":"Materiales Xyz de dos Angbruja Nivel 3 dejan de ocupar campo; noExtra impide la Invocación; niveles genéricos y otras recetas pendientes"}
+  ],
+  "blocked_rule_cases_p1": [],
+  "r12_r24_focused_evidence": [
+    {"id":"R12","status":"INVENTORY_ABSENCE_CERTIFIED_FOR_APPROVED_FIXTURE","test":"torneos_yugioh/tests/memento_a07_r12_r24_test.cjs","scope":"Coteja 41/15/14 y niega dos búsquedas sin destino; no convierte el Side en Main"},
+    {"id":"R24","status":"ALT_XYZ_ENGINE_TESTED_WITH_OBSERVED_OPPONENT","test":"torneos_yugioh/tests/memento_a07_r12_r24_test.cjs","catalog_rule_id":"671:typhon:highest-atk","scope":"Regla declarativa conectada al catálogo de producción, con siete destinos de zona. Observación identificada de Extra rival; dos invocaciones dentro de un mismo turno, comparación de ATK, superposición con transferencia, bloqueo de posteriores Invocaciones, restricción 3000+ y regresiones negativas. No prueba el procedimiento legal del rival ni motor integral de cadenas; la UI todavía no acredita un flujo de captura del evento observado"}
+  ],
+  "partial_route_cases": [
+    {
+      "id": "C01",
+      "status": "FIXED_STATE_NO_CHAIN_REPLAY",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "Nueve resoluciones consecutivas: Normal Angbruja, búsqueda, Especial Tatsun, destrucción y envío de dos CID, Desvantasma, recuperación, Fusión, envío de Rey y cinco barajados. Rama con búsqueda negada detiene la ruta sin inventar Tatsun; es inyección de negación, no cadena resuelta por motor. Sin adversario completo, selección general de niveles ni HOPT de todos los efectos; NO_REPLAY_CERTIFIED permanece."
+    },
+    {
+      "id": "C02",
+      "status": "FIXED_STATE_NO_CHAIN_REPLAY",
+      "test": "torneos_yugioh/tests/memento_a07_resolution_test.cjs",
+      "scope": "Normal Angbruja, búsqueda de Creación Combinada, Fiesta destruye Witch y trae Tatsun en DEF, Tatsun se destruye y manda tres nombres, cinco nombres se barajan y queda solo el jefe. Sin resolución general de cadenas, niveles, objetivo variable ni respuesta rival; NO_REPLAY_CERTIFIED permanece."
+    }
+  ],
+  "missing_capabilities": [
+    "event_trigger_after_summon",
+    "destroy_vs_send_semantics",
+    "chain_link_negation_and_costs",
+    "fusion_material_constraints_and_resolution",
+    "link_and_xyz_full_summon_procedures",
+    "equip_as_spell_and_targeting",
+    "name_and_level_aggregate_guards",
+    "conditional_continuous_effects",
+    "summon_history_across_turns"
+  ],
+  "notes": [
+    "Ninguna fila DOCUMENTED_NOT_ENGINE_TESTED puede contarse como regla ejecutable probada.",
+    "Los operadores move/take/normal/flag y efectos parciales no reproducen por sí solos estas mecánicas.",
+    "El manifiesto no publica combos ni cambia inventarios.",
+    "Punto 1 A07: 22 reglas anteriormente sin caso; R12 ahora verifica la ausencia de objetivos contra los 41/15/14 aprobados y R24 ejecuta superposición TY-PHON bajo observaciones de Extra rival. La cobertura alcanza 33 reglas con alguna resolución/procedimiento restringido y R12 con rechazo de inventario verificable; ninguna es certificación integral. Cero replays certificados.",
+    "Los casos sintéticos con Lancea simulan exclusivamente una situación posterior a intercambio Side; el inventario aprobado no fue modificado."
+  ]
+}

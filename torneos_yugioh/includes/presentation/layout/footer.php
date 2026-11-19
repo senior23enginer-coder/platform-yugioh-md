@@ -1,5 +1,17 @@
+<?php
+$stationxVersion = 'sin registrar';
+$stationxReleasePath = dirname(__DIR__, 3) . '/release.json';
+if (is_file($stationxReleasePath)) {
+    $stationxRelease = json_decode((string) file_get_contents($stationxReleasePath), true);
+    if (is_array($stationxRelease) && isset($stationxRelease['version']) &&
+        is_string($stationxRelease['version']) &&
+        preg_match('/^v[0-9]+\.[0-9]+\.[0-9]+$/', $stationxRelease['version'])) {
+        $stationxVersion = $stationxRelease['version'];
+    }
+}
+?>
 <footer class="app-footer">
-    <span>YUGIOH MD - Station X Tulua</span>
+    <span>YUGIOH MD - Station X Tulua <small class="ms-2">Versión desplegada: <?= htmlspecialchars($stationxVersion, ENT_QUOTES, 'UTF-8') ?></small></span>
     <span>PHP + Bootstrap 5 + MySQL editable</span>
 </footer>
 
@@ -44,9 +56,10 @@
 <script src="./assets/modules/play-calculator/hand-practice.js?v=20261113-hand-practice-170" defer></script>
 <script src="./assets/modules/play-calculator/storage.js?v=20261103-board-129" defer></script>
 <script src="./assets/modules/play-calculator/card-menu.js?v=20261116-actions-1" defer></script>
-<script src="./assets/modules/play-calculator/rules.js?v=20261118-scenario-1" defer></script>
-<script src="./assets/modules/play-calculator/planner.js?v=20261118-scenario-1" defer></script>
-<script src="./assets/modules/play-calculator/study.js?v=20261118-scenario-1" defer></script><script src="./assets/modules/play-calculator/ui.js?v=20261118-scenario-1" defer></script>
+<script src="./assets/modules/play-calculator/rules.js?v=20261118-block1-6" defer></script>
+<script src="./assets/modules/play-calculator/planner.js?v=20261118-block1-2" defer></script>
+<script src="./assets/modules/play-calculator/verified-rules.js?v=20261118-memento-effects-5" defer></script>
+<script src="./assets/modules/play-calculator/study.js?v=20261118-verified-1" defer></script><script src="./assets/modules/play-calculator/chain.js?v=20261118-chain-2" defer></script><script src="./assets/modules/play-calculator/ui.js?v=20261118-memento-effects-5" defer></script>
 <script src="./assets/modules/combo-creator/model.js?v=20261103-combos-133" defer></script>
 <script src="./assets/modules/combo-creator/step-lesson.js?v=20261113-step-lessons-173" defer></script>
 <script src="./assets/modules/combo-creator/documented-import.js?v=20261116-folder-import-1" defer></script>
@@ -86,6 +99,8 @@
 <script src="./assets/match-editor.js?v=20261027-participants-103" defer></script>
 <script src="./assets/event-audit.js?v=20261021-audit-55" defer></script>
 <script src="./assets/seasons.js?v=20261016-season-editor-4" defer></script>
+<link rel="stylesheet" href="./assets/modules/deck-template/style.css?v=20261119-template-deck-1">
+<script src="./assets/modules/deck-template/ui.js?v=20261119-template-deck-1" defer></script>
 </body>
 </html>
 

@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 require_once dirname(__DIR__, 2) . '/src/autoload.php';
+require_once __DIR__ . '/../decks/template-import.php';
 
 /**
  * post-actions: compatibility services extracted from the web entry point.
@@ -25,6 +26,7 @@ function ygo_handle_post_serialized(PDO $pdo): ?string
     if (!ygo_can_edit()) {
         return 'gestion_no_disponible';
     }
+    if ($action === 'import_deck_template') return ygo_import_deck_template($pdo, $_FILES['deck_template_txt'] ?? []);
     $commands = \StationX\Yugioh\Infrastructure\Composition\NativeFormCommands::early($pdo);
     if ($commands->supports($action)) {
         return $commands->execute(new \StationX\Yugioh\Application\Commands\FormCommand($action, $_POST, $_FILES ?? []));

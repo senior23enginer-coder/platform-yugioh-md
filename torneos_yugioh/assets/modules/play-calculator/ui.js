@@ -61,9 +61,10 @@
       plannerFacts: null,
       planResult: null,
       planBusy: false,
+      chainPreview: null,
       planRequest: 0,
       planWorker: null,
-      planOptions: { used: [], blockedZones: [] },
+      planOptions: { used: [], blockedZones: [], goal: "balanced" },
       matchups: [],
       query: "",
       side: "both",
@@ -130,6 +131,9 @@
               ? [{ catalog: scenario.opponent, study: otherStudy }]
               : []),
           ]);
+          const invalid = (state.plannerFacts.ruleImports || []).filter(r => r.status === "rejected");
+          if (invalid.length) notice("Reglas del estudio no ejecutables: " +
+            invalid.map(r => `deck ${r.deckId}: ${r.message}`).join("; "), true);
           if (selfStudy) {
             state.routes = root.YgoCalculatorStudy.compile(selfStudy, native);
             S.saveRoutes(native.id, {
@@ -163,6 +167,7 @@
       state.history.push(E.clone(state.scenario));
       if (state.history.length > 30) state.history.shift();
       state.scenario = next;
+      state.chainPreview = null;
       invalidatePlan();
       state.selection = null;
       draw();
@@ -426,6 +431,13 @@
     }
     function plannerSettings() {
       const opts = state.planOptions,
+        goals = [
+          ["balanced", "Equilibrado · campo, remoción y recursos"],
+          ["removal", "Romper campo · retirar cartas rivales"],
+          ["board", "Desarrollar campo · presencia de monstruos"],
+          ["resources", "Conservar recursos · cartas en mano"],
+          ["resilience", "Resistencia · respuestas conocidas del rival"],
+        ],
         flags = [
           ["specialBlocked", "No puedo Invocar Especialmente"],
           ["noExtra", "No puedo Invocar desde el Extra"],
@@ -440,7 +452,7 @@
             "No se puede añadir del Main a la mano (por ejemplo, Droll ya resuelto)",
           ],
         ];
-      return `<details class="play-planner-settings"><summary>Restricciones y efectos ya utilizados para calcular</summary><p>Declara los bloqueos actuales. Las notas libres no se interpretan como reglas.</p><div>${flags.map(([key, label]) => `<label><input type="checkbox" data-planner-flag="${key}" ${opts[key] ? "checked" : ""}> ${label}</label>`).join("")}</div><label>Zonas propias bloqueadas (por ejemplo: m1,s2)<input class="form-control" data-planner-zones value="${esc(opts.blockedZones.join(","))}" placeholder="m1,s2,emz1"></label><fieldset><legend>Efectos ya usados este turno</legend>${(root.YgoPlayPlanner?.capabilities(state.scenario, state.plannerFacts || { facts: {}, bindings: {} }) || []).map((e) => `<label><input type="checkbox" data-planner-used="${e.id}" ${opts.used.includes(e.id) ? "checked" : ""}> ${esc(e.label)}</label>`).join("") || "<p>No hay efectos específicos disponibles para marcar.</p>"}</fieldset></details>`;
+      return `<section class="play-planner-settings"><label>Objetivo estratégico de la búsqueda<select class="form-select" data-planner-goal>${goals.map(([value, label]) => `<option value="${value}" ${opts.goal === value ? "selected" : ""}>${label}</option>`).join("")}</select></label><p>La clasificación es una heurística de recursos visibles; no calcula OTK, probabilidades de victoria ni todas las interrupciones.</p><details><summary>Restricciones y efectos ya utilizados para calcular</summary><p>Declara los bloqueos actuales. Las notas libres no se interpretan como reglas.</p><div>${flags.map(([key, label]) => `<label><input type="checkbox" data-planner-flag="${key}" ${opts[key] ? "checked" : ""}> ${label}</label>`).join("")}</div><label>Zonas propias bloqueadas (por ejemplo: m1,s2)<input class="form-control" data-planner-zones value="${esc(opts.blockedZones.join(","))}" placeholder="m1,s2,emz1"></label><fieldset><legend>Efectos ya usados este turno</legend>${(root.YgoPlayPlanner?.capabilities(state.scenario, state.plannerFacts || { facts: {}, bindings: {} }) || []).map((e) => `<label><input type="checkbox" data-planner-used="${e.id}" ${opts.used.includes(e.id) ? "checked" : ""}> ${esc(e.label)}</label>`).join("") || "<p>No hay efectos específicos disponibles para marcar.</p>"}</fieldset></details></section>`;
     }
     function calculate() {
       invalidatePlan();
@@ -455,7 +467,7 @@
       state.planBusy = true;
       const id = state.planRequest;
       const worker = new Worker(
-        "./assets/modules/play-calculator/planner-worker.js?v=20261118-scenario-1",
+        "./assets/modules/play-calculator/planner-worker.js?v=20261118-diagnostics-1",
       );
       state.planWorker = worker;
       worker.onmessage = (e) => {
@@ -523,6 +535,11 @@
       const rows = plan.responses || [];
       return `<details class="play-response-branches"><summary>Si responde el rival · ${rows.length} casos conocidos${plan.responsesLimited ? " · límite de búsqueda alcanzado" : ""}</summary>${rows.length ? rows.map((row) => `<article><h5>Paso ${row.step}: ${esc(row.card)}</h5><p>${row.status === "unresolved" ? "Resolución pendiente de modelar" : "Rama condicional calculada"}</p><p>${esc(row.reason)}</p><ol>${row.chain.map((t) => `<li>${esc(t)}</li>`).join("")}</ol>${row.state ? `<details><summary>Estado tras esta respuesta, incluidos costes pagados</summary>${renderState(row.state)}</details>` : ""}${row.continuations.map((next, i) => `<details><summary>Continuación ${i + 1} desde ese estado</summary><ol>${next.steps.map((step) => `<li>${esc(step.label)}</li>`).join("")}</ol>${renderState(next.final)}</details>`).join("")}${row.continuationReason ? `<p>${esc(row.continuationReason)}</p>` : ""}<p>${row.limits.map(esc).join(" ")}</p><a href="${esc(row.source)}" target="_blank" rel="noopener">Texto oficial de la respuesta</a></article>`).join("") : "<p>No se calculó una respuesta con las cartas conocidas y ventanas implementadas. Esto no demuestra que no existan respuestas.</p>"}</details>`;
     }
+    function battleView(battle) {
+      if (!battle) return "";
+      const entries = battle.attacks || [];
+      return `<section class="play-scenario-audit"><h4>Estudio de combate (condicional)</h4><p>${esc(battle.reason || "Comparación aritmética de ATK y DEF conocidos.")}</p>${battle.directDamageCeiling !== null ? `<p>Daño directo hipotético máximo de un ataque por monstruo: <b>${battle.directDamageCeiling} LP</b>${battle.possibleLethalArithmetic ? " · supera los LP rivales, pero no certifica OTK" : ""}.</p>` : ""}${entries.length ? `<ul>${entries.map((a) => `<li>${esc(a.attackerName || "Atacante #" + a.attacker)} ${a.target ? "contra " + esc(a.targetName || "carta #" + a.target) : "· ataque directo"}: ${a.status === "unknown" ? "indeterminado" : a.damage + " LP aritméticos"}. ${esc(a.reason)}</li>`).join("")}</ul>` : ""}<details><summary>Límites del estudio de combate</summary><ul>${battle.assumptions.map((a) => `<li>${esc(a)}</li>`).join("")}</ul></details></section>`;
+    }
     function plannerView() {
       if (state.planBusy)
         return '<p role="status">Calculando secuencias y estados posteriores en tu equipo...</p><button type="button" class="btn btn-outline-info" data-planner-cancel>Cancelar cálculo</button>';
@@ -569,7 +586,7 @@
                 .join("")}</section>`,
           )
           .join("");
-      return `<h4>Secuencias calculadas desde tu estado</h4><p>${result.explored} estados explorados · ${result.plans.length} alternativas${result.limited ? " · búsqueda limitada, no exhaustiva" : ""}.</p>${result.reason ? `<p>${esc(result.reason)}</p>` : ""}<details open><summary>Supuestos y límites de estas propuestas</summary><ul>${result.assumptions.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></details>${result.plans.map((p, i) => `<article class="play-computed-plan"><details><summary><b>Opción ${i + 1}: ${p.removed > 0 ? "retirar o tomar " + p.removed + " carta(s) rival(es)" : "desarrollar campo y recursos"}</b></summary><p>${p.steps.length} acciones · prioridad heurística ${p.priority} · LP propios ${p.lp.self}${p.xyzOnly ? " · Extra limitado a Xyz" : ""}.</p><ol>${p.steps.map((step) => `<li><p>${esc(step.label)}</p><div class="play-plan-photos">${pics(step.cards)}</div><a href="${esc(step.source)}" target="_blank" rel="noopener">Fuente de la acción</a><details><summary>Estado después de esta acción</summary><div class="play-plan-state">${renderState(step.after)}</div></details></li>`).join("")}</ol>${responsesView(p, renderState)}<details><summary>Comparar con tu estado inicial y ver el resultado final</summary><h5>Estado capturado</h5><div class="play-plan-state">${renderState(state.scenario.tokens)}</div><h5>Resultado propuesto</h5><div class="play-plan-state">${renderState(p.final)}</div><p>Normal restante: ${p.normalAvailable ? "sí" : "no"}. Esta vista previa no modifica el tablero.</p></details></details></article>`).join("")}<details><summary>Efectos sin modelar en esta lista (${result.unsupported.length} cartas)</summary><p>Sus efectos específicos no se usan para construir estas líneas. Algunas cartas solo disponen del procedimiento básico de Invocación Normal.</p><ul>${result.unsupported.map((c) => `<li>${esc(c.name)}${c.normal ? " ? procedimiento Normal disponible" : ""}</li>`).join("")}</ul></details>`;
+      return `${battleView(result.battle)}<h4>Secuencias calculadas desde tu estado</h4>${result.assessment ? `<p><b>Estado de cálculo: ${esc(result.assessment.label)}.</b> ${esc(result.assessment.explanation)}</p>` : ""}<p><b>Objetivo:</b> ${esc(result.goalLabels?.[result.goal] || "Equilibrado")}. ${result.explored} estados explorados · ${result.plans.length} alternativas${result.limited ? " · búsqueda limitada, no exhaustiva" : ""}.</p>${result.reason ? `<p>${esc(result.reason)}</p>` : ""}<details open><summary>Supuestos y límites de estas propuestas</summary><ul>${result.assumptions.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></details>${result.plans.map((p, i) => `<article class="play-computed-plan"><details><summary><b>Opción ${i + 1}: ${p.removed > 0 ? "retirar o tomar " + p.removed + " carta(s) rival(es)" : "desarrollar campo y recursos"}</b></summary><p>${p.steps.length} acciones · prioridad heurística ${p.priority} · LP propios ${p.lp.self}${p.xyzOnly ? " · Extra limitado a Xyz" : ""}.</p>${p.metrics ? `<p><b>Indicadores observables:</b> ${p.metrics.removed} cartas rivales retiradas · ${p.metrics.hand} cartas propias en mano · ${p.metrics.actions} acciones. No equivalen a una probabilidad de victoria.</p>` : ""}${p.responseAudit ? `<p><b>Respuestas conocidas exploradas:</b> ${p.responseAudit.modeled} ramas condicionales, ${p.responseAudit.unresolved} sin resolver, ${p.responseAudit.noContinuation} sin continuación calculada${p.responseAudit.truncated ? "; presupuesto agotado" : ""}. Esto no mide la seguridad real de la línea.</p>` : ""}<ol>${p.steps.map((step) => `<li><p>${esc(step.label)}</p><div class="play-plan-photos">${pics(step.cards)}</div><a href="${esc(step.source)}" target="_blank" rel="noopener">Fuente de la acción</a><details><summary>Estado después de esta acción</summary><div class="play-plan-state">${renderState(step.after)}</div></details></li>`).join("")}</ol>${responsesView(p, renderState)}<details><summary>Comparar con tu estado inicial y ver el resultado final</summary><h5>Estado capturado</h5><div class="play-plan-state">${renderState(state.scenario.tokens)}</div><h5>Resultado propuesto</h5><div class="play-plan-state">${renderState(p.final)}</div><p>Normal restante: ${p.normalAvailable ? "sí" : "no"}. Esta vista previa no modifica el tablero.</p></details></details></article>`).join("")}<details><summary>Efectos sin modelar en esta lista (${result.unsupported.length} cartas)</summary><p>Sus efectos específicos no se usan para construir estas líneas. Algunas cartas solo disponen del procedimiento básico de Invocación Normal.</p><ul>${result.unsupported.map((c) => `<li>${esc(c.name)}${c.normal ? " ? procedimiento Normal disponible" : ""}</li>`).join("")}</ul></details>`;
     }
     function recommendations() {
       if (!state.analysis)
@@ -592,12 +609,29 @@
       return `<section class="play-hand-practice"><header><h4>${s.practice ? "Prueba tu mano sin oponente" : "Practicar aperturas"}</h4><span>${hand.length} en mano · ${left} en Main</span></header><p>Generar una apertura reinicia este tablero al turno 1 y toma ${s.format === "rush_duel" ? 4 : 5} cartas del Main según sus copias. Los robos de fase son manuales; Extra, Side, Reserva y Skills no se roban.</p><div class="play-actions"><button class="btn btn-primary" type="button" data-play-random-hand>Generar mano aleatoria</button><button class="btn btn-outline-info" type="button" data-play-draw-card ${left ? "" : "disabled"}>Robar 1 carta</button><button class="btn btn-outline-info" type="button" data-play-explore-hand ${hand.length ? "" : "disabled"}>Explorar líneas de esta mano</button></div><div class="play-opening-cards">${hand.map((t) => cardMarkup(E.definition(s, t.key, t.owner), t.owner, t)).join("") || "<p>Genera una apertura o coloca cartas en tu mano.</p>"}</div></section>`;
     }
     function turnBar(s) {
-      return `<section class="play-turn-bar" aria-label="Turno del duelo"><label>Número de turno<input class="form-control" type="number" min="1" max="999" data-play-setting="turn" value="${s.turn}"></label><label>Quién tiene el turno<select class="form-select" data-play-setting="active"><option value="self" ${s.active === "self" ? "selected" : ""}>${esc(s.self.name)} - tu lado</option>${s.practice ? "" : `<option value="opponent" ${s.active === "opponent" ? "selected" : ""}>${esc(s.opponent.name)} - rival</option>`}</select></label><strong>Turno ${s.turn} - ${esc(s[s.active].name)}</strong></section>`;
+      const chains = (s.chain || []).map((link) => `<li>CL${link.link} · ${link.side === "self" ? "Tú" : "Rival"}${link.cardName ? " · " + esc(link.cardName) : ""}: ${esc(link.effect)} <button type="button" data-chain-remove="${link.link}" aria-label="Eliminar eslabón ${link.link}">Eliminar</button></li>`).join("");
+      return `<section class="play-turn-bar" aria-label="Turno del duelo"><label>Número de turno<input class="form-control" type="number" min="1" max="999" data-play-setting="turn" value="${s.turn}"></label><label>Quién tiene el turno<select class="form-select" data-play-setting="active"><option value="self" ${s.active === "self" ? "selected" : ""}>${esc(s.self.name)} - tu lado</option>${s.practice ? "" : `<option value="opponent" ${s.active === "opponent" ? "selected" : ""}>${esc(s.opponent.name)} - rival</option>`}</select></label><strong>Turno ${s.turn} - ${esc(s[s.active].name)}</strong><details class="play-chain-capture"><summary>Cadena pendiente · ${(s.chain || []).length} eslabones</summary><p>Selecciona una carta del tablero o catálogo si conoces su identidad. Captura los eslabones en orden de activación; esta sección no resuelve sus efectos.</p><ol>${chains}</ol><label>Jugador<select class="form-select" data-chain-side><option value="self">Yo</option>${s.practice ? "" : '<option value="opponent">Rival</option>'}</select></label><label>Activación o efecto pendiente<input class="form-control" maxlength="300" data-chain-effect placeholder="Ej.: activa efecto al ser invocado"></label><button type="button" class="btn btn-outline-info" data-chain-add>Añadir eslabón</button></details></section>`;
+    }
+    function chainControls(s) {
+      const unique = new Map();
+      for (const rule of state.plannerFacts?.rules || [])
+        if (rule.deckId === s.self.id && rule.format === s.format && rule.activation && !unique.has(rule.id))
+          unique.set(rule.id, rule.label);
+      const actors = s.tokens.filter((t) => t.controller === "self");
+      const preview = state.chainPreview;
+      return `<div class="play-chain-executable"><p><b>Resolución condicional:</b> selecciona el efecto acreditado de CL1 y su copia. Para CL2 registra solo una negación que hayas comprobado. No se valida automáticamente la carta rival.</p><label>Regla verificada de CL1<select data-chain-rule><option value="">Sin regla ejecutable</option>${[...unique].map(([id, label]) => `<option value="${esc(id)}">${esc(label)}</option>`).join("")}</select></label><label>Copia de CL1<select data-chain-actor><option value="">Selecciona copia</option>${actors.map((t) => `<option value="${t.uid}">#${t.uid} · ${esc(E.definition(s, t.key, t.owner)?.name || t.key)} (${esc(zoneName(t.zone))})</option>`).join("")}</select></label><label>Resultado conocido de CL2<select data-chain-outcome><option value="">Sin resolución acreditada</option><option value="negate-effect">Niega el efecto (declarado)</option><option value="negate-activation">Niega la activación (declarado)</option></select></label><button type="button" class="btn btn-outline-info" data-chain-preview>Calcular eslabones acreditados</button>${preview ? `<p>${esc(preview.status === "conditional" ? preview.warning : preview.reason)}</p>${preview.branches.map((b, i) => `<div><span>${esc(b.label)} · ${b.effectNegated ? "Efecto negado" : "Efecto resuelto"}</span> <button type="button" class="btn btn-outline-info" data-chain-apply="${i}">Aplicar estado ${i + 1}</button></div>`).join("")}` : ""}</div>`;
     }
     function draw() {
       if (instances.get(node) !== state) return;
       const s = state.scenario;
       node.innerHTML = `<header class="play-heading"><div><span class="learn-kicker">Herramienta local de estudio</span><h3>Calculador de jugadas · ${esc(native.name)}</h3><p>Reproduce lo que conoces del duelo. La captura del tablero no ejecuta cartas ni valida automáticamente sus efectos.</p></div><span class="play-offline">${navigator.onLine ? "Cálculo local" : "Sin conexión · cálculo local"}</span></header>${state.externalMode ? "" : `<nav class="play-mode-tabs" aria-label="Modo del calculador"><button type="button" class="btn btn-outline-info" data-play-mode="duel" aria-pressed="${state.mode === "duel"}">Duelo</button><button type="button" class="btn btn-outline-info" data-play-mode="practice" aria-pressed="${state.mode === "practice"}">Práctica</button></nav>`}${state.mode === "duel" ? `<label class="play-opponent">Deck oponente<select class="form-select" data-play-opponent><option value="">Selecciona un oponente</option>${state.opponents.map((o) => opponentOption(o, s)).join("")}</select></label>` : '<p class="play-practice-intro">Práctica sin oponente: genera una mano y explora tus opciones.</p>'}<p data-play-message role="${state.error ? "alert" : "status"}">${esc(state.message)}</p>${s ? `${turnBar(s)}<details class="play-context"><summary>Turno ${s.turn} · ${s.active === "self" ? "Tu turno" : "Turno rival"} · Ajustar estado del duelo</summary><section class="play-setup"><label>Orden inicial<select class="form-select" data-play-setting="goesFirst"><option value="true" ${s.goesFirst ? "selected" : ""}>Empiezo primero</option><option value="false" ${s.goesFirst ? "" : "selected"}>Empiezo segundo</option></select></label><label>Fase<select class="form-select" data-play-setting="phase">${[["draw", "Robo"], ["standby", "Espera"], ["main1", "Main / principal"], ["battle", "Batalla"], ...(s.format === "rush_duel" ? [] : [["main2", "Main 2"]]), ["end", "Final"]].map(([k, v]) => `<option value="${k}" ${s.phase === k ? "selected" : ""}>${v}</option>`).join("")}</select></label><label>Mis LP<input class="form-control" type="number" min="0" max="999999" data-play-lp="self" value="${s.lp.self}"></label><label>LP rival<input class="form-control" type="number" min="0" max="999999" data-play-lp="opponent" value="${s.lp.opponent}"></label><label><input type="checkbox" data-play-setting="normalAvailable" ${s.normalAvailable ? "checked" : ""}> Puedo usar la Invocación Normal</label><label>Mano rival desconocida<input class="form-control" type="number" min="0" max="99" data-play-unknown="hand" value="${s.unknown.hand}"></label><label>Desterradas desconocidas<input class="form-control" type="number" min="0" max="99" data-play-unknown="banished" value="${s.unknown.banished}"></label><label><input type="checkbox" data-play-setting="opponentHandComplete" ${s.opponentHandComplete ? "checked" : ""}> Conozco toda la mano rival</label></section></details>${state.mode === "practice" ? handPractice() : ""}<div class="play-workspace">${positionTools()}<div class="play-board-scroll" tabindex="0" aria-label="Tablero de duelo"><div class="play-board">${s.practice ? '<p class="play-free-field">Práctica libre · sin campo rival</p>' : half("opponent")}${s.format === "tcg_advanced" ? `<div class="play-shared">${slot("self", "emz1")}${slot("self", "emz2")}</div>` : '<div class="play-center">' + (s.format === "rush_duel" ? "RUSH DUEL · 3 zonas por fila" : "GOAT · 5 zonas por fila") + "</div>"}${half("self")}</div></div><aside class="play-tools">${catalogView()}${selectedView()}</aside></div><section class="play-notes"><label>Efectos ya utilizados y restricciones conocidas<textarea class="form-control" maxlength="2000" data-play-setting="usedEffects">${esc(s.usedEffects)}</textarea></label><label>Notas del estado físico<textarea class="form-control" maxlength="4000" data-play-setting="notes">${esc(s.notes)}</textarea></label></section>${plannerSettings()}<div class="play-actions"><button class="btn btn-primary" type="button" data-play-analyze>Analizar escenario y opciones</button><button class="btn btn-outline-info" type="button" data-play-undo ${state.history.length ? "" : "disabled"}>Deshacer</button><button class="btn btn-outline-danger" type="button" data-play-reset>Vaciar tablero</button></div><section class="play-results" aria-live="polite"><h3>Opciones según el estado aportado</h3><p>El motor busca secuencias con las acciones implementadas desde tu mano y campo, y muestra sus estados posteriores. Las respuestas rivales, protecciones y efectos sin modelar requieren comprobación; no se calculan todas las jugadas legales.</p>${auditView()}${plannerView()}<details><summary>Rutas documentadas de referencia</summary>${recommendations()}</details></section>` : '<div class="play-empty"><h4>Elige práctica libre o un rival para preparar el tablero</h4><p>En práctica libre puedes generar aperturas con tu Main y explorar líneas sin seleccionar un oponente. Al elegir un rival se cargan las cartas de ambos decks.</p></div>'}`;
+      if (s) node.querySelector(".play-chain-capture")?.insertAdjacentHTML("beforeend", chainControls(s));
+      if (s) node.querySelector(".play-turn-bar")?.insertAdjacentHTML("beforeend",
+        `<button type="button" class="btn btn-outline-info" data-play-next-turn ${s.turn >= 999 || (s.chain || []).length ? "disabled" : ""}>Siguiente turno · sin robo automático</button>`);
+      if (s) node.querySelector(".play-turn-bar")?.insertAdjacentHTML("beforeend",
+        `<button type="button" class="btn btn-outline-info" data-play-next-phase ${(s.phase === "end" || (s.chain || []).length) ? "disabled" : ""}>Siguiente fase · manual</button>`);
+      if (s) node.querySelector(".play-chain-executable")?.insertAdjacentHTML("afterbegin",
+        "<p>Hasta CL20 con reglas propias verificadas; CL2–CL20 necesitan velocidad 2 acreditada. Las negaciones rivales se simulan únicamente como declaraciones condicionales y no se inventan sus efectos.</p>");
       if (s?.practice) {
         for (const selector of [
           '[data-play-lp="opponent"]',
@@ -636,6 +670,51 @@
             if (!b) return;
             if (b.dataset.playMode) {
               state.setMode(b.dataset.playMode);
+              return;
+            }
+            if (b.hasAttribute("data-play-next-turn")) {
+              commit(E.advanceTurn(state.scenario));
+              notice("Turno avanzado. Declara manualmente el robo y los efectos de transición.");
+              return;
+            }
+            if (b.hasAttribute("data-play-next-phase")) {
+              commit(E.advancePhase(state.scenario));
+              notice("Fase avanzada. No se ejecutaron efectos ni acciones automáticas.");
+              return;
+            }
+            if (b.hasAttribute("data-chain-add")) {
+              const side = node.querySelector("[data-chain-side]").value;
+              const selected = state.selection;
+              const selectedToken = state.scenario.tokens.find((t) => t.uid === selected?.uid);
+              const selectedSide = selectedToken?.controller || selected?.owner;
+              const card = selectedSide === side && selected ? E.definition(state.scenario, selected.key, selected.owner) : null;
+              const ruleId = side === "self" ? node.querySelector("[data-chain-rule]")?.value : "";
+              const actorUid = Number(node.querySelector("[data-chain-actor]")?.value);
+              const outcome = side === "opponent" ? node.querySelector("[data-chain-outcome]")?.value : "";
+              commit(E.appendChain(state.scenario, {
+                side,
+                cardName: card?.name === "Carta rival desconocida" ? "" : card?.name || "",
+                effect: node.querySelector("[data-chain-effect]").value,
+                ...(ruleId ? { ruleId, actorUid } : {}),
+                ...(outcome ? { outcome } : {}),
+              }));
+              return;
+            }
+            if (b.hasAttribute("data-chain-preview")) {
+              state.chainPreview = root.YgoPlayChain?.resolve(state.scenario, state.plannerFacts || { rules: [], bindings: {} }) ||
+                { status: "unresolved", reason: "Resolución estructurada no disponible", branches: [] };
+              draw();
+              return;
+            }
+            if (b.hasAttribute("data-chain-apply")) {
+              const choice = state.chainPreview?.branches[Number(b.dataset.chainApply)];
+              if (!choice) throw Error("La opción de cadena ya no está disponible");
+              commit(E.clone(choice.state));
+              notice("Resolución condicional aplicada. Comprueba los efectos del rival antes de continuar.");
+              return;
+            }
+            if (b.hasAttribute("data-chain-remove")) {
+              commit(E.removeChain(state.scenario, Number(b.dataset.chainRemove)));
               return;
             }
             if (b.hasAttribute("data-play-random-hand")) {
@@ -751,10 +830,12 @@
             }
             if (
               t.matches(
-                "[data-planner-flag], [data-planner-used], [data-planner-zones]",
+                "[data-planner-flag], [data-planner-used], [data-planner-zones], [data-planner-goal]",
               )
             ) {
-              if (t.dataset.plannerFlag)
+              if (t.matches("[data-planner-goal]"))
+                state.planOptions.goal = t.value;
+              else if (t.dataset.plannerFlag)
                 state.planOptions[t.dataset.plannerFlag] = t.checked;
               else if (t.dataset.plannerUsed)
                 state.planOptions.used = t.checked

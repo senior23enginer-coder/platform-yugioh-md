@@ -1,9 +1,9 @@
 /* Resolve the active study registry for every loaded deck, not the historical eleven-deck index. */
 (function (root, factory) {
   if (typeof module === "object" && module.exports)
-    module.exports = factory(require("./engine.js"));
-  else root.YgoCalculatorStudy = factory(root.YgoPlayEngine);
-})(typeof globalThis !== "undefined" ? globalThis : this, function (E) {
+    module.exports = factory(require("./engine.js"), require("./verified-rules.js"), require("./contract.js"));
+  else root.YgoCalculatorStudy = factory(root.YgoPlayEngine, root.YgoVerifiedCalculatorRules, root.YgoCalculatorContract);
+})(typeof globalThis !== "undefined" ? globalThis : this, function (E, Verified, Contract) {
   "use strict";
   const requests = new Map();
   async function json(url) {
@@ -43,6 +43,7 @@
     db.rules = [];
     db.identities = {};
     db.studyCoverage = [];
+    db.ruleImports = [];
     for (const { catalog, study } of entries.filter((e) => e.catalog)) {
       db.studyCoverage.push({
         id: catalog.id,
@@ -56,7 +57,19 @@
         delete db.bindings[c.key];
         delete db.names?.[c.key];
       }
-      for (const card of study.cards || []) {
+      const deckActorCids = new Set();
+      let identityError = null;
+      const studyCards = study.cards === undefined ? [] : study.cards;
+      if (!Array.isArray(studyCards))
+        identityError = "Inventario de identidades del estudio inválido";
+      for (const card of Array.isArray(studyCards) ? studyCards : []) {
+        if (!card || typeof card !== "object" || Array.isArray(card) ||
+            (card.source_aliases !== undefined && !Array.isArray(card.source_aliases)) ||
+            (card.slots !== undefined && !Array.isArray(card.slots)) ||
+            (card.sources !== undefined && !Array.isArray(card.sources))) {
+          identityError ||= "Ficha de identidad del estudio inválida";
+          continue;
+        }
         const names = [
           card.name,
           card.identity?.official_name,
@@ -65,6 +78,10 @@
           .filter(Boolean)
           .map(E.norm);
         for (const slot of card.slots || []) {
+          if (!slot || typeof slot !== "object" || Array.isArray(slot)) {
+            identityError ||= "Slot de identidad del estudio inválido";
+            continue;
+          }
           const key = catalog.id + ":" + Number(slot.card_id),
             native = catalog.cards.find((c) => c.key === key);
           if (
@@ -84,6 +101,7 @@
               "",
             format: study.format,
           };
+          deckActorCids.add(card.cid);
           // A native slot and exact alias confirm identity; they do not invent monster metadata.
           if (!db.bindings[key] || db.bindings[key] === card.cid) {
             db.bindings[key] = card.cid;
@@ -92,8 +110,36 @@
           }
         }
       }
-      for (const rule of study.calculator?.rules || [])
-        if (rule.deckId === catalog.id) db.rules.push(E.clone(rule));
+      let imported = [];
+      const verified = Verified?.forDeck(catalog.id) || [];
+      if (study.calculator !== undefined) {
+        const block = study.calculator;
+        // Legacy studies without `schema` are validated through the same
+        // calculator/1 boundary; they are not trusted just because they loaded.
+        const packageData = block?.schema === undefined && block && Array.isArray(block.rules)
+          ? { schema: Contract.SCHEMA, deck_id: Number(study.deck_id),
+              format: study.format, rules: block.rules }
+          : block;
+        try {
+          if (identityError) throw Error(identityError);
+          if (!catalog.formats.includes(study.format))
+            throw Error("Formato del estudio ajeno al catálogo nativo");
+          Contract.validate(packageData, { deckId: catalog.id, format: study.format,
+            actorCids: [...deckActorCids] });
+          const protectedIds = new Set(verified.map(rule => rule.id));
+          const conflict = packageData.rules.find(rule => protectedIds.has(rule.id));
+          if (conflict)
+            throw Error("Regla importada colisiona con respaldo verificado: " + conflict.id);
+          imported = packageData.rules;
+          db.ruleImports.push({ deckId: catalog.id, status: "accepted", count: imported.length,
+            schema: Contract.SCHEMA, legacy: block?.schema === undefined });
+        } catch (error) {
+          db.ruleImports.push({ deckId: catalog.id, status: "rejected", count: 0,
+            message: error.message });
+        }
+      }
+      for (const rule of imported) db.rules.push(E.clone(rule));
+      for (const rule of verified) db.rules.push(E.clone(rule));
     }
     return db;
   }

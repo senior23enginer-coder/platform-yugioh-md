@@ -1,0 +1,10 @@
+.deck-template-overlay[hidden] { display: none; }
+.deck-template-overlay { position: fixed; inset: 0; z-index: 1100; background: rgba(0, 5, 15, .86); display: grid; place-items: center; padding: 1rem; }
+.deck-template-dialog { width: min(760px, 100%); max-height: 92vh; overflow-y: auto; border: 1px solid #236d87; border-radius: 16px; background: #081b2b; color: #e6f4ff; padding: clamp(1rem, 3vw, 2rem); box-shadow: 0 25px 80px #000a; }
+.deck-template-head { display: flex; justify-content: space-between; align-items: start; gap: 1rem; }
+.deck-template-actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+.deck-template-action { padding: 1rem; border: 1px solid #197a9b; border-radius: 12px; background: #0a2b3f; }
+.deck-template-action h3 { font-size: 1.05rem; margin: .5rem 0; }
+.deck-template-action p, .deck-template-help { color: #bed0dc; }
+.deck-template-action input { max-width: 100%; }
+.deck-template-open { overflow: hidden; }

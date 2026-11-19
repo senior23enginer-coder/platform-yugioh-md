@@ -1,0 +1,35 @@
+const assert = require("node:assert/strict");
+const E = require("../assets/modules/play-calculator/engine.js");
+const B = require("../assets/modules/play-calculator/battle.js");
+const A = require("../assets/modules/play-calculator/scenario.js");
+const db = require("../assets/modules/play-calculator/card-facts.json");
+const fixture = require("./fixtures/calculator_inventory.json");
+const own = E.catalog(fixture.allDecks.find((d) => d.id === 665), fixture.cards);
+const other = E.catalog(fixture.allDecks.find((d) => d.id === 656), fixture.cards);
+function card(catalog, predicate) {
+  const found = catalog.cards.find((c) => predicate(db.facts[db.bindings[c.key]]));
+  assert(found, "Fixture card missing");
+  return found;
+}
+const attacker = card(own, (f) => f?.kind === "monster" && f.atk >= 2000);
+const defender = card(other, (f) => f?.kind === "monster" && f.atk >= 0 && f.defense >= 0);
+let s = E.create(own, other);
+s = E.place(s, { key: attacker.key, owner: "self", zone: "m1" });
+s = E.patch(s, { phase: "battle", turn: 2 });
+const untouched = JSON.stringify(s);
+const direct = B.inspect(s, db);
+assert.equal(JSON.stringify(s), untouched, "Battle study must be immutable");
+assert.equal(direct.available, true);
+assert.equal(direct.attacks[0].damage, db.facts[db.bindings[attacker.key]].atk);
+assert.equal(direct.directDamageCeiling, direct.attacks[0].damage);
+assert.equal(A.solve(s, db).battle.directDamageCeiling, direct.directDamageCeiling);
+s = E.place(s, { key: defender.key, owner: "opponent", zone: "m2" });
+assert.equal(B.inspect(s, db).directDamageCeiling, null);
+assert.equal(B.inspect(s, db).attacks[0].status, "conditional");
+s = E.position(s, s.nextId - 1, "set");
+assert.equal(B.inspect(s, db).attacks[0].status, "unknown", "Face-down defense is never revealed");
+const main = E.patch(s, { phase: "main1" });
+assert.equal(B.inspect(main, db).available, false);
+const first = E.patch(s, { turn: 1 });
+assert.equal(B.inspect(first, db).available, false);
+console.log(JSON.stringify({ ok: true, conditionalCombat: true, hiddenDefense: true, immutable: true }));

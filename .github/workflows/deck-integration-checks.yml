@@ -1,0 +1,60 @@
+name: Validate deck ZIP integration
+
+on:
+  pull_request:
+    branches: [base]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deck-integration-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, zip, pdo_sqlite
+          coverage: none
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install test dependencies
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+      - name: Verify PHP requirements
+        run: |
+          php -v
+          php -r 'if (!class_exists("ZipArchive") || !extension_loaded("mbstring")) { throw new RuntimeException("ZIP/mbstring unavailable"); }'
+      - name: Validate ZIP import and historical combos
+        run: |
+          php torneos_yugioh/tests/legacy_function_contract_test.php
+          php torneos_yugioh/tests/deck_template_test.php
+          php torneos_yugioh/tests/calculator_import_test.php
+          php torneos_yugioh/tests/deck_data_test.php
+          node torneos_yugioh/tests/documented_combo_test.cjs
+          node torneos_yugioh/tests/combo_source_test.cjs
+          node torneos_yugioh/tests/combo_creator_regression_test.cjs
+      - name: Validate calculator contracts and rules
+        run: |
+          node scripts/test-calculator-general.cjs
+          node torneos_yugioh/tests/calculator_verified_rules_test.cjs
+          node torneos_yugioh/tests/calculator_battle_test.cjs
+          node torneos_yugioh/tests/calculator_chain_resolution_test.cjs
+      - name: Validate export and combo UI
+        run: |
+          node torneos_yugioh/tests/deck_export_test.cjs
+          node torneos_yugioh/tests/combo_editorial_library_test.cjs
+          node torneos_yugioh/tests/documented_combo_editor_test.cjs

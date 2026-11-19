@@ -1,8 +1,8 @@
 (function (root, factory) {
   if (typeof module === "object" && module.exports)
-    module.exports = factory(require("./engine.js"), require("./rules.js"));
-  else root.YgoPlayPlanner = factory(root.YgoPlayEngine, root.YgoPlayRules);
-})(typeof globalThis !== "undefined" ? globalThis : this, function (E, R) {
+    module.exports = factory(require("./engine.js"), require("./rules.js"), require("./restrictions.js"), require("./integrity.js"), require("./diagnostics.js"));
+  else root.YgoPlayPlanner = factory(root.YgoPlayEngine, root.YgoPlayRules, root.YgoCalculatorRestrictions, root.YgoCalculatorIntegrity, root.YgoCalculatorDiagnostics);
+})(typeof globalThis !== "undefined" ? globalThis : this, function (E, R, Restrictions, Integrity, Diagnostics) {
   "use strict";
   const effects = {
     17768: [["search", "Buscar un monstruo Kashtira"]],
@@ -84,7 +84,13 @@
           ]
         : [];
     });
-    return [...own, ...opponent];
+    // A rule can expose several legal target/zone variants, but its use-once
+    // marker is shared. Show a single checkbox for that effect in the UI.
+    const unique = new Map();
+    for (const row of [...own, ...opponent])
+      if (!unique.has(row.cardKey + ":" + row.id))
+        unique.set(row.cardKey + ":" + row.id, row);
+    return [...unique.values()];
   }
   function snapshot(s, db) {
     return s.tokens.map((t) => ({
@@ -93,8 +99,9 @@
       cid: db.bindings[t.key] || null,
     }));
   }
-  function solve(input, db, options = {}) {
+  function solveCore(input, db, options = {}) {
     E.validate(input);
+    Integrity.validate(input);
     const structured = (db.rules || []).filter((r) => {
       try {
         R.validate(r);
@@ -147,6 +154,11 @@
       return {
         ...base,
         reason: "Revisa los LP: el duelo ya tiene un participante con 0 LP.",
+      };
+    if (input.chain?.length)
+      return {
+        ...base,
+        reason: "Hay una cadena pendiente registrada. Resuelve sus eslabones y actualiza el tablero antes de calcular otra secuencia; el motor no inventa su resolución.",
       };
     if (input.usedEffects.trim())
       return {
@@ -263,18 +275,39 @@
             combinations(items.slice(i + 1), n - 1).map((xs) => [x, ...xs]),
           );
     const startingEnemy = enemy(root).length;
-    function score(s) {
-      return (
-        (startingEnemy - enemy(s).length) *
-          (options.goal === "resources" ? 60 : 150) +
-        faceMons(s).reduce(
-          (v, t) =>
-            v + (fact(s, t)?.rank ? 90 : 20) + (fact(s, t)?.atk || 0) / 200,
+    const goals = {
+      balanced: { removal: 150, field: 1, hand: 12, tempo: 2 },
+      removal: { removal: 300, field: 0.65, hand: 8, tempo: 2 },
+      board: { removal: 70, field: 1.8, hand: 6, tempo: 2 },
+      resources: { removal: 60, field: 0.65, hand: 35, tempo: 5 },
+      resilience: { removal: 110, field: 0.9, hand: 22, tempo: 3 },
+    };
+    const goal = Object.hasOwn(goals, options.goal) ? options.goal : "balanced";
+    const weights = goals[goal];
+    base.goal = goal;
+    base.goalLabels = {
+      balanced: "Equilibrar presencia de campo, remoción y recursos",
+      removal: "Priorizar retirada de cartas rivales conocidas",
+      board: "Priorizar desarrollo de monstruos propios",
+      resources: "Conservar cartas en mano y reducir acciones",
+      resilience: "Reducir exposición a las respuestas rivales conocidas y modeladas",
+    };
+    function metrics(s) {
+      return {
+        removed: startingEnemy - enemy(s).length,
+        field: faceMons(s).reduce(
+          (v, t) => v + (fact(s, t)?.rank ? 90 : 20) + (fact(s, t)?.atk || 0) / 200,
           0,
-        ) +
-        own(s, (t) => t.zone === "hand").length * 12 -
-        s._steps.length * 2
-      );
+        ),
+        hand: own(s, (t) => t.zone === "hand").length,
+        actions: s._steps.length,
+      };
+    }
+    function score(s) {
+      const m = metrics(s);
+      return m.removed * weights.removal + m.field * weights.field +
+        m.hand * weights.hand - m.actions * weights.tempo +
+        (s.lp.opponent === 0 && s.lp.self > 0 ? 10000 : 0);
     }
     function stateKey(s) {
       return JSON.stringify([
@@ -291,12 +324,18 @@
         s._used.slice().sort(),
         s._normal,
         s._xyz,
+        Object.entries(s._ruleFlags || {}).sort(([a], [b]) => a.localeCompare(b)),
+        // Two visually identical boards are not equivalent when only one
+        // carries a proven causal trigger (e.g. sent by monster effect).
+        s._ruleEvents || [],
         s.lp.self,
+        s.lp.opponent,
       ]);
     }
     const baseOptions = options;
     function actions(s) {
-      const options = { ...baseOptions, ...s._ruleFlags };
+      if (s.lp.self <= 0 || s.lp.opponent <= 0) return [];
+      const options = Restrictions.effective(s, baseOptions);
       const out = [],
         mz = free(s, "m"),
         sz = free(s, "s");
@@ -766,6 +805,7 @@
         used: s._used,
         priority: Math.round(score(s) - score(root)),
         removed: startingEnemy - enemy(s).length,
+        metrics: metrics(s),
       });
       if (base.plans.length >= 6) break;
     }
@@ -773,6 +813,10 @@
       base.reason =
         "No hay acciones calculables con los efectos implementados y el estado capturado. Esto no demuestra que no existan otras jugadas.";
     return base;
+  }
+  function solve(input, db, options = {}) {
+    const result = solveCore(input, db, options);
+    return { ...result, assessment: Diagnostics.planner(result) };
   }
   return { solve, profile, capabilities, modelled: [...modelled] };
 });

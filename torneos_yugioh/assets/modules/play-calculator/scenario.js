@@ -5,14 +5,16 @@
       require("./engine.js"),
       require("./planner.js"),
       require("./rules.js"),
+      require("./battle.js"),
     );
   else
     root.YgoScenarioAnalysis = factory(
       root.YgoPlayEngine,
       root.YgoPlayPlanner,
       root.YgoPlayRules,
+      root.YgoBattleStudy,
     );
-})(typeof globalThis !== "undefined" ? globalThis : this, function (E, P, R) {
+})(typeof globalThis !== "undefined" ? globalThis : this, function (E, P, R, B) {
   "use strict";
   const official = (cid) =>
     "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=" +
@@ -296,6 +298,7 @@
   }
   function solve(input, db, options = {}) {
     const result = P.solve(input, db, options);
+    result.battle = B.inspect(input, db);
     result.audit = audit(input, db);
     let budget = 12;
     for (const plan of result.plans) {
@@ -305,6 +308,22 @@
           : [];
       budget -= plan.responses.length;
       plan.responsesLimited = budget <= 0;
+      plan.responseAudit = {
+        modeled: plan.responses.filter((r) => r.status === "conditional").length,
+        unresolved: plan.responses.filter((r) => r.status === "unresolved").length,
+        noContinuation: plan.responses.filter((r) =>
+          r.status === "conditional" && !r.continuations?.length).length,
+        truncated: !!plan.responsesLimited,
+      };
+      plan.resilienceScore = plan.priority -
+        plan.responseAudit.noContinuation * 120 -
+        plan.responseAudit.unresolved * 60;
+    }
+    if (result.goal === "resilience") {
+      result.plans.sort((a, b) => b.resilienceScore - a.resilienceScore);
+      result.assumptions.push(
+        "Resistencia: la prioridad solo penaliza respuestas conocidas efectivamente exploradas; ramas truncadas, respuestas ocultas o efectos sin modelar impiden concluir que una línea sea segura.",
+      );
     }
     return result;
   }

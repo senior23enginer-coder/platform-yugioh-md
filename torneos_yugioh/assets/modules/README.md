@@ -63,6 +63,7 @@ El código nuevo se agrupa por función. Las fuentes editoriales y los datos gen
 - `hand-practice.js`: aperturas aleatorias y robos del Main por copias físicas, sin reemplazo; funciona sobre estados de duelo y de práctica libre sin oponente. No modifica listas ni guarda escenarios.
 
 - `planner.js` / `planner-worker.js`: búsqueda local limitada de acciones y estados posteriores, presupuesto y cancelación; conserva captura y separa efectos sin modelar.
+- `battle.js`: estudio aritmético condicional de combate con ATK/DEF acreditados; no simula cadenas, protecciones ni acredita daño letal. `scenario.js` agrega ramas de respuesta conocida y prioridades de resiliencia parciales.
 - `card-facts.json`: metadatos exactos generados por `tools/build_planner_facts.py`; sin IA o consultas remotas durante el cálculo.
 
 - `engine.js`: funciones puras para el estado físico, copias, zonas, validación y requisitos de las rutas. Sin DOM, HTTP ni acceso a bases de datos; admite pruebas en Node.
