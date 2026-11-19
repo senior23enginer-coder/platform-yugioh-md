@@ -505,7 +505,7 @@
   },
   "ygo_handle_post": {
     "file": "includes/http/post-actions.php",
-    "sha256": "1b9c4da43207b12c1f4218d07ee68a6462e86b7c115ab7ee4210db279302655e"
+    "sha256": "1081b69e40ff9c863e27105d8db1061bee363c832256e5241ec34be98fa31c63"
   },
   "ygo_handle_post_serialized": {
     "file": "includes/http/post-actions.php",
