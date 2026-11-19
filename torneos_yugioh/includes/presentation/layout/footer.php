@@ -1,5 +1,17 @@
+<?php
+$stationxVersion = 'sin registrar';
+$stationxReleasePath = dirname(__DIR__, 3) . '/release.json';
+if (is_file($stationxReleasePath)) {
+    $stationxRelease = json_decode((string) file_get_contents($stationxReleasePath), true);
+    if (is_array($stationxRelease) && isset($stationxRelease['version']) &&
+        is_string($stationxRelease['version']) &&
+        preg_match('/^v[0-9]+\.[0-9]+\.[0-9]+$/', $stationxRelease['version'])) {
+        $stationxVersion = $stationxRelease['version'];
+    }
+}
+?>
 <footer class="app-footer">
-    <span>YUGIOH MD - Station X Tulua</span>
+    <span>YUGIOH MD - Station X Tulua <small class="ms-2">Versión desplegada: <?= htmlspecialchars($stationxVersion, ENT_QUOTES, 'UTF-8') ?></small></span>
     <span>PHP + Bootstrap 5 + MySQL editable</span>
 </footer>
 
