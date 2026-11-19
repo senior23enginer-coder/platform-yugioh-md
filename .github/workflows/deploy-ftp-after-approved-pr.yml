@@ -65,8 +65,10 @@ jobs:
           node -e 'const fs = require("fs"); fs.writeFileSync(".deploy-release/release.json", JSON.stringify({schema:"stationx-release/1", version:process.env.DEPLOY_VERSION, commit:process.env.DEPLOY_COMMIT, builtAt:new Date().toISOString()}, null, 2) + "\n")'
 
       - name: Verify or transfer application by FTP
+        id: ftp_upload
+        continue-on-error: true
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
-        with:
+        with: &ftp_settings
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
@@ -94,6 +96,17 @@ jobs:
             test-results/**
             .deployment-backups/**
             release.json
+
+      # HiddenStores may briefly reject STOR while another connection finishes the same file.
+      # Never remove .in.*. files: they can belong to an active transfer.
+      - name: Wait before retrying a failed FTP transfer
+        if: steps.ftp_upload.outcome == 'failure' && !cancelled()
+        run: sleep 30
+
+      - name: Retry application transfer once
+        if: steps.ftp_upload.outcome == 'failure' && !cancelled()
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with: *ftp_settings
 
       - name: Publish and verify deployed version manifest
         shell: bash
