@@ -28,6 +28,10 @@ for(const [id,expectedRoutes] of [[671,12],[677,14],[665,16]]){
 const memento=JSON.parse(fs.readFileSync(path.join(root,'671.json'),'utf8'));
 const step=memento.routes[0].steps[0];
 assert.equal(step.photos.length,0,'Regression must cover historical empty step photos');
+const opening=P.openingPhotos(memento.routes[0],memento.cards);
+assert(opening.some(p=>p.name==='Angbruja'),'Initial hand must include Angbruja');
+assert(!opening.some(p=>p.name==='Maza'),'Card only documented in GY/Deck must not appear as initial hand');
+assert(!P.archetype(memento.profile).includes('estudio individual'),'Archetype must not include audit metadata');
 const pictures=P.stepPhotos(step,memento.cards);
 assert(pictures.some(x=>x.name==='Angbruja'),'Memento Angbruja should appear in step one');
 const outcome=P.resultPhotos(memento.routes[0],memento.cards);
