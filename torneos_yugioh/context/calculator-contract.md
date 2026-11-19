@@ -121,6 +121,15 @@ acreditado. La información de turno explícita prevalece sobre el indicador
 legado cuando ambas difieren. Las ventanas desconocidas permanecen cerradas;
 la biblioteca no autoriza activar efectos de cartas por inferencia.
 
+## Historial y disparadores (tarea general 08)
+
+`assets/modules/play-calculator/events.js` reúne consultas inmutables de
+evidencia de eventos, condiciones de destrucción/invocación, causalidad de
+disparadores y observaciones del Extra Deck rival. La coincidencia exige
+UID, CID, origen causal y turno cuando corresponde; no inventa eventos
+faltantes ni considera acreditada una Invocación no observada. Las operaciones
+continúan registrando su historial en el motor de reglas vigente.
+
 `tests/calculator_contract_test.cjs` prueba el mismo contrato con dos decks
 sintéticos diferentes, ejecuta una operación compartida sin cambiar código
 por deck, y rechaza versión, identidad, campos, duplicados y operaciones

@@ -1,9 +1,9 @@
 /* Declarative effect adapter. Data never becomes JavaScript; unknown operations fail closed. */
 (function (root, factory) {
   if (typeof module === "object" && module.exports)
-    module.exports = factory(require("./engine.js"), require("./operations.js"), require("./guards.js"), require("./resources.js"), require("./transitions.js"), require("./timing.js"));
-  else root.YgoPlayRules = factory(root.YgoPlayEngine, root.YgoCalculatorOperations, root.YgoCalculatorGuards, root.YgoCalculatorResources, root.YgoCalculatorTransitions, root.YgoCalculatorTiming);
-})(typeof globalThis !== "undefined" ? globalThis : this, function (E, Operations, Guards, Resources, Transitions, Timing) {
+    module.exports = factory(require("./engine.js"), require("./operations.js"), require("./guards.js"), require("./resources.js"), require("./transitions.js"), require("./timing.js"), require("./events.js"));
+  else root.YgoPlayRules = factory(root.YgoPlayEngine, root.YgoCalculatorOperations, root.YgoCalculatorGuards, root.YgoCalculatorResources, root.YgoCalculatorTransitions, root.YgoCalculatorTiming, root.YgoCalculatorEvents);
+})(typeof globalThis !== "undefined" ? globalThis : this, function (E, Operations, Guards, Resources, Transitions, Timing, Events) {
   "use strict";
   const field = (z) => E.isMonster(z) || /^s[1-5]$/.test(z) || z === "field";
   const zones = [
@@ -105,11 +105,7 @@
       (!query.species || E.norm(db.facts?.[db.bindings[c.key]]?.species || "").includes(E.norm(query.species))));
   }
   function extraSummonWindow(s) {
-    return [s.turn, s.turn - 1].some(turn =>
-      (s._ruleEvents || []).filter(e => e.kind === "observed_extra_summon" &&
-        e.side === "opponent" && e.from === "extra" && e.turn === turn &&
-        typeof e.key === "string" && Number.isInteger(e.uid) &&
-        s.opponent.cards.some(c => c.key === e.key && c.section === "extra")).length >= 2);
+    return Events.observedExtraSummonWindow(s);
   }
   function monsterEffectBlockedByTyphon(s, db, token) {
     if (!token || !E.isMonster(token.zone) || token.position === "set") return false;
@@ -442,20 +438,7 @@
     };
   }
   function triggerMatches(s, rule, uid) {
-    if (!rule.trigger) return true;
-    return (s._ruleEvents || []).some(e => {
-      if (e.uid !== uid || e.turn !== s.turn || e.cid !== rule.trigger.actorCid) return false;
-      if (rule.trigger.kind === "sent_by_monster_effect")
-        return e.kind === "sent_to_graveyard" && e.sourceCid === rule.trigger.sourceCid &&
-          s.tokens.some(t => t.uid === uid && t.zone === "graveyard");
-      if (rule.trigger.kind === "destroyed_by_effect")
-        return e.kind === "destroy" && e.by === "effect" &&
-          (!rule.trigger.fromMonsters || E.isMonster(e.from)) &&
-          s.tokens.some(t => t.uid === uid && t.zone === "graveyard");
-      if (!s.tokens.some(t => t.uid === uid && E.isMonster(t.zone))) return false;
-      return rule.trigger.kind === "fusion_summoned" ? e.kind === "fusion_summon"
-        : e.kind === "summon" && rule.trigger.methods.includes(e.method);
-    });
+    return Events.matchingTrigger(s, rule, uid, E.isMonster);
   }
   function actions(s, db, options = {}) {
     const actions = [],
@@ -489,12 +472,7 @@
             : g.kind === "onlyCids"
               ? candidates(s, g.selector, db).every((t) => g.allowedCids.includes(db.bindings[t.key]))
             : g.kind === "event"
-              ? g.event === "owned_monster_destroyed_by_effect_this_turn"
-                ? (s._ruleEvents || []).some(e => e.kind === "destroy" &&
-                    e.by === "effect" && e.owner === "self" && e.turn === s.turn)
-                : (s._ruleEvents || []).some(e => e.kind === g.event &&
-                    e.turn === s.turn && e.side === g.side &&
-                    (g.by === undefined || e.by === g.by))
+              ? Events.matchesGuard(s, g)
             : g.kind === "phaseStart"
               ? Timing.isPhaseStart(s)
             : g.kind === "extraSummonHistory"
