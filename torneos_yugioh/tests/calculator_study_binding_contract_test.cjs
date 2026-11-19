@@ -86,5 +86,16 @@ assert.match(collision.ruleImports[0].message, /colisiona con respaldo verificad
 assert.equal(collision.rules.length, 1);
 assert.equal(collision.rules[0].actor.cid, 17768);
 assert.equal(collision.rules[0].id, "665:fenrir:search");
-console.log(JSON.stringify({ ok: true, accepted: 2, rejected: 7, legacyCompatible: true,
-  crossDeckActorIsolation: true, verifiedFallbackProtected: true }));
+for (const malformed of [
+  { ...first.study, cards: { invalid: true } },
+  { ...first.study, cards: [{ ...first.study.cards[0], source_aliases: "cadena" }] },
+  { ...first.study, cards: [{ ...first.study.cards[0], slots: [null] }] },
+]) {
+  const combined = S.bind(base, [{ ...first, study: malformed }, second]);
+  assert.equal(combined.ruleImports[0].status, "rejected");
+  assert.match(combined.ruleImports[0].message, /identidad|Inventario/);
+  assert.equal(combined.ruleImports[1].status, "accepted");
+  assert.equal(combined.rules.length, 1);
+}
+console.log(JSON.stringify({ ok: true, accepted: 2, rejected: 10, legacyCompatible: true,
+  crossDeckActorIsolation: true, verifiedFallbackProtected: true, malformedStudyIsolation: true }));

@@ -58,7 +58,18 @@
         delete db.names?.[c.key];
       }
       const deckActorCids = new Set();
-      for (const card of study.cards || []) {
+      let identityError = null;
+      const studyCards = study.cards === undefined ? [] : study.cards;
+      if (!Array.isArray(studyCards))
+        identityError = "Inventario de identidades del estudio inválido";
+      for (const card of Array.isArray(studyCards) ? studyCards : []) {
+        if (!card || typeof card !== "object" || Array.isArray(card) ||
+            (card.source_aliases !== undefined && !Array.isArray(card.source_aliases)) ||
+            (card.slots !== undefined && !Array.isArray(card.slots)) ||
+            (card.sources !== undefined && !Array.isArray(card.sources))) {
+          identityError ||= "Ficha de identidad del estudio inválida";
+          continue;
+        }
         const names = [
           card.name,
           card.identity?.official_name,
@@ -67,6 +78,10 @@
           .filter(Boolean)
           .map(E.norm);
         for (const slot of card.slots || []) {
+          if (!slot || typeof slot !== "object" || Array.isArray(slot)) {
+            identityError ||= "Slot de identidad del estudio inválido";
+            continue;
+          }
           const key = catalog.id + ":" + Number(slot.card_id),
             native = catalog.cards.find((c) => c.key === key);
           if (
@@ -106,6 +121,7 @@
               format: study.format, rules: block.rules }
           : block;
         try {
+          if (identityError) throw Error(identityError);
           if (!catalog.formats.includes(study.format))
             throw Error("Formato del estudio ajeno al catálogo nativo");
           Contract.validate(packageData, { deckId: catalog.id, format: study.format,

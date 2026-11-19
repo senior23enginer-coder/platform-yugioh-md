@@ -213,3 +213,12 @@ verificado con el mismo ID. `study.js` detecta el conflicto después de validar
 el contrato, rechaza todo ese paquete y conserva intactas las reglas de
 respaldo. La migración de esas reglas requiere paridad funcional probada y un
 cambio explícito de política; el ID coincidente no es prueba de equivalencia.
+
+## Estudios malformados y continuidad de carga (tarea general 17)
+
+`study.js` comprueba que `cards`, `slots`, `source_aliases` y `sources` tengan
+estructura iterable antes de usarlos para acreditar CID. Si el estudio contiene
+datos de identidad malformados, rechaza su bloque de calculadora con un motivo
+en `ruleImports`, sin detener la importación de los demás estudios ni ejecutar
+reglas de ese paquete. Las reglas verificadas de respaldo siguen disponibles.
+La prueba sintética combina tres errores de estructura con otro deck válido.
