@@ -1,20 +1,22 @@
-# Controlled FTPS deployment — explicit manual authorization
+# FTPS deployment after tested merge
 
-Merging a PR into `base` **never deploys automatically**. PRs have their own
-checks; a release is deployed only when an operator runs
-**Actions → Deploy Station X (manual approval) → Run workflow** on `base`.
+A PR **merged into `base`** automatically starts the deployment workflow.
+There is no separate `APPROVED` review requirement, because repository owners
+may merge their own PRs. Deployment still fails closed if a test fails.
 
-- `mode: dry-run` (default): runs tests and verifies FTPS without uploading.
-- `mode: deploy`: requires typing exactly `PUBLICAR` in `confirmation`.
-  Otherwise the workflow fails before connecting to FTPS.
-- Every run checks the application source, calculator contract, deck-template
-  PHP importer and the full `npm test` suite before transferring files.
-- Configure the GitHub `production` Environment with reviewers or branch
-  restrictions for an additional independent control when available.
+- After merge: install dependencies, run `npm test`, calculator contract tests
+  and PHP 8.3 TXT-import tests, then publish by FTPS.
+- Manual **Actions → Deploy Station X after tested merge → Run workflow**
+  on `base` is **dry-run only**, even with secrets configured: no upload.
+- Any test or FTPS failure stops the release. The application manifest is
+  uploaded only after the application transfer succeeds.
+- For additional governance, configure branch protection and required checks
+  on `base` in GitHub Settings; a workflow alone does not prevent merging a
+  PR whose check failed.
 
 ## Release and visible production version
 
-Each successful manually authorized production upload generates a unique version tag
+Each successful automated production upload generates a unique version tag
 `v0.1.<GitHub run number>` and a `release.json` with its commit SHA and build
 timestamp. The application footer reads this manifest from the production
 filesystem and shows **Versión desplegada**. The manifest is transferred in a
@@ -46,8 +48,9 @@ Port 21 uses **explicit FTPS** (`protocol: ftps`) for encrypted transfer.
 Confirm FTPS is enabled for this account. Plain FTP is not configured because
 it transmits credentials and file contents without transport encryption.
 
-The workflow does not run on pushes or PR merges and does not use
-`dangerous-clean-slate`. Only a manual `deploy` run with `PUBLICAR` uploads.
+The workflow does not run on ordinary pushes and does not use
+`dangerous-clean-slate`. A merged PR triggers production deployment only after
+passing the workflow's tests. Manual runs remain dry-run.
 The FTP action can synchronize
 previously tracked deleted files within its target: back up the remote
 application before the first run. The production database and private
