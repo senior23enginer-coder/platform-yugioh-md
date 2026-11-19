@@ -49,7 +49,12 @@
       const body = response.obj;
       if (response.status === 200 && body && typeof body.token === "string") {
         if (url.pathname.endsWith("/decklist")) decklistToken = body.token;
-        else csrfToken = body.token;
+        else {
+          csrfToken = body.token;
+          // An API-key scheme avoids a required header field blocking Execute before
+          // requestInterceptor can supply the token captured from the preceding GET.
+          if (window.ui) window.ui.preauthorizeApiKey("sessionCsrf", csrfToken);
+        }
       }
       return response;
     },
