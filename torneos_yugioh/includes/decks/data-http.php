@@ -93,7 +93,15 @@ function ygo_data_http(?string $appOverride=null): never {
             $_SESSION['ygo_deck_data_pending']=['id'=>$id,'path'=>$temp,'ticket'=>$ticket,'time'=>time(),'registry'=>hash('sha256',ygo_data_json($entry)),'inventory'=>$inventory['inventory_sha256'],'saved'=>hash('sha256',ygo_data_json($saved))];$temp=null;
             $before=array_column($current['routes']??[],null,'id');$new=0;$changed=0;
             foreach($record['routes'] as $r){if(!isset($before[$r['id']]))$new++;elseif(ygo_data_json($r)!==ygo_data_json($before[$r['id']]))$changed++;}
-            $result=['ticket'=>$ticket,'deck'=>$inventory['deck']['name'],'cards'=>count($record['cards']),'routes'=>count($record['routes']),'new_routes'=>$new,'changed_routes'=>$changed,'removed_routes'=>count(array_diff(array_keys($before),array_column($record['routes'],'id'))),'saved_revisions'=>count($saved),'inventory_changed'=>false,'candidate'=>$record,'native_cards'=>$inventory['cards'],'skills'=>$inventory['skills']??[]];
+            $result=['ticket'=>$ticket,'deck'=>$inventory['deck']['name'],'cards'=>count($record['cards']),'routes'=>count($record['routes']),'new_routes'=>$new,'changed_routes'=>$changed,'removed_routes'=>count(array_diff(array_keys($before),array_column($record['routes'],'id'))),'saved_revisions'=>count($saved),'inventory_changed'=>false,'candidate'=>$record,'native_cards'=>$inventory['cards'],'skills'=>$inventory['skills']??[],
+                'compatibility'=>[
+                    'package'=>'station-x-deck-package/1',
+                    'editorial'=>$record['schema'],
+                    'visual_routes'=>count($record['routes']),
+                    'calculator_schema'=>$record['calculator']['schema']??null,
+                    'calculator_rules'=>count($record['calculator']['rules']??[]),
+                    'calculator_status'=>empty($record['calculator']['rules'])?'SIN_REGLAS_DECLARATIVAS':'REQUIERE_VALIDACION_DEL_MOTOR',
+                ]];
         }elseif($method==='POST'&&$op==='commit'){
             $pending=$_SESSION['ygo_deck_data_pending']??[];
             if(($pending['id']??0)!==$id||!hash_equals($pending['ticket']??'',(string)($_POST['ticket']??''))||time()-($pending['time']??0)>1800)throw new InvalidArgumentException('La previsualización venció. Selecciona otra vez el ZIP.');
