@@ -121,7 +121,7 @@ function ygo_gpt_github_request(string $method, string $path, ?array $payload = 
     }
     $url = 'https://api.github.com/repos/senior23enginer-coder/gpt-yugioh-promps-platform/contents/'
         . implode('/', array_map('rawurlencode', $segments))
-        . '?ref=base';
+        . ($method === 'GET' ? '?ref=base' : '');
     $ch = curl_init($url);
     curl_setopt_array($ch, [
         CURLOPT_CUSTOMREQUEST => $method,
@@ -156,6 +156,24 @@ function ygo_gpt_sync_upload(array $files, ?callable $request = null): array
     $created = 0;
     $updated = 0;
     $unchanged = 0;
+    // Fail closed on a pre-existing package belonging to another deck or inventory.
+    $canonical = $folder . '/datos/stationx-deck.json';
+    $initial = json_decode($files[$canonical] ?? 'null', true);
+    if (!is_array($initial)) throw new InvalidArgumentException('El paquete Station X inicial está incompleto.');
+    $existingPackage = $request('GET', '01_INFORMACION_PARA_IMPORTAR/decks/' . $canonical, null);
+    if (($existingPackage['status'] ?? 0) === 200) {
+        $encoded = preg_replace('/\\s+/', '', (string)($existingPackage['body']['content'] ?? ''));
+        $decoded = base64_decode($encoded, true);
+        $remote = $decoded === false ? null : json_decode($decoded, true);
+        if (!is_array($remote) || (int)($remote['deck_id'] ?? 0) !== (int)$initial['deck_id']) {
+            throw new InvalidArgumentException('Ya existe una carpeta GPT de otro deck; no se modificó.');
+        }
+        if (($remote['inventory_sha256'] ?? '') !== ($initial['inventory_sha256'] ?? '')) {
+            throw new InvalidArgumentException('La lista en GPT es diferente. No se sobrescribieron análisis; concilia inventario.');
+        }
+    } elseif (($existingPackage['status'] ?? 0) !== 404) {
+        throw new InvalidArgumentException('No fue posible comprobar la identidad del paquete GPT existente.');
+    }
     // Ensure the canonical content package and Markdown are created BEFORE the source marker.
     $paths = array_keys($files);
     usort($paths, static fn(string $a, string $b): int => ($a === $manifest ? 1 : 0) <=> ($b === $manifest ? 1 : 0));
