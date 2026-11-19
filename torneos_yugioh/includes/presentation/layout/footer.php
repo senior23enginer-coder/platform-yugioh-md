@@ -27,7 +27,7 @@ if (is_file($stationxReleasePath)) {
 <script src="./assets/event-models.js?v=20261018-ranking-47" defer></script>
 <script src="./assets/modules/statistics/global-ranking.js?v=20261117-global-catalog"></script>
 <script src="./assets/modules/statistics/workspace.js?v=20261117-global-catalog"></script>
-<script src="./assets/statistics-v8.js?v=20261117-global-catalog"></script>
+<script src="./assets/statistics-v8.js?v=20261119-profile-summary-1"></script>
 <script src="./assets/modules/statistics/live.js?v=20261113-stats-live-180"></script>
 <script src="./assets/library-search.js?v=20261018-library-48" defer></script>
 <script src="./assets/library.js?v=20261018-library-48" defer></script>
@@ -43,7 +43,7 @@ if (is_file($stationxReleasePath)) {
 <script src="./assets/modules/deck-guide/deck-deliveries.js?v=20261102-library-125" defer></script>
 <script src="./assets/modules/deck-export/export.js?v=20261102-export-127" defer></script>
 <link rel="stylesheet" href="./assets/modules/deck-data/styles.css?v=20261117-data-1">
-<script src="./assets/modules/deck-data/ui.js?v=20261117-data-folder-2" defer></script>
+<script src="./assets/modules/deck-data/ui.js?v=20261119-visual-parity-1" defer></script>
 <script src="./assets/modules/deck-guide/deck-study.js?v=20261102-library-125" defer></script>
 <script src="./assets/modules/deck-guide/learning-guide.js?v=20261102-library-125" defer></script>
 <script src="./assets/result-desktop.js?v=20261109-result-button-158" defer></script>
@@ -73,20 +73,21 @@ if (is_file($stationxReleasePath)) {
 <link href="./assets/modules/deck-guide/study-sections.css?v=20261107-study-eleven-139" rel="stylesheet">
 <script src="./assets/modules/deck-guide/study-eleven.js?v=20261107-study-ten-143" defer></script>
 <script src="./assets/modules/deck-guide/study-sections.js?v=20261107-study-ten-143" defer></script>
-<link href="./assets/modules/deck-guide/curated-study.css?v=20261113-combo-library-164" rel="stylesheet">
+<link href="./assets/modules/deck-guide/curated-study.css?v=20261119-visual-parity-1" rel="stylesheet">
 <script src="./assets/modules/deck-guide/photo-viewer.js?v=20261108-reader-148" defer></script>
 <link href="./assets/modules/deck-guide/endboard.css?v=20261113-combo-library-164" rel="stylesheet">
 <script src="./assets/modules/deck-guide/endboard.js?v=20261113-combo-library-164" defer></script>
 <link href="./assets/modules/deck-guide/curated-visual.css?v=20261113-combo-library-164" rel="stylesheet">
 <link href="./assets/modules/deck-guide/delivery-extensions.css?v=20261114-delivery-v12-186" rel="stylesheet">
 <script src="./assets/modules/deck-guide/delivery-extensions.js?v=20261116-folder-import-1" defer></script>
-<script src="./assets/modules/deck-guide/curated-visual.js?v=20261114-delivery-v12-186" defer></script>
+<script src="./assets/modules/deck-guide/presentation-contract.js?v=20261119-visual-parity-1" defer></script>
+<script src="./assets/modules/deck-guide/curated-visual.js?v=20261119-visual-parity-1" defer></script>
 <script src="./assets/modules/deck-guide/functional-role.js?v=20261116-folder-import-1" defer></script>
 <script src="./assets/modules/deck-guide/card-detail.js?v=20261115-card-detail-196" defer></script>
-<script src="./assets/modules/deck-guide/curated-study.js?v=20261117-folder-delivery-v37-complete" defer></script>
+<script src="./assets/modules/deck-guide/curated-study.js?v=20261119-visual-parity-1" defer></script>
 <script src="./assets/modules/combo-creator/editorial-library.js?v=20261113-combo-library-164" defer></script>
 <script src="./assets/modules/deck-guide/checked-study.js?v=20261108-curated-147" defer></script>
-<script src="./assets/modules/deck-guide/content-state.js?v=20261113-combo-library-164" defer></script>
+<script src="./assets/modules/deck-guide/content-state.js?v=20261119-visual-parity-1" defer></script>
 <script src="./assets/modules/dashboard/ranking-scopes.js?v=20261107-ranking-divisions-146" defer></script>
 <script src="./assets/modules/navigation/global-search.js?v=20261113-global-search-167" defer></script>
 <link rel="stylesheet" href="./assets/modules/deck-guide/league-position.css?v=20261113-match-positions-183">
