@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pull-requests: read
 
 concurrency:
@@ -57,6 +57,18 @@ jobs:
       - name: Verify calculator contract
         run: node scripts/test-calculator-general.cjs
 
+      - name: Prepare release identity
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          version="v0.1.${GITHUB_RUN_NUMBER}"
+          commit="$(git rev-parse HEAD)"
+          export DEPLOY_VERSION="$version" DEPLOY_COMMIT="$commit"
+          echo "DEPLOY_VERSION=$version" >> "$GITHUB_ENV"
+          echo "DEPLOY_COMMIT=$commit" >> "$GITHUB_ENV"
+          mkdir -p .deploy-release
+          node -e 'const fs = require("fs"); fs.writeFileSync(".deploy-release/release.json", JSON.stringify({schema:"stationx-release/1", version:process.env.DEPLOY_VERSION, commit:process.env.DEPLOY_COMMIT, builtAt:new Date().toISOString()}, null, 2) + "\n")'
+
       - name: Verify transfer by FTPS (manual runs are dry-run)
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
@@ -80,3 +92,27 @@ jobs:
             **/*.log
             **/.env*
             **/node_modules/**
+
+      - name: Publish deployed version manifest
+        if: github.event_name == 'pull_request'
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          protocol: ftps
+          local-dir: ./.deploy-release/
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          state-name: .ftp-deploy-release-state.json
+          dangerous-clean-slate: false
+
+      - name: Register GitHub release after deployment
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$DEPLOY_VERSION" \
+            --target "$DEPLOY_COMMIT" \
+            --title "Station X $DEPLOY_VERSION" \
+            --notes "Desplegado en producción desde $DEPLOY_COMMIT mediante GitHub Actions."
