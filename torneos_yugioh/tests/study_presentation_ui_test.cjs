@@ -28,6 +28,7 @@ const one=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42
       const style=await page.locator('.curated-profile dl').innerText();
       assert(!style.includes('Dictamen editorial'),'Visible playstyle must be readable, not an audit');
       assert(style.includes('Cementerio'),'Memento playstyle is sourced from the study');
+      assert(!style.includes('estudio individual'),'Archetype field cannot display research iteration metadata');
       assert(await page.locator('.curated-full-profile').count(),'Full study explanation remains accessible');
       await page.locator('[data-curated-tab="routes"]').click();
       await page.locator('.curated-route-card').first().click();
