@@ -1,23 +1,14 @@
-name: Deploy Station X (manual approval)
+name: Deploy Station X after tested merge
 
 on:
+  pull_request:
+    branches: [base]
+    types: [closed]
   workflow_dispatch:
-    inputs:
-      mode:
-        description: "Acción: simular o publicar en producción"
-        required: true
-        type: choice
-        options:
-          - dry-run
-          - deploy
-        default: dry-run
-      confirmation:
-        description: "Para publicar escribe PUBLICAR (déjalo vacío para simular)"
-        required: false
-        type: string
 
 permissions:
   contents: write
+  pull-requests: read
 
 concurrency:
   group: stationx-production-ftp
@@ -25,20 +16,10 @@ concurrency:
 
 jobs:
   deploy:
-    if: github.ref == 'refs/heads/base'
+    if: (github.event_name == 'pull_request' && github.event.pull_request.merged == true) || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/base')
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - name: Authorize explicit production deployment
-        env:
-          MODE: ${{ inputs.mode }}
-          CONFIRMATION: ${{ inputs.confirmation }}
-        run: |
-          if [ "$MODE" = "deploy" ] && [ "$CONFIRMATION" != "PUBLICAR" ]; then
-            echo "Publicación bloqueada: escribe PUBLICAR para autorizar el despliegue."
-            exit 1
-          fi
-
       - name: Validate deployment configuration
         env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
@@ -86,7 +67,7 @@ jobs:
           php torneos_yugioh/tests/deck_template_test.php
 
       - name: Prepare release identity
-        if: inputs.mode == 'deploy'
+        if: github.event_name == 'pull_request'
         shell: bash
         run: |
           version="v0.1.${GITHUB_RUN_NUMBER}"
@@ -108,7 +89,7 @@ jobs:
           local-dir: ./torneos_yugioh/
           server-dir: ${{ secrets.FTP_SERVER_DIR }}
           dangerous-clean-slate: false
-          dry-run: ${{ inputs.mode != 'deploy' }}
+          dry-run: ${{ github.event_name == 'workflow_dispatch' }}
           exclude: |
             **/.git*
             **/.github/**
@@ -122,7 +103,7 @@ jobs:
             **/node_modules/**
 
       - name: Publish deployed version manifest
-        if: inputs.mode == 'deploy'
+        if: github.event_name == 'pull_request'
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_HOST }}
@@ -136,7 +117,7 @@ jobs:
           dangerous-clean-slate: false
 
       - name: Register GitHub release after deployment
-        if: inputs.mode == 'deploy'
+        if: github.event_name == 'pull_request'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
