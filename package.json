@@ -13,10 +13,12 @@
     "test:mcp": "node torneos_yugioh/tests/mcp_test.cjs",
     "test:combos:regression": "node torneos_yugioh/tests/combo_creator_regression_test.cjs",
     "test:planner": "node torneos_yugioh/tests/planner_test.cjs",
+    "test:strategy": "node torneos_yugioh/tests/calculator_strategy_test.cjs",
     "build": "node scripts/build-frontend.cjs",
     "build:check": "node scripts/build-frontend.cjs --check",
     "format:architecture": "node scripts/format-architecture.cjs",
-    "format:architecture:check": "node scripts/format-architecture.cjs --check"
+    "format:architecture:check": "node scripts/format-architecture.cjs --check",
+    "test:a07:memento": "node torneos_yugioh/tests/memento_a07_coverage_test.cjs && node torneos_yugioh/tests/memento_a07_resolution_test.cjs && node torneos_yugioh/tests/memento_a07_remaining_rules_test.cjs && node torneos_yugioh/tests/memento_a07_r12_r24_test.cjs"
   },
   "devDependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2",

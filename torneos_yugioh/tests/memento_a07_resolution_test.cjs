@@ -1,0 +1,487 @@
+const assert = require('node:assert/strict');
+const E = require('../assets/modules/play-calculator/engine.js');
+const R = require('../assets/modules/play-calculator/rules.js');
+
+const deck = {id:671,name:'Memento',format_codes:['tcg_advanced']};
+const rows = [
+  {deck_id:671,id:1,section:'main',card_name:'Mementotlán Tatsun',quantity:1},
+  {deck_id:671,id:2,section:'main',card_name:'Mementotlán Angbruja',quantity:1},
+  {deck_id:671,id:3,section:'main',card_name:'Mementotlán Desvantasma',quantity:1},
+  {deck_id:671,id:4,section:'main',card_name:'Mementotlán Dormiveja',quantity:1},
+  {deck_id:671,id:5,section:'main',card_name:'Fusión Mementotlán',quantity:1},
+  {deck_id:671,id:6,section:'extra',card_name:'Rey Creación',quantity:1},
+  {deck_id:671,id:7,section:'extra',card_name:'Duque de la Defunción',quantity:1},
+  {deck_id:671,id:8,section:'main',card_name:'Mementotlán Goblin',quantity:1},
+  {deck_id:671,id:9,section:'main',card_name:'Tecuhtlica - Creación Combinada',quantity:1},
+  {deck_id:671,id:10,section:'main',card_name:'Demoniherrero Grabador',quantity:1},
+  {deck_id:671,id:11,section:'extra',card_name:'D/D/D César, Alto Rey de las Olas',quantity:1},
+  {deck_id:671,id:12,section:'extra',card_name:'S:P Pequeña Caballera',quantity:1},
+  {deck_id:671,id:13,section:'extra',card_name:'Réquiem Demoniherrero',quantity:1},
+  {deck_id:671,id:14,section:'main',card_name:'Mementotlán Maza',quantity:1},
+  {deck_id:671,id:15,section:'main',card_name:'Fiesta de Huesos Mementotlán',quantity:1},
+];
+const catalog = E.catalog(deck,rows);
+const db = {bindings:Object.fromEntries(catalog.cards.map((c,i)=>[c.key,[19362,19364,19472,20199,19904,20216,20389,19366,19360,20196,13081,19188,20225,19365,19368][i]])),facts:{},rules:[]};
+let scenario = E.create(catalog);
+scenario = E.place(scenario,{key:catalog.cards[0].key,owner:'self',zone:'m1'});
+scenario = E.place(scenario,{key:catalog.cards[1].key,owner:'self',zone:'m2'});
+
+const rule = {
+  version:1,id:'671:A07:R04:restricted-test',deckId:671,format:'tcg_advanced',
+  scope:'single-effect',label:'Tatsun: destrucción y envío fijado por caso',
+  source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19362&ope=2',
+  assumptions:['Caso cerrado con Angbruja propia y Desvantasma aún en el Deck; no representa selección general por niveles'],
+  actor:{side:'self',zones:['monsters'],cid:19362,notNegated:true},
+  guards:[{kind:'state',field:'active',values:['self']}],
+  select:[{ref:'victim',selector:{side:'self',zones:['monsters'],cid:19364}}],
+  costs:[],
+  resolve:[{op:'destroy',ref:'victim',reason:'effect'}, {op:'take',side:'self',cid:19472,from:'deck',to:'graveyard',position:'attack',cause:'monster_effect'}],
+  tags:['monsterEffect','sendFromDeck'],activation:true,oncePerTurn:true,
+};
+assert.equal(R.validate(rule),rule);
+db.rules=[rule];
+const result=R.actions(scenario,db);
+assert.equal(result.actions.length,1,JSON.stringify(result.rejected));
+const next=result.actions[0].state;
+assert.equal(next.tokens.find(t=>db.bindings[t.key]===19364).zone,'graveyard');
+assert.equal(next.tokens.find(t=>db.bindings[t.key]===19472).zone,'graveyard');
+assert.equal(next._ruleEvents[0].kind,'destroy');
+assert.equal(next._ruleEvents[0].stage,'resolve');
+assert.equal(next._ruleEvents[0].cid,19364);
+assert.equal(R.actions(next,db).actions.length,0,'No repetir el mismo efecto sin reiniciar turno');
+const ghostRule={
+ version:1,id:'671:A07:R05:causal-trigger-test',deckId:671,format:'tcg_advanced',
+ scope:'single-effect',label:'Desvantasma vuelve desde GY tras envío por efecto de Tatsun',
+ source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19472&ope=2',
+ assumptions:['Estado inmediatamente posterior al envío por Tatsun; no modela aquí el efecto distinto de recuperar otra carta'],
+ actor:{side:'self',zones:['graveyard'],cid:19472},
+ trigger:{kind:'sent_by_monster_effect',sourceCid:19362,actorCid:19472},
+ guards:[{kind:'state',field:'active',values:['self']}],select:[],costs:[],
+ resolve:[{op:'move',ref:'actor',to:'m2',position:'attack'}],tags:['monsterEffect'],activation:true,oncePerTurn:true,
+};
+db.rules=[ghostRule];
+const triggered=R.actions(next,db);
+assert.equal(triggered.actions.length,1,JSON.stringify(triggered.rejected));
+assert.equal(triggered.actions[0].state.tokens.find(t=>db.bindings[t.key]===19472).zone,'m2');
+const withoutCause=E.clone(next);
+withoutCause._ruleEvents=withoutCause._ruleEvents.filter(e=>e.kind!=='sent_to_graveyard');
+assert.equal(R.actions(withoutCause,db).actions.length,0,'No atribuir autorresurrección sin procedencia');
+
+db.rules=[rule];
+const negated=R.actions(scenario,db,{negateEffectRuleIds:[rule.id]});
+assert.equal(negated.actions.length,1,JSON.stringify(negated.rejected));
+assert.equal(negated.actions[0].event.effectNegated,true);
+assert.equal(negated.actions[0].state.tokens.length,scenario.tokens.length);
+assert.equal(negated.actions[0].state._ruleEvents?.length||0,0);
+assert(negated.actions[0].state.tokens.every(t=>t.zone!=='graveyard'));
+db.rules=[ghostRule];
+assert.equal(R.actions(negated.actions[0].state,db).actions.length,0,'Negar Tatsun impide disparar Desvantasma');
+
+const withCost={...rule,id:'671:A07:R32:cost-test',costs:[{op:'move',ref:'victim',to:'graveyard',position:'attack'}],resolve:[{op:'take',side:'self',cid:19472,from:'deck',to:'hand',position:'attack'}]};
+db.rules=[withCost];
+const costNegated=R.actions(scenario,db,{negateEffectRuleIds:[withCost.id]});
+assert.equal(costNegated.actions.length,1,JSON.stringify(costNegated.rejected));
+const costState=costNegated.actions[0].state;
+assert.equal(costState.tokens.find(t=>db.bindings[t.key]===19364).zone,'graveyard','Coste permanece pagado');
+assert(!costState.tokens.some(t=>db.bindings[t.key]===19472),'Resolución negada no toma carta del Deck');
+assert.equal(costNegated.actions[0].paid.tokens.find(t=>db.bindings[t.key]===19364).zone,'graveyard');
+const deniedActivation={...withCost,id:'671:A07:R32:activation-negated-test',activationNegatedConsumesUse:false};
+db.rules=[deniedActivation];
+const denied=R.actions(scenario,db,{negateActivationRuleIds:[deniedActivation.id]});
+assert.equal(denied.actions.length,1,JSON.stringify(denied.rejected));
+assert.equal(denied.actions[0].event.activationNegated,true);
+assert.equal(denied.actions[0].state.tokens.find(t=>db.bindings[t.key]===19364).zone,'graveyard');
+assert(!denied.actions[0].state.tokens.some(t=>db.bindings[t.key]===19472));
+assert(!denied.actions[0].state._used?.includes('rule:'+deniedActivation.id));
+const missingLimit={...deniedActivation,activationNegatedConsumesUse:undefined};
+db.rules=[missingLimit];
+assert.equal(R.actions(scenario,db,{negateActivationRuleIds:[missingLimit.id]}).actions.length,0,'El límite tras negar activación no se puede adivinar');
+
+let fusionState=E.create(catalog);
+fusionState=E.place(fusionState,{key:catalog.cards[1].key,owner:'self',zone:'m1'});
+fusionState=E.place(fusionState,{key:catalog.cards[2].key,owner:'self',zone:'m2'});
+fusionState=E.place(fusionState,{key:catalog.cards[3].key,owner:'self',zone:'hand'});
+fusionState=E.place(fusionState,{key:catalog.cards[4].key,owner:'self',zone:'hand'});
+const fusionRule={
+ version:1,id:'671:A07:R06:exact-materials-test',deckId:671,format:'tcg_advanced',
+ scope:'single-effect',label:'Fusión C01: tres materiales exactos del caso',
+ source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2',
+ assumptions:['Solo C01 con tres materiales fijos; no valida todas las recetas ni la cadena de activación de la Mágica'],
+ actor:{side:'self',zones:['hand'],cid:19904},
+ guards:[{kind:'state',field:'active',values:['self']},{kind:'state',field:'phase',values:['main1','main2']}],
+ select:[
+  {ref:'a',selector:{side:'self',zones:['monsters'],cid:19364}},
+  {ref:'b',selector:{side:'self',zones:['monsters'],cid:19472}},
+  {ref:'c',selector:{side:'self',zones:['hand'],cid:20199}},
+ ],
+ costs:[],resolve:[{op:'fusion',cid:20216,materials:['a','b','c'],materialCids:[19364,19472,20199],to:'emz1',recipe:'exact-cids',allowGraveyard:false}],
+ tags:[],activation:true,oncePerTurn:true,
+};
+db.rules=[fusionRule];
+const fusionResult=R.actions(fusionState,db);
+assert.equal(fusionResult.actions.length,1,JSON.stringify(fusionResult.rejected));
+const fused=fusionResult.actions[0].state;
+assert.equal(fused.tokens.find(t=>db.bindings[t.key]===20216).zone,'emz1');
+assert.deepEqual([19364,19472,20199].map(cid=>fused.tokens.find(t=>db.bindings[t.key]===cid).zone),['graveyard','graveyard','graveyard']);
+assert.equal(fused._ruleEvents.at(-1).kind,'fusion_summon');
+assert.equal(R.actions(fusionState,db,{noExtra:true}).actions.length,0);
+const noMaterial=E.clone(fusionState);
+noMaterial.tokens=noMaterial.tokens.filter(t=>db.bindings[t.key]!==20199);
+assert.equal(R.actions(noMaterial,db).actions.length,0);
+const falseRecipe=structuredClone(fusionRule);
+falseRecipe.resolve[0].materialCids=[19364,19472,19362];
+db.rules=[falseRecipe];
+assert.equal(R.actions(fusionState,db).actions.length,0,'No se acepta una receta distinta');
+const dukeRule={
+ version:1,id:'671:A07:R21:additional-normal-test',deckId:671,format:'tcg_advanced',
+ scope:'single-effect',label:'Duque habilita una Normal adicional en este caso',
+ source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20389&ope=2',
+ assumptions:['Duque ya está legalmente Invocado; efecto en Main Phase y Normal original consumida'],
+ actor:{side:'self',zones:['monsters'],cid:20389,notNegated:true},
+ guards:[{kind:'state',field:'active',values:['self']},{kind:'state',field:'phase',values:['main1','main2']},{kind:'state',field:'normalAvailable',values:[false]}],
+ select:[],costs:[],resolve:[{op:'normal',available:true}],tags:['monsterEffect'],activation:true,oncePerTurn:true,
+};
+let usedNormal=E.create(catalog);
+usedNormal=E.place(usedNormal,{key:catalog.cards[6].key,owner:'self',zone:'m1'});
+usedNormal=E.patch(usedNormal,{normalAvailable:false});
+db.rules=[dukeRule];
+const restored=R.actions(usedNormal,db);
+assert.equal(restored.actions.length,1,JSON.stringify(restored.rejected));
+assert.equal(restored.actions[0].state._normal,false);
+assert.equal(restored.actions[0].state.normalAvailable,true,'La Normal vuelve a estar disponible');
+assert.equal(restored.actions[0].paid.normalAvailable,false);
+assert.equal(R.actions(restored.actions[0].state,db).actions.length,0,'No usar otra vez Duque este turno');
+const nextDukeTurn=E.patch(restored.actions[0].state,{turn:3});
+nextDukeTurn._normal=true;
+nextDukeTurn.normalAvailable=false;
+assert.equal(R.actions(nextDukeTurn,db).actions.length,1,
+ 'El límite una vez por nombre de Duque debe reiniciarse en otro turno');
+assert.equal(R.actions(restored.actions[0].state,db).actions.length,0,
+ 'Un cambio de copia sin cambio de turno no permitiría reutilizar el efecto');
+const noNormalUsed=E.create(catalog);
+const duquePresent=E.place(noNormalUsed,{key:catalog.cards[6].key,owner:'self',zone:'m1'});
+assert.equal(R.actions(duquePresent,db).actions.length,0,'No crear una Normal extra sin consumo previo');
+let bossState=E.create(catalog);
+for(const i of [0,1,2,3,7,8])bossState=E.place(bossState,{key:catalog.cards[i].key,owner:'self',zone:'graveyard'});
+const bossRule={
+ version:1,id:'671:A07:R08:five-names-test',deckId:671,format:'tcg_advanced',
+ scope:'single-effect',label:'Creación Combinada: cinco nombres distintos en GY',
+ source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2',
+ assumptions:['Cinco nombres Memento determinados en GY, zona m1 libre; no representa cualquier selección posible de la lista'],
+ actor:{side:'self',zones:['graveyard'],cid:19360},
+ guards:[{kind:'state',field:'active',values:['self']}],
+ select:[0,1,2,3,7].map((i,k)=>({ref:'piece'+k,selector:{side:'self',zones:['graveyard'],cid:[19362,19364,19472,20199,19366][k]}})),
+ costs:[],resolve:[
+   {op:'shuffle',refs:['piece0','piece1','piece2','piece3','piece4'],distinctCids:true,allowedCids:[19362,19364,19472,20199,19366]},
+   {op:'move',ref:'actor',to:'m1',position:'attack'},
+ ],tags:[],activation:false,oncePerTurn:false,
+};
+db.rules=[bossRule];
+const bossResult=R.actions(bossState,db);
+assert.equal(bossResult.actions.length,1,JSON.stringify(bossResult.rejected));
+const bossAfter=bossResult.actions[0].state;
+assert.equal(bossAfter.tokens.length,1,'Cinco nombres barajados dejan únicamente al jefe en campo');
+assert.equal(bossAfter.tokens[0].zone,'m1');
+assert.equal(bossAfter._ruleEvents[0].kind,'shuffle_distinct');
+const withoutGoblin=E.clone(bossState);
+withoutGoblin.tokens=withoutGoblin.tokens.filter(t=>db.bindings[t.key]!==19366);
+assert.equal(R.actions(withoutGoblin,db).actions.length,0,'Cuatro nombres no bastan');
+const foreignName=structuredClone(bossRule);
+foreignName.resolve[0].allowedCids=[19362,19364,19472,20199,20389];
+db.rules=[foreignName];
+assert.equal(R.actions(bossState,db).actions.length,0,'Un material no admitido bloquea el barajado');
+let xyzState=E.create(catalog);
+xyzState=E.place(xyzState,{key:catalog.cards[6].key,owner:'self',zone:'m1'});
+xyzState=E.place(xyzState,{key:catalog.cards[9].key,owner:'self',zone:'m2'});
+const xyzRule={
+ version:1,id:'671:A07:R27:two-level-six-test',deckId:671,format:'tcg_advanced',
+ scope:'single-effect',label:'César con Grabador y Duque ya en el campo',
+ source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13081&ope=2',
+ assumptions:['Los dos Demonios Nivel 6 ya están boca arriba en el campo y no se reutilizan de una ruta que los consumió'],
+ actor:{side:'self',zones:['monsters'],cid:20196},
+ guards:[{kind:'state',field:'active',values:['self']}],
+ select:[{ref:'duke',selector:{side:'self',zones:['monsters'],cid:20389}}],
+ costs:[],resolve:[{op:'xyz',cid:13081,materials:['actor','duke'],materialCids:[20196,20389],to:'emz1',recipe:'exact-cids'}],
+ tags:[],activation:false,oncePerTurn:false,
+};
+db.rules=[xyzRule];
+const xyzResult=R.actions(xyzState,db);
+assert.equal(xyzResult.actions.length,1,JSON.stringify(xyzResult.rejected));
+const xyzAfter=xyzResult.actions[0].state;
+const cesar=xyzAfter.tokens.find(t=>db.bindings[t.key]===13081);
+assert.equal(cesar.zone,'emz1');
+assert.equal(xyzAfter.tokens.filter(t=>t.zone==='material:'+cesar.uid).length,2);
+assert.equal(xyzAfter.tokens.filter(t=>E.isMonster(t.zone)).length,1,'Los materiales ya no son monstruos en campo');
+const withMissingDuke=E.clone(xyzState);
+withMissingDuke.tokens=withMissingDuke.tokens.filter(t=>db.bindings[t.key]!==20389);
+assert.equal(R.actions(withMissingDuke,db).actions.length,0);
+const badXyz=structuredClone(xyzRule);
+badXyz.resolve[0].materialCids=[20196,19364];
+db.rules=[badXyz];
+assert.equal(R.actions(xyzState,db).actions.length,0,'No acreditar César con materiales equivocados');
+const linkRule={
+ version:1,id:'671:A07:R17:main-material-link-test',deckId:671,format:'tcg_advanced',
+ scope:'single-effect',label:'S:P con Angbruja y Tatsun de Main',
+ source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19188&ope=2',
+ assumptions:['Ambos materiales de efecto están boca arriba en campo, sin material del Extra; no se atribuye destierro inicial de S:P'],
+ actor:{side:'self',zones:['monsters'],cid:19364},
+ guards:[{kind:'state',field:'active',values:['self']}],
+ select:[{ref:'tatsun',selector:{side:'self',zones:['monsters'],cid:19362}}],
+ costs:[],resolve:[{op:'link',cid:19188,materials:['actor','tatsun'],materialCids:[19364,19362],to:'emz1',recipe:'exact-cids',linkRating:2}],
+ tags:[],activation:false,oncePerTurn:false,
+};
+let linkState=E.create(catalog);
+linkState=E.place(linkState,{key:catalog.cards[1].key,owner:'self',zone:'m1'});
+linkState=E.place(linkState,{key:catalog.cards[0].key,owner:'self',zone:'m2'});
+db.rules=[linkRule];
+const linked=R.actions(linkState,db);
+assert.equal(linked.actions.length,1,JSON.stringify(linked.rejected));
+const linkAfter=linked.actions[0].state;
+assert.equal(linkAfter.tokens.filter(t=>E.isMonster(t.zone)).length,1);
+assert.equal(linkAfter.tokens.find(t=>db.bindings[t.key]===19188).zone,'emz1');
+assert.deepEqual([19364,19362].map(cid=>linkAfter.tokens.find(t=>db.bindings[t.key]===cid).zone),['graveyard','graveyard']);
+assert.equal(linkAfter._ruleEvents[0].kind,'link_summon');
+const badRating=structuredClone(linkRule);
+badRating.resolve[0].linkRating=3;
+db.rules=[badRating];
+assert.equal(R.actions(linkState,db).actions.length,0,'Link-2 no se acredita con rating incompatible');
+const setSpellRule={
+ version:1,id:'671:A07:R31:quick-spell-set-turn-test',deckId:671,format:'tcg_advanced',
+ scope:'single-effect',label:'Fusión Mementotlán: activación desde zona M/T tras turno de Set',
+ source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2',
+ assumptions:['Solo se prueba ventana temporal de la Mágica Rápida; no se simula la Fusión ni su cadena'],
+ actor:{side:'self',zones:['s1','hand'],cid:19904},
+ guards:[{kind:'state',field:'active',values:['self']},{kind:'state',field:'phase',values:['main1','main2']}],
+ select:[],costs:[],resolve:[{op:'move',ref:'actor',to:'graveyard',position:'attack'}],
+ tags:[],activation:true,oncePerTurn:true,
+};
+let setSpell=E.create(catalog);
+setSpell=E.place(setSpell,{key:catalog.cards[4].key,owner:'self',zone:'s1'});
+setSpell=E.position(setSpell,setSpell.tokens[0].uid,'set');
+assert.equal(setSpell.tokens[0].setTurn,1);
+db.rules=[setSpellRule];
+assert.equal(R.actions(setSpell,db).actions.length,0,
+ 'La Mágica Rápida colocada no se activa el mismo turno');
+const unknownSetTurn=structuredClone(setSpell);
+delete unknownSetTurn.tokens[0].setTurn;
+assert.equal(R.actions(unknownSetTurn,db).actions.length,0,
+ 'Sin historial de colocación no se inventa una ventana legal');
+const nextSetTurn=E.patch(setSpell,{turn:3});
+const setResolved=R.actions(nextSetTurn,db);
+assert.equal(setResolved.actions.length,1,JSON.stringify(setResolved.rejected));
+assert.equal(setResolved.actions[0].state.tokens[0].zone,'graveyard');
+assert.equal(setResolved.actions[0].state.tokens[0].setTurn,undefined,
+ 'Salir de la zona M/T limpia la procedencia temporal de Set');
+let fromHand=E.create(catalog);
+fromHand=E.place(fromHand,{key:catalog.cards[4].key,owner:'self',zone:'hand'});
+assert.equal(R.actions(fromHand,db).actions.length,1,
+ 'La restricción de Set no impide activar la Mágica Rápida desde mano en tu Main');
+const requiemRule={
+ version:1,id:'671:A07:R26:requiem-tribute-cost-test',deckId:671,format:'tcg_advanced',
+ scope:'single-effect',label:'Réquiem tributa como coste y trae Grabador del Deck',
+ source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20225&ope=2',
+ assumptions:['Réquiem previamente Invocado por Enlace; m1 libre y Grabador disponible en Deck; no modela equipar Réquiem desde GY'],
+ actor:{side:'self',zones:['monsters'],cid:20225},
+ guards:[{kind:'state',field:'active',values:['self']}],select:[],
+ costs:[{op:'tribute',ref:'actor',reason:'cost'}],
+ resolve:[{op:'take',side:'self',cid:20196,from:'deck',to:'m1',position:'attack'}],
+ tags:['monsterEffect','summonFromDeck'],activation:true,oncePerTurn:true,
+};
+let requiemState=E.create(catalog);
+requiemState=E.place(requiemState,{key:catalog.cards[12].key,owner:'self',zone:'emz1'});
+db.rules=[requiemRule];
+const tributed=R.actions(requiemState,db);
+assert.equal(tributed.actions.length,1,JSON.stringify(tributed.rejected));
+assert.equal(tributed.actions[0].paid.tokens.find(t=>db.bindings[t.key]===20225).zone,'graveyard');
+assert.equal(tributed.actions[0].state.tokens.find(t=>db.bindings[t.key]===20196).zone,'m1');
+assert.equal(tributed.actions[0].state._ruleEvents[0].kind,'tribute');
+assert.equal(tributed.actions[0].state._ruleEvents[0].by,'cost');
+assert(!tributed.actions[0].state._ruleEvents.some(e=>e.kind==='destroy'),
+ 'Sacrificar a Réquiem no equivale a destruirlo');
+const tributeNegated=R.actions(requiemState,db,{negateEffectRuleIds:[requiemRule.id]});
+assert.equal(tributeNegated.actions.length,1);
+assert.equal(tributeNegated.actions[0].state.tokens.find(t=>db.bindings[t.key]===20225).zone,'graveyard');
+assert(!tributeNegated.actions[0].state.tokens.some(t=>db.bindings[t.key]===20196),
+ 'El efecto negado no trae Grabador, pero el coste se pagó');
+assert.equal(R.actions(requiemState,db,{specialBlocked:true}).actions.length,0,
+ 'El bloqueo de Especial impide resolver la Invocación de Grabador');
+const illegalTribute=structuredClone(requiemRule);
+illegalTribute.costs=[];
+illegalTribute.resolve.unshift({op:'tribute',ref:'actor',reason:'cost'});
+assert.throws(()=>R.validate(illegalTribute),/Sacrificar como coste/,
+ 'No permite disfrazar un Sacrificio de coste como destrucción en resolución');
+const normalWitchRule={
+ version:1,id:'671:A07:R02:witch-normal-window-test',deckId:671,format:'tcg_advanced',
+ scope:'single-effect',label:'Invocación Normal de Angbruja desde mano',
+ source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19364&ope=2',
+ assumptions:['Angbruja en mano; es un procedimiento de Invocación, no aún su efecto disparado'],
+ actor:{side:'self',zones:['hand'],cid:19364},
+ guards:[{kind:'state',field:'active',values:['self']},{kind:'state',field:'phase',values:['main1','main2']}],
+ select:[],costs:[],
+ resolve:[{op:'summon',ref:'actor',method:'normal',from:'hand',to:'m1',position:'attack'}],
+ tags:[],activation:false,oncePerTurn:false,
+};
+const witchSearchRule={
+ version:1,id:'671:A07:R02:witch-triggered-search-test',deckId:671,format:'tcg_advanced',
+ scope:'single-effect',label:'Angbruja busca Tatsun tras su Invocación Normal',
+ source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19364&ope=2',
+ assumptions:['Solo objetivo Tatsun; el evento de Invocación real precede a la búsqueda y el rival no responde'],
+ actor:{side:'self',zones:['monsters'],cid:19364},
+ trigger:{kind:'summoned',actorCid:19364,methods:['normal','special']},
+ guards:[{kind:'state',field:'active',values:['self']}],
+ select:[],costs:[],resolve:[{op:'take',side:'self',cid:19362,from:'deck',to:'hand',position:'attack'}],
+ tags:['monsterEffect','addFromDeck'],activation:true,oncePerTurn:true,
+};
+let witchOpening=E.create(catalog);
+witchOpening=E.place(witchOpening,{key:catalog.cards[1].key,owner:'self',zone:'hand'});
+db.rules=[witchSearchRule];
+assert.equal(R.actions(witchOpening,db).actions.length,0,
+ 'No hay búsqueda desde mano sin Invocación previa');
+db.rules=[normalWitchRule];
+const witchNormal=R.actions(witchOpening,db,{specialBlocked:true});
+assert.equal(witchNormal.actions.length,1,JSON.stringify(witchNormal.rejected));
+const witchField=witchNormal.actions[0].state;
+assert.equal(witchField.normalAvailable,false);
+assert.equal(witchField._ruleEvents.at(-1).kind,'summon');
+assert.equal(witchField._ruleEvents.at(-1).method,'normal');
+assert.equal(R.actions(witchOpening,db).actions.length,1);
+const normalConsumed=E.patch(witchOpening,{normalAvailable:false});
+assert.equal(R.actions(normalConsumed,db).actions.length,0,
+ 'No repetir la Normal original en este turno');
+db.rules=[witchSearchRule];
+const searched=R.actions(witchField,db);
+assert.equal(searched.actions.length,1,JSON.stringify(searched.rejected));
+assert.equal(searched.actions[0].state.tokens.find(t=>db.bindings[t.key]===19362).zone,'hand');
+assert.equal(R.actions(searched.actions[0].state,db).actions.length,0,
+ 'La búsqueda de Angbruja no se repite por nombre en este turno');
+const withoutSummon=structuredClone(witchField);
+withoutSummon._ruleEvents=[];
+assert.equal(R.actions(withoutSummon,db).actions.length,0,
+ 'Angbruja en campo no prueba que acaba de ser Invocada');
+const previousTurn=E.patch(witchField,{turn:3});
+assert.equal(R.actions(previousTurn,db).actions.length,0,
+ 'Una Invocación del turno anterior no dispara una búsqueda tardía');
+// C01: prueba secuencial cerrada sin respuestas ni selección general de materiales.
+// No equivale a certificación integral de la ruta: faltan cadenas y validación de niveles.
+function c01Step(state, r) {
+ db.rules=[r];
+ const result=R.actions(state,db);
+ assert.equal(result.actions.length,1,`${r.id}: ${JSON.stringify(result.rejected)}`);
+ return result.actions[0].state;
+}
+let c01=E.create(catalog);
+c01=E.place(c01,{key:catalog.cards[1].key,owner:'self',zone:'hand'});
+c01=E.place(c01,{key:catalog.cards[4].key,owner:'self',zone:'hand'});
+c01=c01Step(c01,normalWitchRule);
+const c01AfterNormal=c01;
+c01=c01Step(c01,witchSearchRule);
+const specialTatsun={...normalWitchRule,
+ id:'671:A07:C01:tatsun-special',label:'Especial Tatsun con solo Memento propios',
+ actor:{side:'self',zones:['hand'],cid:19362},
+ assumptions:['No existe otro monstruo propio boca arriba que no sea Memento'],
+ resolve:[{op:'summon',ref:'actor',method:'special',from:'hand',to:'m2',position:'attack'}]};
+db.rules=[witchSearchRule];
+const c01Ash=R.actions(c01AfterNormal,db,{negateEffectRuleIds:[witchSearchRule.id]});
+assert.equal(c01Ash.actions.length,1);
+assert(!c01Ash.actions[0].state.tokens.some(t=>db.bindings[t.key]===19362),
+ 'Negar la búsqueda de Angbruja impide añadir Tatsun');
+db.rules=[specialTatsun];
+assert.equal(R.actions(c01Ash.actions[0].state,db).actions.length,0,
+ 'C01 debe detenerse después de Ash, sin inventar Tatsun');
+c01=c01Step(c01,specialTatsun);
+const tatsunSend={...rule,id:'671:A07:C01:tatsun-send',
+ actor:{side:'self',zones:['monsters'],cid:19362},select:[],
+ assumptions:['Tatsun original Nivel 5 y objetivos Desvantasma Nivel 2 + Dormiveja Nivel 3 fijados; la suma no se valida genéricamente'],
+ resolve:[
+  {op:'destroy',ref:'actor',reason:'effect'},
+  {op:'take',side:'self',cid:19472,from:'deck',to:'graveyard',position:'attack',cause:'monster_effect'},
+  {op:'take',side:'self',cid:20199,from:'deck',to:'graveyard',position:'attack',cause:'monster_effect'},
+ ]};
+c01=c01Step(c01,tatsunSend);
+const ghostSummon={...ghostRule,id:'671:A07:C01:ghost-special',
+ resolve:[{op:'move',ref:'actor',to:'m2',position:'attack',summonMethod:'special'}]};
+c01=c01Step(c01,ghostSummon);
+const ghostRecover={...witchSearchRule,id:'671:A07:C01:ghost-recover',
+ label:'Desvantasma recupera Dormiveja tras su Invocación',
+ source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19472&ope=2',
+ actor:{side:'self',zones:['monsters'],cid:19472},
+ trigger:{kind:'summoned',actorCid:19472,methods:['special']},
+ select:[{ref:'recover',selector:{side:'self',zones:['graveyard'],cid:20199}}],
+ resolve:[{op:'move',ref:'recover',to:'hand',position:'attack'}],
+ tags:['monsterEffect']};
+c01=c01Step(c01,ghostRecover);
+const c01Fusion={...fusionRule,id:'671:A07:C01:fusion',
+ resolve:[...fusionRule.resolve,{op:'move',ref:'actor',to:'graveyard',position:'attack'}]};
+c01=c01Step(c01,c01Fusion);
+const kingSend={...witchSearchRule,id:'671:A07:C01:king-send',
+ label:'Rey Creación envía tres nombres Memento tras ser Fusionado',
+ source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20216&ope=2',
+ actor:{side:'self',zones:['monsters'],cid:20216},
+ trigger:{kind:'fusion_summoned',actorCid:20216},
+ select:[],tags:['monsterEffect','sendFromDeck'],
+ resolve:[19360,19365,19366].map(cid=>({op:'take',side:'self',cid,from:'deck',to:'graveyard',position:'attack',cause:'monster_effect'}))};
+c01=c01Step(c01,kingSend);
+const c01Boss={...bossRule,id:'671:A07:C01:five-name-boss'};
+c01=c01Step(c01,c01Boss);
+assert.equal(c01.normalAvailable,false);
+assert.deepEqual(c01.tokens.filter(t=>E.isMonster(t.zone)).map(t=>db.bindings[t.key]).sort((a,b)=>a-b),
+ [19360,20216].sort((a,b)=>a-b),'C01 termina en Rey + Creación Combinada');
+assert.equal(c01.tokens.find(t=>db.bindings[t.key]===19365).zone,'graveyard',
+ 'Maza se conserva en GY para una respuesta posterior');
+assert.equal(c01.tokens.find(t=>db.bindings[t.key]===19904).zone,'graveyard',
+ 'Fusión se consumió y no se reutilizó');
+assert.equal(c01.tokens.filter(t=>db.bindings[t.key]===19362).length,0,
+ 'Tatsun barajado al Deck ya no está representado en el campo/GY');
+assert.equal(c01._ruleEvents.filter(e=>e.kind==='fusion_summon').length,1);
+// C02: ventana de Fiesta y jefe aislado, con nombres exactos del Deck.
+let c02=E.create(catalog);
+c02=E.place(c02,{key:catalog.cards[1].key,owner:'self',zone:'hand'});
+c02=E.place(c02,{key:catalog.cards[14].key,owner:'self',zone:'hand'});
+c02=c01Step(c02,normalWitchRule);
+const searchBoss={...witchSearchRule,id:'671:A07:C02:search-boss',
+ label:'Angbruja añade Creación Combinada tras su Normal',
+ resolve:[{op:'take',side:'self',cid:19360,from:'deck',to:'hand',position:'attack'}]};
+c02=c01Step(c02,searchBoss);
+const boneParty={...witchSearchRule,id:'671:A07:C02:bone-party',
+ label:'Fiesta destruye Angbruja y trae Tatsun del Deck en Defensa',
+ source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2',
+ actor:{side:'self',zones:['hand'],cid:19368},trigger:undefined,
+ assumptions:['Fiesta desde mano en Main; Angbruja boca arriba en campo y Tatsun aún en Deck; sin respuesta rival'],
+ select:[{ref:'victim',selector:{side:'self',zones:['monsters'],cid:19364}}],
+ resolve:[
+  {op:'destroy',ref:'victim',reason:'effect'},
+  {op:'take',side:'self',cid:19362,from:'deck',to:'m1',position:'defense'},
+  {op:'move',ref:'actor',to:'graveyard',position:'attack'},
+ ],tags:['summonFromDeck']};
+c02=c01Step(c02,boneParty);
+assert.equal(c02.tokens.find(t=>db.bindings[t.key]===19362).position,'defense');
+const c02Tatsun={...tatsunSend,id:'671:A07:C02:tatsun-send',
+ assumptions:['Tatsun original Nivel 5; Goblin Nivel 1 + Maza Nivel 1 + Desvantasma Nivel 2 fijados, sin suma general'],
+ resolve:[
+  {op:'destroy',ref:'actor',reason:'effect'},
+  ...[19366,19365,19472].map(cid=>({op:'take',side:'self',cid,from:'deck',to:'graveyard',position:'attack',cause:'monster_effect'})),
+ ]};
+c02=c01Step(c02,c02Tatsun);
+const c02Boss={...bossRule,id:'671:A07:C02:five-name-boss',
+ actor:{side:'self',zones:['hand'],cid:19360},
+ select:[19364,19362,19366,19365,19472].map((cid,i)=>({ref:'n'+i,selector:{side:'self',zones:['graveyard'],cid}})),
+ resolve:[
+  {op:'shuffle',refs:['n0','n1','n2','n3','n4'],distinctCids:true,allowedCids:[19364,19362,19366,19365,19472]},
+  {op:'move',ref:'actor',to:'m1',position:'attack',summonMethod:'special'},
+ ]};
+c02=c01Step(c02,c02Boss);
+assert.deepEqual(c02.tokens.filter(t=>E.isMonster(t.zone)).map(t=>db.bindings[t.key]),[19360],
+ 'C02 termina con Creación Combinada como único monstruo');
+assert.equal(c02.tokens.find(t=>db.bindings[t.key]===19368).zone,'graveyard');
+assert.equal(c02.tokens.filter(t=>t.zone==='graveyard'&&[19364,19362,19366,19365,19472].includes(db.bindings[t.key])).length,0);
+console.log('Memento A07: destrucción por efecto, envío fijado y negación con costes conservados: OK');
+console.log('Memento A07: Fusión con materiales exactos, bloqueo de Extra y falta de material: OK');
+console.log('Memento A07: Normal adicional de Duque con estado usado y límite por turno: OK');
+console.log('Memento A07: cinco nombres distintos para Creación Combinada: OK');
+console.log('Memento A07: César Xyz con materiales acoplados y requisitos exactos: OK');
+console.log('Memento A07: S:P Link-2 con dos materiales Main y sin destierro inicial: OK');
+console.log('Memento A07: R31 turno de Set y R34 reinicio de una vez por nombre: OK');
+console.log('Memento A07: R26 Sacrificio de Réquiem como coste, distinto de destrucción: OK');
+console.log('Memento A07: R02 Normal de Angbruja y búsqueda posterior disparada por UID: OK');
+console.log('Memento A07: C01 secuencia fija de nueve resoluciones hasta dos jefes: OK, sin certificación de cadenas');
+console.log('Memento A07: C02 secuencia fija de Fiesta a jefe aislado: OK, sin certificación de ventanas generales');
