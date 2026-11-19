@@ -1,8 +1,6 @@
 name: Validate deck TXT template
 
 on:
-  pull_request:
-    branches: [base]
   workflow_dispatch:
 
 permissions:

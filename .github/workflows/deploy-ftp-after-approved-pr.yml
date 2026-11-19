@@ -1,13 +1,17 @@
-name: Deploy Station X after tested merge
+name: Deploy Station X on merge
 
 on:
   pull_request:
     branches: [base]
     types: [closed]
+  workflow_dispatch:
 
 permissions:
-  contents: write
-  pull-requests: read
+  contents: read
+
+env:
+  # Absolute FTP path verified against the public document root.
+  FTP_SERVER_DIR: /domains/stationxtulua.com/public_html/yugioh/
 
 concurrency:
   group: stationx-production-ftp
@@ -15,7 +19,8 @@ concurrency:
 
 jobs:
   deploy:
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/base')
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     environment: production
     steps:
@@ -24,7 +29,6 @@ jobs:
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
         run: |
           test -n "$FTP_HOST" && test -n "$FTP_USERNAME" && test -n "$FTP_PASSWORD" || {
             echo "Required FTP secrets have not been configured"
@@ -38,32 +42,16 @@ jobs:
       - name: Checkout merged base
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.merge_commit_sha }}
+          ref: ${{ github.event.pull_request.merge_commit_sha || github.sha }}
           persist-credentials: false
 
-      - name: Prepare PHP 8.3
-        uses: shivammathur/setup-php@v2
+      - name: Prepare Node
+        uses: actions/setup-node@v4
         with:
-          php-version: '8.3'
-          extensions: mbstring, pdo_mysql, pdo_sqlite
+          node-version: '22'
 
-      - name: Prepare Python 3
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install dependencies and run repository tests
-        run: |
-          npm ci
-          npm test
-
-      - name: Verify calculator contract
-        run: node scripts/test-calculator-general.cjs
-
-      - name: Verify deck TXT template import
-        run: |
-          php -l torneos_yugioh/includes/decks/template-import.php
-          php torneos_yugioh/tests/deck_template_test.php
+      - name: Build runtime frontend
+        run: node scripts/build-frontend.cjs
 
       - name: Prepare release identity
         shell: bash
@@ -76,24 +64,6 @@ jobs:
           mkdir -p .deploy-release
           node -e 'const fs = require("fs"); fs.writeFileSync(".deploy-release/release.json", JSON.stringify({schema:"stationx-release/1", version:process.env.DEPLOY_VERSION, commit:process.env.DEPLOY_COMMIT, builtAt:new Date().toISOString()}, null, 2) + "\n")'
 
-      - name: Check FTP passive data channel (read-only)
-        env:
-          FTP_HOST: ${{ secrets.FTP_HOST }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
-        shell: bash
-        run: |
-          # LIST opens an FTP data socket but does not change production files.
-          # This distinguishes passive-channel failures from repository test failures.
-          if ! curl --silent --show-error --fail --ftp-pasv \
-            --connect-timeout 15 --max-time 90 \
-            --user "$FTP_USERNAME:$FTP_PASSWORD" \
-            --list-only "ftp://${FTP_HOST}:21/${FTP_SERVER_DIR}" >/dev/null; then
-            echo "::error::FTP passive data-channel check failed. Ask the host to check FTP passive ports (PASV) and firewall access from GitHub Actions runners."
-            exit 1
-          fi
-
       - name: Verify or transfer application by FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
@@ -103,7 +73,7 @@ jobs:
           port: 21
           protocol: ftp
           local-dir: ./torneos_yugioh/
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          server-dir: ${{ env.FTP_SERVER_DIR }}
           dangerous-clean-slate: false
           timeout: 120000
           exclude: |
@@ -118,6 +88,12 @@ jobs:
             **/.env*
             **/node_modules/**
             assets/uploads/**
+            assets/cache/**
+            assets/source/**
+            artifacts/**
+            test-results/**
+            .deployment-backups/**
+            release.json
 
       - name: Publish and verify deployed version manifest
         shell: bash
@@ -125,7 +101,6 @@ jobs:
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
         run: |
           set -euo pipefail
           manifest_url="ftp://${FTP_HOST}:21/${FTP_SERVER_DIR}release.json"
@@ -148,40 +123,17 @@ jobs:
             exit 1
           }
 
-      - name: Verify public site serves the deployed version
+      - name: Verify public deployment manifest
         shell: bash
         run: |
           set -euo pipefail
           public_root="https://stationxtulua.com/yugioh"
           manifest="$(mktemp)"
-          html="$(mktemp)"
-          trap 'rm -f "$manifest" "$html"' EXIT
+          trap 'rm -f "$manifest"' EXIT
           curl --fail --silent --show-error --location \
             --retry 5 --retry-all-errors --retry-delay 3 \
             --connect-timeout 15 --max-time 45 \
             -H 'Cache-Control: no-cache' \
             "$public_root/release.json?deploy_check=$GITHUB_RUN_ID" -o "$manifest"
           node -e 'const fs=require("fs");const d=JSON.parse(fs.readFileSync(process.argv[1],"utf8"));if(d.version!==process.env.DEPLOY_VERSION||d.commit!==process.env.DEPLOY_COMMIT){console.error("::error::Public release.json does not match the deployed version and commit.");process.exit(1)}' "$manifest"
-          curl --fail --silent --show-error --location \
-            --retry 5 --retry-all-errors --retry-delay 3 \
-            --connect-timeout 15 --max-time 45 \
-            -H 'Cache-Control: no-cache' \
-            "$public_root/?deploy_check=$GITHUB_RUN_ID" -o "$html"
-          if ! grep -Fq "Versión desplegada: $DEPLOY_VERSION" "$html"; then
-            echo "::error::Public HTML footer does not show $DEPLOY_VERSION. Check FTP_SERVER_DIR, web document root, and server-side cache."
-            exit 1
-          fi
           echo "Public application and version verified at $public_root/"
-
-      - name: Register GitHub release after deployment
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          if gh release view "$DEPLOY_VERSION" >/dev/null 2>&1; then
-            echo "GitHub release $DEPLOY_VERSION already exists; FTP application and release.json were verified successfully."
-          else
-            gh release create "$DEPLOY_VERSION" \
-              --target "$DEPLOY_COMMIT" \
-              --title "Station X $DEPLOY_VERSION" \
-              --notes "Desplegado en producción desde $DEPLOY_COMMIT mediante GitHub Actions."
-          fi

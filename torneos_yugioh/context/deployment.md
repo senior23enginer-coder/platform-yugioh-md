@@ -3,14 +3,14 @@
 ## Rutas
 
 - Repositorio: `https://github.com/senior23enginer-coder/platform-yugioh-md`.
-- Repositorio local: `C:\Users\senio\OneDrive\Documents\xstation\platform-yugioh-md`.
+- Repositorio local: `C:\Users\senio\OneDrive\Documents\platform-yugioh-md`.
 - Aplicacion dentro del repositorio: `torneos_yugioh/`.
 - Produccion: `https://stationxtulua.com/yugioh/`.
 - Raiz remota habitual: `domains/stationxtulua.com/public_html/yugioh/`.
 
 La ruta remota debe verificarse desde la raiz FTP antes de publicar; no debe asumirse `public_html/` sin comprobar el arbol del proveedor.
 
-El commit y push a GitHub no despliegan el sitio. La copia antigua de la aplicacion en `xstation/torneos_yugioh` queda como referencia; el trabajo futuro se guarda en el nuevo repositorio. Ver `README.md` en la raiz para la configuracion privada local y el puente de compatibilidad `store-lib.php`.
+Un merge de PR a `base` despliega autom?ticamente por FTP; un push normal no despliega. Tambi?n se puede reintentar manualmente desde Actions sobre `base`. El procedimiento vigente y sus exclusiones est?n en `.github/FTP-DEPLOY-SETUP.md`. La copia antigua en `xstation` fue retirada. Ver `README.md` en la raiz para la configuracion privada local y el puente de compatibilidad `store-lib.php`.
 
 ## Artefactos
 
