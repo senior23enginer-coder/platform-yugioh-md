@@ -1,7 +1,7 @@
 (function(root){
   'use strict';
   const literal=v=>String(v??'').trim();
-  const auditPrefix=/^Dictamen editorial\s+[A-Z_]+:\s*/i;
+  const auditPrefix=/^Dictamen(?:\s+editorial(?:\s+[A-Z_]+)?)?:\s*/i;
   const pending=/^(?:consultar|pendiente|sin (?:datos|información)|no determinado)\b/i;
   function firstSentence(raw,max=220){
     const cleaned=literal(raw).replace(auditPrefix,'').replace(/\s+/g,' ');
@@ -42,6 +42,11 @@
     for(const card of cards){
       if(!card||!literal(card.image))continue;
       const names=[card.name,...(Array.isArray(card.source_aliases)?card.source_aliases:[])];
+      // Use a suffix of an official compound name only when it is unambiguous
+      // among this deck's own cards (e.g. «Creación Combinada»).
+      const suffix=literal(card.name).split(/\s+[-—–]\s+/u).at(-1);
+      if(suffix&&suffix!==literal(card.name)&&suffix.length>=7
+          &&cards.filter(c=>literal(c.name).endsWith(suffix)).length===1)names.push(suffix);
       const aliases=names.map(x=>literal(x).normalize('NFD').replace(/\p{Diacritic}/gu,'').toLocaleLowerCase('es'));
       if(!aliases.some(name=>containsName(narrative,name)))continue;
       const key=String(card.cid??card.id??card.name);
