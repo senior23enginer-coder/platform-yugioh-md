@@ -1,0 +1,1270 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Station X · API de Decks",
+    "version": "1.0.0",
+    "description": "Operaciones implementadas mediante adaptadores a los controladores nativos. Los 37 endpoints REST propuestos todavía no están implementados. El CRUD de datos generales del deck sigue en formularios y no se anuncia como API REST. Las lecturas con token deben ejecutarse primero; Swagger reutiliza esos tokens solo en memoria y mantiene las cookies del mismo origen."
+  },
+  "servers": [
+    {
+      "url": "../api/index.php",
+      "description": "Misma plataforma y sesión que esta documentación"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Decklist"
+    },
+    {
+      "name": "Catálogo de cartas"
+    },
+    {
+      "name": "Combos"
+    },
+    {
+      "name": "Mundos"
+    },
+    {
+      "name": "Data ZIP"
+    }
+  ],
+  "paths": {
+    "/decklist": {
+      "get": {
+        "operationId": "getDecklist",
+        "summary": "Consultar lista y versión",
+        "tags": [
+          "Decklist"
+        ],
+        "description": "Devuelve cartas guardadas, versión y token. Ejecuta esta lectura antes de guardar.",
+        "parameters": [
+          {
+            "name": "deck_id",
+            "in": "query",
+            "required": true,
+            "description": "ID real del deck en la plataforma.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación completada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DecklistSnapshot"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Datos no válidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Operación no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "saveDecklist",
+        "summary": "Guardar lista completa",
+        "tags": [
+          "Decklist"
+        ],
+        "description": "Reemplaza la lista completa. Para agregar, quitar o mover cartas envía el arreglo final y la versión del GET. Mantiene bloqueo, transacción y auditoría. El token va en el JSON; no en X-CSRF-Token. Una versión obsoleta responde 422 en el contrato nativo.",
+        "parameters": [
+          {
+            "name": "deck_id",
+            "in": "query",
+            "required": true,
+            "description": "ID real del deck en la plataforma.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación completada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Datos no válidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Operación no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DecklistSave"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cards/search": {
+      "get": {
+        "operationId": "searchCards",
+        "summary": "Buscar cartas del catálogo",
+        "tags": [
+          "Catálogo de cartas"
+        ],
+        "description": "Consulta el proveedor/caché utilizado por el editor. No modifica inventarios.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "Nombre o código de carta.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "description": "Filtro nativo del catálogo; all para todos.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Índice de página; comienza en 0.",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación completada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Datos no válidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Operación no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cards/detail": {
+      "get": {
+        "operationId": "getCard",
+        "summary": "Consultar efecto e imagen de una carta",
+        "tags": [
+          "Catálogo de cartas"
+        ],
+        "description": "local=1 consulta solo caché local; local=0 permite proveedor. No fabrica efectos ni traduce el texto original.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "description": "ID YGOPRODeck, no CID de Konami.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "local",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "0",
+                "1"
+              ],
+              "default": "1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación completada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Datos no válidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Operación no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cards/image": {
+      "get": {
+        "operationId": "getCardImage",
+        "summary": "Obtener fotografía de carta",
+        "tags": [
+          "Catálogo de cartas"
+        ],
+        "description": "Solo acepta IDs catalogados; full sirve el original grande.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "description": "ID YGOPRODeck, no CID de Konami.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "small",
+                "full"
+              ],
+              "default": "full"
+            }
+          },
+          {
+            "name": "local",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "0",
+                "1"
+              ],
+              "default": "0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación completada.",
+            "content": {
+              "image/jpeg": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Datos no válidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Operación no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/combos": {
+      "get": {
+        "operationId": "getDeckCombos",
+        "summary": "Consultar combos, inventario e historial",
+        "tags": [
+          "Combos"
+        ],
+        "description": "Sin history devuelve las creaciones del deck. Con history devuelve también revisiones del combo indicado. Incluye token de sesión.",
+        "parameters": [
+          {
+            "name": "deck_id",
+            "in": "query",
+            "required": true,
+            "description": "ID real del deck en la plataforma.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "history",
+            "in": "query",
+            "required": false,
+            "description": "ID del combo cuyo historial se desea consultar.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación completada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Datos no válidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Operación no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "saveCombo",
+        "summary": "Crear o actualizar combo",
+        "tags": [
+          "Combos"
+        ],
+        "description": "El ID pertenece al documento; revision=0 crea, una revisión vigente actualiza. Usa el inventario_sha256 de la consulta anterior. Incluye grafo, pasos y fuentes con historial nativo.",
+        "parameters": [
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "description": "Token obtenido mediante GET de combos, Mundos o estado ZIP en esta misma sesión. Swagger lo reutiliza en memoria.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación completada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Sesión o permisos inválidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Versión o inventario cambió.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Datos no válidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Operación no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComboSave"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/worlds": {
+      "get": {
+        "operationId": "getDeckWorlds",
+        "summary": "Consultar Mundos y asignaciones",
+        "tags": [
+          "Mundos"
+        ],
+        "description": "Incluye catálogo, decks elegibles, asignaciones, historial y token. Sin deck_id consulta el conjunto.",
+        "parameters": [
+          {
+            "name": "deck_id",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación completada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Datos no válidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Operación no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "saveDeckWorlds",
+        "summary": "Actualizar Mundos del deck",
+        "tags": [
+          "Mundos"
+        ],
+        "description": "Solo TCG. Entre uno y tres mundos distintos; el primero es el principal. Usa expected_revision de la consulta anterior.",
+        "parameters": [
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "description": "Token obtenido mediante GET de combos, Mundos o estado ZIP en esta misma sesión. Swagger lo reutiliza en memoria.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación completada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Sesión o permisos inválidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Versión o inventario cambió.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Datos no válidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Operación no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorldsSave"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deck-data/status": {
+      "get": {
+        "operationId": "getDeckDataStatus",
+        "summary": "Consultar data disponible",
+        "tags": [
+          "Data ZIP"
+        ],
+        "description": "Requiere ZipArchive en el servidor. Las fuentes y el inventario se verifican sin cambiar cantidades de cartas. Devuelve token, existencia de data y conteos.",
+        "parameters": [
+          {
+            "name": "deck_id",
+            "in": "query",
+            "required": true,
+            "description": "ID real del deck en la plataforma.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación completada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Datos no válidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Operación no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deck-data/export": {
+      "get": {
+        "operationId": "exportDeckData",
+        "summary": "Exportar carpeta del deck en ZIP",
+        "tags": [
+          "Data ZIP"
+        ],
+        "description": "Requiere ZipArchive en el servidor. Las fuentes y el inventario se verifican sin cambiar cantidades de cartas. Incluye la carpeta individual y stationx-deck.json para la importación posterior.",
+        "parameters": [
+          {
+            "name": "deck_id",
+            "in": "query",
+            "required": true,
+            "description": "ID real del deck en la plataforma.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación completada.",
+            "content": {
+              "application/zip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Datos no válidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Operación no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deck-data/preview": {
+      "post": {
+        "operationId": "previewDeckData",
+        "summary": "Preparar importación ZIP",
+        "tags": [
+          "Data ZIP"
+        ],
+        "description": "Requiere ZipArchive en el servidor. Las fuentes y el inventario se verifican sin cambiar cantidades de cartas. Máximo 48 MiB. No publica: devuelve ticket y diferencias. Conserva revisiones nativas del editor.",
+        "parameters": [
+          {
+            "name": "deck_id",
+            "in": "query",
+            "required": true,
+            "description": "ID real del deck en la plataforma.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "description": "Token obtenido mediante GET de combos, Mundos o estado ZIP en esta misma sesión. Swagger lo reutiliza en memoria.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación completada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Versión o inventario cambió.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Datos no válidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Operación no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "package": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "package"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deck-data/commit": {
+      "post": {
+        "operationId": "commitDeckData",
+        "summary": "Confirmar importación preparada",
+        "tags": [
+          "Data ZIP"
+        ],
+        "description": "Aplica el ticket de preview en la misma sesión, con vigencia de 30 minutos. Rechaza cambios concurrentes y conserva inventario e historial.",
+        "parameters": [
+          {
+            "name": "deck_id",
+            "in": "query",
+            "required": true,
+            "description": "ID real del deck en la plataforma.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "description": "Token obtenido mediante GET de combos, Mundos o estado ZIP en esta misma sesión. Swagger lo reutiliza en memoria.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación completada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Versión o inventario cambió.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Datos no válidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Operación no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ticket": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "ticket"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ok",
+          "message"
+        ]
+      },
+      "CardRow": {
+        "type": "object",
+        "properties": {
+          "section": {
+            "type": "string",
+            "enum": [
+              "main",
+              "extra",
+              "side",
+              "reserve"
+            ]
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99
+          },
+          "existing_id": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "card_id": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "card_name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "merged_ids": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "required": [
+          "section",
+          "quantity"
+        ]
+      },
+      "DecklistSave": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "cards": {
+            "type": "array",
+            "maxItems": 300,
+            "items": {
+              "$ref": "#/components/schemas/CardRow"
+            }
+          },
+          "documented_import": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "token",
+          "version",
+          "cards"
+        ]
+      },
+      "DecklistSnapshot": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean"
+          },
+          "token": {
+            "type": "string"
+          },
+          "can_edit": {
+            "type": "boolean"
+          },
+          "deck": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "cards": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "version": {
+            "type": "string"
+          }
+        }
+      },
+      "ComboNode": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "opening",
+              "step",
+              "decision",
+              "result"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "action": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "explanation": {
+            "type": "string",
+            "maxLength": 4000
+          },
+          "x": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 5000
+          },
+          "y": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 5000
+          },
+          "cards": {
+            "type": "array",
+            "maxItems": 8,
+            "items": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "title",
+          "x",
+          "y"
+        ]
+      },
+      "ComboDocument": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9-]{16,64}$"
+          },
+          "title": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "combo",
+              "strategy"
+            ]
+          },
+          "turn_order": {
+            "type": "string",
+            "enum": [
+              "any",
+              "first",
+              "second"
+            ]
+          },
+          "board_format": {
+            "type": "string",
+            "enum": [
+              "unspecified",
+              "tcg",
+              "rush",
+              "goat"
+            ]
+          },
+          "editorial_status": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "conditional",
+              "pending",
+              "not_executable"
+            ]
+          },
+          "nodes": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 60,
+            "items": {
+              "$ref": "#/components/schemas/ComboNode"
+            }
+          },
+          "edges": {
+            "type": "array",
+            "maxItems": 120,
+            "items": {
+              "type": "object",
+              "properties": {
+                "from": {
+                  "type": "string"
+                },
+                "to": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "from",
+                "to"
+              ]
+            }
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "nodes",
+          "edges"
+        ]
+      },
+      "ComboSave": {
+        "type": "object",
+        "properties": {
+          "deck_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "inventory_sha256": {
+            "type": "string"
+          },
+          "document": {
+            "$ref": "#/components/schemas/ComboDocument"
+          }
+        },
+        "required": [
+          "deck_id",
+          "revision",
+          "inventory_sha256",
+          "document"
+        ]
+      },
+      "WorldsSave": {
+        "type": "object",
+        "properties": {
+          "deck_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "attributes": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 3,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": [
+                "dark",
+                "earth",
+                "light",
+                "water",
+                "wind",
+                "fire"
+              ]
+            }
+          }
+        },
+        "required": [
+          "deck_id",
+          "expected_revision",
+          "attributes"
+        ]
+      }
+    }
+  }
+}

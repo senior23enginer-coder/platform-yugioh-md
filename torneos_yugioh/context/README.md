@@ -16,6 +16,7 @@ Documentacion vigente de la plataforma competitiva Yu-Gi-Oh de Station X Tulua.
 - `architecture.md`: arquitectura implementada.
 - `global-ranking.md`: catalogo completo TCG/OCG, alcance compartido de ficha y ranking global; excluye Rush y GOAT.
 - `database.md`: modelo de persistencia real.
+- `swagger.md`: documentación interactiva OpenAPI y adaptadores de las operaciones HTTP existentes.
 - `api.md`: interfaz HTTP implementada.
 - `frontend.md`: pantallas, navegacion y comportamiento responsive.
 - `testing.md`: estrategia y pruebas existentes.

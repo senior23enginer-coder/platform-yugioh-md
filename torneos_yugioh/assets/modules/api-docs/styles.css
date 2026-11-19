@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  background: #fafafa;
+}
+.docs-header {
+  box-sizing: border-box;
+  max-width: 1460px;
+  margin: auto;
+  padding: 24px 20px;
+  font:
+    16px/1.5 system-ui,
+    sans-serif;
+  color: #122139;
+}
+.docs-header h1 {
+  margin: 12px 0;
+}
+.docs-header a {
+  color: #0758a7;
+}
+.swagger-ui .topbar {
+  display: none;
+}
+.swagger-ui .opblock-summary-description {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 600px) {
+  .docs-header {
+    padding: 18px 12px;
+  }
+  .swagger-ui .wrapper {
+    padding: 0 12px;
+  }
+  .swagger-ui .opblock .opblock-summary {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .swagger-ui .opblock-summary-description {
+    flex-basis: 100%;
+    padding: 4px;
+  }
+  .swagger-ui .parameters-col_description input {
+    min-width: 0;
+    width: 100%;
+  }
+}

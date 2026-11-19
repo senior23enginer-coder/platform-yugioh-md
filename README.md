@@ -75,3 +75,9 @@ Las fuentes del frontend existente se editan en `torneos_yugioh/assets/source/`.
 El recorrido hexagonal de Mundos, sus puertos y las reglas de transacción están documentados en `torneos_yugioh/context/source-architecture.md`. Usa `npm run format:architecture` y `npm run format:architecture:check` para el formato de las fuentes migradas; no aplican a plantillas mixtas ni a bundles generados.
 
 El avance y la deuda real de la migración completa a puertos/adaptadores se detallan en `torneos_yugioh/context/architecture-migration-status.md`. El dominio no debe llamar funciones nativas `ygo_*`, PDO, archivos ni HTTP; ese límite se comprueba en la suite. `php scripts/source-inventory.php --summary` inventaría las dependencias nativas sin inicializar la aplicación.
+
+## Swagger del módulo Deck
+
+Abrir `/yugioh/api-docs/` (local: `http://127.0.0.1:8080/api-docs/`). Incluye 13 operaciones implementadas, ejemplos y ejecución con la sesión existente. Contrato: `torneos_yugioh/api-docs/openapi.json`. Detalles y límites en [swagger.md](torneos_yugioh/context/swagger.md). Los 37 endpoints REST propuestos siguen pendientes.
+
+`npm run build:swagger` prepara los recursos locales fijados; `npm run test:swagger` valida contrato, rutas e interfaz sin acceder a producción.

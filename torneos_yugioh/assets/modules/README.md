@@ -120,3 +120,7 @@ Mundos exige ahora al menos uno y como máximo tres por deck TCG. Se bloquea qui
 `deck-guide/card-detail.js` organiza las acciones, uso primero/segundo y requisitos documentados. Indexa todos los pasos por CID o imagen inequívoca y distingue acciones, materiales, objetivos y contexto; las revisiones nativas prevalecen sobre referencias históricas. `curated-study.js` enlaza al paso, resalta la carta y permite volver a su ficha conservando los filtros. No cambia efectos ni inventarios. Pruebas: `tests/card_detail_test.cjs` y `tests/card_detail_ui_test.cjs`; evidencia publicada: `outputs/card-detail-20261115/`.
 
 Mundos (`deck-attributes`) separa el transporte HTTP en `api.js` con `fetch`, consulta pública y token inyectados. `model.js` no depende del DOM; `ui.js` coordina las vistas. Cargar modelo y cliente antes del controlador visual. El contrato HTTP se prueba sin navegador en `tests/deck_worlds_api_test.cjs`.
+
+## `api-docs/`
+
+`swagger.js` y `styles.css`: configuraci?n e interfaz de Swagger, servida en `/api-docs/`. Solo captura tokens de respuestas expl?citas del mismo origen y los reutiliza en memoria. No inicia consultas ni guarda datos al abrir la documentaci?n. Contrato y recursos fijados en `api-docs/`; l?mites en `context/swagger.md`.
