@@ -112,6 +112,15 @@ cambios de control. Se conservan las restricciones individuales de ventanas,
 materiales y procedimientos; la biblioteca no pretende resolver por sí sola
 las reglas de cada tipo de Invocación ni las sustituciones de destino.
 
+## Turnos y ventanas (tarea general 07)
+
+`assets/modules/play-calculator/timing.js` centraliza la evidencia de uso
+una vez por turno, el inicio y conteo de acciones de fase, la ventana de
+Main Phase propia y la activación de Mágicas/Trampas colocadas con un turno
+acreditado. La información de turno explícita prevalece sobre el indicador
+legado cuando ambas difieren. Las ventanas desconocidas permanecen cerradas;
+la biblioteca no autoriza activar efectos de cartas por inferencia.
+
 `tests/calculator_contract_test.cjs` prueba el mismo contrato con dos decks
 sintéticos diferentes, ejecuta una operación compartida sin cambiar código
 por deck, y rechaza versión, identidad, campos, duplicados y operaciones

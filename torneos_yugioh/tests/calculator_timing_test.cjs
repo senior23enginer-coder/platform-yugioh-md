@@ -1,0 +1,27 @@
+const assert = require("node:assert/strict");
+const Timing = require("../assets/modules/play-calculator/timing.js");
+const Rules = require("../assets/modules/play-calculator/rules.js");
+const state = { turn: 3, phase: "main1", active: "self" };
+assert.equal(Timing.version, 1);
+assert.equal(Timing.usedThisTurn(state, "rule:sample"), false);
+assert.equal(Timing.usedThisTurn({ ...state, _ruleUseTurns: { "rule:sample": 3 } }, "rule:sample"), true);
+assert.equal(Timing.usedThisTurn({ ...state, _ruleUseTurns: { "rule:sample": 2 }, _used: ["rule:sample"] }, "rule:sample"), false,
+  "La evidencia con turno prevalece sobre el legado");
+assert.equal(Timing.usedThisTurn({ ...state, _used: ["rule:sample:turn:3"] }, "rule:sample"), true);
+assert.equal(Timing.isPhaseStart(state), true);
+const first = Timing.countPhaseAction(state);
+assert.deepEqual(first, { turn: 3, phase: "main1", side: "self", count: 1 });
+assert.equal(Timing.isPhaseStart({ ...state, _rulePhaseActions: first }), false);
+const second = Timing.countPhaseAction({ ...state, _rulePhaseActions: first });
+assert.equal(second.count, 2);
+assert.equal(Timing.isPhaseStart({ ...state, phase: "main2", _rulePhaseActions: second }), true);
+assert.equal(Timing.countPhaseAction({ ...state, phase: "main2", _rulePhaseActions: second }).count, 1);
+assert.equal(Timing.isOwnMainPhase(state), true);
+assert.equal(Timing.isOwnMainPhase({ ...state, active: "opponent" }), false);
+assert.equal(Timing.isOwnMainPhase({ ...state, phase: "battle" }), false);
+assert.equal(Timing.canActivateSetSpellTrap(state, { zone: "s1", position: "set" }), false);
+assert.equal(Timing.canActivateSetSpellTrap(state, { zone: "s1", position: "set", setTurn: 3 }), false);
+assert.equal(Timing.canActivateSetSpellTrap(state, { zone: "s1", position: "set", setTurn: 2 }), true);
+assert.equal(Timing.canActivateSetSpellTrap(state, { zone: "m1", position: "attack" }), true);
+assert.equal(typeof Rules.actions, "function");
+console.log(JSON.stringify({ ok: true, oncePerTurn: true, phase: true, setTurn: true }));

@@ -1,9 +1,9 @@
 /* Declarative effect adapter. Data never becomes JavaScript; unknown operations fail closed. */
 (function (root, factory) {
   if (typeof module === "object" && module.exports)
-    module.exports = factory(require("./engine.js"), require("./operations.js"), require("./guards.js"), require("./resources.js"), require("./transitions.js"));
-  else root.YgoPlayRules = factory(root.YgoPlayEngine, root.YgoCalculatorOperations, root.YgoCalculatorGuards, root.YgoCalculatorResources, root.YgoCalculatorTransitions);
-})(typeof globalThis !== "undefined" ? globalThis : this, function (E, Operations, Guards, Resources, Transitions) {
+    module.exports = factory(require("./engine.js"), require("./operations.js"), require("./guards.js"), require("./resources.js"), require("./transitions.js"), require("./timing.js"));
+  else root.YgoPlayRules = factory(root.YgoPlayEngine, root.YgoCalculatorOperations, root.YgoCalculatorGuards, root.YgoCalculatorResources, root.YgoCalculatorTransitions, root.YgoCalculatorTiming);
+})(typeof globalThis !== "undefined" ? globalThis : this, function (E, Operations, Guards, Resources, Transitions, Timing) {
   "use strict";
   const field = (z) => E.isMonster(z) || /^s[1-5]$/.test(z) || z === "field";
   const zones = [
@@ -472,9 +472,7 @@
       }
       const used = "rule:" + rule.id;
       // El límite por nombre se reinicia por turno, pero no por nueva copia.
-      if (!options.prepared && rule.oncePerTurn && (s._ruleUseTurns?.[used] !== undefined
-        ? s._ruleUseTurns[used] === s.turn
-        : (s._used || []).includes(used) || (s._used || []).includes(used + ":turn:" + s.turn))) continue;
+      if (!options.prepared && rule.oncePerTurn && Timing.usedThisTurn(s, used)) continue;
       if (!options.prepared && rule.trigger && !s.tokens.some(t => triggerMatches(s, rule, t.uid))) continue;
       const f = { ...options, ...s._ruleFlags };
       if (s._ruleFlagTurns?.noMoreSummons !== s.turn) delete f.noMoreSummons;
@@ -498,9 +496,7 @@
                     e.turn === s.turn && e.side === g.side &&
                     (g.by === undefined || e.by === g.by))
             : g.kind === "phaseStart"
-              ? !(s._rulePhaseActions && s._rulePhaseActions.turn === s.turn &&
-                  s._rulePhaseActions.phase === s.phase &&
-                  s._rulePhaseActions.side === s.active && s._rulePhaseActions.count > 0)
+              ? Timing.isPhaseStart(s)
             : g.kind === "extraSummonHistory"
               ? extraSummonWindow(s)
             : g.kind === "inventoryTarget"
@@ -550,8 +546,7 @@
         if (rule.activation && monsterEffectBlockedByTyphon(s, db, actor)) continue;
         // Las Mágicas Rápidas colocadas no pueden activarse ese mismo turno.
         // Sin procedencia temporal de la carta colocada, se falla cerrado.
-        if (rule.activation && /^s[1-5]$/.test(actor.zone) && actor.position === "set" &&
-          (!Number.isInteger(actor.setTurn) || actor.setTurn >= s.turn)) continue;
+        if (rule.activation && !Timing.canActivateSetSpellTrap(s, actor)) continue;
         let n = E.clone(s);
         n._normal ??= !n.normalAvailable;
         let opStage = "cost";
@@ -605,7 +600,7 @@
           } else if (op.op === "xyzOverlay") {
             check(!(f.noExtra || f.specialBlocked || f.noMoreSummons),
               "Superposición bloqueada por restricción de Invocaciones");
-            check(extraSummonWindow(n) && n.active === "self" && ["main1","main2"].includes(n.phase),
+            check(extraSummonWindow(n) && Timing.isOwnMainPhase(n),
               "TY-PHON exige dos Invocaciones rivales del Extra en un mismo turno válido");
             const selected=n.tokens.find(t => t.uid === refs[op.material]);
             check(selected && selected.owner === "self" && selected.controller === "self" &&
@@ -829,7 +824,7 @@
             try { Transitions.assertVacant(n,"self",op.to,t.uid); }
             catch { throw Error("Zona de Invocación ocupada"); }
             if(op.method==="normal") {
-              check(n.active==="self" && ["main1","main2"].includes(n.phase) && !n._normal,
+              check(Timing.isOwnMainPhase(n) && !n._normal,
                 "Invocación Normal indisponible en esta ventana");
               check(!f.noMoreSummons,"TY-PHON impide Invocaciones Normales restantes");
               n._normal=true;
@@ -896,10 +891,7 @@
           );
           E.validate(n);
           if (!options.prepared && ["main1","main2"].includes(n.phase)) {
-            const previous=n._rulePhaseActions;
-            const count=previous && previous.turn===n.turn && previous.phase===n.phase &&
-              previous.side===n.active ? previous.count : 0;
-            n._rulePhaseActions={turn:n.turn,phase:n.phase,side:n.active,count:count+1};
+            n._rulePhaseActions=Timing.countPhaseAction(n);
           }
           actions.push({
             state: n,
