@@ -17,6 +17,23 @@ function ygo_data_sources(string $app,int $id,?array $entry): array {
 function ygo_data_saved(PDO $pdo,int $id): array {
     $q=$pdo->prepare('SELECT id,revision,document_json,inventory_json,updated_at FROM sx_ygo_created_combos WHERE deck_id=? ORDER BY id');$q->execute([$id]);return $q->fetchAll(PDO::FETCH_ASSOC);
 }
+
+/** Translate local images in author Markdown to inert text for the native reader.
+ * The original Markdown and HTML guide remain intact inside the archived ZIP.
+ * Remote sources, event handlers and unrecognized tags fail closed.
+ */
+function ygo_data_safe_markdown_images(string $markdown, array $files): string {
+    return preg_replace_callback('~<img\b[^>]*>~iu', static function(array $match) use($files):string {
+        $tag=$match[0];
+        if(!preg_match('~^<img\s+src="(imagenes/[a-zA-Z0-9_.-]+\.(?:png|jpe?g|webp|gif))"(?:\s+width="[0-9]{1,3}")?(?:\s+alt="[^"<>]*")?\s*/?>$~iuD',$tag,$parts)) {
+            throw new InvalidArgumentException('Etiqueta HTML de imagen no admitida. Usa imágenes locales sin atributos ejecutables.');
+        }
+        $source=ygo_data_source_image($files,$parts[1]);
+        if($source===null)throw new InvalidArgumentException('La imagen del documento no existe en el ZIP: '.$parts[1]);
+        return '[Imagen local: '.$parts[1].']';
+    },$markdown) ?? throw new InvalidArgumentException('No se pudo procesar el Markdown.');
+}
+
 function ygo_data_prepare(string $app,array $files,array $inventory,?array $current,array $sources): array {
     ygo_data_check_folder($files,$sources,$inventory);
     $id=(int)$inventory['deck']['id'];$envelope=null;$envelopeName=null;
@@ -41,16 +58,16 @@ function ygo_data_prepare(string $app,array $files,array $inventory,?array $curr
         if($mode==='markdown'){
             $source=$envelope['source_document']??'';
             if(!is_string($source)||!isset($files[$source])||!str_ends_with($source,'.md'))throw new InvalidArgumentException('Falta el documento Markdown declarado.');
-            $record=ygo_data_markdown($files[$source],$record,$id);
+            $record=ygo_data_markdown(ygo_data_safe_markdown_images($files[$source],$files),$record,$id);
         }
         $source=$envelope['source_document']??'';
-        if(is_string($source)&&isset($files[$source]))$record['imported_source_text']=$files[$source];
+        if(is_string($source)&&isset($files[$source]))$record['imported_source_text']=ygo_data_safe_markdown_images($files[$source],$files);
     }else{
         // Existing ChatGPT folder deliveries: resolve exact source filename, including owner-confirmed aliases.
         $expected=[];foreach($sources as $name=>$bytes)if(preg_match('/CONTENIDO_CURADO\.md$/i',$name))$expected[]=basename($name);
         $matches=[];foreach($files as $name=>$raw)if(in_array(basename($name),$expected,true))$matches[$name]=$raw;
         if(count($matches)!==1||!$current)throw new InvalidArgumentException('No se identificó inequívocamente este deck. Usa el ZIP de «Exportar data» como base para ChatGPT y conserva stationx-deck.json.');
-        $record=ygo_data_markdown(reset($matches),$current,$id);
+        $record=ygo_data_markdown(ygo_data_safe_markdown_images(reset($matches),$files),$current,$id);
     }
     $record['name']=$inventory['deck']['name'];
     // A source package cannot replace a manually saved editor revision. The creator continues to use its native history.
