@@ -1,78 +1,62 @@
-# FTP deployment after tested merge
+# Despliegue autom?tico al integrar en base
 
-A PR **merged into `base`** automatically starts the deployment workflow.
-There is no separate `APPROVED` review requirement, because repository owners
-may merge their own PRs. Deployment still fails closed if a test fails.
+Un pull request integrado en `base` publica su commit por FTP. No se repiten
+pruebas de importaci?n, calculadora ni la suite general despu?s del merge.
+Las pruebas de integraci?n se mantienen antes del merge cuando cambian fuentes;
+la prueba TXT individual queda disponible manualmente, porque la integraci?n ya la ejecuta.
 
-- After merge: install dependencies, run `npm test`, calculator contract tests
-  and PHP 8.3 TXT-import tests, then publish by FTP.
-- No manual workflow trigger is configured: only merging a PR into `base` starts deployment.
-- Any test or FTP failure stops the release. The application manifest is
-  uploaded only after the application transfer succeeds.
-- For additional governance, configure branch protection and required checks
-  on `base` in GitHub Settings; a workflow alone does not prevent merging a
-  PR whose check failed.
+## Flujo de publicaci?n
 
-## Release and visible production version
+1. Leer el commit integrado y generar `app.js` / `app.css` con Node 22.
+   El generador usa ?nicamente m?dulos nativos: no necesita `npm ci`.
+2. Sincronizar `torneos_yugioh/` por FTP, puerto 21, con el estado incremental
+   existente. Nunca usar `dangerous-clean-slate`.
+3. Publicar `release.json` al terminar, comprobar sus bytes por FTP y verificar
+   que la URL p?blica devuelve el mismo commit y versi?n. Estas comprobaciones
+   detectan una ruta remota equivocada; no son pruebas funcionales de la aplicaci?n.
 
-Each successful automated production upload generates a unique version tag
-`v0.1.<GitHub run number>` and a `release.json` with its commit SHA and build
-timestamp. The application footer reads this manifest from the production
-filesystem and shows **Versión desplegada**. The manifest is transferred in a
-separate final FTP step, after application files have been uploaded, so a
-failed application transfer cannot advertise the new version. GitHub Release
-registration follows manifest publication. A failed Release registration
-requires operator reconciliation; a successful FTP transfer cannot be rolled
-back automatically.
+No instalar PHP/Python/Playwright ni ejecutar `npm test` dentro del despliegue.
+No crear GitHub Releases: su registro no es necesario para publicar la web.
+El manifiesto y el pie de la aplicaci?n conservan la versi?n `v0.1.<run number>`.
+Las publicaciones no se ejecutan en paralelo ni se interrumpen entre s?.
 
-## FTP passive connection preflight
+## Configuraci?n
 
-Before uploading, the workflow performs a read-only FTP directory listing using
-passive mode. This opens a separate data socket and fails early
-with a clear message when the host rejects the PASV connection. It does **not**
-write to production. The deployment action uses a 120-second FTP operation
-timeout.
+Usar los secretos de Actions `FTP_HOST` (sin protocolo), `FTP_USERNAME`,
+`FTP_PASSWORD`. La ruta p?blica, que no es secreta, se fija en la variable
+`FTP_SERVER_DIR` del workflow; no se usa el secreto antiguo con la ruta incorrecta. No escribir credenciales en el repositorio.
+El entorno `production` no debe tener revisores obligatorios si se desea
+publicaci?n inmediata. El protocolo actual del hosting es FTP, no SFTP.
 
-The observed initial failure after PR #6 was `ECONNRESET (data socket)`
-while creating `assets/`, before any file bytes were uploaded. The file
-count/size (approximately 3,327 files, 1.04 GB) does not explain a reset at
-the first directory operation. If the preflight fails, hosting support must
-check passive FTP data ports and firewalls for GitHub
-Actions runner IPs. The owner explicitly selected plain FTP on port 21. This transmits credentials and file contents without transport encryption; rotate the FTP password after sharing it and limit account access to the application directory.
+**Ruta FTP comprobada el 19 de noviembre de 2026:**
+`/domains/stationxtulua.com/public_html/yugioh/`.
+La sesi?n inicia en `/public_html`: la ruta relativa `public_html/yugioh/`
+escrib?a en `/public_html/public_html/yugioh/`, fuera de la web p?blica.
+La variable `FTP_SERVER_DIR` usa esa ruta absoluta, incluido el `/` final.
+No eliminar la copia equivocada como parte de un despliegue.
 
-The workflow excludes `assets/uploads/**` because uploads are managed on the
-hosting server; source-controlled placeholder images/logos are not used to
-overwrite production user uploads. Other shipped assets remain included to
-avoid breaking existing deck/strategy/image references. The first successful
-sync is still large; monitor hosting quota and transfer limits.
+Se excluyen uploads, cach?s, configuraci?n privada, tests, documentaci?n,
+herramientas, fuentes del bundle y artefactos locales. Se publican `src/`,
+`includes/`, m?dulos independientes, assets editoriales, `.htaccess`, manifest,
+service worker y entradas p?blicas. El bridge compartido `store-lib.php`
+permanece en el servidor, fuera de `/yugioh/`; no se reemplaza.
+No ejecutar seed ni importaciones de datos durante el pipeline.
 
-## GitHub configuration required before the first deployment
+## Reintentar
 
-In repository **Settings → Secrets and variables → Actions**, create:
+Desde Actions se puede ejecutar manualmente este workflow sobre `base`.
+Esto vuelve a publicar ese commit sin crear otro merge. Los pushes normales
+no disparan despliegue; los merges de PR s?. No es necesario abrir un PR
+para cada reintento por una ca?da del hosting.
 
-| Secret | Value |
-| --- | --- |
-| `FTP_HOST` | Hosting FTP hostname or IP **without** `ftp://` |
-| `FTP_USERNAME` | Hosting FTP username |
-| `FTP_PASSWORD` | A newly rotated FTP password |
-| `FTP_SERVER_DIR` | Verified FTP-visible remote application path ending in `/yugioh/` |
+Una subida parcial no se revierte autom?ticamente: el job falla y no publica
+un manifiesto nuevo si la transferencia falla. La comprobaci?n del manifiesto
+no certifica todos los flujos de negocio ni sustituye pruebas previas al merge.
 
-Do **not** guess `FTP_SERVER_DIR` from the public URL. Depending on the FTP
-account's root it may be `public_html/yugioh/` or a longer `domains/.../public_html/yugioh/`
-path. Inspect the provider's FTP file manager and the existing application
-before enabling deployment. Use a GitHub `production` environment without required deployment reviewers to avoid a manual deployment pause. Enforce PR reviews and required checks using branch protection on `base` instead.
+## Integraci?n con el checkout local
 
-Port 21 uses **plain FTP** (`protocol: ftp`), as explicitly requested by the repository owner. There is **no TLS encryption** on this transport: login credentials and uploaded files can be intercepted. Use a dedicated restricted FTP account and rotate its password regularly. Prefer FTPS if the hosting configuration is corrected in the future.
-
-The workflow does not run on ordinary pushes and does not use
-`dangerous-clean-slate`. A merged PR triggers production deployment only after
-passing the workflow's tests.
-The FTP action can synchronize
-previously tracked deleted files within its target: back up the remote
-application before the first run. The production database and private
-server-side configuration must remain on the server, not in Git.
-
-This is a deployment mechanism, not proof that production works. After first
-publication verify HTTP responses, asset loading, PHP logs, persistence, and
-desktop/mobile behavior. The workflow has not connected to the hosting server
-until its secrets are configured and a qualifying PR is merged.
+Al reunir el pipeline remoto con las migraciones locales se conserv? la acci?n
+`import_deck_template` antes de las acciones tempranas y del guard de temporada,
+tal como estaba en el remoto. El contrato actual del dispatcher registra esa
+adici?n; la huella y el cuerpo originales anteriores a la extracci?n se conservan.
+La suite local verifica ambas evidencias y los contratos del importador.

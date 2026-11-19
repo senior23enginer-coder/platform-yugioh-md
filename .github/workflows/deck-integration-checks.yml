@@ -3,6 +3,12 @@ name: Validate deck ZIP integration
 on:
   pull_request:
     branches: [base]
+    paths:
+      - 'torneos_yugioh/**'
+      - 'scripts/**'
+      - 'package*.json'
+      - '.github/workflows/deck-integration-checks.yml'
+      - '!torneos_yugioh/context/**'
   workflow_dispatch:
 
 permissions:

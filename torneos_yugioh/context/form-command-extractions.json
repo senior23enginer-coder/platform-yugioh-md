@@ -1,7 +1,7 @@
 {
     "baseline_commit": "da558b9",
     "function": "ygo_handle_post_serialized",
-    "dispatcher_sha256": "7a76245dd36e430996a6c34cdbc5c709cd8d4497a7e937c62ab92b4b7bbda0b6",
+    "dispatcher_sha256": "59e8036df6700d486d3061105532b74d1de3d18edcccdaba8e5ee9350ddf2607",
     "actions": {
         "configure_statistics_global": {
             "class": "StationX\\Yugioh\\Infrastructure\\Http\\FormActions\\ConfigureStatisticsGlobalHandler",
