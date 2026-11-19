@@ -181,6 +181,18 @@ identidad/formato, invariancia del escenario inicial y rechazo de paquetes
 asociados a otro deck. Esta matriz demuestra portabilidad del contrato
 **para operaciones modeladas**, no cobertura de todas las cartas ni Skill.
 
+## Adaptador del estudio activo (tarea general 14)
+
+`study.js` aplica `Contract.validate` antes de entregar reglas de
+`study.calculator` al intérprete. Comprueba identidad del deck, formato nativo,
+esquema, operadores y CID de actores acreditados por coincidencia de cartas
+en el estudio. Los estudios anteriores con `calculator.rules` pero sin
+`schema` pasan por la misma validación envueltos como versión 1; no se
+ejecutan por su mera presencia. Un paquete inválido se rechaza completo y
+queda diagnosticado en `db.ruleImports`, mientras las reglas verificadas
+internas continúan como respaldo sin duplicados. El estudio original no se
+modifica ni se escribe al repositorio de Prompts.
+
 `tests/calculator_contract_test.cjs` prueba el mismo contrato con dos decks
 sintéticos diferentes, ejecuta una operación compartida sin cambiar código
 por deck, y rechaza versión, identidad, campos, duplicados y operaciones

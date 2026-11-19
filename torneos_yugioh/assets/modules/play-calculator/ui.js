@@ -131,6 +131,9 @@
               ? [{ catalog: scenario.opponent, study: otherStudy }]
               : []),
           ]);
+          const invalid = (state.plannerFacts.ruleImports || []).filter(r => r.status === "rejected");
+          if (invalid.length) notice("Reglas del estudio no ejecutables: " +
+            invalid.map(r => `deck ${r.deckId}: ${r.message}`).join("; "), true);
           if (selfStudy) {
             state.routes = root.YgoCalculatorStudy.compile(selfStudy, native);
             S.saveRoutes(native.id, {

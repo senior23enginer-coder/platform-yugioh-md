@@ -1,9 +1,9 @@
 /* Resolve the active study registry for every loaded deck, not the historical eleven-deck index. */
 (function (root, factory) {
   if (typeof module === "object" && module.exports)
-    module.exports = factory(require("./engine.js"), require("./verified-rules.js"));
-  else root.YgoCalculatorStudy = factory(root.YgoPlayEngine, root.YgoVerifiedCalculatorRules);
-})(typeof globalThis !== "undefined" ? globalThis : this, function (E, Verified) {
+    module.exports = factory(require("./engine.js"), require("./verified-rules.js"), require("./contract.js"));
+  else root.YgoCalculatorStudy = factory(root.YgoPlayEngine, root.YgoVerifiedCalculatorRules, root.YgoCalculatorContract);
+})(typeof globalThis !== "undefined" ? globalThis : this, function (E, Verified, Contract) {
   "use strict";
   const requests = new Map();
   async function json(url) {
@@ -43,6 +43,7 @@
     db.rules = [];
     db.identities = {};
     db.studyCoverage = [];
+    db.ruleImports = [];
     for (const { catalog, study } of entries.filter((e) => e.catalog)) {
       db.studyCoverage.push({
         id: catalog.id,
@@ -92,10 +93,31 @@
           }
         }
       }
-      for (const rule of study.calculator?.rules || [])
-        if (rule.deckId === catalog.id) db.rules.push(E.clone(rule));
+      let imported = [];
+      if (study.calculator !== undefined) {
+        const block = study.calculator;
+        // Legacy studies without `schema` are validated through the same
+        // calculator/1 boundary; they are not trusted just because they loaded.
+        const packageData = block?.schema === undefined && block && Array.isArray(block.rules)
+          ? { schema: Contract.SCHEMA, deck_id: Number(study.deck_id),
+              format: study.format, rules: block.rules }
+          : block;
+        try {
+          if (!catalog.formats.includes(study.format))
+            throw Error("Formato del estudio ajeno al catálogo nativo");
+          Contract.validate(packageData, { deckId: catalog.id, format: study.format,
+            actorCids: Object.values(db.identities).map(x => x.cid) });
+          imported = packageData.rules;
+          db.ruleImports.push({ deckId: catalog.id, status: "accepted", count: imported.length,
+            schema: Contract.SCHEMA, legacy: block?.schema === undefined });
+        } catch (error) {
+          db.ruleImports.push({ deckId: catalog.id, status: "rejected", count: 0,
+            message: error.message });
+        }
+      }
+      for (const rule of imported) db.rules.push(E.clone(rule));
       for (const rule of Verified?.forDeck(catalog.id) || [])
-        if (!(study.calculator?.rules || []).some((r) => r.id === rule.id))
+        if (!imported.some((r) => r.id === rule.id))
           db.rules.push(E.clone(rule));
     }
     return db;
