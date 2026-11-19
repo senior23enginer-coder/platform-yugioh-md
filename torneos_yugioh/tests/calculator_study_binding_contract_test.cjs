@@ -76,5 +76,15 @@ const reversed = S.bind(base, [{ ...foreignActor,
 assert.equal(reversed.ruleImports[0].status, "rejected");
 assert.equal(reversed.ruleImports[1].status, "accepted");
 assert.equal(reversed.rules.length, 1);
-console.log(JSON.stringify({ ok: true, accepted: 2, rejected: 6, legacyCompatible: true,
-  crossDeckActorIsolation: true }));
+const reserved = setup(665);
+const protectedStudy = { ...reserved.study,
+  calculator: { ...reserved.study.calculator,
+    rules: [{ ...reserved.rule, id: "665:fenrir:search" }] } };
+const collision = S.bind(base, [{ ...reserved, study: protectedStudy }]);
+assert.equal(collision.ruleImports[0].status, "rejected");
+assert.match(collision.ruleImports[0].message, /colisiona con respaldo verificado/);
+assert.equal(collision.rules.length, 1);
+assert.equal(collision.rules[0].actor.cid, 17768);
+assert.equal(collision.rules[0].id, "665:fenrir:search");
+console.log(JSON.stringify({ ok: true, accepted: 2, rejected: 7, legacyCompatible: true,
+  crossDeckActorIsolation: true, verifiedFallbackProtected: true }));

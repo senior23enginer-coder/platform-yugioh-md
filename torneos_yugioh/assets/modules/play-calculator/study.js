@@ -96,6 +96,7 @@
         }
       }
       let imported = [];
+      const verified = Verified?.forDeck(catalog.id) || [];
       if (study.calculator !== undefined) {
         const block = study.calculator;
         // Legacy studies without `schema` are validated through the same
@@ -109,6 +110,10 @@
             throw Error("Formato del estudio ajeno al catálogo nativo");
           Contract.validate(packageData, { deckId: catalog.id, format: study.format,
             actorCids: [...deckActorCids] });
+          const protectedIds = new Set(verified.map(rule => rule.id));
+          const conflict = packageData.rules.find(rule => protectedIds.has(rule.id));
+          if (conflict)
+            throw Error("Regla importada colisiona con respaldo verificado: " + conflict.id);
           imported = packageData.rules;
           db.ruleImports.push({ deckId: catalog.id, status: "accepted", count: imported.length,
             schema: Contract.SCHEMA, legacy: block?.schema === undefined });
@@ -118,9 +123,7 @@
         }
       }
       for (const rule of imported) db.rules.push(E.clone(rule));
-      for (const rule of Verified?.forDeck(catalog.id) || [])
-        if (!imported.some((r) => r.id === rule.id))
-          db.rules.push(E.clone(rule));
+      for (const rule of verified) db.rules.push(E.clone(rule));
     }
     return db;
   }

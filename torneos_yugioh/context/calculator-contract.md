@@ -205,3 +205,11 @@ acreditados de **cada catálogo por separado**. No autoriza que la regla de un
 deck utilice el actor de otro deck simplemente porque ese CID ya está en el
 registro global de identidades. La prueba de vinculación cubre ambas órdenes
 de carga y comprueba que sólo se conserva la regla del deck válido.
+
+## Colisiones con reglas verificadas (tarea general 16)
+
+Una regla entrante no puede sustituir silenciosamente una regla del adaptador
+verificado con el mismo ID. `study.js` detecta el conflicto después de validar
+el contrato, rechaza todo ese paquete y conserva intactas las reglas de
+respaldo. La migración de esas reglas requiere paridad funcional probada y un
+cambio explícito de política; el ID coincidente no es prueba de equivalencia.
