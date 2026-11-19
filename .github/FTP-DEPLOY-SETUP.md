@@ -25,6 +25,28 @@ registration follows manifest publication. A failed Release registration
 requires operator reconciliation; a successful FTP transfer cannot be rolled
 back automatically.
 
+## FTPS passive connection preflight
+
+Before uploading, the workflow performs a read-only FTPS directory listing using
+explicit TLS and passive mode. This opens a separate data socket and fails early
+with a clear message when the host rejects the PASV connection. It does **not**
+write to production. The deployment action uses a 120-second FTP operation
+timeout.
+
+The observed initial failure after PR #6 was `ECONNRESET (data socket)`
+while creating `assets/`, before any file bytes were uploaded. The file
+count/size (approximately 3,327 files, 1.04 GB) does not explain a reset at
+the first directory operation. If the preflight fails, hosting support must
+check passive FTPS data ports, firewalls and TLS session handling for GitHub
+Actions runner IPs. Never fall back to plain FTP or disable certificate
+validation to bypass the error.
+
+The workflow excludes `assets/uploads/**` because uploads are managed on the
+hosting server; source-controlled placeholder images/logos are not used to
+overwrite production user uploads. Other shipped assets remain included to
+avoid breaking existing deck/strategy/image references. The first successful
+sync is still large; monitor hosting quota and transfer limits.
+
 ## GitHub configuration required before the first deployment
 
 In repository **Settings → Secrets and variables → Actions**, create:
