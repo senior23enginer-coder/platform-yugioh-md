@@ -28,6 +28,7 @@ notas=
 
 - Cada carta usa `cantidad;nombre`, entre 1 y 3 copias por línea.
 - Main, Extra, Side y Reserva se guardan en `main`, `extra`, `side`, `tech`.
+- Nombre del deck y de cada carta: hasta 160 caracteres. Arquetipo y estilo: hasta 120.
 - El nombre no puede coincidir con otro deck activo.
 - No se ejecutan reglas de calculadora ni efectos desde texto.
 - El archivo debe ser UTF-8, `.txt`, de hasta 128 KiB y 150 líneas de cartas.
