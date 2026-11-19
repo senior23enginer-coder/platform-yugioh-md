@@ -61,3 +61,21 @@ tal como estaba en el remoto. El contrato actual del dispatcher registra esa
 adici?n; la huella y el cuerpo originales anteriores a la extracci?n se conservan.
 La suite local verifica ambas evidencias y los contratos del importador.
 
+## Colisiones FTP y reintento
+
+El hosting utiliza archivos temporales `.in.<nombre>.` durante una subida.
+El fallo del 19 de noviembre de 2026 en `swagger-ui.css` ocurrió mientras
+una subida FTP directa coincidía con Actions. El temporal desapareció al
+terminar la primera transferencia; no era necesario eliminarlo.
+
+El workflow espera 30 segundos y reintenta una sola vez si falla la
+transferencia. Reutiliza exactamente la misma configuración y conserva el
+estado incremental. Si el segundo intento falla, el job falla y no publica
+un manifiesto nuevo. Una transferencia correcta no agrega ninguna espera.
+No se borran temporales automáticamente: pueden pertenecer a una subida activa.
+
+La concurrencia de GitHub serializa sus propias ejecuciones, pero no controla
+clientes FTP externos. Utilizar Actions como publicador habitual. Antes de
+una subida directa, comprobar que no existan despliegues en curso o en cola,
+y no iniciar Actions hasta terminar. Un bloqueo persistente requiere revisar
+el temporal exacto y confirmar que no hay otra transferencia antes de intervenir.

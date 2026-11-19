@@ -32,3 +32,14 @@ This repository is the source of truth for Station X's Yu-Gi-Oh platform. Save a
 - Do not claim the remaining procedural adapters are fully SOLID or hexagonal. Migrate them by feature with characterization tests.
 
 - For the migrated DeckWorlds feature, keep HTTP capture in the native include, business decisions in Application/Domain and SQL in the PDO adapter. Inject time and transaction boundaries. Never commit or roll back a borrowed transaction. Run `npm run format:architecture:check`; extend its explicit pure-source whitelist when migrating another feature.
+
+- Read `context/architecture-migration-status.md` before continuing the full migration. FormActions are segregated legacy adapters, not a completed domain migration. Preserve early-statistics/season guard order, the outer event write lock and nested offline request restoration.
+- Original algorithm fingerprints in `context/domain-extractions.json` and native source contracts must stay intact. Characterize the original before changing a facade; verify the preserved original and migrated method together. Never regenerate fingerprints merely to silence formatting differences.
+
+## Production transfer coordination
+
+Use the GitHub production workflow as the usual publisher. Before any direct FTP write,
+check for active/queued deployment runs; never transfer alongside Actions. GitHub
+concurrency does not serialize external FTP clients. Do not automatically delete
+`.in.*.` files: they can belong to an active hosting transfer. Investigate the exact
+file and confirm transfer inactivity before any cleanup.
