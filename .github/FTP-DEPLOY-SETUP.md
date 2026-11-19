@@ -11,6 +11,19 @@ PR → Run workflow** and select `base`. A manually triggered run always sets
 without uploading or deleting files. The actual upload remains restricted to
 an approved PR merged into `base`.
 
+## Release and visible production version
+
+Each successful automated upload generates a unique version tag
+`v0.1.<GitHub run number>` and a `release.json` with its commit SHA and build
+timestamp. The application footer reads this manifest from the production
+filesystem and shows **Versión desplegada**. The manifest is transferred in a
+separate final FTPS step, after application files have been uploaded, so a
+failed application transfer cannot advertise the new version. GitHub Release
+registration follows manifest publication. A failed Release registration
+requires operator reconciliation; a successful FTP transfer cannot be rolled
+back automatically. Manual `dry-run` executions never publish a manifest or
+create a release.
+
 ## GitHub configuration required before the first deployment
 
 In repository **Settings → Secrets and variables → Actions**, create:
