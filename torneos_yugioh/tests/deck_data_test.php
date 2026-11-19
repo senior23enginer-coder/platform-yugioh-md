@@ -78,6 +78,16 @@ foreach($state['checked_studies'] as $id=>$entry){
         $live=$inventory+['format'=>'tcg'];
         $parsed=ygo_data_prepare($app,$candidate,$live,$r,$files);
         check(count($parsed['routes'])===($id==671?12:14),'Portable folder lost Memento/Crystron routes');
+        // Real production behavior: older deck-deliveries.json omits both IDs.
+        $unknownFormat=$live;
+        $unknownFormat['format']='unspecified';
+        $fallbackParsed=ygo_data_prepare($app,$candidate,$unknownFormat,$r,$files);
+        check(count($fallbackParsed['routes'])===count($r['routes']),'Verified current format was not used for '.$id);
+        fails(fn()=>ygo_data_prepare($app,$candidate,$unknownFormat,null,$files),'Accepted unverified format for '.$id);
+        $wrongCurrent=$r;$wrongCurrent['deck_id']=$id+1;
+        fails(fn()=>ygo_data_prepare($app,$candidate,$unknownFormat,$wrongCurrent,$files),'Accepted format from another deck '.$id);
+        $wrongCurrent=$r;$wrongCurrent['format']='rush_duel';
+        fails(fn()=>ygo_data_prepare($app,$candidate,$unknownFormat,$wrongCurrent,$files),'Accepted conflicting study format '.$id);
         check(count($parsed['cards'])===39,'Portable folder lost Memento/Crystron cards');
         $mismatch=$portable;$mismatch['inventory'][0]['quantity']++;
         $wrong=$candidate;$wrong[$metadata]=ygo_data_json($mismatch);
