@@ -48,7 +48,7 @@ const policy=JSON.parse(fs.readFileSync(path.join(app,'assets/editorial/strategy
   personalFailure=false;await mount(9999);assert((await page.locator('[data-cc-editorial-library]').innerText()).includes('No hay guías'));assert.equal(await page.locator('[data-cc-read]').count(),1);
   await page.evaluate(()=>Promise.all([YgoComboCreator.mountViewer(document.querySelector('[data-deck-created-combos]'),{id:665,name:'Kashtira'}),YgoComboCreator.mountViewer(document.querySelector('[data-deck-created-combos]'),{id:704,name:'Pyro'})]));
   assert.equal(await page.locator('[data-cc-editorial-library] [data-route-library] [data-open-route]').count(),policy.checked_studies['704'].routes);assert((await page.locator('[data-cc-personal]').innerText()).includes('Manual 704'));
-  assert.deepEqual(errors,[]);assert.equal(routes,108);
+  assert.deepEqual(errors,[]);assert.equal(routes,Object.values(policy.checked_studies).reduce((sum,entry)=>sum+entry.routes,0));
   const result={ok:true,decks:11,routes,viewports:[1440,390],independentFailures:true,uniqueIds:true,productionWrites:0};fs.writeFileSync(path.join(out,'tests.json'),JSON.stringify(result,null,2));console.log(JSON.stringify(result));
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
