@@ -40,6 +40,8 @@ jobs:
           php -r 'if (!class_exists("ZipArchive") || !extension_loaded("mbstring")) { throw new RuntimeException("ZIP/mbstring unavailable"); }'
       - name: Validate ZIP import and historical combos
         run: |
+          php torneos_yugioh/tests/legacy_function_contract_test.php
+          php torneos_yugioh/tests/deck_template_test.php
           php torneos_yugioh/tests/calculator_import_test.php
           php torneos_yugioh/tests/deck_data_test.php
           node torneos_yugioh/tests/documented_combo_test.cjs
