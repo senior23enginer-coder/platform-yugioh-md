@@ -65,6 +65,43 @@ foreach($state['checked_studies'] as $id=>$entry){
     foreach(array_keys($export) as $name)check(str_starts_with($name,$folder.'/'),'Loose file outside deck folder');
     $metadata=$folder.'/datos/stationx-deck.json';check(isset($export[$metadata]),'Canonical package missing');
     $roundtrip=ygo_data_prepare($app,$export,$inventory,$r,$files);check(count($roundtrip['routes'])===count($r['routes']),'Folder roundtrip lost routes');
+
+    if (in_array((int)$id,[671,677],true)) {
+        $portable=json_decode($export[$metadata],true,128,JSON_THROW_ON_ERROR);
+        unset($portable['inventory_sha256'],$portable['baseline']);
+        $portable['inventory_binding']='deck-slots-v1';
+        $portable['content_mode']='structured';
+        $portable['record']=$r;
+        $portable['inventory']=$cards;
+        $candidate=$export;
+        $candidate[$metadata]=ygo_data_json($portable);
+        $live=$inventory+['format'=>'tcg'];
+        $parsed=ygo_data_prepare($app,$candidate,$live,$r,$files);
+        check(count($parsed['routes'])===($id==671?12:14),'Portable folder lost Memento/Crystron routes');
+        check(count($parsed['cards'])===39,'Portable folder lost Memento/Crystron cards');
+        $mismatch=$portable;$mismatch['inventory'][0]['quantity']++;
+        $wrong=$candidate;$wrong[$metadata]=ygo_data_json($mismatch);
+        fails(fn()=>ygo_data_prepare($app,$wrong,$live,$r,$files),'Portable wrong inventory accepted');
+        $mismatch=$portable;array_pop($mismatch['inventory']);
+        $wrong[$metadata]=ygo_data_json($mismatch);
+        fails(fn()=>ygo_data_prepare($app,$wrong,$live,$r,$files),'Portable missing card accepted');
+        $mismatch=$portable;$mismatch['record']['routes']=array_slice($r['routes'],1);
+        $wrong[$metadata]=ygo_data_json($mismatch);
+        fails(fn()=>ygo_data_prepare($app,$wrong,$live,$r,$files),'Portable route deletion accepted');
+        $mismatch=$portable;$mismatch['record']['format']='rush_duel';
+        $wrong[$metadata]=ygo_data_json($mismatch);
+        fails(fn()=>ygo_data_prepare($app,$wrong,$live,$r,$files),'Portable cross-format content accepted');
+        $mismatch=$portable;$mismatch['package_root']='DECK_999_OTHER';
+        $wrong[$metadata]=ygo_data_json($mismatch);
+        fails(fn()=>ygo_data_prepare($app,$wrong,$live,$r,$files),'Portable wrong folder accepted');
+        $mismatch=$portable;$mismatch['source_document']='absent.md';
+        $wrong[$metadata]=ygo_data_json($mismatch);
+        fails(fn()=>ygo_data_prepare($app,$wrong,$live,$r,$files),'Portable missing source document accepted');
+        $mismatch=$portable;$mismatch['inventory_sha256']='invented-hash';
+        $wrong[$metadata]=ygo_data_json($mismatch);
+        fails(fn()=>ygo_data_prepare($app,$wrong,$live,$r,$files),'Portable forged hash accepted');
+    }
+
     $structured=$export;$envelope=json_decode($structured[$metadata],true);$envelope['record']['profile']['Estilo de juego']='Updated structured style';$structured[$metadata]=ygo_data_json($envelope);
     check(ygo_data_prepare($app,$structured,$inventory,$r,$files)['profile']['Estilo de juego']==='Updated structured style','Automatic JSON changes ignored');
     $markdown=$export;$envelope=json_decode($markdown[$metadata],true);$markdown[$envelope['source_document']].="\n\nNew documentary paragraph.\n";
