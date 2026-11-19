@@ -26,6 +26,9 @@ function ygo_handle_post_serialized(PDO $pdo): ?string
         return 'gestion_no_disponible';
     }
     if ($action === 'import_deck_template') return ygo_import_deck_template($pdo, $_FILES['deck_template_txt'] ?? []);
+    if ($action === 'sync_txt_deck_to_gpt') {
+        return ygo_gpt_sync_txt_deck($pdo, (int)($_POST['gpt_deck_id'] ?? 0), (string)($_POST['gpt_csrf'] ?? ''));
+    }
     if($action==='configure_statistics_global'){
         $mapping=[];foreach(['FULL','REDUCED','BONUS'] as $code)if(isset($_POST['statistics_k_'.$code])){$value=filter_var($_POST['statistics_k_'.$code],FILTER_VALIDATE_INT);if($value===false)throw new InvalidArgumentException('Importancia estadistica invalida.');$mapping[$code]=$value;}
         ygo_stats_configure_global($pdo,trim((string)($_POST['statistics_anchor']??'')),$mapping);
