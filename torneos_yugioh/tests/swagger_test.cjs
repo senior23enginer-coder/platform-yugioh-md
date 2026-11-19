@@ -161,6 +161,11 @@ echo json_encode(['query'=>$_GET,'method'=>$_SERVER['REQUEST_METHOD'],'body'=>fi
       302,
     );
 
+    const slashEntry = await fetch(`${origin}/api/index.php/`, {
+      redirect: "manual",
+    });
+    assert.equal(slashEntry.status, 302);
+    assert.equal(slashEntry.headers.get("location"), "/api-docs/");
     browser = await chromium.launch({ headless: true });
     const page = await browser.newPage();
     const errors = [];
@@ -223,6 +228,44 @@ echo json_encode(['query'=>$_GET,'method'=>$_SERVER['REQUEST_METHOD'],'body'=>fi
       JSON.parse((await sending).postData()).token,
       "fixture-decklist-token",
       "Reuse actual token received by Swagger GET",
+    );
+    const worldsGet = page.locator("#operations-Mundos-getDeckWorlds");
+    await worldsGet.locator(".opblock-summary").click();
+    await worldsGet.locator(".try-out__btn").click();
+    await worldsGet.locator('input[type="text"]').first().fill("650");
+    const readingWorlds = page.waitForResponse(
+      (response) =>
+        response.url().includes("/worlds") &&
+        response.request().method() === "GET",
+    );
+    await worldsGet.locator(".execute").click();
+    await readingWorlds;
+    await page.waitForFunction(() =>
+      Object.keys(window.ui.authSelectors.authorized().toJS()).includes(
+        "sessionCsrf",
+      ),
+    );
+    const worldsPost = page.locator("#operations-Mundos-saveDeckWorlds");
+    await worldsPost.locator(".opblock-summary").click();
+    await worldsPost.locator(".try-out__btn").click();
+    await worldsPost
+      .locator("textarea")
+      .first()
+      .fill(
+        JSON.stringify({
+          deck_id: 650,
+          expected_revision: 0,
+          attributes: ["earth"],
+        }),
+      );
+    const savingWorlds = page.waitForRequest(
+      (request) =>
+        request.method() === "POST" && request.url().includes("/worlds"),
+    );
+    await worldsPost.locator(".execute").click();
+    assert.equal(
+      (await savingWorlds).headers()["x-csrf-token"],
+      "fixture-csrf-token",
     );
     assert.deepEqual(errors, []);
     console.log(

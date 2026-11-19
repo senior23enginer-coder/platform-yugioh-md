@@ -2,7 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "title": "Station X · API de Decks",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Operaciones implementadas mediante adaptadores a los controladores nativos. Los 37 endpoints REST propuestos todavía no están implementados. El CRUD de datos generales del deck sigue en formularios y no se anuncia como API REST. Las lecturas con token deben ejecutarse primero; Swagger reutiliza esos tokens solo en memoria y mantiene las cookies del mismo origen."
   },
   "servers": [
@@ -442,17 +442,7 @@
           "Combos"
         ],
         "description": "El ID pertenece al documento; revision=0 crea, una revisión vigente actualiza. Usa el inventario_sha256 de la consulta anterior. Incluye grafo, pasos y fuentes con historial nativo.",
-        "parameters": [
-          {
-            "name": "X-CSRF-Token",
-            "in": "header",
-            "required": true,
-            "description": "Token obtenido mediante GET de combos, Mundos o estado ZIP en esta misma sesión. Swagger lo reutiliza en memoria.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Operación completada.",
@@ -515,7 +505,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "sessionCsrf": []
+          }
+        ]
       }
     },
     "/worlds": {
@@ -579,17 +574,7 @@
           "Mundos"
         ],
         "description": "Solo TCG. Entre uno y tres mundos distintos; el primero es el principal. Usa expected_revision de la consulta anterior.",
-        "parameters": [
-          {
-            "name": "X-CSRF-Token",
-            "in": "header",
-            "required": true,
-            "description": "Token obtenido mediante GET de combos, Mundos o estado ZIP en esta misma sesión. Swagger lo reutiliza en memoria.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Operación completada.",
@@ -652,7 +637,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "sessionCsrf": []
+          }
+        ]
       }
     },
     "/deck-data/status": {
@@ -783,15 +773,6 @@
               "type": "integer",
               "minimum": 1
             }
-          },
-          {
-            "name": "X-CSRF-Token",
-            "in": "header",
-            "required": true,
-            "description": "Token obtenido mediante GET de combos, Mundos o estado ZIP en esta misma sesión. Swagger lo reutiliza en memoria.",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -855,7 +836,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "sessionCsrf": []
+          }
+        ]
       }
     },
     "/deck-data/commit": {
@@ -875,15 +861,6 @@
             "schema": {
               "type": "integer",
               "minimum": 1
-            }
-          },
-          {
-            "name": "X-CSRF-Token",
-            "in": "header",
-            "required": true,
-            "description": "Token obtenido mediante GET de combos, Mundos o estado ZIP en esta misma sesión. Swagger lo reutiliza en memoria.",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -947,7 +924,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "sessionCsrf": []
+          }
+        ]
       }
     }
   },
@@ -1264,6 +1246,14 @@
           "expected_revision",
           "attributes"
         ]
+      }
+    },
+    "securitySchemes": {
+      "sessionCsrf": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-CSRF-Token",
+        "description": "Token CSRF de la sesi?n existente. Ejecuta primero GET /combos, GET /worlds o GET /deck-data/status: Swagger lo toma autom?ticamente. Tambi?n puedes introducirlo en Authorize. No sustituye los permisos de la plataforma."
       }
     }
   }

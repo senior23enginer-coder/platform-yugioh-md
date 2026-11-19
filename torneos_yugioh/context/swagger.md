@@ -27,3 +27,5 @@ el flujo nativo de formularios. Esta entrega no añade permisos ni borra inventa
 Validación: `npm run test:swagger` verifica OpenAPI, rutas/métodos, recursos
 vendorizados y Swagger en escritorio/móvil mediante un PHP local sin BD.
 Nunca ejecuta guardados ni se conecta a producción.
+
+La autorizaci?n CSRF se describe como `sessionCsrf` (API key en cabecera). Una lectura expl?cita autoriza autom?ticamente ese esquema en memoria; tambi?n admite Authorize manual. Las rutas GET/POST se prueban contra un servidor ficticio, incluida la captura real de ambos tipos de token por Swagger.

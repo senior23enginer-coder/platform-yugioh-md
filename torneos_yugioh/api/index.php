@@ -5,7 +5,8 @@ declare(strict_types=1);
 $routes = require __DIR__ . '/routes.php';
 $path = rtrim((string) ($_SERVER['PATH_INFO'] ?? ''), '/') ?: '/';
 if ($path === '/') {
-    header('Location: ../api-docs/', true, 302);
+    $base = rtrim(str_replace(DIRECTORY_SEPARATOR, '/', dirname(dirname((string) ($_SERVER['SCRIPT_NAME'] ?? '/api/index.php')))), '/');
+    header('Location: ' . $base . '/api-docs/', true, 302);
     exit;
 }
 $route = $routes[$path] ?? null;
