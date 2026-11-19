@@ -94,7 +94,7 @@ jobs:
             exit 1
           fi
 
-      - name: Verify or transfer application by FTPS
+      - name: Verify or transfer application by FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_HOST }}
@@ -119,18 +119,34 @@ jobs:
             **/node_modules/**
             assets/uploads/**
 
-      - name: Publish deployed version manifest
-        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: 21
-          protocol: ftp
-          local-dir: ./.deploy-release/
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
-          state-name: .ftp-deploy-release-state.json
-          dangerous-clean-slate: false
+      - name: Publish and verify deployed version manifest
+        shell: bash
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
+        run: |
+          set -euo pipefail
+          manifest_url="ftp://${FTP_HOST}:21/${FTP_SERVER_DIR}release.json"
+          # A separate FTP connection can be reset even when the app sync succeeds.
+          # Retry transient data-socket failures and check the exact remote bytes.
+          curl --silent --show-error --fail --ftp-pasv \
+            --retry 6 --retry-all-errors --retry-delay 5 \
+            --connect-timeout 20 --max-time 120 \
+            --user "${FTP_USERNAME}:${FTP_PASSWORD}" \
+            --upload-file .deploy-release/release.json "$manifest_url"
+          remote_manifest="$(mktemp)"
+          trap 'rm -f "$remote_manifest"' EXIT
+          curl --silent --show-error --fail --ftp-pasv \
+            --retry 6 --retry-all-errors --retry-delay 5 \
+            --connect-timeout 20 --max-time 120 \
+            --user "${FTP_USERNAME}:${FTP_PASSWORD}" \
+            --output "$remote_manifest" "$manifest_url"
+          cmp .deploy-release/release.json "$remote_manifest" || {
+            echo "::error::The deployed release manifest differs from the expected version."
+            exit 1
+          }
 
       - name: Register GitHub release after deployment
         env:
