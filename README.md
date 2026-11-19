@@ -1,95 +1,357 @@
-# Station X · Yu-Gi-Oh
+# Station X · Plataforma Yu-Gi-Oh
 
-Este repositorio contiene únicamente la plataforma Yu-Gi-Oh y sus recursos de ejecución. **No contiene una carpeta `gpt`.** Los prompts y entregas pertenecen al repositorio independiente [gpt-yugioh-promps-platform](https://github.com/senior23enginer-coder/gpt-yugioh-promps-platform). No se incluyen credenciales, dependencias instaladas ni archivos privados de trabajo. Los recursos editoriales ya publicados permanecen en `assets/editorial/`, porque la plataforma los utiliza para sus guías y exportaciones.
+Plataforma web para administrar decks, equipos, temporadas, eventos y resultados de Yu-Gi-Oh, con guías de juego, un editor visual de combos y herramientas de estudio.
 
-Las herramientas activas de importación y sincronización leen por defecto el clon hermano `../gpt-yugioh-promps-platform/`. Para ubicarlo en otro lugar, definir `YGO_PROMPTS_ROOT` con la raíz de ese repositorio. La importación ZIP desde la web sigue funcionando íntegramente en el servidor, sin necesitar ninguno de los clones locales.
+| Recurso                      | Enlace                                                                                            |
+| ---------------------------- | ------------------------------------------------------------------------------------------------- |
+| Aplicación en producción     | [stationxtulua.com/yugioh](https://stationxtulua.com/yugioh/)                                     |
+| Swagger en producción        | [Documentación interactiva](https://stationxtulua.com/yugioh/api-docs/)                           |
+| Repositorio de la aplicación | [platform-yugioh-md](https://github.com/senior23enginer-coder/platform-yugioh-md)                 |
+| Prompts e investigación      | [gpt-yugioh-promps-platform](https://github.com/senior23enginer-coder/gpt-yugioh-promps-platform) |
+| Integración y despliegue     | [GitHub Actions](https://github.com/senior23enginer-coder/platform-yugioh-md/actions)             |
 
-Repositorio oficial de la plataforma: https://github.com/senior23enginer-coder/platform-yugioh-md. Todo cambio de código, pruebas, documentación y contenido editorial de Yu-Gi-Oh se mantiene aquí.
+## Contenido
 
-## Contrato único para entregas generadas por IA
+- [Alcance y estado](#alcance-y-estado)
+- [Requisitos](#requisitos)
+- [Instalación local](#instalación-local)
+- [Configuración](#configuración)
+- [Estructura del repositorio](#estructura-del-repositorio)
+- [Arquitectura y edición del código](#arquitectura-y-edición-del-código)
+- [API y Swagger](#api-y-swagger)
+- [Importación y contenido de decks](#importación-y-contenido-de-decks)
+- [Comandos y pruebas](#comandos-y-pruebas)
+- [Ramas y colaboración](#ramas-y-colaboración)
+- [Despliegue](#despliegue)
+- [Diagnóstico de problemas](#diagnóstico-de-problemas)
+- [Documentación de referencia](#documentación-de-referencia)
 
-El idioma de explicación, guías y diagnósticos es **español**; los nombres oficiales de cartas y las claves de esquemas JSON no se traducen. El módulo «Importar / exportar Data» utiliza **una carpeta por deck**, conservando el nombre original `DECK_*` que entrega la exportación, incluso cuando tenga la forma histórica `DECK_NUEVO_12_*`.
+## Alcance y estado
 
-- **Crear deck nuevo:** usar primero la plantilla TXT nativa `# STATIONX-DECK-TEMPLATE/1` para dar de alta la identidad y cartas; luego abrir el deck y **exportar Data**. El paquete exportado provee un `deck_id` y una huella `inventory_sha256` reales. Una IA no debe inventarlos.
-- **Actualizar deck existente:** exportar Data desde el deck que se desea actualizar; entregar el ZIP a la IA, que debe devolver el mismo árbol con `datos/stationx-deck.json` y los archivos A01–A10 pertinentes. No cambiar la carpeta de origen, los IDs de cartas, CIDs, slots, inventario, Skills ni los IDs de las rutas.
-- **Fuente interactiva:** `station-x-deck-package/1` contiene `record.schema=station-x-curated-v62` con `profile`, `cards`, `skills`, `summary`, `engine_maps`, `routes`, `decisions` y `practice`. Los documentos Markdown y HTML son complementarios. Para editar el JSON, usar `content_mode=structured`; el modo `markdown` solo transforma una parte del material.
-- **Calculadora:** `record.calculator` es opcional y solo puede declarar `station-x-calculator/1` con reglas verificadas para ese deck y formato. La ausencia de reglas no impide documentar o importar, pero prohíbe afirmar que todos sus combos son ejecutables.
-- **Seguridad:** no sobrescribir inventarios ni revisiones manuales; el ZIP debe conservar `package_root`, `inventory`, `inventory_sha256`, `source_document` y `baseline` sin falsear hashes. Previsualizar y validar antes de confirmar la importación. La importación de contenidos y el despliegue de código son operaciones separadas.
+| Área                     | Funcionalidad y límites                                                                                                                                      |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Decks y equipos          | Catálogo, ficha, listas Main/Extra/Side/Reserva, multimedia y relaciones con equipos.                                                                        |
+| Mundos                   | Asignación ordenada de uno a tres mundos para decks TCG; el primero es el principal.                                                                         |
+| Eventos                  | Temporadas, ligas, copas, divisiones, calendario, enfrentamientos y resultados.                                                                              |
+| Estadísticas y tops      | Ranking por formato, ranking global, metagame y tablas según los resultados registrados.                                                                     |
+| Guías y combos           | Biblioteca documental, fotografías, pasos, planes y editor visual con revisiones.                                                                            |
+| Calculadora de jugadas   | Práctica y captura de escenarios, manos y consulta de líneas disponibles. La cobertura del motor depende de las reglas implementadas para cada deck/formato. |
+| Inspector de cartas      | Consulta local y del proveedor de cartas, imagen y texto disponible.                                                                                         |
+| Importar / exportar Data | Intercambio de un deck por ZIP con previsualización, control de identidad e inventario.                                                                      |
+| API de Decks             | Swagger publica 13 operaciones implementadas mediante 10 rutas; la propuesta de 37 endpoints REST todavía no está implementada.                              |
+| Conexión con ChatGPT     | Integración MCP de consulta, opcional y con configuración privada independiente.                                                                             |
 
-Las pruebas de regresión de `torneos_yugioh/tests/deck_data_test.php` incluyen los pilotos Memento (ID 671; 41/15/14/0; 12 rutas) y Crystron/Horus (ID 677; 40/15/15/0; 14 rutas). Estas pruebas validan estructura y paridad de datos, **no** jugadas completas del motor.
+La plataforma conserva código nativo junto con funcionalidades migradas a puertos y adaptadores. No se considera terminada la migración completa a arquitectura hexagonal. Una guía importada tampoco equivale a una secuencia certificada por un motor de reglas. Consultar el [estado de arquitectura](torneos_yugioh/context/architecture-migration-status.md) y los límites de la [calculadora](torneos_yugioh/context/play-calculator.md).
 
-## Estructura
+Los recuentos de decks, cartas y rutas cambian con las entregas y las operaciones de la plataforma. Los números de pruebas históricas describen sus fixtures, no necesariamente el catálogo vivo.
 
-- `torneos_yugioh/`: aplicación PHP, frontend, recursos, pruebas y herramientas editoriales.
-- `torneos_yugioh/context/README.md`: índice de documentación funcional y técnica.
-- `torneos_yugioh/context/editorial-sync-state.json`: referencia del contenido editorial activo y sus fuentes.
-- `../gpt-yugioh-promps-platform/`: repositorio independiente de prompts, entregas e investigación; no forma parte de este árbol.
-- `outputs/ygo-editorial-sync-20261030/`: contexto de sincronización y base histórica para los demás decks.
-- `outputs/ygo-import-11-decks-20261101/`: inventario y evidencias de la integración de los 11 decks.
-- `station_x_perfiles_67_decks.txt`: fuente histórica; no sustituye las referencias activas del estado editorial.
-- `store-lib.php`: compatibilidad independiente para las tres funciones compartidas utilizadas por la aplicación: sesión/CSRF, escape HTML y conexión PDO. No incorpora el código de la tienda.
+## Requisitos
 
-## Configuración local
+| Componente                 | Uso                                                                                                   |
+| -------------------------- | ----------------------------------------------------------------------------------------------------- |
+| PHP 8.3                    | Ejecución de la aplicación.                                                                           |
+| MySQL                      | Persistencia de la plataforma; usar una base independiente para desarrollo.                           |
+| PDO MySQL, mbstring y cURL | Conexión, tratamiento de texto e integraciones del backend.                                           |
+| ZipArchive (`zip`)         | Importación y exportación de paquetes de decks.                                                       |
+| DOM/SimpleXML              | Lectura de fuentes de noticias según el formato recibido.                                             |
+| Node.js 22 y npm           | Dependencias, generación de recursos y pruebas; es la versión configurada en CI.                      |
+| Python 3.11 o posterior    | Herramientas editoriales y parte de la suite local; no se necesita para importar un ZIP desde la web. |
+| PDO SQLite                 | Pruebas locales aisladas de persistencia.                                                             |
+| Playwright y Chromium      | Pruebas de navegador, incluida la de Swagger.                                                         |
 
-Requiere PHP 8.3 con PDO MySQL, mbstring y cURL, y una base MySQL separada para desarrollo. Para las pruebas locales también se necesita PDO SQLite, Python 3 y Node.js. Las pruebas de navegador usan Playwright.
+En producción se publican PHP y recursos ya preparados. El servidor web no necesita instalar Node.js, npm, Python ni Playwright para atender la aplicación. Para Apache, habilitar las reglas de `.htaccess` y `mod_rewrite`.
 
-1. Copia `config/database.example.php` a `config/database.local.php` y configura tu base de desarrollo. El archivo local está excluido de Git.
-2. Alternativamente, define `YGO_DB_HOST`, `YGO_DB_PORT`, `YGO_DB_NAME`, `YGO_DB_USER`, `YGO_DB_PASSWORD`, `YGO_DB_PREFIX` y `YGO_DB_ENTITY`. Nombre de base y usuario son obligatorios.
-3. Desde la raíz del repositorio ejecuta:
+El arranque normal puede inicializar o evolucionar tablas y valores base. **Configurar una base de desarrollo antes de abrir la aplicación local; no apuntarla a producción para hacer pruebas.**
 
-   ```sh
-   php -S 127.0.0.1:8080 -t torneos_yugioh
-   ```
+## Instalación local
 
-La aplicación inicializa/evoluciona sus tablas al conectarse: usa una base aislada. Los datos reales de operación no se incluyen en Git. En un hosting Station X existente, el puente admite su configuración privada de Dolibarr mediante `STATION_X_DOLIBARR_CONFIG` o `htdocs/conf/conf.php`, sin versionarla. La configuración local tiene prioridad, seguida de Dolibarr y después las variables de entorno.
+### 1. Clonar la aplicación
 
-En producción la ruta pública es `/yugioh/`; la carpeta del repositorio conserva el nombre `torneos_yugioh`. Si se publica en otra ruta, revisar `.htaccess`, `RewriteBase` y la configuración documentada de despliegue.
+```sh
+git clone --branch base https://github.com/senior23enginer-coder/platform-yugioh-md.git
+cd platform-yugioh-md
+```
 
-## Verificación
+El repositorio de prompts es independiente. Si se necesitan sus herramientas editoriales, clonarlo como carpeta hermana:
+
+```sh
+git clone --branch base https://github.com/senior23enginer-coder/gpt-yugioh-promps-platform.git ../gpt-yugioh-promps-platform
+```
+
+No crear `context/gpt/` dentro de la aplicación ni copiar los repositorios al antiguo workspace `xstation`. La copia de migración `xstation/torneos_yugioh` fue retirada.
+
+### 2. Configurar la base de desarrollo
+
+En PowerShell:
+
+```powershell
+Copy-Item config/database.example.php config/database.local.php
+```
+
+En Linux/macOS:
+
+```sh
+cp config/database.example.php config/database.local.php
+```
+
+Editar `config/database.local.php` con la conexión propia. El archivo debe devolver un array con `host`, `port`, `database`, `username`, `password`, `prefix` y `entity`. La base y el usuario deben existir; el repositorio no contiene la base de datos de producción. El archivo local está ignorado por Git.
+
+### 3. Instalar dependencias y preparar recursos
 
 ```sh
 npm ci
-npm test
-npx playwright install chromium
-npm run test:guide
-npm run test:calculator
-npm run test:export
+npm run build
+npm run build:swagger
 ```
 
-`npm test` ejecuta las pruebas unitarias PHP, las paridades JS/PHP y la sincronización editorial en archivos temporales; no conecta con producción. Si PHP o Python no están en PATH, definir `PHP_BINARY` y `PYTHON_BINARY` con sus ejecutables. Las comprobaciones históricas que necesitan entregas externas se ejecutan solo con `RUN_EDITORIAL_SOURCE_TESTS=1` y sus entradas presentes en el repositorio independiente.
+### 4. Iniciar PHP
 
-Los escenarios de navegador y las pruebas de integración con MySQL tienen requisitos propios: consultar `torneos_yugioh/context/testing.md` y cada prueba antes de ejecutarla. No ejecutar pruebas de mutación sobre producción. La prueba de ciclo de temporadas requiere una base de prueba específica y no forma parte del comando anterior.
+```sh
+php -S 127.0.0.1:8080 -t torneos_yugioh
+```
 
-`npm run test:guide` verifica las fichas de los 11 decks y sus 126 rutas en un servidor temporal local: aislamiento por ID, descarga individual, cambio rápido entre decks, recuperación de errores y diseño móvil. Usa datos editoriales reales e imágenes sustituidas para probar el diseño sin acceder a servicios externos ni a la base de datos.
+- Aplicación: <http://127.0.0.1:8080/>
+- Swagger: <http://127.0.0.1:8080/api-docs/>
+- OpenAPI: <http://127.0.0.1:8080/api-docs/openapi.json>
 
-## Contenido editorial
+El servidor integrado de PHP es para desarrollo. En producción la aplicación se sirve bajo `/yugioh/`; revisar `RewriteBase` y las rutas públicas si cambia su ubicación.
 
-La entrega completa de 11 decks reemplaza el contenido activo anterior de esos IDs; los otros decks conservan sus fuentes. Consultar el estado editorial antes de importar. Mantener Main, Extra, Side, reserva y Skills separados, y conservar condiciones y estados de verificación. Un ID de Konami no equivale a un ID de imagen de YGOPRODeck.
+## Configuración
 
-El contrato, inventarios y manifiestos guían las siguientes entregas de ChatGPT. Los originales que tienen hashes se conservan byte a byte mediante `.gitattributes`. La sincronización editorial prepara candidatos locales; no publica automáticamente ni importa un JSON arbitrario a MySQL.
+El puente de compatibilidad [store-lib.php](store-lib.php) proporciona sesión/CSRF, escape HTML y conexión PDO. No incorpora el código de la tienda.
 
-## Publicación y seguridad
+### Prioridad de la conexión
 
-No versionar credenciales, configuraciones privadas, sesiones, copias de bases de datos, cachés ni `node_modules`. Este repositorio contiene recursos públicos y fuentes editoriales, no una copia de la base de datos de producción. Un commit/push actualiza GitHub; el despliegue al sitio se realiza por separado cuando esté autorizado.
+1. `config/database.local.php`.
+2. Configuración privada de Dolibarr indicada por `STATION_X_DOLIBARR_CONFIG`, o `htdocs/conf/conf.php` si existe.
+3. Variables de entorno `YGO_DB_*`.
 
-La copia antigua en `xstation/torneos_yugioh` queda como referencia de migración. El trabajo futuro se realiza en este repositorio.
+| Variable                      | Propósito                                                               | Valor por defecto                      |
+| ----------------------------- | ----------------------------------------------------------------------- | -------------------------------------- |
+| `YGO_DB_HOST`                 | Host MySQL                                                              | `127.0.0.1`                            |
+| `YGO_DB_PORT`                 | Puerto MySQL                                                            | `3306`                                 |
+| `YGO_DB_NAME`                 | Nombre de base                                                          | Obligatorio si se usa este mecanismo   |
+| `YGO_DB_USER`                 | Usuario de base                                                         | Obligatorio si se usa este mecanismo   |
+| `YGO_DB_PASSWORD`             | Contraseña de base                                                      | Vacío                                  |
+| `YGO_DB_PREFIX`               | Prefijo utilizado por el puente compartido                              | `llx_`                                 |
+| `YGO_DB_ENTITY`               | Entidad del puente                                                      | `1`                                    |
+| `STATION_X_DOLIBARR_CONFIG`   | Ruta al archivo privado de configuración existente                      | `htdocs/conf/conf.php` junto al puente |
+| `YGO_PROMPTS_ROOT`            | Raíz del repositorio independiente para las herramientas que la admiten | Repositorio hermano                    |
+| `STATION_X_CHATGPT_CONFIG`    | Ruta de configuración privada de la conexión MCP                        | Ver documentación de ChatGPT           |
+| `PHP_BINARY`, `PYTHON_BINARY` | Ejecutables utilizados por el lanzador de pruebas                       | `php`, `python`                        |
+| `RUN_EDITORIAL_SOURCE_TESTS`  | Habilitar pruebas históricas que requieren entregas externas            | Desactivado; habilitar con `1`         |
 
-## Módulos de guía y calculador
+Los nombres de tablas propios `sx_ygo_*` forman parte del esquema implementado; `YGO_DB_PREFIX` no renombra automáticamente todas las tablas de la aplicación. Las variables deben configurarse en el entorno del proceso: el puente no carga automáticamente un archivo `.env`.
 
-Consultar [el mapa del código por módulos](torneos_yugioh/assets/modules/README.md). La guía mantiene la biblioteca completa por deck, y [Calculador de jugadas](torneos_yugioh/context/play-calculator.md) añade captura de mano/campo/Cementerio, rivales y consulta conservadora de rutas locales. Su entrada autónoma `play-calculator.html` permite reabrir los escenarios preparados con la red desactivada. El motor no simula todas las reglas de cartas ni certifica jugadas completas.
+La configuración MCP se prepara por separado. Consultar [chatgpt-connection.md](torneos_yugioh/context/chatgpt-connection.md); no guardar tokens ni archivos privados en el repositorio.
 
-## Codigo fuente y arquitectura
+## Estructura del repositorio
 
-La guia de edicion y limites de dependencia esta en [source-architecture.md](torneos_yugioh/context/source-architecture.md). El nucleo PHP esta en `torneos_yugioh/src/`; los adaptadores funcionales permanecen en `includes/<feature>/` y las pantallas en `includes/presentation/screens/`.
+```text
+platform-yugioh-md/
+├── .github/                     # Workflows y procedimiento FTP
+├── config/                      # Ejemplos de configuración; archivos locales ignorados
+├── deploy/                      # Recursos auxiliares de publicación, incluida conexión ChatGPT
+├── docs/                        # Documentación de apoyo
+├── scripts/                     # Build, formato e inventario de fuentes
+├── torneos_yugioh/
+│   ├── index.php                # Entrada y composición del flujo nativo
+│   ├── api/                     # Adaptadores HTTP de operaciones documentadas
+│   ├── api-docs/                # Swagger UI, OpenAPI y distribución fijada del proveedor
+│   ├── assets/
+│   │   ├── source/              # Fuentes del frontend legado
+│   │   ├── modules/             # Funcionalidades frontend independientes
+│   │   └── editorial/           # Recursos documentales utilizados en ejecución
+│   ├── includes/                # Adaptadores nativos, bootstrap y presentación
+│   ├── src/
+│   │   ├── Domain/              # Reglas y políticas independientes de I/O
+│   │   ├── Application/         # Casos de uso y puertos
+│   │   └── Infrastructure/      # HTTP, PDO, archivos, proveedores y composición
+│   ├── context/                 # Especificaciones y estado técnico
+│   ├── mcp/                     # Entrada de conexión con ChatGPT
+│   ├── tests/                   # Contratos, regresiones y escenarios de navegador
+│   └── tools/                   # Herramientas editoriales y operativas
+├── store-lib.php                # Puente de compatibilidad para desarrollo independiente
+├── AGENTS.md                    # Reglas de trabajo y preservación de contratos
+├── package.json                 # Comandos y dependencias de desarrollo
+└── package-lock.json            # Resolución reproducible de dependencias
+```
 
-Las fuentes del frontend existente se editan en `torneos_yugioh/assets/source/`. Ejecuta `npm run build` antes de publicar y `npm run build:check` para detectar bundles desactualizados. `assets/app.js` y `assets/app.css` son salidas publicas generadas; los modulos independientes de `assets/modules/` se editan directamente.
+`outputs/`, `local-artifacts/`, `node_modules/`, cachés y configuraciones privadas son locales y están ignorados. No son entradas necesarias para iniciar un clon nuevo. `station_x_perfiles_67_decks.txt` es una referencia histórica; no reemplaza el inventario vivo ni el registro editorial activo.
 
-El recorrido hexagonal de Mundos, sus puertos y las reglas de transacción están documentados en `torneos_yugioh/context/source-architecture.md`. Usa `npm run format:architecture` y `npm run format:architecture:check` para el formato de las fuentes migradas; no aplican a plantillas mixtas ni a bundles generados.
+## Arquitectura y edición del código
 
-El avance y la deuda real de la migración completa a puertos/adaptadores se detallan en `torneos_yugioh/context/architecture-migration-status.md`. El dominio no debe llamar funciones nativas `ygo_*`, PDO, archivos ni HTTP; ese límite se comprueba en la suite. `php scripts/source-inventory.php --summary` inventaría las dependencias nativas sin inicializar la aplicación.
+- **Domain:** sin PDO, variables HTTP, archivos, red ni llamadas a funciones nativas `ygo_*`.
+- **Application:** coordina casos de uso mediante puertos explícitos; conserva la propiedad de transacciones y bloqueos.
+- **Infrastructure:** implementa persistencia, transporte, caché, reloj y composición.
+- **Compatibilidad:** `includes/` mantiene flujos existentes mientras se migran por funcionalidad. Trasladar un cuerpo procedural a otra carpeta no completa una migración hexagonal.
 
-## Swagger del módulo Deck
+Mundos, metadatos de decks, combos, calendario compartido, noticias, catálogo y decklists tienen separación implementada en distintos alcances. El cargador global, parte de los formularios, estadísticas, importación y frontend legado conservan deuda. La referencia detallada es [architecture-migration-status.md](torneos_yugioh/context/architecture-migration-status.md).
 
-Abrir `/yugioh/api-docs/` (local: `http://127.0.0.1:8080/api-docs/`). Incluye 13 operaciones implementadas, ejemplos y ejecución con la sesión existente. Contrato: `torneos_yugioh/api-docs/openapi.json`. Detalles y límites en [swagger.md](torneos_yugioh/context/swagger.md). Los 37 endpoints REST propuestos siguen pendientes.
+### Frontend
 
-`npm run build:swagger` prepara los recursos locales fijados; `npm run test:swagger` valida contrato, rutas e interfaz sin acceder a producción.
+Editar el código legado en `assets/source/`, siguiendo su manifiesto, y ejecutar `npm run build`. **No editar directamente los bundles generados `assets/app.js` y `assets/app.css`.**
+
+Las funcionalidades nuevas se organizan en `assets/modules/<feature>/`. Las vistas de servidor se mantienen bajo `includes/<domain>/` y `includes/presentation/`. Ver [source-architecture.md](torneos_yugioh/context/source-architecture.md) y el [mapa de módulos](torneos_yugioh/assets/modules/README.md).
+
+El formateador de arquitectura usa una lista explícita de fuentes migradas; no incluye todas las plantillas mixtas ni el material editorial. No regenerar huellas originales para ocultar cambios de comportamiento.
+
+## API y Swagger
+
+La interfaz combina formularios PHP, endpoints nativos `?api=...` y adaptadores documentados bajo `api/index.php/...`. Todavía no es una API REST completa de todos los módulos.
+
+| Grupo de Swagger | Operaciones implementadas                                         |
+| ---------------- | ----------------------------------------------------------------- |
+| Decklist         | Consultar lista, versión y token; guardar lista completa          |
+| Catálogo         | Buscar cartas, consultar detalle e imagen                         |
+| Combos           | Consultar creaciones/historial; crear o actualizar                |
+| Mundos           | Consultar asignaciones; actualizar su orden                       |
+| Data ZIP         | Consultar estado, exportar, previsualizar y confirmar importación |
+
+Son **13 operaciones mediante 10 rutas**. El contrato está en [openapi.json](torneos_yugioh/api-docs/openapi.json) y la correspondencia nativa en [api/routes.php](torneos_yugioh/api/routes.php). Los 37 endpoints REST propuestos siguen pendientes; no se publican como implementados en Swagger.
+
+Para probar un guardado, ejecutar primero la lectura del recurso en la misma sesión. Swagger conserva cookies y reutiliza los tokens solo en memoria. Decklist lleva el token dentro del JSON; combos, Mundos y ZIP utilizan `X-CSRF-Token` mediante el esquema `sessionCsrf`. La versión/revisión debe corresponder a la lectura vigente. **Execute aplica operaciones reales cuando se utiliza producción.**
+
+Swagger se distribuye con recursos locales de una versión fijada; no usa CDN ni validador remoto. Abrir la documentación no inicializa la base ni ejecuta guardados. Más detalles en [swagger.md](torneos_yugioh/context/swagger.md) y [api.md](torneos_yugioh/context/api.md).
+
+## Importación y contenido de decks
+
+Los prompts, la investigación y las entregas originales pertenecen exclusivamente al repositorio independiente de prompts. `assets/editorial/` contiene recursos de ejecución y debe conservarse al publicar. Consultar [editorial-sync-state.json](torneos_yugioh/context/editorial-sync-state.json) antes de aplicar una entrega; no inferir su vigencia a partir de un nombre o un recuento histórico.
+
+### Contrato único para entregas generadas por IA
+
+El idioma de explicaciones, guías y diagnósticos es **español**. Los nombres oficiales de cartas y las claves de los esquemas JSON se conservan.
+
+1. **Deck nuevo:** usar primero la plantilla TXT nativa `# STATIONX-DECK-TEMPLATE/1` para crear identidad y cartas; después exportar Data desde su ficha. El paquete contiene un `deck_id` e `inventory_sha256` reales: no inventarlos.
+2. **Deck existente:** exportar Data desde la ficha correcta y entregar ese ZIP a la IA. Debe devolver una única carpeta del mismo deck, conservando su nombre `DECK_*`, incluso si es un nombre histórico `DECK_NUEVO_12_*`.
+3. **Contenido estructurado:** conservar `datos/stationx-deck.json` con `schema=station-x-deck-package/1` y `record.schema=station-x-curated-v62`. El registro incluye `profile`, `cards`, `skills`, `summary`, `engine_maps`, `routes`, `decisions` y `practice`; Markdown/HTML son complementarios. Mantener los documentos A01–A10 pertinentes.
+4. **Fuente de la edición:** para modificar el JSON completo usar `content_mode=structured`. `auto` distingue cambios del registro o del Markdown; si ambos cambian exige resolver la autoridad. El modo `markdown` transforma solo parte del material.
+5. **Integridad:** conservar `package_root`, `inventory`, `inventory_sha256`, `source_document` y `baseline` cuando el paquete los incluye. No falsear hashes ni cambiar IDs de cartas, CIDs, slots, cantidades, Main/Extra/Side/Reserva, Skills o IDs de rutas.
+6. **Calculadora:** `record.calculator` es opcional; solo puede declarar `station-x-calculator/1` con reglas verificadas para ese deck y formato. Su ausencia no impide importar documentación, pero no permite afirmar que todas las rutas se ejecutan en el motor.
+7. **Aplicación:** importar en la misma ficha, revisar la previsualización y confirmar. Mantener revisiones manuales, historial e inventarios. Importar contenido y desplegar código son procesos diferentes.
+
+Una carpeta GPT sin `stationx-deck.json` puede tener compatibilidad histórica limitada: la previsualización avisa que el Markdown y las rutas existentes no transfieren íntegramente todas las novedades al editor. Para un intercambio completo, partir del ZIP exportado por la plataforma. Kashtira es una referencia de estructura, no una fuente para copiar cartas o mecánicas a otros decks.
+
+El flujo web se procesa en PHP y no requiere Codex, Python ni un equipo local conectado. Requiere ZipArchive, escritura en el temporal y en `assets/editorial/`, y límites PHP compatibles con el máximo de la aplicación: 48 MiB comprimidos, 120 MiB descomprimidos y 3000 archivos. Ver [deck-data.md](torneos_yugioh/context/deck-data.md).
+
+Las herramientas locales `combo_source_sync.py` y `build_deck_data_sources.py` utilizan el repositorio hermano o `YGO_PROMPTS_ROOT`. Algunas herramientas históricas conservan rutas antiguas: revisar cada herramienta y su documentación antes de ejecutarla; no recrear una carpeta GPT interna para satisfacerlas.
+
+Los fixtures de `deck_data_test.php` incluyen Memento (671; 41/15/14/0; 12 rutas) y Crystron/Horus (677; 40/15/15/0; 14 rutas). Son pruebas de estructura y paridad, no inventarios actuales garantizados ni certificación integral de jugadas.
+
+## Comandos y pruebas
+
+Ejecutar desde la raíz del repositorio después de `npm ci`.
+
+| Comando                                      | Propósito                                                                            |
+| -------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `npm run build`                              | Generar los bundles del frontend legado                                              |
+| `npm run build:check`                        | Detectar bundles desactualizados                                                     |
+| `npm run build:swagger`                      | Copiar la distribución fijada de Swagger UI y sus licencias                          |
+| `npm test`                                   | Suite local de contratos, dominio, adaptadores y regresiones                         |
+| `npm run test:swagger`                       | OpenAPI, rutas, tokens, recursos e interfaz de Swagger en un servidor ficticio local |
+| `npm run test:guide`                         | Navegación y presentación de guías                                                   |
+| `npm run test:calculator`                    | Interfaz de la calculadora                                                           |
+| `npm run test:export`                        | Exportador de listados                                                               |
+| `npm run test:combos`                        | Interfaz del creador de combos                                                       |
+| `npm run test:combos:regression`             | Regresiones del editor de combos                                                     |
+| `npm run test:planner`                       | Planificador de jugadas                                                              |
+| `npm run test:strategy`                      | Escenarios de estrategia de la calculadora                                           |
+| `npm run test:a07:memento`                   | Casos específicos de cobertura y efectos de Memento                                  |
+| `npm run test:mcp`                           | Contratos de la conexión MCP                                                         |
+| `npm run format:architecture`                | Formatear las fuentes migradas seleccionadas                                         |
+| `npm run format:architecture:check`          | Verificar el formato de esas fuentes                                                 |
+| `npm run format:check`                       | Revisar formato de módulos frontend; no reemplaza las pruebas funcionales            |
+| `php scripts/source-inventory.php --summary` | Inventariar dependencias nativas sin iniciar la aplicación                           |
+
+Antes de pruebas de navegador:
+
+```sh
+npx playwright install chromium
+```
+
+En Linux/CI puede utilizarse `npx playwright install --with-deps chromium`. Si los ejecutables no están en PATH, por ejemplo en PowerShell:
+
+```powershell
+$env:PHP_BINARY = 'C:\xampp\php\php.exe'
+$env:PYTHON_BINARY = 'python'
+npm test
+npm run test:swagger
+```
+
+`npm test` no ejecuta automáticamente todos los escenarios de navegador ni certifica concurrencia MySQL. Las pruebas históricas con entregas externas son optativas mediante `RUN_EDITORIAL_SOURCE_TESTS=1`; deben disponer de sus entradas independientes. Antes de ejecutar un escenario específico, revisar su destino y requisitos: **no ejecutar pruebas de mutación contra producción**. Consultar [testing.md](torneos_yugioh/context/testing.md).
+
+## Ramas y colaboración
+
+- `base` es la rama de trabajo e integración utilizada por los workflows de este repositorio.
+- Conservar `main`, `develop` y `test` en su estado inicial salvo una instrucción explícita de cambio.
+- Leer [AGENTS.md](AGENTS.md), preservar trabajo ajeno y no cambiar reglas, inventarios o resultados como consecuencia de una reorganización técnica.
+- Antes de publicar, revisar el diff, ejecutar las pruebas pertinentes y registrar el cambio en Git.
+- Un commit local, un push, una prueba local y un despliegue son evidencias distintas. No afirmar que un cambio está en el sitio solo porque existe en GitHub.
+
+## Despliegue
+
+El workflow [Deploy Station X on merge](.github/workflows/deploy-ftp-after-approved-pr.yml) se ejecuta al **integrar un pull request en `base`**. También admite ejecución manual desde Actions → Deploy Station X on merge → Run workflow → `base`. Un push directo a `base` no inicia por sí solo un despliegue.
+
+### Flujo automático
+
+1. Obtener el commit seleccionado y generar el frontend con Node 22.
+2. Sincronizar `torneos_yugioh/` mediante FTP, puerto 21, a `/domains/stationxtulua.com/public_html/yugioh/`.
+3. Si falla la transferencia, esperar 30 segundos y reintentar una sola vez. Si vuelve a fallar, detener el job.
+4. Publicar `release.json` solo tras completar la transferencia; comprobar sus bytes por FTP y su versión/commit mediante la URL pública.
+
+El job de despliegue no instala dependencias de pruebas ni repite `npm test`, PHP, Python o Playwright. Las verificaciones de integración se realizan en el workflow de PR cuando cambian las rutas configuradas; la comprobación individual de la plantilla TXT queda disponible manualmente. La suite completa local sigue siendo una responsabilidad de desarrollo.
+
+### Configuración de GitHub
+
+| Recurso            | Configuración                                                                 |
+| ------------------ | ----------------------------------------------------------------------------- |
+| Secrets de Actions | `FTP_HOST` sin protocolo, `FTP_USERNAME`, `FTP_PASSWORD`                      |
+| Ruta de destino    | Variable `FTP_SERVER_DIR` del workflow con la ruta absoluta comprobada        |
+| Entorno            | `production`; sin revisores obligatorios si se requiere publicación inmediata |
+| Concurrencia       | Una publicación de Actions a la vez; no cancelar una transferencia activa     |
+
+El protocolo configurado es FTP, no SFTP/FTPS; transmite datos sin cifrado de transporte. Mantener la credencial únicamente en Secrets y utilizar el acceso del hosting autorizado.
+
+Se publican entradas PHP, `src/`, `includes/`, módulos y assets de ejecución, Swagger, manifiesto, service worker y `.htaccess`. Se excluyen pruebas, documentación interna, herramientas, configuraciones privadas, uploads, cachés y artefactos locales. Conservar los recursos editoriales vigentes y revisar su sincronización antes de publicar. El `store-lib.php` compartido situado por encima de `/yugioh/` no se reemplaza desde este workflow.
+
+**No realizar subidas FTP directas mientras Actions esté publicando o tenga un despliegue en cola.** La concurrencia de GitHub no bloquea otros clientes FTP. Los archivos `.in.<nombre>.` son temporales del servidor y pueden pertenecer a una subida activa: no eliminarlos automáticamente ni usar una limpieza completa del destino.
+
+El pipeline no ejecuta importaciones de contenido ni un seed manual. No proporciona reversión automática de una transferencia parcial. Una validación correcta del manifiesto acredita qué versión se publicó; no certifica todos los flujos de negocio. Procedimiento detallado: [FTP-DEPLOY-SETUP.md](.github/FTP-DEPLOY-SETUP.md).
+
+## Diagnóstico de problemas
+
+| Síntoma                                   | Qué revisar                                                                                                     |
+| ----------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| Fallo al conectar con MySQL               | Configuración efectiva según su prioridad, base/usuario existentes y extensión PDO MySQL                        |
+| Swagger carga, pero una operación falla   | Sesión, permisos, ID real, lectura previa del token y revisión/versión actual                                   |
+| La API devuelve HTML                      | Ruta pública correcta, `.htaccess`, `mod_rewrite` y preservación de `PATH_INFO` para `api/index.php/...`        |
+| Importación ZIP rechazada                 | Extensión `zip`, límites de subida, identidad/inventario del paquete, contenido estructurado y previsualización |
+| Guías o fotografías faltantes             | Registro editorial activo, archivos asociados y correspondencia inequívoca de carta/imagen                      |
+| Bundles desactualizados                   | Editar fuentes y ejecutar `npm run build`; no corregir el bundle a mano                                         |
+| FTP 550 por `.in.*.`                      | Posible subida concurrente o interrumpida; esperar/reintentar y comprobar transferencias antes de intervenir    |
+| Cambios de GitHub no visibles en la web   | Confirmar que hubo merge o ejecución manual, revisar el run y contrastar `release.json` público                 |
+| Una herramienta pide una ruta GPT antigua | Revisar si es histórica y usar la herramienta vigente; no copiar investigación dentro de la aplicación          |
+
+Nunca versionar credenciales, sesiones, tokens, configuraciones locales, respaldos de BD, cachés ni `node_modules/`. No subir archivos de conexión privados, resultados de trabajo ni scripts temporales de mantenimiento al directorio público.
+
+## Documentación de referencia
+
+| Tema                         | Documento                                                                                                          |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Índice técnico y funcional   | [context/README.md](torneos_yugioh/context/README.md)                                                              |
+| Especificación de plataforma | [platform-specification.md](torneos_yugioh/context/platform-specification.md)                                      |
+| Arquitectura de fuentes      | [source-architecture.md](torneos_yugioh/context/source-architecture.md)                                            |
+| Migraciones y deuda          | [architecture-migration-status.md](torneos_yugioh/context/architecture-migration-status.md)                        |
+| Esquema y persistencia       | [database.md](torneos_yugioh/context/database.md)                                                                  |
+| API y Swagger                | [api.md](torneos_yugioh/context/api.md), [swagger.md](torneos_yugioh/context/swagger.md)                           |
+| Editor de listas             | [deck-builder.md](torneos_yugioh/context/deck-builder.md)                                                          |
+| Importación y exportación    | [deck-data.md](torneos_yugioh/context/deck-data.md)                                                                |
+| Guía de juego y combos       | [deck-guide.md](torneos_yugioh/context/deck-guide.md), [combo-creator.md](torneos_yugioh/context/combo-creator.md) |
+| Calculadora                  | [play-calculator.md](torneos_yugioh/context/play-calculator.md)                                                    |
+| Mundos                       | [deck-worlds.md](torneos_yugioh/context/deck-worlds.md)                                                            |
+| Ranking global               | [global-ranking.md](torneos_yugioh/context/global-ranking.md)                                                      |
+| Conexión ChatGPT             | [chatgpt-connection.md](torneos_yugioh/context/chatgpt-connection.md)                                              |
+| Pruebas                      | [testing.md](torneos_yugioh/context/testing.md)                                                                    |
+| Despliegue operativo         | [FTP-DEPLOY-SETUP.md](.github/FTP-DEPLOY-SETUP.md)                                                                 |
+
+Las instrucciones de trabajo están en `AGENTS.md`. Algunas referencias de `context/` son históricas: contrastarlas con el código y los workflows vigentes antes de ejecutar tareas operativas.
