@@ -1,0 +1,79 @@
+name: Deploy Station X after approved PR
+
+on:
+  pull_request:
+    branches: [base]
+    types: [closed]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: stationx-production-ftp
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Confirm PR was approved
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          decision="$(gh pr view "$PR_URL" --json reviewDecision --jq '.reviewDecision')"
+          if [ "$decision" != APPROVED ]; then
+            echo "PR merged without an active approval; deployment blocked. Review decision: $decision"
+            exit 1
+          fi
+
+      - name: Validate deployment configuration
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
+        run: |
+          test -n "$FTP_HOST" && test -n "$FTP_USERNAME" && test -n "$FTP_PASSWORD" || {
+            echo "Required FTP secrets have not been configured"
+            exit 1
+          }
+          case "$FTP_SERVER_DIR" in
+            */yugioh/) ;;
+            *) echo "FTP_SERVER_DIR must be the verified /yugioh/ application folder"; exit 1 ;;
+          esac
+
+      - name: Checkout merged base
+        uses: actions/checkout@v4
+        with:
+          ref: base
+          persist-credentials: false
+
+      - name: Verify calculator contract
+        run: node scripts/test-calculator-general.cjs
+
+      - name: Upload application by FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          protocol: ftps
+          local-dir: ./torneos_yugioh/
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.github/**
+            **/tests/**
+            **/context/**
+            **/tools/**
+            **/config/**
+            **/*.local.php
+            **/*.log
+            **/.env*
+            **/node_modules/**
