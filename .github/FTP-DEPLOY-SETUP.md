@@ -6,8 +6,7 @@ may merge their own PRs. Deployment still fails closed if a test fails.
 
 - After merge: install dependencies, run `npm test`, calculator contract tests
   and PHP 8.3 TXT-import tests, then publish by FTPS.
-- Manual **Actions → Deploy Station X after tested merge → Run workflow**
-  on `base` is **dry-run only**, even with secrets configured: no upload.
+- No manual workflow trigger is configured: only merging a PR into `base` starts deployment.
 - Any test or FTPS failure stops the release. The application manifest is
   uploaded only after the application transfer succeeds.
 - For additional governance, configure branch protection and required checks
@@ -24,8 +23,7 @@ separate final FTPS step, after application files have been uploaded, so a
 failed application transfer cannot advertise the new version. GitHub Release
 registration follows manifest publication. A failed Release registration
 requires operator reconciliation; a successful FTP transfer cannot be rolled
-back automatically. `dry-run` executions never publish a manifest or
-create a release.
+back automatically.
 
 ## GitHub configuration required before the first deployment
 
@@ -41,8 +39,7 @@ In repository **Settings → Secrets and variables → Actions**, create:
 Do **not** guess `FTP_SERVER_DIR` from the public URL. Depending on the FTP
 account's root it may be `public_html/yugioh/` or a longer `domains/.../public_html/yugioh/`
 path. Inspect the provider's FTP file manager and the existing application
-before enabling deployment. Use a GitHub `production` environment with required
-reviewers and protected secrets where the hosting plan supports it.
+before enabling deployment. Use a GitHub `production` environment without required deployment reviewers to avoid a manual deployment pause. Enforce PR reviews and required checks using branch protection on `base` instead.
 
 Port 21 uses **explicit FTPS** (`protocol: ftps`) for encrypted transfer.
 Confirm FTPS is enabled for this account. Plain FTP is not configured because
@@ -50,7 +47,7 @@ it transmits credentials and file contents without transport encryption.
 
 The workflow does not run on ordinary pushes and does not use
 `dangerous-clean-slate`. A merged PR triggers production deployment only after
-passing the workflow's tests. Manual runs remain dry-run.
+passing the workflow's tests.
 The FTP action can synchronize
 previously tracked deleted files within its target: back up the remote
 application before the first run. The production database and private
