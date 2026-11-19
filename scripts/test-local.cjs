@@ -27,6 +27,7 @@ run(php, ['torneos_yugioh/tests/statistics_no_cuts_test.php']);
 run(php, ['torneos_yugioh/tests/ranking_two_matches_test.php']);
 run(process.execPath, ['torneos_yugioh/tests/combo_creator_study_photos_test.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/study_presentation_contract_test.cjs']);
+run(process.execPath, ['torneos_yugioh/tests/study_presentation_ui_test.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/documented_combo_test.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/combo_source_test.cjs']);
 run(python, ['-m', 'unittest', 'discover', '-s', 'torneos_yugioh/tests', '-p', 'editorial_sync_test.py']);
