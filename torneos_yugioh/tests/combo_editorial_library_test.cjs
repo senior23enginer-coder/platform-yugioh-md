@@ -44,7 +44,7 @@ const policy=JSON.parse(fs.readFileSync(path.join(app,'assets/editorial/strategy
   // Failure of either source must preserve the other; retry recovers the library.
   sourceFailure=true;await mount(665);assert(await page.locator('[data-cc-editorial-retry]').isVisible());assert.equal(await page.locator('[data-cc-read]').count(),1);
   sourceFailure=false;await page.locator('[data-cc-editorial-retry]').click();await page.locator('[data-cc-editorial-library] .curated-route-card:visible').first().waitFor();
-  personalFailure=true;await mount(665);assert.equal(await page.locator('[data-cc-editorial-library] [data-route-library] [data-open-route]').count(),15);assert((await page.locator('[data-cc-personal]').innerText()).includes('temporalmente'));
+  personalFailure=true;await mount(665);assert.equal(await page.locator('[data-cc-editorial-library] [data-route-library] [data-open-route]').count(),policy.checked_studies['665'].routes);assert((await page.locator('[data-cc-personal]').innerText()).includes('temporalmente'));
   personalFailure=false;await mount(9999);assert((await page.locator('[data-cc-editorial-library]').innerText()).includes('No hay guías'));assert.equal(await page.locator('[data-cc-read]').count(),1);
   await page.evaluate(()=>Promise.all([YgoComboCreator.mountViewer(document.querySelector('[data-deck-created-combos]'),{id:665,name:'Kashtira'}),YgoComboCreator.mountViewer(document.querySelector('[data-deck-created-combos]'),{id:704,name:'Pyro'})]));
   assert.equal(await page.locator('[data-cc-editorial-library] [data-route-library] [data-open-route]').count(),2);assert((await page.locator('[data-cc-personal]').innerText()).includes('Manual 704'));
