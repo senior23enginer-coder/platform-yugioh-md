@@ -152,7 +152,11 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$DEPLOY_VERSION" \
-            --target "$DEPLOY_COMMIT" \
-            --title "Station X $DEPLOY_VERSION" \
-            --notes "Desplegado en producción desde $DEPLOY_COMMIT mediante GitHub Actions."
+          if gh release view "$DEPLOY_VERSION" >/dev/null 2>&1; then
+            echo "GitHub release $DEPLOY_VERSION already exists; FTP application and release.json were verified successfully."
+          else
+            gh release create "$DEPLOY_VERSION" \
+              --target "$DEPLOY_COMMIT" \
+              --title "Station X $DEPLOY_VERSION" \
+              --notes "Desplegado en producción desde $DEPLOY_COMMIT mediante GitHub Actions."
+          fi
