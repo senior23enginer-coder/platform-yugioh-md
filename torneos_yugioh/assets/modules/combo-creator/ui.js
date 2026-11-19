@@ -37,6 +37,56 @@
     )
       .then((r) => (r.ok ? r.json() : {}))
       .catch(() => ({})));
+  // Images in a deck's imported study are indexed by the native deck-card row.
+  // Only same-origin images from the Station X asset tree are allowed.
+  const safeStudyPath = value =>
+    typeof value === "string" &&
+    /^\.\/assets\/editorial\/[a-zA-Z0-9_./-]+\.json$/.test(value) &&
+    !value.slice(2).split("/").some(part => part === "." || part === "..")
+      ? value : "";
+  const safePhotoPath = value =>
+    typeof value === "string" &&
+    /^\.\/assets\/(?:editorial|cards)\/[a-zA-Z0-9_./-]+\.(?:png|jpe?g|webp|gif)$/i.test(value) &&
+    !value.slice(2).split("/").some(part => part === "." || part === "..")
+      ? value : "";
+  async function studyImages(deckId) {
+    try {
+      const stateResponse = await fetch("./assets/editorial/strategy-content-state.json", {
+        cache: "no-store", credentials: "same-origin"
+      });
+      if (!stateResponse.ok) return {};
+      const state = await stateResponse.json();
+      const source = safeStudyPath(state.checked_studies?.[String(deckId)]?.path);
+      if (!source) return {};
+      const recordResponse = await fetch(source, {
+        cache: "no-store", credentials: "same-origin"
+      });
+      if (!recordResponse.ok) return {};
+      const study = await recordResponse.json();
+      if (study.schema !== "station-x-curated-v62" ||
+          Number(study.deck_id) !== Number(deckId) ||
+          !Array.isArray(study.cards)) return {};
+      const photos = {};
+      for (const card of study.cards) {
+        const url = safePhotoPath(card.image) || safePhotoPath(card.full_image);
+        if (!url || !Array.isArray(card.slots)) continue;
+        for (const slot of card.slots) {
+          const id = Number(slot.card_id);
+          if (Number.isSafeInteger(id) && id > 0) {
+            photos[Number(deckId) + ":" + id] ||= url;
+          }
+        }
+      }
+      return photos;
+    } catch (_) {
+      // A deck without an imported study must still have a working combo editor.
+      return {};
+    }
+  }
+  async function imageBindings(deckId) {
+    const [legacy, study] = await Promise.all([images(), studyImages(deckId)]);
+    return { ...legacy, study };
+  }
   async function api(deckId, body, token, history = "") {
     const response = await fetch(
       `./?api=combo_creator&deck_id=${Number(deckId)}${history ? "&history=" + encodeURIComponent(history) : ""}`,
@@ -63,12 +113,13 @@
       binding &&
       M.norm(binding.card_name) === M.norm(card.card_name) &&
       Number(binding.image_id || 0) === Number(card.ygoprodeck_id || 0);
-    const url =
-      (matches ? binding.file : "") ||
-      (card.ygoprodeck_id
-        ? `./?api=deck_builder&op=image&id=${Number(card.ygoprodeck_id)}`
-        : "");
-    return `<figure class="cc-face ${small ? "is-small" : ""}">${url ? `<img src="${esc(url)}" alt="${esc(card.card_name)}" loading="eager" draggable="false" width="82" height="120">` : '<span class="cc-no-image">Imagen no disponible</span>'}<figcaption>${esc(card.card_name)}</figcaption></figure>`;
+    const local = index?.study?.[String(card.deck_id) + ":" + String(card.id)] || "";
+    const catalog = card.ygoprodeck_id
+      ? "./?api=deck_builder&op=image&id=" + Number(card.ygoprodeck_id)
+      : "";
+    const url = (matches ? binding.file : "") || local || catalog;
+    const alternative = local && local !== url ? local : (catalog && catalog !== url ? catalog : "");
+    return `<figure class="cc-face ${small ? "is-small" : ""}">${url ? `<img src="${esc(url)}" ${alternative ? `data-cc-fallback="${esc(alternative)}"` : ""} alt="${esc(card.card_name)}" loading="eager" draggable="false" width="82" height="120">` : '<span class="cc-no-image">Imagen no disponible</span>'}<figcaption>${esc(card.card_name)}</figcaption></figure>`;
   }
   const findCard = (cards, id) =>
     cards.find((c) => Number(c.id) === Number(id));
