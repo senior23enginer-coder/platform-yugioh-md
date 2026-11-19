@@ -130,6 +130,16 @@ UID, CID, origen causal y turno cuando corresponde; no inventa eventos
 faltantes ni considera acreditada una Invocación no observada. Las operaciones
 continúan registrando su historial en el motor de reglas vigente.
 
+## Orden de cadenas y negaciones (tarea general 09)
+
+`assets/modules/play-calculator/chain-policy.js` centraliza las políticas
+conservadoras de hasta 20 eslabones, velocidad mínima para encadenar,
+respuesta rival condicional, resolución inversa y clasificación de negación
+de efecto frente a negación de activación. `chain.js` consulta esa política;
+la evaluación de costes pagados sigue en el adaptador. Una respuesta rival
+declarada no equivale a verificar la carta, su coste o su ventana; los
+resultados mantienen el estado `conditional` o `unresolved` según corresponda.
+
 `tests/calculator_contract_test.cjs` prueba el mismo contrato con dos decks
 sintéticos diferentes, ejecuta una operación compartida sin cambiar código
 por deck, y rechaza versión, identidad, campos, duplicados y operaciones

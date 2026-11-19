@@ -2,15 +2,15 @@
    resolve in reverse order. Opponent negations remain conditional declarations. */
 (function (root, factory) {
   if (typeof module === "object" && module.exports)
-    module.exports = factory(require("./engine.js"), require("./rules.js"));
-  else root.YgoPlayChain = factory(root.YgoPlayEngine, root.YgoPlayRules);
-})(typeof globalThis !== "undefined" ? globalThis : this, function (E, R) {
+    module.exports = factory(require("./engine.js"), require("./rules.js"), require("./chain-policy.js"));
+  else root.YgoPlayChain = factory(root.YgoPlayEngine, root.YgoPlayRules, root.YgoCalculatorChainPolicy);
+})(typeof globalThis !== "undefined" ? globalThis : this, function (E, R, Policy) {
   "use strict";
   function resolve(s, db) {
     E.validate(s);
     const links = s.chain || [];
     const blocked = (reason) => ({ status: "unresolved", reason, branches: [] });
-    if (!links.length || links.length > 20)
+    if (!links.length || links.length > Policy.MAX_LINKS)
       return blocked("La cadena requiere entre uno y veinte eslabones.");
     const start = E.clone(s);
     start.chain = [];
@@ -18,9 +18,7 @@
     let conditional = false;
     for (const [index, link] of links.entries()) {
       if (link.side === "opponent") {
-        if (!link.outcome || !["negate-effect", "negate-activation"].includes(link.outcome) ||
-          (index > 0 && links[index - 1].side === "opponent") ||
-          !paths.every((path) => path.pending.length > 0))
+        if (!paths.every(path => Policy.responseAllowed(link, links[index - 1], path.pending.length)))
           return blocked(`CL${index + 1}: respuesta rival sin negación acreditada o sin activación previa.`);
         conditional = true;
         paths = paths.map((path) => ({ ...path,
@@ -34,7 +32,7 @@
         r.deckId === s.self.id && r.format === s.format && r.activation);
       if (!rule) return blocked(`CL${index + 1}: efecto no acreditado.`);
       try { R.validate(rule); } catch (e) { return blocked(e.message); }
-      if (index > 0 && rule.chainSpeed !== 2)
+      if (!Policy.canChainRule(index, rule))
         return blocked(`CL${index + 1}: no se acreditó velocidad 2 para encadenar este efecto.`);
       paths = paths.flatMap((path) => {
         const actor = path.state.tokens.find((t) => t.uid === link.actorUid &&
@@ -52,12 +50,10 @@
     const branches = [];
     for (const path of paths) {
       let candidates = [{ state: path.state, labels: [], paid: null, effectNegated: false }];
-      for (let i = path.pending.length - 1; i >= 0; i--) {
+      for (const i of Policy.resolutionOrder(path.pending.length)) {
         const prepared = path.pending[i];
         const response = path.negations.find((n) => n.target === i);
-        const options = { prepared };
-        if (response?.outcome === "negate-effect") options.negateEffectRuleIds = [prepared.ruleId];
-        if (response?.outcome === "negate-activation") options.negateActivationRuleIds = [prepared.ruleId];
+        const options = { prepared, ...Policy.negationOptions(response, prepared.ruleId) };
         candidates = candidates.flatMap((current) => {
           const rule = (db.rules || []).find((r) => r.id === prepared.ruleId);
           const state = response?.outcome === "negate-activation" && rule?.activationNegatedConsumesUse === false
