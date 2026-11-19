@@ -19,6 +19,20 @@
     }
     return '';
   }
+  function archetype(profile={}){
+    return literal(profile['Arquetipo']||'').replace(/\s+[—–-]\s+(?:estudio individual|profundización|iteración|auditoría)\b.*$/iu,'').trim();
+  }
+  function openingPhotos(route,cards){
+    const opening=literal(route?.opening);
+    const hand=opening.match(/\bmano\s*(?:inicial\s*)?(?:incluye|contiene|:)\s*([^.;]+)/iu);
+    // A historical route may have included GY/Deck references in hand_photos.
+    // Only label these as an initial hand when the source explicitly says "mano".
+    if(hand){
+      const verified=photosFromText(hand[1],cards,6);
+      if(verified.length)return verified;
+    }
+    return Array.isArray(route?.hand_photos)?route.hand_photos:[];
+  }
   function brief(profile={}){
     const raw=profile['Resumen para ficha']||profile['Cómo se juega']||profile['Estilo de juego']||'';
     return firstSentence(raw,250);
@@ -71,7 +85,7 @@
     if(Array.isArray(route?.board)&&route.board.length)return 'partial';
     return 'documented';
   }
-  const API={style,brief,photosFromText,stepPhotos,resultPhotos,status};
+  const API={style,brief,archetype,openingPhotos,photosFromText,stepPhotos,resultPhotos,status};
   root.YgoStudyPresentation=API;
   if(typeof module==='object'&&module.exports)module.exports=API;
 })(typeof window!=='undefined'?window:globalThis);
