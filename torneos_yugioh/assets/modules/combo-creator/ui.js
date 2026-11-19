@@ -407,6 +407,7 @@
       state.cards = [];
       state.records = [];
       state.templateRoutes = {};
+      state.index = {};
       state.palette = null;
       state.selected = "";
       state.from = "";
@@ -446,6 +447,12 @@
         $("[data-cc-saved]").disabled = false;
         $("[data-cc-new]").disabled = false;
         loadDocument(imported.records.length?state.records.find(r=>r.id===imported.records[0].id):null);
+        // Keep the creator responsive while resolving photos; never cross deck IDs.
+        imageBindings(Number(id)).then(index => {
+          if (ticket !== state.loading || state.deckId !== Number(id)) return;
+          state.index = index;
+          draw();
+        });
         node.querySelector('[data-cc-import-report]')?.remove();
         if(imported.issues.length)$(".cc-start").insertAdjacentHTML('afterend',`<details class="cc-warning" data-cc-import-report><summary>${imported.issues.length} guías requieren revisión para abrirse en el editor</summary>${imported.issues.map(i=>`<p><b>${esc(i.route)}</b>: ${esc(i.reason)}</p>`).join('')}</details>`);
       } catch (e) {
@@ -1008,6 +1015,12 @@
         state.palette = null;
         savedOptions();
         draw();
+        const ticket = state.loading;
+        imageBindings(id).then(index => {
+          if (ticket !== state.loading || state.deckId !== id) return;
+          state.index = index;
+          draw();
+        });
         status(
           "Cartas actualizadas. Revisa la lista y los requisitos antes de guardar.",
         );
@@ -1105,7 +1118,9 @@
         e.returnValue = "";
       }
     });
-    images().then((index) => {
+    images().then(index => {
+      // The global legacy index must not replace the deck-specific photo map.
+      if (state.deckId) return;
       state.index = index;
       draw();
     });
@@ -1144,7 +1159,7 @@
     const personal=node.querySelector('[data-cc-personal]');
     const editorial=root.YgoComboEditorial?.mount(node.querySelector('[data-cc-editorial-library]'),deck,()=>viewers.get(node)===ticket);
     try {
-      const [result, index] = await Promise.all([api(deck.id), images()]);
+      const [result, index] = await Promise.all([api(deck.id), imageBindings(deck.id)]);
       if (viewers.get(node) !== ticket) return;
       personal.innerHTML = `<header class="cc-reader-head"><div><h3>Mis creaciones de ${esc(deck.name)}</h3><p>Tus creaciones guardadas, con sus cartas, decisiones y condiciones.</p></div><button type="button" class="btn btn-outline-info" data-cc-create>+ Crear para este deck</button></header><div class="cc-reader-list">${result.records.map((r) => `<button type="button" data-cc-read="${esc(r.id)}"><b>${esc(r.title)}</b><span>${r.document.nodes.length} pasos · revisión ${r.revision}${r.stale ? " · Revisar lista" : ""}</span></button>`).join("") || '<div class="cc-empty">Todavía no hay creaciones guardadas para este deck.</div>'}</div><div data-cc-reading></div>`;
       if (result.cards_loaded === false) {
@@ -1281,6 +1296,12 @@
         img instanceof HTMLImageElement &&
         img.closest(".combo-maker,.combo-reader")
       ) {
+        const alternate = img.dataset.ccFallback || "";
+        if (!img.dataset.ccFallbackTried && alternate && img.getAttribute("src") !== alternate) {
+          img.dataset.ccFallbackTried = "1";
+          img.src = alternate;
+          return;
+        }
         img.hidden = true;
         const fallback = document.createElement("span");
         fallback.className = "cc-no-image";
