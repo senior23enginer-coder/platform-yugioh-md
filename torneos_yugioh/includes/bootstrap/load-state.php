@@ -240,6 +240,9 @@ try {
             ? 'Datos QA Codex archivados: ' . $count . ' registros marcados como inactivos.'
             : 'No habia datos QA Codex activos para archivar.';
         $flashClass = $count > 0 ? 'alert-success' : 'alert-warning';
+    } elseif (preg_match('/^gpt_sync_(\d+)_(\d+)_(\d+)$/', $savedStatus, $gptResult)) {
+        $flashMessage = 'Deck ' . $gptResult[1] . ' sincronizado con GPT: ' . $gptResult[2] . ' archivos creados, ' . $gptResult[3] . ' conservados sin cambios. Los prompts NO fueron ejecutados.';
+        $flashClass = 'alert-success';
     } elseif ($savedStatus !== '') {
         $flashMessage = 'Cambio guardado: ' . $savedStatus;
         $flashClass = 'alert-success';
