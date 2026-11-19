@@ -33,7 +33,7 @@ function ygo_parse_deck_template(string $text): array
             }
             $metadata[$match[1]] = trim($match[2]);
         } elseif (isset($sections[$section])) {
-            if (!preg_match('/^([1-3]);([^;\r\n]{1,180})$/u', $line, $match)) {
+            if (!preg_match('/^([1-3]);([^;\r\n]{1,160})$/u', $line, $match)) {
                 throw new InvalidArgumentException('Carta invalida en linea ' . ($number + 1) . '. Usa cantidad;nombre.');
             }
             $name = trim($match[2]);
@@ -43,11 +43,11 @@ function ygo_parse_deck_template(string $text): array
             throw new InvalidArgumentException('Contenido fuera de una seccion en linea ' . ($number + 1));
         }
     }
-    if (!$header || empty($metadata['nombre']) || mb_strlen($metadata['nombre']) > 180 || count($cards) < 1 || count($cards) > 150) {
+    if (!$header || empty($metadata['nombre']) || mb_strlen($metadata['nombre']) > 160 || count($cards) < 1 || count($cards) > 150) {
         throw new InvalidArgumentException('La plantilla requiere nombre y entre 1 y 150 lineas de cartas.');
     }
     foreach (['arquetipo', 'estilo', 'notas'] as $key) {
-        if (mb_strlen($metadata[$key] ?? '') > ($key === 'notas' ? 2000 : 180)) throw new InvalidArgumentException('Campo demasiado largo: ' . $key);
+        if (mb_strlen($metadata[$key] ?? '') > ($key === 'notas' ? 2000 : 120)) throw new InvalidArgumentException('Campo demasiado largo: ' . $key);
     }
     return ['name' => $metadata['nombre'], 'archetype' => $metadata['arquetipo'] ?? '',
         'style' => $metadata['estilo'] ?? '', 'notes' => $metadata['notas'] ?? '', 'cards' => $cards];

@@ -1,14 +1,23 @@
-name: Deploy Station X after approved PR
+name: Deploy Station X (manual approval)
 
 on:
-  pull_request:
-    branches: [base]
-    types: [closed]
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "Acción: simular o publicar en producción"
+        required: true
+        type: choice
+        options:
+          - dry-run
+          - deploy
+        default: dry-run
+      confirmation:
+        description: "Para publicar escribe PUBLICAR (déjalo vacío para simular)"
+        required: false
+        type: string
 
 permissions:
   contents: write
-  pull-requests: read
 
 concurrency:
   group: stationx-production-ftp
@@ -16,19 +25,17 @@ concurrency:
 
 jobs:
   deploy:
-    if: github.ref == 'refs/heads/base' && (github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true)
+    if: github.ref == 'refs/heads/base'
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - name: Confirm PR was approved
-        if: github.event_name == 'pull_request'
+      - name: Authorize explicit production deployment
         env:
-          GH_TOKEN: ${{ github.token }}
-          PR_URL: ${{ github.event.pull_request.html_url }}
+          MODE: ${{ inputs.mode }}
+          CONFIRMATION: ${{ inputs.confirmation }}
         run: |
-          decision="$(gh pr view "$PR_URL" --json reviewDecision --jq '.reviewDecision')"
-          if [ "$decision" != APPROVED ]; then
-            echo "PR merged without an active approval; deployment blocked. Review decision: $decision"
+          if [ "$MODE" = "deploy" ] && [ "$CONFIRMATION" != "PUBLICAR" ]; then
+            echo "Publicación bloqueada: escribe PUBLICAR para autorizar el despliegue."
             exit 1
           fi
 
@@ -54,6 +61,22 @@ jobs:
           ref: base
           persist-credentials: false
 
+      - name: Prepare PHP 8.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, pdo_mysql, pdo_sqlite
+
+      - name: Prepare Python 3
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies and run repository tests
+        run: |
+          npm ci
+          npm test
+
       - name: Verify calculator contract
         run: node scripts/test-calculator-general.cjs
 
@@ -63,7 +86,7 @@ jobs:
           php torneos_yugioh/tests/deck_template_test.php
 
       - name: Prepare release identity
-        if: github.event_name == 'pull_request'
+        if: inputs.mode == 'deploy'
         shell: bash
         run: |
           version="v0.1.${GITHUB_RUN_NUMBER}"
@@ -74,7 +97,7 @@ jobs:
           mkdir -p .deploy-release
           node -e 'const fs = require("fs"); fs.writeFileSync(".deploy-release/release.json", JSON.stringify({schema:"stationx-release/1", version:process.env.DEPLOY_VERSION, commit:process.env.DEPLOY_COMMIT, builtAt:new Date().toISOString()}, null, 2) + "\n")'
 
-      - name: Verify transfer by FTPS (manual runs are dry-run)
+      - name: Verify or transfer application by FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_HOST }}
@@ -85,7 +108,7 @@ jobs:
           local-dir: ./torneos_yugioh/
           server-dir: ${{ secrets.FTP_SERVER_DIR }}
           dangerous-clean-slate: false
-          dry-run: ${{ github.event_name == 'workflow_dispatch' }}
+          dry-run: ${{ inputs.mode != 'deploy' }}
           exclude: |
             **/.git*
             **/.github/**
@@ -99,7 +122,7 @@ jobs:
             **/node_modules/**
 
       - name: Publish deployed version manifest
-        if: github.event_name == 'pull_request'
+        if: inputs.mode == 'deploy'
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_HOST }}
@@ -113,7 +136,7 @@ jobs:
           dangerous-clean-slate: false
 
       - name: Register GitHub release after deployment
-        if: github.event_name == 'pull_request'
+        if: inputs.mode == 'deploy'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

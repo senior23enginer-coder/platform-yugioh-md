@@ -1,19 +1,20 @@
-# Deployment gate: approved PR merged into `base`
+# Controlled FTPS deployment — explicit manual authorization
 
-The workflow `deploy-ftp-after-approved-pr.yml` runs only for a PR **merged**
-into `base` with an active `APPROVED` review decision. An approval on an open PR
-does not deploy. It first checks the generic calculator contract, then uploads
-the contents of `torneos_yugioh/` (not the repository root).
+Merging a PR into `base` **never deploys automatically**. PRs have their own
+checks; a release is deployed only when an operator runs
+**Actions → Deploy Station X (manual approval) → Run workflow** on `base`.
 
-For the first connection test, open **Actions → Deploy Station X after approved
-PR → Run workflow** and select `base`. A manually triggered run always sets
-`dry-run: true`: it checks the FTPS connection and reports proposed changes
-without uploading or deleting files. The actual upload remains restricted to
-an approved PR merged into `base`.
+- `mode: dry-run` (default): runs tests and verifies FTPS without uploading.
+- `mode: deploy`: requires typing exactly `PUBLICAR` in `confirmation`.
+  Otherwise the workflow fails before connecting to FTPS.
+- Every run checks the application source, calculator contract, deck-template
+  PHP importer and the full `npm test` suite before transferring files.
+- Configure the GitHub `production` Environment with reviewers or branch
+  restrictions for an additional independent control when available.
 
 ## Release and visible production version
 
-Each successful automated upload generates a unique version tag
+Each successful manually authorized production upload generates a unique version tag
 `v0.1.<GitHub run number>` and a `release.json` with its commit SHA and build
 timestamp. The application footer reads this manifest from the production
 filesystem and shows **Versión desplegada**. The manifest is transferred in a
@@ -21,7 +22,7 @@ separate final FTPS step, after application files have been uploaded, so a
 failed application transfer cannot advertise the new version. GitHub Release
 registration follows manifest publication. A failed Release registration
 requires operator reconciliation; a successful FTP transfer cannot be rolled
-back automatically. Manual `dry-run` executions never publish a manifest or
+back automatically. `dry-run` executions never publish a manifest or
 create a release.
 
 ## GitHub configuration required before the first deployment
@@ -45,8 +46,8 @@ Port 21 uses **explicit FTPS** (`protocol: ftps`) for encrypted transfer.
 Confirm FTPS is enabled for this account. Plain FTP is not configured because
 it transmits credentials and file contents without transport encryption.
 
-The workflow does not run on every push to `base`, does not deploy before the
-merge, and does not use `dangerous-clean-slate`. Manual runs never upload.
+The workflow does not run on pushes or PR merges and does not use
+`dangerous-clean-slate`. Only a manual `deploy` run with `PUBLICAR` uploads.
 The FTP action can synchronize
 previously tracked deleted files within its target: back up the remote
 application before the first run. The production database and private
