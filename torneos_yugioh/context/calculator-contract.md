@@ -222,3 +222,25 @@ datos de identidad malformados, rechaza su bloque de calculadora con un motivo
 en `ruleImports`, sin detener la importación de los demás estudios ni ejecutar
 reglas de ese paquete. Las reglas verificadas de respaldo siguen disponibles.
 La prueba sintética combina tres errores de estructura con otro deck válido.
+
+## Cierre del bloque general (tarea general 18)
+
+Ejecutar desde la raíz del repositorio:
+
+```sh
+node scripts/test-calculator-general.cjs
+```
+
+Esta puerta de verificación ejecuta 14 pruebas autocontenidas y comprueba el
+orden de carga de dependencias en la página independiente y el trabajador.
+No necesita estudios del repositorio de Prompts, ni despliegue, ni conexión a
+producción. Una ejecución satisfactoria certifica **el contrato sintético y
+la integración de módulos generales**, no la legalidad de efectos, la
+exhaustividad de cartas ni la capacidad de resolver todos los combos.
+
+Para validar entregas reales posteriormente faltan: un paquete `calculator`
+por estudio con CID acreditados y fuentes oficiales; importación de los JSON
+editoriales completos; pruebas de comportamiento de cada efecto frente a sus
+costes, restricciones, cadenas y formatos; y regresión de los adaptadores
+verificados antes de migrarlos. Las pruebas históricas que requieren archivos
+editoriales ausentes no forman parte de esta puerta sintética.
