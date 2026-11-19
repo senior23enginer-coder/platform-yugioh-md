@@ -171,6 +171,16 @@ El diagnóstico también registra límites de presupuesto y cartas no cubiertas.
 El trabajador `planner-worker.js` carga expresamente todos los módulos
 independientes antes de cargar `rules.js`, `planner.js` y `scenario.js`.
 
+## Compatibilidad entre decks y formatos (tarea general 13)
+
+`tests/calculator_cross_deck_matrix_test.cjs` ejercita seis escenarios
+sintéticos independientes (dos identidades por TCG, GOAT y Rush). Usa el
+mismo contrato, regla declarativa, operaciones de LP, control de una vez por
+turno y diagnóstico, sin cambios de código por deck. Incluye aislamiento de
+identidad/formato, invariancia del escenario inicial y rechazo de paquetes
+asociados a otro deck. Esta matriz demuestra portabilidad del contrato
+**para operaciones modeladas**, no cobertura de todas las cartas ni Skill.
+
 `tests/calculator_contract_test.cjs` prueba el mismo contrato con dos decks
 sintéticos diferentes, ejecuta una operación compartida sin cambiar código
 por deck, y rechaza versión, identidad, campos, duplicados y operaciones
