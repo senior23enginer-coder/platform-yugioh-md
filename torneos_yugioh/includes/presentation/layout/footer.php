@@ -99,6 +99,8 @@ if (is_file($stationxReleasePath)) {
 <script src="./assets/match-editor.js?v=20261027-participants-103" defer></script>
 <script src="./assets/event-audit.js?v=20261021-audit-55" defer></script>
 <script src="./assets/seasons.js?v=20261016-season-editor-4" defer></script>
+<link rel="stylesheet" href="./assets/modules/deck-template/style.css?v=20261119-template-deck-1">
+<script src="./assets/modules/deck-template/ui.js?v=20261119-template-deck-1" defer></script>
 </body>
 </html>
 

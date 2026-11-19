@@ -56,3 +56,18 @@
         </section>
     </section>
 
+<div class="deck-template-overlay" data-deck-template-modal hidden>
+  <section class="deck-template-dialog" role="dialog" aria-modal="true" aria-labelledby="deck-template-title">
+    <div class="deck-template-head">
+      <div><h2 id="deck-template-title">Crear deck desde plantilla TXT</h2><p class="deck-template-help">Descarga la plantilla, edítala y súbela para crear el deck con sus cartas Main, Extra, Side y Reserva.</p></div>
+      <button class="btn btn-outline-light" type="button" data-deck-template-close aria-label="Cerrar">×</button>
+    </div>
+    <div class="deck-template-actions">
+      <article class="deck-template-action"><i class="bi bi-file-earmark-arrow-down fs-3" aria-hidden="true"></i><h3>Descargar plantilla</h3><p>TXT editable con nombre, arquetipo, estilo, notas y secciones de cartas.</p><button class="btn btn-outline-info" type="button" data-deck-template-download>Descargar TXT</button></article>
+      <article class="deck-template-action"><i class="bi bi-upload fs-3" aria-hidden="true"></i><h3>Subir TXT</h3><p>Importa una plantilla editada para crear un nuevo deck en la base de datos.</p><form method="post" enctype="multipart/form-data"><input type="hidden" name="action" value="import_deck_template"><input class="form-control mb-2" name="deck_template_txt" data-deck-template-file type="file" accept=".txt,text/plain" required><button class="btn btn-primary" type="submit">Crear deck desde TXT</button></form></article>
+      <article class="deck-template-action"><i class="bi bi-arrow-repeat fs-3" aria-hidden="true"></i><h3>Sincronizar</h3><p>Recarga el listado de decks y cartas guardados en el servidor.</p><button class="btn btn-outline-info" type="button" data-deck-template-sync>Sincronizar listado</button></article>
+    </div>
+    <p class="note" data-deck-template-status role="status" aria-live="polite"></p>
+    <p class="deck-template-help">La importación rechaza duplicados de nombre y datos no válidos; no reemplaza decks existentes.</p>
+  </section>
+</div>
