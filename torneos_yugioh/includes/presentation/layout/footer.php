@@ -36,8 +36,8 @@ if (is_file($stationxReleasePath)) {
 <script src="./assets/cup-tree.js?v=20261108-cup-open-155" defer></script>
 <script src="./assets/deck-events.js?v=20261024-event-filters-90" defer></script>
 <script src="./assets/daily-duels.js?v=20261026-labels-101" defer></script>
-<script src="./assets/card-inspector.js?v=20261028-inspector-111" defer></script>
-<script src="./assets/deck-builder.js?v=20261028-inspector-111" defer></script>
+<script src="./assets/card-inspector.js?v=20261119-study-photo-1" defer></script>
+<script src="./assets/deck-builder.js?v=20261119-study-photo-1" defer></script>
 <script src="./assets/deck-history.js?v=20261024-history-92" defer></script>
 <script src="./assets/modules/deck-guide/strategy-workspace.js?v=20261030-depth-122" defer></script>
 <script src="./assets/modules/deck-guide/deck-deliveries.js?v=20261102-library-125" defer></script>

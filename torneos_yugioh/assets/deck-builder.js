@@ -3,22 +3,56 @@
   const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const labels={main:'Main Deck',extra:'Extra Deck',side:'Side Deck',reserve:'Reserva de cartas'},instances=new WeakMap();
   const image=id=>id?`./?api=deck_builder&op=image&id=${Number(id)}`:'';
+  // Only same-origin files published by the curated-study importer can act as fallbacks.
+  // Never trust an arbitrary URL carried inside a deck ZIP.
+  const safePhoto=value=>{
+    if(typeof value!=='string'||!/^\.\/assets\/(?:editorial|cards)\/[a-zA-Z0-9_./-]+\.(?:png|jpe?g|webp|gif)$/i.test(value))return '';
+    return value.slice(2).split('/').some(part=>part==='.'||part==='..')?'':value;
+  };
+  const safeStudyPath=value=>{
+    if(typeof value!=='string'||!/^\.\/assets\/editorial\/[a-zA-Z0-9_./-]+\.json$/i.test(value))return '';
+    return value.slice(2).split('/').some(part=>part==='.'||part==='..')?'':value;
+  };
+  async function studyPhotos(deckId){
+    const response=await fetch('./assets/editorial/strategy-content-state.json',{cache:'no-store',credentials:'same-origin'});
+    if(!response.ok)throw Error('No se pudo consultar el estudio del deck.');
+    const state=await response.json(),source=safeStudyPath(state.checked_studies?.[String(deckId)]?.path);
+    if(!source)return new Map();
+    const result=await fetch(source,{cache:'no-store',credentials:'same-origin'});
+    if(!result.ok)throw Error('No se pudo leer el estudio del deck.');
+    const study=await result.json(),photos=new Map();
+    if(Number(study.deck_id)!==Number(deckId)||!Array.isArray(study.cards))return photos;
+    for(const card of study.cards){
+      const picture=safePhoto(card.image),full=safePhoto(card.full_image)||picture;
+      if(!picture||!Array.isArray(card.slots))continue;
+      for(const slot of card.slots){
+        const id=Number(slot.card_id);
+        if(Number.isInteger(id)&&id>0&&!photos.has(id))photos.set(id,{image:picture,full_image:full});
+      }
+    }
+    return photos;
+  }
   const rowsFrom=rows=>(rows||[]).map(r=>({existing_id:Number(r.id),card_id:Number(r.ygoprodeck_id)||0,name:r.card_name,quantity:Number(r.quantity)||1,section:String(r.section||'main').toLowerCase()}));
   async function request(url,options={}){const response=await fetch(url,{credentials:'same-origin',cache:'no-store',...options});let data;try{data=await response.json();}catch(_){throw new Error('No se pudo leer la respuesta. Inténtalo de nuevo.');}if(!response.ok||!data.ok)throw new Error(data.message||'No se pudo completar la operación.');return data;}
   function mount(node,deck,data){
     if(!node)return;
     let state=instances.get(node);
-    if(state&&state.id===Number(deck.id)){state.data=data;return;}
+    if(state&&state.id===Number(deck.id)){state.data=data;state.refreshPhotos?.();return;}
     if(state?.dirty&&!confirm('Hay cambios sin guardar en la lista. ¿Descartarlos y cambiar de deck?'))return;
-    state={id:Number(deck.id),deck,data,rows:rowsFrom((data.cards||[]).filter(c=>Number(c.deck_id)===Number(deck.id))),editing:false,dirty:false,busy:false,page:0,cards:[],hasMore:false,controller:null,epoch:0};instances.set(node,state);
+    state={id:Number(deck.id),deck,data,rows:rowsFrom((data.cards||[]).filter(c=>Number(c.deck_id)===Number(deck.id))),editing:false,dirty:false,busy:false,page:0,cards:[],hasMore:false,controller:null,epoch:0,photos:new Map()};instances.set(node,state);
     node.classList.remove('card-gallery');node.classList.add('deck-builder');
     const url=()=>`./?api=deck_builder&deck_id=${state.id}&season_context=${Number(data.currentSeasonId)||0}`;
     function status(message,error=false){const n=node.querySelector('[data-builder-message]');n.textContent=message;n.classList.toggle('is-error',error);n.setAttribute('role',error?'alert':'status');}
     function mark(){state.dirty=true;status('Cambios sin guardar.');}
-    function thumbnail(id,name){return id?`<button type="button" class="card-inspect-trigger" data-card-inspect="${Number(id)}" data-card-name="${esc(name)}" aria-label="Ampliar ${esc(name)}"><img src="${image(id)}" alt="${esc(name)}" loading="lazy" width="48" height="70" draggable="false"></button>`:'';}
+    function thumbnail(id,name,rowId=0){
+      const photo=state.photos.get(Number(rowId)),src=id?image(id):photo?.image||'';
+      if(!src)return '';
+      const study=photo?` data-card-photo="${esc(photo.image)}" data-card-photo-full="${esc(photo.full_image)}"`:'';
+      return `<button type="button" class="card-inspect-trigger" ${id?`data-card-inspect="${Number(id)}"`:''}${study} data-card-name="${esc(name)}" aria-label="Ampliar ${esc(name)}"><img src="${esc(src)}" ${photo?`data-study-fallback="${esc(photo.image)}"`:''} alt="${esc(name)}" loading="lazy" width="48" height="70" draggable="false"></button>`;
+    }
     function drawRows(){
       const lists=node.querySelector('[data-builder-lists]');lists.classList.toggle('is-editing',state.editing);
-      lists.innerHTML=Object.entries(labels).map(([section,label])=>{const rows=state.rows.map((r,i)=>({...r,index:i})).filter(r=>r.section===section),count=rows.reduce((n,r)=>n+r.quantity,0);return `<section class="deck-builder-section" data-builder-section="${section}"><h4>${label}<span data-builder-count="${section}">${count} ${count===1?'carta':'cartas'}</span></h4>${section==='reserve'?'<p class="note">Inventario de opciones; no constituye el Side Deck definitivo.</p>':''}${rows.length?`<div class="deck-builder-cards">${rows.map(r=>state.editing?`<div class="deck-builder-row" draggable="true" data-builder-drag="${r.index}"><span class="deck-builder-drag-handle" aria-hidden="true">⠿</span>${thumbnail(r.card_id,r.name)}<span class="deck-builder-name">${esc(r.name)}</span><div class="deck-builder-quantity"><button type="button" class="btn btn-outline-info" data-builder-minus="${r.index}" aria-label="Quitar una copia de ${esc(r.name)}" ${r.quantity<=1?'disabled':''}>−</button><input class="form-control" type="number" min="1" max="99" step="1" value="${r.quantity}" data-builder-quantity="${r.index}" aria-label="Cantidad de ${esc(r.name)}"><button type="button" class="btn btn-outline-info" data-builder-plus="${r.index}" aria-label="Añadir una copia de ${esc(r.name)}" ${r.quantity>=99?'disabled':''}>+</button></div><label class="deck-builder-move-label">Mover a<select class="form-select" data-builder-move="${r.index}" aria-label="Mover ${esc(r.name)}">${Object.entries(labels).map(([key,text])=>`<option value="${key}" ${key===section?'selected':''}>${text}</option>`).join('')}</select></label><button type="button" class="btn btn-outline-danger" data-builder-remove="${r.index}" aria-label="Quitar ${esc(r.name)}">Quitar</button></div>`:`<div class="deck-builder-view-card">${thumbnail(r.card_id,r.name)}<span>${esc(r.name)}</span><b>×${r.quantity}</b></div>`).join('')}</div>`:'<p class="note">Todavía no hay cartas en esta sección.</p>'}</section>`;}).join('');
+      lists.innerHTML=Object.entries(labels).map(([section,label])=>{const rows=state.rows.map((r,i)=>({...r,index:i})).filter(r=>r.section===section),count=rows.reduce((n,r)=>n+r.quantity,0);return `<section class="deck-builder-section" data-builder-section="${section}"><h4>${label}<span data-builder-count="${section}">${count} ${count===1?'carta':'cartas'}</span></h4>${section==='reserve'?'<p class="note">Inventario de opciones; no constituye el Side Deck definitivo.</p>':''}${rows.length?`<div class="deck-builder-cards">${rows.map(r=>state.editing?`<div class="deck-builder-row" draggable="true" data-builder-drag="${r.index}"><span class="deck-builder-drag-handle" aria-hidden="true">⠿</span>${thumbnail(r.card_id,r.name,r.existing_id)}<span class="deck-builder-name">${esc(r.name)}</span><div class="deck-builder-quantity"><button type="button" class="btn btn-outline-info" data-builder-minus="${r.index}" aria-label="Quitar una copia de ${esc(r.name)}" ${r.quantity<=1?'disabled':''}>−</button><input class="form-control" type="number" min="1" max="99" step="1" value="${r.quantity}" data-builder-quantity="${r.index}" aria-label="Cantidad de ${esc(r.name)}"><button type="button" class="btn btn-outline-info" data-builder-plus="${r.index}" aria-label="Añadir una copia de ${esc(r.name)}" ${r.quantity>=99?'disabled':''}>+</button></div><label class="deck-builder-move-label">Mover a<select class="form-select" data-builder-move="${r.index}" aria-label="Mover ${esc(r.name)}">${Object.entries(labels).map(([key,text])=>`<option value="${key}" ${key===section?'selected':''}>${text}</option>`).join('')}</select></label><button type="button" class="btn btn-outline-danger" data-builder-remove="${r.index}" aria-label="Quitar ${esc(r.name)}">Quitar</button></div>`:`<div class="deck-builder-view-card">${thumbnail(r.card_id,r.name,r.existing_id)}<span>${esc(r.name)}</span><b>×${r.quantity}</b></div>`).join('')}</div>`:'<p class="note">Todavía no hay cartas en esta sección.</p>'}</section>`;}).join('');
       function move(index,section){
         if(!state.editing||state.busy||!Object.hasOwn(labels,section))return;
         const row=state.rows[index];if(!row||row.section===section)return;
@@ -44,7 +78,11 @@
       lists.querySelectorAll('[data-builder-quantity]').forEach(input=>input.onchange=()=>{const n=Number(input.value),r=state.rows[Number(input.dataset.builderQuantity)];if(!Number.isInteger(n)||n<1||n>99){input.value=r.quantity;status('La cantidad debe ser un entero entre 1 y 99.',true);return;}r.quantity=n;mark();drawRows();});
       for(const [action,delta] of [['minus',-1],['plus',1]])lists.querySelectorAll(`[data-builder-${action}]`).forEach(b=>b.onclick=()=>{state.rows[Number(b.dataset[action==='minus'?'builderMinus':'builderPlus'])].quantity+=delta;mark();drawRows();});
       lists.querySelectorAll('[data-builder-remove]').forEach(b=>b.onclick=()=>{state.rows.splice(Number(b.dataset.builderRemove),1);mark();drawRows();});
-      lists.querySelectorAll('img').forEach(img=>img.onerror=()=>{img.hidden=true;});
+      lists.querySelectorAll('img').forEach(img=>img.onerror=()=>{
+        const fallback=safePhoto(img.dataset.studyFallback);
+        if(fallback&&img.getAttribute('src')!==fallback){img.src=fallback;return;}
+        img.hidden=true;
+      });
     }
     function render(){
       node.innerHTML=`<div class="deck-builder-heading"><div><h3>Lista de cartas</h3><p>Main Deck, Extra Deck, Side Deck y reservas independientes.</p></div><button type="button" class="btn btn-primary" data-builder-edit>Editar decklist</button></div><p class="deck-builder-message" data-builder-message role="status" aria-live="polite"></p><div data-builder-editor hidden><form class="deck-builder-search" data-builder-search><label>Buscar cartas<input class="form-control" type="search" name="q" required minlength="2" maxlength="100" placeholder="Nombre en inglés o código de carta" autocomplete="off"></label><label>Catálogo<select class="form-select" name="format"><option value="all">Todas las cartas</option><option value="tcg">TCG</option><option value="goat">GOAT</option><option value="rush duel">RUSH DUEL</option></select></label><button class="btn btn-outline-info" type="submit">Buscar</button></form><div class="deck-builder-search-meta"><label>Añadir a<select class="form-select" data-builder-target><option value="main">Main Deck</option><option value="extra">Extra Deck</option><option value="side">Side Deck</option><option value="reserve">Reserva de cartas</option></select></label><p>Busca por nombre en inglés o código. YGOPRODeck no admite búsquedas en español. Arrastra una carta entre secciones o usa «Mover a»; se mueve toda su cantidad. Guarda cuando termines.</p></div><p data-builder-search-status role="status" aria-live="polite">Busca una carta para comenzar.</p><div class="deck-builder-results" data-builder-results></div><div class="deck-builder-pagination"><button type="button" class="btn btn-outline-info" data-builder-prev disabled>Anterior</button><span data-builder-page></span><button type="button" class="btn btn-outline-info" data-builder-next disabled>Siguiente</button></div><small class="deck-builder-attribution">Catálogo e imágenes: <a href="https://ygoprodeck.com/api-guide/" target="_blank" rel="noopener">YGOPRODeck</a>.</small><div class="deck-builder-actions"><button type="button" class="btn btn-primary" data-builder-save>Guardar decklist</button><button type="button" class="btn btn-outline-info" data-builder-cancel>Cancelar edición</button><button type="button" class="btn btn-outline-info" data-builder-reload>Recargar lista</button></div></div><div data-builder-lists></div>`;
@@ -75,7 +113,23 @@
       };
       drawRows();
     }
+    // Non-blocking, read-only image resolution. Preserve unsaved editing state and
+    // ignore stale responses after switching to another deck.
+    let photoRequest=0;
+    state.refreshPhotos=async()=>{
+      const requestId=++photoRequest;
+      try{
+        const photos=await studyPhotos(state.id);
+        if(requestId!==photoRequest||instances.get(node)!==state)return;
+        state.photos=photos;
+        drawRows();
+      }catch(_){
+        // Decklist remains usable when a study is unavailable or not yet imported.
+        if(requestId===photoRequest&&instances.get(node)===state){state.photos=new Map();drawRows();}
+      }
+    };
     render();
+    state.refreshPhotos();
   }
   addEventListener('beforeunload',event=>{for(const node of document.querySelectorAll('[data-card-gallery]'))if(instances.get(node)?.dirty){event.preventDefault();event.returnValue='';break;}});
   root.YgoDeckBuilder={mount};
