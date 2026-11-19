@@ -509,7 +509,7 @@
   },
   "ygo_handle_post_serialized": {
     "file": "includes/http/post-actions.php",
-    "sha256": "c976480f43d5f93b1287dc7da94948494856c202ff96fb49d6e16f9dd3f2e488"
+    "sha256": "fb966353470593eca9b5edaf1196f4aa115587b652008d8626ab362003151934"
   },
   "ygo_load_data": {
     "file": "src/Infrastructure/Persistence/legacy-read-model.php",
