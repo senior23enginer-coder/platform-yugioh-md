@@ -2,11 +2,11 @@
    resolve in reverse order. Opponent negations remain conditional declarations. */
 (function (root, factory) {
   if (typeof module === "object" && module.exports)
-    module.exports = factory(require("./engine.js"), require("./rules.js"), require("./chain-policy.js"), require("./integrity.js"));
-  else root.YgoPlayChain = factory(root.YgoPlayEngine, root.YgoPlayRules, root.YgoCalculatorChainPolicy, root.YgoCalculatorIntegrity);
-})(typeof globalThis !== "undefined" ? globalThis : this, function (E, R, Policy, Integrity) {
+    module.exports = factory(require("./engine.js"), require("./rules.js"), require("./chain-policy.js"), require("./integrity.js"), require("./diagnostics.js"));
+  else root.YgoPlayChain = factory(root.YgoPlayEngine, root.YgoPlayRules, root.YgoCalculatorChainPolicy, root.YgoCalculatorIntegrity, root.YgoCalculatorDiagnostics);
+})(typeof globalThis !== "undefined" ? globalThis : this, function (E, R, Policy, Integrity, Diagnostics) {
   "use strict";
-  function resolve(s, db) {
+  function resolveCore(s, db) {
     E.validate(s);
     Integrity.validate(s);
     const links = s.chain || [];
@@ -83,6 +83,10 @@
         ? "Respuestas rivales declaradas por el jugador: la carta, sus costes y su ventana no están certificados."
         : "Se verificaron costes y efectos propios; las ventanas de respuesta rivales no están certificadas.",
       branches: branches.slice(0, 40) };
+  }
+  function resolve(s, db) {
+    const result = resolveCore(s, db);
+    return { ...result, assessment: Diagnostics.chain(result) };
   }
   return { resolve };
 });

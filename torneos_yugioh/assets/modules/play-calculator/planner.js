@@ -1,8 +1,8 @@
 (function (root, factory) {
   if (typeof module === "object" && module.exports)
-    module.exports = factory(require("./engine.js"), require("./rules.js"), require("./restrictions.js"), require("./integrity.js"));
-  else root.YgoPlayPlanner = factory(root.YgoPlayEngine, root.YgoPlayRules, root.YgoCalculatorRestrictions, root.YgoCalculatorIntegrity);
-})(typeof globalThis !== "undefined" ? globalThis : this, function (E, R, Restrictions, Integrity) {
+    module.exports = factory(require("./engine.js"), require("./rules.js"), require("./restrictions.js"), require("./integrity.js"), require("./diagnostics.js"));
+  else root.YgoPlayPlanner = factory(root.YgoPlayEngine, root.YgoPlayRules, root.YgoCalculatorRestrictions, root.YgoCalculatorIntegrity, root.YgoCalculatorDiagnostics);
+})(typeof globalThis !== "undefined" ? globalThis : this, function (E, R, Restrictions, Integrity, Diagnostics) {
   "use strict";
   const effects = {
     17768: [["search", "Buscar un monstruo Kashtira"]],
@@ -99,7 +99,7 @@
       cid: db.bindings[t.key] || null,
     }));
   }
-  function solve(input, db, options = {}) {
+  function solveCore(input, db, options = {}) {
     E.validate(input);
     Integrity.validate(input);
     const structured = (db.rules || []).filter((r) => {
@@ -813,6 +813,10 @@
       base.reason =
         "No hay acciones calculables con los efectos implementados y el estado capturado. Esto no demuestra que no existan otras jugadas.";
     return base;
+  }
+  function solve(input, db, options = {}) {
+    const result = solveCore(input, db, options);
+    return { ...result, assessment: Diagnostics.planner(result) };
   }
   return { solve, profile, capabilities, modelled: [...modelled] };
 });

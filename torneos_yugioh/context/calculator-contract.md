@@ -160,6 +160,17 @@ tipos y fechas coherentes. El intérprete valida los estados resultantes y el
 planificador y resolvedor de cadenas validan los estados de entrada. La
 validación del tablero físico sigue correspondiendo a `engine.js`.
 
+## Diagnóstico honesto y carga del trabajador (tarea general 12)
+
+`assets/modules/play-calculator/diagnostics.js` añade `assessment` a las
+respuestas del planificador y de cadenas. Clasifica una búsqueda sin líneas
+como `unresolved` y una con líneas como `conditional`, pues no acredita todas
+las posibles respuestas del rival. El estado `modelled` se reserva para una
+capacidad modelada específica, nunca para certificar una jugada completa.
+El diagnóstico también registra límites de presupuesto y cartas no cubiertas.
+El trabajador `planner-worker.js` carga expresamente todos los módulos
+independientes antes de cargar `rules.js`, `planner.js` y `scenario.js`.
+
 `tests/calculator_contract_test.cjs` prueba el mismo contrato con dos decks
 sintéticos diferentes, ejecuta una operación compartida sin cambiar código
 por deck, y rechaza versión, identidad, campos, duplicados y operaciones
