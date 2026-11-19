@@ -2,7 +2,7 @@
   'use strict';
   let active=null;
   document.addEventListener('click',event=>{
-    const trigger=event.target.closest('[data-card-inspect]');if(!trigger)return;
+    const trigger=event.target.closest('[data-card-inspect],[data-card-photo]');if(!trigger)return;
     event.preventDefault();event.stopPropagation();open(trigger);
   });
   function open(trigger){
