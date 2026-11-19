@@ -89,7 +89,7 @@
       const row = pool.rows.find(row => row.deck_id === Number(deck.id));
       // Ranking eligibility belongs in the ranking screen, not repeated on each deck profile.
       const coverage = 'Clasificación calculada a partir de resultados confirmados.';
-      if (row?.position != null) return {label:`${label}: #${row.position} de ${pool.total}`,detail:coverage+' Puesto según resultados confirmados; incluye todas las ligas y divisiones.'};
+      if (row?.position != null) return {label:`${label}: #${row.position} de ${pool.total}`,detail:''};
       if (row?.state === 'INACTIVO') return {label:label+': inactivo',detail:coverage+' Sin puesto por inactividad.'};
       if (row?.state === 'REACTIVACION PENDIENTE') return {label:label+': pendiente de reactivación',detail:coverage+' Debe completar las partidas de reactivación.'};
       if (!deck.team_id) return {label:label+': sin puesto',detail:coverage+' Asocia un equipo para consultar su clasificación.'};
