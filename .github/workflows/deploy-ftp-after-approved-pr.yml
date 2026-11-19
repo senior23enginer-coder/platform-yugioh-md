@@ -4,7 +4,6 @@ on:
   pull_request:
     branches: [base]
     types: [closed]
-  workflow_dispatch:
 
 permissions:
   contents: write
@@ -16,7 +15,7 @@ concurrency:
 
 jobs:
   deploy:
-    if: (github.event_name == 'pull_request' && github.event.pull_request.merged == true) || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/base')
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     environment: production
     steps:
@@ -39,7 +38,7 @@ jobs:
       - name: Checkout merged base
         uses: actions/checkout@v4
         with:
-          ref: base
+          ref: ${{ github.event.pull_request.merge_commit_sha }}
           persist-credentials: false
 
       - name: Prepare PHP 8.3
@@ -67,7 +66,6 @@ jobs:
           php torneos_yugioh/tests/deck_template_test.php
 
       - name: Prepare release identity
-        if: github.event_name == 'pull_request'
         shell: bash
         run: |
           version="v0.1.${GITHUB_RUN_NUMBER}"
@@ -89,7 +87,6 @@ jobs:
           local-dir: ./torneos_yugioh/
           server-dir: ${{ secrets.FTP_SERVER_DIR }}
           dangerous-clean-slate: false
-          dry-run: ${{ github.event_name == 'workflow_dispatch' }}
           exclude: |
             **/.git*
             **/.github/**
@@ -103,7 +100,6 @@ jobs:
             **/node_modules/**
 
       - name: Publish deployed version manifest
-        if: github.event_name == 'pull_request'
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_HOST }}
@@ -117,7 +113,6 @@ jobs:
           dangerous-clean-slate: false
 
       - name: Register GitHub release after deployment
-        if: github.event_name == 'pull_request'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
