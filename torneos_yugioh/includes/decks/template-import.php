@@ -162,7 +162,7 @@ function ygo_gpt_sync_upload(array $files, ?callable $request = null): array
     if (!is_array($initial)) throw new InvalidArgumentException('El paquete Station X inicial está incompleto.');
     $existingPackage = $request('GET', '01_INFORMACION_PARA_IMPORTAR/decks/' . $canonical, null);
     if (($existingPackage['status'] ?? 0) === 200) {
-        $encoded = preg_replace('/\\s+/', '', (string)($existingPackage['body']['content'] ?? ''));
+        $encoded = preg_replace('/\s+/', '', (string)($existingPackage['body']['content'] ?? ''));
         $decoded = base64_decode($encoded, true);
         $remote = $decoded === false ? null : json_decode($decoded, true);
         if (!is_array($remote) || (int)($remote['deck_id'] ?? 0) !== (int)$initial['deck_id']) {
