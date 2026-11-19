@@ -67,6 +67,23 @@
       <article class="deck-template-action"><i class="bi bi-upload fs-3" aria-hidden="true"></i><h3>Subir TXT</h3><p>Importa una plantilla editada para crear un nuevo deck en la base de datos.</p><form method="post" enctype="multipart/form-data"><input type="hidden" name="action" value="import_deck_template"><input class="form-control mb-2" name="deck_template_txt" data-deck-template-file type="file" accept=".txt,text/plain" required><button class="btn btn-primary" type="submit">Crear deck desde TXT</button></form></article>
       <article class="deck-template-action"><i class="bi bi-arrow-repeat fs-3" aria-hidden="true"></i><h3>Sincronizar</h3><p>Recarga el listado de decks y cartas guardados en el servidor.</p><button class="btn btn-outline-info" type="button" data-deck-template-sync>Sincronizar listado</button></article>
     </div>
+    <article class="deck-template-action mt-3"><i class="bi bi-github fs-3" aria-hidden="true"></i>
+      <h3>Enviar al repositorio GPT</h3>
+      <p>Envía únicamente la estructura y el inventario de un deck creado desde TXT. No ejecuta prompts ni sobrescribe estudios A01–A10.</p>
+      <form method="post">
+        <input type="hidden" name="action" value="sync_txt_deck_to_gpt">
+        <input type="hidden" name="gpt_csrf" value="<?php echo e((string)($_SESSION['sx_csrf'] ?? '')); ?>">
+        <label for="gpt-deck-selection" class="form-label">Deck creado desde TXT</label>
+        <select class="form-select mb-2" name="gpt_deck_id" id="gpt-deck-selection" required>
+          <option value="">Seleccionar deck</option>
+          <?php foreach ($allDecks as $gptDeck): if (!isset($gptDeck['id'])) continue; ?>
+          <option value="<?php echo (int)$gptDeck['id']; ?>"><?php echo e((string)$gptDeck['name']); ?></option>
+          <?php endforeach; ?>
+        </select>
+        <button class="btn btn-outline-info" type="submit"><i class="bi bi-github" aria-hidden="true"></i> Enviar al repositorio GPT</button>
+      </form>
+      <p class="small mt-2 mb-0">«Sincronizar listado» sigue recargando únicamente los datos locales.</p>
+    </article>
     <p class="note" data-deck-template-status role="status" aria-live="polite"></p>
     <p class="deck-template-help">La importación rechaza duplicados de nombre y datos no válidos; no reemplaza decks existentes.</p>
   </section>
