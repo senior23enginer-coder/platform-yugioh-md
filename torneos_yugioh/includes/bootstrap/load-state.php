@@ -17,6 +17,11 @@ foreach (ygo_default_ui_labels() as $defaultUiLabel) {
 }
 $appData = ['eventExtendedCatalog'=>ygo_extended_event_catalog(), 'executionCapabilities'=>ygo_execution_capabilities(), 'executionModelsByType'=>array_combine(array_keys($competitionTypeOptions),array_map('ygo_allowed_execution_models_for_type',array_keys($competitionTypeOptions))), 'divisions' => $divisions, 'fixtures' => $fixtures, 'allDecks' => $allDecks, 'teams' => [], 'competitions' => [], 'competitionDependencies' => [], 'statusHistory' => [], 'standingSnapshots' => [], 'matchSnapshots' => [], 'matchupAnalyses' => [], 'matchupAnalysisHistory' => [], 'deckAnalysisProfiles' => [], 'deckAnalysisProfileHistory' => [], 'medalUnlocks' => [], 'medalProgress' => [], 'rankingHistory' => [], 'eventSummaries' => [], 'checkins' => [], 'metaHistory' => [], 'eloHistory' => [], 'seasons' => [], 'players' => [], 'playerDecks' => [], 'cards' => [], 'media' => [], 'logoHistory' => [], 'honors' => [], 'audit' => [], 'events' => [], 'rulesets' => [], 'rulesetVersions' => [], 'matchTypes' => [], 'gameRules' => [], 'gameRuleConditions' => [], 'eventPromptTemplates' => ygo_event_available_templates(), 'competitionTypeOptions' => $competitionTypeOptions, 'settings' => ygo_default_settings(), 'uiLabels' => $defaultUiLabels, 'serverToday' => date('Y-m-d')];
 $dbStatus = ['connected' => false, 'message' => 'Sin conexion comprobada', 'counts' => []];
+// Issue a CSRF token for the explicit server-to-GitHub action before rendering forms.
+sx_start();
+if (!isset($_SESSION['sx_csrf']) || !is_string($_SESSION['sx_csrf']) || $_SESSION['sx_csrf'] === '') {
+    $_SESSION['sx_csrf'] = bin2hex(random_bytes(32));
+}
 $flashMessage = null;
 $flashClass = 'alert-success';
 try {
