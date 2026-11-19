@@ -35,6 +35,29 @@ foreach($state['checked_studies'] as $id=>$entry){
         $updated=ygo_data_markdown($bytes,$r,(int)$id);ygo_data_validate($updated,$inventory);$raws++;
         check(count($updated['routes'])>=count($r['routes']),'A route was silently removed');
     }
+    // Direct GPT folder ZIP (without stationx-deck.json), preserving the original study.
+    if ((int)$id === 671 || (int)$id === 677) {
+        $markdownPath=null;$imagePath=null;
+        foreach (array_keys($files) as $path) {
+            if (str_ends_with($path,'CONTENIDO_CURADO.md')) $markdownPath=$path;
+            if ($imagePath===null && preg_match('~/imagenes/[^/]+\.(png|jpe?g|webp|gif)$~i',$path)) $imagePath=$path;
+        }
+        check($markdownPath!==null && $imagePath!==null,'Pilot GPT source must include Markdown and local images '.$id);
+        $relative='imagenes/'.basename($imagePath);
+        $legacy=$files;
+        $legacy[$markdownPath].="\n\n<img src=\"".$relative."\" width=\"55\" alt=\"Carta de prueba\">\n";
+        $candidate=ygo_data_prepare($app,$legacy,$inventory,$r,$files);
+        check(count($candidate['routes']) >= count($r['routes']),'Legacy folder lost existing routes');
+        check(str_contains($candidate['imported_source_text'],'[Imagen local: '.$relative.']'),'Local image marker missing');
+        check(!str_contains($candidate['imported_source_text'],'<img'),'Executable HTML retained in reader');
+        $hostile=$legacy;
+        $hostile[$markdownPath].="\n<img src=\"https://example.com/evil.png\" onerror=\"alert(1)\">\n";
+        fails(fn()=>ygo_data_prepare($app,$hostile,$inventory,$r,$files),'Remote image script accepted');
+        $missing=$legacy;
+        $missing[$markdownPath].="\n<img src=\"imagenes/9999999999.png\" width=\"55\">\n";
+        fails(fn()=>ygo_data_prepare($app,$missing,$inventory,$r,$files),'Missing image accepted');
+        check($legacy[$markdownPath] === $files[$markdownPath]."\n\n<img src=\"".$relative."\" width=\"55\" alt=\"Carta de prueba\">\n",'Original Markdown bytes changed unexpectedly');
+    }
     $package=['schema'=>'station-x-deck-package/1','deck_id'=>(int)$id,'inventory_sha256'=>$inventory['inventory_sha256'],'record'=>$r];
     $input=['stationx-deck.json'=>ygo_data_json($package)]+$files;$copy=ygo_data_prepare($app,$input,$inventory,$r,$files);
     check(count($copy['routes'])===count($r['routes']),'Structured roundtrip lost routes');
