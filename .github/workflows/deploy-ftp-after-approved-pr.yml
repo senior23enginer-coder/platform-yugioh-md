@@ -4,6 +4,7 @@ on:
   pull_request:
     branches: [base]
     types: [closed]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -15,11 +16,12 @@ concurrency:
 
 jobs:
   deploy:
-    if: github.event.pull_request.merged == true
+    if: github.ref == 'refs/heads/base' && (github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true)
     runs-on: ubuntu-latest
     environment: production
     steps:
       - name: Confirm PR was approved
+        if: github.event_name == 'pull_request'
         env:
           GH_TOKEN: ${{ github.token }}
           PR_URL: ${{ github.event.pull_request.html_url }}
@@ -55,7 +57,7 @@ jobs:
       - name: Verify calculator contract
         run: node scripts/test-calculator-general.cjs
 
-      - name: Upload application by FTPS
+      - name: Verify transfer by FTPS (manual runs are dry-run)
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_HOST }}
@@ -66,6 +68,7 @@ jobs:
           local-dir: ./torneos_yugioh/
           server-dir: ${{ secrets.FTP_SERVER_DIR }}
           dangerous-clean-slate: false
+          dry-run: ${{ github.event_name == 'workflow_dispatch' }}
           exclude: |
             **/.git*
             **/.github/**
