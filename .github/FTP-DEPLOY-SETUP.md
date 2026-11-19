@@ -5,6 +5,12 @@ into `base` with an active `APPROVED` review decision. An approval on an open PR
 does not deploy. It first checks the generic calculator contract, then uploads
 the contents of `torneos_yugioh/` (not the repository root).
 
+For the first connection test, open **Actions → Deploy Station X after approved
+PR → Run workflow** and select `base`. A manually triggered run always sets
+`dry-run: true`: it checks the FTPS connection and reports proposed changes
+without uploading or deleting files. The actual upload remains restricted to
+an approved PR merged into `base`.
+
 ## GitHub configuration required before the first deployment
 
 In repository **Settings → Secrets and variables → Actions**, create:
@@ -27,7 +33,8 @@ Confirm FTPS is enabled for this account. Plain FTP is not configured because
 it transmits credentials and file contents without transport encryption.
 
 The workflow does not run on every push to `base`, does not deploy before the
-merge, and does not use `dangerous-clean-slate`. The FTP action can synchronize
+merge, and does not use `dangerous-clean-slate`. Manual runs never upload.
+The FTP action can synchronize
 previously tracked deleted files within its target: back up the remote
 application before the first run. The production database and private
 server-side configuration must remain on the server, not in Git.
