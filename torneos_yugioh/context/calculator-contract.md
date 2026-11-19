@@ -140,6 +140,16 @@ la evaluación de costes pagados sigue en el adaptador. Una respuesta rival
 declarada no equivale a verificar la carta, su coste o su ventana; los
 resultados mantienen el estado `conditional` o `unresolved` según corresponda.
 
+## Bloqueos y restricciones persistentes (tarea general 10)
+
+`assets/modules/play-calculator/restrictions.js` concentra ocho banderas
+admitidas, su aplicación inmutable y la proyección de restricciones activas.
+`noMoreSummons` conserva caducidad explícita por turno; las demás banderas
+mantienen duración persistente hasta declaración contraria. Tanto el
+intérprete como el planificador consultan las restricciones efectivas, y el
+checkpoint preserva los turnos de expiración. No se atribuye duración a
+ninguna restricción de carta que el contrato no haya acreditado.
+
 `tests/calculator_contract_test.cjs` prueba el mismo contrato con dos decks
 sintéticos diferentes, ejecuta una operación compartida sin cambiar código
 por deck, y rechaza versión, identidad, campos, duplicados y operaciones

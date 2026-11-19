@@ -1,9 +1,9 @@
 /* Declarative effect adapter. Data never becomes JavaScript; unknown operations fail closed. */
 (function (root, factory) {
   if (typeof module === "object" && module.exports)
-    module.exports = factory(require("./engine.js"), require("./operations.js"), require("./guards.js"), require("./resources.js"), require("./transitions.js"), require("./timing.js"), require("./events.js"));
-  else root.YgoPlayRules = factory(root.YgoPlayEngine, root.YgoCalculatorOperations, root.YgoCalculatorGuards, root.YgoCalculatorResources, root.YgoCalculatorTransitions, root.YgoCalculatorTiming, root.YgoCalculatorEvents);
-})(typeof globalThis !== "undefined" ? globalThis : this, function (E, Operations, Guards, Resources, Transitions, Timing, Events) {
+    module.exports = factory(require("./engine.js"), require("./operations.js"), require("./guards.js"), require("./resources.js"), require("./transitions.js"), require("./timing.js"), require("./events.js"), require("./restrictions.js"));
+  else root.YgoPlayRules = factory(root.YgoPlayEngine, root.YgoCalculatorOperations, root.YgoCalculatorGuards, root.YgoCalculatorResources, root.YgoCalculatorTransitions, root.YgoCalculatorTiming, root.YgoCalculatorEvents, root.YgoCalculatorRestrictions);
+})(typeof globalThis !== "undefined" ? globalThis : this, function (E, Operations, Guards, Resources, Transitions, Timing, Events, Restrictions) {
   "use strict";
   const field = (z) => E.isMonster(z) || /^s[1-5]$/.test(z) || z === "field";
   const zones = [
@@ -26,16 +26,7 @@
     "emz1",
     "emz2",
   ];
-  const flags = [
-    "specialBlocked",
-    "noExtra",
-    "xyzOnly",
-    "graveyardBlocked",
-    "effectsNegated",
-    "noDeckToHand",
-    "banishBlocked",
-    "noMoreSummons",
-  ];
+  const flags = Restrictions.names;
   const tags = [
     "addFromDeck",
     "summonFromDeck",
@@ -433,6 +424,7 @@
       _xyz: s._xyz,
       _used: E.clone(s._used || []),
       _ruleFlags: E.clone(s._ruleFlags || {}),
+      _ruleFlagTurns: E.clone(s._ruleFlagTurns || {}),
       _ruleEvents: E.clone(s._ruleEvents || []),
       _ruleUseTurns: E.clone(s._ruleUseTurns || {}),
     };
@@ -457,8 +449,7 @@
       // El límite por nombre se reinicia por turno, pero no por nueva copia.
       if (!options.prepared && rule.oncePerTurn && Timing.usedThisTurn(s, used)) continue;
       if (!options.prepared && rule.trigger && !s.tokens.some(t => triggerMatches(s, rule, t.uid))) continue;
-      const f = { ...options, ...s._ruleFlags };
-      if (s._ruleFlagTurns?.noMoreSummons !== s.turn) delete f.noMoreSummons;
+      const f = Restrictions.effective(s, options);
       if (rule.activation && f.effectsNegated) continue;
       if (!options.prepared &&
         !rule.guards.every((g) =>
@@ -608,8 +599,7 @@
               xyzSummoned:true,currentATK:2900});
             else n.tokens.push({uid:typhonUid,key:extraCard[0].key,owner:"self",controller:"self",
               zone:op.to,position:"attack",xyzSummoned:true,currentATK:2900});
-            n._ruleFlags={...(n._ruleFlags||{}),noMoreSummons:true};
-            n._ruleFlagTurns={...(n._ruleFlagTurns||{}),noMoreSummons:n.turn};
+            n=Restrictions.apply(n,"noMoreSummons",true,"turn");
             n._ruleEvents=[...(n._ruleEvents||[]),{kind:"xyz_summon",cid:19184,
               uid:typhonUid,materials:[selected.uid],turn:n.turn,side:"self",
               method:"typhon-alternate",from:oldZone,stage:opStage}];
@@ -813,8 +803,7 @@
             n._ruleEvents=[...(n._ruleEvents||[]),
               {kind:"summon",method:op.method,uid:t.uid,cid:db.bindings[t.key],turn:n.turn,stage:opStage}];
           } else {
-            n._ruleFlags = { ...n._ruleFlags, [op.flag]: op.value };
-            if (op.flag === "xyzOnly") n._xyz = op.value;
+            n = Restrictions.apply(n, op.flag, op.value);
           }
         }
         try {
