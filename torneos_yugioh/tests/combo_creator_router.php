@@ -7,6 +7,23 @@ function sx_start(): void { session_start();if(empty($_SESSION['sx_csrf']))$_SES
 function ygo_combo_fixture(): array {
     $data=json_decode(file_get_contents(__DIR__.'/fixtures/calculator_inventory.json'),true);
     if(getenv('COMBO_TEST_ROSTER')==='1')array_push($data['allDecks'],['id'=>99991,'name'=>'GOAT sin cartas','team'=>'Equipo prueba','format_codes'=>['goat']],['id'=>99992,'name'=>'TCG sin cartas','format_codes'=>['tcg_advanced']]);
+
+    if(getenv('COMBO_TEST_STUDY_PHOTOS')==='1'){
+        foreach([671,677] as $deckId){
+            $study=json_decode(file_get_contents(__DIR__.'/../assets/editorial/20261117-folder-delivery-v40/'.$deckId.'.json'),true,512,JSON_THROW_ON_ERROR);
+            $data['allDecks'][]=['id'=>$deckId,'name'=>$study['name'],'format_codes'=>['tcg_advanced']];
+            foreach($study['cards'] as $card)foreach($card['slots'] as $slot){
+                $data['cards'][]=[
+                    'id'=>(int)$slot['card_id'], 'deck_id'=>$deckId,
+                    'card_name'=>$card['name'], 'section'=>$slot['section'],
+                    'quantity'=>(int)$slot['quantity'],
+                    // Simulate a stale catalog entry plus regular native cards with no catalog ID.
+                    'ygoprodeck_id'=>$deckId===671 && (int)$slot['card_id']===499 ? 999999 : null,
+                ];
+            }
+        }
+    }
+
     return $data;
 }
 function connect_store_common(string &$prefix,int &$entity): PDO {

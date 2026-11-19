@@ -37,6 +37,56 @@
     )
       .then((r) => (r.ok ? r.json() : {}))
       .catch(() => ({})));
+  // Images in a deck's imported study are indexed by the native deck-card row.
+  // Only same-origin images from the Station X asset tree are allowed.
+  const safeStudyPath = value =>
+    typeof value === "string" &&
+    /^\.\/assets\/editorial\/[a-zA-Z0-9_./-]+\.json$/.test(value) &&
+    !value.slice(2).split("/").some(part => part === "." || part === "..")
+      ? value : "";
+  const safePhotoPath = value =>
+    typeof value === "string" &&
+    /^\.\/assets\/(?:editorial|cards)\/[a-zA-Z0-9_./-]+\.(?:png|jpe?g|webp|gif)$/i.test(value) &&
+    !value.slice(2).split("/").some(part => part === "." || part === "..")
+      ? value : "";
+  async function studyImages(deckId) {
+    try {
+      const stateResponse = await fetch("./assets/editorial/strategy-content-state.json", {
+        cache: "no-store", credentials: "same-origin"
+      });
+      if (!stateResponse.ok) return {};
+      const state = await stateResponse.json();
+      const source = safeStudyPath(state.checked_studies?.[String(deckId)]?.path);
+      if (!source) return {};
+      const recordResponse = await fetch(source, {
+        cache: "no-store", credentials: "same-origin"
+      });
+      if (!recordResponse.ok) return {};
+      const study = await recordResponse.json();
+      if (study.schema !== "station-x-curated-v62" ||
+          Number(study.deck_id) !== Number(deckId) ||
+          !Array.isArray(study.cards)) return {};
+      const photos = {};
+      for (const card of study.cards) {
+        const url = safePhotoPath(card.image) || safePhotoPath(card.full_image);
+        if (!url || !Array.isArray(card.slots)) continue;
+        for (const slot of card.slots) {
+          const id = Number(slot.card_id);
+          if (Number.isSafeInteger(id) && id > 0) {
+            photos[Number(deckId) + ":" + id] ||= url;
+          }
+        }
+      }
+      return photos;
+    } catch (_) {
+      // A deck without an imported study must still have a working combo editor.
+      return {};
+    }
+  }
+  async function imageBindings(deckId) {
+    const [legacy, study] = await Promise.all([images(), studyImages(deckId)]);
+    return { ...legacy, study };
+  }
   async function api(deckId, body, token, history = "") {
     const response = await fetch(
       `./?api=combo_creator&deck_id=${Number(deckId)}${history ? "&history=" + encodeURIComponent(history) : ""}`,
@@ -63,12 +113,13 @@
       binding &&
       M.norm(binding.card_name) === M.norm(card.card_name) &&
       Number(binding.image_id || 0) === Number(card.ygoprodeck_id || 0);
-    const url =
-      (matches ? binding.file : "") ||
-      (card.ygoprodeck_id
-        ? `./?api=deck_builder&op=image&id=${Number(card.ygoprodeck_id)}`
-        : "");
-    return `<figure class="cc-face ${small ? "is-small" : ""}">${url ? `<img src="${esc(url)}" alt="${esc(card.card_name)}" loading="eager" draggable="false" width="82" height="120">` : '<span class="cc-no-image">Imagen no disponible</span>'}<figcaption>${esc(card.card_name)}</figcaption></figure>`;
+    const local = index?.study?.[String(card.deck_id) + ":" + String(card.id)] || "";
+    const catalog = card.ygoprodeck_id
+      ? "./?api=deck_builder&op=image&id=" + Number(card.ygoprodeck_id)
+      : "";
+    const url = (matches ? binding.file : "") || local || catalog;
+    const alternative = local && local !== url ? local : (catalog && catalog !== url ? catalog : "");
+    return `<figure class="cc-face ${small ? "is-small" : ""}">${url ? `<img src="${esc(url)}" ${alternative ? `data-cc-fallback="${esc(alternative)}"` : ""} alt="${esc(card.card_name)}" loading="eager" draggable="false" width="82" height="120">` : '<span class="cc-no-image">Imagen no disponible</span>'}<figcaption>${esc(card.card_name)}</figcaption></figure>`;
   }
   const findCard = (cards, id) =>
     cards.find((c) => Number(c.id) === Number(id));
@@ -356,6 +407,7 @@
       state.cards = [];
       state.records = [];
       state.templateRoutes = {};
+      state.index = {};
       state.palette = null;
       state.selected = "";
       state.from = "";
@@ -395,6 +447,12 @@
         $("[data-cc-saved]").disabled = false;
         $("[data-cc-new]").disabled = false;
         loadDocument(imported.records.length?state.records.find(r=>r.id===imported.records[0].id):null);
+        // Keep the creator responsive while resolving photos; never cross deck IDs.
+        imageBindings(Number(id)).then(index => {
+          if (ticket !== state.loading || state.deckId !== Number(id)) return;
+          state.index = index;
+          draw();
+        });
         node.querySelector('[data-cc-import-report]')?.remove();
         if(imported.issues.length)$(".cc-start").insertAdjacentHTML('afterend',`<details class="cc-warning" data-cc-import-report><summary>${imported.issues.length} guías requieren revisión para abrirse en el editor</summary>${imported.issues.map(i=>`<p><b>${esc(i.route)}</b>: ${esc(i.reason)}</p>`).join('')}</details>`);
       } catch (e) {
@@ -957,6 +1015,12 @@
         state.palette = null;
         savedOptions();
         draw();
+        const ticket = state.loading;
+        imageBindings(id).then(index => {
+          if (ticket !== state.loading || state.deckId !== id) return;
+          state.index = index;
+          draw();
+        });
         status(
           "Cartas actualizadas. Revisa la lista y los requisitos antes de guardar.",
         );
@@ -1054,7 +1118,9 @@
         e.returnValue = "";
       }
     });
-    images().then((index) => {
+    images().then(index => {
+      // The global legacy index must not replace the deck-specific photo map.
+      if (state.deckId) return;
       state.index = index;
       draw();
     });
@@ -1093,7 +1159,7 @@
     const personal=node.querySelector('[data-cc-personal]');
     const editorial=root.YgoComboEditorial?.mount(node.querySelector('[data-cc-editorial-library]'),deck,()=>viewers.get(node)===ticket);
     try {
-      const [result, index] = await Promise.all([api(deck.id), images()]);
+      const [result, index] = await Promise.all([api(deck.id), imageBindings(deck.id)]);
       if (viewers.get(node) !== ticket) return;
       personal.innerHTML = `<header class="cc-reader-head"><div><h3>Mis creaciones de ${esc(deck.name)}</h3><p>Tus creaciones guardadas, con sus cartas, decisiones y condiciones.</p></div><button type="button" class="btn btn-outline-info" data-cc-create>+ Crear para este deck</button></header><div class="cc-reader-list">${result.records.map((r) => `<button type="button" data-cc-read="${esc(r.id)}"><b>${esc(r.title)}</b><span>${r.document.nodes.length} pasos · revisión ${r.revision}${r.stale ? " · Revisar lista" : ""}</span></button>`).join("") || '<div class="cc-empty">Todavía no hay creaciones guardadas para este deck.</div>'}</div><div data-cc-reading></div>`;
       if (result.cards_loaded === false) {
@@ -1230,6 +1296,12 @@
         img instanceof HTMLImageElement &&
         img.closest(".combo-maker,.combo-reader")
       ) {
+        const alternate = img.dataset.ccFallback || "";
+        if (!img.dataset.ccFallbackTried && alternate && img.getAttribute("src") !== alternate) {
+          img.dataset.ccFallbackTried = "1";
+          img.src = alternate;
+          return;
+        }
         img.hidden = true;
         const fallback = document.createElement("span");
         fallback.className = "cc-no-image";
