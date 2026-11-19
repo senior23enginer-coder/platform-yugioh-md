@@ -57,6 +57,7 @@
         delete db.bindings[c.key];
         delete db.names?.[c.key];
       }
+      const deckActorCids = new Set();
       for (const card of study.cards || []) {
         const names = [
           card.name,
@@ -85,6 +86,7 @@
               "",
             format: study.format,
           };
+          deckActorCids.add(card.cid);
           // A native slot and exact alias confirm identity; they do not invent monster metadata.
           if (!db.bindings[key] || db.bindings[key] === card.cid) {
             db.bindings[key] = card.cid;
@@ -106,7 +108,7 @@
           if (!catalog.formats.includes(study.format))
             throw Error("Formato del estudio ajeno al catálogo nativo");
           Contract.validate(packageData, { deckId: catalog.id, format: study.format,
-            actorCids: Object.values(db.identities).map(x => x.cid) });
+            actorCids: [...deckActorCids] });
           imported = packageData.rules;
           db.ruleImports.push({ deckId: catalog.id, status: "accepted", count: imported.length,
             schema: Contract.SCHEMA, legacy: block?.schema === undefined });

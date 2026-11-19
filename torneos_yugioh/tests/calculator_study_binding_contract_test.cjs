@@ -60,4 +60,21 @@ const unknownActor = S.bind(base, [{ ...first, study: { ...first.study,
 assert.equal(unknownActor.ruleImports[0].status, "rejected");
 assert.match(unknownActor.ruleImports[0].message, /Actor sin identidad/);
 assert.equal(unknownActor.rules.length, 0);
-console.log(JSON.stringify({ ok: true, accepted: 2, rejected: 4, legacyCompatible: true }));
+const foreignActor = setup(9203);
+const foreign = S.bind(base, [first, { ...foreignActor,
+  study: { ...foreignActor.study, calculator: { ...foreignActor.study.calculator,
+    rules: [{ ...foreignActor.rule, actor: { ...foreignActor.rule.actor,
+      cid: first.study.cards[0].cid } }] } } }]);
+assert.equal(foreign.ruleImports[0].status, "accepted");
+assert.equal(foreign.ruleImports[1].status, "rejected");
+assert.match(foreign.ruleImports[1].message, /Actor sin identidad/);
+assert.equal(foreign.rules.length, 1);
+const reversed = S.bind(base, [{ ...foreignActor,
+  study: { ...foreignActor.study, calculator: { ...foreignActor.study.calculator,
+    rules: [{ ...foreignActor.rule, actor: { ...foreignActor.rule.actor,
+      cid: first.study.cards[0].cid } }] } } }, first]);
+assert.equal(reversed.ruleImports[0].status, "rejected");
+assert.equal(reversed.ruleImports[1].status, "accepted");
+assert.equal(reversed.rules.length, 1);
+console.log(JSON.stringify({ ok: true, accepted: 2, rejected: 6, legacyCompatible: true,
+  crossDeckActorIsolation: true }));

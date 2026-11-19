@@ -197,3 +197,11 @@ modifica ni se escribe al repositorio de Prompts.
 sintéticos diferentes, ejecuta una operación compartida sin cambiar código
 por deck, y rechaza versión, identidad, campos, duplicados y operaciones
 inválidas. No supone cobertura universal de todas las cartas.
+
+## Aislamiento de identidad por deck (tarea general 15)
+
+Al importar varios estudios en una sola sesión, el adaptador calcula los CID
+acreditados de **cada catálogo por separado**. No autoriza que la regla de un
+deck utilice el actor de otro deck simplemente porque ese CID ya está en el
+registro global de identidades. La prueba de vinculación cubre ambas órdenes
+de carga y comprueba que sólo se conserva la regla del deck válido.
