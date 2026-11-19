@@ -23,3 +23,6 @@ outputs/ygo-editorial-sync-20261030/baseline/station_x_perfiles_67_decks.txt -te
 torneos_yugioh/assets/editorial/20261101-11-decks/source.json -text
 torneos_yugioh/assets/editorial/20261101-11-decks/deck-*.json -text
 torneos_yugioh/context/gpt/** -text
+
+# Preserve the pinned third-party distribution, including LICENSE and NOTICE.
+torneos_yugioh/api-docs/vendor/* -text

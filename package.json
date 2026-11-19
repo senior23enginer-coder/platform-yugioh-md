@@ -18,12 +18,16 @@
     "build:check": "node scripts/build-frontend.cjs --check",
     "format:architecture": "node scripts/format-architecture.cjs",
     "format:architecture:check": "node scripts/format-architecture.cjs --check",
-    "test:a07:memento": "node torneos_yugioh/tests/memento_a07_coverage_test.cjs && node torneos_yugioh/tests/memento_a07_resolution_test.cjs && node torneos_yugioh/tests/memento_a07_remaining_rules_test.cjs && node torneos_yugioh/tests/memento_a07_r12_r24_test.cjs"
+    "test:a07:memento": "node torneos_yugioh/tests/memento_a07_coverage_test.cjs && node torneos_yugioh/tests/memento_a07_resolution_test.cjs && node torneos_yugioh/tests/memento_a07_remaining_rules_test.cjs && node torneos_yugioh/tests/memento_a07_r12_r24_test.cjs",
+    "build:swagger": "node scripts/build-swagger.cjs",
+    "test:swagger": "node torneos_yugioh/tests/swagger_test.cjs"
   },
   "devDependencies": {
+    "@apidevtools/swagger-parser": "12.1.0",
     "@modelcontextprotocol/sdk": "^1.32.2",
     "@prettier/plugin-php": "0.26.0",
     "playwright": "1.46.1",
-    "prettier": "3.6.2"
+    "prettier": "3.6.2",
+    "swagger-ui-dist": "5.35.1"
   }
 }

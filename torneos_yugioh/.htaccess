@@ -3,6 +3,8 @@ DirectoryIndex index.php index.html
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /yugioh/
+# Preserve PATH_INFO for documented native API adapters.
+RewriteRule ^api/index\.php(?:/|$) - [L]
 RewriteRule ^(?:assets/reports\.(?:js|css)|includes/(?:reports|report_http|report_formats|report_view)\.php)$ - [G,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
