@@ -1,9 +1,9 @@
 /* Declarative effect adapter. Data never becomes JavaScript; unknown operations fail closed. */
 (function (root, factory) {
   if (typeof module === "object" && module.exports)
-    module.exports = factory(require("./engine.js"), require("./operations.js"), require("./guards.js"), require("./resources.js"), require("./transitions.js"), require("./timing.js"), require("./events.js"), require("./restrictions.js"));
-  else root.YgoPlayRules = factory(root.YgoPlayEngine, root.YgoCalculatorOperations, root.YgoCalculatorGuards, root.YgoCalculatorResources, root.YgoCalculatorTransitions, root.YgoCalculatorTiming, root.YgoCalculatorEvents, root.YgoCalculatorRestrictions);
-})(typeof globalThis !== "undefined" ? globalThis : this, function (E, Operations, Guards, Resources, Transitions, Timing, Events, Restrictions) {
+    module.exports = factory(require("./engine.js"), require("./operations.js"), require("./guards.js"), require("./resources.js"), require("./transitions.js"), require("./timing.js"), require("./events.js"), require("./restrictions.js"), require("./integrity.js"));
+  else root.YgoPlayRules = factory(root.YgoPlayEngine, root.YgoCalculatorOperations, root.YgoCalculatorGuards, root.YgoCalculatorResources, root.YgoCalculatorTransitions, root.YgoCalculatorTiming, root.YgoCalculatorEvents, root.YgoCalculatorRestrictions, root.YgoCalculatorIntegrity);
+})(typeof globalThis !== "undefined" ? globalThis : this, function (E, Operations, Guards, Resources, Transitions, Timing, Events, Restrictions, Integrity) {
   "use strict";
   const field = (z) => E.isMonster(z) || /^s[1-5]$/.test(z) || z === "field";
   const zones = [
@@ -857,6 +857,7 @@
             "Requisito Xyz no acreditado",
           );
           E.validate(n);
+          Integrity.validate(n);
           if (!options.prepared && ["main1","main2"].includes(n.phase)) {
             n._rulePhaseActions=Timing.countPhaseAction(n);
           }

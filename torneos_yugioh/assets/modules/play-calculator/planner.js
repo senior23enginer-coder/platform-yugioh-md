@@ -1,8 +1,8 @@
 (function (root, factory) {
   if (typeof module === "object" && module.exports)
-    module.exports = factory(require("./engine.js"), require("./rules.js"), require("./restrictions.js"));
-  else root.YgoPlayPlanner = factory(root.YgoPlayEngine, root.YgoPlayRules, root.YgoCalculatorRestrictions);
-})(typeof globalThis !== "undefined" ? globalThis : this, function (E, R, Restrictions) {
+    module.exports = factory(require("./engine.js"), require("./rules.js"), require("./restrictions.js"), require("./integrity.js"));
+  else root.YgoPlayPlanner = factory(root.YgoPlayEngine, root.YgoPlayRules, root.YgoCalculatorRestrictions, root.YgoCalculatorIntegrity);
+})(typeof globalThis !== "undefined" ? globalThis : this, function (E, R, Restrictions, Integrity) {
   "use strict";
   const effects = {
     17768: [["search", "Buscar un monstruo Kashtira"]],
@@ -101,6 +101,7 @@
   }
   function solve(input, db, options = {}) {
     E.validate(input);
+    Integrity.validate(input);
     const structured = (db.rules || []).filter((r) => {
       try {
         R.validate(r);

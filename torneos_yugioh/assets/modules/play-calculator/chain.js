@@ -2,12 +2,13 @@
    resolve in reverse order. Opponent negations remain conditional declarations. */
 (function (root, factory) {
   if (typeof module === "object" && module.exports)
-    module.exports = factory(require("./engine.js"), require("./rules.js"), require("./chain-policy.js"));
-  else root.YgoPlayChain = factory(root.YgoPlayEngine, root.YgoPlayRules, root.YgoCalculatorChainPolicy);
-})(typeof globalThis !== "undefined" ? globalThis : this, function (E, R, Policy) {
+    module.exports = factory(require("./engine.js"), require("./rules.js"), require("./chain-policy.js"), require("./integrity.js"));
+  else root.YgoPlayChain = factory(root.YgoPlayEngine, root.YgoPlayRules, root.YgoCalculatorChainPolicy, root.YgoCalculatorIntegrity);
+})(typeof globalThis !== "undefined" ? globalThis : this, function (E, R, Policy, Integrity) {
   "use strict";
   function resolve(s, db) {
     E.validate(s);
+    Integrity.validate(s);
     const links = s.chain || [];
     const blocked = (reason) => ({ status: "unresolved", reason, branches: [] });
     if (!links.length || links.length > Policy.MAX_LINKS)

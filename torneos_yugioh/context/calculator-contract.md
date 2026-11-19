@@ -150,6 +150,16 @@ intérprete como el planificador consultan las restricciones efectivas, y el
 checkpoint preserva los turnos de expiración. No se atribuye duración a
 ninguna restricción de carta que el contrato no haya acreditado.
 
+## Integridad del escenario (tarea general 11)
+
+`assets/modules/play-calculator/integrity.js` añade una segunda validación
+del estado extendido del calculador: banderas booleanas, caducidad por turno,
+marcas de uso, eventos causales y conteos de fase. Los campos son opcionales
+para conservar escenarios anteriores; cuando existen deben tener estructura,
+tipos y fechas coherentes. El intérprete valida los estados resultantes y el
+planificador y resolvedor de cadenas validan los estados de entrada. La
+validación del tablero físico sigue correspondiendo a `engine.js`.
+
 `tests/calculator_contract_test.cjs` prueba el mismo contrato con dos decks
 sintéticos diferentes, ejecuta una operación compartida sin cambiar código
 por deck, y rechaza versión, identidad, campos, duplicados y operaciones
