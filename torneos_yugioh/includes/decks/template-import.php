@@ -76,10 +76,143 @@ function ygo_import_deck_template(PDO $pdo, array $file): string
         $id = (int) $pdo->lastInsertId();
         $insert = $pdo->prepare('INSERT INTO sx_ygo_deck_cards (deck_id, card_name, role, quantity, section, notes) VALUES (?, ?, ?, ?, ?, ?)');
         foreach ($data['cards'] as $card) $insert->execute([$id, $card['name'], '', $card['quantity'], $card['section'], '']);
+        // Only TXT-created decks are eligible for one-click GPT repository bootstrap.
+        $pdo->prepare('INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)')
+            ->execute(['deck', $id, 'import_deck_template', json_encode(['origin' => 'stationx_txt', 'name' => $data['name']], JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR)]);
         $pdo->commit();
         return 'deck_' . $id;
     } catch (Throwable $error) {
         if ($pdo->inTransaction()) $pdo->rollBack();
         throw $error;
     }
+}
+
+
+/** Build the exact native package from the current database inventory (no invented IDs). */
+function ygo_gpt_sync_files(array $inventory, string $app): array
+{
+    require_once __DIR__ . '/data-http.php';
+    $files = ygo_data_export_files($app, $inventory, null, [], []);
+    $folder = ygo_data_folder($files, (int)$inventory['deck']['id'], (string)$inventory['deck']['name']);
+    $source = [
+        'schema' => 'station-x-inventory-source/1',
+        'deck_id' => (int)$inventory['deck']['id'],
+        'deck_name' => (string)$inventory['deck']['name'],
+        'format' => (string)($inventory['format'] ?? 'tcg'),
+        'inventory_sha256' => (string)$inventory['inventory_sha256'],
+        'cards' => $inventory['cards'],
+        'origin' => 'stationx_txt',
+        'instructions' => 'Ejecuta manualmente los prompts A01–A10. No alterar el inventario ni publicar automáticamente.',
+    ];
+    $files[$folder . '/datos/stationx-origen.json'] = ygo_data_json($source);
+    return $files;
+}
+
+/** Fixed-host GitHub Contents client, injectable for isolated regression tests. */
+function ygo_gpt_github_request(string $method, string $path, ?array $payload = null): array
+{
+    $token = trim((string)(getenv('STATIONX_GITHUB_TOKEN') ?: ''));
+    if ($token === '' || !function_exists('curl_init')) {
+        throw new InvalidArgumentException('Configura STATIONX_GITHUB_TOKEN en el servidor y habilita PHP cURL antes de sincronizar.');
+    }
+    $segments = explode('/', $path);
+    foreach ($segments as $segment) {
+        if ($segment === '' || $segment === '.' || $segment === '..') throw new InvalidArgumentException('Ruta GitHub inválida.');
+    }
+    $url = 'https://api.github.com/repos/senior23enginer-coder/gpt-yugioh-promps-platform/contents/'
+        . implode('/', array_map('rawurlencode', $segments))
+        . '?ref=base';
+    $ch = curl_init($url);
+    curl_setopt_array($ch, [
+        CURLOPT_CUSTOMREQUEST => $method,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_FOLLOWLOCATION => false,
+        CURLOPT_TIMEOUT => 25,
+        CURLOPT_CONNECTTIMEOUT => 10,
+        CURLOPT_HTTPHEADER => [
+            'Accept: application/vnd.github+json',
+            'Authorization: Bearer ' . $token,
+            'X-GitHub-Api-Version: 2022-11-28',
+            'User-Agent: StationX-deck-sync',
+            'Content-Type: application/json',
+        ],
+    ]);
+    if ($payload !== null) curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR));
+    $raw = curl_exec($ch);
+    $status = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $failure = curl_error($ch);
+    curl_close($ch);
+    if ($raw === false) throw new InvalidArgumentException('No se pudo conectar con GitHub: ' . $failure);
+    $data = json_decode($raw, true);
+    return ['status' => $status, 'body' => is_array($data) ? $data : []];
+}
+
+/** Create only absent content; update ONLY the Station X inventory source with SHA check. */
+function ygo_gpt_sync_upload(array $files, ?callable $request = null): array
+{
+    $request ??= 'ygo_gpt_github_request';
+    $folder = ygo_data_folder($files, 0, 'deck');
+    $manifest = $folder . '/datos/stationx-origen.json';
+    $created = 0;
+    $updated = 0;
+    $unchanged = 0;
+    // Ensure the canonical content package and Markdown are created BEFORE the source marker.
+    $paths = array_keys($files);
+    usort($paths, static fn(string $a, string $b): int => ($a === $manifest ? 1 : 0) <=> ($b === $manifest ? 1 : 0));
+    foreach ($paths as $path) {
+        $lookup = $request('GET', '01_INFORMACION_PARA_IMPORTAR/decks/' . $path, null);
+        $existing = $lookup['body'] ?? [];
+        if (($lookup['status'] ?? 0) !== 404 && ($lookup['status'] ?? 0) !== 200) {
+            throw new InvalidArgumentException('No se pudo comprobar el archivo remoto: ' . $path);
+        }
+        if (($lookup['status'] ?? 0) === 200 && $path !== $manifest) {
+            // Never overwrite authored A01–A10, images, guides or the curated JSON.
+            $unchanged++;
+            continue;
+        }
+        if (($lookup['status'] ?? 0) === 200 && $path === $manifest) {
+            $raw = base64_decode(preg_replace('/\s+/', '', (string)($existing['content'] ?? '')), true);
+            $old = $raw === false ? null : json_decode($raw, true);
+            $new = json_decode($files[$path], true);
+            if (!is_array($old) || (int)($old['deck_id'] ?? 0) !== (int)($new['deck_id'] ?? -1)) {
+                throw new InvalidArgumentException('El directorio GPT contiene un origen incompatible. No se sobrescribió.');
+            }
+            if (($old['inventory_sha256'] ?? '') !== ($new['inventory_sha256'] ?? '')) {
+                throw new InvalidArgumentException('Inventario modificado: exporta y concilia manualmente antes de actualizar GPT.');
+            }
+            if ($old === $new) { $unchanged++; continue; }
+        }
+        $payload = [
+            'message' => ($lookup['status'] === 404 ? 'chore(decks): bootstrap TXT deck from Station X' : 'chore(decks): synchronize TXT deck source'),
+            'content' => base64_encode($files[$path]),
+            'branch' => 'base',
+        ];
+        if ($lookup['status'] === 200) {
+            if (!is_string($existing['sha'] ?? null)) throw new InvalidArgumentException('GitHub no devolvió SHA de control.');
+            $payload['sha'] = $existing['sha'];
+        }
+        $write = $request('PUT', '01_INFORMACION_PARA_IMPORTAR/decks/' . $path, $payload);
+        if (!in_array((int)($write['status'] ?? 0), [200, 201], true)) {
+            throw new InvalidArgumentException('GitHub rechazó el archivo ' . $path . '. Comprueba permisos Contents:write y conflictos de versión.');
+        }
+        if ($lookup['status'] === 404) $created++; else $updated++;
+    }
+    return ['folder' => $folder, 'created' => $created, 'updated' => $updated, 'unchanged' => $unchanged];
+}
+
+/** Explicit, permission-checked and CSRF-protected operation; never runs prompts. */
+function ygo_gpt_sync_txt_deck(PDO $pdo, int $deckId, string $csrf): string
+{
+    if ($deckId < 1) throw new InvalidArgumentException('Selecciona un deck creado desde TXT.');
+    if (!isset($_SESSION['sx_csrf']) || !is_string($_SESSION['sx_csrf'])
+        || !hash_equals($_SESSION['sx_csrf'], $csrf) || $csrf === '') {
+        throw new InvalidArgumentException('Sesión caducada. Recarga Station X e inténtalo otra vez.');
+    }
+    $audit = $pdo->prepare("SELECT id FROM sx_ygo_audit_log WHERE entity_type='deck' AND entity_id=? AND action='import_deck_template' LIMIT 1");
+    $audit->execute([$deckId]);
+    if (!$audit->fetchColumn()) throw new InvalidArgumentException('Solo los decks creados desde plantilla TXT pueden utilizar este envío inicial.');
+    $inventory = ygo_combo_inventory($pdo, $deckId, false, false);
+    $files = ygo_gpt_sync_files($inventory, dirname(__DIR__, 2));
+    $result = ygo_gpt_sync_upload($files);
+    return 'gpt_sync_' . $deckId . '_' . $result['created'] . '_' . $result['unchanged'];
 }
