@@ -30,6 +30,17 @@ foreach($state['checked_studies'] as $id=>$entry){
     foreach($r['cards'] as $card)foreach($card['slots'] as $s)$cards[]=['id'=>$s['card_id'],'deck_id'=>(int)$id,'card_name'=>$card['name'],'section'=>$s['section'],'quantity'=>$s['quantity'],'ygoprodeck_id'=>null];
     $inventory=['deck'=>['id'=>(int)$id,'name'=>$r['name']],'cards'=>$cards,'inventory_sha256'=>'fixture-'.$id];
     ygo_data_validate($r,$inventory);$count++;
+    if(in_array((int)$id,[671,677],true)) {
+        $quality=ygo_data_presentation_quality($r);
+        check($quality['routes']===($id==671?12:14),'Pilot route count changed in visual audit');
+        check($quality['steps']>0,'No documentary steps to display');
+        check(!$quality['visual_complete'],'Unillustrated legacy study wrongly certified as visual complete');
+        $fraud=$r;$fraud['presentation_contract']='station-x-visual-v1';
+        fails(fn()=>ygo_data_validate($fraud,$inventory),'False complete presentation contract was accepted');
+        // New import previews must tell the difference between a documentary
+        // route and a verified field with card placements.
+        check($quality['full_endboards']<=count($r['routes']),'Invalid endboard audit count');
+    }
     $files=ygo_data_sources($app,(int)$id,$entry);check(count($files)>0,'Original sources missing '.$id);
     foreach($files as $path=>$bytes)if(str_ends_with($path,'CONTENIDO_CURADO.md')){
         $updated=ygo_data_markdown($bytes,$r,(int)$id);ygo_data_validate($updated,$inventory);$raws++;

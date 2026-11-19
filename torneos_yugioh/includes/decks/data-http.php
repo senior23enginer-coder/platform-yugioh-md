@@ -203,6 +203,7 @@ function ygo_data_http(?string $appOverride=null): never {
                     'warning'=>$hasStructuredPackage?null:'Este ZIP de carpeta GPT no contiene datos/stationx-deck.json. Conserva el Markdown y las rutas estructuradas existentes, pero las novedades A01–A10 no se transfieren íntegramente al editor visual. Exporta Data desde Station X para preparar un paquete estructurado completo.',
                     'editorial'=>$record['schema'],
                     'visual_routes'=>count($record['routes']),
+                    'visual_quality'=>ygo_data_presentation_quality($record),
                     'calculator_schema'=>$record['calculator']['schema']??null,
                     'calculator_rules'=>count($record['calculator']['rules']??[]),
                     'calculator_status'=>empty($record['calculator']['rules'])?'SIN_REGLAS_DECLARATIVAS':'REQUIERE_VALIDACION_DEL_MOTOR',

@@ -19,6 +19,7 @@
                         <span class="deck-team-profile-card"><b>Equipo asociado</b><small data-profile-team></small></span>
                         <span><b>Arquetipo</b><small data-profile-archetype></small></span>
                         <span><b>Estilo</b><small data-profile-style></small></span>
+                        <span><b>Plan de juego</b><small data-profile-gameplan>Consulta la guía del deck para conocer sus líneas y recursos.</small></span>
                         <span data-profile-attributes></span>
                     </div>
                 </section>

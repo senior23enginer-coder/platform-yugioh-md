@@ -116,10 +116,62 @@ function ygo_data_markdown(string $raw,array $base,int $deckId): array {
     if(!$parsed&&empty($base['routes']))$data['routes']=[];else $data['routes']=array_values($by);
     $data['imported_source_text']=$raw;return $data;
 }
+/** Presentation readiness is separate from legal rulings and simulator coverage. */
+function ygo_data_presentation_quality(array $record): array {
+    $routes=is_array($record['routes']??null)?$record['routes']:[];
+    $steps=0;$illustrated=0;$fullBoards=0;$partialBoards=0;
+    foreach($routes as $route) {
+        if(!is_array($route))continue;
+        foreach($route['steps']??[] as $step) {
+            $steps++;
+            if(!empty($step['photos'])&&is_array($step['photos']))$illustrated++;
+        }
+        if(!empty($route['endboard']['variants']))$fullBoards++;
+        elseif(!empty($route['board']))$partialBoards++;
+    }
+    $style=is_array($record['profile']??null)?(string)($record['profile']['Estilo breve']??''):'';
+    $intro=is_array($record['profile']??null)?(string)($record['profile']['Resumen para ficha']??''):'';
+    $ready=trim($style)!==''&&trim($intro)!==''&&$steps>0&&$illustrated===$steps
+        &&$fullBoards===count($routes);
+    return ['routes'=>count($routes),'steps'=>$steps,'illustrated_steps'=>$illustrated,
+        'full_endboards'=>$fullBoards,'partial_endboards'=>$partialBoards,
+        'profile_summary'=>trim($style)!==''&&trim($intro)!=='',
+        'visual_complete'=>$ready];
+}
+
 function ygo_data_validate(array $record,array $inventory): void {
     $id=(int)$inventory['deck']['id'];
     if(($record['schema']??'')!=='station-x-curated-v62'||(int)($record['deck_id']??0)!==$id)throw new InvalidArgumentException('El contenido no corresponde al deck de esta ficha.');
     if(isset($record['calculator']))ygo_data_calculator("```json\n".ygo_data_json($record['calculator'])."\n```",$record,$id);
+    // New GPT packages may certify visual completeness. False certification is
+    // rejected; older documentary packages remain importable with an explicit warning.
+    if(isset($record['presentation_contract'])&&!in_array($record['presentation_contract'],['station-x-visual-v1'],true))
+        throw new InvalidArgumentException('Contrato visual desconocido.');
+    if(($record['presentation_contract']??'')==='station-x-visual-v1') {
+        $quality=ygo_data_presentation_quality($record);
+        if(!$quality['visual_complete'])throw new InvalidArgumentException(
+            'La entrega declara guía visual completa, pero faltan fotografías por paso, campos finales estructurados o resumen de estilo.'
+        );
+        foreach($record['routes'] as $route) {
+            foreach($route['steps'] as $step) {
+                if(!is_string($step['action']??null)||trim($step['action'])===''||!is_string($step['detail']??null)||trim($step['detail'])==='')
+                    throw new InvalidArgumentException('Una guía visual certificada no puede omitir su acción o detalle de paso.');
+                foreach($step['photos'] as $photo)if(!is_array($photo)||empty($photo['name'])||empty($photo['image']))
+                    throw new InvalidArgumentException('Fotografía incompleta en guía visual.');
+            }
+            foreach($route['endboard']['variants'] as $variant) {
+                if(!is_array($variant)||!in_array((int)($variant['columns']??0),[3,5],true)
+                   ||!is_string($variant['layout_note']??null)||trim($variant['layout_note'])===''
+                   ||!is_array($variant['monster']??null)||!is_array($variant['spell']??null)||!is_array($variant['field']??null))
+                    throw new InvalidArgumentException('Campo final sin zonas documentadas.');
+                $onBoard=array_merge($variant['monster'],$variant['spell'],$variant['field']);
+                if(!$onBoard&&empty($variant['empty_board_reason']))
+                    throw new InvalidArgumentException('Campo final vacío sin justificación documental.');
+                foreach($onBoard as $card)if(!is_array($card)||!is_string($card['name']??null)||trim($card['name'])===''||!is_string($card['image']??null)||trim($card['image'])==='')
+                    throw new InvalidArgumentException('Carta del campo final sin identidad o fotografía.');
+            }
+        }
+    }
     foreach(['cards','routes','skills','profile','engine_maps','decisions','practice'] as $key)if(!isset($record[$key])||!is_array($record[$key]))throw new InvalidArgumentException('Falta la sección '.$key.'.');
     if(count($record['cards'])>300||count($record['routes'])>500)throw new InvalidArgumentException('Demasiadas cartas o rutas.');
     $native=[];foreach($inventory['cards'] as $c)$native[(int)$c['id']]=$c;

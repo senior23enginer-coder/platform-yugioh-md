@@ -87,8 +87,9 @@
       if (!stats) return {label:label+': sin datos',detail:'No se ha podido consultar la clasificación actual.'};
       const pool = root.YgoGlobalRanking.build({...source(), allDecks:[...(source().allDecks || []), deck]});
       const row = pool.rows.find(row => row.deck_id === Number(deck.id));
-      const coverage = `Catálogo completo: ${pool.total} decks TCG/OCG. Excluye Rush y GOAT.`;
-      if (row?.position != null) return {label:`${label}: #${row.position} de ${pool.total}`,detail:coverage+' Puesto según resultados confirmados; incluye todas las ligas y divisiones.'};
+      // Ranking eligibility belongs in the ranking screen, not repeated on each deck profile.
+      const coverage = ''; // Context for ranking stays in the global ranking screen.
+      if (row?.position != null) return {label:`${label}: #${row.position} de ${pool.total}`,detail:''};
       if (row?.state === 'INACTIVO') return {label:label+': inactivo',detail:coverage+' Sin puesto por inactividad.'};
       if (row?.state === 'REACTIVACION PENDIENTE') return {label:label+': pendiente de reactivación',detail:coverage+' Debe completar las partidas de reactivación.'};
       if (!deck.team_id) return {label:label+': sin puesto',detail:coverage+' Asocia un equipo para consultar su clasificación.'};

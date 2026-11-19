@@ -20,6 +20,22 @@
       studyState=false;
       const checked=state.checked_studies?.[String(deck.id)];
       if(checked){
+        // The public deck overview and the guide use the SAME verified study.
+        // A stale response must never update another deck's profile.
+        const source=checked.path;
+        if(typeof source==='string'&&/^\.\/assets\/editorial\/[a-zA-Z0-9_./-]+\.json$/.test(source)
+          &&!source.slice(2).split('/').includes('..')){
+          fetch(source,{cache:'no-store',credentials:'same-origin'}).then(r=>r.ok?r.json():null).then(study=>{
+            if(current!==ticket||!study||study.schema!=='station-x-curated-v62'||Number(study.deck_id)!==Number(deck.id))return;
+            const contract=root.YgoStudyPresentation;
+            const style=contract?.style(study.profile);
+            const brief=contract?.brief(study.profile);
+            const styleElement=document.querySelector('[data-profile-style]');
+            const planElement=document.querySelector('[data-profile-gameplan]');
+            if(style&&styleElement)styleElement.textContent=style;
+            if(planElement){planElement.textContent=brief||'Consulta la guía de juego para conocer los requisitos y recursos.';}
+          }).catch(()=>{});
+        }
         emptyState=false;
         await root.YgoCheckedStudy.render(host,deck,checked,()=>current===ticket);
         if(current!==ticket)return;
