@@ -104,6 +104,8 @@ function ygo_data_http(?string $appOverride=null): never {
             $upload=$_FILES['package']??null;if(!$upload||$upload['error']!==UPLOAD_ERR_OK)throw new InvalidArgumentException('No se recibió el ZIP. Comprueba el tamaño máximo de subida del servidor.');
             if($upload['size']>48*1024*1024)throw new InvalidArgumentException('El ZIP debe pesar menos de 48 MB.');
             $files=ygo_data_normalize_files(ygo_data_archive($upload['tmp_name']));$sources=ygo_data_sources($app,$id,$entry);$record=ygo_data_prepare($app,$files,$inventory,$current,$sources);
+            $hasStructuredPackage=false;
+            foreach(array_keys($files) as $name)if(basename($name)==='stationx-deck.json'){$hasStructuredPackage=true;break;}
             $temp=tempnam(sys_get_temp_dir(),'ygo-import-');if(!copy($upload['tmp_name'],$temp))throw new RuntimeException('No se pudo preparar la carga.');
             $old=$_SESSION['ygo_deck_data_pending']??null;if($old&&is_file($old['path']))unlink($old['path']);
             $ticket=bin2hex(random_bytes(24));$saved=ygo_data_saved($pdo,$id);
@@ -112,7 +114,9 @@ function ygo_data_http(?string $appOverride=null): never {
             foreach($record['routes'] as $r){if(!isset($before[$r['id']]))$new++;elseif(ygo_data_json($r)!==ygo_data_json($before[$r['id']]))$changed++;}
             $result=['ticket'=>$ticket,'deck'=>$inventory['deck']['name'],'cards'=>count($record['cards']),'routes'=>count($record['routes']),'new_routes'=>$new,'changed_routes'=>$changed,'removed_routes'=>count(array_diff(array_keys($before),array_column($record['routes'],'id'))),'saved_revisions'=>count($saved),'inventory_changed'=>false,'candidate'=>$record,'native_cards'=>$inventory['cards'],'skills'=>$inventory['skills']??[],
                 'compatibility'=>[
-                    'package'=>'station-x-deck-package/1',
+                    'package'=>$hasStructuredPackage?'station-x-deck-package/1':'legacy-markdown-folder',
+                    'import_mode'=>$hasStructuredPackage?'estructurado':'documental',
+                    'warning'=>$hasStructuredPackage?null:'Este ZIP de carpeta GPT no contiene datos/stationx-deck.json. Conserva el Markdown y las rutas estructuradas existentes, pero las novedades A01–A10 no se transfieren íntegramente al editor visual. Exporta Data desde Station X para preparar un paquete estructurado completo.',
                     'editorial'=>$record['schema'],
                     'visual_routes'=>count($record['routes']),
                     'calculator_schema'=>$record['calculator']['schema']??null,
