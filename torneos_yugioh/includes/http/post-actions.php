@@ -10,6 +10,8 @@ require_once __DIR__ . '/../decks/template-import.php';
 
 function ygo_handle_post(PDO $pdo): ?string
 {
+    // GitHub synchronization is external I/O with read-only DB queries; do not hold the event write lock.
+    if (($_POST['action'] ?? '') === 'sync_txt_deck_to_gpt') return ygo_handle_post_serialized($pdo);
     if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'POST' || !ygo_can_edit()) return ygo_handle_post_serialized($pdo);
     return ygo_with_event_write_lock($pdo, fn() => ygo_handle_post_serialized($pdo));
 }
