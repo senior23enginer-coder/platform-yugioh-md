@@ -72,6 +72,9 @@ function ygo_data_validate_portable_inventory(array $envelope,array $inventory,s
     }
     $record=$envelope['record']??[];
     if(!is_array($record)||!is_array($record['cards']??null))throw new InvalidArgumentException('Faltan fichas del deck.');
+    $expectedFormat=match($inventory['format']??''){'tcg'=>'tcg_advanced','rush'=>'rush_duel','goat'=>'goat',default=>$inventory['format']??'unspecified'};
+    if(($record['format']??'')!==$expectedFormat)throw new InvalidArgumentException('El formato del paquete GPT no corresponde al deck.');
+
     $slots=[];
     foreach($record['cards'] as $card) {
         if(!is_array($card)||!is_array($card['slots']??null))throw new InvalidArgumentException('Ficha sin cartas.');
@@ -93,7 +96,10 @@ function ygo_data_prepare(string $app,array $files,array $inventory,?array $curr
     }
     if($envelope){
         if(($envelope['schema']??'')!=='station-x-deck-package/1'||(int)($envelope['deck_id']??0)!==$id)throw new InvalidArgumentException('Este ZIP pertenece a otro deck.');
-        if(($envelope['inventory_binding']??'')==='deck-slots-v1'){
+        $portable=($envelope['inventory_binding']??'')==='deck-slots-v1';
+        if($portable){
+            $document=$envelope['source_document']??null;
+            if(!is_string($document)||!isset($files[$document])||!preg_match('/CONTENIDO_CURADO\\.md$/i',$document))throw new InvalidArgumentException('El ZIP GPT no contiene su documento curado original.');
             ygo_data_validate_portable_inventory($envelope,$inventory,$verifiedFolder);
         }elseif(($envelope['inventory_sha256']??'')!==$inventory['inventory_sha256']){
             throw new InvalidArgumentException('La lista de cartas cambió. Exporta la data actual y pide a ChatGPT actualizar ese paquete.');
@@ -127,6 +133,11 @@ function ygo_data_prepare(string $app,array $files,array $inventory,?array $curr
     // A source package cannot replace a manually saved editor revision. The creator continues to use its native history.
     foreach($record['routes'] as &$route)foreach(['native_editor_document','native_editor_cards','native_editor_revision'] as $k)unset($route[$k]);unset($route);
     ygo_data_validate($record,$inventory);
+    if(!empty($portable) && $current && is_array($current['routes']??null)){
+        $oldIds=array_column($current['routes'],'id');
+        $newIds=array_column($record['routes'],'id');
+        if(array_diff($oldIds,$newIds))throw new InvalidArgumentException('El ZIP GPT omite rutas ya existentes en Station X. No se sobrescribió el estudio.');
+    }
     array_walk_recursive($record,static function(&$v,$k)use($files,$app){
         if(!is_string($v)||!in_array($k,['image','full_image'],true)||$v==='')return;
         $source=ygo_data_source_image($files,$v);if($source)$v=$source;
