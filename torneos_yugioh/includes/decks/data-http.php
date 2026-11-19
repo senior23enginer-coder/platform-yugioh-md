@@ -40,7 +40,7 @@ function ygo_data_safe_markdown_images(string $markdown, array $files): string {
  * No hashes are forged: validate ALL inventory row IDs/zones/quantities against
  * the current native database inventory, and block extra/missing/duplicate rows.
  */
-function ygo_data_validate_portable_inventory(array $envelope,array $inventory,string $folder): void {
+function ygo_data_validate_portable_inventory(array $envelope,array $inventory,string $folder,?array $current): void {
     if(($envelope['inventory_binding']??'')!=='deck-slots-v1'
        ||($envelope['content_mode']??'')!=='structured'
        ||($envelope['package_root']??'')!==$folder
@@ -72,7 +72,26 @@ function ygo_data_validate_portable_inventory(array $envelope,array $inventory,s
     }
     $record=$envelope['record']??[];
     if(!is_array($record)||!is_array($record['cards']??null))throw new InvalidArgumentException('Faltan fichas del deck.');
-    $expectedFormat=match($inventory['format']??''){'tcg'=>'tcg_advanced','rush'=>'rush_duel','goat'=>'goat',default=>$inventory['format']??'unspecified'};
+    // Older decks can be absent from deck-deliveries.json; that source returns
+    // "unspecified" even though their verified current study has a real format.
+    $declaredFormat=(string)($inventory['format']??'unspecified');
+    $expectedFormat=match($declaredFormat){
+        'tcg','tcg_advanced'=>'tcg_advanced',
+        'rush','rush_duel'=>'rush_duel',
+        'goat'=>'goat',
+        'tcg_traditional'=>'tcg_traditional',
+        default=>'unspecified',
+    };
+    if($expectedFormat==='unspecified'){
+        $studyFormat=$current['format']??null;
+        if(!is_array($current)||($current['schema']??null)!=='station-x-curated-v62'
+            ||(int)($current['deck_id']??0)!==(int)$inventory['deck']['id']
+            ||!is_string($studyFormat)
+            ||!in_array($studyFormat,['tcg_advanced','tcg_traditional','rush_duel','goat'],true)){
+            throw new InvalidArgumentException('No se pudo verificar el formato actual del deck. Exporta Data desde Station X.');
+        }
+        $expectedFormat=$studyFormat;
+    }
     if(($record['format']??'')!==$expectedFormat)throw new InvalidArgumentException('El formato del paquete GPT no corresponde al deck.');
 
     $slots=[];
@@ -100,7 +119,7 @@ function ygo_data_prepare(string $app,array $files,array $inventory,?array $curr
         if($portable){
             $document=$envelope['source_document']??null;
             if(!is_string($document)||!isset($files[$document])||!preg_match('/CONTENIDO_CURADO\\.md$/i',$document))throw new InvalidArgumentException('El ZIP GPT no contiene su documento curado original.');
-            ygo_data_validate_portable_inventory($envelope,$inventory,$verifiedFolder);
+            ygo_data_validate_portable_inventory($envelope,$inventory,$verifiedFolder,$current);
         }elseif(($envelope['inventory_sha256']??'')!==$inventory['inventory_sha256']){
             throw new InvalidArgumentException('La lista de cartas cambió. Exporta la data actual y pide a ChatGPT actualizar ese paquete.');
         }
