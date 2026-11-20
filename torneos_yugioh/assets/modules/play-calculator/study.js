@@ -127,7 +127,12 @@
           Contract.validate(packageData, { deckId: catalog.id, format: study.format,
             actorCids: [...deckActorCids] });
           const protectedIds = new Set(verified.map(rule => rule.id));
-          const conflict = packageData.rules.find(rule => protectedIds.has(rule.id));
+          // A portable rule may replace a built-in fallback only when the
+          // complete verified definition matches byte-for-byte as JSON.
+          // A matching ID with different guards, costs or outcomes is rejected.
+          const conflict = packageData.rules.find(rule =>
+            protectedIds.has(rule.id) &&
+            !verified.some(fallback => JSON.stringify(fallback) === JSON.stringify(rule)));
           if (conflict)
             throw Error("Regla importada colisiona con respaldo verificado: " + conflict.id);
           imported = packageData.rules;
@@ -139,7 +144,11 @@
         }
       }
       for (const rule of imported) db.rules.push(E.clone(rule));
-      for (const rule of verified) db.rules.push(E.clone(rule));
+      // Identical portable definitions take precedence; built-in rules still
+      // supply a safe fallback when a study has no executable contract.
+      const portableIds = new Set(imported.map(rule => rule.id));
+      for (const rule of verified)
+        if (!portableIds.has(rule.id)) db.rules.push(E.clone(rule));
     }
     return db;
   }
