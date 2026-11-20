@@ -157,7 +157,10 @@
         sourceStatus:
           r.editorial_status ||
           "Ruta documental; condiciones pendientes de comprobar",
+        // Editorial steps are *not* executable transitions merely because
+        // the route is current. Preserve legacy reading eligibility separately.
         executable: !r.historical,
+        calculatorVerified: false,
         steps: (r.steps || []).map((p) =>
           [p.action, p.detail].filter(Boolean).join(" ? "),
         ),
