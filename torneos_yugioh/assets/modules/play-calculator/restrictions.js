@@ -15,7 +15,8 @@
     // Heat Wave outlives the opponent's intervening turn, and expires at
     // the start of its controller's next Draw Phase (two duel turns later).
     if (state._ruleFlags?.effectMonsterSummonBlocked &&
-        (state.turn >= (state._ruleFlagTurns?.effectMonsterSummonBlocked ?? Infinity) + 2))
+        state.turn >= (state._ruleFlagTurns?.effectMonsterSummonBlocked ?? Infinity) +
+          (state.practice === true ? 1 : 2))
       delete flags.effectMonsterSummonBlocked;
     return flags;
   }
