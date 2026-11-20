@@ -193,7 +193,9 @@
           g.allowedCids.every((cid) => Number.isInteger(cid) && cid > 0),
         "El guardia de monstruos permitidos requiere identidades y campo boca arriba acreditados");
       } else if (g.kind === "event") {
-        check(g.event === "owned_monster_destroyed_by_effect_this_turn"
+        check(g.event === "opponent_main_deck_add"
+          ? g.side === "opponent" && g.currentTurn === true && Object.keys(g).length === 4
+          : g.event === "owned_monster_destroyed_by_effect_this_turn"
           ? Object.keys(g).length === 2
           : ["destroy", "summon", "fusion_summon"].includes(g.event) &&
             (g.event !== "destroy" || g.by === "effect") &&
