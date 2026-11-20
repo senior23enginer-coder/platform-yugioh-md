@@ -47,6 +47,27 @@
       ["Sólo se modela la búsqueda de Riseheart; las otras elecciones y efectos de Fenrir siguen pendientes."],
     )];
     if (id === 671) return [
+      // Second exact one-target mode: banish one identified non-actor card
+      // from hand face down AT RESOLUTION (not as an activation cost).
+      ...["self","opponent"].flatMap(side => ["main","extra"].map(section => ({
+        ...rule(671,"671:gordian:one-monster-one-hand",
+          "Rebanador Gordiano: devolver un monstruo boca arriba desterrando 1 carta de mano",
+          21203,official(21203),
+          [{op:"move",ref:"payment",to:"banished",position:"set"},
+           {op:"move",ref:"target",to:section==="extra"?"extra":"hand",position:"attack"}],
+          [],
+          ["Variante verificada para un monstruo boca arriba y una carta propia distinta de Gordiano en mano. El destierro boca abajo se realiza en resolución y la carta devuelta va al propietario. No reproduce múltiples objetivos, pagos combinados ni cadenas complejas. Requiere Side swap a Main."],
+        ),
+        actor:{side:"self",zones:["hand"],cid:21203},
+        guards:[{kind:"state",field:"active",values:["self"]},
+          {kind:"state",field:"phase",values:["main1","main2"]},{kind:"phaseStart"}],
+        select:[
+          {ref:"payment",selector:{side:"self",zones:["hand"]}},
+          {ref:"target",selector:{side,zones:["monsters"],section,faceUp:true}}
+        ],
+        afterResolution:[{op:"move",ref:"actor",to:"graveyard",position:"attack"}],
+        activation:true,oncePerTurn:false,cannotBeNegated:true,noChainReplay:true
+      }))),
       // One-target Gordian Slicer alternative, with six *identified* physical
       // Extra Deck cards paid only during resolution. This intentionally does
       // not model multiple targets or alternative hand banishment.
