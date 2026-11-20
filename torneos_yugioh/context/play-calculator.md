@@ -29,6 +29,18 @@ en orden inverso. `engine.js` valida y modifica copias del escenario sin DOM.
    de deduplicación. No existe aún un contrato unificado y versionado para
    todos los eventos, restricciones temporales y efectos simultáneos.
 
+**Integridad del contrato portable (Memento, noviembre 2026):** un efecto puede
+tener varias reglas de ejecución correspondientes a objetivos, materiales o
+zonas alternativas. El contrato `station-x-calculator/1` admite varias
+definiciones *distintas* con un mismo `id` cuando coinciden identidad del
+actor, límite de uso por turno/nombre, condición de activación y velocidad.
+Rechaza definiciones idénticas duplicadas o variantes con políticas
+incompatibles. La importación compara definiciones completas y conserva
+las variantes de respaldo que no estén incluidas en el paquete. La regresión
+`calculator_portable_variant_preservation_test.cjs` comprueba las 42
+alternativas verificadas de Fiesta de Huesos, tanto con importación parcial
+como completa; esta prueba no certifica las 12 rutas A09.
+
 **Criterios de entrada para la siguiente tarea (contrato universal):**
 
 - Definir una única identidad de deck/formato, inventario exacto y referencias
