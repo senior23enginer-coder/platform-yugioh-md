@@ -2,3 +2,39 @@
 .eb-extra-monsters>.eb-emz-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.eb-emz-cell{border:1px dashed #8399a6;border-radius:7px;padding:6px;min-width:0;font-size:11px;text-align:center}.eb-emz-cell>.eb-item{max-width:100%}@media(max-width:650px){.eb-extra-monsters>.eb-emz-grid{gap:4px}.eb-emz-cell{padding:3px;font-size:9px}}
 
 .eb-preview{display:grid;gap:8px;width:100%;padding:12px;border:1px solid #578879;border-radius:12px;background:radial-gradient(ellipse,#254c45,#0a252c);box-sizing:border-box}.eb-preview-caption{font-size:11px;line-height:1.5;color:#b9d6cb}.eb-preview-caption:first-child{font-size:13px;font-weight:700;color:#eafff5}.eb-preview-row{display:grid;grid-template-columns:repeat(var(--eb-columns),minmax(0,1fr));gap:5px}.eb-preview-slot{display:grid;place-items:center;aspect-ratio:1/1.45;position:relative;min-width:0;border:1px solid #688b7955;border-radius:3px;background:#03151266;overflow:hidden}.eb-preview-slot img{width:100%;height:100%;object-fit:contain}.eb-preview-slot .eb-preview-defence{width:69%;height:69%;transform:rotate(90deg);object-fit:contain}.eb-preview-back{position:absolute;inset:4px;display:grid;place-items:center;background:repeating-radial-gradient(ellipse,#17120d 0 3px,#704524 4px 6px);color:#fff;font-size:10px;text-shadow:0 1px 3px #000}.eb-preview-extras{display:flex;justify-content:center;gap:12px}.eb-preview-extras .eb-preview-slot{width:19%}.eb-preview-field,.eb-preview-key{font-size:12px;line-height:1.6;color:#e0f3eb}
+
+
+/* Explicit contrast for endboards embedded in the dark deck-guide modal.
+   Do not inherit the modal's near-white foreground on light board surfaces. */
+.eb-root .eb-layout-note,
+.eb-root .eb-layout-note strong{color:#173448!important}
+.eb-root .eb-arena,
+.eb-root .eb-arena h5,
+.eb-root .eb-arena p,
+.eb-root .eb-arena small,
+.eb-root .eb-arena .eb-item figcaption,
+.eb-root .eb-arena .eb-item figcaption strong,
+.eb-root .eb-arena .eb-item figcaption span,
+.eb-root .eb-arena .eb-item small,
+.eb-root .eb-resource-zones,
+.eb-root .eb-resource-zones h5,
+.eb-root .eb-resource-zones p,
+.eb-root .eb-resource-zones .eb-item figcaption,
+.eb-root .eb-resource-zones .eb-item figcaption strong,
+.eb-root .eb-resource-zones .eb-item figcaption span,
+.eb-root .eb-skill,
+.eb-root .eb-conditional{color:#173448!important}
+.eb-root .eb-opponent,
+.eb-root .eb-opponent h5,
+.eb-root .eb-opponent p,
+.eb-root .eb-opponent small{color:#203b4c!important}
+.eb-root .eb-zone,
+.eb-root .eb-field,
+.eb-root .eb-extra-monsters,
+.eb-root .eb-emz-cell{color:#203b4c}
+.eb-root .eb-empty{color:#425c50!important}
+.eb-root .eb-resource-zones>section,
+.eb-root .eb-skill,
+.eb-root .eb-conditional{background:#eff4f7}
+.eb-root .eb-arena .eb-card-back,
+.eb-root .eb-arena .eb-preview-back{color:#fff!important}
