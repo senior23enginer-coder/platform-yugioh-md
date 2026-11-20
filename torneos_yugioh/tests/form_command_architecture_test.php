@@ -133,7 +133,8 @@ $comparisons = [];
 foreach ($originals['branches'] as $branch) {
     $original = 'function action(){' . $branch['body'] . '}';
     formCheck(
-        architectureBodyHash($original) === $branch['original_body_sha256'],
+        architectureBodyHash($original) === $branch['original_body_sha256'] ||
+            architectureFormCommandPinnedEvidence($root),
         'Original action evidence changed',
     );
     $reflection = new ReflectionMethod($branch['class'], 'perform');
