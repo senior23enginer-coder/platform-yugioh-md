@@ -47,6 +47,31 @@
       ["Sólo se modela la búsqueda de Riseheart; las otras elecciones y efectos de Fenrir siguen pendientes."],
     )];
     if (id === 671) return [
+      // One-target Gordian Slicer alternative, with six *identified* physical
+      // Extra Deck cards paid only during resolution. This intentionally does
+      // not model multiple targets or alternative hand banishment.
+      ...["self","opponent"].flatMap(side => ["main","extra"].map(section => ({
+        ...rule(671,"671:gordian:one-monster-six-extra",
+          "Rebanador Gordiano: devolver un monstruo boca arriba tras desterrar 6 del Extra",
+          21203,official(21203),
+          [{op:"banishExtraFaceDown",refs:["ex1","ex2","ex3","ex4","ex5","ex6"],count:6},
+           {op:"move",ref:"target",to:section==="extra"?"extra":"hand",position:"attack"}],
+          [],
+          ["Variante verificada para UN monstruo visible y seis cartas físicas concretas del Extra. La prohibición de negar la activación/efecto es obligatoria. La elección alternativa de desterrar de mano, varias cartas objetivo y las cadenas complejas siguen sin modelar. Requiere Side swap a Main antes del duelo."],
+        ),
+        actor:{side:"self",zones:["hand"],cid:21203},
+        guards:[{kind:"state",field:"active",values:["self"]},
+          {kind:"state",field:"phase",values:["main1","main2"]},
+          {kind:"phaseStart"}],
+        select:[
+          ...[20216,19878,16845,20389,19188,20225].map((cid,i)=>({
+            ref:"ex"+(i+1),selector:{side:"self",zones:["extra"],cid}
+          })),
+          {ref:"target",selector:{side,zones:["monsters"],section,faceUp:true}}
+        ],
+        afterResolution:[{op:"move",ref:"actor",to:"graveyard",position:"attack"}],
+        activation:true,oncePerTurn:false,cannotBeNegated:true,noChainReplay:true
+      }))),
       ...["self","opponent"].flatMap(side => ["main","extra"].map(section => ({
         ...rule(671, "671:typhon:detach-bounce",
           "TY-PHON: desacoplar un material y devolver un monstruo a su propietario",
