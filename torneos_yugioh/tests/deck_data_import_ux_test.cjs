@@ -1,0 +1,18 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const app=path.resolve(__dirname,'..');
+const ui=fs.readFileSync(path.join(app,'assets/modules/deck-data/ui.js'),'utf8');
+const css=fs.readFileSync(path.join(app,'assets/modules/deck-data/styles.css'),'utf8');
+const page=fs.readFileSync(path.join(app,'includes/presentation/screens/deck_ficha.php'),'utf8');
+const server=fs.readFileSync(path.join(app,'includes/decks/data-http.php'),'utf8');
+const profile=fs.readFileSync(path.join(app,'assets/source/javascript/19-deck-profile.js'),'utf8');
+for(const phrase of ['XMLHttpRequest','xhr.upload.onprogress','event.lengthComputable','[data-dd-progress-bar]','Validando el contenido','Cerrar y volver a la ficha','stationx:deck-data-return'])assert(ui.includes(phrase),'Missing import experience: '+phrase);
+assert(ui.includes('dialog.close()')&&ui.includes('root.location.reload()'),'Success must refresh the selected deck after closing the importer');
+assert(ui.includes('new Intl.DateTimeFormat')&&ui.includes('timeZone:\'America/Bogota\''),'Display recorded timestamp in Colombian time');
+assert(page.includes('data-deck-last-updated')&&!page.includes('12 secciones'),'Deck header should show last imported timestamp, never a static section count');
+assert(server.includes("'updated_at'=>is_string($current['folder_delivery']['imported_at']"),'Timestamp must originate from stored import metadata');
+assert(profile.includes("sessionStorage.getItem('stationx:deck-data-return')"),'After refresh the original deck must be restored');
+assert(css.includes('.deck-data-progress')&&css.includes('.deck-last-updated'),'Progress and update label require responsive styling');
+console.log('Deck data import UX contracts verified');
