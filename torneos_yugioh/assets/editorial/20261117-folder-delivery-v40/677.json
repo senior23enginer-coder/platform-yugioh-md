@@ -155,6 +155,154 @@
           "Procedimiento propio del monstruo Horus, no efecto activado de Sarcófago; se modela solo si el jugador controla Sarcófago del Rey boca arriba y tiene una zona de monstruo libre.",
           "No aplica efectos adicionales ni resuelve cadenas del rival."
         ]
+      },
+      {
+        "version": 1,
+        "id": "677:smiger:destroy-citree",
+        "deckId": 677,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Smiger en Campo: destruir carta propia boca arriba e Invocar Citree del Deck",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12608&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 12608,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "target",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "field-all"
+              ],
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "flag",
+            "flag": "machineSynchroOnly",
+            "value": true,
+            "duration": "turn"
+          },
+          {
+            "op": "destroy",
+            "ref": "target",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 12606,
+            "from": "deck",
+            "to": "free-monster",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "summonFromDeck"
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "oncePerName": true,
+        "assumptions": [
+          "Caso acreditado A09 C01: sólo Invoca Citree del Deck; el jugador puede destruir a Smiger u otra carta propia boca arriba. No se deduce ni ejecuta todavía la Sincronía posterior en turno rival.",
+          "La restricción del Extra limita las Invocaciones Especiales del resto de este turno a monstruos Sincronía Máquina; se registra con vencimiento por turno."
+        ]
+      },
+      {
+        "version": 1,
+        "id": "677:smiger:graveyard-search",
+        "deckId": 677,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Smiger en Cementerio: desterrarse para añadir Inclusión Cristron del Deck",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12608&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "graveyard"
+          ],
+          "cid": 12608
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          },
+          {
+            "kind": "flag",
+            "flag": "graveyardBlocked",
+            "value": false
+          }
+        ],
+        "select": [],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "banished",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 20798,
+            "from": "deck",
+            "to": "hand",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "oncePerName": true,
+        "assumptions": [
+          "Selección acreditada para esta lista: Inclusión Cristron está en el Main y debe seguir disponible en el Deck; otras Mágicas/Trampas Crystron no están modeladas en esta variante.",
+          "Comparte el límite de usar sólo un efecto de Smiger por turno, incluso entre copias."
+        ]
       }
     ]
   },
