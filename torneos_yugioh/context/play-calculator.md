@@ -41,6 +41,18 @@ las variantes de respaldo que no estén incluidas en el paquete. La regresión
 alternativas verificadas de Fiesta de Huesos, tanto con importación parcial
 como completa; esta prueba no certifica las 12 rutas A09.
 
+**Entrega portable activa de Memento (20-11-2026):** la instantánea editorial
+`20261117-folder-delivery-v40/671.json` y la entrega canónica del repositorio
+de prompts contienen ahora las mismas **226 variantes acotadas con 38 IDs
+de efecto**. `Study.bind` acepta esas reglas sin duplicar los respaldos.
+El importador PHP permite hasta 1000 definiciones diferentes por paquete,
+valida los IDs compartidos y el procedimiento especial TY-PHON, y rechaza
+duplicados o actores ajenos. Las pruebas focales incluyen carga e
+interpretación de la secuencia Goblin → Desvantasma → recuperación desde el
+estudio real. **No existe certificación integral de los 34 controles A07 ni
+reproducción certificada de las 12 rutas A09**, y la suite nativa completa
+debe ejecutarse antes de desplegar a producción.
+
 **Criterios de entrada para la siguiente tarea (contrato universal):**
 
 - Definir una única identidad de deck/formato, inventario exacto y referencias
