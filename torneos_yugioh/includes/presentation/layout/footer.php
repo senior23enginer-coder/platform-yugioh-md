@@ -52,14 +52,14 @@ if (is_file($stationxReleasePath)) {
 <script src="./assets/lp-sound.js?v=20261027-sound-106" defer></script>
 <script src="./assets/storage-maintenance.js?v=20261028-cleanup-113" defer></script>
 <script src="./assets/news.js?v=20261028-news-115" defer></script>
-<script src="./assets/modules/play-calculator/engine.js?v=20261120-tcg-ocg-1" defer></script>
+<script src="./assets/modules/play-calculator/engine.js?v=20261120-coverage-1" defer></script>
 <script src="./assets/modules/play-calculator/hand-practice.js?v=20261113-hand-practice-170" defer></script>
 <script src="./assets/modules/play-calculator/storage.js?v=20261103-board-129" defer></script>
 <script src="./assets/modules/play-calculator/card-menu.js?v=20261116-actions-1" defer></script>
 <script src="./assets/modules/play-calculator/rules.js?v=20261118-block1-6" defer></script>
 <script src="./assets/modules/play-calculator/planner.js?v=20261120-state-horus-1" defer></script>
 <script src="./assets/modules/play-calculator/verified-rules.js?v=20261118-memento-effects-5" defer></script>
-<script src="./assets/modules/play-calculator/study.js?v=20261118-verified-1" defer></script><script src="./assets/modules/play-calculator/chain.js?v=20261118-chain-2" defer></script><script src="./assets/modules/play-calculator/ui.js?v=20261120-state-analysis-1" defer></script>
+<script src="./assets/modules/play-calculator/study.js?v=20261120-coverage-1" defer></script><script src="./assets/modules/play-calculator/chain.js?v=20261118-chain-2" defer></script><script src="./assets/modules/play-calculator/ui.js?v=20261120-coverage-1" defer></script>
 <script src="./assets/modules/combo-creator/model.js?v=20261103-combos-133" defer></script>
 <script src="./assets/modules/combo-creator/step-lesson.js?v=20261113-step-lessons-173" defer></script>
 <script src="./assets/modules/combo-creator/documented-import.js?v=20261116-folder-import-1" defer></script>

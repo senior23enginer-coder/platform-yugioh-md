@@ -558,6 +558,8 @@
           );
         if (r.binding !== s.self.signature)
           pending.push("La lista cambió desde que se preparó esta ruta.");
+        if (r.calculatorVerified === false)
+          pending.push("Ruta A09 documental: no hay evidencia de ejecución íntegra por el motor; los pasos descritos no se simulan automáticamente.");
         if (s.lp.self === 0 || s.lp.opponent === 0)
           missing.push(
             "Uno de los participantes tiene 0 LP; revisa el estado antes de estudiar otra jugada.",
