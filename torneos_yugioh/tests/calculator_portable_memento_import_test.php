@@ -29,7 +29,7 @@ $foreign=$study['calculator'];
 $foreign['rules'][0]['actor']['cid']=999999;
 $reject($foreign,'foreign actor');
 $bone=array_values(array_filter($rules,static fn(array $r):bool=>$r['id']==='671:bone-party:main'));
-if(count($bone)!==45)throw new RuntimeException('Bone Party variants missing');
+if(count($bone)!==42)throw new RuntimeException('Expected 42 verified Bone Party variants');
 $inconsistent=$study['calculator'];
 $inconsistent['rules']=[$bone[0],$bone[1]];
 $inconsistent['rules'][1]['oncePerTurn']=!($inconsistent['rules'][0]['oncePerTurn']??false);
