@@ -6,6 +6,8 @@ on:
     paths:
       - 'torneos_yugioh/assets/modules/play-calculator/**'
       - 'torneos_yugioh/assets/editorial/20261117-folder-delivery-v40/677.json'
+      - 'torneos_yugioh/assets/editorial/20261117-folder-delivery-v40/671.json'
+      - 'torneos_yugioh/tests/calculator_portable_memento_test.cjs'
       - 'torneos_yugioh/tests/calculator_portable_horus_test.cjs'
       - '.github/workflows/validate-calculator-portable.yml'
   push:
@@ -13,6 +15,8 @@ on:
     paths:
       - 'torneos_yugioh/assets/modules/play-calculator/**'
       - 'torneos_yugioh/assets/editorial/20261117-folder-delivery-v40/677.json'
+      - 'torneos_yugioh/assets/editorial/20261117-folder-delivery-v40/671.json'
+      - 'torneos_yugioh/tests/calculator_portable_memento_test.cjs'
       - 'torneos_yugioh/tests/calculator_portable_horus_test.cjs'
       - '.github/workflows/validate-calculator-portable.yml'
 
@@ -29,6 +33,8 @@ jobs:
           node-version: '22'
       - name: Validate Crystron portable contract and duel-state transitions
         run: node torneos_yugioh/tests/calculator_portable_horus_test.cjs
+      - name: Validate Memento portable parity and fail-closed import
+        run: node torneos_yugioh/tests/calculator_portable_memento_test.cjs
       - name: Protect prior planner and Horus regressions
         run: |
           node torneos_yugioh/tests/calculator_horus_state_test.cjs
