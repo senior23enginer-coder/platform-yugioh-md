@@ -43,4 +43,17 @@ assert.equal(actions(E.patch(observed,{turn:3})).length,0,
   'An old opponent event cannot be reused on a future turn');
 assert.throws(()=>Restrictions.apply(state,'noDeckToHand',true),/Duracion/,
   'Droll turn lock must never silently persist across turns');
+// The flag must affect real Memento searches, not just the reported metadata.
+const mace=catalog.cards.find(c=>db.bindings[c.key]===19365 && c.section==='main');
+assert(mace,'Memento Mace identity required for real Deck-search regression');
+let searchState=E.create(catalog,catalog);
+searchState=E.patch(searchState,{turn:2,active:'self',phase:'main1'});
+searchState=E.place(searchState,{key:droll.key,owner:'self',zone:'hand'});
+searchState=E.place(searchState,{key:mace.key,owner:'self',zone:'m1'});
+const maceActions=s=>R.actions(s,db).actions.filter(a=>a.event.ruleId==='671:mace:search');
+assert(maceActions(searchState).length>0,'Mace must have a legal Deck search without the lock');
+const locked=actions(E.observeOpponentMainDeckAdd(searchState))[0].state;
+assert.equal(maceActions(locked).length,0,'Droll prevents a modeled Mace Deck-to-hand search');
+assert(maceActions(E.patch(locked,{turn:3})).length>0,
+  'The Mace search must become legal again once the turn lock expires');
 console.log('PASS Memento Droll: observed trigger, sending cost, closure, turn expiry and portable parity');
