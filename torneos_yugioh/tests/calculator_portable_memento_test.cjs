@@ -15,8 +15,15 @@ assert.equal(study.cards.length,39);
 assert.equal(study.routes.length,12);
 assert.equal(study.calculator.schema,Contract.SCHEMA);
 const ids=['671:mictlan:activate','671:creation-king:destroy','671:twin-dragon:fusion-search','671:duke:recover-engraver'];
-assert.equal(study.calculator.rules.length,4);
+assert.equal(study.calculator.rules.length,226);
 const reference=Verified.forDeck(671);
+assert.equal(reference.length,226);
+assert.equal(new Set(study.calculator.rules.map(rule=>rule.id)).size,38);
+assert.equal(study.calculator.rules.filter(rule=>rule.id==='671:bone-party:main').length,42);
+assert.equal(new Set(study.calculator.rules.map(rule=>JSON.stringify(rule))).size,226);
+assert(study.calculator.rules.every(rule=>reference.some(known=>
+  JSON.stringify(known)===JSON.stringify(rule))),
+  'Every portable variant must match an independently verified fallback definition');
 for(const id of ids){
  const candidates=study.calculator.rules.filter(r=>r.id===id);
  assert.equal(candidates.length,1,'Portable rule ID must be unique');
@@ -32,7 +39,8 @@ const db=Study.bind(base,[{catalog:native,study}]);
 assert.equal(JSON.stringify(study),original,'Binding must not mutate original study');
 assert.equal(db.ruleImports.length,1);
 assert.equal(db.ruleImports[0].status,'accepted',JSON.stringify(db.ruleImports));
-assert.equal(db.ruleImports[0].count,4);
+assert.equal(db.ruleImports[0].count,226);
+assert.equal(db.rules.length,226,'Portable and fallback variants must not be duplicated');
 for(const id of ids){
  assert.equal(db.rules.filter(r=>r.id===id).length,1,
   'Identical native rule must not be duplicated: '+id);
@@ -57,4 +65,4 @@ const after=activated[0].state;
 assert(after.tokens.some(t=>t.key===mictlan.key&&t.zone==='field'),
  'Activation must place the Field Spell in field zone');
 assert.equal(JSON.stringify(state),before,'Scenario must not mutate on analysis');
-console.log('Memento portable 4 rule parity, fallback, tamper protection and activation passed.');
+console.log('Memento portable 226 variants/38 effects, fallback parity, tamper protection and activation passed.');
