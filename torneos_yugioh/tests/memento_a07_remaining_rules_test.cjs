@@ -66,7 +66,7 @@ passed(1,()=>{
     resolve:[{op:'flag',flag:'effectMonsterSummonBlocked',value:true,duration:'next-own-draw'}],
     afterResolution:[{op:'move',ref:'actor',to:'graveyard',position:'attack'}],
   });
-  const s=state([[ids.heat,'hand'],[ids.tatsun,'hand']]);
+  const s=state([[ids.heat,'hand'],[ids.tatsun,'hand']],true);
   const after=allowed(s,r);
   assert(after._ruleFlags.effectMonsterSummonBlocked,'Oleada bloquea monstruos de efecto');
   assert(after.tokens.some(t=>bindings[t.key]===ids.heat && t.zone==='graveyard'),
