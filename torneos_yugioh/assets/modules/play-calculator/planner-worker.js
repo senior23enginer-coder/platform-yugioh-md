@@ -10,7 +10,7 @@ importScripts(
   "./restrictions.js?v=20261120-machine-synchro-1",
   "./integrity.js?v=20261118-integrity-1",
   "./diagnostics.js?v=20261118-diagnostics-1",
-  "./rules.js?v=20261120-dynamic-summon-1",
+  "./rules.js?v=20261120-smiger-rule-1",
   "./planner.js?v=20261120-portable-horus-1",
   "./battle.js?v=20261118-battle-1",
   "./scenario.js?v=20261118-scenario-1",
