@@ -17131,6 +17131,56 @@
         "activation": false,
         "oncePerTurn": false,
         "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:droll:main-deck-lock",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "El Bufón y el Pájaro del Candado: bloquear adiciones desde Main Deck",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=9279&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand"
+          ],
+          "cid": 9279
+        },
+        "guards": [
+          {
+            "kind": "event",
+            "event": "opponent_main_deck_add",
+            "side": "opponent",
+            "currentTurn": true
+          }
+        ],
+        "select": [],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "flag",
+            "flag": "noDeckToHand",
+            "value": true,
+            "duration": "turn"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "Requiere confirmación manual de que el rival acaba de añadir del Main Deck fuera de la fase de Robo. La observación caduca en la siguiente edición del tablero; no se presume una búsqueda solo por ver una carta en mano."
+        ],
+        "activation": true,
+        "oncePerTurn": false,
+        "chainSpeed": 2
       }
     ]
   },
