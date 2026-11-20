@@ -494,7 +494,7 @@
       state.planBusy = true;
       const id = state.planRequest;
       const worker = new Worker(
-        "./assets/modules/play-calculator/planner-worker.js?v=20261120-state-horus-1",
+        "./assets/modules/play-calculator/planner-worker.js?v=20261120-portable-horus-1",
       );
       state.planWorker = worker;
       worker.onmessage = (e) => {
