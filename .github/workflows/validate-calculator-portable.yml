@@ -45,6 +45,8 @@ jobs:
         run: node torneos_yugioh/tests/memento_droll_observed_add_test.cjs
       - name: Verify Heat Wave turn window and effect-monster summon lock
         run: node torneos_yugioh/tests/memento_heat_wave_test.cjs
+      - name: Verify TY-PHON one-material detach and owner return
+        run: node torneos_yugioh/tests/memento_typhon_detach_test.cjs
       - name: Execute full Memento A07 effect regression suite
         run: npm run test:a07:memento
       - name: Protect prior planner and Horus regressions
