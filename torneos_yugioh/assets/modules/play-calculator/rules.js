@@ -254,7 +254,7 @@
     if (rule.noChainReplay !== undefined)
       check(rule.noChainReplay === true &&
         ((rule.actor.cid === 19184 && rule.id === "671:typhon:detach-bounce") ||
-         (rule.actor.cid === 21203 && rule.id === "671:gordian:one-monster-six-extra")),
+         (rule.actor.cid === 21203 && ["671:gordian:one-monster-six-extra","671:gordian:one-monster-one-hand"].includes(rule.id))),
         "Resolución no seleccionadora de TY-PHON requiere regla acreditada");
     if (rule.afterResolution !== undefined) {
       check([9139,21203].includes(rule.actor.cid) &&
@@ -269,7 +269,7 @@
     }
     if (rule.cannotBeNegated !== undefined)
       check(rule.cannotBeNegated === true && rule.actor.cid === 21203 &&
-        rule.id === "671:gordian:one-monster-six-extra",
+        ["671:gordian:one-monster-six-extra","671:gordian:one-monster-one-hand"].includes(rule.id),
         "Solo Gordian Slicer tiene prohibición de negación acreditada");
     check(rule.distinctSelectedNames === undefined || typeof rule.distinctSelectedNames === "boolean",
       "Restriccion de nombres incorrecta");
