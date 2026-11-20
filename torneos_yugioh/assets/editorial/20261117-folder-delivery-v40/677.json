@@ -644,6 +644,170 @@
           "Variante acotada al CID de Cristron Sulfador verificado en este inventario; las cinco variantes comparten un solo uso por nombre y turno.",
           "No modela el efecto alternativo en Campo ni certifica una ruta A09 o interrupciones rivales completas."
         ]
+      },
+      {
+        "version": 1,
+        "id": "677:sarcophagus:send-horus",
+        "deckId": 677,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Sarcófago del Rey: enviar una carta de la mano al Cementerio para enviar Amset desde el Deck",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19200&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19200,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "sent",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ]
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "sent",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19153,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "sendFromDeck"
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "oncePerName": true,
+        "maxUsesPerTurn": 4,
+        "chainSpeed": 1,
+        "assumptions": [
+          "Solo con Sarcófago del Rey propio boca arriba en zona M/T, en Main Phase propia. Envía una carta disponible de la mano al Cementerio como coste; después envía un Horus del Deck al Cementerio al resolver sin negación.",
+          "Las dos variantes de Amset/Hapi comparten un único contador de hasta cuatro usos por turno, incluso si se controla más de una copia de Sarcófago.",
+          "La Invocación Especial desde Cementerio NO es efecto de Sarcófago: es procedimiento separado del monstruo Horus. No se modelan aquí protección continua ni efecto de Damage Step.",
+          "Las respuestas del rival que nieguen el efecto pueden conservar el coste enviado de la mano; no se afirman respuestas a cadenas arbitrarias."
+        ]
+      },
+      {
+        "version": 1,
+        "id": "677:sarcophagus:send-horus",
+        "deckId": 677,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Sarcófago del Rey: enviar una carta de la mano al Cementerio para enviar Hapi desde el Deck",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19200&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19200,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "sent",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ]
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "sent",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19155,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "sendFromDeck"
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "oncePerName": true,
+        "maxUsesPerTurn": 4,
+        "chainSpeed": 1,
+        "assumptions": [
+          "Solo con Sarcófago del Rey propio boca arriba en zona M/T, en Main Phase propia. Envía una carta disponible de la mano al Cementerio como coste; después envía un Horus del Deck al Cementerio al resolver sin negación.",
+          "Las dos variantes de Amset/Hapi comparten un único contador de hasta cuatro usos por turno, incluso si se controla más de una copia de Sarcófago.",
+          "La Invocación Especial desde Cementerio NO es efecto de Sarcófago: es procedimiento separado del monstruo Horus. No se modelan aquí protección continua ni efecto de Damage Step.",
+          "Las respuestas del rival que nieguen el efecto pueden conservar el coste enviado de la mano; no se afirman respuestas a cadenas arbitrarias."
+        ]
       }
     ]
   },
