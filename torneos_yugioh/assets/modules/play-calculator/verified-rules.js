@@ -48,6 +48,20 @@
     )];
     if (id === 671) return [
       {
+        ...rule(671, "671:droll:main-deck-lock",
+          "El Bufón y el Pájaro del Candado: bloquear adiciones desde Main Deck",
+          9279, official(9279),
+          [{ op: "flag", flag: "noDeckToHand", value: true, duration: "turn" }],
+          ["monsterEffect"],
+          ["Requiere confirmación manual de que el rival acaba de añadir del Main Deck fuera de la fase de Robo. La observación caduca en la siguiente edición del tablero; no se presume una búsqueda solo por ver una carta en mano."],
+        ),
+        actor: { side: "self", zones: ["hand"], cid: 9279 },
+        guards: [{ kind: "event", event: "opponent_main_deck_add", side: "opponent", currentTurn: true }],
+        costs: [{ op: "move", ref: "actor", to: "graveyard", position: "attack" }],
+        chainSpeed: 2,
+        oncePerTurn: false,
+      },
+      {
         ...rule(671, "671:lancea:banish-lock",
           "Artefacto Lancea: Sacrificar durante el turno rival e impedir destierros", 11243,
           official(11243), [{ op: "flag", flag: "banishBlocked", value: true, duration: "turn" }],
