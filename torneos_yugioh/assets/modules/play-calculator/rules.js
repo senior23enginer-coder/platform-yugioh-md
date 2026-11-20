@@ -769,7 +769,7 @@
             }
             if (op.summonMethod) {
               check(!f.specialBlocked && !f.noMoreSummons,"Invocación Especial desde Deck bloqueada");
-              const summoned=n.tokens.find(x=>x.key===c.key && x.zone===op.to && x.owner===op.side);
+              const summoned=n.tokens.find(x=>x.key===c.key && x.zone===destination && x.owner===op.side);
               n._ruleEvents=[...(n._ruleEvents||[]),{kind:"summon",method:"special",
                 uid:summoned.uid,cid:op.cid,side:op.side,turn:n.turn,stage:opStage}];
             }
