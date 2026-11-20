@@ -245,6 +245,16 @@
     );
     check(rule.oncePerName === undefined || (rule.oncePerName === true && rule.oncePerTurn === true && Number.isInteger(rule.actor.cid)),
       "Uso compartido por nombre exige CID y límite por turno");
+    if (rule.afterResolution !== undefined) {
+      check(rule.actor.cid === 9139 && rule.source.includes("cid=9139") &&
+        rule.activation === true &&
+        Array.isArray(rule.afterResolution) && rule.afterResolution.length === 1 &&
+        rule.afterResolution[0].op === "move" &&
+        rule.afterResolution[0].ref === "actor" &&
+        rule.afterResolution[0].to === "graveyard" &&
+        rule.afterResolution[0].position === "attack",
+        "Envío de Mágica Normal al Cementerio no acreditado");
+    }
     check(rule.distinctSelectedNames === undefined || typeof rule.distinctSelectedNames === "boolean",
       "Restriccion de nombres incorrecta");
     const refs = new Set(["actor"]);
@@ -410,6 +420,12 @@
       else if (op.op === "flag")
         check(
           flags.includes(op.flag) && typeof op.value === "boolean" &&
+          (op.flag !== "effectMonsterSummonBlocked" ||
+            (rule.actor.cid === 9139 && rule.source.includes("cid=9139") &&
+              rule.actor.zones.includes("hand") &&
+              rule.guards.some(g => g.kind === "phaseStart") &&
+              rule.guards.some(g => g.kind === "state" && g.field === "phase" &&
+                g.values.length === 1 && g.values[0] === "main1"))) &&
           (op.duration || "persistent") ===
             (Restrictions.turnScoped.includes(op.flag) ? "turn" :
               op.flag === "effectMonsterSummonBlocked" ? "next-own-draw" : "persistent"),
@@ -837,6 +853,8 @@
             try { Transitions.assertVacant(n,"self",op.to,t.uid); }
             catch { throw Error("Zona de Invocación ocupada"); }
             if(op.method==="normal") {
+              check(!heatWaveBlocks(f,db,db.bindings[t.key]),
+                "Oleada de Calor impide Invocación Normal de monstruo de efecto");
               check(Timing.isOwnMainPhase(n) && !n._normal,
                 "Invocación Normal indisponible en esta ventana");
               check(!f.noMoreSummons,"TY-PHON impide Invocaciones Normales restantes");
@@ -867,6 +885,10 @@
           opStage = "resolve";
           if (!options.deferResolution && !effectNegated&&!activationNegated)
             for (const op of rule.resolve) apply(op);
+          // Post-chain cleanup is not a cost or the card's effect: an
+          // activated Normal Spell goes to the GY even if its effect is negated.
+          if (!options.deferResolution && rule.afterResolution)
+            for (const op of rule.afterResolution) apply(op);
           const summoned = n.tokens.filter(
             (t) =>
               E.isMonster(t.zone) &&
@@ -875,6 +897,8 @@
           const normal = rule.costs
             .concat(rule.resolve)
             .some((op) => op.op === "normal" || (op.op === "summon" && op.method === "normal"));
+          check(!summoned.some(t => heatWaveBlocks(f,db,db.bindings[t.key])),
+            "Oleada de Calor impide Invocaciones de monstruos de efecto");
           check(
             !(
               (f.specialBlocked || f.noMoreSummons) &&
