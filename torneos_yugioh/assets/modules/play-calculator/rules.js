@@ -234,6 +234,8 @@
       Array.isArray(rule.select) && rule.select.length <= 7,
       "Selecciones incorrectas",
     );
+    check(rule.oncePerName === undefined || (rule.oncePerName === true && rule.oncePerTurn === true && Number.isInteger(rule.actor.cid)),
+      "Uso compartido por nombre exige CID y límite por turno");
     check(rule.distinctSelectedNames === undefined || typeof rule.distinctSelectedNames === "boolean",
       "Restriccion de nombres incorrecta");
     const refs = new Set(["actor"]);
@@ -357,11 +359,13 @@
           ["self", "opponent"].includes(op.side) &&
             Number.isInteger(op.cid) &&
             ["deck", "extra"].includes(op.from) &&
-            zones.includes(op.to) &&
+            (zones.includes(op.to) ||
+              (op.to === "free-monster" && phase === "resolve" &&
+                op.side === "self" && op.from === "deck" && op.summonMethod === "special")) &&
             ["attack", "defense", "set"].includes(op.position) &&
           (op.summonMethod === undefined || (op.summonMethod === "special" &&
             op.side === "self" && op.from === "deck" &&
-            ["m1", "m2", "m3", "m4", "m5"].includes(op.to))) &&
+            ["m1", "m2", "m3", "m4", "m5", "free-monster"].includes(op.to))) &&
           (op.cause === undefined || (op.cause === "monster_effect" &&
               op.from === "deck" && op.to === "graveyard" &&
               rule.actor.side === op.side && Array.isArray(rule.tags) && rule.tags.includes("monsterEffect"))) &&
@@ -391,8 +395,10 @@
         );
       else if (op.op === "flag")
         check(
-          flags.includes(op.flag) && typeof op.value === "boolean",
-          "Restriccion incorrecta",
+          flags.includes(op.flag) && typeof op.value === "boolean" &&
+          (op.duration || "persistent") ===
+            (Restrictions.turnScoped.includes(op.flag) ? "turn" : "persistent"),
+          "Restriccion o duracion incorrecta",
         );
       else if (op.op === "normal")
         check(typeof op.available === "boolean", "Normal incorrecta");
@@ -446,7 +452,7 @@
         rejected.push({ id: rule.id, message: e.message });
         continue;
       }
-      const used = "rule:" + rule.id;
+      const used = rule.oncePerName ? "rule:cid:" + rule.actor.cid : "rule:" + rule.id;
       // El límite por nombre se reinicia por turno, pero no por nueva copia.
       if (!options.prepared && rule.oncePerTurn && Timing.usedThisTurn(s, used)) continue;
       if (!options.prepared && rule.trigger && !s.tokens.some(t => triggerMatches(s, rule, t.uid))) continue;
@@ -534,7 +540,7 @@
             for(const t of targets)n=E.place(n,{uid:t.uid,zone:"deck",controller:t.owner});
             n._ruleEvents=[...(n._ruleEvents||[]),{kind:"shuffle_distinct",cids,stage:opStage}];
           } else if (op.op === "link") {
-            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.xyzOnly),"Link bloqueado por restricción de Extra o Especial");
+            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.xyzOnly || f.machineSynchroOnly),"Link bloqueado por restricción de Extra o Especial");
             check(!(options.blockedZones||[]).includes(op.to),"Zona de Link bloqueada");
             const selected=Resources.requireTokens(n,refs,op.materials,t=>t.owner==="self"&&
               t.controller==="self"&&E.isMonster(t.zone)&&t.position!=="set",
@@ -551,7 +557,7 @@
             n=E.position(n,summoned.uid,"attack");
             n._ruleEvents=[...(n._ruleEvents||[]),{kind:"link_summon",cid:op.cid,uid:summoned.uid,materials:selected.map(t=>t.uid),turn:n.turn,stage:opStage}];
           } else if (op.op === "xyz") {
-            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons),"Xyz bloqueado por restricción de Extra o Especial");
+            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.machineSynchroOnly),"Xyz bloqueado por restricción de Extra o Especial");
             check(!(options.blockedZones||[]).includes(op.to),"Zona Extra bloqueada");
             const selected=Resources.requireTokens(n,refs,op.materials,t=>t.owner==="self"&&
               t.controller==="self"&&E.isMonster(t.zone)&&t.position!=="set",
@@ -568,7 +574,7 @@
             for(const t of selected)n=E.place(n,{uid:t.uid,zone:"material:"+summoned.uid,controller:"self"});
             n._ruleEvents=[...(n._ruleEvents||[]),{kind:"xyz_summon",cid:op.cid,uid:summoned.uid,materials:selected.map(t=>t.uid),turn:n.turn,stage:opStage}];
           } else if (op.op === "xyzOverlay") {
-            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons),
+            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.machineSynchroOnly),
               "Superposición bloqueada por restricción de Invocaciones");
             check(extraSummonWindow(n) && Timing.isOwnMainPhase(n),
               "TY-PHON exige dos Invocaciones rivales del Extra en un mismo turno válido");
@@ -811,7 +817,7 @@
             n._ruleEvents=[...(n._ruleEvents||[]),
               {kind:"summon",method:op.method,uid:t.uid,cid:db.bindings[t.key],turn:n.turn,stage:opStage}];
           } else {
-            n = Restrictions.apply(n, op.flag, op.value);
+            n = Restrictions.apply(n, op.flag, op.value, op.duration || "persistent");
           }
         }
         try {
