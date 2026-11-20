@@ -38,7 +38,7 @@ assert.equal(chosen.length,1,'One opponent Main monster and one attached materia
 const result=chosen[0].state;
 assert.equal(JSON.stringify(s),original,'Calculation cannot mutate captured duel');
 assert(result.tokens.some(t=>t.owner==='self'&&db.bindings[t.key]===19364&&t.zone==='graveyard'),
-  'Exactly one TY-PHON material must go to owner's GY as cost');
+  "Exactly one TY-PHON material must go to owner's GY as cost");
 assert(result.tokens.some(t=>t.owner==='opponent'&&db.bindings[t.key]===19364&&
   t.zone==='hand'&&t.controller==='opponent'),
   'Opponent Main monster returns to its owner hand, never to Deck');
