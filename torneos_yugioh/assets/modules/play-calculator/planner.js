@@ -482,8 +482,8 @@
       // Each different name can use that procedure once per turn.
       // "Control King's Sarcophagus" is a name/presence requirement, not
       // activation of its effect: a face-up negated copy still has its name.
-      const sarcophagusPresent = own(s, t => field(t) && t.position !== "set" &&
-        fact(s,t)?.cid === 19200).length > 0;
+      const sarcophagusPresent = own(s, t => /^s[1-5]$/.test(t.zone) &&
+        t.position !== "set" && fact(s,t)?.cid === 19200).length > 0;
       if (sarcophagusPresent && mz && !options.specialBlocked && !options.graveyardBlocked &&
           !s._ruleFlags?.specialBlocked && !s._ruleFlags?.noMoreSummons) {
         for (const t of own(s, t => t.zone === "graveyard")) {
