@@ -51,6 +51,8 @@ jobs:
         run: node torneos_yugioh/tests/memento_gordian_slicer_test.cjs
       - name: Verify Aero Shark cost and dynamic damage from known banished monsters
         run: node torneos_yugioh/tests/memento_aero_shark_damage_test.cjs
+      - name: Audit M01 actor coverage and replay certification (informational, not closure)
+        run: node torneos_yugioh/tests/memento_m01_acceptance_audit_test.cjs
       - name: Execute full Memento A07 effect regression suite
         run: npm run test:a07:memento
       - name: Protect prior planner and Horus regressions
