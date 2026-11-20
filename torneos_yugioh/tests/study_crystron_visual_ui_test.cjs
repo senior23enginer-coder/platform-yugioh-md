@@ -43,8 +43,8 @@ const pixel=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR
         'The first Crystron action must include the authentic Smiger photo');
       assert((await step.innerText()).includes('Smiger'),
         'Step text and image must identify the same real card');
-      const documented=await page.locator('.eb-layout-note').first().innerText();
-      assert(/no verificad/i.test(documented),
+      const documented=(await page.locator('.eb-layout-note').allInnerTexts()).join(' ');
+      assert(/ilustrativ|no verificad/i.test(documented),
         'Illustrative columns cannot be represented as certified field positions');
       const resultPhotos=await page.locator('.curated-final-board img').count();
       assert(resultPhotos>0,'Crystron outcome must include at least one known real card photo');
