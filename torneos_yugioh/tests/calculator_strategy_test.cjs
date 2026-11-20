@@ -21,8 +21,9 @@ scenario = E.place(scenario, { key: pick(rival, 12950).key, owner: "opponent", z
 const original = JSON.stringify(scenario);
 const goals = ["balanced", "removal", "board", "resources", "resilience"];
 const ui = fs.readFileSync(path.resolve(__dirname, "../assets/modules/play-calculator/ui.js"), "utf8");
+assert(!ui.includes("Objetivo de la búsqueda"), "Analyze must use captured field state without demanding a goal");
 for (const goal of goals) {
-  assert(ui.includes(`["${goal}",`), `Goal ${goal} missing from visual selector`);
+  assert(!ui.includes(`["${goal}",`), `Analysis goals must not appear as a manual selector: ${goal}`);
   const options = { goal, depth: 4, width: 25, budget: 800 };
   const a = A.solve(scenario, db, options), b = A.solve(scenario, db, options);
   assert.equal(JSON.stringify(a), JSON.stringify(b), `${goal}: local calculation must be deterministic`);
