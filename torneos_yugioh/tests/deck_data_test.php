@@ -40,6 +40,20 @@ foreach($state['checked_studies'] as $id=>$entry){
         // New import previews must tell the difference between a documentary
         // route and a verified field with card placements.
         check($quality['full_endboards']<=count($r['routes']),'Invalid endboard audit count');
+        // A route with illustrated slots must not become a spatially certified
+        // endboard merely because it carries an endboard.variants array.
+        $illustrative=$r;
+        $first=$illustrative['cards'][0];
+        $illustrative['routes'][0]['endboard']=['spatial_verified'=>false,'variants'=>[[
+            'spatial_verified'=>false,'columns'=>5,'layout_note'=>'Casillas ilustrativas',
+            'monster'=>[['name'=>$first['name'],'image'=>$first['image'],'slot'=>1]],
+            'spell'=>[],'field'=>[],
+        ]]];
+        ygo_data_validate($illustrative,$inventory);
+        $qualityIllustrated=ygo_data_presentation_quality($illustrative);
+        check($qualityIllustrated['illustrative_endboards']===1,'An illustrative board must be counted as illustrative');
+        check($qualityIllustrated['full_endboards']===$quality['full_endboards'],'A nonspatial illustration was counted as a verified field');
+        check(!$qualityIllustrated['visual_complete'],'An illustrative endboard was falsely certified');
     }
     $files=ygo_data_sources($app,(int)$id,$entry);check(count($files)>0,'Original sources missing '.$id);
     foreach($files as $path=>$bytes)if(str_ends_with($path,'CONTENIDO_CURADO.md')){
