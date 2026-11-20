@@ -431,6 +431,22 @@
         ["monsterEffect", "sendFromDeck"],
         ["Caso acotado de dos nombres distintos: Hoja Oscura y Desvantasma disponibles en Deck; las demás elecciones aún no están incorporadas."],
       ),
+      // Mementotlan Goblin can destroy a different face-up Memento monster,
+      // rather than only itself. This is a bounded variant with two exact
+      // documented Deck targets; all Goblin mill variants share the same
+      // once-per-turn effect ID, so choosing one exhausts the others.
+      {
+        ...rule(671, "671:goblin:send-two", "Goblin: destruir otro Memento y enviar Hoja Oscura y Angbruja", 19366,
+          official(19366),
+          [{ op: "destroy", ref: "victim", reason: "effect" },
+            { op: "take", side: "self", cid: 19363, from: "deck", to: "graveyard", position: "attack", cause: "monster_effect" },
+            { op: "take", side: "self", cid: 19364, from: "deck", to: "graveyard", position: "attack", cause: "monster_effect" }],
+          ["monsterEffect", "sendFromDeck"],
+          ["Variante acotada: Goblin permanece boca arriba, otro Memento propio identificado se destruye, y Hoja Oscura y Angbruja están disponibles en Deck. No modela objetivos boca abajo ni envíos alternativos."],
+        ),
+        select: [{ ref: "victim", selector: { side: "self", zones: ["monsters"],
+          cids: mementoMonsters.filter(cid => cid !== 19366), faceUp: true } }],
+      },
       ...[1, 2, 3, 4, 5].map((zone) => ({
         ...rule(671, "671:tecuhtlica:five-names", "Creación Combinada: barajar cinco nombres e Invocar", 19360,
           "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
