@@ -59,11 +59,11 @@ if (is_file($stationxReleasePath)) {
 <script src="./assets/modules/play-calculator/rules.js?v=20261118-block1-6" defer></script>
 <script src="./assets/modules/play-calculator/planner.js?v=20261118-block1-2" defer></script>
 <script src="./assets/modules/play-calculator/verified-rules.js?v=20261118-memento-effects-5" defer></script>
-<script src="./assets/modules/play-calculator/study.js?v=20261118-verified-1" defer></script><script src="./assets/modules/play-calculator/chain.js?v=20261118-chain-2" defer></script><script src="./assets/modules/play-calculator/ui.js?v=20261118-memento-effects-5" defer></script>
+<script src="./assets/modules/play-calculator/study.js?v=20261118-verified-1" defer></script><script src="./assets/modules/play-calculator/chain.js?v=20261118-chain-2" defer></script><script src="./assets/modules/play-calculator/ui.js?v=20261119-editorial-images-1" defer></script>
 <script src="./assets/modules/combo-creator/model.js?v=20261103-combos-133" defer></script>
 <script src="./assets/modules/combo-creator/step-lesson.js?v=20261113-step-lessons-173" defer></script>
 <script src="./assets/modules/combo-creator/documented-import.js?v=20261116-folder-import-1" defer></script>
-<script src="./assets/modules/play-calculator/workspace.js?v=20261116-actions-1" defer></script>
+<script src="./assets/modules/play-calculator/workspace.js?v=20261119-fullscreen-1" defer></script>
 <script src="./assets/modules/card-inspector/model.js?v=20261116-readable-3" defer></script>
 <script src="./assets/modules/card-inspector/ui.js?v=20261116-readable-3" defer></script>
 <script src="./assets/modules/combo-creator/ui.js?v=20261119-local-study-photos-1" defer></script>
@@ -96,7 +96,7 @@ if (is_file($stationxReleasePath)) {
 <script src="./assets/modules/deck-attributes/api.js?v=20261118-worlds-hexagonal"></script>
 <script src="./assets/modules/deck-attributes/ui.js?v=20261118-worlds-hexagonal"></script>
 <script src="./assets/modules/deck-guide/league-position.js?v=20261113-match-positions-182" defer></script>
-<script src="./assets/app.js?v=20261119-import-return-1" defer></script>
+<script src="./assets/app.js?v=20261119-fullscreen-calc-1" defer></script>
 <script src="./assets/match-editor.js?v=20261027-participants-103" defer></script>
 <script src="./assets/event-audit.js?v=20261021-audit-55" defer></script>
 <script src="./assets/seasons.js?v=20261016-season-editor-4" defer></script>

@@ -9,6 +9,7 @@
     "test:navigation": "node torneos_yugioh/tests/navigation_history_test.cjs",
     "test:deck-data-ux": "node torneos_yugioh/tests/deck_data_import_ux_test.cjs",
     "test:calculator": "node torneos_yugioh/tests/play_calculator_ui_test.cjs",
+    "test:calculator:fullscreen": "node torneos_yugioh/tests/calculator_fullscreen_image_test.cjs",
     "test:export": "node torneos_yugioh/tests/deck_export_test.cjs",
     "format:check": "prettier --check \"torneos_yugioh/assets/modules/**/*.{js,css}\"",
     "test:combos": "node torneos_yugioh/tests/combo_creator_ui_test.cjs",

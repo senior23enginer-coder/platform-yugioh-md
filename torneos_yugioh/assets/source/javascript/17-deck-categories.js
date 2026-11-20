@@ -13,6 +13,15 @@
   }
 
   function openDeckCategory(category, updateUrl = true) {
+    // The duel board needs the whole page; never place it in a scrollable modal.
+    if (category === 'play-calculator') {
+      const selected = document.querySelector('[data-deck-select]');
+      const current = (data.allDecks || []).find(d => d.name === selected?.value);
+      if (current) sessionStorage.setItem('stationx:calculator-deck', String(current.id));
+      deckCategoryModal?.hide();
+      routeTo('calculadora_jugadas');
+      return;
+    }
     if (!deckCategoryModal || !deckCategoryBody || !deckCategoryNodes[category]) return;
     Array.from(deckCategoryBody.children).forEach((node) => deckCategoryStaging?.appendChild(node));
     deckCategoryNodes[category].forEach((node) => deckCategoryBody.appendChild(node));
