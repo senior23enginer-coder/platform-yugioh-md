@@ -119,22 +119,28 @@ function ygo_data_markdown(string $raw,array $base,int $deckId): array {
 /** Presentation readiness is separate from legal rulings and simulator coverage. */
 function ygo_data_presentation_quality(array $record): array {
     $routes=is_array($record['routes']??null)?$record['routes']:[];
-    $steps=0;$illustrated=0;$fullBoards=0;$partialBoards=0;
+    $steps=0;$illustrated=0;$fullBoards=0;$partialBoards=0;$illustrativeBoards=0;
     foreach($routes as $route) {
         if(!is_array($route))continue;
         foreach($route['steps']??[] as $step) {
             $steps++;
             if(!empty($step['photos'])&&is_array($step['photos']))$illustrated++;
         }
-        if(!empty($route['endboard']['variants']))$fullBoards++;
-        elseif(!empty($route['board']))$partialBoards++;
+        if(!empty($route['endboard']['variants'])) {
+            // A diagram based on documented zones can be useful without claiming
+            // that an exact spatial board (columns/material placement) was verified.
+            if(($route['endboard']['spatial_verified']??null)===false
+                ||array_filter($route['endboard']['variants'],static fn($v)=>($v['spatial_verified']??null)===false)) {
+                $illustrativeBoards++;
+            }else $fullBoards++;
+        }elseif(!empty($route['board']))$partialBoards++;
     }
     $style=is_array($record['profile']??null)?(string)($record['profile']['Estilo breve']??''):'';
     $intro=is_array($record['profile']??null)?(string)($record['profile']['Resumen para ficha']??''):'';
     $ready=trim($style)!==''&&trim($intro)!==''&&$steps>0&&$illustrated===$steps
         &&$fullBoards===count($routes);
     return ['routes'=>count($routes),'steps'=>$steps,'illustrated_steps'=>$illustrated,
-        'full_endboards'=>$fullBoards,'partial_endboards'=>$partialBoards,
+        'full_endboards'=>$fullBoards,'illustrative_endboards'=>$illustrativeBoards,'partial_endboards'=>$partialBoards,
         'profile_summary'=>trim($style)!==''&&trim($intro)!=='',
         'visual_complete'=>$ready];
 }
