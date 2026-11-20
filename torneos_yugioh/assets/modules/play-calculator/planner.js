@@ -348,6 +348,7 @@
         // Two visually identical boards are not equivalent when only one
         // carries a proven causal trigger (e.g. sent by monster effect).
         s._ruleEvents || [],
+        Object.entries(s._ruleUseCounts || {}).sort(([a],[b]) => a.localeCompare(b)),
         s.lp.self,
         s.lp.opponent,
       ]);
