@@ -112,3 +112,36 @@ function architectureFormCommandPinnedEvidence(string $root): bool
     return hash_equals('add933deb0de98204fcc73a2e14e1b54719851e7', $blob($file)) &&
         hash_equals('389f7f8fe587aef7ec8a9f08793164b0b02a4c49', $blob($manifest));
 }
+
+
+/**
+ * PHP's numeric token IDs changed across runtimes. Verify immutable snapshots
+ * byte-for-byte against the known baseline Git objects before allowing an
+ * older numeric-token fingerprint mismatch. The caller must still compare
+ * the actual migrated implementation; this guard never accepts modified
+ * source fixtures or silently refreshes historical fingerprint fields.
+ */
+function architectureLegacyFixture(string $scope): bool
+{
+    $pinned = [
+        'news' => [
+            ['tests/fixtures/news-originals.json', '682d6ccf5ddef708e86874e4b9a903f3d46fe39d'],
+            ['context/news-extractions.json', 'e8638e2fa739648e0a14280555111eaed6edd6c7'],
+        ],
+        'card-catalog' => [
+            ['tests/fixtures/card-catalog-originals.json', '19ec0daa6ab470482646e63ba66fc74c7cfe63d1'],
+        ],
+        'decklist' => [
+            ['tests/fixtures/decklist-originals.json', '9a00a0509ebe8146af0ba839a5438ec5e9daf568'],
+        ],
+    ];
+    if (!isset($pinned[$scope])) return false;
+    $root = dirname(__DIR__) . '/torneos_yugioh/';
+    foreach ($pinned[$scope] as [$path, $expectedSha]) {
+        $file = file_get_contents($root . $path);
+        if (!is_string($file)) return false;
+        $current = sha1('blob ' . strlen($file) . "\0" . $file);
+        if (!hash_equals($expectedSha, $current)) return false;
+    }
+    return true;
+}
