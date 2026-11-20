@@ -7,7 +7,7 @@ const js = fs.readFileSync(path.join(app,'assets/modules/play-calculator/workspa
 const css = fs.readFileSync(path.join(app,'assets/modules/play-calculator/workspace.css'),'utf8');
 assert.doesNotThrow(()=>new Function(js),'Calculator stage script must parse');
 const clauses = [
-  "data-calculator-duel-setup",
+  "setup.dataset.calculatorDuelSetup",
   "data-calculator-setup-opponent",
   "data-calculator-continue",
   "Continuar al tablero",
