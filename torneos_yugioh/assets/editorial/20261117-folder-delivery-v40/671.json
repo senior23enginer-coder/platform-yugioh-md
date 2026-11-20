@@ -18155,6 +18155,362 @@
         ],
         "cannotBeNegated": true,
         "noChainReplay": true
+      },
+      {
+        "version": 1,
+        "id": "671:gordian:one-monster-one-hand",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Rebanador Gordiano: devolver un monstruo boca arriba desterrando 1 carta de mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21203&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand"
+          ],
+          "cid": 21203
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          },
+          {
+            "kind": "phaseStart"
+          }
+        ],
+        "select": [
+          {
+            "ref": "payment",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ]
+            }
+          },
+          {
+            "ref": "target",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "section": "main",
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "payment",
+            "to": "banished",
+            "position": "set"
+          },
+          {
+            "op": "move",
+            "ref": "target",
+            "to": "hand",
+            "position": "attack"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Variante verificada para un monstruo boca arriba y una carta propia distinta de Gordiano en mano. El destierro boca abajo se realiza en resolución y la carta devuelta va al propietario. No reproduce múltiples objetivos, pagos combinados ni cadenas complejas. Requiere Side swap a Main."
+        ],
+        "activation": true,
+        "oncePerTurn": false,
+        "afterResolution": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "cannotBeNegated": true,
+        "noChainReplay": true
+      },
+      {
+        "version": 1,
+        "id": "671:gordian:one-monster-one-hand",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Rebanador Gordiano: devolver un monstruo boca arriba desterrando 1 carta de mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21203&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand"
+          ],
+          "cid": 21203
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          },
+          {
+            "kind": "phaseStart"
+          }
+        ],
+        "select": [
+          {
+            "ref": "payment",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ]
+            }
+          },
+          {
+            "ref": "target",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "section": "extra",
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "payment",
+            "to": "banished",
+            "position": "set"
+          },
+          {
+            "op": "move",
+            "ref": "target",
+            "to": "extra",
+            "position": "attack"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Variante verificada para un monstruo boca arriba y una carta propia distinta de Gordiano en mano. El destierro boca abajo se realiza en resolución y la carta devuelta va al propietario. No reproduce múltiples objetivos, pagos combinados ni cadenas complejas. Requiere Side swap a Main."
+        ],
+        "activation": true,
+        "oncePerTurn": false,
+        "afterResolution": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "cannotBeNegated": true,
+        "noChainReplay": true
+      },
+      {
+        "version": 1,
+        "id": "671:gordian:one-monster-one-hand",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Rebanador Gordiano: devolver un monstruo boca arriba desterrando 1 carta de mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21203&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand"
+          ],
+          "cid": 21203
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          },
+          {
+            "kind": "phaseStart"
+          }
+        ],
+        "select": [
+          {
+            "ref": "payment",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ]
+            }
+          },
+          {
+            "ref": "target",
+            "selector": {
+              "side": "opponent",
+              "zones": [
+                "monsters"
+              ],
+              "section": "main",
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "payment",
+            "to": "banished",
+            "position": "set"
+          },
+          {
+            "op": "move",
+            "ref": "target",
+            "to": "hand",
+            "position": "attack"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Variante verificada para un monstruo boca arriba y una carta propia distinta de Gordiano en mano. El destierro boca abajo se realiza en resolución y la carta devuelta va al propietario. No reproduce múltiples objetivos, pagos combinados ni cadenas complejas. Requiere Side swap a Main."
+        ],
+        "activation": true,
+        "oncePerTurn": false,
+        "afterResolution": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "cannotBeNegated": true,
+        "noChainReplay": true
+      },
+      {
+        "version": 1,
+        "id": "671:gordian:one-monster-one-hand",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Rebanador Gordiano: devolver un monstruo boca arriba desterrando 1 carta de mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21203&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand"
+          ],
+          "cid": 21203
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          },
+          {
+            "kind": "phaseStart"
+          }
+        ],
+        "select": [
+          {
+            "ref": "payment",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ]
+            }
+          },
+          {
+            "ref": "target",
+            "selector": {
+              "side": "opponent",
+              "zones": [
+                "monsters"
+              ],
+              "section": "extra",
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "payment",
+            "to": "banished",
+            "position": "set"
+          },
+          {
+            "op": "move",
+            "ref": "target",
+            "to": "extra",
+            "position": "attack"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Variante verificada para un monstruo boca arriba y una carta propia distinta de Gordiano en mano. El destierro boca abajo se realiza en resolución y la carta devuelta va al propietario. No reproduce múltiples objetivos, pagos combinados ni cadenas complejas. Requiere Side swap a Main."
+        ],
+        "activation": true,
+        "oncePerTurn": false,
+        "afterResolution": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "cannotBeNegated": true,
+        "noChainReplay": true
       }
     ]
   },
