@@ -6,6 +6,7 @@
   "scripts": {
     "test": "node scripts/test-local.cjs",
     "test:guide": "node torneos_yugioh/tests/deck_guide_scope_test.cjs",
+    "test:navigation": "node torneos_yugioh/tests/navigation_history_test.cjs",
     "test:calculator": "node torneos_yugioh/tests/play_calculator_ui_test.cjs",
     "test:export": "node torneos_yugioh/tests/deck_export_test.cjs",
     "format:check": "prettier --check \"torneos_yugioh/assets/modules/**/*.{js,css}\"",
