@@ -284,7 +284,8 @@
         for (const slot of entry.slots || []) {
           const key = catalog.id + ':' + Number(slot.card_id);
           const card = own.get(key);
-          if (!card || E.norm(card.name) !== E.norm(entry.name)) continue;
+          const aliases = [entry.name,entry.identity?.official_name,...(Array.isArray(entry.source_aliases)?entry.source_aliases:[])].filter(Boolean);
+          if (!card || !aliases.some(name => E.norm(name) === E.norm(card.name))) continue;
           state.editorialImages[key] = url;
         }
       }
