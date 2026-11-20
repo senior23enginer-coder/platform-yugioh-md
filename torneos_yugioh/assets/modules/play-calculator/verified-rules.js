@@ -48,6 +48,23 @@
     )];
     if (id === 671) return [
       {
+        ...rule(671, "671:heat-wave:lock",
+          "Oleada de Calor: impedir Invocaciones de monstruos de efecto hasta tu siguiente Robo",
+          9139, official(9139),
+          [{ op: "flag", flag: "effectMonsterSummonBlocked", value: true,
+            duration: "next-own-draw" }],
+          [],
+          ["Solo al inicio de Main Phase 1 propia. Afecta a ambos jugadores y solo a monstruos de efecto. El tablero estático no puede comprobar acciones previas no capturadas. No simula el uso de una copia colocada boca abajo."],
+        ),
+        actor: { side: "self", zones: ["hand"], cid: 9139 },
+        guards: [{ kind: "state", field: "active", values: ["self"] },
+          { kind: "state", field: "phase", values: ["main1"] },
+          { kind: "phaseStart" }],
+        afterResolution: [{ op: "move", ref: "actor", to: "graveyard", position: "attack" }],
+        activationNegatedConsumesUse: false,
+        oncePerTurn: false,
+      },
+      {
         ...rule(671, "671:droll:main-deck-lock",
           "El Bufón y el Pájaro del Candado: bloquear adiciones desde Main Deck",
           9279, official(9279),
