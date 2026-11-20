@@ -21,6 +21,8 @@
     4678,
     5432,
     12464,
+    // Horus GY Special Summon procedures with King's Sarcophagus.
+    19153, 19154, 19155, 19156,
   ]);
   const clone = E.clone,
     monster = E.isMonster;
@@ -488,7 +490,8 @@
       for (const t of own(s, (t) => t.zone === "hand")) {
         const p = fact(s, t);
         if (!p) continue;
-        if (p.normalAllowed && modelled.has(p.cid) && !s._normal) {
+        if (p.normalAllowed && modelled.has(p.cid) &&
+            ![19153,19154,19155,19156].includes(p.cid) && !s._normal) {
           const birth = !options.effectsNegated &&
             own(s, t => field(t) && t.position !== "set" && !E.negated(s,t) &&
               fact(s,t)?.cid === 17815).length > 0;
