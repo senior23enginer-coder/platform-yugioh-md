@@ -40,6 +40,8 @@ jobs:
         run: |
           npm ci
           npx playwright install --with-deps chromium
+      - name: Build runtime frontend exactly as deployment
+        run: npm run build
       - name: Verify PHP requirements
         run: |
           php -v
