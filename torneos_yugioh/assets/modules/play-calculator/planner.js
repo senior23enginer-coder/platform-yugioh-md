@@ -73,7 +73,7 @@
           }
         })
         .map((r) => ({
-          id: "rule:" + r.id,
+          id: r.oncePerName ? "rule:cid:" + r.actor.cid : "rule:" + r.id,
           cardKey: c.key,
           label: c.name + ": " + r.label,
         }));
@@ -760,7 +760,7 @@
             "17815:revive",
             fact(s, target).source,
           );
-      if (!options.specialBlocked && !options.noExtra) {
+      if (!options.specialBlocked && !options.noExtra && !options.machineSynchroOnly) {
         const materials = faceMons(s).filter((t) => fact(s, t)?.level === 7);
         for (const c of s.self.cards.filter(
           (c) =>
