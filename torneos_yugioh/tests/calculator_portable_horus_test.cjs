@@ -12,7 +12,9 @@ const editorial=JSON.parse(fs.readFileSync(path.join(__dirname,'../assets/editor
 assert.equal(editorial.deck_id,677);
 assert.equal(editorial.routes.length,14,'Never delete historical Crystron routes');
 assert.equal(editorial.calculator?.schema,C.SCHEMA);
-assert.deepEqual(editorial.calculator.rules.map(r=>r.actor.cid).sort(),[19153,19155]);
+const horusRules=editorial.calculator.rules.filter(r=>r.id.startsWith('677:horus-gy:'));
+assert.deepEqual(horusRules.map(r=>r.actor.cid).sort(),[19153,19155],
+  'Horus rules must remain untouched while other Crystron effects are added');
 const rows=editorial.cards.flatMap(c=>(c.slots||[]).map(slot=>({
   deck_id:677,id:slot.card_id,card_name:c.name,quantity:slot.quantity,section:slot.section
 })));
@@ -20,7 +22,8 @@ const native=E.catalog({id:677,name:'Crystron Horus',format_codes:['tcg_advanced
 const db=Study.bind(base,[{catalog:native,study:editorial}]);
 assert.equal(db.ruleImports.length,1);
 assert.equal(db.ruleImports[0].status,'accepted',JSON.stringify(db.ruleImports));
-assert.equal(db.ruleImports[0].count,2);
+assert.equal(db.ruleImports[0].count,editorial.calculator.rules.length,
+  'All declared rules must pass the same portable contract');
 const add=(s,cid,zone,position='attack')=>{
  const c=native.cards.find(x=>db.bindings[x.key]===cid);
  assert(c,'Missing native slot for '+cid);
