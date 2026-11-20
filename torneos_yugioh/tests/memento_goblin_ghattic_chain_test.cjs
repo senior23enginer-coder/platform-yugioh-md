@@ -14,7 +14,7 @@ let s=E.create(own);
 s=E.place(s,{key:own.cards[0].key,owner:"self",zone:"m1"});
 const rules=Verified.forDeck(671);
 const goblin=rules.filter(r=>r.id==="671:goblin:send-two" &&
-  r.label.includes("Hoja Oscura y Desvantasma"));
+  r.label.includes("destruirse y enviar Hoja Oscura y Desvantasma"));
 const ghattic=rules.filter(r=>r.id==="671:ghattic:revive" &&
   r.trigger?.sourceCid===19366 && r.resolve?.[0]?.to==="m1");
 assert.equal(goblin.length,1);
