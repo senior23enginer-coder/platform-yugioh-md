@@ -40,6 +40,12 @@ jobs:
         run: |
           npm ci
           npx playwright install --with-deps chromium
+      - name: Show canonical formatting for historical evidence test (temporary review)
+        run: |
+          npx prettier --write torneos_yugioh/tests/domain_extractions_test.php
+          echo 'STATIONX_FORMATTED_PHP_START'
+          cat torneos_yugioh/tests/domain_extractions_test.php
+          echo 'STATIONX_FORMATTED_PHP_END'
       - name: Build runtime frontend exactly as deployment
         run: npm run build
       - name: Verify PHP requirements
