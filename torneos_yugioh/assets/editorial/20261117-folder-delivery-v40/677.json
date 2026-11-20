@@ -304,6 +304,346 @@
           "Selección acreditada para esta lista: Inclusión Cristron está en el Main y debe seguir disponible en el Deck; otras Mágicas/Trampas Crystron no están modeladas en esta variante.",
           "Comparte el límite de usar sólo un efecto de Smiger por turno, incluso entre copias."
         ]
+      },
+      {
+        "version": 1,
+        "id": "677:thystvern:graveyard-search",
+        "deckId": 677,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Cristron Thystvern en Cementerio: desterrarse para añadir Cristron Citree del Deck",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12609&ope=2&request_locale=es",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "graveyard"
+          ],
+          "cid": 12609
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          },
+          {
+            "kind": "flag",
+            "flag": "graveyardBlocked",
+            "value": false
+          }
+        ],
+        "select": [],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "banished",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 12606,
+            "from": "deck",
+            "to": "hand",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "oncePerName": true,
+        "assumptions": [
+          "Efecto de Cementerio del texto oficial: destierra Thystvern como coste; busca un monstruo Cristron distinto de Thystvern aún existente en el Main Deck.",
+          "Variante acotada al CID de Cristron Citree verificado en este inventario; las cinco variantes comparten un solo uso por nombre y turno.",
+          "No modela el efecto alternativo en Campo ni certifica una ruta A09 o interrupciones rivales completas."
+        ]
+      },
+      {
+        "version": 1,
+        "id": "677:thystvern:graveyard-search",
+        "deckId": 677,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Cristron Thystvern en Cementerio: desterrarse para añadir Cristron Smiger del Deck",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12609&ope=2&request_locale=es",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "graveyard"
+          ],
+          "cid": 12609
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          },
+          {
+            "kind": "flag",
+            "flag": "graveyardBlocked",
+            "value": false
+          }
+        ],
+        "select": [],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "banished",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 12608,
+            "from": "deck",
+            "to": "hand",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "oncePerName": true,
+        "assumptions": [
+          "Efecto de Cementerio del texto oficial: destierra Thystvern como coste; busca un monstruo Cristron distinto de Thystvern aún existente en el Main Deck.",
+          "Variante acotada al CID de Cristron Smiger verificado en este inventario; las cinco variantes comparten un solo uso por nombre y turno.",
+          "No modela el efecto alternativo en Campo ni certifica una ruta A09 o interrupciones rivales completas."
+        ]
+      },
+      {
+        "version": 1,
+        "id": "677:thystvern:graveyard-search",
+        "deckId": 677,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Cristron Thystvern en Cementerio: desterrarse para añadir Cristron Azufafnir del Deck",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12609&ope=2&request_locale=es",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "graveyard"
+          ],
+          "cid": 12609
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          },
+          {
+            "kind": "flag",
+            "flag": "graveyardBlocked",
+            "value": false
+          }
+        ],
+        "select": [],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "banished",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 12756,
+            "from": "deck",
+            "to": "hand",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "oncePerName": true,
+        "assumptions": [
+          "Efecto de Cementerio del texto oficial: destierra Thystvern como coste; busca un monstruo Cristron distinto de Thystvern aún existente en el Main Deck.",
+          "Variante acotada al CID de Cristron Azufafnir verificado en este inventario; las cinco variantes comparten un solo uso por nombre y turno.",
+          "No modela el efecto alternativo en Campo ni certifica una ruta A09 o interrupciones rivales completas."
+        ]
+      },
+      {
+        "version": 1,
+        "id": "677:thystvern:graveyard-search",
+        "deckId": 677,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Cristron Thystvern en Cementerio: desterrarse para añadir Cristron Tristaros del Deck",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12609&ope=2&request_locale=es",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "graveyard"
+          ],
+          "cid": 12609
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          },
+          {
+            "kind": "flag",
+            "flag": "graveyardBlocked",
+            "value": false
+          }
+        ],
+        "select": [],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "banished",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 20758,
+            "from": "deck",
+            "to": "hand",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "oncePerName": true,
+        "assumptions": [
+          "Efecto de Cementerio del texto oficial: destierra Thystvern como coste; busca un monstruo Cristron distinto de Thystvern aún existente en el Main Deck.",
+          "Variante acotada al CID de Cristron Tristaros verificado en este inventario; las cinco variantes comparten un solo uso por nombre y turno.",
+          "No modela el efecto alternativo en Campo ni certifica una ruta A09 o interrupciones rivales completas."
+        ]
+      },
+      {
+        "version": 1,
+        "id": "677:thystvern:graveyard-search",
+        "deckId": 677,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Cristron Thystvern en Cementerio: desterrarse para añadir Cristron Sulfador del Deck",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12609&ope=2&request_locale=es",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "graveyard"
+          ],
+          "cid": 12609
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          },
+          {
+            "kind": "flag",
+            "flag": "graveyardBlocked",
+            "value": false
+          }
+        ],
+        "select": [],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "banished",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 20759,
+            "from": "deck",
+            "to": "hand",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "oncePerName": true,
+        "assumptions": [
+          "Efecto de Cementerio del texto oficial: destierra Thystvern como coste; busca un monstruo Cristron distinto de Thystvern aún existente en el Main Deck.",
+          "Variante acotada al CID de Cristron Sulfador verificado en este inventario; las cinco variantes comparten un solo uso por nombre y turno.",
+          "No modela el efecto alternativo en Campo ni certifica una ruta A09 o interrupciones rivales completas."
+        ]
       }
     ]
   },
