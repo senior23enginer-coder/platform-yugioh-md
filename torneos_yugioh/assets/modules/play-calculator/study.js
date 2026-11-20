@@ -124,8 +124,15 @@
           if (identityError) throw Error(identityError);
           if (!catalog.formats.includes(study.format))
             throw Error("Formato del estudio ajeno al catálogo nativo");
+          // The active catalog omits Side Deck rows. Accept a Side-only
+          // actor solely when its definition is already independently
+          // verified; it cannot execute until the native Main includes it.
+          const accreditedActors = new Set([
+            ...deckActorCids,
+            ...verified.map(rule => rule.actor.cid).filter(Number.isInteger),
+          ]);
           Contract.validate(packageData, { deckId: catalog.id, format: study.format,
-            actorCids: [...deckActorCids] });
+            actorCids: [...accreditedActors] });
           const protectedIds = new Set(verified.map(rule => rule.id));
           // A portable rule may replace a built-in fallback only when the
           // complete verified definition matches byte-for-byte as JSON.
