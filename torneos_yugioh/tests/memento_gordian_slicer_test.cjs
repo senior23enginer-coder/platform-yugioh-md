@@ -107,7 +107,43 @@ const chain=E.appendChain(start,{side:'self',cardName:'Rebanador Gordiano',
   effect:'Devolver monstruo',ruleId:id,actorUid:actorToken.uid});
 const preview=Chain.resolve(chain,db);
 assert.equal(preview.status,'unresolved','Unverified chain must fail closed');
+// Alternate official single-target payment: banish ONE other card in hand
+// face down at resolution. Never banish Gordian itself to pay its own effect.
+const oneHandId='671:gordian:one-monster-one-hand';
+const handActions=st=>R.actions(st,db).actions.filter(a=>a.event.ruleId===oneHandId);
+assert.equal(handActions(start).length,0,
+  'Gordian alone in hand cannot pay a different card from hand');
+let handStart=E.place(start,{key:key(19365,'main'),owner:'self',zone:'hand'});
+const handPlans=handActions(handStart);
+assert.equal(handPlans.length,1,'Exactly one other hand payment and one face-up target');
+const handPaid=handPlans[0].state;
+assert(handPaid.tokens.some(t=>db.bindings[t.key]===19365&&
+  t.owner==='self'&&t.zone==='banished'&&t.position==='set'),
+  'Hand payment must be banished face down, not discarded to GY');
+assert(handPaid.tokens.some(t=>db.bindings[t.key]===19364&&
+  t.owner==='opponent'&&t.zone==='hand'),
+  'Opponent Main target must return to original owner after hand banishment');
+assert(handPaid.tokens.some(t=>db.bindings[t.key]===21203&&
+  t.owner==='self'&&t.zone==='graveyard'),
+  'Gordian Normal Spell goes to GY after its non-negatable resolution');
+const handPrepared=R.actions(handStart,db,{deferResolution:true}).actions
+  .filter(a=>a.event.ruleId===oneHandId);
+assert.equal(handPrepared.length,1);
+assert(!handPrepared[0].state.tokens.some(t=>t.key===key(19365,'main')&&
+  t.zone==='banished'),'Banish from hand only at resolution');
+let fiveExtra=E.clone(handStart);
+const removal=fiveExtra.tokens.find(t=>t.owner==='self'&&t.zone==='extra');
+fiveExtra.tokens=fiveExtra.tokens.filter(t=>t.uid!==removal.uid);
+assert.equal(actions(fiveExtra).length,0,'Six Extra alternative needs all six');
+assert.equal(handActions(fiveExtra).length,1,
+  'Hand alternative remains legal even if Extra has only five cards');
+assert.equal(R.actions(handStart,db,{banishBlocked:true}).actions
+  .filter(a=>a.event.ruleId===oneHandId).length,0,
+  'Banish lock also forbids the hand payment');
+assert.equal(R.actions(handStart,db,{negateEffectRuleIds:[oneHandId]}).actions
+  .filter(a=>a.event.ruleId===oneHandId).length,0,
+  'Hand alternative cannot be negated either');
 console.log(JSON.stringify({ok:true,deck:671,card:21203,
-  portableVariants:4,oneTarget:true,extraPaidAt:'resolution',
+  portableVariants:8,oneTarget:true,extraPaidAt:'resolution',
   activationNegationImpossible:true,sideSwapRequired:true,
   entireCardCertified:false}));
