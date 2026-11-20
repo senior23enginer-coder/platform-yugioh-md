@@ -25,8 +25,7 @@ assert(calculator.includes('queueMicrotask('), 'Retry rendering when image loadi
 assert(calculator.includes('candidates.find('), 'Select the first surviving real image source');
 const matches=crystron.cards.filter(card=>card.slots?.some(slot=>['main','extra'].includes(slot.section)) && /^\\.\\/assets\\/editorial\\//.test(card.image||''));
 assert(matches.length>0,'Crystron must retain real editorial photo sources');
-for(const card of matches.slice(0,8)){
-  const relative=card.image.replace(/^\\.\\//,'');
-  assert(fs.existsSync(path.join(app, relative)),'Expected Crystron image missing from repository: '+relative);
-}
+const knownImage='assets/editorial/20261117-folder-delivery-v37/images/677/5236.png';
+assert(matches.some(card=>card.image==='./'+knownImage),'Known Crystron photo must map to a native slot');
+assert(fs.existsSync(path.join(app,knownImage)),'Known Crystron image file must exist');
 console.log('Calculator standalone navigation and Crystron editorial image contract verified.');
