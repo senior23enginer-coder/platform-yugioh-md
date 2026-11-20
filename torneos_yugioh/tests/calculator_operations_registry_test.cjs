@@ -3,11 +3,13 @@ const O = require("../assets/modules/play-calculator/operations.js");
 const R = require("../assets/modules/play-calculator/rules.js");
 
 assert.equal(O.version, 1);
-assert.equal(O.list().length, 21);
-assert.equal(new Set(O.list().map(row => row.id)).size, 21);
+assert.equal(O.list().length, 22);
+assert.equal(new Set(O.list().map(row => row.id)).size, 22);
 assert(O.list().every(row => ["generic", "restricted"].includes(row.coverage)));
 assert.equal(O.describe("xyzOverlay").coverage, "restricted");
 assert.equal(O.describe("damage").coverage, "generic");
+assert.equal(O.describe("damagePerBanishedMonsters").coverage, "restricted");
+assert.throws(() => O.assertSupported({ op: "damagePerBanishedMonsters" }, "costs"), /no permitida/);
 assert.equal(O.describe("madeUp"), null);
 assert.throws(() => O.assertSupported({ op: "madeUp" }, "resolve"), /no implementada/);
 assert.throws(() => O.assertSupported({ op: "summon" }, "costs"), /no permitida/);
