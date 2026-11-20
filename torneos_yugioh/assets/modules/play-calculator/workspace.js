@@ -75,8 +75,8 @@
     input.setAttribute('aria-activedescendant',menuRows[highlighted].id);
     menuRows[highlighted].scrollIntoView({block:'nearest'});
   }
-  function renderOptions(show = false) {
-    const query = norm(input.value);
+  function renderOptions(show = false, showAll = false) {
+    const query = showAll ? '' : norm(input.value);
     const filtered = decks.filter(d => !query || norm(d.name).includes(query));
     menu.replaceChildren();
     menuRows = [];
@@ -132,7 +132,7 @@
       if (chosenDeck) input.value = chosenDeck.name;
     }
   }
-  input.addEventListener('focus',()=>renderOptions(true));
+  input.addEventListener('focus',()=>{if(menu.hidden)renderOptions(true);});
   input.addEventListener('input',()=>{
     chosen = '';
     select.value = '';
@@ -140,7 +140,7 @@
     renderOptions(true);
   });
   toggle.addEventListener('click',()=>{
-    if (menu.hidden) {renderOptions(true);input.focus();}
+    if (menu.hidden) {renderOptions(true,true);input.focus();}
     else {closeOptions();input.focus();}
   });
   input.addEventListener('keydown',event=>{
