@@ -10,8 +10,9 @@ const names = ["Mementotlan Goblin", "Mementotlan Dark Blade", "Mementotlan Ghat
 const own = E.catalog({id:671,name:"Memento",format_codes:["tcg_advanced"]},
   names.map((name,i)=>({deck_id:671,id:i+1,card_name:name,section:"main",quantity:1})));
 const bindings = Object.fromEntries(own.cards.map((c,i)=>[c.key,ids[i]]));
+const levels = [1, 4, 2], attacks = [400, 1800, 550];
 const facts = Object.fromEntries(ids.map((cid,i)=>[cid,{cid,name:names[i],
-  kind:"monster",species:"Effect Monster",level:2,atk:400,normalAllowed:true,
+  kind:"monster",species:"Effect Monster",level:levels[i],atk:attacks[i],normalAllowed:true,
   source:`https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=${cid}`}]));
 const db = {bindings,facts,rules:Verified.forDeck(671),
   names:Object.fromEntries(own.cards.map((c,i)=>[c.key,names[i]]))};
