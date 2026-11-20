@@ -6,7 +6,11 @@
 // @runtime-start
   function renderProfile(preferredDeckId = '') {
     if (!deckSelect) return;
-    const deck = data.allDecks.find((item) => String(item.id) === String(preferredDeckId)) || data.allDecks.find((item) => item.name === deckSelect.value) || data.allDecks[0];
+    // After a successful ZIP import, restore exactly the deck that initiated it.
+    const importedDeckId = sessionStorage.getItem('stationx:deck-data-return') || '';
+    if (importedDeckId) sessionStorage.removeItem('stationx:deck-data-return');
+    const requestedId = preferredDeckId || importedDeckId;
+    const deck = data.allDecks.find((item) => String(item.id) === String(requestedId)) || data.allDecks.find((item) => item.name === deckSelect.value) || data.allDecks[0];
     if (!deck) return;
     window.YgoDeckAttributes?.renderDeck(deck);
     const stat = deckProfileCompetitiveStats(deck);
