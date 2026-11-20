@@ -33,6 +33,8 @@
         r.deckId === s.self.id && r.format === s.format && r.activation);
       if (!rule) return blocked(`CL${index + 1}: efecto no acreditado.`);
       try { R.validate(rule); } catch (e) { return blocked(e.message); }
+      if (rule.noChainReplay)
+        return blocked("TY-PHON elige el monstruo al resolver, no al activar; no se certifica este replay de cadena.");
       if (!Policy.canChainRule(index, rule))
         return blocked(`CL${index + 1}: no se acreditó velocidad 2 para encadenar este efecto.`);
       paths = paths.flatMap((path) => {
