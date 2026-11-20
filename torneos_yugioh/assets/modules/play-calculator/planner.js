@@ -480,12 +480,30 @@
           );
         }
       }
-      // Only model a Normal Summon as part of a verified card rule (R.actions).
-      // A generic monster-placement action is not a strategic recommendation:
-      // otherwise Ash Blossom and other hand responses score as useful plays.
+      // Never suggest a generic Normal Summon of an unsupported hand response:
+      // placing Ash Blossom/Fuwalos from hand is not a useful engine line.
+      // Retain existing verified archetype procedures and the older Kashtira
+      // tribute-line regression while restricting generic summons to cards
+      // whose identities already have modelled gameplay interactions.
       for (const t of own(s, (t) => t.zone === "hand")) {
         const p = fact(s, t);
         if (!p) continue;
+        if (p.normalAllowed && modelled.has(p.cid) && !s._normal) {
+          const birth = !options.effectsNegated &&
+            own(s, t => field(t) && t.position !== "set" && !E.negated(s,t) &&
+              fact(s,t)?.cid === 17815).length > 0;
+          const count = p.level >= 7 ? 2 : p.level >= 5 ? 1 : 0;
+          for (const tribute of combinations(mons(s),birth && p.level===7?0:count).slice(0,12)) {
+            const summonZone = mz || tribute[0]?.zone;
+            if (!summonZone || blocked.has(summonZone)) continue;
+            if (tribute.length && options.graveyardBlocked) continue;
+            add("Invoca Normalmente " + definition(s,t).name +
+              (tribute.length ? " tributando " + tribute.map(x=>definition(s,x).name).join(" y ") : ""),
+              [t.uid,...tribute.map(x=>x.uid)],
+              n => { tribute.forEach(x=>move(n,x.uid,"graveyard","attack"));move(n,t.uid,summonZone);n._normal=true; },
+              null,p.source);
+          }
+        }
         if (
           [17768, 17769, 17770].includes(p.cid) &&
           !mons(s).length &&
