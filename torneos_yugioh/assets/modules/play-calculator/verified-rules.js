@@ -51,19 +51,19 @@
       // from hand face down AT RESOLUTION (not as an activation cost).
       ...["self","opponent"].flatMap(side => ["main","extra"].map(section => ({
         ...rule(671,"671:gordian:one-monster-one-hand",
-          "Rebanador Gordiano: devolver un monstruo boca arriba desterrando 1 carta de mano",
+          "Rebanador Gordiano: devolver una carta boca arriba desterrando 1 carta de mano",
           21203,official(21203),
           [{op:"move",ref:"payment",to:"banished",position:"set"},
            {op:"move",ref:"target",to:section==="extra"?"extra":"hand",position:"attack"}],
           [],
-          ["Variante verificada para un monstruo boca arriba y una carta propia distinta de Gordiano en mano. El destierro boca abajo se realiza en resolución y la carta devuelta va al propietario. No reproduce múltiples objetivos, pagos combinados ni cadenas complejas. Requiere Side swap a Main."],
+          ["Variante verificada para una carta boca arriba (incluye Magia/Trampa del Main) y una carta propia distinta de Gordiano en mano. El destierro boca abajo se realiza en resolución y la carta devuelta va al propietario. No reproduce múltiples objetivos, pagos combinados ni cadenas complejas. Requiere Side swap a Main."],
         ),
         actor:{side:"self",zones:["hand"],cid:21203},
         guards:[{kind:"state",field:"active",values:["self"]},
           {kind:"state",field:"phase",values:["main1","main2"]},{kind:"phaseStart"}],
         select:[
           {ref:"payment",selector:{side:"self",zones:["hand"]}},
-          {ref:"target",selector:{side,zones:["monsters"],section,faceUp:true}}
+          {ref:"target",selector:{side,zones:[section==="main"?"field-all":"monsters"],section,faceUp:true}}
         ],
         afterResolution:[{op:"move",ref:"actor",to:"graveyard",position:"attack"}],
         activation:true,oncePerTurn:false,cannotBeNegated:true,noChainReplay:true
@@ -73,12 +73,12 @@
       // not model multiple targets or alternative hand banishment.
       ...["self","opponent"].flatMap(side => ["main","extra"].map(section => ({
         ...rule(671,"671:gordian:one-monster-six-extra",
-          "Rebanador Gordiano: devolver un monstruo boca arriba tras desterrar 6 del Extra",
+          "Rebanador Gordiano: devolver una carta boca arriba tras desterrar 6 del Extra",
           21203,official(21203),
           [{op:"banishExtraFaceDown",refs:["ex1","ex2","ex3","ex4","ex5","ex6"],count:6},
            {op:"move",ref:"target",to:section==="extra"?"extra":"hand",position:"attack"}],
           [],
-          ["Variante verificada para UN monstruo visible y seis cartas físicas concretas del Extra. La prohibición de negar la activación/efecto es obligatoria. La elección alternativa de desterrar de mano, varias cartas objetivo y las cadenas complejas siguen sin modelar. Requiere Side swap a Main antes del duelo."],
+          ["Variante verificada para UNA carta boca arriba del campo (incluidas Magias/Trampas Main) y seis cartas físicas concretas del Extra. La prohibición de negar la activación/efecto es obligatoria. La elección alternativa de desterrar de mano, varias cartas objetivo y las cadenas complejas siguen sin modelar. Requiere Side swap a Main antes del duelo."],
         ),
         actor:{side:"self",zones:["hand"],cid:21203},
         guards:[{kind:"state",field:"active",values:["self"]},
@@ -88,7 +88,7 @@
           ...[20216,19878,16845,20389,19188,20225].map((cid,i)=>({
             ref:"ex"+(i+1),selector:{side:"self",zones:["extra"],cid}
           })),
-          {ref:"target",selector:{side,zones:["monsters"],section,faceUp:true}}
+          {ref:"target",selector:{side,zones:[section==="main"?"field-all":"monsters"],section,faceUp:true}}
         ],
         afterResolution:[{op:"move",ref:"actor",to:"graveyard",position:"attack"}],
         activation:true,oncePerTurn:false,cannotBeNegated:true,noChainReplay:true
