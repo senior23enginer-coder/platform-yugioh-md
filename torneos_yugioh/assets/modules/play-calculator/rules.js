@@ -50,7 +50,7 @@
         Array.isArray(q.zones) &&
         q.zones.length > 0 &&
         q.zones.every(
-          (z) => zones.includes(z) || z === "monsters" || z === "field-all",
+          (z) => zones.includes(z) || z === "monsters" || z === "field-all" || z === "actor-materials",
         ),
       "Selector incompleto",
     );
@@ -65,10 +65,15 @@
       q.faceUp === undefined || typeof q.faceUp === "boolean",
       "Posicion incorrecta",
     );
+    check(q.section === undefined || ["main", "extra"].includes(q.section),
+      "Origen del objetivo no acreditado");
+    if (q.zones.includes("actor-materials"))
+      check(q.zones.length === 1 && q.side === "self" && q.section === undefined,
+        "Material debe pertenecer al Xyz actor");
     check(q.key === undefined || typeof q.key === "string", "Clave incorrecta");
     check(
       Object.keys(q).every((k) =>
-        ["side", "zones", "cid", "cids", "key", "faceUp", "notNegated"].includes(k),
+        ["side", "zones", "cid", "cids", "key", "faceUp", "notNegated", "section"].includes(k),
       ),
       "Selector desconocido",
     );
@@ -85,6 +90,7 @@
       (q.cid === undefined || db.bindings[t.key] === q.cid) &&
       (q.cids === undefined || q.cids.includes(db.bindings[t.key])) &&
       (q.key === undefined || q.key === t.key) &&
+      (q.section === undefined || E.definition(s,t.key,t.owner)?.section === q.section) &&
       (q.faceUp === undefined || q.faceUp === (t.position !== "set")) &&
       (!q.notNegated || !E.negated(s, t))
     );
@@ -523,7 +529,9 @@
       for (const item of options.prepared ? [] : rule.select)
         bindings = bindings
           .flatMap((b) =>
-            candidates(s, item.selector, db)
+            (item.selector.zones.includes("actor-materials")
+              ? s.tokens.filter(t => t.owner === "self" && t.zone === "material:" + b.actor)
+              : candidates(s, item.selector, db))
               .filter((t) => {
                 // A face-up own card may legally target itself only when
                 // the verified rule explicitly opts into that target shape.
