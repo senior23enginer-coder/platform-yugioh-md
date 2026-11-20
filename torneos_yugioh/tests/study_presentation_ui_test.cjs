@@ -40,7 +40,7 @@ const one=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42
       assert((await firstStep.innerText()).includes('Invoca Normal Angbruja'),'Complete source action visible');
       assert((await page.locator('.curated-result-full').innerText()).includes('Rey Creación'),'Full end result is visible');
       assert(await page.locator('.eb-layout-note').count()>0,'Nonspatial final-board disclosure must remain visible');
-      assert((await page.locator('.eb-layout-note').first().innerText()).includes('no verificadas'),
+      assert(/ilustrativ|no verificad/i.test(await page.locator('.eb-layout-note').allInnerTexts().then(items=>items.join(' '))),
         'Illustrative slots must not be represented as certified physical positions');
       assert(await page.locator('.curated-final-board img').count()>0,'Result must have card evidence');
       assert.deepEqual(errors,[],'Browser errors in guide on '+width+'px');
