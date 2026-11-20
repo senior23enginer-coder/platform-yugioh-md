@@ -462,8 +462,10 @@
       // The four Horus monsters with this documented procedure can return
       // from GY only when King's Sarcophagus is face-up under our control.
       // Each different name can use that procedure once per turn.
+      // "Control King's Sarcophagus" is a name/presence requirement, not
+      // activation of its effect: a face-up negated copy still has its name.
       const sarcophagusPresent = own(s, t => field(t) && t.position !== "set" &&
-        !E.negated(s,t) && fact(s,t)?.cid === 19200).length > 0;
+        fact(s,t)?.cid === 19200).length > 0;
       if (sarcophagusPresent && mz && !options.specialBlocked && !options.graveyardBlocked &&
           !s._ruleFlags?.specialBlocked && !s._ruleFlags?.noMoreSummons) {
         for (const t of own(s, t => t.zone === "graveyard")) {
