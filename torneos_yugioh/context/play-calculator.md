@@ -15,9 +15,10 @@ reescribe inventarios o revisiones del editor.
   portables agrupadas en 45 IDs de efecto. Persisten actores sin regla y las
   12 rutas carecen de replay integral certificado.
 - **677 Crystron/Horus:** 40 Main, 15 Extra, 15 Side; 14 rutas con 60 pasos,
-  14 diagramas de resultado ilustrativos; 11 variantes portables:
+  14 diagramas de resultado ilustrativos; 13 variantes portables:
   2 procedimientos Horus en GY, 2 acciones Smiger, 5 alternativas de búsqueda
-  de Thystvern desde GY y 2 alternativas de Sarcófago del Rey.
+  de Thystvern desde GY, 2 alternativas de destrucción en Campo que traen
+  Citree o Tristaros con bloqueo temporal de Extra y 2 alternativas de Sarcófago del Rey.
 - **Sarcófago del Rey:** `677:sarcophagus:send-horus` opera desde la zona
   de Magias/Trampas boca arriba, envía una carta real de la mano al GY como
   coste y un Horus acreditado del Deck al GY como efecto. Todas las variantes
