@@ -46,6 +46,8 @@ jobs:
         run: node torneos_yugioh/tests/calculator_browser_bootstrap_test.cjs
       - name: Verify Crystron Smiger live-state rules and shared usage
         run: node torneos_yugioh/tests/calculator_crystron_smiger_test.cjs
+      - name: Verify Thystvern field destruction, both Tuners and shared GY usage
+        run: node torneos_yugioh/tests/calculator_crystron_thystvern_field_test.cjs
       - name: Verify King's Sarcophagus four-use cost, search and separate Horus revive
         run: node torneos_yugioh/tests/calculator_horus_sarcophagus_four_uses_test.cjs
       - name: Verify Thystvern search inventory, costs and shared use
