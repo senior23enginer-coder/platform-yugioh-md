@@ -7,6 +7,13 @@
   function events(state) { return Array.isArray(state?._ruleEvents) ? state._ruleEvents : []; }
   function observed(state, predicate) { return events(state).some(predicate); }
   function matchesGuard(state, guard) {
+    // Observación explícita de una adición rival desde Main, no inferida de cartas en mano.
+    // Solo vale en la ventana de captura inmediatamente posterior al hecho.
+    if (guard.event === "opponent_main_deck_add")
+      return observed(state, e => e.kind === guard.event && e.side === "opponent" &&
+        e.turn === state.turn && e.phase !== "draw" &&
+        Number.isInteger(e.captureRevision) &&
+        e.captureRevision === state._captureRevision);
     if (guard.event === "owned_monster_destroyed_by_effect_this_turn")
       return observed(state, e => e.kind === "destroy" && e.by === "effect" &&
         e.owner === "self" && e.turn === state.turn);
