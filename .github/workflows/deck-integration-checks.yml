@@ -42,6 +42,8 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Build runtime frontend exactly as deployment
         run: npm run build
+      - name: Run complete local native regression suite (M01 acceptance gate)
+        run: npm test
       - name: Verify PHP requirements
         run: |
           php -v
@@ -84,5 +86,3 @@ jobs:
           node torneos_yugioh/tests/combo_creator_study_photos_test.cjs
           node torneos_yugioh/tests/combo_editorial_library_test.cjs
           node torneos_yugioh/tests/documented_combo_editor_test.cjs
-      - name: Run complete local native regression suite (M01 acceptance gate)
-        run: npm test
