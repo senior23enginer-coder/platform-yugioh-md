@@ -39,8 +39,13 @@
         other.chainSpeed === rule.chainSpeed),
         "Variantes incompatibles para un mismo efecto: " + rule.id);
       seen.set(rule.id, [...previous, rule]);
-      if (known && rule.actor.cid !== undefined)
-        assert(known.has(rule.actor.cid), "Actor sin identidad acreditada en el deck: " + rule.id);
+      if (known) {
+        if (rule.actor.cid !== undefined)
+          assert(known.has(rule.actor.cid), "Actor sin identidad acreditada en el deck: " + rule.id);
+        if (Array.isArray(rule.actor.cids))
+          assert(rule.actor.cids.every(cid => known.has(cid)),
+            "Material alternativo sin identidad acreditada en el deck: " + rule.id);
+      }
     }
     return { schema: SCHEMA, deckId: value.deck_id, format: value.format,
       rules: value.rules.length, ids: [...seen.keys()] };
