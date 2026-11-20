@@ -144,11 +144,12 @@
         }
       }
       for (const rule of imported) db.rules.push(E.clone(rule));
-      // Identical portable definitions take precedence; built-in rules still
-      // supply a safe fallback when a study has no executable contract.
-      const portableIds = new Set(imported.map(rule => rule.id));
+      // An effect ID can have multiple distinct legal target/zone variants.
+      // Importing one verified variant must not erase its sibling procedures.
+      // Deduplicate only the exact imported definition, not its shared effect ID.
+      const importedDefinitions = new Set(imported.map(rule => JSON.stringify(rule)));
       for (const rule of verified)
-        if (!portableIds.has(rule.id)) db.rules.push(E.clone(rule));
+        if (!importedDefinitions.has(JSON.stringify(rule))) db.rules.push(E.clone(rule));
     }
     return db;
   }
