@@ -63,4 +63,34 @@ const practiceLocked=heat(practice)[0].state;
 assert.equal(T.effective(practiceLocked).effectMonsterSummonBlocked,true);
 assert.equal(T.effective(E.advanceTurn(practiceLocked)).effectMonsterSummonBlocked,undefined,
   'Practice mode has no intervening opponent turn; expire on next own Draw');
+// Generic safeguard: Heat Wave must not indiscriminately ban a known Normal Monster.
+const sample=E.catalog({id:9002,name:'Fixture Normal/Efecto',format_codes:['tcg_advanced']},[
+  {deck_id:9002,id:1,card_name:'Blue-Eyes White Dragon',quantity:1,section:'main'},
+  {deck_id:9002,id:2,card_name:'Effect test subject',quantity:1,section:'main'}
+]);
+const normal=sample.cards[0], effect=sample.cards[1];
+const fixtureDb={bindings:{[normal.key]:4007,[effect.key]:999001},
+  facts:{4007:{species:'Normal Monster'},999001:{species:'Effect Monster'}},rules:[]};
+for(const [id,actor,idx] of [['normal',normal,4007],['effect',effect,999001]]) {
+  fixtureDb.rules.push({version:1,id:'9002:'+id+':summon',deckId:9002,
+    format:'tcg_advanced',scope:'single-effect',label:'Synthetic '+id+' summon',
+    source:'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4007&ope=2',
+    actor:{side:'self',zones:['hand'],cid:idx},
+    guards:[{kind:'state',field:'active',values:['self']},
+      {kind:'state',field:'phase',values:['main1']}],
+    select:[],costs:[],resolve:[{op:'summon',ref:'actor',from:'hand',
+      method:'normal',to:'m1',position:'attack'}],
+    tags:[],assumptions:['Synthetic engine guard fixture only'],
+    activation:false,oncePerTurn:false});
+}
+let normalState=E.create(sample);
+normalState=E.place(normalState,{key:normal.key,owner:'self',zone:'hand'});
+normalState=T.apply(normalState,'effectMonsterSummonBlocked',true,'next-own-draw');
+assert(R.actions(normalState,fixtureDb).actions.some(a=>a.event.ruleId==='9002:normal:summon'),
+  'Heat Wave must allow the Normal Summon of an actual Normal Monster');
+let effectState=E.create(sample);
+effectState=E.place(effectState,{key:effect.key,owner:'self',zone:'hand'});
+effectState=T.apply(effectState,'effectMonsterSummonBlocked',true,'next-own-draw');
+assert(!R.actions(effectState,fixtureDb).actions.some(a=>a.event.ruleId==='9002:effect:summon'),
+  'Heat Wave must reject Effect Monster Normal Summon');
 console.log('PASS M01 Heat Wave: phase start, both turns, next Draw, effect negation and planner restrictions');
