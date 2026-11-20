@@ -21,7 +21,7 @@ const key=cid=>{
   assert(card,'Expected Main Deck identity CID '+cid);
   return card.key;
 };
-let s=E.create(catalog);
+let s=E.create(catalog,catalog);
 s=E.place(s,{key:key(9139),owner:'self',zone:'hand'});
 s=E.place(s,{key:key(19364),owner:'self',zone:'hand'});
 const heat=state=>R.actions(state,db).actions.filter(a=>a.event.ruleId===heatId);
@@ -57,4 +57,10 @@ const planner=P.solve({...locked,usedEffects:''},db,{});
 assert(planner && Array.isArray(planner.plans),'Planner must still return a bounded answer');
 assert(!planner.plans.some(plan=>plan.steps.some(step=>/Invocación Normal.*Angbruja/i.test(step.label))),
   'Legacy planner cannot recommend an Effect Monster Normal Summon under Heat Wave');
+let practice=E.create(catalog);
+practice=E.place(practice,{key:key(9139),owner:'self',zone:'hand'});
+const practiceLocked=heat(practice)[0].state;
+assert.equal(T.effective(practiceLocked).effectMonsterSummonBlocked,true);
+assert.equal(T.effective(E.advanceTurn(practiceLocked)).effectMonsterSummonBlocked,undefined,
+  'Practice mode has no intervening opponent turn; expire on next own Draw');
 console.log('PASS M01 Heat Wave: phase start, both turns, next Draw, effect negation and planner restrictions');
