@@ -56,9 +56,22 @@ if (is_file($stationxReleasePath)) {
 <script src="./assets/modules/play-calculator/hand-practice.js?v=20261113-hand-practice-170" defer></script>
 <script src="./assets/modules/play-calculator/storage.js?v=20261103-board-129" defer></script>
 <script src="./assets/modules/play-calculator/card-menu.js?v=20261116-actions-1" defer></script>
+<script src="./assets/modules/play-calculator/operations.js?v=20261120-core-boot-1" defer></script>
+<script src="./assets/modules/play-calculator/guards.js?v=20261120-core-boot-1" defer></script>
+<script src="./assets/modules/play-calculator/resources.js?v=20261120-core-boot-1" defer></script>
+<script src="./assets/modules/play-calculator/transitions.js?v=20261120-core-boot-1" defer></script>
+<script src="./assets/modules/play-calculator/timing.js?v=20261120-core-boot-1" defer></script>
+<script src="./assets/modules/play-calculator/events.js?v=20261120-core-boot-1" defer></script>
+<script src="./assets/modules/play-calculator/restrictions.js?v=20261120-core-boot-1" defer></script>
+<script src="./assets/modules/play-calculator/integrity.js?v=20261120-core-boot-1" defer></script>
+<script src="./assets/modules/play-calculator/diagnostics.js?v=20261120-core-boot-1" defer></script>
+<script src="./assets/modules/play-calculator/chain-policy.js?v=20261120-core-boot-1" defer></script>
 <script src="./assets/modules/play-calculator/rules.js?v=20261120-smiger-rule-1" defer></script>
 <script src="./assets/modules/play-calculator/planner.js?v=20261120-smiger-rule-1" defer></script>
+<script src="./assets/modules/play-calculator/battle.js?v=20261120-core-boot-1" defer></script>
+<script src="./assets/modules/play-calculator/scenario.js?v=20261120-core-boot-1" defer></script>
 <script src="./assets/modules/play-calculator/verified-rules.js?v=20261118-memento-effects-5" defer></script>
+<script src="./assets/modules/play-calculator/contract.js?v=20261120-core-boot-1" defer></script>
 <script src="./assets/modules/play-calculator/study.js?v=20261120-memento-portable-1" defer></script><script src="./assets/modules/play-calculator/chain.js?v=20261118-chain-2" defer></script><script src="./assets/modules/play-calculator/ui.js?v=20261120-smiger-rule-1" defer></script>
 <script src="./assets/modules/combo-creator/model.js?v=20261103-combos-133" defer></script>
 <script src="./assets/modules/combo-creator/step-lesson.js?v=20261113-step-lessons-173" defer></script>
