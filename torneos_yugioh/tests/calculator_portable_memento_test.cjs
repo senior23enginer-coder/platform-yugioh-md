@@ -41,6 +41,10 @@ assert.equal(db.ruleImports.length,1);
 assert.equal(db.ruleImports[0].status,'accepted',JSON.stringify(db.ruleImports));
 assert.equal(db.ruleImports[0].count,227);
 assert.equal(db.rules.length,227,'Portable and fallback variants must not be duplicated');
+assert.equal(db.rules.filter(rule=>rule.id==='671:lancea:banish-lock').length,1,
+  'Verified Side-only effect must survive portable binding exactly once');
+assert(!native.cards.some(card=>db.bindings[card.key]===11243),
+  'Importing a verified Side-only rule does not move Lancea into Main');
 for(const id of ids){
  assert.equal(db.rules.filter(r=>r.id===id).length,1,
   'Identical native rule must not be duplicated: '+id);
