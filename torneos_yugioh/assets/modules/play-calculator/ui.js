@@ -461,6 +461,7 @@
         flags = [
           ["specialBlocked", "No puedo Invocar Especialmente"],
           ["noExtra", "No puedo Invocar desde el Extra"],
+          ["machineSynchroOnly", "Extra limitado a Sincronía Máquina este turno"],
           ["xyzOnly", "Extra limitado a Xyz"],
           [
             "graveyardBlocked",
@@ -494,7 +495,7 @@
       state.planBusy = true;
       const id = state.planRequest;
       const worker = new Worker(
-        "./assets/modules/play-calculator/planner-worker.js?v=20261120-portable-horus-1",
+        "./assets/modules/play-calculator/planner-worker.js?v=20261120-smiger-rule-1",
       );
       state.planWorker = worker;
       worker.onmessage = (e) => {

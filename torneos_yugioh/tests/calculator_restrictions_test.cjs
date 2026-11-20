@@ -3,7 +3,8 @@ const Restrictions = require("../assets/modules/play-calculator/restrictions.js"
 const Rules = require("../assets/modules/play-calculator/rules.js");
 const Planner = require("../assets/modules/play-calculator/planner.js");
 assert.equal(Restrictions.version, 1);
-assert.equal(Restrictions.names.length, 8);
+assert.equal(Restrictions.names.length, 9);
+assert(Restrictions.names.includes("machineSynchroOnly"));
 assert(Object.isFrozen(Restrictions.names));
 const state = { turn: 2, _ruleFlags: { specialBlocked: true } };
 const turn = Restrictions.apply(state, "noMoreSummons", true, "turn");
@@ -11,6 +12,9 @@ assert.equal(state._ruleFlags.noMoreSummons, undefined);
 assert.equal(turn._ruleFlags.noMoreSummons, true);
 assert.equal(turn._ruleFlagTurns.noMoreSummons, 2);
 assert.equal(Restrictions.effective(turn).noMoreSummons, true);
+const synchro=Restrictions.apply(state, "machineSynchroOnly", true, "turn");
+assert.equal(Restrictions.effective(synchro).machineSynchroOnly,true);
+assert.equal(Restrictions.effective({ ...synchro, turn: 3 }).machineSynchroOnly,undefined);
 assert.equal(Restrictions.effective({ ...turn, turn: 3 }).noMoreSummons, undefined);
 assert.equal(Restrictions.effective({ ...turn, turn: 3 }).specialBlocked, true);
 assert.equal(Restrictions.effective({ ...turn, turn: 3 }, { noMoreSummons: true }).noMoreSummons, undefined,
