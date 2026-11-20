@@ -43,6 +43,17 @@ assert(R.actions(nextMain,db).actions.some(a=>a.event.ruleId==='671:19364:normal
   'Normal Summon becomes available once Heat Wave expires');
 assert.equal(heat(E.patch(s,{phase:'main2'})).length,0,
   'Heat Wave cannot activate at start of Main Phase 2');
+let faceDown=E.create(catalog,catalog);
+faceDown=E.place(faceDown,{key:key(9139),owner:'self',zone:'s1'});
+faceDown=E.position(faceDown,faceDown.nextId-1,'set');
+assert.equal(heat(faceDown).length,0,
+  'A Spell Set during this Main Phase cannot also have been activated at the start');
+const olderSet=E.patch(faceDown,{turn:3,active:'self',phase:'main1'});
+const olderActions=heat(olderSet);
+assert.equal(olderActions.length,1,'A Normal Spell Set on an earlier turn may activate at start Main1');
+assert(olderActions[0].state.tokens.some(t=>db.bindings[t.key]===9139&&t.zone==='graveyard'),
+  'The old Set Normal Spell is sent from its S/T zone to the GY after activation');
+
 assert.equal(heat({...s,_rulePhaseActions:{turn:1,phase:'main1',side:'self',count:1}}).length,0,
   'Heat Wave cannot activate after another known action in Main Phase 1');
 const negated=R.actions(s,db,{negateEffectRuleIds:[heatId]}).actions.filter(a=>a.event.ruleId===heatId);
