@@ -372,6 +372,14 @@
         );
         if ((options.noDeckToHand || s._ruleFlags?.noDeckToHand) && deckHand)
           return;
+        // Legacy planner actions may bypass the declarative rule interpreter.
+        // They must still respect Heat Wave for newly summoned Effect Monsters.
+        if (options.effectMonsterSummonBlocked &&
+            n.tokens.some(t => monster(t.zone) &&
+              !s.tokens.some(before => before.uid === t.uid && monster(before.zone)) &&
+              !String(db.facts?.[db.bindings[t.key]]?.species || "")
+                .toLowerCase().includes("normal monster")))
+          return;
         try {
           E.validate(n);
         } catch {
