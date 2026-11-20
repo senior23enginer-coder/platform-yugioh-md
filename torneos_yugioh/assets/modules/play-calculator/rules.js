@@ -251,6 +251,11 @@
     );
     check(rule.oncePerName === undefined || (rule.oncePerName === true && rule.oncePerTurn === true && Number.isInteger(rule.actor.cid)),
       "Uso compartido por nombre exige CID y límite por turno");
+    if (rule.maxUsesPerTurn !== undefined)
+      check(rule.maxUsesPerTurn === 4 && rule.deckId === 677 && rule.actor.cid === 19200 &&
+        rule.id === '677:sarcophagus:send-horus' && rule.source.includes('cid=19200') &&
+        rule.oncePerName === true && rule.oncePerTurn === true,
+        'Un contador de cuatro usos solo se admite para el Sarcófago del Rey acreditado');
     if (rule.noChainReplay !== undefined)
       check(rule.noChainReplay === true &&
         ((rule.actor.cid === 19184 && rule.id === "671:typhon:detach-bounce") ||
@@ -493,6 +498,7 @@
       _ruleFlagTurns: E.clone(s._ruleFlagTurns || {}),
       _ruleEvents: E.clone(s._ruleEvents || []),
       _ruleUseTurns: E.clone(s._ruleUseTurns || {}),
+      _ruleUseCounts: E.clone(s._ruleUseCounts || {}),
     };
   }
   function triggerMatches(s, rule, uid) {
@@ -513,7 +519,15 @@
       }
       const used = rule.oncePerName ? "rule:cid:" + rule.actor.cid : "rule:" + rule.id;
       // El límite por nombre se reinicia por turno, pero no por nueva copia.
-      if (!options.prepared && rule.oncePerTurn && Timing.usedThisTurn(s, used)) continue;
+      if (!options.prepared && rule.oncePerTurn &&
+        (rule.maxUsesPerTurn === undefined
+          ? Timing.usedThisTurn(s, used)
+          : (() => {
+              const prior = s._ruleUseCounts?.[used];
+              return prior?.turn === s.turn
+                ? prior.count >= rule.maxUsesPerTurn
+                : Timing.usedThisTurn(s, used); // unknown legacy use count: fail closed
+            })())) continue;
       if (!options.prepared && rule.trigger && !s.tokens.some(t => triggerMatches(s, rule, t.uid))) continue;
       const f = Restrictions.effective(s, options);
       if (rule.activation && f.effectsNegated) continue;
@@ -928,6 +942,11 @@
           if (!options.prepared && rule.oncePerTurn && (!activationNegated || rule.activationNegatedConsumesUse)) {
             n._used = [...new Set([...(n._used || []), used])];
             n._ruleUseTurns = { ...n._ruleUseTurns, [used]: n.turn };
+            if (rule.maxUsesPerTurn !== undefined) {
+              const previous = n._ruleUseCounts?.[used];
+              n._ruleUseCounts = { ...(n._ruleUseCounts || {}),
+                [used]: { turn:n.turn, count:(previous?.turn === n.turn ? previous.count : 0) + 1 } };
+            }
           }
           const paid = checkpoint(n);
           const effectNegated = (options.negateEffectRuleIds || []).includes(rule.id);
