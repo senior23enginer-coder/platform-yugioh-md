@@ -44,9 +44,11 @@ assert.equal(JSON.stringify(state),original,'Do not mutate captured duel state')
 assert.equal(action(state,19153,{specialBlocked:true}).length,0);
 assert.equal(action(state,19153,{graveyardBlocked:true}).length,0);
 let covered=E.clone(state);
+const fillers=native.cards.filter(card=>card.section==='main' &&
+  ![19153,19155,19200].includes(db.bindings[card.key])).slice(0,5);
+assert.equal(fillers.length,5,'At least five native Main Deck identities for full-board test');
 for(let i=1;i<=5;i++) {
- const id=covered.self.cards.find(c=>db.bindings[c.key]===19153).key;
- covered=E.place(covered,{key:id,owner:'self',controller:'self',zone:'m'+i});
+ covered=E.place(covered,{key:fillers[i-1].key,owner:'self',controller:'self',zone:'m'+i});
 }
 assert.equal(action(covered,19155).length,0,'No field slot means no summon');
 let blocked=E.clone(state);
