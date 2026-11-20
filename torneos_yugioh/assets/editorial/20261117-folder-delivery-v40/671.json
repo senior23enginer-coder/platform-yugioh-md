@@ -17578,7 +17578,7 @@
         "deckId": 671,
         "format": "tcg_advanced",
         "scope": "single-effect",
-        "label": "Rebanador Gordiano: devolver un monstruo boca arriba tras desterrar 6 del Extra",
+        "label": "Rebanador Gordiano: devolver una carta boca arriba tras desterrar 6 del Extra",
         "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21203&ope=2&request_locale=en",
         "actor": {
           "side": "self",
@@ -17673,7 +17673,7 @@
             "selector": {
               "side": "self",
               "zones": [
-                "monsters"
+                "field-all"
               ],
               "section": "main",
               "faceUp": true
@@ -17703,7 +17703,7 @@
         ],
         "tags": [],
         "assumptions": [
-          "Variante verificada para UN monstruo visible y seis cartas físicas concretas del Extra. La prohibición de negar la activación/efecto es obligatoria. La elección alternativa de desterrar de mano, varias cartas objetivo y las cadenas complejas siguen sin modelar. Requiere Side swap a Main antes del duelo."
+          "Variante verificada para UNA carta boca arriba del campo (incluidas Magias/Trampas Main) y seis cartas físicas concretas del Extra. La prohibición de negar la activación/efecto es obligatoria. La elección alternativa de desterrar de mano, varias cartas objetivo y las cadenas complejas siguen sin modelar. Requiere Side swap a Main antes del duelo."
         ],
         "activation": true,
         "oncePerTurn": false,
@@ -17724,7 +17724,7 @@
         "deckId": 671,
         "format": "tcg_advanced",
         "scope": "single-effect",
-        "label": "Rebanador Gordiano: devolver un monstruo boca arriba tras desterrar 6 del Extra",
+        "label": "Rebanador Gordiano: devolver una carta boca arriba tras desterrar 6 del Extra",
         "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21203&ope=2&request_locale=en",
         "actor": {
           "side": "self",
@@ -17849,7 +17849,7 @@
         ],
         "tags": [],
         "assumptions": [
-          "Variante verificada para UN monstruo visible y seis cartas físicas concretas del Extra. La prohibición de negar la activación/efecto es obligatoria. La elección alternativa de desterrar de mano, varias cartas objetivo y las cadenas complejas siguen sin modelar. Requiere Side swap a Main antes del duelo."
+          "Variante verificada para UNA carta boca arriba del campo (incluidas Magias/Trampas Main) y seis cartas físicas concretas del Extra. La prohibición de negar la activación/efecto es obligatoria. La elección alternativa de desterrar de mano, varias cartas objetivo y las cadenas complejas siguen sin modelar. Requiere Side swap a Main antes del duelo."
         ],
         "activation": true,
         "oncePerTurn": false,
@@ -17870,7 +17870,7 @@
         "deckId": 671,
         "format": "tcg_advanced",
         "scope": "single-effect",
-        "label": "Rebanador Gordiano: devolver un monstruo boca arriba tras desterrar 6 del Extra",
+        "label": "Rebanador Gordiano: devolver una carta boca arriba tras desterrar 6 del Extra",
         "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21203&ope=2&request_locale=en",
         "actor": {
           "side": "self",
@@ -17965,7 +17965,7 @@
             "selector": {
               "side": "opponent",
               "zones": [
-                "monsters"
+                "field-all"
               ],
               "section": "main",
               "faceUp": true
@@ -17995,7 +17995,7 @@
         ],
         "tags": [],
         "assumptions": [
-          "Variante verificada para UN monstruo visible y seis cartas físicas concretas del Extra. La prohibición de negar la activación/efecto es obligatoria. La elección alternativa de desterrar de mano, varias cartas objetivo y las cadenas complejas siguen sin modelar. Requiere Side swap a Main antes del duelo."
+          "Variante verificada para UNA carta boca arriba del campo (incluidas Magias/Trampas Main) y seis cartas físicas concretas del Extra. La prohibición de negar la activación/efecto es obligatoria. La elección alternativa de desterrar de mano, varias cartas objetivo y las cadenas complejas siguen sin modelar. Requiere Side swap a Main antes del duelo."
         ],
         "activation": true,
         "oncePerTurn": false,
@@ -18016,7 +18016,7 @@
         "deckId": 671,
         "format": "tcg_advanced",
         "scope": "single-effect",
-        "label": "Rebanador Gordiano: devolver un monstruo boca arriba tras desterrar 6 del Extra",
+        "label": "Rebanador Gordiano: devolver una carta boca arriba tras desterrar 6 del Extra",
         "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21203&ope=2&request_locale=en",
         "actor": {
           "side": "self",
@@ -18141,7 +18141,7 @@
         ],
         "tags": [],
         "assumptions": [
-          "Variante verificada para UN monstruo visible y seis cartas físicas concretas del Extra. La prohibición de negar la activación/efecto es obligatoria. La elección alternativa de desterrar de mano, varias cartas objetivo y las cadenas complejas siguen sin modelar. Requiere Side swap a Main antes del duelo."
+          "Variante verificada para UNA carta boca arriba del campo (incluidas Magias/Trampas Main) y seis cartas físicas concretas del Extra. La prohibición de negar la activación/efecto es obligatoria. La elección alternativa de desterrar de mano, varias cartas objetivo y las cadenas complejas siguen sin modelar. Requiere Side swap a Main antes del duelo."
         ],
         "activation": true,
         "oncePerTurn": false,
@@ -18162,7 +18162,7 @@
         "deckId": 671,
         "format": "tcg_advanced",
         "scope": "single-effect",
-        "label": "Rebanador Gordiano: devolver un monstruo boca arriba desterrando 1 carta de mano",
+        "label": "Rebanador Gordiano: devolver una carta boca arriba desterrando 1 carta de mano",
         "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21203&ope=2&request_locale=en",
         "actor": {
           "side": "self",
@@ -18206,7 +18206,7 @@
             "selector": {
               "side": "self",
               "zones": [
-                "monsters"
+                "field-all"
               ],
               "section": "main",
               "faceUp": true
@@ -18230,7 +18230,7 @@
         ],
         "tags": [],
         "assumptions": [
-          "Variante verificada para un monstruo boca arriba y una carta propia distinta de Gordiano en mano. El destierro boca abajo se realiza en resolución y la carta devuelta va al propietario. No reproduce múltiples objetivos, pagos combinados ni cadenas complejas. Requiere Side swap a Main."
+          "Variante verificada para una carta boca arriba (incluye Magia/Trampa del Main) y una carta propia distinta de Gordiano en mano. El destierro boca abajo se realiza en resolución y la carta devuelta va al propietario. No reproduce múltiples objetivos, pagos combinados ni cadenas complejas. Requiere Side swap a Main."
         ],
         "activation": true,
         "oncePerTurn": false,
@@ -18251,7 +18251,7 @@
         "deckId": 671,
         "format": "tcg_advanced",
         "scope": "single-effect",
-        "label": "Rebanador Gordiano: devolver un monstruo boca arriba desterrando 1 carta de mano",
+        "label": "Rebanador Gordiano: devolver una carta boca arriba desterrando 1 carta de mano",
         "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21203&ope=2&request_locale=en",
         "actor": {
           "side": "self",
@@ -18319,7 +18319,7 @@
         ],
         "tags": [],
         "assumptions": [
-          "Variante verificada para un monstruo boca arriba y una carta propia distinta de Gordiano en mano. El destierro boca abajo se realiza en resolución y la carta devuelta va al propietario. No reproduce múltiples objetivos, pagos combinados ni cadenas complejas. Requiere Side swap a Main."
+          "Variante verificada para una carta boca arriba (incluye Magia/Trampa del Main) y una carta propia distinta de Gordiano en mano. El destierro boca abajo se realiza en resolución y la carta devuelta va al propietario. No reproduce múltiples objetivos, pagos combinados ni cadenas complejas. Requiere Side swap a Main."
         ],
         "activation": true,
         "oncePerTurn": false,
@@ -18340,7 +18340,7 @@
         "deckId": 671,
         "format": "tcg_advanced",
         "scope": "single-effect",
-        "label": "Rebanador Gordiano: devolver un monstruo boca arriba desterrando 1 carta de mano",
+        "label": "Rebanador Gordiano: devolver una carta boca arriba desterrando 1 carta de mano",
         "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21203&ope=2&request_locale=en",
         "actor": {
           "side": "self",
@@ -18384,7 +18384,7 @@
             "selector": {
               "side": "opponent",
               "zones": [
-                "monsters"
+                "field-all"
               ],
               "section": "main",
               "faceUp": true
@@ -18408,7 +18408,7 @@
         ],
         "tags": [],
         "assumptions": [
-          "Variante verificada para un monstruo boca arriba y una carta propia distinta de Gordiano en mano. El destierro boca abajo se realiza en resolución y la carta devuelta va al propietario. No reproduce múltiples objetivos, pagos combinados ni cadenas complejas. Requiere Side swap a Main."
+          "Variante verificada para una carta boca arriba (incluye Magia/Trampa del Main) y una carta propia distinta de Gordiano en mano. El destierro boca abajo se realiza en resolución y la carta devuelta va al propietario. No reproduce múltiples objetivos, pagos combinados ni cadenas complejas. Requiere Side swap a Main."
         ],
         "activation": true,
         "oncePerTurn": false,
@@ -18429,7 +18429,7 @@
         "deckId": 671,
         "format": "tcg_advanced",
         "scope": "single-effect",
-        "label": "Rebanador Gordiano: devolver un monstruo boca arriba desterrando 1 carta de mano",
+        "label": "Rebanador Gordiano: devolver una carta boca arriba desterrando 1 carta de mano",
         "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21203&ope=2&request_locale=en",
         "actor": {
           "side": "self",
@@ -18497,7 +18497,7 @@
         ],
         "tags": [],
         "assumptions": [
-          "Variante verificada para un monstruo boca arriba y una carta propia distinta de Gordiano en mano. El destierro boca abajo se realiza en resolución y la carta devuelta va al propietario. No reproduce múltiples objetivos, pagos combinados ni cadenas complejas. Requiere Side swap a Main."
+          "Variante verificada para una carta boca arriba (incluye Magia/Trampa del Main) y una carta propia distinta de Gordiano en mano. El destierro boca abajo se realiza en resolución y la carta devuelta va al propietario. No reproduce múltiples objetivos, pagos combinados ni cadenas complejas. Requiere Side swap a Main."
         ],
         "activation": true,
         "oncePerTurn": false,
