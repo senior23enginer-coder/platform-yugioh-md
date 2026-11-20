@@ -76,6 +76,7 @@
       error: false,
       analysis: false,
       editorialImages: {},
+      failedImageUrls: new Set(),
     };
     instances.set(node, state);
     node.className = "play-calculator";
@@ -292,13 +293,14 @@
       if (state.scenario) draw();
     }
     function imageUrl(card) {
-      return (
-        state.editorialImages[card.key] ||
-        state.images?.[card.key] ||
-        (card.imageId
-          ? `./?api=deck_builder&op=image&id=${Number(card.imageId)}`
-          : "")
-      );
+      // Try each grounded image source once. A missing editorial asset must not
+      // suppress an existing original or provider image for the same card.
+      const candidates = [
+        state.editorialImages[card.key],
+        state.images?.[card.key],
+        card.imageId ? `./?api=deck_builder&op=image&id=${Number(card.imageId)}` : "",
+      ];
+      return candidates.find(url => url && !state.failedImageUrls.has(card.key + '|' + url)) || "";
     }
     function cardMarkup(card, owner, token) {
       const selected =
@@ -1008,8 +1010,16 @@
       (event) => {
         const img = event.target;
         if (img.matches?.(".play-original-image")) {
-          img.hidden = true;
-          img.closest(".play-card")?.classList.add("image-failed");
+          const card = img.closest(".play-card");
+          const key = card?.dataset.playCard;
+          const failedUrl = img.getAttribute('src');
+          if (!key || !failedUrl) return;
+          state.failedImageUrls.add(key + '|' + failedUrl);
+          // Re-render with the next verified source; after all sources fail,
+          // cardMarkup displays its explicit unavailable-image fallback.
+          queueMicrotask(() => {
+            if (instances.get(node) === state) draw();
+          });
         }
       },
       { capture: true, signal: state.controller.signal },
