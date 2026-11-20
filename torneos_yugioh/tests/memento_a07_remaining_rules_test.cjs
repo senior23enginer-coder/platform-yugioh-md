@@ -393,7 +393,7 @@ passed(28,()=>{
       selector:{side:'self',zones:['extra'],cid}})),
       {ref:'victim',selector:{side:'opponent',zones:['monsters'],cid:ids.opponent,faceUp:true}}],
     costs:[{op:'banishExtraFaceDown',refs:six.map((_,i)=>'ex'+i),count:6}],
-    resolve:[{op:'move',ref:'victim',to:'deck',position:'attack'},
+    resolve:[{op:'move',ref:'victim',to:'hand',position:'attack'},
       {op:'move',ref:'actor',to:'graveyard',position:'attack'}],
   });
   const s=state([[ids.gordian,'hand'],...six.map(cid=>[cid,'extra']),
@@ -401,8 +401,8 @@ passed(28,()=>{
   const n=allowed(s,r);
   assert.equal(n.tokens.filter(t=>t.zone==='banished'&&t.position==='set').length,6,
     'Seis cartas del Extra deben quedar desterradas boca abajo por el objetivo');
-  assert(!n.tokens.some(t=>bindings[t.key]===ids.opponent),
-    'El objetivo rival devuelto al Deck sale del registro de copias visibles');
+  assert(n.tokens.some(t=>bindings[t.key]===ids.opponent && t.zone==='hand' && t.owner==='opponent'),
+    'Gordiano devuelve el monstruo de Main a la mano del propietario, no al Deck');
   assert.equal(run(s,r,{negateEffectRuleIds:[r.id]}).actions[0].state.tokens
     .filter(t=>t.zone==='banished').length,6,
     'Negar el efecto de Gordiano no devuelve el coste del Extra');
