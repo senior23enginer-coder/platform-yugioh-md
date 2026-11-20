@@ -80,5 +80,5 @@ const chain=E.appendChain(s,{side:'self',cardName:'TY-PHON',
   effect:'Desacoplar un material y devolver un monstruo',ruleId:effectId,actorUid:typhon.uid});
 const preview=Chain.resolve(chain,db);
 assert.equal(preview.status,'unresolved','Non-targeting TY-PHON effect must not invent a chain replay');
-assert(/TY-PHON/.test(preview.reason));
+assert(/no certificados|replay de cadena/.test(preview.reason), 'The chain remains explicitly unsupported');
 console.log('PASS M01 TY-PHON: 1 material, once per turn, main/extra ownership, negate-cost and fail-closed chains');
