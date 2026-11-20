@@ -42,8 +42,8 @@ if (is_file($stationxReleasePath)) {
 <script src="./assets/modules/deck-guide/strategy-workspace.js?v=20261030-depth-122" defer></script>
 <script src="./assets/modules/deck-guide/deck-deliveries.js?v=20261102-library-125" defer></script>
 <script src="./assets/modules/deck-export/export.js?v=20261102-export-127" defer></script>
-<link rel="stylesheet" href="./assets/modules/deck-data/styles.css?v=20261117-data-1">
-<script src="./assets/modules/deck-data/ui.js?v=20261119-visual-parity-1" defer></script>
+<link rel="stylesheet" href="./assets/modules/deck-data/styles.css?v=20261119-import-progress-1">
+<script src="./assets/modules/deck-data/ui.js?v=20261119-import-progress-1" defer></script>
 <script src="./assets/modules/deck-guide/deck-study.js?v=20261102-library-125" defer></script>
 <script src="./assets/modules/deck-guide/learning-guide.js?v=20261102-library-125" defer></script>
 <script src="./assets/result-desktop.js?v=20261109-result-button-158" defer></script>
@@ -96,7 +96,7 @@ if (is_file($stationxReleasePath)) {
 <script src="./assets/modules/deck-attributes/api.js?v=20261118-worlds-hexagonal"></script>
 <script src="./assets/modules/deck-attributes/ui.js?v=20261118-worlds-hexagonal"></script>
 <script src="./assets/modules/deck-guide/league-position.js?v=20261113-match-positions-182" defer></script>
-<script src="./assets/app.js?v=20261119-browser-history-1" defer></script>
+<script src="./assets/app.js?v=20261119-import-return-1" defer></script>
 <script src="./assets/match-editor.js?v=20261027-participants-103" defer></script>
 <script src="./assets/event-audit.js?v=20261021-audit-55" defer></script>
 <script src="./assets/seasons.js?v=20261016-season-editor-4" defer></script>

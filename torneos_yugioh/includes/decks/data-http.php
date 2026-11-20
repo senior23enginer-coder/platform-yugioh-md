@@ -177,7 +177,7 @@ function ygo_data_http(?string $appOverride=null): never {
         $prefix='';$entity=1;$pdo=connect_store_common($prefix,$entity);$inventory=ygo_combo_inventory($pdo,$id,false,false);
         $app=$appOverride??dirname(__DIR__,2);[$entry,$current]=ygo_data_current($app,$id);$op=(string)($_GET['op']??'status');
         if($method==='GET'&&$op==='status'){
-            $result=['token'=>$_SESSION['sx_csrf'],'has_data'=>(bool)$current,'cards'=>count($current['cards']??[]),'routes'=>count($current['routes']??[])];
+            $result=['token'=>$_SESSION['sx_csrf'],'has_data'=>(bool)$current,'cards'=>count($current['cards']??[]),'routes'=>count($current['routes']??[]),'updated_at'=>is_string($current['folder_delivery']['imported_at']??null)?$current['folder_delivery']['imported_at']:null];
         }elseif($method==='GET'&&$op==='export'){
             $files=ygo_data_export_files($app,$inventory,$current,ygo_data_sources($app,$id,$entry),ygo_data_saved($pdo,$id));
             $temp=tempnam(sys_get_temp_dir(),'ygo-export-');$zip=new ZipArchive();if($zip->open($temp,ZipArchive::OVERWRITE)!==true)throw new RuntimeException('No se pudo preparar el ZIP.');
