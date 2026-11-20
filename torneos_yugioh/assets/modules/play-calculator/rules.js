@@ -421,6 +421,13 @@
           Number.isInteger(op.amount) && op.amount > 0,
           "Coste LP incorrecto",
         );
+      else if (op.op === "damagePerBanishedMonsters")
+        check(rule.actor.cid === 9657 && rule.source.includes("cid=9657") &&
+          op.side === "opponent" && op.perMonster === 100 &&
+          rule.select.some(item => item.ref === "material" &&
+            item.selector.zones.length === 1 &&
+            item.selector.zones[0] === "actor-materials"),
+          "Aero Shark requiere material Xyz y 100 LP por monstruo desterrado propio");
       else if (op.op === "damage" || op.op === "recoverLP")
         check(
           ["self", "opponent"].includes(op.side) &&
@@ -545,7 +552,7 @@
         bindings = bindings
           .flatMap((b) =>
             (item.selector.zones.includes("actor-materials")
-              ? s.tokens.filter(t => t.owner === "self" && t.zone === "material:" + b.actor)
+              ? s.tokens.filter(t => t.zone === "material:" + b.actor)
               : candidates(s, item.selector, db))
               .filter((t) => {
                 // A face-up own card may legally target itself only when
@@ -845,6 +852,21 @@
             n.lp = Resources.applyLP(n.lp, op);
           } else if (op.op === "damage") {
             n.lp = Resources.applyLP(n.lp, op);
+          } else if (op.op === "damagePerBanishedMonsters") {
+            const visibleBanished = n.tokens.filter(t=>t.owner==="self" &&
+              t.zone==="banished" && t.position!=="set");
+            let count=0;
+            for(const token of visibleBanished){
+              const kind=db.facts?.[db.bindings[token.key]]?.kind;
+              check(["monster","spell","trap"].includes(kind),
+                "No se puede verificar si una carta desterrada boca arriba es monstruo");
+              if(kind==="monster")count++;
+            }
+            if(count>0)n.lp=Resources.applyLP(n.lp,{
+              op:"damage",side:op.side,amount:count*op.perMonster});
+            n._ruleEvents=[...(n._ruleEvents||[]),{
+              kind:"aero_shark_damage",cid:9657,monsters:count,damage:count*op.perMonster,
+              turn:n.turn,stage:opStage}];
           } else if (op.op === "recoverLP") {
             n.lp = Resources.applyLP(n.lp, op);
           } else if (op.op === "negate") {
