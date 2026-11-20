@@ -213,18 +213,19 @@
     const previous = opponentSelect.value;
     opponentSelect.replaceChildren(option('','Selecciona un oponente'));
     if (own) {
-      const supported = ['tcg_advanced','goat','rush_duel'];
-      const compatible = decks.filter(d => (d.format_codes||[]).some(f => supported.includes(f) && (own.format_codes||[]).includes(f)));
+      const compatible = decks.filter(d => (d.format_codes||[]).some(f => playableFormats.includes(f) && (own.format_codes||[]).includes(f)));
       for (const d of compatible) {
-        opponentSelect.append(option(String(d.id),d.name+(hasMain(d.id)?'':' · Main no cargado')));
+        const row = option(String(d.id), d.name+(hasMain(d.id)?'':' · Main Deck no cargado'));
+        row.disabled = !hasMain(d.id);
+        opponentSelect.append(row);
       }
       opponentSelect.append(option('free','Práctica libre (sin rival)'));
     }
     opponentSelect.value = [...opponentSelect.options].some(o=>o.value===previous)?previous:'';
     const valid = !!own && hasMain(own.id) && !!opponentSelect.value &&
-      (own.format_codes||[]).some(f=>['tcg_advanced','goat','rush_duel'].includes(f));
+      isTcgOrOcg(own) && (opponentSelect.value==='free'||hasMain(opponentSelect.value));
     continueButton.disabled = !valid;
-    setupStatus.textContent = !own?'Selecciona primero tu deck.':!hasMain(own.id)?'Tu deck necesita cartas en Main para preparar el tablero.':!opponentSelect.value?'Selecciona un rival o práctica libre.':'Listo para entrar al tablero.';
+    setupStatus.textContent = !own?'Selecciona primero tu deck.':!hasMain(own.id)?'Tu deck necesita cartas en Main para preparar el tablero.':!opponentSelect.value?'Selecciona un rival o práctica libre.':!valid?'El rival necesita su Main Deck cargado.':'Listo para entrar al tablero.';
   }
   function stage(next, scroll = true) {
     activeStage = next;
