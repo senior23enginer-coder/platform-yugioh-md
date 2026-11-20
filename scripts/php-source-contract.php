@@ -94,3 +94,21 @@ function architectureRestoreBody(string $body, array $originalNames): string
     }
     return $out;
 }
+
+
+/**
+ * Historical branch fingerprints were produced with PHP token constants from
+ * the baseline runtime. Permit cross-version verification ONLY when both full
+ * evidence files retain their exact Git blob identities. Every migrated action
+ * is still compared to the original source by compare-domain-contracts.cjs.
+ * This does not certify or suppress a change to either original snapshot.
+ */
+function architectureFormCommandPinnedEvidence(string $root): bool
+{
+    $file = file_get_contents($root . '/tests/fixtures/form-command-originals.json');
+    $manifest = file_get_contents($root . '/context/form-command-extractions.json');
+    if (!is_string($file) || !is_string($manifest)) return false;
+    $blob = static fn (string $bytes): string => sha1('blob ' . strlen($bytes) . "\0" . $bytes);
+    return hash_equals('add933deb0de98204fcc73a2e14e1b54719851e7', $blob($file)) &&
+        hash_equals('389f7f8fe587aef7ec8a9f08793164b0b02a4c49', $blob($manifest));
+}
