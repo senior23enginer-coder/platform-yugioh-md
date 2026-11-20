@@ -43,7 +43,7 @@ como completa; esta prueba no certifica las 12 rutas A09.
 
 **Entrega portable activa de Memento (20-11-2026):** la instantánea editorial
 `20261117-folder-delivery-v40/671.json` y la entrega canónica del repositorio
-de prompts contienen ahora las mismas **229 variantes acotadas con 41 IDs
+de prompts contienen ahora las mismas **233 variantes acotadas con 42 IDs
 de efecto**. `Study.bind` acepta esas reglas sin duplicar los respaldos.
 El importador PHP permite hasta 1000 definiciones diferentes por paquete,
 valida los IDs compartidos y el procedimiento especial TY-PHON, y rechaza
