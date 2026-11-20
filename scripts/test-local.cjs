@@ -40,6 +40,7 @@ run(process.execPath, ['torneos_yugioh/tests/calculator_portable_horus_test.cjs'
 run(process.execPath, ['torneos_yugioh/tests/calculator_portable_memento_test.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/calculator_crystron_smiger_test.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/calculator_crystron_thystvern_test.cjs']);
+run(process.execPath, ['scripts/verify-pilot-decks.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/calculator_browser_bootstrap_test.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/documented_combo_test.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/combo_source_test.cjs']);
