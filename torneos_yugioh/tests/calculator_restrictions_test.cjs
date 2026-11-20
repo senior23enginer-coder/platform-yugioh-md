@@ -15,6 +15,12 @@ assert.equal(Restrictions.effective(turn).noMoreSummons, true);
 const synchro=Restrictions.apply(state, "machineSynchroOnly", true, "turn");
 assert.equal(Restrictions.effective(synchro).machineSynchroOnly,true);
 assert.equal(Restrictions.effective({ ...synchro, turn: 3 }).machineSynchroOnly,undefined);
+const lancea=Restrictions.apply(state,"banishBlocked",true,"turn");
+assert.equal(Restrictions.effective(lancea).banishBlocked,true);
+assert.equal(Restrictions.effective({...lancea,turn:3}).banishBlocked,undefined,
+  "Banish lock must expire after Lancea's turn");
+assert.throws(()=>Restrictions.apply(state,"banishBlocked",true),/Duracion/,
+  "Lancea's banish restriction must not silently persist beyond one turn");
 assert.equal(Restrictions.effective({ ...turn, turn: 3 }).noMoreSummons, undefined);
 assert.equal(Restrictions.effective({ ...turn, turn: 3 }).specialBlocked, true);
 assert.equal(Restrictions.effective({ ...turn, turn: 3 }, { noMoreSummons: true }).noMoreSummons, undefined,
