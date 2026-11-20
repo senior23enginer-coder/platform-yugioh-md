@@ -345,10 +345,11 @@
       else if (op.op === "move")
         check(
           refs.has(op.ref) &&
-            zones.includes(op.to) &&
+            (zones.includes(op.to) ||
+              (op.to === "free-monster" && phase === "resolve" && op.summonMethod === "special")) &&
             ["attack", "defense", "set"].includes(op.position) &&
             (op.summonMethod === undefined ||
-              (op.summonMethod === "special" && ["m1","m2","m3","m4","m5"].includes(op.to))),
+              (op.summonMethod === "special" && ["m1","m2","m3","m4","m5","free-monster"].includes(op.to))),
           "Movimiento incorrecto",
         );
       else if (op.op === "take")
@@ -520,7 +521,7 @@
         n._normal ??= !n.normalAvailable;
         let opStage = "cost";
         function apply(op) {
-          if (op.to) {
+          if (op.to && op.to !== "free-monster") {
             Transitions.assertDestination(op.to, options, f);
           }
           if (op.op === "shuffle") {
@@ -694,10 +695,17 @@
                 ["hand","graveyard"].includes(t.zone) && !f.specialBlocked && !f.noMoreSummons,
                 "Invocación Especial desde zona no acreditada o bloqueada");
             }
+            const destination = op.to === "free-monster"
+              ? ["m1","m2","m3","m4","m5"].find(zone =>
+                  !(options.blockedZones || []).includes(zone) &&
+                  !n.tokens.some(token => token.controller === "self" && token.zone === zone))
+              : op.to;
+            check(destination, "No hay zona de monstruos propia libre");
+            Transitions.assertDestination(destination, options, f);
             n = E.place(n, {
               uid: t.uid,
-              zone: op.to,
-              controller: Transitions.destinationController(t, op.to),
+              zone: destination,
+              controller: Transitions.destinationController(t, destination),
             });
             if (n.tokens.some((x) => x.uid === t.uid))
               n = E.position(n, t.uid, op.position);
