@@ -73,3 +73,5 @@ jobs:
           node torneos_yugioh/tests/combo_creator_study_photos_test.cjs
           node torneos_yugioh/tests/combo_editorial_library_test.cjs
           node torneos_yugioh/tests/documented_combo_editor_test.cjs
+      - name: Run complete local native regression suite (M01 acceptance gate)
+        run: npm test
