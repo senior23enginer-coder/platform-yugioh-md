@@ -142,7 +142,7 @@
     boardToolbar.hidden = next!=='board';
     if (board) board.hidden = next!=='board';
     if (next==='setup') refreshOpponents();
-    if (scroll) host.scrollIntoView({block:'start',behavior:'instant'});
+    if (scroll) host.scrollIntoView({block:'start',behavior:'auto'});
   }
   function applyOpponent() {
     const target = opponentSelect.value;
@@ -221,7 +221,15 @@
     title.append(back);
   }
   window.addEventListener("dml:routechange", (e) => {
-    if (e.detail.target !== "calculadora_jugadas") return;
+    if (e.detail.target !== "calculadora_jugadas") {
+      // A calculator-only URL parameter must not leak into other Station X screens.
+      const url = new URL(location.href);
+      if (url.searchParams.has('calculator_stage')) {
+        url.searchParams.delete('calculator_stage');
+        history.replaceState(history.state,'',url.pathname+url.search+url.hash);
+      }
+      return;
+    }
     draw();
     restoreRequestedDeck();
     if (new URL(location.href).searchParams.get('calculator_stage')!=='board') stage('setup',false);
