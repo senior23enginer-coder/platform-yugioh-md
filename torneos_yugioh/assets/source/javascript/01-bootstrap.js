@@ -89,7 +89,7 @@
     button.addEventListener('click', () => document.body.classList.remove('sidebar-open'));
   });
 
-  function routeTo(route) {
+  function routeTo(route, navigationMode = 'push') {
     const requested = route === 'admin' ? 'gestion' : (route || 'dashboard');
     const routed = requested === 'tabla' ? 'estadisticas' : requested;
     if (requested === 'tabla') window.YgoStatisticsWorkspace?.open('tables');
@@ -110,7 +110,18 @@
       }
     });
     localStorage.setItem('dml_screen', target);
-    if (location.hash !== `#${target}`) history.replaceState(null, '', `#${target}`);
+    if (location.hash !== `#${target}`) {
+      // Record real user navigation so Back/Forward return to the previous
+      // Station X screen. Restoring history or bootstrapping a deep link
+      // must never add another entry.
+      const url = new URL(window.location.href);
+      url.hash = target;
+      if (navigationMode === 'push') {
+        history.pushState(history.state, '', `${url.pathname}${url.search}${url.hash}`);
+      } else {
+        history.replaceState(history.state, '', `${url.pathname}${url.search}${url.hash}`);
+      }
+    }
     document.body.classList.remove('sidebar-open');
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     window.dispatchEvent(new CustomEvent('dml:routechange', { detail: { target, requested } }));
@@ -157,9 +168,11 @@
       routeTo(button.dataset.route);
     });
   });
-  window.addEventListener('hashchange', () => {
-    routeTo((location.hash || '').replace('#', '') || 'dashboard');
-  });
+  const restoreBrowserRoute = () => {
+    routeTo((location.hash || '').replace('#', '') || 'dashboard', 'restore');
+  };
+  window.addEventListener('popstate', restoreBrowserRoute);
+  window.addEventListener('hashchange', restoreBrowserRoute);
 
   const divisionOpenButtons = Array.from(document.querySelectorAll('[data-division-open]'));
   const divisionDetailPanels = Array.from(document.querySelectorAll('[data-division-detail]'));
