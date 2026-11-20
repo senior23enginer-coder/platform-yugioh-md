@@ -15,7 +15,7 @@
     ["changeControl", "both", "generic"],
     ["equip", "both", "restricted"],
     ["counter", "both", "restricted"],
-    ["banishExtraFaceDown", "costs", "restricted"],
+    ["banishExtraFaceDown", "both", "restricted"],
     ["move", "both", "generic"],
     ["take", "both", "generic"],
     ["payLP", "both", "generic"],
