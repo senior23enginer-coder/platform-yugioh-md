@@ -17193,7 +17193,12 @@
         "actor": {
           "side": "self",
           "zones": [
-            "hand"
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
           ],
           "cid": 9139
         },
@@ -17228,7 +17233,7 @@
         ],
         "tags": [],
         "assumptions": [
-          "Solo al inicio de Main Phase 1 propia. Afecta a ambos jugadores y solo a monstruos de efecto. El tablero estático no puede comprobar acciones previas no capturadas. No simula el uso de una copia colocada boca abajo."
+          "Solo al inicio de Main Phase 1 propia. Afecta a ambos jugadores y solo a monstruos de efecto. El tablero estático no puede comprobar acciones previas no capturadas. Admite copia boca abajo en zona M/T solo si fue colocada en un turno anterior; colocarla durante este Main Phase ya impediría el requisito de inicio."
         ],
         "activation": true,
         "oncePerTurn": false,
