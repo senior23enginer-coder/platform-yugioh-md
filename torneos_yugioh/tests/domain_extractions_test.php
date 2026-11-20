@@ -15,8 +15,7 @@ $originals = json_decode($originalSource, true, flags: JSON_THROW_ON_ERROR);
 // mismatch case, accept ONLY the exact, reviewed original source snapshots
 // from the base branch (Git blob SHA-1), then run the full migrated-body
 // comparison below. Any byte change to either evidence file fails closed.
-$gitBlobSha = static fn (string $bytes): string =>
-    sha1('blob ' . strlen($bytes) . "\0" . $bytes);
+$gitBlobSha = static fn(string $bytes): string => sha1('blob ' . strlen($bytes) . "\0" . $bytes);
 $legacyEvidenceUnchanged =
     hash_equals('ddb4d96cd034e79c1692c6ab6a914497a1eee74f', $gitBlobSha($originalSource)) &&
     hash_equals('e5c3e9efda05ccd50af97d52fb2da2e3f90b0345', $gitBlobSha($contractSource));
@@ -84,7 +83,10 @@ foreach ($contracts as $name => $contract) {
     ];
 }
 if ($legacyTokenMismatchCount > 0) {
-    fwrite(STDERR, "PHP tokenizer IDs differ for $legacyTokenMismatchCount legacy hashes; both original evidence files match pinned Git blobs.\n");
+    fwrite(
+        STDERR,
+        "PHP tokenizer IDs differ for $legacyTokenMismatchCount legacy hashes; both original evidence files match pinned Git blobs.\n",
+    );
 }
 echo 'PASS ' . count($contracts) . " native/domain signatures and original algorithm contracts.\n";
 
