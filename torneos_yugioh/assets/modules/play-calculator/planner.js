@@ -457,41 +457,35 @@
           action,
         );
       if (s.format === "rush_duel") return out;
+      // The four Horus monsters with this documented procedure can return
+      // from GY only when King's Sarcophagus is face-up under our control.
+      // Each different name can use that procedure once per turn.
+      const sarcophagusPresent = own(s, t => field(t) && t.position !== "set" &&
+        !E.negated(s,t) && fact(s,t)?.cid === 19200).length > 0;
+      if (sarcophagusPresent && mz && !options.specialBlocked && !options.graveyardBlocked &&
+          !s._ruleFlags?.specialBlocked && !s._ruleFlags?.noMoreSummons) {
+        for (const t of own(s, t => t.zone === "graveyard")) {
+          const cid = fact(s,t)?.cid;
+          if (![19153,19154,19155,19156].includes(cid)) continue;
+          const once = "horus:gy-special:" + cid;
+          if (!unused(s,once)) continue;
+          add(
+            "Invoca Especialmente desde el Cementerio a " + definition(s,t).name +
+              " por su procedimiento con Sarcófago del Rey",
+            [t.uid],
+            n => move(n,t.uid,mz,"attack"),
+            once,
+            "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=" + cid + "&ope=2",
+            {event:{activation:false,actor:t.uid,tags:["summonFromGY"]}}
+          );
+        }
+      }
+      // Only model a Normal Summon as part of a verified card rule (R.actions).
+      // A generic monster-placement action is not a strategic recommendation:
+      // otherwise Ash Blossom and other hand responses score as useful plays.
       for (const t of own(s, (t) => t.zone === "hand")) {
         const p = fact(s, t);
         if (!p) continue;
-        if (p.normalAllowed && !s._normal) {
-          const birth =
-            !options.effectsNegated &&
-            own(
-              s,
-              (t) =>
-                field(t) &&
-                t.position !== "set" &&
-                !E.negated(s, t) &&
-                fact(s, t)?.cid === 17815,
-            ).length > 0;
-          const count = p.level >= 7 ? 2 : p.level >= 5 ? 1 : 0;
-          for (const tribute of combinations(
-            mons(s),
-            birth && p.level === 7 ? 0 : count,
-          ).slice(0, 12)) {
-            const summonZone = mz || tribute[0]?.zone;
-            if (!summonZone || blocked.has(summonZone)) continue;
-            if (tribute.length && options.graveyardBlocked) continue;
-            add(
-              `Invoca Normalmente ${definition(s, t).name}${tribute.length ? " tributando " + tribute.map((x) => definition(s, x).name).join(" y ") : ""}`,
-              [t.uid, ...tribute.map((x) => x.uid)],
-              (n) => {
-                tribute.forEach((x) => move(n, x.uid, "graveyard", "attack"));
-                move(n, t.uid, summonZone);
-                n._normal = true;
-              },
-              null,
-              p.source,
-            );
-          }
-        }
         if (
           [17768, 17769, 17770].includes(p.cid) &&
           !mons(s).length &&
