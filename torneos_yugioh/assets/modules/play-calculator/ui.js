@@ -461,6 +461,7 @@
         flags = [
           ["specialBlocked", "No puedo Invocar Especialmente"],
           ["noExtra", "No puedo Invocar desde el Extra"],
+          ["machineSynchroOnly", "Extra limitado a Sincronía Máquina este turno"],
           ["xyzOnly", "Extra limitado a Xyz"],
           [
             "graveyardBlocked",
