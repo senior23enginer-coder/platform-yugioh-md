@@ -39,6 +39,7 @@ run(process.execPath, ['torneos_yugioh/tests/calculator_active_coverage_test.cjs
 run(process.execPath, ['torneos_yugioh/tests/calculator_portable_horus_test.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/calculator_portable_memento_test.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/calculator_crystron_smiger_test.cjs']);
+run(process.execPath, ['torneos_yugioh/tests/calculator_browser_bootstrap_test.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/documented_combo_test.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/combo_source_test.cjs']);
 run(python, ['-m', 'unittest', 'discover', '-s', 'torneos_yugioh/tests', '-p', 'editorial_sync_test.py']);
