@@ -188,6 +188,17 @@ assert.equal(horusSteps(legalHorus, { specialBlocked: true }).length, 0,
   "Special Summon restriction must prevent the procedure");
 assert.equal(horusSteps(legalHorus, { used: ["horus:gy-special:19153"] }).length, 0,
   "Once-per-name GY procedure cannot be repeated in a turn");
+const sarcUid = legalHorus.tokens.find((token) => token.key === sarcCard.key).uid;
+const negatedSarc = E.cardStatus(legalHorus, sarcUid, {
+  negation: {active: true, duration: "turn", reason: "Effect negated"},
+});
+assert(horusSteps(negatedSarc).some((step) => step.label.includes("Imsety")),
+  "A negated face-up Sarcophagus still satisfies the card-presence requirement");
+let crowdedHorus = legalHorus;
+for (let zone = 1; zone <= 5; zone++)
+  crowdedHorus = add(crowdedHorus, zone <= 3 ? 12950 : 19155, "m" + zone);
+assert.equal(horusSteps(crowdedHorus).length, 0,
+  "All five occupied monster zones block the GY Special Summon");
 const ashCard = b.cards.find((card) => db.bindings[card.key] === 12950);
 assert(ashCard, "Ash Blossom fixture missing");
 const withAsh = E.place(legalHorus, {key: ashCard.key, owner: "self", zone: "hand"});
