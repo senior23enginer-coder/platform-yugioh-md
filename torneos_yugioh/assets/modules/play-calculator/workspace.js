@@ -97,8 +97,31 @@
   }));
   $("[data-calculator-search]").addEventListener("input", draw);
   $("[data-calculator-format]").addEventListener("change", draw);
+  function restoreRequestedDeck() {
+    const requested = sessionStorage.getItem('stationx:calculator-deck');
+    if (!requested) return;
+    sessionStorage.removeItem('stationx:calculator-deck');
+    if (!decks.some(d => String(d.id) === requested)) return;
+    chosen = requested;
+    draw();
+    select.dispatchEvent(new Event('change'));
+  }
+  // The dedicated calculator screen is reached from the deck profile.
+  // Return to the profile without opening another modal or resetting the URL.
+  const title = host.querySelector('.page-title') || host;
+  if (!host.querySelector('[data-calculator-return-profile]')) {
+    const back = document.createElement('a');
+    back.href = '#deck_ficha';
+    back.className = 'btn btn-outline-info calculator-return-profile';
+    back.dataset.calculatorReturnProfile = '';
+    back.innerHTML = '<i class="bi bi-arrow-left" aria-hidden="true"></i> Volver a la ficha del deck';
+    title.append(back);
+  }
   window.addEventListener("dml:routechange", (e) => {
-    if (e.detail.target === "calculadora_jugadas") draw();
+    if (e.detail.target !== "calculadora_jugadas") return;
+    draw();
+    restoreRequestedDeck();
   });
   draw();
+  if (location.hash === '#calculadora_jugadas') restoreRequestedDeck();
 })();
