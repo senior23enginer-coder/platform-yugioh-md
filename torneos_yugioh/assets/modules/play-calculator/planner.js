@@ -119,7 +119,16 @@
         return false;
       }
     });
+    // A live-state diagnosis reports missing coverage for cards actually
+    // present in the captured duel (hand, field, GY or banished), not for
+    // every card in a 40-card list that the player may never have drawn.
+    const relevantKeys = new Set(input.tokens
+      .filter(t => t.owner === "self" &&
+        (t.zone === "hand" || t.zone === "graveyard" || t.zone === "banished" ||
+          monster(t.zone) || /^s[1-5]$/.test(t.zone) || t.zone === "field"))
+      .map(t => t.key));
     const unsupported = input.self.cards
+      .filter(c => relevantKeys.has(c.key))
       .filter(
         (c) =>
           !modelled.has(profile(c, db)?.cid) &&
