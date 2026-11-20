@@ -770,9 +770,13 @@
                     zone: destination,
                   },
             );
-            n = E.position(n, t ? t.uid : n.nextId - 1, op.position);
+            // A cause belongs to the particular physical copy moved by this
+            // operation, not an older copy with the same CID already in GY.
+            const movedUid = t ? t.uid : n.nextId - 1;
+            n = E.position(n, movedUid, op.position);
             if (op.cause === "monster_effect") {
-              const sent=n.tokens.find(x=>x.key===c.key && x.zone==="graveyard" && x.owner===op.side);
+              const sent=n.tokens.find(x=>x.uid===movedUid && x.key===c.key &&
+                x.zone==="graveyard" && x.owner===op.side);
               check(sent,"Carta enviada por efecto no identificada");
               n._ruleEvents=[...(n._ruleEvents||[]),{kind:"sent_to_graveyard",uid:sent.uid,cid:op.cid,sourceCid:db.bindings[actor.key],turn:n.turn,stage:opStage}];
             }
