@@ -38,3 +38,10 @@
 .eb-root .eb-conditional{background:#eff4f7}
 .eb-root .eb-arena .eb-card-back,
 .eb-root .eb-arena .eb-preview-back{color:#fff!important}
+
+
+.eb-root .eb-partial-result{padding:14px;border:1px solid #b9cbd4;border-radius:10px;background:#f3f7fa;color:#173448}
+.eb-root .eb-partial-result h5,.eb-root .eb-partial-result p,.eb-root .eb-partial-result summary{color:#173448!important}
+.eb-root .eb-partial-group{padding:12px 0;border-top:1px solid #c8d8e0}
+.eb-root .eb-partial-group:first-of-type{border-top:0}
+.eb-root .eb-partial-result .eb-item figcaption,.eb-root .eb-partial-result .eb-item figcaption strong,.eb-root .eb-partial-result .eb-item figcaption span{color:#173448!important}
