@@ -3,6 +3,161 @@
   "deck_id": 677,
   "name": "Crystron",
   "format": "tcg_advanced",
+  "calculator": {
+    "schema": "station-x-calculator/1",
+    "deck_id": 677,
+    "format": "tcg_advanced",
+    "rules": [
+      {
+        "version": 1,
+        "id": "677:horus-gy:19153",
+        "deckId": 677,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Amset, Gloria de Horus: Invocación Especial desde Cementerio al controlar Sarcófago del Rey",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19153&ope=2&request_locale=es",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "graveyard"
+          ],
+          "cid": 19153
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          },
+          {
+            "kind": "count",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "field-all"
+              ],
+              "cid": 19200,
+              "faceUp": true
+            },
+            "min": 1,
+            "max": 5
+          },
+          {
+            "kind": "flag",
+            "flag": "specialBlocked",
+            "value": false
+          },
+          {
+            "kind": "flag",
+            "flag": "graveyardBlocked",
+            "value": false
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "free-monster",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "activation": false,
+        "oncePerTurn": true,
+        "assumptions": [
+          "Procedimiento propio del monstruo Horus, no efecto activado de Sarcófago; se modela solo si el jugador controla Sarcófago del Rey boca arriba y tiene una zona de monstruo libre.",
+          "No aplica efectos adicionales ni resuelve cadenas del rival."
+        ]
+      },
+      {
+        "version": 1,
+        "id": "677:horus-gy:19155",
+        "deckId": 677,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Hapi, Guía de Horus: Invocación Especial desde Cementerio al controlar Sarcófago del Rey",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19155&ope=2&request_locale=es",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "graveyard"
+          ],
+          "cid": 19155
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          },
+          {
+            "kind": "count",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "field-all"
+              ],
+              "cid": 19200,
+              "faceUp": true
+            },
+            "min": 1,
+            "max": 5
+          },
+          {
+            "kind": "flag",
+            "flag": "specialBlocked",
+            "value": false
+          },
+          {
+            "kind": "flag",
+            "flag": "graveyardBlocked",
+            "value": false
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "free-monster",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "activation": false,
+        "oncePerTurn": true,
+        "assumptions": [
+          "Procedimiento propio del monstruo Horus, no efecto activado de Sarcófago; se modela solo si el jugador controla Sarcófago del Rey boca arriba y tiene una zona de monstruo libre.",
+          "No aplica efectos adicionales ni resuelve cadenas del rival."
+        ]
+      }
+    ]
+  },
   "cards": [
     {
       "id": "677:CARD:4861",
