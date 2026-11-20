@@ -1,0 +1,14 @@
+'use strict';
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const folder = path.join(__dirname, '../assets/modules/deck-guide');
+const js = fs.readFileSync(path.join(folder, 'endboard.js'), 'utf8');
+const css = fs.readFileSync(path.join(folder, 'endboard.css'), 'utf8');
+assert.match(js, /route\.endboard\.spatial_verified===false\|\|v\.spatial_verified===false/, 'Unverified spatial endboards must not use the full grid');
+assert.match(js, /class="eb-partial-result"/, 'Documented-only board requires a distinct container');
+assert.match(js, /Posiciones exactas no verificadas/, 'Player must see the uncertainty');
+assert.match(css, /\.eb-root \.eb-layout-note,/, 'Light note needs explicit dark text');
+assert.match(css, /\.eb-root \.eb-opponent/, 'Opponent panel needs explicit contrast');
+assert.match(css, /\.eb-root \.eb-partial-result\{/, 'Partial-result tray needs explicit styling');
+console.log('Guía visual: controles de contraste y resultado parcial presentes.');
