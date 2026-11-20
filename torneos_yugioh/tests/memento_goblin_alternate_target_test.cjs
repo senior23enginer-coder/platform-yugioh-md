@@ -13,7 +13,7 @@ const own = E.catalog({ id: 671, name: "Memento", format_codes: ["tcg_advanced"]
     card_name: names[i], quantity: 1 })));
 const bindings = Object.fromEntries(own.cards.map((card, i) => [card.key, cids[i]]));
 const rules = Verified.forDeck(671).filter(rule => rule.id === "671:goblin:send-two");
-assert.equal(rules.length, 4, "Existing and Ghattic send-pair variants preserved");
+assert.equal(rules.length, 3, "Verified self-destroy and alternate-target variants preserved");
 for (const rule of rules) R.validate(rule);
 const db = { bindings, rules, facts: {} };
 function fixture() {
