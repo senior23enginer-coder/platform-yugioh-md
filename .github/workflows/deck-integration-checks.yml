@@ -55,7 +55,13 @@ jobs:
           node torneos_yugioh/tests/combo_creator_regression_test.cjs
       - name: Import actual GPT Memento and Crystron ZIP folders in isolated PHP tests
         run: |
-          git clone --depth 1 --branch base https://github.com/senior23enginer-coder/gpt-yugioh-promps-platform.git /tmp/station-x-gpt-decks
+          PROMPTS_REPO=https://github.com/senior23enginer-coder/gpt-yugioh-promps-platform.git
+          PROMPTS_BRANCH=${GITHUB_HEAD_REF:-base}
+          if git ls-remote --exit-code --heads "$PROMPTS_REPO" "refs/heads/$PROMPTS_BRANCH" >/dev/null; then
+            git clone --depth 1 --branch "$PROMPTS_BRANCH" "$PROMPTS_REPO" /tmp/station-x-gpt-decks
+          else
+            git clone --depth 1 --branch base "$PROMPTS_REPO" /tmp/station-x-gpt-decks
+          fi
           php torneos_yugioh/tests/gpt_real_folder_import_test.php /tmp/station-x-gpt-decks
           node torneos_yugioh/tests/gpt_real_endboard_renderer_test.cjs /tmp/station-x-gpt-decks
       - name: Validate calculator contracts and rules
