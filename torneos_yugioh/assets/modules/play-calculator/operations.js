@@ -36,7 +36,9 @@
     if (!entry) throw Error("Operacion no implementada: " + (op && op.op));
     if (phase !== "costs" && phase !== "resolve") throw Error("Bloque de operacion incorrecto");
     if (entry.phase !== "both" && entry.phase !== phase)
-      throw Error("Operacion " + entry.id + " no permitida en " + phase);
+      throw Error(entry.id === "tribute" && phase === "resolve"
+        ? "Sacrificar como coste exige el bloque costs; tribute no está permitido en resolve"
+        : "Operacion " + entry.id + " no permitida en " + phase);
     return entry;
   }
   return Object.freeze({ version: 1, registry, list, describe, assertSupported });
