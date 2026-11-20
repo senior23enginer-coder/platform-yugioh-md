@@ -42,8 +42,9 @@ const actions = (s,id,options={}) => R.actions(s,db,options).actions.filter(a=>a
 let own=E.create(native);
 own=add(own,12608,'m1');
 const original=JSON.stringify(own);
-const field=actions(own,idField);
-assert.equal(field.length,1,'Smiger can select itself, destroy itself and bring Citree');
+const inspected=R.actions(own,db);
+const field=inspected.actions.filter(action=>action.event?.ruleId===idField);
+assert.equal(field.length,1,'Smiger can select itself, destroy itself and bring Citree: '+JSON.stringify(inspected.rejected.filter(x=>x.id===idField)));
 const next=field[0].state;
 assert.equal(JSON.stringify(own),original,'Calculator must never mutate the captured situation');
 assert(next.tokens.some(t=>db.bindings[t.key]===12608&&t.zone==='graveyard'));
