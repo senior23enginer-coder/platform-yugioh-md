@@ -30,6 +30,6 @@ for(const [id,expected,ruleCount] of [[671,12,242],[677,14,13]]){
 }
 const ui=fs.readFileSync(path.join(root,'assets/modules/play-calculator/ui.js'),'utf8');
 assert(ui.includes('reglas declarativas aceptadas desde el estudio'));
-assert(ui.includes('reglas programadas disponibles'));
-assert(ui.includes('El número de rutas no equivale a jugadas ejecutables'));
+assert(ui.includes('IDs de efecto declarativos'));
+assert(ui.includes('Ninguno de estos recuentos certifica una ruta completa'));
 console.log('Coverage check: 12 Memento / 14 Crystron routes documentary; portable rules verified separately.');
