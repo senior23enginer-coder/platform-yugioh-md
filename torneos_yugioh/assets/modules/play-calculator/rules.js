@@ -246,6 +246,11 @@
       );
       refs.add(x.ref);
       selector(x.selector);
+      check(x.allowActor === undefined ||
+        (x.allowActor === true && x.ref === "target" &&
+          x.selector.side === "self" && x.selector.faceUp === true &&
+          x.selector.zones.includes("field-all")),
+        "Solo objetivos propios boca arriba acreditados pueden coincidir con el actor");
     }
     check(rule.equippedToActorRef === undefined ||
       (rule.actor.cid === 20196 && rule.equippedToActorRef === "gear" &&
@@ -494,7 +499,11 @@
           .flatMap((b) =>
             candidates(s, item.selector, db)
               .filter((t) => {
-                if (Object.values(b).includes(t.uid)) return false;
+                // A face-up own card may legally target itself only when
+                // the verified rule explicitly opts into that target shape.
+                if (Object.entries(b).some(([ref,uid]) =>
+                  uid === t.uid && !(ref === "actor" && item.allowActor === true)))
+                  return false;
                 if (!rule.distinctSelectedNames) return true;
                 const earlier = Object.entries(b).filter(([ref]) => ref !== "actor")
                   .map(([, uid]) => s.tokens.find((token) => token.uid === uid));
