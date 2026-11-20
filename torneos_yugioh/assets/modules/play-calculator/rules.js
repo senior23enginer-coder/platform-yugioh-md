@@ -251,6 +251,10 @@
     );
     check(rule.oncePerName === undefined || (rule.oncePerName === true && rule.oncePerTurn === true && Number.isInteger(rule.actor.cid)),
       "Uso compartido por nombre exige CID y límite por turno");
+    if (rule.noChainReplay !== undefined)
+      check(rule.noChainReplay === true && rule.actor.cid === 19184 &&
+        rule.id === "671:typhon:detach-bounce",
+        "Resolución no seleccionadora de TY-PHON requiere regla acreditada");
     if (rule.afterResolution !== undefined) {
       check(rule.actor.cid === 9139 && rule.source.includes("cid=9139") &&
         rule.activation === true &&
