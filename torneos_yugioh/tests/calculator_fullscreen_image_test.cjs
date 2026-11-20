@@ -23,7 +23,7 @@ assert(calculator.includes('state.images?.[card.key],'),'Keep original image ind
 assert(calculator.includes('state.failedImageUrls.add(key +'), 'Record failed URL attempts per card identity');
 assert(calculator.includes('queueMicrotask('), 'Retry rendering when image loading fails');
 assert(calculator.includes('candidates.find('), 'Select the first surviving real image source');
-const matches=crystron.cards.filter(card=>card.slots?.some(slot=>['main','extra'].includes(slot.section)) && /^\\.\\/assets\\/editorial\\//.test(card.image||''));
+const matches=crystron.cards.filter(card=>card.slots?.some(slot=>['main','extra'].includes(slot.section)) && String(card.image||'').startsWith('./assets/editorial/'));
 assert(matches.length>0,'Crystron must retain real editorial photo sources');
 const knownImage='assets/editorial/20261117-folder-delivery-v37/images/677/5236.png';
 assert(matches.some(card=>card.image==='./'+knownImage),'Known Crystron photo must map to a native slot');
