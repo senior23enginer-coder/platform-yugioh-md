@@ -17,7 +17,7 @@
 <link href="./assets/modules/deck-guide/strategy-workspace.css?v=20261024-strategy-95" rel="stylesheet">
 <link href="./assets/modules/combo-creator/step-lesson.css?v=20261113-step-lessons-173" rel="stylesheet">
 <link href="./assets/modules/play-calculator/card-menu.css?v=20261116-actions-1" rel="stylesheet">
-<link href="./assets/modules/play-calculator/workspace.css?v=20261116-workspace-1" rel="stylesheet">
+<link href="./assets/modules/play-calculator/workspace.css?v=20261120-duel-stages-1" rel="stylesheet">
 <link href="./assets/modules/card-inspector/styles.css?v=20261116-readable-3" rel="stylesheet">
 <link href="./assets/modules/combo-creator/styles.css?v=20261116-deck-picker-1" rel="stylesheet">
 <link href="./assets/modules/play-calculator/styles.css?v=20261116-workspace-1" rel="stylesheet">
