@@ -44,6 +44,7 @@ const noSarc={...E.clone(state),tokens:state.tokens.filter(t=>t.key!=='677:536')
 assert(!contains(P.solve(noSarc,db,options),'Invoca Especialmente desde el Cementerio'),'Without Sarcophagus no GY summon');
 const facedown=E.clone(state);facedown.tokens.find(t=>t.key==='677:536').position='set';
 assert(!contains(P.solve(facedown,db,options),'Invoca Especialmente desde el Cementerio'),'Face-down Sarcophagus does not satisfy the condition');
+assert(P.capabilities(state,db).some(row=>row.id==='horus:gy-special:19153'),'Player must be able to mark prior Horus GY use');
 const used=P.solve(state,db,{...options,used:['horus:gy-special:19153']});
 assert(!contains(used,'Amset, Gloria de Horus'),'Once-per-turn used marker should block Amset');
 console.log('State-driven calculator: Horus GY procedures and hand-trap exclusion verified.');
