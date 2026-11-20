@@ -487,7 +487,7 @@
   openDeckProfileView('summary');
   renderStats();
   if (resultDivision) loadMatchOptions();
-  routeTo(publicSeason ? 'estadisticas' : ((location.hash || '').replace('#', '') || localStorage.getItem('dml_screen') || 'dashboard'));
+  routeTo(publicSeason ? 'estadisticas' : ((location.hash || '').replace('#', '') || localStorage.getItem('dml_screen') || 'dashboard'), 'replace');
   if (deckCategoryOrder.includes(requestedDeckCategory) && (location.hash || '').replace('#', '') === 'deck_ficha') {
     window.setTimeout(() => openDeckCategory(requestedDeckCategory, false), 0);
   }
