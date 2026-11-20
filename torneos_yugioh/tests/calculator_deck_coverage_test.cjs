@@ -6,15 +6,16 @@ const E=require('../assets/modules/play-calculator/engine.js');
 const Study=require('../assets/modules/play-calculator/study.js');
 const root=path.resolve(__dirname,'..');
 const editorial=JSON.parse(fs.readFileSync(path.join(root,'assets/editorial/strategy-content-state.json'),'utf8'));
-for(const [id,expected] of [[671,12],[677,14]]){
+for(const [id,expected,ruleCount] of [[671,12,4],[677,14,4]]){
   const entry=editorial.checked_studies[String(id)];
   assert(entry,'Missing checked study '+id);
   const study=JSON.parse(fs.readFileSync(path.join(root,entry.path.replace(/^\.\//,'')),'utf8'));
   assert.equal(study.routes.length,expected,'Preserve historical route IDs and count');
-  assert.equal(study.calculator?.rules?.length||0,0,'Fixture changed: inspect rule coverage before modifying test');
-  const native=E.catalog({id,name:study.name||'Deck',format_codes:[study.format]},[
-    {id:99999,deck_id:id,card_name:'Carta de validación',section:'main',quantity:1}
-  ]);
+  assert.equal(study.calculator?.rules?.length||0,ruleCount,'Portable rule count changed: audit imported effects');
+  const inventory=study.cards.flatMap(card=>(card.slots||[]).map(slot=>({
+    id:slot.card_id,deck_id:id,card_name:card.name,section:slot.section,quantity:slot.quantity
+  })));
+  const native=E.catalog({id,name:study.name||'Deck',format_codes:[study.format]},inventory);
   const compiled=Study.compile(study,native);
   assert.equal(compiled.length,expected);
   assert(compiled.every(route=>route.calculatorVerified===false),
@@ -24,10 +25,11 @@ for(const [id,expected] of [[671,12],[677,14]]){
     'All documentary routes must explain incomplete runtime coverage');
   const bound=Study.bind({bindings:{},names:{},facts:{}},[{catalog:native,study}]);
   assert.equal(bound.studyCoverage[0].routes,expected);
-  assert.equal(bound.ruleImports.filter(x=>x.status==='accepted').reduce((n,x)=>n+x.count,0),0);
+  assert.equal(bound.ruleImports.filter(x=>x.status==='accepted').reduce((n,x)=>n+x.count,0),ruleCount,
+    'Portable rules must be accepted independently of documentary route completeness');
 }
 const ui=fs.readFileSync(path.join(root,'assets/modules/play-calculator/ui.js'),'utf8');
 assert(ui.includes('reglas declarativas aceptadas desde el estudio'));
 assert(ui.includes('reglas programadas disponibles'));
 assert(ui.includes('El número de rutas no equivale a jugadas ejecutables'));
-console.log('Coverage check: 12 Memento and 14 Crystron routes preserved and explicitly documentary.');
+console.log('Coverage check: 12 Memento / 14 Crystron routes documentary; portable rules verified separately.');
