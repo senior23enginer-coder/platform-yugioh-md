@@ -43,6 +43,8 @@ jobs:
         run: node torneos_yugioh/tests/calculator_crystron_smiger_test.cjs
       - name: Verify Memento Droll observed-trigger and turn-scoped lock
         run: node torneos_yugioh/tests/memento_droll_observed_add_test.cjs
+      - name: Execute full Memento A07 effect regression suite
+        run: npm run test:a07:memento
       - name: Protect prior planner and Horus regressions
         run: |
           node torneos_yugioh/tests/calculator_horus_state_test.cjs
