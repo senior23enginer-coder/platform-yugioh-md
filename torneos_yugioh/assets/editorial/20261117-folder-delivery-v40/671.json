@@ -17246,6 +17246,330 @@
           }
         ],
         "activationNegatedConsumesUse": false
+      },
+      {
+        "version": 1,
+        "id": "671:typhon:detach-bounce",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "TY-PHON: desacoplar un material y devolver un monstruo a su propietario",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19184&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19184,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "actor-materials"
+              ]
+            }
+          },
+          {
+            "ref": "target",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "section": "main"
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "target",
+            "to": "hand",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "El material está físicamente acoplado a este TY-PHON. Solo se representa un objetivo distinto del actor y sin materiales Xyz propios; la elección no selecciona como objetivo de carta. No se simulan cadenas de respuesta para esta variante ni la transferencia de materiales al devolver un Xyz."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "noChainReplay": true
+      },
+      {
+        "version": 1,
+        "id": "671:typhon:detach-bounce",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "TY-PHON: desacoplar un material y devolver un monstruo a su propietario",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19184&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19184,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "actor-materials"
+              ]
+            }
+          },
+          {
+            "ref": "target",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "section": "extra"
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "target",
+            "to": "extra",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "El material está físicamente acoplado a este TY-PHON. Solo se representa un objetivo distinto del actor y sin materiales Xyz propios; la elección no selecciona como objetivo de carta. No se simulan cadenas de respuesta para esta variante ni la transferencia de materiales al devolver un Xyz."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "noChainReplay": true
+      },
+      {
+        "version": 1,
+        "id": "671:typhon:detach-bounce",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "TY-PHON: desacoplar un material y devolver un monstruo a su propietario",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19184&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19184,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "actor-materials"
+              ]
+            }
+          },
+          {
+            "ref": "target",
+            "selector": {
+              "side": "opponent",
+              "zones": [
+                "monsters"
+              ],
+              "section": "main"
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "target",
+            "to": "hand",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "El material está físicamente acoplado a este TY-PHON. Solo se representa un objetivo distinto del actor y sin materiales Xyz propios; la elección no selecciona como objetivo de carta. No se simulan cadenas de respuesta para esta variante ni la transferencia de materiales al devolver un Xyz."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "noChainReplay": true
+      },
+      {
+        "version": 1,
+        "id": "671:typhon:detach-bounce",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "TY-PHON: desacoplar un material y devolver un monstruo a su propietario",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19184&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19184,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "actor-materials"
+              ]
+            }
+          },
+          {
+            "ref": "target",
+            "selector": {
+              "side": "opponent",
+              "zones": [
+                "monsters"
+              ],
+              "section": "extra"
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "target",
+            "to": "extra",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "El material está físicamente acoplado a este TY-PHON. Solo se representa un objetivo distinto del actor y sin materiales Xyz propios; la elección no selecciona como objetivo de carta. No se simulan cadenas de respuesta para esta variante ni la transferencia de materiales al devolver un Xyz."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "noChainReplay": true
       }
     ]
   },
