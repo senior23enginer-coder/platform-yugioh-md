@@ -6,7 +6,7 @@
   "use strict";
   const names = Object.freeze(["specialBlocked", "noExtra", "xyzOnly",
     "graveyardBlocked", "effectsNegated", "noDeckToHand", "banishBlocked", "noMoreSummons", "machineSynchroOnly"]);
-  const turnScoped = Object.freeze(["noMoreSummons", "machineSynchroOnly", "banishBlocked"]);
+  const turnScoped = Object.freeze(["noMoreSummons", "machineSynchroOnly", "banishBlocked", "noDeckToHand"]);
   function effective(state, options = {}) {
     const flags = { ...options, ...(state._ruleFlags || {}) };
     for (const key of turnScoped)
