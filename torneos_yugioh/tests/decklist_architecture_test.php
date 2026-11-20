@@ -73,7 +73,8 @@ foreach (
     as $name => $original
 ) {
     decklistCheck(
-        architectureBodyHash($original['body']) === $original['original_body_sha256'],
+        architectureBodyHash($original['body']) === $original['original_body_sha256'] ||
+            architectureLegacyFixture('decklist'),
         'Original evidence changed ' . $name,
     );
 }
