@@ -17181,6 +17181,66 @@
         "activation": true,
         "oncePerTurn": false,
         "chainSpeed": 2
+      },
+      {
+        "version": 1,
+        "id": "671:heat-wave:lock",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Oleada de Calor: impedir Invocaciones de monstruos de efecto hasta tu siguiente Robo",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=9139&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand"
+          ],
+          "cid": 9139
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1"
+            ]
+          },
+          {
+            "kind": "phaseStart"
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "flag",
+            "flag": "effectMonsterSummonBlocked",
+            "value": true,
+            "duration": "next-own-draw"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Solo al inicio de Main Phase 1 propia. Afecta a ambos jugadores y solo a monstruos de efecto. El tablero estático no puede comprobar acciones previas no capturadas. No simula el uso de una copia colocada boca abajo."
+        ],
+        "activation": true,
+        "oncePerTurn": false,
+        "afterResolution": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "activationNegatedConsumesUse": false
       }
     ]
   },
