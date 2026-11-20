@@ -47,6 +47,22 @@
       ["Sólo se modela la búsqueda de Riseheart; las otras elecciones y efectos de Fenrir siguen pendientes."],
     )];
     if (id === 671) return [
+      ...["self","opponent"].flatMap(side => ["main","extra"].map(section => ({
+        ...rule(671, "671:typhon:detach-bounce",
+          "TY-PHON: desacoplar un material y devolver un monstruo a su propietario",
+          19184, official(19184),
+          [{ op: "move", ref: "target",
+            to: section === "extra" ? "extra" : "hand", position: "attack" }],
+          ["monsterEffect"],
+          ["El material está físicamente acoplado a este TY-PHON. Solo se representa un objetivo distinto del actor y sin materiales Xyz propios; la elección no selecciona como objetivo de carta. No se simulan cadenas de respuesta para esta variante ni la transferencia de materiales al devolver un Xyz."],
+        ),
+        actor: {side:"self",zones:["monsters"],cid:19184,faceUp:true,notNegated:true},
+        guards: main,
+        select: [{ref:"material",selector:{side:"self",zones:["actor-materials"]}},
+          {ref:"target",selector:{side,zones:["monsters"],section}}],
+        costs: [{op:"move",ref:"material",to:"graveyard",position:"attack"}],
+        activation: true, oncePerTurn: true, noChainReplay: true,
+      }))),
       {
         ...rule(671, "671:heat-wave:lock",
           "Oleada de Calor: impedir Invocaciones de monstruos de efecto hasta tu siguiente Robo",
