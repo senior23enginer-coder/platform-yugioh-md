@@ -49,6 +49,13 @@
         cardKey: c.key,
         label: `${c.name}: ${label}`,
       }));
+      // This is a once-per-name procedure, not an activated effect.
+      // Expose it so the player can mark a prior Special Summon this turn.
+      if ([19153,19154,19155,19156].includes(p?.cid)) builtIn.push({
+        id: "horus:gy-special:" + p.cid,
+        cardKey: c.key,
+        label: c.name + ": ya Invocado Especialmente desde GY este turno",
+      });
       const declared = (db.rules || [])
         .filter((r) => {
           try {
