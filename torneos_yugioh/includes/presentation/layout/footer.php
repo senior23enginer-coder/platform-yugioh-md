@@ -63,7 +63,7 @@ if (is_file($stationxReleasePath)) {
 <script src="./assets/modules/combo-creator/model.js?v=20261103-combos-133" defer></script>
 <script src="./assets/modules/combo-creator/step-lesson.js?v=20261113-step-lessons-173" defer></script>
 <script src="./assets/modules/combo-creator/documented-import.js?v=20261116-folder-import-1" defer></script>
-<script src="./assets/modules/play-calculator/workspace.js?v=20261120-duel-stages-1" defer></script>
+<script src="./assets/modules/play-calculator/workspace.js?v=20261120-deck-combobox-1" defer></script>
 <script src="./assets/modules/card-inspector/model.js?v=20261116-readable-3" defer></script>
 <script src="./assets/modules/card-inspector/ui.js?v=20261116-readable-3" defer></script>
 <script src="./assets/modules/combo-creator/ui.js?v=20261119-local-study-photos-1" defer></script>
