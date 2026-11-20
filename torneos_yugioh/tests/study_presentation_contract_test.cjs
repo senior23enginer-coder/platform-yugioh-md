@@ -40,7 +40,14 @@ assert(explicit.some(p=>p.name==='Angbruja'), 'Current visual content must prese
 assert(pictures.some(x=>x.name==='Angbruja'),'Memento Angbruja should appear in step one');
 const outcome=P.resultPhotos(memento.routes[0],memento.cards);
 assert(outcome.length>0,'Memento outcome should display supported card evidence');
-assert.equal(P.status(memento.routes[0]),'documented','No positions may be fabricated');
+assert.equal(P.status(memento.routes[0]),'structured',
+  'Illustrative documented-zone endboards must remain available to the viewer');
+assert.equal(memento.routes[0].presentation_status,'ZONAS_DOCUMENTADAS_CASILLAS_ILUSTRATIVAS',
+  'UI must disclose that exact placements have not been certified');
+assert.equal(memento.routes[0].endboard.spatial_verified,false,
+  'Structured illustrative endboards do not certify exact zone placements');
+assert(memento.routes[0].endboard.variants.every(variant=>variant.spatial_verified===false),
+  'Every illustrated alternative must retain its non-spatial status');
 assert.equal(P.photosFromText('Sin cartas verificadas',memento.cards).length,0,'Do not invent cards');
 assert.equal(P.photosFromText('Carta no contenida en el deck',memento.cards).length,0,'Cross-deck photos rejected');
 assert(!P.style({'Tipo de estrategia':'Consultar el plan de juego','Estilo de juego':'Dictamen editorial PARCIAL_AVANZADO: destrucción propia → Cementerio.'}).includes('Dictamen'),'Fallback should strip audit jargon');
