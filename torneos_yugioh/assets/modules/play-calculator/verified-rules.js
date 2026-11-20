@@ -431,6 +431,17 @@
         ["monsterEffect", "sendFromDeck"],
         ["Caso acotado de dos nombres distintos: Hoja Oscura y Desvantasma disponibles en Deck; las demás elecciones aún no están incorporadas."],
       ),
+      // Additional concrete Goblin pair: Dark Blade + Ghattic. Sending Ghattic
+      // generates a causal GY event that its own verified revival can inspect.
+      // This is one bounded pair, not a claim to cover all Deck choices.
+      rule(671, "671:goblin:send-two", "Goblin: destruirse y enviar Hoja Oscura y Desvantasma", 19366,
+        official(19366),
+        [{ op: "destroy", ref: "actor", reason: "effect" },
+          { op: "take", side: "self", cid: 19363, from: "deck", to: "graveyard", position: "attack", cause: "monster_effect" },
+          { op: "take", side: "self", cid: 19472, from: "deck", to: "graveyard", position: "attack", cause: "monster_effect" }],
+        ["monsterEffect", "sendFromDeck"],
+        ["Caso acotado: Goblin se destruye a sí mismo, y se envían Hoja Oscura y Desvantasma desde Deck. El disparador de Desvantasma se comprueba aparte."],
+      ),
       // Mementotlan Goblin can destroy a different face-up Memento monster,
       // rather than only itself. This is a bounded variant with two exact
       // documented Deck targets; all Goblin mill variants share the same
