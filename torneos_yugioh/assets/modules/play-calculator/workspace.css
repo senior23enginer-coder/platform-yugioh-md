@@ -69,3 +69,24 @@
 .calculator-stage-board [data-calculator-workspace-board] .play-workspace{order:-1;margin-top:0}
 .calculator-stage-board [data-calculator-workspace-board] .play-turn-bar{order:0}
 @media(max-width:650px){.calculator-duel-setup{padding:16px;margin:12px auto}.calculator-duel-setup [data-calculator-continue]{width:100%}.calculator-duel-toolbar{align-items:stretch;flex-direction:column}.calculator-duel-toolbar button{width:100%}}
+
+
+/* Search and select from a single TCG/OCG deck combobox. */
+.calculator-deck-picker{grid-template-columns:minmax(0,1fr)}
+.calculator-deck-picker>label[hidden]{display:none!important}
+.calculator-combobox{position:relative;display:grid;gap:8px;grid-column:1/-1;min-width:0}
+.calculator-combobox>label{font-weight:650;color:#e6f3ff}
+.calculator-combobox-input{display:flex;align-items:stretch;border:1px solid #396782;border-radius:10px;background:#061321;overflow:hidden}
+.calculator-combobox-input:focus-within{outline:2px solid #5ddff2;outline-offset:2px}
+.calculator-combobox-input input{flex:1;min-width:0;width:100%;border:0!important;outline:none!important;background:transparent!important;color:#f0f8ff!important;padding:12px 14px}
+.calculator-combobox-input input::placeholder{color:#9cb7c8;opacity:1}
+.calculator-combobox-input button{border:0;border-left:1px solid #31566b;background:#122b3e;color:#eaf5ff;min-width:48px;font-size:20px}
+.calculator-combobox-list{display:grid;gap:3px;max-height:min(50vh,365px);overflow-y:auto;padding:7px;background:#0b2132;border:1px solid #40738a;border-radius:10px;box-shadow:0 14px 28px #0009}
+.calculator-combobox-list[hidden]{display:none!important}
+.calculator-combobox-option{display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:4px;padding:12px;border:1px solid transparent;border-radius:8px;background:#17364c;color:#f0f8ff;cursor:pointer;min-height:56px}
+.calculator-combobox-option small{color:#b4d0dd}
+.calculator-combobox-option:not(:disabled):is(:hover,.is-highlighted,:focus-visible){background:#24536a;border-color:#68dcf0;outline:none}
+.calculator-combobox-option.is-unavailable,.calculator-combobox-option:disabled{background:#05080c!important;color:#7d858d!important;border-color:#10171d!important;cursor:not-allowed;opacity:1}
+.calculator-combobox-option.is-unavailable small{color:#747e87!important}
+.calculator-combobox-empty{padding:12px;color:#d1dfeb;margin:0}
+@media(max-width:800px){.calculator-deck-picker{grid-template-columns:minmax(0,1fr)}}
