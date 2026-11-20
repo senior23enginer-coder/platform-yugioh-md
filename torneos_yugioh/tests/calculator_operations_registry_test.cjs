@@ -11,7 +11,7 @@ assert.equal(O.describe("damage").coverage, "generic");
 assert.equal(O.describe("madeUp"), null);
 assert.throws(() => O.assertSupported({ op: "madeUp" }, "resolve"), /no implementada/);
 assert.throws(() => O.assertSupported({ op: "summon" }, "costs"), /no permitida/);
-assert.throws(() => O.assertSupported({ op: "tribute" }, "resolve"), /no permitida/);
+assert.throws(() => O.assertSupported({ op: "tribute" }, "resolve"), /Sacrificar como coste exige el bloque costs; tribute no está permitido en resolve/);
 assert.equal(O.assertSupported({ op: "summon" }, "resolve").id, "summon");
 assert.equal(O.assertSupported({ op: "payLP" }, "costs").id, "payLP");
 assert(Object.isFrozen(O.registry) && Object.isFrozen(O.describe("damage")));
