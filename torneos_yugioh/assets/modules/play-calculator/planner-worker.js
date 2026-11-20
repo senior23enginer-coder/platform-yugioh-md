@@ -7,7 +7,7 @@ importScripts(
   "./transitions.js?v=20261118-transitions-1",
   "./timing.js?v=20261118-timing-1",
   "./events.js?v=20261118-events-1",
-  "./restrictions.js?v=20261118-restrictions-1",
+  "./restrictions.js?v=20261120-machine-synchro-1",
   "./integrity.js?v=20261118-integrity-1",
   "./diagnostics.js?v=20261118-diagnostics-1",
   "./rules.js?v=20261120-dynamic-summon-1",
