@@ -252,11 +252,13 @@
     check(rule.oncePerName === undefined || (rule.oncePerName === true && rule.oncePerTurn === true && Number.isInteger(rule.actor.cid)),
       "Uso compartido por nombre exige CID y límite por turno");
     if (rule.noChainReplay !== undefined)
-      check(rule.noChainReplay === true && rule.actor.cid === 19184 &&
-        rule.id === "671:typhon:detach-bounce",
+      check(rule.noChainReplay === true &&
+        ((rule.actor.cid === 19184 && rule.id === "671:typhon:detach-bounce") ||
+         (rule.actor.cid === 21203 && rule.id === "671:gordian:one-monster-six-extra")),
         "Resolución no seleccionadora de TY-PHON requiere regla acreditada");
     if (rule.afterResolution !== undefined) {
-      check(rule.actor.cid === 9139 && rule.source.includes("cid=9139") &&
+      check([9139,21203].includes(rule.actor.cid) &&
+        rule.source.includes("cid=" + rule.actor.cid) &&
         rule.activation === true &&
         Array.isArray(rule.afterResolution) && rule.afterResolution.length === 1 &&
         rule.afterResolution[0].op === "move" &&
@@ -265,6 +267,10 @@
         rule.afterResolution[0].position === "attack",
         "Envío de Mágica Normal al Cementerio no acreditado");
     }
+    if (rule.cannotBeNegated !== undefined)
+      check(rule.cannotBeNegated === true && rule.actor.cid === 21203 &&
+        rule.id === "671:gordian:one-monster-six-extra",
+        "Solo Gordian Slicer tiene prohibición de negación acreditada");
     check(rule.distinctSelectedNames === undefined || typeof rule.distinctSelectedNames === "boolean",
       "Restriccion de nombres incorrecta");
     const refs = new Set(["actor"]);
@@ -376,7 +382,10 @@
           rule.actor.cid === 12870,
           "Contador Depredador exige Dragostapelia y objetivo concreto");
       else if (op.op === "banishExtraFaceDown")
-        check(rule.costs.includes(op) && op.count === 6 && Array.isArray(op.refs) &&
+        check((rule.costs.includes(op) ||
+           (phase === "resolve" && rule.actor.cid === 21203 &&
+            rule.cannotBeNegated === true && rule.guards.some(g => g.kind === "phaseStart"))) &&
+           op.count === 6 && Array.isArray(op.refs) &&
           op.refs.length === 6 && new Set(op.refs).size === 6 &&
           op.refs.every(ref=>ref!=="actor" && refs.has(ref)),
           "Gordiano debe costear seis cartas del Extra identificadas por objetivo");
@@ -900,6 +909,8 @@
           }
           const paid = checkpoint(n);
           const effectNegated = (options.negateEffectRuleIds || []).includes(rule.id);
+          check(!rule.cannotBeNegated || !(activationNegated || effectNegated),
+            "No se puede negar la activación ni el efecto de Gordian Slicer");
           check(!(activationNegated&&effectNegated),"No se puede negar simultáneamente activación y efecto");
           opStage = "resolve";
           if (!options.deferResolution && !effectNegated&&!activationNegated)
