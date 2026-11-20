@@ -15,6 +15,11 @@
       return `<section class="eb-row"><h5>${title}</h5><div class="eb-zone-grid" style="--eb-columns:${slots}">${Array.from({length:slots},(_,i)=>{const p=found.find(p=>p.slot===i+1);return `<div class="eb-zone">${p?card(p,key):'<span class="eb-empty">Sin otra carta representada</span>'}</div>`;}).join('')}</div>${conditional.length?`<details class="eb-conditional"><summary>Presencia condicionada en esta zona</summary>${conditional.map(p=>card(p,key)).join('')}</details>`:''}</section>`;
     }
     function variant(v,index){
+      // Never show an apparently verified five-column field when positions are illustrative.
+      if(route.endboard.spatial_verified===false||v.spatial_verified===false){
+        const groups=[['monster','Monstruos documentados'],['spell','Magias y trampas documentadas'],['field','Zona de Campo'],['hand','Mano restante'],['graveyard','Cementerio'],['banished','Destierro']];
+        return `<section data-endboard-case="${index}" ${index?'hidden':''} class="eb-partial-result"><p class="eb-layout-note"><strong>Posiciones exactas no verificadas.</strong> Estas son únicamente las cartas y zonas descritas; no se presuponen otras cartas ni casillas vacías.</p>${v.note?`<p>${text(v.note)}</p>`:''}${groups.map(([key,label])=>{const items=Array.isArray(v[key])?v[key]:[];return items.length?`<section class="eb-partial-group"><h5>${label}</h5><div class="eb-tray">${items.map(p=>card(p,key)).join('')}</div></section>`:'';}).join('')}${v.opponent?`<details><summary>Estado rival documentado</summary><p>${text(v.opponent)}</p></details>`:''}</section>`;
+      }
       const main={...v,monster:v.monster.filter(p=>p.row!=='extra_monster')};
       const extras=v.monster.filter(p=>p.row==='extra_monster'&&!p.conditional);
       const conditional=Object.keys(zones).flatMap(key=>v[key].filter(p=>p.conditional).map(p=>({...p,zone:zones[key]})));
