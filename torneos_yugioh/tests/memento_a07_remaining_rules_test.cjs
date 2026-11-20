@@ -369,7 +369,7 @@ passed(30,()=>{
   const r=rule(30,ids.lancea,['hand'],{
     guards:[{kind:'state',field:'active',values:['opponent']}],
     costs:[{op:'tribute',ref:'actor',reason:'cost',allowHand:true}],
-    resolve:[{op:'flag',flag:'banishBlocked',value:true}],
+    resolve:[{op:'flag',flag:'banishBlocked',value:true,duration:'turn'}],
   });
   const s=state([[ids.lancea,'hand']]);s.active='opponent';
   const n=allowed(s,r);
