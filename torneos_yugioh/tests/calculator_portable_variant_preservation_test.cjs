@@ -52,4 +52,18 @@ assert.equal(rejected.ruleImports[0].status,"rejected",
   "A conflicting imported variant must be rejected");
 assert.equal(rejected.rules.filter(rule=>rule.id===chosen.id).length,42,
   "A rejected import must preserve all safe fallback variants");
+// CID-less TY-PHON alternate material selectors must be bound to the exact deck
+// inventory just like ordinary actor CIDs.
+const typhon = all.find(rule => rule.id==="671:typhon:highest-atk");
+assert(typhon && Array.isArray(typhon.actor.cids));
+const legalMaterials = [...new Set([...typhon.actor.cids,19184])];
+assert.equal(Contract.validate({schema:Contract.SCHEMA,deck_id:671,
+  format:"tcg_advanced",rules:[typhon]},
+  {deckId:671,format:"tcg_advanced",actorCids:legalMaterials}).rules,1);
+const foreignTyphon=JSON.parse(JSON.stringify(typhon));
+foreignTyphon.actor.cids[0]=999999;
+assert.throws(()=>Contract.validate({schema:Contract.SCHEMA,deck_id:671,
+  format:"tcg_advanced",rules:[foreignTyphon]},
+  {deckId:671,format:"tcg_advanced",actorCids:legalMaterials}),
+  /Material alternativo sin identidad/);
 console.log("Portable Memento variants: all 42 retained, exact duplicate avoided, tamper rejected.");
