@@ -51,7 +51,9 @@
       }));
       // This is a once-per-name procedure, not an activated effect.
       // Expose it so the player can mark a prior Special Summon this turn.
-      if ([19153,19154,19155,19156].includes(p?.cid)) builtIn.push({
+      if ([19153,19154,19155,19156].includes(p?.cid) &&
+          !(db.rules || []).some(rule=>rule.deckId===s.self.id &&
+            rule.format===s.format && rule.id===s.self.id+":horus-gy:"+p.cid)) builtIn.push({
         id: "horus:gy-special:" + p.cid,
         cardKey: c.key,
         label: c.name + ": ya Invocado Especialmente desde GY este turno",
@@ -487,6 +489,10 @@
         for (const t of own(s, t => t.zone === "graveyard")) {
           const cid = fact(s,t)?.cid;
           if (![19153,19154,19155,19156].includes(cid)) continue;
+          // The imported calculator/1 procedure owns this effect when present;
+          // never propose the same GY summon twice via built-in fallback.
+          if ((db.rules || []).some(rule=>rule.deckId===s.self.id &&
+              rule.format===s.format && rule.id===s.self.id+":horus-gy:"+cid)) continue;
           const once = "horus:gy-special:" + cid;
           if (!unused(s,once)) continue;
           add(

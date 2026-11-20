@@ -1,0 +1,36 @@
+name: Validate portable calculator rules
+
+on:
+  pull_request:
+    branches: [base]
+    paths:
+      - 'torneos_yugioh/assets/modules/play-calculator/**'
+      - 'torneos_yugioh/assets/editorial/20261117-folder-delivery-v40/677.json'
+      - 'torneos_yugioh/tests/calculator_portable_horus_test.cjs'
+      - '.github/workflows/validate-calculator-portable.yml'
+  push:
+    branches: [base]
+    paths:
+      - 'torneos_yugioh/assets/modules/play-calculator/**'
+      - 'torneos_yugioh/assets/editorial/20261117-folder-delivery-v40/677.json'
+      - 'torneos_yugioh/tests/calculator_portable_horus_test.cjs'
+      - '.github/workflows/validate-calculator-portable.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  portable-effects:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate Crystron portable contract and duel-state transitions
+        run: node torneos_yugioh/tests/calculator_portable_horus_test.cjs
+      - name: Protect prior planner and Horus regressions
+        run: |
+          node torneos_yugioh/tests/calculator_horus_state_test.cjs
+          node torneos_yugioh/tests/planner_test.cjs
+          node torneos_yugioh/tests/calculator_study_binding_contract_test.cjs
