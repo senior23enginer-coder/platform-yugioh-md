@@ -100,6 +100,25 @@ assert.equal(extraPlans.length,1);
 assert(extraPlans[0].state.tokens.some(t=>t.owner==='opponent'&&t.zone==='extra'&&
   db.bindings[t.key]===19188),
   'An Extra monster returns to its owner Extra Deck, not the hand');
+// The official target is any FACE-UP card, including a Field Spell and
+// face-up Spell/Trap in the Main Deck section, not just monsters.
+function opponentSpellScenario(cid,zone) {
+  let state=E.clone(start);
+  const old=state.tokens.find(t=>t.owner==='opponent'&&t.zone==='m1');
+  state=E.place(state,{uid:old.uid,zone:'deck',controller:'opponent'});
+  state=E.place(state,{key:key(cid,'main'),owner:'opponent',zone});
+  return state;
+}
+const fieldSpell=opponentSpellScenario(19367,'field');
+const fieldPlans=actions(fieldSpell);
+assert.equal(fieldPlans.length,1,'Gordian can target a face-up opponent Field Spell');
+assert(fieldPlans[0].state.tokens.some(t=>t.owner==='opponent'&&
+  db.bindings[t.key]===19367&&t.zone==='hand'),
+  'Face-up Field Spell must return to owner hand');
+const settable=opponentSpellScenario(19904,'s1');
+assert.equal(actions(settable).length,1,'Gordian can return a face-up Quick-Play Spell');
+const down=E.position(settable,settable.tokens.find(t=>t.owner==='opponent'&&t.zone==='s1').uid,'set');
+assert.equal(actions(down).length,0,'A Set Spell or Trap is not a face-up target');
 const ownTarget=scenario(19364,'main','self');
 assert.equal(actions(ownTarget).length,1,'Gordian may target a face-up own monster');
 const actorToken=start.tokens.find(t=>t.owner==='self'&&db.bindings[t.key]===21203);
@@ -114,6 +133,9 @@ const handActions=st=>R.actions(st,db).actions.filter(a=>a.event.ruleId===oneHan
 assert.equal(handActions(start).length,0,
   'Gordian alone in hand cannot pay a different card from hand');
 let handStart=E.place(start,{key:key(19365,'main'),owner:'self',zone:'hand'});
+const handField=E.place(fieldSpell,{key:key(19365,'main'),owner:'self',zone:'hand'});
+assert.equal(handActions(handField).length,1,
+  'Hand payment alternative also handles a face-up opponent Field Spell');
 const handPlans=handActions(handStart);
 assert.equal(handPlans.length,1,'Exactly one other hand payment and one face-up target');
 const handPaid=handPlans[0].state;
