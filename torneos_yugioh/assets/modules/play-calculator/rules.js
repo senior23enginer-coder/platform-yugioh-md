@@ -27,6 +27,13 @@
     "emz2",
   ];
   const flags = Restrictions.names;
+  function heatWaveBlocks(flags, db, cid) {
+    if (!flags.effectMonsterSummonBlocked) return false;
+    // A known Normal Monster is allowed. When its nature is unknown, fail
+    // closed rather than recommending an Effect Monster Summon as legal.
+    const species = String(db.facts?.[cid]?.species || "").toLowerCase();
+    return !species.includes("normal monster");
+  }
   const tags = [
     "addFromDeck",
     "summonFromDeck",
@@ -404,7 +411,8 @@
         check(
           flags.includes(op.flag) && typeof op.value === "boolean" &&
           (op.duration || "persistent") ===
-            (Restrictions.turnScoped.includes(op.flag) ? "turn" : "persistent"),
+            (Restrictions.turnScoped.includes(op.flag) ? "turn" :
+              op.flag === "effectMonsterSummonBlocked" ? "next-own-draw" : "persistent"),
           "Restriccion o duracion incorrecta",
         );
       else if (op.op === "normal")
@@ -551,7 +559,7 @@
             for(const t of targets)n=E.place(n,{uid:t.uid,zone:"deck",controller:t.owner});
             n._ruleEvents=[...(n._ruleEvents||[]),{kind:"shuffle_distinct",cids,stage:opStage}];
           } else if (op.op === "link") {
-            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.xyzOnly || f.machineSynchroOnly),"Link bloqueado por restricción de Extra o Especial");
+            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.xyzOnly || f.machineSynchroOnly || heatWaveBlocks(f,db,op.cid)),"Link bloqueado por restricción de Extra, Especial u Oleada de Calor");
             check(!(options.blockedZones||[]).includes(op.to),"Zona de Link bloqueada");
             const selected=Resources.requireTokens(n,refs,op.materials,t=>t.owner==="self"&&
               t.controller==="self"&&E.isMonster(t.zone)&&t.position!=="set",
@@ -568,7 +576,7 @@
             n=E.position(n,summoned.uid,"attack");
             n._ruleEvents=[...(n._ruleEvents||[]),{kind:"link_summon",cid:op.cid,uid:summoned.uid,materials:selected.map(t=>t.uid),turn:n.turn,stage:opStage}];
           } else if (op.op === "xyz") {
-            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.machineSynchroOnly),"Xyz bloqueado por restricción de Extra o Especial");
+            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.machineSynchroOnly || heatWaveBlocks(f,db,op.cid)),"Xyz bloqueado por restricción de Extra, Especial u Oleada de Calor");
             check(!(options.blockedZones||[]).includes(op.to),"Zona Extra bloqueada");
             const selected=Resources.requireTokens(n,refs,op.materials,t=>t.owner==="self"&&
               t.controller==="self"&&E.isMonster(t.zone)&&t.position!=="set",
@@ -585,7 +593,7 @@
             for(const t of selected)n=E.place(n,{uid:t.uid,zone:"material:"+summoned.uid,controller:"self"});
             n._ruleEvents=[...(n._ruleEvents||[]),{kind:"xyz_summon",cid:op.cid,uid:summoned.uid,materials:selected.map(t=>t.uid),turn:n.turn,stage:opStage}];
           } else if (op.op === "xyzOverlay") {
-            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.machineSynchroOnly),
+            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.machineSynchroOnly || heatWaveBlocks(f,db,op.cid)),
               "Superposición bloqueada por restricción de Invocaciones");
             check(extraSummonWindow(n) && Timing.isOwnMainPhase(n),
               "TY-PHON exige dos Invocaciones rivales del Extra en un mismo turno válido");
@@ -622,7 +630,7 @@
               uid:typhonUid,materials:[selected.uid],turn:n.turn,side:"self",
               method:"typhon-alternate",from:oldZone,stage:opStage}];
           } else if (op.op === "fusion") {
-            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.xyzOnly), "Fusión bloqueada por restricción de Extra o Especial");
+            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.xyzOnly || heatWaveBlocks(f,db,op.cid)), "Fusión bloqueada por restricción de Extra, Especial u Oleada de Calor");
             check(!(options.blockedZones || []).includes(op.to), "Zona Extra bloqueada");
             const selected = Resources.requireTokens(n,refs,op.materials,t=>t.owner==="self" &&
               t.controller==="self" && (t.zone==="hand" || E.isMonster(t.zone) ||
@@ -709,7 +717,8 @@
             check(t, "Copia ausente");
             if(op.summonMethod){
               check(t.owner==="self" && t.controller==="self" &&
-                ["hand","graveyard"].includes(t.zone) && !f.specialBlocked && !f.noMoreSummons,
+                ["hand","graveyard"].includes(t.zone) && !f.specialBlocked && !f.noMoreSummons &&
+                !heatWaveBlocks(f,db,db.bindings[t.key]),
                 "Invocación Especial desde zona no acreditada o bloqueada");
             }
             const destination = op.to === "free-monster"
@@ -730,7 +739,7 @@
               {kind:"summon",method:op.summonMethod,uid:t.uid,
                 cid:db.bindings[t.key],turn:n.turn,stage:opStage}];
           } else if (op.op === "take") {
-            if (op.summonMethod) check(!f.specialBlocked,
+            if (op.summonMethod) check(!f.specialBlocked && !heatWaveBlocks(f,db,op.cid),
               "Invocación desde Deck bloqueada por restricción de Especial");
             check(
               !(f.noDeckToHand && op.from === "deck" && op.to === "hand"),
@@ -833,7 +842,8 @@
               check(!f.noMoreSummons,"TY-PHON impide Invocaciones Normales restantes");
               n._normal=true;
               n.normalAvailable=false;
-            } else check(!f.specialBlocked && !f.noMoreSummons,"Invocación Especial bloqueada");
+            } else check(!f.specialBlocked && !f.noMoreSummons &&
+              !heatWaveBlocks(f,db,db.bindings[t.key]),"Invocación Especial bloqueada");
             n=E.place(n,{uid:t.uid,zone:op.to,controller:"self"});
             n=E.position(n,t.uid,op.position);
             n._ruleEvents=[...(n._ruleEvents||[]),
