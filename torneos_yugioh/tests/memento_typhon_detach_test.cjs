@@ -33,8 +33,9 @@ function scenario({opponentCid=19364,opponentExtra=false,stolen=false,material=t
 const actions=s=>R.actions(s,db).actions.filter(a=>a.event.ruleId===effectId);
 const {s,typhon}=scenario();
 const original=JSON.stringify(s);
-const chosen=actions(s);
-assert.equal(chosen.length,1,'One opponent Main monster and one attached material yields one legal bounce');
+const chosen=actions(s).filter(a=>a.state.tokens.some(t=>t.owner==='opponent'&&
+  db.bindings[t.key]===19364&&t.zone==='hand'));
+assert.equal(chosen.length,1,'Opponent Main monster has one correctly routed bounce');
 const result=chosen[0].state;
 assert.equal(JSON.stringify(s),original,'Calculation cannot mutate captured duel');
 assert(result.tokens.some(t=>t.owner==='self'&&db.bindings[t.key]===19364&&t.zone==='graveyard'),
@@ -46,22 +47,35 @@ assert.equal(actions(result).length,0,'TY-PHON effect is once per turn regardles
 assert.equal(actions(scenario({material:false}).s).length,0,'A TY-PHON with no attached material cannot pay cost');
 const denied=R.actions(s,db,{negateEffectRuleIds:[effectId]}).actions
   .filter(a=>a.event.ruleId===effectId);
-assert.equal(denied.length,1);
+assert(denied.length>=1,'A negated effect still detaches the cost');
 assert(denied[0].state.tokens.some(t=>t.owner==='self'&&db.bindings[t.key]===19364&&t.zone==='graveyard'),
   'The material remains detached even when the effect is negated');
 assert(denied[0].state.tokens.some(t=>t.owner==='opponent'&&db.bindings[t.key]===19364&&t.zone==='m2'),
   'The opponent monster stays in place if the effect was negated');
 const extra=scenario({opponentCid:19188,opponentExtra:true});
-const extras=actions(extra.s);
+const extras=actions(extra.s).filter(a=>a.state.tokens.some(t=>t.owner==='opponent'&&
+  db.bindings[t.key]===19188&&t.zone==='extra'));
 assert.equal(extras.length,1);
 assert(extras[0].state.tokens.some(t=>t.owner==='opponent'&&db.bindings[t.key]===19188&&t.zone==='extra'),
   'An Extra Deck monster returns to its original Extra Deck, not the hand');
 const stolen=scenario({stolen:true});
-const stolenActions=actions(stolen.s);
+const stolenActions=actions(stolen.s).filter(a=>a.state.tokens.some(t=>t.owner==='opponent'&&
+  db.bindings[t.key]===19364&&t.zone==='hand'));
 assert.equal(stolenActions.length,1);
 assert(stolenActions[0].state.tokens.some(t=>t.owner==='opponent'&&db.bindings[t.key]===19364&&
   t.zone==='hand'&&t.controller==='opponent'),
   'Returning a stolen monster must return it to its owner, not its current controller');
+// TY-PHON may legally return itself to the Extra; remaining Xyz materials go to GY.
+let selfScenario=scenario();
+const secondMaterial=key(19364,'main');
+selfScenario.s=E.place(selfScenario.s,{key:secondMaterial,owner:'self',
+  zone:'material:'+selfScenario.typhon.uid});
+const selfBounce=actions(selfScenario.s).find(a=>a.state.tokens.some(t=>
+  t.owner==='self'&&db.bindings[t.key]===19184&&t.zone==='extra'));
+assert(selfBounce,'A TY-PHON with two materials may return itself to its Extra');
+assert.equal(selfBounce.state.tokens.filter(t=>t.owner==='self'&&
+  db.bindings[t.key]===19364&&t.zone==='graveyard').length,2,
+  'One material is detached as cost and the remaining material falls to GY on return');
 const chain=E.appendChain(s,{side:'self',cardName:'TY-PHON',
   effect:'Desacoplar un material y devolver un monstruo',ruleId:effectId,actorUid:typhon.uid});
 const preview=Chain.resolve(chain,db);
