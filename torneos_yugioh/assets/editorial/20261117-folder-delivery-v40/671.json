@@ -3,6 +3,287 @@
   "deck_id": 671,
   "name": "Memento",
   "format": "tcg_advanced",
+  "calculator": {
+    "schema": "station-x-calculator/1",
+    "deck_id": 671,
+    "format": "tcg_advanced",
+    "rules": [
+      {
+        "version": 1,
+        "id": "671:duke:recover-engraver",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Duque de la Defunción: desterrar y recuperar Grabador",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20389&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "graveyard"
+          ],
+          "cid": 20389
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "target",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "graveyard"
+              ],
+              "cid": 20196
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "banished",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "target",
+            "to": "hand",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "Sólo Duque en Cementerio y Grabador de Nivel 6 Demonio identificado en el propio Cementerio; destierro de Duque como coste. No se simula la Normal adicional del Duque."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:mictlan:activate",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Mementomictlán: activar Magia de Campo",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19367&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand"
+          ],
+          "cid": 19367
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "field",
+            "position": "attack"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Activación de la Magia de Campo desde mano sin otra Magia de Campo; no ejecuta por sí misma el bloqueo de batalla ni dispara una destrucción."
+        ],
+        "activation": true,
+        "oncePerTurn": false
+      },
+      {
+        "version": 1,
+        "id": "671:twin-dragon:fusion-search",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Dragón Gemelo: destruir Dormiveja y buscar Tatsunootoshigo y Goblin",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19878&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19878,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "monsters"
+              ],
+              "faceUp": true,
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19362,
+            "from": "deck",
+            "to": "hand",
+            "position": "attack"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19366,
+            "from": "deck",
+            "to": "hand",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "Al ser Invocado por Fusión, sólo se modela destruir Dormiveja propia en mano/campo y buscar dos nombres distintos acreditados. No incluye búsquedas alternativas ni el destierro por batalla."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "trigger": {
+          "kind": "fusion_summoned",
+          "actorCid": 19878
+        }
+      },
+      {
+        "version": 1,
+        "id": "671:creation-king:destroy",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Rey Creación: destruirse y destruir un monstruo rival conocido",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20216&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20216,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self",
+              "opponent"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "target",
+            "selector": {
+              "side": "opponent",
+              "zones": [
+                "monsters"
+              ],
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "actor",
+            "reason": "effect"
+          },
+          {
+            "op": "destroy",
+            "ref": "target",
+            "reason": "effect"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "Variante estricta de un objetivo Memento propio (el mismo Rey) y uno rival boca arriba identificado. No cubre dos o más parejas ni objetivos colocados."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2
+      }
+    ]
+  },
   "cards": [
     {
       "id": "671:CARD:9139",
