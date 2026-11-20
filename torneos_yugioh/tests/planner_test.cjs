@@ -163,6 +163,39 @@ assert(
     p.steps[0].label.includes("toma control"),
   ),
 );
+// Horus GY procedure requires King's Sarcophagus face-up in a Spell/Trap zone.
+// A manually captured Spell in a monster zone must not create a false legal line.
+const horusLabel = "por su procedimiento con Sarcófago del Rey";
+const horusSteps = (state, opts = {}) => P.solve(state, db, {
+  depth: 1, width: 80, budget: 1000, ...opts,
+}).plans.flatMap((p) => p.steps).filter((step) => step.label.includes(horusLabel));
+let horus = E.create(b, a);
+horus = add(horus, 19153, "graveyard");
+assert.equal(horusSteps(horus).length, 0, "No Sarcophagus: no Horus revival");
+const sarcCard = horus.self.cards.find((card) => db.bindings[card.key] === 19200);
+assert(sarcCard, "Sarcophagus fixture missing");
+const withSarc = (zone, position = "attack") => E.position(
+  E.place(horus, {key: sarcCard.key, owner: "self", controller: "self", zone}),
+  horus.nextId,
+  position,
+);
+assert.equal(horusSteps(withSarc("s1", "set")).length, 0, "Face-down Sarcophagus is insufficient");
+assert.equal(horusSteps(withSarc("m1")).length, 0, "Monster-zone Sarcophagus is insufficient");
+const legalHorus = withSarc("s1");
+assert(horusSteps(legalHorus).some((step) => step.label.includes("Imsety")),
+  "Face-up Sarcophagus permits Imsety's documented GY procedure");
+assert.equal(horusSteps(legalHorus, { specialBlocked: true }).length, 0,
+  "Special Summon restriction must prevent the procedure");
+assert.equal(horusSteps(legalHorus, { used: ["horus:gy-special:19153"] }).length, 0,
+  "Once-per-name GY procedure cannot be repeated in a turn");
+const ashCard = b.cards.find((card) => db.bindings[card.key] === 12950);
+assert(ashCard, "Ash Blossom fixture missing");
+const withAsh = E.place(legalHorus, {key: ashCard.key, owner: "self", zone: "hand"});
+assert(!P.solve(withAsh, db, { depth: 1, width: 80, budget: 1000 }).plans
+  .flatMap((plan) => plan.steps)
+  .some((step) => /Invoca Normalmente.*Ash Blossom/.test(step.label)),
+  "Ash Blossom must not be proposed as a generic development line");
+
 console.log(
   JSON.stringify({
     ok: true,
