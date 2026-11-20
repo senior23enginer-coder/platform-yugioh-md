@@ -97,6 +97,108 @@
   }));
   $("[data-calculator-search]").addEventListener("input", draw);
   $("[data-calculator-format]").addEventListener("change", draw);
+  // Two-step workflow: selection first, board only after explicit confirmation.
+  // Keep the real calculator mounted but hidden during setup so the duel state
+  // survives returning to the configuration screen.
+  const board = $('[data-calculator-workspace-board]');
+  const picker = select.closest('.calculator-deck-picker') || select.parentElement;
+  const setup = document.createElement('section');
+  setup.className = 'calculator-duel-setup';
+  setup.dataset.calculatorDuelSetup = '';
+  setup.innerHTML = `<div class="calculator-duel-setup-head"><span class="learn-kicker">Paso 1 de 2 · Preparar duelo</span><h2>Elige tu oponente</h2><p>Selecciona un rival del mismo formato. El tablero se abrirá en la siguiente vista, sin tener que desplazarte por la configuración.</p></div><label>Deck oponente<select class="form-select" data-calculator-setup-opponent><option value="">Selecciona un oponente</option></select></label><p data-calculator-setup-status role="status" aria-live="polite"></p><button class="btn btn-info" type="button" data-calculator-continue disabled>Continuar al tablero <i class="bi bi-arrow-right" aria-hidden="true"></i></button>`;
+  (picker || board).insertAdjacentElement('afterend',setup);
+  const opponentSelect = setup.querySelector('[data-calculator-setup-opponent]');
+  const continueButton = setup.querySelector('[data-calculator-continue]');
+  const setupStatus = setup.querySelector('[data-calculator-setup-status]');
+  const boardToolbar = document.createElement('div');
+  boardToolbar.className = 'calculator-duel-toolbar';
+  boardToolbar.dataset.calculatorDuelToolbar = '';
+  boardToolbar.innerHTML = '<button class="btn btn-outline-info" type="button" data-calculator-back-setup><i class="bi bi-arrow-left" aria-hidden="true"></i> Cambiar oponente</button><strong data-calculator-duel-label></strong>';
+  board?.parentElement?.insertBefore(boardToolbar,board);
+  let activeStage = 'setup';
+  function refreshOpponents() {
+    const own = decks.find(d => String(d.id) === chosen);
+    const previous = opponentSelect.value;
+    opponentSelect.replaceChildren(option('','Selecciona un oponente'));
+    if (own) {
+      const supported = ['tcg_advanced','goat','rush_duel'];
+      const compatible = decks.filter(d => (d.format_codes||[]).some(f => supported.includes(f) && (own.format_codes||[]).includes(f)));
+      for (const d of compatible) {
+        opponentSelect.append(option(String(d.id),d.name+(hasMain(d.id)?'':' · Main no cargado')));
+      }
+      opponentSelect.append(option('free','Práctica libre (sin rival)'));
+    }
+    opponentSelect.value = [...opponentSelect.options].some(o=>o.value===previous)?previous:'';
+    const valid = !!own && hasMain(own.id) && !!opponentSelect.value &&
+      (own.format_codes||[]).some(f=>['tcg_advanced','goat','rush_duel'].includes(f));
+    continueButton.disabled = !valid;
+    setupStatus.textContent = !own?'Selecciona primero tu deck.':!hasMain(own.id)?'Tu deck necesita cartas en Main para preparar el tablero.':!opponentSelect.value?'Selecciona un rival o práctica libre.':'Listo para entrar al tablero.';
+  }
+  function stage(next, scroll = true) {
+    activeStage = next;
+    host.classList.toggle('calculator-stage-board',next==='board');
+    host.classList.toggle('calculator-stage-setup',next==='setup');
+    setup.hidden = next!=='setup';
+    boardToolbar.hidden = next!=='board';
+    if (board) board.hidden = next!=='board';
+    if (next==='setup') refreshOpponents();
+    if (scroll) host.scrollIntoView({block:'start',behavior:'instant'});
+  }
+  function applyOpponent() {
+    const target = opponentSelect.value;
+    if (!target || !chosen) return false;
+    if (target==='free') {
+      if (!window.YgoPlayCalculator.setMode(board,'practice')) return false;
+      mode='practice';
+    } else {
+      if (mode==='practice' && !window.YgoPlayCalculator.setMode(board,'duel')) return false;
+      mode='duel';
+      const selectRival = board?.querySelector('[data-play-opponent]');
+      if (!selectRival || ![...selectRival.options].some(o=>o.value===target&&!o.disabled)) {
+        setupStatus.textContent='El rival seleccionado no está disponible para este deck.';
+        return false;
+      }
+      if (selectRival.value!==target) {
+        selectRival.value=target;
+        selectRival.dispatchEvent(new Event('change',{bubbles:true}));
+      }
+    }
+    const rival=target==='free'?'Práctica libre':decks.find(d=>String(d.id)===target)?.name||'Rival';
+    boardToolbar.querySelector('[data-calculator-duel-label]').textContent=(decks.find(d=>String(d.id)===chosen)?.name||'Tu deck')+' vs '+rival;
+    return true;
+  }
+  opponentSelect.addEventListener('change',refreshOpponents);
+  select.addEventListener('change',()=>{
+    if (activeStage==='board') {
+      const url=new URL(location.href);
+      url.searchParams.delete('calculator_stage');
+      history.replaceState(history.state,'',url.pathname+url.search+url.hash);
+      stage('setup',false);
+    }
+    refreshOpponents();
+  });
+  continueButton.addEventListener('click',()=>{
+    if (continueButton.disabled || !applyOpponent()) return;
+    const url=new URL(location.href);
+    url.searchParams.set('calculator_stage','board');
+    history.pushState({...history.state,stationxCalculatorBoard:true},'',url.pathname+url.search+url.hash);
+    stage('board');
+  });
+  boardToolbar.querySelector('[data-calculator-back-setup]').addEventListener('click',()=>{
+    if (history.state?.stationxCalculatorBoard && new URL(location.href).searchParams.get('calculator_stage')==='board') {
+      history.back();
+    } else {
+      const url=new URL(location.href);
+      url.searchParams.delete('calculator_stage');
+      history.replaceState(history.state,'',url.pathname+url.search+url.hash);
+      stage('setup');
+    }
+  });
+  window.addEventListener('popstate',()=>{
+    if (location.hash!=='#calculadora_jugadas') return;
+    stage(new URL(location.href).searchParams.get('calculator_stage')==='board'?'board':'setup');
+  });
+  stage('setup',false);
   function restoreRequestedDeck() {
     const requested = sessionStorage.getItem('stationx:calculator-deck');
     if (!requested) return;
@@ -105,6 +207,7 @@
     chosen = requested;
     draw();
     select.dispatchEvent(new Event('change'));
+    refreshOpponents();
   }
   // The dedicated calculator screen is reached from the deck profile.
   // Return to the profile without opening another modal or resetting the URL.
@@ -121,6 +224,7 @@
     if (e.detail.target !== "calculadora_jugadas") return;
     draw();
     restoreRequestedDeck();
+    if (new URL(location.href).searchParams.get('calculator_stage')!=='board') stage('setup',false);
   });
   draw();
   if (location.hash === '#calculadora_jugadas') restoreRequestedDeck();
