@@ -277,8 +277,10 @@
       selector(x.selector);
       check(x.allowActor === undefined ||
         (x.allowActor === true && x.ref === "target" &&
-          x.selector.side === "self" && x.selector.faceUp === true &&
-          x.selector.zones.includes("field-all")),
+          x.selector.side === "self" &&
+          ((x.selector.faceUp === true && x.selector.zones.includes("field-all")) ||
+            (rule.actor.cid === 19184 && x.selector.zones.includes("monsters") &&
+              x.selector.section === "extra"))),
         "Solo objetivos propios boca arriba acreditados pueden coincidir con el actor");
     }
     check(rule.equippedToActorRef === undefined ||
@@ -756,6 +758,11 @@
               : op.to;
             check(destination, "No hay zona de monstruos propia libre");
             Transitions.assertDestination(destination, options, f);
+            // Returning an Xyz monster to its owner's Extra Deck sends its
+            // remaining physically attached materials to their owners' GYs.
+            if ((destination === "extra" || destination === "hand") && E.isMonster(t.zone))
+              for (const attached of n.tokens.filter(token => token.zone === "material:" + t.uid))
+                n = E.place(n,{uid:attached.uid,zone:"graveyard",controller:attached.owner});
             n = E.place(n, {
               uid: t.uid,
               zone: destination,
