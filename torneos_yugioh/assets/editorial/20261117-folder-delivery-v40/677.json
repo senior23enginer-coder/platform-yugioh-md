@@ -199,7 +199,8 @@
                 "field-all"
               ],
               "faceUp": true
-            }
+            },
+            "allowActor": true
           }
         ],
         "costs": [],
