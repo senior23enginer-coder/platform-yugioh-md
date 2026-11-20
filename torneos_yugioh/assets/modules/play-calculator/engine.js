@@ -303,6 +303,7 @@
   }
   function change(s, mutate) {
     const next = clone(s);
+    next._captureRevision = (s._captureRevision || 0) + 1;
     mutate(next);
     next.confirmed = [];
     return validate(next);
@@ -442,6 +443,17 @@
         "Eslabón inexistente.");
       n.chain.splice(link - 1, 1);
       n.chain.forEach((entry, i) => { entry.link = i + 1; });
+    });
+  }
+  function observeOpponentMainDeckAdd(s) {
+    assert(!s.practice, "No se registra una búsqueda rival en práctica libre.");
+    assert(s.phase !== "draw", "Droll no responde a una adición en la fase de Robo.");
+    assert(!(s.chain || []).length, "Resuelve la cadena antes de registrar la adición rival.");
+    return change(s, next => {
+      next._ruleEvents = [...(next._ruleEvents || []), {
+        kind: "opponent_main_deck_add", side: "opponent", turn: next.turn,
+        phase: next.phase, captureRevision: next._captureRevision,
+      }];
     });
   }
   function position(s, uid, value) {
@@ -744,6 +756,7 @@
     advanceTurn,
     advancePhase,
     observeExtraSummon,
+    observeOpponentMainDeckAdd,
     appendChain,
     removeChain,
     position,
