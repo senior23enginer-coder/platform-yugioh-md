@@ -743,15 +743,22 @@
                 (t) =>
                   t.owner === op.side && t.key === c.key && t.zone === op.from,
               );
+            const destination = op.to === "free-monster"
+              ? ["m1","m2","m3","m4","m5"].find(zone =>
+                  !(options.blockedZones || []).includes(zone) &&
+                  !n.tokens.some(token => token.controller === "self" && token.zone === zone))
+              : op.to;
+            check(destination, "No hay zona propia disponible para Invocación Especial");
+            Transitions.assertDestination(destination, options, f);
             n = E.place(
               n,
               t
-                ? { uid: t.uid, zone: op.to, controller: op.side }
+                ? { uid: t.uid, zone: destination, controller: op.side }
                 : {
                     key: c.key,
                     owner: op.side,
                     controller: op.side,
-                    zone: op.to,
+                    zone: destination,
                   },
             );
             n = E.position(n, t ? t.uid : n.nextId - 1, op.position);
