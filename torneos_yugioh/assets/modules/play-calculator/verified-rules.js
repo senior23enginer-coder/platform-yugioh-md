@@ -47,6 +47,20 @@
       ["Sólo se modela la búsqueda de Riseheart; las otras elecciones y efectos de Fenrir siguen pendientes."],
     )];
     if (id === 671) return [
+      {
+        ...rule(671,"671:aero-shark:damage-per-banished",
+          "Portaaviones Sumergible Aero Tiburón: desacoplar 1 material e infligir 100 LP por monstruo desterrado",
+          9657,official(9657),
+          [{op:"damagePerBanishedMonsters",side:"opponent",perMonster:100}],
+          ["monsterEffect"],
+          ["Solo cuenta monstruos propios desterrados boca arriba con tipo comprobable mediante el catálogo oficial. Las cartas desterradas boca abajo no se cuentan como monstruos por información no visible. Ante cualquier carta desterrada boca arriba con tipo desconocido, no se inventa daño. No incorpora Invocación Xyz genérica ni efectos rivales sin modelar."],
+        ),
+        actor:{side:"self",zones:["monsters"],cid:9657,faceUp:true,notNegated:true},
+        guards:main,
+        select:[{ref:"material",selector:{side:"self",zones:["actor-materials"]}}],
+        costs:[{op:"move",ref:"material",to:"graveyard",position:"attack"}],
+        activation:true,oncePerTurn:true
+      },
       // Second exact one-target mode: banish one identified non-actor card
       // from hand face down AT RESOLUTION (not as an activation cost).
       ...["self","opponent"].flatMap(side => ["main","extra"].map(section => ({
