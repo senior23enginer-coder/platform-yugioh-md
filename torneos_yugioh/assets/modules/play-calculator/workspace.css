@@ -47,3 +47,25 @@
   min-width: 0;
   max-width: 100%;
 }
+
+
+/* Dedicated two-step calculator: setup and duel are separate visual pages. */
+[data-screen="calculadora_jugadas"] [data-calculator-workspace-board][hidden],
+[data-screen="calculadora_jugadas"] [data-calculator-duel-setup][hidden],
+[data-screen="calculadora_jugadas"] [data-calculator-duel-toolbar][hidden]{display:none!important}
+.calculator-duel-setup{display:grid;gap:20px;width:min(100%,850px);margin:24px auto;padding:28px;background:#0e283d;border:1px solid #2a6681;border-radius:16px;box-shadow:0 12px 30px #0004}
+.calculator-duel-setup-head h2{margin:8px 0;font-size:clamp(1.35rem,2.4vw,2rem)}
+.calculator-duel-setup-head p{margin:0;color:#b7d4e4;line-height:1.6}
+.calculator-duel-setup label{display:grid;gap:8px;font-weight:650}
+.calculator-duel-setup [data-calculator-setup-status]{color:#add6e6;margin:0}
+.calculator-duel-setup [data-calculator-continue]{justify-self:start;padding:12px 20px;min-height:48px;font-weight:750}
+.calculator-duel-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:8px 0 16px;padding:12px 16px;border:1px solid #276179;border-radius:12px;background:#0b273b;color:#e7f6fd}
+.calculator-duel-toolbar strong{font-size:1.1rem}
+.calculator-stage-board .calculator-deck-picker{display:none!important}
+.calculator-stage-board [data-calculator-workspace-board].play-calculator{display:flex;flex-direction:column;gap:12px}
+.calculator-stage-board [data-calculator-workspace-board] .play-heading,
+.calculator-stage-board [data-calculator-workspace-board] .play-opponent,
+.calculator-stage-board [data-calculator-workspace-board] .play-practice-intro{display:none}
+.calculator-stage-board [data-calculator-workspace-board] .play-workspace{order:-1;margin-top:0}
+.calculator-stage-board [data-calculator-workspace-board] .play-turn-bar{order:0}
+@media(max-width:650px){.calculator-duel-setup{padding:16px;margin:12px auto}.calculator-duel-setup [data-calculator-continue]{width:100%}.calculator-duel-toolbar{align-items:stretch;flex-direction:column}.calculator-duel-toolbar button{width:100%}}
