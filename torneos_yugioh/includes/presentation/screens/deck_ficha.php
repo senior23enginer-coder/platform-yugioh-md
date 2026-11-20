@@ -26,7 +26,7 @@
             </div>
             <div class="deck-profile-main">
                 <section class="panel deck-category-hub">
-                    <div class="panel-head"><div><h2>Explorar ficha</h2><p>Abre una categoria sin recorrer toda la pagina.</p></div><span class="status-chip">12 secciones</span></div>
+                    <div class="panel-head"><div><h2>Explorar ficha</h2><p>Abre una categoria sin recorrer toda la pagina.</p></div><span class="status-chip deck-last-updated" data-deck-last-updated aria-live="polite">Consultando última actualización…</span></div>
                     <div class="deck-category-grid">
                         <button type="button" data-deck-category-open="performance"><i class="bi bi-graph-up-arrow"></i><span><b>Rendimiento</b><small data-deck-category-metric="performance">Partidas y duelos</small></span><i class="bi bi-chevron-right"></i></button>
                         <button type="button" data-deck-category-open="history"><i class="bi bi-clock-history"></i><span><b>Historial y agenda</b><small data-deck-category-metric="history">Partidas registradas</small></span><i class="bi bi-chevron-right"></i></button>
