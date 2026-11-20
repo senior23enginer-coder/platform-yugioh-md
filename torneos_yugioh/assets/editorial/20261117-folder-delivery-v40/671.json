@@ -10,6 +10,60 @@
     "rules": [
       {
         "version": 1,
+        "id": "671:lancea:banish-lock",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Artefacto Lancea: Sacrificar durante el turno rival e impedir destierros",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=11243&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "monsters"
+          ],
+          "cid": 11243,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "opponent"
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [
+          {
+            "op": "tribute",
+            "ref": "actor",
+            "reason": "cost",
+            "allowHand": true
+          }
+        ],
+        "resolve": [
+          {
+            "op": "flag",
+            "flag": "banishBlocked",
+            "value": true,
+            "duration": "turn"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "Solo tras intercambio de Side que incorpore Lancea al Main. Efecto rápido del turno rival desde mano o campo de monstruos boca arriba. No simula su colocación como Magia ni su disparador tras destrucción de una copia colocada."
+        ],
+        "activation": true,
+        "oncePerTurn": false,
+        "chainSpeed": 2
+      },
+      {
+        "version": 1,
         "id": "671:sp:link-procedure",
         "deckId": 671,
         "format": "tcg_advanced",
