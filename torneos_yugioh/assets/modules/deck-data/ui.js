@@ -108,8 +108,8 @@
       dialog.close();
       const url=new URL(root.location.href);
       url.hash='deck_ficha';
-      root.location.assign(url.toString());
-      if(url.toString()===root.location.href)root.location.reload();
+      root.history.replaceState(root.history.state,'',url.pathname+url.search+url.hash);
+      root.location.reload();
     };
   }
   function mount(selected){deck=selected;const label=document.querySelector('[data-deck-last-updated]');if(label)label.textContent='Consultando última actualización…';refreshUpdatedAt(selected.id);}
