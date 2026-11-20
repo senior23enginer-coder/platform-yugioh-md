@@ -75,8 +75,8 @@ assert.equal(actions(fetched,idGrave).length,0,'GY branch shares turn use');
 assert.equal(actions(grave,idGrave,{banishBlocked:true}).length,0);
 assert.equal(actions(grave,idGrave,{noDeckToHand:true}).length,0);
 assert.equal(actions(grave,idGrave,{graveyardBlocked:true}).length,0);
-const noInclusion=E.clone(grave);
-for(let i=0;i<3;i++)noInclusion.tokens=add(noInclusion,20798,'graveyard').tokens;
+let noInclusion=E.clone(grave);
+for(let i=0;i<3;i++)noInclusion=add(noInclusion,20798,'graveyard');
 assert.equal(actions(noInclusion,idGrave).length,0,'Search must not invent a missing card');
 assert.equal(Restrictions.effective({...next,turn:next.turn+1}).machineSynchroOnly,undefined,
   'Machine Synchro restriction must expire after this turn');
