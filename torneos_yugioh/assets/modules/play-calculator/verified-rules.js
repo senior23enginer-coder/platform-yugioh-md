@@ -47,6 +47,19 @@
       ["Sólo se modela la búsqueda de Riseheart; las otras elecciones y efectos de Fenrir siguen pendientes."],
     )];
     if (id === 671) return [
+      {
+        ...rule(671, "671:lancea:banish-lock",
+          "Artefacto Lancea: Sacrificar durante el turno rival e impedir destierros", 11243,
+          official(11243), [{ op: "flag", flag: "banishBlocked", value: true, duration: "turn" }],
+          ["monsterEffect"],
+          ["Solo tras intercambio de Side que incorpore Lancea al Main. Efecto rápido del turno rival desde mano o campo de monstruos boca arriba. No simula su colocación como Magia ni su disparador tras destrucción de una copia colocada."],
+        ),
+        actor: { side: "self", zones: ["hand", "monsters"], cid: 11243,
+          faceUp: true, notNegated: true },
+        guards: [{ kind: "state", field: "active", values: ["opponent"] }],
+        costs: [{ op: "tribute", ref: "actor", reason: "cost", allowHand: true }],
+        chainSpeed: 2, oncePerTurn: false,
+      },
       ...["emz1", "emz2"].map((zone) => ({
         ...rule(671, "671:sp:link-procedure", "S:P Pequeña Caballera: Invocación Link-2 con Angbruja y Tatsun", 19364,
           official(19188), [{ op: "link", cid: 19188, materials: ["actor", "tatsun"],
