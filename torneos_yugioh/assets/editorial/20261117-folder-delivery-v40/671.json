@@ -18511,6 +18511,75 @@
         ],
         "cannotBeNegated": true,
         "noChainReplay": true
+      },
+      {
+        "version": 1,
+        "id": "671:aero-shark:damage-per-banished",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Portaaviones Sumergible Aero Tiburón: desacoplar 1 material e infligir 100 LP por monstruo desterrado",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=9657&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 9657,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "actor-materials"
+              ]
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "damagePerBanishedMonsters",
+            "side": "opponent",
+            "perMonster": 100
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "Solo cuenta monstruos propios desterrados boca arriba con tipo comprobable mediante el catálogo oficial. Las cartas desterradas boca abajo no se cuentan como monstruos por información no visible. Ante cualquier carta desterrada boca arriba con tipo desconocido, no se inventa daño. No incorpora Invocación Xyz genérica ni efectos rivales sin modelar."
+        ],
+        "activation": true,
+        "oncePerTurn": true
       }
     ]
   },
