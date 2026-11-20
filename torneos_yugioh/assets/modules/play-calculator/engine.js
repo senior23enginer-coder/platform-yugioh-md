@@ -66,7 +66,7 @@
   function commonFormat(a, b) {
     return a.formats.find(
       (f) =>
-        ["tcg_advanced", "goat", "rush_duel"].includes(f) &&
+        ["tcg_advanced", "tcg_traditional", "ocg", "ocg_advanced", "goat", "rush_duel"].includes(f) &&
         b.formats.includes(f),
     );
   }
@@ -121,7 +121,7 @@
       "field",
       ...Array.from({ length: count }, (_, i) => "m" + (i + 1)),
       ...Array.from({ length: count }, (_, i) => "s" + (i + 1)),
-      ...(s.format === "tcg_advanced" ? ["emz1", "emz2"] : []),
+      ...(["tcg_advanced", "tcg_traditional", "ocg", "ocg_advanced"].includes(s.format) ? ["emz1", "emz2"] : []),
     ];
   }
   const isMonster = (z) => /^m[1-5]$|^emz[12]$/.test(z);

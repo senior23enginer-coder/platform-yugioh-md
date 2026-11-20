@@ -32,6 +32,7 @@ run(process.execPath, ['torneos_yugioh/tests/navigation_history_test.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/deck_data_import_ux_test.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/calculator_fullscreen_image_test.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/calculator_stages_test.cjs']);
+run(process.execPath, ['torneos_yugioh/tests/calculator_deck_combobox_test.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/documented_combo_test.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/combo_source_test.cjs']);
 run(python, ['-m', 'unittest', 'discover', '-s', 'torneos_yugioh/tests', '-p', 'editorial_sync_test.py']);
