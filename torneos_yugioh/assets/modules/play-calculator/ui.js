@@ -75,6 +75,7 @@
       message: "",
       error: false,
       analysis: false,
+      editorialImages: {},
     };
     instances.set(node, state);
     node.className = "play-calculator";
@@ -125,6 +126,8 @@
         .then(([base, selfStudy, otherStudy]) => {
           if (instances.get(node) !== state || state.factsRequest !== request)
             return;
+          applyEditorialImages(selfStudy, native);
+          if (scenario && otherStudy) applyEditorialImages(otherStudy, scenario.opponent);
           state.plannerFacts = root.YgoCalculatorStudy.bind(base, [
             { catalog: native, study: selfStudy },
             ...(scenario
@@ -267,8 +270,29 @@
       }
     };
 
+    // Images belong to an exact native card slot, not to a guessed card name.
+    // The active editorial record can contain photos for decks absent from the
+    // historical originals index (for example Crystron and Memento).
+    function applyEditorialImages(study, catalog) {
+      if (!study || Number(study.deck_id) !== catalog.id || !Array.isArray(study.cards)) return;
+      const own = new Map(catalog.cards.map(c => [c.key, c]));
+      for (const entry of study.cards) {
+        const url = entry?.image || entry?.full_image;
+        if (typeof url !== 'string' ||
+            !/^\.\/assets\/editorial\/[a-zA-Z0-9_./-]+\.(?:png|jpe?g|webp|gif)(?:\?[^#]*)?$/i.test(url) ||
+            url.includes('..')) continue;
+        for (const slot of entry.slots || []) {
+          const key = catalog.id + ':' + Number(slot.card_id);
+          const card = own.get(key);
+          if (!card || E.norm(card.name) !== E.norm(entry.name)) continue;
+          state.editorialImages[key] = url;
+        }
+      }
+      if (state.scenario) draw();
+    }
     function imageUrl(card) {
       return (
+        state.editorialImages[card.key] ||
         state.images?.[card.key] ||
         (card.imageId
           ? `./?api=deck_builder&op=image&id=${Number(card.imageId)}`
