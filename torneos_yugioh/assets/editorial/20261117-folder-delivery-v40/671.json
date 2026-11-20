@@ -17571,6 +17571,590 @@
         "activation": true,
         "oncePerTurn": true,
         "noChainReplay": true
+      },
+      {
+        "version": 1,
+        "id": "671:gordian:one-monster-six-extra",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Rebanador Gordiano: devolver un monstruo boca arriba tras desterrar 6 del Extra",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21203&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand"
+          ],
+          "cid": 21203
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          },
+          {
+            "kind": "phaseStart"
+          }
+        ],
+        "select": [
+          {
+            "ref": "ex1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 20216
+            }
+          },
+          {
+            "ref": "ex2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 19878
+            }
+          },
+          {
+            "ref": "ex3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 16845
+            }
+          },
+          {
+            "ref": "ex4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 20389
+            }
+          },
+          {
+            "ref": "ex5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 19188
+            }
+          },
+          {
+            "ref": "ex6",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 20225
+            }
+          },
+          {
+            "ref": "target",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "section": "main",
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "banishExtraFaceDown",
+            "refs": [
+              "ex1",
+              "ex2",
+              "ex3",
+              "ex4",
+              "ex5",
+              "ex6"
+            ],
+            "count": 6
+          },
+          {
+            "op": "move",
+            "ref": "target",
+            "to": "hand",
+            "position": "attack"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Variante verificada para UN monstruo visible y seis cartas físicas concretas del Extra. La prohibición de negar la activación/efecto es obligatoria. La elección alternativa de desterrar de mano, varias cartas objetivo y las cadenas complejas siguen sin modelar. Requiere Side swap a Main antes del duelo."
+        ],
+        "activation": true,
+        "oncePerTurn": false,
+        "afterResolution": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "cannotBeNegated": true,
+        "noChainReplay": true
+      },
+      {
+        "version": 1,
+        "id": "671:gordian:one-monster-six-extra",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Rebanador Gordiano: devolver un monstruo boca arriba tras desterrar 6 del Extra",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21203&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand"
+          ],
+          "cid": 21203
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          },
+          {
+            "kind": "phaseStart"
+          }
+        ],
+        "select": [
+          {
+            "ref": "ex1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 20216
+            }
+          },
+          {
+            "ref": "ex2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 19878
+            }
+          },
+          {
+            "ref": "ex3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 16845
+            }
+          },
+          {
+            "ref": "ex4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 20389
+            }
+          },
+          {
+            "ref": "ex5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 19188
+            }
+          },
+          {
+            "ref": "ex6",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 20225
+            }
+          },
+          {
+            "ref": "target",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "section": "extra",
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "banishExtraFaceDown",
+            "refs": [
+              "ex1",
+              "ex2",
+              "ex3",
+              "ex4",
+              "ex5",
+              "ex6"
+            ],
+            "count": 6
+          },
+          {
+            "op": "move",
+            "ref": "target",
+            "to": "extra",
+            "position": "attack"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Variante verificada para UN monstruo visible y seis cartas físicas concretas del Extra. La prohibición de negar la activación/efecto es obligatoria. La elección alternativa de desterrar de mano, varias cartas objetivo y las cadenas complejas siguen sin modelar. Requiere Side swap a Main antes del duelo."
+        ],
+        "activation": true,
+        "oncePerTurn": false,
+        "afterResolution": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "cannotBeNegated": true,
+        "noChainReplay": true
+      },
+      {
+        "version": 1,
+        "id": "671:gordian:one-monster-six-extra",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Rebanador Gordiano: devolver un monstruo boca arriba tras desterrar 6 del Extra",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21203&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand"
+          ],
+          "cid": 21203
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          },
+          {
+            "kind": "phaseStart"
+          }
+        ],
+        "select": [
+          {
+            "ref": "ex1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 20216
+            }
+          },
+          {
+            "ref": "ex2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 19878
+            }
+          },
+          {
+            "ref": "ex3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 16845
+            }
+          },
+          {
+            "ref": "ex4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 20389
+            }
+          },
+          {
+            "ref": "ex5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 19188
+            }
+          },
+          {
+            "ref": "ex6",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 20225
+            }
+          },
+          {
+            "ref": "target",
+            "selector": {
+              "side": "opponent",
+              "zones": [
+                "monsters"
+              ],
+              "section": "main",
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "banishExtraFaceDown",
+            "refs": [
+              "ex1",
+              "ex2",
+              "ex3",
+              "ex4",
+              "ex5",
+              "ex6"
+            ],
+            "count": 6
+          },
+          {
+            "op": "move",
+            "ref": "target",
+            "to": "hand",
+            "position": "attack"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Variante verificada para UN monstruo visible y seis cartas físicas concretas del Extra. La prohibición de negar la activación/efecto es obligatoria. La elección alternativa de desterrar de mano, varias cartas objetivo y las cadenas complejas siguen sin modelar. Requiere Side swap a Main antes del duelo."
+        ],
+        "activation": true,
+        "oncePerTurn": false,
+        "afterResolution": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "cannotBeNegated": true,
+        "noChainReplay": true
+      },
+      {
+        "version": 1,
+        "id": "671:gordian:one-monster-six-extra",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Rebanador Gordiano: devolver un monstruo boca arriba tras desterrar 6 del Extra",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=21203&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand"
+          ],
+          "cid": 21203
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          },
+          {
+            "kind": "phaseStart"
+          }
+        ],
+        "select": [
+          {
+            "ref": "ex1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 20216
+            }
+          },
+          {
+            "ref": "ex2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 19878
+            }
+          },
+          {
+            "ref": "ex3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 16845
+            }
+          },
+          {
+            "ref": "ex4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 20389
+            }
+          },
+          {
+            "ref": "ex5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 19188
+            }
+          },
+          {
+            "ref": "ex6",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "extra"
+              ],
+              "cid": 20225
+            }
+          },
+          {
+            "ref": "target",
+            "selector": {
+              "side": "opponent",
+              "zones": [
+                "monsters"
+              ],
+              "section": "extra",
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "banishExtraFaceDown",
+            "refs": [
+              "ex1",
+              "ex2",
+              "ex3",
+              "ex4",
+              "ex5",
+              "ex6"
+            ],
+            "count": 6
+          },
+          {
+            "op": "move",
+            "ref": "target",
+            "to": "extra",
+            "position": "attack"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Variante verificada para UN monstruo visible y seis cartas físicas concretas del Extra. La prohibición de negar la activación/efecto es obligatoria. La elección alternativa de desterrar de mano, varias cartas objetivo y las cadenas complejas siguen sin modelar. Requiere Side swap a Main antes del duelo."
+        ],
+        "activation": true,
+        "oncePerTurn": false,
+        "afterResolution": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "cannotBeNegated": true,
+        "noChainReplay": true
       }
     ]
   },
