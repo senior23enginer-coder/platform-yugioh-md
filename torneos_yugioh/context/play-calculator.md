@@ -1,5 +1,47 @@
 # Calculador de jugadas
 
+## Pilotos Memento y Crystron/Horus — contrato común de análisis (20-11-2026)
+
+La misma puerta `scripts/verify-pilot-decks.cjs` verifica en ambos pilotos
+identidad del deck, formato, 39 CIDs de carta, inventario separado,
+fotografías por paso, números y acciones de las rutas, diagramas de resultado
+ilustrativos, origen/identidad de las reglas portables y, cuando está disponible
+el clon hermano, paridad exacta del contrato de calculadora y de los CIDs/acciones
+del paquete `stationx-deck.json`. No importa archivos del otro deck ni
+reescribe inventarios o revisiones del editor.
+
+- **671 Memento:** 41 Main, 15 Extra, 14 Side; 12 rutas con 69 pasos
+  sincronizados, 12 diagramas de resultado ilustrativos; 242 variantes
+  portables agrupadas en 45 IDs de efecto. Persisten actores sin regla y las
+  12 rutas carecen de replay integral certificado.
+- **677 Crystron/Horus:** 40 Main, 15 Extra, 15 Side; 14 rutas con 60 pasos,
+  14 diagramas de resultado ilustrativos; 11 variantes portables:
+  2 procedimientos Horus en GY, 2 acciones Smiger, 5 alternativas de búsqueda
+  de Thystvern desde GY y 2 alternativas de Sarcófago del Rey.
+- **Sarcófago del Rey:** `677:sarcophagus:send-horus` opera desde la zona
+  de Magias/Trampas boca arriba, envía una carta real de la mano al GY como
+  coste y un Horus acreditado del Deck al GY como efecto. Todas las variantes
+  y copias comparten `maxUsesPerTurn: 4` con contador por nombre y turno.
+  Reanimar a Amset/Hapi desde GY es una regla propia del monstruo, no una
+  acción de Sarcófago. Fuente oficial:
+  https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19200&ope=2.
+  El motor rechaza un quinto uso y no simula su protección continua ni
+  efectos de Damage Step no implementados.
+
+**Separación de evidencias:** fotos y cartas de resultado verificables no
+equivalen a casillas precisas ni a la ejecución causal A09. Los diagramas
+sin posicionamiento acreditado muestran `spatial_verified=false` y un aviso
+visible en móvil/escritorio. `REPLAYS_NOT_CERTIFIED` no puede convertirse
+en `TERMINADO` solo porque el ZIP importe o la vista dibuje un tablero.
+La puerta `--require-finished` falla deliberadamente mientras ese estado
+no sea cierto. Pruebas específicas:
+`calculator_horus_sarcophagus_four_uses_test.cjs`,
+`calculator_crystron_thystvern_test.cjs`,
+`study_presentation_ui_test.cjs`,
+`study_crystron_visual_ui_test.cjs` y verificación de importación real
+en el workflow de integración. La suite global mantiene su propio gate.
+
+
 ## Auditoría del núcleo genérico — contratos de integración
 
 El flujo vigente es `study.js` (identidades y reglas del estudio) →
