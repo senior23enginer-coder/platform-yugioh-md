@@ -808,6 +808,174 @@
           "La Invocación Especial desde Cementerio NO es efecto de Sarcófago: es procedimiento separado del monstruo Horus. No se modelan aquí protección continua ni efecto de Damage Step.",
           "Las respuestas del rival que nieguen el efecto pueden conservar el coste enviado de la mano; no se afirman respuestas a cadenas arbitrarias."
         ]
+      },
+      {
+        "version": 1,
+        "id": "677:thystvern:destroy-tuner",
+        "deckId": 677,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Cristron Thystvern en Campo: destruir una carta propia boca arriba e Invocar Citree del Deck",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12609&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 12609,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "target",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "field-all"
+              ],
+              "faceUp": true
+            },
+            "allowActor": true
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "flag",
+            "flag": "machineSynchroOnly",
+            "value": true,
+            "duration": "turn"
+          },
+          {
+            "op": "destroy",
+            "ref": "target",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 12606,
+            "from": "deck",
+            "to": "free-monster",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "summonFromDeck"
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "oncePerName": true,
+        "assumptions": [
+          "Solo un objetivo propio boca arriba, incluida la propia copia Thystvern; su destrucción es parte de la resolución, nunca coste. El Cantante elegido debe permanecer realmente en el Main Deck.",
+          "La restricción de Invocar desde Extra solo Monstruos de Sincronía Máquina rige durante el resto del turno.",
+          "Los dos objetivos de Invocación y todas las variantes de búsqueda de GY comparten el límite oficial de usar únicamente un efecto de Thystvern en el turno y una sola vez.",
+          "Esta regla acotada no realiza Sincronía automáticamente ni acredita las cadenas del rival."
+        ]
+      },
+      {
+        "version": 1,
+        "id": "677:thystvern:destroy-tuner",
+        "deckId": 677,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Cristron Thystvern en Campo: destruir una carta propia boca arriba e Invocar Tristaros del Deck",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12609&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 12609,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "target",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "field-all"
+              ],
+              "faceUp": true
+            },
+            "allowActor": true
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "flag",
+            "flag": "machineSynchroOnly",
+            "value": true,
+            "duration": "turn"
+          },
+          {
+            "op": "destroy",
+            "ref": "target",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 20758,
+            "from": "deck",
+            "to": "free-monster",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "summonFromDeck"
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "oncePerName": true,
+        "assumptions": [
+          "Solo un objetivo propio boca arriba, incluida la propia copia Thystvern; su destrucción es parte de la resolución, nunca coste. El Cantante elegido debe permanecer realmente en el Main Deck.",
+          "La restricción de Invocar desde Extra solo Monstruos de Sincronía Máquina rige durante el resto del turno.",
+          "Los dos objetivos de Invocación y todas las variantes de búsqueda de GY comparten el límite oficial de usar únicamente un efecto de Thystvern en el turno y una sola vez.",
+          "Esta regla acotada no realiza Sincronía automáticamente ni acredita las cadenas del rival."
+        ]
       }
     ]
   },
