@@ -10,6 +10,844 @@
     "rules": [
       {
         "version": 1,
+        "id": "671:twin-dragon:fusion-search",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Dragón Gemelo C06: destruir Dormiveja en mano y buscar Creación Combinada + Goblin",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19878&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19878,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19360,
+            "from": "deck",
+            "to": "hand",
+            "position": "attack"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19366,
+            "from": "deck",
+            "to": "hand",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C06: Dragón Gemelo fue Invocado por Fusión en este turno y Dormiveja real está en mano; la destruye para buscar Creación Combinada y Goblin, dos nombres diferentes. No se ejecuta la búsqueda si la destrucción no ocurre. Efecto limitado a una vez por turno."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "trigger": {
+          "kind": "fusion_summoned",
+          "actorCid": 19878
+        }
+      },
+      {
+        "version": 1,
+        "id": "671:shleepy:send",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Dormiveja C06: destruida por efecto de Dragón Gemelo, envía Maza del Deck",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20199&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "graveyard"
+          ],
+          "cid": 20199
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19365,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "sendFromDeck"
+        ],
+        "assumptions": [
+          "C06: después de constar la destrucción real por efecto de Dormiveja bajo propiedad propia, enviar Maza física desde el Deck al Cementerio. No simula otras elecciones."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "trigger": {
+          "kind": "destroyed_by_effect",
+          "actorCid": 20199
+        }
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada C06: cinco nombres reales después de Dragón Gemelo",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 20199
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m1",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C06 exacto: baraja Tatsun, Angbruja, Desvantasma, Dormiveja y Maza desde mano o Cementerio, cinco nombres diferentes presentes físicamente, para Invocar Creación Combinada desde mano. Goblin permanece en mano; no se certifica su efecto de protección todavía."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada C06: cinco nombres reales después de Dragón Gemelo",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 20199
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m2",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C06 exacto: baraja Tatsun, Angbruja, Desvantasma, Dormiveja y Maza desde mano o Cementerio, cinco nombres diferentes presentes físicamente, para Invocar Creación Combinada desde mano. Goblin permanece en mano; no se certifica su efecto de protección todavía."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada C06: cinco nombres reales después de Dragón Gemelo",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 20199
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m3",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C06 exacto: baraja Tatsun, Angbruja, Desvantasma, Dormiveja y Maza desde mano o Cementerio, cinco nombres diferentes presentes físicamente, para Invocar Creación Combinada desde mano. Goblin permanece en mano; no se certifica su efecto de protección todavía."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada C06: cinco nombres reales después de Dragón Gemelo",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 20199
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m4",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C06 exacto: baraja Tatsun, Angbruja, Desvantasma, Dormiveja y Maza desde mano o Cementerio, cinco nombres diferentes presentes físicamente, para Invocar Creación Combinada desde mano. Goblin permanece en mano; no se certifica su efecto de protección todavía."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada C06: cinco nombres reales después de Dragón Gemelo",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 20199
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m5",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C06 exacto: baraja Tatsun, Angbruja, Desvantasma, Dormiveja y Maza desde mano o Cementerio, cinco nombres diferentes presentes físicamente, para Invocar Creación Combinada desde mano. Goblin permanece en mano; no se certifica su efecto de protección todavía."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
         "id": "671:19363:normal",
         "deckId": 671,
         "format": "tcg_advanced",
