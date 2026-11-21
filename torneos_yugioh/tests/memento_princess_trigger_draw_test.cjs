@@ -13,7 +13,7 @@ const rows=source.cards.flatMap(c=>c.slots.map(slot=>({
 const cat=E.catalog({id:671,name:source.name,format_codes:[source.format]},rows);
 const db=S.bind(F,[{catalog:cat,study:source}]);
 assert.equal(db.ruleImports[0].status,'accepted');
-assert.equal(db.rules.length,352);
+assert.equal(db.rules.length,353);
 const princessId='671:princess:trigger-draw';
 assert.equal(db.rules.filter(r=>r.id===princessId).length,1);
 const key=(cid,section)=>{const c=cat.cards.find(x=>db.bindings[x.key]===cid&&x.section===section);
