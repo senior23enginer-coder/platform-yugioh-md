@@ -7,6 +7,7 @@ if ((string)($_GET['api'] ?? '') === 'deck_builder' && in_array((string)($_GET['
 
 require_once dirname(YGO_APP_ROOT) . '/store-lib.php';
 if ((string)($_GET['api'] ?? '') === 'deck_data') { require_once YGO_APP_ROOT.'/includes/decks/data-http.php'; ygo_data_http(); }
+if ((string)($_GET['api'] ?? '') === 'deck_analysis_progress') { require_once YGO_APP_ROOT.'/includes/decks/analysis-progress-http.php'; ygo_analysis_progress_http(); }
 if ((string)($_GET['api'] ?? '') === 'deck_attributes') { require_once YGO_APP_ROOT.'/includes/decks/attributes-http.php'; ygo_deck_attributes_http(); }
 if ((string)($_GET['api'] ?? '') === 'combo_creator') { require_once YGO_APP_ROOT.'/includes/decks/combo-creator-http.php'; ygo_combo_http(); }
 if ((string)($_GET['api'] ?? '') === 'news') { require_once YGO_APP_ROOT.'/includes/news_http.php'; ygo_news_http(); }

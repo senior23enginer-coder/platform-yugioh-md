@@ -42,6 +42,13 @@
                         <button type="button" data-deck-data-open><i class="bi bi-arrow-down-up"></i><span><b>Importar / exportar Data</b><small>Listado de cartas y contenido del deck en ZIP</small></span><i class="bi bi-chevron-right"></i></button>
                     </div>
                 </section>
+                <section class="panel deck-analysis-progress-panel" data-deck-analysis-progress hidden>
+                    <div class="panel-head">
+                        <div><h2>Seguimiento A01–A10A</h2><p>Control de tareas y tiempos del deck asignado. No ejecuta IA automáticamente.</p></div>
+                        <span class="status-chip" data-deck-progress-headline>Sin asignación</span>
+                    </div>
+                    <div data-deck-progress-content aria-live="polite"></div>
+                </section>
                 <?php require YGO_APP_ROOT . '/includes/decks/play-calculator-view.php'; ?>
                 <section class="panel deck-created-combos-panel"><div data-deck-created-combos></div></section>
                 <section class="panel deck-editor-panel">

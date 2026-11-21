@@ -68,6 +68,10 @@ if(process.argv[2]){
  const fs=require('node:fs');
  const native=JSON.parse(fs.readFileSync(process.argv[2],'utf8'));
  L.validateManifest(native);
+ const bundled=JSON.parse(fs.readFileSync(
+   require('node:path').join(__dirname,'../torneos_yugioh/assets/editorial/a01-a10-task-manifest.json'),'utf8'));
+ assert.deepEqual(bundled,native,
+   'The deployed Platform task manifest must be identical to the canonical GPT manifest');
  assert.deepEqual(native.stages.map(x=>x.stage_id),manifest.stages.map(x=>x.stage_id),
    'Platform and GPT must understand the same canonical stages');
  assert.deepEqual(native.stages.map(x=>x.tasks.map(t=>t.task_id)),
