@@ -33,18 +33,23 @@ El único manifiesto de referencia, mantenido en GPT, es `02_PROMPT_PARA_CODEX/c
 - Acumular tiempos **observados** por sesión a partir de marcas UTC `started_at`/fin; conservar reintentos y bloqueos.
 - Calcular progreso por apartado y exponer `eta_seconds=null` con `INSUFFICIENT_REAL_SAMPLES` hasta disponer de al menos tres duraciones históricas válidas **para cada tarea abierta**. Cuando existen, utiliza la mediana; el consumidor debe filtrar previamente muestras por complejidad y formato para que sean comparables.
 
-**Limitación actual:** este módulo es un contrato reutilizable y probado, pero **aún no está conectado al almacenamiento persistente ni al grid visual de producción**, y no ejecuta, agenda ni reanuda trabajos de IA por sí mismo. Su salida serializable está preparada para que un servicio autorizado persista el ledger y actualice el grid. No presentar estimaciones teóricas de varias horas como si fueran mediciones reales.
+**Implementación de seguimiento (PR de infraestructura):** `includes/decks/analysis-progress.php` guarda el ledger por deck en una tabla SQL independiente, con bloqueo por huella de inventario, versión optimista y evidencia obligatoria. `includes/decks/analysis-progress-http.php` expone un endpoint autenticado de lectura/escritura con CSRF y autorización expresa; `assets/modules/deck-guide/analysis-progress.js` y su CSS presentan la cuadrícula en la ficha seleccionada. Abrir un deck **no crea registros ni inicia IA**: el usuario debe confirmar expresamente su asignación al seguimiento y después documentar cada transición. La vista muestra progreso, bloqueos y tiempo real; el ETA permanece sin datos cuando no hay tres muestras históricas comparables por tarea. La inicialización y las acciones se aplican **solo al deck seleccionado**, nunca a todo el catálogo.
+
+**Limitación que permanece:** todavía no existe un agente de ejecución autónoma de A01–A10A, ni una base empírica de tiempos de análisis reales para calibrar ETA. El grid registra trabajo ya autorizado y efectivamente evidenciado, pero **no ejecuta prompts, investiga cartas, realiza importaciones ni agenda tareas por sí solo**. El despliegue visible dependerá de que el PR se integre y el servidor admita la tabla SQL; no confundir código probado en CI con publicación verificada.
 
 ### Pruebas reproducibles y límites de alcance
 
 ```bash
 node scripts/deck-analysis-ledger-test.cjs
+php torneos_yugioh/tests/deck_analysis_progress_test.php
+node torneos_yugioh/tests/deck_analysis_progress_ui_test.cjs
+node torneos_yugioh/tests/deck_logic_fixture_runner_test.cjs
 npm test
 # Con un clon hermano de GPT y su contrato de tareas:
 node scripts/deck-analysis-ledger-test.cjs ../gpt-yugioh-promps-platform/02_PROMPT_PARA_CODEX/contrato_tareas_a01_a10.json
 ```
 
-La prueba nueva usa **escenarios sintéticos exclusivamente**; no selecciona, investiga ni modifica ningún deck. `npm test` conserva las regresiones existentes y el workflow de integración ZIP comprueba los 38 IDs contra el manifiesto de GPT. Los tests históricos de Memento/Crystron verifican código y paquetes ya existentes, **no son nuevas ejecuciones A01–A10** ni viajan dentro del ZIP. Para evitar proliferación, los efectos y rutas de otros decks se probarán como fixtures de datos mediante un runner compartido cuando se implemente y certifique su paridad. No borrar tests antiguos hasta disponer de evidencia equivalente.
+La prueba nueva usa **escenarios sintéticos exclusivamente**; no selecciona, investiga ni modifica ningún deck. `npm test` conserva las regresiones existentes y el workflow de integración ZIP comprueba los 38 IDs contra el manifiesto de GPT. Los tests históricos de Memento/Crystron verifican código y paquetes ya existentes, **no son nuevas ejecuciones A01–A10** ni viajan dentro del ZIP. Para evitar proliferación se incorpora `scripts/run-deck-logic-fixtures.cjs`: un ejecutor genérico de escenarios positivos/negativos expresados como datos, con comprobación estricta de deck asignado, formato, inventario y estado físico. Su ejecución sólo está permitida sobre un deck real asignado expresamente. Las pruebas de ejemplo son **sintéticas**. Esta capacidad todavía no certifica todas las operaciones de motor y no sustituye los tests históricos hasta acreditar paridad. No borrar tests antiguos hasta disponer de evidencia equivalente.
 
 **Política de cambios:** esta documentación y las utilidades no autorizan merge, despliegue FTP ni actualizaciones de producción. Los PR de GPT y Platform deben pasar sus verificaciones de forma independiente antes de cualquier integración.
 
