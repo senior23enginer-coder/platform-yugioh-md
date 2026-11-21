@@ -141,7 +141,7 @@ for(const route of fixture.routes){
 }
 assert.equal(outcomes.length,12);
 assert.deepEqual(fixture.known_mismatches,['671:A09:C02']);
-assert.equal(fixture.direct_golden_routes,11);
+assert.equal(fixture.direct_golden_routes,12);
 assert.equal(passedTransitions,105,'All historical transition hashes must be verified');
 const complete=outcomes.filter(x=>x.fullGoldenReplay);
 assert.equal(complete.length,12,'All 12 historical routes must replay byte-for-byte');
@@ -149,8 +149,8 @@ assert.deepEqual(outcomes.filter(x=>x.reason).map(x=>x.route_id),[]);
 const mismatch=outcomes.find(x=>x.route_id==='671:A09:C02');
 assert(mismatch.fullGoldenReplay&&mismatch.metadataMismatch,
   'C02 is replayed but its documented transition count remains discrepant');
-console.log(JSON.stringify({ok:true,routes:12,completeGoldenReplays:11,
- passedTransitions,knownGaps:['671:A09:C08'],
+console.log(JSON.stringify({ok:true,routes:12,completeGoldenReplays:12,
+ passedTransitions,knownGaps:[],explicitObservedOpponentGap:true,
  knownMetadataDiscrepancies:['671:A09:C02'],
  independentSemanticParity:false,legacyTestsDeleted:0,deckAnalysesExecuted:0,
  details:outcomes}));
