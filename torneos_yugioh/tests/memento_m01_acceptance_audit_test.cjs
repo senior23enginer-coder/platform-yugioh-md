@@ -30,6 +30,39 @@ const missing = cards.filter(card => !actors.has(card.cid))
 assert(Array.isArray(deck.routes) && Array.isArray(coverage.routes));
 assert.equal(deck.routes.length, coverage.routes.length,
   'Canonical route count and A07 audit must stay synchronized');
+// An accidental missing route, duplicate ID or dangling test must never inflate M01.
+const expectedRoutes = Array.from({length:12}, (_,i)=>'C'+String(i+1).padStart(2,'0'));
+const actualRoutes = coverage.routes.map(route => route.id).sort();
+assert.deepEqual(actualRoutes, expectedRoutes,
+  'M01 requires each C01-C12 exactly once');
+assert.deepEqual(deck.routes.map(route => route.id).sort(),
+  expectedRoutes.map(id=>'671:A09:'+id).sort(),
+  'Canonical deck routes must match all twelve audited routes');
+const expectedRules = Array.from({length:34}, (_,i)=>'R'+String(i+1).padStart(2,'0'));
+assert.deepEqual(coverage.rules.map(rule=>rule.id).sort(), expectedRules,
+  'A07 audit must enumerate exactly R01-R34');
+for (const entry of coverage.routes) {
+  const candidate=deck.routes.find(route => route.id==='671:A09:'+entry.id);
+  assert(candidate,'Missing canonical route '+entry.id);
+  assert.equal(candidate.replay_certification?.status||'NOT_CERTIFIED',
+    entry.status==='REPLAY_CERTIFIED'?'REPLAY_CERTIFIED':'NOT_CERTIFIED',
+    'Replay status mismatch: '+entry.id);
+  if (entry.status==='REPLAY_CERTIFIED') {
+    const expectedFile='torneos_yugioh/tests/memento_'+entry.id.toLowerCase()+'_route_replay_test.cjs';
+    assert.equal(entry.test,expectedFile,'Unexpected replay test for '+entry.id);
+    assert(fs.existsSync(path.join(__dirname,path.basename(expectedFile))),
+      'Certified route must have a committed runnable replay test: '+entry.id);
+    assert.equal(candidate.replay_certification?.test,expectedFile);
+    assert(Number.isInteger(entry.executed_transitions)&&entry.executed_transitions>0,
+      'Replay needs executed transitions: '+entry.id);
+  }
+}
+for(const rule of coverage.rules.filter(rule=>rule.status==='ENGINE_CERTIFIED_GENERAL')){
+  assert(typeof rule.engine_test_id==='string'&&rule.engine_test_id.trim(),
+    'General A07 rule needs test evidence: '+rule.id);
+  assert(fs.existsSync(path.resolve(__dirname,'..','..',rule.engine_test_id)),
+    'General A07 rule test does not exist: '+rule.id);
+}
 const uncertified = coverage.routes.filter(route => route.status !== 'REPLAY_CERTIFIED');
 for (const entry of coverage.routes.filter(route=>route.status==='REPLAY_CERTIFIED')) {
   const candidate=deck.routes.find(route=>route.id===deck.deck_id+':A09:'+entry.id);
@@ -60,4 +93,4 @@ const report = {
 };
 console.log(JSON.stringify(report));
 if (process.argv.includes('--require-complete'))
-  assert(report.complete, 'M01 cannot close: missing actor rules or uncertified route replays');
+  assert(report.complete, 'M01 cannot close: missing actors, uncertified replays or unverified A07 rules');
