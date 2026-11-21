@@ -260,7 +260,9 @@ if(require.main===module){
   check(file&&given&&args.includes('--user-assigned'),
     'Provide an explicitly assigned deck: --deck-id=ID --user-assigned fixture.json');
   const data=JSON.parse(fs.readFileSync(path.resolve(file),'utf8'));
-  const result=run(data,{deckId:Number(given.slice(10)),explicitlyAssigned:true});
-  console.log(JSON.stringify(result,null,2));if(result.failed)process.exitCode=1;
+  const options={deckId:Number(given.slice(10)),explicitlyAssigned:true};
+  const result=args.includes('--routes')?runRoutes(data,options):run(data,options);
+  console.log(JSON.stringify({...result,mode:args.includes('--routes')?'ROUTES':'EFFECT_CASES'},null,2));
+  if(result.failed)process.exitCode=1;
 }
 module.exports=Object.freeze({validate,run,runRoutes,fromPaper});
