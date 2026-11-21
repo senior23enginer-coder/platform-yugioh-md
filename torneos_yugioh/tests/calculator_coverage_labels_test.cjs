@@ -16,6 +16,6 @@ assert(source.includes("Ninguno de estos recuentos certifica una ruta completa")
 assert(!source.includes("reglas programadas disponibles"),
   "Do not overstate the number of individually executable effects");
 const variants = Verified.forDeck(671);
-assert.equal(variants.length, 242);
-assert.equal(new Set(variants.map(r=>r.id)).size, 45);
-console.log("Calculator coverage summary: 45 effect IDs, 242 variants, no route certification.");
+assert.equal(variants.length, 244);
+assert.equal(new Set(variants.map(r=>r.id)).size, 46);
+console.log("Calculator coverage summary: 46 effect IDs, 244 variants, no route certification.");
