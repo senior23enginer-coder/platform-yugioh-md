@@ -49,6 +49,81 @@
     if (id === 671) return [
       {
         "version": 1,
+        "id": "671:sp:temporary-banish",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "S:P C08: desterrar temporalmente S:P propia y monstruo rival hasta End Phase",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19188&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19188,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "opponent"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2",
+              "end"
+            ]
+          },
+          {
+            "kind": "event",
+            "event": "opponent_activation",
+            "side": "opponent",
+            "currentTurn": true
+          }
+        ],
+        "select": [
+          {
+            "ref": "target",
+            "selector": {
+              "side": "opponent",
+              "zones": [
+                "monsters"
+              ],
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "temporaryBanishPair",
+            "refs": [
+              "actor",
+              "target"
+            ],
+            "sourceCid": 19188
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "assumptions": [
+          "C08 requiere activación rival observada con una copia física conocida, S:P propia y monstruo rival boca arriba en Campo. Los dos se destierran hasta End Phase y regresan a zona principal sin Invocación Especial. No se presume ni resuelve el efecto original rival, cadenas posteriores ni inmunidades; se exige confirmación del estado observado. Primer efecto de S:P no se activa al invocarla con sólo materiales del Main."
+        ]
+      },
+
+      {
+        "version": 1,
         "id": "671:memento-fusion:fuse",
         "deckId": 671,
         "format": "tcg_advanced",
