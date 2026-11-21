@@ -215,7 +215,8 @@
           ? g.side === "opponent" && g.currentTurn === true && Object.keys(g).length === 4
           : g.event === "monster_sent_from_hand_activation"
           ? g.side === "self" && g.currentTurn === true &&
-            rule.actor.cid === 20423 && rule.id === "671:princess:trigger-draw" &&
+            rule.actor.cid === 20423 &&
+            ["671:princess:trigger-draw","671:princess:trigger-equip"].includes(rule.id) &&
             Object.keys(g).length === 4
           : g.event === "owned_monster_destroyed_by_effect_this_turn"
           ? Object.keys(g).length === 2
