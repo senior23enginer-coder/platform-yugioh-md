@@ -10,6 +10,851 @@
     "rules": [
       {
         "version": 1,
+        "id": "671:tatsun:mill",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Tatsunootoshigo: destruirse y enviar Desvantasma y Dormiveja (2+3=5)",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19362&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19362,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "actor",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19472,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 20199,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "sendFromDeck"
+        ],
+        "assumptions": [
+          "Ruta C01 exacta: Tatsun nivel original 5 se destruye a sí mismo y manda Desvantasma (Nivel 2) y Dormiveja (Nivel 3), nombres distintos cuya suma es 5. Exige ambas cartas reales en Deck y no ejecuta automáticamente disparadores posteriores."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:creation-king:fusion-send",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Rey Creación: tras Fusión, enviar Creación Combinada, Maza y Goblin al Cementerio",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20216&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20216,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "trigger": {
+          "kind": "fusion_summoned",
+          "actorCid": 20216
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19360,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19365,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19366,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "sendFromDeck"
+        ],
+        "assumptions": [
+          "Se ofrece solo tras evento de Invocación por Fusión registrado para este Rey Creación físico. Se acreditan tres cartas Memento con CID exactos en Deck: Creación Combinada, Maza y Goblin. No simula envíos alternativos ni Extra Deck."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada: barajar los cinco nombres exactos de C01 tras Rey Creación",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 20199
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m1",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Procedimiento C01 exacto: devuelve al Deck Tatsun, Angbruja, Desvantasma, Dormiveja y Goblin desde mano/Cementerio como cinco nombres distintos. Deja Maza en Cementerio. Creación Combinada se invoca desde GY a una zona libre sin inventar material."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada: barajar los cinco nombres exactos de C01 tras Rey Creación",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 20199
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m2",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Procedimiento C01 exacto: devuelve al Deck Tatsun, Angbruja, Desvantasma, Dormiveja y Goblin desde mano/Cementerio como cinco nombres distintos. Deja Maza en Cementerio. Creación Combinada se invoca desde GY a una zona libre sin inventar material."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada: barajar los cinco nombres exactos de C01 tras Rey Creación",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 20199
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m3",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Procedimiento C01 exacto: devuelve al Deck Tatsun, Angbruja, Desvantasma, Dormiveja y Goblin desde mano/Cementerio como cinco nombres distintos. Deja Maza en Cementerio. Creación Combinada se invoca desde GY a una zona libre sin inventar material."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada: barajar los cinco nombres exactos de C01 tras Rey Creación",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 20199
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m4",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Procedimiento C01 exacto: devuelve al Deck Tatsun, Angbruja, Desvantasma, Dormiveja y Goblin desde mano/Cementerio como cinco nombres distintos. Deja Maza en Cementerio. Creación Combinada se invoca desde GY a una zona libre sin inventar material."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada: barajar los cinco nombres exactos de C01 tras Rey Creación",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 20199
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m5",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Procedimiento C01 exacto: devuelve al Deck Tatsun, Angbruja, Desvantasma, Dormiveja y Goblin desde mano/Cementerio como cinco nombres distintos. Deja Maza en Cementerio. Creación Combinada se invoca desde GY a una zona libre sin inventar material."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
         "id": "671:bone-party:main",
         "deckId": 671,
         "format": "tcg_advanced",
