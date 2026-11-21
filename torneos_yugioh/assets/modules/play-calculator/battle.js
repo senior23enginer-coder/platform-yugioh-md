@@ -37,6 +37,9 @@
     // The lock expires by turn and is removed when the monster leaves the field.
     const attackers = monsters("self").filter((t) => t.position === "attack" &&
       t.attackLockedTurn !== s.turn);
+    const locked=monsters("self").filter(t=>t.attackLockedTurn===s.turn);
+    if(locked.length)result.assumptions.push(
+      locked.length+" monstruo(s) con restricción de ataque de Gran Fuga omitidos este turno.");
     const defenders = monsters("opponent");
     result.available = true;
     if (!attackers.length) result.reason = monsters("self").some(t=>t.attackLockedTurn===s.turn)
