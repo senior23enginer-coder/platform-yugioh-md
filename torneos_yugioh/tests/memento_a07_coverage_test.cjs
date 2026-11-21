@@ -10,7 +10,12 @@ assert.deepEqual(coverage.rules.map(r => r.id), Array.from({length:34}, (_,i) =>
 assert.equal(new Set(coverage.rules.map(r => r.capability)).size, 34);
 assert(coverage.rules.every(r => r.status === 'DOCUMENTED_NOT_ENGINE_TESTED' && r.engine_test_id === null));
 assert.equal(coverage.routes.length, 12);
-assert(coverage.routes.every(r => r.status === 'NO_REPLAY_CERTIFIED'));
+assert.equal(coverage.routes.filter(r=>r.status==='REPLAY_CERTIFIED').length,1,
+  'C02 is the only documented route with its own real-state no-response replay');
+assert.equal(coverage.routes.find(r=>r.id==='C02').test,
+  'torneos_yugioh/tests/memento_c02_route_replay_test.cjs');
+assert(coverage.routes.filter(r=>r.id!=='C02').every(r=>r.status==='NO_REPLAY_CERTIFIED'),
+  'Unreplayed routes must not be marked complete');
 assert.equal(coverage.partial_route_cases.length,2);
 assert.equal(coverage.partial_route_cases[0].id,'C01');
 assert.equal(coverage.partial_route_cases[1].id,'C02');

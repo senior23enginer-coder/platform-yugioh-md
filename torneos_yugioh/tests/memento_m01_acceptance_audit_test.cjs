@@ -31,6 +31,15 @@ assert(Array.isArray(deck.routes) && Array.isArray(coverage.routes));
 assert.equal(deck.routes.length, coverage.routes.length,
   'Canonical route count and A07 audit must stay synchronized');
 const uncertified = coverage.routes.filter(route => route.status !== 'REPLAY_CERTIFIED');
+for (const entry of coverage.routes.filter(route=>route.status==='REPLAY_CERTIFIED')) {
+  const candidate=deck.routes.find(route=>route.id===deck.deck_id+':A09:'+entry.id);
+  assert(candidate?.replay_certification?.test===entry.test,
+    'Certified route must point to the same runnable test in canonical deck and audit');
+  assert(candidate.replay_certification.status==='REPLAY_CERTIFIED',
+    'Do not claim replay without explicit source evidence');
+  assert(entry.scope==='exact-opening-no-opponent-response',
+    'No-response certification is narrower than general duel or chain legality');
+}
 const report = {
   schema:'station-x-m01-acceptance-audit/1',
   deck_id:671,

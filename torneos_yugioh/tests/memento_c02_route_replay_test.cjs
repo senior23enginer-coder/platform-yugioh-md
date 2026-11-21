@@ -12,6 +12,9 @@ const study=JSON.parse(fs.readFileSync(__dirname+
   '/../assets/editorial/20261117-folder-delivery-v40/671.json','utf8'));
 const route=study.routes.find(r=>r.id==='671:A09:C02');
 assert(route&&route.steps.length===4,'C02 source must retain its 4 documented steps');
+assert.equal(route.replay_certification?.test,
+  'torneos_yugioh/tests/memento_c02_route_replay_test.cjs');
+assert.equal(route.replay_certification?.scope,'exact-opening-no-opponent-response');
 assert(/Angbruja/.test(route.opening)&&/Fiesta/.test(route.opening),
   'Opening hand must match the source route');
 const rows=study.cards.flatMap(c=>c.slots.map(slot=>({
