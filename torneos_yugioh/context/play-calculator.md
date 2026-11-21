@@ -11,7 +11,7 @@ del paquete `stationx-deck.json`. No importa archivos del otro deck ni
 reescribe inventarios o revisiones del editor.
 
 - **671 Memento:** 41 Main, 15 Extra, 14 Side; 12 rutas con 69 pasos
-  sincronizados, 12 diagramas de resultado ilustrativos; 278 variantes
+  sincronizados, 12 diagramas de resultado ilustrativos; 297 variantes
   portables agrupadas en 51 IDs de efecto. Son 29/39 identidades con al menos una regla de actor; faltan 10, y las
   4/12 rutas (C01–C04) con replay de apertura exacta sin respuesta rival y C04 usa Dragón de Cuerno CID 19361; 8 rutas carecen de replay completo certificado. No se certifican cadenas ni legalidad universal.
 - **677 Crystron/Horus:** 40 Main, 15 Extra, 15 Side; 14 rutas con 60 pasos,
@@ -86,7 +86,7 @@ como completa; esta prueba no certifica las 12 rutas A09.
 
 **Entrega portable activa de Memento (20-11-2026):** la instantánea editorial
 `20261117-folder-delivery-v40/671.json` y la entrega canónica del repositorio
-de prompts contienen ahora las mismas **278 variantes acotadas con 51 IDs
+de prompts contienen ahora las mismas **297 variantes acotadas con 51 IDs
 de efecto**. `Study.bind` acepta esas reglas sin duplicar los respaldos.
 El importador PHP permite hasta 1000 definiciones diferentes por paquete,
 valida los IDs compartidos y el procedimiento especial TY-PHON, y rechaza
