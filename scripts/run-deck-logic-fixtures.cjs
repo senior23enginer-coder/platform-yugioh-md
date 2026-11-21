@@ -95,6 +95,56 @@ function run(bundle,opts={}){
     passed:reports.filter(r=>r.passed).length,failed:reports.filter(r=>!r.passed).length,
     cases:reports};
 }
+/**
+ * A10B adapter. Reuses the GPT paper-case IDs and the SAME imported rule
+ * definitions; never infers a legal operation from natural language.
+ */
+function fromPaper(paper,stationxPackage,{deckId,explicitlyAssigned=false}={}){
+  check(explicitlyAssigned===true,'USER_DECK_ASSIGNMENT_REQUIRED');
+  check(paper?.schema==='station-x-paper-cases/1','INVALID_PAPER_CASE_SCHEMA');
+  check(stationxPackage?.schema==='station-x-deck-package/1','INVALID_STATIONX_PACKAGE');
+  check(Number.isInteger(deckId)&&deckId>0&&paper.deck_id===deckId&&
+    stationxPackage.deck_id===deckId&&stationxPackage.record?.deck_id===deckId,
+    'PAPER_AND_PACKAGE_DECK_MISMATCH');
+  check(paper.format===stationxPackage.record.format,'PAPER_AND_PACKAGE_FORMAT_MISMATCH');
+  const cards=stationxPackage.record.cards.flatMap(c=>(c.slots||[]).map(slot=>({
+    card_id:slot.card_id,cid:c.cid,name:c.name,
+    section:slot.section,quantity:slot.quantity
+  })));
+  const declaration=stationxPackage.inventory.map(r=>[r.id,r.section,r.quantity].join(':')).sort();
+  const loaded=cards.map(c=>[c.card_id,c.section,c.quantity].join(':')).sort();
+  check(JSON.stringify(declaration)===JSON.stringify(loaded),
+    'PAPER_PACKAGE_INVENTORY_MISMATCH');
+  const rules=stationxPackage.record.calculator?.rules||[];
+  check(Array.isArray(rules),'CALCULATOR_RULES_MUST_BE_ARRAY');
+  const effectIds=new Set((paper.effects||[]).map(e=>e.effect_id));
+  const supported=new Set(rules.map(r=>r.id)), blocked=[],cases=[];
+  for(const c of paper.cases||[]){
+    check(effectIds.has(c.effect_id),'PAPER_CASE_UNKNOWN_EFFECT');
+    if(c.status!=='VERIFICADO'||c.expected_legal===null||
+       !['known','observed'].includes(c.known_vs_unknown)){
+      blocked.push({case_id:c.case_id,effect_id:c.effect_id,reason:'PAPER_CASE_NOT_VERIFIED'});
+      continue;
+    }
+    if(!supported.has(c.effect_id)){
+      blocked.push({case_id:c.case_id,effect_id:c.effect_id,reason:'OPERADOR_NO_SOPORTADO'});
+      continue;
+    }
+    if(!Array.isArray(c.state_before?.placements)||
+       (c.expected_legal===true&&!Array.isArray(c.expected_state_after?.tokens))){
+      blocked.push({case_id:c.case_id,effect_id:c.effect_id,reason:'STATE_TRANSITION_NOT_STRUCTURED'});
+      continue;
+    }
+    cases.push({case_id:c.case_id,effect_id:c.effect_id,
+      state_before:c.state_before,expected_legal:c.expected_legal,
+      expected_after:c.expected_state_after});
+  }
+  const bundle={schema:'station-x-logic-case-fixtures/1',deck_id:deckId,
+    format:paper.format,cards,rules,cases};
+  validate(bundle,{deckId,explicitlyAssigned:true});
+  return {bundle,blocked};
+}
+
 if(require.main===module){
   const args=process.argv.slice(2),file=args.find(a=>!a.startsWith('--'));
   const given=args.find(a=>a.startsWith('--deck-id='));
@@ -104,4 +154,4 @@ if(require.main===module){
   const result=run(data,{deckId:Number(given.slice(10)),explicitlyAssigned:true});
   console.log(JSON.stringify(result,null,2));if(result.failed)process.exitCode=1;
 }
-module.exports=Object.freeze({validate,run});
+module.exports=Object.freeze({validate,run,fromPaper});
