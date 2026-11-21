@@ -47,8 +47,9 @@ assert.equal(db.rules.filter(rule=>rule.id==='671:lancea:banish-lock').length,1,
 assert(!native.cards.some(card=>db.bindings[card.key]===11243),
   'Importing a verified Side-only rule does not move Lancea into Main');
 for(const id of ids){
- assert.equal(db.rules.filter(r=>r.id===id).length,1,
-  'Identical native rule must not be duplicated: '+id);
+ const expected=id==='671:twin-dragon:fusion-search'?2:1;
+ assert.equal(db.rules.filter(r=>r.id===id).length,expected,
+  'Import must preserve each audited variant once, without duplicates: '+id);
 }
 const fallback=Study.bind(base,[{catalog:native,study:{...study,calculator:undefined}}]);
 for(const id of ids)assert(fallback.rules.some(r=>r.id===id),'Fallback must survive when portable package absent');
