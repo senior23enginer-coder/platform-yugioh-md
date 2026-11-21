@@ -35,9 +35,10 @@ function ygo_analysis_progress_http(): never {
         $counts=ygo_progress_inventory_counts($inventory);
         $fingerprint=(string)($inventory['inventory_sha256']??'');
         if($fingerprint==='')throw new DomainException('Inventario sin huella auténtica. Exporta Data.');
-        $format=(string)($inventory['format']??'');
-        if($format===''||$format==='unspecified')
-            throw new DomainException('No se ha podido comprobar el formato del deck.');
+        $format=trim((string)($inventory['format']??''));
+        if($format==='')$format='unspecified';
+        // Tracking can be prepared before A02 resolves the format. It is NOT
+        // permission to execute a prompt without that mandatory verification.
         $manifest=ygo_progress_manifest(dirname(__DIR__,2));
         ygo_progress_schema($pdo);
         $saved=ygo_progress_saved($pdo,$deckId);
@@ -46,9 +47,9 @@ function ygo_analysis_progress_http(): never {
         if($method==='GET'&&$op==='status'){
             $ledger=$saved['ledger']??null;
             $changed=$saved!==null&&($saved['fingerprint']!==$fingerprint||$saved['format']!==$format);
-            $result=['assigned'=>$ledger!==null,'eligible'=>$eligible,'inventory_changed'=>$changed,
+            $result=['assigned'=>$ledger!==null,'eligible'=>$eligible,'format_pending'=>$format==='unspecified','inventory_changed'=>$changed,
               'inventory_counts'=>$counts,'ledger'=>$ledger,'manifest'=>$manifest,
-              'summary'=>$ledger?ygo_progress_summary($ledger,$changed?[]:ygo_progress_history($pdo,$ledger,$format)):null,
+              'summary'=>$ledger?ygo_progress_summary($ledger,$changed?[]:($format==='unspecified'?[]:ygo_progress_history($pdo,$ledger,$format))):null,
               'token'=>(string)($_SESSION['sx_csrf']??'')];
         }elseif($method==='POST'){
             if($op==='assign'){
@@ -82,9 +83,9 @@ function ygo_analysis_progress_http(): never {
                 }else throw new InvalidArgumentException('Operación no admitida.');
                 ygo_progress_write($pdo,$ledger,$fingerprint,$format,$saved['revision']);
             }
-            $result=['assigned'=>true,'eligible'=>true,'inventory_changed'=>false,'inventory_counts'=>$counts,
+            $result=['assigned'=>true,'eligible'=>true,'format_pending'=>$format==='unspecified','inventory_changed'=>false,'inventory_counts'=>$counts,
               'ledger'=>$ledger,'manifest'=>$manifest,
-              'summary'=>ygo_progress_summary($ledger,ygo_progress_history($pdo,$ledger,$format)),
+              'summary'=>ygo_progress_summary($ledger,($format==='unspecified'?[]:ygo_progress_history($pdo,$ledger,$format))),
               'token'=>(string)($_SESSION['sx_csrf']??'')];
         }else throw new InvalidArgumentException('Operación no admitida.');
         echo json_encode(['ok'=>true]+$result,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_THROW_ON_ERROR);
