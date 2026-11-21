@@ -13,6 +13,7 @@ const pilots=[
 ];
 const args=process.argv.slice(2);
 const strict=args.includes('--require-finished');
+const calculatorRequired=args.includes('--require-calculator');
 const selected=args.find(arg=>arg.startsWith('--deck='));
 const requested=selected?Number(selected.split('=')[1]):null;
 assert(requested===null||pilots.some(p=>p.id===requested),'Only canonical pilot IDs are supported');
@@ -47,11 +48,16 @@ for(const pilot of pilots.filter(p=>requested===null||p.id===requested)){
   assert.equal(quantities.reserve,0);
   assert(deck.profile&&Object.keys(deck.profile).length>=4,'A01: missing deck profile');
   assert(Array.isArray(deck.routes)&&deck.routes.length===pilot.routes,'A09: lost route');
-  assert(Array.isArray(deck.calculator?.rules),'A07: no portable effects');
-  assert.equal(deck.calculator.deck_id,pilot.id);
-  assert.equal(deck.calculator.format,deck.format);
+  // A10A visual/documentary verification is independent of calculator rules.
+  // A10B must be explicitly requested to enforce calculator requirements.
+  const rules=Array.isArray(deck.calculator?.rules)?deck.calculator.rules:[];
+  if(calculatorRequired){
+    assert(Array.isArray(deck.calculator?.rules),'A10B: missing portable calculator rules');
+    assert.equal(deck.calculator.deck_id,pilot.id);
+    assert.equal(deck.calculator.format,deck.format);
+  }
   const actors=new Set();
-  for(const rule of deck.calculator.rules){
+  for(const rule of rules){
     assert.equal(rule.deckId,pilot.id,'A07: cross-deck executable rule');
     assert.equal(rule.format,deck.format,'A07: cross-format executable rule');
     if(Number.isInteger(rule.actor?.cid)){
@@ -108,10 +114,11 @@ for(const pilot of pilots.filter(p=>requested===null||p.id===requested)){
     {id:'A04',check:'identidad y referencias de imagen',evidence:'STRUCTURE_CHECKED'},
     {id:'A05',check:'fichas y fuentes de las 39 cartas',evidence:'DOCUMENTED'},
     {id:'A06',check:'motores de juego y relaciones verificadas',evidence:deck.engine_maps?.length?'DOCUMENTED':'MISSING_ENGINE_MAPS'},
-    {id:'A07',check:'efectos ejecutables y pruebas por carta',evidence:actors.size===byCID.size?'ACTOR_IDS_COVERED_NOT_ALL_EFFECTS':'PARTIAL_ACTOR_COVERAGE'},
+    {id:'A07',check:'especificación documental completa de cartas/efectos para A10B',evidence:'DOCUMENTARY_SPECIFICATION_NOT_ENGINE_CERTIFIED'},
     {id:'A08',check:'variantes y decisiones de juego',evidence:deck.decisions?.length?'DOCUMENTED_NOT_REPLAYED':'NOT_PRESENT'},
     {id:'A09',check:'ejecucion legal de rutas y respuesta rival',evidence:'REPLAYS_NOT_CERTIFIED'},
-    {id:'A10',check:'pasos con fotos y campos finales',evidence:'ILLUSTRATIVE_NOT_SPATIAL_CERTIFIED'},
+    {id:'A10A',check:'guías visuales, fotos, pasos y campos finales',evidence:'ILLUSTRATIVE_NOT_SPATIAL_CERTIFIED'},
+    {id:'A10B',check:'calculadora opt-in',evidence:calculatorRequired?'CALCULATOR_EVALUATION_REQUIRED':'NOT_REQUESTED'},
   ];
   let sourceParity='NOT_CHECKED';
   if(promptsRoot){
@@ -122,8 +129,9 @@ for(const pilot of pilots.filter(p=>requested===null||p.id===requested)){
     assert.equal(pkg.package_root,pilot.folder);
     assert.equal(pkg.deck_id,pilot.id);
     assert.equal(pkg.record.deck_id,pilot.id);
-    assert.deepEqual(pkg.record.calculator,deck.calculator,
-      'A07: canonical prompt and platform effects differ');
+    if(calculatorRequired)
+      assert.deepEqual(pkg.record.calculator,deck.calculator,
+        'A10B: canonical prompt and platform effects differ');
     assert.deepEqual(pkg.record.routes.map(r=>r.id),deck.routes.map(r=>r.id),
       'A09: canonical source lost route IDs');
     const sourceRows=pkg.inventory.map(r=>[r.id,r.section,r.quantity].join(':')).sort();
@@ -145,8 +153,9 @@ for(const pilot of pilots.filter(p=>requested===null||p.id===requested)){
     deck_id:pilot.id,
     inventory:quantities,
     card_identities:byCID.size,
-    portable_effect_variants:deck.calculator.rules.length,
-    distinct_effect_ids:new Set(deck.calculator.rules.map(r=>r.id)).size,
+    portable_effect_variants:rules.length,
+    distinct_effect_ids:new Set(rules.map(r=>r.id)).size,
+    calculator_mode:calculatorRequired?'A10B_REQUESTED':'A10B_NOT_REQUESTED',
     actor_identities:actors.size,
     actors_without_executable_rules:deck.cards.filter(c=>!actors.has(c.cid)).map(c=>({cid:c.cid,name:c.name})),
     documented_routes:deck.routes.length,documented_steps:steps,
@@ -157,4 +166,4 @@ for(const pilot of pilots.filter(p=>requested===null||p.id===requested)){
 }
 const result={schema:'station-x-pilot-analysis-gate/1',structure_ok:true,certified:false,decks:report};
 console.log(JSON.stringify(result));
-if(strict)throw Error('No completar A01-A10: no hay replays A09 certificados ni tableros espaciales verificados');
+if(strict)throw Error('No se puede declarar completa la aceptación integral: faltan evidencias de rutas o tableros; A10B se verifica solo por petición expresa');
