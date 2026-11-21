@@ -10,6 +10,7 @@ on:
       - 'torneos_yugioh/assets/editorial/memento-a07-functional-coverage.json'
       - 'torneos_yugioh/tests/memento_m01_acceptance_audit_test.cjs'
       - 'torneos_yugioh/tests/calculator_portable_memento_planner_test.cjs'
+      - 'torneos_yugioh/tests/memento_princess_trigger_draw_test.cjs'
       - 'torneos_yugioh/tests/calculator_portable_memento_test.cjs'
       - 'torneos_yugioh/tests/memento_goblin_biker_breakout_test.cjs'
       - 'torneos_yugioh/tests/memento_sp_link_extra_test.cjs'
@@ -42,6 +43,7 @@ on:
       - 'torneos_yugioh/assets/editorial/memento-a07-functional-coverage.json'
       - 'torneos_yugioh/tests/memento_m01_acceptance_audit_test.cjs'
       - 'torneos_yugioh/tests/calculator_portable_memento_planner_test.cjs'
+      - 'torneos_yugioh/tests/memento_princess_trigger_draw_test.cjs'
       - 'torneos_yugioh/tests/calculator_portable_memento_test.cjs'
       - 'torneos_yugioh/tests/calculator_portable_horus_test.cjs'
       - '.github/workflows/validate-calculator-portable.yml'
@@ -73,6 +75,8 @@ jobs:
         run: node torneos_yugioh/tests/calculator_horus_sarcophagus_four_uses_test.cjs
       - name: Verify Thystvern search inventory, costs and shared use
         run: node torneos_yugioh/tests/calculator_crystron_thystvern_test.cjs
+      - name: Verify Princess unknown draw after actual hand-monster activation cost
+        run: node torneos_yugioh/tests/memento_princess_trigger_draw_test.cjs
       - name: Verify Memento Droll observed-trigger and turn-scoped lock
         run: node torneos_yugioh/tests/memento_droll_observed_add_test.cjs
       - name: Verify Heat Wave turn window and effect-monster summon lock
