@@ -16,6 +16,8 @@
 .progress-task-head small{opacity:.8}
 .progress-task.complete .progress-task-head b{color:#48b58c}
 .progress-task.blocked .progress-task-head b{color:#f8b95b}
+.progress-task.paused .progress-task-head b{color:#7dc4ec}
+.progress-task.paused{border-inline-start:3px solid #7dc4ec}
 .progress-task .form-control{display:block;width:100%;margin:6px 0}
 .progress-task-actions{display:flex;flex-wrap:wrap;gap:6px}
 .progress-consent{display:flex;align-items:flex-start;gap:9px;padding:10px 0}
