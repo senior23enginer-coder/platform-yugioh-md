@@ -14,6 +14,13 @@
         e.turn === state.turn && e.phase !== "draw" &&
         Number.isInteger(e.captureRevision) &&
         e.captureRevision === state._captureRevision);
+    if(guard.event==="opponent_activation")
+      return observed(state,e=>e.kind==="opponent_activation"&&
+        e.side==="opponent"&&e.turn===state.turn &&
+        Number.isInteger(e.uid) &&
+        state.tokens.some(t=>t.uid===e.uid&&t.owner==="opponent") &&
+        Number.isInteger(e.captureRevision) &&
+        e.captureRevision===state._captureRevision);
     if (guard.event === "owned_monster_destroyed_by_effect_this_turn")
       return observed(state, e => e.kind === "destroy" && e.by === "effect" &&
         e.owner === "self" && e.turn === state.turn);

@@ -207,7 +207,11 @@
           g.allowedCids.every((cid) => Number.isInteger(cid) && cid > 0),
         "El guardia de monstruos permitidos requiere identidades y campo boca arriba acreditados");
       } else if (g.kind === "event") {
-        check(g.event === "opponent_main_deck_add"
+        check(g.event === "opponent_activation"
+          ? g.side==="opponent" && g.currentTurn===true &&
+            rule.actor.cid===19188 && rule.id==="671:sp:temporary-banish" &&
+            Object.keys(g).length===4
+          : g.event === "opponent_main_deck_add"
           ? g.side === "opponent" && g.currentTurn === true && Object.keys(g).length === 4
           : g.event === "owned_monster_destroyed_by_effect_this_turn"
           ? Object.keys(g).length === 2
@@ -434,6 +438,14 @@
           Number.isInteger(op.amount) && op.amount > 0,
           "Coste LP incorrecto",
         );
+      else if (op.op === "temporaryBanishPair")
+        check(phase==="resolve" && rule.actor.cid===19188 &&
+          rule.id==="671:sp:temporary-banish" && rule.chainSpeed===2 &&
+          op.sourceCid===19188 && Array.isArray(op.refs) &&
+          op.refs.length===2 && op.refs[0]==="actor" &&
+          op.refs[1]==="target" && refs.has("target") &&
+          rule.guards.some(g=>g.kind==="event"&&g.event==="opponent_activation"),
+          "Destierro temporal S:P exige activación rival observada y dos monstruos fijados");
       else if (op.op === "drawUnknown")
         check(phase==="resolve" && rule.deckId===671 &&
           rule.id==="671:guardian-chimera:draw-destroy" &&
@@ -913,6 +925,31 @@
             n.lp = Resources.applyLP(n.lp, op);
           } else if (op.op === "damage") {
             n.lp = Resources.applyLP(n.lp, op);
+          } else if (op.op === "temporaryBanishPair") {
+            const witness=(n._ruleEvents||[]).find(e=>
+              e.kind==="opponent_activation"&&e.side==="opponent" &&
+              e.turn===n.turn&&e.captureRevision===n._captureRevision &&
+              n.tokens.some(t=>t.uid===e.uid&&t.owner==="opponent"));
+            check(witness && !f.banishBlocked && n.active==="opponent",
+              "S:P requiere activación rival observada y destierro permitido");
+            const pair=Resources.requireTokens(n,refs,op.refs,t=>
+              E.isMonster(t.zone)&&t.position!=="set",
+              "Se requieren dos monstruos boca arriba en Campo");
+            check(pair.length===2 && pair[0].controller==="self" &&
+              db.bindings[pair[0].key]===19188 &&
+              pair[1].controller==="opponent",
+              "S:P debe desterrar propia S:P y un monstruo rival real");
+            const record=pair.map(t=>({uid:t.uid,controller:t.controller,
+              position:t.position,owner:t.owner}));
+            for(const item of record){
+              n=E.place(n,{uid:item.uid,zone:"banished",controller:item.owner});
+              n.tokens.find(t=>t.uid===item.uid).temporaryReturn={
+                turn:n.turn,controller:item.controller,position:item.position,
+                sourceCid:19188};
+            }
+            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"temporary_banish",
+              sourceCid:19188,uids:record.map(t=>t.uid),turn:n.turn,
+              stage:opStage}];
           } else if (op.op === "drawUnknown") {
             const event=(n._ruleEvents||[]).find(e=>e.kind==="fusion_summon" &&
               e.uid===refs.actor && e.cid===16845 && e.sourceCid===19904 &&

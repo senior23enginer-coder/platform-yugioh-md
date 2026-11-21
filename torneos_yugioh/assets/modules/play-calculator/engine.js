@@ -224,6 +224,16 @@
         s.selfUnknownHand<=99 && knownMain+s.selfUnknownHand<=ownMain,
         "Robo propio desconocido excede las cartas disponibles del Main.");
     }
+    for(const t of s.tokens||[]){
+      if(t.temporaryReturn){
+        const m=t.temporaryReturn;
+        assert(t.zone==="banished"&&m.sourceCid===19188 &&
+          Number.isInteger(m.turn)&&m.turn>0&&
+          ["self","opponent"].includes(m.controller)&&
+          ["attack","defense","set"].includes(m.position),
+          "Retorno temporal de S:P inválido.");
+      }
+    }
     assert(
       typeof s.notes === "string" &&
         s.notes.length <= 4000 &&
@@ -355,6 +365,7 @@
         if (owner==="self" && zone==="hand" && next.selfUnknownHand>0)
           next.selfUnknownHand--;
       } else {
+        if(token.temporaryReturn && zone!=="banished")delete token.temporaryReturn;
         if (!isMonster(zone))
           assert(
             !next.tokens.some((t) => t.zone === "material:" + token.uid),
@@ -376,6 +387,18 @@
       }
     });
   }
+  function returnTemporaryAtEnd(n){
+    if(n.phase!=="end")return;
+    for(const t of n.tokens.filter(t=>t.temporaryReturn?.turn===n.turn)){
+      const m=t.temporaryReturn;
+      const dest=["m1","m2","m3","m4","m5"].find(zone=>
+        !n.tokens.some(other=>other.uid!==t.uid&&other.zone===zone&&
+          other.controller===m.controller));
+      assert(dest,"S:P: falta zona principal disponible para el retorno temporal.");
+      t.zone=dest;t.controller=m.controller;t.position=m.position;
+      delete t.temporaryReturn;
+    }
+  }
   function patch(s, values) {
     return change(s, (n) => {
       for (const key of [
@@ -391,6 +414,7 @@
         if (Object.hasOwn(values, key)) n[key] = values[key];
       if (values.lp) n.lp = { ...n.lp, ...values.lp };
       if (values.unknown) n.unknown = { ...n.unknown, ...values.unknown };
+      if(Object.hasOwn(values,"phase"))returnTemporaryAtEnd(n);
     });
   }
   // Advance the capture clock only. Drawing and resolving end-of-turn effects
@@ -398,6 +422,8 @@
   function advanceTurn(s) {
     validate(s);
     assert(!(s.chain || []).length, "Resuelve o retira la cadena pendiente antes de avanzar turno.");
+    assert(!s.tokens.some(t=>t.temporaryReturn?.turn===s.turn),
+      "S:P: entra en End Phase para retornar los monstruos antes de avanzar turno.");
     assert(s.turn < 999, "Se alcanzó el máximo de turnos del escenario.");
     return change(s, (n) => {
       n.turn += 1;
@@ -419,7 +445,7 @@
     const index = phases.indexOf(s.phase);
     assert(index >= 0 && index < phases.length - 1,
       "La fase Final requiere avanzar al turno siguiente.");
-    return change(s, (n) => { n.phase = phases[index + 1]; });
+    return change(s, (n) => { n.phase = phases[index + 1]; returnTemporaryAtEnd(n); });
   }
   // A witness of an opponent's Extra Deck summon, not a proof of the materials
   // or the full legal summoning procedure. Record it only with an identified
@@ -472,6 +498,26 @@
         kind: "opponent_main_deck_add", side: "opponent", turn: next.turn,
         phase: next.phase, captureRevision: next._captureRevision,
       }];
+    });
+  }
+  // A physical opponent card was seen activating; its actual effect is NOT
+  // resolved here, and no new chain link is fabricated.
+  function observeOpponentActivation(s,{uid,effect}){
+    assert(!s.practice&&s.active==="opponent"&&
+      ["main1","main2","end"].includes(s.phase),
+      "S:P: se requiere fase válida del rival identificado.");
+    assert(!(s.chain||[]).length,
+      "Resuelve la cadena anterior antes de observar una activación nueva.");
+    const t=s.tokens.find(t=>t.uid===uid && t.owner==="opponent" &&
+      (isMonster(t.zone)||/^s[1-5]$/.test(t.zone)||t.zone==="hand"||t.zone==="field"));
+    assert(t&&(t.position!=="set"||/^s[1-5]$/.test(t.zone)),
+      "Se requiere copia rival identificada y zona acreditada.");
+    assert(typeof effect==="string"&&effect.trim()&&effect.length<=300,
+      "Describe el efecto rival observado (máximo 300 caracteres).");
+    return change(s,n=>{
+      n._ruleEvents=[...(n._ruleEvents||[]),{kind:"opponent_activation",
+        side:"opponent",uid,key:t.key,turn:n.turn,phase:n.phase,
+        effect:effect.trim(),captureRevision:n._captureRevision}];
     });
   }
   function position(s, uid, value) {
@@ -775,6 +821,7 @@
     advancePhase,
     observeExtraSummon,
     observeOpponentMainDeckAdd,
+    observeOpponentActivation,
     appendChain,
     removeChain,
     position,

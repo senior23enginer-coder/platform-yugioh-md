@@ -660,6 +660,10 @@
         ${s.phase === "draw" || (s.chain || []).length ? "disabled" : ""}>Confirmar adición rival desde Main Deck</button>
         <small>Úsalo solo tras observar la adición, fuera de Robo. Cualquier edición posterior cierra esta ventana.</small>`);
 
+      if (s && !s.practice) node.querySelector(".play-turn-bar")?.insertAdjacentHTML("beforeend",
+        `<button type="button" class="btn btn-outline-info" data-play-observe-opponent-activation
+        ${s.active!=="opponent" || (s.chain||[]).length || !state.selection?.uid ? "disabled" : ""}>Confirmar activación rival observada (S:P)</button>
+        <small>Selecciona una copia rival conocida y describe su activación en el panel de Cadena. No se inventa la resolución rival. Analiza enseguida.</small>`);
       if (s) node.querySelector(".play-turn-bar")?.insertAdjacentHTML("beforeend",
         `<button type="button" class="btn btn-outline-info" data-play-next-turn ${s.turn >= 999 || (s.chain || []).length ? "disabled" : ""}>Siguiente turno · sin robo automático</button>`);
       if (s) node.querySelector(".play-turn-bar")?.insertAdjacentHTML("beforeend",
@@ -713,12 +717,21 @@
             }
             if (b.hasAttribute("data-play-next-phase")) {
               commit(E.advancePhase(state.scenario));
-              notice("Fase avanzada. No se ejecutaron efectos ni acciones automáticas.");
+              notice(state.scenario.phase==="end"?
+                "Fase Final: los monstruos desterrados temporalmente por S:P regresaron a zonas principales disponibles sin Invocación Especial.":
+                "Fase avanzada. No se ejecutaron efectos ni acciones automáticas.");
               return;
             }
             if (b.hasAttribute("data-play-observe-opponent-add")) {
               commit(E.observeOpponentMainDeckAdd(state.scenario));
               notice("Adición rival desde el Main Deck confirmada para esta ventana. Analiza sin modificar más el tablero.");
+              return;
+            }
+            if (b.hasAttribute("data-play-observe-opponent-activation")) {
+              const uid=state.selection?.uid;
+              const effect=node.querySelector("[data-chain-effect]")?.value||"";
+              commit(E.observeOpponentActivation(state.scenario,{uid,effect}));
+              notice("Activación rival observada y acreditada con copia real. Analiza inmediatamente. No se resolvió el efecto rival.");
               return;
             }
             if (b.hasAttribute("data-chain-add")) {

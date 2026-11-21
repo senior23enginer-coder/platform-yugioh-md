@@ -21,6 +21,7 @@
     ["payLP", "both", "generic"],
     ["damage", "both", "generic"],
     ["drawUnknown", "resolve", "restricted"],
+    ["temporaryBanishPair", "resolve", "restricted"],
     ["damagePerBanishedMonsters", "resolve", "restricted"],
     ["recoverLP", "both", "generic"],
     ["negate", "both", "generic"],
