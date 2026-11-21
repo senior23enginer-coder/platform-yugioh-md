@@ -329,7 +329,9 @@ assert(twinFusion, "Mementotlan Fusion must also allow Twin Dragon with two exac
 assert(twinFusion.state._ruleEvents.some((e) =>
   e.kind === "fusion_summon" && e.cid === 19878));
 const twinSearch = R.actions(twinFusion.state, memento.db).actions.find((a) =>
-  a.event.ruleId === "671:twin-dragon:fusion-search");
+  a.event.ruleId === "671:twin-dragon:fusion-search" &&
+  [19362,19366].every(cid=>a.state.tokens.some(t=>
+    memento.db.bindings[t.key]===cid && t.zone==="hand")));
 assert(twinSearch, "Fusion-Summoned Twin Dragon must destroy Dormiveja and add two named Mementos");
 assert(twinSearch.state.tokens.some((t) => t.key === shleepy.key && t.zone === "graveyard"));
 for (const cid of [19362, 19366])
