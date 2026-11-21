@@ -10,8 +10,8 @@ assert.deepEqual(coverage.rules.map(r => r.id), Array.from({length:34}, (_,i) =>
 assert.equal(new Set(coverage.rules.map(r => r.capability)).size, 34);
 assert(coverage.rules.every(r => r.status === 'DOCUMENTED_NOT_ENGINE_TESTED' && r.engine_test_id === null));
 assert.equal(coverage.routes.length, 12);
-assert.equal(coverage.routes.filter(r=>r.status==='REPLAY_CERTIFIED').length,11,
-  'C01 through C11 have scoped, physically grounded replays');
+assert.equal(coverage.routes.filter(r=>r.status==='REPLAY_CERTIFIED').length,12,
+  'All C01 through C12 have scoped, physically grounded replays');
 assert.equal(coverage.routes.find(r=>r.id==='C02').test,
   'torneos_yugioh/tests/memento_c02_route_replay_test.cjs');
 assert.equal(coverage.routes.find(r=>r.id==='C01').test,
@@ -34,7 +34,9 @@ assert.equal(coverage.routes.find(r=>r.id==='C10').test,
   'torneos_yugioh/tests/memento_c10_route_replay_test.cjs');
 assert.equal(coverage.routes.find(r=>r.id==='C11').test,
  'torneos_yugioh/tests/memento_c11_route_replay_test.cjs');
-assert(coverage.routes.filter(r=>!['C01','C02','C03','C04','C05','C06','C07','C08','C09','C10','C11'].includes(r.id)).every(r=>r.status==='NO_REPLAY_CERTIFIED'),
+assert.equal(coverage.routes.find(r=>r.id==='C12').test,
+  'torneos_yugioh/tests/memento_c12_route_replay_test.cjs');
+assert(coverage.routes.every(r=>r.status==='REPLAY_CERTIFIED'),
   'Unreplayed routes must not be marked complete');
 assert.equal(coverage.partial_route_cases.length,2);
 assert.equal(coverage.partial_route_cases[0].id,'C01');

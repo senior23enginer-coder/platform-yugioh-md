@@ -318,7 +318,12 @@
     },
     {
       "id": "C12",
-      "status": "NO_REPLAY_CERTIFIED"
+      "status": "REPLAY_CERTIFIED",
+      "scope": "exact-opening-no-opponent-response",
+      "test": "torneos_yugioh/tests/memento_c12_route_replay_test.cjs",
+      "documented_steps": 5,
+      "executed_transitions": 7,
+      "limits": "Escenario exacto Angbruja+Dragón de Cuerno+Fiesta, contra Maza y Goblin boca arriba conocidos del espejo, sin respuesta ni inmunidades rivales. Desvantasma no usó resurrección opcional; no se usa el efecto de descarte de Hoja Oscura, ni se certifican objetivos alternativos, cartas boca abajo o cadenas."
     }
   ],
   "partial_engine_cases": [
