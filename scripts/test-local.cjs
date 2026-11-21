@@ -13,6 +13,8 @@ function run(command, args) {
 run(process.execPath, ['scripts/format-architecture.cjs', '--check']);
 run(process.execPath, ['scripts/build-frontend.cjs', '--check']);
 run(process.execPath, ['scripts/deck-analysis-ledger-test.cjs']);
+run(php, ['torneos_yugioh/tests/deck_analysis_progress_test.php']);
+run(process.execPath, ['torneos_yugioh/tests/deck_analysis_progress_ui_test.cjs']);
 // Explicitly local checks only; production/browser scenarios are opt-in.
 for (const name of ['source_architecture', 'domain_extractions', 'form_command_architecture', 'legacy_function_contract', 'calculator_import', 'calculator_portable_memento_import', 'event_admission', 'event_business_rules', 'event_contracts',
   'combo_creator', 'combo_ports', 'deck_attributes', 'deck_worlds_application', 'deck_worlds_persistence', 'reports_removed', 'deck_public_metadata', 'deck_metadata_architecture', 'event_model_sequence', 'event_recovery', 'event_teams', 'event_workflow',
