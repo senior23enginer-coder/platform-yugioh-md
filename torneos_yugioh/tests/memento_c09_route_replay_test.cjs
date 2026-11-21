@@ -9,6 +9,10 @@ const facts=require('../assets/modules/play-calculator/card-facts.json');
 const deck=JSON.parse(fs.readFileSync(__dirname+'/../assets/editorial/20261117-folder-delivery-v40/671.json','utf8'));
 const route=deck.routes.find(r=>r.id==='671:A09:C09');
 assert.equal(route?.steps.length,5);
+assert(route.result.includes('Princesa Necroequipo')&&route.result.includes('NO roba'),
+  'C09 final board and no-draw must be visible in canonical route');
+assert(!route.opening.includes('No se acreditó mediante simulación.'),
+  'Certified C09 cannot retain the obsolete pending-simulation note');
 assert.equal(route.replay_certification?.status,'REPLAY_CERTIFIED');
 assert.equal(route.replay_certification?.scope,'exact-opening-no-opponent-response');
 assert.equal(route.replay_certification?.test,'torneos_yugioh/tests/memento_c09_route_replay_test.cjs');

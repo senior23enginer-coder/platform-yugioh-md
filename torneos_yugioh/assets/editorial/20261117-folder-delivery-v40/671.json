@@ -30732,8 +30732,8 @@
           "label": "Carta mencionada en el paso"
         }
       ],
-      "result": "",
-      "opening": "> Ruta condicional: esta secuencia exige los materiales descritos en A09, el acceso real a Luna/Réquiem/Grabador y la ventana válida. No se acreditó mediante simulación.\n\n\nFamilia independiente: convertir la línea Demoniherrero en Princesa, sin necesitar monstruo rival. Mano conocida: Angbruja (001) + Goblin (004); campo/GY vacíos; Tatsun (002) en Deck, Grabador (011) en mano o Deck; Luna (032), Réquiem (030), Princesa (023) en Extra; sin interrupción ni restricciones externas. Este resultado es alternativo a C03: no puede usarse el envío de Grabador contra el rival y después gastar el equipo desaparecido como material de Princesa.",
+      "result": "Campo: Princesa Necroequipo (2000 ATK). GY conocido: Angbruja, Tatsun, Luna, Grabador, Goblin, Réquiem. Normal usada. No convertir el envío de Goblin durante este procedimiento de Invocación en «enviado para activar una carta o efecto»: Princesa NO roba por ello.",
+      "opening": "> Ruta condicional: esta secuencia exige los materiales descritos en A09, el acceso real a Luna/Réquiem/Grabador y la ventana válida. La apertura exacta está acreditada mediante replay del motor, sin respuestas del rival.\n\n\nFamilia independiente: convertir la línea Demoniherrero en Princesa, sin necesitar monstruo rival. Mano conocida: Angbruja (001) + Goblin (004); campo/GY vacíos; Tatsun (002) en Deck, Grabador (011) en mano o Deck; Luna (032), Réquiem (030), Princesa (023) en Extra; sin interrupción ni restricciones externas. Este resultado es alternativo a C03: no puede usarse el envío de Grabador contra el rival y después gastar el equipo desaparecido como material de Princesa.",
       "steps": [
         {
           "number": 1,
