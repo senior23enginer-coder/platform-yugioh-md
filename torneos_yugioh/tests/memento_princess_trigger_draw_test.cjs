@@ -37,11 +37,31 @@ assert((afterCost._ruleEvents||[]).some(e=>e.kind==='monster_sent_from_hand_acti
   'The physical monster cost must leave a current-revision causal event');
 assert.equal(actions(afterCost,princessId).length,1,
   'A real monster sent from hand for activation unlocks the Princess draw');
+const equipId='671:princess:trigger-equip';
+const equipActions=actions(afterCost,equipId);
+assert.equal(equipActions.length,1,
+  'Only the physically sent monster may be equipped, never arbitrary GY cards');
+const equipped=equipActions[0].state;
+const princess=equipped.tokens.find(t=>db.bindings[t.key]===20423&&t.zone==='m1');
+const drollEquip=equipped.tokens.find(t=>db.bindings[t.key]===9279&&
+  /^s[1-5]$/.test(t.zone));
+assert(princess&&drollEquip&&drollEquip.equippedToUid===princess.uid,
+  'Droll must leave the GY and become a physical Equip Spell on Princess');
+assert.equal(princess.currentATK,2500,'Princess gains exactly 500 from printed ATK');
+assert.equal(equipped.selfUnknownHand,0,'Equip option does not also draw');
+assert.equal(actions(equipped,princessId).length,0,
+  'Drawing and equipping share the same once-per-name turn limit');
+assert.equal(actions(equipped,equipId).length,0,
+  'Cannot equip twice with the same Princess name this turn');
 const before=JSON.stringify(afterCost);
 const drawn=actions(afterCost,princessId)[0].state;
 assert.equal(JSON.stringify(afterCost),before,'Preview must not mutate original state');
 assert.equal(drawn.selfUnknownHand,1,'Exactly one unidentified own draw');
 assert.equal(actions(drawn,princessId).length,0,'Princess effect once per turn');
+assert.equal(actions(drawn,equipId).length,0,
+  'After choosing draw, equip is unavailable for this turn');
+assert.equal(actions(E.patch(afterCost,{notes:'New unrelated action'}),equipId).length,0,
+  'An edited state cannot equip using a stale cost event');
 assert.equal(actions(E.patch(afterCost,{notes:'New unrelated action'}),princessId).length,0,
   'Old activation cost cannot be reused after capture is edited');
 // A Spell sent as its own activation cost does not count as a MONSTER sent
@@ -59,6 +79,8 @@ assert(!afterSpell._ruleEvents?.some(e=>e.kind==='monster_sent_from_hand_activat
   'A Spell cost is never a monster cost');
 assert.equal(actions(afterSpell,princessId).length,0,
   'Princess cannot draw after sending only a Spell as an activation cost');
+assert.equal(actions(afterSpell,equipId).length,0,
+  'A Spell activation cost cannot become Princess equipment');
 // Negating the effect does not refund the already paid monster cost.
 const denied=R.actions(observed,db,{
   negateEffectRuleIds:['671:droll:main-deck-lock']
