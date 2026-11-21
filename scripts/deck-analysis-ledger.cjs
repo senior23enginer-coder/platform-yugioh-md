@@ -104,10 +104,17 @@ function summary(ledger,history=[]){
   // durations exist for every unfinished task. No fixed timing claims.
   let estimatedRemaining=0,calibrated=true;
   for(const task of relevant.filter(t=>t.status!==STATUS.COMPLETE)){
-    const samples=history.filter(h=>h?.task_id===task.task_id&&
-      Number.isFinite(h.elapsed_seconds)&&h.elapsed_seconds>0);
-    if(samples.length<3){calibrated=false;break;}
-    const sorted=samples.map(h=>h.elapsed_seconds).sort((a,b)=>a-b);
+    // Require five distinct observed decks, never five synthetic attempts
+    // for one deck or data copied from the deck under evaluation.
+    const byDeck=new Map();
+    for (const sample of history) if(sample?.task_id===task.task_id &&
+      Number.isInteger(sample.deck_id)&&sample.deck_id>0 &&
+      sample.deck_id!==ledger.deck_id &&
+      Number.isFinite(sample.elapsed_seconds)&&sample.elapsed_seconds>0) {
+      if(!byDeck.has(sample.deck_id))byDeck.set(sample.deck_id,sample.elapsed_seconds);
+    }
+    if(byDeck.size<5){calibrated=false;break;}
+    const sorted=[...byDeck.values()].sort((a,b)=>a-b);
     estimatedRemaining+=sorted[Math.floor(sorted.length/2)];
   }
   return {deck_id:ledger.deck_id,mandatory_total:ledger.tasks.filter(t=>t.mandatory).length,

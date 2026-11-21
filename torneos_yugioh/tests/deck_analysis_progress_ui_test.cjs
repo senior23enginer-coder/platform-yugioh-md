@@ -21,6 +21,7 @@ for(const bad of ['fetch("https://api.openai.com','issueNewTurn','gpt-4o','Codex
   assert(!src.includes(bad),'The grid must not start AI analysis.');
 }
 let polling;
+let assignedStatus=false;
 const listeners=new Map();
 const calls=[];
 const contents={innerHTML:'',textContent:'',addEventListener(name,fn){listeners.set('content:'+name,fn);},
@@ -40,10 +41,21 @@ const doc={querySelector(sel){
 const windowStub={setInterval(fn){polling=fn;}};
 async function fetchStub(url,options){
  calls.push({url,options});
- return {ok:true,json:async()=>({
+ const fixture=assignedStatus ? {
+   ok:true,token:'synthetic-token',assigned:true,eligible:true,
+   inventory_counts:{main:40,extra:15,side:15,reserve:0},
+   ledger:{revision:1,calculator_requested:false,tasks:[
+     {task_id:'A01-T1',stage_id:'A01',mandatory:true,description:'Tarea sintética',
+       status:'PAUSED',attempts:1,elapsed_seconds:30}
+   ]},
+   manifest:{stages:[{stage_id:'A01',mandatory:true,tasks:[{task_id:'A01-T1'}]}]},
+   summary:{total:1,complete:0,blocked:0,elapsed_seconds:30,eta_seconds:null,
+     stages:[{stage_id:'A01',elapsed_seconds:30,eta_seconds:null}]}
+ } : {
    ok:true,token:'synthetic-token',assigned:false,eligible:true,
    inventory_counts:{main:40,extra:15,side:15,reserve:0}
- })};
+ };
+ return {ok:true,json:async()=>fixture};
 }
 vm.runInNewContext(src,{window:windowStub,document:doc,fetch:fetchStub});
 assert.equal(calls.length,0,'No deck chosen means no API requests.');
@@ -57,6 +69,19 @@ setImmediate(()=>{
  assert.equal(panel.hidden,false,'The selected deck shows progress admission controls.');
  assert.equal(calls.filter(x=>x.options.method==='POST').length,0,
    'Selecting a deck must not start or authorize its analysis.');
- console.log(JSON.stringify({ok:true,syntheticUI:true,analysisStarted:false,
-   inferredAssignments:0,readOnlyStatusCalls:calls.length}));
+ assignedStatus=true;
+ picker.value='98766';
+ polling();
+ setImmediate(()=>{
+   assert(contents.innerHTML.includes('Reanudar tarea sin repetir análisis'),
+     'Persisted PAUSED checkpoint must render a safe resume control.');
+   assert(contents.innerHTML.includes('Pausada, reanudable'));
+   assert.equal(calls.filter(x=>x.options.method==='POST').length,0,
+     'Viewing a paused task must not implicitly resume or invoke AI.');
+   assert(!contents.innerHTML.includes('Iniciar tarea</button>'),
+     'A paused checkpoint must not start over with a new task.');
+   console.log(JSON.stringify({ok:true,syntheticUI:true,analysisStarted:false,
+     inferredAssignments:0,pausedRecoveryRendered:true}));
+ });
+
 });

@@ -1,6 +1,6 @@
 'use strict';
 const assert=require('node:assert/strict');
-const {validate,run,fromPaper}=require('../../scripts/run-deck-logic-fixtures.cjs');
+const {validate,run,runRoutes,fromPaper}=require('../../scripts/run-deck-logic-fixtures.cjs');
 const rule={
  version:1,id:'999999:synthetic-field:activate',deckId:999999,format:'tcg_advanced',
  scope:'single-effect',label:'Efecto de control sintético de activación',
@@ -65,6 +65,66 @@ assert.equal(notSupported.blocked.length,3);
 assert(notSupported.blocked.every(x=>x.reason==='OPERADOR_NO_SOPORTADO'));
 assert.throws(()=>fromPaper(paper,packageData,{deckId:999999,explicitlyAssigned:false}),
  /USER_DECK_ASSIGNMENT_REQUIRED/);
+
+// Generic multi-step framework: a documented physical checkpoint is mandatory.
+// Route JSON is reusable across decks; this test is synthetic only.
+const routeBundle={...bundle,cases:[],route_cases:[
+  {route_id:'SYNTHETIC:A09:C01',state_before:{
+    turn:1,phase:'main1',active:'self',placements:[{card_id:1,zone:'hand'}]
+  },steps:[{effect_id:rule.id,expected_after:{
+    tokens:[{cid:19367,zone:'field'}]}}],
+    expected_final:{tokens:[{cid:19367,zone:'field'}]}},
+  {route_id:'SYNTHETIC:A09:REJECT',state_before:{
+    turn:1,phase:'main1',active:'self',placements:[{card_id:1,zone:'hand'}]
+  },steps:[{effect_id:rule.id,expected_after:{
+    tokens:[{cid:19367,zone:'graveyard'}]}}],
+    expected_final:{tokens:[{cid:19367,zone:'graveyard'}]}},
+  {route_id:'SYNTHETIC:A09:REJECT_ABSENCE',state_before:{
+    turn:1,phase:'main1',active:'self',placements:[{card_id:1,zone:'hand'}]
+  },steps:[{effect_id:rule.id,expected_after:{
+    tokens:[{cid:19367,zone:'field'}],absent:[{cid:19367}]}}],
+    expected_final:{tokens:[{cid:19367,zone:'field'}]}},
+  {route_id:'SYNTHETIC:A09:REJECT_FALSE_NORMAL_COST',state_before:{
+    turn:1,phase:'main1',active:'self',placements:[{card_id:1,zone:'hand'}]
+  },steps:[{effect_id:rule.id,expected_after:{
+    tokens:[{cid:19367,zone:'field'}],normal_available:false}}],
+    expected_final:{tokens:[{cid:19367,zone:'field'}]}}
+]};
+const replay=runRoutes(routeBundle,options);
+assert.equal(replay.total,4);
+assert.equal(replay.passed,1);
+assert.equal(replay.failed,3);
+assert.equal(replay.routes[1].reason,
+  'NO_LEGAL_ACTION_MATCHED_PHYSICAL_CHECKPOINT');
+assert(replay.routes.slice(2).every(x=>x.reason==='NO_LEGAL_ACTION_MATCHED_PHYSICAL_CHECKPOINT'),
+  'Contradictory missing-card or spent-Normal expectations must fail closed');
+assert.throws(()=>runRoutes({...routeBundle,
+  route_cases:[routeBundle.route_cases[0],routeBundle.route_cases[0]]},options),
+  /DUPLICATE_OR_INVALID_ROUTE_ID/);
+
+// One CLI consumes future GPT JSON route fixtures; no per-deck JS is needed.
+const fsTmp=require('node:fs'),pathTmp=require('node:path'),osTmp=require('node:os');
+const {spawnSync}=require('node:child_process');
+const folder=fsTmp.mkdtempSync(pathTmp.join(osTmp.tmpdir(),'stationx-p06-routes-'));
+try{
+  const fixture=pathTmp.join(folder,'synthetic-routes.json');
+  fsTmp.writeFileSync(fixture,JSON.stringify({...routeBundle,
+    route_cases:[routeBundle.route_cases[0]]}));
+  const cli=pathTmp.resolve(__dirname,'../../scripts/run-deck-logic-fixtures.cjs');
+  const allowed=spawnSync(process.execPath,[cli,'--routes','--deck-id=999999',
+    '--user-assigned',fixture],{encoding:'utf8'});
+  assert.equal(allowed.status,0,allowed.stderr||allowed.stdout);
+  const result=JSON.parse(allowed.stdout);
+  assert.equal(result.mode,'ROUTES');
+  assert.equal(result.passed,1);
+  const unauthorized=spawnSync(process.execPath,[cli,'--routes','--deck-id=999999',
+    fixture],{encoding:'utf8'});
+  assert.notEqual(unauthorized.status,0,
+    'No CLI scenario must run without explicit deck assignment');
+  const wrongDeck=spawnSync(process.execPath,[cli,'--routes','--deck-id=111111',
+    '--user-assigned',fixture],{encoding:'utf8'});
+  assert.notEqual(wrongDeck.status,0,'Foreign-deck fixtures fail closed');
+}finally{fsTmp.rmSync(folder,{recursive:true,force:true});}
 
 console.log(JSON.stringify({ok:true,syntheticOnly:true,deckAnalysesExecuted:0,
   paperCases:3,pass:result.passed,runner:'single-reusable'}));

@@ -29,11 +29,11 @@ El contrato importable `station-x-deck-package/1` mantiene `record` estructurado
 El único manifiesto de referencia, mantenido en GPT, es `02_PROMPT_PARA_CODEX/contrato_tareas_a01_a10.json`, con **35 tareas A01–A10A obligatorias y 3 A10B opcionales**. En este repositorio, `scripts/deck-analysis-ledger.cjs` ofrece funciones genéricas, sin efectos secundarios, para:
 
 - Rechazar una inicialización sin asignación expresa, sin las tres zonas cargadas o sin un manifiesto válido.
-- Mantener `PENDING`, `RUNNING`, `BLOCKED` y `COMPLETE`, IDs estables y evidencia obligatoria antes de completar cualquier tarea. A10B no cuenta ni puede arrancar si no se solicitó.
+- Conservar `PENDING`, `RUNNING`, `PAUSED`, `BLOCKED` y `COMPLETE`, IDs estables y evidencia obligatoria antes de completar cualquier tarea. A10B no cuenta ni puede arrancar si no se solicitó.
 - Acumular tiempos **observados** por sesión a partir de marcas UTC `started_at`/fin; conservar reintentos y bloqueos.
-- Calcular progreso por apartado y exponer `eta_seconds=null` con `INSUFFICIENT_REAL_SAMPLES` hasta disponer de al menos tres duraciones históricas válidas **para cada tarea abierta**. Cuando existen, utiliza la mediana; el consumidor debe filtrar previamente muestras por complejidad y formato para que sean comparables.
+- Calcular progreso por apartado y exponer `eta_seconds=null` con `INSUFFICIENT_REAL_SAMPLES` hasta disponer de al menos cinco duraciones históricas comparables de decks distintos **para cada tarea abierta**. Cuando existen, utiliza la mediana; el consumidor debe filtrar previamente muestras por complejidad y formato para que sean comparables.
 
-**Implementación de seguimiento (PR de infraestructura):** `includes/decks/analysis-progress.php` guarda el ledger por deck en una tabla SQL independiente, con bloqueo por huella de inventario, versión optimista y evidencia obligatoria. `includes/decks/analysis-progress-http.php` expone un endpoint autenticado de lectura/escritura con CSRF y autorización expresa; `assets/modules/deck-guide/analysis-progress.js` y su CSS presentan la cuadrícula en la ficha seleccionada. Abrir un deck **no crea registros ni inicia IA**: el usuario debe confirmar expresamente su asignación al seguimiento y después documentar cada transición. La vista muestra progreso, bloqueos y tiempo real; el ETA permanece sin datos cuando no hay tres muestras históricas comparables por tarea. La inicialización y las acciones se aplican **solo al deck seleccionado**, nunca a todo el catálogo.
+**Implementación de seguimiento (PR de infraestructura):** `includes/decks/analysis-progress.php` guarda el ledger por deck en una tabla SQL independiente, con bloqueo por huella de inventario, versión optimista y evidencia obligatoria. `includes/decks/analysis-progress-http.php` expone un endpoint autenticado de lectura/escritura con CSRF y autorización expresa; `assets/modules/deck-guide/analysis-progress.js` y su CSS presentan la cuadrícula en la ficha seleccionada. Abrir un deck **no crea registros ni inicia IA**: el usuario debe confirmar expresamente su asignación al seguimiento y después documentar cada transición. La vista muestra progreso, bloqueos y tiempo real; el ETA permanece sin datos cuando no hay cinco decks comparables medidos por tarea. La inicialización y las acciones se aplican **solo al deck seleccionado**, nunca a todo el catálogo.
 
 **Limitación que permanece:** todavía no existe un agente de ejecución autónoma de A01–A10A, ni una base empírica de tiempos de análisis reales para calibrar ETA. El grid registra trabajo ya autorizado y efectivamente evidenciado, pero **no ejecuta prompts, investiga cartas, realiza importaciones ni agenda tareas por sí solo**. El despliegue visible dependerá de que el PR se integre y el servidor admita la tabla SQL; no confundir código probado en CI con publicación verificada.
 
@@ -50,6 +50,37 @@ node scripts/deck-analysis-ledger-test.cjs ../gpt-yugioh-promps-platform/02_PROM
 ```
 
 La prueba nueva usa **escenarios sintéticos exclusivamente**; no selecciona, investiga ni modifica ningún deck. `npm test` conserva las regresiones existentes y el workflow de integración ZIP comprueba los 38 IDs contra el manifiesto de GPT. Los tests históricos de Memento/Crystron verifican código y paquetes ya existentes, **no son nuevas ejecuciones A01–A10** ni viajan dentro del ZIP. Para evitar proliferación se incorpora `scripts/run-deck-logic-fixtures.cjs`: un ejecutor genérico de escenarios positivos/negativos expresados como datos, con comprobación estricta de deck asignado, formato, inventario y estado físico. Su ejecución sólo está permitida sobre un deck real asignado expresamente. Las pruebas de ejemplo son **sintéticas**. Esta capacidad todavía no certifica todas las operaciones de motor y no sustituye los tests históricos hasta acreditar paridad. El adaptador `fromPaper(paper,stationxPackage,{deckId,explicitlyAssigned})` recibe el esquema canónico `station-x-paper-cases/1` de GPT y el paquete `station-x-deck-package/1`, conserva los `effect_id`/`case_id` y genera únicamente fixtures para efectos con reglas A10B disponibles. Los casos condicionales, sin estados físicos estructurados o sin operador se devuelven como **bloqueados**, nunca como pruebas exitosas. No borrar tests antiguos hasta disponer de evidencia equivalente.
+
+### P06 — Migración segura de pruebas por carta a casos de papel reutilizables
+
+El objetivo es **evitar nuevos archivos JavaScript/PHP por carta o deck**, no borrar verificaciones históricas. Se preservan **40** archivos de regresión de Memento y Crystron/Horus mediante `scripts/deck-legacy-regression-gate.cjs`. Ejecutar `node scripts/deck-legacy-regression-gate.cjs` comprueba el inventario sin analizar cartas; agregar `--run` ejecuta las 40 regresiones heredadas de forma independiente, sin invocar A01–A10.
+
+**GPT es dueño de los casos de dominio:** `03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-legacy-paper-cases.json` contiene un primer conjunto de 8 casos lógicos declarativos: **3** corresponden directamente a aserciones históricas con texto trazable y **5** son escenarios negativos adicionales. No son ocho pruebas históricas completas migradas ni reemplazan las demás aserciones. Platform verifica esos casos y sus dos archivos históricos de origen mediante el ejecutor compartido `scripts/deck-paper-parity.cjs`, sin cambiar ningún deck:
+
+```bash
+node scripts/deck-legacy-regression-gate.cjs
+node scripts/deck-legacy-regression-gate.cjs --run
+node scripts/deck-paper-parity.cjs ../gpt-yugioh-promps-platform/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-legacy-paper-cases.json
+```
+
+`scripts/run-deck-logic-fixtures.cjs` interpreta los casos de efecto. Su función `runRoutes` permite contrastar también pasos de secuencias A09 mediante `route_id`, efectos existentes y estados físicos comprobables; ante ramas ambiguas, operadores ausentes o checkpoints falsos, **falla cerrado**. La suite sintética valida estos límites sin analizar decks.
+
+**Regresiones de rutas A09:** GPT conserva las doce rutas Memento C01–C12 en un único registro histórico de 105 transiciones y en un archivo de estados de referencia (`p06-memento-golden-route-states.json`). `scripts/export-p06-route-golden.cjs` caracteriza los tests originales sin editarlos; `scripts/run-p06-golden-routes.cjs` reproduce sus estados con el motor actual. **C08** incluye cambio de turno y observación explícita de activación rival. Son **12/12 replays históricos reproducidos**, pero eso **no** certifica todas las posibles jugadas o un oráculo reglamentario independiente.
+
+**Auditoría de cobertura restante:** `scripts/export-p06-legacy-inventory.cjs` y `scripts/check-p06-legacy-assertions.cjs` cotejan los 40 scripts, huellas Git y **1.005 sitios textuales de llamadas a `assert`** contra `p06-protected-legacy-assertions.json` de GPT. El número 1.005 es un conteo estático, **no equivale a 1.005 casos lógicos verificados o migrados**. Las tres aserciones históricas de papel y los cinco casos negativos adicionales tampoco reemplazan archivos completos.
+
+```bash
+node scripts/export-p06-route-golden.cjs
+node scripts/export-p06-legacy-inventory.cjs
+node scripts/run-p06-golden-routes.cjs ../gpt-yugioh-promps-platform/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-memento-golden-route-states.json
+node scripts/check-p06-legacy-assertions.cjs ../gpt-yugioh-promps-platform/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-protected-legacy-assertions.json
+```
+
+**Discrepancia pendiente C02:** el documento histórico registra seis transiciones, pero el test contiene cinco acciones efectivamente ejecutadas. La reproducción de esas cinco acciones pasa; el conteo editorial sigue sin conciliar y **no debe corregirse silenciosamente ni declararse coincidente**.
+
+**Control preventivo de crecimiento:** `scripts/p06-test-source-allowlist.json` registra los **212 programas de prueba existentes** en `torneos_yugioh/tests`; `node scripts/guard-p06-test-program-growth.cjs` verifica su presencia y rechaza incorporaciones o supresiones silenciosas. Los nuevos escenarios por deck, carta o combo deben registrarse en **fixtures JSON** para el runner compartido, no como nuevos ficheros `*_test.cjs`/`.php` por efecto. Agregar un test técnico nuevo al núcleo del motor sigue siendo posible, pero exige actualizar justificadamente la lista en un PR revisado. Esto es un control de gobernanza, **no** prueba por sí solo la equivalencia semántica de los 40 scripts heredados.
+
+**Estado de migración:** el **framework de fixtures/replays reutilizables está operativo** y todos los tests históricos siguen protegidos; **la conversión completa de las aserciones de dominio y la retirada de archivos redundantes están pendientes**. No suprimir scripts hasta documentar y comprobar la equivalencia exacta de cada aserción relevante; mantener en Platform aquellas que son técnicas del motor, UI y contratos y llevar al origen GPT las pruebas de papel por efecto. No se ha reanalizado ningún deck.
 
 **Política de cambios:** esta documentación y las utilidades no autorizan merge, despliegue FTP ni actualizaciones de producción. Los PR de GPT y Platform deben pasar sus verificaciones de forma independiente antes de cualquier integración.
 

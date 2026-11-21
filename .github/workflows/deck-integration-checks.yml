@@ -44,6 +44,8 @@ jobs:
         run: npm run build
       - name: Run complete local native regression suite (M01 acceptance gate)
         run: npm test
+      - name: Verify all 40 preserved Memento/Crystron historical regression files
+        run: node scripts/deck-legacy-regression-gate.cjs --run
       - name: Verify PHP requirements
         run: |
           php -v
@@ -69,6 +71,11 @@ jobs:
           php torneos_yugioh/tests/gpt_real_folder_import_test.php /tmp/station-x-gpt-decks
           node torneos_yugioh/tests/gpt_real_endboard_renderer_test.cjs /tmp/station-x-gpt-decks
           node scripts/deck-analysis-ledger-test.cjs /tmp/station-x-gpt-decks/02_PROMPT_PARA_CODEX/contrato_tareas_a01_a10.json
+          node scripts/deck-paper-parity.cjs /tmp/station-x-gpt-decks/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-legacy-paper-cases.json
+          node scripts/deck-legacy-route-trace-test.cjs /tmp/station-x-gpt-decks/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-memento-route-traces.json
+          node scripts/deck-declarative-route-parity.cjs /tmp/station-x-gpt-decks/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-memento-c01-physical-route.json
+          node scripts/run-p06-golden-routes.cjs /tmp/station-x-gpt-decks/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-memento-golden-route-states.json
+          node scripts/check-p06-legacy-assertions.cjs /tmp/station-x-gpt-decks/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-protected-legacy-assertions.json
       - name: Enforce two-deck A01-A10 structure and prompt/runtime parity
         run: node scripts/verify-pilot-decks.cjs --prompts-root=/tmp/station-x-gpt-decks
       - name: Validate calculator contracts and rules
@@ -87,3 +94,23 @@ jobs:
           node torneos_yugioh/tests/combo_creator_study_photos_test.cjs
           node torneos_yugioh/tests/combo_editorial_library_test.cjs
           node torneos_yugioh/tests/documented_combo_editor_test.cjs
+
+  p06-fast-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run shared P06 parity checks against GPT base
+        run: |
+          git clone --depth 1 --branch base https://github.com/senior23enginer-coder/gpt-yugioh-promps-platform.git /tmp/p06-gpt
+          node torneos_yugioh/tests/deck_logic_fixture_runner_test.cjs
+          node scripts/deck-paper-parity.cjs /tmp/p06-gpt/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-legacy-paper-cases.json
+          node scripts/deck-legacy-route-trace-test.cjs /tmp/p06-gpt/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-memento-route-traces.json
+          node scripts/deck-declarative-route-parity.cjs /tmp/p06-gpt/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-memento-c01-physical-route.json
+          node scripts/run-p06-golden-routes.cjs /tmp/p06-gpt/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-memento-golden-route-states.json
+          node scripts/export-p06-route-golden.cjs
+          node scripts/export-p06-legacy-inventory.cjs
+          node scripts/check-p06-legacy-assertions.cjs /tmp/p06-gpt/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-protected-legacy-assertions.json
