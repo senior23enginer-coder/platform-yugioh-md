@@ -158,6 +158,7 @@ assert(summonedTatsun._ruleEvents.some((e) => e.kind === "summon" &&
   e.cid === 19362 && e.method === "special"));
 const sentByTatsun = R.actions(summonedTatsun, memento.db).actions.find((a) =>
   a.event.ruleId === "671:tatsun:mill" &&
+  a.state.tokens.some((t) => t.key === angwitch.key && t.zone === "graveyard") &&
   [19472, 19366].every((cid) => a.state.tokens.some((t) =>
     memento.db.bindings[t.key] === cid && t.zone === "graveyard")));
 assert(sentByTatsun, "Tatsun can destroy Level 3 Angwitch and send Level 2 Ghattic + Level 1 Goblin");
