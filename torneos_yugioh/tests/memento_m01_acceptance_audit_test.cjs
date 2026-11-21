@@ -53,7 +53,10 @@ const report = {
   documented_routes:deck.routes.length,
   certified_replays:coverage.routes.length-uncertified.length,
   uncertified_route_ids:uncertified.map(route => route.id),
-  complete:missing.length===0 && uncertified.length===0
+  // Restricted fixtures do not prove all A07 capabilities in arbitrary states.
+  unverified_general_rules:coverage.rules.filter(rule => rule.status !== 'ENGINE_CERTIFIED_GENERAL').map(rule => rule.id),
+  complete:missing.length===0 && uncertified.length===0 &&
+    coverage.rules.every(rule => rule.status === 'ENGINE_CERTIFIED_GENERAL')
 };
 console.log(JSON.stringify(report));
 if (process.argv.includes('--require-complete'))
