@@ -8,6 +8,7 @@
 .progress-stage{border:1px solid var(--border,#354457);border-radius:10px;overflow:hidden;min-width:0}
 .progress-stage>summary{cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:13px;font-weight:600}
 .progress-stage>summary span{font-weight:400;font-size:.86em;white-space:nowrap}
+.progress-stage-timing{padding:0 13px 10px;margin:0;font-size:.8em;opacity:.85}
 .progress-stage ol{margin:0;padding:0;list-style:none}
 .progress-task{padding:12px;border-top:1px solid var(--border,#354457);overflow-wrap:anywhere}
 .progress-task p{margin:7px 0}
