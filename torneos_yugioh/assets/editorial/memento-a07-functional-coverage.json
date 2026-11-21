@@ -563,7 +563,7 @@
     "Ninguna fila DOCUMENTED_NOT_ENGINE_TESTED puede contarse como regla ejecutable probada.",
     "Los operadores move/take/normal/flag y efectos parciales no reproducen por sí solos estas mecánicas.",
     "El manifiesto no publica combos ni cambia inventarios.",
-    "Punto 1 A07: 22 reglas anteriormente sin caso; R12 ahora verifica la ausencia de objetivos contra los 41/15/14 aprobados y R24 ejecuta superposición TY-PHON bajo observaciones de Extra rival. La cobertura alcanza 33 reglas con alguna resolución/procedimiento restringido y R12 con rechazo de inventario verificable; ninguna es certificación integral. Cero replays certificados.",
+    "Punto 1 A07: 22 reglas anteriormente sin caso; R12 ahora verifica la ausencia de objetivos contra los 41/15/14 aprobados y R24 ejecuta superposición TY-PHON bajo observaciones de Extra rival. La cobertura alcanza 33 reglas con alguna resolución/procedimiento restringido y R12 con rechazo de inventario verificable; ninguna es certificación integral. 12 de 12 rutas C01–C12 cuentan con replay de apertura exacta; ninguna certifica automáticamente cadenas adversarias ni cobertura general.",
     "Los casos sintéticos con Lancea simulan exclusivamente una situación posterior a intercambio Side; el inventario aprobado no fue modificado."
   ]
 }
