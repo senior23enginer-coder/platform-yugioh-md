@@ -108,3 +108,5 @@ jobs:
           node scripts/deck-paper-parity.cjs /tmp/p06-gpt/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-legacy-paper-cases.json
           node scripts/deck-legacy-route-trace-test.cjs /tmp/p06-gpt/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-memento-route-traces.json
           node scripts/deck-declarative-route-parity.cjs /tmp/p06-gpt/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-memento-c01-physical-route.json
+          node scripts/export-p06-route-golden.cjs
+          node scripts/export-p06-route-golden.cjs --emit-json
