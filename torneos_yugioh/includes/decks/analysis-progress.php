@@ -127,13 +127,29 @@ function ygo_progress_summary(array $ledger,array $samples=[]): array {
         if($task['status']==='BLOCKED')$stages[$id]['blocked']++;
         $stages[$id]['elapsed_seconds']+=$task['elapsed_seconds'];
     }
+    // Calculate an ETA per stage, not only a global figure. No fabricated
+    // minutes: each unfinished task requires >=3 comparable measured samples.
+    foreach($stages as &$stage){
+        $stage['eta_seconds']=0;
+        $stage['eta_status']='CALIBRATED_FROM_REAL_HISTORY';
+    }
+    unset($stage);
     $eta=0;$ready=true;
     foreach($tasks as $task){
         if($task['status']==='COMPLETE')continue;
         $valid=array_values(array_filter($samples[$task['task_id']]??[],
           static fn($v)=>is_numeric($v)&&(float)$v>0));
-        if(count($valid)<3){$ready=false;break;}
-        sort($valid,SORT_NUMERIC);$eta+=(int)$valid[intdiv(count($valid),2)];
+        $id=$task['stage_id'];
+        if(count($valid)<3){
+            $ready=false;
+            $stages[$id]['eta_seconds']=null;
+            $stages[$id]['eta_status']='INSUFFICIENT_REAL_SAMPLES';
+            continue;
+        }
+        sort($valid,SORT_NUMERIC);
+        $seconds=(int)$valid[intdiv(count($valid),2)];
+        if($stages[$id]['eta_seconds']!==null)$stages[$id]['eta_seconds']+=$seconds;
+        $eta+=$seconds;
     }
     return ['deck_id'=>$ledger['deck_id'],'total'=>count($tasks),'complete'=>$done,
       'remaining'=>count($tasks)-$done,'blocked'=>$blocked,
