@@ -68,6 +68,7 @@ jobs:
           fi
           php torneos_yugioh/tests/gpt_real_folder_import_test.php /tmp/station-x-gpt-decks
           node torneos_yugioh/tests/gpt_real_endboard_renderer_test.cjs /tmp/station-x-gpt-decks
+          node scripts/deck-analysis-ledger-test.cjs /tmp/station-x-gpt-decks/02_PROMPT_PARA_CODEX/contrato_tareas_a01_a10.json
       - name: Enforce two-deck A01-A10 structure and prompt/runtime parity
         run: node scripts/verify-pilot-decks.cjs --prompts-root=/tmp/station-x-gpt-decks
       - name: Validate calculator contracts and rules

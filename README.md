@@ -2,6 +2,53 @@
 
 Plataforma web para administrar decks, equipos, temporadas, eventos y resultados de Yu-Gi-Oh, con guías de juego, un editor visual de combos y herramientas de estudio.
 
+## Estándar de análisis y seguimiento por deck — contrato compartido con GPT
+
+Station X es una plataforma de registro y estudio de **duelos físicos**, no un simulador universal. **No se ejecuta ningún análisis A01–A10A/A10B sin que el usuario asigne expresamente un único `deck_id`**, y el sistema no procesa por defecto el catálogo completo de decks. Enumerar decks, actualizar documentación, consultar avances o probar la infraestructura NO constituye autorización para analizar ningún mazo.
+
+### Elegibilidad y precondiciones
+
+La puerta editorial previa al primer prompt valida el `deck_id` seleccionado, formato e inventario físico del **mismo deck**. Debe existir al menos una fila/copia cargada en **Main**, **Extra** y **Side**; la sección **Reserva es opcional** y nunca se rellena por defecto. Cada fila se coteja por `card_id`, sección y cantidad contra el `record.cards[*].slots` del paquete. La falta de selección o de cualquiera de las zonas requeridas produce `BLOQUEADO_POR_INVENTARIO_O_AUTORIZACION`; **no se ejecutan tareas A01–A10 ni un estudio provisional**. Esta exigencia no impide guardar o editar un deck incompleto en el catálogo: impide iniciar el **análisis por IA**.
+
+El contrato canónico y el validador de entrada pertenecen a [GPT Yu-Gi-Oh Prompts](https://github.com/senior23enginer-coder/gpt-yugioh-promps-platform): `scripts/analysis-eligibility.cjs`. Los controles definidos aquí sirven para estandarizar el **futuro orquestador de análisis**, no constituyen por sí mismos un servicio de IA ni un proceso de análisis en producción.
+
+### Flujo y fuente de verdad
+
+| Etapa | Tipo | Responsabilidad |
+| --- | --- | --- |
+| A01–A04 | Obligatoria tras admisión | Identidad, inventario cargado, fuentes e imágenes |
+| A05–A07 | Obligatoria | Fichas y reglas semánticas por `cid` y `effect_id`, costes, ventanas, material, límites y casos de papel |
+| A08–A09 | Obligatoria | Estrategias, `route_id`/`step_id`, recursos y estados previos/posteriores |
+| **A10A** | **Obligatoria** | Guía visual, campos finales y ZIP importable **sin depender de la calculadora** |
+| **A10B** | **Opcional y explícita** | Mapeo de casos de papel a reglas `station-x-calculator/1`, pruebas de motor y compatibilidad |
+
+El contrato importable `station-x-deck-package/1` mantiene `record` estructurado y el inventario por filas; las reglas ejecutables `record.calculator` se incorporan sólo cuando A10B fue solicitado y los operadores existen. La guía y la calculadora consumen **los mismos IDs, condiciones, efectos y recursos**. Las pruebas de papel/semántica de dominio se originan en GPT como datos; las pruebas técnicas del intérprete, del ZIP y de los cambios de estado físico viven en Platform. Un fallo de una prueba o un operador no soportado **no** se convierte en un resultado de duelo inventado.
+
+### Ledger por deck, tareas y tiempos reales
+
+El único manifiesto de referencia, mantenido en GPT, es `02_PROMPT_PARA_CODEX/contrato_tareas_a01_a10.json`, con **35 tareas A01–A10A obligatorias y 3 A10B opcionales**. En este repositorio, `scripts/deck-analysis-ledger.cjs` ofrece funciones genéricas, sin efectos secundarios, para:
+
+- Rechazar una inicialización sin asignación expresa, sin las tres zonas cargadas o sin un manifiesto válido.
+- Mantener `PENDING`, `RUNNING`, `BLOCKED` y `COMPLETE`, IDs estables y evidencia obligatoria antes de completar cualquier tarea. A10B no cuenta ni puede arrancar si no se solicitó.
+- Acumular tiempos **observados** por sesión a partir de marcas UTC `started_at`/fin; conservar reintentos y bloqueos.
+- Calcular progreso por apartado y exponer `eta_seconds=null` con `INSUFFICIENT_REAL_SAMPLES` hasta disponer de al menos tres duraciones históricas válidas **para cada tarea abierta**. Cuando existen, utiliza la mediana; el consumidor debe filtrar previamente muestras por complejidad y formato para que sean comparables.
+
+**Limitación actual:** este módulo es un contrato reutilizable y probado, pero **aún no está conectado al almacenamiento persistente ni al grid visual de producción**, y no ejecuta, agenda ni reanuda trabajos de IA por sí mismo. Su salida serializable está preparada para que un servicio autorizado persista el ledger y actualice el grid. No presentar estimaciones teóricas de varias horas como si fueran mediciones reales.
+
+### Pruebas reproducibles y límites de alcance
+
+```bash
+node scripts/deck-analysis-ledger-test.cjs
+npm test
+# Con un clon hermano de GPT y su contrato de tareas:
+node scripts/deck-analysis-ledger-test.cjs ../gpt-yugioh-promps-platform/02_PROMPT_PARA_CODEX/contrato_tareas_a01_a10.json
+```
+
+La prueba nueva usa **escenarios sintéticos exclusivamente**; no selecciona, investiga ni modifica ningún deck. `npm test` conserva las regresiones existentes y el workflow de integración ZIP comprueba los 38 IDs contra el manifiesto de GPT. Los tests históricos de Memento/Crystron verifican código y paquetes ya existentes, **no son nuevas ejecuciones A01–A10** ni viajan dentro del ZIP. Para evitar proliferación, los efectos y rutas de otros decks se probarán como fixtures de datos mediante un runner compartido cuando se implemente y certifique su paridad. No borrar tests antiguos hasta disponer de evidencia equivalente.
+
+**Política de cambios:** esta documentación y las utilidades no autorizan merge, despliegue FTP ni actualizaciones de producción. Los PR de GPT y Platform deben pasar sus verificaciones de forma independiente antes de cualquier integración.
+
+
 | Recurso                      | Enlace                                                                                            |
 | ---------------------------- | ------------------------------------------------------------------------------------------------- |
 | Aplicación en producción     | [stationxtulua.com/yugioh](https://stationxtulua.com/yugioh/)                                     |
