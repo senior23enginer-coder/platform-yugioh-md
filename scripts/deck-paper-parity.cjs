@@ -17,10 +17,11 @@ const suite=JSON.parse(fs.readFileSync(path.resolve(fixturePath),'utf8'));
 assert.equal(suite.schema,'station-x-legacy-paper-regression-suite/1');
 assert.equal(suite.explicitly_not_a_new_deck_analysis,true);
 assert.equal(suite.coverage_policy,
-  'partial_by_legacy_file; do not delete original tests until all assertions match');
+  '3 traced legacy assertions plus 5 new negative boundaries; partial by legacy file; retain all original tests');
 assert.deepEqual(suite.documents.map(x=>x.deck_id),[671,677],
   'P06 may exercise only the two historical regressions, not the deck catalogue');
 const testedLegacy=new Set();
+let legacyAssertions=0,newBoundaries=0;
 const reports=[];
 let count=0;
 for(const paper of suite.documents){
@@ -40,6 +41,17 @@ for(const paper of suite.documents){
     const code=fs.readFileSync(originalTest,'utf8');
     assert(code.includes(item.effect_id),
       'Fixture effect is absent from its original historical test: '+item.case_id);
+    if(item.origin==='legacy_assertion'){
+      assert(typeof item.source_assertion==='string' &&
+        code.includes(item.source_assertion),
+        'The migrated assertion is not present in its cited legacy test: '+item.case_id);
+      legacyAssertions++;
+    }else{
+      assert.equal(item.origin,'additional_negative_boundary',
+        'Cases without an exact historical assertion must be marked as new boundaries');
+      assert.equal(item.source_assertion,null);
+      newBoundaries++;
+    }
     testedLegacy.add(item.source_legacy_test);
   }
   const adapted=fromPaper(paper,pkg,{deckId:record.deck_id,explicitlyAssigned:true});
@@ -65,9 +77,13 @@ for(const filename of [...testedLegacy].sort()){
     throw Error('Legacy verification failed alongside new paper cases: '+filename);
   }
 }
-assert.equal(count,8,'Expected exactly the reviewed 8-case initial P06 slice');
+assert.equal(count,8,'Expected exactly eight reviewed data cases');
+assert.equal(legacyAssertions,3,'Only three cases are directly traced to a historical assertion');
+assert.equal(newBoundaries,5,'Five additional negative cases must not be mislabeled as migrated');
 assert.equal(testedLegacy.size,2,'Expected one historical test per deck');
 console.log(JSON.stringify({ok:true,legacyTestFilesPreserved:40,
   legacyFilesCompared:testedLegacy.size,
-  paperCasesPassed:count,coverage:'partial; not eligible for deleting legacy files',
+  paperCasesPassed:count,directHistoricalAssertions:legacyAssertions,
+  addedNegativeBoundaries:newBoundaries,
+  coverage:'partial; not eligible for deleting legacy files',
   analysesExecuted:0,reports}));
