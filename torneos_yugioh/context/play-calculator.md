@@ -1,5 +1,16 @@
 # Calculador de jugadas
 
+## Política de integración opcional A10B y pruebas escalables por deck (21-11-2026)
+
+La plataforma de Yu-Gi-Oh administra **duelos físicos**: el estudio A01–A10A no es un motor de juego digital. A01–A09 documentan completamente todas las cartas y relaciones causales; A10A importa guías, fotos, rutas y presentación obligatoria, y **no requiere** `calculator.rules`. Solo cuando el usuario solicita explícitamente **A10B** se convierte la especificación de los efectos en reglas ejecutables, se actualizan los contratos de calculadora y se prueban escenarios de juego con estados capturados. La ausencia de A10B nunca bloquea la importación/documentación visual A10A.
+
+**Escalabilidad:** las pruebas de cada deck **no** se crean como un archivo `*_test.cjs` por carta, efecto, combo o mazo. Evolucionar hacia un runner compartido con fixtures declarativos por `deck_id`, `format`, `cid`, `effect_id`, `route_id`, estado inicial, coste/ventana/objetivos y estado esperado, más negativos. El ejecutor genérico debe cubrir motor, importador, UI y reglas comunes; excepciones de operadores nuevos tienen su prueba genérica compartida. Mantener temporalmente todos los tests heredados de Memento/Crystron hasta demostrar cobertura equivalente de las fixtures; luego migrar con PR y revisión de regresiones, **sin borrados masivos**.
+
+**Costes reales:** número de pruebas archivadas no equivale a número de archivos incluidos en cada ZIP del deck. Las pruebas viven en el repositorio de plataforma y su coste principal es mantenimiento/tiempo de CI, no tamaño ni tiempo de importación para el jugador. El importador recibe sólo contenido, imágenes y, si se activa A10B, reglas estructuradas compatibles. No copiar los tests al ZIP, ni confundir número de variantes de regla con número de tests.
+
+**Criterios A10B por deck:** 1) paridad fuente/paquete con los datos documentados A05–A09, 2) reglas admitidas y operadores realmente implementados, 3) casos positivos y negativos que verifican recursos físicos, fases, HOPT, coste, zonas y estados finales, 4) compatibilidad ZIP->importador->motor, 5) comparación de cobertura antes de retirar tests antiguos. Si una capacidad no está soportada se señala sin inventar un resultado; A10A puede permanecer completo.
+
+
 ## Pilotos Memento y Crystron/Horus — contrato común de análisis (20-11-2026)
 
 La misma puerta `scripts/verify-pilot-decks.cjs` verifica en ambos pilotos
