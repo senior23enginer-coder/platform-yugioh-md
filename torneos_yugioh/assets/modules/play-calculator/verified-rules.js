@@ -49,6 +49,151 @@
     if (id === 671) return [
       {
         "version": 1,
+        "id": "671:moon:link-from-angwitch-tatsun",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Luna del Cielo Cerrado: Link-2 desde Angbruja + Tatsun de efecto",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19932&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19364,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "tatsun",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19362,
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "link",
+            "cid": 19932,
+            "materials": [
+              "actor",
+              "tatsun"
+            ],
+            "materialCids": [
+              19364,
+              19362
+            ],
+            "to": "emz1",
+            "recipe": "exact-cids",
+            "linkRating": 2
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Procedimiento de Enlace C03 con exactamente dos monstruos de efecto identificados Angbruja y Tatsun, sin activar el efecto propio de Luna. No certifica listas prohibidas/limitadas ni disponibilidad fuera del Extra documentado."
+        ],
+        "activation": false,
+        "oncePerTurn": false
+      },
+      {
+        "version": 1,
+        "id": "671:moon:link-from-angwitch-tatsun",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Luna del Cielo Cerrado: Link-2 desde Angbruja + Tatsun de efecto",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19932&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19364,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "tatsun",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19362,
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "link",
+            "cid": 19932,
+            "materials": [
+              "actor",
+              "tatsun"
+            ],
+            "materialCids": [
+              19364,
+              19362
+            ],
+            "to": "emz2",
+            "recipe": "exact-cids",
+            "linkRating": 2
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Procedimiento de Enlace C03 con exactamente dos monstruos de efecto identificados Angbruja y Tatsun, sin activar el efecto propio de Luna. No certifica listas prohibidas/limitadas ni disponibilidad fuera del Extra documentado."
+        ],
+        "activation": false,
+        "oncePerTurn": false
+      },
+
+      {
+        "version": 1,
         "id": "671:tatsun:mill",
         "deckId": 671,
         "format": "tcg_advanced",
