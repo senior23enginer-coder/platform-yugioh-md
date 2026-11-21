@@ -64,5 +64,15 @@ assert.equal(L.summary(L.createLedger({...args,enableCalculator:true})).total,38
 const duplicate=JSON.parse(JSON.stringify(manifest));
 duplicate.stages[0].tasks[1].task_id=duplicate.stages[0].tasks[0].task_id;
 assert.throws(()=>L.validateManifest(duplicate),/DUPLICATE_OR_INVALID_TASK/);
+if(process.argv[2]){
+ const fs=require('node:fs');
+ const native=JSON.parse(fs.readFileSync(process.argv[2],'utf8'));
+ L.validateManifest(native);
+ assert.deepEqual(native.stages.map(x=>x.stage_id),manifest.stages.map(x=>x.stage_id),
+   'Platform and GPT must understand the same canonical stages');
+ assert.deepEqual(native.stages.map(x=>x.tasks.map(t=>t.task_id)),
+   manifest.stages.map(x=>x.tasks.map(t=>t.task_id)),
+   'Platform and GPT must preserve the same 38 task IDs');
+}
 console.log(JSON.stringify({ok:true,syntheticFixtures:true,deckAnalysesStarted:0,
  mandatoryTasks:35,optionalCalculatorTasks:3,measuredSeconds:210,etaRequiresRealSamples:true}));
