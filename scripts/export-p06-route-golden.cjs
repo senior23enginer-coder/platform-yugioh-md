@@ -71,7 +71,9 @@ if(process.argv.includes('--single')){
   const document={schema:'station-x-p06-golden-route-states/1',
     provenance:'historical trusted tests; regression-only, not independent oracle',
     deck_id:671,format:'tcg_advanced',routes:traces};
-  if(process.argv.includes('--emit')){
+  if(process.argv.includes('--emit-json')){
+    process.stdout.write('P06_JSON='+JSON.stringify(document)+'\n');
+  }else if(process.argv.includes('--emit')){
     process.stdout.write('P06_GZIP_BASE64='+
       zlib.gzipSync(Buffer.from(JSON.stringify(document))).toString('base64')+'\n');
   }else{
