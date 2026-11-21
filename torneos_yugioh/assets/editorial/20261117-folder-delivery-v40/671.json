@@ -10,6 +10,1543 @@
     "rules": [
       {
         "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Fusión Mementotlán con Goblin + Desvantasma en Campo y Dormiveja en mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19366,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "goblin",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19366,
+              19472,
+              20199
+            ],
+            "to": "m1",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11 exacto: dos Memento reales boca arriba del campo, Goblin + Desvantasma, y Dormiveja real en mano; Fusión Mementotlán invoca Rey Creación del Extra. No presupone invocar con materiales del Cementerio."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Fusión Mementotlán con Goblin + Desvantasma en Campo y Dormiveja en mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19366,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "goblin",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19366,
+              19472,
+              20199
+            ],
+            "to": "m2",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11 exacto: dos Memento reales boca arriba del campo, Goblin + Desvantasma, y Dormiveja real en mano; Fusión Mementotlán invoca Rey Creación del Extra. No presupone invocar con materiales del Cementerio."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Fusión Mementotlán con Goblin + Desvantasma en Campo y Dormiveja en mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19366,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "goblin",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19366,
+              19472,
+              20199
+            ],
+            "to": "m3",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11 exacto: dos Memento reales boca arriba del campo, Goblin + Desvantasma, y Dormiveja real en mano; Fusión Mementotlán invoca Rey Creación del Extra. No presupone invocar con materiales del Cementerio."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Fusión Mementotlán con Goblin + Desvantasma en Campo y Dormiveja en mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19366,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "goblin",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19366,
+              19472,
+              20199
+            ],
+            "to": "m4",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11 exacto: dos Memento reales boca arriba del campo, Goblin + Desvantasma, y Dormiveja real en mano; Fusión Mementotlán invoca Rey Creación del Extra. No presupone invocar con materiales del Cementerio."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Fusión Mementotlán con Goblin + Desvantasma en Campo y Dormiveja en mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19366,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "goblin",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19366,
+              19472,
+              20199
+            ],
+            "to": "m5",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11 exacto: dos Memento reales boca arriba del campo, Goblin + Desvantasma, y Dormiveja real en mano; Fusión Mementotlán invoca Rey Creación del Extra. No presupone invocar con materiales del Cementerio."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Fusión Mementotlán con Goblin + Desvantasma en Campo y Dormiveja en mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19366,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "goblin",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19366,
+              19472,
+              20199
+            ],
+            "to": "emz1",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11 exacto: dos Memento reales boca arriba del campo, Goblin + Desvantasma, y Dormiveja real en mano; Fusión Mementotlán invoca Rey Creación del Extra. No presupone invocar con materiales del Cementerio."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Fusión Mementotlán con Goblin + Desvantasma en Campo y Dormiveja en mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19366,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "goblin",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19366,
+              19472,
+              20199
+            ],
+            "to": "emz2",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11 exacto: dos Memento reales boca arriba del campo, Goblin + Desvantasma, y Dormiveja real en mano; Fusión Mementotlán invoca Rey Creación del Extra. No presupone invocar con materiales del Cementerio."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:creation-king:fusion-send",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Rey Creación envía Creación Combinada, Maza y Dragón de Cuerno",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20216&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20216,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "trigger": {
+          "kind": "fusion_summoned",
+          "actorCid": 20216
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19360,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19365,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19361,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "sendFromDeck"
+        ],
+        "assumptions": [
+          "C11 exacto: después de Invocar Rey Creación mediante Fusión verificada, el efecto puede enviar tres cartas Memento físicas distintas del Deck: Creación Combinada, Maza y Dragón de Cuerno."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Creación Combinada baraja cinco nombres exactos y deja Dormiveja + Maza",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19361
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m1",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11: baraja Angbruja, Tatsun, Goblin, Desvantasma y Dragón de Cuerno físicamente presentes en mano/Cementerio, cinco nombres distintos. Dormiveja y Maza permanecen en GY."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Creación Combinada baraja cinco nombres exactos y deja Dormiveja + Maza",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19361
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m2",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11: baraja Angbruja, Tatsun, Goblin, Desvantasma y Dragón de Cuerno físicamente presentes en mano/Cementerio, cinco nombres distintos. Dormiveja y Maza permanecen en GY."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Creación Combinada baraja cinco nombres exactos y deja Dormiveja + Maza",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19361
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m3",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11: baraja Angbruja, Tatsun, Goblin, Desvantasma y Dragón de Cuerno físicamente presentes en mano/Cementerio, cinco nombres distintos. Dormiveja y Maza permanecen en GY."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Creación Combinada baraja cinco nombres exactos y deja Dormiveja + Maza",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19361
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m4",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11: baraja Angbruja, Tatsun, Goblin, Desvantasma y Dragón de Cuerno físicamente presentes en mano/Cementerio, cinco nombres distintos. Dormiveja y Maza permanecen en GY."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Creación Combinada baraja cinco nombres exactos y deja Dormiveja + Maza",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19361
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m5",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11: baraja Angbruja, Tatsun, Goblin, Desvantasma y Dragón de Cuerno físicamente presentes en mano/Cementerio, cinco nombres distintos. Dormiveja y Maza permanecen en GY."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
         "id": "671:bone-party:main",
         "deckId": 671,
         "format": "tcg_advanced",

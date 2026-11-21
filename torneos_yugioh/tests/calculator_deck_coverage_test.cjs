@@ -6,7 +6,7 @@ const E=require('../assets/modules/play-calculator/engine.js');
 const Study=require('../assets/modules/play-calculator/study.js');
 const root=path.resolve(__dirname,'..');
 const editorial=JSON.parse(fs.readFileSync(path.join(root,'assets/editorial/strategy-content-state.json'),'utf8'));
-for(const [id,expected,ruleCount] of [[671,12,333],[677,14,13]]){
+for(const [id,expected,ruleCount] of [[671,12,346],[677,14,13]]){
   const entry=editorial.checked_studies[String(id)];
   assert(entry,'Missing checked study '+id);
   const study=JSON.parse(fs.readFileSync(path.join(root,entry.path.replace(/^\.\//,'')),'utf8'));
