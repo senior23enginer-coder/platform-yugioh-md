@@ -156,6 +156,7 @@
         (rule.trigger.kind === "sent_by_monster_effect"
           ? Number.isInteger(rule.trigger.sourceCid) && rule.trigger.sourceCid > 0
           : rule.trigger.kind === "destroyed_by_effect" || rule.trigger.kind === "fusion_summoned" ||
+            rule.trigger.kind === "link_summoned_with_extra" ||
             (rule.trigger.kind === "summoned" &&
               Array.isArray(rule.trigger.methods) && rule.trigger.methods.length > 0 &&
               rule.trigger.methods.every(m => ["normal", "special"].includes(m)))) &&
@@ -641,7 +642,10 @@
             n=E.place(n,previous?{uid:previous.uid,zone:op.to,controller:"self"}:{key:extraCard[0].key,owner:"self",controller:"self",zone:op.to});
             const summoned=n.tokens.find(t=>t.key===extraCard[0].key&&t.zone===op.to);
             n=E.position(n,summoned.uid,"attack");
-            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"link_summon",cid:op.cid,uid:summoned.uid,materials:selected.map(t=>t.uid),turn:n.turn,stage:opStage}];
+            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"link_summon",cid:op.cid,uid:summoned.uid,
+              materials:selected.map(t=>t.uid),usedExtraDeckMaterial:selected.some(t=>
+                E.definition(n,t.key,t.owner)?.section==="extra"),
+              side:"self",turn:n.turn,captureRevision:n._captureRevision,stage:opStage}];
           } else if (op.op === "xyz") {
             check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.machineSynchroOnly || heatWaveBlocks(f,db,op.cid)),"Xyz bloqueado por restricción de Extra, Especial u Oleada de Calor");
             check(!(options.blockedZones||[]).includes(op.to),"Zona Extra bloqueada");

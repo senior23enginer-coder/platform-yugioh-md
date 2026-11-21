@@ -5,8 +5,8 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   "use strict";
   const names = Object.freeze(["specialBlocked", "noExtra", "xyzOnly",
-    "graveyardBlocked", "effectsNegated", "noDeckToHand", "banishBlocked", "noMoreSummons", "machineSynchroOnly", "effectMonsterSummonBlocked"]);
-  const turnScoped = Object.freeze(["noMoreSummons", "machineSynchroOnly", "banishBlocked", "noDeckToHand"]);
+    "graveyardBlocked", "effectsNegated", "noDeckToHand", "banishBlocked", "noMoreSummons", "machineSynchroOnly", "effectMonsterSummonBlocked", "directAttackBlocked"]);
+  const turnScoped = Object.freeze(["noMoreSummons", "machineSynchroOnly", "banishBlocked", "noDeckToHand", "directAttackBlocked"]);
   function effective(state, options = {}) {
     const flags = { ...options, ...(state._ruleFlags || {}) };
     for (const key of turnScoped)

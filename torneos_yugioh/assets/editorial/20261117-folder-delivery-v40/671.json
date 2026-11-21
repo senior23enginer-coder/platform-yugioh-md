@@ -10,6 +10,416 @@
     "rules": [
       {
         "version": 1,
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19188&ope=2&request_locale=en",
+        "id": "671:sp:link-with-moon",
+        "label": "S:P Pequeña Caballera: Enlace-2 usando Luna y Angbruja",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19932,
+          "faceUp": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "witch",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19364,
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "link",
+            "cid": 19188,
+            "materials": [
+              "actor",
+              "witch"
+            ],
+            "materialCids": [
+              19932,
+              19364
+            ],
+            "to": "emz1",
+            "recipe": "exact-cids",
+            "linkRating": 2
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Receta concreta de dos monstruos de efecto: Luna (Link-2) cuenta como un material Link y Angbruja como otro. No es una certificación de legalidad del formato o lista de prohibiciones."
+        ],
+        "activation": false,
+        "oncePerTurn": false
+      },
+      {
+        "version": 1,
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19188&ope=2&request_locale=en",
+        "id": "671:sp:link-with-moon",
+        "label": "S:P Pequeña Caballera: Enlace-2 usando Luna y Angbruja",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19932,
+          "faceUp": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "witch",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19364,
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "link",
+            "cid": 19188,
+            "materials": [
+              "actor",
+              "witch"
+            ],
+            "materialCids": [
+              19932,
+              19364
+            ],
+            "to": "emz2",
+            "recipe": "exact-cids",
+            "linkRating": 2
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Receta concreta de dos monstruos de efecto: Luna (Link-2) cuenta como un material Link y Angbruja como otro. No es una certificación de legalidad del formato o lista de prohibiciones."
+        ],
+        "activation": false,
+        "oncePerTurn": false
+      },
+      {
+        "version": 1,
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19188&ope=2&request_locale=en",
+        "id": "671:sp:banish-link-extra",
+        "label": "S:P Pequeña Caballera: desterrar una carta tras Enlace usando Extra Deck",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19188,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self",
+              "opponent"
+            ]
+          }
+        ],
+        "trigger": {
+          "kind": "link_summoned_with_extra",
+          "actorCid": 19188
+        },
+        "select": [
+          {
+            "ref": "target",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "field-all"
+              ]
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "target",
+            "to": "banished",
+            "position": "attack"
+          },
+          {
+            "op": "flag",
+            "flag": "directAttackBlocked",
+            "value": true,
+            "duration": "turn"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "Sólo se ofrece inmediatamente tras una Invocación Link del S:P físico usando material del Extra Deck. Requiere carta objetivo identificada en Campo o Cementerio; no se simula el segundo efecto rápido de retorno al final de fase.",
+          "El destierro del primer efecto impide ataques directos de todos los monstruos propios durante este turno, aun si S:P abandona el Campo. Los efectos se limitan por nombre a una vez por turno."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19188&ope=2&request_locale=en",
+        "id": "671:sp:banish-link-extra",
+        "label": "S:P Pequeña Caballera: desterrar una carta tras Enlace usando Extra Deck",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19188,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self",
+              "opponent"
+            ]
+          }
+        ],
+        "trigger": {
+          "kind": "link_summoned_with_extra",
+          "actorCid": 19188
+        },
+        "select": [
+          {
+            "ref": "target",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "graveyard"
+              ]
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "target",
+            "to": "banished",
+            "position": "attack"
+          },
+          {
+            "op": "flag",
+            "flag": "directAttackBlocked",
+            "value": true,
+            "duration": "turn"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "Sólo se ofrece inmediatamente tras una Invocación Link del S:P físico usando material del Extra Deck. Requiere carta objetivo identificada en Campo o Cementerio; no se simula el segundo efecto rápido de retorno al final de fase.",
+          "El destierro del primer efecto impide ataques directos de todos los monstruos propios durante este turno, aun si S:P abandona el Campo. Los efectos se limitan por nombre a una vez por turno."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19188&ope=2&request_locale=en",
+        "id": "671:sp:banish-link-extra",
+        "label": "S:P Pequeña Caballera: desterrar una carta tras Enlace usando Extra Deck",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19188,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self",
+              "opponent"
+            ]
+          }
+        ],
+        "trigger": {
+          "kind": "link_summoned_with_extra",
+          "actorCid": 19188
+        },
+        "select": [
+          {
+            "ref": "target",
+            "selector": {
+              "side": "opponent",
+              "zones": [
+                "field-all"
+              ]
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "target",
+            "to": "banished",
+            "position": "attack"
+          },
+          {
+            "op": "flag",
+            "flag": "directAttackBlocked",
+            "value": true,
+            "duration": "turn"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "Sólo se ofrece inmediatamente tras una Invocación Link del S:P físico usando material del Extra Deck. Requiere carta objetivo identificada en Campo o Cementerio; no se simula el segundo efecto rápido de retorno al final de fase.",
+          "El destierro del primer efecto impide ataques directos de todos los monstruos propios durante este turno, aun si S:P abandona el Campo. Los efectos se limitan por nombre a una vez por turno."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19188&ope=2&request_locale=en",
+        "id": "671:sp:banish-link-extra",
+        "label": "S:P Pequeña Caballera: desterrar una carta tras Enlace usando Extra Deck",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19188,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self",
+              "opponent"
+            ]
+          }
+        ],
+        "trigger": {
+          "kind": "link_summoned_with_extra",
+          "actorCid": 19188
+        },
+        "select": [
+          {
+            "ref": "target",
+            "selector": {
+              "side": "opponent",
+              "zones": [
+                "graveyard"
+              ]
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "target",
+            "to": "banished",
+            "position": "attack"
+          },
+          {
+            "op": "flag",
+            "flag": "directAttackBlocked",
+            "value": true,
+            "duration": "turn"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "Sólo se ofrece inmediatamente tras una Invocación Link del S:P físico usando material del Extra Deck. Requiere carta objetivo identificada en Campo o Cementerio; no se simula el segundo efecto rápido de retorno al final de fase.",
+          "El destierro del primer efecto impide ataques directos de todos los monstruos propios durante este turno, aun si S:P abandona el Campo. Los efectos se limitan por nombre a una vez por turno."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
         "id": "671:goblin-biker-grand-breakout:deck-summon",
         "deckId": 671,
         "format": "tcg_advanced",

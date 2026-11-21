@@ -28,6 +28,10 @@
         (rule.trigger.kind === "sent_by_monster_effect" || rule.trigger.kind === "destroyed_by_effect"
           ? t.zone === "graveyard" : isMonsterZone(t.zone)));
       if (!token) return false;
+      if (rule.trigger.kind === "link_summoned_with_extra")
+        return e.kind === "link_summon" && e.side === "self" &&
+          e.usedExtraDeckMaterial === true && Number.isInteger(e.captureRevision) &&
+          e.captureRevision === state._captureRevision;
       if (rule.trigger.kind === "sent_by_monster_effect")
         return e.kind === "sent_to_graveyard" && e.sourceCid === rule.trigger.sourceCid;
       if (rule.trigger.kind === "destroyed_by_effect")
