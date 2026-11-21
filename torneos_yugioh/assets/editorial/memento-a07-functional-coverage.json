@@ -237,7 +237,12 @@
     },
     {
       "id": "C03",
-      "status": "NO_REPLAY_CERTIFIED"
+      "status": "REPLAY_CERTIFIED",
+      "scope": "exact-opening-no-opponent-response",
+      "test": "torneos_yugioh/tests/memento_c03_route_replay_test.cjs",
+      "documented_steps": 7,
+      "executed_transitions": 8,
+      "limits": "Objetivo rival de espejo con CID 19364, sin respuesta ni interrupciones; no prueba cartas rivales arbitrarias, cadenas, lista legal ni zona exacta."
     },
     {
       "id": "C04",
