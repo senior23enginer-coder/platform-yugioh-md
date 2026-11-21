@@ -309,7 +309,12 @@
     },
     {
       "id": "C11",
-      "status": "NO_REPLAY_CERTIFIED"
+      "status": "REPLAY_CERTIFIED",
+      "scope": "exact-opening-no-opponent-response",
+      "test": "torneos_yugioh/tests/memento_c11_route_replay_test.cjs",
+      "documented_steps": 6,
+      "executed_transitions": 10,
+      "limits": "Mano exacta Angbruja + Gran Fuga + Fusión, sin respuesta rival. No certifica segundo efecto de Gran Fuga (sin Xyz Goblin en Extra), cadenas, materiales alternativos ni casillas exactas."
     },
     {
       "id": "C12",
