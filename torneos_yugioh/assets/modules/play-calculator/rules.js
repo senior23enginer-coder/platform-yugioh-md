@@ -262,7 +262,8 @@
          (rule.actor.cid === 21203 && ["671:gordian:one-monster-six-extra","671:gordian:one-monster-one-hand"].includes(rule.id))),
         "Resolución no seleccionadora de TY-PHON requiere regla acreditada");
     if (rule.afterResolution !== undefined) {
-      check([9139,21203].includes(rule.actor.cid) &&
+      check(([9139,21203].includes(rule.actor.cid) ||
+        (rule.actor.cid === 20533 && rule.id === "671:goblin-biker-grand-breakout:deck-summon")) &&
         rule.source.includes("cid=" + rule.actor.cid) &&
         rule.activation === true &&
         Array.isArray(rule.afterResolution) && rule.afterResolution.length === 1 &&
@@ -372,7 +373,9 @@
         );
       else if (op.op === "tribute")
         check(refs.has(op.ref) && op.reason === "cost" && rule.costs.includes(op) &&
-          (op.allowHand === undefined || op.allowHand === true),
+          (op.allowHand === undefined || op.allowHand === true) &&
+          (op.allowSet === undefined || (op.allowSet === true && rule.actor.cid === 20533 &&
+            rule.id === "671:goblin-biker-grand-breakout:deck-summon" && op.allowHand === undefined)),
           "Sacrificar como coste exige un monstruo identificado y el bloque costs");
       else if (op.op === "changeControl")
         check(refs.has(op.ref) && ["self", "opponent"].includes(op.to) &&
@@ -416,6 +419,10 @@
           (op.summonMethod === undefined || (op.summonMethod === "special" &&
             op.side === "self" && op.from === "deck" &&
             ["m1", "m2", "m3", "m4", "m5", "free-monster"].includes(op.to))) &&
+          (op.cannotAttackThisTurn === undefined || (op.cannotAttackThisTurn === true &&
+              rule.actor.cid === 20533 && rule.id === "671:goblin-biker-grand-breakout:deck-summon" &&
+              op.side === "self" && op.cid === 19366 && op.from === "deck" &&
+              op.to === "free-monster" && op.summonMethod === "special")) &&
           (op.cause === undefined || (op.cause === "monster_effect" &&
               op.from === "deck" && op.to === "graveyard" &&
               rule.actor.side === op.side && Array.isArray(rule.tags) && rule.tags.includes("monsterEffect"))) &&
@@ -733,7 +740,8 @@
             n._ruleEvents = [...(n._ruleEvents||[]),event];
           } else if (op.op === "tribute") {
             const [t]=Resources.requireTokens(n,refs,[op.ref],t=>t.controller==="self" &&
-              (E.isMonster(t.zone) && t.position!=="set" || op.allowHand===true && t.zone==="hand"),
+              (E.isMonster(t.zone) && (t.position!=="set" || op.allowSet === true) ||
+                op.allowHand===true && t.zone==="hand"),
               "Sacrificio exige monstruo propio boca arriba en campo");
             check(!f.graveyardBlocked,"Destino del coste de Sacrificio no acreditado");
             const event={kind:"tribute",uid:t.uid,cid:db.bindings[t.key],from:t.zone,by:"cost",stage:opStage};
@@ -850,6 +858,12 @@
             // operation, not an older copy with the same CID already in GY.
             const movedUid = t ? t.uid : n.nextId - 1;
             n = E.position(n, movedUid, op.position);
+            if (op.cannotAttackThisTurn) {
+              const summoned=n.tokens.find(t=>t.uid===movedUid);
+              check(summoned && E.isMonster(summoned.zone),
+                "Restricción de ataque requiere Invocación real");
+              summoned.attackLockedTurn=n.turn;
+            }
             if (op.cause === "monster_effect") {
               const sent=n.tokens.find(x=>x.uid===movedUid && x.key===c.key &&
                 x.zone==="graveyard" && x.owner===op.side);
