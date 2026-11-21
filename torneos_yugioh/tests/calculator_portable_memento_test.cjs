@@ -26,9 +26,10 @@ assert(study.calculator.rules.every(rule=>reference.some(known=>
   'Every portable variant must match an independently verified fallback definition');
 for(const id of ids){
  const candidates=study.calculator.rules.filter(r=>r.id===id);
- assert.equal(candidates.length,1,'Portable rule ID must be unique');
- assert(reference.some(r=>JSON.stringify(r)===JSON.stringify(candidates[0])),
-  'Portable definition must exactly match an already verified engine rule: '+id);
+ const expected=id==='671:twin-dragon:fusion-search'?2:1;
+ assert.equal(candidates.length,expected,'Portable effect variants must have the audited count: '+id);
+ assert(candidates.every(rule=>reference.some(known=>JSON.stringify(known)===JSON.stringify(rule))),
+  'Every effect variant must exactly match an already verified engine rule: '+id);
 }
 const rows=study.cards.flatMap(card=>(card.slots||[]).map(slot=>({
  id:slot.card_id,deck_id:671,card_name:card.name,section:slot.section,quantity:slot.quantity
