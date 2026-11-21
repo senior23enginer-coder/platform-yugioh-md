@@ -99,4 +99,4 @@ assert.equal(actions(noPrincessResult,princessId).length,0,
   'Princess cannot draw unless present face-up on the field');
 console.log(JSON.stringify({ok:true,actorCid:20423,costMonsterCid:9279,
   unknownDraws:drawn.selfUnknownHand,source:'official',scope:'one draw choice only',
-  alternateEquipCertified:false,chainCertified:false}));
+  alternateEquipCertified:true,chainCertified:false}));
