@@ -91,8 +91,12 @@
       <div class="progress-stage-grid">${stages.map(stage => {
         const members = stage.tasks.map(t => tasks.get(t.task_id)).filter(Boolean);
         const complete = members.filter(t => t.status === "COMPLETE").length;
+        const metrics = (summary.stages || []).find(x => x.stage_id === stage.stage_id);
+        const elapsed = duration(metrics?.elapsed_seconds || 0);
+        const remaining = metrics?.eta_seconds == null ? "ETA sin datos" : duration(metrics.eta_seconds);
         return `<details class="progress-stage" ${members.some(t => t.status === "RUNNING") ? "open" : ""}>
           <summary><b>${esc(stage.stage_id)}</b><span>${complete}/${members.length} terminadas</span></summary>
+          <p class="progress-stage-timing">Tiempo registrado: ${elapsed} · Restante: ${remaining}</p>
           <ol>${members.map(t => row(t, response.inventory_changed ? "__LOCKED__" : firstOpen)).join("")}</ol>
         </details>`;
       }).join("")}</div>
