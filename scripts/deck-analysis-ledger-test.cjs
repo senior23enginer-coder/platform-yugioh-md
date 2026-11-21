@@ -56,7 +56,7 @@ assert.equal(ledger.tasks[1].elapsed_seconds,90,'Measure both real work sessions
 assert.equal(L.summary(ledger).complete,2);
 assert.equal(L.summary(ledger).eta_status,'INSUFFICIENT_REAL_SAMPLES');
 const history=ledger.tasks.filter(x=>x.mandatory&&x.status!==L.STATUS.COMPLETE)
- .flatMap(t=>[100,110,120].map(seconds=>({task_id:t.task_id,elapsed_seconds:seconds})));
+ .flatMap(t=>[90,100,110,120,130].map((seconds,i)=>({task_id:t.task_id,deck_id:90001+i,elapsed_seconds:seconds})));
 const summary=L.summary(ledger,history);
 assert.equal(summary.eta_status,'CALIBRATED_FROM_REAL_HISTORY');
 assert.equal(summary.eta_seconds,33*110);
