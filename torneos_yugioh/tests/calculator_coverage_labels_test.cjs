@@ -16,6 +16,16 @@ assert(source.includes("Ninguno de estos recuentos certifica una ruta completa")
 assert(!source.includes("reglas programadas disponibles"),
   "Do not overstate the number of individually executable effects");
 const variants = Verified.forDeck(671);
-assert.equal(variants.length, 244);
-assert.equal(new Set(variants.map(r=>r.id)).size, 46);
-console.log("Calculator coverage summary: 46 effect IDs, 244 variants, no route certification.");
+const deck = JSON.parse(fs.readFileSync(
+  path.resolve(__dirname, "../assets/editorial/20261117-folder-delivery-v40/671.json"), "utf8"));
+assert.equal(variants.length, deck.calculator.rules.length,
+  "Runtime variants and portable deck count must stay synchronized");
+const distinctIds = new Set(variants.map(r => r.id));
+assert.equal(distinctIds.size, new Set(deck.calculator.rules.map(r => r.id)).size,
+  "Stable effect IDs must not drift between runtime and canonical package");
+const covered = new Set(deck.calculator.rules.map(r => r.actor?.cid).filter(Number.isInteger));
+const identities = new Set(deck.cards.map(card => card.cid));
+assert(covered.size <= identities.size, "Actor count cannot exceed Memento inventory identities");
+console.log("Calculator coverage summary: "+distinctIds.size+" distinct effects, "+
+  variants.length+" execution variants, "+covered.size+"/"+identities.size+
+  " actor identities; counts alone never certify A09 routes.");

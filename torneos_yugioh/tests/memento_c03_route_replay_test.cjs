@@ -38,7 +38,7 @@ function take(s,id,test,label) {
  assert(chosen.source&&chosen.event?.ruleId===id,'Unverified or fabricated action');
  return chosen.state;
 }
-let s=E.patch(E.create(cat),{turn:2,goesFirst:false,active:'self',phase:'main1'});
+let s=E.patch(E.create(cat,cat),{turn:2,goesFirst:false,active:'self',phase:'main1'});
 s=E.place(s,{key:key(19364),owner:'self',zone:'hand'});
 s=E.place(s,{key:key(19364),owner:'opponent',zone:'m3'});
 assert.equal(field(s,'opponent').length,1,'Opponent physical mirror monster is mandatory');
