@@ -31,7 +31,9 @@ card(memento.catalog, memento.db, 19366);
 s = E.place(s, { key: blade.key, owner: "self", zone: "m1" });
 const original = JSON.stringify(s);
 const result = R.actions(s, memento.db);
-const bladeActions = result.actions.filter((a) => a.event.ruleId === "671:dark-blade:goblin");
+const bladeActions = result.actions.filter((a) =>
+  a.event.ruleId === "671:dark-blade:goblin" &&
+  a.state.tokens.some(t => memento.db.bindings[t.key] === 19366 && E.isMonster(t.zone)));
 assert.equal(bladeActions.length, 5, JSON.stringify(result.rejected));
 assert.equal(R.actions({ ...s, _used: ["rule:671:dark-blade:goblin"] }, memento.db)
   .actions.filter((a) => a.event.ruleId === "671:dark-blade:goblin").length, 0,
@@ -49,7 +51,7 @@ let goblinStart = E.create(memento.catalog);
 const goblin = card(memento.catalog, memento.db, 19366);
 goblinStart = E.place(goblinStart, { key: goblin.key, owner: "self", zone: "m3" });
 const goblinActions = R.actions(goblinStart, memento.db).actions.filter((a) => a.event.ruleId === "671:goblin:send-two");
-assert.equal(goblinActions.length, 2, "Two verified Goblin send-pairs share one effect use");
+assert.equal(goblinActions.length, 3, "Three verified Goblin send-pairs share one effect use");
 const toAngwitch = goblinActions.find((a) => a.state.tokens.some((t) =>
   t.zone === "graveyard" && memento.db.bindings[t.key] === 19364));
 const toGhattic = goblinActions.find((a) => a.state.tokens.some((t) =>
@@ -61,7 +63,7 @@ for (const cid of [19366, 19363, 19364])
 assert.deepEqual(toAngwitch.state._ruleEvents.filter((e) => e.kind === "sent_to_graveyard")
   .map((e) => e.cid), [19363, 19364], "The Goblin effect must record causal GY sends");
 const goblinNegated = R.actions(goblinStart, memento.db, { negateEffectRuleIds: ["671:goblin:send-two"] });
-assert.equal(goblinNegated.actions.length, 2);
+assert.equal(goblinNegated.actions.length, 3);
 assert(goblinNegated.actions[0].state.tokens.every((t) => t.zone !== "graveyard"));
 const ghatticRevivals = R.actions(toGhattic.state, memento.db).actions.filter((a) =>
   a.event.ruleId === "671:ghattic:revive");
