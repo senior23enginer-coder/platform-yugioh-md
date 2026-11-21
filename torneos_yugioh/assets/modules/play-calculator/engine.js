@@ -351,6 +351,10 @@
           delete token.xyzSummoned;
         if (token.currentATK !== undefined && isMonster(token.zone) && !isMonster(zone))
           delete token.currentATK;
+        // The attack restriction belongs to that physical Summon on the field;
+        // leaving the monster zones ends it even if the same card returns.
+        if (token.attackLockedTurn !== undefined && isMonster(token.zone) && !isMonster(zone))
+          delete token.attackLockedTurn;
         token.zone = zone;
         token.controller = controller;
         // Una carta colocada abandona su ventana de Set al salir de M/T.
