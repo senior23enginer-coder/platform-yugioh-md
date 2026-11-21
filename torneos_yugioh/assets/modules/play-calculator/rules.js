@@ -823,7 +823,7 @@
               !n.tokens.some(t=>t.controller==="self"&&t.zone===zone));
             check(slot,"No queda zona de Magia/Trampa para equipar a Princesa");
             const currentATK=Number.isInteger(princess.currentATK) ?
-              princess.currentATK : db.facts?.[20423]?.atk;
+              princess.currentATK : 2000; // Official printed ATK (CID 20423)
             check(Number.isInteger(currentATK),
               "ATK actual de Princesa sin determinar");
             n=E.place(n,{uid:material.uid,zone:slot,controller:"self"});
