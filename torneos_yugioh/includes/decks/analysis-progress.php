@@ -80,10 +80,12 @@ function ygo_progress_transition(array $ledger,string $taskId,string $action,str
     $task=$ledger['tasks'][$index];
     if(!$task['mandatory']&&empty($ledger['calculator_requested']))
         throw new DomainException('A10B no ha sido solicitado.');
-    // Only the first still-unfinished required task may begin. No jumping.
-    if($action==='start'){
-        if(!in_array($task['status'],['PENDING','BLOCKED'],true))
-            throw new DomainException('Esta tarea no está disponible para iniciarse.');
+    // Each active segment is server timed. Pauses do not count as AI work,
+    // and resumption never starts an LLM or skips a previous task.
+    if($action==='start'||$action==='resume'){
+        $allowed=$action==='start'?['PENDING','BLOCKED']:['PAUSED'];
+        if(!in_array($task['status'],$allowed,true))
+            throw new DomainException('Esta tarea no está disponible para iniciarse o reanudarse.');
         foreach($ledger['tasks'] as $preceding){
             if($preceding['task_id']===$taskId)break;
             if(($preceding['mandatory']||!empty($ledger['calculator_requested'])) &&
@@ -96,8 +98,8 @@ function ygo_progress_transition(array $ledger,string $taskId,string $action,str
         $task['finished_at']=null;$task['evidence']=null;$task['block_reason']=null;
         $task['attempts']++;
     }else{
-        if(!in_array($action,['complete','block'],true)||$task['status']!=='RUNNING')
-            throw new DomainException('Para cerrar una tarea primero debe estar en ejecución.');
+        if(!in_array($action,['complete','block','pause'],true)||$task['status']!=='RUNNING')
+            throw new DomainException('La tarea debe estar en ejecución para cerrarla o pausarla.');
         if($action==='complete'&&trim((string)$evidence)==='')
             throw new DomainException('No es posible completar sin evidencia verificable.');
         if($action==='block'&&trim((string)$reason)==='')
@@ -105,10 +107,17 @@ function ygo_progress_transition(array $ledger,string $taskId,string $action,str
         $elapsed=strtotime($now)-strtotime((string)$task['started_at']);
         if($elapsed<0)throw new DomainException('Las fechas de ejecución son inconsistentes.');
         $task['elapsed_seconds']+=$elapsed;
-        $task['status']=$action==='complete'?'COMPLETE':'BLOCKED';
-        $task['evidence']=$action==='complete'?trim((string)$evidence):null;
-        $task['block_reason']=$action==='block'?trim((string)$reason):null;
-        $task['started_at']=null;$task['finished_at']=$now;
+        if($action==='pause'){
+            $task['status']='PAUSED';
+            $task['started_at']=null;
+            $task['finished_at']=null;
+            $task['evidence']=null;$task['block_reason']=null;
+        }else{
+            $task['status']=$action==='complete'?'COMPLETE':'BLOCKED';
+            $task['evidence']=$action==='complete'?trim((string)$evidence):null;
+            $task['block_reason']=$action==='block'?trim((string)$reason):null;
+            $task['started_at']=null;$task['finished_at']=$now;
+        }
     }
     $ledger['tasks'][$index]=$task;$ledger['updated_at']=$now;
     $ledger['revision']++;
