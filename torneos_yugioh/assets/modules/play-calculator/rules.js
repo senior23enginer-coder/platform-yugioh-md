@@ -355,6 +355,17 @@
           rule.guards.some(g => g.kind === "extraSummonHistory") &&
           rule.activation === false,
           "TY-PHON requiere historial rival, monstruo mayor ATK y superposición explícita");
+      else if (op.op === "necroquipSummon")
+        check(phase==="resolve" && rule.id==="671:princess:contact-summon" &&
+          rule.actor.cid===20196 && rule.activation===false &&
+          op.cid===20423 && op.recipe==="equipped-monster-plus-fiend" &&
+          op.refs?.length===3 && JSON.stringify(op.refs)===
+            JSON.stringify(["actor","equip","fiend"]) &&
+          op.materialCids?.length===3 &&
+          JSON.stringify(op.materialCids)===JSON.stringify([20196,20225,19366]) &&
+          ["m1","m2","m3","m4","m5"].includes(op.to) &&
+          refs.has("equip") && refs.has("fiend"),
+          "Princesa requiere Grabador equipado, Réquiem y Demonio de mano físicos");
       else if (op.op === "fusion")
         check(
           Number.isInteger(op.cid) && op.cid > 0 &&
@@ -732,6 +743,38 @@
             n._ruleEvents=[...(n._ruleEvents||[]),{kind:"xyz_summon",cid:19184,
               uid:typhonUid,materials:[selected.uid],turn:n.turn,side:"self",
               method:"typhon-alternate",from:oldZone,stage:opStage}];
+          } else if (op.op === "necroquipSummon") {
+            check(!(f.noExtra||f.specialBlocked||f.noMoreSummons||f.xyzOnly||
+              f.machineSynchroOnly||f.graveyardBlocked),
+              "Invocación por procedimiento de Princesa bloqueada");
+            const [engraver,equip,fiend]=Resources.requireTokens(n,refs,op.refs,t=>
+              t.owner==="self"&&t.controller==="self",
+              "Material de Princesa no pertenece al jugador");
+            check(engraver&&engraver.uid===refs.actor&&
+              db.bindings[engraver.key]===20196&&E.isMonster(engraver.zone)&&
+              engraver.position!=="set"&&
+              equip&&db.bindings[equip.key]===20225&&equip.zone==="s1"&&
+              equip.equippedToUid===engraver.uid &&
+              fiend&&db.bindings[fiend.key]===19366&&fiend.zone==="hand",
+              "Princesa exige Grabador equipado físicamente con Réquiem y Goblin de mano");
+            check(!n.tokens.some(t=>db.bindings[t.key]===20423 &&
+              E.isMonster(t.zone)&&t.controller==="self"),
+              "Sólo puedes controlar una Princesa Necroequipo");
+            const extra=n.self.cards.find(c=>db.bindings[c.key]===20423 &&
+              c.section==="extra"&&E.remaining(n,c.key,"self")>0);
+            check(extra,"No existe Princesa física disponible en Extra Deck");
+            Transitions.assertVacant(n,"self",op.to);
+            const names=[engraver.uid,equip.uid,fiend.uid];
+            for(const t of [engraver,equip,fiend]){
+              n=E.place(n,{uid:t.uid,zone:"graveyard",controller:"self"});
+              const physical=n.tokens.find(x=>x.uid===t.uid);
+              if(physical)delete physical.equippedToUid;
+            }
+            n=E.place(n,{key:extra.key,owner:"self",controller:"self",zone:op.to});
+            const princess=n.tokens.find(t=>t.key===extra.key&&t.zone===op.to);
+            n=E.position(n,princess.uid,"attack");
+            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"necroquip_contact_summon",
+              cid:20423,uid:princess.uid,materials:names,turn:n.turn,stage:opStage}];
           } else if (op.op === "fusion") {
             check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.xyzOnly || heatWaveBlocks(f,db,op.cid)), "Fusión bloqueada por restricción de Extra, Especial u Oleada de Calor");
             check(!(options.blockedZones || []).includes(op.to), "Zona Extra bloqueada");

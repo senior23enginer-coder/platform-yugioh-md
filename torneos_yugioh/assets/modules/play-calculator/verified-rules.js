@@ -49,6 +49,422 @@
     if (id === 671) return [
       {
         "version": 1,
+        "id": "671:princess:contact-summon",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Princesa Necroequipo C09: envío de Grabador equipado y Goblin de mano para Invocación Especial",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20423&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20196,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "equip",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "s1"
+              ],
+              "cid": 20225,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "fiend",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "necroquipSummon",
+            "cid": 20423,
+            "refs": [
+              "actor",
+              "equip",
+              "fiend"
+            ],
+            "materialCids": [
+              20196,
+              20225,
+              19366
+            ],
+            "recipe": "equipped-monster-plus-fiend",
+            "to": "m1"
+          }
+        ],
+        "tags": [],
+        "activation": false,
+        "oncePerTurn": false,
+        "assumptions": [
+          "C09 exacto: Grabador en campo equipado con Réquiem (Carta de Monstruo en S1 unida por UID), Goblin Demonio físico en mano. Envía Grabador y Goblin como materiales de un procedimiento propio de Princesa desde Extra; Réquiem equipado también va al GY al perder su portador. No se utiliza Fusión, no hay activación de efecto para este envío, y Princesa NO roba. Solo puedes controlar una Princesa. No certifica combinaciones con otros Demonios o zonas de equipo."
+        ]
+      },
+      {
+        "version": 1,
+        "id": "671:princess:contact-summon",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Princesa Necroequipo C09: envío de Grabador equipado y Goblin de mano para Invocación Especial",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20423&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20196,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "equip",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "s1"
+              ],
+              "cid": 20225,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "fiend",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "necroquipSummon",
+            "cid": 20423,
+            "refs": [
+              "actor",
+              "equip",
+              "fiend"
+            ],
+            "materialCids": [
+              20196,
+              20225,
+              19366
+            ],
+            "recipe": "equipped-monster-plus-fiend",
+            "to": "m2"
+          }
+        ],
+        "tags": [],
+        "activation": false,
+        "oncePerTurn": false,
+        "assumptions": [
+          "C09 exacto: Grabador en campo equipado con Réquiem (Carta de Monstruo en S1 unida por UID), Goblin Demonio físico en mano. Envía Grabador y Goblin como materiales de un procedimiento propio de Princesa desde Extra; Réquiem equipado también va al GY al perder su portador. No se utiliza Fusión, no hay activación de efecto para este envío, y Princesa NO roba. Solo puedes controlar una Princesa. No certifica combinaciones con otros Demonios o zonas de equipo."
+        ]
+      },
+      {
+        "version": 1,
+        "id": "671:princess:contact-summon",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Princesa Necroequipo C09: envío de Grabador equipado y Goblin de mano para Invocación Especial",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20423&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20196,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "equip",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "s1"
+              ],
+              "cid": 20225,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "fiend",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "necroquipSummon",
+            "cid": 20423,
+            "refs": [
+              "actor",
+              "equip",
+              "fiend"
+            ],
+            "materialCids": [
+              20196,
+              20225,
+              19366
+            ],
+            "recipe": "equipped-monster-plus-fiend",
+            "to": "m3"
+          }
+        ],
+        "tags": [],
+        "activation": false,
+        "oncePerTurn": false,
+        "assumptions": [
+          "C09 exacto: Grabador en campo equipado con Réquiem (Carta de Monstruo en S1 unida por UID), Goblin Demonio físico en mano. Envía Grabador y Goblin como materiales de un procedimiento propio de Princesa desde Extra; Réquiem equipado también va al GY al perder su portador. No se utiliza Fusión, no hay activación de efecto para este envío, y Princesa NO roba. Solo puedes controlar una Princesa. No certifica combinaciones con otros Demonios o zonas de equipo."
+        ]
+      },
+      {
+        "version": 1,
+        "id": "671:princess:contact-summon",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Princesa Necroequipo C09: envío de Grabador equipado y Goblin de mano para Invocación Especial",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20423&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20196,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "equip",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "s1"
+              ],
+              "cid": 20225,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "fiend",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "necroquipSummon",
+            "cid": 20423,
+            "refs": [
+              "actor",
+              "equip",
+              "fiend"
+            ],
+            "materialCids": [
+              20196,
+              20225,
+              19366
+            ],
+            "recipe": "equipped-monster-plus-fiend",
+            "to": "m4"
+          }
+        ],
+        "tags": [],
+        "activation": false,
+        "oncePerTurn": false,
+        "assumptions": [
+          "C09 exacto: Grabador en campo equipado con Réquiem (Carta de Monstruo en S1 unida por UID), Goblin Demonio físico en mano. Envía Grabador y Goblin como materiales de un procedimiento propio de Princesa desde Extra; Réquiem equipado también va al GY al perder su portador. No se utiliza Fusión, no hay activación de efecto para este envío, y Princesa NO roba. Solo puedes controlar una Princesa. No certifica combinaciones con otros Demonios o zonas de equipo."
+        ]
+      },
+      {
+        "version": 1,
+        "id": "671:princess:contact-summon",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Princesa Necroequipo C09: envío de Grabador equipado y Goblin de mano para Invocación Especial",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20423&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20196,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "equip",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "s1"
+              ],
+              "cid": 20225,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "fiend",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "necroquipSummon",
+            "cid": 20423,
+            "refs": [
+              "actor",
+              "equip",
+              "fiend"
+            ],
+            "materialCids": [
+              20196,
+              20225,
+              19366
+            ],
+            "recipe": "equipped-monster-plus-fiend",
+            "to": "m5"
+          }
+        ],
+        "tags": [],
+        "activation": false,
+        "oncePerTurn": false,
+        "assumptions": [
+          "C09 exacto: Grabador en campo equipado con Réquiem (Carta de Monstruo en S1 unida por UID), Goblin Demonio físico en mano. Envía Grabador y Goblin como materiales de un procedimiento propio de Princesa desde Extra; Réquiem equipado también va al GY al perder su portador. No se utiliza Fusión, no hay activación de efecto para este envío, y Princesa NO roba. Solo puedes controlar una Princesa. No certifica combinaciones con otros Demonios o zonas de equipo."
+        ]
+      },
+
+      {
+        "version": 1,
         "id": "671:sp:temporary-banish",
         "deckId": 671,
         "format": "tcg_advanced",
