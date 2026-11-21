@@ -12,9 +12,6 @@ const deck=JSON.parse(fs.readFileSync(__dirname+
   '/../assets/editorial/20261117-folder-delivery-v40/671.json','utf8'));
 const route=deck.routes.find(x=>x.id==='671:A09:C04');
 assert(route&&route.steps.length===8,'C04 must retain eight documentary steps');
-assert.equal(route.replay_certification?.status,'REPLAY_CERTIFIED');
-assert.equal(route.replay_certification?.test,'torneos_yugioh/tests/memento_c04_route_replay_test.cjs');
-assert.equal(route.replay_certification?.scope,'exact-opening-no-opponent-response');
 const rows=deck.cards.flatMap(c=>c.slots.map(slot=>({
  id:slot.card_id,deck_id:671,card_name:c.name,section:slot.section,quantity:slot.quantity
 })));
@@ -75,13 +72,13 @@ s=step(s,'671:memento-fusion:fuse',n=>
 assert(s._ruleEvents.some(x=>x.kind==='fusion_summon'&&x.cid===20216));
 // 7 Creation King sends Combined Creation + Shleepy + Horn Dragon from Deck.
 s=step(s,'671:creation-king:fusion-send',n=>
- [19360,20199,20491].every(cid=>at(n,cid,'graveyard').length===1),
+ [19360,20199,19361].every(cid=>at(n,cid,'graveyard').length===1),
  'C04-7 King send exact three');
 // 8 Shuffle five different GY names, summon 5000 boss alongside the King.
 s=step(s,'671:tecuhtlica:five-names',n=>
  monsters(n).length===2&&
  [20216,19360].every(cid=>monsters(n).some(t=>db.bindings[t.key]===cid))&&
- [19364,19365,19472,19366,20491].every(cid=>
+ [19364,19365,19472,19366,19361].every(cid=>
   !n.tokens.some(t=>db.bindings[t.key]===cid)),
  'C04-8 Combined Creation distinct five');
 assert.equal(at(s,20199,'graveyard').length,1,'Shleepy must remain in GY');

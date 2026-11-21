@@ -10,17 +10,15 @@ assert.deepEqual(coverage.rules.map(r => r.id), Array.from({length:34}, (_,i) =>
 assert.equal(new Set(coverage.rules.map(r => r.capability)).size, 34);
 assert(coverage.rules.every(r => r.status === 'DOCUMENTED_NOT_ENGINE_TESTED' && r.engine_test_id === null));
 assert.equal(coverage.routes.length, 12);
-assert.equal(coverage.routes.filter(r=>r.status==='REPLAY_CERTIFIED').length,4,
-  'C01 through C04 have real-state no-opponent-response replays');
+assert.equal(coverage.routes.filter(r=>r.status==='REPLAY_CERTIFIED').length,3,
+  'C01, C02, C03 have proven no-opponent-response replays; C04 needs corrected CID');
 assert.equal(coverage.routes.find(r=>r.id==='C02').test,
   'torneos_yugioh/tests/memento_c02_route_replay_test.cjs');
 assert.equal(coverage.routes.find(r=>r.id==='C01').test,
   'torneos_yugioh/tests/memento_c01_route_replay_test.cjs');
 assert.equal(coverage.routes.find(r=>r.id==='C03').test,
   'torneos_yugioh/tests/memento_c03_route_replay_test.cjs');
-assert.equal(coverage.routes.find(r=>r.id==='C04').test,
-  'torneos_yugioh/tests/memento_c04_route_replay_test.cjs');
-assert(coverage.routes.filter(r=>!['C01','C02','C03','C04'].includes(r.id)).every(r=>r.status==='NO_REPLAY_CERTIFIED'),
+assert(coverage.routes.filter(r=>!['C01','C02','C03'].includes(r.id)).every(r=>r.status==='NO_REPLAY_CERTIFIED'),
   'Unreplayed routes must not be marked complete');
 assert.equal(coverage.partial_route_cases.length,2);
 assert.equal(coverage.partial_route_cases[0].id,'C01');

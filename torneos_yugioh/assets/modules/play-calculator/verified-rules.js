@@ -719,7 +719,7 @@
           {
             "op": "take",
             "side": "self",
-            "cid": 20491,
+            "cid": 19361,
             "from": "deck",
             "to": "graveyard",
             "position": "attack",
@@ -822,7 +822,7 @@
                 "hand",
                 "graveyard"
               ],
-              "cid": 20491
+              "cid": 19361
             }
           }
         ],
@@ -961,7 +961,7 @@
                 "hand",
                 "graveyard"
               ],
-              "cid": 20491
+              "cid": 19361
             }
           }
         ],
@@ -1100,7 +1100,7 @@
                 "hand",
                 "graveyard"
               ],
-              "cid": 20491
+              "cid": 19361
             }
           }
         ],
@@ -1239,7 +1239,7 @@
                 "hand",
                 "graveyard"
               ],
-              "cid": 20491
+              "cid": 19361
             }
           }
         ],
@@ -1378,7 +1378,7 @@
                 "hand",
                 "graveyard"
               ],
-              "cid": 20491
+              "cid": 19361
             }
           }
         ],
