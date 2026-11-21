@@ -54,6 +54,25 @@ ck(ygo_progress_summary($ledger)['blocked']===1,'Blocked task is not complete.')
 $ledger=ygo_progress_transition($ledger,'A01-T2','start','2026-11-21T12:04:00Z');
 $ledger=ygo_progress_transition($ledger,'A01-T2','complete','2026-11-21T12:05:00Z','source://recovered');
 ck($ledger['tasks'][1]['elapsed_seconds']===110,'Retry time accumulates without inventing work.');
+// Safe P04 recovery: paused intervals are excluded from measured active time.
+// A reload reads this saved ledger; no AI request is ever triggered by resume.
+$ledger=ygo_progress_transition($ledger,'A01-T3','start','2026-11-21T12:06:00Z');
+$ledger=ygo_progress_transition($ledger,'A01-T3','pause','2026-11-21T12:06:30Z');
+ck($ledger['tasks'][2]['status']==='PAUSED','Paused checkpoint survives serialization.');
+ck($ledger['tasks'][2]['elapsed_seconds']===30,'First active segment is measured.');
+expect_fail(static fn()=>ygo_progress_transition($ledger,'A01-T3','complete',
+  '2026-11-21T13:06:00Z','proof'), 'paused tasks may not be completed');
+expect_fail(static fn()=>ygo_progress_transition($ledger,'A01-T4','start',
+  '2026-11-21T13:06:00Z'), 'cannot jump past a paused task');
+$checkpoint=json_decode(json_encode($ledger,JSON_THROW_ON_ERROR),true,64,JSON_THROW_ON_ERROR);
+$checkpoint=ygo_progress_transition($checkpoint,'A01-T3','resume','2026-11-21T13:06:00Z');
+ck($checkpoint['tasks'][2]['attempts']===2,'Resume starts a second observed work segment.');
+$checkpoint=ygo_progress_transition($checkpoint,'A01-T3','complete',
+  '2026-11-21T13:06:30Z','real evidence');
+ck($checkpoint['tasks'][2]['elapsed_seconds']===60,
+  'One-hour pause does not become AI processing time.');
+ck($checkpoint['tasks'][2]['status']==='COMPLETE','Only actual evidence closes a resumed task.');
+$ledger=$checkpoint;
 $ledger['calculator_requested']=true;
 ck(ygo_progress_summary($ledger)['total']===38,'A10B opt-in counts only when requested.');
 if(in_array('sqlite',PDO::getAvailableDrivers(),true)){
