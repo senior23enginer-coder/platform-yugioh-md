@@ -149,7 +149,7 @@ function ygo_progress_summary(array $ledger,array $samples=[]): array {
         $valid=array_values(array_filter($samples[$task['task_id']]??[],
           static fn($v)=>is_numeric($v)&&(float)$v>0));
         $id=$task['stage_id'];
-        if(count($valid)<3){
+        if(count($valid)<5){
             $ready=false;
             $stages[$id]['eta_seconds']=null;
             $stages[$id]['eta_status']='INSUFFICIENT_REAL_SAMPLES';
