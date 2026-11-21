@@ -14,6 +14,11 @@
         e.turn === state.turn && e.phase !== "draw" &&
         Number.isInteger(e.captureRevision) &&
         e.captureRevision === state._captureRevision);
+    if (guard.event === "monster_sent_from_hand_activation")
+      return observed(state, e => e.kind === guard.event && e.side === guard.side &&
+        e.turn === state.turn && Number.isInteger(e.uid) &&
+        Number.isInteger(e.captureRevision) &&
+        e.captureRevision === state._captureRevision);
     if(guard.event==="opponent_activation")
       return observed(state,e=>e.kind==="opponent_activation"&&
         e.side==="opponent"&&e.turn===state.turn &&
