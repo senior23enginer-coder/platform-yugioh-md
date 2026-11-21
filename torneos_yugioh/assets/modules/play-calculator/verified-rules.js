@@ -47,6 +47,30 @@
       ["Sólo se modela la búsqueda de Riseheart; las otras elecciones y efectos de Fenrir siguen pendientes."],
     )];
     if (id === 671) return [
+      ...["hand","set"].map(mode => ({
+        ...rule(671, "671:goblin-biker-grand-breakout:deck-summon",
+          "Gran Fuga Moto Goblin: sacrificar un monstruo propio e Invocar Goblin del Deck",
+          20533,official(20533),
+          [{op:"take",side:"self",cid:19366,from:"deck",to:"free-monster",
+            position:"attack",summonMethod:"special",cannotAttackThisTurn:true}],
+          ["summonFromDeck"],
+          ["Mágica Rápida: se tributa una copia propia en Campo como coste, incluso boca abajo; se Invoca el Goblin físico restante en el Main Deck y no puede atacar este turno.",
+           "Solo se aplica la primera parte: el efecto de GY exige un Xyz «Goblin», ausente en el Extra de este deck. No se inventa una interacción de Xyz.",
+           "Desde mano se modela en la Main o Battle propias; colocada se requiere turno previo y ventana Main/Battle en cualquiera de los turnos. No se evalúan cadenas rivales arbitrarias."],
+        ),
+        actor:mode==="hand" ?
+          {side:"self",zones:["hand"],cid:20533} :
+          {side:"self",zones:["s1","s2","s3","s4","s5"],cid:20533,faceUp:false},
+        guards:[
+          {kind:"state",field:"active",values:mode==="hand"?["self"]:["self","opponent"]},
+          {kind:"state",field:"phase",values:["main1","main2","battle"]},
+        ],
+        select:[{ref:"victim",selector:{side:"self",zones:["monsters"]}}],
+        costs:[{op:"tribute",ref:"victim",reason:"cost",allowSet:true}],
+        afterResolution:[{op:"move",ref:"actor",to:"graveyard",position:"attack"}],
+        chainSpeed:2,
+        activationNegatedConsumesUse:true,
+      })),
       {
         ...rule(671,"671:aero-shark:damage-per-banished",
           "Portaaviones Sumergible Aero Tiburón: desacoplar 1 material e infligir 100 LP por monstruo desterrado",
