@@ -19,7 +19,7 @@ assert.equal(study.calculator.rules.length,333);
 const reference=Verified.forDeck(671);
 assert.equal(reference.length,333);
 assert.equal(new Set(study.calculator.rules.map(rule=>rule.id)).size,57);
-assert.equal(study.calculator.rules.filter(rule=>rule.id==='671:bone-party:main').length,43);
+assert.equal(study.calculator.rules.filter(rule=>rule.id==='671:bone-party:main').length,48);
 assert.equal(new Set(study.calculator.rules.map(rule=>JSON.stringify(rule))).size,333);
 assert(study.calculator.rules.every(rule=>reference.some(known=>
   JSON.stringify(known)===JSON.stringify(rule))),
