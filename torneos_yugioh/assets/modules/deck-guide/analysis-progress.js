@@ -35,9 +35,10 @@
   }
   function row(task, firstOpen) {
     const done = task.status === "COMPLETE", blocked = task.status === "BLOCKED",
-      running = task.status === "RUNNING";
+      running = task.status === "RUNNING", paused = task.status === "PAUSED";
     const actionable = !busy && (!firstOpen || task.task_id === firstOpen);
-    const status = done ? "Terminada" : blocked ? "Bloqueada" : running ? "En proceso" : "Pendiente";
+    const status = done ? "Terminada" : blocked ? "Bloqueada" :
+      paused ? "Pausada, reanudable" : running ? "En proceso" : "Pendiente";
     return `<li class="progress-task ${esc(task.status.toLowerCase())}">
       <div class="progress-task-head"><b>${esc(task.task_id)} · ${status}</b>
       <small>${duration(task.elapsed_seconds || 0)} · ${Number(task.attempts || 0)} intentos</small></div>
@@ -50,8 +51,10 @@
         <div class="progress-task-actions">
           <button type="button" class="btn btn-outline-info" data-progress-action="complete" data-task-id="${esc(task.task_id)}">Terminar con evidencia</button>
           <button type="button" class="btn btn-outline-warning" data-progress-action="block" data-task-id="${esc(task.task_id)}">Bloquear y documentar</button>
+          <button type="button" class="btn btn-outline-secondary" data-progress-action="pause" data-task-id="${esc(task.task_id)}">Pausar y conservar avance</button>
         </div>` : ""}
-      ${!done && !running && actionable ? `<button type="button" class="btn btn-outline-info" data-progress-action="start" data-task-id="${esc(task.task_id)}">Iniciar tarea</button>` : ""}
+      ${paused && actionable ? `<button type="button" class="btn btn-outline-info" data-progress-action="resume" data-task-id="${esc(task.task_id)}">Reanudar tarea sin repetir análisis</button>` : ""}
+      ${!done && !running && !paused && actionable ? `<button type="button" class="btn btn-outline-info" data-progress-action="start" data-task-id="${esc(task.task_id)}">Iniciar tarea</button>` : ""}
     </li>`;
   }
   function render() {
@@ -94,7 +97,7 @@
         const metrics = (summary.stages || []).find(x => x.stage_id === stage.stage_id);
         const elapsed = duration(metrics?.elapsed_seconds || 0);
         const remaining = metrics?.eta_seconds == null ? "ETA sin datos" : duration(metrics.eta_seconds);
-        return `<details class="progress-stage" ${members.some(t => t.status === "RUNNING") ? "open" : ""}>
+        return `<details class="progress-stage" ${members.some(t => t.status === "RUNNING" || t.status === "PAUSED") ? "open" : ""}>
           <summary><b>${esc(stage.stage_id)}</b><span>${complete}/${members.length} terminadas</span></summary>
           <p class="progress-stage-timing">Tiempo registrado: ${elapsed} · Restante: ${remaining}</p>
           <ol>${members.map(t => row(t, response.inventory_changed ? "__LOCKED__" : firstOpen)).join("")}</ol>
@@ -149,7 +152,8 @@
     const button = e.target.closest("[data-progress-action]");
     if (!button || button.disabled) return;
     const task_id = button.dataset.taskId, action = button.dataset.progressAction;
-    if (action === "start") return mutate("transition", { task_id, action: "start" });
+    if (["start", "pause", "resume"].includes(action))
+      return mutate("transition", { task_id, action });
     const value = content.querySelector('[data-progress-proof="' + task_id + '"]')?.value.trim() || "";
     if (!value) {
       const proof = content.querySelector('[data-progress-proof="' + task_id + '"]');
