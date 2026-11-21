@@ -109,6 +109,94 @@ function run(bundle,opts={}){
     cases:reports};
 }
 /**
+ * Shared A09 step replayer: no route-specific JavaScript is generated.
+ * Every step must name a known portable effect and a physical post-state.
+ * Unknown or ambiguous branches FAIL CLOSED; it cannot invent rival events,
+ * hidden cards, material costs or missing engine operators.
+ */
+function runRoutes(bundle,opts={}){
+  const {cards}=validate(bundle,opts);
+  check(Array.isArray(bundle.route_cases),'ROUTE_CASE_ARRAY_REQUIRED');
+  const routeIds=new Set();
+  const native=E.catalog({id:bundle.deck_id,name:'Fixture de papel',
+    format_codes:[bundle.format]},bundle.cards.map(c=>({
+      id:c.card_id,deck_id:bundle.deck_id,card_name:c.name,
+      section:c.section,quantity:c.quantity
+    })));
+  const db={...facts,bindings:{...facts.bindings},
+    facts:{...facts.facts},rules:bundle.rules};
+  for(const card of native.cards)
+    db.bindings[card.key]=cards.get(Number(card.key.split(':')[1])).cid;
+  const matches=(state,expected)=>{
+    check(expected&&Array.isArray(expected.tokens)&&expected.tokens.length,
+      'ROUTE_STEP_REQUIRES_EXPLICIT_PHYSICAL_CHECKPOINT');
+    const tokensMatch=expected.tokens.every(token=>{
+      check(Number.isInteger(token.cid)&&token.cid>0 &&
+        typeof token.zone==='string','INVALID_ROUTE_TOKEN');
+      const n=state.tokens.filter(t=>db.bindings[t.key]===token.cid&&
+        (token.zone==='monster'?/^m[1-5]$/.test(t.zone):t.zone===token.zone)).length;
+      return n>=(token.min||1);
+    });
+    const flagsMatch=Object.entries(expected.rule_flags||{}).every(([flag,v])=>
+      state._ruleFlags?.[flag]===v);
+    const lpMatch=Object.entries(expected.lp||{}).every(([side,v])=>
+      state.lp?.[side]===v);
+    return tokensMatch&&flagsMatch&&lpMatch;
+  };
+  const reports=[];
+  for(const route of bundle.route_cases){
+    check(typeof route.route_id==='string'&&route.route_id&&
+      !routeIds.has(route.route_id),'DUPLICATE_OR_INVALID_ROUTE_ID');
+    routeIds.add(route.route_id);
+    check(Array.isArray(route.steps)&&route.steps.length>0&&route.steps.length<=30,
+      'ROUTE_STEPS_REQUIRED_OR_EXCESSIVE');
+    check(Array.isArray(route.state_before?.placements),'ROUTE_INITIAL_STATE_REQUIRED');
+    let state=E.create(native);
+    state=E.patch(state,{turn:route.state_before.turn||1,
+      active:route.state_before.active||'self',
+      phase:route.state_before.phase||'main1'});
+    for(const placement of route.state_before.placements){
+      const card=cards.get(placement.card_id);
+      check(card&&['main','extra'].includes(card.section),
+        'ROUTE_MUST_NOT_USE_SIDE_OR_RESERVE_AS_ACTIVE_CARD');
+      check(['hand','graveyard','banished','extra','field',
+        'm1','m2','m3','m4','m5','s1','s2','s3','s4','s5'].includes(placement.zone),
+        'INVALID_ROUTE_STARTING_ZONE');
+      const key=native.cards.find(c=>Number(c.key.split(':')[1])===card.card_id)?.key;
+      check(key,'MISSING_ROUTE_PHYSICAL_CARD');
+      state=E.place(state,{key,owner:placement.owner||'self',
+        controller:placement.controller||'self',zone:placement.zone});
+    }
+    let reason='';
+    let stepsPassed=0;
+    for(const step of route.steps){
+      check(typeof step.effect_id==='string'&&
+        bundle.rules.some(rule=>rule.id===step.effect_id),
+        'ROUTE_REFERENCES_UNKNOWN_EFFECT');
+      const before=JSON.stringify(state);
+      const evaluated=R.actions(state,db);
+      check(JSON.stringify(state)===before,'ROUTE_CHECK_MUTATED_SOURCE_STATE');
+      const candidate=evaluated.actions.filter(action=>
+        action.event?.ruleId===step.effect_id &&
+        matches(action.state,step.expected_after));
+      if(candidate.length!==1){
+        reason=candidate.length>1?'AMBIGUOUS_PHYSICAL_ROUTE_BRANCH':
+          'NO_LEGAL_ACTION_MATCHED_PHYSICAL_CHECKPOINT';
+        break;
+      }
+      state=candidate[0].state;
+      stepsPassed++;
+    }
+    if(!reason&&!matches(state,route.expected_final))
+      reason='FINAL_PHYSICAL_BOARD_NOT_REACHED';
+    reports.push({route_id:route.route_id,steps:route.steps.length,
+      stepsPassed,passed:!reason,reason});
+  }
+  return {total:reports.length,passed:reports.filter(x=>x.passed).length,
+    failed:reports.filter(x=>!x.passed).length,routes:reports};
+}
+
+/**
  * A10B adapter. Reuses the GPT paper-case IDs and the SAME imported rule
  * definitions; never infers a legal operation from natural language.
  */
@@ -167,4 +255,4 @@ if(require.main===module){
   const result=run(data,{deckId:Number(given.slice(10)),explicitlyAssigned:true});
   console.log(JSON.stringify(result,null,2));if(result.failed)process.exitCode=1;
 }
-module.exports=Object.freeze({validate,run,fromPaper});
+module.exports=Object.freeze({validate,run,runRoutes,fromPaper});
