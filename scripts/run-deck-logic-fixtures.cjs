@@ -141,7 +141,15 @@ function runRoutes(bundle,opts={}){
       state._ruleFlags?.[flag]===v);
     const lpMatch=Object.entries(expected.lp||{}).every(([side,v])=>
       state.lp?.[side]===v);
-    return tokensMatch&&flagsMatch&&lpMatch;
+    const absencesMatch=(expected.absent||[]).every(token=>{
+      check(Number.isInteger(token.cid)&&token.cid>0,'INVALID_ABSENT_CARD_CID');
+      return !state.tokens.some(t=>db.bindings[t.key]===token.cid &&
+        (token.zone===undefined||token.zone==='monster'&&/^m[1-5]$/.test(t.zone)||
+          t.zone===token.zone));
+    });
+    const normalMatch=expected.normal_available===undefined||
+      state.normalAvailable===expected.normal_available;
+    return tokensMatch&&flagsMatch&&lpMatch&&absencesMatch&&normalMatch;
   };
   const reports=[];
   for(const route of bundle.route_cases){
