@@ -585,8 +585,16 @@
                 if (!rule.distinctSelectedNames) return true;
                 const earlier = Object.entries(b).filter(([ref]) => ref !== "actor")
                   .map(([, uid]) => s.tokens.find((token) => token.uid === uid));
+                // When every material selector names one distinct physical CID,
+                // no permutation exists: an arbitrary UID ordering is not a
+                // legality restriction. Preserve ordering for interchangeable
+                // material pools to avoid duplicate combinations.
+                const exactDifferentCids = rule.select.every((selection) =>
+                  Number.isInteger(selection.selector?.cid)) &&
+                  new Set(rule.select.map((selection) => selection.selector.cid)).size === rule.select.length;
                 return earlier.every((other) => db.bindings[other.key] !== db.bindings[t.key]) &&
-                  (!earlier.length || t.uid > earlier[earlier.length - 1].uid);
+                  (!earlier.length || exactDifferentCids ||
+                    t.uid > earlier[earlier.length - 1].uid);
               })
               .map((t) => ({ ...b, [item.ref]: t.uid })),
           )
