@@ -246,7 +246,12 @@
     },
     {
       "id": "C04",
-      "status": "NO_REPLAY_CERTIFIED"
+      "status": "REPLAY_CERTIFIED",
+      "scope": "exact-opening-no-opponent-response",
+      "test": "torneos_yugioh/tests/memento_c04_route_replay_test.cjs",
+      "documented_steps": 8,
+      "executed_transitions": 11,
+      "limits": "Un solo iniciador Angbruja, sin intervención rival, usando CID19361 oficial. No acredita otras recetas ni cadenas."
     },
     {
       "id": "C05",
