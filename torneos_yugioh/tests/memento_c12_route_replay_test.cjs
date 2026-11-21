@@ -37,7 +37,7 @@ function replay(s,id,check,label){
  assert(found.event?.ruleId===id&&found.source,'Actions must be verified');
  return found.state;
 }
-let s=E.create(catalog);
+let s=E.create(catalog,catalog);
 for(const cid of [19364,19361,19368])s=E.place(s,{key:key(cid),owner:'self',zone:'hand'});
 for(const [cid,z] of [[19365,'m3'],[19366,'m4']])
  s=E.place(s,{key:key(cid),owner:'opponent',zone:z});
