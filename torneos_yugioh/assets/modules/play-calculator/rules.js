@@ -504,6 +504,16 @@
         );
       else if (op.op === "normal")
         check(typeof op.available === "boolean", "Normal incorrecta");
+      else if (op.op === "immediateNormal")
+        check(phase === "resolve" && rule.id === "671:duke:immediate-normal" &&
+          rule.actor.cid === 20389 && rule.source.includes("cid=20389") &&
+          rule.oncePerTurn === true && rule.activation === true &&
+          op.ref === "witch" && refs.has(op.ref) &&
+          rule.select.some(x=>x.ref==="witch" && x.selector.cid===19364 &&
+            x.selector.side==="self" && x.selector.zones.length===1 &&
+            x.selector.zones[0]==="hand") &&
+          op.from === "hand" && ["m1","m2","m3","m4","m5"].includes(op.to) &&
+          op.position === "attack", "Duque requiere su Normal inmediata acreditada");
       else if (op.op === "summon")
         check(refs.has(op.ref) && ["normal", "special"].includes(op.method) &&
           ["m1", "m2", "m3", "m4", "m5"].includes(op.to) &&
@@ -1050,6 +1060,29 @@
               n._normal = false;
             }
             n.normalAvailable = !n._normal;
+          } else if (op.op === "immediateNormal") {
+            const t=n.tokens.find(t=>t.uid===refs[op.ref]);
+            check(t && t.owner==="self" && t.controller==="self" &&
+              t.zone==="hand" && db.bindings[t.key]===19364,
+              "La Normal inmediata requiere Angbruja física y disponible en mano");
+            check(Timing.isOwnMainPhase(n) && !f.noMoreSummons &&
+              !heatWaveBlocks(f,db,19364),
+              "La Normal inmediata del Duque no está permitida en esta ventana");
+            try { Transitions.assertVacant(n,"self",op.to,t.uid); }
+            catch { throw Error("Zona ocupada para Normal adicional del Duque"); }
+            check(!(options.blockedZones||[]).includes(op.to),
+              "Destino de Normal adicional bloqueado");
+            // This resolves Duke's dedicated immediate-normal instruction
+            // atomically, without resetting the already spent regular Normal.
+            const priorNormal=n._normal;
+            n=E.place(n,{uid:t.uid,zone:op.to,controller:"self"});
+            n=E.position(n,t.uid,op.position);
+            n._normal=priorNormal;
+            n.normalAvailable=!priorNormal;
+            n._ruleEvents=[...(n._ruleEvents||[]),{
+              kind:"summon",method:"normal",uid:t.uid,cid:19364,turn:n.turn,
+              side:"self",fromDuke:true,stage:"after-resolution"
+            }];
           } else if (op.op === "summon") {
             const t=n.tokens.find(t=>t.uid===refs[op.ref]);
             check(t && t.owner==="self" && t.controller==="self" && t.zone===op.from,

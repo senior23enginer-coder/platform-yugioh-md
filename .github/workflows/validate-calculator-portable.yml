@@ -19,6 +19,7 @@ on:
       - 'torneos_yugioh/tests/memento_c07_route_replay_test.cjs'
       - 'torneos_yugioh/tests/memento_c08_route_replay_test.cjs'
       - 'torneos_yugioh/tests/memento_c09_route_replay_test.cjs'
+      - 'torneos_yugioh/tests/memento_c10_route_replay_test.cjs'
       - 'torneos_yugioh/tests/calculator_portable_horus_test.cjs'
       - 'torneos_yugioh/tests/calculator_crystron_smiger_test.cjs'
       - 'torneos_yugioh/tests/calculator_crystron_thystvern_test.cjs'
@@ -96,6 +97,8 @@ jobs:
         run: node torneos_yugioh/tests/memento_c08_route_replay_test.cjs
       - name: Exercise C09 Necroquip equipped Requiem and Goblin hand contact summon
         run: node torneos_yugioh/tests/memento_c09_route_replay_test.cjs
+      - name: Replay C10 Sequence into Duke immediate Normal without reusing Angwitch search
+        run: node torneos_yugioh/tests/memento_c10_route_replay_test.cjs
       - name: Audit M01 actor coverage and replay certification (informational, not closure)
         run: node torneos_yugioh/tests/memento_m01_acceptance_audit_test.cjs
       - name: Execute full Memento A07 effect regression suite

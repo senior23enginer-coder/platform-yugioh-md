@@ -10,6 +10,895 @@
     "rules": [
       {
         "version": 1,
+        "id": "671:bone-party:main",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fiesta de Huesos C10: destruir Goblin en mano e Invocar Desvantasma DEF",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19368
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19472,
+            "from": "deck",
+            "to": "m1",
+            "position": "defense",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C10: Fiesta de Huesos destruye una copia real de Goblin en mano, luego trae del Deck a Desvantasma (nombre diferente) en Defensa en zona legal. Desvantasma no fue enviada al Cementerio: solo su efecto de Invocación puede recuperar Angbruja previamente colocada en el GY."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:bone-party:main",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fiesta de Huesos C10: destruir Goblin en mano e Invocar Desvantasma DEF",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19368
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19472,
+            "from": "deck",
+            "to": "m2",
+            "position": "defense",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C10: Fiesta de Huesos destruye una copia real de Goblin en mano, luego trae del Deck a Desvantasma (nombre diferente) en Defensa en zona legal. Desvantasma no fue enviada al Cementerio: solo su efecto de Invocación puede recuperar Angbruja previamente colocada en el GY."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:bone-party:main",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fiesta de Huesos C10: destruir Goblin en mano e Invocar Desvantasma DEF",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19368
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19472,
+            "from": "deck",
+            "to": "m3",
+            "position": "defense",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C10: Fiesta de Huesos destruye una copia real de Goblin en mano, luego trae del Deck a Desvantasma (nombre diferente) en Defensa en zona legal. Desvantasma no fue enviada al Cementerio: solo su efecto de Invocación puede recuperar Angbruja previamente colocada en el GY."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:bone-party:main",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fiesta de Huesos C10: destruir Goblin en mano e Invocar Desvantasma DEF",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19368
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19472,
+            "from": "deck",
+            "to": "m4",
+            "position": "defense",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C10: Fiesta de Huesos destruye una copia real de Goblin en mano, luego trae del Deck a Desvantasma (nombre diferente) en Defensa en zona legal. Desvantasma no fue enviada al Cementerio: solo su efecto de Invocación puede recuperar Angbruja previamente colocada en el GY."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:bone-party:main",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fiesta de Huesos C10: destruir Goblin en mano e Invocar Desvantasma DEF",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19368
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19472,
+            "from": "deck",
+            "to": "m5",
+            "position": "defense",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C10: Fiesta de Huesos destruye una copia real de Goblin en mano, luego trae del Deck a Desvantasma (nombre diferente) en Defensa en zona legal. Desvantasma no fue enviada al Cementerio: solo su efecto de Invocación puede recuperar Angbruja previamente colocada en el GY."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:engraver:link-sequence",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Grabador y Desvantasma: procedimiento Link-2 exacto hacia Secuencia",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20226&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20196,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "link",
+            "cid": 20226,
+            "materials": [
+              "actor",
+              "ghattic"
+            ],
+            "materialCids": [
+              20196,
+              19472
+            ],
+            "to": "emz1",
+            "recipe": "exact-cids",
+            "linkRating": 2
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C10: Grabador es Demonio LUZ y Desvantasma es Demonio OSCURIDAD, dos monstruos físicos boca arriba propios; su materialización Link no activa por sí sola el efecto de Fusión de Secuencia."
+        ],
+        "activation": false,
+        "oncePerTurn": false
+      },
+      {
+        "version": 1,
+        "id": "671:engraver:link-sequence",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Grabador y Desvantasma: procedimiento Link-2 exacto hacia Secuencia",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20226&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20196,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "link",
+            "cid": 20226,
+            "materials": [
+              "actor",
+              "ghattic"
+            ],
+            "materialCids": [
+              20196,
+              19472
+            ],
+            "to": "emz2",
+            "recipe": "exact-cids",
+            "linkRating": 2
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C10: Grabador es Demonio LUZ y Desvantasma es Demonio OSCURIDAD, dos monstruos físicos boca arriba propios; su materialización Link no activa por sí sola el efecto de Fusión de Secuencia."
+        ],
+        "activation": false,
+        "oncePerTurn": false
+      },
+      {
+        "version": 1,
+        "id": "671:duke:immediate-normal",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Duque de la Defunción: Normal inmediata de Angbruja después del efecto",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20389&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20389,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "witch",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19364
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "immediateNormal",
+            "ref": "witch",
+            "from": "hand",
+            "to": "m1",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "C10: Duque activa su efecto en Main y permite realizar inmediatamente después una Normal adicional de la Angbruja recuperada. Es una Normal adicional de su propio efecto, no reinicia el permiso ordinario consumido previamente; no permite usar de nuevo la búsqueda de Angbruja que ya se activó por nombre."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:duke:immediate-normal",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Duque de la Defunción: Normal inmediata de Angbruja después del efecto",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20389&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20389,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "witch",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19364
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "immediateNormal",
+            "ref": "witch",
+            "from": "hand",
+            "to": "m2",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "C10: Duque activa su efecto en Main y permite realizar inmediatamente después una Normal adicional de la Angbruja recuperada. Es una Normal adicional de su propio efecto, no reinicia el permiso ordinario consumido previamente; no permite usar de nuevo la búsqueda de Angbruja que ya se activó por nombre."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:duke:immediate-normal",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Duque de la Defunción: Normal inmediata de Angbruja después del efecto",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20389&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20389,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "witch",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19364
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "immediateNormal",
+            "ref": "witch",
+            "from": "hand",
+            "to": "m3",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "C10: Duque activa su efecto en Main y permite realizar inmediatamente después una Normal adicional de la Angbruja recuperada. Es una Normal adicional de su propio efecto, no reinicia el permiso ordinario consumido previamente; no permite usar de nuevo la búsqueda de Angbruja que ya se activó por nombre."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:duke:immediate-normal",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Duque de la Defunción: Normal inmediata de Angbruja después del efecto",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20389&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20389,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "witch",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19364
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "immediateNormal",
+            "ref": "witch",
+            "from": "hand",
+            "to": "m4",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "C10: Duque activa su efecto en Main y permite realizar inmediatamente después una Normal adicional de la Angbruja recuperada. Es una Normal adicional de su propio efecto, no reinicia el permiso ordinario consumido previamente; no permite usar de nuevo la búsqueda de Angbruja que ya se activó por nombre."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:duke:immediate-normal",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Duque de la Defunción: Normal inmediata de Angbruja después del efecto",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20389&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20389,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "witch",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19364
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "immediateNormal",
+            "ref": "witch",
+            "from": "hand",
+            "to": "m5",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "C10: Duque activa su efecto en Main y permite realizar inmediatamente después una Normal adicional de la Angbruja recuperada. Es una Normal adicional de su propio efecto, no reinicia el permiso ordinario consumido previamente; no permite usar de nuevo la búsqueda de Angbruja que ya se activó por nombre."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
         "id": "671:princess:contact-summon",
         "deckId": 671,
         "format": "tcg_advanced",

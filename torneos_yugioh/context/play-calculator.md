@@ -11,8 +11,8 @@ del paquete `stationx-deck.json`. No importa archivos del otro deck ni
 reescribe inventarios o revisiones del editor.
 
 - **671 Memento:** 41 Main, 15 Extra, 14 Side; 12 rutas con 69 pasos
-  sincronizados, 12 diagramas de resultado ilustrativos; 321 variantes
-  portables agrupadas en 55 IDs de efecto. Son 30/39 identidades con al menos una regla de actor; faltan 9, y las
+  sincronizados, 12 diagramas de resultado ilustrativos; 333 variantes
+  portables agrupadas en 57 IDs de efecto. Son 30/39 identidades con al menos una regla de actor; faltan 9, y las
   9/12 rutas (C01–C09) con replay acotado; C09 Invoca Princesa Necroequipo mediante procedimiento propio con Réquiem equipado y Goblin de mano, sin robo automático; C08 exige activación rival observada y no resuelve su efecto original; C07 usa Quimera Guardián. Quedan 3 rutas sin replay completo certificado. No se certifican cadenas ni legalidad universal.
 - **677 Crystron/Horus:** 40 Main, 15 Extra, 15 Side; 14 rutas con 60 pasos,
   14 diagramas de resultado ilustrativos; 13 variantes portables:

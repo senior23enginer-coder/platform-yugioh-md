@@ -30,6 +30,7 @@
     ["flag", "both", "generic"],
     ["normal", "both", "generic"],
     ["summon", "resolve", "generic"],
+    ["immediateNormal", "resolve", "restricted"],
   ];
   const registry = Object.freeze(Object.fromEntries(definitions.map(([id, phase, coverage]) =>
     [id, Object.freeze({ id, phase, coverage })])));
