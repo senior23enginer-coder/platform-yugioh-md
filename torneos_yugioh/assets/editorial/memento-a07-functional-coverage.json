@@ -264,7 +264,12 @@
     },
     {
       "id": "C06",
-      "status": "NO_REPLAY_CERTIFIED"
+      "status": "REPLAY_CERTIFIED",
+      "scope": "exact-opening-no-opponent-response",
+      "test": "torneos_yugioh/tests/memento_c06_route_replay_test.cjs",
+      "documented_steps": 5,
+      "executed_transitions": 10,
+      "limits": "Mano exacta Angbruja + Fusión, sin intervención rival. Goblin permanece en mano y su protección por descarte NO se activa ni certifica. No se certifican cadenas, recetas alternativas, lista legal ni casillas exactas."
     },
     {
       "id": "C07",
