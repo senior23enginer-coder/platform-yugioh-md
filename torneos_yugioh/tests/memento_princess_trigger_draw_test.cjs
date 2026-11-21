@@ -48,6 +48,17 @@ const drollEquip=equipped.tokens.find(t=>db.bindings[t.key]===9279&&
 assert(princess&&drollEquip&&drollEquip.equippedToUid===princess.uid,
   'Droll must leave the GY and become a physical Equip Spell on Princess');
 assert.equal(princess.currentATK,2500,'Princess gains exactly 500 from printed ATK');
+const detached=E.place(equipped,{uid:drollEquip.uid,zone:'graveyard',controller:'self'});
+const detachedPrincess=detached.tokens.find(t=>t.uid===princess.uid);
+assert.equal(detachedPrincess.currentATK,2000,
+  'Removing equipped monster must remove its 500 ATK bonus');
+assert(!detached.tokens.find(t=>t.uid===drollEquip.uid).equippedToUid,
+  'Departed equipment no longer points to Princess');
+const leaving=E.place(equipped,{uid:princess.uid,zone:'graveyard',controller:'self'});
+assert(leaving.tokens.find(t=>t.uid===drollEquip.uid)?.zone==='graveyard',
+  'Equipment must go to GY when its host leaves the monster zone');
+assert.equal(leaving.tokens.find(t=>t.uid===princess.uid).currentATK,undefined,
+  'ATK modifier must end when Princess leaves the field');
 assert.equal(equipped.selfUnknownHand,0,'Equip option does not also draw');
 assert.equal(actions(equipped,princessId).length,0,
   'Drawing and equipping share the same once-per-name turn limit');
