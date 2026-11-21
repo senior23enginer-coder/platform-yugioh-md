@@ -91,17 +91,17 @@ if(in_array('sqlite',PDO::getAvailableDrivers(),true)){
   ck(ygo_progress_saved($pdo,98765)['revision']===$next['revision'],
     'Optimistic write can commit once.');
 }
-// Synthetic time samples prove that stage-level ETAs stay unavailable until
-// there are at least three comparable real historical measurements per task.
-$partial=['A01-T3'=>[41,42,43,44,45]];
+// Five comparable synthetic durations for one *unfinished* A02 task cannot
+// calibrate the entire deck, or another unfinished task in the same stage.
+$partial=['A02-T1'=>[41,42,43,44,45]];
 $unknown=ygo_progress_summary($ledger,$partial);
 ck($unknown['eta_seconds']===null,'Whole-deck ETA needs all tasks calibrated.');
 $a01=array_values(array_filter($unknown['stages'],
   static fn($stage)=>$stage['stage_id']==='A01'))[0];
-ck($a01['eta_seconds']===43,'Stage ETA uses the median of three samples.');
+ck($a01['eta_seconds']===0,'A fully completed A01 has no remaining ETA.');
 $a02=array_values(array_filter($unknown['stages'],
   static fn($stage)=>$stage['stage_id']==='A02'))[0];
-ck($a02['eta_seconds']===null,'Unmeasured stages must remain unknown.');
+ck($a02['eta_seconds']===null,'Other A02 tasks must not inherit the ETA of A02-T1.');
 ck(ygo_progress_summary($ledger)['eta_status']==='INSUFFICIENT_REAL_SAMPLES',
   'Real ETA needs historical successes from comparable real decks.');
 echo json_encode(['ok'=>true,'synthetic_tests'=>true,'analyses_executed'=>0,
