@@ -10,6 +10,7 @@ on:
       - 'torneos_yugioh/tests/calculator_portable_memento_test.cjs'
       - 'torneos_yugioh/tests/memento_goblin_biker_breakout_test.cjs'
       - 'torneos_yugioh/tests/memento_sp_link_extra_test.cjs'
+      - 'torneos_yugioh/tests/memento_c02_route_replay_test.cjs'
       - 'torneos_yugioh/tests/calculator_portable_horus_test.cjs'
       - 'torneos_yugioh/tests/calculator_crystron_smiger_test.cjs'
       - 'torneos_yugioh/tests/calculator_crystron_thystvern_test.cjs'
@@ -69,6 +70,8 @@ jobs:
         run: node torneos_yugioh/tests/memento_goblin_biker_breakout_test.cjs
       - name: Verify S:P Link Extra material trigger, banishment and direct attack restriction
         run: node torneos_yugioh/tests/memento_sp_link_extra_test.cjs
+      - name: Exercise C02 complete documented no-response route with real state transitions
+        run: node torneos_yugioh/tests/memento_c02_route_replay_test.cjs
       - name: Audit M01 actor coverage and replay certification (informational, not closure)
         run: node torneos_yugioh/tests/memento_m01_acceptance_audit_test.cjs
       - name: Execute full Memento A07 effect regression suite
