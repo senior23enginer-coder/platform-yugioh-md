@@ -425,7 +425,7 @@
               op.to === "free-monster" && op.summonMethod === "special")) &&
           (op.cause === undefined || (op.cause === "monster_effect" &&
               op.from === "deck" && op.to === "graveyard" &&
-              rule.actor.side === op.side && Array.isArray(rule.tags) && rule.tags.includes("monsterEffect"))) &&
+              rule.actor.side === op.side && Array.isArray(rule.tags) && rule.tags.includes("monsterEffect"))),
           "Recurso incorrecto",
         );
       else if (op.op === "payLP")
