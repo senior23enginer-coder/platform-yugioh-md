@@ -106,7 +106,7 @@ function summary(ledger,history=[]){
   for(const task of relevant.filter(t=>t.status!==STATUS.COMPLETE)){
     const samples=history.filter(h=>h?.task_id===task.task_id&&
       Number.isFinite(h.elapsed_seconds)&&h.elapsed_seconds>0);
-    if(samples.length<3){calibrated=false;break;}
+    if(samples.length<5){calibrated=false;break;}
     const sorted=samples.map(h=>h.elapsed_seconds).sort((a,b)=>a-b);
     estimatedRemaining+=sorted[Math.floor(sorted.length/2)];
   }
