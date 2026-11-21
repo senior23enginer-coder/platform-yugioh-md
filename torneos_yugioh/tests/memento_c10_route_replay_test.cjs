@@ -10,6 +10,8 @@ const deck=JSON.parse(fs.readFileSync(__dirname+
  '/../assets/editorial/20261117-folder-delivery-v40/671.json','utf8'));
 const route=deck.routes.find(r=>r.id==='671:A09:C10');
 assert(route&&route.steps.length===5,'C10 keeps its five documented steps');
+assert(!route.opening.includes('No se acreditó mediante simulación.'),
+ 'C10 replay certification must not coexist with a stale pending-simulation claim');
 assert.equal(route.replay_certification?.status,'REPLAY_CERTIFIED');
 assert.equal(route.replay_certification?.scope,'exact-opening-no-opponent-response');
 assert.equal(route.replay_certification?.test,'torneos_yugioh/tests/memento_c10_route_replay_test.cjs');
