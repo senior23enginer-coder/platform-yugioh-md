@@ -1,6 +1,6 @@
 'use strict';
 const assert=require('node:assert/strict');
-const {validate,run}=require('../../scripts/run-deck-logic-fixtures.cjs');
+const {validate,run,fromPaper}=require('../../scripts/run-deck-logic-fixtures.cjs');
 const rule={
  version:1,id:'999999:synthetic-field:activate',deckId:999999,format:'tcg_advanced',
  scope:'single-effect',label:'Efecto de control sintético de activación',
@@ -42,5 +42,29 @@ const result=run(bundle,options);
 assert.equal(result.total,3);
 assert.equal(result.failed,0,JSON.stringify(result));
 assert.equal(result.passed,3);
+const packageData={schema:'station-x-deck-package/1',deck_id:999999,
+ inventory:bundle.cards.map(c=>({id:c.card_id,section:c.section,quantity:c.quantity})),
+ record:{deck_id:999999,format:'tcg_advanced',
+ cards:bundle.cards.map(c=>({cid:c.cid,name:c.name,slots:[{
+   card_id:c.card_id,section:c.section,quantity:c.quantity}]})),
+ calculator:{rules:[rule]}}};
+const paper={schema:'station-x-paper-cases/1',deck_id:999999,format:'tcg_advanced',
+ effects:[{effect_id:rule.id}],cases:bundle.cases.map(c=>({
+   case_id:c.case_id,effect_id:c.effect_id,status:'VERIFICADO',
+   known_vs_unknown:'known',expected_legal:c.expected_legal,
+   state_before:c.state_before,expected_state_after:c.expected_after
+ }))};
+const adapted=fromPaper(paper,packageData,options);
+assert.equal(adapted.blocked.length,0);
+assert.equal(run(adapted.bundle,options).passed,3,'A10B must reuse GPT logical IDs');
+const incomplete=JSON.parse(JSON.stringify(packageData));
+incomplete.record.calculator.rules=[];
+const notSupported=fromPaper(paper,incomplete,options);
+assert.equal(notSupported.bundle.cases.length,0);
+assert.equal(notSupported.blocked.length,3);
+assert(notSupported.blocked.every(x=>x.reason==='OPERADOR_NO_SOPORTADO'));
+assert.throws(()=>fromPaper(paper,packageData,{deckId:999999,explicitlyAssigned:false}),
+ /USER_DECK_ASSIGNMENT_REQUIRED/);
+
 console.log(JSON.stringify({ok:true,syntheticOnly:true,deckAnalysesExecuted:0,
   paperCases:3,pass:result.passed,runner:'single-reusable'}));
