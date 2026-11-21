@@ -4,7 +4,7 @@ const Verified = require("../assets/modules/play-calculator/verified-rules.js");
 
 // These are executable variants, not independent certified effects or routes.
 const variants = Verified.forDeck(671);
-assert.equal(variants.length, 297, "Memento must preserve all verified fallback variants");
+assert.equal(variants.length, 302, "Memento must preserve all verified fallback variants");
 const byEffect = new Map();
 for (const rule of variants) {
   Rules.validate(rule);
@@ -12,7 +12,7 @@ for (const rule of variants) {
   rows.push(rule);
   byEffect.set(rule.id, rows);
 }
-assert.equal(byEffect.size, 51, "Memento must preserve distinct effect IDs including Lancea");
+assert.equal(byEffect.size, 52, "Memento must preserve distinct effect IDs including Lancea");
 for (const [effectId, rows] of byEffect) {
   const signatures = new Set(rows.map(row =>
     JSON.stringify([row.actor.cid, row.oncePerTurn, row.activation])));
