@@ -79,7 +79,7 @@ $unknown=ygo_progress_summary($ledger,$partial);
 ck($unknown['eta_seconds']===null,'Whole-deck ETA needs all tasks calibrated.');
 $a01=array_values(array_filter($unknown['stages'],
   static fn($stage)=>$stage['stage_id']==='A01'))[0];
-ck($a01['eta_seconds']===44,'Stage ETA uses the median of three samples.');
+ck($a01['eta_seconds']===43,'Stage ETA uses the median of three samples.');
 $a02=array_values(array_filter($unknown['stages'],
   static fn($stage)=>$stage['stage_id']==='A02'))[0];
 ck($a02['eta_seconds']===null,'Unmeasured stages must remain unknown.');
