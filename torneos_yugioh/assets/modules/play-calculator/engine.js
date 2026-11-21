@@ -328,11 +328,36 @@
     next.confirmed = [];
     return validate(next);
   }
+  // A physical Equip Spell cannot keep giving ATK after leaving S/T.
+  // This is intentionally generic: the bonus is stored on the attached copy.
+  function unlinkEquip(next, equip) {
+    if(!Number.isInteger(equip.equippedToUid))return;
+    const host=next.tokens.find(t=>t.uid===equip.equippedToUid);
+    if(host && Number.isInteger(equip.equippedAtkBonus) &&
+      Number.isInteger(host.currentATK))
+      host.currentATK=Math.max(0,host.currentATK-equip.equippedAtkBonus);
+    delete equip.equippedToUid;
+    delete equip.equippedAtkBonus;
+  }
   function place(s, { key, owner, controller = owner, zone, uid = null }) {
     return change(s, (next) => {
       let token =
         uid === null ? null : next.tokens.find((t) => t.uid === Number(uid));
       if (uid !== null) assert(token, "No se encontró la copia seleccionada.");
+      if(token && isMonster(token.zone) && !isMonster(zone)) {
+        // Equipment leaves the field with its host; do not retain orphan
+        // Princess/Fiendsmith Equip Spells when their monster disappears.
+        for(const attached of next.tokens.filter(t=>
+          t.equippedToUid===token.uid && /^s[1-5]$/.test(t.zone))) {
+          unlinkEquip(next,attached);
+          attached.zone="graveyard";
+          attached.controller=attached.owner;
+          delete attached.setTurn;
+        }
+      }
+      if(token && /^s[1-5]$/.test(token.zone) &&
+        !/^s[1-5]$/.test(zone) && Number.isInteger(token.equippedToUid))
+        unlinkEquip(next,token);
       if (zone === "deck") {
         if (token) {
           const attached = next.tokens.filter(
