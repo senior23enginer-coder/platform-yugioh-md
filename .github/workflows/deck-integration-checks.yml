@@ -73,6 +73,7 @@ jobs:
           node scripts/deck-analysis-ledger-test.cjs /tmp/station-x-gpt-decks/02_PROMPT_PARA_CODEX/contrato_tareas_a01_a10.json
           node scripts/deck-paper-parity.cjs /tmp/station-x-gpt-decks/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-legacy-paper-cases.json
           node scripts/deck-legacy-route-trace-test.cjs /tmp/station-x-gpt-decks/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-memento-route-traces.json
+          node scripts/deck-declarative-route-parity.cjs /tmp/station-x-gpt-decks/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-memento-c01-physical-route.json
       - name: Enforce two-deck A01-A10 structure and prompt/runtime parity
         run: node scripts/verify-pilot-decks.cjs --prompts-root=/tmp/station-x-gpt-decks
       - name: Validate calculator contracts and rules
