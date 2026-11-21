@@ -1,6 +1,6 @@
 'use strict';
 const assert=require('node:assert/strict');
-const {validate,run}=require('../scripts/run-deck-logic-fixtures.cjs');
+const {validate,run}=require('../../scripts/run-deck-logic-fixtures.cjs');
 const rule={
  version:1,id:'999999:synthetic-field:activate',deckId:999999,format:'tcg_advanced',
  scope:'single-effect',label:'Efecto de control sintético de activación',
