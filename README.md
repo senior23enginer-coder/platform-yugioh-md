@@ -65,7 +65,20 @@ node scripts/deck-paper-parity.cjs ../gpt-yugioh-promps-platform/03_COMPROBACION
 
 `scripts/run-deck-logic-fixtures.cjs` interpreta los casos de efecto. Su función `runRoutes` permite contrastar también pasos de secuencias A09 mediante `route_id`, efectos existentes y estados físicos comprobables; ante ramas ambiguas, operadores ausentes o checkpoints falsos, **falla cerrado**. La suite sintética valida estos límites sin analizar decks.
 
-**Estado de migración:** sólo hay equivalencia parcial acreditada para los casos enumerados; los 40 tests heredados siguen siendo obligatorios. Para retirar uno, deberá documentarse correspondencia exhaustiva de todas sus aserciones, incluida la cobertura técnica que no pertenece a una prueba de papel, y pasar ambas suites en el mismo CI. Los tests técnicos generales del motor permanecerán en Platform; los futuros casos lógicos se expresarán como datos producidos por GPT, sin archivos .cjs por efecto.
+**Regresiones de rutas A09:** GPT conserva las doce rutas Memento C01–C12 en un único registro histórico de 105 transiciones y en un archivo de estados de referencia (`p06-memento-golden-route-states.json`). `scripts/export-p06-route-golden.cjs` caracteriza los tests originales sin editarlos; `scripts/run-p06-golden-routes.cjs` reproduce sus estados con el motor actual. **C08** incluye cambio de turno y observación explícita de activación rival. Son **12/12 replays históricos reproducidos**, pero eso **no** certifica todas las posibles jugadas o un oráculo reglamentario independiente.
+
+**Auditoría de cobertura restante:** `scripts/export-p06-legacy-inventory.cjs` y `scripts/check-p06-legacy-assertions.cjs` cotejan los 40 scripts, huellas Git y **1.005 sitios textuales de llamadas a `assert`** contra `p06-protected-legacy-assertions.json` de GPT. El número 1.005 es un conteo estático, **no equivale a 1.005 casos lógicos verificados o migrados**. Las tres aserciones históricas de papel y los cinco casos negativos adicionales tampoco reemplazan archivos completos.
+
+```bash
+node scripts/export-p06-route-golden.cjs
+node scripts/export-p06-legacy-inventory.cjs
+node scripts/run-p06-golden-routes.cjs ../gpt-yugioh-promps-platform/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-memento-golden-route-states.json
+node scripts/check-p06-legacy-assertions.cjs ../gpt-yugioh-promps-platform/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-protected-legacy-assertions.json
+```
+
+**Discrepancia pendiente C02:** el documento histórico registra seis transiciones, pero el test contiene cinco acciones efectivamente ejecutadas. La reproducción de esas cinco acciones pasa; el conteo editorial sigue sin conciliar y **no debe corregirse silenciosamente ni declararse coincidente**.
+
+**Estado de migración:** el **framework de fixtures/replays reutilizables está operativo** y todos los tests históricos siguen protegidos; **la conversión completa de las aserciones de dominio y la retirada de archivos redundantes están pendientes**. No suprimir scripts hasta documentar y comprobar la equivalencia exacta de cada aserción relevante; mantener en Platform aquellas que son técnicas del motor, UI y contratos y llevar al origen GPT las pruebas de papel por efecto. No se ha reanalizado ningún deck.
 
 **Política de cambios:** esta documentación y las utilidades no autorizan merge, despliegue FTP ni actualizaciones de producción. Los PR de GPT y Platform deben pasar sus verificaciones de forma independiente antes de cualquier integración.
 
