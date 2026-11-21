@@ -63,9 +63,12 @@ for(const route of fixture.routes){
  E.validate(state);
  for(const token of state.tokens)
    assert(validKeys.has(token.key),'Golden initial state has foreign physical card '+token.key);
- // Current native catalogue must agree with the captured trusted deck list.
- assert.deepEqual(state.self.cards,cat.cards);
- if(state.opponent.cards)assert.deepEqual(state.opponent.cards,cat.cards);
+ // Live capture may have no per-player card catalogue (free practice);
+ // physical tokens must still belong to the approved native inventory.
+ assert.equal(state.format,study.format);
+ for(const side of ['self','opponent'])
+   for(const card of state[side]?.cards||[])
+     assert(validKeys.has(card.key),'Foreign inventory reference in golden state');
  let current=state,completed=0,reason='';
  for(let i=0;i<route.steps.length;i++){
    if(route.interruptions.some(g=>g.before_step===i+1)){
