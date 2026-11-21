@@ -74,6 +74,7 @@ jobs:
           node scripts/deck-paper-parity.cjs /tmp/station-x-gpt-decks/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-legacy-paper-cases.json
           node scripts/deck-legacy-route-trace-test.cjs /tmp/station-x-gpt-decks/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-memento-route-traces.json
           node scripts/deck-declarative-route-parity.cjs /tmp/station-x-gpt-decks/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-memento-c01-physical-route.json
+          node scripts/run-p06-golden-routes.cjs /tmp/station-x-gpt-decks/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-memento-golden-route-states.json
       - name: Enforce two-deck A01-A10 structure and prompt/runtime parity
         run: node scripts/verify-pilot-decks.cjs --prompts-root=/tmp/station-x-gpt-decks
       - name: Validate calculator contracts and rules
@@ -108,5 +109,6 @@ jobs:
           node scripts/deck-paper-parity.cjs /tmp/p06-gpt/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-legacy-paper-cases.json
           node scripts/deck-legacy-route-trace-test.cjs /tmp/p06-gpt/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-memento-route-traces.json
           node scripts/deck-declarative-route-parity.cjs /tmp/p06-gpt/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-memento-c01-physical-route.json
+          node scripts/run-p06-golden-routes.cjs /tmp/p06-gpt/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-memento-golden-route-states.json
           node scripts/export-p06-route-golden.cjs
           node scripts/export-p06-route-golden.cjs --emit-json
