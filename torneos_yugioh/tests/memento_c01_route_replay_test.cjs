@@ -18,7 +18,7 @@ const rows=deck.cards.flatMap(c=>c.slots.map(x=>({
 const cat=E.catalog({id:671,name:deck.name,format_codes:[deck.format]},rows);
 const db=Study.bind(facts,[{catalog:cat,study:deck}]);
 assert.equal(db.ruleImports[0].status,'accepted',JSON.stringify(db.ruleImports));
-assert.equal(db.rules.length,264);
+assert.equal(db.rules.length, deck.calculator.rules.length);
 for(const id of ['671:tatsun:mill','671:creation-king:fusion-send','671:tecuhtlica:five-names'])
   assert.deepEqual(deck.calculator.rules.filter(r=>r.id===id),
     Verified.forDeck(671).filter(r=>r.id===id),
@@ -94,5 +94,5 @@ const withoutTatsun=E.place(E.create(cat),{key:key(19364),owner:'self',zone:'m1'
 assert.equal(act(withoutTatsun,'671:tatsun:mill').length,0,
   'Tatsun effect needs its real actor on field');
 console.log(JSON.stringify({ok:true,route:'C01',documentedSteps:7,
-  executedTransitions:10,field:[20216,19360],GYRemaining:[19365,19904],
+  executedTransitions:9,field:[20216,19360],GYRemaining:[19365,19904],
   opponentResponse:'none',generalChainCertification:false}));

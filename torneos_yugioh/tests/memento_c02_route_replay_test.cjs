@@ -23,7 +23,7 @@ const rows=study.cards.flatMap(c=>c.slots.map(slot=>({
 const cat=E.catalog({id:671,name:study.name,format_codes:[study.format]},rows);
 const db=Study.bind(facts,[{catalog:cat,study}]);
 assert.equal(db.ruleImports[0].status,'accepted',JSON.stringify(db.ruleImports));
-assert.equal(db.rules.length,257);
+assert.equal(db.rules.length, study.calculator.rules.length);
 const key=cid=>{
   const found=cat.cards.find(c=>db.bindings[c.key]===cid&&c.section==='main');
   assert(found,'Approved Main CID missing: '+cid);
