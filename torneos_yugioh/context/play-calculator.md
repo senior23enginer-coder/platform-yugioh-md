@@ -12,7 +12,7 @@ reescribe inventarios o revisiones del editor.
 
 - **671 Memento:** 41 Main, 15 Extra, 14 Side; 12 rutas con 69 pasos
   sincronizados, 12 diagramas de resultado ilustrativos; 244 variantes
-  portables agrupadas en 46 IDs de efecto. Persisten actores sin regla y las
+  portables agrupadas en 46 IDs de efecto. Son 28/39 identidades con al menos una regla de actor; faltan 11, y las
   12 rutas carecen de replay integral certificado.
 - **677 Crystron/Horus:** 40 Main, 15 Extra, 15 Side; 14 rutas con 60 pasos,
   14 diagramas de resultado ilustrativos; 13 variantes portables:
