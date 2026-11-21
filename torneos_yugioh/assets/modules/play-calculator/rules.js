@@ -829,6 +829,7 @@
               "ATK actual de Princesa sin determinar");
             n=E.place(n,{uid:material.uid,zone:slot,controller:"self"});
             n.tokens.find(t=>t.uid===material.uid).equippedToUid=princess.uid;
+            n.tokens.find(t=>t.uid===material.uid).equippedAtkBonus=500;
             n.tokens.find(t=>t.uid===princess.uid).currentATK=currentATK+500;
             n._ruleEvents=[...(n._ruleEvents||[]),{
               kind:"princess_equip",cid:20423,materialUid:material.uid,
