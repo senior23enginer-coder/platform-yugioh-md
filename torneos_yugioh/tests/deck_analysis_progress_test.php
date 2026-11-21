@@ -93,7 +93,7 @@ if(in_array('sqlite',PDO::getAvailableDrivers(),true)){
 }
 // Synthetic time samples prove that stage-level ETAs stay unavailable until
 // there are at least three comparable real historical measurements per task.
-$partial=['A01-T3'=>[42,43,44]];
+$partial=['A01-T3'=>[41,42,43,44,45]];
 $unknown=ygo_progress_summary($ledger,$partial);
 ck($unknown['eta_seconds']===null,'Whole-deck ETA needs all tasks calibrated.');
 $a01=array_values(array_filter($unknown['stages'],
