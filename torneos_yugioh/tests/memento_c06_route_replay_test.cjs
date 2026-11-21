@@ -25,9 +25,9 @@ for(const id of ['671:twin-dragon:fusion-search','671:shleepy:send',
  assert.deepEqual(deck.calculator.rules.filter(r=>r.id===id),
   Verified.forDeck(671).filter(r=>r.id===id),'Runtime/imported effect mismatch: '+id);
 }
-const key=cid=>{
- const c=catalog.cards.find(c=>db.bindings[c.key]===cid&&c.section==='main');
- assert(c,'Missing physical main CID '+cid);return c.key;
+const key=(cid,section='main')=>{
+ const c=catalog.cards.find(c=>db.bindings[c.key]===cid&&c.section===section);
+ assert(c,'Missing physical card '+cid+' in '+section);return c.key;
 };
 const at=(s,cid,zone)=>s.tokens.filter(t=>db.bindings[t.key]===cid&&t.zone===zone);
 const monsters=s=>s.tokens.filter(t=>t.controller==='self'&&E.isMonster(t.zone));
