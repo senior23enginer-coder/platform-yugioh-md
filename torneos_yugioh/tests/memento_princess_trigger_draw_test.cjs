@@ -46,6 +46,26 @@ assert.equal(actions(E.patch(afterCost,{notes:'New unrelated action'}),princessI
   'Old activation cost cannot be reused after capture is edited');
 // A Spell sent as its own activation cost does not count as a MONSTER sent
 // from hand; do not invent the Princess trigger.
+// Bone Party is a Spell: sending it from hand while activating it is NOT
+// a monster being sent from hand and must never grant a Princess draw.
+let spell=E.create(cat,cat);
+spell=E.place(spell,{key:key(20423,'extra'),owner:'self',zone:'m1'});
+spell=E.place(spell,{key:key(19361,'main'),owner:'self',zone:'m2'});
+spell=E.place(spell,{key:key(19368,'main'),owner:'self',zone:'hand'});
+const spellActions=actions(spell,'671:bone-party:main');
+assert(spellActions.length>0,'Actual Bone Party activation must be executable');
+const afterSpell=spellActions[0].state;
+assert(!afterSpell._ruleEvents?.some(e=>e.kind==='monster_sent_from_hand_activation'),
+  'A Spell cost is never a monster cost');
+assert.equal(actions(afterSpell,princessId).length,0,
+  'Princess cannot draw after sending only a Spell as an activation cost');
+// Negating the effect does not refund the already paid monster cost.
+const denied=R.actions(observed,db,{
+  negateEffectRuleIds:['671:droll:main-deck-lock']
+}).actions.find(a=>a.event?.ruleId==='671:droll:main-deck-lock');
+assert(denied,'Droll effect-negated branch must remain a legal paid activation');
+assert.equal(actions(denied.state,princessId).length,1,
+  'Princess sees an activation cost even if the original effect is negated');
 const fake=JSON.parse(JSON.stringify(db.rules.find(r=>r.id===princessId)));
 fake.resolve[0].count=2;
 assert.throws(()=>R.validate(fake),/Robo desconocido/);
