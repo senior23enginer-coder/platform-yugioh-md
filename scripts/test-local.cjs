@@ -13,6 +13,7 @@ function run(command, args) {
 run(process.execPath, ['scripts/format-architecture.cjs', '--check']);
 run(process.execPath, ['scripts/build-frontend.cjs', '--check']);
 run(process.execPath, ['scripts/deck-analysis-ledger-test.cjs']);
+run(process.execPath, ['scripts/deck-legacy-regression-gate.cjs']);
 run(php, ['torneos_yugioh/tests/deck_analysis_progress_test.php']);
 run(process.execPath, ['torneos_yugioh/tests/deck_analysis_progress_ui_test.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/deck_logic_fixture_runner_test.cjs']);
