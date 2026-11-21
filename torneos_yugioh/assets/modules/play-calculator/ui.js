@@ -339,7 +339,7 @@
         Array.from({ length: n }, (_, i) => slot(side, prefix + (i + 1))).join(
           "",
         );
-      const hand = `<div class="play-hand">${slot(side, "hand")}${side === "opponent" && s.unknown.hand ? `<span class="play-hidden-count">${s.unknown.hand} cartas desconocidas</span>` : ""}</div>`;
+      const hand = `<div class="play-hand">${slot(side, "hand")}${side === "opponent" && s.unknown.hand ? `<span class="play-hidden-count">${s.unknown.hand} cartas desconocidas</span>` : ""}${side === "self" && s.selfUnknownHand ? `<span class="play-hidden-count">${s.selfUnknownHand} robo propio por identificar</span>` : ""}</div>`;
       return `<section class="play-half is-${side}"><header class="play-player"><span>${esc(s[side].name)}<small>${sideName[side]}</small></span><strong>${Number(s.lp[side]).toLocaleString("es")} <small>LP</small></strong></header>${side === "opponent" ? hand : ""}<div class="play-field-row"><div class="play-side-zones">${slot(side, "field")}${slot(side, "extra")}</div><div class="play-main-zones" style="--zones:${n}"><div class="play-monsters">${row("m")}</div><div class="play-spells">${row("s")}</div></div><div class="play-side-zones">${slot(side, "graveyard")}${slot(side, "deck")}</div></div><div class="play-removed">${slot(side, "banished")}</div>${side === "self" ? hand : ""}</section>`;
     }
     function catalogView() {

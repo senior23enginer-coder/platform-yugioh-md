@@ -312,3 +312,5 @@ quede un eslabón pendiente: las cadenas deben resolverse y el estado debe
 actualizarse antes de calcular otras líneas. La prueba
 `calculator_chain_capture_test.cjs` cubre integridad, límites, inmutabilidad,
 numeración y bloqueo del planificador.
+
+**Robo propio desconocido C07:** Quimera Guardián registra `selfUnknownHand` separado de `unknown.hand` rival. La mano propia visualiza `robo propio por identificar`, sin crear una copia ficticia ni atribuirle un CID. Hasta registrar su identidad real desde la mano, las búsquedas y envíos de cartas concretas del Deck fallan cerrado: una carta desconocida podría ser el objetivo buscado.

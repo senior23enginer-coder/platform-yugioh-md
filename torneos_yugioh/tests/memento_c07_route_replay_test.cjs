@@ -77,6 +77,8 @@ s=step(s,'671:guardian-chimera:draw-destroy',n=>
  'C07-4 unknown own draw then 2 real opponent destructions');
 assert.notEqual(JSON.stringify(s),before);
 assert.equal(s.unknown.hand,0,'Never misattribute unknown own draw to opponent');
+const uiSource=fs.readFileSync(__dirname+'/../assets/modules/play-calculator/ui.js','utf8');
+assert(uiSource.includes('robo propio por identificar'),'UI must show unresolved own draws in our hand');
 assert.equal(s.tokens.filter(t=>t.owner==='self'&&t.zone==='hand').length,0,
  'Unknown own draw MUST NOT be a fabricated known physical card');
 assert.equal(field(s).length,1,'Guardian Chimera only own monster');
