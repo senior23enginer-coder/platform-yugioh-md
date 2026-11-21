@@ -434,6 +434,13 @@
           Number.isInteger(op.amount) && op.amount > 0,
           "Coste LP incorrecto",
         );
+      else if (op.op === "drawUnknown")
+        check(phase==="resolve" && rule.deckId===671 &&
+          rule.id==="671:guardian-chimera:draw-destroy" &&
+          rule.actor.cid===16845 && rule.source.includes("cid=16845") &&
+          rule.trigger?.kind==="fusion_summoned" &&
+          op.side==="self" && op.count===1,
+          "Robo desconocido exige Quimera Guardián fusionada de forma acreditada");
       else if (op.op === "damagePerBanishedMonsters")
         check(rule.actor.cid === 9657 && rule.source.includes("cid=9657") &&
           op.side === "opponent" && op.perMonster === 100 &&
@@ -498,6 +505,7 @@
       tokens: E.clone(s.tokens),
       nextId: s.nextId,
       lp: E.clone(s.lp),
+      selfUnknownHand: s.selfUnknownHand||0,
       normalAvailable: !s._normal,
       _normal: s._normal,
       _xyz: s._xyz,
@@ -600,6 +608,10 @@
           )
           .slice(0, 40);
       for (const refs of bindings.slice(0, 40)) {
+        // The two opponent field selections are unordered, not named targets:
+        // canonicalize pair order without forbidding same-name cards.
+        if(rule.actor.cid===16845 && refs.first && refs.second &&
+          refs.first>refs.second)continue;
         const actor = s.tokens.find((t) => t.uid === refs.actor) ||
           (options.prepared?.actorKey ? { key: options.prepared.actorKey } : null);
         if (!actor) continue;
@@ -733,6 +745,8 @@
             const actual = selected.map(t=>db.bindings[t.key]).sort((a,b)=>a-b);
             const required = [...op.materialCids].sort((a,b)=>a-b);
             check(actual.every((cid,i)=>cid===required[i]), "Materiales no coinciden con la receta exacta");
+            const fromHand=selected.filter(t=>t.zone==="hand").length;
+            const fromField=selected.filter(t=>E.isMonster(t.zone)).length;
             const extraCard=n.self.cards.filter(c=>c.section==="extra" && db.bindings[c.key]===op.cid);
             check(extraCard.length===1,"Monstruo de Fusión no encontrado de forma única en el Extra");
             for(const t of selected)n=E.place(n,{uid:t.uid,
@@ -741,7 +755,10 @@
             n=E.place(n,previous?{uid:previous.uid,zone:op.to,controller:"self"}:{key:extraCard[0].key,owner:"self",controller:"self",zone:op.to});
             const summoned=n.tokens.find(t=>t.key===extraCard[0].key && t.zone===op.to);
             n=E.position(n,summoned.uid,"attack");
-            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"fusion_summon",cid:op.cid,uid:summoned.uid,materials:selected.map(t=>t.uid),turn:n.turn,stage:opStage}];
+            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"fusion_summon",cid:op.cid,uid:summoned.uid,
+              materials:selected.map(t=>t.uid),fromHand,fromField,
+              sourceCid:db.bindings[actor.key],captureRevision:n._captureRevision,
+              turn:n.turn,stage:opStage}];
           } else if (op.op === "destroy") {
             const t = n.tokens.find((t) => t.uid === refs[op.ref]);
             check(t && (field(t.zone) || t.zone === "hand"), "Objetivo de destrucción fuera de campo/mano");
@@ -834,6 +851,10 @@
               !(op.from === "extra" && (E.isMonster(op.to) || op.to === "hand")),
               "Invocacion o retorno desde Extra requiere un procedimiento de materiales acreditado",
             );
+            // Unknown own draws may contain any Main card. Until identified,
+            // a later search/mill cannot safely claim a specific copy is in Deck.
+            check(!(op.side==="self" && op.from==="deck" && n.selfUnknownHand>0),
+              "Robo propio de identidad desconocida: identifica la carta antes de buscar o enviar desde Deck");
             const cards = n[op.side].cards.filter(
               (c) =>
                 db.bindings[c.key] === op.cid &&
@@ -892,6 +913,19 @@
             n.lp = Resources.applyLP(n.lp, op);
           } else if (op.op === "damage") {
             n.lp = Resources.applyLP(n.lp, op);
+          } else if (op.op === "drawUnknown") {
+            const event=(n._ruleEvents||[]).find(e=>e.kind==="fusion_summon" &&
+              e.uid===refs.actor && e.cid===16845 && e.sourceCid===19904 &&
+              e.fromHand===1 && e.fromField===2 && e.turn===n.turn &&
+              e.captureRevision===n._captureRevision);
+            check(event,"Quimera requiere Fusión con Mágica y un material de mano y dos del Campo en esta ventana");
+            const ownMain=n.self.cards.filter(c=>c.section==="main").reduce((v,c)=>v+c.quantity,0);
+            const known=n.tokens.filter(t=>t.owner==="self" &&
+              E.definition(n,t.key,t.owner)?.section==="main").length;
+            check(ownMain-known-(n.selfUnknownHand||0)>=op.count,"Main sin cartas físicas suficientes para robar");
+            n.selfUnknownHand=(n.selfUnknownHand||0)+op.count;
+            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"draw_unknown",side:"self",
+              count:op.count,sourceCid:16845,turn:n.turn,stage:opStage}];
           } else if (op.op === "damagePerBanishedMonsters") {
             const visibleBanished = n.tokens.filter(t=>t.owner==="self" &&
               t.zone==="banished" && t.position!=="set");

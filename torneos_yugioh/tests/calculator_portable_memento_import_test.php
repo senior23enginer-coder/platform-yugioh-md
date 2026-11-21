@@ -5,13 +5,13 @@ require dirname(__DIR__).'/includes/decks/data-package.php';
 $source=dirname(__DIR__).'/assets/editorial/20261117-folder-delivery-v40/671.json';
 $study=ygo_data_read($source);
 $rules=$study['calculator']['rules']??[];
-if(count($rules)!==309)throw new RuntimeException('Expected 309 portable Memento variants');
-if(count(array_unique(array_column($rules,'id')))!==52)
-    throw new RuntimeException('Expected 52 stable effect IDs');
+if(count($rules)!==315)throw new RuntimeException('Expected 315 portable Memento variants');
+if(count(array_unique(array_column($rules,'id')))!==53)
+    throw new RuntimeException('Expected 53 stable effect IDs');
 $base=['deck_id'=>671,'format'=>$study['format'],'cards'=>$study['cards'],'routes'=>$study['routes']];
 $raw="\x60\x60\x60json\n".ygo_data_json($study['calculator'])."\n\x60\x60\x60";
 $accepted=ygo_data_calculator($raw,$base,671);
-if(count($accepted['calculator']['rules']??[])!==309)
+if(count($accepted['calculator']['rules']??[])!==315)
     throw new RuntimeException('Complete portable calculator payload was rejected');
 if(count(array_filter($rules,static fn(array $r):bool=>($r['resolve'][0]['op']??'')==='xyzOverlay'))!==7)
     throw new RuntimeException('TY-PHON alternate material selectors missing');
@@ -41,4 +41,4 @@ $invalidOverlay['actor']['cids'][0]=999999;
 $foreignMaterial['rules']=[$invalidOverlay];
 $reject($foreignMaterial,'foreign alternate TY-PHON material');
 if(isset($base['calculator']))throw new RuntimeException('Import mutated input');
-echo "PASS Memento PHP import: 309 variants, 52 IDs, 7 TY-PHON, duplicate/policy/foreign actor rejected.\n";
+echo "PASS Memento PHP import: 315 variants, 53 IDs, 7 TY-PHON, duplicate/policy/foreign actor rejected.\n";

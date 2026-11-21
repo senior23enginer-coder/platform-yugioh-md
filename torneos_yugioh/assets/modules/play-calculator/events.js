@@ -32,6 +32,10 @@
         return e.kind === "link_summon" && e.side === "self" &&
           e.usedExtraDeckMaterial === true && Number.isInteger(e.captureRevision) &&
           e.captureRevision === state._captureRevision;
+      if (rule.trigger.kind === "fusion_summoned" && rule.actor.cid === 16845)
+        return e.kind === "fusion_summon" && e.sourceCid === 19904 &&
+          e.fromHand === 1 && e.fromField === 2 &&
+          Number.isInteger(e.captureRevision) && e.captureRevision === state._captureRevision;
       if (rule.trigger.kind === "sent_by_monster_effect")
         return e.kind === "sent_to_graveyard" && e.sourceCid === rule.trigger.sourceCid;
       if (rule.trigger.kind === "destroyed_by_effect")

@@ -92,6 +92,8 @@
       normalAvailable: true,
       lp: { self: 8000, opponent: 8000 },
       unknown: { hand: 0, banished: 0 },
+      // Unidentified draws from OUR deck, never the opponent unknown.hand counter.
+      selfUnknownHand: 0,
       opponentHandComplete: false,
       notes: "",
       tokens: [],
@@ -214,6 +216,14 @@
         ),
       "Cantidad de cartas desconocidas inválida.",
     );
+    if (s.selfUnknownHand !== undefined) {
+      const ownMain = s.self.cards.filter(c=>c.section==="main").reduce((n,c)=>n+c.quantity,0);
+      const knownMain = s.tokens.filter(t=>t.owner==="self" &&
+        s.self.cards.some(c=>c.key===t.key && c.section==="main")).length;
+      assert(Number.isInteger(s.selfUnknownHand) && s.selfUnknownHand>=0 &&
+        s.selfUnknownHand<=99 && knownMain+s.selfUnknownHand<=ownMain,
+        "Robo propio desconocido excede las cartas disponibles del Main.");
+    }
     assert(
       typeof s.notes === "string" &&
         s.notes.length <= 4000 &&
@@ -340,6 +350,10 @@
           position: key === "unknown" ? "set" : "attack",
         };
         next.tokens.push(token);
+        // When the player reveals a drawn card and registers its identity in hand,
+        // consume a prior unknown OWN draw instead of inventing another card.
+        if (owner==="self" && zone==="hand" && next.selfUnknownHand>0)
+          next.selfUnknownHand--;
       } else {
         if (!isMonster(zone))
           assert(

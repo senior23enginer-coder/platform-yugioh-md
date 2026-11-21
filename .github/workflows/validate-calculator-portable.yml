@@ -16,6 +16,7 @@ on:
       - 'torneos_yugioh/tests/memento_c04_route_replay_test.cjs'
       - 'torneos_yugioh/tests/memento_c05_route_replay_test.cjs'
       - 'torneos_yugioh/tests/memento_c06_route_replay_test.cjs'
+      - 'torneos_yugioh/tests/memento_c07_route_replay_test.cjs'
       - 'torneos_yugioh/tests/calculator_portable_horus_test.cjs'
       - 'torneos_yugioh/tests/calculator_crystron_smiger_test.cjs'
       - 'torneos_yugioh/tests/calculator_crystron_thystvern_test.cjs'
@@ -87,6 +88,8 @@ jobs:
         run: node torneos_yugioh/tests/memento_c05_route_replay_test.cjs
       - name: Exercise C06 Twin Dragon + Combined Creation documented no-response route
         run: node torneos_yugioh/tests/memento_c06_route_replay_test.cjs
+      - name: Exercise C07 exact Chimera drawing unknown card and destroying two known opponent cards
+        run: node torneos_yugioh/tests/memento_c07_route_replay_test.cjs
       - name: Audit M01 actor coverage and replay certification (informational, not closure)
         run: node torneos_yugioh/tests/memento_m01_acceptance_audit_test.cjs
       - name: Execute full Memento A07 effect regression suite

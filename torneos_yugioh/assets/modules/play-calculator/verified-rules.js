@@ -49,6 +49,637 @@
     if (id === 671) return [
       {
         "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fusión Mementotlán C07: Angbruja+Desvantasma en Campo y Dormiveja de mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "angwitch",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19364,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 16845,
+            "materials": [
+              "angwitch",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19364,
+              19472,
+              20199
+            ],
+            "to": "m1",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C07 exacto: Quimera Guardián requiere tres nombres distintos, al menos un material de mano y uno de Campo; esta receta usa un Dormiveja de mano y Angbruja+Desvantasma de Campo con Fusión Mementotlán. No usa materiales de Cementerio y no otorga protección de Polimerización. No certifica otras recetas."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fusión Mementotlán C07: Angbruja+Desvantasma en Campo y Dormiveja de mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "angwitch",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19364,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 16845,
+            "materials": [
+              "angwitch",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19364,
+              19472,
+              20199
+            ],
+            "to": "m2",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C07 exacto: Quimera Guardián requiere tres nombres distintos, al menos un material de mano y uno de Campo; esta receta usa un Dormiveja de mano y Angbruja+Desvantasma de Campo con Fusión Mementotlán. No usa materiales de Cementerio y no otorga protección de Polimerización. No certifica otras recetas."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fusión Mementotlán C07: Angbruja+Desvantasma en Campo y Dormiveja de mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "angwitch",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19364,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 16845,
+            "materials": [
+              "angwitch",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19364,
+              19472,
+              20199
+            ],
+            "to": "m3",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C07 exacto: Quimera Guardián requiere tres nombres distintos, al menos un material de mano y uno de Campo; esta receta usa un Dormiveja de mano y Angbruja+Desvantasma de Campo con Fusión Mementotlán. No usa materiales de Cementerio y no otorga protección de Polimerización. No certifica otras recetas."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fusión Mementotlán C07: Angbruja+Desvantasma en Campo y Dormiveja de mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "angwitch",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19364,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 16845,
+            "materials": [
+              "angwitch",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19364,
+              19472,
+              20199
+            ],
+            "to": "m4",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C07 exacto: Quimera Guardián requiere tres nombres distintos, al menos un material de mano y uno de Campo; esta receta usa un Dormiveja de mano y Angbruja+Desvantasma de Campo con Fusión Mementotlán. No usa materiales de Cementerio y no otorga protección de Polimerización. No certifica otras recetas."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fusión Mementotlán C07: Angbruja+Desvantasma en Campo y Dormiveja de mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "angwitch",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19364,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 16845,
+            "materials": [
+              "angwitch",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19364,
+              19472,
+              20199
+            ],
+            "to": "m5",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C07 exacto: Quimera Guardián requiere tres nombres distintos, al menos un material de mano y uno de Campo; esta receta usa un Dormiveja de mano y Angbruja+Desvantasma de Campo con Fusión Mementotlán. No usa materiales de Cementerio y no otorga protección de Polimerización. No certifica otras recetas."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:guardian-chimera:draw-destroy",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Quimera Guardián C07: roba 1 carta desconocida y destruye 2 cartas rivales reales",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=16845&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 16845,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "trigger": {
+          "kind": "fusion_summoned",
+          "actorCid": 16845
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "first",
+            "selector": {
+              "side": "opponent",
+              "zones": [
+                "field-all"
+              ]
+            }
+          },
+          {
+            "ref": "second",
+            "selector": {
+              "side": "opponent",
+              "zones": [
+                "field-all"
+              ]
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "drawUnknown",
+            "side": "self",
+            "count": 1
+          },
+          {
+            "op": "destroy",
+            "ref": "first",
+            "reason": "effect"
+          },
+          {
+            "op": "destroy",
+            "ref": "second",
+            "reason": "effect"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "assumptions": [
+          "Sólo inmediatamente tras Fusión acreditada mediante Mementotlan Fusion (Mágica CID19904), usando 1 monstruo de mano y 2 del Campo. Robo de identidad desconocida propia; no se convierte en una carta conocida ni se confunde con información desconocida rival. Requiere 2 cartas rivales físicas conocidas y destruibles, seleccionadas para resolución sin designarlas como objetivos de activación. No garantiza destrucción contra inmunidades no modeladas. La protección de Quimera requiere la Mágica Polimerización exacta en Cementerio, que no es Fusión Mementotlán."
+        ]
+      },
+
+      {
+        "version": 1,
         "id": "671:twin-dragon:fusion-search",
         "deckId": 671,
         "format": "tcg_advanced",

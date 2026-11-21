@@ -20,6 +20,7 @@
     ["take", "both", "generic"],
     ["payLP", "both", "generic"],
     ["damage", "both", "generic"],
+    ["drawUnknown", "resolve", "restricted"],
     ["damagePerBanishedMonsters", "resolve", "restricted"],
     ["recoverLP", "both", "generic"],
     ["negate", "both", "generic"],
