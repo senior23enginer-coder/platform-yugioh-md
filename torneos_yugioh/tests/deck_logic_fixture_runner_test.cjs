@@ -8,7 +8,7 @@ const rule={
  actor:{side:'self',zones:['hand'],cid:19367},
  guards:[{kind:'state',field:'phase',values:['main1']}],
  select:[],costs:[],resolve:[{op:'move',ref:'actor',to:'field',position:'attack'}],
- tags:[],assumptions:[],activation:true,oncePerTurn:true
+ tags:[],assumptions:['Escenario estrictamente sintético: no certifica una carta real'],activation:true,oncePerTurn:true
 };
 const bundle={schema:'station-x-logic-case-fixtures/1',deck_id:999999,
  format:'tcg_advanced',
