@@ -291,7 +291,12 @@
     },
     {
       "id": "C09",
-      "status": "NO_REPLAY_CERTIFIED"
+      "status": "REPLAY_CERTIFIED",
+      "scope": "exact-opening-no-opponent-response",
+      "test": "torneos_yugioh/tests/memento_c09_route_replay_test.cjs",
+      "documented_steps": 5,
+      "executed_transitions": 8,
+      "limits": "Ruta exacta iniciada con Angbruja+Goblin en mano, Grabador físico de Deck, Luna y Réquiem de Extra, Réquiem equipado y vinculado a Grabador. Princesa se Invoca por procedimiento al enviar materiales; no es Fusión ordinaria ni envío para activar carta o efecto. No acredita otras combinaciones, cadenas rivales o efecto posterior de robo/equipar."
     },
     {
       "id": "C10",
