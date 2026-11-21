@@ -255,7 +255,12 @@
     },
     {
       "id": "C05",
-      "status": "NO_REPLAY_CERTIFIED"
+      "status": "REPLAY_CERTIFIED",
+      "scope": "exact-opening-no-opponent-response",
+      "test": "torneos_yugioh/tests/memento_c05_route_replay_test.cjs",
+      "documented_steps": 9,
+      "executed_transitions": 13,
+      "limits": "Replay del starter físico Hoja Oscura, dos copias diferentes de Fusión, sin respuestas del rival. No certifica cadenas, otras aperturas, variantes de objetivos, ubicaciones exactas ni legalidad del formato."
     },
     {
       "id": "C06",
