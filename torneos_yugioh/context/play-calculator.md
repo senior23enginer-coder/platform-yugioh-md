@@ -13,7 +13,7 @@ reescribe inventarios o revisiones del editor.
 - **671 Memento:** 41 Main, 15 Extra, 14 Side; 12 rutas con 69 pasos
   sincronizados, 12 diagramas de resultado ilustrativos; 278 variantes
   portables agrupadas en 51 IDs de efecto. Son 29/39 identidades con al menos una regla de actor; faltan 10, y las
-  3/12 rutas (C01, C02 y C03) con replay de apertura exacta sin respuesta rival; las 9 restantes carecen de replay completo certificado. No se certifican cadenas ni legalidad universal.
+  4/12 rutas (C01–C04) con replay de apertura exacta sin respuesta rival; las 8 restantes carecen de replay completo certificado. No se certifican cadenas ni legalidad universal.
 - **677 Crystron/Horus:** 40 Main, 15 Extra, 15 Side; 14 rutas con 60 pasos,
   14 diagramas de resultado ilustrativos; 13 variantes portables:
   2 procedimientos Horus en GY, 2 acciones Smiger, 5 alternativas de búsqueda
@@ -93,7 +93,7 @@ valida los IDs compartidos y el procedimiento especial TY-PHON, y rechaza
 duplicados o actores ajenos. Las pruebas focales incluyen carga e
 interpretación de la secuencia Goblin → Desvantasma → recuperación desde el
 estudio real. **No existe certificación integral de los 34 controles A07 ni
-reproducción certificada de las 9 rutas A09 restantes**, y la suite nativa completa
+reproducción certificada de las 8 rutas A09 restantes**, y la suite nativa completa
 debe ejecutarse antes de desplegar a producción.
 
 **Criterios de entrada para la siguiente tarea (contrato universal):**
