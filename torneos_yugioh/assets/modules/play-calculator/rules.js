@@ -213,6 +213,10 @@
             Object.keys(g).length===4
           : g.event === "opponent_main_deck_add"
           ? g.side === "opponent" && g.currentTurn === true && Object.keys(g).length === 4
+          : g.event === "monster_sent_from_hand_activation"
+          ? g.side === "self" && g.currentTurn === true &&
+            rule.actor.cid === 20423 && rule.id === "671:princess:trigger-draw" &&
+            Object.keys(g).length === 4
           : g.event === "owned_monster_destroyed_by_effect_this_turn"
           ? Object.keys(g).length === 2
           : ["destroy", "summon", "fusion_summon"].includes(g.event) &&
@@ -459,11 +463,16 @@
           "Destierro temporal S:P exige activación rival observada y dos monstruos fijados");
       else if (op.op === "drawUnknown")
         check(phase==="resolve" && rule.deckId===671 &&
-          rule.id==="671:guardian-chimera:draw-destroy" &&
+          ((rule.id==="671:guardian-chimera:draw-destroy" &&
           rule.actor.cid===16845 && rule.source.includes("cid=16845") &&
           rule.trigger?.kind==="fusion_summoned" &&
-          op.side==="self" && op.count===1,
-          "Robo desconocido exige Quimera Guardián fusionada de forma acreditada");
+          op.side==="self" && op.count===1) ||
+          (rule.id==="671:princess:trigger-draw" &&
+          rule.actor.cid===20423 && rule.source.includes("cid=20423") &&
+          rule.guards.some(g=>g.kind==="event" &&
+            g.event==="monster_sent_from_hand_activation") &&
+          op.side==="self" && op.count===1)),
+          "Robo desconocido exige disparador acreditado de Quimera o Princesa");
       else if (op.op === "damagePerBanishedMonsters")
         check(rule.actor.cid === 9657 && rule.source.includes("cid=9657") &&
           op.side === "opponent" && op.perMonster === 100 &&
@@ -902,6 +911,13 @@
             });
             if (n.tokens.some((x) => x.uid === t.uid))
               n = E.position(n, t.uid, op.position);
+            if(opStage==="cost" && t.owner==="self" && t.zone==="hand" &&
+              destination==="graveyard" && rule.activation &&
+              db.facts?.[db.bindings[t.key]]?.kind==="monster")
+              n._ruleEvents=[...(n._ruleEvents||[]),{
+                kind:"monster_sent_from_hand_activation",side:"self",
+                uid:t.uid,cid:db.bindings[t.key],sourceRuleId:rule.id,
+                turn:n.turn,stage:"cost"}];
             if(op.summonMethod) n._ruleEvents=[...(n._ruleEvents||[]),
               {kind:"summon",method:op.summonMethod,uid:t.uid,
                 cid:db.bindings[t.key],turn:n.turn,stage:opStage}];
@@ -1004,18 +1020,25 @@
               sourceCid:19188,uids:record.map(t=>t.uid),turn:n.turn,
               stage:opStage}];
           } else if (op.op === "drawUnknown") {
-            const event=(n._ruleEvents||[]).find(e=>e.kind==="fusion_summon" &&
-              e.uid===refs.actor && e.cid===16845 && e.sourceCid===19904 &&
-              e.fromHand===1 && e.fromField===2 && e.turn===n.turn &&
-              e.captureRevision===n._captureRevision);
-            check(event,"Quimera requiere Fusión con Mágica y un material de mano y dos del Campo en esta ventana");
+            const event=rule.actor.cid===20423
+              ? (n._ruleEvents||[]).find(e=>
+                  e.kind==="monster_sent_from_hand_activation" &&
+                  e.side==="self" && e.turn===n.turn &&
+                  e.captureRevision===n._captureRevision)
+              : (n._ruleEvents||[]).find(e=>e.kind==="fusion_summon" &&
+                  e.uid===refs.actor && e.cid===16845 && e.sourceCid===19904 &&
+                  e.fromHand===1 && e.fromField===2 && e.turn===n.turn &&
+                  e.captureRevision===n._captureRevision);
+            check(event,rule.actor.cid===20423
+              ?"Princesa requiere el envío real de monstruo desde mano como coste de activación en esta ventana"
+              :"Quimera requiere Fusión con Mágica y un material de mano y dos del Campo en esta ventana");
             const ownMain=n.self.cards.filter(c=>c.section==="main").reduce((v,c)=>v+c.quantity,0);
             const known=n.tokens.filter(t=>t.owner==="self" &&
               E.definition(n,t.key,t.owner)?.section==="main").length;
             check(ownMain-known-(n.selfUnknownHand||0)>=op.count,"Main sin cartas físicas suficientes para robar");
             n.selfUnknownHand=(n.selfUnknownHand||0)+op.count;
             n._ruleEvents=[...(n._ruleEvents||[]),{kind:"draw_unknown",side:"self",
-              count:op.count,sourceCid:16845,turn:n.turn,stage:opStage}];
+              count:op.count,sourceCid:rule.actor.cid,turn:n.turn,stage:opStage}];
           } else if (op.op === "damagePerBanishedMonsters") {
             const visibleBanished = n.tokens.filter(t=>t.owner==="self" &&
               t.zone==="banished" && t.position!=="set");
@@ -1172,6 +1195,12 @@
           );
           E.validate(n);
           Integrity.validate(n);
+          // Cost events are current only immediately after the complete
+          // activated action resolves, not after any later capture edit.
+          for (const e of (n._ruleEvents||[]).slice((s._ruleEvents||[]).length))
+            if(e.kind==="monster_sent_from_hand_activation" &&
+              e.sourceRuleId===rule.id)
+              e.captureRevision=n._captureRevision;
           if (!options.prepared && ["main1","main2"].includes(n.phase)) {
             n._rulePhaseActions=Timing.countPhaseAction(n);
           }
