@@ -21,6 +21,7 @@ on:
       - 'torneos_yugioh/tests/memento_c09_route_replay_test.cjs'
       - 'torneos_yugioh/tests/memento_c10_route_replay_test.cjs'
       - 'torneos_yugioh/tests/memento_c11_route_replay_test.cjs'
+      - 'torneos_yugioh/tests/memento_c12_route_replay_test.cjs'
       - 'torneos_yugioh/tests/calculator_portable_horus_test.cjs'
       - 'torneos_yugioh/tests/calculator_crystron_smiger_test.cjs'
       - 'torneos_yugioh/tests/calculator_crystron_thystvern_test.cjs'
@@ -102,6 +103,8 @@ jobs:
         run: node torneos_yugioh/tests/memento_c10_route_replay_test.cjs
       - name: Replay C11 Goblin Biker Tribute and two-boss final with physical materials
         run: node torneos_yugioh/tests/memento_c11_route_replay_test.cjs
+      - name: Replay C12 Horn Dragon three face-up targets after Bone Party destruction
+        run: node torneos_yugioh/tests/memento_c12_route_replay_test.cjs
       - name: Audit M01 actor coverage and replay certification (informational, not closure)
         run: node torneos_yugioh/tests/memento_m01_acceptance_audit_test.cjs
       - name: Execute full Memento A07 effect regression suite

@@ -4,7 +4,7 @@ const Verified = require("../assets/modules/play-calculator/verified-rules.js");
 
 // These are executable variants, not independent certified effects or routes.
 const variants = Verified.forDeck(671);
-assert.equal(variants.length, 346, "Memento must preserve all verified fallback variants");
+assert.equal(variants.length, 351, "Memento must preserve all verified fallback variants");
 const byEffect = new Map();
 for (const rule of variants) {
   Rules.validate(rule);

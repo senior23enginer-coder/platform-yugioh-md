@@ -49,6 +49,432 @@
     if (id === 671) return [
       {
         "version": 1,
+        "id": "671:bone-party:main",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fiesta de Huesos C12: destruir Dragón de Cuerno e Invocar Hoja Oscura DEF",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19368
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19361,
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19363,
+            "from": "deck",
+            "to": "m1",
+            "position": "defense",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C12: destruye Dragón de Cuerno propio boca arriba en Campo por efecto, y Invoca desde Deck una copia real de Hoja Oscura en Defensa a zona de monstruos disponible. El Dragón enviado a GY por destrucción conserva su disparador opcional; Hoja Oscura no activa su efecto de descarte sin otra carta Memento disponible."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:bone-party:main",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fiesta de Huesos C12: destruir Dragón de Cuerno e Invocar Hoja Oscura DEF",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19368
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19361,
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19363,
+            "from": "deck",
+            "to": "m2",
+            "position": "defense",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C12: destruye Dragón de Cuerno propio boca arriba en Campo por efecto, y Invoca desde Deck una copia real de Hoja Oscura en Defensa a zona de monstruos disponible. El Dragón enviado a GY por destrucción conserva su disparador opcional; Hoja Oscura no activa su efecto de descarte sin otra carta Memento disponible."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:bone-party:main",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fiesta de Huesos C12: destruir Dragón de Cuerno e Invocar Hoja Oscura DEF",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19368
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19361,
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19363,
+            "from": "deck",
+            "to": "m3",
+            "position": "defense",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C12: destruye Dragón de Cuerno propio boca arriba en Campo por efecto, y Invoca desde Deck una copia real de Hoja Oscura en Defensa a zona de monstruos disponible. El Dragón enviado a GY por destrucción conserva su disparador opcional; Hoja Oscura no activa su efecto de descarte sin otra carta Memento disponible."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:bone-party:main",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fiesta de Huesos C12: destruir Dragón de Cuerno e Invocar Hoja Oscura DEF",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19368
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19361,
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19363,
+            "from": "deck",
+            "to": "m4",
+            "position": "defense",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C12: destruye Dragón de Cuerno propio boca arriba en Campo por efecto, y Invoca desde Deck una copia real de Hoja Oscura en Defensa a zona de monstruos disponible. El Dragón enviado a GY por destrucción conserva su disparador opcional; Hoja Oscura no activa su efecto de descarte sin otra carta Memento disponible."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:bone-party:main",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fiesta de Huesos C12: destruir Dragón de Cuerno e Invocar Hoja Oscura DEF",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19368
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19361,
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19363,
+            "from": "deck",
+            "to": "m5",
+            "position": "defense",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C12: destruye Dragón de Cuerno propio boca arriba en Campo por efecto, y Invoca desde Deck una copia real de Hoja Oscura en Defensa a zona de monstruos disponible. El Dragón enviado a GY por destrucción conserva su disparador opcional; Hoja Oscura no activa su efecto de descarte sin otra carta Memento disponible."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+
+      {
+        "version": 1,
         "id": "671:memento-fusion:fuse",
         "deckId": 671,
         "format": "tcg_advanced",

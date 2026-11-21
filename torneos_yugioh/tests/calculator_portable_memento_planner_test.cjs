@@ -16,8 +16,8 @@ const rows = study.cards.flatMap(c => c.slots.map(s => ({
 const catalog = E.catalog({id:671,name:study.name,format_codes:[study.format]},rows);
 const db = Study.bind(base,[{catalog,study}]);
 assert.equal(db.ruleImports[0].status,"accepted",JSON.stringify(db.ruleImports));
-assert.equal(db.ruleImports[0].count,346);
-assert.equal(db.rules.length,346);
+assert.equal(db.ruleImports[0].count,351);
+assert.equal(db.rules.length,351);
 const goblin = catalog.cards.find(c => db.bindings[c.key]===19366);
 assert(goblin,"Memento Goblin must have an exactly bound native inventory slot");
 let state = E.create(catalog);
@@ -37,4 +37,4 @@ const blocked=Planner.solve(state,db,{...opts,specialBlocked:true});
 assert(!blocked.plans.some(plan=>plan.steps.some(step=>
   step.label.includes("Desvantasma: Invocarse tras envío"))),
   "Blocked Special Summons must reject the Ghattic continuation");
-console.log("Imported 346 Memento variants: Goblin -> Ghattic -> recovery planned and restriction checked.");
+console.log("Imported 351 Memento variants: Goblin -> Ghattic -> recovery planned and restriction checked.");

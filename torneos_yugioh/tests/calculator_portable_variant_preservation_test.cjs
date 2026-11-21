@@ -7,7 +7,7 @@ const Contract = require("../assets/modules/play-calculator/contract.js");
 const id = 671;
 const all = Verified.forDeck(id);
 const siblings = all.filter(rule => rule.id === "671:bone-party:main");
-assert.equal(siblings.length, 48, "Expected exact Memento Bone Party fallback variants");
+assert.equal(siblings.length, 53, "Expected exact Memento Bone Party fallback variants");
 const chosen = siblings[0];
 const catalog = E.catalog({id,name:"Memento",format_codes:["tcg_advanced"]},
   [{deck_id:id,id:1,card_name:"Mementotlan Bone Party",quantity:1,section:"main"}]);
@@ -21,7 +21,7 @@ const db = Study.bind({bindings:{},facts:{}},[{catalog,study}]);
 assert.equal(db.ruleImports[0].status,"accepted",JSON.stringify(db.ruleImports));
 assert.equal(db.ruleImports[0].count,1);
 const retained = db.rules.filter(rule=>rule.id===chosen.id);
-assert.equal(retained.length,48,
+assert.equal(retained.length,53,
   "Portable import of one variant must preserve all 47 remaining fallback variants");
 assert.equal(retained.filter(rule=>JSON.stringify(rule)===JSON.stringify(chosen)).length,1,
   "Exact imported variant must not be duplicated");
@@ -30,12 +30,12 @@ assert.equal(retained.filter(rule=>JSON.stringify(rule)===JSON.stringify(chosen)
 const complete = {...study, calculator:{...study.calculator, rules:siblings}};
 const checked = Contract.validate(complete.calculator,
   {deckId:id,format:"tcg_advanced",actorCids:[19368]});
-assert.equal(checked.rules,48);
+assert.equal(checked.rules,53);
 assert.deepEqual(checked.ids,[chosen.id]);
 const allImported=Study.bind({bindings:{},facts:{}},[{catalog,study:complete}]);
 assert.equal(allImported.ruleImports[0].status,"accepted",
   JSON.stringify(allImported.ruleImports));
-assert.equal(allImported.rules.filter(rule=>rule.id===chosen.id).length,48,
+assert.equal(allImported.rules.filter(rule=>rule.id===chosen.id).length,53,
   "A complete portable import must not duplicate fallback variants");
 assert.throws(()=>Contract.validate({...complete.calculator,
   rules:[...siblings,siblings[0]]}),/duplicado/,
@@ -50,7 +50,7 @@ tampered.calculator.rules[0].label = "Not an official definition";
 const rejected = Study.bind({bindings:{},facts:{}},[{catalog,study:tampered}]);
 assert.equal(rejected.ruleImports[0].status,"rejected",
   "A conflicting imported variant must be rejected");
-assert.equal(rejected.rules.filter(rule=>rule.id===chosen.id).length,48,
+assert.equal(rejected.rules.filter(rule=>rule.id===chosen.id).length,53,
   "A rejected import must preserve all safe fallback variants");
 // CID-less TY-PHON alternate material selectors must be bound to the exact deck
 // inventory just like ordinary actor CIDs.
@@ -66,4 +66,4 @@ assert.throws(()=>Contract.validate({schema:Contract.SCHEMA,deck_id:671,
   format:"tcg_advanced",rules:[foreignTyphon]},
   {deckId:671,format:"tcg_advanced",actorCids:legalMaterials}),
   /Material alternativo sin identidad/);
-console.log("Portable Memento variants: all 48 retained, exact duplicate avoided, tamper rejected.");
+console.log("Portable Memento variants: all 53 retained, exact duplicate avoided, tamper rejected.");
