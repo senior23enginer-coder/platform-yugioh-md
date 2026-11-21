@@ -86,7 +86,62 @@
           "Solo se modela la opción de robar 1 carta después de que un monstruo real haya sido enviado desde la mano propia al Cementerio para activar una carta o efecto; no se modela todavía la opción de equipar ni una cadena rival."
         ],
         "activation": true,
-        "oncePerTurn": true
+        "oncePerTurn": true,
+        "oncePerName": true
+      },
+      {
+        "version": 1,
+        "id": "671:princess:trigger-equip",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Princesa Necroequipo: equipar monstruo enviado desde mano como coste (+500 ATK)",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20423&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20423,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "event",
+            "event": "monster_sent_from_hand_activation",
+            "side": "self",
+            "currentTurn": true
+          }
+        ],
+        "select": [
+          {
+            "ref": "material",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "graveyard"
+              ]
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "princessEquip",
+            "ref": "material",
+            "targetCid": 20423,
+            "to": "free-spell-trap",
+            "atkGain": 500
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Únicamente la copia física de monstruo enviada desde la mano al Cementerio para activar la carta o efecto inmediatamente anterior; se equipa como Mágica de Equipo en zona libre y otorga 500 ATK. Comparte el uso una vez por turno con la opción de robar."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "oncePerName": true
       },
       {
         "version": 1,
