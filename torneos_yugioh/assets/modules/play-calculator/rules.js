@@ -370,6 +370,17 @@
           ["m1","m2","m3","m4","m5"].includes(op.to) &&
           refs.has("equip") && refs.has("fiend"),
           "Princesa requiere Grabador equipado, Réquiem y Demonio de mano físicos");
+      else if (op.op === "princessEquip")
+        check(phase==="resolve" && rule.deckId===671 &&
+          rule.id==="671:princess:trigger-equip" && rule.actor.cid===20423 &&
+          rule.source.includes("cid=20423") && rule.oncePerName===true &&
+          rule.guards.some(g=>g.kind==="event" &&
+            g.event==="monster_sent_from_hand_activation") &&
+          rule.select.some(x=>x.ref==="material" && x.selector.side==="self" &&
+            JSON.stringify(x.selector.zones)===JSON.stringify(["graveyard"])) &&
+          op.ref==="material" && refs.has(op.ref) &&
+          op.targetCid===20423 && op.to==="free-spell-trap" && op.atkGain===500,
+          "Princesa equipa sólo monstruo realmente enviado de mano como coste");
       else if (op.op === "fusion")
         check(
           Number.isInteger(op.cid) && op.cid > 0 &&
@@ -794,6 +805,33 @@
             n=E.position(n,princess.uid,"attack");
             n._ruleEvents=[...(n._ruleEvents||[]),{kind:"necroquip_contact_summon",
               cid:20423,uid:princess.uid,materials:names,turn:n.turn,stage:opStage}];
+          } else if (op.op === "princessEquip") {
+            const princess=n.tokens.find(t=>t.uid===refs.actor && t.owner==="self" &&
+              t.controller==="self" && E.isMonster(t.zone) && t.position!=="set" &&
+              db.bindings[t.key]===20423);
+            const material=n.tokens.find(t=>t.uid===refs.material &&
+              t.owner==="self" && t.zone==="graveyard" &&
+              db.facts?.[db.bindings[t.key]]?.kind==="monster");
+            const witnessed=(n._ruleEvents||[]).some(e=>
+              e.kind==="monster_sent_from_hand_activation" &&
+              e.uid===refs.material && e.side==="self" &&
+              e.turn===n.turn && e.captureRevision===n._captureRevision);
+            check(princess && material && witnessed,
+              "Princesa sólo puede equipar el monstruo realmente enviado como coste desde mano");
+            const slot=["s1","s2","s3","s4","s5"].find(zone=>
+              !(options.blockedZones||[]).includes(zone) &&
+              !n.tokens.some(t=>t.controller==="self"&&t.zone===zone));
+            check(slot,"No queda zona de Magia/Trampa para equipar a Princesa");
+            const currentATK=Number.isInteger(princess.currentATK) ?
+              princess.currentATK : db.facts?.[20423]?.atk;
+            check(Number.isInteger(currentATK),
+              "ATK actual de Princesa sin determinar");
+            n=E.place(n,{uid:material.uid,zone:slot,controller:"self"});
+            n.tokens.find(t=>t.uid===material.uid).equippedToUid=princess.uid;
+            n.tokens.find(t=>t.uid===princess.uid).currentATK=currentATK+500;
+            n._ruleEvents=[...(n._ruleEvents||[]),{
+              kind:"princess_equip",cid:20423,materialUid:material.uid,
+              gain:500,turn:n.turn,stage:opStage}];
           } else if (op.op === "fusion") {
             check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.xyzOnly || heatWaveBlocks(f,db,op.cid)), "Fusión bloqueada por restricción de Extra, Especial u Oleada de Calor");
             check(!(options.blockedZones || []).includes(op.to), "Zona Extra bloqueada");
