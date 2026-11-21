@@ -8,6 +8,7 @@ on:
       - 'torneos_yugioh/assets/editorial/20261117-folder-delivery-v40/677.json'
       - 'torneos_yugioh/assets/editorial/20261117-folder-delivery-v40/671.json'
       - 'torneos_yugioh/tests/calculator_portable_memento_test.cjs'
+      - 'torneos_yugioh/tests/memento_goblin_biker_breakout_test.cjs'
       - 'torneos_yugioh/tests/calculator_portable_horus_test.cjs'
       - 'torneos_yugioh/tests/calculator_crystron_smiger_test.cjs'
       - 'torneos_yugioh/tests/calculator_crystron_thystvern_test.cjs'
@@ -63,6 +64,8 @@ jobs:
         run: node torneos_yugioh/tests/memento_gordian_slicer_test.cjs
       - name: Verify Aero Shark cost and dynamic damage from known banished monsters
         run: node torneos_yugioh/tests/memento_aero_shark_damage_test.cjs
+      - name: Verify Goblin Breakout tribute, Quick-Play timing and attack restriction
+        run: node torneos_yugioh/tests/memento_goblin_biker_breakout_test.cjs
       - name: Audit M01 actor coverage and replay certification (informational, not closure)
         run: node torneos_yugioh/tests/memento_m01_acceptance_audit_test.cjs
       - name: Execute full Memento A07 effect regression suite
