@@ -10,7 +10,34 @@ assert.deepEqual(coverage.rules.map(r => r.id), Array.from({length:34}, (_,i) =>
 assert.equal(new Set(coverage.rules.map(r => r.capability)).size, 34);
 assert(coverage.rules.every(r => r.status === 'DOCUMENTED_NOT_ENGINE_TESTED' && r.engine_test_id === null));
 assert.equal(coverage.routes.length, 12);
-assert(coverage.routes.every(r => r.status === 'NO_REPLAY_CERTIFIED'));
+assert.equal(coverage.routes.filter(r=>r.status==='REPLAY_CERTIFIED').length,12,
+  'All C01 through C12 have scoped, physically grounded replays');
+assert.equal(coverage.routes.find(r=>r.id==='C02').test,
+  'torneos_yugioh/tests/memento_c02_route_replay_test.cjs');
+assert.equal(coverage.routes.find(r=>r.id==='C01').test,
+  'torneos_yugioh/tests/memento_c01_route_replay_test.cjs');
+assert.equal(coverage.routes.find(r=>r.id==='C03').test,
+  'torneos_yugioh/tests/memento_c03_route_replay_test.cjs');
+assert.equal(coverage.routes.find(r=>r.id==='C04').test,
+  'torneos_yugioh/tests/memento_c04_route_replay_test.cjs');
+assert.equal(coverage.routes.find(r=>r.id==='C05').test,
+  'torneos_yugioh/tests/memento_c05_route_replay_test.cjs');
+assert.equal(coverage.routes.find(r=>r.id==='C06').test,
+  'torneos_yugioh/tests/memento_c06_route_replay_test.cjs');
+assert.equal(coverage.routes.find(r=>r.id==='C07').test,
+  'torneos_yugioh/tests/memento_c07_route_replay_test.cjs');
+assert.equal(coverage.routes.find(r=>r.id==='C08').test,
+  'torneos_yugioh/tests/memento_c08_route_replay_test.cjs');
+assert.equal(coverage.routes.find(r=>r.id==='C09').test,
+  'torneos_yugioh/tests/memento_c09_route_replay_test.cjs');
+assert.equal(coverage.routes.find(r=>r.id==='C10').test,
+  'torneos_yugioh/tests/memento_c10_route_replay_test.cjs');
+assert.equal(coverage.routes.find(r=>r.id==='C11').test,
+ 'torneos_yugioh/tests/memento_c11_route_replay_test.cjs');
+assert.equal(coverage.routes.find(r=>r.id==='C12').test,
+  'torneos_yugioh/tests/memento_c12_route_replay_test.cjs');
+assert(coverage.routes.every(r=>r.status==='REPLAY_CERTIFIED'),
+  'Unreplayed routes must not be marked complete');
 assert.equal(coverage.partial_route_cases.length,2);
 assert.equal(coverage.partial_route_cases[0].id,'C01');
 assert.equal(coverage.partial_route_cases[1].id,'C02');
@@ -44,4 +71,4 @@ const skeleton = {
  tags:[], activation:true, oncePerTurn:true
 };
 assert.throws(() => rules.validate(skeleton), /Fusión requiere materiales exactos/);
-console.log('A07 Memento: 34 controles documentales sin certificación integral; 12 rutas sin replay; Fusión incompleta rechazada.');
+console.log('A07 Memento: 34 controles pendientes de certificación integral; 12/12 rutas con replay de escenario acotado; Fusión incompleta rechazada.');

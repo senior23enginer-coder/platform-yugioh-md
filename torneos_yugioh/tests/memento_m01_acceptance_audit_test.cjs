@@ -1,0 +1,96 @@
+'use strict';
+// M01 audit: counts identities separately from effect variants. This is NOT a replay.
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const root = path.join(__dirname, '..', 'assets');
+const deck = JSON.parse(fs.readFileSync(path.join(root,
+  'editorial/20261117-folder-delivery-v40/671.json'), 'utf8'));
+const coverage = JSON.parse(fs.readFileSync(path.join(root,
+  'editorial/memento-a07-functional-coverage.json'), 'utf8'));
+assert.equal(deck.deck_id, 671);
+assert.equal(coverage.deck_id, 671);
+const cards = deck.cards.filter(card => Number.isInteger(card.cid) && card.cid > 0);
+const identities = new Set(cards.map(card => card.cid));
+assert.equal(identities.size, cards.length, 'Duplicate CID identity in Memento');
+const rules = deck.calculator?.rules;
+assert(Array.isArray(rules), 'Missing portable calculator rules');
+const actors = new Set();
+const invalidActors = [];
+for (const rule of rules) {
+  if (Number.isInteger(rule.actor?.cid) && rule.actor.cid > 0) {
+    if (!identities.has(rule.actor.cid)) invalidActors.push({id:rule.id, cid:rule.actor.cid});
+    else actors.add(rule.actor.cid);
+  }
+  // No-CID special procedure is not evidence of an individual card actor.
+}
+assert.deepEqual(invalidActors, [], 'Rules must not attribute actors to another deck');
+const missing = cards.filter(card => !actors.has(card.cid))
+  .map(card => ({cid:card.cid,name:card.name}));
+assert(Array.isArray(deck.routes) && Array.isArray(coverage.routes));
+assert.equal(deck.routes.length, coverage.routes.length,
+  'Canonical route count and A07 audit must stay synchronized');
+// An accidental missing route, duplicate ID or dangling test must never inflate M01.
+const expectedRoutes = Array.from({length:12}, (_,i)=>'C'+String(i+1).padStart(2,'0'));
+const actualRoutes = coverage.routes.map(route => route.id).sort();
+assert.deepEqual(actualRoutes, expectedRoutes,
+  'M01 requires each C01-C12 exactly once');
+assert.deepEqual(deck.routes.map(route => route.id).sort(),
+  expectedRoutes.map(id=>'671:A09:'+id).sort(),
+  'Canonical deck routes must match all twelve audited routes');
+const expectedRules = Array.from({length:34}, (_,i)=>'R'+String(i+1).padStart(2,'0'));
+assert.deepEqual(coverage.rules.map(rule=>rule.id).sort(), expectedRules,
+  'A07 audit must enumerate exactly R01-R34');
+for (const entry of coverage.routes) {
+  const candidate=deck.routes.find(route => route.id==='671:A09:'+entry.id);
+  assert(candidate,'Missing canonical route '+entry.id);
+  assert.equal(candidate.replay_certification?.status||'NOT_CERTIFIED',
+    entry.status==='REPLAY_CERTIFIED'?'REPLAY_CERTIFIED':'NOT_CERTIFIED',
+    'Replay status mismatch: '+entry.id);
+  if (entry.status==='REPLAY_CERTIFIED') {
+    const expectedFile='torneos_yugioh/tests/memento_'+entry.id.toLowerCase()+'_route_replay_test.cjs';
+    assert.equal(entry.test,expectedFile,'Unexpected replay test for '+entry.id);
+    assert(fs.existsSync(path.join(__dirname,path.basename(expectedFile))),
+      'Certified route must have a committed runnable replay test: '+entry.id);
+    assert.equal(candidate.replay_certification?.test,expectedFile);
+    assert(Number.isInteger(entry.executed_transitions)&&entry.executed_transitions>0,
+      'Replay needs executed transitions: '+entry.id);
+  }
+}
+for(const rule of coverage.rules.filter(rule=>rule.status==='ENGINE_CERTIFIED_GENERAL')){
+  assert(typeof rule.engine_test_id==='string'&&rule.engine_test_id.trim(),
+    'General A07 rule needs test evidence: '+rule.id);
+  assert(fs.existsSync(path.resolve(__dirname,'..','..',rule.engine_test_id)),
+    'General A07 rule test does not exist: '+rule.id);
+}
+const uncertified = coverage.routes.filter(route => route.status !== 'REPLAY_CERTIFIED');
+for (const entry of coverage.routes.filter(route=>route.status==='REPLAY_CERTIFIED')) {
+  const candidate=deck.routes.find(route=>route.id===deck.deck_id+':A09:'+entry.id);
+  assert(candidate?.replay_certification?.test===entry.test,
+    'Certified route must point to the same runnable test in canonical deck and audit');
+  assert(candidate.replay_certification.status==='REPLAY_CERTIFIED',
+    'Do not claim replay without explicit source evidence');
+  assert(entry.scope===(entry.id==='C08' ?
+    'exact-opening-observed-opponent-activation-no-further-response' :
+    'exact-opening-no-opponent-response'),
+    'No-response certification is narrower than general duel or chain legality');
+}
+const report = {
+  schema:'station-x-m01-acceptance-audit/1',
+  deck_id:671,
+  card_identities:cards.length,
+  actor_covered_identities:actors.size,
+  missing_actor_identities:missing,
+  portable_variants:rules.length,
+  distinct_effect_ids:new Set(rules.map(rule => rule.id)).size,
+  documented_routes:deck.routes.length,
+  certified_replays:coverage.routes.length-uncertified.length,
+  uncertified_route_ids:uncertified.map(route => route.id),
+  // Restricted fixtures do not prove all A07 capabilities in arbitrary states.
+  unverified_general_rules:coverage.rules.filter(rule => rule.status !== 'ENGINE_CERTIFIED_GENERAL').map(rule => rule.id),
+  complete:missing.length===0 && uncertified.length===0 &&
+    coverage.rules.every(rule => rule.status === 'ENGINE_CERTIFIED_GENERAL')
+};
+console.log(JSON.stringify(report));
+if (process.argv.includes('--require-complete'))
+  assert(report.complete, 'M01 cannot close: missing actors, uncertified replays or unverified A07 rules');

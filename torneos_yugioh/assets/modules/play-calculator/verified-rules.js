@@ -48,6 +48,10822 @@
     )];
     if (id === 671) return [
       {
+        "version": 1,
+        "id": "671:princess:trigger-draw",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Princesa Necroequipo: robar 1 carta después del envío de monstruo de mano como coste de activación",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20423&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20423,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "event",
+            "event": "monster_sent_from_hand_activation",
+            "side": "self",
+            "currentTurn": true
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "drawUnknown",
+            "side": "self",
+            "count": 1
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Solo se modela la opción de robar 1 carta después de que un monstruo real haya sido enviado desde la mano propia al Cementerio para activar una carta o efecto; no se modela todavía la opción de equipar ni una cadena rival."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "oncePerName": true
+      },
+      {
+        "version": 1,
+        "id": "671:princess:trigger-equip",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Princesa Necroequipo: equipar monstruo enviado desde mano como coste (+500 ATK)",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20423&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20423,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "event",
+            "event": "monster_sent_from_hand_activation",
+            "side": "self",
+            "currentTurn": true
+          }
+        ],
+        "select": [
+          {
+            "ref": "material",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "graveyard"
+              ]
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "princessEquip",
+            "ref": "material",
+            "targetCid": 20423,
+            "to": "free-spell-trap",
+            "atkGain": 500
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Únicamente la copia física de monstruo enviada desde la mano al Cementerio para activar la carta o efecto inmediatamente anterior; se equipa como Mágica de Equipo en zona libre y otorga 500 ATK. Comparte el uso una vez por turno con la opción de robar."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "oncePerName": true
+      },
+      {
+        "version": 1,
+        "id": "671:bone-party:main",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fiesta de Huesos C12: destruir Dragón de Cuerno e Invocar Hoja Oscura DEF",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19368
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19361,
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19363,
+            "from": "deck",
+            "to": "m1",
+            "position": "defense",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C12: destruye Dragón de Cuerno propio boca arriba en Campo por efecto, y Invoca desde Deck una copia real de Hoja Oscura en Defensa a zona de monstruos disponible. El Dragón enviado a GY por destrucción conserva su disparador opcional; Hoja Oscura no activa su efecto de descarte sin otra carta Memento disponible."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:bone-party:main",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fiesta de Huesos C12: destruir Dragón de Cuerno e Invocar Hoja Oscura DEF",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19368
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19361,
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19363,
+            "from": "deck",
+            "to": "m2",
+            "position": "defense",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C12: destruye Dragón de Cuerno propio boca arriba en Campo por efecto, y Invoca desde Deck una copia real de Hoja Oscura en Defensa a zona de monstruos disponible. El Dragón enviado a GY por destrucción conserva su disparador opcional; Hoja Oscura no activa su efecto de descarte sin otra carta Memento disponible."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:bone-party:main",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fiesta de Huesos C12: destruir Dragón de Cuerno e Invocar Hoja Oscura DEF",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19368
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19361,
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19363,
+            "from": "deck",
+            "to": "m3",
+            "position": "defense",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C12: destruye Dragón de Cuerno propio boca arriba en Campo por efecto, y Invoca desde Deck una copia real de Hoja Oscura en Defensa a zona de monstruos disponible. El Dragón enviado a GY por destrucción conserva su disparador opcional; Hoja Oscura no activa su efecto de descarte sin otra carta Memento disponible."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:bone-party:main",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fiesta de Huesos C12: destruir Dragón de Cuerno e Invocar Hoja Oscura DEF",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19368
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19361,
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19363,
+            "from": "deck",
+            "to": "m4",
+            "position": "defense",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C12: destruye Dragón de Cuerno propio boca arriba en Campo por efecto, y Invoca desde Deck una copia real de Hoja Oscura en Defensa a zona de monstruos disponible. El Dragón enviado a GY por destrucción conserva su disparador opcional; Hoja Oscura no activa su efecto de descarte sin otra carta Memento disponible."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:bone-party:main",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fiesta de Huesos C12: destruir Dragón de Cuerno e Invocar Hoja Oscura DEF",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19368
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19361,
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19363,
+            "from": "deck",
+            "to": "m5",
+            "position": "defense",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C12: destruye Dragón de Cuerno propio boca arriba en Campo por efecto, y Invoca desde Deck una copia real de Hoja Oscura en Defensa a zona de monstruos disponible. El Dragón enviado a GY por destrucción conserva su disparador opcional; Hoja Oscura no activa su efecto de descarte sin otra carta Memento disponible."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Fusión Mementotlán con Goblin + Desvantasma en Campo y Dormiveja en mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19366,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "goblin",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19366,
+              19472,
+              20199
+            ],
+            "to": "m1",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11 exacto: dos Memento reales boca arriba del campo, Goblin + Desvantasma, y Dormiveja real en mano; Fusión Mementotlán invoca Rey Creación del Extra. No presupone invocar con materiales del Cementerio."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Fusión Mementotlán con Goblin + Desvantasma en Campo y Dormiveja en mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19366,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "goblin",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19366,
+              19472,
+              20199
+            ],
+            "to": "m2",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11 exacto: dos Memento reales boca arriba del campo, Goblin + Desvantasma, y Dormiveja real en mano; Fusión Mementotlán invoca Rey Creación del Extra. No presupone invocar con materiales del Cementerio."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Fusión Mementotlán con Goblin + Desvantasma en Campo y Dormiveja en mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19366,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "goblin",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19366,
+              19472,
+              20199
+            ],
+            "to": "m3",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11 exacto: dos Memento reales boca arriba del campo, Goblin + Desvantasma, y Dormiveja real en mano; Fusión Mementotlán invoca Rey Creación del Extra. No presupone invocar con materiales del Cementerio."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Fusión Mementotlán con Goblin + Desvantasma en Campo y Dormiveja en mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19366,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "goblin",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19366,
+              19472,
+              20199
+            ],
+            "to": "m4",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11 exacto: dos Memento reales boca arriba del campo, Goblin + Desvantasma, y Dormiveja real en mano; Fusión Mementotlán invoca Rey Creación del Extra. No presupone invocar con materiales del Cementerio."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Fusión Mementotlán con Goblin + Desvantasma en Campo y Dormiveja en mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19366,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "goblin",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19366,
+              19472,
+              20199
+            ],
+            "to": "m5",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11 exacto: dos Memento reales boca arriba del campo, Goblin + Desvantasma, y Dormiveja real en mano; Fusión Mementotlán invoca Rey Creación del Extra. No presupone invocar con materiales del Cementerio."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Fusión Mementotlán con Goblin + Desvantasma en Campo y Dormiveja en mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19366,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "goblin",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19366,
+              19472,
+              20199
+            ],
+            "to": "emz1",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11 exacto: dos Memento reales boca arriba del campo, Goblin + Desvantasma, y Dormiveja real en mano; Fusión Mementotlán invoca Rey Creación del Extra. No presupone invocar con materiales del Cementerio."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Fusión Mementotlán con Goblin + Desvantasma en Campo y Dormiveja en mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19366,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "goblin",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19366,
+              19472,
+              20199
+            ],
+            "to": "emz2",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11 exacto: dos Memento reales boca arriba del campo, Goblin + Desvantasma, y Dormiveja real en mano; Fusión Mementotlán invoca Rey Creación del Extra. No presupone invocar con materiales del Cementerio."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:creation-king:fusion-send",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Rey Creación envía Creación Combinada, Maza y Dragón de Cuerno",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20216&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20216,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "trigger": {
+          "kind": "fusion_summoned",
+          "actorCid": 20216
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19360,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19365,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19361,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "sendFromDeck"
+        ],
+        "assumptions": [
+          "C11 exacto: después de Invocar Rey Creación mediante Fusión verificada, el efecto puede enviar tres cartas Memento físicas distintas del Deck: Creación Combinada, Maza y Dragón de Cuerno."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Creación Combinada baraja cinco nombres exactos y deja Dormiveja + Maza",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19361
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m1",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11: baraja Angbruja, Tatsun, Goblin, Desvantasma y Dragón de Cuerno físicamente presentes en mano/Cementerio, cinco nombres distintos. Dormiveja y Maza permanecen en GY."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Creación Combinada baraja cinco nombres exactos y deja Dormiveja + Maza",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19361
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m2",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11: baraja Angbruja, Tatsun, Goblin, Desvantasma y Dragón de Cuerno físicamente presentes en mano/Cementerio, cinco nombres distintos. Dormiveja y Maza permanecen en GY."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Creación Combinada baraja cinco nombres exactos y deja Dormiveja + Maza",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19361
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m3",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11: baraja Angbruja, Tatsun, Goblin, Desvantasma y Dragón de Cuerno físicamente presentes en mano/Cementerio, cinco nombres distintos. Dormiveja y Maza permanecen en GY."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Creación Combinada baraja cinco nombres exactos y deja Dormiveja + Maza",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19361
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m4",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11: baraja Angbruja, Tatsun, Goblin, Desvantasma y Dragón de Cuerno físicamente presentes en mano/Cementerio, cinco nombres distintos. Dormiveja y Maza permanecen en GY."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "C11: Creación Combinada baraja cinco nombres exactos y deja Dormiveja + Maza",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19361
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m5",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C11: baraja Angbruja, Tatsun, Goblin, Desvantasma y Dragón de Cuerno físicamente presentes en mano/Cementerio, cinco nombres distintos. Dormiveja y Maza permanecen en GY."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+
+      {
+        "version": 1,
+        "id": "671:bone-party:main",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fiesta de Huesos C10: destruir Goblin en mano e Invocar Desvantasma DEF",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19368
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19472,
+            "from": "deck",
+            "to": "m1",
+            "position": "defense",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C10: Fiesta de Huesos destruye una copia real de Goblin en mano, luego trae del Deck a Desvantasma (nombre diferente) en Defensa en zona legal. Desvantasma no fue enviada al Cementerio: solo su efecto de Invocación puede recuperar Angbruja previamente colocada en el GY."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:bone-party:main",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fiesta de Huesos C10: destruir Goblin en mano e Invocar Desvantasma DEF",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19368
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19472,
+            "from": "deck",
+            "to": "m2",
+            "position": "defense",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C10: Fiesta de Huesos destruye una copia real de Goblin en mano, luego trae del Deck a Desvantasma (nombre diferente) en Defensa en zona legal. Desvantasma no fue enviada al Cementerio: solo su efecto de Invocación puede recuperar Angbruja previamente colocada en el GY."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:bone-party:main",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fiesta de Huesos C10: destruir Goblin en mano e Invocar Desvantasma DEF",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19368
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19472,
+            "from": "deck",
+            "to": "m3",
+            "position": "defense",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C10: Fiesta de Huesos destruye una copia real de Goblin en mano, luego trae del Deck a Desvantasma (nombre diferente) en Defensa en zona legal. Desvantasma no fue enviada al Cementerio: solo su efecto de Invocación puede recuperar Angbruja previamente colocada en el GY."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:bone-party:main",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fiesta de Huesos C10: destruir Goblin en mano e Invocar Desvantasma DEF",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19368
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19472,
+            "from": "deck",
+            "to": "m4",
+            "position": "defense",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C10: Fiesta de Huesos destruye una copia real de Goblin en mano, luego trae del Deck a Desvantasma (nombre diferente) en Defensa en zona legal. Desvantasma no fue enviada al Cementerio: solo su efecto de Invocación puede recuperar Angbruja previamente colocada en el GY."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:bone-party:main",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fiesta de Huesos C10: destruir Goblin en mano e Invocar Desvantasma DEF",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19368
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19472,
+            "from": "deck",
+            "to": "m5",
+            "position": "defense",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C10: Fiesta de Huesos destruye una copia real de Goblin en mano, luego trae del Deck a Desvantasma (nombre diferente) en Defensa en zona legal. Desvantasma no fue enviada al Cementerio: solo su efecto de Invocación puede recuperar Angbruja previamente colocada en el GY."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:engraver:link-sequence",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Grabador y Desvantasma: procedimiento Link-2 exacto hacia Secuencia",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20226&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20196,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "link",
+            "cid": 20226,
+            "materials": [
+              "actor",
+              "ghattic"
+            ],
+            "materialCids": [
+              20196,
+              19472
+            ],
+            "to": "emz1",
+            "recipe": "exact-cids",
+            "linkRating": 2
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C10: Grabador es Demonio LUZ y Desvantasma es Demonio OSCURIDAD, dos monstruos físicos boca arriba propios; su materialización Link no activa por sí sola el efecto de Fusión de Secuencia."
+        ],
+        "activation": false,
+        "oncePerTurn": false
+      },
+      {
+        "version": 1,
+        "id": "671:engraver:link-sequence",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Grabador y Desvantasma: procedimiento Link-2 exacto hacia Secuencia",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20226&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20196,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "link",
+            "cid": 20226,
+            "materials": [
+              "actor",
+              "ghattic"
+            ],
+            "materialCids": [
+              20196,
+              19472
+            ],
+            "to": "emz2",
+            "recipe": "exact-cids",
+            "linkRating": 2
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C10: Grabador es Demonio LUZ y Desvantasma es Demonio OSCURIDAD, dos monstruos físicos boca arriba propios; su materialización Link no activa por sí sola el efecto de Fusión de Secuencia."
+        ],
+        "activation": false,
+        "oncePerTurn": false
+      },
+      {
+        "version": 1,
+        "id": "671:duke:immediate-normal",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Duque de la Defunción: Normal inmediata de Angbruja después del efecto",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20389&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20389,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "witch",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19364
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "immediateNormal",
+            "ref": "witch",
+            "from": "hand",
+            "to": "m1",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "C10: Duque activa su efecto en Main y permite realizar inmediatamente después una Normal adicional de la Angbruja recuperada. Es una Normal adicional de su propio efecto, no reinicia el permiso ordinario consumido previamente; no permite usar de nuevo la búsqueda de Angbruja que ya se activó por nombre."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:duke:immediate-normal",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Duque de la Defunción: Normal inmediata de Angbruja después del efecto",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20389&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20389,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "witch",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19364
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "immediateNormal",
+            "ref": "witch",
+            "from": "hand",
+            "to": "m2",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "C10: Duque activa su efecto en Main y permite realizar inmediatamente después una Normal adicional de la Angbruja recuperada. Es una Normal adicional de su propio efecto, no reinicia el permiso ordinario consumido previamente; no permite usar de nuevo la búsqueda de Angbruja que ya se activó por nombre."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:duke:immediate-normal",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Duque de la Defunción: Normal inmediata de Angbruja después del efecto",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20389&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20389,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "witch",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19364
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "immediateNormal",
+            "ref": "witch",
+            "from": "hand",
+            "to": "m3",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "C10: Duque activa su efecto en Main y permite realizar inmediatamente después una Normal adicional de la Angbruja recuperada. Es una Normal adicional de su propio efecto, no reinicia el permiso ordinario consumido previamente; no permite usar de nuevo la búsqueda de Angbruja que ya se activó por nombre."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:duke:immediate-normal",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Duque de la Defunción: Normal inmediata de Angbruja después del efecto",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20389&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20389,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "witch",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19364
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "immediateNormal",
+            "ref": "witch",
+            "from": "hand",
+            "to": "m4",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "C10: Duque activa su efecto en Main y permite realizar inmediatamente después una Normal adicional de la Angbruja recuperada. Es una Normal adicional de su propio efecto, no reinicia el permiso ordinario consumido previamente; no permite usar de nuevo la búsqueda de Angbruja que ya se activó por nombre."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:duke:immediate-normal",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Duque de la Defunción: Normal inmediata de Angbruja después del efecto",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20389&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20389,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "witch",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19364
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "immediateNormal",
+            "ref": "witch",
+            "from": "hand",
+            "to": "m5",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "C10: Duque activa su efecto en Main y permite realizar inmediatamente después una Normal adicional de la Angbruja recuperada. Es una Normal adicional de su propio efecto, no reinicia el permiso ordinario consumido previamente; no permite usar de nuevo la búsqueda de Angbruja que ya se activó por nombre."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+
+      {
+        "version": 1,
+        "id": "671:princess:contact-summon",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Princesa Necroequipo C09: envío de Grabador equipado y Goblin de mano para Invocación Especial",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20423&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20196,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "equip",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "s1"
+              ],
+              "cid": 20225,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "fiend",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "necroquipSummon",
+            "cid": 20423,
+            "refs": [
+              "actor",
+              "equip",
+              "fiend"
+            ],
+            "materialCids": [
+              20196,
+              20225,
+              19366
+            ],
+            "recipe": "equipped-monster-plus-fiend",
+            "to": "m1"
+          }
+        ],
+        "tags": [],
+        "activation": false,
+        "oncePerTurn": false,
+        "assumptions": [
+          "C09 exacto: Grabador en campo equipado con Réquiem (Carta de Monstruo en S1 unida por UID), Goblin Demonio físico en mano. Envía Grabador y Goblin como materiales de un procedimiento propio de Princesa desde Extra; Réquiem equipado también va al GY al perder su portador. No se utiliza Fusión, no hay activación de efecto para este envío, y Princesa NO roba. Solo puedes controlar una Princesa. No certifica combinaciones con otros Demonios o zonas de equipo."
+        ]
+      },
+      {
+        "version": 1,
+        "id": "671:princess:contact-summon",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Princesa Necroequipo C09: envío de Grabador equipado y Goblin de mano para Invocación Especial",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20423&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20196,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "equip",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "s1"
+              ],
+              "cid": 20225,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "fiend",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "necroquipSummon",
+            "cid": 20423,
+            "refs": [
+              "actor",
+              "equip",
+              "fiend"
+            ],
+            "materialCids": [
+              20196,
+              20225,
+              19366
+            ],
+            "recipe": "equipped-monster-plus-fiend",
+            "to": "m2"
+          }
+        ],
+        "tags": [],
+        "activation": false,
+        "oncePerTurn": false,
+        "assumptions": [
+          "C09 exacto: Grabador en campo equipado con Réquiem (Carta de Monstruo en S1 unida por UID), Goblin Demonio físico en mano. Envía Grabador y Goblin como materiales de un procedimiento propio de Princesa desde Extra; Réquiem equipado también va al GY al perder su portador. No se utiliza Fusión, no hay activación de efecto para este envío, y Princesa NO roba. Solo puedes controlar una Princesa. No certifica combinaciones con otros Demonios o zonas de equipo."
+        ]
+      },
+      {
+        "version": 1,
+        "id": "671:princess:contact-summon",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Princesa Necroequipo C09: envío de Grabador equipado y Goblin de mano para Invocación Especial",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20423&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20196,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "equip",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "s1"
+              ],
+              "cid": 20225,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "fiend",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "necroquipSummon",
+            "cid": 20423,
+            "refs": [
+              "actor",
+              "equip",
+              "fiend"
+            ],
+            "materialCids": [
+              20196,
+              20225,
+              19366
+            ],
+            "recipe": "equipped-monster-plus-fiend",
+            "to": "m3"
+          }
+        ],
+        "tags": [],
+        "activation": false,
+        "oncePerTurn": false,
+        "assumptions": [
+          "C09 exacto: Grabador en campo equipado con Réquiem (Carta de Monstruo en S1 unida por UID), Goblin Demonio físico en mano. Envía Grabador y Goblin como materiales de un procedimiento propio de Princesa desde Extra; Réquiem equipado también va al GY al perder su portador. No se utiliza Fusión, no hay activación de efecto para este envío, y Princesa NO roba. Solo puedes controlar una Princesa. No certifica combinaciones con otros Demonios o zonas de equipo."
+        ]
+      },
+      {
+        "version": 1,
+        "id": "671:princess:contact-summon",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Princesa Necroequipo C09: envío de Grabador equipado y Goblin de mano para Invocación Especial",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20423&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20196,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "equip",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "s1"
+              ],
+              "cid": 20225,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "fiend",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "necroquipSummon",
+            "cid": 20423,
+            "refs": [
+              "actor",
+              "equip",
+              "fiend"
+            ],
+            "materialCids": [
+              20196,
+              20225,
+              19366
+            ],
+            "recipe": "equipped-monster-plus-fiend",
+            "to": "m4"
+          }
+        ],
+        "tags": [],
+        "activation": false,
+        "oncePerTurn": false,
+        "assumptions": [
+          "C09 exacto: Grabador en campo equipado con Réquiem (Carta de Monstruo en S1 unida por UID), Goblin Demonio físico en mano. Envía Grabador y Goblin como materiales de un procedimiento propio de Princesa desde Extra; Réquiem equipado también va al GY al perder su portador. No se utiliza Fusión, no hay activación de efecto para este envío, y Princesa NO roba. Solo puedes controlar una Princesa. No certifica combinaciones con otros Demonios o zonas de equipo."
+        ]
+      },
+      {
+        "version": 1,
+        "id": "671:princess:contact-summon",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Princesa Necroequipo C09: envío de Grabador equipado y Goblin de mano para Invocación Especial",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20423&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20196,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "equip",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "s1"
+              ],
+              "cid": 20225,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "fiend",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "necroquipSummon",
+            "cid": 20423,
+            "refs": [
+              "actor",
+              "equip",
+              "fiend"
+            ],
+            "materialCids": [
+              20196,
+              20225,
+              19366
+            ],
+            "recipe": "equipped-monster-plus-fiend",
+            "to": "m5"
+          }
+        ],
+        "tags": [],
+        "activation": false,
+        "oncePerTurn": false,
+        "assumptions": [
+          "C09 exacto: Grabador en campo equipado con Réquiem (Carta de Monstruo en S1 unida por UID), Goblin Demonio físico en mano. Envía Grabador y Goblin como materiales de un procedimiento propio de Princesa desde Extra; Réquiem equipado también va al GY al perder su portador. No se utiliza Fusión, no hay activación de efecto para este envío, y Princesa NO roba. Solo puedes controlar una Princesa. No certifica combinaciones con otros Demonios o zonas de equipo."
+        ]
+      },
+
+      {
+        "version": 1,
+        "id": "671:sp:temporary-banish",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "S:P C08: desterrar temporalmente S:P propia y monstruo rival hasta End Phase",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19188&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19188,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "opponent"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2",
+              "end"
+            ]
+          },
+          {
+            "kind": "event",
+            "event": "opponent_activation",
+            "side": "opponent",
+            "currentTurn": true
+          }
+        ],
+        "select": [
+          {
+            "ref": "target",
+            "selector": {
+              "side": "opponent",
+              "zones": [
+                "monsters"
+              ],
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "temporaryBanishPair",
+            "refs": [
+              "actor",
+              "target"
+            ],
+            "sourceCid": 19188
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "assumptions": [
+          "C08 requiere activación rival observada con una copia física conocida, S:P propia y monstruo rival boca arriba en Campo. Los dos se destierran hasta End Phase y regresan a zona principal sin Invocación Especial. No se presume ni resuelve el efecto original rival, cadenas posteriores ni inmunidades; se exige confirmación del estado observado. Primer efecto de S:P no se activa al invocarla con sólo materiales del Main."
+        ]
+      },
+
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fusión Mementotlán C07: Angbruja+Desvantasma en Campo y Dormiveja de mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "angwitch",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19364,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 16845,
+            "materials": [
+              "angwitch",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19364,
+              19472,
+              20199
+            ],
+            "to": "m1",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C07 exacto: Quimera Guardián requiere tres nombres distintos, al menos un material de mano y uno de Campo; esta receta usa un Dormiveja de mano y Angbruja+Desvantasma de Campo con Fusión Mementotlán. No usa materiales de Cementerio y no otorga protección de Polimerización. No certifica otras recetas."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fusión Mementotlán C07: Angbruja+Desvantasma en Campo y Dormiveja de mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "angwitch",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19364,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 16845,
+            "materials": [
+              "angwitch",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19364,
+              19472,
+              20199
+            ],
+            "to": "m2",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C07 exacto: Quimera Guardián requiere tres nombres distintos, al menos un material de mano y uno de Campo; esta receta usa un Dormiveja de mano y Angbruja+Desvantasma de Campo con Fusión Mementotlán. No usa materiales de Cementerio y no otorga protección de Polimerización. No certifica otras recetas."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fusión Mementotlán C07: Angbruja+Desvantasma en Campo y Dormiveja de mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "angwitch",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19364,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 16845,
+            "materials": [
+              "angwitch",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19364,
+              19472,
+              20199
+            ],
+            "to": "m3",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C07 exacto: Quimera Guardián requiere tres nombres distintos, al menos un material de mano y uno de Campo; esta receta usa un Dormiveja de mano y Angbruja+Desvantasma de Campo con Fusión Mementotlán. No usa materiales de Cementerio y no otorga protección de Polimerización. No certifica otras recetas."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fusión Mementotlán C07: Angbruja+Desvantasma en Campo y Dormiveja de mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "angwitch",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19364,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 16845,
+            "materials": [
+              "angwitch",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19364,
+              19472,
+              20199
+            ],
+            "to": "m4",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C07 exacto: Quimera Guardián requiere tres nombres distintos, al menos un material de mano y uno de Campo; esta receta usa un Dormiveja de mano y Angbruja+Desvantasma de Campo con Fusión Mementotlán. No usa materiales de Cementerio y no otorga protección de Polimerización. No certifica otras recetas."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fusión Mementotlán C07: Angbruja+Desvantasma en Campo y Dormiveja de mano",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "angwitch",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19364,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "shleepy",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 16845,
+            "materials": [
+              "angwitch",
+              "ghattic",
+              "shleepy"
+            ],
+            "materialCids": [
+              19364,
+              19472,
+              20199
+            ],
+            "to": "m5",
+            "recipe": "exact-cids",
+            "allowGraveyard": false,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C07 exacto: Quimera Guardián requiere tres nombres distintos, al menos un material de mano y uno de Campo; esta receta usa un Dormiveja de mano y Angbruja+Desvantasma de Campo con Fusión Mementotlán. No usa materiales de Cementerio y no otorga protección de Polimerización. No certifica otras recetas."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:guardian-chimera:draw-destroy",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Quimera Guardián C07: roba 1 carta desconocida y destruye 2 cartas rivales reales",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=16845&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 16845,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "trigger": {
+          "kind": "fusion_summoned",
+          "actorCid": 16845
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "first",
+            "selector": {
+              "side": "opponent",
+              "zones": [
+                "field-all"
+              ]
+            }
+          },
+          {
+            "ref": "second",
+            "selector": {
+              "side": "opponent",
+              "zones": [
+                "field-all"
+              ]
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "drawUnknown",
+            "side": "self",
+            "count": 1
+          },
+          {
+            "op": "destroy",
+            "ref": "first",
+            "reason": "effect"
+          },
+          {
+            "op": "destroy",
+            "ref": "second",
+            "reason": "effect"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "assumptions": [
+          "Sólo inmediatamente tras Fusión acreditada mediante Mementotlan Fusion (Mágica CID19904), usando 1 monstruo de mano y 2 del Campo. Robo de identidad desconocida propia; no se convierte en una carta conocida ni se confunde con información desconocida rival. Requiere 2 cartas rivales físicas conocidas y destruibles, seleccionadas para resolución sin designarlas como objetivos de activación. No garantiza destrucción contra inmunidades no modeladas. La protección de Quimera requiere la Mágica Polimerización exacta en Cementerio, que no es Fusión Mementotlán."
+        ]
+      },
+
+      {
+        "version": 1,
+        "id": "671:twin-dragon:fusion-search",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Dragón Gemelo C06: destruir Dormiveja en mano y buscar Creación Combinada + Goblin",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19878&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19878,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 20199
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19360,
+            "from": "deck",
+            "to": "hand",
+            "position": "attack"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19366,
+            "from": "deck",
+            "to": "hand",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C06: Dragón Gemelo fue Invocado por Fusión en este turno y Dormiveja real está en mano; la destruye para buscar Creación Combinada y Goblin, dos nombres diferentes. No se ejecuta la búsqueda si la destrucción no ocurre. Efecto limitado a una vez por turno."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "trigger": {
+          "kind": "fusion_summoned",
+          "actorCid": 19878
+        }
+      },
+      {
+        "version": 1,
+        "id": "671:shleepy:send",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Dormiveja C06: destruida por efecto de Dragón Gemelo, envía Maza del Deck",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20199&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "graveyard"
+          ],
+          "cid": 20199
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19365,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "sendFromDeck"
+        ],
+        "assumptions": [
+          "C06: después de constar la destrucción real por efecto de Dormiveja bajo propiedad propia, enviar Maza física desde el Deck al Cementerio. No simula otras elecciones."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "trigger": {
+          "kind": "destroyed_by_effect",
+          "actorCid": 20199
+        }
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada C06: cinco nombres reales después de Dragón Gemelo",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 20199
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m1",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C06 exacto: baraja Tatsun, Angbruja, Desvantasma, Dormiveja y Maza desde mano o Cementerio, cinco nombres diferentes presentes físicamente, para Invocar Creación Combinada desde mano. Goblin permanece en mano; no se certifica su efecto de protección todavía."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada C06: cinco nombres reales después de Dragón Gemelo",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 20199
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m2",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C06 exacto: baraja Tatsun, Angbruja, Desvantasma, Dormiveja y Maza desde mano o Cementerio, cinco nombres diferentes presentes físicamente, para Invocar Creación Combinada desde mano. Goblin permanece en mano; no se certifica su efecto de protección todavía."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada C06: cinco nombres reales después de Dragón Gemelo",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 20199
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m3",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C06 exacto: baraja Tatsun, Angbruja, Desvantasma, Dormiveja y Maza desde mano o Cementerio, cinco nombres diferentes presentes físicamente, para Invocar Creación Combinada desde mano. Goblin permanece en mano; no se certifica su efecto de protección todavía."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada C06: cinco nombres reales después de Dragón Gemelo",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 20199
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m4",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C06 exacto: baraja Tatsun, Angbruja, Desvantasma, Dormiveja y Maza desde mano o Cementerio, cinco nombres diferentes presentes físicamente, para Invocar Creación Combinada desde mano. Goblin permanece en mano; no se certifica su efecto de protección todavía."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada C06: cinco nombres reales después de Dragón Gemelo",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 20199
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m5",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C06 exacto: baraja Tatsun, Angbruja, Desvantasma, Dormiveja y Maza desde mano o Cementerio, cinco nombres diferentes presentes físicamente, para Invocar Creación Combinada desde mano. Goblin permanece en mano; no se certifica su efecto de protección todavía."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+
+      {
+        "version": 1,
+        "id": "671:19363:normal",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Hoja Oscura: Invocación Normal a zona m1",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19364&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand"
+          ],
+          "cid": 19363
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "normalAvailable",
+            "values": [
+              true
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "summon",
+            "ref": "actor",
+            "method": "normal",
+            "from": "hand",
+            "to": "m1",
+            "position": "attack"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Invocación Normal de Hoja Oscura CID19363 desde una copia física en mano con la Invocación Normal del turno disponible; respeta las restricciones y las zonas del escenario capturado."
+        ],
+        "activation": false,
+        "oncePerTurn": false
+      },
+      {
+        "version": 1,
+        "id": "671:19363:normal",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Hoja Oscura: Invocación Normal a zona m2",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19364&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand"
+          ],
+          "cid": 19363
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "normalAvailable",
+            "values": [
+              true
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "summon",
+            "ref": "actor",
+            "method": "normal",
+            "from": "hand",
+            "to": "m2",
+            "position": "attack"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Invocación Normal de Hoja Oscura CID19363 desde una copia física en mano con la Invocación Normal del turno disponible; respeta las restricciones y las zonas del escenario capturado."
+        ],
+        "activation": false,
+        "oncePerTurn": false
+      },
+      {
+        "version": 1,
+        "id": "671:19363:normal",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Hoja Oscura: Invocación Normal a zona m3",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19364&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand"
+          ],
+          "cid": 19363
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "normalAvailable",
+            "values": [
+              true
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "summon",
+            "ref": "actor",
+            "method": "normal",
+            "from": "hand",
+            "to": "m3",
+            "position": "attack"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Invocación Normal de Hoja Oscura CID19363 desde una copia física en mano con la Invocación Normal del turno disponible; respeta las restricciones y las zonas del escenario capturado."
+        ],
+        "activation": false,
+        "oncePerTurn": false
+      },
+      {
+        "version": 1,
+        "id": "671:19363:normal",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Hoja Oscura: Invocación Normal a zona m4",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19364&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand"
+          ],
+          "cid": 19363
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "normalAvailable",
+            "values": [
+              true
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "summon",
+            "ref": "actor",
+            "method": "normal",
+            "from": "hand",
+            "to": "m4",
+            "position": "attack"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Invocación Normal de Hoja Oscura CID19363 desde una copia física en mano con la Invocación Normal del turno disponible; respeta las restricciones y las zonas del escenario capturado."
+        ],
+        "activation": false,
+        "oncePerTurn": false
+      },
+      {
+        "version": 1,
+        "id": "671:19363:normal",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Hoja Oscura: Invocación Normal a zona m5",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19364&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand"
+          ],
+          "cid": 19363
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "normalAvailable",
+            "values": [
+              true
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "summon",
+            "ref": "actor",
+            "method": "normal",
+            "from": "hand",
+            "to": "m5",
+            "position": "attack"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Invocación Normal de Hoja Oscura CID19363 desde una copia física en mano con la Invocación Normal del turno disponible; respeta las restricciones y las zonas del escenario capturado."
+        ],
+        "activation": false,
+        "oncePerTurn": false
+      },
+
+      {
+        "version": 1,
+        "id": "671:dark-blade:goblin",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Hoja Oscura C05: destruirse e Invocar Angbruja del Deck",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19363&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19363,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "actor",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19364,
+            "from": "deck",
+            "to": "m1",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "summonFromDeck"
+        ],
+        "assumptions": [
+          "C05: Hoja Oscura propio en Campo destruye esa copia mediante su efecto de Main Phase; solo si se destruye, Invoca Angbruja Nivel 3 física del Deck. Se activa una sola vez por turno."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:dark-blade:goblin",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Hoja Oscura C05: destruirse e Invocar Angbruja del Deck",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19363&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19363,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "actor",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19364,
+            "from": "deck",
+            "to": "m2",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "summonFromDeck"
+        ],
+        "assumptions": [
+          "C05: Hoja Oscura propio en Campo destruye esa copia mediante su efecto de Main Phase; solo si se destruye, Invoca Angbruja Nivel 3 física del Deck. Se activa una sola vez por turno."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:dark-blade:goblin",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Hoja Oscura C05: destruirse e Invocar Angbruja del Deck",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19363&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19363,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "actor",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19364,
+            "from": "deck",
+            "to": "m3",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "summonFromDeck"
+        ],
+        "assumptions": [
+          "C05: Hoja Oscura propio en Campo destruye esa copia mediante su efecto de Main Phase; solo si se destruye, Invoca Angbruja Nivel 3 física del Deck. Se activa una sola vez por turno."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:dark-blade:goblin",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Hoja Oscura C05: destruirse e Invocar Angbruja del Deck",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19363&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19363,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "actor",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19364,
+            "from": "deck",
+            "to": "m4",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "summonFromDeck"
+        ],
+        "assumptions": [
+          "C05: Hoja Oscura propio en Campo destruye esa copia mediante su efecto de Main Phase; solo si se destruye, Invoca Angbruja Nivel 3 física del Deck. Se activa una sola vez por turno."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:dark-blade:goblin",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Hoja Oscura C05: destruirse e Invocar Angbruja del Deck",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19363&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19363,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "actor",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19364,
+            "from": "deck",
+            "to": "m5",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "summonFromDeck"
+        ],
+        "assumptions": [
+          "C05: Hoja Oscura propio en Campo destruye esa copia mediante su efecto de Main Phase; solo si se destruye, Invoca Angbruja Nivel 3 física del Deck. Se activa una sola vez por turno."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:angwitch:destroy-revive-mace",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Angbruja C05: destruirse y revivir Goblin de Nivel 1",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19364&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19364,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "target",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "actor",
+            "reason": "effect"
+          },
+          {
+            "op": "move",
+            "ref": "target",
+            "to": "free-monster",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "C05: selecciona Goblin Memento Nivel 1 real en Cementerio; destruye la propia Angbruja y solo tras esa destrucción Invoca Goblin desde GY. Es variante del mismo segundo efecto de Angbruja que revive Maza en C04, no efecto adicional."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:goblin:send-two",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Goblin C05: autodestruirse y enviar Fusión + Creación Combinada",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19366&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19366,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "actor",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19904,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19360,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "sendFromDeck"
+        ],
+        "assumptions": [
+          "C05: Goblin propio se destruye por su efecto y envía dos cartas Memento distintas del Deck: una copia física de Fusión Mementotlán y una Creación Combinada. Cada carta debe existir aún en Deck."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:graveyard-search",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fusión Mementotlán C05: desterrarse desde GY, destruir Desvantasma y buscar otra copia",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "graveyard"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "banished",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19904,
+            "from": "deck",
+            "to": "hand",
+            "position": "attack"
+          }
+        ],
+        "tags": [
+          "addFromDeck"
+        ],
+        "assumptions": [
+          "C05: primera copia de Fusión Mementotlán activada desde GY se destierra como coste, destruye Desvantasma del Campo y busca una segunda copia identificada del Deck; la primera copia no puede reutilizarse tras su destierro. Distintos efectos de Fusión comparten cada uno un límite de uso por turno."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fusión Mementotlán C05: Maza mano + Tatsun/Goblin GY",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "mace",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19365
+            }
+          },
+          {
+            "ref": "tatsun",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "mace",
+              "tatsun",
+              "goblin"
+            ],
+            "materialCids": [
+              19365,
+              19362,
+              19366
+            ],
+            "to": "m1",
+            "recipe": "exact-cids",
+            "allowGraveyard": true,
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C05: la segunda copia de Fusión está en mano y usa Maza de Mano, Tatsun y Goblin del GY. Requiere destrucción propia por efecto este turno; los dos materiales de GY se devuelven al Deck. La primera Fusión permanece desterrada."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fusión Mementotlán C05: Maza mano + Tatsun/Goblin GY",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "mace",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19365
+            }
+          },
+          {
+            "ref": "tatsun",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "mace",
+              "tatsun",
+              "goblin"
+            ],
+            "materialCids": [
+              19365,
+              19362,
+              19366
+            ],
+            "to": "m2",
+            "recipe": "exact-cids",
+            "allowGraveyard": true,
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C05: la segunda copia de Fusión está en mano y usa Maza de Mano, Tatsun y Goblin del GY. Requiere destrucción propia por efecto este turno; los dos materiales de GY se devuelven al Deck. La primera Fusión permanece desterrada."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fusión Mementotlán C05: Maza mano + Tatsun/Goblin GY",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "mace",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19365
+            }
+          },
+          {
+            "ref": "tatsun",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "mace",
+              "tatsun",
+              "goblin"
+            ],
+            "materialCids": [
+              19365,
+              19362,
+              19366
+            ],
+            "to": "m3",
+            "recipe": "exact-cids",
+            "allowGraveyard": true,
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C05: la segunda copia de Fusión está en mano y usa Maza de Mano, Tatsun y Goblin del GY. Requiere destrucción propia por efecto este turno; los dos materiales de GY se devuelven al Deck. La primera Fusión permanece desterrada."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fusión Mementotlán C05: Maza mano + Tatsun/Goblin GY",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "mace",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19365
+            }
+          },
+          {
+            "ref": "tatsun",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "mace",
+              "tatsun",
+              "goblin"
+            ],
+            "materialCids": [
+              19365,
+              19362,
+              19366
+            ],
+            "to": "m4",
+            "recipe": "exact-cids",
+            "allowGraveyard": true,
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C05: la segunda copia de Fusión está en mano y usa Maza de Mano, Tatsun y Goblin del GY. Requiere destrucción propia por efecto este turno; los dos materiales de GY se devuelven al Deck. La primera Fusión permanece desterrada."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fusión Mementotlán C05: Maza mano + Tatsun/Goblin GY",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "mace",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19365
+            }
+          },
+          {
+            "ref": "tatsun",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "mace",
+              "tatsun",
+              "goblin"
+            ],
+            "materialCids": [
+              19365,
+              19362,
+              19366
+            ],
+            "to": "m5",
+            "recipe": "exact-cids",
+            "allowGraveyard": true,
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C05: la segunda copia de Fusión está en mano y usa Maza de Mano, Tatsun y Goblin del GY. Requiere destrucción propia por efecto este turno; los dos materiales de GY se devuelven al Deck. La primera Fusión permanece desterrada."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:creation-king:fusion-send",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Rey Creación C05: enviar Akhíron, Dormiveja y Dragón de Cuerno",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20216&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20216,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "trigger": {
+          "kind": "fusion_summoned",
+          "actorCid": 20216
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 20491,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 20199,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19361,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "sendFromDeck"
+        ],
+        "assumptions": [
+          "C05: tras la Fusión acreditada de Rey Creación, envía Akhíron CID20491, Dormiveja CID20199 y Dragón de Cuerno CID19361, tres nombres reales aún presentes en Deck. No confundir Horned Dragon con Akihiron."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada C05: devolver Hoja, Angbruja, Desvantasma, Maza y Dragón de Cuerno",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19363
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19361
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m1",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C05: desde GY devuelve al Deck cinco nombres Memento distintos: Hoja Oscura, Angbruja, Desvantasma, Maza y Dragón de Cuerno CID19361. Conserva Akhíron CID20491 y Dormiveja CID20199 en GY como recursos."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada C05: devolver Hoja, Angbruja, Desvantasma, Maza y Dragón de Cuerno",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19363
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19361
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m2",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C05: desde GY devuelve al Deck cinco nombres Memento distintos: Hoja Oscura, Angbruja, Desvantasma, Maza y Dragón de Cuerno CID19361. Conserva Akhíron CID20491 y Dormiveja CID20199 en GY como recursos."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada C05: devolver Hoja, Angbruja, Desvantasma, Maza y Dragón de Cuerno",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19363
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19361
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m3",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C05: desde GY devuelve al Deck cinco nombres Memento distintos: Hoja Oscura, Angbruja, Desvantasma, Maza y Dragón de Cuerno CID19361. Conserva Akhíron CID20491 y Dormiveja CID20199 en GY como recursos."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada C05: devolver Hoja, Angbruja, Desvantasma, Maza y Dragón de Cuerno",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19363
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19361
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m4",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C05: desde GY devuelve al Deck cinco nombres Memento distintos: Hoja Oscura, Angbruja, Desvantasma, Maza y Dragón de Cuerno CID19361. Conserva Akhíron CID20491 y Dormiveja CID20199 en GY como recursos."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada C05: devolver Hoja, Angbruja, Desvantasma, Maza y Dragón de Cuerno",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19363
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19361
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m5",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C05: desde GY devuelve al Deck cinco nombres Memento distintos: Hoja Oscura, Angbruja, Desvantasma, Maza y Dragón de Cuerno CID19361. Conserva Akhíron CID20491 y Dormiveja CID20199 en GY como recursos."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+
+      {
+        "version": 1,
+        "id": "671:angwitch:destroy-revive-mace",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Angbruja: destruirse y revivir Maza Nivel 1 del Cementerio",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19364&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19364,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "target",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "actor",
+            "reason": "effect"
+          },
+          {
+            "op": "move",
+            "ref": "target",
+            "to": "free-monster",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "monsterEffect"
+        ],
+        "assumptions": [
+          "Primera variante demostrada del segundo efecto de Angbruja: selecciona Maza Memento Nivel 1 en Cementerio; destruye la propia Angbruja en Campo como efecto y, solo si fue destruida, revive esa misma Maza en una zona libre. Requiere materiales y estados físicos exactos y no inventa otros objetivos."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fusión Mementotlán C04: usar Desvantasma en Campo, Goblin en mano y Tatsun en GY",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "tatsun",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "ghattic",
+              "goblin",
+              "tatsun"
+            ],
+            "materialCids": [
+              19472,
+              19366,
+              19362
+            ],
+            "to": "m1",
+            "recipe": "exact-cids",
+            "allowGraveyard": true,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C04 documentada: se usó destrucción de un Memento propio por efecto este turno, por lo que Fusión Mementotlán puede usar Tatsun del Cementerio y barajarlo al Deck. Los otros dos materiales físicos son Desvantasma del Campo y Goblin de la mano. Si no existe registro de destrucción propia este turno, se rechaza."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fusión Mementotlán C04: usar Desvantasma en Campo, Goblin en mano y Tatsun en GY",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "tatsun",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "ghattic",
+              "goblin",
+              "tatsun"
+            ],
+            "materialCids": [
+              19472,
+              19366,
+              19362
+            ],
+            "to": "m2",
+            "recipe": "exact-cids",
+            "allowGraveyard": true,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C04 documentada: se usó destrucción de un Memento propio por efecto este turno, por lo que Fusión Mementotlán puede usar Tatsun del Cementerio y barajarlo al Deck. Los otros dos materiales físicos son Desvantasma del Campo y Goblin de la mano. Si no existe registro de destrucción propia este turno, se rechaza."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fusión Mementotlán C04: usar Desvantasma en Campo, Goblin en mano y Tatsun en GY",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "tatsun",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "ghattic",
+              "goblin",
+              "tatsun"
+            ],
+            "materialCids": [
+              19472,
+              19366,
+              19362
+            ],
+            "to": "m3",
+            "recipe": "exact-cids",
+            "allowGraveyard": true,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C04 documentada: se usó destrucción de un Memento propio por efecto este turno, por lo que Fusión Mementotlán puede usar Tatsun del Cementerio y barajarlo al Deck. Los otros dos materiales físicos son Desvantasma del Campo y Goblin de la mano. Si no existe registro de destrucción propia este turno, se rechaza."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fusión Mementotlán C04: usar Desvantasma en Campo, Goblin en mano y Tatsun en GY",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "tatsun",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "ghattic",
+              "goblin",
+              "tatsun"
+            ],
+            "materialCids": [
+              19472,
+              19366,
+              19362
+            ],
+            "to": "m4",
+            "recipe": "exact-cids",
+            "allowGraveyard": true,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C04 documentada: se usó destrucción de un Memento propio por efecto este turno, por lo que Fusión Mementotlán puede usar Tatsun del Cementerio y barajarlo al Deck. Los otros dos materiales físicos son Desvantasma del Campo y Goblin de la mano. Si no existe registro de destrucción propia este turno, se rechaza."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:memento-fusion:fuse",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fusión Mementotlán C04: usar Desvantasma en Campo, Goblin en mano y Tatsun en GY",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19904&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19904
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "ghattic",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19472,
+              "faceUp": true
+            }
+          },
+          {
+            "ref": "goblin",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "tatsun",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "fusion",
+            "cid": 20216,
+            "materials": [
+              "ghattic",
+              "goblin",
+              "tatsun"
+            ],
+            "materialCids": [
+              19472,
+              19366,
+              19362
+            ],
+            "to": "m5",
+            "recipe": "exact-cids",
+            "allowGraveyard": true,
+            "requiredOrigins": "hand-and-field",
+            "distinctCids": true
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C04 documentada: se usó destrucción de un Memento propio por efecto este turno, por lo que Fusión Mementotlán puede usar Tatsun del Cementerio y barajarlo al Deck. Los otros dos materiales físicos son Desvantasma del Campo y Goblin de la mano. Si no existe registro de destrucción propia este turno, se rechaza."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:creation-king:fusion-send",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Rey Creación C04: enviar jefe, Dormiveja y Dragón de Cuerno",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20216&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20216,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "trigger": {
+          "kind": "fusion_summoned",
+          "actorCid": 20216
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19360,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 20199,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19361,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "sendFromDeck"
+        ],
+        "assumptions": [
+          "C04: tras Fusión real de Rey Creación, envía exactamente Creación Combinada, Dormiveja y Dragón de Cuerno al Cementerio desde Deck. Sin evento de Fusión no se ofrece esta variante."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada C04: cinco nombres después de Fusión y Rey",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19361
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m1",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C04 exacta: baraja Angbruja, Maza, Desvantasma, Goblin y Dragón de Cuerno desde Mano/GY (cinco nombres distintos) e Invoca Creación Combinada desde el Cementerio. Deja Dormiveja en GY para uso posterior."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada C04: cinco nombres después de Fusión y Rey",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19361
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m2",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C04 exacta: baraja Angbruja, Maza, Desvantasma, Goblin y Dragón de Cuerno desde Mano/GY (cinco nombres distintos) e Invoca Creación Combinada desde el Cementerio. Deja Dormiveja en GY para uso posterior."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada C04: cinco nombres después de Fusión y Rey",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19361
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m3",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C04 exacta: baraja Angbruja, Maza, Desvantasma, Goblin y Dragón de Cuerno desde Mano/GY (cinco nombres distintos) e Invoca Creación Combinada desde el Cementerio. Deja Dormiveja en GY para uso posterior."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada C04: cinco nombres después de Fusión y Rey",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19361
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m4",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C04 exacta: baraja Angbruja, Maza, Desvantasma, Goblin y Dragón de Cuerno desde Mano/GY (cinco nombres distintos) e Invoca Creación Combinada desde el Cementerio. Deja Dormiveja en GY para uso posterior."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada C04: cinco nombres después de Fusión y Rey",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19361
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m5",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "C04 exacta: baraja Angbruja, Maza, Desvantasma, Goblin y Dragón de Cuerno desde Mano/GY (cinco nombres distintos) e Invoca Creación Combinada desde el Cementerio. Deja Dormiveja en GY para uso posterior."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+
+      {
+        "version": 1,
+        "id": "671:moon:link-from-angwitch-tatsun",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Luna del Cielo Cerrado: Link-2 desde Angbruja + Tatsun de efecto",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19932&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19364,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "tatsun",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19362,
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "link",
+            "cid": 19932,
+            "materials": [
+              "actor",
+              "tatsun"
+            ],
+            "materialCids": [
+              19364,
+              19362
+            ],
+            "to": "emz1",
+            "recipe": "exact-cids",
+            "linkRating": 2
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Procedimiento de Enlace C03 con exactamente dos monstruos de efecto identificados Angbruja y Tatsun, sin activar el efecto propio de Luna. No certifica listas prohibidas/limitadas ni disponibilidad fuera del Extra documentado."
+        ],
+        "activation": false,
+        "oncePerTurn": false
+      },
+      {
+        "version": 1,
+        "id": "671:moon:link-from-angwitch-tatsun",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Luna del Cielo Cerrado: Link-2 desde Angbruja + Tatsun de efecto",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19932&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19364,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "tatsun",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "cid": 19362,
+              "faceUp": true
+            }
+          }
+        ],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "link",
+            "cid": 19932,
+            "materials": [
+              "actor",
+              "tatsun"
+            ],
+            "materialCids": [
+              19364,
+              19362
+            ],
+            "to": "emz2",
+            "recipe": "exact-cids",
+            "linkRating": 2
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Procedimiento de Enlace C03 con exactamente dos monstruos de efecto identificados Angbruja y Tatsun, sin activar el efecto propio de Luna. No certifica listas prohibidas/limitadas ni disponibilidad fuera del Extra documentado."
+        ],
+        "activation": false,
+        "oncePerTurn": false
+      },
+
+      {
+        "version": 1,
+        "id": "671:tatsun:mill",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Tatsunootoshigo: destruirse y enviar Desvantasma y Dormiveja (2+3=5)",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19362&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19362,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "actor",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19472,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 20199,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "sendFromDeck"
+        ],
+        "assumptions": [
+          "Ruta C01 exacta: Tatsun nivel original 5 se destruye a sí mismo y manda Desvantasma (Nivel 2) y Dormiveja (Nivel 3), nombres distintos cuya suma es 5. Exige ambas cartas reales en Deck y no ejecuta automáticamente disparadores posteriores."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:creation-king:fusion-send",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Rey Creación: tras Fusión, enviar Creación Combinada, Maza y Goblin al Cementerio",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20216&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 20216,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "trigger": {
+          "kind": "fusion_summoned",
+          "actorCid": 20216
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19360,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19365,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19366,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "sendFromDeck"
+        ],
+        "assumptions": [
+          "Se ofrece solo tras evento de Invocación por Fusión registrado para este Rey Creación físico. Se acreditan tres cartas Memento con CID exactos en Deck: Creación Combinada, Maza y Goblin. No simula envíos alternativos ni Extra Deck."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada: barajar los cinco nombres exactos de C01 tras Rey Creación",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 20199
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m1",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Procedimiento C01 exacto: devuelve al Deck Tatsun, Angbruja, Desvantasma, Dormiveja y Goblin desde mano/Cementerio como cinco nombres distintos. Deja Maza en Cementerio. Creación Combinada se invoca desde GY a una zona libre sin inventar material."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada: barajar los cinco nombres exactos de C01 tras Rey Creación",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 20199
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m2",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Procedimiento C01 exacto: devuelve al Deck Tatsun, Angbruja, Desvantasma, Dormiveja y Goblin desde mano/Cementerio como cinco nombres distintos. Deja Maza en Cementerio. Creación Combinada se invoca desde GY a una zona libre sin inventar material."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada: barajar los cinco nombres exactos de C01 tras Rey Creación",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 20199
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m3",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Procedimiento C01 exacto: devuelve al Deck Tatsun, Angbruja, Desvantasma, Dormiveja y Goblin desde mano/Cementerio como cinco nombres distintos. Deja Maza en Cementerio. Creación Combinada se invoca desde GY a una zona libre sin inventar material."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada: barajar los cinco nombres exactos de C01 tras Rey Creación",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 20199
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m4",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Procedimiento C01 exacto: devuelve al Deck Tatsun, Angbruja, Desvantasma, Dormiveja y Goblin desde mano/Cementerio como cinco nombres distintos. Deja Maza en Cementerio. Creación Combinada se invoca desde GY a una zona libre sin inventar material."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada: barajar los cinco nombres exactos de C01 tras Rey Creación",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 20199
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m5",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Procedimiento C01 exacto: devuelve al Deck Tatsun, Angbruja, Desvantasma, Dormiveja y Goblin desde mano/Cementerio como cinco nombres distintos. Deja Maza en Cementerio. Creación Combinada se invoca desde GY a una zona libre sin inventar material."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+
+      {
+        "version": 1,
+        "id": "671:bone-party:main",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Fiesta de Huesos: destruir Angbruja y traer Tatsun en Defensa",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19368&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 19368
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ],
+              "faceUp": true,
+              "cid": 19364
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "victim",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19362,
+            "from": "deck",
+            "to": "free-monster",
+            "position": "defense",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [
+          "summonFromDeck"
+        ],
+        "assumptions": [
+          "Caso C02 exacto: Angbruja propia boca arriba es destruida por Fiesta de Huesos y Tatsun distinto se Invoca Especial del Deck en Defensa. El paso requiere copia física de Tatsun y zona propia libre. La Mágica pasa a Cementerio al activarse, no como coste de descarte."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:tatsun:mill",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Tatsunootoshigo: destruirse y enviar Goblin, Maza y Desvantasma (1+1+2 <= 5)",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19362&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "monsters"
+          ],
+          "cid": 19362,
+          "faceUp": true,
+          "notNegated": true
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [],
+        "costs": [],
+        "resolve": [
+          {
+            "op": "destroy",
+            "ref": "actor",
+            "reason": "effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19366,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19365,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          },
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19472,
+            "from": "deck",
+            "to": "graveyard",
+            "position": "attack",
+            "cause": "monster_effect"
+          }
+        ],
+        "tags": [
+          "monsterEffect",
+          "sendFromDeck"
+        ],
+        "assumptions": [
+          "Elección C02 exacta: se destruye Tatsun Nivel 5 propio y se envían Goblin (Nivel 1), Maza (Nivel 1) y Desvantasma (Nivel 2), tres nombres diferentes con suma de niveles 4. Los disparadores opcionales posteriores, incluido el de Desvantasma, no se ejecutan automáticamente."
+        ],
+        "activation": true,
+        "oncePerTurn": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada: Invocación Especial barajando cinco nombres de C02",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m1",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Procedimiento C02 desde mano o Cementerio, no efecto activado. Baraja exactamente cinco monstruos Memento físicos de nombres distintos: Angbruja, Tatsun, Goblin, Maza y Desvantasma. Requiere sus cinco copias en mano/Cementerio y una zona de monstruos disponible; el motor no inventa recursos."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada: Invocación Especial barajando cinco nombres de C02",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m2",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Procedimiento C02 desde mano o Cementerio, no efecto activado. Baraja exactamente cinco monstruos Memento físicos de nombres distintos: Angbruja, Tatsun, Goblin, Maza y Desvantasma. Requiere sus cinco copias en mano/Cementerio y una zona de monstruos disponible; el motor no inventa recursos."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada: Invocación Especial barajando cinco nombres de C02",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m3",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Procedimiento C02 desde mano o Cementerio, no efecto activado. Baraja exactamente cinco monstruos Memento físicos de nombres distintos: Angbruja, Tatsun, Goblin, Maza y Desvantasma. Requiere sus cinco copias en mano/Cementerio y una zona de monstruos disponible; el motor no inventa recursos."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada: Invocación Especial barajando cinco nombres de C02",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m4",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Procedimiento C02 desde mano o Cementerio, no efecto activado. Baraja exactamente cinco monstruos Memento físicos de nombres distintos: Angbruja, Tatsun, Goblin, Maza y Desvantasma. Requiere sus cinco copias en mano/Cementerio y una zona de monstruos disponible; el motor no inventa recursos."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+      {
+        "version": 1,
+        "id": "671:tecuhtlica:five-names",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Creación Combinada: Invocación Especial barajando cinco nombres de C02",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19360&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand",
+            "graveyard"
+          ],
+          "cid": 19360
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "material1",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19364
+            }
+          },
+          {
+            "ref": "material2",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19362
+            }
+          },
+          {
+            "ref": "material3",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19366
+            }
+          },
+          {
+            "ref": "material4",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19365
+            }
+          },
+          {
+            "ref": "material5",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "hand",
+                "graveyard"
+              ],
+              "cid": 19472
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "move",
+            "ref": "material1",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material2",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material3",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material4",
+            "to": "deck",
+            "position": "attack"
+          },
+          {
+            "op": "move",
+            "ref": "material5",
+            "to": "deck",
+            "position": "attack"
+          }
+        ],
+        "resolve": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "m5",
+            "position": "attack",
+            "summonMethod": "special"
+          }
+        ],
+        "tags": [],
+        "assumptions": [
+          "Procedimiento C02 desde mano o Cementerio, no efecto activado. Baraja exactamente cinco monstruos Memento físicos de nombres distintos: Angbruja, Tatsun, Goblin, Maza y Desvantasma. Requiere sus cinco copias en mano/Cementerio y una zona de monstruos disponible; el motor no inventa recursos."
+        ],
+        "activation": false,
+        "oncePerTurn": false,
+        "distinctSelectedNames": true
+      },
+
+      ...[
+        {
+          "version": 1,
+          "deckId": 671,
+          "format": "tcg_advanced",
+          "scope": "single-effect",
+          "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19188&ope=2&request_locale=en",
+          "id": "671:sp:link-with-moon",
+          "label": "S:P Pequeña Caballera: Enlace-2 usando Luna y Angbruja",
+          "actor": {
+            "side": "self",
+            "zones": [
+              "monsters"
+            ],
+            "cid": 19932,
+            "faceUp": true
+          },
+          "guards": [
+            {
+              "kind": "state",
+              "field": "active",
+              "values": [
+                "self"
+              ]
+            },
+            {
+              "kind": "state",
+              "field": "phase",
+              "values": [
+                "main1",
+                "main2"
+              ]
+            }
+          ],
+          "select": [
+            {
+              "ref": "witch",
+              "selector": {
+                "side": "self",
+                "zones": [
+                  "monsters"
+                ],
+                "cid": 19364,
+                "faceUp": true
+              }
+            }
+          ],
+          "costs": [],
+          "resolve": [
+            {
+              "op": "link",
+              "cid": 19188,
+              "materials": [
+                "actor",
+                "witch"
+              ],
+              "materialCids": [
+                19932,
+                19364
+              ],
+              "to": "emz1",
+              "recipe": "exact-cids",
+              "linkRating": 2
+            }
+          ],
+          "tags": [],
+          "assumptions": [
+            "Receta concreta de dos monstruos de efecto: Luna (Link-2) cuenta como un material Link y Angbruja como otro. No es una certificación de legalidad del formato o lista de prohibiciones."
+          ],
+          "activation": false,
+          "oncePerTurn": false
+        },
+        {
+          "version": 1,
+          "deckId": 671,
+          "format": "tcg_advanced",
+          "scope": "single-effect",
+          "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19188&ope=2&request_locale=en",
+          "id": "671:sp:link-with-moon",
+          "label": "S:P Pequeña Caballera: Enlace-2 usando Luna y Angbruja",
+          "actor": {
+            "side": "self",
+            "zones": [
+              "monsters"
+            ],
+            "cid": 19932,
+            "faceUp": true
+          },
+          "guards": [
+            {
+              "kind": "state",
+              "field": "active",
+              "values": [
+                "self"
+              ]
+            },
+            {
+              "kind": "state",
+              "field": "phase",
+              "values": [
+                "main1",
+                "main2"
+              ]
+            }
+          ],
+          "select": [
+            {
+              "ref": "witch",
+              "selector": {
+                "side": "self",
+                "zones": [
+                  "monsters"
+                ],
+                "cid": 19364,
+                "faceUp": true
+              }
+            }
+          ],
+          "costs": [],
+          "resolve": [
+            {
+              "op": "link",
+              "cid": 19188,
+              "materials": [
+                "actor",
+                "witch"
+              ],
+              "materialCids": [
+                19932,
+                19364
+              ],
+              "to": "emz2",
+              "recipe": "exact-cids",
+              "linkRating": 2
+            }
+          ],
+          "tags": [],
+          "assumptions": [
+            "Receta concreta de dos monstruos de efecto: Luna (Link-2) cuenta como un material Link y Angbruja como otro. No es una certificación de legalidad del formato o lista de prohibiciones."
+          ],
+          "activation": false,
+          "oncePerTurn": false
+        },
+        {
+          "version": 1,
+          "deckId": 671,
+          "format": "tcg_advanced",
+          "scope": "single-effect",
+          "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19188&ope=2&request_locale=en",
+          "id": "671:sp:banish-link-extra",
+          "label": "S:P Pequeña Caballera: desterrar una carta tras Enlace usando Extra Deck",
+          "actor": {
+            "side": "self",
+            "zones": [
+              "monsters"
+            ],
+            "cid": 19188,
+            "faceUp": true,
+            "notNegated": true
+          },
+          "guards": [
+            {
+              "kind": "state",
+              "field": "active",
+              "values": [
+                "self",
+                "opponent"
+              ]
+            }
+          ],
+          "trigger": {
+            "kind": "link_summoned_with_extra",
+            "actorCid": 19188
+          },
+          "select": [
+            {
+              "ref": "target",
+              "selector": {
+                "side": "self",
+                "zones": [
+                  "field-all"
+                ]
+              }
+            }
+          ],
+          "costs": [],
+          "resolve": [
+            {
+              "op": "move",
+              "ref": "target",
+              "to": "banished",
+              "position": "attack"
+            },
+            {
+              "op": "flag",
+              "flag": "directAttackBlocked",
+              "value": true,
+              "duration": "turn"
+            }
+          ],
+          "tags": [
+            "monsterEffect"
+          ],
+          "assumptions": [
+            "Sólo se ofrece inmediatamente tras una Invocación Link del S:P físico usando material del Extra Deck. Requiere carta objetivo identificada en Campo o Cementerio; no se simula el segundo efecto rápido de retorno al final de fase.",
+            "El destierro del primer efecto impide ataques directos de todos los monstruos propios durante este turno, aun si S:P abandona el Campo. Los efectos se limitan por nombre a una vez por turno."
+          ],
+          "activation": true,
+          "oncePerTurn": true
+        },
+        {
+          "version": 1,
+          "deckId": 671,
+          "format": "tcg_advanced",
+          "scope": "single-effect",
+          "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19188&ope=2&request_locale=en",
+          "id": "671:sp:banish-link-extra",
+          "label": "S:P Pequeña Caballera: desterrar una carta tras Enlace usando Extra Deck",
+          "actor": {
+            "side": "self",
+            "zones": [
+              "monsters"
+            ],
+            "cid": 19188,
+            "faceUp": true,
+            "notNegated": true
+          },
+          "guards": [
+            {
+              "kind": "state",
+              "field": "active",
+              "values": [
+                "self",
+                "opponent"
+              ]
+            }
+          ],
+          "trigger": {
+            "kind": "link_summoned_with_extra",
+            "actorCid": 19188
+          },
+          "select": [
+            {
+              "ref": "target",
+              "selector": {
+                "side": "self",
+                "zones": [
+                  "graveyard"
+                ]
+              }
+            }
+          ],
+          "costs": [],
+          "resolve": [
+            {
+              "op": "move",
+              "ref": "target",
+              "to": "banished",
+              "position": "attack"
+            },
+            {
+              "op": "flag",
+              "flag": "directAttackBlocked",
+              "value": true,
+              "duration": "turn"
+            }
+          ],
+          "tags": [
+            "monsterEffect"
+          ],
+          "assumptions": [
+            "Sólo se ofrece inmediatamente tras una Invocación Link del S:P físico usando material del Extra Deck. Requiere carta objetivo identificada en Campo o Cementerio; no se simula el segundo efecto rápido de retorno al final de fase.",
+            "El destierro del primer efecto impide ataques directos de todos los monstruos propios durante este turno, aun si S:P abandona el Campo. Los efectos se limitan por nombre a una vez por turno."
+          ],
+          "activation": true,
+          "oncePerTurn": true
+        },
+        {
+          "version": 1,
+          "deckId": 671,
+          "format": "tcg_advanced",
+          "scope": "single-effect",
+          "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19188&ope=2&request_locale=en",
+          "id": "671:sp:banish-link-extra",
+          "label": "S:P Pequeña Caballera: desterrar una carta tras Enlace usando Extra Deck",
+          "actor": {
+            "side": "self",
+            "zones": [
+              "monsters"
+            ],
+            "cid": 19188,
+            "faceUp": true,
+            "notNegated": true
+          },
+          "guards": [
+            {
+              "kind": "state",
+              "field": "active",
+              "values": [
+                "self",
+                "opponent"
+              ]
+            }
+          ],
+          "trigger": {
+            "kind": "link_summoned_with_extra",
+            "actorCid": 19188
+          },
+          "select": [
+            {
+              "ref": "target",
+              "selector": {
+                "side": "opponent",
+                "zones": [
+                  "field-all"
+                ]
+              }
+            }
+          ],
+          "costs": [],
+          "resolve": [
+            {
+              "op": "move",
+              "ref": "target",
+              "to": "banished",
+              "position": "attack"
+            },
+            {
+              "op": "flag",
+              "flag": "directAttackBlocked",
+              "value": true,
+              "duration": "turn"
+            }
+          ],
+          "tags": [
+            "monsterEffect"
+          ],
+          "assumptions": [
+            "Sólo se ofrece inmediatamente tras una Invocación Link del S:P físico usando material del Extra Deck. Requiere carta objetivo identificada en Campo o Cementerio; no se simula el segundo efecto rápido de retorno al final de fase.",
+            "El destierro del primer efecto impide ataques directos de todos los monstruos propios durante este turno, aun si S:P abandona el Campo. Los efectos se limitan por nombre a una vez por turno."
+          ],
+          "activation": true,
+          "oncePerTurn": true
+        },
+        {
+          "version": 1,
+          "deckId": 671,
+          "format": "tcg_advanced",
+          "scope": "single-effect",
+          "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19188&ope=2&request_locale=en",
+          "id": "671:sp:banish-link-extra",
+          "label": "S:P Pequeña Caballera: desterrar una carta tras Enlace usando Extra Deck",
+          "actor": {
+            "side": "self",
+            "zones": [
+              "monsters"
+            ],
+            "cid": 19188,
+            "faceUp": true,
+            "notNegated": true
+          },
+          "guards": [
+            {
+              "kind": "state",
+              "field": "active",
+              "values": [
+                "self",
+                "opponent"
+              ]
+            }
+          ],
+          "trigger": {
+            "kind": "link_summoned_with_extra",
+            "actorCid": 19188
+          },
+          "select": [
+            {
+              "ref": "target",
+              "selector": {
+                "side": "opponent",
+                "zones": [
+                  "graveyard"
+                ]
+              }
+            }
+          ],
+          "costs": [],
+          "resolve": [
+            {
+              "op": "move",
+              "ref": "target",
+              "to": "banished",
+              "position": "attack"
+            },
+            {
+              "op": "flag",
+              "flag": "directAttackBlocked",
+              "value": true,
+              "duration": "turn"
+            }
+          ],
+          "tags": [
+            "monsterEffect"
+          ],
+          "assumptions": [
+            "Sólo se ofrece inmediatamente tras una Invocación Link del S:P físico usando material del Extra Deck. Requiere carta objetivo identificada en Campo o Cementerio; no se simula el segundo efecto rápido de retorno al final de fase.",
+            "El destierro del primer efecto impide ataques directos de todos los monstruos propios durante este turno, aun si S:P abandona el Campo. Los efectos se limitan por nombre a una vez por turno."
+          ],
+          "activation": true,
+          "oncePerTurn": true
+        }
+      ],
+      ...["hand","set"].map(mode => ({
+        ...rule(671, "671:goblin-biker-grand-breakout:deck-summon",
+          "Gran Fuga Moto Goblin: sacrificar un monstruo propio e Invocar Goblin del Deck",
+          20533,official(20533),
+          [{op:"take",side:"self",cid:19366,from:"deck",to:"free-monster",
+            position:"attack",summonMethod:"special",cannotAttackThisTurn:true}],
+          ["summonFromDeck"],
+          ["Mágica Rápida: se tributa una copia propia en Campo como coste, incluso boca abajo; se Invoca el Goblin físico restante en el Main Deck y no puede atacar este turno.",
+           "Solo se aplica la primera parte: el efecto de GY exige un Xyz «Goblin», ausente en el Extra de este deck. No se inventa una interacción de Xyz.",
+           "Desde mano se modela en la Main o Battle propias; colocada se requiere turno previo y ventana Main/Battle en cualquiera de los turnos. No se evalúan cadenas rivales arbitrarias."],
+        ),
+        actor:mode==="hand" ?
+          {side:"self",zones:["hand"],cid:20533} :
+          {side:"self",zones:["s1","s2","s3","s4","s5"],cid:20533,faceUp:false},
+        guards:[
+          {kind:"state",field:"active",values:mode==="hand"?["self"]:["self","opponent"]},
+          {kind:"state",field:"phase",values:["main1","main2","battle"]},
+        ],
+        select:[{ref:"victim",selector:{side:"self",zones:["monsters"]}}],
+        costs:[{op:"tribute",ref:"victim",reason:"cost",allowSet:true}],
+        afterResolution:[{op:"move",ref:"actor",to:"graveyard",position:"attack"}],
+        chainSpeed:2,
+        activationNegatedConsumesUse:true,
+      })),
+      {
+        ...rule(671,"671:aero-shark:damage-per-banished",
+          "Portaaviones Sumergible Aero Tiburón: desacoplar 1 material e infligir 100 LP por monstruo desterrado",
+          9657,official(9657),
+          [{op:"damagePerBanishedMonsters",side:"opponent",perMonster:100}],
+          ["monsterEffect"],
+          ["Solo cuenta monstruos propios desterrados boca arriba con tipo comprobable mediante el catálogo oficial. Las cartas desterradas boca abajo no se cuentan como monstruos por información no visible. Ante cualquier carta desterrada boca arriba con tipo desconocido, no se inventa daño. No incorpora Invocación Xyz genérica ni efectos rivales sin modelar."],
+        ),
+        actor:{side:"self",zones:["monsters"],cid:9657,faceUp:true,notNegated:true},
+        guards:main,
+        select:[{ref:"material",selector:{side:"self",zones:["actor-materials"]}}],
+        costs:[{op:"move",ref:"material",to:"graveyard",position:"attack"}],
+        activation:true,oncePerTurn:true
+      },
+      // Second exact one-target mode: banish one identified non-actor card
+      // from hand face down AT RESOLUTION (not as an activation cost).
+      ...["self","opponent"].flatMap(side => ["main","extra"].map(section => ({
+        ...rule(671,"671:gordian:one-monster-one-hand",
+          "Rebanador Gordiano: devolver una carta boca arriba desterrando 1 carta de mano",
+          21203,official(21203),
+          [{op:"move",ref:"payment",to:"banished",position:"set"},
+           {op:"move",ref:"target",to:section==="extra"?"extra":"hand",position:"attack"}],
+          [],
+          ["Variante verificada para una carta boca arriba (incluye Magia/Trampa del Main) y una carta propia distinta de Gordiano en mano. El destierro boca abajo se realiza en resolución y la carta devuelta va al propietario. No reproduce múltiples objetivos, pagos combinados ni cadenas complejas. Requiere Side swap a Main."],
+        ),
+        actor:{side:"self",zones:["hand"],cid:21203},
+        guards:[{kind:"state",field:"active",values:["self"]},
+          {kind:"state",field:"phase",values:["main1","main2"]},{kind:"phaseStart"}],
+        select:[
+          {ref:"payment",selector:{side:"self",zones:["hand"]}},
+          {ref:"target",selector:{side,zones:[section==="main"?"field-all":"monsters"],section,faceUp:true}}
+        ],
+        afterResolution:[{op:"move",ref:"actor",to:"graveyard",position:"attack"}],
+        activation:true,oncePerTurn:false,cannotBeNegated:true,noChainReplay:true
+      }))),
+      // One-target Gordian Slicer alternative, with six *identified* physical
+      // Extra Deck cards paid only during resolution. This intentionally does
+      // not model multiple targets or alternative hand banishment.
+      ...["self","opponent"].flatMap(side => ["main","extra"].map(section => ({
+        ...rule(671,"671:gordian:one-monster-six-extra",
+          "Rebanador Gordiano: devolver una carta boca arriba tras desterrar 6 del Extra",
+          21203,official(21203),
+          [{op:"banishExtraFaceDown",refs:["ex1","ex2","ex3","ex4","ex5","ex6"],count:6},
+           {op:"move",ref:"target",to:section==="extra"?"extra":"hand",position:"attack"}],
+          [],
+          ["Variante verificada para UNA carta boca arriba del campo (incluidas Magias/Trampas Main) y seis cartas físicas concretas del Extra. La prohibición de negar la activación/efecto es obligatoria. La elección alternativa de desterrar de mano, varias cartas objetivo y las cadenas complejas siguen sin modelar. Requiere Side swap a Main antes del duelo."],
+        ),
+        actor:{side:"self",zones:["hand"],cid:21203},
+        guards:[{kind:"state",field:"active",values:["self"]},
+          {kind:"state",field:"phase",values:["main1","main2"]},
+          {kind:"phaseStart"}],
+        select:[
+          ...[20216,19878,16845,20389,19188,20225].map((cid,i)=>({
+            ref:"ex"+(i+1),selector:{side:"self",zones:["extra"],cid}
+          })),
+          {ref:"target",selector:{side,zones:[section==="main"?"field-all":"monsters"],section,faceUp:true}}
+        ],
+        afterResolution:[{op:"move",ref:"actor",to:"graveyard",position:"attack"}],
+        activation:true,oncePerTurn:false,cannotBeNegated:true,noChainReplay:true
+      }))),
+      ...["self","opponent"].flatMap(side => ["main","extra"].map(section => ({
+        ...rule(671, "671:typhon:detach-bounce",
+          "TY-PHON: desacoplar un material y devolver un monstruo a su propietario",
+          19184, official(19184),
+          [{ op: "move", ref: "target",
+            to: section === "extra" ? "extra" : "hand", position: "attack" }],
+          ["monsterEffect"],
+          ["El material está físicamente acoplado a este TY-PHON. Se admite devolver el propio TY-PHON o un Xyz con materiales, enviando los materiales restantes al Cementerio. La elección del monstruo no selecciona como objetivo de carta. No se simulan respuestas a cadenas para esta variante."],
+        ),
+        actor: {side:"self",zones:["monsters"],cid:19184,faceUp:true,notNegated:true},
+        guards: main,
+        select: [{ref:"material",selector:{side:"self",zones:["actor-materials"]}},
+          {ref:"target",selector:{side,zones:["monsters"],section},
+            ...(side==="self"&&section==="extra"?{allowActor:true}:{})}],
+        costs: [{op:"move",ref:"material",to:"graveyard",position:"attack"}],
+        activation: true, oncePerTurn: true, noChainReplay: true,
+      }))),
+      {
+        ...rule(671, "671:heat-wave:lock",
+          "Oleada de Calor: impedir Invocaciones de monstruos de efecto hasta tu siguiente Robo",
+          9139, official(9139),
+          [{ op: "flag", flag: "effectMonsterSummonBlocked", value: true,
+            duration: "next-own-draw" }],
+          [],
+          ["Solo al inicio de Main Phase 1 propia. Afecta a ambos jugadores y solo a monstruos de efecto. El tablero estático no puede comprobar acciones previas no capturadas. Admite copia boca abajo en zona M/T solo si fue colocada en un turno anterior; colocarla durante este Main Phase ya impediría el requisito de inicio."],
+        ),
+        actor: { side: "self", zones: ["hand", "s1", "s2", "s3", "s4", "s5"], cid: 9139 },
+        guards: [{ kind: "state", field: "active", values: ["self"] },
+          { kind: "state", field: "phase", values: ["main1"] },
+          { kind: "phaseStart" }],
+        afterResolution: [{ op: "move", ref: "actor", to: "graveyard", position: "attack" }],
+        activationNegatedConsumesUse: false,
+        oncePerTurn: false,
+      },
+      {
+        ...rule(671, "671:droll:main-deck-lock",
+          "El Bufón y el Pájaro del Candado: bloquear adiciones desde Main Deck",
+          9279, official(9279),
+          [{ op: "flag", flag: "noDeckToHand", value: true, duration: "turn" }],
+          ["monsterEffect"],
+          ["Requiere confirmación manual de que el rival acaba de añadir del Main Deck fuera de la fase de Robo. La observación caduca en la siguiente edición del tablero; no se presume una búsqueda solo por ver una carta en mano."],
+        ),
+        actor: { side: "self", zones: ["hand"], cid: 9279 },
+        guards: [{ kind: "event", event: "opponent_main_deck_add", side: "opponent", currentTurn: true }],
+        costs: [{ op: "move", ref: "actor", to: "graveyard", position: "attack" }],
+        chainSpeed: 2,
+        oncePerTurn: false,
+      },
+      {
         ...rule(671, "671:lancea:banish-lock",
           "Artefacto Lancea: Sacrificar durante el turno rival e impedir destierros", 11243,
           official(11243), [{ op: "flag", flag: "banishBlocked", value: true, duration: "turn" }],

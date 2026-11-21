@@ -11,7 +11,7 @@ const token = { uid: 1, owner: "self", controller: "opponent", zone: "m1" };
 assert.equal(T.destinationController(token, "graveyard"), "self");
 assert.equal(T.destinationController(token, "extra"), "self");
 assert.equal(T.destinationController(token, "m2"), "opponent");
-assert.equal(T.destinationController(token, "hand"), "opponent", "Conserva semántica actual fuera de destinos de propietario");
+assert.equal(T.destinationController(token, "hand"), "self", "Devolver a la mano siempre favorece al propietario original, no al controlador temporal");
 assert.throws(() => T.destinationController({ owner: "nobody", controller: "self" }, "deck"), /controlador/);
 const state = { tokens: [token, { uid: 2, controller: "self", zone: "m1" }] };
 assert.equal(T.assertVacant(state, "self", "m2"), true);

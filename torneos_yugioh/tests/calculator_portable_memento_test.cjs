@@ -15,20 +15,21 @@ assert.equal(study.cards.length,39);
 assert.equal(study.routes.length,12);
 assert.equal(study.calculator.schema,Contract.SCHEMA);
 const ids=['671:mictlan:activate','671:creation-king:destroy','671:twin-dragon:fusion-search','671:duke:recover-engraver'];
-assert.equal(study.calculator.rules.length,227);
+assert.equal(study.calculator.rules.length,353);
 const reference=Verified.forDeck(671);
-assert.equal(reference.length,227);
-assert.equal(new Set(study.calculator.rules.map(rule=>rule.id)).size,39);
-assert.equal(study.calculator.rules.filter(rule=>rule.id==='671:bone-party:main').length,42);
-assert.equal(new Set(study.calculator.rules.map(rule=>JSON.stringify(rule))).size,227);
+assert.equal(reference.length,353);
+assert.equal(new Set(study.calculator.rules.map(rule=>rule.id)).size,59);
+assert.equal(study.calculator.rules.filter(rule=>rule.id==='671:bone-party:main').length,53);
+assert.equal(new Set(study.calculator.rules.map(rule=>JSON.stringify(rule))).size,353);
 assert(study.calculator.rules.every(rule=>reference.some(known=>
   JSON.stringify(known)===JSON.stringify(rule))),
   'Every portable variant must match an independently verified fallback definition');
 for(const id of ids){
  const candidates=study.calculator.rules.filter(r=>r.id===id);
- assert.equal(candidates.length,1,'Portable rule ID must be unique');
- assert(reference.some(r=>JSON.stringify(r)===JSON.stringify(candidates[0])),
-  'Portable definition must exactly match an already verified engine rule: '+id);
+ const expected=id==='671:twin-dragon:fusion-search'?2:1;
+ assert.equal(candidates.length,expected,'Portable effect variants must have the audited count: '+id);
+ assert(candidates.every(rule=>reference.some(known=>JSON.stringify(known)===JSON.stringify(rule))),
+  'Every effect variant must exactly match an already verified engine rule: '+id);
 }
 const rows=study.cards.flatMap(card=>(card.slots||[]).map(slot=>({
  id:slot.card_id,deck_id:671,card_name:card.name,section:slot.section,quantity:slot.quantity
@@ -39,15 +40,16 @@ const db=Study.bind(base,[{catalog:native,study}]);
 assert.equal(JSON.stringify(study),original,'Binding must not mutate original study');
 assert.equal(db.ruleImports.length,1);
 assert.equal(db.ruleImports[0].status,'accepted',JSON.stringify(db.ruleImports));
-assert.equal(db.ruleImports[0].count,227);
-assert.equal(db.rules.length,227,'Portable and fallback variants must not be duplicated');
+assert.equal(db.ruleImports[0].count,353);
+assert.equal(db.rules.length,353,'Portable and fallback variants must not be duplicated');
 assert.equal(db.rules.filter(rule=>rule.id==='671:lancea:banish-lock').length,1,
   'Verified Side-only effect must survive portable binding exactly once');
 assert(!native.cards.some(card=>db.bindings[card.key]===11243),
   'Importing a verified Side-only rule does not move Lancea into Main');
 for(const id of ids){
- assert.equal(db.rules.filter(r=>r.id===id).length,1,
-  'Identical native rule must not be duplicated: '+id);
+ const expected=id==='671:twin-dragon:fusion-search'?2:1;
+ assert.equal(db.rules.filter(r=>r.id===id).length,expected,
+  'Import must preserve each audited variant once, without duplicates: '+id);
 }
 const fallback=Study.bind(base,[{catalog:native,study:{...study,calculator:undefined}}]);
 for(const id of ids)assert(fallback.rules.some(r=>r.id===id),'Fallback must survive when portable package absent');
@@ -69,4 +71,4 @@ const after=activated[0].state;
 assert(after.tokens.some(t=>t.key===mictlan.key&&t.zone==='field'),
  'Activation must place the Field Spell in field zone');
 assert.equal(JSON.stringify(state),before,'Scenario must not mutate on analysis');
-console.log('Memento portable 227 variants/39 effects, fallback parity, tamper protection and activation passed.');
+console.log('Memento portable 353 variants/59 effects, fallback parity, tamper protection and activation passed.');

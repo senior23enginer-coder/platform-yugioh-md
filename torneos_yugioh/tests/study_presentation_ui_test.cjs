@@ -21,6 +21,7 @@ const one=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42
       await page.goto('http://stationx.test/');
       await page.addScriptTag({content:'window.YgoFunctionalRole={project:data=>data,connectionHelp:{}};window.YgoStudyPhotoViewer={create:()=>({open(){},dispose(){}})};'});
       await page.addScriptTag({path:path.join(app,'assets/modules/deck-guide/presentation-contract.js')});
+      await page.addScriptTag({path:path.join(app,'assets/modules/deck-guide/endboard.js')});
       await page.addScriptTag({path:path.join(app,'assets/modules/deck-guide/curated-study.js')});
       await page.evaluate(data=>window.YgoCuratedStudy.render(
         document.querySelector('#test-guide'),{id:671,name:'Memento'},data,{cards:data.cards.length,sha256:'fixture'}
@@ -38,7 +39,9 @@ const one=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42
       assert(names.some(n=>n.includes('Angbruja')),'Real Memento card photo is bound to the action');
       assert((await firstStep.innerText()).includes('Invoca Normal Angbruja'),'Complete source action visible');
       assert((await page.locator('.curated-result-full').innerText()).includes('Rey Creación'),'Full end result is visible');
-      assert(await page.locator('.curated-accuracy-note').count()>0,'No false spatial field claim');
+      assert(await page.locator('.eb-layout-note').count()>0,'Nonspatial final-board disclosure must remain visible');
+      assert(/ilustrativ|no verificad/i.test(await page.locator('.eb-layout-note').allInnerTexts().then(items=>items.join(' '))),
+        'Illustrative slots must not be represented as certified physical positions');
       assert(await page.locator('.curated-final-board img').count()>0,'Result must have card evidence');
       assert.deepEqual(errors,[],'Browser errors in guide on '+width+'px');
       await page.close();

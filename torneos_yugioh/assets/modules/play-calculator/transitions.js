@@ -4,7 +4,7 @@
   else root.YgoCalculatorTransitions = factory();
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   "use strict";
-  const ownerZones = Object.freeze(["graveyard", "banished", "deck", "extra"]);
+  const ownerZones = Object.freeze(["hand", "graveyard", "banished", "deck", "extra"]);
   function assertDestination(to, options = {}, flags = {}) {
     if (typeof to !== "string" || !to) throw Error("Destino incorrecto");
     if ((options.blockedZones || []).includes(to)) throw Error("Zona bloqueada");

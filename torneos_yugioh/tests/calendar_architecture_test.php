@@ -423,7 +423,11 @@ foreach ($cases as $case) {
                 )
                 : ygo_assign_explicit_competition_schedule($pdo, $case['id'], $case['quotas']);
     } catch (Throwable $e) {
-        $error = ['class' => get_class($e), 'message' => $e->getMessage()];
+        $error = [
+            'class' =>
+                $e instanceof \DateMalformedStringException ? Exception::class : get_class($e),
+            'message' => $e->getMessage(),
+        ];
     }
     $actual = ['result' => $result, 'error' => $error] +
         calendarState($pdo) + [

@@ -4,16 +4,22 @@ require dirname(__DIR__) . '/src/autoload.php';
 require dirname(__DIR__, 2) . '/scripts/php-source-contract.php';
 
 $root = dirname(__DIR__);
-$contracts = json_decode(
-    file_get_contents($root . '/context/domain-extractions.json'),
-    true,
-    flags: JSON_THROW_ON_ERROR,
-);
-$originals = json_decode(
-    file_get_contents(__DIR__ . '/fixtures/domain-originals.json'),
-    true,
-    flags: JSON_THROW_ON_ERROR,
-);
+$contractSource = file_get_contents($root . '/context/domain-extractions.json');
+$originalSource = file_get_contents(__DIR__ . '/fixtures/domain-originals.json');
+$contracts = json_decode($contractSource, true, flags: JSON_THROW_ON_ERROR);
+$originals = json_decode($originalSource, true, flags: JSON_THROW_ON_ERROR);
+
+// Historical original_body_sha256 values were recorded with PHP tokenizer
+// integer IDs, which are not stable across PHP releases. Never rewrite those
+// original fingerprints just to satisfy today's PHP version. In the legacy
+// mismatch case, accept ONLY the exact, reviewed original source snapshots
+// from the base branch (Git blob SHA-1), then run the full migrated-body
+// comparison below. Any byte change to either evidence file fails closed.
+$gitBlobSha = static fn(string $bytes): string => sha1('blob ' . strlen($bytes) . "\0" . $bytes);
+$legacyEvidenceUnchanged =
+    hash_equals('ddb4d96cd034e79c1692c6ab6a914497a1eee74f', $gitBlobSha($originalSource)) &&
+    hash_equals('e5c3e9efda05ccd50af97d52fb2da2e3f90b0345', $gitBlobSha($contractSource));
+$legacyTokenMismatchCount = 0;
 $comparisons = [];
 $originalNames = [];
 foreach ($contracts as $name => $contract) {
@@ -62,7 +68,10 @@ foreach ($contracts as $name => $contract) {
     }
     $original = $originals[$name]['signature'] . $originals[$name]['body'];
     if (architectureBodyHash($original) !== $contract['original_body_sha256']) {
-        throw new RuntimeException('Original evidence was changed: ' . $name);
+        if (!$legacyEvidenceUnchanged) {
+            throw new RuntimeException('Original evidence was changed: ' . $name);
+        }
+        $legacyTokenMismatchCount++;
     }
     $source = extractionSource($method);
     $body = substr($source, strpos($source, '{'));
@@ -72,6 +81,12 @@ foreach ($contracts as $name => $contract) {
         'current' =>
             $originals[$name]['signature'] . architectureRestoreBody($body, $originalNames),
     ];
+}
+if ($legacyTokenMismatchCount > 0) {
+    fwrite(
+        STDERR,
+        "PHP tokenizer IDs differ for $legacyTokenMismatchCount legacy hashes; both original evidence files match pinned Git blobs.\n",
+    );
 }
 echo 'PASS ' . count($contracts) . " native/domain signatures and original algorithm contracts.\n";
 

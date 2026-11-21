@@ -35,6 +35,7 @@
         other.actor.cid === rule.actor.cid &&
         other.oncePerTurn === rule.oncePerTurn &&
         other.oncePerName === rule.oncePerName &&
+        other.maxUsesPerTurn === rule.maxUsesPerTurn &&
         other.activation === rule.activation &&
         other.chainSpeed === rule.chainSpeed),
         "Variantes incompatibles para un mismo efecto: " + rule.id);

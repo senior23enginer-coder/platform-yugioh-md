@@ -40,6 +40,10 @@ jobs:
         run: |
           npm ci
           npx playwright install --with-deps chromium
+      - name: Build runtime frontend exactly as deployment
+        run: npm run build
+      - name: Run complete local native regression suite (M01 acceptance gate)
+        run: npm test
       - name: Verify PHP requirements
         run: |
           php -v
@@ -55,9 +59,17 @@ jobs:
           node torneos_yugioh/tests/combo_creator_regression_test.cjs
       - name: Import actual GPT Memento and Crystron ZIP folders in isolated PHP tests
         run: |
-          git clone --depth 1 --branch base https://github.com/senior23enginer-coder/gpt-yugioh-promps-platform.git /tmp/station-x-gpt-decks
+          PROMPTS_REPO=https://github.com/senior23enginer-coder/gpt-yugioh-promps-platform.git
+          PROMPTS_BRANCH=${GITHUB_HEAD_REF:-base}
+          if git ls-remote --exit-code --heads "$PROMPTS_REPO" "refs/heads/$PROMPTS_BRANCH" >/dev/null; then
+            git clone --depth 1 --branch "$PROMPTS_BRANCH" "$PROMPTS_REPO" /tmp/station-x-gpt-decks
+          else
+            git clone --depth 1 --branch base "$PROMPTS_REPO" /tmp/station-x-gpt-decks
+          fi
           php torneos_yugioh/tests/gpt_real_folder_import_test.php /tmp/station-x-gpt-decks
           node torneos_yugioh/tests/gpt_real_endboard_renderer_test.cjs /tmp/station-x-gpt-decks
+      - name: Enforce two-deck A01-A10 structure and prompt/runtime parity
+        run: node scripts/verify-pilot-decks.cjs --prompts-root=/tmp/station-x-gpt-decks
       - name: Validate calculator contracts and rules
         run: |
           node scripts/test-calculator-general.cjs
@@ -68,6 +80,7 @@ jobs:
         run: |
           node torneos_yugioh/tests/study_presentation_contract_test.cjs
           node torneos_yugioh/tests/study_presentation_ui_test.cjs
+          node torneos_yugioh/tests/study_crystron_visual_ui_test.cjs
           node torneos_yugioh/tests/deck_builder_study_photos_test.cjs
           node torneos_yugioh/tests/deck_export_test.cjs
           node torneos_yugioh/tests/combo_creator_study_photos_test.cjs

@@ -339,6 +339,7 @@
             t.zone,
             t.position,
             E.negated(s, t),
+            t.attackLockedTurn === s.turn,
           ])
           .sort(),
         s._used.slice().sort(),
@@ -348,6 +349,7 @@
         // Two visually identical boards are not equivalent when only one
         // carries a proven causal trigger (e.g. sent by monster effect).
         s._ruleEvents || [],
+        Object.entries(s._ruleUseCounts || {}).sort(([a],[b]) => a.localeCompare(b)),
         s.lp.self,
         s.lp.opponent,
       ]);
@@ -371,6 +373,14 @@
             !s.tokens.some((b) => b.uid === t.uid && b.zone !== "deck"),
         );
         if ((options.noDeckToHand || s._ruleFlags?.noDeckToHand) && deckHand)
+          return;
+        // Legacy planner actions may bypass the declarative rule interpreter.
+        // They must still respect Heat Wave for newly summoned Effect Monsters.
+        if (options.effectMonsterSummonBlocked &&
+            n.tokens.some(t => monster(t.zone) &&
+              !s.tokens.some(before => before.uid === t.uid && monster(before.zone)) &&
+              !String(db.facts?.[db.bindings[t.key]]?.species || "")
+                .toLowerCase().includes("normal monster")))
           return;
         try {
           E.validate(n);

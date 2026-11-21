@@ -7,9 +7,31 @@ on:
       - 'torneos_yugioh/assets/modules/play-calculator/**'
       - 'torneos_yugioh/assets/editorial/20261117-folder-delivery-v40/677.json'
       - 'torneos_yugioh/assets/editorial/20261117-folder-delivery-v40/671.json'
+      - 'torneos_yugioh/assets/editorial/memento-a07-functional-coverage.json'
+      - 'torneos_yugioh/tests/memento_m01_acceptance_audit_test.cjs'
+      - 'torneos_yugioh/tests/calculator_portable_memento_planner_test.cjs'
+      - 'torneos_yugioh/tests/memento_princess_trigger_draw_test.cjs'
       - 'torneos_yugioh/tests/calculator_portable_memento_test.cjs'
+      - 'torneos_yugioh/tests/memento_goblin_biker_breakout_test.cjs'
+      - 'torneos_yugioh/tests/memento_sp_link_extra_test.cjs'
+      - 'torneos_yugioh/tests/memento_c02_route_replay_test.cjs'
+      - 'torneos_yugioh/tests/memento_c01_route_replay_test.cjs'
+      - 'torneos_yugioh/tests/memento_c03_route_replay_test.cjs'
+      - 'torneos_yugioh/tests/memento_c04_route_replay_test.cjs'
+      - 'torneos_yugioh/tests/memento_c05_route_replay_test.cjs'
+      - 'torneos_yugioh/tests/memento_c06_route_replay_test.cjs'
+      - 'torneos_yugioh/tests/memento_c07_route_replay_test.cjs'
+      - 'torneos_yugioh/tests/memento_c08_route_replay_test.cjs'
+      - 'torneos_yugioh/tests/memento_c09_route_replay_test.cjs'
+      - 'torneos_yugioh/tests/memento_c10_route_replay_test.cjs'
+      - 'torneos_yugioh/tests/memento_c11_route_replay_test.cjs'
+      - 'torneos_yugioh/tests/memento_c12_route_replay_test.cjs'
       - 'torneos_yugioh/tests/calculator_portable_horus_test.cjs'
       - 'torneos_yugioh/tests/calculator_crystron_smiger_test.cjs'
+      - 'torneos_yugioh/tests/calculator_crystron_thystvern_test.cjs'
+      - 'torneos_yugioh/tests/calculator_crystron_thystvern_field_test.cjs'
+      - 'torneos_yugioh/tests/calculator_horus_sarcophagus_four_uses_test.cjs'
+      - 'scripts/verify-pilot-decks.cjs'
       - 'torneos_yugioh/tests/calculator_browser_bootstrap_test.cjs'
       - '.github/workflows/validate-calculator-portable.yml'
   push:
@@ -18,6 +40,10 @@ on:
       - 'torneos_yugioh/assets/modules/play-calculator/**'
       - 'torneos_yugioh/assets/editorial/20261117-folder-delivery-v40/677.json'
       - 'torneos_yugioh/assets/editorial/20261117-folder-delivery-v40/671.json'
+      - 'torneos_yugioh/assets/editorial/memento-a07-functional-coverage.json'
+      - 'torneos_yugioh/tests/memento_m01_acceptance_audit_test.cjs'
+      - 'torneos_yugioh/tests/calculator_portable_memento_planner_test.cjs'
+      - 'torneos_yugioh/tests/memento_princess_trigger_draw_test.cjs'
       - 'torneos_yugioh/tests/calculator_portable_memento_test.cjs'
       - 'torneos_yugioh/tests/calculator_portable_horus_test.cjs'
       - '.github/workflows/validate-calculator-portable.yml'
@@ -33,6 +59,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Validate canonical A01-A10 pilot structure without false certification
+        run: node scripts/verify-pilot-decks.cjs
       - name: Validate Crystron portable contract and duel-state transitions
         run: node torneos_yugioh/tests/calculator_portable_horus_test.cjs
       - name: Validate Memento portable parity and fail-closed import
@@ -41,6 +69,56 @@ jobs:
         run: node torneos_yugioh/tests/calculator_browser_bootstrap_test.cjs
       - name: Verify Crystron Smiger live-state rules and shared usage
         run: node torneos_yugioh/tests/calculator_crystron_smiger_test.cjs
+      - name: Verify Thystvern field destruction, both Tuners and shared GY usage
+        run: node torneos_yugioh/tests/calculator_crystron_thystvern_field_test.cjs
+      - name: Verify King's Sarcophagus four-use cost, search and separate Horus revive
+        run: node torneos_yugioh/tests/calculator_horus_sarcophagus_four_uses_test.cjs
+      - name: Verify Thystvern search inventory, costs and shared use
+        run: node torneos_yugioh/tests/calculator_crystron_thystvern_test.cjs
+      - name: Verify Princess unknown draw after actual hand-monster activation cost
+        run: node torneos_yugioh/tests/memento_princess_trigger_draw_test.cjs
+      - name: Verify Memento Droll observed-trigger and turn-scoped lock
+        run: node torneos_yugioh/tests/memento_droll_observed_add_test.cjs
+      - name: Verify Heat Wave turn window and effect-monster summon lock
+        run: node torneos_yugioh/tests/memento_heat_wave_test.cjs
+      - name: Verify TY-PHON one-material detach and owner return
+        run: node torneos_yugioh/tests/memento_typhon_detach_test.cjs
+      - name: Verify Gordian Slicer timing, payment, non-negation and target return
+        run: node torneos_yugioh/tests/memento_gordian_slicer_test.cjs
+      - name: Verify Aero Shark cost and dynamic damage from known banished monsters
+        run: node torneos_yugioh/tests/memento_aero_shark_damage_test.cjs
+      - name: Verify Goblin Breakout tribute, Quick-Play timing and attack restriction
+        run: node torneos_yugioh/tests/memento_goblin_biker_breakout_test.cjs
+      - name: Verify S:P Link Extra material trigger, banishment and direct attack restriction
+        run: node torneos_yugioh/tests/memento_sp_link_extra_test.cjs
+      - name: Exercise C02 complete documented no-response route with real state transitions
+        run: node torneos_yugioh/tests/memento_c02_route_replay_test.cjs
+      - name: Exercise C01 complete no-response route with real state transitions
+        run: node torneos_yugioh/tests/memento_c01_route_replay_test.cjs
+      - name: Exercise C03 seven-step second-turn field removal replay
+        run: node torneos_yugioh/tests/memento_c03_route_replay_test.cjs
+      - name: Exercise C04 one-card Angwitch opening to double boss
+        run: node torneos_yugioh/tests/memento_c04_route_replay_test.cjs
+      - name: Exercise C05 Dark Blade one-card starter with two physical Fusion Spells
+        run: node torneos_yugioh/tests/memento_c05_route_replay_test.cjs
+      - name: Exercise C06 Twin Dragon + Combined Creation documented no-response route
+        run: node torneos_yugioh/tests/memento_c06_route_replay_test.cjs
+      - name: Exercise C07 exact Chimera drawing unknown card and destroying two known opponent cards
+        run: node torneos_yugioh/tests/memento_c07_route_replay_test.cjs
+      - name: Exercise C08 SP temporary banish and End Phase return
+        run: node torneos_yugioh/tests/memento_c08_route_replay_test.cjs
+      - name: Exercise C09 Necroquip equipped Requiem and Goblin hand contact summon
+        run: node torneos_yugioh/tests/memento_c09_route_replay_test.cjs
+      - name: Replay C10 Sequence into Duke immediate Normal without reusing Angwitch search
+        run: node torneos_yugioh/tests/memento_c10_route_replay_test.cjs
+      - name: Replay C11 Goblin Biker Tribute and two-boss final with physical materials
+        run: node torneos_yugioh/tests/memento_c11_route_replay_test.cjs
+      - name: Replay C12 Horn Dragon three face-up targets after Bone Party destruction
+        run: node torneos_yugioh/tests/memento_c12_route_replay_test.cjs
+      - name: Audit M01 actor coverage and replay certification (informational, not closure)
+        run: node torneos_yugioh/tests/memento_m01_acceptance_audit_test.cjs
+      - name: Execute full Memento A07 effect regression suite
+        run: npm run test:a07:memento
       - name: Protect prior planner and Horus regressions
         run: |
           node torneos_yugioh/tests/calculator_horus_state_test.cjs

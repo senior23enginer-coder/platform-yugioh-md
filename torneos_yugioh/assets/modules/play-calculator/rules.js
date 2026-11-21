@@ -27,6 +27,13 @@
     "emz2",
   ];
   const flags = Restrictions.names;
+  function heatWaveBlocks(flags, db, cid) {
+    if (!flags.effectMonsterSummonBlocked) return false;
+    // A known Normal Monster is allowed. When its nature is unknown, fail
+    // closed rather than recommending an Effect Monster Summon as legal.
+    const species = String(db.facts?.[cid]?.species || "").toLowerCase();
+    return !species.includes("normal monster");
+  }
   const tags = [
     "addFromDeck",
     "summonFromDeck",
@@ -43,7 +50,7 @@
         Array.isArray(q.zones) &&
         q.zones.length > 0 &&
         q.zones.every(
-          (z) => zones.includes(z) || z === "monsters" || z === "field-all",
+          (z) => zones.includes(z) || z === "monsters" || z === "field-all" || z === "actor-materials",
         ),
       "Selector incompleto",
     );
@@ -58,10 +65,15 @@
       q.faceUp === undefined || typeof q.faceUp === "boolean",
       "Posicion incorrecta",
     );
+    check(q.section === undefined || ["main", "extra"].includes(q.section),
+      "Origen del objetivo no acreditado");
+    if (q.zones.includes("actor-materials"))
+      check(q.zones.length === 1 && q.side === "self" && q.section === undefined,
+        "Material debe pertenecer al Xyz actor");
     check(q.key === undefined || typeof q.key === "string", "Clave incorrecta");
     check(
       Object.keys(q).every((k) =>
-        ["side", "zones", "cid", "cids", "key", "faceUp", "notNegated"].includes(k),
+        ["side", "zones", "cid", "cids", "key", "faceUp", "notNegated", "section"].includes(k),
       ),
       "Selector desconocido",
     );
@@ -78,6 +90,7 @@
       (q.cid === undefined || db.bindings[t.key] === q.cid) &&
       (q.cids === undefined || q.cids.includes(db.bindings[t.key])) &&
       (q.key === undefined || q.key === t.key) &&
+      (q.section === undefined || E.definition(s,t.key,t.owner)?.section === q.section) &&
       (q.faceUp === undefined || q.faceUp === (t.position !== "set")) &&
       (!q.notNegated || !E.negated(s, t))
     );
@@ -143,6 +156,7 @@
         (rule.trigger.kind === "sent_by_monster_effect"
           ? Number.isInteger(rule.trigger.sourceCid) && rule.trigger.sourceCid > 0
           : rule.trigger.kind === "destroyed_by_effect" || rule.trigger.kind === "fusion_summoned" ||
+            rule.trigger.kind === "link_summoned_with_extra" ||
             (rule.trigger.kind === "summoned" &&
               Array.isArray(rule.trigger.methods) && rule.trigger.methods.length > 0 &&
               rule.trigger.methods.every(m => ["normal", "special"].includes(m)))) &&
@@ -193,7 +207,18 @@
           g.allowedCids.every((cid) => Number.isInteger(cid) && cid > 0),
         "El guardia de monstruos permitidos requiere identidades y campo boca arriba acreditados");
       } else if (g.kind === "event") {
-        check(g.event === "owned_monster_destroyed_by_effect_this_turn"
+        check(g.event === "opponent_activation"
+          ? g.side==="opponent" && g.currentTurn===true &&
+            rule.actor.cid===19188 && rule.id==="671:sp:temporary-banish" &&
+            Object.keys(g).length===4
+          : g.event === "opponent_main_deck_add"
+          ? g.side === "opponent" && g.currentTurn === true && Object.keys(g).length === 4
+          : g.event === "monster_sent_from_hand_activation"
+          ? g.side === "self" && g.currentTurn === true &&
+            rule.actor.cid === 20423 &&
+            ["671:princess:trigger-draw","671:princess:trigger-equip"].includes(rule.id) &&
+            Object.keys(g).length === 4
+          : g.event === "owned_monster_destroyed_by_effect_this_turn"
           ? Object.keys(g).length === 2
           : ["destroy", "summon", "fusion_summon"].includes(g.event) &&
             (g.event !== "destroy" || g.by === "effect") &&
@@ -236,6 +261,32 @@
     );
     check(rule.oncePerName === undefined || (rule.oncePerName === true && rule.oncePerTurn === true && Number.isInteger(rule.actor.cid)),
       "Uso compartido por nombre exige CID y límite por turno");
+    if (rule.maxUsesPerTurn !== undefined)
+      check(rule.maxUsesPerTurn === 4 && rule.deckId === 677 && rule.actor.cid === 19200 &&
+        rule.id === '677:sarcophagus:send-horus' && rule.source.includes('cid=19200') &&
+        rule.oncePerName === true && rule.oncePerTurn === true,
+        'Un contador de cuatro usos solo se admite para el Sarcófago del Rey acreditado');
+    if (rule.noChainReplay !== undefined)
+      check(rule.noChainReplay === true &&
+        ((rule.actor.cid === 19184 && rule.id === "671:typhon:detach-bounce") ||
+         (rule.actor.cid === 21203 && ["671:gordian:one-monster-six-extra","671:gordian:one-monster-one-hand"].includes(rule.id))),
+        "Resolución no seleccionadora de TY-PHON requiere regla acreditada");
+    if (rule.afterResolution !== undefined) {
+      check(([9139,21203].includes(rule.actor.cid) ||
+        (rule.actor.cid === 20533 && rule.id === "671:goblin-biker-grand-breakout:deck-summon")) &&
+        rule.source.includes("cid=" + rule.actor.cid) &&
+        rule.activation === true &&
+        Array.isArray(rule.afterResolution) && rule.afterResolution.length === 1 &&
+        rule.afterResolution[0].op === "move" &&
+        rule.afterResolution[0].ref === "actor" &&
+        rule.afterResolution[0].to === "graveyard" &&
+        rule.afterResolution[0].position === "attack",
+        "Envío de Mágica Normal al Cementerio no acreditado");
+    }
+    if (rule.cannotBeNegated !== undefined)
+      check(rule.cannotBeNegated === true && rule.actor.cid === 21203 &&
+        ["671:gordian:one-monster-six-extra","671:gordian:one-monster-one-hand"].includes(rule.id),
+        "Solo Gordian Slicer tiene prohibición de negación acreditada");
     check(rule.distinctSelectedNames === undefined || typeof rule.distinctSelectedNames === "boolean",
       "Restriccion de nombres incorrecta");
     const refs = new Set(["actor"]);
@@ -248,8 +299,10 @@
       selector(x.selector);
       check(x.allowActor === undefined ||
         (x.allowActor === true && x.ref === "target" &&
-          x.selector.side === "self" && x.selector.faceUp === true &&
-          x.selector.zones.includes("field-all")),
+          x.selector.side === "self" &&
+          ((x.selector.faceUp === true && x.selector.zones.includes("field-all")) ||
+            (rule.actor.cid === 19184 && x.selector.zones.includes("monsters") &&
+              x.selector.section === "extra"))),
         "Solo objetivos propios boca arriba acreditados pueden coincidir con el actor");
     }
     check(rule.equippedToActorRef === undefined ||
@@ -307,6 +360,28 @@
           rule.guards.some(g => g.kind === "extraSummonHistory") &&
           rule.activation === false,
           "TY-PHON requiere historial rival, monstruo mayor ATK y superposición explícita");
+      else if (op.op === "necroquipSummon")
+        check(phase==="resolve" && rule.id==="671:princess:contact-summon" &&
+          rule.actor.cid===20196 && rule.activation===false &&
+          op.cid===20423 && op.recipe==="equipped-monster-plus-fiend" &&
+          op.refs?.length===3 && JSON.stringify(op.refs)===
+            JSON.stringify(["actor","equip","fiend"]) &&
+          op.materialCids?.length===3 &&
+          JSON.stringify(op.materialCids)===JSON.stringify([20196,20225,19366]) &&
+          ["m1","m2","m3","m4","m5"].includes(op.to) &&
+          refs.has("equip") && refs.has("fiend"),
+          "Princesa requiere Grabador equipado, Réquiem y Demonio de mano físicos");
+      else if (op.op === "princessEquip")
+        check(phase==="resolve" && rule.deckId===671 &&
+          rule.id==="671:princess:trigger-equip" && rule.actor.cid===20423 &&
+          rule.source.includes("cid=20423") && rule.oncePerName===true &&
+          rule.guards.some(g=>g.kind==="event" &&
+            g.event==="monster_sent_from_hand_activation") &&
+          rule.select.some(x=>x.ref==="material" && x.selector.side==="self" &&
+            JSON.stringify(x.selector.zones)===JSON.stringify(["graveyard"])) &&
+          op.ref==="material" && refs.has(op.ref) &&
+          op.targetCid===20423 && op.to==="free-spell-trap" && op.atkGain===500,
+          "Princesa equipa sólo monstruo realmente enviado de mano como coste");
       else if (op.op === "fusion")
         check(
           Number.isInteger(op.cid) && op.cid > 0 &&
@@ -330,7 +405,9 @@
         );
       else if (op.op === "tribute")
         check(refs.has(op.ref) && op.reason === "cost" && rule.costs.includes(op) &&
-          (op.allowHand === undefined || op.allowHand === true),
+          (op.allowHand === undefined || op.allowHand === true) &&
+          (op.allowSet === undefined || (op.allowSet === true && rule.actor.cid === 20533 &&
+            rule.id === "671:goblin-biker-grand-breakout:deck-summon" && op.allowHand === undefined)),
           "Sacrificar como coste exige un monstruo identificado y el bloque costs");
       else if (op.op === "changeControl")
         check(refs.has(op.ref) && ["self", "opponent"].includes(op.to) &&
@@ -345,7 +422,10 @@
           rule.actor.cid === 12870,
           "Contador Depredador exige Dragostapelia y objetivo concreto");
       else if (op.op === "banishExtraFaceDown")
-        check(rule.costs.includes(op) && op.count === 6 && Array.isArray(op.refs) &&
+        check((rule.costs.includes(op) ||
+           (phase === "resolve" && rule.actor.cid === 21203 &&
+            rule.cannotBeNegated === true && rule.guards.some(g => g.kind === "phaseStart"))) &&
+           op.count === 6 && Array.isArray(op.refs) &&
           op.refs.length === 6 && new Set(op.refs).size === 6 &&
           op.refs.every(ref=>ref!=="actor" && refs.has(ref)),
           "Gordiano debe costear seis cartas del Extra identificadas por objetivo");
@@ -371,9 +451,13 @@
           (op.summonMethod === undefined || (op.summonMethod === "special" &&
             op.side === "self" && op.from === "deck" &&
             ["m1", "m2", "m3", "m4", "m5", "free-monster"].includes(op.to))) &&
+          (op.cannotAttackThisTurn === undefined || (op.cannotAttackThisTurn === true &&
+              rule.actor.cid === 20533 && rule.id === "671:goblin-biker-grand-breakout:deck-summon" &&
+              op.side === "self" && op.cid === 19366 && op.from === "deck" &&
+              op.to === "free-monster" && op.summonMethod === "special")) &&
           (op.cause === undefined || (op.cause === "monster_effect" &&
               op.from === "deck" && op.to === "graveyard" &&
-              rule.actor.side === op.side && Array.isArray(rule.tags) && rule.tags.includes("monsterEffect"))) &&
+              rule.actor.side === op.side && Array.isArray(rule.tags) && rule.tags.includes("monsterEffect"))),
           "Recurso incorrecto",
         );
       else if (op.op === "payLP")
@@ -381,6 +465,33 @@
           Number.isInteger(op.amount) && op.amount > 0,
           "Coste LP incorrecto",
         );
+      else if (op.op === "temporaryBanishPair")
+        check(phase==="resolve" && rule.actor.cid===19188 &&
+          rule.id==="671:sp:temporary-banish" && rule.chainSpeed===2 &&
+          op.sourceCid===19188 && Array.isArray(op.refs) &&
+          op.refs.length===2 && op.refs[0]==="actor" &&
+          op.refs[1]==="target" && refs.has("target") &&
+          rule.guards.some(g=>g.kind==="event"&&g.event==="opponent_activation"),
+          "Destierro temporal S:P exige activación rival observada y dos monstruos fijados");
+      else if (op.op === "drawUnknown")
+        check(phase==="resolve" && rule.deckId===671 &&
+          ((rule.id==="671:guardian-chimera:draw-destroy" &&
+          rule.actor.cid===16845 && rule.source.includes("cid=16845") &&
+          rule.trigger?.kind==="fusion_summoned" &&
+          op.side==="self" && op.count===1) ||
+          (rule.id==="671:princess:trigger-draw" &&
+          rule.actor.cid===20423 && rule.source.includes("cid=20423") &&
+          rule.guards.some(g=>g.kind==="event" &&
+            g.event==="monster_sent_from_hand_activation") &&
+          op.side==="self" && op.count===1)),
+          "Robo desconocido exige disparador acreditado de Quimera o Princesa");
+      else if (op.op === "damagePerBanishedMonsters")
+        check(rule.actor.cid === 9657 && rule.source.includes("cid=9657") &&
+          op.side === "opponent" && op.perMonster === 100 &&
+          rule.select.some(item => item.ref === "material" &&
+            item.selector.zones.length === 1 &&
+            item.selector.zones[0] === "actor-materials"),
+          "Aero Shark requiere material Xyz y 100 LP por monstruo desterrado propio");
       else if (op.op === "damage" || op.op === "recoverLP")
         check(
           ["self", "opponent"].includes(op.side) &&
@@ -401,12 +512,29 @@
       else if (op.op === "flag")
         check(
           flags.includes(op.flag) && typeof op.value === "boolean" &&
+          (op.flag !== "effectMonsterSummonBlocked" ||
+            (rule.actor.cid === 9139 && rule.source.includes("cid=9139") &&
+              rule.actor.zones.includes("hand") &&
+              rule.guards.some(g => g.kind === "phaseStart") &&
+              rule.guards.some(g => g.kind === "state" && g.field === "phase" &&
+                g.values.length === 1 && g.values[0] === "main1"))) &&
           (op.duration || "persistent") ===
-            (Restrictions.turnScoped.includes(op.flag) ? "turn" : "persistent"),
+            (Restrictions.turnScoped.includes(op.flag) ? "turn" :
+              op.flag === "effectMonsterSummonBlocked" ? "next-own-draw" : "persistent"),
           "Restriccion o duracion incorrecta",
         );
       else if (op.op === "normal")
         check(typeof op.available === "boolean", "Normal incorrecta");
+      else if (op.op === "immediateNormal")
+        check(phase === "resolve" && rule.id === "671:duke:immediate-normal" &&
+          rule.actor.cid === 20389 && rule.source.includes("cid=20389") &&
+          rule.oncePerTurn === true && rule.activation === true &&
+          op.ref === "witch" && refs.has(op.ref) &&
+          rule.select.some(x=>x.ref==="witch" && x.selector.cid===19364 &&
+            x.selector.side==="self" && x.selector.zones.length===1 &&
+            x.selector.zones[0]==="hand") &&
+          op.from === "hand" && ["m1","m2","m3","m4","m5"].includes(op.to) &&
+          op.position === "attack", "Duque requiere su Normal inmediata acreditada");
       else if (op.op === "summon")
         check(refs.has(op.ref) && ["normal", "special"].includes(op.method) &&
           ["m1", "m2", "m3", "m4", "m5"].includes(op.to) &&
@@ -431,6 +559,7 @@
       tokens: E.clone(s.tokens),
       nextId: s.nextId,
       lp: E.clone(s.lp),
+      selfUnknownHand: s.selfUnknownHand||0,
       normalAvailable: !s._normal,
       _normal: s._normal,
       _xyz: s._xyz,
@@ -439,6 +568,7 @@
       _ruleFlagTurns: E.clone(s._ruleFlagTurns || {}),
       _ruleEvents: E.clone(s._ruleEvents || []),
       _ruleUseTurns: E.clone(s._ruleUseTurns || {}),
+      _ruleUseCounts: E.clone(s._ruleUseCounts || {}),
     };
   }
   function triggerMatches(s, rule, uid) {
@@ -459,7 +589,15 @@
       }
       const used = rule.oncePerName ? "rule:cid:" + rule.actor.cid : "rule:" + rule.id;
       // El límite por nombre se reinicia por turno, pero no por nueva copia.
-      if (!options.prepared && rule.oncePerTurn && Timing.usedThisTurn(s, used)) continue;
+      if (!options.prepared && rule.oncePerTurn &&
+        (rule.maxUsesPerTurn === undefined
+          ? Timing.usedThisTurn(s, used)
+          : (() => {
+              const prior = s._ruleUseCounts?.[used];
+              return prior?.turn === s.turn
+                ? prior.count >= rule.maxUsesPerTurn
+                : Timing.usedThisTurn(s, used); // unknown legacy use count: fail closed
+            })())) continue;
       if (!options.prepared && rule.trigger && !s.tokens.some(t => triggerMatches(s, rule, t.uid))) continue;
       const f = Restrictions.effective(s, options);
       if (rule.activation && f.effectsNegated) continue;
@@ -497,7 +635,9 @@
       for (const item of options.prepared ? [] : rule.select)
         bindings = bindings
           .flatMap((b) =>
-            candidates(s, item.selector, db)
+            (item.selector.zones.includes("actor-materials")
+              ? s.tokens.filter(t => t.zone === "material:" + b.actor)
+              : candidates(s, item.selector, db))
               .filter((t) => {
                 // A face-up own card may legally target itself only when
                 // the verified rule explicitly opts into that target shape.
@@ -507,13 +647,25 @@
                 if (!rule.distinctSelectedNames) return true;
                 const earlier = Object.entries(b).filter(([ref]) => ref !== "actor")
                   .map(([, uid]) => s.tokens.find((token) => token.uid === uid));
+                // When every material selector names one distinct physical CID,
+                // no permutation exists: an arbitrary UID ordering is not a
+                // legality restriction. Preserve ordering for interchangeable
+                // material pools to avoid duplicate combinations.
+                const exactDifferentCids = rule.select.every((selection) =>
+                  Number.isInteger(selection.selector?.cid)) &&
+                  new Set(rule.select.map((selection) => selection.selector.cid)).size === rule.select.length;
                 return earlier.every((other) => db.bindings[other.key] !== db.bindings[t.key]) &&
-                  (!earlier.length || t.uid > earlier[earlier.length - 1].uid);
+                  (!earlier.length || exactDifferentCids ||
+                    t.uid > earlier[earlier.length - 1].uid);
               })
               .map((t) => ({ ...b, [item.ref]: t.uid })),
           )
           .slice(0, 40);
       for (const refs of bindings.slice(0, 40)) {
+        // The two opponent field selections are unordered, not named targets:
+        // canonicalize pair order without forbidding same-name cards.
+        if(rule.actor.cid===16845 && refs.first && refs.second &&
+          refs.first>refs.second)continue;
         const actor = s.tokens.find((t) => t.uid === refs.actor) ||
           (options.prepared?.actorKey ? { key: options.prepared.actorKey } : null);
         if (!actor) continue;
@@ -549,7 +701,7 @@
             for(const t of targets)n=E.place(n,{uid:t.uid,zone:"deck",controller:t.owner});
             n._ruleEvents=[...(n._ruleEvents||[]),{kind:"shuffle_distinct",cids,stage:opStage}];
           } else if (op.op === "link") {
-            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.xyzOnly || f.machineSynchroOnly),"Link bloqueado por restricción de Extra o Especial");
+            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.xyzOnly || f.machineSynchroOnly || heatWaveBlocks(f,db,op.cid)),"Link bloqueado por restricción de Extra, Especial u Oleada de Calor");
             check(!(options.blockedZones||[]).includes(op.to),"Zona de Link bloqueada");
             const selected=Resources.requireTokens(n,refs,op.materials,t=>t.owner==="self"&&
               t.controller==="self"&&E.isMonster(t.zone)&&t.position!=="set",
@@ -564,9 +716,12 @@
             n=E.place(n,previous?{uid:previous.uid,zone:op.to,controller:"self"}:{key:extraCard[0].key,owner:"self",controller:"self",zone:op.to});
             const summoned=n.tokens.find(t=>t.key===extraCard[0].key&&t.zone===op.to);
             n=E.position(n,summoned.uid,"attack");
-            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"link_summon",cid:op.cid,uid:summoned.uid,materials:selected.map(t=>t.uid),turn:n.turn,stage:opStage}];
+            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"link_summon",cid:op.cid,uid:summoned.uid,
+              materials:selected.map(t=>t.uid),usedExtraDeckMaterial:selected.some(t=>
+                E.definition(n,t.key,t.owner)?.section==="extra"),
+              side:"self",turn:n.turn,captureRevision:n._captureRevision,stage:opStage}];
           } else if (op.op === "xyz") {
-            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.machineSynchroOnly),"Xyz bloqueado por restricción de Extra o Especial");
+            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.machineSynchroOnly || heatWaveBlocks(f,db,op.cid)),"Xyz bloqueado por restricción de Extra, Especial u Oleada de Calor");
             check(!(options.blockedZones||[]).includes(op.to),"Zona Extra bloqueada");
             const selected=Resources.requireTokens(n,refs,op.materials,t=>t.owner==="self"&&
               t.controller==="self"&&E.isMonster(t.zone)&&t.position!=="set",
@@ -583,7 +738,7 @@
             for(const t of selected)n=E.place(n,{uid:t.uid,zone:"material:"+summoned.uid,controller:"self"});
             n._ruleEvents=[...(n._ruleEvents||[]),{kind:"xyz_summon",cid:op.cid,uid:summoned.uid,materials:selected.map(t=>t.uid),turn:n.turn,stage:opStage}];
           } else if (op.op === "xyzOverlay") {
-            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.machineSynchroOnly),
+            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.machineSynchroOnly || heatWaveBlocks(f,db,op.cid)),
               "Superposición bloqueada por restricción de Invocaciones");
             check(extraSummonWindow(n) && Timing.isOwnMainPhase(n),
               "TY-PHON exige dos Invocaciones rivales del Extra en un mismo turno válido");
@@ -619,8 +774,68 @@
             n._ruleEvents=[...(n._ruleEvents||[]),{kind:"xyz_summon",cid:19184,
               uid:typhonUid,materials:[selected.uid],turn:n.turn,side:"self",
               method:"typhon-alternate",from:oldZone,stage:opStage}];
+          } else if (op.op === "necroquipSummon") {
+            check(!(f.noExtra||f.specialBlocked||f.noMoreSummons||f.xyzOnly||
+              f.machineSynchroOnly||f.graveyardBlocked),
+              "Invocación por procedimiento de Princesa bloqueada");
+            const [engraver,equip,fiend]=Resources.requireTokens(n,refs,op.refs,t=>
+              t.owner==="self"&&t.controller==="self",
+              "Material de Princesa no pertenece al jugador");
+            check(engraver&&engraver.uid===refs.actor&&
+              db.bindings[engraver.key]===20196&&E.isMonster(engraver.zone)&&
+              engraver.position!=="set"&&
+              equip&&db.bindings[equip.key]===20225&&equip.zone==="s1"&&
+              equip.equippedToUid===engraver.uid &&
+              fiend&&db.bindings[fiend.key]===19366&&fiend.zone==="hand",
+              "Princesa exige Grabador equipado físicamente con Réquiem y Goblin de mano");
+            check(!n.tokens.some(t=>db.bindings[t.key]===20423 &&
+              E.isMonster(t.zone)&&t.controller==="self"),
+              "Sólo puedes controlar una Princesa Necroequipo");
+            const extra=n.self.cards.find(c=>db.bindings[c.key]===20423 &&
+              c.section==="extra"&&E.remaining(n,c.key,"self")>0);
+            check(extra,"No existe Princesa física disponible en Extra Deck");
+            Transitions.assertVacant(n,"self",op.to);
+            const names=[engraver.uid,equip.uid,fiend.uid];
+            for(const t of [engraver,equip,fiend]){
+              n=E.place(n,{uid:t.uid,zone:"graveyard",controller:"self"});
+              const physical=n.tokens.find(x=>x.uid===t.uid);
+              if(physical)delete physical.equippedToUid;
+            }
+            n=E.place(n,{key:extra.key,owner:"self",controller:"self",zone:op.to});
+            const princess=n.tokens.find(t=>t.key===extra.key&&t.zone===op.to);
+            n=E.position(n,princess.uid,"attack");
+            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"necroquip_contact_summon",
+              cid:20423,uid:princess.uid,materials:names,turn:n.turn,stage:opStage}];
+          } else if (op.op === "princessEquip") {
+            const princess=n.tokens.find(t=>t.uid===refs.actor && t.owner==="self" &&
+              t.controller==="self" && E.isMonster(t.zone) && t.position!=="set" &&
+              db.bindings[t.key]===20423);
+            const material=n.tokens.find(t=>t.uid===refs.material &&
+              t.owner==="self" && t.zone==="graveyard" &&
+              db.facts?.[db.bindings[t.key]]?.kind==="monster");
+            const witnessed=(n._ruleEvents||[]).some(e=>
+              e.kind==="monster_sent_from_hand_activation" &&
+              e.uid===refs.material && e.side==="self" &&
+              e.turn===n.turn && e.captureRevision===n._captureRevision);
+            check(princess && material && witnessed,
+              "Princesa sólo puede equipar el monstruo realmente enviado como coste desde mano");
+            const slot=["s1","s2","s3","s4","s5"].find(zone=>
+              !(options.blockedZones||[]).includes(zone) &&
+              !n.tokens.some(t=>t.controller==="self"&&t.zone===zone));
+            check(slot,"No queda zona de Magia/Trampa para equipar a Princesa");
+            const currentATK=Number.isInteger(princess.currentATK) ?
+              princess.currentATK : 2000; // Official printed ATK (CID 20423)
+            check(Number.isInteger(currentATK),
+              "ATK actual de Princesa sin determinar");
+            n=E.place(n,{uid:material.uid,zone:slot,controller:"self"});
+            n.tokens.find(t=>t.uid===material.uid).equippedToUid=princess.uid;
+            n.tokens.find(t=>t.uid===material.uid).equippedAtkBonus=500;
+            n.tokens.find(t=>t.uid===princess.uid).currentATK=currentATK+500;
+            n._ruleEvents=[...(n._ruleEvents||[]),{
+              kind:"princess_equip",cid:20423,materialUid:material.uid,
+              gain:500,turn:n.turn,stage:opStage}];
           } else if (op.op === "fusion") {
-            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.xyzOnly), "Fusión bloqueada por restricción de Extra o Especial");
+            check(!(f.noExtra || f.specialBlocked || f.noMoreSummons || f.xyzOnly || heatWaveBlocks(f,db,op.cid)), "Fusión bloqueada por restricción de Extra, Especial u Oleada de Calor");
             check(!(options.blockedZones || []).includes(op.to), "Zona Extra bloqueada");
             const selected = Resources.requireTokens(n,refs,op.materials,t=>t.owner==="self" &&
               t.controller==="self" && (t.zone==="hand" || E.isMonster(t.zone) ||
@@ -644,6 +859,8 @@
             const actual = selected.map(t=>db.bindings[t.key]).sort((a,b)=>a-b);
             const required = [...op.materialCids].sort((a,b)=>a-b);
             check(actual.every((cid,i)=>cid===required[i]), "Materiales no coinciden con la receta exacta");
+            const fromHand=selected.filter(t=>t.zone==="hand").length;
+            const fromField=selected.filter(t=>E.isMonster(t.zone)).length;
             const extraCard=n.self.cards.filter(c=>c.section==="extra" && db.bindings[c.key]===op.cid);
             check(extraCard.length===1,"Monstruo de Fusión no encontrado de forma única en el Extra");
             for(const t of selected)n=E.place(n,{uid:t.uid,
@@ -652,7 +869,10 @@
             n=E.place(n,previous?{uid:previous.uid,zone:op.to,controller:"self"}:{key:extraCard[0].key,owner:"self",controller:"self",zone:op.to});
             const summoned=n.tokens.find(t=>t.key===extraCard[0].key && t.zone===op.to);
             n=E.position(n,summoned.uid,"attack");
-            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"fusion_summon",cid:op.cid,uid:summoned.uid,materials:selected.map(t=>t.uid),turn:n.turn,stage:opStage}];
+            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"fusion_summon",cid:op.cid,uid:summoned.uid,
+              materials:selected.map(t=>t.uid),fromHand,fromField,
+              sourceCid:db.bindings[actor.key],captureRevision:n._captureRevision,
+              turn:n.turn,stage:opStage}];
           } else if (op.op === "destroy") {
             const t = n.tokens.find((t) => t.uid === refs[op.ref]);
             check(t && (field(t.zone) || t.zone === "hand"), "Objetivo de destrucción fuera de campo/mano");
@@ -663,7 +883,8 @@
             n._ruleEvents = [...(n._ruleEvents||[]),event];
           } else if (op.op === "tribute") {
             const [t]=Resources.requireTokens(n,refs,[op.ref],t=>t.controller==="self" &&
-              (E.isMonster(t.zone) && t.position!=="set" || op.allowHand===true && t.zone==="hand"),
+              (E.isMonster(t.zone) && (t.position!=="set" || op.allowSet === true) ||
+                op.allowHand===true && t.zone==="hand"),
               "Sacrificio exige monstruo propio boca arriba en campo");
             check(!f.graveyardBlocked,"Destino del coste de Sacrificio no acreditado");
             const event={kind:"tribute",uid:t.uid,cid:db.bindings[t.key],from:t.zone,by:"cost",stage:opStage};
@@ -707,7 +928,8 @@
             check(t, "Copia ausente");
             if(op.summonMethod){
               check(t.owner==="self" && t.controller==="self" &&
-                ["hand","graveyard"].includes(t.zone) && !f.specialBlocked && !f.noMoreSummons,
+                ["hand","graveyard"].includes(t.zone) && !f.specialBlocked && !f.noMoreSummons &&
+                !heatWaveBlocks(f,db,db.bindings[t.key]),
                 "Invocación Especial desde zona no acreditada o bloqueada");
             }
             const destination = op.to === "free-monster"
@@ -717,6 +939,11 @@
               : op.to;
             check(destination, "No hay zona de monstruos propia libre");
             Transitions.assertDestination(destination, options, f);
+            // Returning an Xyz monster to its owner's Extra Deck sends its
+            // remaining physically attached materials to their owners' GYs.
+            if ((destination === "extra" || destination === "hand") && E.isMonster(t.zone))
+              for (const attached of n.tokens.filter(token => token.zone === "material:" + t.uid))
+                n = E.place(n,{uid:attached.uid,zone:"graveyard",controller:attached.owner});
             n = E.place(n, {
               uid: t.uid,
               zone: destination,
@@ -724,11 +951,18 @@
             });
             if (n.tokens.some((x) => x.uid === t.uid))
               n = E.position(n, t.uid, op.position);
+            if(opStage==="cost" && t.owner==="self" && t.zone==="hand" &&
+              destination==="graveyard" && rule.activation &&
+              db.facts?.[db.bindings[t.key]]?.kind==="monster")
+              n._ruleEvents=[...(n._ruleEvents||[]),{
+                kind:"monster_sent_from_hand_activation",side:"self",
+                uid:t.uid,cid:db.bindings[t.key],sourceRuleId:rule.id,
+                turn:n.turn,stage:"cost"}];
             if(op.summonMethod) n._ruleEvents=[...(n._ruleEvents||[]),
               {kind:"summon",method:op.summonMethod,uid:t.uid,
                 cid:db.bindings[t.key],turn:n.turn,stage:opStage}];
           } else if (op.op === "take") {
-            if (op.summonMethod) check(!f.specialBlocked,
+            if (op.summonMethod) check(!f.specialBlocked && !heatWaveBlocks(f,db,op.cid),
               "Invocación desde Deck bloqueada por restricción de Especial");
             check(
               !(f.noDeckToHand && op.from === "deck" && op.to === "hand"),
@@ -738,6 +972,10 @@
               !(op.from === "extra" && (E.isMonster(op.to) || op.to === "hand")),
               "Invocacion o retorno desde Extra requiere un procedimiento de materiales acreditado",
             );
+            // Unknown own draws may contain any Main card. Until identified,
+            // a later search/mill cannot safely claim a specific copy is in Deck.
+            check(!(op.side==="self" && op.from==="deck" && n.selfUnknownHand>0),
+              "Robo propio de identidad desconocida: identifica la carta antes de buscar o enviar desde Deck");
             const cards = n[op.side].cards.filter(
               (c) =>
                 db.bindings[c.key] === op.cid &&
@@ -774,6 +1012,12 @@
             // operation, not an older copy with the same CID already in GY.
             const movedUid = t ? t.uid : n.nextId - 1;
             n = E.position(n, movedUid, op.position);
+            if (op.cannotAttackThisTurn) {
+              const summoned=n.tokens.find(t=>t.uid===movedUid);
+              check(summoned && E.isMonster(summoned.zone),
+                "Restricción de ataque requiere Invocación real");
+              summoned.attackLockedTurn=n.turn;
+            }
             if (op.cause === "monster_effect") {
               const sent=n.tokens.find(x=>x.uid===movedUid && x.key===c.key &&
                 x.zone==="graveyard" && x.owner===op.side);
@@ -790,6 +1034,66 @@
             n.lp = Resources.applyLP(n.lp, op);
           } else if (op.op === "damage") {
             n.lp = Resources.applyLP(n.lp, op);
+          } else if (op.op === "temporaryBanishPair") {
+            const witness=(n._ruleEvents||[]).find(e=>
+              e.kind==="opponent_activation"&&e.side==="opponent" &&
+              e.turn===n.turn&&e.captureRevision===n._captureRevision &&
+              n.tokens.some(t=>t.uid===e.uid&&t.owner==="opponent"));
+            check(witness && !f.banishBlocked && n.active==="opponent",
+              "S:P requiere activación rival observada y destierro permitido");
+            const pair=Resources.requireTokens(n,refs,op.refs,t=>
+              E.isMonster(t.zone)&&t.position!=="set",
+              "Se requieren dos monstruos boca arriba en Campo");
+            check(pair.length===2 && pair[0].controller==="self" &&
+              db.bindings[pair[0].key]===19188 &&
+              pair[1].controller==="opponent",
+              "S:P debe desterrar propia S:P y un monstruo rival real");
+            const record=pair.map(t=>({uid:t.uid,controller:t.controller,
+              position:t.position,owner:t.owner}));
+            for(const item of record){
+              n=E.place(n,{uid:item.uid,zone:"banished",controller:item.owner});
+              n.tokens.find(t=>t.uid===item.uid).temporaryReturn={
+                turn:n.turn,controller:item.controller,position:item.position,
+                sourceCid:19188};
+            }
+            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"temporary_banish",
+              sourceCid:19188,uids:record.map(t=>t.uid),turn:n.turn,
+              stage:opStage}];
+          } else if (op.op === "drawUnknown") {
+            const event=rule.actor.cid===20423
+              ? (n._ruleEvents||[]).find(e=>
+                  e.kind==="monster_sent_from_hand_activation" &&
+                  e.side==="self" && e.turn===n.turn &&
+                  e.captureRevision===n._captureRevision)
+              : (n._ruleEvents||[]).find(e=>e.kind==="fusion_summon" &&
+                  e.uid===refs.actor && e.cid===16845 && e.sourceCid===19904 &&
+                  e.fromHand===1 && e.fromField===2 && e.turn===n.turn &&
+                  e.captureRevision===n._captureRevision);
+            check(event,rule.actor.cid===20423
+              ?"Princesa requiere el envío real de monstruo desde mano como coste de activación en esta ventana"
+              :"Quimera requiere Fusión con Mágica y un material de mano y dos del Campo en esta ventana");
+            const ownMain=n.self.cards.filter(c=>c.section==="main").reduce((v,c)=>v+c.quantity,0);
+            const known=n.tokens.filter(t=>t.owner==="self" &&
+              E.definition(n,t.key,t.owner)?.section==="main").length;
+            check(ownMain-known-(n.selfUnknownHand||0)>=op.count,"Main sin cartas físicas suficientes para robar");
+            n.selfUnknownHand=(n.selfUnknownHand||0)+op.count;
+            n._ruleEvents=[...(n._ruleEvents||[]),{kind:"draw_unknown",side:"self",
+              count:op.count,sourceCid:rule.actor.cid,turn:n.turn,stage:opStage}];
+          } else if (op.op === "damagePerBanishedMonsters") {
+            const visibleBanished = n.tokens.filter(t=>t.owner==="self" &&
+              t.zone==="banished" && t.position!=="set");
+            let count=0;
+            for(const token of visibleBanished){
+              const kind=db.facts?.[db.bindings[token.key]]?.kind;
+              check(["monster","spell","trap"].includes(kind),
+                "No se puede verificar si una carta desterrada boca arriba es monstruo");
+              if(kind==="monster")count++;
+            }
+            if(count>0)n.lp=Resources.applyLP(n.lp,{
+              op:"damage",side:op.side,amount:count*op.perMonster});
+            n._ruleEvents=[...(n._ruleEvents||[]),{
+              kind:"aero_shark_damage",cid:9657,monsters:count,damage:count*op.perMonster,
+              turn:n.turn,stage:opStage}];
           } else if (op.op === "recoverLP") {
             n.lp = Resources.applyLP(n.lp, op);
           } else if (op.op === "negate") {
@@ -819,6 +1123,29 @@
               n._normal = false;
             }
             n.normalAvailable = !n._normal;
+          } else if (op.op === "immediateNormal") {
+            const t=n.tokens.find(t=>t.uid===refs[op.ref]);
+            check(t && t.owner==="self" && t.controller==="self" &&
+              t.zone==="hand" && db.bindings[t.key]===19364,
+              "La Normal inmediata requiere Angbruja física y disponible en mano");
+            check(Timing.isOwnMainPhase(n) && !f.noMoreSummons &&
+              !heatWaveBlocks(f,db,19364),
+              "La Normal inmediata del Duque no está permitida en esta ventana");
+            try { Transitions.assertVacant(n,"self",op.to,t.uid); }
+            catch { throw Error("Zona ocupada para Normal adicional del Duque"); }
+            check(!(options.blockedZones||[]).includes(op.to),
+              "Destino de Normal adicional bloqueado");
+            // This resolves Duke's dedicated immediate-normal instruction
+            // atomically, without resetting the already spent regular Normal.
+            const priorNormal=n._normal;
+            n=E.place(n,{uid:t.uid,zone:op.to,controller:"self"});
+            n=E.position(n,t.uid,op.position);
+            n._normal=priorNormal;
+            n.normalAvailable=!priorNormal;
+            n._ruleEvents=[...(n._ruleEvents||[]),{
+              kind:"summon",method:"normal",uid:t.uid,cid:19364,turn:n.turn,
+              side:"self",fromDuke:true,stage:"after-resolution"
+            }];
           } else if (op.op === "summon") {
             const t=n.tokens.find(t=>t.uid===refs[op.ref]);
             check(t && t.owner==="self" && t.controller==="self" && t.zone===op.from,
@@ -826,12 +1153,15 @@
             try { Transitions.assertVacant(n,"self",op.to,t.uid); }
             catch { throw Error("Zona de Invocación ocupada"); }
             if(op.method==="normal") {
+              check(!heatWaveBlocks(f,db,db.bindings[t.key]),
+                "Oleada de Calor impide Invocación Normal de monstruo de efecto");
               check(Timing.isOwnMainPhase(n) && !n._normal,
                 "Invocación Normal indisponible en esta ventana");
               check(!f.noMoreSummons,"TY-PHON impide Invocaciones Normales restantes");
               n._normal=true;
               n.normalAvailable=false;
-            } else check(!f.specialBlocked && !f.noMoreSummons,"Invocación Especial bloqueada");
+            } else check(!f.specialBlocked && !f.noMoreSummons &&
+              !heatWaveBlocks(f,db,db.bindings[t.key]),"Invocación Especial bloqueada");
             n=E.place(n,{uid:t.uid,zone:op.to,controller:"self"});
             n=E.position(n,t.uid,op.position);
             n._ruleEvents=[...(n._ruleEvents||[]),
@@ -848,13 +1178,24 @@
           if (!options.prepared && rule.oncePerTurn && (!activationNegated || rule.activationNegatedConsumesUse)) {
             n._used = [...new Set([...(n._used || []), used])];
             n._ruleUseTurns = { ...n._ruleUseTurns, [used]: n.turn };
+            if (rule.maxUsesPerTurn !== undefined) {
+              const previous = n._ruleUseCounts?.[used];
+              n._ruleUseCounts = { ...(n._ruleUseCounts || {}),
+                [used]: { turn:n.turn, count:(previous?.turn === n.turn ? previous.count : 0) + 1 } };
+            }
           }
           const paid = checkpoint(n);
           const effectNegated = (options.negateEffectRuleIds || []).includes(rule.id);
+          check(!rule.cannotBeNegated || !(activationNegated || effectNegated),
+            "No se puede negar la activación ni el efecto de Gordian Slicer");
           check(!(activationNegated&&effectNegated),"No se puede negar simultáneamente activación y efecto");
           opStage = "resolve";
           if (!options.deferResolution && !effectNegated&&!activationNegated)
             for (const op of rule.resolve) apply(op);
+          // Post-chain cleanup is not a cost or the card's effect: an
+          // activated Normal Spell goes to the GY even if its effect is negated.
+          if (!options.deferResolution && rule.afterResolution)
+            for (const op of rule.afterResolution) apply(op);
           const summoned = n.tokens.filter(
             (t) =>
               E.isMonster(t.zone) &&
@@ -863,6 +1204,8 @@
           const normal = rule.costs
             .concat(rule.resolve)
             .some((op) => op.op === "normal" || (op.op === "summon" && op.method === "normal"));
+          check(!summoned.some(t => heatWaveBlocks(f,db,db.bindings[t.key])),
+            "Oleada de Calor impide Invocaciones de monstruos de efecto");
           check(
             !(
               (f.specialBlocked || f.noMoreSummons) &&
@@ -892,6 +1235,12 @@
           );
           E.validate(n);
           Integrity.validate(n);
+          // Cost events are current only immediately after the complete
+          // activated action resolves, not after any later capture edit.
+          for (const e of (n._ruleEvents||[]).slice((s._ruleEvents||[]).length))
+            if(e.kind==="monster_sent_from_hand_activation" &&
+              e.sourceRuleId===rule.id)
+              e.captureRevision=n._captureRevision;
           if (!options.prepared && ["main1","main2"].includes(n.phase)) {
             n._rulePhaseActions=Timing.countPhaseAction(n);
           }

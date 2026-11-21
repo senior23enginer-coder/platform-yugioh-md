@@ -339,7 +339,7 @@
         Array.from({ length: n }, (_, i) => slot(side, prefix + (i + 1))).join(
           "",
         );
-      const hand = `<div class="play-hand">${slot(side, "hand")}${side === "opponent" && s.unknown.hand ? `<span class="play-hidden-count">${s.unknown.hand} cartas desconocidas</span>` : ""}</div>`;
+      const hand = `<div class="play-hand">${slot(side, "hand")}${side === "opponent" && s.unknown.hand ? `<span class="play-hidden-count">${s.unknown.hand} cartas desconocidas</span>` : ""}${side === "self" && s.selfUnknownHand ? `<span class="play-hidden-count">${s.selfUnknownHand} robo propio por identificar</span>` : ""}</div>`;
       return `<section class="play-half is-${side}"><header class="play-player"><span>${esc(s[side].name)}<small>${sideName[side]}</small></span><strong>${Number(s.lp[side]).toLocaleString("es")} <small>LP</small></strong></header>${side === "opponent" ? hand : ""}<div class="play-field-row"><div class="play-side-zones">${slot(side, "field")}${slot(side, "extra")}</div><div class="play-main-zones" style="--zones:${n}"><div class="play-monsters">${row("m")}</div><div class="play-spells">${row("s")}</div></div><div class="play-side-zones">${slot(side, "graveyard")}${slot(side, "deck")}</div></div><div class="play-removed">${slot(side, "banished")}</div>${side === "self" ? hand : ""}</section>`;
     }
     function catalogView() {
@@ -655,6 +655,15 @@
       const s = state.scenario;
       node.innerHTML = `<header class="play-heading"><div><span class="learn-kicker">Herramienta local de estudio</span><h3>Calculador de jugadas · ${esc(native.name)}</h3><p>Reproduce lo que conoces del duelo. La captura del tablero no ejecuta cartas ni valida automáticamente sus efectos.</p></div><span class="play-offline">${navigator.onLine ? "Cálculo local" : "Sin conexión · cálculo local"}</span></header>${state.externalMode ? "" : `<nav class="play-mode-tabs" aria-label="Modo del calculador"><button type="button" class="btn btn-outline-info" data-play-mode="duel" aria-pressed="${state.mode === "duel"}">Duelo</button><button type="button" class="btn btn-outline-info" data-play-mode="practice" aria-pressed="${state.mode === "practice"}">Práctica</button></nav>`}${state.mode === "duel" ? `<label class="play-opponent">Deck oponente<select class="form-select" data-play-opponent><option value="">Selecciona un oponente</option>${state.opponents.map((o) => opponentOption(o, s)).join("")}</select></label>` : '<p class="play-practice-intro">Práctica sin oponente: genera una mano y explora tus opciones.</p>'}<p data-play-message role="${state.error ? "alert" : "status"}">${esc(state.message)}</p>${s ? `${turnBar(s)}<details class="play-context"><summary>Turno ${s.turn} · ${s.active === "self" ? "Tu turno" : "Turno rival"} · Ajustar estado del duelo</summary><section class="play-setup"><label>Orden inicial<select class="form-select" data-play-setting="goesFirst"><option value="true" ${s.goesFirst ? "selected" : ""}>Empiezo primero</option><option value="false" ${s.goesFirst ? "" : "selected"}>Empiezo segundo</option></select></label><label>Fase<select class="form-select" data-play-setting="phase">${[["draw", "Robo"], ["standby", "Espera"], ["main1", "Main / principal"], ["battle", "Batalla"], ...(s.format === "rush_duel" ? [] : [["main2", "Main 2"]]), ["end", "Final"]].map(([k, v]) => `<option value="${k}" ${s.phase === k ? "selected" : ""}>${v}</option>`).join("")}</select></label><label>Mis LP<input class="form-control" type="number" min="0" max="999999" data-play-lp="self" value="${s.lp.self}"></label><label>LP rival<input class="form-control" type="number" min="0" max="999999" data-play-lp="opponent" value="${s.lp.opponent}"></label><label><input type="checkbox" data-play-setting="normalAvailable" ${s.normalAvailable ? "checked" : ""}> Puedo usar la Invocación Normal</label><label>Mano rival desconocida<input class="form-control" type="number" min="0" max="99" data-play-unknown="hand" value="${s.unknown.hand}"></label><label>Desterradas desconocidas<input class="form-control" type="number" min="0" max="99" data-play-unknown="banished" value="${s.unknown.banished}"></label><label><input type="checkbox" data-play-setting="opponentHandComplete" ${s.opponentHandComplete ? "checked" : ""}> Conozco toda la mano rival</label></section></details>${state.mode === "practice" ? handPractice() : ""}<div class="play-workspace">${positionTools()}<div class="play-board-scroll" tabindex="0" aria-label="Tablero de duelo"><div class="play-board">${s.practice ? '<p class="play-free-field">Práctica libre · sin campo rival</p>' : half("opponent")}${["tcg_advanced", "tcg_traditional", "ocg", "ocg_advanced"].includes(s.format) ? `<div class="play-shared">${slot("self", "emz1")}${slot("self", "emz2")}</div>` : '<div class="play-center">' + (s.format === "rush_duel" ? "RUSH DUEL · 3 zonas por fila" : "GOAT · 5 zonas por fila") + "</div>"}${half("self")}</div></div><aside class="play-tools">${catalogView()}${selectedView()}</aside></div><section class="play-notes"><label>Efectos ya utilizados y restricciones conocidas<textarea class="form-control" maxlength="2000" data-play-setting="usedEffects">${esc(s.usedEffects)}</textarea></label><label>Notas del estado físico<textarea class="form-control" maxlength="4000" data-play-setting="notes">${esc(s.notes)}</textarea></label></section>${plannerSettings()}<div class="play-actions"><button class="btn btn-primary" type="button" data-play-analyze>Analizar escenario y opciones</button><button class="btn btn-outline-info" type="button" data-play-undo ${state.history.length ? "" : "disabled"}>Deshacer</button><button class="btn btn-outline-danger" type="button" data-play-reset>Vaciar tablero</button></div><section class="play-results" aria-live="polite"><h3>Opciones según el estado aportado</h3><p>El motor busca secuencias con las acciones implementadas desde tu mano y campo, y muestra sus estados posteriores. Las respuestas rivales, protecciones y efectos sin modelar requieren comprobación; no se calculan todas las jugadas legales.</p>${auditView()}${plannerView()}<details><summary>Rutas documentadas de referencia</summary>${recommendations()}</details></section>` : '<div class="play-empty"><h4>Elige práctica libre o un rival para preparar el tablero</h4><p>En práctica libre puedes generar aperturas con tu Main y explorar líneas sin seleccionar un oponente. Al elegir un rival se cargan las cartas de ambos decks.</p></div>'}`;
       if (s) node.querySelector(".play-chain-capture")?.insertAdjacentHTML("beforeend", chainControls(s));
+      if (s && !s.practice) node.querySelector(".play-turn-bar")?.insertAdjacentHTML("beforeend",
+        `<button type="button" class="btn btn-outline-info" data-play-observe-opponent-add
+        ${s.phase === "draw" || (s.chain || []).length ? "disabled" : ""}>Confirmar adición rival desde Main Deck</button>
+        <small>Úsalo solo tras observar la adición, fuera de Robo. Cualquier edición posterior cierra esta ventana.</small>`);
+
+      if (s && !s.practice) node.querySelector(".play-turn-bar")?.insertAdjacentHTML("beforeend",
+        `<button type="button" class="btn btn-outline-info" data-play-observe-opponent-activation
+        ${s.active!=="opponent" || (s.chain||[]).length || !state.selection?.uid ? "disabled" : ""}>Confirmar activación rival observada (S:P)</button>
+        <small>Selecciona una copia rival conocida y describe su activación en el panel de Cadena. No se inventa la resolución rival. Analiza enseguida.</small>`);
       if (s) node.querySelector(".play-turn-bar")?.insertAdjacentHTML("beforeend",
         `<button type="button" class="btn btn-outline-info" data-play-next-turn ${s.turn >= 999 || (s.chain || []).length ? "disabled" : ""}>Siguiente turno · sin robo automático</button>`);
       if (s) node.querySelector(".play-turn-bar")?.insertAdjacentHTML("beforeend",
@@ -708,7 +717,21 @@
             }
             if (b.hasAttribute("data-play-next-phase")) {
               commit(E.advancePhase(state.scenario));
-              notice("Fase avanzada. No se ejecutaron efectos ni acciones automáticas.");
+              notice(state.scenario.phase==="end"?
+                "Fase Final: los monstruos desterrados temporalmente por S:P regresaron a zonas principales disponibles sin Invocación Especial.":
+                "Fase avanzada. No se ejecutaron efectos ni acciones automáticas.");
+              return;
+            }
+            if (b.hasAttribute("data-play-observe-opponent-add")) {
+              commit(E.observeOpponentMainDeckAdd(state.scenario));
+              notice("Adición rival desde el Main Deck confirmada para esta ventana. Analiza sin modificar más el tablero.");
+              return;
+            }
+            if (b.hasAttribute("data-play-observe-opponent-activation")) {
+              const uid=state.selection?.uid;
+              const effect=node.querySelector("[data-chain-effect]")?.value||"";
+              commit(E.observeOpponentActivation(state.scenario,{uid,effect}));
+              notice("Activación rival observada y acreditada con copia real. Analiza inmediatamente. No se resolvió el efecto rival.");
               return;
             }
             if (b.hasAttribute("data-chain-add")) {

@@ -92,6 +92,8 @@
       normalAvailable: true,
       lp: { self: 8000, opponent: 8000 },
       unknown: { hand: 0, banished: 0 },
+      // Unidentified draws from OUR deck, never the opponent unknown.hand counter.
+      selfUnknownHand: 0,
       opponentHandComplete: false,
       notes: "",
       tokens: [],
@@ -214,6 +216,24 @@
         ),
       "Cantidad de cartas desconocidas inválida.",
     );
+    if (s.selfUnknownHand !== undefined) {
+      const ownMain = s.self.cards.filter(c=>c.section==="main").reduce((n,c)=>n+c.quantity,0);
+      const knownMain = s.tokens.filter(t=>t.owner==="self" &&
+        s.self.cards.some(c=>c.key===t.key && c.section==="main")).length;
+      assert(Number.isInteger(s.selfUnknownHand) && s.selfUnknownHand>=0 &&
+        s.selfUnknownHand<=99 && knownMain+s.selfUnknownHand<=ownMain,
+        "Robo propio desconocido excede las cartas disponibles del Main.");
+    }
+    for(const t of s.tokens||[]){
+      if(t.temporaryReturn){
+        const m=t.temporaryReturn;
+        assert(t.zone==="banished"&&m.sourceCid===19188 &&
+          Number.isInteger(m.turn)&&m.turn>0&&
+          ["self","opponent"].includes(m.controller)&&
+          ["attack","defense","set"].includes(m.position),
+          "Retorno temporal de S:P inválido.");
+      }
+    }
     assert(
       typeof s.notes === "string" &&
         s.notes.length <= 4000 &&
@@ -303,15 +323,41 @@
   }
   function change(s, mutate) {
     const next = clone(s);
+    next._captureRevision = (s._captureRevision || 0) + 1;
     mutate(next);
     next.confirmed = [];
     return validate(next);
+  }
+  // A physical Equip Spell cannot keep giving ATK after leaving S/T.
+  // This is intentionally generic: the bonus is stored on the attached copy.
+  function unlinkEquip(next, equip) {
+    if(!Number.isInteger(equip.equippedToUid))return;
+    const host=next.tokens.find(t=>t.uid===equip.equippedToUid);
+    if(host && Number.isInteger(equip.equippedAtkBonus) &&
+      Number.isInteger(host.currentATK))
+      host.currentATK=Math.max(0,host.currentATK-equip.equippedAtkBonus);
+    delete equip.equippedToUid;
+    delete equip.equippedAtkBonus;
   }
   function place(s, { key, owner, controller = owner, zone, uid = null }) {
     return change(s, (next) => {
       let token =
         uid === null ? null : next.tokens.find((t) => t.uid === Number(uid));
       if (uid !== null) assert(token, "No se encontró la copia seleccionada.");
+      if(token && isMonster(token.zone) && !isMonster(zone)) {
+        // Equipment leaves the field with its host; do not retain orphan
+        // Princess/Fiendsmith Equip Spells when their monster disappears.
+        for(const attached of next.tokens.filter(t=>
+          t.equippedToUid===token.uid && /^s[1-5]$/.test(t.zone))) {
+          unlinkEquip(next,attached);
+          attached.zone="graveyard";
+          attached.controller=attached.owner;
+          delete attached.setTurn;
+        }
+      }
+      if(token && /^s[1-5]$/.test(token.zone) &&
+        !/^s[1-5]$/.test(zone) && Number.isInteger(token.equippedToUid))
+        unlinkEquip(next,token);
       if (zone === "deck") {
         if (token) {
           const attached = next.tokens.filter(
@@ -339,7 +385,12 @@
           position: key === "unknown" ? "set" : "attack",
         };
         next.tokens.push(token);
+        // When the player reveals a drawn card and registers its identity in hand,
+        // consume a prior unknown OWN draw instead of inventing another card.
+        if (owner==="self" && zone==="hand" && next.selfUnknownHand>0)
+          next.selfUnknownHand--;
       } else {
+        if(token.temporaryReturn && zone!=="banished")delete token.temporaryReturn;
         if (!isMonster(zone))
           assert(
             !next.tokens.some((t) => t.zone === "material:" + token.uid),
@@ -350,12 +401,28 @@
           delete token.xyzSummoned;
         if (token.currentATK !== undefined && isMonster(token.zone) && !isMonster(zone))
           delete token.currentATK;
+        // The attack restriction belongs to that physical Summon on the field;
+        // leaving the monster zones ends it even if the same card returns.
+        if (token.attackLockedTurn !== undefined && isMonster(token.zone) && !isMonster(zone))
+          delete token.attackLockedTurn;
         token.zone = zone;
         token.controller = controller;
         // Una carta colocada abandona su ventana de Set al salir de M/T.
         if (!/^s[1-5]$/.test(zone)) delete token.setTurn;
       }
     });
+  }
+  function returnTemporaryAtEnd(n){
+    if(n.phase!=="end")return;
+    for(const t of n.tokens.filter(t=>t.temporaryReturn?.turn===n.turn)){
+      const m=t.temporaryReturn;
+      const dest=["m1","m2","m3","m4","m5"].find(zone=>
+        !n.tokens.some(other=>other.uid!==t.uid&&other.zone===zone&&
+          other.controller===m.controller));
+      assert(dest,"S:P: falta zona principal disponible para el retorno temporal.");
+      t.zone=dest;t.controller=m.controller;t.position=m.position;
+      delete t.temporaryReturn;
+    }
   }
   function patch(s, values) {
     return change(s, (n) => {
@@ -372,6 +439,7 @@
         if (Object.hasOwn(values, key)) n[key] = values[key];
       if (values.lp) n.lp = { ...n.lp, ...values.lp };
       if (values.unknown) n.unknown = { ...n.unknown, ...values.unknown };
+      if(Object.hasOwn(values,"phase"))returnTemporaryAtEnd(n);
     });
   }
   // Advance the capture clock only. Drawing and resolving end-of-turn effects
@@ -379,6 +447,8 @@
   function advanceTurn(s) {
     validate(s);
     assert(!(s.chain || []).length, "Resuelve o retira la cadena pendiente antes de avanzar turno.");
+    assert(!s.tokens.some(t=>t.temporaryReturn?.turn===s.turn),
+      "S:P: entra en End Phase para retornar los monstruos antes de avanzar turno.");
     assert(s.turn < 999, "Se alcanzó el máximo de turnos del escenario.");
     return change(s, (n) => {
       n.turn += 1;
@@ -400,7 +470,7 @@
     const index = phases.indexOf(s.phase);
     assert(index >= 0 && index < phases.length - 1,
       "La fase Final requiere avanzar al turno siguiente.");
-    return change(s, (n) => { n.phase = phases[index + 1]; });
+    return change(s, (n) => { n.phase = phases[index + 1]; returnTemporaryAtEnd(n); });
   }
   // A witness of an opponent's Extra Deck summon, not a proof of the materials
   // or the full legal summoning procedure. Record it only with an identified
@@ -442,6 +512,37 @@
         "Eslabón inexistente.");
       n.chain.splice(link - 1, 1);
       n.chain.forEach((entry, i) => { entry.link = i + 1; });
+    });
+  }
+  function observeOpponentMainDeckAdd(s) {
+    assert(!s.practice, "No se registra una búsqueda rival en práctica libre.");
+    assert(s.phase !== "draw", "Droll no responde a una adición en la fase de Robo.");
+    assert(!(s.chain || []).length, "Resuelve la cadena antes de registrar la adición rival.");
+    return change(s, next => {
+      next._ruleEvents = [...(next._ruleEvents || []), {
+        kind: "opponent_main_deck_add", side: "opponent", turn: next.turn,
+        phase: next.phase, captureRevision: next._captureRevision,
+      }];
+    });
+  }
+  // A physical opponent card was seen activating; its actual effect is NOT
+  // resolved here, and no new chain link is fabricated.
+  function observeOpponentActivation(s,{uid,effect}){
+    assert(!s.practice&&s.active==="opponent"&&
+      ["main1","main2","end"].includes(s.phase),
+      "S:P: se requiere fase válida del rival identificado.");
+    assert(!(s.chain||[]).length,
+      "Resuelve la cadena anterior antes de observar una activación nueva.");
+    const t=s.tokens.find(t=>t.uid===uid && t.owner==="opponent" &&
+      (isMonster(t.zone)||/^s[1-5]$/.test(t.zone)||t.zone==="hand"||t.zone==="field"));
+    assert(t&&(t.position!=="set"||/^s[1-5]$/.test(t.zone)),
+      "Se requiere copia rival identificada y zona acreditada.");
+    assert(typeof effect==="string"&&effect.trim()&&effect.length<=300,
+      "Describe el efecto rival observado (máximo 300 caracteres).");
+    return change(s,n=>{
+      n._ruleEvents=[...(n._ruleEvents||[]),{kind:"opponent_activation",
+        side:"opponent",uid,key:t.key,turn:n.turn,phase:n.phase,
+        effect:effect.trim(),captureRevision:n._captureRevision}];
     });
   }
   function position(s, uid, value) {
@@ -744,6 +845,8 @@
     advanceTurn,
     advancePhase,
     observeExtraSummon,
+    observeOpponentMainDeckAdd,
+    observeOpponentActivation,
     appendChain,
     removeChain,
     position,

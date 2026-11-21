@@ -4,7 +4,7 @@ const Verified = require("../assets/modules/play-calculator/verified-rules.js");
 
 // These are executable variants, not independent certified effects or routes.
 const variants = Verified.forDeck(671);
-assert.equal(variants.length, 227, "Memento must preserve all verified fallback variants");
+assert.equal(variants.length, 353, "Memento must preserve all verified fallback variants");
 const byEffect = new Map();
 for (const rule of variants) {
   Rules.validate(rule);
@@ -12,7 +12,7 @@ for (const rule of variants) {
   rows.push(rule);
   byEffect.set(rule.id, rows);
 }
-assert.equal(byEffect.size, 39, "Memento must preserve distinct effect IDs including Lancea");
+assert.equal(byEffect.size, 59, "Memento must preserve distinct effect IDs including Lancea");
 for (const [effectId, rows] of byEffect) {
   const signatures = new Set(rows.map(row =>
     JSON.stringify([row.actor.cid, row.oncePerTurn, row.activation])));
@@ -21,7 +21,7 @@ for (const [effectId, rows] of byEffect) {
   assert(rows.every(row => row.deckId === 671 && row.format === "tcg_advanced"));
 }
 const goblin = byEffect.get("671:goblin:send-two");
-assert.equal(goblin.length, 3);
+assert.equal(goblin.length, 4, "Original Goblin pairs and C05 Fusion + Combined pair retained");
 assert(goblin.every(row => row.oncePerTurn),
   "Goblin send variants must share a per-turn marker");
 assert(goblin.some(row => row.select.some(selection => selection.ref === "victim")),

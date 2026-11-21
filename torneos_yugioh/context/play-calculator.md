@@ -1,5 +1,48 @@
 # Calculador de jugadas
 
+## Pilotos Memento y Crystron/Horus — contrato común de análisis (20-11-2026)
+
+La misma puerta `scripts/verify-pilot-decks.cjs` verifica en ambos pilotos
+identidad del deck, formato, 39 CIDs de carta, inventario separado,
+fotografías por paso, números y acciones de las rutas, diagramas de resultado
+ilustrativos, origen/identidad de las reglas portables y, cuando está disponible
+el clon hermano, paridad exacta del contrato de calculadora y de los CIDs/acciones
+del paquete `stationx-deck.json`. No importa archivos del otro deck ni
+reescribe inventarios o revisiones del editor.
+
+- **671 Memento:** 41 Main, 15 Extra, 14 Side; 12 rutas con 69 pasos
+  sincronizados, 12 diagramas de resultado ilustrativos; 351 variantes
+  portables agrupadas en 57 IDs de efecto. Son 30/39 identidades con al menos una regla de actor; faltan 9, y las
+  12/12 rutas (C01–C12) con replay acotado; C12 acredita destrucción de Dragón de Cuerno por Fiesta y tres objetivos boca arriba reales; C11 certifica Gran Fuga sacrificando Angbruja como coste hasta Rey Creación y Creación Combinada; C10 certifica Secuencia + Duque + Angbruja con Normal adicional sin repetir la búsqueda; C09 Invoca Princesa Necroequipo mediante procedimiento propio con Réquiem equipado y Goblin de mano, sin robo automático; C08 exige activación rival observada y no resuelve su efecto original; C07 usa Quimera Guardián. Las 12 rutas tienen replay de escenario acotado, pero no se certifican cadenas ni legalidad universal. No se certifican cadenas ni legalidad universal.
+- **677 Crystron/Horus:** 40 Main, 15 Extra, 15 Side; 14 rutas con 60 pasos,
+  14 diagramas de resultado ilustrativos; 13 variantes portables:
+  2 procedimientos Horus en GY, 2 acciones Smiger, 5 alternativas de búsqueda
+  de Thystvern desde GY, 2 alternativas de destrucción en Campo que traen
+  Citree o Tristaros con bloqueo temporal de Extra y 2 alternativas de Sarcófago del Rey.
+- **Sarcófago del Rey:** `677:sarcophagus:send-horus` opera desde la zona
+  de Magias/Trampas boca arriba, envía una carta real de la mano al GY como
+  coste y un Horus acreditado del Deck al GY como efecto. Todas las variantes
+  y copias comparten `maxUsesPerTurn: 4` con contador por nombre y turno.
+  Reanimar a Amset/Hapi desde GY es una regla propia del monstruo, no una
+  acción de Sarcófago. Fuente oficial:
+  https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19200&ope=2.
+  El motor rechaza un quinto uso y no simula su protección continua ni
+  efectos de Damage Step no implementados.
+
+**Separación de evidencias:** fotos y cartas de resultado verificables no
+equivalen a casillas precisas ni a la ejecución causal A09. Los diagramas
+sin posicionamiento acreditado muestran `spatial_verified=false` y un aviso
+visible en móvil/escritorio. `REPLAYS_NOT_CERTIFIED` no puede convertirse
+en `TERMINADO` solo porque el ZIP importe o la vista dibuje un tablero.
+La puerta `--require-finished` falla deliberadamente mientras ese estado
+no sea cierto. Pruebas específicas:
+`calculator_horus_sarcophagus_four_uses_test.cjs`,
+`calculator_crystron_thystvern_test.cjs`,
+`study_presentation_ui_test.cjs`,
+`study_crystron_visual_ui_test.cjs` y verificación de importación real
+en el workflow de integración. La suite global mantiene su propio gate.
+
+
 ## Auditoría del núcleo genérico — contratos de integración
 
 El flujo vigente es `study.js` (identidades y reglas del estudio) →
@@ -43,14 +86,14 @@ como completa; esta prueba no certifica las 12 rutas A09.
 
 **Entrega portable activa de Memento (20-11-2026):** la instantánea editorial
 `20261117-folder-delivery-v40/671.json` y la entrega canónica del repositorio
-de prompts contienen ahora las mismas **227 variantes acotadas con 39 IDs
+de prompts contienen ahora las mismas **315 variantes acotadas con 53 IDs
 de efecto**. `Study.bind` acepta esas reglas sin duplicar los respaldos.
 El importador PHP permite hasta 1000 definiciones diferentes por paquete,
 valida los IDs compartidos y el procedimiento especial TY-PHON, y rechaza
 duplicados o actores ajenos. Las pruebas focales incluyen carga e
 interpretación de la secuencia Goblin → Desvantasma → recuperación desde el
 estudio real. **No existe certificación integral de los 34 controles A07 ni
-reproducción certificada de las 12 rutas A09**, y la suite nativa completa
+reproducción certificada de la ruta A09 restante**, y la suite nativa completa
 debe ejecutarse antes de desplegar a producción.
 
 **Criterios de entrada para la siguiente tarea (contrato universal):**
@@ -269,3 +312,5 @@ quede un eslabón pendiente: las cadenas deben resolverse y el estado debe
 actualizarse antes de calcular otras líneas. La prueba
 `calculator_chain_capture_test.cjs` cubre integridad, límites, inmutabilidad,
 numeración y bloqueo del planificador.
+
+**Robo propio desconocido C07:** Quimera Guardián registra `selfUnknownHand` separado de `unknown.hand` rival. La mano propia visualiza `robo propio por identificar`, sin crear una copia ficticia ni atribuirle un CID. Hasta registrar su identidad real desde la mano, las búsquedas y envíos de cartas concretas del Deck fallan cerrado: una carta desconocida podría ser el objetivo buscado.

@@ -27,16 +27,27 @@ for(const [id,expectedRoutes] of [[671,12],[677,14],[665,16]]){
 }
 const memento=JSON.parse(fs.readFileSync(path.join(root,'671.json'),'utf8'));
 const step=memento.routes[0].steps[0];
-assert.equal(step.photos.length,0,'Regression must cover historical empty step photos');
+assert(step.photos.length>0,'Canonical Memento step photos must now be synchronized');
+const historicallyEmpty={...step,photos:[]};
+assert.equal(historicallyEmpty.photos.length,0,'Regression fixture must represent historical empty step photos');
 const opening=P.openingPhotos(memento.routes[0],memento.cards);
 assert(opening.some(p=>p.name==='Angbruja'),'Initial hand must include Angbruja');
 assert(!opening.some(p=>p.name==='Maza'),'Card only documented in GY/Deck must not appear as initial hand');
 assert(!P.archetype(memento.profile).includes('estudio individual'),'Archetype must not include audit metadata');
-const pictures=P.stepPhotos(step,memento.cards);
+const pictures=P.stepPhotos(historicallyEmpty,memento.cards);
+const explicit=P.stepPhotos(step,memento.cards);
+assert(explicit.some(p=>p.name==='Angbruja'), 'Current visual content must preserve the exact first-step photo');
 assert(pictures.some(x=>x.name==='Angbruja'),'Memento Angbruja should appear in step one');
 const outcome=P.resultPhotos(memento.routes[0],memento.cards);
 assert(outcome.length>0,'Memento outcome should display supported card evidence');
-assert.equal(P.status(memento.routes[0]),'documented','No positions may be fabricated');
+assert.equal(P.status(memento.routes[0]),'structured',
+  'Illustrative documented-zone endboards must remain available to the viewer');
+assert.equal(memento.routes[0].presentation_status,'ZONAS_DOCUMENTADAS_CASILLAS_ILUSTRATIVAS',
+  'UI must disclose that exact placements have not been certified');
+assert.equal(memento.routes[0].endboard.spatial_verified,false,
+  'Structured illustrative endboards do not certify exact zone placements');
+assert(memento.routes[0].endboard.variants.every(variant=>variant.spatial_verified===false),
+  'Every illustrated alternative must retain its non-spatial status');
 assert.equal(P.photosFromText('Sin cartas verificadas',memento.cards).length,0,'Do not invent cards');
 assert.equal(P.photosFromText('Carta no contenida en el deck',memento.cards).length,0,'Cross-deck photos rejected');
 assert(!P.style({'Tipo de estrategia':'Consultar el plan de juego','Estilo de juego':'Dictamen editorial PARCIAL_AVANZADO: destrucción propia → Cementerio.'}).includes('Dictamen'),'Fallback should strip audit jargon');

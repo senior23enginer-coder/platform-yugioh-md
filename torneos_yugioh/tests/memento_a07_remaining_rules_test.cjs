@@ -63,12 +63,24 @@ passed(1,()=>{
   const r=rule(1,ids.heat,['hand'],{
     guards:[{kind:'state',field:'active',values:['self']},
       {kind:'state',field:'phase',values:['main1']},{kind:'phaseStart'}],
-    resolve:[{op:'flag',flag:'specialBlocked',value:true},
-      {op:'move',ref:'actor',to:'graveyard',position:'attack'}],
+    resolve:[{op:'flag',flag:'effectMonsterSummonBlocked',value:true,duration:'next-own-draw'}],
+    afterResolution:[{op:'move',ref:'actor',to:'graveyard',position:'attack'}],
   });
-  const s=state([[ids.heat,'hand'],[ids.tatsun,'hand']]);
+  const s=state([[ids.heat,'hand'],[ids.tatsun,'hand']],true);
   const after=allowed(s,r);
-  assert(after._ruleFlags.specialBlocked,'Oleada bloquea la Especial en escenario restringido');
+  assert(after._ruleFlags.effectMonsterSummonBlocked,'Oleada bloquea monstruos de efecto');
+  assert(after.tokens.some(t=>bindings[t.key]===ids.heat && t.zone==='graveyard'),
+    'Mágica Normal pasa al Cementerio tras la resolución');
+  const negated=run(s,r,{negateEffectRuleIds:[r.id]}).actions[0].state;
+  assert(!negated._ruleFlags?.effectMonsterSummonBlocked && negated.tokens.some(t=>
+    bindings[t.key]===ids.heat && t.zone==='graveyard'),
+    'Si se niega el efecto, no se aplica el bloqueo pero la Mágica va al Cementerio');
+  assert(require('../assets/modules/play-calculator/restrictions.js')
+    .effective({...after,turn:2,active:'opponent'}).effectMonsterSummonBlocked,
+    'La restricción se conserva durante el turno rival');
+  assert(!require('../assets/modules/play-calculator/restrictions.js')
+    .effective({...after,turn:3,active:'self',phase:'draw'}).effectMonsterSummonBlocked,
+    'La restricción termina al comenzar el siguiente Robo propio');
   const special=rule(1,ids.tatsun,['hand'],{
     resolve:[{op:'summon',ref:'actor',from:'hand',method:'special',to:'m1',position:'attack'}],
   });
@@ -369,7 +381,7 @@ passed(30,()=>{
   const r=rule(30,ids.lancea,['hand'],{
     guards:[{kind:'state',field:'active',values:['opponent']}],
     costs:[{op:'tribute',ref:'actor',reason:'cost',allowHand:true}],
-    resolve:[{op:'flag',flag:'banishBlocked',value:true}],
+    resolve:[{op:'flag',flag:'banishBlocked',value:true,duration:'turn'}],
   });
   const s=state([[ids.lancea,'hand']]);s.active='opponent';
   const n=allowed(s,r);
@@ -393,7 +405,7 @@ passed(28,()=>{
       selector:{side:'self',zones:['extra'],cid}})),
       {ref:'victim',selector:{side:'opponent',zones:['monsters'],cid:ids.opponent,faceUp:true}}],
     costs:[{op:'banishExtraFaceDown',refs:six.map((_,i)=>'ex'+i),count:6}],
-    resolve:[{op:'move',ref:'victim',to:'deck',position:'attack'},
+    resolve:[{op:'move',ref:'victim',to:'hand',position:'attack'},
       {op:'move',ref:'actor',to:'graveyard',position:'attack'}],
   });
   const s=state([[ids.gordian,'hand'],...six.map(cid=>[cid,'extra']),
@@ -401,8 +413,8 @@ passed(28,()=>{
   const n=allowed(s,r);
   assert.equal(n.tokens.filter(t=>t.zone==='banished'&&t.position==='set').length,6,
     'Seis cartas del Extra deben quedar desterradas boca abajo por el objetivo');
-  assert(!n.tokens.some(t=>bindings[t.key]===ids.opponent),
-    'El objetivo rival devuelto al Deck sale del registro de copias visibles');
+  assert(n.tokens.some(t=>bindings[t.key]===ids.opponent && t.zone==='hand' && t.owner==='opponent'),
+    'Gordiano devuelve el monstruo de Main a la mano del propietario, no al Deck');
   assert.equal(run(s,r,{negateEffectRuleIds:[r.id]}).actions[0].state.tokens
     .filter(t=>t.zone==='banished').length,6,
     'Negar el efecto de Gordiano no devuelve el coste del Extra');

@@ -12,14 +12,14 @@ const editorial = JSON.parse(fs.readFileSync(path.join(__dirname, '../assets/edi
 assert.equal(editorial.deck_id, 677);
 assert.equal(editorial.routes.length, 14, 'Preserve A09 Crystron routes');
 assert.equal(editorial.cards.length, 39, 'Preserve approved card identities');
-assert.equal(editorial.calculator.rules.length, 4, 'Two Horus and two Smiger portable rules');
+assert(editorial.calculator.rules.length >= 4, 'Retain the two Horus and two Smiger portable rules');
 const inventory = editorial.cards.flatMap(card => (card.slots || []).map(slot => ({
   id:slot.card_id, deck_id:677, card_name:card.name, section:slot.section, quantity:slot.quantity
 })));
 const native = E.catalog({id:677,name:'Crystron/Horus',format_codes:['tcg_advanced']}, inventory);
 const db = S.bind(facts,[{catalog:native,study:editorial}]);
 assert.equal(db.ruleImports[0].status, 'accepted', JSON.stringify(db.ruleImports));
-assert.equal(db.ruleImports[0].count, 4);
+assert.equal(db.ruleImports[0].count, editorial.calculator.rules.length);
 const idField = '677:smiger:destroy-citree';
 const idGrave = '677:smiger:graveyard-search';
 const fieldRule = editorial.calculator.rules.find(r => r.id === idField);

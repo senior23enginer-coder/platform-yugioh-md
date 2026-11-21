@@ -37,6 +37,7 @@ const buttons = ['dashboard','deck','estadisticas'].map(route => ({
 const screens = buttons.map(button => ({ dataset: { screen: button.dataset.route }, hidden: false }));
 const store = {};
 const ctx = {
+  URL,
   screens, routeButtons: buttons, history,
   location: { get hash() { return current.hash; } },
   window: {

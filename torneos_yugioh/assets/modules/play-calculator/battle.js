@@ -1,9 +1,9 @@
 /* Conditional battle arithmetic. No card effects or chain legality is inferred. */
 (function (root, factory) {
   if (typeof module === "object" && module.exports)
-    module.exports = factory(require("./engine.js"), require("./planner.js"));
-  else root.YgoBattleStudy = factory(root.YgoPlayEngine, root.YgoPlayPlanner);
-})(typeof globalThis !== "undefined" ? globalThis : this, function (E, P) {
+    module.exports = factory(require("./engine.js"), require("./planner.js"), require("./restrictions.js"));
+  else root.YgoBattleStudy = factory(root.YgoPlayEngine, root.YgoPlayPlanner, root.YgoCalculatorRestrictions);
+})(typeof globalThis !== "undefined" ? globalThis : this, function (E, P, Restrictions) {
   "use strict";
   function inspect(s, db) {
     E.validate(s);
@@ -33,10 +33,19 @@
     const facts = (t) => P.profile(E.definition(s, t.key, t.owner), db);
     const monsters = (side) => s.tokens.filter((t) =>
       t.controller === side && E.isMonster(t.zone));
-    const attackers = monsters("self").filter((t) => t.position === "attack");
+    // A Goblin Summoned by Grand Breakout cannot attack this turn.
+    // The lock expires by turn and is removed when the monster leaves the field.
+    const attackers = monsters("self").filter((t) => t.position === "attack" &&
+      t.attackLockedTurn !== s.turn);
+    const locked=monsters("self").filter(t=>t.attackLockedTurn===s.turn);
+    if(locked.length)result.assumptions.push(
+      locked.length+" monstruo(s) con restricción de ataque de Gran Fuga omitidos este turno.");
     const defenders = monsters("opponent");
+    const directAttackBlocked = !!Restrictions.effective(s).directAttackBlocked;
     result.available = true;
-    if (!attackers.length) result.reason = "No hay monstruos propios boca arriba en ataque.";
+    if (!attackers.length) result.reason = monsters("self").some(t=>t.attackLockedTurn===s.turn)
+      ? "El monstruo Invocado por Gran Fuga Moto Goblin no puede atacar este turno."
+      : "No hay monstruos propios boca arriba en ataque.";
     for (const attacker of attackers) {
       const af = facts(attacker);
       if (!af || !Number.isInteger(af.atk) || af.atk < 0) {
@@ -44,6 +53,12 @@
         continue;
       }
       if (!defenders.length) {
+        if (directAttackBlocked) {
+          result.attacks.push({ attacker: attacker.uid, attackerName: af.name,
+            target: null, status: "blocked", reason:
+              "S:P Pequeña Caballera impide ataques directos este turno." });
+          continue;
+        }
         result.attacks.push({ attacker: attacker.uid, attackerName: af.name, target: null,
           status: "conditional", damage: af.atk, reason: "Ataque directo hipotético si ningún efecto lo impide." });
         continue;

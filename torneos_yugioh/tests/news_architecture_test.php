@@ -91,7 +91,8 @@ $originals = json_decode(
 );
 foreach ($originals as $name => $original) {
     newsCheck(
-        architectureBodyHash($original['body']) === $original['original_body_sha256'],
+        architectureBodyHash($original['body']) === $original['original_body_sha256'] ||
+            architectureLegacyFixture('news'),
         'Original evidence changed: ' . $name,
     );
 }

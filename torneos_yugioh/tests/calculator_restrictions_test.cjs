@@ -3,8 +3,10 @@ const Restrictions = require("../assets/modules/play-calculator/restrictions.js"
 const Rules = require("../assets/modules/play-calculator/rules.js");
 const Planner = require("../assets/modules/play-calculator/planner.js");
 assert.equal(Restrictions.version, 1);
-assert.equal(Restrictions.names.length, 9);
+assert.equal(Restrictions.names.length, 11);
+assert(Restrictions.names.includes("effectMonsterSummonBlocked"));
 assert(Restrictions.names.includes("machineSynchroOnly"));
+assert(Restrictions.names.includes("directAttackBlocked"));
 assert(Object.isFrozen(Restrictions.names));
 const state = { turn: 2, _ruleFlags: { specialBlocked: true } };
 const turn = Restrictions.apply(state, "noMoreSummons", true, "turn");
@@ -15,6 +17,18 @@ assert.equal(Restrictions.effective(turn).noMoreSummons, true);
 const synchro=Restrictions.apply(state, "machineSynchroOnly", true, "turn");
 assert.equal(Restrictions.effective(synchro).machineSynchroOnly,true);
 assert.equal(Restrictions.effective({ ...synchro, turn: 3 }).machineSynchroOnly,undefined);
+const heatWave=Restrictions.apply(state,"effectMonsterSummonBlocked",true,"next-own-draw");
+assert.equal(Restrictions.effective(heatWave).effectMonsterSummonBlocked,true);
+assert.equal(Restrictions.effective({...heatWave,turn:3,active:'opponent'}).effectMonsterSummonBlocked,true,
+  'Heat Wave persists during the opponent intervening turn');
+assert.equal(Restrictions.effective({...heatWave,turn:4,active:'self',phase:'draw'}).effectMonsterSummonBlocked,undefined,
+  'Heat Wave expires at the next own Draw Phase');
+assert.throws(()=>Restrictions.apply(state,"effectMonsterSummonBlocked",true),/Oleada de Calor/,
+  'Heat Wave cannot be implemented as permanent or one-turn generic lock');
+const direct=Restrictions.apply(state,"directAttackBlocked",true,"turn");
+assert.equal(Restrictions.effective(direct).directAttackBlocked,true);
+assert.equal(Restrictions.effective({...direct,turn:3}).directAttackBlocked,undefined);
+assert.throws(()=>Restrictions.apply(state,"directAttackBlocked",true),/Duracion/);
 const lancea=Restrictions.apply(state,"banishBlocked",true,"turn");
 assert.equal(Restrictions.effective(lancea).banishBlocked,true);
 assert.equal(Restrictions.effective({...lancea,turn:3}).banishBlocked,undefined,
