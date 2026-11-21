@@ -339,6 +339,7 @@
             t.zone,
             t.position,
             E.negated(s, t),
+            t.attackLockedTurn === s.turn,
           ])
           .sort(),
         s._used.slice().sort(),
