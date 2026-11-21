@@ -58,7 +58,7 @@ function ygo_progress_require_assigned(int $deckId,bool $explicit,array $counts)
 function ygo_progress_new_ledger(int $deckId,array $inventory,array $manifest,bool $explicit,string $now,bool $calculator=false): array {
     $counts=ygo_progress_inventory_counts($inventory);
     ygo_progress_require_assigned($deckId,$explicit,$counts);
-    if(($inventory['deck']['id']??null)!==$deckId)throw new DomainException('La ficha no corresponde al deck asignado.');
+    if((int)($inventory['deck']['id']??0)!==$deckId)throw new DomainException('La ficha no corresponde al deck asignado.');
     $tasks=[];
     foreach($manifest['stages'] as $stage)foreach($stage['tasks'] as $task){
         $tasks[]=['task_id'=>$task['task_id'],'stage_id'=>$stage['stage_id'],
