@@ -40,8 +40,18 @@ function validate(bundle,{deckId,explicitlyAssigned=false}={}){
       check(byId.has(placed.card_id)&&['hand','graveyard','banished','m1','m2','m3','m4','m5',
         's1','s2','s3','s4','s5','field','extra'].includes(placed.zone),
         'UNKNOWN_PHYSICAL_CARD_OR_ZONE');
-    check(!item.expected_legal||item.expected_after&&Array.isArray(item.expected_after.tokens),
-      'POSITIVE_CASE_REQUIRES_EXPLICIT_RESULT');
+    check(!item.expected_legal||item.expected_after&&Array.isArray(item.expected_after.tokens)&&
+      item.expected_after.tokens.length>0,'POSITIVE_CASE_REQUIRES_EXPLICIT_RESULT');
+    if(item.expected_legal){
+      for(const expected of item.expected_after.tokens){
+        check(Number.isInteger(expected.cid)&&expected.cid>0&&
+          (expected.zone==='monster'||['hand','graveyard','banished','field','extra',
+            'm1','m2','m3','m4','m5','s1','s2','s3','s4','s5'].includes(expected.zone)),
+          'INVALID_EXPECTED_PHYSICAL_OUTCOME');
+      }
+      for(const value of Object.values(item.expected_after.rule_flags||{}))
+        check(typeof value==='boolean','EXPECTED_RULE_FLAG_NOT_BOOLEAN');
+    }
   }
   return {cards:byId,counts};
 }
@@ -79,12 +89,15 @@ function run(bundle,opts={}){
         const expected=item.expected_after.tokens;
         const match=expected.every(token=>{
           const actual=action.state.tokens.filter(t=>
-            db.bindings[t.key]===token.cid&&t.zone===token.zone);
+            db.bindings[t.key]===token.cid &&
+            (token.zone==='monster'?/^m[1-5]$/.test(t.zone):t.zone===token.zone));
           return actual.length>=(token.min||1);
         });
         const lp=item.expected_after.lp||null;
         const lpMatches=!lp||Object.entries(lp).every(([side,value])=>action.state.lp[side]===value);
-        if(match&&lpMatches){passed=true;break;}
+        const flagsMatch=Object.entries(item.expected_after.rule_flags||{}).every(([name,value])=>
+          action.state._ruleFlags?.[name]===value);
+        if(match&&lpMatches&&flagsMatch){passed=true;break;}
       }
       if(!passed)reason=actions.length===0?'No legal effect action was produced.':
         'No action matched the expected physical card zones/LP.';
