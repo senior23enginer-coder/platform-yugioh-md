@@ -71,9 +71,49 @@ for(const route of fixture.routes){
      assert(validKeys.has(card.key),'Foreign inventory reference in golden state');
  let current=state,completed=0,reason='';
  for(let i=0;i<route.steps.length;i++){
-   if(route.interruptions.some(g=>g.before_step===i+1)){
-     reason='UNMODELED_DIRECT_TURN_OR_RIVAL_EVENT';
-     break;
+   const gap=route.interruptions.find(g=>g.before_step===i+1);
+   if(gap){
+     assert.equal(digest(current),gap.previous_after,'Unexpected state before historical event gap');
+     if(!Array.isArray(gap.operations)||gap.operations.length===0){
+       reason='UNMODELED_DIRECT_TURN_OR_RIVAL_EVENT';
+       break;
+     }
+     for(const op of gap.operations){
+       switch(op.op){
+       case 'advance_phase':
+         current=E.advancePhase(current);
+         assert.equal(current.phase,op.expected,'Unexpected captured phase change');
+         break;
+       case 'advance_turn':
+         current=E.advanceTurn(current);
+         assert.equal(current.active,op.expected,'Unexpected opponent turn');
+         break;
+       case 'place_known_opponent':{
+         assert(Number.isInteger(op.cid)&&['m1','m2','m3','m4','m5'].includes(op.zone));
+         const card=cat.cards.find(c=>db.bindings[c.key]===op.cid&&c.section==='main');
+         assert(card,'Opponent observation must reference existing physical CID');
+         current=E.place(current,{key:card.key,owner:'opponent',zone:op.zone});
+         break;
+       }
+       case 'observe_opponent_activation':{
+         assert(typeof op.description==='string'&&op.description.length>8);
+         const candidates=current.tokens.filter(t=>t.owner==='opponent'&&
+           db.bindings[t.key]===op.cid&&t.zone===op.zone);
+         assert.equal(candidates.length,1,'Opponent activation requires one observed physical card');
+         current=E.observeOpponentActivation(current,{
+           uid:candidates[0].uid,effect:op.description
+         });
+         break;
+       }
+       default:
+         throw Error('Unsupported declarative golden-state operation: '+String(op.op));
+       }
+       E.validate(current);
+     }
+     if(digest(current)!==gap.next_before){
+       reason='EXPLICIT_EVENT_SEQUENCE_DID_NOT_MATCH_LEGACY_GAP';
+       break;
+     }
    }
    const step=route.steps[i];
    assert(/^671:[a-z0-9:-]+$/.test(step.effect_id));
@@ -102,10 +142,10 @@ for(const route of fixture.routes){
 assert.equal(outcomes.length,12);
 assert.deepEqual(fixture.known_mismatches,['671:A09:C02']);
 assert.equal(fixture.direct_golden_routes,11);
-assert.equal(passedTransitions,105-1,'Only the C08 post-observation step is excluded');
+assert.equal(passedTransitions,105,'All historical transition hashes must be verified');
 const complete=outcomes.filter(x=>x.fullGoldenReplay);
-assert.equal(complete.length,11,'All 11 contiguous routes must replay byte-for-byte');
-assert.deepEqual(outcomes.filter(x=>x.reason).map(x=>x.route_id),['671:A09:C08']);
+assert.equal(complete.length,12,'All 12 historical routes must replay byte-for-byte');
+assert.deepEqual(outcomes.filter(x=>x.reason).map(x=>x.route_id),[]);
 const mismatch=outcomes.find(x=>x.route_id==='671:A09:C02');
 assert(mismatch.fullGoldenReplay&&mismatch.metadataMismatch,
   'C02 is replayed but its documented transition count remains discrepant');
