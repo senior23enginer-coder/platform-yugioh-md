@@ -1,0 +1,233 @@
+{
+  "schema": "station-x-a01-a10-task-manifest/1",
+  "applicable_only_to_user_assigned_deck": true,
+  "required_sections": [
+    "main",
+    "extra",
+    "side"
+  ],
+  "optional_sections": [
+    "reserve"
+  ],
+  "analysis_is_not_triggered_by_this_manifest": true,
+  "stages": [
+    {
+      "stage_id": "A01",
+      "mandatory": true,
+      "tasks": [
+        {
+          "task_id": "A01-T1",
+          "description": "Identificar arquetipo, estrategia, condición de victoria y riesgos propios, con CIDs de piezas y evidencia oficial; adjuntar evidencia por CID/ID, fuente y control verificado, o bloqueo con causa y siguiente acción"
+        },
+        {
+          "task_id": "A01-T2",
+          "description": "Escribir Estilo breve y Resumen para ficha sin jerga de auditoría, con precondiciones reales de las acciones citadas; adjuntar evidencia por CID/ID, fuente y control verificado, o bloqueo con causa y siguiente acción"
+        },
+        {
+          "task_id": "A01-T3",
+          "description": "Vincular cada propósito/objetivo a IDs de cartas, efectos y futuras rutas sin fabricar secuencias; adjuntar evidencia por CID/ID, fuente y control verificado, o bloqueo con causa y siguiente acción"
+        }
+      ]
+    },
+    {
+      "stage_id": "A02",
+      "mandatory": true,
+      "tasks": [
+        {
+          "task_id": "A02-T1",
+          "description": "Verificar deck_id real, formato, identidad del paquete y referencia al inventario aprobado; adjuntar evidencia por CID/ID, fuente y control verificado, o bloqueo con causa y siguiente acción"
+        },
+        {
+          "task_id": "A02-T2",
+          "description": "Comprobar compatibilidad documental del ZIP y datos/stationx-deck.json sin exigir record.calculator para A10A; adjuntar evidencia por CID/ID, fuente y control verificado, o bloqueo con causa y siguiente acción"
+        },
+        {
+          "task_id": "A02-T3",
+          "description": "Asignar IDs estables y registrar procedencia/versionado del único contrato sin alterar Skills ni otros decks; adjuntar evidencia por CID/ID, fuente y control verificado, o bloqueo con causa y siguiente acción"
+        }
+      ]
+    },
+    {
+      "stage_id": "A03",
+      "mandatory": true,
+      "tasks": [
+        {
+          "task_id": "A03-T1",
+          "description": "Cotejar el 100 % de Main, Extra, Side, Reserva y Skill por zona, cantidad y copia física real; adjuntar evidencia por CID/ID, fuente y control verificado, o bloqueo con causa y siguiente acción"
+        },
+        {
+          "task_id": "A03-T2",
+          "description": "Comprobar correspondencia unívoca card_id↔CID↔nombre oficial, sin duplicados o alias inseguros; adjuntar evidencia por CID/ID, fuente y control verificado, o bloqueo con causa y siguiente acción"
+        },
+        {
+          "task_id": "A03-T3",
+          "description": "Congelar la lista aprobada y producir denominadores de identidades, copias, efectos y rutas para los reportes posteriores; adjuntar evidencia por CID/ID, fuente y control verificado, o bloqueo con causa y siguiente acción"
+        }
+      ]
+    },
+    {
+      "stage_id": "A04",
+      "mandatory": true,
+      "tasks": [
+        {
+          "task_id": "A04-T1",
+          "description": "Acreditar CID, fuente oficial, formato y foto auténtica de todas las identidades del inventario; adjuntar evidencia por CID/ID, fuente y control verificado, o bloqueo con causa y siguiente acción"
+        },
+        {
+          "task_id": "A04-T2",
+          "description": "Validar ruta de imagen, calidad y correspondencia física con el card_id/slot, sin importar imágenes ajenas; adjuntar evidencia por CID/ID, fuente y control verificado, o bloqueo con causa y siguiente acción"
+        },
+        {
+          "task_id": "A04-T3",
+          "description": "Registrar el mapa de zonas y posiciones que compartirá A05/A07/A09/A10A y declarar FOTO_PENDIENTE sin falsificar prueba; adjuntar evidencia por CID/ID, fuente y control verificado, o bloqueo con causa y siguiente acción"
+        }
+      ]
+    },
+    {
+      "stage_id": "A05",
+      "mandatory": true,
+      "tasks": [
+        {
+          "task_id": "A05-T1",
+          "description": "Fichar 100 % de identidades Main/Extra/Side/Reserva y Skills: CID/slot, foto, fuente y función específica en este deck"
+        },
+        {
+          "task_id": "A05-T2",
+          "description": "Inventariar TODOS los efectos por efecto_id estable: activado/disparo/continuo/reemplazo/procedimiento/Skill o NO_EFFECT justificado"
+        },
+        {
+          "task_id": "A05-T3",
+          "description": "Registrar por cada efecto actor, zona, condición, ventana, trigger, coste, selección, cadena, resolución, OPT/HOPT, recursos, negaciones y restricciones con fuente"
+        },
+        {
+          "task_id": "A05-T4",
+          "description": "Crear matriz inicial de casos de papel por efecto y enlaces a A06/A07/A09; contar identidades y efectos con especificación completa, nunca confundir con ejecutables"
+        }
+      ]
+    },
+    {
+      "stage_id": "A06",
+      "mandatory": true,
+      "tasks": [
+        {
+          "task_id": "A06-T1",
+          "description": "Identificar motores, relaciones dirigidas entre CID/effect_id y recursos físicos; no inferir sinergias sólo por nombre"
+        },
+        {
+          "task_id": "A06-T2",
+          "description": "Registrar efectos habilitadores, bloqueos, reemplazos, límites de Extra/zonas y dependencias temporales con fuentes"
+        },
+        {
+          "task_id": "A06-T3",
+          "description": "Explicar aperturas primero/segundo, recuperación, juego medio/tardío y salidas por interrupción con costes reales"
+        },
+        {
+          "task_id": "A06-T4",
+          "description": "Derivar casos de papel de sinergias y enlaces A05→A07→A08/A09; clasificar SIN_COMBO_IDENTIFICADO sin fabricar acciones"
+        }
+      ]
+    },
+    {
+      "stage_id": "A07",
+      "mandatory": true,
+      "tasks": [
+        {
+          "task_id": "A07-T1",
+          "description": "Especificar 100 % de los efectos de A05 en lenguaje causal tipado según TCG/GOAT/Rush/Skill, sin omitir pasivos o procedimientos"
+        },
+        {
+          "task_id": "A07-T2",
+          "description": "Separar coste previo, trigger, ventana, objetivos/no-objetivos, cadena, resolución/negación, HOPT/OPT, restricciones y estados antes/después"
+        },
+        {
+          "task_id": "A07-T3",
+          "description": "Construir matriz de casos de papel con caso positivo, ausencia de requisito, timing, recursos/zonas, repetición, negación y fallo cerrado para cada efecto"
+        },
+        {
+          "task_id": "A07-T4",
+          "description": "Auditar cobertura effect_id→case_id→source, NO_APLICA con causa y necesidades de operador; no compilar ni probar en motor hasta A10B"
+        }
+      ]
+    },
+    {
+      "stage_id": "A08",
+      "mandatory": true,
+      "tasks": [
+        {
+          "task_id": "A08-T1",
+          "description": "Enumerar starters, líneas y decisiones reales por estado, formato, recursos y effect_id sin imponer metas a la calculadora"
+        },
+        {
+          "task_id": "A08-T2",
+          "description": "Verificar alternativas, bricks, interrupciones, controles y matchups mediante casos de papel y supuestos explícitos"
+        },
+        {
+          "task_id": "A08-T3",
+          "description": "Vincular cada línea a cartas físicas, uso previo, costes, restricciones, probabilidad sólo cuando esté sustentada"
+        },
+        {
+          "task_id": "A08-T4",
+          "description": "Enlazar candidatos a route_id A09 o clasificar SIN_JUGADA_ACREDITADA/NO_APLICA con evidencia y motivo"
+        }
+      ]
+    },
+    {
+      "stage_id": "A09",
+      "mandatory": true,
+      "tasks": [
+        {
+          "task_id": "A09-T1",
+          "description": "Identificar cada ruta con route_id y starter/estado físico inicial: mano, GY, campo, recursos, fase, prioridades y cartas desconocidas"
+        },
+        {
+          "task_id": "A09-T2",
+          "description": "Por cada step_id enlazar effect_id/procedimiento, requisito, coste real, materiales, ventana, resolución y estado antes/después"
+        },
+        {
+          "task_id": "A09-T3",
+          "description": "Incluir casos lógicos positivos y de interrupción para pasos críticos, con causa, coste pagado y SIN_CONTINUACION_DEMOSTRADA si aplica"
+        },
+        {
+          "task_id": "A09-T4",
+          "description": "Verificar campo final, recursos, materiales y restricciones sin casillas inventadas, conservando los mismos IDs que usarán A10A y A10B"
+        }
+      ]
+    },
+    {
+      "stage_id": "A10A",
+      "mandatory": true,
+      "tasks": [
+        {
+          "task_id": "A10A-T1",
+          "description": "A10A: crear guía visual de cada route_id con apertura correcta, imágenes por CID, pasos step_id, detalles y recursos reales"
+        },
+        {
+          "task_id": "A10A-T2",
+          "description": "A10A: comprobar paridad exacta A05/A07/A09→ficha/combos/guía (CID, efecto, costes, estados y campo final); denunciar posiciones ilustrativas"
+        },
+        {
+          "task_id": "A10A-T3",
+          "description": "A10A: verificar paquete y navegación visual/importación de contenido en móvil y escritorio; nunca exigir motor de calculadora"
+        }
+      ]
+    },
+    {
+      "stage_id": "A10B",
+      "mandatory": false,
+      "tasks": [
+        {
+          "task_id": "A10B-T4",
+          "description": "A10B opt-in: consumir la matriz causal y casos lógicos de papel de GPT, mapear únicamente operaciones/guardas realmente soportados por station-x-calculator/1"
+        },
+        {
+          "task_id": "A10B-T5",
+          "description": "A10B opt-in: ejecutar fixtures por efecto y ruta con runner común en Platform; estados positivos/negativos, HOPT, costes, ventanas, negación e importación/exportación"
+        },
+        {
+          "task_id": "A10B-T6",
+          "description": "A10B opt-in: comparar cobertura semántica GPT frente a acciones realmente ejecutables; dejar OPERADOR_NO_SOPORTADO sin inventar reglas; reporte independiente de A10A"
+        }
+      ]
+    }
+  ]
+}
