@@ -219,7 +219,12 @@
   "routes": [
     {
       "id": "C01",
-      "status": "NO_REPLAY_CERTIFIED"
+      "status": "REPLAY_CERTIFIED",
+      "scope": "exact-opening-no-opponent-response",
+      "test": "torneos_yugioh/tests/memento_c01_route_replay_test.cjs",
+      "documented_steps": 7,
+      "executed_transitions": 9,
+      "limits": "Sin respuesta del rival: no certifica cadenas, interrupciones, recetas alternativas ni ubicaciones exactas."
     },
     {
       "id": "C02",

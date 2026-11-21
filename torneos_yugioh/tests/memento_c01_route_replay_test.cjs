@@ -12,6 +12,9 @@ const deck=JSON.parse(fs.readFileSync(__dirname+
   '/../assets/editorial/20261117-folder-delivery-v40/671.json','utf8'));
 const route=deck.routes.find(r=>r.id==='671:A09:C01');
 assert(route && route.steps.length===7,'A09 C01 must retain exactly 7 steps');
+assert.equal(route.replay_certification?.status,'REPLAY_CERTIFIED');
+assert.equal(route.replay_certification?.test,'torneos_yugioh/tests/memento_c01_route_replay_test.cjs');
+assert.equal(route.replay_certification?.scope,'exact-opening-no-opponent-response');
 const rows=deck.cards.flatMap(c=>c.slots.map(x=>({
   id:x.card_id,deck_id:671,card_name:c.name,section:x.section,quantity:x.quantity
 })));
