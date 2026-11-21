@@ -5,7 +5,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const {spawnSync}=require('node:child_process');
-const {fromPaper,run}=require('./run-deck-logic-fixtures.cjs');
+const {fromPaper,run,runRoutes}=require('./run-deck-logic-fixtures.cjs');
 const root=path.resolve(__dirname,'..');
 const allowed=new Map([
   [671,'torneos_yugioh/assets/editorial/20261117-folder-delivery-v40/671.json'],
@@ -61,6 +61,18 @@ for(const paper of suite.documents){
   assert.equal(JSON.stringify(record),original,'Read-only paper regression mutated canonical deck');
   assert.equal(report.failed,0,JSON.stringify(report.cases.filter(x=>!x.passed),null,2));
   assert.equal(report.passed,paper.cases.length);
+  // Prove the reusable route replayer can also execute a REAL, single-step
+  // checkpoint from each historical deck. This is NOT a full A09 route.
+  const positive=paper.cases.find(c=>c.expected_legal===true);
+  assert(positive,'At least one verified positive physical case is required');
+  const oneStep={...adapted.bundle,cases:[],route_cases:[{
+    route_id:'P06:'+record.deck_id+':LEGACY_EFFECT_STEP',
+    state_before:positive.state_before,
+    steps:[{effect_id:positive.effect_id,expected_after:positive.expected_state_after}],
+    expected_final:positive.expected_state_after
+  }]};
+  const routeResult=runRoutes(oneStep,{deckId:record.deck_id,explicitlyAssigned:true});
+  assert.equal(routeResult.passed,1,JSON.stringify(routeResult.routes));
   count+=report.passed;
   reports.push({deck_id:record.deck_id,cases:report.total,passed:report.passed,
     legacySources:[...new Set(paper.cases.map(c=>c.source_legacy_test))]});
@@ -84,6 +96,6 @@ assert.equal(testedLegacy.size,2,'Expected one historical test per deck');
 console.log(JSON.stringify({ok:true,legacyTestFilesPreserved:40,
   legacyFilesCompared:testedLegacy.size,
   paperCasesPassed:count,directHistoricalAssertions:legacyAssertions,
-  addedNegativeBoundaries:newBoundaries,
+  addedNegativeBoundaries:newBoundaries,verifiedSingleEffectRouteSteps:2,
   coverage:'partial; not eligible for deleting legacy files',
   analysesExecuted:0,reports}));
