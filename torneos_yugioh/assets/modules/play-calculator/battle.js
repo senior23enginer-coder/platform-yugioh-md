@@ -33,10 +33,15 @@
     const facts = (t) => P.profile(E.definition(s, t.key, t.owner), db);
     const monsters = (side) => s.tokens.filter((t) =>
       t.controller === side && E.isMonster(t.zone));
-    const attackers = monsters("self").filter((t) => t.position === "attack");
+    // A Goblin Summoned by Grand Breakout cannot attack this turn.
+    // The lock expires by turn and is removed when the monster leaves the field.
+    const attackers = monsters("self").filter((t) => t.position === "attack" &&
+      t.attackLockedTurn !== s.turn);
     const defenders = monsters("opponent");
     result.available = true;
-    if (!attackers.length) result.reason = "No hay monstruos propios boca arriba en ataque.";
+    if (!attackers.length) result.reason = monsters("self").some(t=>t.attackLockedTurn===s.turn)
+      ? "El monstruo Invocado por Gran Fuga Moto Goblin no puede atacar este turno."
+      : "No hay monstruos propios boca arriba en ataque.";
     for (const attacker of attackers) {
       const af = facts(attacker);
       if (!af || !Number.isInteger(af.atk) || af.atk < 0) {
