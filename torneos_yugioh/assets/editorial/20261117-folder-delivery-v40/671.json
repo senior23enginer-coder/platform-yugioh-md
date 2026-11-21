@@ -10,6 +10,182 @@
     "rules": [
       {
         "version": 1,
+        "id": "671:goblin-biker-grand-breakout:deck-summon",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Gran Fuga Moto Goblin: sacrificar un monstruo propio e Invocar Goblin del Deck",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20533&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "hand"
+          ],
+          "cid": 20533
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2",
+              "battle"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ]
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "tribute",
+            "ref": "victim",
+            "reason": "cost",
+            "allowSet": true
+          }
+        ],
+        "resolve": [
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19366,
+            "from": "deck",
+            "to": "free-monster",
+            "position": "attack",
+            "summonMethod": "special",
+            "cannotAttackThisTurn": true
+          }
+        ],
+        "tags": [
+          "summonFromDeck"
+        ],
+        "assumptions": [
+          "Mágica Rápida: se tributa una copia propia en Campo como coste, incluso boca abajo; se Invoca el Goblin físico restante en el Main Deck y no puede atacar este turno.",
+          "Solo se aplica la primera parte: el efecto de GY exige un Xyz «Goblin», ausente en el Extra de este deck. No se inventa una interacción de Xyz.",
+          "Desde mano se modela en la Main o Battle propias; colocada se requiere turno previo y ventana Main/Battle en cualquiera de los turnos. No se evalúan cadenas rivales arbitrarias."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "afterResolution": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
+        "id": "671:goblin-biker-grand-breakout:deck-summon",
+        "deckId": 671,
+        "format": "tcg_advanced",
+        "scope": "single-effect",
+        "label": "Gran Fuga Moto Goblin: sacrificar un monstruo propio e Invocar Goblin del Deck",
+        "source": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20533&ope=2&request_locale=en",
+        "actor": {
+          "side": "self",
+          "zones": [
+            "s1",
+            "s2",
+            "s3",
+            "s4",
+            "s5"
+          ],
+          "cid": 20533,
+          "faceUp": false
+        },
+        "guards": [
+          {
+            "kind": "state",
+            "field": "active",
+            "values": [
+              "self",
+              "opponent"
+            ]
+          },
+          {
+            "kind": "state",
+            "field": "phase",
+            "values": [
+              "main1",
+              "main2",
+              "battle"
+            ]
+          }
+        ],
+        "select": [
+          {
+            "ref": "victim",
+            "selector": {
+              "side": "self",
+              "zones": [
+                "monsters"
+              ]
+            }
+          }
+        ],
+        "costs": [
+          {
+            "op": "tribute",
+            "ref": "victim",
+            "reason": "cost",
+            "allowSet": true
+          }
+        ],
+        "resolve": [
+          {
+            "op": "take",
+            "side": "self",
+            "cid": 19366,
+            "from": "deck",
+            "to": "free-monster",
+            "position": "attack",
+            "summonMethod": "special",
+            "cannotAttackThisTurn": true
+          }
+        ],
+        "tags": [
+          "summonFromDeck"
+        ],
+        "assumptions": [
+          "Mágica Rápida: se tributa una copia propia en Campo como coste, incluso boca abajo; se Invoca el Goblin físico restante en el Main Deck y no puede atacar este turno.",
+          "Solo se aplica la primera parte: el efecto de GY exige un Xyz «Goblin», ausente en el Extra de este deck. No se inventa una interacción de Xyz.",
+          "Desde mano se modela en la Main o Battle propias; colocada se requiere turno previo y ventana Main/Battle en cualquiera de los turnos. No se evalúan cadenas rivales arbitrarias."
+        ],
+        "activation": true,
+        "oncePerTurn": true,
+        "afterResolution": [
+          {
+            "op": "move",
+            "ref": "actor",
+            "to": "graveyard",
+            "position": "attack"
+          }
+        ],
+        "chainSpeed": 2,
+        "activationNegatedConsumesUse": true
+      },
+      {
+        "version": 1,
         "id": "671:lancea:banish-lock",
         "deckId": 671,
         "format": "tcg_advanced",
