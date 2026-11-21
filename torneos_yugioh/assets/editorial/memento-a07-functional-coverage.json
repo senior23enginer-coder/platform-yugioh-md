@@ -273,7 +273,12 @@
     },
     {
       "id": "C07",
-      "status": "NO_REPLAY_CERTIFIED"
+      "status": "REPLAY_CERTIFIED",
+      "scope": "exact-opening-no-opponent-response",
+      "test": "torneos_yugioh/tests/memento_c07_route_replay_test.cjs",
+      "documented_steps": 4,
+      "executed_transitions": 8,
+      "limits": "Requiere Fusión mediante Mágica con 1 material de mano y 2 de Campo y dos cartas rivales físicas conocidas y destruibles, sin respuestas ni inmunidades. No identifica el robo ni otorga protección de Polimerización; no certifica cadenas, otras recetas ni cartas protegidas."
     },
     {
       "id": "C08",
