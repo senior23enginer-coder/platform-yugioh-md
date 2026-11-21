@@ -282,7 +282,12 @@
     },
     {
       "id": "C08",
-      "status": "NO_REPLAY_CERTIFIED"
+      "status": "REPLAY_CERTIFIED",
+      "scope": "exact-opening-observed-opponent-activation-no-further-response",
+      "test": "torneos_yugioh/tests/memento_c08_route_replay_test.cjs",
+      "documented_steps": 4,
+      "executed_transitions": 5,
+      "limits": "Activación rival registrada manualmente con copia física conocida; no se simula ni certifica el efecto original rival, otros eslabones de cadena, inmunidades, ventanas de Damage Step, retornos bajo zonas bloqueadas, prioridades ni legalidad general del formato. Sin respuesta rival posterior."
     },
     {
       "id": "C09",

@@ -37,7 +37,9 @@ for (const entry of coverage.routes.filter(route=>route.status==='REPLAY_CERTIFI
     'Certified route must point to the same runnable test in canonical deck and audit');
   assert(candidate.replay_certification.status==='REPLAY_CERTIFIED',
     'Do not claim replay without explicit source evidence');
-  assert(entry.scope==='exact-opening-no-opponent-response',
+  assert(entry.scope===(entry.id==='C08' ?
+    'exact-opening-observed-opponent-activation-no-further-response' :
+    'exact-opening-no-opponent-response'),
     'No-response certification is narrower than general duel or chain legality');
 }
 const report = {
