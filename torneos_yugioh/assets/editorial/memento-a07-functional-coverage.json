@@ -300,7 +300,12 @@
     },
     {
       "id": "C10",
-      "status": "NO_REPLAY_CERTIFIED"
+      "status": "REPLAY_CERTIFIED",
+      "scope": "exact-opening-no-opponent-response",
+      "test": "torneos_yugioh/tests/memento_c10_route_replay_test.cjs",
+      "documented_steps": 5,
+      "executed_transitions": 11,
+      "limits": "Mano exacta Angbruja + Fiesta de Huesos + Goblin, sin respuestas rivales. No certifica cadenas, otros materiales, protecciones ni posiciones exactas."
     },
     {
       "id": "C11",

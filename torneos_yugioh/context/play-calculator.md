@@ -13,7 +13,7 @@ reescribe inventarios o revisiones del editor.
 - **671 Memento:** 41 Main, 15 Extra, 14 Side; 12 rutas con 69 pasos
   sincronizados, 12 diagramas de resultado ilustrativos; 333 variantes
   portables agrupadas en 57 IDs de efecto. Son 30/39 identidades con al menos una regla de actor; faltan 9, y las
-  9/12 rutas (C01–C09) con replay acotado; C09 Invoca Princesa Necroequipo mediante procedimiento propio con Réquiem equipado y Goblin de mano, sin robo automático; C08 exige activación rival observada y no resuelve su efecto original; C07 usa Quimera Guardián. Quedan 3 rutas sin replay completo certificado. No se certifican cadenas ni legalidad universal.
+  10/12 rutas (C01–C10) con replay acotado; C10 certifica Secuencia + Duque + Angbruja con Normal adicional sin repetir la búsqueda; C09 Invoca Princesa Necroequipo mediante procedimiento propio con Réquiem equipado y Goblin de mano, sin robo automático; C08 exige activación rival observada y no resuelve su efecto original; C07 usa Quimera Guardián. Quedan 2 rutas sin replay completo certificado. No se certifican cadenas ni legalidad universal.
 - **677 Crystron/Horus:** 40 Main, 15 Extra, 15 Side; 14 rutas con 60 pasos,
   14 diagramas de resultado ilustrativos; 13 variantes portables:
   2 procedimientos Horus en GY, 2 acciones Smiger, 5 alternativas de búsqueda
@@ -93,7 +93,7 @@ valida los IDs compartidos y el procedimiento especial TY-PHON, y rechaza
 duplicados o actores ajenos. Las pruebas focales incluyen carga e
 interpretación de la secuencia Goblin → Desvantasma → recuperación desde el
 estudio real. **No existe certificación integral de los 34 controles A07 ni
-reproducción certificada de las 3 rutas A09 restantes**, y la suite nativa completa
+reproducción certificada de las 2 rutas A09 restantes**, y la suite nativa completa
 debe ejecutarse antes de desplegar a producción.
 
 **Criterios de entrada para la siguiente tarea (contrato universal):**
