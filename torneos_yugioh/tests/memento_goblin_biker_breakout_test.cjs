@@ -54,6 +54,12 @@ assert.equal(battle.available,true);
 assert(!battle.attacks.some(a=>a.attacker===goblin.uid),
   'Battle analyzer must never recommend an attack with a locked Goblin');
 assert(/no puede atacar/.test(battle.reason),'Battle explains the restriction');
+assert(battle.assumptions.some(text=>/Gran Fuga/.test(text)),
+  'Conditional battle panel must disclose the excluded attacker');
+const plannerSource=fs.readFileSync(path.join(__dirname,
+  '../assets/modules/play-calculator/planner.js'),'utf8');
+assert(plannerSource.includes('t.attackLockedTurn === s.turn'),
+  'Planner state deduplication must not merge otherwise identical locked/unlocked boards');
 const next=E.patch(result,{turn:3,active:'self',phase:'battle'});
 assert(Battle.inspect(next,db).attacks.some(a=>a.attacker===goblin.uid),
   'Attack lock must expire on the following turn');
