@@ -102,5 +102,29 @@ assert.throws(()=>runRoutes({...routeBundle,
   route_cases:[routeBundle.route_cases[0],routeBundle.route_cases[0]]},options),
   /DUPLICATE_OR_INVALID_ROUTE_ID/);
 
+// One CLI consumes future GPT JSON route fixtures; no per-deck JS is needed.
+const fsTmp=require('node:fs'),pathTmp=require('node:path'),osTmp=require('node:os');
+const {spawnSync}=require('node:child_process');
+const folder=fsTmp.mkdtempSync(pathTmp.join(osTmp.tmpdir(),'stationx-p06-routes-'));
+try{
+  const fixture=pathTmp.join(folder,'synthetic-routes.json');
+  fsTmp.writeFileSync(fixture,JSON.stringify({...routeBundle,
+    route_cases:[routeBundle.route_cases[0]]}));
+  const cli=pathTmp.resolve(__dirname,'../../scripts/run-deck-logic-fixtures.cjs');
+  const allowed=spawnSync(process.execPath,[cli,'--routes','--deck-id=999999',
+    '--user-assigned',fixture],{encoding:'utf8'});
+  assert.equal(allowed.status,0,allowed.stderr||allowed.stdout);
+  const result=JSON.parse(allowed.stdout);
+  assert.equal(result.mode,'ROUTES');
+  assert.equal(result.passed,1);
+  const unauthorized=spawnSync(process.execPath,[cli,'--routes','--deck-id=999999',
+    fixture],{encoding:'utf8'});
+  assert.notEqual(unauthorized.status,0,
+    'No CLI scenario must run without explicit deck assignment');
+  const wrongDeck=spawnSync(process.execPath,[cli,'--routes','--deck-id=111111',
+    '--user-assigned',fixture],{encoding:'utf8'});
+  assert.notEqual(wrongDeck.status,0,'Foreign-deck fixtures fail closed');
+}finally{fsTmp.rmSync(folder,{recursive:true,force:true});}
+
 console.log(JSON.stringify({ok:true,syntheticOnly:true,deckAnalysesExecuted:0,
   paperCases:3,pass:result.passed,runner:'single-reusable'}));
