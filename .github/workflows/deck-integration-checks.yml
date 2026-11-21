@@ -92,3 +92,19 @@ jobs:
           node torneos_yugioh/tests/combo_creator_study_photos_test.cjs
           node torneos_yugioh/tests/combo_editorial_library_test.cjs
           node torneos_yugioh/tests/documented_combo_editor_test.cjs
+
+  p06-fast-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run shared P06 parity checks against GPT base
+        run: |
+          git clone --depth 1 --branch base https://github.com/senior23enginer-coder/gpt-yugioh-promps-platform.git /tmp/p06-gpt
+          node torneos_yugioh/tests/deck_logic_fixture_runner_test.cjs
+          node scripts/deck-paper-parity.cjs /tmp/p06-gpt/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-legacy-paper-cases.json
+          node scripts/deck-legacy-route-trace-test.cjs /tmp/p06-gpt/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-memento-route-traces.json
+          node scripts/deck-declarative-route-parity.cjs /tmp/p06-gpt/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-memento-c01-physical-route.json
