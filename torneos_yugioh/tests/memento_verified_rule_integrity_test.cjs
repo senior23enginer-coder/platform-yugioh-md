@@ -21,7 +21,7 @@ for (const [effectId, rows] of byEffect) {
   assert(rows.every(row => row.deckId === 671 && row.format === "tcg_advanced"));
 }
 const goblin = byEffect.get("671:goblin:send-two");
-assert.equal(goblin.length, 3);
+assert.equal(goblin.length, 4, "Original Goblin pairs and C05 Fusion + Combined pair retained");
 assert(goblin.every(row => row.oncePerTurn),
   "Goblin send variants must share a per-turn marker");
 assert(goblin.some(row => row.select.some(selection => selection.ref === "victim")),
