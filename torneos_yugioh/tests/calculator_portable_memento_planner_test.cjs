@@ -16,8 +16,8 @@ const rows = study.cards.flatMap(c => c.slots.map(s => ({
 const catalog = E.catalog({id:671,name:study.name,format_codes:[study.format]},rows);
 const db = Study.bind(base,[{catalog,study}]);
 assert.equal(db.ruleImports[0].status,"accepted",JSON.stringify(db.ruleImports));
-assert.equal(db.ruleImports[0].count,351);
-assert.equal(db.rules.length,351);
+assert.equal(db.ruleImports[0].count,352);
+assert.equal(db.rules.length,352);
 const goblin = catalog.cards.find(c => db.bindings[c.key]===19366);
 assert(goblin,"Memento Goblin must have an exactly bound native inventory slot");
 let state = E.create(catalog);
@@ -55,4 +55,4 @@ const mixedResult=Planner.solve(mixed,db,{depth:3,width:50,budget:1600});
 assert(!mixedResult.plans.some(plan=>plan.steps.some(step=>
   /Invoca Normalmente.*(?:Flor de Ceniza|Ash Blossom)/i.test(step.label))),
   "Adding an engine monster does not turn Ash into a useful Normal Summon");
-console.log("Imported 351 Memento variants: Goblin -> Ghattic -> recovery planned and restriction checked.");
+console.log("Imported 352 Memento variants: Goblin -> Ghattic -> recovery planned and restriction checked.");
