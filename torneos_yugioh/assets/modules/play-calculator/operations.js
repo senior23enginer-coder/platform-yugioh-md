@@ -23,6 +23,7 @@
     ["drawUnknown", "resolve", "restricted"],
     ["temporaryBanishPair", "resolve", "restricted"],
     ["necroquipSummon", "resolve", "restricted"],
+    ["princessEquip", "resolve", "restricted"],
     ["damagePerBanishedMonsters", "resolve", "restricted"],
     ["recoverLP", "both", "generic"],
     ["negate", "both", "generic"],
