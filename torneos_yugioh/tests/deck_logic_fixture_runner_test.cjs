@@ -78,14 +78,26 @@ const routeBundle={...bundle,cases:[],route_cases:[
     turn:1,phase:'main1',active:'self',placements:[{card_id:1,zone:'hand'}]
   },steps:[{effect_id:rule.id,expected_after:{
     tokens:[{cid:19367,zone:'graveyard'}]}}],
-    expected_final:{tokens:[{cid:19367,zone:'graveyard'}]}}
+    expected_final:{tokens:[{cid:19367,zone:'graveyard'}]}},
+  {route_id:'SYNTHETIC:A09:REJECT_ABSENCE',state_before:{
+    turn:1,phase:'main1',active:'self',placements:[{card_id:1,zone:'hand'}]
+  },steps:[{effect_id:rule.id,expected_after:{
+    tokens:[{cid:19367,zone:'field'}],absent:[{cid:19367}]}}],
+    expected_final:{tokens:[{cid:19367,zone:'field'}]}},
+  {route_id:'SYNTHETIC:A09:REJECT_FALSE_NORMAL_COST',state_before:{
+    turn:1,phase:'main1',active:'self',placements:[{card_id:1,zone:'hand'}]
+  },steps:[{effect_id:rule.id,expected_after:{
+    tokens:[{cid:19367,zone:'field'}],normal_available:false}}],
+    expected_final:{tokens:[{cid:19367,zone:'field'}]}}
 ]};
 const replay=runRoutes(routeBundle,options);
-assert.equal(replay.total,2);
+assert.equal(replay.total,4);
 assert.equal(replay.passed,1);
-assert.equal(replay.failed,1);
+assert.equal(replay.failed,3);
 assert.equal(replay.routes[1].reason,
   'NO_LEGAL_ACTION_MATCHED_PHYSICAL_CHECKPOINT');
+assert(replay.routes.slice(2).every(x=>x.reason==='NO_LEGAL_ACTION_MATCHED_PHYSICAL_CHECKPOINT'),
+  'Contradictory missing-card or spent-Normal expectations must fail closed');
 assert.throws(()=>runRoutes({...routeBundle,
   route_cases:[routeBundle.route_cases[0],routeBundle.route_cases[0]]},options),
   /DUPLICATE_OR_INVALID_ROUTE_ID/);
