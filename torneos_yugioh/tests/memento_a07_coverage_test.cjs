@@ -71,4 +71,4 @@ const skeleton = {
  tags:[], activation:true, oncePerTurn:true
 };
 assert.throws(() => rules.validate(skeleton), /Fusión requiere materiales exactos/);
-console.log('A07 Memento: 34 controles documentales sin certificación integral; 12 rutas sin replay; Fusión incompleta rechazada.');
+console.log('A07 Memento: 34 controles pendientes de certificación integral; 12/12 rutas con replay de escenario acotado; Fusión incompleta rechazada.');
