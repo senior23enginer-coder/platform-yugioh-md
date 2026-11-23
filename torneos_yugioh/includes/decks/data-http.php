@@ -120,6 +120,12 @@ function ygo_data_prepare(string $app,array $files,array $inventory,?array $curr
         $portable=($envelope['inventory_binding']??'')==='deck-slots-v1';
         if($portable){
             $document=$envelope['source_document']??null;
+            // GPT folder packages may declare the root document relative to package_root.
+            // Resolve only a single basename inside the verified deck folder; never search other folders.
+            if(is_string($document)&&basename($document)===$document&&isset($files[$verifiedFolder.'/'.$document])){
+                $document=$verifiedFolder.'/'.$document;
+                $envelope['source_document']=$document;
+            }
             if(!is_string($document)||!isset($files[$document])||!preg_match('/CONTENIDO_CURADO\\.md$/i',$document))throw new InvalidArgumentException('El ZIP GPT no contiene su documento curado original.');
             ygo_data_validate_portable_inventory($envelope,$inventory,$verifiedFolder,$current);
         }elseif(($envelope['inventory_sha256']??'')!==$inventory['inventory_sha256']){
