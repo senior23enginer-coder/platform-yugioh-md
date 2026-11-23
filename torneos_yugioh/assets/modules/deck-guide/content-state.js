@@ -19,7 +19,7 @@
     const folder=study?.folder_delivery||{};
     return study?.schema==='station-x-curated-v62'&&Number(study.deck_id)===Number(id)&&
       typeof folder.source_file==='string'&&
-      /^torneos_yugioh\\/context\\/gpt\\/01_INFORMACION_PARA_IMPORTAR\\/decks\\/DECK_[A-Za-z0-9_]+\\/DECK_[A-Za-z0-9_]+_CONTENIDO_CURADO\\.md$/.test(folder.source_file)&&
+      /^torneos_yugioh\/context\/gpt\/01_INFORMACION_PARA_IMPORTAR\/decks\/DECK_[A-Za-z0-9_]+\/DECK_[A-Za-z0-9_]+_CONTENIDO_CURADO\.md$/.test(folder.source_file)&&
       /^[a-f0-9]{64}$/i.test(String(folder.source_sha256||''));
   };
   const imported=(study,id)=>certified(study,id)||documentaryLegacy(study,id);
