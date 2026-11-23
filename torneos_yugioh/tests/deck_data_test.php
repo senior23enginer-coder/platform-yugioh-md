@@ -3,6 +3,12 @@ declare(strict_types=1);
 require_once __DIR__.'/../includes/decks/data-http.php';
 function check(bool $value,string $message): void { if(!$value)throw new RuntimeException($message); }
 function fails(callable $fn,string $message):void{try{$fn();}catch(InvalidArgumentException|DomainException $e){return;}throw new RuntimeException($message);}
+// Historical curated sources may include a nested local image and lazy loading.
+$localImageFiles=['DECK_650_ELFNOTE/imagenes/tcg/22356.jpg'=>'fixture'];
+check(ygo_data_safe_markdown_images('<img src="imagenes/tcg/22356.jpg" alt="Carta" loading="lazy">',$localImageFiles)==='[Imagen local: imagenes/tcg/22356.jpg]','Local curated image not recognized');
+fails(fn()=>ygo_data_safe_markdown_images('<img src="imagenes/tcg/22356.jpg" onerror="alert(1)">',$localImageFiles),'Executable attribute accepted');
+fails(fn()=>ygo_data_safe_markdown_images('<img src="imagenes/../tcg/22356.jpg">',$localImageFiles),'Traversal accepted');
+fails(fn()=>ygo_data_safe_markdown_images('<img src="https://example.com/carta.jpg">',$localImageFiles),'Remote image accepted');
 $app=dirname(__DIR__);$state=ygo_data_read($app.'/assets/editorial/strategy-content-state.json');$count=0;$raws=0;
 // Canonical pilot identities: the prompt generator must not replace these with invented IDs.
 foreach ([671=>['main'=>41,'extra'=>15,'side'=>14,'tech'=>0,'cards'=>39,'routes'=>12],677=>['main'=>40,'extra'=>15,'side'=>15,'tech'=>0,'cards'=>39,'routes'=>14]] as $pilotId=>$expected) {
