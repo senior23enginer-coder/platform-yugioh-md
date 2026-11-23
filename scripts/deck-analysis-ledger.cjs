@@ -3,30 +3,39 @@
 // No AI calls, no database writes, no deck selection, no analysis execution.
 const STATUS=Object.freeze({PENDING:'PENDING',RUNNING:'RUNNING',
   BLOCKED:'BLOCKED',COMPLETE:'COMPLETE'});
-const SECTIONS=Object.freeze(['main','extra','side']);
+const SECTIONS=Object.freeze(['main']);
+const EXTRA_REQUIRED=Object.freeze(['tcg','tcg_advanced','tcg_traditional','ocg','ocg_advanced']);
+const EXTRA_OPTIONAL=Object.freeze(['goat','rush_duel','rush']);
 function stamp(value){
   if(typeof value!=='string'||!Number.isFinite(Date.parse(value))||
      new Date(value).toISOString()!==value)
     throw Error('TIME_REQUIRES_UTC_ISO_TIMESTAMP');
   return Date.parse(value);
 }
-function assertAdmission({deckId,explicitlyAssigned,inventoryCounts}){
+function assertAdmission({deckId,explicitlyAssigned,inventoryCounts,format}){
   if(explicitlyAssigned!==true||!Number.isInteger(deckId)||deckId<=0)
     throw Error('EXPLICIT_USER_DECK_SELECTION_REQUIRED');
   if(!inventoryCounts||typeof inventoryCounts!=='object')
     throw Error('DECK_INVENTORY_NOT_LOADED');
-  for(const section of SECTIONS)
+  const normalized=String(format||'').trim().toLowerCase();
+  if(![...EXTRA_REQUIRED,...EXTRA_OPTIONAL].includes(normalized))
+    throw Error('FORMAT_UNSUPPORTED_FOR_A01_GATE');
+  const required=[...SECTIONS,...(EXTRA_REQUIRED.includes(normalized)?['extra']:[])];
+  for(const section of required)
     if(!Number.isInteger(inventoryCounts[section])||inventoryCounts[section]<=0)
       throw Error('REQUIRED_'+section.toUpperCase()+'_NOT_LOADED');
-  if(inventoryCounts.reserve!==undefined&&
-    (!Number.isInteger(inventoryCounts.reserve)||inventoryCounts.reserve<0))
-    throw Error('INVALID_OPTIONAL_RESERVE');
+  for(const section of ['extra','side','reserve'])if(!required.includes(section) &&
+    inventoryCounts[section]!==undefined &&
+    (!Number.isInteger(inventoryCounts[section])||inventoryCounts[section]<0))
+    throw Error('INVALID_OPTIONAL_'+section.toUpperCase());
 }
 function validateManifest(manifest){
   if(manifest?.schema!=='station-x-a01-a10-task-manifest/1'||
     !Array.isArray(manifest.stages)||manifest.stages.length!==11||
     JSON.stringify(manifest.required_sections)!==JSON.stringify(SECTIONS)||
-    JSON.stringify(manifest.optional_sections)!==JSON.stringify(['reserve']))
+    JSON.stringify(manifest.optional_sections)!==JSON.stringify(['side','reserve'])||
+    JSON.stringify(manifest.extra_deck_policy?.required_for)!==JSON.stringify(EXTRA_REQUIRED)||
+    JSON.stringify(manifest.extra_deck_policy?.optional_for)!==JSON.stringify(EXTRA_OPTIONAL))
     throw Error('TASK_MANIFEST_INCOMPATIBLE');
   const ids=new Set();let mandatory=0,optional=0;
   for(const stage of manifest.stages){
@@ -46,9 +55,9 @@ function validateManifest(manifest){
   if(ids.size!==40||mandatory!==37||optional!==3)throw Error('TASKS_MUST_BE_37_PLUS_3');
   return true;
 }
-function createLedger({deckId,explicitlyAssigned=false,inventoryCounts,manifest,at,
+function createLedger({deckId,explicitlyAssigned=false,inventoryCounts,format,manifest,at,
   enableCalculator=false}={}){
-  assertAdmission({deckId,explicitlyAssigned,inventoryCounts});validateManifest(manifest);stamp(at);
+  assertAdmission({deckId,explicitlyAssigned,inventoryCounts,format});validateManifest(manifest);stamp(at);
   return {schema:'station-x-deck-analysis-ledger/1',deck_id:deckId,
     explicitly_user_assigned:true,inventory_counts:{...inventoryCounts},
     created_at:at,updated_at:at,calculator_requested:enableCalculator===true,
