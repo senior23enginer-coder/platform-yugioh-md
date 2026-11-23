@@ -72,7 +72,7 @@ if (is_file($stationxReleasePath)) {
 <script src="./assets/modules/play-calculator/scenario.js?v=20261120-core-boot-1" defer></script>
 <script src="./assets/modules/play-calculator/verified-rules.js?v=20261118-memento-effects-5" defer></script>
 <script src="./assets/modules/play-calculator/contract.js?v=20261120-core-boot-1" defer></script>
-<script src="./assets/modules/play-calculator/study.js?v=20261120-memento-portable-1" defer></script><script src="./assets/modules/play-calculator/chain.js?v=20261118-chain-2" defer></script><script src="./assets/modules/play-calculator/ui.js?v=20261120-smiger-rule-1" defer></script>
+<script src="./assets/modules/play-calculator/study.js?v=20261123-gpt-source-only-1" defer></script><script src="./assets/modules/play-calculator/chain.js?v=20261118-chain-2" defer></script><script src="./assets/modules/play-calculator/ui.js?v=20261120-smiger-rule-1" defer></script>
 <script src="./assets/modules/combo-creator/model.js?v=20261103-combos-133" defer></script>
 <script src="./assets/modules/combo-creator/step-lesson.js?v=20261113-step-lessons-173" defer></script>
 <script src="./assets/modules/combo-creator/documented-import.js?v=20261116-folder-import-1" defer></script>
@@ -98,9 +98,9 @@ if (is_file($stationxReleasePath)) {
 <script src="./assets/modules/deck-guide/functional-role.js?v=20261116-folder-import-1" defer></script>
 <script src="./assets/modules/deck-guide/card-detail.js?v=20261115-card-detail-196" defer></script>
 <script src="./assets/modules/deck-guide/curated-study.js?v=20261119-visual-parity-1" defer></script>
-<script src="./assets/modules/combo-creator/editorial-library.js?v=20261113-combo-library-164" defer></script>
+<script src="./assets/modules/combo-creator/editorial-library.js?v=20261123-gpt-source-only-1" defer></script>
 <script src="./assets/modules/deck-guide/checked-study.js?v=20261108-curated-147" defer></script>
-<script src="./assets/modules/deck-guide/content-state.js?v=20261119-visual-parity-1" defer></script>
+<script src="./assets/modules/deck-guide/content-state.js?v=20261123-gpt-source-only-1" defer></script>
 <script src="./assets/modules/dashboard/ranking-scopes.js?v=20261107-ranking-divisions-146" defer></script>
 <script src="./assets/modules/navigation/global-search.js?v=20261113-global-search-167" defer></script>
 <link rel="stylesheet" href="./assets/modules/deck-guide/league-position.css?v=20261113-match-positions-183">
@@ -109,7 +109,7 @@ if (is_file($stationxReleasePath)) {
 <script src="./assets/modules/deck-attributes/api.js?v=20261118-worlds-hexagonal"></script>
 <script src="./assets/modules/deck-attributes/ui.js?v=20261118-worlds-hexagonal"></script>
 <script src="./assets/modules/deck-guide/league-position.js?v=20261113-match-positions-182" defer></script>
-<script src="./assets/app.js?v=20261119-fullscreen-calc-1" defer></script>
+<script src="./assets/app.js?v=20261123-gpt-authority-1" defer></script>
 <link rel="stylesheet" href="./assets/modules/deck-guide/analysis-progress.css?v=20261121-task-grid-1">
 <script src="./assets/modules/deck-guide/analysis-progress.js?v=20261121-task-grid-1" defer></script>
 <script src="./assets/match-editor.js?v=20261027-participants-103" defer></script>
