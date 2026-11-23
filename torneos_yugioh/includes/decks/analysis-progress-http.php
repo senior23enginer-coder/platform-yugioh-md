@@ -42,7 +42,7 @@ function ygo_analysis_progress_http(): never {
         $manifest=ygo_progress_manifest(dirname(__DIR__,2));
         ygo_progress_schema($pdo);
         $saved=ygo_progress_saved($pdo,$deckId);
-        $eligible=($counts['main']>0&&$counts['extra']>0&&$counts['side']>0);
+        $eligible=($counts['main']>0&&$counts['extra']>0);
         $now=gmdate('Y-m-d\TH:i:s\Z');
         if($method==='GET'&&$op==='status'){
             $ledger=$saved['ledger']??null;
