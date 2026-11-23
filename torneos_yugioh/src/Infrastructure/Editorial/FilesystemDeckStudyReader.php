@@ -41,8 +41,8 @@ final readonly class FilesystemDeckStudyReader implements DeckStudyReader
             }
             $profile = $document['profile'];
             $profiles[$id] = new DeckStudyProfile(
-                $profile['Tipo de estrategia'] ?? '',
-                $profile['Estilo breve'] ?? $profile['Estilo de juego'] ?? '',
+                $profile['Estilo breve'] ?? $profile['Tipo de estrategia'] ?? '',
+                $profile['Estilo de juego'] ?? '',
                 $profile['Arquetipo'] ?? null,
             );
         }
