@@ -31503,7 +31503,14 @@
               "name": "Angbruja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 1 de C01"
+            },
+            {
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 1 de C01"
             }
           ],
           "requirements": [],
@@ -31516,11 +31523,11 @@
           "detail": "Invoca Especial Tatsun desde mano: solo controlas un Memento boca arriba. Zonas: Campo Angbruja + Tatsun.",
           "photos": [
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 2 de C01"
             }
           ],
           "requirements": [],
@@ -31533,11 +31540,25 @@
           "detail": "Activa efecto de Tatsun: destruye a Tatsun que controlas; manda desde el Deck Desvantasma (Nivel 2) + Dormiveja (Nivel 3) al GY; suma 5 ≤ Nivel original 5 del Tatsun destruido. GY: Tatsun, Desvantasma, Dormiveja.",
           "photos": [
             {
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 3 de C01"
+            },
+            {
+              "cid": 19472,
+              "name": "Desvantasmas",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "label": "Carta visible en el paso 3 de C01"
+            },
+            {
               "cid": 20199,
               "name": "Dormiveja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 3 de C01"
             }
           ],
           "requirements": [],
@@ -31550,18 +31571,18 @@
           "detail": "Como Desvantasma fue enviada por efecto del monstruo Memento Tatsun, activa su efecto y se Invoca Especial desde GY. Su efecto al Invocarse recupera Dormiveja desde GY a mano. Zonas: Campo Angbruja + Desvantasma; Mano Fusión + Dormiveja; GY Tatsun.",
           "photos": [
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19472,
+              "name": "Desvantasmas",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "label": "Carta visible en el paso 4 de C01"
             },
             {
               "cid": 20199,
               "name": "Dormiveja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 4 de C01"
             }
           ],
           "requirements": [],
@@ -31574,32 +31595,39 @@
           "detail": "Durante Main, activa Fusión Mementotlán desde mano y usa exactamente Angbruja + Desvantasma del campo y Dormiveja de mano (3 Memento distintos). Invoca por Fusión Mementomictlán Tecuhtlica - Rey Creación desde Extra. Las tres cartas usadas quedan en GY.",
           "photos": [
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
-              "cid": 19367,
-              "name": "Mementomictlán",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19367.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19367.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
               "cid": 19904,
               "name": "Fusión Mementotlán",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 5 de C01"
+            },
+            {
+              "cid": 19364,
+              "name": "Angbruja",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
+              "label": "Carta visible en el paso 5 de C01"
+            },
+            {
+              "cid": 19472,
+              "name": "Desvantasmas",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "label": "Carta visible en el paso 5 de C01"
             },
             {
               "cid": 20199,
               "name": "Dormiveja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 5 de C01"
+            },
+            {
+              "cid": 20216,
+              "name": "Rey Creación",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
+              "label": "Carta visible en el paso 5 de C01"
             }
           ],
           "requirements": [],
@@ -31612,32 +31640,32 @@
           "detail": "Rey Creación fue Invocado por Fusión: activa su efecto de enviar tres cartas Memento del Deck al GY. Elige Creación Combinada + Maza + Goblin del Main. GY justo antes del siguiente paso: Tatsun, Angbruja, Desvantasma, Dormiveja, Creación Combinada, Maza, Goblin (además de la Fusión Mágica).",
           "photos": [
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 20216,
+              "name": "Rey Creación",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
+              "label": "Carta visible en el paso 6 de C01"
+            },
+            {
+              "cid": 19360,
+              "name": "Tecuhtlica - Creación Combinada",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "label": "Carta visible en el paso 6 de C01"
             },
             {
               "cid": 19365,
               "name": "Maza",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 6 de C01"
             },
             {
               "cid": 19366,
               "name": "Goblin",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
-              "cid": 20199,
-              "name": "Dormiveja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 6 de C01"
             }
           ],
           "requirements": [],
@@ -31650,32 +31678,25 @@
           "detail": "Activa Invocación propia de Creación Combinada desde GY, barajando exactamente cinco otros Memento con nombres diferentes: Tatsun, Angbruja, Desvantasma, Dormiveja y Goblin. Deja Maza en GY. Zonas finales: Campo Rey Creación (3000) + Creación Combinada (5000); GY Maza y Fusión Mementotlán. Ya gastaste la Normal.",
           "photos": [
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19360,
+              "name": "Tecuhtlica - Creación Combinada",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "label": "Carta visible en el paso 7 de C01"
+            },
+            {
+              "cid": 20216,
+              "name": "Rey Creación",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
+              "label": "Carta visible en el paso 7 de C01"
             },
             {
               "cid": 19365,
               "name": "Maza",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
-              "cid": 19366,
-              "name": "Goblin",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
-              "cid": 19904,
-              "name": "Fusión Mementotlán",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 7 de C01"
             }
           ],
           "requirements": [],
@@ -31862,7 +31883,14 @@
               "name": "Angbruja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 1 de C02"
+            },
+            {
+              "cid": 19360,
+              "name": "Tecuhtlica - Creación Combinada",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "label": "Carta visible en el paso 1 de C02"
             }
           ],
           "requirements": [],
@@ -31875,18 +31903,25 @@
           "detail": "Activa Fiesta de Huesos (Mágica de Juego Rápido); destruye Angbruja boca arriba y elige del Deck Tatsun de distinto nombre para Invocarlo Especial en Defensa. Campo Tatsun; GY Angbruja + Fiesta.",
           "photos": [
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
               "cid": 19368,
               "name": "Fiesta de Huesos",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19368.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19368.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 2 de C02"
+            },
+            {
+              "cid": 19364,
+              "name": "Angbruja",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
+              "label": "Carta visible en el paso 2 de C02"
+            },
+            {
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 2 de C02"
             }
           ],
           "requirements": [],
@@ -31899,25 +31934,32 @@
           "detail": "Durante Main activa Tatsun: destruye al propio Tatsun y manda desde el Deck Goblin Nivel 1 + Maza Nivel 1 + Desvantasma Nivel 2 (total 4 ≤ su Nivel original 5) al GY. Quedan cinco nombres distintos de monstruo Memento en GY: Angbruja, Tatsun, Goblin, Maza, Desvantasma. El efecto de Desvantasma al ir al GY es opcional: no lo actives, pues aquí necesitamos conservar los cinco.",
           "photos": [
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
-              "cid": 19365,
-              "name": "Maza",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 3 de C02"
             },
             {
               "cid": 19366,
               "name": "Goblin",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 3 de C02"
+            },
+            {
+              "cid": 19365,
+              "name": "Maza",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
+              "label": "Carta visible en el paso 3 de C02"
+            },
+            {
+              "cid": 19472,
+              "name": "Desvantasmas",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "label": "Carta visible en el paso 3 de C02"
             }
           ],
           "requirements": [],
@@ -31930,11 +31972,11 @@
           "detail": "Invoca Especial Creación Combinada desde mano barajando al Deck los cinco nombres anteriores. Campo final: Creación Combinada (5000 ATK) como único monstruo; GY Fiesta de Huesos; los cinco monstruos ya no permanecen en GY.",
           "photos": [
             {
-              "cid": 19368,
-              "name": "Fiesta de Huesos",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19368.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19368.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19360,
+              "name": "Tecuhtlica - Creación Combinada",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "label": "Carta visible en el paso 4 de C02"
             }
           ],
           "requirements": [],
@@ -32067,7 +32109,14 @@
               "name": "Angbruja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 1 de C03"
+            },
+            {
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 1 de C03"
             }
           ],
           "requirements": [],
@@ -32080,11 +32129,11 @@
           "detail": "Invoca Especial Tatsun desde la mano, porque solo controlas un monstruo Memento boca arriba. Campo Angbruja + Tatsun.",
           "photos": [
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 2 de C03"
             }
           ],
           "requirements": [],
@@ -32097,18 +32146,25 @@
           "detail": "Invoca por Enlace Luna del Cielo Cerrado (Link-2) usando los dos monstruos de efecto. Campo Luna; GY Angbruja + Tatsun. No declaras ni usas el efecto de Luna que necesita un posterior Link-5.",
           "photos": [
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
               "cid": 19932,
               "name": "Luna del Cielo Cerrado",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19932.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19932.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 3 de C03"
+            },
+            {
+              "cid": 19364,
+              "name": "Angbruja",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
+              "label": "Carta visible en el paso 3 de C03"
+            },
+            {
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 3 de C03"
             }
           ],
           "requirements": [],
@@ -32125,7 +32181,14 @@
               "name": "Réquiem del Demoniherrero",
               "image": "./assets/editorial/20261104-checked-study/images/tcg/20225.jpg",
               "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20225.jpg",
-              "label": "Carta mencionada en el paso"
+              "label": "Carta visible en el paso 4 de C03"
+            },
+            {
+              "cid": 19932,
+              "name": "Luna del Cielo Cerrado",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19932.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19932.png",
+              "label": "Carta visible en el paso 4 de C03"
             }
           ],
           "requirements": [],
@@ -32138,18 +32201,18 @@
           "detail": "Durante Main activa el efecto rápido de Réquiem y Sacrifica Réquiem para Invocar Especial Grabador desde el Deck o mano. Campo Grabador; GY Réquiem.",
           "photos": [
             {
-              "cid": 20196,
-              "name": "Demoniherrero Grabador",
-              "image": "./assets/editorial/20261104-checked-study/images/tcg/20196.jpg",
-              "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20196.jpg",
-              "label": "Carta citada explícitamente en esta acción; consulta el texto para su zona y condición."
-            },
-            {
               "cid": 20225,
               "name": "Réquiem del Demoniherrero",
               "image": "./assets/editorial/20261104-checked-study/images/tcg/20225.jpg",
               "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20225.jpg",
-              "label": "Carta citada explícitamente en esta acción; consulta el texto para su zona y condición."
+              "label": "Carta visible en el paso 5 de C03"
+            },
+            {
+              "cid": 20196,
+              "name": "Demoniherrero Grabador",
+              "image": "./assets/editorial/20261104-checked-study/images/tcg/20196.jpg",
+              "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20196.jpg",
+              "label": "Carta visible en el paso 5 de C03"
             }
           ],
           "requirements": [],
@@ -32163,18 +32226,18 @@
           "detail": "Activa el efecto de Réquiem en GY y equípalo a Grabador (un Demonio LUZ no Link) como Mágica de Equipo Demoniherrero. Campo Grabador + Réquiem equipado.",
           "photos": [
             {
-              "cid": 20196,
-              "name": "Demoniherrero Grabador",
-              "image": "./assets/editorial/20261104-checked-study/images/tcg/20196.jpg",
-              "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20196.jpg",
-              "label": "Carta citada explícitamente en esta acción; consulta el texto para su zona y condición."
-            },
-            {
               "cid": 20225,
               "name": "Réquiem del Demoniherrero",
               "image": "./assets/editorial/20261104-checked-study/images/tcg/20225.jpg",
               "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20225.jpg",
-              "label": "Carta citada explícitamente en esta acción; consulta el texto para su zona y condición."
+              "label": "Carta visible en el paso 6 de C03"
+            },
+            {
+              "cid": 20196,
+              "name": "Demoniherrero Grabador",
+              "image": "./assets/editorial/20261104-checked-study/images/tcg/20196.jpg",
+              "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20196.jpg",
+              "label": "Carta visible en el paso 6 de C03"
             }
           ],
           "requirements": [],
@@ -32192,14 +32255,14 @@
               "name": "Demoniherrero Grabador",
               "image": "./assets/editorial/20261104-checked-study/images/tcg/20196.jpg",
               "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20196.jpg",
-              "label": "Carta citada explícitamente en esta acción; consulta el texto para su zona y condición."
+              "label": "Carta visible en el paso 7 de C03"
             },
             {
               "cid": 20225,
               "name": "Réquiem del Demoniherrero",
               "image": "./assets/editorial/20261104-checked-study/images/tcg/20225.jpg",
               "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20225.jpg",
-              "label": "Carta citada explícitamente en esta acción; consulta el texto para su zona y condición."
+              "label": "Carta visible en el paso 7 de C03"
             }
           ],
           "requirements": [],
@@ -32366,7 +32429,14 @@
               "name": "Angbruja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 1 de C04"
+            },
+            {
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 1 de C04"
             }
           ],
           "requirements": [],
@@ -32379,18 +32449,32 @@
           "detail": "Especial Tatsun desde mano (todos los monstruos propios boca arriba son Memento). Su efecto destruye al propio Tatsun y envía del Deck Goblin (004, Nivel 1) + Maza (008, Nivel 1) + Desvantasma (009, Nivel 2): niveles 1+1+2=4, menor que 5. GY: 002,004,008,009.",
           "photos": [
             {
-              "cid": 19365,
-              "name": "Maza",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 2 de C04"
             },
             {
               "cid": 19366,
               "name": "Goblin",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 2 de C04"
+            },
+            {
+              "cid": 19365,
+              "name": "Maza",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
+              "label": "Carta visible en el paso 2 de C04"
+            },
+            {
+              "cid": 19472,
+              "name": "Desvantasmas",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "label": "Carta visible en el paso 2 de C04"
             }
           ],
           "requirements": [],
@@ -32403,25 +32487,18 @@
           "detail": "Desvantasma, enviada al GY por efecto del monstruo Tatsun, se Invoca Especial desde allí. Al ser Invocada, activa su otro efecto: devuelve Goblin del GY a la mano. Campo: Angbruja+Desvantasma; mano: Goblin; GY Tatsun+Maza.",
           "photos": [
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
-              "cid": 19365,
-              "name": "Maza",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19472,
+              "name": "Desvantasmas",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "label": "Carta visible en el paso 3 de C04"
             },
             {
               "cid": 19366,
               "name": "Goblin",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 3 de C04"
             }
           ],
           "requirements": [],
@@ -32438,14 +32515,14 @@
               "name": "Angbruja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 4 de C04"
             },
             {
               "cid": 19365,
               "name": "Maza",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 4 de C04"
             }
           ],
           "requirements": [],
@@ -32458,32 +32535,18 @@
           "detail": "Durante Main, Maza destruye a sí misma para buscar Fusión Mementotlán (015) del Deck a mano. Campo: Desvantasma; mano: Goblin+Fusión. GY: Angbruja+Tatsun+Maza.",
           "photos": [
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
               "cid": 19365,
               "name": "Maza",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
-              "cid": 19366,
-              "name": "Goblin",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 5 de C04"
             },
             {
               "cid": 19904,
               "name": "Fusión Mementotlán",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 5 de C04"
             }
           ],
           "requirements": [],
@@ -32496,32 +32559,39 @@
           "detail": "Activa Fusión Mementotlán desde mano. Ya hubo destrucción propia por efecto, así que puede utilizar Desvantasma del campo + Goblin de la mano + Tatsun del GY (este último se baraja al Deck como material). Invoca Rey Creación (026) desde Extra; Angbruja, Maza, Desvantasma, Goblin quedan en GY.",
           "photos": [
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19904,
+              "name": "Fusión Mementotlán",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
+              "label": "Carta visible en el paso 6 de C04"
             },
             {
-              "cid": 19365,
-              "name": "Maza",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19472,
+              "name": "Desvantasmas",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "label": "Carta visible en el paso 6 de C04"
             },
             {
               "cid": 19366,
               "name": "Goblin",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 6 de C04"
             },
             {
-              "cid": 19904,
-              "name": "Fusión Mementotlán",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 6 de C04"
+            },
+            {
+              "cid": 20216,
+              "name": "Rey Creación",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
+              "label": "Carta visible en el paso 6 de C04"
             }
           ],
           "requirements": [],
@@ -32534,25 +32604,32 @@
           "detail": "Al ser Invocado por Fusión, Rey Creación envía del Deck Creación Combinada (005) + Dormiveja (007) + Dragón de Cuerno (010) al GY. GY de monstruos: 001,008,009,004,005,007,010; Fusión también en GY.",
           "photos": [
             {
-              "cid": 19361,
-              "name": "Dragón de Cuerno",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19361.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19361.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 20216,
+              "name": "Rey Creación",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
+              "label": "Carta visible en el paso 7 de C04"
+            },
+            {
+              "cid": 19360,
+              "name": "Tecuhtlica - Creación Combinada",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "label": "Carta visible en el paso 7 de C04"
             },
             {
               "cid": 20199,
               "name": "Dormiveja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 7 de C04"
             },
             {
-              "cid": 20216,
-              "name": "Rey Creación",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19361,
+              "name": "Dragón de Cuerno",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19361.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19361.png",
+              "label": "Carta visible en el paso 7 de C04"
             }
           ],
           "requirements": [],
@@ -32565,18 +32642,25 @@
           "detail": "Creación Combinada se Invoca desde GY barajando cinco otros nombres: 001+008+009+004+010. Deja Dormiveja (007) en GY. Campo final: Rey Creación 3000 ATK + Creación Combinada 5000 ATK. GY: Dormiveja + Fusión; 5 nombres regresaron al Deck.",
           "photos": [
             {
-              "cid": 20199,
-              "name": "Dormiveja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19360,
+              "name": "Tecuhtlica - Creación Combinada",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "label": "Carta visible en el paso 8 de C04"
             },
             {
               "cid": 20216,
               "name": "Rey Creación",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 8 de C04"
+            },
+            {
+              "cid": 20199,
+              "name": "Dormiveja",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
+              "label": "Carta visible en el paso 8 de C04"
             }
           ],
           "requirements": [],
@@ -32789,14 +32873,14 @@
               "name": "Hoja Oscura",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19363.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19363.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 1 de C05"
             },
             {
               "cid": 19364,
               "name": "Angbruja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 1 de C05"
             }
           ],
           "requirements": [],
@@ -32813,7 +32897,14 @@
               "name": "Angbruja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 2 de C05"
+            },
+            {
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 2 de C05"
             }
           ],
           "requirements": [],
@@ -32826,25 +32917,32 @@
           "detail": "Tatsun destruye al propio Tatsun; manda desde el Deck Goblin (Nivel 1), Maza (Nivel 1), Desvantasma (Nivel 2). Desvantasma se Invoca Especial por haber sido enviada mediante efecto de Tatsun; en su Invocación recupera Maza del GY a mano. Campo Angbruja+Desvantasma; mano Maza; GY Hoja+Tatsun+Goblin.",
           "photos": [
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
-              "cid": 19365,
-              "name": "Maza",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 3 de C05"
             },
             {
               "cid": 19366,
               "name": "Goblin",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 3 de C05"
+            },
+            {
+              "cid": 19365,
+              "name": "Maza",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
+              "label": "Carta visible en el paso 3 de C05"
+            },
+            {
+              "cid": 19472,
+              "name": "Desvantasmas",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "label": "Carta visible en el paso 3 de C05"
             }
           ],
           "requirements": [],
@@ -32861,14 +32959,14 @@
               "name": "Angbruja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 4 de C05"
             },
             {
               "cid": 19366,
               "name": "Goblin",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 4 de C05"
             }
           ],
           "requirements": [],
@@ -32881,25 +32979,25 @@
           "detail": "Goblin destruye al propio Goblin y envía dos cartas Memento de nombres diferentes del Deck al GY: Fusión Mementotlán (015) y Creación Combinada (005). Quedan en GY también Hoja, Tatsun, Angbruja y Goblin. Campo: Desvantasma.",
           "photos": [
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
               "cid": 19366,
               "name": "Goblin",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 5 de C05"
             },
             {
               "cid": 19904,
               "name": "Fusión Mementotlán",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 5 de C05"
+            },
+            {
+              "cid": 19360,
+              "name": "Tecuhtlica - Creación Combinada",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "label": "Carta visible en el paso 5 de C05"
             }
           ],
           "requirements": [],
@@ -32912,32 +33010,18 @@
           "detail": "Durante tu Main, activa el efecto de Fusión Mementotlán desde GY: destierra esa copia, destruye Desvantasma en campo y busca otra copia de Fusión Mementotlán del Deck a mano. No se trata de reutilizar la misma copia desterrada. Mano: Maza+Fusión; GY monstruos: Hoja,Tatsun,Angbruja,Goblin,Desvantasma,Creación Combinada.",
           "photos": [
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
-              "cid": 19365,
-              "name": "Maza",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
-              "cid": 19366,
-              "name": "Goblin",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
               "cid": 19904,
               "name": "Fusión Mementotlán",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 6 de C05"
+            },
+            {
+              "cid": 19472,
+              "name": "Desvantasmas",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "label": "Carta visible en el paso 6 de C05"
             }
           ],
           "requirements": [],
@@ -32950,32 +33034,39 @@
           "detail": "Activa la segunda Fusión Mementotlán desde mano. Usa Maza de mano + Tatsun y Goblin del GY, barajando los dos del GY al Deck gracias a las destrucciones propias previas. Invoca Rey Creación del Extra. GY de monstruos tras Fusionar: Hoja, Angbruja, Desvantasma, Maza y jefe 005.",
           "photos": [
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19904,
+              "name": "Fusión Mementotlán",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
+              "label": "Carta visible en el paso 7 de C05"
             },
             {
               "cid": 19365,
               "name": "Maza",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 7 de C05"
+            },
+            {
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 7 de C05"
             },
             {
               "cid": 19366,
               "name": "Goblin",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 7 de C05"
             },
             {
-              "cid": 19904,
-              "name": "Fusión Mementotlán",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 20216,
+              "name": "Rey Creación",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
+              "label": "Carta visible en el paso 7 de C05"
             }
           ],
           "requirements": [],
@@ -32988,32 +33079,32 @@
           "detail": "Rey Creación envía del Deck tres cartas Memento: Akhíron (006) + Dormiveja (007) + Dragón de Cuerno (010). Ahora hay siete nombres distintos ajenos al jefe en GY: Hoja,Angbruja,Desvantasma,Maza,Akhíron,Dormiveja,Dragón de Cuerno.",
           "photos": [
             {
-              "cid": 19361,
-              "name": "Dragón de Cuerno",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19361.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19361.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 20216,
+              "name": "Rey Creación",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
+              "label": "Carta visible en el paso 8 de C05"
             },
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
-              "cid": 19365,
-              "name": "Maza",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 20491,
+              "name": "Akhíron",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20491.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20491.png",
+              "label": "Carta visible en el paso 8 de C05"
             },
             {
               "cid": 20199,
               "name": "Dormiveja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 8 de C05"
+            },
+            {
+              "cid": 19361,
+              "name": "Dragón de Cuerno",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19361.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19361.png",
+              "label": "Carta visible en el paso 8 de C05"
             }
           ],
           "requirements": [],
@@ -33026,32 +33117,32 @@
           "detail": "Especial Creación Combinada desde GY, barajando cinco de esos nombres: Hoja,Angbruja,Desvantasma,Maza,Dragón de Cuerno. Conserva Akhíron y Dormiveja en GY. Campo: Rey Creación+Creación Combinada. Destierro: primera Fusión utilizada como búsqueda; GY: segunda Fusión, Akhíron, Dormiveja. Normal gastada.",
           "photos": [
             {
-              "cid": 19361,
-              "name": "Dragón de Cuerno",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19361.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19361.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19360,
+              "name": "Tecuhtlica - Creación Combinada",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "label": "Carta visible en el paso 9 de C05"
             },
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 20216,
+              "name": "Rey Creación",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
+              "label": "Carta visible en el paso 9 de C05"
             },
             {
-              "cid": 19365,
-              "name": "Maza",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 20491,
+              "name": "Akhíron",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20491.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20491.png",
+              "label": "Carta visible en el paso 9 de C05"
             },
             {
               "cid": 20199,
               "name": "Dormiveja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 9 de C05"
             }
           ],
           "requirements": [],
@@ -33251,7 +33342,14 @@
               "name": "Angbruja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 1 de C06"
+            },
+            {
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 1 de C06"
             }
           ],
           "requirements": [],
@@ -33264,11 +33362,25 @@
           "detail": "Tatsun se destruye, envía del Deck Desvantasma Nivel 2 + Dormiveja Nivel 3 (2+3=5). Desvantasma se Invoca Especial por efecto de Tatsun y, al Invocarse, recupera Dormiveja del GY a mano.",
           "photos": [
             {
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 2 de C06"
+            },
+            {
+              "cid": 19472,
+              "name": "Desvantasmas",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "label": "Carta visible en el paso 2 de C06"
+            },
+            {
               "cid": 20199,
               "name": "Dormiveja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 2 de C06"
             }
           ],
           "requirements": [],
@@ -33281,32 +33393,32 @@
           "detail": "Activa Fusión Mementotlán desde mano: fusiona Angbruja + Desvantasma en campo (dos Memento) para invocar Mementotlán Dragón Gemelo (027). Mano: Dormiveja. GY: Tatsun,Angbruja,Desvantasma,Fusión.",
           "photos": [
             {
+              "cid": 19904,
+              "name": "Fusión Mementotlán",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
+              "label": "Carta visible en el paso 3 de C06"
+            },
+            {
               "cid": 19364,
               "name": "Angbruja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 3 de C06"
+            },
+            {
+              "cid": 19472,
+              "name": "Desvantasmas",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "label": "Carta visible en el paso 3 de C06"
             },
             {
               "cid": 19878,
               "name": "Dragón Gemelo",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19878.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19878.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
-              "cid": 19904,
-              "name": "Fusión Mementotlán",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
-              "cid": 20199,
-              "name": "Dormiveja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 3 de C06"
             }
           ],
           "requirements": [],
@@ -33319,32 +33431,39 @@
           "detail": "Dragón Gemelo, al ser Invocado por Fusión, activa su efecto y destruye Dormiveja en tu mano; luego añade Creación Combinada + Goblin, dos nombres Memento diferentes, desde el Deck a la mano. Dormiveja destruida activa su efecto distinto y envía Maza desde el Deck al GY.",
           "photos": [
             {
-              "cid": 19365,
-              "name": "Maza",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
-              "cid": 19366,
-              "name": "Goblin",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
               "cid": 19878,
               "name": "Dragón Gemelo",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19878.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19878.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 4 de C06"
             },
             {
               "cid": 20199,
               "name": "Dormiveja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 4 de C06"
+            },
+            {
+              "cid": 19360,
+              "name": "Tecuhtlica - Creación Combinada",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "label": "Carta visible en el paso 4 de C06"
+            },
+            {
+              "cid": 19366,
+              "name": "Goblin",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
+              "label": "Carta visible en el paso 4 de C06"
+            },
+            {
+              "cid": 19365,
+              "name": "Maza",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
+              "label": "Carta visible en el paso 4 de C06"
             }
           ],
           "requirements": [],
@@ -33357,32 +33476,25 @@
           "detail": "Recuento antes del jefe: GY de monstruos Tatsun,Angbruja,Desvantasma,Dormiveja,Maza = cinco nombres diferentes. Mano: Creación Combinada + Goblin. Invoca Creación Combinada desde mano, barajando exactamente esos cinco al Deck.",
           "photos": [
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19360,
+              "name": "Tecuhtlica - Creación Combinada",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "label": "Carta visible en el paso 5 de C06"
             },
             {
-              "cid": 19365,
-              "name": "Maza",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19878,
+              "name": "Dragón Gemelo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19878.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19878.png",
+              "label": "Carta visible en el paso 5 de C06"
             },
             {
               "cid": 19366,
               "name": "Goblin",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
-              "cid": 20199,
-              "name": "Dormiveja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 5 de C06"
             }
           ],
           "requirements": [],
@@ -33561,14 +33673,28 @@
               "name": "Angbruja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 1 de C07"
+            },
+            {
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 1 de C07"
+            },
+            {
+              "cid": 19472,
+              "name": "Desvantasmas",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "label": "Carta visible en el paso 1 de C07"
             },
             {
               "cid": 20199,
               "name": "Dormiveja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 1 de C07"
             }
           ],
           "requirements": [],
@@ -33581,18 +33707,18 @@
           "detail": "Desvantasma Especial desde GY (enviada por efecto de Tatsun) y recupera Dormiveja a mano. Campo: Angbruja+Desvantasma; mano: Dormiveja + Fusión.",
           "photos": [
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19472,
+              "name": "Desvantasmas",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "label": "Carta visible en el paso 2 de C07"
             },
             {
               "cid": 20199,
               "name": "Dormiveja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 2 de C07"
             }
           ],
           "requirements": [],
@@ -33605,32 +33731,39 @@
           "detail": "Fusión Mementotlán desde mano fusiona Angbruja y Desvantasma del campo + Dormiveja de mano para Quimera Guardián, que exige tres monstruos de nombres diferentes y al menos uno de mano y otro de campo. La magia Fusión tiene un material Memento (en realidad, los tres).",
           "photos": [
             {
-              "cid": 16845,
-              "name": "Quimera Guardián",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/16845.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/16845.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19904,
+              "name": "Fusión Mementotlán",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
+              "label": "Carta visible en el paso 3 de C07"
             },
             {
               "cid": 19364,
               "name": "Angbruja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 3 de C07"
             },
             {
-              "cid": 19904,
-              "name": "Fusión Mementotlán",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19472,
+              "name": "Desvantasmas",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "label": "Carta visible en el paso 3 de C07"
             },
             {
               "cid": 20199,
               "name": "Dormiveja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 3 de C07"
+            },
+            {
+              "cid": 16845,
+              "name": "Quimera Guardián",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/16845.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/16845.png",
+              "label": "Carta visible en el paso 3 de C07"
             }
           ],
           "requirements": [],
@@ -33647,7 +33780,7 @@
               "name": "Quimera Guardián",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/16845.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/16845.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 4 de C07"
             }
           ],
           "requirements": [],
@@ -33827,7 +33960,14 @@
               "name": "Angbruja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 1 de C08"
+            },
+            {
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 1 de C08"
             }
           ],
           "requirements": [],
@@ -33844,7 +33984,7 @@
               "name": "Tatsunootoshigo",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
-              "label": "Carta citada explícitamente en esta acción; consulta el texto para su zona y condición."
+              "label": "Carta visible en el paso 2 de C08"
             }
           ],
           "requirements": [],
@@ -33862,7 +34002,21 @@
               "name": "S:P Pequeña Caballera",
               "image": "./assets/editorial/20261104-checked-study/images/tcg/19188.jpg",
               "full_image": "./assets/editorial/20261104-checked-study/images/tcg/19188.jpg",
-              "label": "Carta mencionada en el paso"
+              "label": "Carta visible en el paso 3 de C08"
+            },
+            {
+              "cid": 19364,
+              "name": "Angbruja",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
+              "label": "Carta visible en el paso 3 de C08"
+            },
+            {
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 3 de C08"
             }
           ],
           "requirements": [],
@@ -33879,7 +34033,7 @@
               "name": "S:P Pequeña Caballera",
               "image": "./assets/editorial/20261104-checked-study/images/tcg/19188.jpg",
               "full_image": "./assets/editorial/20261104-checked-study/images/tcg/19188.jpg",
-              "label": "Carta citada explícitamente en esta acción; consulta el texto para su zona y condición."
+              "label": "Carta visible en el paso 4 de C08"
             }
           ],
           "requirements": [],
@@ -34037,7 +34191,14 @@
               "name": "Angbruja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 1 de C09"
+            },
+            {
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 1 de C09"
             }
           ],
           "requirements": [],
@@ -34050,11 +34211,32 @@
           "detail": "Usa Angbruja + Tatsun, ambos monstruos de efecto, para Link Luna del Cielo Cerrado (Demonio LUZ). Usa Luna como único material para Link-1 Réquiem del Demoniherrero.",
           "photos": [
             {
+              "cid": 19932,
+              "name": "Luna del Cielo Cerrado",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19932.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19932.png",
+              "label": "Carta visible en el paso 2 de C09"
+            },
+            {
               "cid": 20225,
               "name": "Réquiem del Demoniherrero",
               "image": "./assets/editorial/20261104-checked-study/images/tcg/20225.jpg",
               "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20225.jpg",
-              "label": "Carta mencionada en el paso"
+              "label": "Carta visible en el paso 2 de C09"
+            },
+            {
+              "cid": 19364,
+              "name": "Angbruja",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
+              "label": "Carta visible en el paso 2 de C09"
+            },
+            {
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 2 de C09"
             }
           ],
           "requirements": [],
@@ -34067,18 +34249,18 @@
           "detail": "Activa el efecto de Réquiem en Main y Sacrifícalo para Invocar Grabador desde mano/Deck. Activa el efecto diferente de Réquiem en GY para equiparlo a Grabador como Carta de Monstruo en la zona de M/T.",
           "photos": [
             {
-              "cid": 20196,
-              "name": "Demoniherrero Grabador",
-              "image": "./assets/editorial/20261104-checked-study/images/tcg/20196.jpg",
-              "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20196.jpg",
-              "label": "Carta citada explícitamente en esta acción; consulta el texto para su zona y condición."
-            },
-            {
               "cid": 20225,
               "name": "Réquiem del Demoniherrero",
               "image": "./assets/editorial/20261104-checked-study/images/tcg/20225.jpg",
               "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20225.jpg",
-              "label": "Carta citada explícitamente en esta acción; consulta el texto para su zona y condición."
+              "label": "Carta visible en el paso 3 de C09"
+            },
+            {
+              "cid": 20196,
+              "name": "Demoniherrero Grabador",
+              "image": "./assets/editorial/20261104-checked-study/images/tcg/20196.jpg",
+              "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20196.jpg",
+              "label": "Carta visible en el paso 3 de C09"
             }
           ],
           "requirements": [],
@@ -34092,18 +34274,32 @@
           "detail": "Invoca de modo Especial a Princesa Necroequipo mediante su procedimiento impreso: manda al GY Grabador equipado con la Carta de Monstruo Réquiem (desde campo) y Goblin de la mano (la segunda Carta de Monstruo, de Tipo Demonio). Réquiem va al GY al quedar sin el monstruo equipado.",
           "photos": [
             {
-              "cid": 19366,
-              "name": "Goblin",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
               "cid": 20423,
               "name": "Princesa Necroequipo",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20423.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20423.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 4 de C09"
+            },
+            {
+              "cid": 20196,
+              "name": "Demoniherrero Grabador",
+              "image": "./assets/editorial/20261104-checked-study/images/tcg/20196.jpg",
+              "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20196.jpg",
+              "label": "Carta visible en el paso 4 de C09"
+            },
+            {
+              "cid": 20225,
+              "name": "Réquiem del Demoniherrero",
+              "image": "./assets/editorial/20261104-checked-study/images/tcg/20225.jpg",
+              "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20225.jpg",
+              "label": "Carta visible en el paso 4 de C09"
+            },
+            {
+              "cid": 19366,
+              "name": "Goblin",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
+              "label": "Carta visible en el paso 4 de C09"
             }
           ],
           "requirements": [],
@@ -34116,25 +34312,11 @@
           "detail": "Campo: Princesa Necroequipo (2000 ATK). GY conocido: Angbruja, Tatsun, Luna, Grabador, Goblin, Réquiem. Normal usada. No convertir el envío de Goblin durante este procedimiento de Invocación en «enviado para activar una carta o efecto»: Princesa NO roba por ello.",
           "photos": [
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
-              "cid": 19366,
-              "name": "Goblin",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
               "cid": 20423,
               "name": "Princesa Necroequipo",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20423.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20423.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 5 de C09"
             }
           ],
           "requirements": [],
@@ -34312,7 +34494,35 @@
               "name": "Angbruja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 1 de C10"
+            },
+            {
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 1 de C10"
+            },
+            {
+              "cid": 19932,
+              "name": "Luna del Cielo Cerrado",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19932.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19932.png",
+              "label": "Carta visible en el paso 1 de C10"
+            },
+            {
+              "cid": 20225,
+              "name": "Réquiem del Demoniherrero",
+              "image": "./assets/editorial/20261104-checked-study/images/tcg/20225.jpg",
+              "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20225.jpg",
+              "label": "Carta visible en el paso 1 de C10"
+            },
+            {
+              "cid": 20196,
+              "name": "Demoniherrero Grabador",
+              "image": "./assets/editorial/20261104-checked-study/images/tcg/20196.jpg",
+              "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20196.jpg",
+              "label": "Carta visible en el paso 1 de C10"
             }
           ],
           "requirements": [],
@@ -34325,25 +34535,32 @@
           "detail": "Activa Fiesta de Huesos desde mano y destruye Goblin de la mano; Invoca desde Deck a Desvantasma en Defensa, cuyo nombre es distinto al Goblin destruido. Desvantasma fue Invocada desde Deck, no enviada al GY: aplica su efecto al ser Invocada y recupera Angbruja del GY a la mano. No activar erróneamente su efecto de autorreanimación.",
           "photos": [
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19368,
+              "name": "Fiesta de Huesos",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19368.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19368.png",
+              "label": "Carta visible en el paso 2 de C10"
             },
             {
               "cid": 19366,
               "name": "Goblin",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 2 de C10"
             },
             {
-              "cid": 19368,
-              "name": "Fiesta de Huesos",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19368.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19368.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19472,
+              "name": "Desvantasmas",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "label": "Carta visible en el paso 2 de C10"
+            },
+            {
+              "cid": 19364,
+              "name": "Angbruja",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
+              "label": "Carta visible en el paso 2 de C10"
             }
           ],
           "requirements": [],
@@ -34360,7 +34577,21 @@
               "name": "Secuencia del Demoniherrero",
               "image": "./assets/editorial/20261104-checked-study/images/tcg/20226.jpg",
               "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20226.jpg",
-              "label": "Carta mencionada en el paso"
+              "label": "Carta visible en el paso 3 de C10"
+            },
+            {
+              "cid": 20196,
+              "name": "Demoniherrero Grabador",
+              "image": "./assets/editorial/20261104-checked-study/images/tcg/20196.jpg",
+              "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20196.jpg",
+              "label": "Carta visible en el paso 3 de C10"
+            },
+            {
+              "cid": 19472,
+              "name": "Desvantasmas",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "label": "Carta visible en el paso 3 de C10"
             }
           ],
           "requirements": [],
@@ -34373,11 +34604,32 @@
           "detail": "Durante Main, Secuencia fusiona Duque (034, Fusión Demonio) usando Grabador + Goblin de tu GY, ambos Demonios, barajando esos dos materiales al Deck. La Desvantasma queda en GY; Duque y Secuencia quedan en campo.",
           "photos": [
             {
+              "cid": 20226,
+              "name": "Secuencia del Demoniherrero",
+              "image": "./assets/editorial/20261104-checked-study/images/tcg/20226.jpg",
+              "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20226.jpg",
+              "label": "Carta visible en el paso 4 de C10"
+            },
+            {
+              "cid": 20196,
+              "name": "Demoniherrero Grabador",
+              "image": "./assets/editorial/20261104-checked-study/images/tcg/20196.jpg",
+              "full_image": "./assets/editorial/20261104-checked-study/images/tcg/20196.jpg",
+              "label": "Carta visible en el paso 4 de C10"
+            },
+            {
               "cid": 19366,
               "name": "Goblin",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 4 de C10"
+            },
+            {
+              "cid": 20389,
+              "name": "Duque de la Defunción",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20389.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20389.png",
+              "label": "Carta visible en el paso 4 de C10"
             }
           ],
           "requirements": [],
@@ -34390,11 +34642,18 @@
           "detail": "Activa el efecto de Duque que permite una Invocación Normal inmediatamente después de resolver y utiliza la Angbruja recuperada. Campo final: Secuencia Link-2 + Duque Nivel 6 + Angbruja Nivel 3. No repitas la búsqueda de Angbruja: ese efecto por nombre ya se usó en el paso 1.",
           "photos": [
             {
+              "cid": 20389,
+              "name": "Duque de la Defunción",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20389.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20389.png",
+              "label": "Carta visible en el paso 5 de C10"
+            },
+            {
               "cid": 19364,
               "name": "Angbruja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 5 de C10"
             }
           ],
           "requirements": [],
@@ -34579,7 +34838,14 @@
               "name": "Angbruja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 1 de C11"
+            },
+            {
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 1 de C11"
             }
           ],
           "requirements": [],
@@ -34592,25 +34858,25 @@
           "detail": "Gran Fuga Moto Goblin se activa Sacrificando Angbruja como coste; Invoca Goblin Mementotlán desde el Deck (no podrá atacar ese turno). Campo: Tatsun+Goblin; Angbruja GY. Sacrificar no es destruir.",
           "photos": [
             {
+              "cid": 20533,
+              "name": "Gran Fuga Moto Goblin",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20533.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20533.png",
+              "label": "Carta visible en el paso 2 de C11"
+            },
+            {
               "cid": 19364,
               "name": "Angbruja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 2 de C11"
             },
             {
               "cid": 19366,
               "name": "Goblin",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
-              "cid": 20533,
-              "name": "Gran Fuga Moto Goblin",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20533.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20533.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 2 de C11"
             }
           ],
           "requirements": [],
@@ -34623,18 +34889,25 @@
           "detail": "Tatsun se destruye por su propio efecto y envía Desvantasma Nivel 2 + Dormiveja Nivel 3 del Deck al GY. Desvantasma se Invoca Especial desde GY y recupera Dormiveja a mano. Campo: Goblin+Desvantasma; mano Dormiveja+Fusión.",
           "photos": [
             {
-              "cid": 19366,
-              "name": "Goblin",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 3 de C11"
+            },
+            {
+              "cid": 19472,
+              "name": "Desvantasmas",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "label": "Carta visible en el paso 3 de C11"
             },
             {
               "cid": 20199,
               "name": "Dormiveja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 3 de C11"
             }
           ],
           "requirements": [],
@@ -34647,32 +34920,39 @@
           "detail": "Activa Fusión Mementotlán y usa Goblin+Desvantasma del campo + Dormiveja de mano para invocar Rey Creación. GY de monstruos: Angbruja,Tatsun,Goblin,Desvantasma,Dormiveja.",
           "photos": [
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19904,
+              "name": "Fusión Mementotlán",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
+              "label": "Carta visible en el paso 4 de C11"
             },
             {
               "cid": 19366,
               "name": "Goblin",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 4 de C11"
             },
             {
-              "cid": 19904,
-              "name": "Fusión Mementotlán",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19904.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19472,
+              "name": "Desvantasmas",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "label": "Carta visible en el paso 4 de C11"
             },
             {
               "cid": 20199,
               "name": "Dormiveja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 4 de C11"
+            },
+            {
+              "cid": 20216,
+              "name": "Rey Creación",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
+              "label": "Carta visible en el paso 4 de C11"
             }
           ],
           "requirements": [],
@@ -34685,32 +34965,32 @@
           "detail": "Rey envía Creación Combinada + Maza + Dragón de Cuerno del Deck al GY. Hay siete nombres distintos ajenos al jefe: Angbruja,Tatsun,Goblin,Desvantasma,Dormiveja,Maza,Dragón de Cuerno.",
           "photos": [
             {
-              "cid": 19361,
-              "name": "Dragón de Cuerno",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19361.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19361.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 20216,
+              "name": "Rey Creación",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
+              "label": "Carta visible en el paso 5 de C11"
             },
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19360,
+              "name": "Tecuhtlica - Creación Combinada",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "label": "Carta visible en el paso 5 de C11"
             },
             {
               "cid": 19365,
               "name": "Maza",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 5 de C11"
             },
             {
-              "cid": 19366,
-              "name": "Goblin",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19361,
+              "name": "Dragón de Cuerno",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19361.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19361.png",
+              "label": "Carta visible en el paso 5 de C11"
             }
           ],
           "requirements": [],
@@ -34723,32 +35003,32 @@
           "detail": "Invoca Creación Combinada del GY barajando cinco (por ejemplo, Angbruja,Tatsun,Goblin,Desvantasma,Dragón de Cuerno). Deja Dormiveja y Maza en GY. Campo: Rey 3000 + Creación Combinada 5000; GY también contiene Fusión y Gran Fuga.",
           "photos": [
             {
-              "cid": 19361,
-              "name": "Dragón de Cuerno",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19361.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19361.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19360,
+              "name": "Tecuhtlica - Creación Combinada",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19360.png",
+              "label": "Carta visible en el paso 6 de C11"
             },
             {
-              "cid": 19364,
-              "name": "Angbruja",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 20216,
+              "name": "Rey Creación",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20216.png",
+              "label": "Carta visible en el paso 6 de C11"
+            },
+            {
+              "cid": 20199,
+              "name": "Dormiveja",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/20199.png",
+              "label": "Carta visible en el paso 6 de C11"
             },
             {
               "cid": 19365,
               "name": "Maza",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
-              "cid": 19366,
-              "name": "Goblin",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 6 de C11"
             }
           ],
           "requirements": [],
@@ -34938,7 +35218,14 @@
               "name": "Angbruja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 1 de C12"
+            },
+            {
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 1 de C12"
             }
           ],
           "requirements": [],
@@ -34951,18 +35238,32 @@
           "detail": "Tatsun se destruye y manda Goblin Nivel 1 + Maza Nivel 1 + Desvantasma Nivel 2 al GY (total 4≤5). No actives la autorreanimación opcional de Desvantasma: el GY queda con cuatro nombres diferentes (Tatsun,Goblin,Maza,Desvantasma).",
           "photos": [
             {
-              "cid": 19365,
-              "name": "Maza",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "cid": 19362,
+              "name": "Tatsunootoshigo",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19362.png",
+              "label": "Carta visible en el paso 2 de C12"
             },
             {
               "cid": 19366,
               "name": "Goblin",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19366.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 2 de C12"
+            },
+            {
+              "cid": 19365,
+              "name": "Maza",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19365.png",
+              "label": "Carta visible en el paso 2 de C12"
+            },
+            {
+              "cid": 19472,
+              "name": "Desvantasmas",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19472.png",
+              "label": "Carta visible en el paso 2 de C12"
             }
           ],
           "requirements": [],
@@ -34979,14 +35280,14 @@
               "name": "Dragón de Cuerno",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19361.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19361.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 3 de C12"
             },
             {
               "cid": 19364,
               "name": "Angbruja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 3 de C12"
             }
           ],
           "requirements": [],
@@ -34999,25 +35300,25 @@
           "detail": "Activa Fiesta de Huesos y destruye Dragón de Cuerno en campo; por el efecto de Fiesta, Invoca Hoja Oscura desde Deck en Defensa. Después de resolver la Fiesta, el efecto de Dragón de Cuerno destruido se activa en su ventana.",
           "photos": [
             {
+              "cid": 19368,
+              "name": "Fiesta de Huesos",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19368.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19368.png",
+              "label": "Carta visible en el paso 4 de C12"
+            },
+            {
               "cid": 19361,
               "name": "Dragón de Cuerno",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19361.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19361.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 4 de C12"
             },
             {
               "cid": 19363,
               "name": "Hoja Oscura",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19363.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19363.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
-              "cid": 19368,
-              "name": "Fiesta de Huesos",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19368.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19368.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 4 de C12"
             }
           ],
           "requirements": [],
@@ -35034,21 +35335,21 @@
               "name": "Dragón de Cuerno",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19361.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19361.png",
-              "label": "Carta mencionada en la secuencia documentada"
-            },
-            {
-              "cid": 19363,
-              "name": "Hoja Oscura",
-              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19363.png",
-              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19363.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 5 de C12"
             },
             {
               "cid": 19364,
               "name": "Angbruja",
               "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
               "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19364.png",
-              "label": "Carta mencionada en la secuencia documentada"
+              "label": "Carta visible en el paso 5 de C12"
+            },
+            {
+              "cid": 19363,
+              "name": "Hoja Oscura",
+              "image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19363.png",
+              "full_image": "./assets/editorial/20261117-folder-delivery-v37/images/671/19363.png",
+              "label": "Carta visible en el paso 5 de C12"
             }
           ],
           "requirements": [],
