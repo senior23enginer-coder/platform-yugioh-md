@@ -1,0 +1,105 @@
+name: Complete authorized A01 merge, deployment and 16 native imports
+on:
+  push:
+    branches: [ops/a01-16-native-import-20261123]
+    paths: [.github/workflows/ops-a01-16-native-import-temporary.yml]
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+concurrency:
+  group: stationx-a01-assigned-native-import-20261123
+  cancel-in-progress: false
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: senior23enginer-coder/platform-yugioh-md
+      EXPECTED_HEAD: bce45e5aeb7e35409df78c87b945ab597dcbbd83
+    outputs:
+      merge_sha: ${{ steps.merge.outputs.sha }}
+    steps:
+      - name: Require successful exact-head A01 and full integration checks, then merge PR 47
+        id: merge
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Both check runs must certify the exact reviewed commit. Never override a failure.
+          for attempt in $(seq 1 70); do
+            all_pass=1
+            for run in 45289177175 45289177181; do
+              payload="$(gh api "repos/$REPO/actions/runs/$run")"
+              test "$(jq -r '.head_sha' <<<"$payload")" = "$EXPECTED_HEAD"
+              if [ "$(jq -r '.status' <<<"$payload")" = completed ]; then
+                test "$(jq -r '.conclusion' <<<"$payload")" = success || { echo "::error::Required check $run failed"; exit 1; }
+              else
+                all_pass=0
+              fi
+            done
+            [ "$all_pass" = 1 ] && break
+            sleep 15
+          done
+          test "$all_pass" = 1
+          pr="$(gh api "repos/$REPO/pulls/47")"
+          test "$(jq -r '.head.sha' <<<"$pr")" = "$EXPECTED_HEAD"
+          test "$(jq -r '.base.ref' <<<"$pr")" = base
+          test "$(jq -r '.head.repo.full_name' <<<"$pr")" = "$REPO"
+          if [ "$(jq -r '.merged' <<<"$pr")" = true ]; then
+            merge_sha="$(jq -r '.merge_commit_sha' <<<"$pr")"
+          else
+            test "$(jq -r '.state' <<<"$pr")" = open
+            result="$(gh api --method PUT "repos/$REPO/pulls/47/merge" -f sha="$EXPECTED_HEAD" -f merge_method=squash)"
+            test "$(jq -r '.merged' <<<"$result")" = true
+            merge_sha="$(jq -r '.sha' <<<"$result")"
+            # GITHUB_TOKEN merges do not emit a downstream workflow event.
+            # Invoke the existing authorized deployment workflow explicitly.
+            test "$(gh api "repos/$REPO/branches/base" --jq '.commit.sha')" = "$merge_sha"
+            gh workflow run deploy-ftp-after-approved-pr.yml --repo "$REPO" --ref base
+          fi
+          [[ "$merge_sha" =~ ^[a-f0-9]{40}$ ]]
+          echo "sha=$merge_sha" >> "$GITHUB_OUTPUT"
+          echo "PR47_MERGED_SHA=$merge_sha"
+  import:
+    needs: integrate
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    env:
+      EXPECTED_RELEASE: ${{ needs.integrate.outputs.merge_sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 3274906b124c992e33cfe09adf009301b0450bac
+          persist-credentials: false
+      - name: Wait for exact deployed Station X release (no production mutation until verified)
+        shell: bash
+        run: |
+          set -euo pipefail
+          matched=0
+          for attempt in $(seq 1 90); do
+            actual="$(curl -fsS --max-time 15 -H 'Cache-Control: no-cache' "https://stationxtulua.com/yugioh/release.json?verify=$GITHUB_RUN_ID-$attempt" | jq -r '.commit' || true)"
+            if [ "$actual" = "$EXPECTED_RELEASE" ]; then matched=1; break; fi
+            sleep 15
+          done
+          test "$matched" = 1
+          echo "RELEASE_VERIFIED=$EXPECTED_RELEASE"
+      - name: Check out the merged GPT analysis by exact commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --depth 1 --branch base https://github.com/senior23enginer-coder/gpt-yugioh-promps-platform.git /tmp/stationx-a01-gpt
+          test "$(git -C /tmp/stationx-a01-gpt rev-parse HEAD)" = 9603a3c599042d16c9a4863d9156a9abf4633cec
+          python3 -m py_compile scripts/ops-import-a01-assigned-production.py
+      - name: Import the 16 assigned decks using native status preview commit and export
+        run: python3 scripts/ops-import-a01-assigned-production.py /tmp/stationx-a01-gpt
+      - name: Save per-deck import evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a01-production-import-evidence
+          path: outputs/a01-production-import.json
+          if-no-files-found: ignore
+          retention-days: 30
