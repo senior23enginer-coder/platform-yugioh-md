@@ -40,6 +40,8 @@
     const raw=publicText(profile['Resumen para ficha']);
     return raw?firstSentence(raw,250):'';
   }
+  function gamePlan(profile={}){return publicText(profile['Cómo se juega']);}
+  function risks(profile={}){return publicText(profile['Qué vigilar']);}
   function containsName(haystack,term){
     if(!term||term.length<4)return false;
     let at=haystack.indexOf(term);
@@ -88,7 +90,7 @@
     if(Array.isArray(route?.board)&&route.board.length)return 'partial';
     return 'documented';
   }
-  const API={style,brief,archetype,openingPhotos,photosFromText,stepPhotos,resultPhotos,status};
+  const API={style,brief,gamePlan,risks,archetype,openingPhotos,photosFromText,stepPhotos,resultPhotos,status};
   root.YgoStudyPresentation=API;
   if(typeof module==='object'&&module.exports)module.exports=API;
 })(typeof window!=='undefined'?window:globalThis);
