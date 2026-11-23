@@ -198,10 +198,60 @@ function ygo_data_validate_a01_profile(array $record): void {
         throw new InvalidArgumentException('Falta el plan completo o los riesgos estratégicos A01.');
 }
 
+
+/** Structured player guide: never certify a deck from editorial prose alone. */
+function ygo_data_validate_player_guide(array $record): void {
+    if(!array_key_exists('player_guide',$record))return; // historical packages remain readable, not newly certified
+    $guide=$record['player_guide'];
+    if(!is_array($guide)||($guide['schema']??null)!=='station-x-player-guide/1')
+        throw new InvalidArgumentException('Contrato de guía del jugador desconocido.');
+    $profile=$record['profile']??[];
+    $audit='/\bCID\s*\d+\b|\b[CV]\d{2}\b|\bA(?:0[1-9]|10[AB]?)\s*[-–]?\s*T?\d*\b|\beffect_id\b|\broute_id\b|PARCIAL_AVANZADO|dictamen\s+editorial|PENDIENTE_REPLAY|cat[aá]logo completo|consultar el plan|estudio individual|iteraci[oó]n\s*\d+/iu';
+    $check=static function($value,string $field,int $min)use($audit):void {
+        if(!is_string($value)||trim($value)!==$value||mb_strlen($value,'UTF-8')<$min||preg_match($audit,$value))
+            throw new InvalidArgumentException('Texto de guía incompleto o técnico: '.$field);
+    };
+    foreach(['Arquetipo','Tipo de estrategia','Estilo breve','Resumen para ficha','Cómo se juega','Qué vigilar'] as $field)
+        $check($profile[$field]??null,$field,$field==='Cómo se juega'?400:($field==='Qué vigilar'?15:8));
+    $byCid=[];foreach($record['cards']??[] as $card)$byCid[(int)($card['cid']??0)]=$card;
+    $byRoute=[];foreach($record['routes']??[] as $route)$byRoute[$route['id']??'']=true;
+    $featured=$guide['featured_cards']??null;
+    if(!is_array($featured)||!array_is_list($featured)||count($featured)<1||count($featured)>4)
+        throw new InvalidArgumentException('La guía requiere de una a cuatro cartas clave justificadas.');
+    $seen=[];
+    foreach($featured as $item){
+        $cid=$item['cid']??null;
+        if(!is_int($cid)||!isset($byCid[$cid])||isset($seen[$cid]))
+            throw new InvalidArgumentException('Carta destacada inexistente o repetida.');
+        $seen[$cid]=true;
+        $allowed=false;
+        foreach($byCid[$cid]['slots']??[] as $slot)if(in_array($slot['section']??null,['main','extra'],true))$allowed=true;
+        if(!$allowed)throw new InvalidArgumentException('Las cartas destacadas requieren copia en Main o Extra.');
+        foreach(['role'=>15,'reason'=>35,'when_to_use'=>30] as $name=>$min)$check($item[$name]??null,$name,$min);
+        if(!is_array($item['related_cids']??null))throw new InvalidArgumentException('Faltan vínculos de carta destacada.');
+        foreach($item['related_cids'] as $related)if(!is_int($related)||!isset($byCid[$related]))
+            throw new InvalidArgumentException('Vínculo de carta inexistente.');
+    }
+    $phases=$guide['phases']??null;
+    if(!is_array($phases)||!array_is_list($phases)||count($phases)!==4)
+        throw new InvalidArgumentException('La guía requiere cuatro planes por fase.');
+    $ids=[];
+    foreach($phases as $phase){
+        $id=$phase['id']??null;
+        if(!in_array($id,['first','second','mid','late'],true)||isset($ids[$id]))
+            throw new InvalidArgumentException('Fase duplicada o desconocida.');$ids[$id]=true;
+        foreach(['title'=>6,'plan'=>100,'preconditions'=>35,'risks'=>35] as $name=>$min)$check($phase[$name]??null,$name,$min);
+        if(!is_array($phase['related_route_ids']??null))throw new InvalidArgumentException('La fase no declaró sus referencias.');
+        foreach($phase['related_route_ids'] as $rid)if(!is_string($rid)||!isset($byRoute[$rid]))
+            throw new InvalidArgumentException('Referencia a jugada inexistente.');
+    }
+}
+
 function ygo_data_validate(array $record,array $inventory): void {
     $id=(int)$inventory['deck']['id'];
     if(($record['schema']??'')!=='station-x-curated-v62'||(int)($record['deck_id']??0)!==$id)throw new InvalidArgumentException('El contenido no corresponde al deck de esta ficha.');
     ygo_data_validate_a01_profile($record);
+    ygo_data_validate_player_guide($record);
     if(isset($record['calculator']))ygo_data_calculator("```json\n".ygo_data_json($record['calculator'])."\n```",$record,$id);
     // New GPT packages may certify visual completeness. False certification is
     // rejected; older documentary packages remain importable with an explicit warning.
