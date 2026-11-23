@@ -52,14 +52,13 @@ for(const id of ids){
   'Import must preserve each audited variant once, without duplicates: '+id);
 }
 const fallback=Study.bind(base,[{catalog:native,study:{...study,calculator:undefined}}]);
-for(const id of ids)assert(fallback.rules.some(r=>r.id===id),'Fallback must survive when portable package absent');
+assert.equal(fallback.rules.length,0,'Deck-specific actions cannot appear without GPT imported rules');
 const tampered=JSON.parse(JSON.stringify(study));
 tampered.calculator.rules[0].resolve[0].to='banished';
 const rejected=Study.bind(base,[{catalog:native,study:tampered}]);
 assert.equal(rejected.ruleImports[0].status,'rejected',
  'Tampering a protected verified effect must fail closed');
-assert(rejected.rules.some(r=>r.id===ids[0]),
- 'Rejection must not remove verified fallback');
+assert.equal(rejected.rules.length,0,'Rejected GPT rules must fail closed, without hidden deck-specific fallbacks');
 let state=E.create(native);
 const mictlan=native.cards.find(card=>db.bindings[card.key]===19367);
 assert(mictlan,'Mementomictlan must have an exact native slot');
@@ -71,4 +70,4 @@ const after=activated[0].state;
 assert(after.tokens.some(t=>t.key===mictlan.key&&t.zone==='field'),
  'Activation must place the Field Spell in field zone');
 assert.equal(JSON.stringify(state),before,'Scenario must not mutate on analysis');
-console.log('Memento portable 353 variants/59 effects, fallback parity, tamper protection and activation passed.');
+console.log('Memento portable 353 variants/59 effects, no-fallback policy, tamper protection and activation passed.');
