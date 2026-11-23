@@ -1,0 +1,35 @@
+name: Import Memento 671 to Station X using native API (authorized one-off)
+on:
+  push:
+    branches:
+      - ops/memento-671-native-api-probe-20261123
+    paths:
+      - .github/workflows/import-memento-671-native-api-temporary.yml
+permissions:
+  contents: read
+jobs:
+  native-api-import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    concurrency:
+      group: stationx-native-data-import-memento-671
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ops/memento-671-native-api-probe-20261123
+      - name: Fetch exact GPT A01-T5 certified Memento package
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --depth 1 --branch base https://github.com/senior23enginer-coder/gpt-yugioh-promps-platform.git /tmp/stationx-gpt-memento
+          actual="$(git -C /tmp/stationx-gpt-memento rev-parse HEAD)"
+          expected="b6520a8a492f2a2b5d10580c488dafddb65eff26"
+          if [ "$actual" != "$expected" ]; then
+            echo "::error::GPT base moved. Aborting native production import without changing Station X."
+            exit 1
+          fi
+          node /tmp/stationx-gpt-memento/scripts/test-a01-player-guide-contract.cjs
+      - name: Import exactly deck 671 with native status, preview, commit, status and export
+        shell: bash
+        run: python3 scripts/ops-import-memento-671-production.py /tmp/stationx-gpt-memento
