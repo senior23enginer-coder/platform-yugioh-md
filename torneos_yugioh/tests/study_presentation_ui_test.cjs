@@ -63,6 +63,7 @@ const one=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42
       assert((await page.locator('[data-a01-summary]').innerText()).includes('Abre con recursos controlados'),
         'A01 summary not shown in correct UI field');
       assert(a01Intro.includes('No asumir materiales'),'A01 warnings not displayed');
+      await page.locator('.curated-full-profile summary').click();
       assert((await page.locator('.curated-full-profile').innerText()).includes('Primero construye recursos'),
         'A01 full gameplan must remain accessible');
       assert.deepEqual(errors,[],'Browser errors in guide on '+width+'px');
