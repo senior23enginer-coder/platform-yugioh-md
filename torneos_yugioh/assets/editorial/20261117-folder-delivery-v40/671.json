@@ -30011,13 +30011,14 @@
       ],
       "operational": {
         "Acción": "Fusión **3 nombres distintos, material solo de mano/campo y al menos uno de cada zona**; roba por materiales de mano y destruye rival por los de campo",
-        "Ventanas y requisitos": "Fusión: 3 monstruos de nombres distintos; debe incluir al menos 1 de mano y 1 de campo."
+        "Ventanas y requisitos": "Fusión: 3 monstruos de nombres distintos; debe incluir al menos 1 de mano y 1 de campo.",
+        "Restricciones": "No utilizar materiales del Cementerio para satisfacer el procedimiento de Fusión ni prometer objetivos rivales inexistentes."
       },
       "learning": {
         "Aplicación concreta registrada": "Primero pide mano+campo, después transforma 1 material de mano en robo y 2 de campo en destrucción.",
-        "Cuándo jugarla primero": "Consultar el estado inicial y las rutas A09 con participación real antes de elegir esta carta.",
-        "Cuándo jugarla segundo": "Solo con materiales disponibles y una ventaja táctica demostrable en el tablero actual.",
-        "Limitación a respetar": "No convertir un acceso potencial al Extra en una Invocación certificada sin estado y materiales comprobados."
+        "Cuándo jugarla primero": "En C07 considerar Quimera Guardián solo al reunir tres monstruos de nombres diferentes, con al menos uno de la mano y uno del campo.",
+        "Cuándo jugarla segundo": "En el plan de romper campo, comprobar qué materiales vienen de la mano y cuáles del campo antes de contar robo o destrucciones.",
+        "Limitación a respetar": "No utilizar materiales del Cementerio para satisfacer el procedimiento de Fusión ni prometer objetivos rivales inexistentes."
       },
       "functional": {
         "purpose": "Fusión **3 nombres distintos, material solo de mano/campo y al menos uno de cada zona**; roba por materiales de mano y destruye rival por los de campo",
@@ -30164,13 +30165,14 @@
       ],
       "operational": {
         "Acción": "Link-2 de 2 monstruos de efecto; si uno era de Extra, puede desterrar carta del campo/GY; en respuesta a efecto rival puede desterrar temporalmente 2 monstruos boca arriba incluyendo propia",
-        "Ventanas y requisitos": "Enlace 2: 2 monstruos de efecto."
+        "Ventanas y requisitos": "Enlace 2: 2 monstruos de efecto.",
+        "Restricciones": "Su destierro temporal exige una respuesta rival legal; no es una negación genérica ni deja recursos desterrados de forma permanente."
       },
       "learning": {
         "Aplicación concreta registrada": "Retira temporalmente dos monstruos a respuesta, requiere dos efectos y ventanas legales.",
-        "Cuándo jugarla primero": "Consultar el estado inicial y las rutas A09 con participación real antes de elegir esta carta.",
-        "Cuándo jugarla segundo": "Solo con materiales disponibles y una ventaja táctica demostrable en el tablero actual.",
-        "Limitación a respetar": "No convertir un acceso potencial al Extra en una Invocación certificada sin estado y materiales comprobados."
+        "Cuándo jugarla primero": "La ruta C08 puede preparar S:P con dos monstruos de efecto; reservar su respuesta solo si permanece en campo y dispone de ventana.",
+        "Cuándo jugarla segundo": "Al jugar segundo, contrastar el objetivo rival y el requisito adicional de un material del Extra para el efecto de Invocación.",
+        "Limitación a respetar": "Su destierro temporal exige una respuesta rival legal; no es una negación genérica ni deja recursos desterrados de forma permanente."
       },
       "functional": {
         "purpose": "Link-2 de 2 monstruos de efecto; si uno era de Extra, puede desterrar carta del campo/GY; en respuesta a efecto rival puede desterrar temporalmente 2 monstruos boca arriba incluyendo propia",
@@ -30621,13 +30623,14 @@
       ],
       "operational": {
         "Acción": "Fusión **2 Memento**; al ser Fusion Invocado destruye Memento propio y busca hasta dos monstruos de nombres distintos; al ser destruido revivir Memento ≤6",
-        "Ventanas y requisitos": "Fusión: 2 monstruos Memento."
+        "Ventanas y requisitos": "Fusión: 2 monstruos Memento.",
+        "Restricciones": "No atribuir dos búsquedas ni una resurrección sin cumplir el disparador; la carta destruida debe abandonar la zona correspondiente."
       },
       "learning": {
         "Aplicación concreta registrada": "Busca dos nombres al destruir un Memento de mano/campo; preparar jefe de 5000.",
-        "Cuándo jugarla primero": "Consultar el estado inicial y las rutas A09 con participación real antes de elegir esta carta.",
-        "Cuándo jugarla segundo": "Solo con materiales disponibles y una ventaja táctica demostrable en el tablero actual.",
-        "Limitación a respetar": "No convertir un acceso potencial al Extra en una Invocación certificada sin estado y materiales comprobados."
+        "Cuándo jugarla primero": "En C06, Dragón Gemelo sirve para convertir una destrucción Memento acreditada en búsquedas que alimentan al jefe.",
+        "Cuándo jugarla segundo": "Usar la selección de nombres distintos de C06 para obtener recursos solo si la destrucción de un Memento propio resuelve.",
+        "Limitación a respetar": "No atribuir dos búsquedas ni una resurrección sin cumplir el disparador; la carta destruida debe abandonar la zona correspondiente."
       },
       "functional": {
         "purpose": "Fusión **2 Memento**; al ser Fusion Invocado destruye Memento propio y busca hasta dos monstruos de nombres distintos; al ser destruido revivir Memento ≤6",
@@ -30727,13 +30730,14 @@
       ],
       "operational": {
         "Acción": "Link-2 **2 monstruos de efecto**, LUZ/Demonio; su efecto de usar monstruo rival demanda futuro Link-5 no presente",
-        "Ventanas y requisitos": "Enlace 2: 2 monstruos de efecto."
+        "Ventanas y requisitos": "Enlace 2: 2 monstruos de efecto.",
+        "Restricciones": "Su efecto de usar un monstruo rival para un Link-5 no habilita por sí solo un destino ausente del Extra real."
       },
       "learning": {
         "Aplicación concreta registrada": "C03: convierte dos cuerpos disponibles en puente a Réquiem, respetando su texto de efecto",
-        "Cuándo jugarla primero": "Consultar el estado inicial y las rutas A09 con participación real antes de elegir esta carta.",
-        "Cuándo jugarla segundo": "Solo con materiales disponibles y una ventaja táctica demostrable en el tablero actual.",
-        "Limitación a respetar": "No convertir un acceso potencial al Extra en una Invocación certificada sin estado y materiales comprobados."
+        "Cuándo jugarla primero": "En C03/C09/C10, Luna ofrece cuerpo LUZ/Demonio para el enlace a Réquiem si hay dos monstruos de efecto disponibles.",
+        "Cuándo jugarla segundo": "Conservar el puente LUZ/Demonio de C03 si se requiere continuar el motor Demoniherrero y no consumirlo antes como otro material.",
+        "Limitación a respetar": "Su efecto de usar un monstruo rival para un Link-5 no habilita por sí solo un destino ausente del Extra real."
       },
       "functional": {
         "purpose": "Link-2 **2 monstruos de efecto**, LUZ/Demonio; su efecto de usar monstruo rival demanda futuro Link-5 no presente",
@@ -30914,13 +30918,14 @@
       ],
       "operational": {
         "Acción": "Fusión **3 Memento**; al ser Fusion Invocado manda **3 cartas Memento** de Deck/Extra al GY; rápido destruye igual número de monstruos Memento propios y cartas rivales; en GY puede buscar Campo",
-        "Ventanas y requisitos": "Fusión: exactamente 3 monstruos Memento."
+        "Ventanas y requisitos": "Fusión: exactamente 3 monstruos Memento.",
+        "Restricciones": "No destruir más recursos que los objetivos válidos ni asumir que todos los envíos o retiradas son independientes de su ventana y límite."
       },
       "learning": {
         "Aplicación concreta registrada": "Motor de GY para cinco nombres y retirada rápida simétrica de recursos propios/rivales.",
-        "Cuándo jugarla primero": "Consultar el estado inicial y las rutas A09 con participación real antes de elegir esta carta.",
-        "Cuándo jugarla segundo": "Solo con materiales disponibles y una ventaja táctica demostrable en el tablero actual.",
-        "Limitación a respetar": "No convertir un acceso potencial al Extra en una Invocación certificada sin estado y materiales comprobados."
+        "Cuándo jugarla primero": "Las rutas C01/C04/C05/C11 emplean Rey Creación para enviar recursos Memento y preparar interrupciones según el estado.",
+        "Cuándo jugarla segundo": "Antes de usar su retirada rápida, cotejar el número de Memento propios a destruir con los objetivos rivales realmente presentes.",
+        "Limitación a respetar": "No destruir más recursos que los objetivos válidos ni asumir que todos los envíos o retiradas son independientes de su ventana y límite."
       },
       "functional": {
         "purpose": "Fusión **3 Memento**; al ser Fusion Invocado manda **3 cartas Memento** de Deck/Extra al GY; rápido destruye igual número de monstruos Memento propios y cartas rivales; en GY puede buscar Campo",
@@ -30981,13 +30986,14 @@
       ],
       "operational": {
         "Acción": "Link-1 con **1 Demonio LUZ**; se tributa en Main para Invocar un Demoniherrero de mano/Deck; en GY se equipa a Demonio LUZ no Link",
-        "Ventanas y requisitos": "Enlace 1: 1 monstruo Demonio LUZ."
+        "Ventanas y requisitos": "Enlace 1: 1 monstruo Demonio LUZ.",
+        "Restricciones": "Réquiem se tributa para activar su efecto de Invocar y su equipamiento desde Cementerio no constituye por sí solo una invocación."
       },
       "learning": {
         "Aplicación concreta registrada": "Puente Fiendsmith: Sacrificar para Invocar Grabador desde Deck; verificar objetivo y ventanas",
-        "Cuándo jugarla primero": "Consultar el estado inicial y las rutas A09 con participación real antes de elegir esta carta.",
-        "Cuándo jugarla segundo": "Solo con materiales disponibles y una ventaja táctica demostrable en el tablero actual.",
-        "Limitación a respetar": "No convertir un acceso potencial al Extra en una Invocación certificada sin estado y materiales comprobados."
+        "Cuándo jugarla primero": "En C03/C09/C10, crear Réquiem con un Demonio LUZ válido cuando se busca continuar hacia Grabador o equipar un recurso.",
+        "Cuándo jugarla segundo": "Si ya existe el puente Demoniherrero, contrastar el recurso de mano/Deck y decidir si conviene usar su tributo o conservarlo.",
+        "Limitación a respetar": "Réquiem se tributa para activar su efecto de Invocar y su equipamiento desde Cementerio no constituye por sí solo una invocación."
       },
       "functional": {
         "purpose": "Link-1 con **1 Demonio LUZ**; se tributa en Main para Invocar un Demoniherrero de mano/Deck; en GY se equipa a Demonio LUZ no Link",
@@ -31048,13 +31054,14 @@
       ],
       "operational": {
         "Acción": "Link-2 **2 monstruos, incluido Demonio LUZ**; Fusion Invoca Demonio desde Extra barajando materiales del GY; puede equiparse a Demonio LUZ no Link",
-        "Ventanas y requisitos": "Enlace 2: 2 monstruos, incluyendo al menos 1 Demonio LUZ."
+        "Ventanas y requisitos": "Enlace 2: 2 monstruos, incluyendo al menos 1 Demonio LUZ.",
+        "Restricciones": "No presentar cartas barajadas como todavía presentes en Cementerio ni reutilizar materiales ya consumidos."
       },
       "learning": {
         "Aplicación concreta registrada": "Fusiona Demonios desde GY devolviendo materiales; requiere 2 Link incluyendo LUZ Demonio.",
-        "Cuándo jugarla primero": "Consultar el estado inicial y las rutas A09 con participación real antes de elegir esta carta.",
-        "Cuándo jugarla segundo": "Solo con materiales disponibles y una ventaja táctica demostrable en el tablero actual.",
-        "Limitación a respetar": "No convertir un acceso potencial al Extra en una Invocación certificada sin estado y materiales comprobados."
+        "Cuándo jugarla primero": "En C10, Secuencia permite reutilizar Demonios del Cementerio como materiales de Fusión, conservando recursos legales.",
+        "Cuándo jugarla segundo": "Priorizar C10 como continuación solo cuando los materiales Demonio realmente estén en Cementerio y se cumplan los requisitos de Fusión.",
+        "Limitación a respetar": "No presentar cartas barajadas como todavía presentes en Cementerio ni reutilizar materiales ya consumidos."
       },
       "functional": {
         "purpose": "Link-2 **2 monstruos, incluido Demonio LUZ**; Fusion Invoca Demonio desde Extra barajando materiales del GY; puede equiparse a Demonio LUZ no Link",
@@ -31115,13 +31122,14 @@
       ],
       "operational": {
         "Acción": "Fusión **2 Demonio/Zombi**; en Main concede Normal adicional; en GY destierro para recuperar Demonio/Zombi ≥4 del GY; Standby paga 500 LP o se destruye",
-        "Ventanas y requisitos": "Fusión: 2 monstruos de Tipo Demonio y/o Zombi."
+        "Ventanas y requisitos": "Fusión: 2 monstruos de Tipo Demonio y/o Zombi.",
+        "Restricciones": "Comprobar el coste de mantenimiento de 500 LP en Standby y no conceder la Normal adicional si Duque no está en una zona apropiada."
       },
       "learning": {
         "Aplicación concreta registrada": "Fusión de 2 Demonios/Zombis; permite otra Normal y paga mantenimiento si sigue.",
-        "Cuándo jugarla primero": "Consultar el estado inicial y las rutas A09 con participación real antes de elegir esta carta.",
-        "Cuándo jugarla segundo": "Solo con materiales disponibles y una ventaja táctica demostrable en el tablero actual.",
-        "Limitación a respetar": "No convertir un acceso potencial al Extra en una Invocación certificada sin estado y materiales comprobados."
+        "Cuándo jugarla primero": "En C10, Duque permite una Invocación Normal adicional en la fase principal si está realmente presente bajo las condiciones pertinentes.",
+        "Cuándo jugarla segundo": "En un turno posterior evaluar su recuperación desde Cementerio si existen objetivos Demonio/Zombi legales y el efecto sigue disponible.",
+        "Limitación a respetar": "Comprobar el coste de mantenimiento de 500 LP en Standby y no conceder la Normal adicional si Duque no está en una zona apropiada."
       },
       "functional": {
         "purpose": "Fusión **2 Demonio/Zombi**; en Main concede Normal adicional; en GY destierro para recuperar Demonio/Zombi ≥4 del GY; Standby paga 500 LP o se destruye",
@@ -31182,13 +31190,14 @@
       ],
       "operational": {
         "Acción": "Invocación **no por Fusión ordinaria**: monstruo equipado con carta de monstruo + carta de monstruo Demonio de mano/campo; al enviarse monstruo de mano para activar carta/efecto, opción de equipar o robar",
-        "Ventanas y requisitos": "Enviar desde mano/campo un monstruo equipado con Carta de Monstruo + una Carta de Monstruo Demonio; procedimiento especial."
+        "Ventanas y requisitos": "Enviar desde mano/campo un monstruo equipado con Carta de Monstruo + una Carta de Monstruo Demonio; procedimiento especial.",
+        "Restricciones": "La Invocación de Princesa por sí sola no activa un robo gratuito; separar su procedimiento de sus efectos de disparo."
       },
       "learning": {
         "Aplicación concreta registrada": "Salida de puente Demoniherrero que consume equipo-monstruo y Demonio; no roba por su procedimiento.",
-        "Cuándo jugarla primero": "Consultar el estado inicial y las rutas A09 con participación real antes de elegir esta carta.",
-        "Cuándo jugarla segundo": "Solo con materiales disponibles y una ventaja táctica demostrable en el tablero actual.",
-        "Limitación a respetar": "No convertir un acceso potencial al Extra en una Invocación certificada sin estado y materiales comprobados."
+        "Cuándo jugarla primero": "En C09, Princesa Necroequipo se obtiene mediante su procedimiento con monstruo equipado y Demonio real, sin Fusión genérica.",
+        "Cuándo jugarla segundo": "Evaluar el equipamiento o robo solo tras observar que se envió un monstruo de la mano para activar una carta o efecto.",
+        "Limitación a respetar": "La Invocación de Princesa por sí sola no activa un robo gratuito; separar su procedimiento de sus efectos de disparo."
       },
       "functional": {
         "purpose": "Invocación **no por Fusión ordinaria**: monstruo equipado con carta de monstruo + carta de monstruo Demonio de mano/campo; al enviarse monstruo de mano para activar carta/efecto, opción de equipar o robar",
