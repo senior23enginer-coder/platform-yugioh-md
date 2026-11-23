@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
+      - uses: actions/checkout@v4
       - name: Discover real deck IDs and GET native lists read-only
         run: |
           python3 - <<'PY'
@@ -20,6 +21,15 @@ jobs:
           if not ids: ids=sorted({int(x) for x in re.findall(r'data-open-deck-sheet="([0-9]+)"',body)})
           if not ids: raise SystemExit('No real deck IDs on public page; do not infer eligible inventory')
           print('PUBLIC_CATALOG_COUNT',len(ids),'MINMAX',min(ids),max(ids),flush=True)
+          state=json.loads(pathlib.Path('torneos_yugioh/assets/editorial/strategy-content-state.json').read_text())
+          def format_from_active_gpt_study(deck_id):
+            entry=state.get('checked_studies',{}).get(str(deck_id),{})
+            source=entry.get('path','')
+            if not source.startswith('./assets/editorial/') or '..' in source:return ''
+            try:
+              doc=json.loads((pathlib.Path('torneos_yugioh')/source.removeprefix('./')).read_text())
+              return str(doc['format']).strip().lower() if int(doc.get('deck_id',0))==deck_id else ''
+            except (OSError,ValueError,KeyError,TypeError):return ''
           def query(id):
             u=f'{base}?api=deck_builder&deck_id={id}'
             j=json.load(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'StationX-A01-Eligibility/1'}),timeout=45))
@@ -29,7 +39,19 @@ jobs:
               zone=row.get('section')
               if zone=='tech':zone='reserve'
               zones[zone]+=int(row.get('quantity') or 0)
-            return {'id':id,'name':j.get('deck',{}).get('name'),'format':j.get('deck',{}).get('format'),'zones':dict(zones),'rows':len(j.get('cards',[])),'eligible':all(zones[z]>0 for z in ('main','extra','side'))}
+            native_format=str(j.get('deck',{}).get('format') or '').strip().lower()
+            source_format=format_from_active_gpt_study(id)
+            fmt=native_format or source_format
+            needs={'tcg':('main','extra'),'tcg_advanced':('main','extra'),'tcg_traditional':('main','extra'),
+                   'ocg':('main','extra'),'ocg_advanced':('main','extra'),
+                   'goat':('main',),'rush':('main',),'rush_duel':('main',)}
+            required=needs.get(fmt)
+            compatible=not(native_format and source_format and native_format!=source_format)
+            eligible=bool(required and compatible and all(zones[z]>0 for z in required))
+            return {'id':id,'name':j.get('deck',{}).get('name'),'format':fmt,'zones':dict(zones),
+              'rows':len(j.get('cards',[])),'required_sections':required,
+              'eligible':eligible,'reason':None if eligible else ('FORMAT_MISMATCH' if not compatible else
+              'UNKNOWN_FORMAT' if not required else 'REQUIRED_SECTION_MISSING')}
           with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
             results=sorted(pool.map(query,ids),key=lambda r:r['id'])
           report={'source':'LIVE_NATIVE_DECKLIST_READ_ONLY','deck_count':len(results),'eligible':[r for r in results if r.get('eligible')],'ineligible':[r for r in results if not r.get('eligible')]}
