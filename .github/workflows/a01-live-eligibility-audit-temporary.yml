@@ -16,8 +16,8 @@ jobs:
           import re,urllib.request,json,collections,concurrent.futures,pathlib
           base='https://stationxtulua.com/yugioh/'
           body=urllib.request.urlopen(urllib.request.Request(base,headers={'User-Agent':'StationX-A01-Eligibility/1'}),timeout=55).read().decode('utf-8','replace')
-          ids=sorted({int(x) for x in re.findall(r'data-deck-list-id=["\\'](\\d+)["\\']',body)})
-          if not ids: ids=sorted({int(x) for x in re.findall(r'data-open-deck-sheet=["\\'](\\d+)["\\']',body)})
+          ids=sorted({int(x) for x in re.findall(r'data-deck-list-id="([0-9]+)"',body)})
+          if not ids: ids=sorted({int(x) for x in re.findall(r'data-open-deck-sheet="([0-9]+)"',body)})
           if not ids: raise SystemExit('No real deck IDs on public page; do not infer eligible inventory')
           print('PUBLIC_CATALOG_COUNT',len(ids),'MINMAX',min(ids),max(ids),flush=True)
           def query(id):
