@@ -9,6 +9,8 @@ check(ygo_data_safe_markdown_images('<img src="imagenes/tcg/22356.jpg" alt="Cart
 fails(fn()=>ygo_data_safe_markdown_images('<img src="imagenes/tcg/22356.jpg" onerror="alert(1)">',$localImageFiles),'Executable attribute accepted');
 fails(fn()=>ygo_data_safe_markdown_images('<img src="imagenes/../tcg/22356.jpg">',$localImageFiles),'Traversal accepted');
 fails(fn()=>ygo_data_safe_markdown_images('<img src="https://example.com/carta.jpg">',$localImageFiles),'Remote image accepted');
+check(ygo_data_safe_markdown_images('- **reference file:** guias/TEARLAMENTS.md',[])==='- **Archivo de referencia:** guias/TEARLAMENTS.md','Editorial file label was rejected');
+check(ygo_data_safe_markdown_images('file:///etc/passwd',[])==='file:///etc/passwd','The editorial normalizer must not rewrite actual file URIs');
 $app=dirname(__DIR__);$state=ygo_data_read($app.'/assets/editorial/strategy-content-state.json');$count=0;$raws=0;
 // Canonical pilot identities: the prompt generator must not replace these with invented IDs.
 foreach ([671=>['main'=>41,'extra'=>15,'side'=>14,'tech'=>0,'cards'=>39,'routes'=>12],677=>['main'=>40,'extra'=>15,'side'=>15,'tech'=>0,'cards'=>39,'routes'=>14]] as $pilotId=>$expected) {
