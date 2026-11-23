@@ -42,7 +42,14 @@ function ygo_analysis_progress_http(): never {
         $manifest=ygo_progress_manifest(dirname(__DIR__,2));
         ygo_progress_schema($pdo);
         $saved=ygo_progress_saved($pdo,$deckId);
-        $eligible=($counts['main']>0&&$counts['extra']>0);
+        $eligible=false;
+        try {
+            $required=ygo_progress_required_sections($format);
+            $eligible=array_reduce($required,static fn(bool $ok,string $section):bool=>$ok&&($counts[$section]??0)>0,true);
+        } catch(DomainException $e) {
+            // Unknown format cannot silently qualify: require verification.
+            $eligible=false;
+        }
         $now=gmdate('Y-m-d\TH:i:s\Z');
         if($method==='GET'&&$op==='status'){
             $ledger=$saved['ledger']??null;
@@ -55,7 +62,7 @@ function ygo_analysis_progress_http(): never {
             if($op==='assign'){
                 if(($input['explicit_user_assignment']??null)!==true)
                     throw new DomainException('La asignación exige confirmación expresa del usuario.');
-                ygo_progress_require_assigned($deckId,true,$counts);
+                ygo_progress_require_assigned($deckId,true,$counts,$format);
                 if($saved!==null)throw new DomainException('Este deck ya tiene seguimiento: no se reinicia.');
                 $ledger=ygo_progress_new_ledger($deckId,$inventory,$manifest,true,$now,false);
                 ygo_progress_write($pdo,$ledger,$fingerprint,$format,null);
