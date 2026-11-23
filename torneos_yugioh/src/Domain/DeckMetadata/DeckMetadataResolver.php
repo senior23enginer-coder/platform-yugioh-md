@@ -13,7 +13,12 @@ final class DeckMetadataResolver
         return preg_match(
             '/^(?:editable|pendiente(?: de documentar)?|sin (?:datos|estilo)|n\/a|null|tcg|tcg advanced|ocg|goat|rush[ _-]?duel)$/iu',
             $value,
-        ) || preg_match('/^(?:consultar el plan|dictamen(?: editorial)?|parcial_avanzado|cat[aá]logo completo|estudio individual)/iu',$value) || preg_match('/\\b(?:CID\\s*\\d+|[CV]\\d{2}|A01-T\\d+)\\b/iu',$value)
+        ) ||
+            preg_match(
+                '/^(?:consultar el plan|dictamen(?: editorial)?|parcial_avanzado|cat[aá]logo completo|estudio individual)/iu',
+                $value,
+            ) ||
+            preg_match('/\\b(?:CID\\s*\\d+|[CV]\\d{2}|A01-T\\d+)\\b/iu', $value)
             ? ''
             : $value;
     }
@@ -21,8 +26,14 @@ final class DeckMetadataResolver
     /** Strip editorial metadata without changing the real archetype. */
     public static function archetype(mixed $value): string
     {
-        $name=self::description($value);
-        return trim((string)preg_replace('/\\s+[—–-]\\s+(?:estudio individual|profundizaci[oó]n|iteraci[oó]n|auditor[ií]a)\\b.*$/iu','',$name));
+        $name = self::description($value);
+        return trim(
+            (string) preg_replace(
+                '/\\s+[—–-]\\s+(?:estudio individual|profundizaci[oó]n|iteraci[oó]n|auditor[ií]a)\\b.*$/iu',
+                '',
+                $name,
+            ),
+        );
     }
 
     /** Manual style wins, then the native deck style, then the identified study. */

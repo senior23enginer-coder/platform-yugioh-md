@@ -20,9 +20,20 @@ function metadataCheck(bool $condition, string $message): void
     $count++;
 }
 
-metadataCheck(DeckMetadataResolver::description('Consultar el plan de juego y las condiciones')==='', 'The catalog must reject old player-facing placeholders');
-metadataCheck(DeckMetadataResolver::description('Dictamen editorial PARCIAL_AVANZADO: Cementerio')==='', 'The catalog must reject audit paragraphs');
-metadataCheck(DeckMetadataResolver::archetype('Mementotlán / Demoniherrero — estudio individual A01–A10 · iteración 2')==='Mementotlán / Demoniherrero', 'The catalog must strip research-iteration suffixes');
+metadataCheck(
+    DeckMetadataResolver::description('Consultar el plan de juego y las condiciones') === '',
+    'The catalog must reject old player-facing placeholders',
+);
+metadataCheck(
+    DeckMetadataResolver::description('Dictamen editorial PARCIAL_AVANZADO: Cementerio') === '',
+    'The catalog must reject audit paragraphs',
+);
+metadataCheck(
+    DeckMetadataResolver::archetype(
+        'Mementotlán / Demoniherrero — estudio individual A01–A10 · iteración 2',
+    ) === 'Mementotlán / Demoniherrero',
+    'The catalog must strip research-iteration suffixes',
+);
 
 // Use the application without loading the native include, JSON files, sessions or PDO.
 $reader = new class implements DeckStudyReader {
