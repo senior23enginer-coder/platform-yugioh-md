@@ -21,11 +21,25 @@ function metadataCheck(bool $condition, string $message): void
 }
 
 metadataCheck(
-    DeckMetadataResolver::resolve('Deck', 'Native', 'Native archetype', 'Manual', new DeckStudyProfile(), 2)->style === '',
+    DeckMetadataResolver::resolve(
+        'Deck',
+        'Native',
+        'Native archetype',
+        'Manual',
+        new DeckStudyProfile(),
+        2,
+    )->style === '',
     'No GPT publication means no player-facing style even when native/manual fields exist',
 );
 metadataCheck(
-    DeckMetadataResolver::resolve('Deck', 'Native', 'Native archetype', 'Manual', new DeckStudyProfile(), 2)->archetype === 'Sin análisis importado',
+    DeckMetadataResolver::resolve(
+        'Deck',
+        'Native',
+        'Native archetype',
+        'Manual',
+        new DeckStudyProfile(),
+        2,
+    )->archetype === 'Sin análisis importado',
     'A missing GPT publication must never display a native archetype as an imported analysis',
 );
 metadataCheck(
@@ -161,10 +175,13 @@ try {
     file_put_contents(
         $file,
         json_encode(
-            ['deck_id' => 4, 'a01_profile_contract' => 'station-x-a01-profile/1',
+            [
+                'deck_id' => 4,
+                'a01_profile_contract' => 'station-x-a01-profile/1',
                 'player_guide' => ['schema' => 'station-x-player-guide/1'],
                 'folder_delivery' => ['imported_at' => '2026-11-23T19:19:29+00:00'],
-                'profile' => ['Tipo de estrategia' => 'First']],
+                'profile' => ['Tipo de estrategia' => 'First'],
+            ],
             JSON_THROW_ON_ERROR,
         ),
     );
@@ -178,10 +195,13 @@ try {
     file_put_contents(
         $file,
         json_encode(
-            ['deck_id' => 4, 'a01_profile_contract' => 'station-x-a01-profile/1',
+            [
+                'deck_id' => 4,
+                'a01_profile_contract' => 'station-x-a01-profile/1',
                 'player_guide' => ['schema' => 'station-x-player-guide/1'],
                 'folder_delivery' => ['imported_at' => '2026-11-23T19:22:29+00:00'],
-                'profile' => ['Tipo de estrategia' => 'Changed']],
+                'profile' => ['Tipo de estrategia' => 'Changed'],
+            ],
             JSON_THROW_ON_ERROR,
         ),
     );
