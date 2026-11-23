@@ -13,10 +13,21 @@
     study.player_guide?.schema==='station-x-player-guide/1'&&
     typeof study.folder_delivery?.imported_at==='string'&&
     study.folder_delivery.imported_at.length>0;
+  // Historical V40 research was imported from the canonical GPT source before
+  // native A01 certificates existed. It stays readable but never becomes A01-T5.
+  const documentaryLegacy=(study,id)=>{
+    const folder=study?.folder_delivery||{};
+    return study?.schema==='station-x-curated-v62'&&Number(study.deck_id)===Number(id)&&
+      typeof folder.source_file==='string'&&
+      /^torneos_yugioh\\/context\\/gpt\\/01_INFORMACION_PARA_IMPORTAR\\/decks\\/DECK_[A-Za-z0-9_]+\\/DECK_[A-Za-z0-9_]+_CONTENIDO_CURADO\\.md$/.test(folder.source_file)&&
+      /^[a-f0-9]{64}$/i.test(String(folder.source_sha256||''));
+  };
+  const imported=(study,id)=>certified(study,id)||documentaryLegacy(study,id);
   function setProfile(study){
     const p=study?.profile||{},contract=root.YgoStudyPresentation;
-    const style=study?contract?.style(p):'',brief=study?contract?.brief(p):'';
-    const archetype=study?contract?.archetype(p):'';
+    const style=study?(contract?.style(p)||p['Estilo de juego']||''):'';
+    const brief=study?(contract?.brief(p)||p['Cómo se juega']||''):'';
+    const archetype=study?(contract?.archetype(p)||p['Arquetipo']||''):'';
     for(const [selector,value] of [
       ['[data-profile-style]',style],['[data-profile-archetype]',archetype],
       ['[data-profile-gameplan]',brief]
@@ -52,13 +63,13 @@
       if(!res.ok)throw Error('Paquete GPT no disponible');
       const study=await res.json();
       if(current!==ticket)return;
-      if(!certified(study,deck.id)||study.cards?.length!==entry.cards)return empty(host);
+      if(!imported(study,deck.id)||study.cards?.length!==entry.cards)return empty(host);
       setProfile(study);
       host.querySelector('[data-strategy-empty]')?.remove();
       await root.YgoCheckedStudy.render(host,deck,entry,()=>current===ticket);
       if(current!==ticket)return;
-      label('Guía de juego importada');host.style.visibility='';
+      label(certified(study,deck.id)?'Guía importada A01':'Guía documental GPT anterior');host.style.visibility='';
     }).catch(()=>{if(current===ticket)empty(host);});
   };
-  root.YgoA01ImportedProfile={certified};
+  root.YgoA01ImportedProfile={certified,imported,documentaryLegacy};
 })(window);
