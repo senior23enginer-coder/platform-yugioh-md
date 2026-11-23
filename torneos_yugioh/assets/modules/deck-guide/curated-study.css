@@ -39,3 +39,17 @@
 .curated-full-profile>summary{cursor:pointer;color:#83e0ed;font-weight:650}
 .curated-final-board>.curated-photos{justify-content:flex-start}
 @media(max-width:760px){.curated-result-full{font-size:1rem}.curated-final-board{padding:12px}}
+
+
+/* A01 player guide: selected cards require a visible tactical explanation. */
+.curated-featured h4,.curated-game-phases h4{margin:20px 0 12px}
+.curated-featured .curated-representatives{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:14px}
+.curated-featured-card,.curated-game-phase{border:1px solid #31536b;background:#0b2235;border-radius:12px;padding:14px}
+.curated-featured-card button{width:100%;max-width:none;display:flex;align-items:center;gap:12px;text-align:left;margin-bottom:12px}
+.curated-featured-card button img{flex:none;width:86px;height:126px;object-fit:contain}
+.curated-featured-card p,.curated-game-phase p{line-height:1.6;margin:8px 0}
+.curated-game-phases{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:18px 0}
+.curated-game-phases>h4{grid-column:1/-1;margin:0}
+.curated-game-phase h5{color:#86e5f0;font-size:1.05rem}
+.curated-game-phase button{display:block;width:100%;margin-top:10px;text-align:left;white-space:normal}
+@media(max-width:640px){.curated-featured .curated-representatives,.curated-game-phases{grid-template-columns:minmax(0,1fr)}}
