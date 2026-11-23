@@ -43,6 +43,28 @@ const one=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42
       assert(/ilustrativ|no verificad/i.test(await page.locator('.eb-layout-note').allInnerTexts().then(items=>items.join(' '))),
         'Illustrative slots must not be represented as certified physical positions');
       assert(await page.locator('.curated-final-board img').count()>0,'Result must have card evidence');
+      // The A01-v1 reader must show all six new profile fields without the
+      // historical Estilo de juego fallback; this is a synthetic layout only.
+      const synthetic={...memento,name:'Nexo Umbral',profile:{
+        'Arquetipo':'Nexo Umbral','Tipo de estrategia':'Combo de Fusión y Cementerio',
+        'Estilo breve':'Motor sintético de Fusión y Cementerio para preparar recursos.',
+        'Resumen para ficha':'Abre con recursos controlados, utiliza materiales y conserva opciones.',
+        'Cómo se juega':'Primero construye recursos y conserva respuestas. Segundo comprueba amenazas y materiales. En turnos posteriores recupera únicamente recursos disponibles.',
+        'Qué vigilar':'No asumir materiales ni rutas ausentes del inventario.'
+      }};
+      await page.evaluate(data=>window.YgoCuratedStudy.render(
+        document.querySelector('#test-guide'),{id:671,name:data.name},data,
+        {cards:data.cards.length,sha256:'synthetic-a01-'+width}
+      ),synthetic);
+      const a01Intro=await page.locator('.curated-profile').innerText();
+      assert(a01Intro.includes('Nexo Umbral'),'A01 archetype missing in new reader');
+      assert(a01Intro.includes('Estilo breve'),'A01 six-field record needs a visible style label');
+      assert(a01Intro.includes('Motor sintético de Fusión'),'A01 style not rendered');
+      assert((await page.locator('[data-a01-summary]').innerText()).includes('Abre con recursos controlados'),
+        'A01 summary not shown in correct UI field');
+      assert(a01Intro.includes('No asumir materiales'),'A01 warnings not displayed');
+      assert((await page.locator('.curated-full-profile').innerText()).includes('Primero construye recursos'),
+        'A01 full gameplan must remain accessible');
       assert.deepEqual(errors,[],'Browser errors in guide on '+width+'px');
       await page.close();
     }
