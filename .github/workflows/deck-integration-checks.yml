@@ -109,6 +109,17 @@ jobs:
           node torneos_yugioh/tests/combo_editorial_library_test.cjs
           node torneos_yugioh/tests/documented_combo_editor_test.cjs
 
+      - name: Verify the real Memento A01-T5 guide in mobile and desktop browsers
+        run: node torneos_yugioh/tests/study_presentation_ui_test.cjs /tmp/station-x-gpt-decks
+      - name: Save A01-T5 screenshots and verified UI evidence
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: memento-671-a01-t5-isolated-ui
+          path: outputs/a01-t5-memento-671/
+          if-no-files-found: error
+          retention-days: 30
+
   p06-fast-parity:
     runs-on: ubuntu-latest
     timeout-minutes: 8
