@@ -2,7 +2,7 @@
 const assert=require('node:assert/strict');
 const L=require('./deck-analysis-ledger.cjs');
 const stages=['A01','A02','A03','A04','A05','A06','A07','A08','A09','A10A','A10B'];
-const counts=[3,3,3,3,4,4,4,4,4,3,3];
+const counts=[5,3,3,3,4,4,4,4,4,3,3];
 const manifest={schema:'station-x-a01-a10-task-manifest/1',
  required_sections:['main','extra','side'],optional_sections:['reserve'],
  stages:stages.map((stage_id,i)=>({stage_id,mandatory:stage_id!=='A10B',
@@ -24,8 +24,8 @@ assert(L.createLedger({...args,inventoryCounts:{...inventoryCounts,reserve:3}}))
 assert.throws(()=>L.createLedger({...args,inventoryCounts:{...inventoryCounts,reserve:-1}}),
   /INVALID_OPTIONAL_RESERVE/);
 let ledger=L.createLedger(args);
-assert.equal(ledger.tasks.length,38);
-assert.equal(L.summary(ledger).total,35,'A10B must not be counted unless requested');
+assert.equal(ledger.tasks.length,40);
+assert.equal(L.summary(ledger).total,37,'A10B must not be counted unless requested');
 assert.equal(L.summary(ledger).eta_seconds,null,'Never manufacture an ETA without measurements');
 assert.throws(()=>L.transition(ledger,'A01-T1',L.STATUS.COMPLETE,
  {at:'2026-11-21T01:00:00.000Z',evidence:'citation'}),/ONLY_RUNNING/);
@@ -59,8 +59,8 @@ const history=ledger.tasks.filter(x=>x.mandatory&&x.status!==L.STATUS.COMPLETE)
  .flatMap(t=>[90,100,110,120,130].map((seconds,i)=>({task_id:t.task_id,deck_id:90001+i,elapsed_seconds:seconds})));
 const summary=L.summary(ledger,history);
 assert.equal(summary.eta_status,'CALIBRATED_FROM_REAL_HISTORY');
-assert.equal(summary.eta_seconds,33*110);
-assert.equal(L.summary(L.createLedger({...args,enableCalculator:true})).total,38);
+assert.equal(summary.eta_seconds,35*110);
+assert.equal(L.summary(L.createLedger({...args,enableCalculator:true})).total,40);
 const duplicate=JSON.parse(JSON.stringify(manifest));
 duplicate.stages[0].tasks[1].task_id=duplicate.stages[0].tasks[0].task_id;
 assert.throws(()=>L.validateManifest(duplicate),/DUPLICATE_OR_INVALID_TASK/);
@@ -76,7 +76,7 @@ if(process.argv[2]){
    'Platform and GPT must understand the same canonical stages');
  assert.deepEqual(native.stages.map(x=>x.tasks.map(t=>t.task_id)),
    manifest.stages.map(x=>x.tasks.map(t=>t.task_id)),
-   'Platform and GPT must preserve the same 38 task IDs');
+   'Platform and GPT must preserve the same 40 task IDs');
 }
 console.log(JSON.stringify({ok:true,syntheticFixtures:true,deckAnalysesStarted:0,
- mandatoryTasks:35,optionalCalculatorTasks:3,measuredSeconds:210,etaRequiresRealSamples:true}));
+ mandatoryTasks:37,optionalCalculatorTasks:3,measuredSeconds:210,etaRequiresRealSamples:true}));
