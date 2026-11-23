@@ -11,7 +11,7 @@
         host.innerHTML='<p>No hay guías visuales documentadas disponibles para este deck en la biblioteca actual.</p>';return;
       }
       const source=entry.path;
-      if(typeof source!=='string'||!/^\\.\\/assets\\/editorial\\/[A-Za-z0-9_./-]+\\.json$/.test(source)||source.includes('..'))
+      if(typeof source!=='string'||!/^\.\/assets\/editorial\/[A-Za-z0-9_./-]+\.json$/.test(source)||source.includes('..'))
         throw Error('Ruta de importación inválida');
       const documentResponse=await fetch(source,{cache:'no-store',credentials:'same-origin'});
       if(!documentResponse.ok)throw Error('No se pudo leer el paquete activo');
@@ -24,7 +24,7 @@
         typeof study.folder_delivery?.imported_at==='string'&&!!study.folder_delivery.imported_at;
       const origin=study.folder_delivery||{};
       const documentedLegacy=typeof origin.source_file==='string'&&
-        /^torneos_yugioh\\/context\\/gpt\\/01_INFORMACION_PARA_IMPORTAR\\/decks\\/DECK_[A-Za-z0-9_]+\\/DECK_[A-Za-z0-9_]+_CONTENIDO_CURADO\\.md$/.test(origin.source_file)&&
+        /^torneos_yugioh\/context\/gpt\/01_INFORMACION_PARA_IMPORTAR\/decks\/DECK_[A-Za-z0-9_]+\/DECK_[A-Za-z0-9_]+_CONTENIDO_CURADO\.md$/.test(origin.source_file)&&
         /^[a-f0-9]{64}$/i.test(String(origin.source_sha256||''));
       if(study.schema!=='station-x-curated-v62'||Number(study.deck_id)!==Number(deck.id)||
          !(certified||documentedLegacy)||!Array.isArray(study.routes)||!study.routes.length){
