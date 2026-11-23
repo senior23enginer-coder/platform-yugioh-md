@@ -43,7 +43,7 @@ function validateManifest(manifest){
       if(stage.mandatory)mandatory++;else optional++;
     }
   }
-  if(ids.size!==38||mandatory!==35||optional!==3)throw Error('TASKS_MUST_BE_35_PLUS_3');
+  if(ids.size!==40||mandatory!==37||optional!==3)throw Error('TASKS_MUST_BE_37_PLUS_3');
   return true;
 }
 function createLedger({deckId,explicitlyAssigned=false,inventoryCounts,manifest,at,
