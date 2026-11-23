@@ -12,7 +12,12 @@
     const excerpt=end.length>max?end.slice(0,max).replace(/\s+\S*$/u,'').trim()+'…':end;
     return excerpt.charAt(0).toLocaleUpperCase('es')+excerpt.slice(1);
   }
-  function style(profile={}){
+  function style(profile={},certified=false){
+    if(certified){
+      // A01 has already checked the literal field and its 190-character limit.
+      const exact=publicText(profile['Estilo breve']);
+      return exact&&Array.from(exact).length<=190?exact:'';
+    }
     for(const key of ['Estilo breve','Tipo de estrategia']){
       const value=publicText(profile[key]);
       if(value){

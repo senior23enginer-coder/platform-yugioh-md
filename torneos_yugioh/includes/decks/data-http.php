@@ -23,9 +23,13 @@ function ygo_data_saved(PDO $pdo,int $id): array {
  * Remote sources, event handlers and unrecognized tags fail closed.
  */
 function ygo_data_safe_markdown_images(string $markdown, array $files): string {
+    // A historical Markdown label is not a file: URI. Normalize only the exact
+    // editorial label before plain-text validation; keep the original ZIP intact.
+    $markdown=preg_replace('/^- \*\*reference file:\*\* /m','- **Archivo de referencia:** ',$markdown)
+        ?? throw new InvalidArgumentException('No se pudo procesar la referencia documental.');
     return preg_replace_callback('~<img\b[^>]*>~iu', static function(array $match) use($files):string {
         $tag=$match[0];
-        if(!preg_match('~^<img\s+src="(imagenes/[a-zA-Z0-9_.-]+\.(?:png|jpe?g|webp|gif))"(?:\s+width="[0-9]{1,3}")?(?:\s+alt="[^"<>]*")?\s*/?>$~iuD',$tag,$parts)) {
+        if(!preg_match('~^<img\s+src="(imagenes/(?:[a-zA-Z0-9_-]+/)*[a-zA-Z0-9_.-]+\.(?:png|jpe?g|webp|gif))"(?:\s+width="[0-9]{1,3}")?(?:\s+alt="[^"<>]*")?(?:\s+loading="lazy")?\s*/?>$~iuD',$tag,$parts)) {
             throw new InvalidArgumentException('Etiqueta HTML de imagen no admitida. Usa imágenes locales sin atributos ejecutables.');
         }
         $source=ygo_data_source_image($files,$parts[1]);
@@ -120,6 +124,12 @@ function ygo_data_prepare(string $app,array $files,array $inventory,?array $curr
         $portable=($envelope['inventory_binding']??'')==='deck-slots-v1';
         if($portable){
             $document=$envelope['source_document']??null;
+            // GPT folder packages may declare the root document relative to package_root.
+            // Resolve only a single basename inside the verified deck folder; never search other folders.
+            if(is_string($document)&&basename($document)===$document&&isset($files[$verifiedFolder.'/'.$document])){
+                $document=$verifiedFolder.'/'.$document;
+                $envelope['source_document']=$document;
+            }
             if(!is_string($document)||!isset($files[$document])||!preg_match('/CONTENIDO_CURADO\\.md$/i',$document))throw new InvalidArgumentException('El ZIP GPT no contiene su documento curado original.');
             ygo_data_validate_portable_inventory($envelope,$inventory,$verifiedFolder,$current);
         }elseif(($envelope['inventory_sha256']??'')!==$inventory['inventory_sha256']){

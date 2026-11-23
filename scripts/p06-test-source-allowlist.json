@@ -1,9 +1,11 @@
 {
   "schema": "station-x-p06-test-source-baseline/1",
-  "date": "2026-11-21",
+  "date": "2026-11-23",
   "purpose": "Explicitly review every new test program; use declarative fixture data for deck/card scenarios instead of new per-card JS/PHP files",
-  "baseline_total": 213,
+  "baseline_total": 215,
   "paths": [
+    "torneos_yugioh/tests/a01_assigned_packages_test.php",
+    "torneos_yugioh/tests/a01_assigned_packages_ui_test.cjs",
     "torneos_yugioh/tests/best_of_rule_regression_test.js",
     "torneos_yugioh/tests/bo3_production_guard_test.js",
     "torneos_yugioh/tests/calculator_active_coverage_test.cjs",
@@ -217,5 +219,15 @@
     "torneos_yugioh/tests/swagger_test.cjs",
     "torneos_yugioh/tests/turn_monotonic_test.php",
     "torneos_yugioh/tests/turn_recovery_multitab_test.js"
-  ]
+  ],
+  "review_proposal": {
+    "pull_request": 47,
+    "scope": "Two generic A01 package-acceptance programs, not per-deck/card tests; reuse each runner for the assigned inventories.",
+    "added_paths": [
+      "torneos_yugioh/tests/a01_assigned_packages_test.php",
+      "torneos_yugioh/tests/a01_assigned_packages_ui_test.cjs"
+    ],
+    "removed_paths": [],
+    "approval": "Pending PR review; guard remains strict."
+  }
 }

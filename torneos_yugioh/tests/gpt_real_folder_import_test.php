@@ -76,10 +76,10 @@ foreach($pilot as $id=>$expected){
         // validator, immutable publisher, exporter and reimporter on a scratch root.
         // No production connection, live database or other deck is ever written.
         $a01T5=null;
-        if($id===671){
+        if(in_array($id,[671,677],true)){
             $expectedProfile=['Arquetipo','Tipo de estrategia','Estilo breve','Resumen para ficha','Cómo se juega','Qué vigilar'];
             if(($imported['a01_profile_contract']??null)!=='station-x-a01-profile/1')
-                throw new RuntimeException('A01-T5 Memento profile contract missing');
+                throw new RuntimeException('A01-T5 assigned deck profile contract missing');
             ygo_data_validate_a01_profile($imported);
             ygo_data_validate_player_guide($imported);
             $player=$imported['player_guide'];
@@ -93,13 +93,19 @@ foreach($pilot as $id=>$expected){
                 throw new RuntimeException('A01-T5 canonical original missing from real package');
             $envelope=json_decode($files[$packagePath],true,128,JSON_THROW_ON_ERROR);
             $md=$files[$sourcePath];
+            // Compare the canonical A01 section only; historical appendices may repeat fields.
+            $start=strpos($md,'## APARTADO_01');
+            if($start===false)throw new RuntimeException('A01-T5 canonical section missing for deck '.$id);
+            $end=strpos($md,"\n## APARTADO_02",$start);
+            if($end===false)throw new RuntimeException('A01-T5 canonical section end missing for deck '.$id);
+            $canonicalLines=preg_split('/\r?\n/',substr($md,$start,$end-$start));
             foreach($expectedProfile as $field){
                 $value=$imported['profile'][$field]??null;
                 if(!is_string($value)||trim($value)==='')
                     throw new RuntimeException('A01-T5 empty canonical field '.$field);
                 $needle='- **'.$field.':** '.$value;
-                if(substr_count($md,$needle)!==1)
-                    throw new RuntimeException('A01-T5 Markdown-JSON parity failed: '.$field);
+                if(count(array_filter($canonicalLines,static fn(string $line):bool=>$line===$needle))!==1)
+                    throw new RuntimeException('A01-T5 Markdown-JSON parity failed for deck '.$id.': '.$field);
             }
             if($imported['profile']['Cómo se juega']===$current['profile']['Cómo se juega'])
                 throw new RuntimeException('A01-T5 is still showing old editorial plan');
@@ -123,12 +129,12 @@ foreach($pilot as $id=>$expected){
             $reject(static function(array &$x):void{$x['record']['profile']['Tipo de estrategia']='Consultar el plan';},'placeholder');
             $reject(static function(array &$x):void{$x['record']['a01_profile_contract']='invalid';},'unknown profile marker');
             $reject(static function(array &$x):void{$x['record']['player_guide']['featured_cards'][0]['cid']=99999999;},'foreign featured card');
-            $reject(static function(array &$x):void{$x['record']['player_guide']['phases'][0]['related_route_ids'][]='671:A09:C99';},'foreign route');
+            $reject(static function(array &$x):void{$x['record']['player_guide']['phases'][0]['related_route_ids'][]=$x['deck_id'].':A09:C99';},'foreign route');
             $reject(static function(array &$x):void{$x['inventory'][0]['quantity']++;},'changed physical inventory');
-            $reject(static function(array &$x):void{$x['record']['deck_id']=677;},'other deck identity');
+            $reject(static function(array &$x):void{$x['record']['deck_id']=$x['deck_id']===671?677:671;},'other deck identity');
             if($negativeCount!==8)throw new RuntimeException('A01-T5 negative coverage lost');
 
-            $scratch=sys_get_temp_dir().'/stationx-a01-t5-671-'.bin2hex(random_bytes(8));
+            $scratch=sys_get_temp_dir().'/stationx-a01-t5-'.$id.'-'.bin2hex(random_bytes(8));
             if(!mkdir($scratch.'/assets/editorial',0700,true))
                 throw new RuntimeException('A01-T5 scratch directory cannot be created');
             try {
@@ -137,10 +143,10 @@ foreach($pilot as $id=>$expected){
                 if(file_put_contents($registry,$originalRegistry)===false)
                     throw new RuntimeException('A01-T5 scratch registry not created');
                 $expectedEntryHash=hash('sha256',ygo_data_json($entry));
-                $published=ygo_data_publish($scratch,671,$imported,$files,$expectedEntryHash);
-                if(($published['cards']??-1)!==39 || ($published['routes']??-1)!==12)
+                $published=ygo_data_publish($scratch,$id,$imported,$files,$expectedEntryHash);
+                if(($published['cards']??-1)!==39 || ($published['routes']??-1)!==$expected['routes'])
                     throw new RuntimeException('A01-T5 wrong published card or route count');
-                [$activatedEntry,$activated]=ygo_data_current($scratch,671);
+                [$activatedEntry,$activated]=ygo_data_current($scratch,$id);
                 if(($activated['profile']??null)!==$imported['profile']
                     ||($activated['player_guide']??null)!==$player)
                     throw new RuntimeException('A01-T5 published source differs from imported A01');
@@ -153,7 +159,7 @@ foreach($pilot as $id=>$expected){
                     throw new RuntimeException('A01-T5 exposed extra HTML guide');
                 $afterState=ygo_data_read($registry);
                 foreach($state['checked_studies'] as $otherId=>$otherEntry){
-                    if((int)$otherId===671)continue;
+                    if((int)$otherId===$id)continue;
                     if(($afterState['checked_studies'][(string)$otherId]??null)!==$otherEntry)
                         throw new RuntimeException('A01-T5 modified another deck '.$otherId);
                 }
@@ -171,19 +177,19 @@ foreach($pilot as $id=>$expected){
                 if(($exportedEnvelope['record']['profile']??null)!==$imported['profile']
                     ||($exportedEnvelope['record']['player_guide']??null)!==$player)
                     throw new RuntimeException('A01-T5 export lost profile or player guide');
-                if(($exportedEnvelope['deck_id']??0)!==671
+                if(($exportedEnvelope['deck_id']??0)!==$id
                     ||($exportedEnvelope['record']['format']??'')!=='tcg_advanced'
-                    ||count($exportedEnvelope['record']['routes']??[])!==12)
+                    ||count($exportedEnvelope['record']['routes']??[])!==$expected['routes'])
                     throw new RuntimeException('A01-T5 export altered identity, format or routes');
                 $reimport=ygo_data_prepare($scratch,$export,$inventory,$activated,$files);
                 if(($reimport['profile']??null)!==$imported['profile']
                     ||($reimport['player_guide']??null)!==$player
                     ||count($reimport['cards']??[])!==39
-                    ||count($reimport['routes']??[])!==12)
+                    ||count($reimport['routes']??[])!==$expected['routes'])
                     throw new RuntimeException('A01-T5 reimport lost canonical data');
                 $a01T5=[
                     'status'=>'ISOLATED_IMPORT_EXPORT_REIMPORT_PASSED',
-                    'deck_id'=>671,'fields'=>count($expectedProfile),
+                    'deck_id'=>$id,'fields'=>count($expectedProfile),
                     'featured'=>count($player['featured_cards']),
                     'phases'=>count($player['phases']),
                     'negative_cases'=>$negativeCount,

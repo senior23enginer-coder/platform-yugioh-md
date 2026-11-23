@@ -1,0 +1,67 @@
+name: A01 assigned decks acceptance
+on:
+  pull_request:
+    branches: [base]
+    paths:
+      - 'torneos_yugioh/tests/a01_assigned_packages*'
+      - '.github/workflows/a01-assigned-decks.yml'
+permissions:
+  contents: read
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, zip, pdo_sqlite
+          coverage: none
+      - run: |
+          npm ci
+          npx playwright install --with-deps chromium
+          git clone --depth 1 --branch base https://github.com/senior23enginer-coder/gpt-yugioh-promps-platform.git /tmp/a01-gpt
+          # Validate the exact revised A01 source without merging or publishing it.
+          git -C /tmp/a01-gpt fetch --depth 1 origin a9c214433ceb4cd955e705465547df1a36cf4f0b
+          git -C /tmp/a01-gpt checkout --detach a9c214433ceb4cd955e705465547df1a36cf4f0b
+          git -C /tmp/a01-gpt rev-parse HEAD
+      - name: Verify GPT profile and guide contract per assigned deck
+        run: |
+          mkdir -p outputs/a01-assigned
+          node <<'NODE'
+          const fs=require('fs'),path=require('path'),assert=require('node:assert/strict');
+          const root='/tmp/a01-gpt';
+          const {validateProfile,assertSourceParity}=require(root+'/scripts/a01-profile-contract.cjs');
+          const {validatePlayerGuide}=require(root+'/scripts/a01-player-guide-contract.cjs');
+          const index=JSON.parse(fs.readFileSync('torneos_yugioh/assets/editorial/deck-data-sources/index.json','utf8'));
+          const ids=[671,677,665,650,653,656,670,684,687,660,673,699,704,705,706,707];
+          const results=[];
+          for(const id of ids){
+            try{
+              const source=index[id].source_document,folder=source.replace(/_CONTENIDO_CURADO\.md$/,'');
+              const dir=path.join(root,'01_INFORMACION_PARA_IMPORTAR/decks',folder);
+              const pkg=JSON.parse(fs.readFileSync(path.join(dir,'datos/stationx-deck.json'),'utf8'));
+              assert.equal(pkg.deck_id,id);assert.equal(pkg.record.deck_id,id);
+              const profile=validateProfile(pkg.record),parity=assertSourceParity(pkg.record,fs.readFileSync(path.join(dir,source),'utf8')),guide=validatePlayerGuide(pkg.record);
+              results.push({deck_id:id,status:'PASS',profile,parity,guide});
+            }catch(e){results.push({deck_id:id,status:'FAIL',error:e.message});}
+          }
+          fs.writeFileSync('outputs/a01-assigned/profile-report.json',JSON.stringify(results,null,2));
+          console.log(JSON.stringify(results));if(results.some(x=>x.status==='FAIL'))process.exitCode=1;
+          NODE
+      - name: Native package round trips
+        if: always()
+        run: php torneos_yugioh/tests/a01_assigned_packages_test.php /tmp/a01-gpt
+      - name: Actual package browser presentation
+        if: always()
+        run: node torneos_yugioh/tests/a01_assigned_packages_ui_test.cjs /tmp/a01-gpt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: a01-assigned-deck-evidence
+          path: outputs/a01-assigned/
+          if-no-files-found: error

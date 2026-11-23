@@ -1,7 +1,7 @@
 'use strict';
 // P06 guard against linear growth of one JS/PHP test for every analyzed card.
 // Data-based cases go to fixtures/; new generic engine test programs require
-// an explicit, reviewed baseline update (PR #46: one generic GPT publication-policy regression). This NEVER executes any deck analysis.
+// an explicit, reviewed baseline update (PR #47: two shared A01 acceptance runners). This NEVER executes any deck analysis.
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
@@ -11,7 +11,7 @@ const baseline=JSON.parse(fs.readFileSync(file,'utf8'));
 assert.equal(baseline.schema,'station-x-p06-test-source-baseline/1');
 assert(Array.isArray(baseline.paths));
 assert.equal(new Set(baseline.paths).size,baseline.paths.length,'Duplicate allowlist entry');
-assert.equal(baseline.baseline_total,213,'Baseline alterations require explicit review');
+assert.equal(baseline.baseline_total,215,'Baseline alterations require explicit review');
 assert.equal(baseline.paths.length,baseline.baseline_total,'Broken baseline count');
 const dir=path.join(root,'torneos_yugioh/tests');
 const scan=folder=>fs.readdirSync(folder,{withFileTypes:true}).flatMap(entry=>{
