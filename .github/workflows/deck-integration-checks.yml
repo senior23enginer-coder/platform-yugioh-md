@@ -9,6 +9,16 @@ on:
       - 'package*.json'
       - '.github/workflows/deck-integration-checks.yml'
       - '!torneos_yugioh/context/**'
+  push:
+    branches: [base]
+    paths:
+      - 'torneos_yugioh/includes/decks/data-package.php'
+      - 'torneos_yugioh/assets/modules/deck-guide/curated-study.js'
+      - 'torneos_yugioh/tests/a01_profile_contract_test.php'
+      - 'torneos_yugioh/tests/study_presentation_ui_test.cjs'
+      - 'torneos_yugioh/assets/editorial/a01-a10-task-manifest.json'
+      - 'scripts/deck-analysis-ledger*.cjs'
+      - '.github/workflows/deck-integration-checks.yml'
   workflow_dispatch:
 
 permissions:
@@ -56,6 +66,7 @@ jobs:
           php torneos_yugioh/tests/deck_template_test.php
           php torneos_yugioh/tests/calculator_import_test.php
           php torneos_yugioh/tests/deck_data_test.php
+          php torneos_yugioh/tests/a01_profile_contract_test.php
           node torneos_yugioh/tests/documented_combo_test.cjs
           node torneos_yugioh/tests/combo_source_test.cjs
           node torneos_yugioh/tests/combo_creator_regression_test.cjs
@@ -88,6 +99,7 @@ jobs:
         run: |
           node torneos_yugioh/tests/study_presentation_contract_test.cjs
           node torneos_yugioh/tests/study_presentation_ui_test.cjs
+          node scripts/deck-analysis-ledger-test.cjs /tmp/station-x-gpt-decks/02_PROMPT_PARA_CODEX/contrato_tareas_a01_a10.json
           node torneos_yugioh/tests/study_crystron_visual_ui_test.cjs
           node torneos_yugioh/tests/deck_builder_study_photos_test.cjs
           node torneos_yugioh/tests/deck_export_test.cjs
