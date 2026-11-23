@@ -9,8 +9,10 @@ function ygo_progress_manifest(string $app): array {
     $file=$app.'/assets/editorial/a01-a10-task-manifest.json';
     $doc=json_decode((string)file_get_contents($file),true,64,JSON_THROW_ON_ERROR);
     if(($doc['schema']??null)!=='station-x-a01-a10-task-manifest/1' ||
-        ($doc['required_sections']??null)!==['main','extra'] ||
+        ($doc['required_sections']??null)!==['main'] ||
         ($doc['optional_sections']??null)!==['side','reserve'] ||
+        ($doc['extra_deck_policy']['required_for']??null)!==['tcg','tcg_advanced','tcg_traditional','ocg','ocg_advanced'] ||
+        ($doc['extra_deck_policy']['optional_for']??null)!==['goat','rush_duel','rush'] ||
         !is_array($doc['stages']??null) || count($doc['stages'])!==11)
         throw new LogicException('Manifiesto de análisis incompatible.');
     $ids=[];$mandatory=0;$optional=0;
@@ -48,16 +50,23 @@ function ygo_progress_inventory_counts(array $inventory): array {
     }
     return $counts;
 }
-function ygo_progress_require_assigned(int $deckId,bool $explicit,array $counts): void {
+function ygo_progress_required_sections(string $format): array {
+    return match(strtolower(trim($format))){
+        'tcg','tcg_advanced','tcg_traditional','ocg','ocg_advanced'=>['main','extra'],
+        'goat','rush','rush_duel'=>['main'],
+        default=>throw new DomainException('Formato no acreditado: confirma GOAT, Rush Duel, TCG u OCG antes de iniciar el análisis.'),
+    };
+}
+function ygo_progress_require_assigned(int $deckId,bool $explicit,array $counts,string $format): void {
     if($deckId<=0||!$explicit)throw new DomainException('Se requiere asignación expresa de un único deck.');
-    foreach(['main','extra'] as $required){
+    foreach(ygo_progress_required_sections($format) as $required){
         if(($counts[$required]??0)<=0)
             throw new DomainException('El deck no está cargado en '.strtoupper($required).'.');
     }
 }
 function ygo_progress_new_ledger(int $deckId,array $inventory,array $manifest,bool $explicit,string $now,bool $calculator=false): array {
     $counts=ygo_progress_inventory_counts($inventory);
-    ygo_progress_require_assigned($deckId,$explicit,$counts);
+    ygo_progress_require_assigned($deckId,$explicit,$counts,(string)($inventory['format']??''));
     if((int)($inventory['deck']['id']??0)!==$deckId)throw new DomainException('La ficha no corresponde al deck asignado.');
     $tasks=[];
     foreach($manifest['stages'] as $stage)foreach($stage['tasks'] as $task){
