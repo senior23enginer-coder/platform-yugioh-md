@@ -1,0 +1,29 @@
+name: Probe native decks eligible for assigned A01
+on:
+  push:
+    branches: [feat/gpt-authoritative-four-deck-surfaces-20261123]
+    paths: [.github/workflows/probe-loaded-decks-temporary.yml]
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enumerate native decklist GET endpoints without changing server state
+        run: |
+          python3 - <<'PY'
+          import urllib.request,json,collections,re,time
+          base='https://stationxtulua.com/yugioh/'
+          ids=[650,653,656,660,665,670,671,673,677,684,687,699,704,705,706,707]
+          for id in ids:
+            for uri in (f'{base}api/decklist?deck_id={id}', f'{base}?api=deck_builder&deck_id={id}'):
+              try:
+                with urllib.request.urlopen(urllib.request.Request(uri,headers={'User-Agent':'StationX-A01-EligibilityAudit/1'}),timeout=25) as response:
+                  data=response.read(250000)
+                j=json.loads(data)
+                if not isinstance(j,dict):continue
+                print(json.dumps({'id':id,'uri_type':'rest' if '/api/' in uri else 'native','keys':list(j.keys()),'ok':j.get('ok'),'error':j.get('message'),'card_keys':list((j.get('cards') or [{}])[0].keys()) if isinstance(j.get('cards'),list) and j.get('cards') else [],'zones':dict(collections.Counter(str(c.get('section')).lower() for c in j.get('cards',[]) if isinstance(c,dict))),'deck_keys':list((j.get('deck') or {}).keys()) if isinstance(j.get('deck'),dict) else []},ensure_ascii=False),flush=True)
+                break
+              except Exception as error:
+                print(json.dumps({'id':id,'endpoint':'rest' if '/api/' in uri else 'native','error':str(error)[:100]}),flush=True)
+          PY
