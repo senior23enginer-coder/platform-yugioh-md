@@ -37,8 +37,9 @@
     return Array.isArray(route?.hand_photos)?route.hand_photos:[];
   }
   function brief(profile={}){
-    const raw=publicText(profile['Resumen para ficha']);
-    return raw?firstSentence(raw,250):'';
+    // A01 already validates the <=250-character summary. Keep all sentences;
+    // taking only the first one silently loses player-facing instructions.
+    return publicText(profile['Resumen para ficha']);
   }
   function gamePlan(profile={}){return publicText(profile['Cómo se juega']);}
   function risks(profile={}){return publicText(profile['Qué vigilar']);}
