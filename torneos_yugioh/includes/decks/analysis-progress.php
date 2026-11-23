@@ -29,7 +29,7 @@ function ygo_progress_manifest(string $app): array {
             if($stage['mandatory'])$mandatory++;else $optional++;
         }
     }
-    if($mandatory!==35||$optional!==3)throw new LogicException('Cantidad de tareas no coincide con el contrato.');
+    if($mandatory!==37||$optional!==3)throw new LogicException('Cantidad de tareas no coincide con el contrato.');
     return $doc;
 }
 function ygo_progress_inventory_counts(array $inventory): array {
