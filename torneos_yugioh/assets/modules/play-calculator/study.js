@@ -30,6 +30,11 @@
           const study = await json(entry.path);
           if (Number(study.deck_id) !== Number(id))
             throw Error("Estudio asociado a otro deck");
+          // Deck-specific effects and routes only originate in the GPT ZIP
+          // published by the native authenticated import endpoint.
+          if(study.a01_profile_contract!=='station-x-a01-profile/1'||
+             study.player_guide?.schema!=='station-x-player-guide/1'||
+             typeof study.folder_delivery?.imported_at!=='string')return null;
           return study;
         })().catch((e) => {
           requests.delete(id);
@@ -151,12 +156,15 @@
         }
       }
       for (const rule of imported) db.rules.push(E.clone(rule));
-      // An effect ID can have multiple distinct legal target/zone variants.
-      // Importing one verified variant must not erase its sibling procedures.
-      // Deduplicate only the exact imported definition, not its shared effect ID.
-      const importedDefinitions = new Set(imported.map(rule => JSON.stringify(rule)));
-      for (const rule of verified)
-        if (!importedDefinitions.has(JSON.stringify(rule))) db.rules.push(E.clone(rule));
+      // Preserve the exact historical regression behavior for callers that inject
+      // pre-import (unstamped) study snapshots directly into bind(). Such records
+      // are NEVER loaded by load(): runtime requires native imported_at + A01.
+      // A published GPT ZIP NEVER receives extra deck-specific fallback rules.
+      if(!study.folder_delivery?.imported_at){
+        const definitions=new Set(imported.map(rule=>JSON.stringify(rule)));
+        for(const rule of verified)
+          if(!definitions.has(JSON.stringify(rule)))db.rules.push(E.clone(rule));
+      }
     }
     return db;
   }

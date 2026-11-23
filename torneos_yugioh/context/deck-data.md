@@ -1,5 +1,15 @@
 # Importar / exportar Data
 
+## Contrato de fuente estratégica única (23-11-2026)
+
+La decklist física en BD es la fuente de identidad, formato, Main, Extra, Side, Reserva y cantidades. Main y Extra con copias positivas son el mínimo para asignar A01–A10A; Side y Reserva son opcionales, sin mover cartas desde Reserva ni inventar Side. El formato es obligatorio y el deck necesita asignación expresa del usuario. Una carpeta histórica o un deck registrado sin cartas no constituye una ejecución de A01.
+
+Las siguientes superficies de jugador obtienen sus datos de la **versión GPT activada por el importador ZIP nativo** mediante `checked_studies[deck_id].path` y contrato A01 certificado: (1) estilo y arquetipo, (2) resumen/plan de la ficha, (3) biblioteca documental de Mis combos y estrategias, y (4) reglas de efecto específicas en Calculadora de jugadas. Sin ese contrato publicado con `folder_delivery.imported_at` se muestra “Sin análisis importado”, no el estilo de las fichas antiguas ni un plan sintetizado. La ficha conserva nombre/equipo/estadísticas de BD y el editor de creaciones propias sigue almacenando su historial separado; **una creación manual no se presenta como una ruta importada desde GPT**.
+
+La calculadora conserva el motor físico, el inventario y el tablero nativos. Su estudio activo solo puede añadir reglas `record.calculator.rules` de la versión GPT importada. Rutas documentales sin transición ejecutable no se convierten en efectos ni en combos certificados. Las reglas verificadas heredadas solo sirven como referencia de regresión para paquetes históricos inyectados en pruebas aisladas; no alimentan acciones específicas nuevas de una versión publicada. `preview` debe cotejar identidad, inventario y contratos, y `commit` debe generar versión y `imported_at`; publicar código por FTP/GitHub no equivale a importar Data.
+
+El estado del lote A01 se controla por deck y por tarea: un preflight real Main+Extra **no cierra A01-T1–T5**; T1 requiere diagnóstico fundado, T2 seis textos pedagógicos, T3 propósitos y fuentes, T4 paridad documental/JSON y T5 importación/render/export comprobados. No publicar ni declarar completitud sin las evidencias individuales.
+
 La ficha de cualquier deck tiene una entrada independiente con tres acciones:
 
 - **Exportar listado de cartas:** TXT del inventario nativo, separado por Main, Extra, Side y Reserva, con cantidades y nombres bilingües cuando están documentados. Reutiliza el exportador existente.

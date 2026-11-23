@@ -2,11 +2,10 @@
   "schema": "station-x-a01-a10-task-manifest/1",
   "applicable_only_to_user_assigned_deck": true,
   "required_sections": [
-    "main",
-    "extra",
-    "side"
+    "main"
   ],
   "optional_sections": [
+    "side",
     "reserve"
   ],
   "analysis_is_not_triggered_by_this_manifest": true,
@@ -237,5 +236,19 @@
         }
       ]
     }
-  ]
+  ],
+  "extra_deck_policy": {
+    "required_for": [
+      "tcg",
+      "tcg_advanced",
+      "tcg_traditional",
+      "ocg",
+      "ocg_advanced"
+    ],
+    "optional_for": [
+      "goat",
+      "rush_duel",
+      "rush"
+    ]
+  }
 }

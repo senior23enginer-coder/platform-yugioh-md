@@ -51,9 +51,10 @@
         ? `<span class="profile-team-logo"><img src="${escapeHtml(teamLogo)}" alt="${escapeHtml(deck.team || 'Equipo')}" onerror="this.parentElement.replaceWith(Object.assign(document.createElement('span'),{className:'team-inline-badge',textContent:'${escapeHtml(teamCode)}'}))"></span><span>${escapeHtml(deck.team || 'Sin equipo')}</span>`
         : `<span class="team-inline-badge" style="--team-primary:${primary};--team-secondary:${secondary};">${escapeHtml(teamCode)}</span> ${escapeHtml(deck.team || 'Sin equipo')}`;
     }
-    document.querySelector('[data-profile-archetype]').textContent = deck.display_archetype || deck.archetype || deck.name;
-    const editorialStyle = (data.deckAnalysisProfiles || []).find(row => String(row.deck_id) === String(deck.id))?.play_style;
-    document.querySelector('[data-profile-style]').textContent = String(deck.display_style || editorialStyle || '').trim() || 'Sin estilo registrado';
+    // Identity remains native; player-facing archetype/style come exclusively from the
+    // A01 profile activated by the authenticated Station X ZIP import.
+    document.querySelector('[data-profile-archetype]').textContent = deck.display_archetype || 'Sin análisis importado';
+    document.querySelector('[data-profile-style]').textContent = String(deck.display_style || '').trim() || 'Sin análisis importado';
     document.querySelector('[data-profile-cards]').textContent = deck.key_cards || 'Pendiente de registrar cartas clave.';
     document.querySelector('[data-profile-variations]').textContent = deck.variations || 'Pendiente de registrar variaciones.';
     document.querySelector('[data-profile-notes]').textContent = deck.notes || 'Ficha editable desde Gestion.';

@@ -2,7 +2,7 @@
   "schema": "station-x-p06-test-source-baseline/1",
   "date": "2026-11-21",
   "purpose": "Explicitly review every new test program; use declarative fixture data for deck/card scenarios instead of new per-card JS/PHP files",
-  "baseline_total": 212,
+  "baseline_total": 213,
   "paths": [
     "torneos_yugioh/tests/best_of_rule_regression_test.js",
     "torneos_yugioh/tests/bo3_production_guard_test.js",
@@ -29,6 +29,7 @@
     "torneos_yugioh/tests/calculator_horus_sarcophagus_four_uses_test.cjs",
     "torneos_yugioh/tests/calculator_horus_state_test.cjs",
     "torneos_yugioh/tests/calculator_import_test.php",
+    "torneos_yugioh/tests/calculator_imported_gpt_authority_test.cjs",
     "torneos_yugioh/tests/calculator_integrity_test.cjs",
     "torneos_yugioh/tests/calculator_operations_registry_test.cjs",
     "torneos_yugioh/tests/calculator_portable_horus_test.cjs",

@@ -88,32 +88,32 @@
         "policy": {
             "checked_studies": {
                 "1": {
-                    "path": "assets\/editorial\/1.json"
+                    "path": "assets/editorial/1.json"
                 },
                 "2": {
-                    "path": "assets\/editorial\/2.json"
+                    "path": "assets/editorial/2.json"
                 },
                 "3": {
-                    "path": "assets\/editorial\/3.json"
+                    "path": "assets/editorial/3.json"
                 }
             }
         },
         "files": {
-            "assets\/editorial\/1.json": {
+            "assets/editorial/1.json": {
                 "deck_id": 1,
                 "profile": {
                     "Tipo de estrategia": "Study",
                     "Arquetipo": "Documented Alpha"
                 }
             },
-            "assets\/editorial\/2.json": {
+            "assets/editorial/2.json": {
                 "deck_id": 2,
                 "profile": {
                     "Tipo de estrategia": "Control",
                     "Arquetipo": "Documented Beta"
                 }
             },
-            "assets\/editorial\/3.json": {
+            "assets/editorial/3.json": {
                 "deck_id": 3,
                 "profile": {
                     "Tipo de estrategia": "null",
@@ -128,8 +128,8 @@
                 "name": "Alpha",
                 "style": "Native",
                 "archetype": "Alpha",
-                "display_style": "Manual",
-                "display_archetype": "Documented Alpha",
+                "display_style": "",
+                "display_archetype": "Sin análisis importado",
                 "card_count": 5,
                 "has_cards": true
             },
@@ -138,8 +138,8 @@
                 "name": "Beta",
                 "style": "Editable",
                 "archetype": "Custom",
-                "display_style": "Control",
-                "display_archetype": "Custom",
+                "display_style": "",
+                "display_archetype": "Sin análisis importado",
                 "card_count": 0,
                 "has_cards": false
             },
@@ -148,8 +148,8 @@
                 "name": "Gamma",
                 "style": "Rush Duel",
                 "archetype": "Gamma",
-                "display_style": "Fusión",
-                "display_archetype": "Gamma Fusion",
+                "display_style": "",
+                "display_archetype": "Sin análisis importado",
                 "card_count": 0,
                 "has_cards": false
             },
@@ -159,7 +159,7 @@
                 "style": "",
                 "archetype": "",
                 "display_style": "",
-                "display_archetype": "Delta",
+                "display_archetype": "Sin análisis importado",
                 "card_count": 0,
                 "has_cards": false
             },
@@ -169,7 +169,7 @@
                 "style": "Pendiente de documentar",
                 "archetype": "",
                 "display_style": "",
-                "display_archetype": "Empty",
+                "display_archetype": "Sin análisis importado",
                 "card_count": 1,
                 "has_cards": true
             }
@@ -244,8 +244,8 @@
                 "name": "Deck",
                 "style": "",
                 "archetype": "",
-                "display_style": "Current",
-                "display_archetype": "Deck",
+                "display_style": "",
+                "display_archetype": "Sin análisis importado",
                 "card_count": 0,
                 "has_cards": false
             },
@@ -255,7 +255,7 @@
                 "style": "",
                 "archetype": "",
                 "display_style": "",
-                "display_archetype": "Deck",
+                "display_archetype": "Sin análisis importado",
                 "card_count": 0,
                 "has_cards": false
             },
@@ -264,8 +264,8 @@
                 "name": "Deck",
                 "style": "",
                 "archetype": "",
-                "display_style": "String id not retired",
-                "display_archetype": "Deck",
+                "display_style": "",
+                "display_archetype": "Sin análisis importado",
                 "card_count": 0,
                 "has_cards": false
             }
@@ -305,13 +305,13 @@
                     "path": "outside.json"
                 },
                 "2": {
-                    "path": "assets\/editorial-outside\/data.json"
+                    "path": "assets/editorial-outside/data.json"
                 },
                 "3": {
-                    "path": "assets\/editorial\/wrong.json"
+                    "path": "assets/editorial/wrong.json"
                 },
                 "4": {
-                    "path": "assets\/editorial\/malformed.json"
+                    "path": "assets/editorial/malformed.json"
                 }
             }
         },
@@ -322,19 +322,19 @@
                     "Tipo de estrategia": "MUST NOT LEAK"
                 }
             },
-            "assets\/editorial-outside\/data.json": {
+            "assets/editorial-outside/data.json": {
                 "deck_id": 2,
                 "profile": {
                     "Tipo de estrategia": "MUST NOT LEAK"
                 }
             },
-            "assets\/editorial\/wrong.json": {
+            "assets/editorial/wrong.json": {
                 "deck_id": 999,
                 "profile": {
                     "Tipo de estrategia": "MUST NOT LEAK"
                 }
             },
-            "assets\/editorial\/malformed.json": "{ broken"
+            "assets/editorial/malformed.json": "{ broken"
         },
         "cards": [],
         "profiles": [],
@@ -345,7 +345,7 @@
                 "style": "",
                 "archetype": "",
                 "display_style": "",
-                "display_archetype": "Deck",
+                "display_archetype": "Sin análisis importado",
                 "card_count": 0,
                 "has_cards": false
             },
@@ -355,7 +355,7 @@
                 "style": "",
                 "archetype": "",
                 "display_style": "",
-                "display_archetype": "Deck",
+                "display_archetype": "Sin análisis importado",
                 "card_count": 0,
                 "has_cards": false
             },
@@ -365,7 +365,7 @@
                 "style": "",
                 "archetype": "",
                 "display_style": "",
-                "display_archetype": "Deck",
+                "display_archetype": "Sin análisis importado",
                 "card_count": 0,
                 "has_cards": false
             },
@@ -375,7 +375,7 @@
                 "style": "",
                 "archetype": "",
                 "display_style": "",
-                "display_archetype": "Deck",
+                "display_archetype": "Sin análisis importado",
                 "card_count": 0,
                 "has_cards": false
             }
@@ -406,13 +406,13 @@
         "policy": {
             "checked_studies": {
                 "1": {
-                    "path": "assets\/editorial\/..\/..\/outside.json"
+                    "path": "assets/editorial/../../outside.json"
                 },
                 "2": {
-                    "path": "assets\/editorial\/missing.json"
+                    "path": "assets/editorial/missing.json"
                 },
                 "3": {
-                    "path": "assets\/editorial\/no-profile.json"
+                    "path": "assets/editorial/no-profile.json"
                 }
             }
         },
@@ -423,7 +423,7 @@
                     "Tipo de estrategia": "MUST NOT LEAK"
                 }
             },
-            "assets\/editorial\/no-profile.json": {
+            "assets/editorial/no-profile.json": {
                 "deck_id": 3,
                 "profile": "not a profile"
             }
@@ -437,7 +437,7 @@
                 "style": "",
                 "archetype": "",
                 "display_style": "",
-                "display_archetype": "Deck",
+                "display_archetype": "Sin análisis importado",
                 "card_count": 0,
                 "has_cards": false
             },
@@ -447,7 +447,7 @@
                 "style": "",
                 "archetype": "",
                 "display_style": "",
-                "display_archetype": "Deck",
+                "display_archetype": "Sin análisis importado",
                 "card_count": 0,
                 "has_cards": false
             },
@@ -457,7 +457,7 @@
                 "style": "",
                 "archetype": "",
                 "display_style": "",
-                "display_archetype": "Deck",
+                "display_archetype": "Sin análisis importado",
                 "card_count": 0,
                 "has_cards": false
             }
@@ -482,18 +482,18 @@
         "profiles": [
             {
                 "deck_id": 1,
-                "play_style": "  N\/A  "
+                "play_style": "  N/A  "
             }
         ],
         "policy": {
             "checked_studies": {
                 "1": {
-                    "path": ".\/assets\/editorial\/data.json"
+                    "path": "./assets/editorial/data.json"
                 }
             }
         },
         "files": {
-            "assets\/editorial\/data.json": {
+            "assets/editorial/data.json": {
                 "deck_id": 1,
                 "profile": {
                     "Tipo de estrategia": "  ",
@@ -509,8 +509,8 @@
                 "name": "Álpha",
                 "style": "TCG Advanced",
                 "archetype": "álpha",
-                "display_style": "Combo",
-                "display_archetype": "Actual",
+                "display_style": "",
+                "display_archetype": "Sin análisis importado",
                 "card_count": 0,
                 "has_cards": false
             },
@@ -519,8 +519,8 @@
                 "name": "Beta",
                 "style": "Control",
                 "archetype": "Independent",
-                "display_style": "Control",
-                "display_archetype": "Independent",
+                "display_style": "",
+                "display_archetype": "Sin análisis importado",
                 "card_count": 0,
                 "has_cards": false
             }
@@ -546,8 +546,8 @@
                 "name": "Native",
                 "style": "Control",
                 "archetype": "",
-                "display_style": "Control",
-                "display_archetype": "Native",
+                "display_style": "",
+                "display_archetype": "Sin análisis importado",
                 "card_count": 0,
                 "has_cards": false
             }
@@ -574,7 +574,7 @@
                 "style": "Sin estilo",
                 "archetype": "",
                 "display_style": "",
-                "display_archetype": "Native",
+                "display_archetype": "Sin análisis importado",
                 "card_count": 0,
                 "has_cards": false
             }

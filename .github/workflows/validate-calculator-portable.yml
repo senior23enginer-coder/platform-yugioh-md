@@ -65,6 +65,8 @@ jobs:
         run: node torneos_yugioh/tests/calculator_portable_horus_test.cjs
       - name: Validate Memento portable parity and fail-closed import
         run: node torneos_yugioh/tests/calculator_portable_memento_test.cjs
+      - name: Ensure published GPT contracts never receive legacy deck-specific fallbacks
+        run: node torneos_yugioh/tests/calculator_imported_gpt_authority_test.cjs
       - name: Verify browser module order and calculator bootstrapping
         run: node torneos_yugioh/tests/calculator_browser_bootstrap_test.cjs
       - name: Verify Crystron Smiger live-state rules and shared usage

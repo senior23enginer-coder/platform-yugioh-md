@@ -4,7 +4,9 @@ const L=require('./deck-analysis-ledger.cjs');
 const stages=['A01','A02','A03','A04','A05','A06','A07','A08','A09','A10A','A10B'];
 const counts=[5,3,3,3,4,4,4,4,4,3,3];
 const manifest={schema:'station-x-a01-a10-task-manifest/1',
- required_sections:['main','extra','side'],optional_sections:['reserve'],
+ required_sections:['main'],optional_sections:['side','reserve'],
+ extra_deck_policy:{required_for:['tcg','tcg_advanced','tcg_traditional','ocg','ocg_advanced'],
+  optional_for:['goat','rush_duel','rush']},
  stages:stages.map((stage_id,i)=>({stage_id,mandatory:stage_id!=='A10B',
   tasks:Array.from({length:counts[i]},(_,j)=>({
     task_id:stage_id+'-T'+(stage_id==='A10B'?j+4:j+1),
@@ -12,14 +14,19 @@ const manifest={schema:'station-x-a01-a10-task-manifest/1',
   }))}))};
 const inventoryCounts={main:40,extra:15,side:15};
 const at='2026-11-21T00:00:00.000Z';
-const args={deckId:123456,explicitlyAssigned:true,inventoryCounts,manifest,at};
+const args={deckId:123456,explicitlyAssigned:true,format:'tcg_advanced',inventoryCounts,manifest,at};
 L.validateManifest(manifest);
 assert.throws(()=>L.createLedger({...args,explicitlyAssigned:false}),/EXPLICIT_USER/);
 assert.throws(()=>L.createLedger({...args,deckId:null}),/EXPLICIT_USER/);
-for(const section of ['main','extra','side'])
+for(const section of ['main','extra'])
  assert.throws(()=>L.createLedger({...args,inventoryCounts:{...inventoryCounts,[section]:0}}),
    new RegExp('REQUIRED_'+section.toUpperCase()));
-assert(L.createLedger({...args,inventoryCounts:{...inventoryCounts,reserve:0}}));
+assert(L.createLedger({...args,inventoryCounts:{...inventoryCounts,side:0,reserve:0}}));
+for(const format of ['goat','rush_duel','rush']){
+ const lean={...args,format,inventoryCounts:{main:40,extra:0,side:0,reserve:0}};
+ assert(L.createLedger(lean),'Main-only GOAT/Rush must be admitted');
+}
+assert.throws(()=>L.createLedger({...args,format:'unspecified'}),/FORMAT_UNSUPPORTED/);
 assert(L.createLedger({...args,inventoryCounts:{...inventoryCounts,reserve:3}}));
 assert.throws(()=>L.createLedger({...args,inventoryCounts:{...inventoryCounts,reserve:-1}}),
   /INVALID_OPTIONAL_RESERVE/);

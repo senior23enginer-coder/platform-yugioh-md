@@ -48,6 +48,7 @@ run(process.execPath, ['torneos_yugioh/tests/calculator_active_coverage_test.cjs
 run(process.execPath, ['torneos_yugioh/tests/calculator_portable_horus_test.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/calculator_horus_sarcophagus_four_uses_test.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/calculator_portable_memento_test.cjs']);
+run(process.execPath, ['torneos_yugioh/tests/calculator_imported_gpt_authority_test.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/calculator_crystron_smiger_test.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/calculator_crystron_thystvern_test.cjs']);
 run(process.execPath, ['torneos_yugioh/tests/calculator_crystron_thystvern_field_test.cjs']);

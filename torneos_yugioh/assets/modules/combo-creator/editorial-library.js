@@ -10,6 +10,27 @@
       if(!entry||entry.presentation!=='curated-v62'){
         host.innerHTML='<p>No hay guías visuales documentadas disponibles para este deck en la biblioteca actual.</p>';return;
       }
+      const source=entry.path;
+      if(typeof source!=='string'||!/^\.\/assets\/editorial\/[A-Za-z0-9_./-]+\.json$/.test(source)||source.includes('..'))
+        throw Error('Ruta de importación inválida');
+      const documentResponse=await fetch(source,{cache:'no-store',credentials:'same-origin'});
+      if(!documentResponse.ok)throw Error('No se pudo leer el paquete activo');
+      const study=await documentResponse.json();
+      if(!isCurrent())return;
+      // Keep a separately identified, GPT-derived V40 documentary delivery visible
+      // until a native A01-certified ZIP replaces it; never label it certified.
+      const certified=study.a01_profile_contract==='station-x-a01-profile/1'&&
+        study.player_guide?.schema==='station-x-player-guide/1'&&
+        typeof study.folder_delivery?.imported_at==='string'&&!!study.folder_delivery.imported_at;
+      const origin=study.folder_delivery||{};
+      const documentedLegacy=typeof origin.source_file==='string'&&
+        /^torneos_yugioh\/context\/gpt\/01_INFORMACION_PARA_IMPORTAR\/decks\/DECK_[A-Za-z0-9_]+\/DECK_[A-Za-z0-9_]+_CONTENIDO_CURADO\.md$/.test(origin.source_file)&&
+        /^[a-f0-9]{64}$/i.test(String(origin.source_sha256||''));
+      if(study.schema!=='station-x-curated-v62'||Number(study.deck_id)!==Number(deck.id)||
+         !(certified||documentedLegacy)||!Array.isArray(study.routes)||!study.routes.length){
+        host.innerHTML='<p>Sin combos y estrategias importados desde GPT para este deck.</p>';
+        return;
+      }
       await root.YgoCheckedStudy.render(host,deck,{...entry,libraryOnly:true},isCurrent);
     }catch(error){
       if(!isCurrent())return;

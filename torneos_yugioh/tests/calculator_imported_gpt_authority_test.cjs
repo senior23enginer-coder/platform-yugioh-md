@@ -1,0 +1,26 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const E=require('../assets/modules/play-calculator/engine.js');
+const Study=require('../assets/modules/play-calculator/study.js');
+const facts=require('../assets/modules/play-calculator/card-facts.json');
+const raw=JSON.parse(fs.readFileSync(path.join(__dirname,'../assets/editorial/20261117-folder-delivery-v40/671.json'),'utf8'));
+const rows=raw.cards.flatMap(c=>c.slots.map(s=>({id:s.card_id,deck_id:671,card_name:c.name,section:s.section,quantity:s.quantity})));
+const catalog=E.catalog({id:671,name:'Memento',format_codes:['tcg_advanced']},rows);
+const imported=JSON.parse(JSON.stringify(raw));
+imported.a01_profile_contract='station-x-a01-profile/1';
+imported.player_guide={schema:'station-x-player-guide/1',featured_cards:[],phases:[]};
+imported.folder_delivery={...imported.folder_delivery,imported_at:'2026-11-23T19:19:29+00:00'};
+const none=Study.bind(facts,[{catalog,study:{...imported,calculator:undefined}}]);
+assert.equal(none.rules.length,0,'Published GPT record without executable rules must never inherit built-in deck rules');
+const limited=JSON.parse(JSON.stringify(imported));limited.calculator.rules=[raw.calculator.rules[0]];
+const one=Study.bind(facts,[{catalog,study:limited}]);
+assert.equal(one.ruleImports[0]?.status,'accepted');
+assert.equal(one.rules.length,1,'Published GPT record must provide exactly its imported rules, not 353 legacy variants');
+const tampered=JSON.parse(JSON.stringify(limited));
+tampered.calculator.rules[0].resolve[0].to='banished';
+const rejected=Study.bind(facts,[{catalog,study:tampered}]);
+assert.equal(rejected.ruleImports[0]?.status,'rejected');
+assert.equal(rejected.rules.length,0,'Rejected GPT rules must not unlock hardcoded fallback variants');
+assert.equal(raw.calculator.rules.length,353,'Historical baseline must remain untouched');
+console.log(JSON.stringify({ok:true,deck_id:671,published_no_fallback:true,one_rule_exact:true,
+  rejected_rules_fail_closed:true,legacy_fixture_preserved:true}));

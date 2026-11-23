@@ -36,7 +36,7 @@ final class DeckMetadataResolver
         );
     }
 
-    /** Manual style wins, then the native deck style, then the identified study. */
+    /** Only the current, GPT-certified, imported study supplies the player-facing style and archetype. */
     public static function resolve(
         string $name,
         mixed $nativeStyle,
@@ -45,18 +45,8 @@ final class DeckMetadataResolver
         DeckStudyProfile $study,
         int $cardCount,
     ): DeckMetadata {
-        $style = self::description($manualStyle);
-        if ($style === '') {
-            $style = self::description($nativeStyle);
-        }
-        if ($style === '') {
-            $style = self::description($study->strategy) ?: self::description($study->style);
-        }
-
-        $archetype = self::archetype($nativeArchetype);
-        if ($archetype === '' || mb_strtolower($archetype) === mb_strtolower($name)) {
-            $archetype = self::archetype($study->archetype ?? $archetype);
-        }
-        return new DeckMetadata($style, $archetype ?: $name, $cardCount);
+        $style = self::description($study->strategy) ?: self::description($study->style);
+        $archetype = self::archetype($study->archetype);
+        return new DeckMetadata($style, $archetype ?: 'Sin análisis importado', $cardCount);
     }
 }

@@ -21,7 +21,26 @@ ck(ygo_progress_inventory_counts($inv)===['main'=>2,'extra'=>1,'side'=>1,'reserv
   'The optional Reserve must be empty without blocking admission.');
 expect_fail(static fn()=>ygo_progress_new_ledger(98765,$inv,$manifest,false,'2026-11-21T12:00:00Z'),
   'no assignment');
-foreach(['main','extra','side'] as $missing){
+$withoutSide=$inv;
+$withoutSide['cards']=array_values(array_filter($inv['cards'],static fn($r)=>$r['section']!=='side'));
+ck(ygo_progress_new_ledger(98765,$withoutSide,$manifest,true,'2026-11-21T12:00:00Z')['inventory_counts']['side']===0,
+  'Side must be optional under current Main+Extra minimum');
+// Format-specific admission: Rush Duel and GOAT can legally omit both Extra and Side.
+foreach(['goat','rush_duel','rush'] as $format){
+  $single=$inv;
+  $single['format']=$format;
+  $single['cards']=[['id'=>1,'section'=>'main','quantity'=>2]];
+  ck(ygo_progress_required_sections($format)===['main'],'Format must require Main only: '.$format);
+  ck(ygo_progress_new_ledger(98765,$single,$manifest,true,'2026-11-21T12:00:00Z')['inventory_counts']['extra']===0,
+    'GOAT/Rush Main-only deck incorrectly blocked: '.$format);
+}
+foreach(['tcg','tcg_advanced','tcg_traditional','ocg','ocg_advanced'] as $format){
+  ck(ygo_progress_required_sections($format)===['main','extra'],
+    'TCG/OCG minimum changed: '.$format);
+}
+expect_fail(static fn()=>ygo_progress_required_sections('unspecified'),
+  'Unverified format cannot be interpreted as TCG or GOAT');
+foreach(['main','extra'] as $missing){
   $copy=$inv;
   $copy['cards']=array_values(array_filter($copy['cards'],static fn($r)=>$r['section']!==$missing));
   expect_fail(static fn()=>ygo_progress_new_ledger(98765,$copy,$manifest,true,'2026-11-21T12:00:00Z'),
