@@ -13,6 +13,8 @@ on:
     branches: [base]
     paths:
       - 'torneos_yugioh/includes/decks/data-package.php'
+      - 'torneos_yugioh/includes/decks/analysis-progress.php'
+      - 'torneos_yugioh/tests/deck_analysis_progress_test.php'
       - 'torneos_yugioh/assets/modules/deck-guide/curated-study.js'
       - 'torneos_yugioh/tests/deck_data_test.php'
       - 'torneos_yugioh/tests/study_presentation_ui_test.cjs'
