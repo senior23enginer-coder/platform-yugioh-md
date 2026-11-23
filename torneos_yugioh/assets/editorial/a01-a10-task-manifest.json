@@ -17,15 +17,23 @@
       "tasks": [
         {
           "task_id": "A01-T1",
-          "description": "Identificar arquetipo, estrategia, condición de victoria y riesgos propios, con CIDs de piezas y evidencia oficial; adjuntar evidencia por CID/ID, fuente y control verificado, o bloqueo con causa y siguiente acción"
+          "description": "Diagnosticar por inventario y formato el arquetipo, motor principal/secundarios, clasificación estratégica justificada (Combo/Control/Midrange/Stun/Aggro/OTK/Híbrido), recursos, condiciones de victoria condicionales y riesgos, con CID, fuente y evidencia; si falta un requisito central, bloqueo con causa y siguiente acción."
         },
         {
           "task_id": "A01-T2",
-          "description": "Escribir Estilo breve y Resumen para ficha sin jerga de auditoría, con precondiciones reales de las acciones citadas; adjuntar evidencia por CID/ID, fuente y control verificado, o bloqueo con causa y siguiente acción"
+          "description": "Redactar y validar los seis campos de `record.profile` y su equivalente documental: arquetipo limpio, tipo específico, Estilo breve ≤190, Resumen para ficha ≤250, Cómo se juega y Qué vigilar; sin relleno, con condiciones reales, y paridad con el paquete estructurado disponible o bloqueo documentado."
         },
         {
           "task_id": "A01-T3",
-          "description": "Vincular cada propósito/objetivo a IDs de cartas, efectos y futuras rutas sin fabricar secuencias; adjuntar evidencia por CID/ID, fuente y control verificado, o bloqueo con causa y siguiente acción"
+          "description": "Registrar por propósito evidencia CID/zona/fuente/condición/riesgo y vínculos a `effect_id`/`motor_id`/`route_id` solo si existen; usar `PENDIENTE_DE_ENLACE_A05_A09` para enlaces futuros sin fabricar IDs, registrar siguiente verificación y reabrir solo la afirmación afectada cuando cambie su evidencia."
+        },
+        {
+          "task_id": "A01-T4",
+          "description": "Validar los seis campos A01, máximos de 190/250 caracteres, calidad sin relleno, fuente/CID e igualdad literal Markdown/`record.profile`, conservando inventario y declarando `a01_profile_contract` solo con evidencia; reportar cualquier divergencia sin modificar otros decks."
+        },
+        {
+          "task_id": "A01-T5",
+          "description": "Probar con el paquete del deck asignado importación, exportación/lectura y presentación en Station X, con casos de rechazo y preservación de IDs/rutas/fotos; registrar resultados reales, o dejar pendiente sin confundir pruebas sintéticas con certificación individual."
         }
       ]
     },
