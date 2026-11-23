@@ -1,0 +1,30 @@
+name: Temporary A01 branch source formatter
+on:
+  push:
+    branches: [fix/a01-memento-guide-ui-import-20261123]
+    paths:
+      - '.github/workflows/format-a01-pr-temporary.yml'
+permissions:
+  contents: write
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/a01-memento-guide-ui-import-20261123
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: node scripts/format-architecture.cjs
+      - name: Commit only the three PHP files that failed formatting
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add torneos_yugioh/src/Domain/DeckMetadata/DeckMetadataResolver.php torneos_yugioh/src/Infrastructure/Editorial/FilesystemDeckStudyReader.php torneos_yugioh/tests/deck_metadata_architecture_test.php
+          if ! git diff --cached --quiet; then
+            git commit -m 'style(A01): apply repository PHP formatter'
+            git push origin HEAD:fix/a01-memento-guide-ui-import-20261123
+          fi
