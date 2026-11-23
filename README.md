@@ -26,7 +26,10 @@ El contrato importable `station-x-deck-package/1` mantiene `record` estructurado
 
 ### Ledger por deck, tareas y tiempos reales
 
-El único manifiesto de referencia, mantenido en GPT, es `02_PROMPT_PARA_CODEX/contrato_tareas_a01_a10.json`, con **35 tareas A01–A10A obligatorias y 3 A10B opcionales**. En este repositorio, `scripts/deck-analysis-ledger.cjs` ofrece funciones genéricas, sin efectos secundarios, para:
+A01 incorpora T4/T5 (paridad Markdown/JSON y prueba de importación/presentación). Los checklists históricos de 35 tareas no se completan por inferencia; los paquetes certificados declaran `record.a01_profile_contract=station-x-a01-profile/1`.
+
+
+El único manifiesto de referencia, mantenido en GPT, es `02_PROMPT_PARA_CODEX/contrato_tareas_a01_a10.json`, con **37 tareas A01–A10A obligatorias y 3 A10B opcionales**. En este repositorio, `scripts/deck-analysis-ledger.cjs` ofrece funciones genéricas, sin efectos secundarios, para:
 
 - Rechazar una inicialización sin asignación expresa, sin las tres zonas cargadas o sin un manifiesto válido.
 - Conservar `PENDING`, `RUNNING`, `PAUSED`, `BLOCKED` y `COMPLETE`, IDs estables y evidencia obligatoria antes de completar cualquier tarea. A10B no cuenta ni puede arrancar si no se solicitó.
