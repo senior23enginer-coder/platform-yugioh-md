@@ -172,9 +172,36 @@ function ygo_data_presentation_quality(array $record): array {
         'visual_complete'=>$ready];
 }
 
+/**
+ * A01 profile contract is opt-in for newly certified GPT packages.
+ * Older records remain readable but are not automatically certified A01-T4/T5.
+ */
+function ygo_data_validate_a01_profile(array $record): void {
+    if(!array_key_exists('a01_profile_contract',$record))return;
+    if(($record['a01_profile_contract']??null)!=='station-x-a01-profile/1')
+        throw new InvalidArgumentException('Contrato A01 del perfil desconocido.');
+    $profile=$record['profile']??null;
+    if(!is_array($profile))throw new InvalidArgumentException('Falta el perfil A01 de seis campos.');
+    foreach(['Arquetipo','Tipo de estrategia','Estilo breve','Resumen para ficha','Cómo se juega','Qué vigilar'] as $field){
+        $value=$profile[$field]??null;
+        if(!is_string($value)||trim($value)===''||$value!==trim($value)
+           ||preg_match('/[<>]/u',$value)||preg_match('/\\s{3,}/u',$value)
+           ||preg_match('/cat[aá]logo completo|consultar el plan|^pendiente\\b|^sin datos\\b|dictamen editorial|ganas siempre/iu',$value))
+            throw new InvalidArgumentException('Campo A01 inválido o incompleto: '.$field);
+        $length=mb_strlen($value,'UTF-8');
+        if(($field==='Estilo breve'&&$length>190)||($field==='Resumen para ficha'&&$length>250))
+            throw new InvalidArgumentException('Campo A01 excede su longitud: '.$field);
+    }
+    if(preg_match('/estudio individual|iteraci[oó]n|versi[oó]n\\s*[v0-9]|dictamen|\\d{4}-\\d{2}-\\d{2}/iu',$profile['Arquetipo']))
+        throw new InvalidArgumentException('El arquetipo A01 contiene auditoría, versión o fecha.');
+    if(mb_strlen($profile['Cómo se juega'],'UTF-8')<60||mb_strlen($profile['Qué vigilar'],'UTF-8')<15)
+        throw new InvalidArgumentException('Falta el plan completo o los riesgos estratégicos A01.');
+}
+
 function ygo_data_validate(array $record,array $inventory): void {
     $id=(int)$inventory['deck']['id'];
     if(($record['schema']??'')!=='station-x-curated-v62'||(int)($record['deck_id']??0)!==$id)throw new InvalidArgumentException('El contenido no corresponde al deck de esta ficha.');
+    ygo_data_validate_a01_profile($record);
     if(isset($record['calculator']))ygo_data_calculator("```json\n".ygo_data_json($record['calculator'])."\n```",$record,$id);
     // New GPT packages may certify visual completeness. False certification is
     // rejected; older documentary packages remain importable with an explicit warning.
