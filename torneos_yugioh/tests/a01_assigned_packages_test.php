@@ -74,6 +74,19 @@ foreach($assigned as $id){
   $scratch=sys_get_temp_dir().'/stationx-a01-'.$id.'-'.bin2hex(random_bytes(8));
   mkdir($scratch.'/assets/editorial',0700,true);
   $registry=$scratch.'/assets/editorial/strategy-content-state.json';file_put_contents($registry,ygo_data_json($state));
+  // Reproduce the existing public assets of the real app in the isolated root.
+  // Do not invent, substitute or skip missing photographs. Copy verified bytes only.
+  array_walk_recursive($imported,static function($value,$key)use($app,$scratch,$files):void{
+   if(!is_string($value)||$value===''||!in_array($key,['image','full_image'],true)||isset($files[$value]))return;
+   $source=ygo_data_local($app,$value);
+   if(!$source)throw new RuntimeException('Existing photo missing: '.$value);
+   $relative=preg_replace('~^\\./~','',$value);
+   if(!preg_match('~^assets/(?:[a-zA-Z0-9_-]+/)*[a-zA-Z0-9_.-]+\\.(?:png|jpe?g|webp|gif)$~iD',$relative))throw new RuntimeException('Unexpected existing asset path: '.$value);
+   $dest=$scratch.'/'.$relative;
+   if(!is_dir(dirname($dest))&&!mkdir(dirname($dest),0700,true))throw new RuntimeException('Cannot reproduce asset directory');
+   if(!is_file($dest)&&!copy($source,$dest))throw new RuntimeException('Cannot reproduce asset');
+   if(hash_file('sha256',$source)!==hash_file('sha256',$dest)||!getimagesize($dest))throw new RuntimeException('Invalid reproduced asset');
+  });
   ygo_data_publish($scratch,$id,$imported,$files,hash('sha256',ygo_data_json($entry)));
   [$activeEntry,$active]=ygo_data_current($scratch,$id);
   if($active['profile']!==$record['profile']||$active['player_guide']!==$record['player_guide'])throw new RuntimeException('Publish lost A01');
