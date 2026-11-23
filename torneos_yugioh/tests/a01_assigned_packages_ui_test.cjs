@@ -2,7 +2,9 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {chromium}=require('playwright');
 const app=path.resolve(__dirname,'..'),gpt=process.argv[2];
-const ids=[671,677,665,650,653,656,670,684,687,660,673,699,704,705,706,707];
+const assigned=[671,677,665,650,653,656,670,684,687,660,673,699,704,705,706,707];
+const ids=process.argv[3]?[Number(process.argv[3])]:assigned;
+assert(ids.every(id=>assigned.includes(id)));
 const index=JSON.parse(fs.readFileSync(path.join(app,'assets/editorial/deck-data-sources/index.json'),'utf8'));
 const out=path.join(app,'../outputs/a01-assigned');
 fs.mkdirSync(out,{recursive:true});
@@ -20,7 +22,7 @@ const fields=['Arquetipo','Tipo de estrategia','Estilo breve','Resumen para fich
     const page=await browser.newPage({viewport:{width,height:920}});const errors=[];
     try{
      page.on('pageerror',e=>errors.push(e.message));
-     await page.route('**/*',r=>new URL(r.request().url()).pathname==='/'?r.fulfill({status:200,contentType:'text/html',body:'<html><body><main id="test-guide"></main></body></html>'}):r.fulfill({status:404,body:''}));
+     await page.route('**/*',r=>new URL(r.request().url()).pathname==='/'?r.fulfill({status:200,contentType:'text/html',body:'<html><body><main id="test-guide"></main></body></html>'}):/\.(png|jpe?g|webp)$/i.test(new URL(r.request().url()).pathname)?r.fulfill({status:200,contentType:'image/png',body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a4vUAAAAASUVORK5CYII=','base64')}):r.fulfill({status:404,body:''}));
      await page.goto('http://stationx.test/');
      await page.addScriptTag({content:'window.YgoFunctionalRole={project:data=>data,connectionHelp:{}};window.YgoStudyPhotoViewer={create:()=>({open(){},dispose(){}})};'});
      for(const file of ['presentation-contract.js','endboard.js','delivery-extensions.js','curated-study.js'])await page.addScriptTag({path:path.join(app,'assets/modules/deck-guide',file)});
@@ -30,10 +32,10 @@ const fields=['Arquetipo','Tipo de estrategia','Estilo breve','Resumen para fich
      for(const field of fields.filter(x=>x!=='Cómo se juega'))assert(norm(profile).includes(norm(record.profile[field])),'Missing or truncated '+field);
      assert.equal(await page.locator('.curated-featured-card').count(),record.player_guide.featured_cards.length);
      assert.equal(await page.locator('.curated-game-phase').count(),4);
-     for(const featured of record.player_guide.featured_cards){
+     for(const [i,featured] of record.player_guide.featured_cards.entries()){
       const card=record.cards.find(c=>c.cid===featured.cid);assert(card);
-      const actual=await page.locator('.curated-featured-card').filter({hasText:card.name}).innerText();
-      assert(norm(actual).includes(norm(featured.reason))&&norm(actual).includes(norm(featured.when_to_use)));
+      const actual=await page.locator('.curated-featured-card').nth(i).innerText();
+      assert(norm(actual).includes(norm(card.name))); assert(norm(actual).includes(norm(featured.reason))&&norm(actual).includes(norm(featured.when_to_use)));
      }
      await page.locator('.curated-full-profile summary').click();
      assert(norm(await page.locator('.curated-full-profile').innerText()).includes(norm(record.profile['Cómo se juega'])),'Full plan truncated');
