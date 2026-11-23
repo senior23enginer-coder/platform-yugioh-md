@@ -44,9 +44,7 @@
     return `${r.infographic?`<details class="delivery-infographic"><summary>Ver guía visual completa</summary><a href="${h.esc(r.infographic)}" target="_blank" rel="noopener">Abrir imagen a tamaño completo</a><img src="${h.esc(r.infographic)}" alt="Guía de ${h.esc(r.title)}" loading="lazy"><p>La lámina ilustra la secuencia documentada; consulta las condiciones de la ruta.</p></details>`:''}${branches.filter(([,v])=>v?.length).map(([t,v])=>`<details class="delivery-details"><summary>${t}</summary>${list(v,h)}</details>`).join('')}${r.plans?`<details class="delivery-details"><summary>Plan primero y segundo</summary>${fields({'Primero':r.plans.first,'Segundo':r.plans.second},h)}</details>`:''}${r.sources?.length?`<details class="delivery-details"><summary>Fuentes de la secuencia</summary>${r.sources.map((url,i)=>`<p><a href="${h.esc(url)}" target="_blank" rel="noopener noreferrer">Texto oficial ${i+1}</a></p>`).join('')}</details>`:''}`;
   }
   function mount(data,content,h){
-    if(data.folder_delivery?.reader){
-      for(const tab of ['intro','cards','routes','plans','practice'])content(tab).insertAdjacentHTML('beforeend',`<p class="delivery-details"><a href="${h.esc(data.folder_delivery.reader)}" target="_blank" rel="noopener">Leer la guía completa de ${h.esc(data.name)}: planes, cartas, variantes y condiciones</a></p>`);
-    }
+    // The imported HTML reader is an archival artifact, not a public guide link.
     mountV21(data,content,h);
     const surface=content('cards').closest('[data-checked-study]');
     if(surface){
@@ -60,7 +58,9 @@
       surface.addEventListener('error',surface._deliveryImageError,true);
     }
     if(data.delivery_progress)content('intro').insertAdjacentHTML('beforeend',`<details data-delivery-progress><summary>Cobertura y revisión de esta entrega</summary><p>Estos indicadores corresponden a los 11 decks. Cada validación mide el criterio indicado; no se promedian.</p>${data.delivery_progress.map(p=>`<section><h4>${h.esc(p.nombre)}</h4><p>Cobertura documental: ${p.porcentaje_cobertura_documental}% · ${h.esc(p.fraccion)}</p><p>Validación observada: ${p.porcentaje_validacion_observada}% · ${h.esc(p.fraccion_validacion)}</p><p>${h.text(p.criterio_validacion)}</p></section>`).join('')}</details>`);
-    if(data.rule_scenarios)content('intro').insertAdjacentHTML('beforeend',`<details data-rule-scenarios><summary>Reglas y situaciones de este deck</summary><p>Controles documentados; no son replays certificados.</p>${data.rule_scenarios.map(s=>`<article><h4>${h.esc(s.situacion)}</h4><p>${h.text(s.prueba_de_legalidad)}</p></article>`).join('')}<details><summary>Reglas generales y fuentes</summary>${(data.general_rules||[]).map(r=>`<p>${h.text(r.detalle)}${r.url?` <a href="${h.esc(r.url)}" target="_blank" rel="noopener noreferrer">Fuente oficial</a>`:''}</p>`).join('')}</details></details>`);
+    const scenarios=(Array.isArray(data.rule_scenarios)?data.rule_scenarios:[]).filter(s=>s&&String(s.situacion||'').trim()&&String(s.prueba_de_legalidad||'').trim());
+    const generalRules=(Array.isArray(data.general_rules)?data.general_rules:[]).filter(r=>r&&String(r.detalle||'').trim());
+    if(scenarios.length)content('intro').insertAdjacentHTML('beforeend',`<details data-rule-scenarios><summary>Reglas y situaciones de este deck</summary><p>Controles documentados; no son replays certificados.</p>${scenarios.map(s=>`<article><h4>${h.esc(s.situacion)}</h4><p>${h.text(s.prueba_de_legalidad)}</p></article>`).join('')}${generalRules.length?`<details><summary>Reglas generales y fuentes</summary>${generalRules.map(r=>`<p>${h.text(r.detalle)}${r.url?` <a href="${h.esc(r.url)}" target="_blank" rel="noopener noreferrer">Fuente oficial</a>`:''}</p>`).join('')}</details>`:''}</details>`);
     function explain(value){
       if(Array.isArray(value))return `<ul>${value.map(v=>`<li>${explain(v)}</li>`).join('')}</ul>`;
       if(value&&typeof value==='object')return `<dl>${Object.entries(value).map(([k,v])=>`<dt>${h.esc(k.replace(/_/g,' '))}</dt><dd>${explain(v)}</dd>`).join('')}</dl>`;
@@ -70,7 +70,7 @@
       return h.text(text.replace(/ {2,}/g,' '));
     }
     const context=data.format_context;
-    if(context){
+    if(context && Object.values(context).some(value=>typeof value==='string'?value.trim()&&!/^PENDIENTE|^SIN_DATOS/i.test(value):Array.isArray(value)?value.length>0:Boolean(value&&typeof value==='object'&&Object.keys(value).length))){
       const skills=(data.skills||[]).length?h.strip(data.skills):'';
       content('intro').insertAdjacentHTML('beforeend',`<details class="delivery-details"><summary>Formato, condiciones y Skill</summary>${fields({'Mecánicas':context.format_and_mechanics,'Condiciones de este deck':context.deckSpecificControl,'Situaciones':context.criticalScenarios,'Reglas del formato':context.formatWarnings},h)}${skills}</details>`);
     }
