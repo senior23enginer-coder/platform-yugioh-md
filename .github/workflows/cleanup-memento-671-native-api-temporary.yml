@@ -1,0 +1,32 @@
+name: Archive one-off Memento API import job and remove working branch
+on:
+  push:
+    branches:
+      - ops/memento-671-native-api-probe-20261123
+    paths:
+      - .github/workflows/cleanup-memento-671-native-api-temporary.yml
+permissions:
+  contents: write
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify production import succeeded, tag branch for recovery, then remove it
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          repo="senior23enginer-coder/platform-yugioh-md"
+          branch="ops/memento-671-native-api-probe-20261123"
+          main="$(gh api "repos/$repo" --jq .default_branch)"
+          test "$main" = "base"
+          import_result="$(gh api "repos/$repo/actions/runs/45247667629" --jq .conclusion)"
+          test "$import_result" = "success"
+          sha="$(gh api "repos/$repo/git/ref/heads/$branch" --jq .object.sha)"
+          tag="refs/tags/backup/memento-671-native-api-import-20261123"
+          gh api -X POST "repos/$repo/git/refs" -f "ref=$tag" -f "sha=$sha" >/dev/null
+          verify="$(gh api "repos/$repo/git/ref/tags/backup/memento-671-native-api-import-20261123" --jq .object.sha)"
+          test "$sha" = "$verify"
+          gh api -X DELETE "repos/$repo/git/refs/heads/$branch" >/dev/null
+          echo "Archived one-off API import branch to backup/memento-671-native-api-import-20261123; only base remains."
