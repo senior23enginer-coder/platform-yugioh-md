@@ -52,10 +52,10 @@ const one=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42
         'Cómo se juega':'Primero construye recursos y conserva respuestas. Segundo comprueba amenazas y materiales. En turnos posteriores recupera únicamente recursos disponibles.',
         'Qué vigilar':'No asumir materiales ni rutas ausentes del inventario.'
       }};
-      await page.evaluate(data=>window.YgoCuratedStudy.render(
+      await page.evaluate(({data,viewportWidth})=>window.YgoCuratedStudy.render(
         document.querySelector('#test-guide'),{id:671,name:data.name},data,
-        {cards:data.cards.length,sha256:'synthetic-a01-'+width}
-      ),synthetic);
+        {cards:data.cards.length,sha256:'synthetic-a01-'+viewportWidth}
+      ),{data:synthetic,viewportWidth:width});
       const a01Intro=await page.locator('.curated-profile').innerText();
       assert(a01Intro.includes('Nexo Umbral'),'A01 archetype missing in new reader');
       assert(a01Intro.includes('Estilo breve'),'A01 six-field record needs a visible style label');
