@@ -39,6 +39,8 @@ function ygo_data_safe_markdown_images(string $markdown, array $files): string {
  * GPT portable deliveries use the same station-x-deck-package/1 schema.
  * No hashes are forged: validate ALL inventory row IDs/zones/quantities against
  * the current native database inventory, and block extra/missing/duplicate rows.
+ * Historical TCG decks can have real `reserve` slots. Accept the exact section
+ * only when native and portable row IDs/quantities agree; never convert it to Side.
  */
 function ygo_data_validate_portable_inventory(array $envelope,array $inventory,string $folder,?array $current): void {
     if(($envelope['inventory_binding']??'')!=='deck-slots-v1'
@@ -57,7 +59,7 @@ function ygo_data_validate_portable_inventory(array $envelope,array $inventory,s
             $id=filter_var($row['id']??null,FILTER_VALIDATE_INT);
             $qty=filter_var($row['quantity']??null,FILTER_VALIDATE_INT);
             $zone=$row['section']??null;
-            if(!$id||$id<1||!is_string($zone)||!in_array($zone,['main','extra','side','tech'],true)||$qty===false||$qty<1||$qty>3||isset($found[$id])) {
+            if(!$id||$id<1||!is_string($zone)||!in_array($zone,['main','extra','side','reserve','tech'],true)||$qty===false||$qty<1||$qty>3||isset($found[$id])) {
                 throw new InvalidArgumentException('Inventario duplicado o incompatible en '.$source);
             }
             $found[$id]=[$zone,$qty];
