@@ -212,6 +212,25 @@ function ygo_data_validate(array $record,array $inventory): void {
         if(!is_string($card['id']??null)||!preg_match('/^[\w:.-]+$/D',$card['id'])||isset($ids[$card['id']])||!is_string($card['name']??null)||!is_array($card['fields']??null)||!is_array($card['slots']??null))throw new InvalidArgumentException('Ficha de carta incompleta o duplicada.');$ids[$card['id']]=true;
         foreach(['sources','synergy'] as $key)if(!is_array($card[$key]??null))throw new InvalidArgumentException('Falta '.$key.' en la carta '.$card['name']);
         if(!is_array($card['synergy']['labels']??null))throw new InvalidArgumentException('Faltan las funciones de la carta.');
+        // Accesos documentales del Extra: se transportan por CID sin inflar record.routes ni simular combos.
+        if(isset($card['extra_access'])){
+            if(!is_array($card['extra_access'])||count($card['extra_access'])>20||!array_filter($card['slots'],static fn($slot)=>($slot['section']??'')==='extra'))
+                throw new InvalidArgumentException('Accesos Extra fuera de su carta o en formato inválido.');
+            $accessIds=[];
+            foreach($card['extra_access'] as $access){
+                if(!is_array($access)||(int)($access['cid']??0)!==(int)($card['cid']??0)
+                    ||!is_string($access['id']??null)||!preg_match('/^[A-Z0-9:_.-]+$/D',$access['id'])||isset($accessIds[$access['id']])
+                    ||!in_array($access['status']??null,['DOCUMENTADA_CONDICIONAL_SIN_REPLAY','TEORICA_PENDIENTE_VALIDACION'],true)
+                    ||!is_array($access['steps']??null)||count($access['steps'])<1||count($access['steps'])>30)
+                    throw new InvalidArgumentException('Acceso Extra incompleto, duplicado o sin estado documental.');
+                foreach(['opening','materials','result','limitation'] as $key)
+                    if(!is_string($access[$key]??null)||trim($access[$key])==='')
+                        throw new InvalidArgumentException('Faltan requisitos o resultados del acceso Extra '.$access['id']);
+                foreach($access['steps'] as $step)
+                    if(!is_string($step)||trim($step)==='')throw new InvalidArgumentException('Paso vacío en el acceso Extra '.$access['id']);
+                $accessIds[$access['id']]=true;
+            }
+        }
         foreach($card['fields'] as $f)if(!is_string($f['title']??null)||!is_string($f['text']??null))throw new InvalidArgumentException('Explicación de carta incompleta.');
         foreach($card['slots'] as $s){$c=$native[(int)($s['card_id']??0)]??null;
             if(!$c||$c['section']!==($s['section']??'')||(int)$c['quantity']!==(int)($s['quantity']??-1))throw new InvalidArgumentException('El inventario del ZIP difiere del guardado. Actualiza primero la decklist y vuelve a exportar.');
