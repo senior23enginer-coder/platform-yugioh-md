@@ -29,6 +29,9 @@ for(const [id,expectedRoutes] of [[671,12],[677,14],[665,16]]){
 assert.equal(P.brief({'Resumen para ficha':'Primera oración. Segunda oración útil.'}),
   'Primera oración. Segunda oración útil.',
   'A01 summary must be displayed intact, not truncated to its first sentence');
+assert.equal(P.style({'Estilo breve':'combinación de posicionamiento. Segunda instrucción.'},true),
+  'combinación de posicionamiento. Segunda instrucción.','Certified A01 style must be preserved literally');
+assert.equal(P.style({'Estilo breve':'CID 12345: auditoría'},true),'','Certified style must still reject audit tokens');
 const memento=JSON.parse(fs.readFileSync(path.join(root,'671.json'),'utf8'));
 const step=memento.routes[0].steps[0];
 assert(step.photos.length>0,'Canonical Memento step photos must now be synchronized');
