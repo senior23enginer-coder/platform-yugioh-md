@@ -1,67 +1,64 @@
-(function (root) {
+(function(root){
   'use strict';
   const strategy=root.YgoDeckStrategy;
   if(!strategy)return;
-  const original=strategy.render;
-  let ticket=0,emptyState=false,studyState=false,studyLabel='Cartas documentadas';
-  const policy=fetch('./assets/editorial/strategy-content-state.json?v=20261113-combo-library-164',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Estado de contenido no disponible.');return r.json();});
-  const hasContent=p=>p&&(['play_style','primary_game_plan','win_condition','resource_engine','opening_plan','mid_game_plan','late_game_plan','going_first_plan','going_second_plan','side_deck_strategy','analysis_notes'].some(k=>String(p[k]||'').trim())||['strengths_json','weaknesses_json','strategy_tags_json'].some(k=>{try{return JSON.parse(p[k]||'[]').length>0;}catch{return false;}}));
-  function label(){
-    const node=document.querySelector('[data-deck-category-open="strategy"] small');
-    if(emptyState&&node&&node.textContent!=='Sin información')node.textContent='Sin información';
-    if(studyState&&node&&node.textContent!==studyLabel)node.textContent=studyLabel;
+  let ticket=0;
+  const registry='./assets/editorial/strategy-content-state.json';
+  const validPath=p=>typeof p==='string'&&
+    /^\.\/assets\/editorial\/[A-Za-z0-9_./-]+\.json$/.test(p)&&
+    !p.slice(2).split('/').includes('..');
+  const certified=(study,id)=>study&&study.schema==='station-x-curated-v62'&&
+    Number(study.deck_id)===Number(id)&&
+    study.a01_profile_contract==='station-x-a01-profile/1'&&
+    study.player_guide?.schema==='station-x-player-guide/1'&&
+    typeof study.folder_delivery?.imported_at==='string'&&
+    study.folder_delivery.imported_at.length>0;
+  function setProfile(study){
+    const p=study?.profile||{},contract=root.YgoStudyPresentation;
+    const style=study?contract?.style(p):'',brief=study?contract?.brief(p):'';
+    const archetype=study?contract?.archetype(p):'';
+    for(const [selector,value] of [
+      ['[data-profile-style]',style],['[data-profile-archetype]',archetype],
+      ['[data-profile-gameplan]',brief]
+    ]){const node=document.querySelector(selector);if(node)node.textContent=value||'Sin análisis importado';}
   }
-  strategy.render=function(deck,profile,observed){
-    const current=++ticket,host=document.querySelector('.deck-strategy-profile');if(!host)return;
-    // Never paint stale source documents while the reset state is being resolved.
+  function label(value){
+    const node=document.querySelector('[data-deck-category-open="strategy"] small');
+    if(node)node.textContent=value;
+  }
+  function empty(host){
+    host.querySelector('[data-checked-study]')?._curatedDispose?.();
+    let message=host.querySelector('[data-strategy-empty]');
+    if(!message){message=document.createElement('section');message.dataset.strategyEmpty='';
+      message.className='panel';host.prepend(message);}
+    message.innerHTML='<h3>Estilo y estrategia</h3><p>Sin análisis importado desde GPT para este deck.</p>';
+    for(const child of host.children){
+      child.hidden=child!==message;child.style.display=child.hidden?'none':'';
+    }
+    setProfile(null);label('Sin análisis importado');host.style.visibility='';
+  }
+  strategy.render=function(deck){
+    const current=++ticket,host=document.querySelector('.deck-strategy-profile');
+    if(!host)return;
     host.style.visibility='hidden';
-    policy.then(async state=>{
+    fetch(registry,{cache:'no-store',credentials:'same-origin'}).then(r=>{
+      if(!r.ok)throw Error('Registro editorial no disponible');
+      return r.json();
+    }).then(async state=>{
       if(current!==ticket)return;
-      studyState=false;
-      const checked=state.checked_studies?.[String(deck.id)];
-      if(checked){
-        // The public deck overview and the guide use the SAME verified study.
-        // A stale response must never update another deck's profile.
-        const source=checked.path;
-        if(typeof source==='string'&&/^\.\/assets\/editorial\/[a-zA-Z0-9_./-]+\.json$/.test(source)
-          &&!source.slice(2).split('/').includes('..')){
-          fetch(source,{cache:'no-store',credentials:'same-origin'}).then(r=>r.ok?r.json():null).then(study=>{
-            if(current!==ticket||!study||study.schema!=='station-x-curated-v62'||Number(study.deck_id)!==Number(deck.id))return;
-            const contract=root.YgoStudyPresentation;
-            const style=contract?.style(study.profile);
-            const brief=contract?.brief(study.profile);
-            const styleElement=document.querySelector('[data-profile-style]');
-            const planElement=document.querySelector('[data-profile-gameplan]');
-            if(style&&styleElement)styleElement.textContent=style;
-            if(planElement){planElement.textContent=brief||'Consulta la guía de juego para conocer los requisitos y recursos.';}
-          }).catch(()=>{});
-        }
-        emptyState=false;
-        await root.YgoCheckedStudy.render(host,deck,checked,()=>current===ticket);
-        if(current!==ticket)return;
-        studyLabel=checked.presentation==='curated-v62'?'Guía de juego':checked.eligibility_policy==='checked-only-v1'?'Contenido con check individual':checked.sections?`Apartados 01–${String(checked.sections).padStart(2,'0')}`:'Cartas documentadas';studyState=true;host.style.visibility='';label();return;
-      }
-      if(!(state.cleared_deck_ids||[]).includes(Number(deck.id))){emptyState=false;host.style.visibility='';return original.call(strategy,deck,profile,observed);}
-      const newManualProfile=Number(profile?.revision||0)>Number(state.cleared_profile_revisions?.[String(deck.id)]||0)&&hasContent(profile);
-      emptyState=!newManualProfile;
-      // The native editor remains available. Old editorial deliveries stay inactive.
-      let message=host.querySelector('[data-strategy-empty]');
-      if(!message){message=document.createElement('section');message.dataset.strategyEmpty='';message.className='panel';message.innerHTML='<h3>Estilo y estrategia</h3><p>Sin información cargada en este apartado.</p>';host.prepend(message);}
-      for(const child of host.children){child.hidden=child===message?newManualProfile:child.classList.contains('deck-strategy-editor')?false:!newManualProfile;child.style.display=child.hidden?'none':'';}
-      if(emptyState){
-        const editor=host.querySelector('.deck-strategy-editor');
-        if(editor){editor.open=false;for(const input of editor.querySelectorAll('input:not([type="hidden"]),textarea'))input.value=input.type==='number'?'0':'';}
-        const status=host.querySelector('[data-deck-analysis-editor-state]');if(status)status.textContent='Perfil vacío. Puedes cargar información nueva.';
-      }
-      host.style.visibility='';label();
-    }).catch(()=>{
+      const entry=state.checked_studies?.[String(deck.id)];
+      if(!entry||entry.presentation!=='curated-v62'||!validPath(entry.path))return empty(host);
+      const res=await fetch(entry.path,{cache:'no-store',credentials:'same-origin'});
+      if(!res.ok)throw Error('Paquete GPT no disponible');
+      const study=await res.json();
       if(current!==ticket)return;
-      emptyState=true;studyState=false;
-      for(const child of host.children)child.hidden=true;
-      let error=host.querySelector('[data-strategy-state-error]');if(!error){error=document.createElement('p');error.dataset.strategyStateError='';host.append(error);}
-      error.hidden=false;error.textContent='No se pudo consultar el estado del apartado. Recarga la página.';host.style.visibility='';label();
-    });
+      if(!certified(study,deck.id)||study.cards?.length!==entry.cards)return empty(host);
+      setProfile(study);
+      host.querySelector('[data-strategy-empty]')?.remove();
+      await root.YgoCheckedStudy.render(host,deck,entry,()=>current===ticket);
+      if(current!==ticket)return;
+      label('Guía de juego importada');host.style.visibility='';
+    }).catch(()=>{if(current===ticket)empty(host);});
   };
-  const summary=document.querySelector('[data-deck-category-open="strategy"] small');
-  if(summary)new MutationObserver(label).observe(summary,{childList:true,subtree:true});
+  root.YgoA01ImportedProfile={certified};
 })(window);
