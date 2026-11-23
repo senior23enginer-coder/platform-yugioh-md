@@ -48,7 +48,7 @@
     panel._curatedDispose=()=>{viewer.dispose();if(cardModal.open){cardModal.close();document.body.style.overflow=cardOverflow;}};
     const profile=data.profile||{};
     const playerGuide=data.player_guide?.schema==='station-x-player-guide/1'?data.player_guide:null;
-    const safeStyle=presentation?.style(profile)||'';
+    const safeStyle=presentation?.style(profile,data.a01_profile_contract==='station-x-a01-profile/1')||'';
     const safeSummary=presentation?.brief(profile)||'';
     const playablePlan=presentation?.gamePlan(profile)||'';
     const safeRisks=presentation?.risks(profile)||'';
