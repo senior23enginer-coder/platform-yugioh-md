@@ -33,8 +33,8 @@ $copy=$inv;
 $copy['cards'][]=['id'=>4,'section'=>'tech','quantity'=>2];
 ck(ygo_progress_inventory_counts($copy)['reserve']===2,'Tech is optional Reserve.');
 $ledger=ygo_progress_new_ledger(98765,$inv,$manifest,true,'2026-11-21T12:00:00Z');
-ck(count($ledger['tasks'])===38,'A01-A10A=35, A10B=3.');
-ck(ygo_progress_summary($ledger)['total']===35,'Optional A10B must not affect mandatory progress.');
+ck(count($ledger['tasks'])===40,'A01-A10A=37, A10B=3.');
+ck(ygo_progress_summary($ledger)['total']===37,'Optional A10B must not affect mandatory progress.');
 ck(ygo_progress_summary($ledger)['eta_seconds']===null,'Never claim fabricated task ETA.');
 expect_fail(static fn()=>ygo_progress_transition($ledger,'A01-T2','start','2026-11-21T12:01:00Z'),
   'cannot skip earlier tasks');
@@ -74,7 +74,7 @@ ck($checkpoint['tasks'][2]['elapsed_seconds']===60,
 ck($checkpoint['tasks'][2]['status']==='COMPLETE','Only actual evidence closes a resumed task.');
 $ledger=$checkpoint;
 $ledger['calculator_requested']=true;
-ck(ygo_progress_summary($ledger)['total']===38,'A10B opt-in counts only when requested.');
+ck(ygo_progress_summary($ledger)['total']===40,'A10B opt-in counts only when requested.');
 if(in_array('sqlite',PDO::getAvailableDrivers(),true)){
   $pdo=new PDO('sqlite::memory:');
   $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
@@ -98,12 +98,13 @@ $unknown=ygo_progress_summary($ledger,$partial);
 ck($unknown['eta_seconds']===null,'Whole-deck ETA needs all tasks calibrated.');
 $a01=array_values(array_filter($unknown['stages'],
   static fn($stage)=>$stage['stage_id']==='A01'))[0];
-ck($a01['eta_seconds']===0,'A fully completed A01 has no remaining ETA.');
+ck($a01['eta_seconds']===null,'A01-T4/T5 remain open until evidenced for this deck.');
+ck($a01['total']===5&&$a01['complete']===3,'Historical T1-T3 evidence must not complete T4/T5.');
 $a02=array_values(array_filter($unknown['stages'],
   static fn($stage)=>$stage['stage_id']==='A02'))[0];
 ck($a02['eta_seconds']===null,'Other A02 tasks must not inherit the ETA of A02-T1.');
 ck(ygo_progress_summary($ledger)['eta_status']==='INSUFFICIENT_REAL_SAMPLES',
   'Real ETA needs historical successes from comparable real decks.');
 echo json_encode(['ok'=>true,'synthetic_tests'=>true,'analyses_executed'=>0,
- 'mandatory_tasks'=>35,'optional_a10b_tasks'=>3,'persisted'=>in_array('sqlite',PDO::getAvailableDrivers(),true)],
+ 'mandatory_tasks'=>37,'optional_a10b_tasks'=>3,'persisted'=>in_array('sqlite',PDO::getAvailableDrivers(),true)],
  JSON_UNESCAPED_UNICODE|JSON_THROW_ON_ERROR)."\n";
