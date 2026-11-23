@@ -228,4 +228,36 @@ $legacy=$record;unset($legacy['a01_profile_contract'],$legacy['profile']['Estilo
 ygo_data_validate_a01_profile($legacy); // Historical data remains readable, NOT certified T4/T5.
 a01_assert(!isset($legacy['a01_profile_contract']),'Legacy data must not receive automatic A01 certification');
 
+
+// Player-facing guide contract: representative cards need reasons and four useful plans.
+$guideRecord=$record;
+$guideRecord['profile']['Cómo se juega']=trim(str_repeat('Primero prepara cartas y recursos desde una mano real. Si el oponente interviene, revisa condiciones y materiales antes de continuar. ',5));
+$guideRecord['player_guide']=[
+ 'schema'=>'station-x-player-guide/1',
+ 'featured_cards'=>[[
+  'cid'=>1111,'role'=>'Iniciadora para obtener recursos del motor',
+  'reason'=>'Esta carta abre las opciones de desarrollo de las piezas presentes en la construcción.',
+  'when_to_use'=>'Cuando la mano contiene materiales y las ventanas relevantes están disponibles.',
+  'related_cids'=>[2222]
+ ]],
+ 'phases'=>array_map(static fn($id)=>[
+  'id'=>$id,'title'=>'Plan de juego para '.$id,
+  'plan'=>'Confirma primero los recursos que existen en la mano, el Cementerio y el campo. Después desarrolla únicamente las acciones habilitadas y conserva las piezas necesarias para responder al siguiente turno.',
+  'preconditions'=>'Necesita cartas reales con zonas y cantidades comprobadas.',
+  'risks'=>'Un efecto negado impide suponer una línea completada o materiales adicionales.',
+  'related_route_ids'=>[]
+ ],['first','second','mid','late'])
+];
+ygo_data_validate_player_guide($guideRecord);
+ygo_data_validate($guideRecord,$inventory);
+$bad=$guideRecord;$bad['player_guide']['featured_cards'][0]['cid']=99999;
+try {ygo_data_validate_player_guide($bad);throw new RuntimeException('Unknown featured CID was accepted');}
+catch(InvalidArgumentException $e){}
+$bad=$guideRecord;$bad['player_guide']['phases'][0]['plan'].=' CID 19364';
+try {ygo_data_validate_player_guide($bad);throw new RuntimeException('Audit leakage was accepted');}
+catch(InvalidArgumentException $e){}
+$bad=$guideRecord;$bad['player_guide']['phases'][0]['related_route_ids'][]='13579:A09:C99';
+try {ygo_data_validate_player_guide($bad);throw new RuntimeException('Unknown route was accepted');}
+catch(InvalidArgumentException $e){}
+
 echo ygo_data_json(['ok'=>true,'structured_roundtrips'=>$count,'markdown_deliveries'=>$raws,'isolation'=>'passed','archive_limits'=>'passed','concurrency'=>'passed'])."\n";

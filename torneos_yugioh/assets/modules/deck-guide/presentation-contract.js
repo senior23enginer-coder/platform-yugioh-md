@@ -3,6 +3,9 @@
   const literal=v=>String(v??'').trim();
   const auditPrefix=/^Dictamen(?:\s+editorial(?:\s+[A-Z_]+)?)?:\s*/i;
   const pending=/^(?:consultar|pendiente|sin (?:datos|información)|no determinado)\b/i;
+  // Technical references stay in metadata; never display them to players.
+  const auditLeak=/\bCID\s*\d+\b|\b[CV]\d{2}\b|\bA(?:0[1-9]|10[AB]?)\s*[-–]?\s*T?\d*\b|\beffect_id\b|\broute_id\b|PARCIAL_AVANZADO|dictamen\s+editorial|PENDIENTE_REPLAY|cat[aá]logo completo|consultar el plan|estudio individual|iteraci[oó]n\s*\d+/iu;
+  const publicText=value=>{const v=literal(value);return v&&!pending.test(v)&&!auditLeak.test(v)?v:'';};
   function firstSentence(raw,max=220){
     const cleaned=literal(raw).replace(auditPrefix,'').replace(/\s+/g,' ');
     const end=cleaned.match(/^.*?[.!?](?=\s|$)/u)?.[0]||cleaned;
@@ -10,9 +13,9 @@
     return excerpt.charAt(0).toLocaleUpperCase('es')+excerpt.slice(1);
   }
   function style(profile={}){
-    for(const key of ['Estilo breve','Tipo de estrategia','Estilo de juego','Cómo se juega']){
-      const value=literal(profile[key]);
-      if(value&&!pending.test(value)){
+    for(const key of ['Estilo breve','Tipo de estrategia']){
+      const value=publicText(profile[key]);
+      if(value){
         const short=firstSentence(value,190);
         if(short)return short;
       }
@@ -34,9 +37,11 @@
     return Array.isArray(route?.hand_photos)?route.hand_photos:[];
   }
   function brief(profile={}){
-    const raw=profile['Resumen para ficha']||profile['Cómo se juega']||profile['Estilo de juego']||'';
-    return firstSentence(raw,250);
+    const raw=publicText(profile['Resumen para ficha']);
+    return raw?firstSentence(raw,250):'';
   }
+  function gamePlan(profile={}){return publicText(profile['Cómo se juega']);}
+  function risks(profile={}){return publicText(profile['Qué vigilar']);}
   function containsName(haystack,term){
     if(!term||term.length<4)return false;
     let at=haystack.indexOf(term);
@@ -85,7 +90,7 @@
     if(Array.isArray(route?.board)&&route.board.length)return 'partial';
     return 'documented';
   }
-  const API={style,brief,archetype,openingPhotos,photosFromText,stepPhotos,resultPhotos,status};
+  const API={style,brief,gamePlan,risks,archetype,openingPhotos,photosFromText,stepPhotos,resultPhotos,status};
   root.YgoStudyPresentation=API;
   if(typeof module==='object'&&module.exports)module.exports=API;
 })(typeof window!=='undefined'?window:globalThis);

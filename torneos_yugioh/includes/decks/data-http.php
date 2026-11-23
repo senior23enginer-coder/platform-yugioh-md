@@ -204,6 +204,7 @@ function ygo_data_http(?string $appOverride=null): never {
                     'editorial'=>$record['schema'],
                     'visual_routes'=>count($record['routes']),
                     'visual_quality'=>ygo_data_presentation_quality($record),
+                    'player_guide_status'=>(($record['player_guide']['schema']??null)==='station-x-player-guide/1')?'PERFIL_PEDAGOGICO_VALIDADO':'LEGADO_SIN_GUIA_PEDAGOGICA',
                     'calculator_schema'=>$record['calculator']['schema']??null,
                     'calculator_rules'=>count($record['calculator']['rules']??[]),
                     'calculator_status'=>empty($record['calculator']['rules'])?'SIN_REGLAS_DECLARATIVAS':'REQUIERE_VALIDACION_DEL_MOTOR',

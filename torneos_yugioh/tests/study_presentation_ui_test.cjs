@@ -28,9 +28,9 @@ const one=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42
       ),memento);
       const style=await page.locator('.curated-profile dl').innerText();
       assert(!style.includes('Dictamen editorial'),'Visible playstyle must be readable, not an audit');
-      assert(style.includes('Cementerio'),'Memento playstyle is sourced from the study');
+      assert(!style.includes('Consultar el plan'),'Historical placeholder must stay hidden');
       assert(!style.includes('estudio individual'),'Archetype field cannot display research iteration metadata');
-      assert(await page.locator('.curated-full-profile').count(),'Full study explanation remains accessible');
+      assert.equal(await page.locator('.curated-full-profile').count(),0,'Historical audit must not render as a player plan');
       await page.locator('[data-curated-tab="routes"]').click();
       await page.locator('.curated-route-card').first().click();
       const firstStep=page.locator('.curated-steps>li').first();
@@ -66,6 +66,22 @@ const one=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42
       await page.locator('.curated-full-profile summary').click();
       assert((await page.locator('.curated-full-profile').innerText()).includes('Primero construye recursos'),
         'A01 full gameplan must remain accessible');
+
+      // New certified A01 can explain strategic choices without selecting first Main cards.
+      const guide={
+        schema:'station-x-player-guide/1',
+        featured_cards:[{cid:19364,role:'Iniciadora y búsqueda',reason:'La búsqueda conecta con la siguiente pieza del motor.',when_to_use:'Cuando la búsqueda y las piezas siguen disponibles.',related_cids:[19904]}],
+        phases:['first','second','mid','late'].map((id,i)=>({id,title:'Fase '+i,plan:'Desarrollar recursos con cartas que existen, respetando la ventana y la respuesta del rival.',preconditions:'Mano, campo y recursos comprobados.',risks:'Las negaciones pueden cortar la ruta actual.',related_route_ids:[]}))
+      };
+      const certified={...synthetic,player_guide:guide};
+      await page.evaluate(({data,viewportWidth})=>window.YgoCuratedStudy.render(
+        document.querySelector('#test-guide'),{id:671,name:data.name},data,
+        {cards:data.cards.length,sha256:'certified-a01-'+viewportWidth}
+      ),{data:certified,viewportWidth:width});
+      assert.equal(await page.locator('.curated-featured-card').count(),1,'Only source-backed featured cards should show');
+      assert((await page.locator('.curated-featured-card').innerText()).includes('Angbruja'),'Selected card should be identified by real name');
+      assert.equal(await page.locator('.curated-game-phase').count(),4,'Full plan should expose all four phases');
+      assert(!(await page.locator('[data-curated-content="intro"]').innerText()).includes('PARCIAL_AVANZADO'),'Editorial status must not leak into intro');
       assert.deepEqual(errors,[],'Browser errors in guide on '+width+'px');
       await page.close();
     }

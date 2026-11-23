@@ -8,10 +8,11 @@ for(const [id,expectedRoutes] of [[671,12],[677,14],[665,16]]){
   const source=JSON.parse(fs.readFileSync(path.join(root,id+'.json'),'utf8'));
   assert.equal(source.routes.length,expectedRoutes,'Existing route inventory must not change '+id);
   const style=P.style(source.profile);
-  if(id!==665)assert(style&&style.length<=191,'Memento and Crystron need a short visible game style '+id);
+  assert(style.length<=191,'A01 style must respect the short field '+id);
   assert(!style.startsWith('Dictamen editorial'),'Internal audit text must not be used as style '+id);
   const brief=P.brief(source.profile);
-  if(id!==665)assert(brief&&brief.length<=260,'Main profile must have a short player-focused description '+id);
+  assert(brief.length<=260,'A01 summary must respect the short field '+id);
+  assert(!/consultar el plan|dictamen editorial|PARCIAL_AVANZADO/i.test(style+' '+brief),'Uncertified historical audit must never leak into the UI');
   for(const route of source.routes){
     for(const step of route.steps){
       const images=P.stepPhotos(step,source.cards);
@@ -50,5 +51,7 @@ assert(memento.routes[0].endboard.variants.every(variant=>variant.spatial_verifi
   'Every illustrated alternative must retain its non-spatial status');
 assert.equal(P.photosFromText('Sin cartas verificadas',memento.cards).length,0,'Do not invent cards');
 assert.equal(P.photosFromText('Carta no contenida en el deck',memento.cards).length,0,'Cross-deck photos rejected');
-assert(!P.style({'Tipo de estrategia':'Consultar el plan de juego','Estilo de juego':'Dictamen editorial PARCIAL_AVANZADO: destrucción propia → Cementerio.'}).includes('Dictamen'),'Fallback should strip audit jargon');
+assert.equal(P.style({'Tipo de estrategia':'Consultar el plan de juego','Estilo de juego':'Dictamen editorial PARCIAL_AVANZADO: destrucción propia → Cementerio.'}), '', 'Audit fallback is forbidden');
+assert.equal(P.brief({'Cómo se juega':'Dictamen editorial PARCIAL_AVANZADO: texto antiguo.'}), '', 'Full technical plan cannot become card summary');
+assert.equal(P.gamePlan({'Cómo se juega':'C04 CID 19364: ruta antigua.'}), '', 'Technical route codes must not be shown as teaching');
 console.log(JSON.stringify({ok:true,decks:[665,671,677],mementoStepPhotos:pictures.length,mementoOutcomePhotos:outcome.length,unchangedRoutes:true,auditPrefixFiltered:true}));
