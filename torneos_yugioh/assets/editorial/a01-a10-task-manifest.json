@@ -3,10 +3,10 @@
   "applicable_only_to_user_assigned_deck": true,
   "required_sections": [
     "main",
-    "extra",
-    "side"
+    "extra"
   ],
   "optional_sections": [
+    "side",
     "reserve"
   ],
   "analysis_is_not_triggered_by_this_manifest": true,
