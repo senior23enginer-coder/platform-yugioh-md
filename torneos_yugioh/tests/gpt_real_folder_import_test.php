@@ -93,13 +93,19 @@ foreach($pilot as $id=>$expected){
                 throw new RuntimeException('A01-T5 canonical original missing from real package');
             $envelope=json_decode($files[$packagePath],true,128,JSON_THROW_ON_ERROR);
             $md=$files[$sourcePath];
+            // Compare the canonical A01 section only; historical appendices may repeat fields.
+            $start=strpos($md,'## APARTADO_01');
+            if($start===false)throw new RuntimeException('A01-T5 canonical section missing for deck '.$id);
+            $end=strpos($md,"\n## APARTADO_02",$start);
+            if($end===false)throw new RuntimeException('A01-T5 canonical section end missing for deck '.$id);
+            $canonicalLines=preg_split('/\r?\n/',substr($md,$start,$end-$start));
             foreach($expectedProfile as $field){
                 $value=$imported['profile'][$field]??null;
                 if(!is_string($value)||trim($value)==='')
                     throw new RuntimeException('A01-T5 empty canonical field '.$field);
                 $needle='- **'.$field.':** '.$value;
-                if(substr_count($md,$needle)!==1)
-                    throw new RuntimeException('A01-T5 Markdown-JSON parity failed: '.$field);
+                if(count(array_filter($canonicalLines,static fn(string $line):bool=>$line===$needle))!==1)
+                    throw new RuntimeException('A01-T5 Markdown-JSON parity failed for deck '.$id.': '.$field);
             }
             if($imported['profile']['Cómo se juega']===$current['profile']['Cómo se juega'])
                 throw new RuntimeException('A01-T5 is still showing old editorial plan');
