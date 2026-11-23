@@ -1,0 +1,33 @@
+name: Format GPT authority sources without changing unrelated files
+on:
+  push:
+    branches: [feat/gpt-authoritative-four-deck-surfaces-20261123]
+    paths: [.github/workflows/format-gpt-authority-temporary.yml]
+permissions:
+  contents: write
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/gpt-authoritative-four-deck-surfaces-20261123
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Apply existing repository formatter
+        run: |
+          npm ci
+          node scripts/format-architecture.cjs
+          node scripts/format-architecture.cjs --check
+      - name: Commit formatted architecture and remove temporary workflow
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -u torneos_yugioh/
+          git rm .github/workflows/format-gpt-authority-temporary.yml
+          git commit -m 'style: format native GPT authority and A01 eligibility changes'
+          git push origin HEAD:feat/gpt-authoritative-four-deck-surfaces-20261123
