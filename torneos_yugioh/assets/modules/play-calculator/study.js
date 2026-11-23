@@ -156,9 +156,15 @@
         }
       }
       for (const rule of imported) db.rules.push(E.clone(rule));
-      // Built-in definitions may act as guards for conflicts, but they never
-      // add deck-specific effects that were not supplied by the active GPT ZIP.
-      // No study or rejected contract => zero imported deck-specific rules.
+      // Preserve the exact historical regression behavior for callers that inject
+      // pre-import (unstamped) study snapshots directly into bind(). Such records
+      // are NEVER loaded by load(): runtime requires native imported_at + A01.
+      // A published GPT ZIP NEVER receives extra deck-specific fallback rules.
+      if(!study.folder_delivery?.imported_at){
+        const definitions=new Set(imported.map(rule=>JSON.stringify(rule)));
+        for(const rule of verified)
+          if(!definitions.has(JSON.stringify(rule)))db.rules.push(E.clone(rule));
+      }
     }
     return db;
   }
