@@ -9,8 +9,8 @@ function ygo_progress_manifest(string $app): array {
     $file=$app.'/assets/editorial/a01-a10-task-manifest.json';
     $doc=json_decode((string)file_get_contents($file),true,64,JSON_THROW_ON_ERROR);
     if(($doc['schema']??null)!=='station-x-a01-a10-task-manifest/1' ||
-        ($doc['required_sections']??null)!==['main','extra','side'] ||
-        ($doc['optional_sections']??null)!==['reserve'] ||
+        ($doc['required_sections']??null)!==['main','extra'] ||
+        ($doc['optional_sections']??null)!==['side','reserve'] ||
         !is_array($doc['stages']??null) || count($doc['stages'])!==11)
         throw new LogicException('Manifiesto de análisis incompatible.');
     $ids=[];$mandatory=0;$optional=0;
@@ -50,7 +50,7 @@ function ygo_progress_inventory_counts(array $inventory): array {
 }
 function ygo_progress_require_assigned(int $deckId,bool $explicit,array $counts): void {
     if($deckId<=0||!$explicit)throw new DomainException('Se requiere asignación expresa de un único deck.');
-    foreach(['main','extra','side'] as $required){
+    foreach(['main','extra'] as $required){
         if(($counts[$required]??0)<=0)
             throw new DomainException('El deck no está cargado en '.strtoupper($required).'.');
     }
