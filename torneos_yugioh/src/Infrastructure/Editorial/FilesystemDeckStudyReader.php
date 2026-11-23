@@ -35,14 +35,17 @@ final readonly class FilesystemDeckStudyReader implements DeckStudyReader
             $document = $this->readDocument($file);
             if (
                 (int) ($document['deck_id'] ?? 0) !== $id ||
-                !is_array($document['profile'] ?? null)
+                !is_array($document['profile'] ?? null) ||
+                ($document['a01_profile_contract'] ?? null) !== 'station-x-a01-profile/1' ||
+                ($document['player_guide']['schema'] ?? null) !== 'station-x-player-guide/1' ||
+                !is_string($document['folder_delivery']['imported_at'] ?? null)
             ) {
                 continue;
             }
             $profile = $document['profile'];
             $profiles[$id] = new DeckStudyProfile(
-                $profile['Estilo breve'] ?? ($profile['Tipo de estrategia'] ?? ''),
-                $profile['Estilo de juego'] ?? '',
+                $profile['Estilo breve'] ?? '',
+                $profile['Tipo de estrategia'] ?? '',
                 $profile['Arquetipo'] ?? null,
             );
         }
