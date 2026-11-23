@@ -27,4 +27,31 @@ assert(!aeroHtml.includes('No hay una jugada enlazada'),'Extra access should not
 assert(aeroHtml.includes('Condiciones y momento'),'Existing V40 material must appear when no operational guard is populated');
 const missingHtml=D.render({...aero,extra_access:[],fields:[],operational:{}},{routes:[]},helper);
 assert(missingHtml.includes('El paquete aún no aporta condiciones verificables'),'Never render an empty requirements section');
+// Validate the actual Memento 671 editorial import, not only a synthetic example.
+const memento=JSON.parse(fs.readFileSync(path.join(app,'assets/editorial/20261117-folder-delivery-v40/671.json'),'utf8'));
+assert.equal(memento.deck_id,671);
+assert.equal(memento.routes.length,12,'Extra access transformations are not extra A09 combo families');
+assert.equal(memento.cards.filter(card=>card.slots.some(slot=>slot.section==='extra')).length,13);
+const extraAccessExpectations=new Map([['EX-M01',12870],['EX-M02',19184],['EX-M03',9657],['EX-M04',13081]]);
+for(const [accessId,cid] of extraAccessExpectations){
+ const card=memento.cards.find(card=>card.cid===cid);
+ assert(card && card.slots.some(slot=>slot.section==='extra'),'Missing Memento Extra card CID '+cid);
+ assert(card.practical.length>0 && Object.keys(card.operational).length>0 && Object.keys(card.learning).length>0,
+   'Memento Extra card lacks player-use explanation: '+cid);
+ const access=(card.extra_access||[]).find(access=>access.id===accessId);
+ assert(access,'Missing documented Extra access '+accessId);
+ assert.equal(access.cid,cid,'Wrong Extra access card identity');
+ assert(access.status==='DOCUMENTADA_CONDICIONAL_SIN_REPLAY'||access.status==='TEORICA_PENDIENTE_VALIDACION',
+   'Do not treat documentary access as a certified replay');
+ assert(access.opening&&access.materials&&access.result&&access.limitation&&access.steps.length>=2,
+   'Incomplete documentary Extra access '+accessId);
+ const rendered=D.render(card,memento,helper);
+ assert(rendered.includes('data-extra-access-id="'+accessId+'"')&&rendered.includes('Accesos adicionales al Extra Deck'),
+   'Station X card modal lost '+accessId);
+ assert(!rendered.includes('No hay una jugada enlazada con evidencia específica'),
+   'Do not hide documentary access '+accessId+' behind the no-route message');
+}
+const aeroLiveCard=memento.cards.find(card=>card.cid===9657);
+assert(D.render(aeroLiveCard,memento,helper).includes('Dos Angbruja'),
+  'Aero Tiburón must show its exact material line EX-M03 from the current Memento package');
 console.log(JSON.stringify({ok:true,cards,sourcePreserved:true,allStepsIndexed:true,materialNotInvocation:true,nativeEditsTakePrecedence:true}));
