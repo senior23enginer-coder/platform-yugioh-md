@@ -39,7 +39,7 @@ final class DeckMetadataResolver
             $style = self::description($nativeStyle);
         }
         if ($style === '') {
-            $style = self::description($study->style) ?: self::description($study->strategy);
+            $style = self::description($study->strategy) ?: self::description($study->style);
         }
 
         $archetype = self::archetype($nativeArchetype);
