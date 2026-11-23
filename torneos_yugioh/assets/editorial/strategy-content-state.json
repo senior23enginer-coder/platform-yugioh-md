@@ -75,25 +75,17 @@
   "source_files": "archived_unchanged",
   "reactivation": "Explicit new integration must remove its deck ID from this list.",
   "cleared_profile_revisions": {
-    "705": 4,
-    "707": 4,
-    "704": 4,
-    "706": 4,
-    "656": 4,
-    "653": 4,
-    "687": 5,
-    "684": 5,
-    "650": 5,
-    "670": 5,
-    "665": 5,
     "646": 3,
     "647": 3,
     "648": 3,
     "649": 3,
+    "650": 5,
     "651": 3,
     "652": 3,
+    "653": 4,
     "654": 3,
     "655": 3,
+    "656": 4,
     "657": 3,
     "658": 3,
     "659": 3,
@@ -102,10 +94,12 @@
     "662": 3,
     "663": 3,
     "664": 3,
+    "665": 5,
     "666": 3,
     "667": 3,
     "668": 3,
     "669": 3,
+    "670": 5,
     "671": 3,
     "672": 3,
     "673": 3,
@@ -119,8 +113,10 @@
     "681": 3,
     "682": 3,
     "683": 3,
+    "684": 5,
     "685": 3,
     "686": 3,
+    "687": 5,
     "688": 3,
     "697": 3,
     "698": 3,
@@ -129,6 +125,10 @@
     "701": 3,
     "702": 3,
     "703": 3,
+    "704": 4,
+    "705": 4,
+    "706": 4,
+    "707": 4,
     "720": 2,
     "721": 2,
     "722": 2,
@@ -165,6 +165,13 @@
       "sha256": "155062e059a364bf8292b7dcf24256103af4156d778a76c7331408f7ace09536",
       "presentation": "curated-v62"
     },
+    "660": {
+      "path": "./assets/editorial/20261117-folder-delivery-v40/660.json",
+      "cards": 36,
+      "routes": 5,
+      "sha256": "ff2e3cb8459aeb59a90966fa803b9589633028024735f511761be8b0d807ce9c",
+      "presentation": "curated-v62"
+    },
     "665": {
       "path": "./assets/editorial/20261117-folder-delivery-v40/665.json",
       "cards": 38,
@@ -179,6 +186,27 @@
       "sha256": "8e959799c4c67464f1b5bf303f9509c39dbfa51cb665e2a7edc5fb976f5e0937",
       "presentation": "curated-v62"
     },
+    "671": {
+      "path": "./assets/editorial/20261117-folder-delivery-v40/671.json",
+      "cards": 39,
+      "routes": 12,
+      "sha256": "f481de816f021ef6a3faa085a1a156434fd460668d144f033887c0512ccc58d3",
+      "presentation": "curated-v62"
+    },
+    "673": {
+      "path": "./assets/editorial/20261117-folder-delivery-v40/673.json",
+      "cards": 39,
+      "routes": 5,
+      "sha256": "ad9c4c9e22898c4d73578d3c38be7d68c5204d929d9a9d67b79232dbc322493d",
+      "presentation": "curated-v62"
+    },
+    "677": {
+      "path": "./assets/editorial/20261117-folder-delivery-v40/677.json",
+      "cards": 39,
+      "routes": 14,
+      "sha256": "25658fbe7863577b2ed214195ad4ba04e250f90dec09e0fb1efc9fbcd0724094",
+      "presentation": "curated-v62"
+    },
     "684": {
       "path": "./assets/editorial/20261117-folder-delivery-v40/684.json",
       "cards": 52,
@@ -191,6 +219,13 @@
       "cards": 36,
       "routes": 22,
       "sha256": "6c169600992d53d5c1b88bc85e52bf6e1af8e806b67158b49343141087893901",
+      "presentation": "curated-v62"
+    },
+    "699": {
+      "path": "./assets/editorial/20261117-folder-delivery-v40/699.json",
+      "cards": 39,
+      "routes": 5,
+      "sha256": "79ba66b675bd7b3f4a20544e7e7785231489fca19f4f7b08dd78461ca23e7eec",
       "presentation": "curated-v62"
     },
     "704": {
@@ -219,41 +254,6 @@
       "cards": 20,
       "routes": 9,
       "sha256": "ee6cd24b005584ba0afb11c7124a76516cbbd6cd0cbdd6cde399164babdf2810",
-      "presentation": "curated-v62"
-    },
-    "671": {
-      "path": "./assets/editorial/20261117-folder-delivery-v40/671.json",
-      "cards": 39,
-      "routes": 12,
-      "sha256": "96c7934e48c726957278d1895c09bd2049c993ab2bfe76b78a3a01924e2b32f7",
-      "presentation": "curated-v62"
-    },
-    "677": {
-      "path": "./assets/editorial/20261117-folder-delivery-v40/677.json",
-      "cards": 39,
-      "routes": 14,
-      "sha256": "25658fbe7863577b2ed214195ad4ba04e250f90dec09e0fb1efc9fbcd0724094",
-      "presentation": "curated-v62"
-    },
-    "660": {
-      "path": "./assets/editorial/20261117-folder-delivery-v40/660.json",
-      "cards": 36,
-      "routes": 5,
-      "sha256": "ff2e3cb8459aeb59a90966fa803b9589633028024735f511761be8b0d807ce9c",
-      "presentation": "curated-v62"
-    },
-    "673": {
-      "path": "./assets/editorial/20261117-folder-delivery-v40/673.json",
-      "cards": 39,
-      "routes": 5,
-      "sha256": "ad9c4c9e22898c4d73578d3c38be7d68c5204d929d9a9d67b79232dbc322493d",
-      "presentation": "curated-v62"
-    },
-    "699": {
-      "path": "./assets/editorial/20261117-folder-delivery-v40/699.json",
-      "cards": 39,
-      "routes": 5,
-      "sha256": "79ba66b675bd7b3f4a20544e7e7785231489fca19f4f7b08dd78461ca23e7eec",
       "presentation": "curated-v62"
     }
   }
