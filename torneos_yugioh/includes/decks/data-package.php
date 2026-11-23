@@ -347,9 +347,8 @@ function ygo_data_publish(string $app,int $id,array $record,array $files,string 
             if(file_put_contents($dir.'/'.$dest,$bytes)!==strlen($bytes))throw new RuntimeException('No se pudo escribir la imagen.');$map[$name]=$prefix.$dest;
         }
         array_walk_recursive($record,static function(&$v)use($map){if(is_string($v)&&isset($map[$v]))$v=$map[$v];});
-        $raw=$record['imported_source_text']??'';if($raw!==''){
-            file_put_contents($dir.'/guide.html',ygo_data_reader($record['name'],$raw));$record['folder_delivery']['reader']=$prefix.'guide.html';
-        }
+        // The technical Markdown is archived in the immutable source ZIP. Never publish a second HTML guide with audit details.
+        unset($record['folder_delivery']['reader']);
         $record['folder_delivery']['source_file']='ZIP importado desde la ficha del deck';
         $record['folder_delivery']['imported_at']=gmdate('c');
         $json=ygo_data_json($record);if(file_put_contents($dir.'/'.$id.'.json',$json)!==strlen($json))throw new RuntimeException('No se pudo escribir el contenido.');
