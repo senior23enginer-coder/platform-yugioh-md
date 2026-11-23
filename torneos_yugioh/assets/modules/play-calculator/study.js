@@ -156,12 +156,9 @@
         }
       }
       for (const rule of imported) db.rules.push(E.clone(rule));
-      // An effect ID can have multiple distinct legal target/zone variants.
-      // Importing one verified variant must not erase its sibling procedures.
-      // Deduplicate only the exact imported definition, not its shared effect ID.
-      const importedDefinitions = new Set(imported.map(rule => JSON.stringify(rule)));
-      for (const rule of verified)
-        if (!importedDefinitions.has(JSON.stringify(rule))) db.rules.push(E.clone(rule));
+      // Built-in definitions may act as guards for conflicts, but they never
+      // add deck-specific effects that were not supplied by the active GPT ZIP.
+      // No study or rejected contract => zero imported deck-specific rules.
     }
     return db;
   }
