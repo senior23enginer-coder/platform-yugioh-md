@@ -1,0 +1,44 @@
+name: Audit assigned A01 native deck eligibility without mutations
+on:
+  push:
+    branches: [feat/gpt-authoritative-four-deck-surfaces-20261123]
+    paths: [.github/workflows/a01-live-eligibility-audit-temporary.yml]
+permissions:
+  contents: read
+jobs:
+  live-decks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Discover real deck IDs and GET native lists read-only
+        run: |
+          python3 - <<'PY'
+          import re,urllib.request,json,collections,concurrent.futures,pathlib
+          base='https://stationxtulua.com/yugioh/'
+          body=urllib.request.urlopen(urllib.request.Request(base,headers={'User-Agent':'StationX-A01-Eligibility/1'}),timeout=55).read().decode('utf-8','replace')
+          ids=sorted({int(x) for x in re.findall(r'data-deck-list-id=["\\'](\\d+)["\\']',body)})
+          if not ids: ids=sorted({int(x) for x in re.findall(r'data-open-deck-sheet=["\\'](\\d+)["\\']',body)})
+          if not ids: raise SystemExit('No real deck IDs on public page; do not infer eligible inventory')
+          print('PUBLIC_CATALOG_COUNT',len(ids),'MINMAX',min(ids),max(ids),flush=True)
+          def query(id):
+            u=f'{base}?api=deck_builder&deck_id={id}'
+            j=json.load(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'StationX-A01-Eligibility/1'}),timeout=45))
+            if j.get('ok') is not True: return {'id':id,'error':j.get('message','invalid')}
+            zones=collections.Counter()
+            for row in j.get('cards',[]):
+              zone=row.get('section')
+              if zone=='tech':zone='reserve'
+              zones[zone]+=int(row.get('quantity') or 0)
+            return {'id':id,'name':j.get('deck',{}).get('name'),'format':j.get('deck',{}).get('format'),'zones':dict(zones),'rows':len(j.get('cards',[])),'eligible':all(zones[z]>0 for z in ('main','extra','side'))}
+          with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
+            results=sorted(pool.map(query,ids),key=lambda r:r['id'])
+          report={'source':'LIVE_NATIVE_DECKLIST_READ_ONLY','deck_count':len(results),'eligible':[r for r in results if r.get('eligible')],'ineligible':[r for r in results if not r.get('eligible')]}
+          pathlib.Path('outputs').mkdir(exist_ok=True)
+          pathlib.Path('outputs/a01-live-deck-eligibility.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+          print('A01_LIVE_INVENTORY_REPORT',json.dumps(report,ensure_ascii=False),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: a01-live-inventory-read-only
+          path: outputs/a01-live-deck-eligibility.json
+          if-no-files-found: error
