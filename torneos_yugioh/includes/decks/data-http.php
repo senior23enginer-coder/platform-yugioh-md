@@ -25,7 +25,7 @@ function ygo_data_saved(PDO $pdo,int $id): array {
 function ygo_data_safe_markdown_images(string $markdown, array $files): string {
     return preg_replace_callback('~<img\b[^>]*>~iu', static function(array $match) use($files):string {
         $tag=$match[0];
-        if(!preg_match('~^<img\s+src="(imagenes/[a-zA-Z0-9_.-]+\.(?:png|jpe?g|webp|gif))"(?:\s+width="[0-9]{1,3}")?(?:\s+alt="[^"<>]*")?\s*/?>$~iuD',$tag,$parts)) {
+        if(!preg_match('~^<img\s+src="(imagenes/(?:[a-zA-Z0-9_-]+/)*[a-zA-Z0-9_.-]+\.(?:png|jpe?g|webp|gif))"(?:\s+width="[0-9]{1,3}")?(?:\s+alt="[^"<>]*")?(?:\s+loading="lazy")?\s*/?>$~iuD',$tag,$parts)) {
             throw new InvalidArgumentException('Etiqueta HTML de imagen no admitida. Usa imágenes locales sin atributos ejecutables.');
         }
         $source=ygo_data_source_image($files,$parts[1]);
