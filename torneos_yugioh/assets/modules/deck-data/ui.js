@@ -39,16 +39,16 @@
     label.textContent=message;
   }
   function updatedLabel(timestamp){
-    if(!timestamp)return 'Última actualización de datos: sin fecha registrada';
+    if(!timestamp)return 'Última importación en Station X: sin registro';
     const date=new Date(timestamp);
-    if(Number.isNaN(date.getTime()))return 'Última actualización de datos: sin fecha registrada';
+    if(Number.isNaN(date.getTime()))return 'Última importación en Station X: sin registro';
     return 'Última actualización de datos: '+new Intl.DateTimeFormat('es-CO',{dateStyle:'medium',timeStyle:'short',timeZone:'America/Bogota'}).format(date);
   }
   function refreshUpdatedAt(selectedId){
     return fetch(`./?api=deck_data&deck_id=${Number(selectedId)}&op=status`,{cache:'no-store'}).then(res=>res.json()).then(data=>{
       if(Number(deck?.id)!==Number(selectedId)||!data.ok)return;
       const node=document.querySelector('[data-deck-last-updated]');
-      if(node){node.textContent=updatedLabel(data.updated_at);node.title=data.updated_at?'Fecha de la última importación de datos del deck':'No hay fecha de importación de datos registrada';}
+      if(node){node.textContent=updatedLabel(data.updated_at);node.title=data.updated_at?'Fecha de la última importación de datos del deck':'Esta entrega no consta como importada mediante el endpoint de Station X';}
     }).catch(()=>{
       const node=document.querySelector('[data-deck-last-updated]');
       if(node&&Number(deck?.id)===Number(selectedId))node.textContent='Última actualización de datos: no disponible';
