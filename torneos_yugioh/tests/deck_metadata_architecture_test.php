@@ -21,6 +21,14 @@ function metadataCheck(bool $condition, string $message): void
 }
 
 metadataCheck(
+    DeckMetadataResolver::resolve('Deck', 'Native', 'Native archetype', 'Manual', new DeckStudyProfile(), 2)->style === '',
+    'No GPT publication means no player-facing style even when native/manual fields exist',
+);
+metadataCheck(
+    DeckMetadataResolver::resolve('Deck', 'Native', 'Native archetype', 'Manual', new DeckStudyProfile(), 2)->archetype === 'Sin análisis importado',
+    'A missing GPT publication must never display a native archetype as an imported analysis',
+);
+metadataCheck(
     DeckMetadataResolver::description('Consultar el plan de juego y las condiciones') === '',
     'The catalog must reject old player-facing placeholders',
 );
@@ -71,8 +79,8 @@ metadataCheck(
 );
 metadataCheck(array_keys($rows) === [11], 'Native catalog keys changed');
 metadataCheck(
-    $rows[11]['display_style'] === 'Current manual style',
-    'Fresh manual profile lost priority',
+    $rows[11]['display_style'] === 'Control',
+    'The imported study must outrank manual and native style',
 );
 metadataCheck($rows[11]['display_archetype'] === 'Known archetype', 'Study archetype not resolved');
 metadataCheck(
@@ -131,7 +139,7 @@ try {
         $result = ygo_deck_list_metadata($case['decks'], $case['cards'], $case['profiles'], $app);
         metadataCheck(
             $result === $case['expected'],
-            'Original characterization changed: ' . $case['name'],
+            'Current GPT-authoritative characterization changed: ' . $case['name'],
         );
         metadataCheck(
             serialize([$case['decks'], $case['cards'], $case['profiles']]) === $before,
@@ -153,7 +161,10 @@ try {
     file_put_contents(
         $file,
         json_encode(
-            ['deck_id' => 4, 'profile' => ['Tipo de estrategia' => 'First']],
+            ['deck_id' => 4, 'a01_profile_contract' => 'station-x-a01-profile/1',
+                'player_guide' => ['schema' => 'station-x-player-guide/1'],
+                'folder_delivery' => ['imported_at' => '2026-11-23T19:19:29+00:00'],
+                'profile' => ['Tipo de estrategia' => 'First']],
             JSON_THROW_ON_ERROR,
         ),
     );
@@ -167,7 +178,10 @@ try {
     file_put_contents(
         $file,
         json_encode(
-            ['deck_id' => 4, 'profile' => ['Tipo de estrategia' => 'Changed']],
+            ['deck_id' => 4, 'a01_profile_contract' => 'station-x-a01-profile/1',
+                'player_guide' => ['schema' => 'station-x-player-guide/1'],
+                'folder_delivery' => ['imported_at' => '2026-11-23T19:22:29+00:00'],
+                'profile' => ['Tipo de estrategia' => 'Changed']],
             JSON_THROW_ON_ERROR,
         ),
     );
