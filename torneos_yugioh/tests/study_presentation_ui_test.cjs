@@ -6,6 +6,8 @@ const app=path.resolve(__dirname,'..');
 const memento=JSON.parse(fs.readFileSync(path.join(app,'assets/editorial/20261117-folder-delivery-v40/671.json'),'utf8'));
 const sourceRoot=process.argv[2]||process.env.YGO_PROMPTS_ROOT||'';
 const livePackage=sourceRoot?JSON.parse(fs.readFileSync(path.join(sourceRoot,'01_INFORMACION_PARA_IMPORTAR/decks/DECK_NUEVO_12_MEMENTOTLAN_DEMONIHERRERO/datos/stationx-deck.json'),'utf8')):null;
+const crystronPackage=sourceRoot?JSON.parse(fs.readFileSync(path.join(sourceRoot,'01_INFORMACION_PARA_IMPORTAR/decks/DECK_NUEVO_13_CRISTRON_HORUS/datos/stationx-deck.json'),'utf8')):null;
+if(crystronPackage)assert.equal(crystronPackage.deck_id,677);
 if(livePackage)assert.equal(livePackage.deck_id,671,'Only assigned Memento deck may be tested');
 const one=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a4vUAAAAASUVORK5CYII=','base64');
 (async()=>{
@@ -126,6 +128,50 @@ const one=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42
         await page.screenshot({path:path.join(evidence,'guide-'+width+'.png')});
         if(width===1280)fs.writeFileSync(path.join(evidence,'ui-evidence.json'),JSON.stringify({
           ok:true,deck_id:671,source:'real GPT base structured Memento package',
+          viewports:[390,1280],profile_fields:6,featured_cards:4,phases:4,
+          prohibited_public_audit_tokens:0,external_guide_links:0,
+          fictional_featured_cards:0,nonproduction:true
+        },null,2));
+      }
+      if(crystronPackage){
+        const actual=crystronPackage.record;
+        assert.equal(actual.a01_profile_contract,'station-x-a01-profile/1');
+        await page.evaluate(({data,viewportWidth})=>window.YgoCuratedStudy.render(
+          document.querySelector('#test-guide'),{id:677,name:'Crystron'},data,
+          {cards:data.cards.length,sha256:'actual-crystron-a01-t5-'+viewportWidth}
+        ),{data:actual,viewportWidth:width});
+        const intro=page.locator('[data-curated-content="intro"]');
+        const visible=await intro.innerText();
+        const publicProfile=await page.locator('.curated-profile').innerText();
+        for(const field of ['Arquetipo','Tipo de estrategia','Estilo breve']){
+          assert(publicProfile.includes(field),'Missing player field in browser: '+field);
+        }
+        assert(publicProfile.includes(actual.profile['Resumen para ficha']),'Actual summary differs from GPT JSON');
+        assert(publicProfile.includes(actual.profile['Qué vigilar']),'Actual risks differ from GPT JSON');
+        assert.equal(await page.locator('.curated-featured-card').count(),4,'Actual Crystron should select 4 grounded cards');
+        assert.equal(await page.locator('.curated-game-phase').count(),4,'Actual Crystron needs four full game phases');
+        const titles=await page.locator('.curated-game-phase h5').allInnerTexts();
+        assert.deepEqual(titles,actual.player_guide.phases.map(p=>p.title),'Different phase titles rendered');
+        for(const featured of actual.player_guide.featured_cards){
+          const card=actual.cards.find(c=>c.cid===featured.cid);
+          assert(card, 'Featured CID must belong to Crystron');
+          const content=await page.locator('.curated-featured-card').filter({hasText:card.name}).innerText();
+          assert(content.includes(featured.reason)&&content.includes(featured.when_to_use),
+            'Player must see why and when to use '+card.name);
+        }
+        assert(!/Dictamen editorial|PARCIAL_AVANZADO|Cat[aá]logo completo|consultar el plan|CID\s*\d+|\b[CV]\d{2}\b/i.test(visible),
+          'A01 visible guide leaked internal audit tokens');
+        assert.equal(await intro.locator('a[href*="guide.html"]').count(),0,'External historical HTML guide should not be linked');
+        assert.equal(await intro.locator('[data-rule-scenarios] details').filter({hasText:'Reglas generales y fuentes'}).count(),0,
+          'Empty general rules section must not be visible');
+        await page.locator('.curated-full-profile summary').click();
+        assert((await page.locator('.curated-full-profile').innerText()).includes(actual.profile['Cómo se juega']),
+          'Full actual A01 plan must be accessible');
+        const evidence=path.join(app,'../outputs/a01-t5-crystron-677');
+        fs.mkdirSync(evidence,{recursive:true});
+        await page.screenshot({path:path.join(evidence,'guide-'+width+'.png')});
+        if(width===1280)fs.writeFileSync(path.join(evidence,'ui-evidence.json'),JSON.stringify({
+          ok:true,deck_id:677,source:'real GPT base structured Crystron package',
           viewports:[390,1280],profile_fields:6,featured_cards:4,phases:4,
           prohibited_public_audit_tokens:0,external_guide_links:0,
           fictional_featured_cards:0,nonproduction:true
