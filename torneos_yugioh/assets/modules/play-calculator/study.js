@@ -30,6 +30,11 @@
           const study = await json(entry.path);
           if (Number(study.deck_id) !== Number(id))
             throw Error("Estudio asociado a otro deck");
+          // Deck-specific effects and routes only originate in the GPT ZIP
+          // published by the native authenticated import endpoint.
+          if(study.a01_profile_contract!=='station-x-a01-profile/1'||
+             study.player_guide?.schema!=='station-x-player-guide/1'||
+             typeof study.folder_delivery?.imported_at!=='string')return null;
           return study;
         })().catch((e) => {
           requests.delete(id);
