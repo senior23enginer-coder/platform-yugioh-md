@@ -25,7 +25,7 @@ const fields=['Arquetipo','Tipo de estrategia','Estilo breve','Resumen para fich
      await page.route('**/*',r=>new URL(r.request().url()).pathname==='/'?r.fulfill({status:200,contentType:'text/html',body:'<html><body><main id="test-guide"></main></body></html>'}):/\.(png|jpe?g|webp)$/i.test(new URL(r.request().url()).pathname)?r.fulfill({status:200,contentType:'image/png',body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a4vUAAAAASUVORK5CYII=','base64')}):r.fulfill({status:404,body:''}));
      await page.goto('http://stationx.test/');
      await page.addScriptTag({content:'window.YgoFunctionalRole={project:data=>data,connectionHelp:{}};window.YgoStudyPhotoViewer={create:()=>({open(){},dispose(){}})};'});
-     for(const file of ['presentation-contract.js','endboard.js','delivery-extensions.js','curated-study.js'])await page.addScriptTag({path:path.join(app,'assets/modules/deck-guide',file)});
+     for(const file of ['presentation-contract.js','endboard.js','curated-visual.js','delivery-extensions.js','curated-study.js'])await page.addScriptTag({path:path.join(app,'assets/modules/deck-guide',file)});
      await page.evaluate(({record,id})=>window.YgoCuratedStudy.render(document.querySelector('#test-guide'),{id,name:record.name},record,{cards:record.cards.length,sha256:'assigned-'+id}),{record,id});
      const profile=await page.locator('.curated-profile').innerText();
      const norm=x=>x.replace(/\s+/g,' ').trim();
