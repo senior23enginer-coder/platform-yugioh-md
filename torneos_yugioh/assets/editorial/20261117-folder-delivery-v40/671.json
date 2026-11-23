@@ -29537,24 +29537,63 @@
           "text": "Xyz de dos Nivel3, salida marginal de daño por número real de desterrados."
         }
       ],
-      "practical": [],
-      "operational": {},
-      "learning": {},
+      "practical": [
+        {
+          "title": "Cómo acceder desde el Extra",
+          "text": "Angbruja + Fiesta de Huesos + Goblin en mano; campo y Cementerio inicialmente vacíos; otra Angbruja y Dormiveja disponibles en el Deck. Materiales: Dos Angbruja de Nivel 3 simultáneamente boca arriba en el campo, libres para usarse como materiales de la Invocación Xyz."
+        },
+        {
+          "title": "Utilidad y resultado",
+          "text": "Aero Tiburón con dos Angbruja como materiales Xyz y Dormiveja aún en campo. Sin monstruos propios desterrados en esta apertura, su efecto de daño no genera valor útil; acceso documentado no equivale a recomendación estratégica ni replay certificado."
+        }
+      ],
+      "operational": {
+        "Acción": "Xyz Rango 3 **2 Nivel 3**; desprende material e inflige 100 por cada monstruo propio desterrado",
+        "Ventanas y requisitos": "Dos Angbruja de Nivel 3 simultáneamente boca arriba en el campo, libres para usarse como materiales de la Invocación Xyz.",
+        "Restricciones": "Sin monstruos propios desterrados en esta apertura, su efecto de daño no genera valor útil; acceso documentado no equivale a recomendación estratégica ni replay certificado."
+      },
+      "learning": {
+        "Aplicación concreta registrada": "Acceso EX-M03: Aero Tiburón con dos Angbruja como materiales Xyz y Dormiveja aún en campo.",
+        "Cuándo jugarla primero": "Acceso EX-M03 con dos Angbruja de Nivel 3; sin desterrados propios su daño no justifica priorizar esta salida.",
+        "Cuándo jugarla segundo": "Comprobar primero los monstruos propios desterrados y que no se hayan consumido los dos materiales.",
+        "Limitación a respetar": "Cada Angbruja usada como material deja de existir como monstruo independiente; no repetir su búsqueda por nombre."
+      },
       "functional": {
         "purpose": "Xyz Rango 3 **2 Nivel 3**; desprende material e inflige 100 por cada monstruo propio desterrado",
         "explanation": "Xyz Rango 3 **2 Nivel 3**; desprende material e inflige 100 por cada monstruo propio desterrado"
       },
       "role": "Xyz Rango 3 **2 Nivel 3**; desprende material e inflige 100 por cada monstruo propio desterrado",
       "synergy": {
-        "labels": [],
-        "resource": "",
-        "relation": ""
+        "labels": [
+          "Salida del Extra Deck",
+          "Acceso EX-M03 condicional"
+        ],
+        "resource": "Xyz de dos Nivel3, salida marginal de daño por número real de desterrados.",
+        "relation": "La guía A09.0 documenta EX-M03 con materiales, estado y límites; no forma parte de las 12 rutas interactivas C01–C12."
       },
       "sources": [
         "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=9657&ope=2&request_locale=es"
       ],
       "source_aliases": [
         "Portaaviones Sumergible Aero Tiburón"
+      ],
+      "extra_access": [
+        {
+          "id": "EX-M03",
+          "status": "DOCUMENTADA_CONDICIONAL_SIN_REPLAY",
+          "opening": "Angbruja + Fiesta de Huesos + Goblin en mano; campo y Cementerio inicialmente vacíos; otra Angbruja y Dormiveja disponibles en el Deck.",
+          "materials": "Dos Angbruja de Nivel 3 simultáneamente boca arriba en el campo, libres para usarse como materiales de la Invocación Xyz.",
+          "steps": [
+            "Invocar Normalmente Angbruja y usar su búsqueda para añadir Dormiveja a la mano.",
+            "Activar Fiesta de Huesos: destruir Goblin de la mano y traer del Deck la segunda Angbruja en Defensa, sin repetir la búsqueda de nombre de Angbruja.",
+            "Por la destrucción de un monstruo propio por efecto, Invocar Especial Dormiveja desde la mano sin asumir que se usa su efecto opcional de Fusión.",
+            "Superponer las dos Angbruja de Nivel 3 para Invocar Xyz a Aero Tiburón; Dormiveja continúa en campo."
+          ],
+          "result": "Aero Tiburón con dos Angbruja como materiales Xyz y Dormiveja aún en campo.",
+          "limitation": "Sin monstruos propios desterrados en esta apertura, su efecto de daño no genera valor útil; acceso documentado no equivale a recomendación estratégica ni replay certificado.",
+          "source_section": "A09.0 — Accesos adicionales del Extra",
+          "cid": 9657
+        }
       ]
     },
     {
@@ -29623,24 +29662,63 @@
           "text": "Interacción de contadores contra monstruos si existe Fusión+DARK; no es motor autónomo."
         }
       ],
-      "practical": [],
-      "operational": {},
-      "learning": {},
+      "practical": [
+        {
+          "title": "Cómo acceder desde el Extra",
+          "text": "Angbruja + dos copias distintas de Fusión Mementotlán + Goblin; un segundo Goblin disponible en el Deck para C01. Materiales: Un monstruo Fusión en campo (Rey Creación) y un monstruo OSCURIDAD (Goblin); Fusión Mementotlán previamente Colocada en el turno propio."
+        },
+        {
+          "title": "Utilidad y resultado",
+          "text": "Dragostapelia y el jefe 5000 si ambos llegaron a ese estado. Con objetivo rival boca arriba válido, el efecto rápido puede colocar Contador Depredador. Depende de sobrevivir al turno rival y de conservar la carta Colocada y los materiales; la segunda Fusión no puede activarse en el turno en que se Colocó."
+        }
+      ],
+      "operational": {
+        "Acción": "Fusión de **1 monstruo Fusión + 1 OSCURIDAD**; pone Contador Depredador y niega efectos activados de rivales que lo tienen",
+        "Ventanas y requisitos": "Un monstruo Fusión en campo (Rey Creación) y un monstruo OSCURIDAD (Goblin); Fusión Mementotlán previamente Colocada en el turno propio.",
+        "Restricciones": "Depende de sobrevivir al turno rival y de conservar la carta Colocada y los materiales; la segunda Fusión no puede activarse en el turno en que se Colocó."
+      },
+      "learning": {
+        "Aplicación concreta registrada": "Acceso EX-M01: Dragostapelia y el jefe 5000 si ambos llegaron a ese estado. Con objetivo rival boca arriba válido, el efecto rápido puede colocar Contador Depredador.",
+        "Cuándo jugarla primero": "Solo si la segunda Fusión fue Colocada en el turno propio y el campo de C01 sobrevivió; se utiliza en el turno del adversario.",
+        "Cuándo jugarla segundo": "La aplicación depende de conservar materiales y ventana válida, no de una Invocación libre.",
+        "Limitación a respetar": "Mágica Rápida Colocada y materiales propios deben sobrevivir a la interacción rival."
+      },
       "functional": {
         "purpose": "Fusión de **1 monstruo Fusión + 1 OSCURIDAD**; pone Contador Depredador y niega efectos activados de rivales que lo tienen",
         "explanation": "Fusión de **1 monstruo Fusión + 1 OSCURIDAD**; pone Contador Depredador y niega efectos activados de rivales que lo tienen"
       },
       "role": "Fusión de **1 monstruo Fusión + 1 OSCURIDAD**; pone Contador Depredador y niega efectos activados de rivales que lo tienen",
       "synergy": {
-        "labels": [],
-        "resource": "",
-        "relation": ""
+        "labels": [
+          "Salida del Extra Deck",
+          "Acceso EX-M01 condicional"
+        ],
+        "resource": "Interacción de contadores contra monstruos si existe Fusión+DARK; no es motor autónomo.",
+        "relation": "La guía A09.0 documenta EX-M01 con materiales, estado y límites; no forma parte de las 12 rutas interactivas C01–C12."
       },
       "sources": [
         "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=12870&ope=2&request_locale=es"
       ],
       "source_aliases": [
         "Predaplanta Dragostapelia"
+      ],
+      "extra_access": [
+        {
+          "id": "EX-M01",
+          "status": "DOCUMENTADA_CONDICIONAL_SIN_REPLAY",
+          "opening": "Angbruja + dos copias distintas de Fusión Mementotlán + Goblin; un segundo Goblin disponible en el Deck para C01.",
+          "materials": "Un monstruo Fusión en campo (Rey Creación) y un monstruo OSCURIDAD (Goblin); Fusión Mementotlán previamente Colocada en el turno propio.",
+          "steps": [
+            "Desarrollar C01 con la primera Fusión, conservando Goblin de apertura y la segunda Fusión.",
+            "Colocar la segunda Fusión durante el turno propio y conservar Rey Creación en el campo.",
+            "Durante la fase principal rival, activar esa Fusión ya Colocada y usar Rey Creación + Goblin OSCURIDAD como materiales para invocar Dragostapelia."
+          ],
+          "result": "Dragostapelia y el jefe 5000 si ambos llegaron a ese estado. Con objetivo rival boca arriba válido, el efecto rápido puede colocar Contador Depredador.",
+          "limitation": "Depende de sobrevivir al turno rival y de conservar la carta Colocada y los materiales; la segunda Fusión no puede activarse en el turno en que se Colocó.",
+          "parent_route_id": "671:A09:C01",
+          "source_section": "A09.0 — Accesos adicionales del Extra",
+          "cid": 12870
+        }
       ]
     },
     {
@@ -29709,18 +29787,39 @@
           "text": "Condiciones de Invocación y efectos del texto oficial"
         }
       ],
-      "practical": [],
-      "operational": {},
-      "learning": {},
+      "practical": [
+        {
+          "title": "Cómo acceder desde el Extra",
+          "text": "Angbruja + Fiesta de Huesos + Fusión Mementotlán + Goblin; debe acreditarse la secuencia y disponibilidad simultánea de materiales. Materiales: Grabador y Duque de la Defunción, ambos Demonios de Nivel 6 simultáneamente presentes y no consumidos, para Xyz de César."
+        },
+        {
+          "title": "Utilidad y resultado",
+          "text": "Salida Xyz potencial con César; tablero y efecto de negación NO certificados por la documentación disponible. Ruta expresamente teórica; no debe mostrarse como combo legal ejecutado o recomendado sin la verificación documental y reglamentaria completa."
+        }
+      ],
+      "operational": {
+        "Acción": "Xyz Rango 6 **2 Demonios de Nivel 6**; niega activación que Invoca Especial desprendiendo material",
+        "Ventanas y requisitos": "Grabador y Duque de la Defunción, ambos Demonios de Nivel 6 simultáneamente presentes y no consumidos, para Xyz de César.",
+        "Restricciones": "Ruta expresamente teórica; no debe mostrarse como combo legal ejecutado o recomendado sin la verificación documental y reglamentaria completa."
+      },
+      "learning": {
+        "Aplicación concreta registrada": "Acceso EX-M04: Salida Xyz potencial con César; tablero y efecto de negación NO certificados por la documentación disponible.",
+        "Cuándo jugarla primero": "EX-M04 no está certificada; no planear como resultado asegurado sin comprobar Grabador y Duque simultáneos.",
+        "Cuándo jugarla segundo": "Solo contemplarla con dos Demonios de Nivel 6 válidos realmente disponibles y ventanas legales.",
+        "Limitación a respetar": "La línea sigue siendo teórica; no acreditar la negación ni el tablero sin cotejo de los estados."
+      },
       "functional": {
         "purpose": "Xyz Rango 6 **2 Demonios de Nivel 6**; niega activación que Invoca Especial desprendiendo material",
         "explanation": "Xyz Rango 6 **2 Demonios de Nivel 6**; niega activación que Invoca Especial desprendiendo material"
       },
       "role": "Xyz Rango 6 **2 Demonios de Nivel 6**; niega activación que Invoca Especial desprendiendo material",
       "synergy": {
-        "labels": [],
-        "resource": "",
-        "relation": ""
+        "labels": [
+          "Salida del Extra Deck",
+          "Acceso EX-M04 pendiente"
+        ],
+        "resource": "Condiciones de Invocación y efectos del texto oficial",
+        "relation": "La guía A09.0 documenta EX-M04 con materiales, estado y límites; no forma parte de las 12 rutas interactivas C01–C12."
       },
       "sources": [
         "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13081&ope=2&request_locale=es"
@@ -29730,7 +29829,25 @@
       ],
       "delivery_fields": {
         "Restricción documental del formato": "El estudio señala PROHIBIDA (0); copias en exceso según esa fuente: 1. El inventario se conserva."
-      }
+      },
+      "extra_access": [
+        {
+          "id": "EX-M04",
+          "status": "TEORICA_PENDIENTE_VALIDACION",
+          "opening": "Angbruja + Fiesta de Huesos + Fusión Mementotlán + Goblin; debe acreditarse la secuencia y disponibilidad simultánea de materiales.",
+          "materials": "Grabador y Duque de la Defunción, ambos Demonios de Nivel 6 simultáneamente presentes y no consumidos, para Xyz de César.",
+          "steps": [
+            "Plantear la rama de C03 que permite llegar a Grabador en el campo, sin confundir sus estados posteriores.",
+            "Usar Fiesta y Fusión Mementotlán bajo sus condiciones reales para intentar mantener Duque de la Defunción en campo junto a Grabador.",
+            "Verificar fases, zonas, restricciones, costes, resoluciones y copias antes de superponer ambos Demonios de Nivel 6 para César."
+          ],
+          "result": "Salida Xyz potencial con César; tablero y efecto de negación NO certificados por la documentación disponible.",
+          "limitation": "Ruta expresamente teórica; no debe mostrarse como combo legal ejecutado o recomendado sin la verificación documental y reglamentaria completa.",
+          "parent_route_id": "671:A09:C03",
+          "source_section": "A09.0 — Accesos adicionales del Extra",
+          "cid": 13081
+        }
+      ]
     },
     {
       "id": "671:CARD:13619",
@@ -29882,18 +29999,38 @@
           "text": "Primero pide mano+campo, después transforma 1 material de mano en robo y 2 de campo en destrucción."
         }
       ],
-      "practical": [],
-      "operational": {},
-      "learning": {},
+      "practical": [
+        {
+          "title": "Cómo acceder desde el Extra",
+          "text": "Fusión: 3 monstruos de nombres distintos; debe incluir al menos 1 de mano y 1 de campo. La ruta debe conservar todos los requisitos del inventario real."
+        },
+        {
+          "title": "Utilidad y resultado",
+          "text": "Primero pide mano+campo, después transforma 1 material de mano en robo y 2 de campo en destrucción."
+        }
+      ],
+      "operational": {
+        "Acción": "Fusión **3 nombres distintos, material solo de mano/campo y al menos uno de cada zona**; roba por materiales de mano y destruye rival por los de campo",
+        "Ventanas y requisitos": "Fusión: 3 monstruos de nombres distintos; debe incluir al menos 1 de mano y 1 de campo."
+      },
+      "learning": {
+        "Aplicación concreta registrada": "Primero pide mano+campo, después transforma 1 material de mano en robo y 2 de campo en destrucción.",
+        "Cuándo jugarla primero": "Consultar el estado inicial y las rutas A09 con participación real antes de elegir esta carta.",
+        "Cuándo jugarla segundo": "Solo con materiales disponibles y una ventaja táctica demostrable en el tablero actual.",
+        "Limitación a respetar": "No convertir un acceso potencial al Extra en una Invocación certificada sin estado y materiales comprobados."
+      },
       "functional": {
         "purpose": "Fusión **3 nombres distintos, material solo de mano/campo y al menos uno de cada zona**; roba por materiales de mano y destruye rival por los de campo",
         "explanation": "Fusión **3 nombres distintos, material solo de mano/campo y al menos uno de cada zona**; roba por materiales de mano y destruye rival por los de campo"
       },
       "role": "Fusión **3 nombres distintos, material solo de mano/campo y al menos uno de cada zona**; roba por materiales de mano y destruye rival por los de campo",
       "synergy": {
-        "labels": [],
-        "resource": "",
-        "relation": ""
+        "labels": [
+          "Salida del Extra Deck",
+          "En rutas A09 documentadas"
+        ],
+        "resource": "Primero pide mano+campo, después transforma 1 material de mano en robo y 2 de campo en destrucción.",
+        "relation": "Participación contextual en 671:A09:C07; consultar la secuencia para demostrar la función exacta."
       },
       "sources": [
         "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=16845&ope=2&request_locale=es"
@@ -29929,24 +30066,63 @@
           "text": "Plan de respuesta cuando rival realizó múltiples invocaciones del Extra; evaluar requisitos y locks."
         }
       ],
-      "practical": [],
-      "operational": {},
-      "learning": {},
+      "practical": [
+        {
+          "title": "Cómo acceder desde el Extra",
+          "text": "El adversario Invocó Especial al menos dos monstruos desde el Extra Deck en el turno actual o anterior; Angbruja en mano y condiciones de C08. Materiales: S:P Pequeña Caballera propia en campo, como único monstruo propio y de mayor ATK para el procedimiento alternativo de TY-PHON."
+        },
+        {
+          "title": "Utilidad y resultado",
+          "text": "TY-PHON en campo con S:P como material Xyz, nunca como segundo monstruo independiente. No presumir el historial rival; tras el procedimiento alternativo no pueden realizarse más Invocaciones propias ese turno y su restricción sobre monstruos de 3000 o más ATK afecta también a los propios."
+        }
+      ],
+      "operational": {
+        "Acción": "Xyz alternativo con 1 monstruo propio de mayor ATK tras 2+ Invocaciones Extra rivales en ventana válida; después no más Invocaciones ese turno; impide efectos de monstruos de ≥3000 ATK **propios también**",
+        "Ventanas y requisitos": "S:P Pequeña Caballera propia en campo, como único monstruo propio y de mayor ATK para el procedimiento alternativo de TY-PHON.",
+        "Restricciones": "No presumir el historial rival; tras el procedimiento alternativo no pueden realizarse más Invocaciones propias ese turno y su restricción sobre monstruos de 3000 o más ATK afecta también a los propios."
+      },
+      "learning": {
+        "Aplicación concreta registrada": "Acceso EX-M02: TY-PHON en campo con S:P como material Xyz, nunca como segundo monstruo independiente.",
+        "Cuándo jugarla primero": "No activar un plan de apertura suponiendo invocaciones rivales que todavía no ocurrieron.",
+        "Cuándo jugarla segundo": "Valorar como respuesta tras comprobar dos Invocaciones rivales desde el Extra y poder terminar el desarrollo propio.",
+        "Limitación a respetar": "La prohibición de seguir Invocando ese turno y la restricción de 3000 ATK afectan a tu propio campo."
+      },
       "functional": {
         "purpose": "Xyz alternativo con 1 monstruo propio de mayor ATK tras 2+ Invocaciones Extra rivales en ventana válida; después no más Invocaciones ese turno; impide efectos de monstruos de ≥3000 ATK **propios también**",
         "explanation": "Xyz alternativo con 1 monstruo propio de mayor ATK tras 2+ Invocaciones Extra rivales en ventana válida; después no más Invocaciones ese turno; impide efectos de monstruos de ≥3000 ATK **propios también**"
       },
       "role": "Xyz alternativo con 1 monstruo propio de mayor ATK tras 2+ Invocaciones Extra rivales en ventana válida; después no más Invocaciones ese turno; impide efectos de monstruos de ≥3000 ATK **propios también**",
       "synergy": {
-        "labels": [],
-        "resource": "",
-        "relation": ""
+        "labels": [
+          "Salida del Extra Deck",
+          "Acceso EX-M02 condicional"
+        ],
+        "resource": "Plan de respuesta cuando rival realizó múltiples invocaciones del Extra; evaluar requisitos y locks.",
+        "relation": "La guía A09.0 documenta EX-M02 con materiales, estado y límites; no forma parte de las 12 rutas interactivas C01–C12."
       },
       "sources": [
         "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19184&ope=2&request_locale=es"
       ],
       "source_aliases": [
         "TY-PHON - Crisis Celeste"
+      ],
+      "extra_access": [
+        {
+          "id": "EX-M02",
+          "status": "DOCUMENTADA_CONDICIONAL_SIN_REPLAY",
+          "opening": "El adversario Invocó Especial al menos dos monstruos desde el Extra Deck en el turno actual o anterior; Angbruja en mano y condiciones de C08.",
+          "materials": "S:P Pequeña Caballera propia en campo, como único monstruo propio y de mayor ATK para el procedimiento alternativo de TY-PHON.",
+          "steps": [
+            "Confirmar el historial observado de dos o más Invocaciones rivales desde el Extra en un turno pertinente.",
+            "Realizar C08 pasos 1–3 para colocar S:P en campo con los materiales legítimos.",
+            "Superponer TY-PHON desde el Extra sobre S:P como material Xyz, siempre que se cumplan sus condiciones."
+          ],
+          "result": "TY-PHON en campo con S:P como material Xyz, nunca como segundo monstruo independiente.",
+          "limitation": "No presumir el historial rival; tras el procedimiento alternativo no pueden realizarse más Invocaciones propias ese turno y su restricción sobre monstruos de 3000 o más ATK afecta también a los propios.",
+          "parent_route_id": "671:A09:C08",
+          "source_section": "A09.0 — Accesos adicionales del Extra",
+          "cid": 19184
+        }
       ]
     },
     {
@@ -29976,18 +30152,38 @@
           "text": "Retira temporalmente dos monstruos a respuesta, requiere dos efectos y ventanas legales."
         }
       ],
-      "practical": [],
-      "operational": {},
-      "learning": {},
+      "practical": [
+        {
+          "title": "Cómo acceder desde el Extra",
+          "text": "Enlace 2: 2 monstruos de efecto. La ruta debe conservar todos los requisitos del inventario real."
+        },
+        {
+          "title": "Utilidad y resultado",
+          "text": "Retira temporalmente dos monstruos a respuesta, requiere dos efectos y ventanas legales."
+        }
+      ],
+      "operational": {
+        "Acción": "Link-2 de 2 monstruos de efecto; si uno era de Extra, puede desterrar carta del campo/GY; en respuesta a efecto rival puede desterrar temporalmente 2 monstruos boca arriba incluyendo propia",
+        "Ventanas y requisitos": "Enlace 2: 2 monstruos de efecto."
+      },
+      "learning": {
+        "Aplicación concreta registrada": "Retira temporalmente dos monstruos a respuesta, requiere dos efectos y ventanas legales.",
+        "Cuándo jugarla primero": "Consultar el estado inicial y las rutas A09 con participación real antes de elegir esta carta.",
+        "Cuándo jugarla segundo": "Solo con materiales disponibles y una ventaja táctica demostrable en el tablero actual.",
+        "Limitación a respetar": "No convertir un acceso potencial al Extra en una Invocación certificada sin estado y materiales comprobados."
+      },
       "functional": {
         "purpose": "Link-2 de 2 monstruos de efecto; si uno era de Extra, puede desterrar carta del campo/GY; en respuesta a efecto rival puede desterrar temporalmente 2 monstruos boca arriba incluyendo propia",
         "explanation": "Link-2 de 2 monstruos de efecto; si uno era de Extra, puede desterrar carta del campo/GY; en respuesta a efecto rival puede desterrar temporalmente 2 monstruos boca arriba incluyendo propia"
       },
       "role": "Link-2 de 2 monstruos de efecto; si uno era de Extra, puede desterrar carta del campo/GY; en respuesta a efecto rival puede desterrar temporalmente 2 monstruos boca arriba incluyendo propia",
       "synergy": {
-        "labels": [],
-        "resource": "",
-        "relation": ""
+        "labels": [
+          "Salida del Extra Deck",
+          "En rutas A09 documentadas"
+        ],
+        "resource": "Retira temporalmente dos monstruos a respuesta, requiere dos efectos y ventanas legales.",
+        "relation": "Participación contextual en 671:A09:C08; consultar la secuencia para demostrar la función exacta."
       },
       "sources": [
         "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19188&ope=2&request_locale=es"
@@ -30413,18 +30609,38 @@
           "text": "Busca dos nombres al destruir un Memento de mano/campo; preparar jefe de 5000."
         }
       ],
-      "practical": [],
-      "operational": {},
-      "learning": {},
+      "practical": [
+        {
+          "title": "Cómo acceder desde el Extra",
+          "text": "Fusión: 2 monstruos Memento. La ruta debe conservar todos los requisitos del inventario real."
+        },
+        {
+          "title": "Utilidad y resultado",
+          "text": "Busca dos nombres al destruir un Memento de mano/campo; preparar jefe de 5000."
+        }
+      ],
+      "operational": {
+        "Acción": "Fusión **2 Memento**; al ser Fusion Invocado destruye Memento propio y busca hasta dos monstruos de nombres distintos; al ser destruido revivir Memento ≤6",
+        "Ventanas y requisitos": "Fusión: 2 monstruos Memento."
+      },
+      "learning": {
+        "Aplicación concreta registrada": "Busca dos nombres al destruir un Memento de mano/campo; preparar jefe de 5000.",
+        "Cuándo jugarla primero": "Consultar el estado inicial y las rutas A09 con participación real antes de elegir esta carta.",
+        "Cuándo jugarla segundo": "Solo con materiales disponibles y una ventaja táctica demostrable en el tablero actual.",
+        "Limitación a respetar": "No convertir un acceso potencial al Extra en una Invocación certificada sin estado y materiales comprobados."
+      },
       "functional": {
         "purpose": "Fusión **2 Memento**; al ser Fusion Invocado destruye Memento propio y busca hasta dos monstruos de nombres distintos; al ser destruido revivir Memento ≤6",
         "explanation": "Fusión **2 Memento**; al ser Fusion Invocado destruye Memento propio y busca hasta dos monstruos de nombres distintos; al ser destruido revivir Memento ≤6"
       },
       "role": "Fusión **2 Memento**; al ser Fusion Invocado destruye Memento propio y busca hasta dos monstruos de nombres distintos; al ser destruido revivir Memento ≤6",
       "synergy": {
-        "labels": [],
-        "resource": "",
-        "relation": ""
+        "labels": [
+          "Salida del Extra Deck",
+          "En rutas A09 documentadas"
+        ],
+        "resource": "Busca dos nombres al destruir un Memento de mano/campo; preparar jefe de 5000.",
+        "relation": "Participación contextual en 671:A09:C06; consultar la secuencia para demostrar la función exacta."
       },
       "sources": [
         "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19878&ope=2&request_locale=es"
@@ -30499,18 +30715,38 @@
           "text": "C03: convierte dos cuerpos disponibles en puente a Réquiem, respetando su texto de efecto"
         }
       ],
-      "practical": [],
-      "operational": {},
-      "learning": {},
+      "practical": [
+        {
+          "title": "Cómo acceder desde el Extra",
+          "text": "Enlace 2: 2 monstruos de efecto. La ruta debe conservar todos los requisitos del inventario real."
+        },
+        {
+          "title": "Utilidad y resultado",
+          "text": "C03: convierte dos cuerpos disponibles en puente a Réquiem, respetando su texto de efecto"
+        }
+      ],
+      "operational": {
+        "Acción": "Link-2 **2 monstruos de efecto**, LUZ/Demonio; su efecto de usar monstruo rival demanda futuro Link-5 no presente",
+        "Ventanas y requisitos": "Enlace 2: 2 monstruos de efecto."
+      },
+      "learning": {
+        "Aplicación concreta registrada": "C03: convierte dos cuerpos disponibles en puente a Réquiem, respetando su texto de efecto",
+        "Cuándo jugarla primero": "Consultar el estado inicial y las rutas A09 con participación real antes de elegir esta carta.",
+        "Cuándo jugarla segundo": "Solo con materiales disponibles y una ventaja táctica demostrable en el tablero actual.",
+        "Limitación a respetar": "No convertir un acceso potencial al Extra en una Invocación certificada sin estado y materiales comprobados."
+      },
       "functional": {
         "purpose": "Link-2 **2 monstruos de efecto**, LUZ/Demonio; su efecto de usar monstruo rival demanda futuro Link-5 no presente",
         "explanation": "Link-2 **2 monstruos de efecto**, LUZ/Demonio; su efecto de usar monstruo rival demanda futuro Link-5 no presente"
       },
       "role": "Link-2 **2 monstruos de efecto**, LUZ/Demonio; su efecto de usar monstruo rival demanda futuro Link-5 no presente",
       "synergy": {
-        "labels": [],
-        "resource": "",
-        "relation": ""
+        "labels": [
+          "Salida del Extra Deck",
+          "En rutas A09 documentadas"
+        ],
+        "resource": "C03: convierte dos cuerpos disponibles en puente a Réquiem, respetando su texto de efecto",
+        "relation": "Participación contextual en 671:A09:C03, 671:A09:C09, 671:A09:C10; consultar la secuencia para demostrar la función exacta."
       },
       "sources": [
         "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=19932&ope=2&request_locale=es"
@@ -30666,18 +30902,38 @@
           "text": "Motor de GY para cinco nombres y retirada rápida simétrica de recursos propios/rivales."
         }
       ],
-      "practical": [],
-      "operational": {},
-      "learning": {},
+      "practical": [
+        {
+          "title": "Cómo acceder desde el Extra",
+          "text": "Fusión: exactamente 3 monstruos Memento. La ruta debe conservar todos los requisitos del inventario real."
+        },
+        {
+          "title": "Utilidad y resultado",
+          "text": "Motor de GY para cinco nombres y retirada rápida simétrica de recursos propios/rivales."
+        }
+      ],
+      "operational": {
+        "Acción": "Fusión **3 Memento**; al ser Fusion Invocado manda **3 cartas Memento** de Deck/Extra al GY; rápido destruye igual número de monstruos Memento propios y cartas rivales; en GY puede buscar Campo",
+        "Ventanas y requisitos": "Fusión: exactamente 3 monstruos Memento."
+      },
+      "learning": {
+        "Aplicación concreta registrada": "Motor de GY para cinco nombres y retirada rápida simétrica de recursos propios/rivales.",
+        "Cuándo jugarla primero": "Consultar el estado inicial y las rutas A09 con participación real antes de elegir esta carta.",
+        "Cuándo jugarla segundo": "Solo con materiales disponibles y una ventaja táctica demostrable en el tablero actual.",
+        "Limitación a respetar": "No convertir un acceso potencial al Extra en una Invocación certificada sin estado y materiales comprobados."
+      },
       "functional": {
         "purpose": "Fusión **3 Memento**; al ser Fusion Invocado manda **3 cartas Memento** de Deck/Extra al GY; rápido destruye igual número de monstruos Memento propios y cartas rivales; en GY puede buscar Campo",
         "explanation": "Fusión **3 Memento**; al ser Fusion Invocado manda **3 cartas Memento** de Deck/Extra al GY; rápido destruye igual número de monstruos Memento propios y cartas rivales; en GY puede buscar Campo"
       },
       "role": "Fusión **3 Memento**; al ser Fusion Invocado manda **3 cartas Memento** de Deck/Extra al GY; rápido destruye igual número de monstruos Memento propios y cartas rivales; en GY puede buscar Campo",
       "synergy": {
-        "labels": [],
-        "resource": "",
-        "relation": ""
+        "labels": [
+          "Salida del Extra Deck",
+          "En rutas A09 documentadas"
+        ],
+        "resource": "Motor de GY para cinco nombres y retirada rápida simétrica de recursos propios/rivales.",
+        "relation": "Participación contextual en 671:A09:C01, 671:A09:C04, 671:A09:C05, 671:A09:C06, 671:A09:C11; consultar la secuencia para demostrar la función exacta."
       },
       "sources": [
         "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20216&ope=2&request_locale=es"
@@ -30713,18 +30969,38 @@
           "text": "Puente Fiendsmith: Sacrificar para Invocar Grabador desde Deck; verificar objetivo y ventanas"
         }
       ],
-      "practical": [],
-      "operational": {},
-      "learning": {},
+      "practical": [
+        {
+          "title": "Cómo acceder desde el Extra",
+          "text": "Enlace 1: 1 monstruo Demonio LUZ. La ruta debe conservar todos los requisitos del inventario real."
+        },
+        {
+          "title": "Utilidad y resultado",
+          "text": "Puente Fiendsmith: Sacrificar para Invocar Grabador desde Deck; verificar objetivo y ventanas"
+        }
+      ],
+      "operational": {
+        "Acción": "Link-1 con **1 Demonio LUZ**; se tributa en Main para Invocar un Demoniherrero de mano/Deck; en GY se equipa a Demonio LUZ no Link",
+        "Ventanas y requisitos": "Enlace 1: 1 monstruo Demonio LUZ."
+      },
+      "learning": {
+        "Aplicación concreta registrada": "Puente Fiendsmith: Sacrificar para Invocar Grabador desde Deck; verificar objetivo y ventanas",
+        "Cuándo jugarla primero": "Consultar el estado inicial y las rutas A09 con participación real antes de elegir esta carta.",
+        "Cuándo jugarla segundo": "Solo con materiales disponibles y una ventaja táctica demostrable en el tablero actual.",
+        "Limitación a respetar": "No convertir un acceso potencial al Extra en una Invocación certificada sin estado y materiales comprobados."
+      },
       "functional": {
         "purpose": "Link-1 con **1 Demonio LUZ**; se tributa en Main para Invocar un Demoniherrero de mano/Deck; en GY se equipa a Demonio LUZ no Link",
         "explanation": "Link-1 con **1 Demonio LUZ**; se tributa en Main para Invocar un Demoniherrero de mano/Deck; en GY se equipa a Demonio LUZ no Link"
       },
       "role": "Link-1 con **1 Demonio LUZ**; se tributa en Main para Invocar un Demoniherrero de mano/Deck; en GY se equipa a Demonio LUZ no Link",
       "synergy": {
-        "labels": [],
-        "resource": "",
-        "relation": ""
+        "labels": [
+          "Salida del Extra Deck",
+          "En rutas A09 documentadas"
+        ],
+        "resource": "Puente Fiendsmith: Sacrificar para Invocar Grabador desde Deck; verificar objetivo y ventanas",
+        "relation": "Participación contextual en 671:A09:C03, 671:A09:C09, 671:A09:C10; consultar la secuencia para demostrar la función exacta."
       },
       "sources": [
         "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20225&ope=2&request_locale=es"
@@ -30760,18 +31036,38 @@
           "text": "Fusiona Demonios desde GY devolviendo materiales; requiere 2 Link incluyendo LUZ Demonio."
         }
       ],
-      "practical": [],
-      "operational": {},
-      "learning": {},
+      "practical": [
+        {
+          "title": "Cómo acceder desde el Extra",
+          "text": "Enlace 2: 2 monstruos, incluyendo al menos 1 Demonio LUZ. La ruta debe conservar todos los requisitos del inventario real."
+        },
+        {
+          "title": "Utilidad y resultado",
+          "text": "Fusiona Demonios desde GY devolviendo materiales; requiere 2 Link incluyendo LUZ Demonio."
+        }
+      ],
+      "operational": {
+        "Acción": "Link-2 **2 monstruos, incluido Demonio LUZ**; Fusion Invoca Demonio desde Extra barajando materiales del GY; puede equiparse a Demonio LUZ no Link",
+        "Ventanas y requisitos": "Enlace 2: 2 monstruos, incluyendo al menos 1 Demonio LUZ."
+      },
+      "learning": {
+        "Aplicación concreta registrada": "Fusiona Demonios desde GY devolviendo materiales; requiere 2 Link incluyendo LUZ Demonio.",
+        "Cuándo jugarla primero": "Consultar el estado inicial y las rutas A09 con participación real antes de elegir esta carta.",
+        "Cuándo jugarla segundo": "Solo con materiales disponibles y una ventaja táctica demostrable en el tablero actual.",
+        "Limitación a respetar": "No convertir un acceso potencial al Extra en una Invocación certificada sin estado y materiales comprobados."
+      },
       "functional": {
         "purpose": "Link-2 **2 monstruos, incluido Demonio LUZ**; Fusion Invoca Demonio desde Extra barajando materiales del GY; puede equiparse a Demonio LUZ no Link",
         "explanation": "Link-2 **2 monstruos, incluido Demonio LUZ**; Fusion Invoca Demonio desde Extra barajando materiales del GY; puede equiparse a Demonio LUZ no Link"
       },
       "role": "Link-2 **2 monstruos, incluido Demonio LUZ**; Fusion Invoca Demonio desde Extra barajando materiales del GY; puede equiparse a Demonio LUZ no Link",
       "synergy": {
-        "labels": [],
-        "resource": "",
-        "relation": ""
+        "labels": [
+          "Salida del Extra Deck",
+          "En rutas A09 documentadas"
+        ],
+        "resource": "Fusiona Demonios desde GY devolviendo materiales; requiere 2 Link incluyendo LUZ Demonio.",
+        "relation": "Participación contextual en 671:A09:C10; consultar la secuencia para demostrar la función exacta."
       },
       "sources": [
         "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20226&ope=2&request_locale=es"
@@ -30807,18 +31103,38 @@
           "text": "Fusión de 2 Demonios/Zombis; permite otra Normal y paga mantenimiento si sigue."
         }
       ],
-      "practical": [],
-      "operational": {},
-      "learning": {},
+      "practical": [
+        {
+          "title": "Cómo acceder desde el Extra",
+          "text": "Fusión: 2 monstruos de Tipo Demonio y/o Zombi. La ruta debe conservar todos los requisitos del inventario real."
+        },
+        {
+          "title": "Utilidad y resultado",
+          "text": "Fusión de 2 Demonios/Zombis; permite otra Normal y paga mantenimiento si sigue."
+        }
+      ],
+      "operational": {
+        "Acción": "Fusión **2 Demonio/Zombi**; en Main concede Normal adicional; en GY destierro para recuperar Demonio/Zombi ≥4 del GY; Standby paga 500 LP o se destruye",
+        "Ventanas y requisitos": "Fusión: 2 monstruos de Tipo Demonio y/o Zombi."
+      },
+      "learning": {
+        "Aplicación concreta registrada": "Fusión de 2 Demonios/Zombis; permite otra Normal y paga mantenimiento si sigue.",
+        "Cuándo jugarla primero": "Consultar el estado inicial y las rutas A09 con participación real antes de elegir esta carta.",
+        "Cuándo jugarla segundo": "Solo con materiales disponibles y una ventaja táctica demostrable en el tablero actual.",
+        "Limitación a respetar": "No convertir un acceso potencial al Extra en una Invocación certificada sin estado y materiales comprobados."
+      },
       "functional": {
         "purpose": "Fusión **2 Demonio/Zombi**; en Main concede Normal adicional; en GY destierro para recuperar Demonio/Zombi ≥4 del GY; Standby paga 500 LP o se destruye",
         "explanation": "Fusión **2 Demonio/Zombi**; en Main concede Normal adicional; en GY destierro para recuperar Demonio/Zombi ≥4 del GY; Standby paga 500 LP o se destruye"
       },
       "role": "Fusión **2 Demonio/Zombi**; en Main concede Normal adicional; en GY destierro para recuperar Demonio/Zombi ≥4 del GY; Standby paga 500 LP o se destruye",
       "synergy": {
-        "labels": [],
-        "resource": "",
-        "relation": ""
+        "labels": [
+          "Salida del Extra Deck",
+          "En rutas A09 documentadas"
+        ],
+        "resource": "Fusión de 2 Demonios/Zombis; permite otra Normal y paga mantenimiento si sigue.",
+        "relation": "Participación contextual en 671:A09:C10; consultar la secuencia para demostrar la función exacta."
       },
       "sources": [
         "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20389&ope=2&request_locale=es"
@@ -30854,18 +31170,38 @@
           "text": "Salida de puente Demoniherrero que consume equipo-monstruo y Demonio; no roba por su procedimiento."
         }
       ],
-      "practical": [],
-      "operational": {},
-      "learning": {},
+      "practical": [
+        {
+          "title": "Cómo acceder desde el Extra",
+          "text": "Enviar desde mano/campo un monstruo equipado con Carta de Monstruo + una Carta de Monstruo Demonio; procedimiento especial. La ruta debe conservar todos los requisitos del inventario real."
+        },
+        {
+          "title": "Utilidad y resultado",
+          "text": "Salida de puente Demoniherrero que consume equipo-monstruo y Demonio; no roba por su procedimiento."
+        }
+      ],
+      "operational": {
+        "Acción": "Invocación **no por Fusión ordinaria**: monstruo equipado con carta de monstruo + carta de monstruo Demonio de mano/campo; al enviarse monstruo de mano para activar carta/efecto, opción de equipar o robar",
+        "Ventanas y requisitos": "Enviar desde mano/campo un monstruo equipado con Carta de Monstruo + una Carta de Monstruo Demonio; procedimiento especial."
+      },
+      "learning": {
+        "Aplicación concreta registrada": "Salida de puente Demoniherrero que consume equipo-monstruo y Demonio; no roba por su procedimiento.",
+        "Cuándo jugarla primero": "Consultar el estado inicial y las rutas A09 con participación real antes de elegir esta carta.",
+        "Cuándo jugarla segundo": "Solo con materiales disponibles y una ventaja táctica demostrable en el tablero actual.",
+        "Limitación a respetar": "No convertir un acceso potencial al Extra en una Invocación certificada sin estado y materiales comprobados."
+      },
       "functional": {
         "purpose": "Invocación **no por Fusión ordinaria**: monstruo equipado con carta de monstruo + carta de monstruo Demonio de mano/campo; al enviarse monstruo de mano para activar carta/efecto, opción de equipar o robar",
         "explanation": "Invocación **no por Fusión ordinaria**: monstruo equipado con carta de monstruo + carta de monstruo Demonio de mano/campo; al enviarse monstruo de mano para activar carta/efecto, opción de equipar o robar"
       },
       "role": "Invocación **no por Fusión ordinaria**: monstruo equipado con carta de monstruo + carta de monstruo Demonio de mano/campo; al enviarse monstruo de mano para activar carta/efecto, opción de equipar o robar",
       "synergy": {
-        "labels": [],
-        "resource": "",
-        "relation": ""
+        "labels": [
+          "Salida del Extra Deck",
+          "En rutas A09 documentadas"
+        ],
+        "resource": "Salida de puente Demoniherrero que consume equipo-monstruo y Demonio; no roba por su procedimiento.",
+        "relation": "Participación contextual en 671:A09:C09; consultar la secuencia para demostrar la función exacta."
       },
       "sources": [
         "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=20423&ope=2&request_locale=es"
