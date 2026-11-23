@@ -51,6 +51,21 @@ for(const [accessId,cid] of extraAccessExpectations){
  assert(!rendered.includes('No hay una jugada enlazada con evidencia específica'),
    'Do not hide documentary access '+accessId+' behind the no-route message');
 }
+// Prevent regressions where step photos silently drift from the canonical visual delivery.
+let mementoStepPhotoRefs=0;
+for(const route of memento.routes){
+ for(const step of route.steps){
+   assert(step.photos.length>0,'Missing step photos '+route.id+' '+step.number);
+   for(const photo of step.photos){
+     const native=memento.cards.find(card=>card.cid===photo.cid);
+     assert(native,'Unexpected CID in photographed step '+photo.cid);
+     assert.equal(photo.image,native.image,'Step image must use Station X native asset path');
+     assert.equal(photo.full_image,native.full_image,'Full step image must use Station X native asset path');
+     mementoStepPhotoRefs++;
+   }
+ }
+}
+assert.equal(mementoStepPhotoRefs,198,'Memento must preserve all 198 verified documentary step photographs');
 const aeroLiveCard=memento.cards.find(card=>card.cid===9657);
 assert(D.render(aeroLiveCard,memento,helper).includes('Dos Angbruja'),
   'Aero Tiburón must show its exact material line EX-M03 from the current Memento package');
