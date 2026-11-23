@@ -231,7 +231,7 @@ a01_assert(!isset($legacy['a01_profile_contract']),'Legacy data must not receive
 
 // Player-facing guide contract: representative cards need reasons and four useful plans.
 $guideRecord=$record;
-$guideRecord['profile']['Cómo se juega']=str_repeat('Primero prepara cartas y recursos desde una mano real. Si el oponente interviene, revisa condiciones y materiales antes de continuar. ',5);
+$guideRecord['profile']['Cómo se juega']=trim(str_repeat('Primero prepara cartas y recursos desde una mano real. Si el oponente interviene, revisa condiciones y materiales antes de continuar. ',5));
 $guideRecord['player_guide']=[
  'schema'=>'station-x-player-guide/1',
  'featured_cards'=>[[
