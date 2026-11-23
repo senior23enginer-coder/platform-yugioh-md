@@ -109,7 +109,7 @@ jobs:
           node torneos_yugioh/tests/combo_editorial_library_test.cjs
           node torneos_yugioh/tests/documented_combo_editor_test.cjs
 
-      - name: Verify the real Memento A01-T5 guide in mobile and desktop browsers
+      - name: Verify the real Memento and Crystron A01-T5 guides in mobile and desktop browsers
         run: node torneos_yugioh/tests/study_presentation_ui_test.cjs /tmp/station-x-gpt-decks
       - name: Save A01-T5 screenshots and verified UI evidence
         if: success()
@@ -117,6 +117,14 @@ jobs:
         with:
           name: memento-671-a01-t5-isolated-ui
           path: outputs/a01-t5-memento-671/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Save Crystron A01-T5 browser evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: crystron-677-a01-t5-isolated-ui
+          path: outputs/a01-t5-crystron-677/
           if-no-files-found: error
           retention-days: 30
 
