@@ -11,4 +11,20 @@ assert.equal(D.role('ESTADO / CONTEXTO').active,false);assert.equal(D.role('MATE
 const edited={routes:[{id:'r',title:'Editada',native_editor_document:{nodes:[{id:'s',kind:'step',cards:[20],action:'Otro recurso'}]}}]};assert.equal(D.participation(c,edited).length,0,'A saved edit removing a card overrides legacy links');
 const wrong={routes:[{id:'different',title:'Otra carta',steps:[{photos:[{cid:2,image:'one.jpg'}]}]}]};assert.equal(D.participation({...c,route_links:[]},wrong).length,0,'Explicit CID takes priority over a repeated photo');
 assert(D.clean('GY; CL1; Main Phase; Kash').includes('Cementerio; eslabón 1 de la Cadena; fase principal; Kashtira'));
+// Accesos Extra documentales: se muestran desde la carta sin inventar rutas A09.
+const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+const helper={esc:escapeHtml,text:escapeHtml,strip:()=>'<span>Imagen</span>'};
+const aero={id:'671:CARD:9657',cid:9657,name:'Aero Tiburón',role:'Xyz Rango 3',image:'9657.png',
+  slots:[{card_id:517,section:'extra',quantity:1}],fields:[{title:'Materiales y acceso al Extra (V40)',text:'2 Nivel 3'}],
+  sources:[],operational:{},learning:{},synergy:{labels:[],resource:'',relation:''},
+  extra_access:[{id:'EX-M03',cid:9657,status:'DOCUMENTADA_CONDICIONAL_SIN_REPLAY',source_section:'A09.0',
+    opening:'Angbruja + Fiesta + Goblin',materials:'Dos Angbruja Nivel 3',steps:['Invocar dos Angbruja','Superponer como materiales Xyz'],
+    result:'Aero Tiburón con dos materiales',limitation:'Sin desterrados no hay daño útil'}]};
+const aeroHtml=D.render(aero,{routes:[]},helper);
+assert(aeroHtml.includes('EX-M03')&&aeroHtml.includes('Dos Angbruja Nivel 3'));
+assert(aeroHtml.includes('Accesos adicionales al Extra Deck')&&aeroHtml.includes('data-extra-access-id'));
+assert(!aeroHtml.includes('No hay una jugada enlazada'),'Extra access should not be hidden behind a false no-route message');
+assert(aeroHtml.includes('Condiciones y momento'),'Existing V40 material must appear when no operational guard is populated');
+const missingHtml=D.render({...aero,extra_access:[],fields:[],operational:{}},{routes:[]},helper);
+assert(missingHtml.includes('El paquete aún no aporta condiciones verificables'),'Never render an empty requirements section');
 console.log(JSON.stringify({ok:true,cards,sourcePreserved:true,allStepsIndexed:true,materialNotInvocation:true,nativeEditsTakePrecedence:true}));
