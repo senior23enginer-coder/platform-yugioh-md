@@ -26,8 +26,8 @@ jobs:
           npx playwright install --with-deps chromium
           git clone --depth 1 --branch base https://github.com/senior23enginer-coder/gpt-yugioh-promps-platform.git /tmp/a01-gpt
           # Validate the exact revised A01 source without merging or publishing it.
-          git -C /tmp/a01-gpt fetch --depth 1 origin d29b447122c8734757b28d34dc4d0fc38628b013
-          git -C /tmp/a01-gpt checkout --detach d29b447122c8734757b28d34dc4d0fc38628b013
+          git -C /tmp/a01-gpt fetch --depth 1 origin 62c0a4a3827ed5efb37a5dfd0c7320e9d4604e92
+          git -C /tmp/a01-gpt checkout --detach 62c0a4a3827ed5efb37a5dfd0c7320e9d4604e92
           git -C /tmp/a01-gpt rev-parse HEAD
       - name: Verify GPT profile and guide contract per assigned deck
         run: |

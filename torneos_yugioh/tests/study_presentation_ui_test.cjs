@@ -130,9 +130,14 @@ const one=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42
         assert(publicProfile.includes(actual.profile['Resumen para ficha']),'Actual summary differs from GPT JSON');
         assert(publicProfile.includes(actual.profile['Qué vigilar']),'Actual risks differ from GPT JSON');
         assert.equal(await page.locator('.curated-featured-card').count(),4,'Actual Memento should select 4 grounded cards');
-        assert.equal(await page.locator('.curated-game-phase').count(),4,'Actual Memento needs four full game phases');
-        const titles=await page.locator('.curated-game-phase h5').allInnerTexts();
-        assert.deepEqual(titles,actual.player_guide.phases.map(p=>p.title),'Different phase titles rendered');
+        if(actual.player_guide.strategy){
+          assert.equal(await intro.locator('[data-player-section]').count(),8,'Actual Memento requires eight strategy lessons');
+          assert.equal(await intro.locator('.curated-full-profile').count(),0,'Structured lessons replace legacy prose');
+        }else{
+          assert.equal(await page.locator('.curated-game-phase').count(),4,'Actual Memento needs four full game phases');
+          const titles=await page.locator('.curated-game-phase h5').allInnerTexts();
+          assert.deepEqual(titles,actual.player_guide.phases.map(p=>p.title),'Different phase titles rendered');
+        }
         for(const featured of actual.player_guide.featured_cards){
           const card=actual.cards.find(c=>c.cid===featured.cid);
           assert(card, 'Featured CID must belong to Memento');
@@ -145,9 +150,10 @@ const one=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42
         assert.equal(await intro.locator('a[href*="guide.html"]').count(),0,'External historical HTML guide should not be linked');
         assert.equal(await intro.locator('[data-rule-scenarios] details').filter({hasText:'Reglas generales y fuentes'}).count(),0,
           'Empty general rules section must not be visible');
-        await page.locator('.curated-full-profile summary').click();
-        assert((await page.locator('.curated-full-profile').innerText()).includes('Memento es un deck de Combo'),
-          'Full actual A01 plan must be accessible');
+        if(!actual.player_guide.strategy){
+          await page.locator('.curated-full-profile summary').click();
+          assert((await page.locator('.curated-full-profile').innerText()).includes(actual.profile['Cómo se juega']),'Full legacy plan accessible');
+        }
         const evidence=path.join(app,'../outputs/a01-t5-memento-671');
         fs.mkdirSync(evidence,{recursive:true});
         await page.screenshot({path:path.join(evidence,'guide-'+width+'.png')});
@@ -174,9 +180,14 @@ const one=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42
         assert(publicProfile.includes(actual.profile['Resumen para ficha']),'Actual summary differs from GPT JSON');
         assert(publicProfile.includes(actual.profile['Qué vigilar']),'Actual risks differ from GPT JSON');
         assert.equal(await page.locator('.curated-featured-card').count(),4,'Actual Crystron should select 4 grounded cards');
-        assert.equal(await page.locator('.curated-game-phase').count(),4,'Actual Crystron needs four full game phases');
-        const titles=await page.locator('.curated-game-phase h5').allInnerTexts();
-        assert.deepEqual(titles,actual.player_guide.phases.map(p=>p.title),'Different phase titles rendered');
+        if(actual.player_guide.strategy){
+          assert.equal(await intro.locator('[data-player-section]').count(),8,'Actual Crystron requires eight strategy lessons');
+          assert.equal(await intro.locator('.curated-full-profile').count(),0,'Structured lessons replace legacy prose');
+        }else{
+          assert.equal(await page.locator('.curated-game-phase').count(),4,'Actual Crystron needs four full game phases');
+          const titles=await page.locator('.curated-game-phase h5').allInnerTexts();
+          assert.deepEqual(titles,actual.player_guide.phases.map(p=>p.title),'Different phase titles rendered');
+        }
         for(const featured of actual.player_guide.featured_cards){
           const card=actual.cards.find(c=>c.cid===featured.cid);
           assert(card, 'Featured CID must belong to Crystron');
@@ -189,9 +200,10 @@ const one=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42
         assert.equal(await intro.locator('a[href*="guide.html"]').count(),0,'External historical HTML guide should not be linked');
         assert.equal(await intro.locator('[data-rule-scenarios] details').filter({hasText:'Reglas generales y fuentes'}).count(),0,
           'Empty general rules section must not be visible');
-        await page.locator('.curated-full-profile summary').click();
-        assert((await page.locator('.curated-full-profile').innerText()).includes(actual.profile['Cómo se juega']),
-          'Full actual A01 plan must be accessible');
+        if(!actual.player_guide.strategy){
+          await page.locator('.curated-full-profile summary').click();
+          assert((await page.locator('.curated-full-profile').innerText()).includes(actual.profile['Cómo se juega']),'Full actual A01 plan must be accessible');
+        }
         const evidence=path.join(app,'../outputs/a01-t5-crystron-677');
         fs.mkdirSync(evidence,{recursive:true});
         await page.screenshot({path:path.join(evidence,'guide-'+width+'.png')});

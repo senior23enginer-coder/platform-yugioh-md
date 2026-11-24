@@ -16,23 +16,23 @@
       "tasks": [
         {
           "task_id": "A01-T1",
-          "description": "Diagnosticar por inventario y formato el arquetipo, motor principal/secundarios, clasificación estratégica justificada (Combo/Control/Midrange/Stun/Aggro/OTK/Híbrido), recursos, condiciones de victoria condicionales y riesgos, con CID, fuente y evidencia; si falta un requisito central, bloqueo con causa y siguiente acción."
+          "description": "Diagnosticar inventario, formato, motores, cartas iniciadoras/extensionadoras, recursos, condición de victoria y riesgos con evidencia oficial y rutas existentes; explicar decisiones propias de este deck, no descripciones intercambiables."
         },
         {
           "task_id": "A01-T2",
-          "description": "Redactar y validar los seis campos de `record.profile` y su equivalente documental: arquetipo limpio, tipo específico, Estilo breve ≤190, Resumen para ficha ≤250, Cómo se juega y Qué vigilar; sin relleno, con condiciones reales, y paridad con el paquete estructurado disponible o bloqueo documentado."
+          "description": "Redactar los seis campos profile y guía estructurada strategy/1 con ocho lecciones first/second/mid/late/weak_hand/disruption/win_condition/common_errors: objetivos, situación, cartas, acciones, resultado, recursos, alternativas y rutas existentes. Sin párrafo único, instrucciones IA, auditoría ni reglas generales repetidas."
         },
         {
           "task_id": "A01-T3",
-          "description": "Registrar por propósito evidencia CID/zona/fuente/condición/riesgo y vínculos a `effect_id`/`motor_id`/`route_id` solo si existen; usar `PENDIENTE_DE_ENLACE_A05_A09` para enlaces futuros sin fabricar IDs, registrar siguiente verificación y reabrir solo la afirmación afectada cuando cambie su evidencia."
+          "description": "Vincular privadamente cada afirmación y lección a CID, zona, cantidad, fuente, condición, riesgo y rutas/efectos acreditados; separar completamente evidencias de la UI. No inventar IDs, efectos o jugadas."
         },
         {
           "task_id": "A01-T4",
-          "description": "Validar los seis campos A01, máximos de 190/250 caracteres, calidad sin relleno, fuente/CID e igualdad literal Markdown/`record.profile`, conservando inventario y declarando `a01_profile_contract` solo con evidencia; reportar cualquier divergencia sin modificar otros decks."
+          "description": "Revisar individualmente exactitud de efectos/condiciones, utilidad pedagógica, decisiones accionables, diferenciación por fase, condición de victoria, alternativas, paridad Markdown/JSON e inventario; esquema o longitud por sí solos no acreditan calidad. Dejar abierta cualquier carencia."
         },
         {
           "task_id": "A01-T5",
-          "description": "Probar con el paquete del deck asignado importación, exportación/lectura y presentación en Station X, con casos de rechazo y preservación de IDs/rutas/fotos; registrar resultados reales, o dejar pendiente sin confundir pruebas sintéticas con certificación individual."
+          "description": "Verificar el paquete individual real y lectura/importación/exportación; revisar DOM completo y desplegables de la guía real en móvil/escritorio, fotos, acciones, navegación y ausencia de auditoría y prosa heredada. Cierre solo con evidencia de T1–T4 y aceptación funcional individual; éxito técnico no equivale a cierre."
         }
       ]
     },
