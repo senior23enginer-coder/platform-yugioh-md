@@ -141,7 +141,7 @@ const one=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42
         for(const featured of actual.player_guide.featured_cards){
           const card=actual.cards.find(c=>c.cid===featured.cid);
           assert(card, 'Featured CID must belong to Memento');
-          const content=await page.locator('.curated-featured-card').filter({hasText:card.name}).innerText();
+          const content=await page.locator('.curated-featured-card').filter({has:page.getByRole('img',{name:card.name,exact:true})}).innerText();
           assert(content.includes(featured.reason)&&content.includes(featured.when_to_use),
             'Player must see why and when to use '+card.name);
         }
@@ -191,7 +191,7 @@ const one=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42
         for(const featured of actual.player_guide.featured_cards){
           const card=actual.cards.find(c=>c.cid===featured.cid);
           assert(card, 'Featured CID must belong to Crystron');
-          const content=await page.locator('.curated-featured-card').filter({hasText:card.name}).innerText();
+          const content=await page.locator('.curated-featured-card').filter({has:page.getByRole('img',{name:card.name,exact:true})}).innerText();
           assert(content.includes(featured.reason)&&content.includes(featured.when_to_use),
             'Player must see why and when to use '+card.name);
         }
