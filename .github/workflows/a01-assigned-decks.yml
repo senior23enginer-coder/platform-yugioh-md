@@ -26,8 +26,8 @@ jobs:
           npx playwright install --with-deps chromium
           git clone --depth 1 --branch base https://github.com/senior23enginer-coder/gpt-yugioh-promps-platform.git /tmp/a01-gpt
           # Validate the exact revised A01 source without merging or publishing it.
-          git -C /tmp/a01-gpt fetch --depth 1 origin a9c214433ceb4cd955e705465547df1a36cf4f0b
-          git -C /tmp/a01-gpt checkout --detach a9c214433ceb4cd955e705465547df1a36cf4f0b
+          git -C /tmp/a01-gpt fetch --depth 1 origin d29b447122c8734757b28d34dc4d0fc38628b013
+          git -C /tmp/a01-gpt checkout --detach d29b447122c8734757b28d34dc4d0fc38628b013
           git -C /tmp/a01-gpt rev-parse HEAD
       - name: Verify GPT profile and guide contract per assigned deck
         run: |
@@ -36,7 +36,7 @@ jobs:
           const fs=require('fs'),path=require('path'),assert=require('node:assert/strict');
           const root='/tmp/a01-gpt';
           const {validateProfile,assertSourceParity}=require(root+'/scripts/a01-profile-contract.cjs');
-          const {validatePlayerGuide}=require(root+'/scripts/a01-player-guide-contract.cjs');
+          const {validatePlayerGuide,validateStrategy}=require(root+'/scripts/a01-player-guide-contract.cjs');
           const index=JSON.parse(fs.readFileSync('torneos_yugioh/assets/editorial/deck-data-sources/index.json','utf8'));
           const ids=[671,677,665,650,653,656,670,684,687,660,673,699,704,705,706,707];
           const results=[];
@@ -46,8 +46,8 @@ jobs:
               const dir=path.join(root,'01_INFORMACION_PARA_IMPORTAR/decks',folder);
               const pkg=JSON.parse(fs.readFileSync(path.join(dir,'datos/stationx-deck.json'),'utf8'));
               assert.equal(pkg.deck_id,id);assert.equal(pkg.record.deck_id,id);
-              const profile=validateProfile(pkg.record),parity=assertSourceParity(pkg.record,fs.readFileSync(path.join(dir,source),'utf8')),guide=validatePlayerGuide(pkg.record);
-              results.push({deck_id:id,status:'PASS',profile,parity,guide});
+              const profile=validateProfile(pkg.record),parity=assertSourceParity(pkg.record,fs.readFileSync(path.join(dir,source),'utf8')),guide=validatePlayerGuide(pkg.record),strategy=validateStrategy(pkg.record);
+              results.push({deck_id:id,status:'PASS',profile,parity,guide,strategy});
             }catch(e){results.push({deck_id:id,status:'FAIL',error:e.message});}
           }
           fs.writeFileSync('outputs/a01-assigned/profile-report.json',JSON.stringify(results,null,2));
