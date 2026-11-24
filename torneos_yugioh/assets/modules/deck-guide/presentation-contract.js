@@ -4,7 +4,7 @@
   const auditPrefix=/^Dictamen(?:\s+editorial(?:\s+[A-Z_]+)?)?:\s*/i;
   const pending=/^(?:consultar|pendiente|sin (?:datos|información)|no determinado)\b/i;
   // Technical references stay in metadata; never display them to players.
-  const auditLeak=/\bCID\s*\d+\b|\b[CV]\d{2}\b|\bA(?:0[1-9]|10[AB]?)\s*[-–]?\s*T?\d*\b|\beffect_id\b|\broute_id\b|PARCIAL_AVANZADO|dictamen\s+editorial|PENDIENTE_REPLAY|cat[aá]logo completo|consultar el plan|estudio individual|iteraci[oó]n\s*\d+/iu;
+  const auditLeak=/\bCID\s*\d+\b|\b[CV]\d{2}\b|\bA(?:0[1-9]|10[AB]?)\s*[-–]?\s*T?\d*\b|\beffect_id\b|\broute_id\b|PARCIAL_AVANZADO|dictamen\s+editorial|PENDIENTE_REPLAY|cat[aá]logo completo|consultar el plan|estudio individual|iteraci[oó]n\s*\d+|cobertura\s+documental|validaci[oó]n\s+observada|evaluaci[oó]n\s+editorial|no\s+(?:escribir|redactar|inferir|inventar)\b/iu;
   const publicText=value=>{const v=literal(value);return v&&!pending.test(v)&&!auditLeak.test(v)?v:'';};
   function firstSentence(raw,max=220){
     const cleaned=literal(raw).replace(auditPrefix,'').replace(/\s+/g,' ');
