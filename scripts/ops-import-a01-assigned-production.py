@@ -57,6 +57,8 @@ def run_one(source_root, deck_id, folder, scratch, state):
     require(rec.get("a01_profile_contract")=="station-x-a01-profile/1" and rec.get("player_guide",{}).get("schema")=="station-x-player-guide/1","uncertified A01")
     require(all(isinstance(rec["profile"].get(k),str) and rec["profile"][k].strip() for k in FIELDS),"missing A01 profile fields")
     require(len(rec["player_guide"]["phases"])==4,"missing game phases")
+    strategy=rec["player_guide"].get("strategy",{})
+    require(strategy.get("schema")=="station-x-player-strategy/1" and [x.get("id") for x in strategy.get("sections",[])]==["first","second","mid","late","weak_hand","disruption","win_condition","common_errors"],"missing revised eight-lesson plan")
     expected_inv=inv(pkg["inventory"])
     require(record_inv(rec)==expected_inv,"source inventory mismatch")
     counts={z:sum(q for _,s,q in expected_inv if s==z) for z in ("main","extra","side","reserve")}
@@ -90,7 +92,8 @@ def run_one(source_root, deck_id, folder, scratch, state):
     preview=native_json(session,api+"preview",payload,{**common,"Content-Type":"multipart/form-data; boundary="+boundary})
     require(preview.get("inventory_changed") is False,"native preview changes physical inventory")
     compare(preview["candidate"],rec,expected_inv,deck_id)
-    require((preview.get("compatibility") or {}).get("player_guide_status")=="PERFIL_PEDAGOGICO_VALIDADO","native guide not certified")
+    require((preview.get("compatibility") or {}).get("player_guide_status")=="PERFIL_PEDAGOGICO_VALIDADO","native guide structure rejected")
+    require((preview.get("compatibility") or {}).get("strategy_status")=="ESTRUCTURA_OCHO_LECCIONES","native revised strategy contract unavailable")
     ticket=preview.get("ticket")
     require(isinstance(ticket,str) and len(ticket)>=24,"native ticket missing")
     print(json.dumps({"stage":"PREVIEW_APPROVED","deck_id":deck_id,"counts":counts,"routes":len(routes(rec))},ensure_ascii=False),flush=True)
@@ -109,7 +112,7 @@ def run_one(source_root, deck_id, folder, scratch, state):
     compare(exported["record"],rec,expected_inv,deck_id)
     live_after=native_json(session,f"{ROOT}?api=deck_builder&deck_id={deck_id}")
     require(inv(live_after["cards"])==expected_inv,"postcommit physical inventory drift")
-    return {"deck_id":deck_id,"status":"PRODUCTION_IMPORT_VERIFIED","updated_at":updated,"counts":counts,"cards":len(rec["cards"]),"routes":len(routes(rec)),"calculator_rules":len(rules(rec)),"profile_fields":6,"phases":4,"source_zip_sha256":hashlib.sha256(archive.read_bytes()).hexdigest()}
+    return {"deck_id":deck_id,"status":"PRODUCTION_IMPORT_VERIFIED","updated_at":updated,"counts":counts,"cards":len(rec["cards"]),"routes":len(routes(rec)),"calculator_rules":len(rules(rec)),"profile_fields":6,"phases":4,"lessons":8,"semantic_certification":False,"source_zip_sha256":hashlib.sha256(archive.read_bytes()).hexdigest()}
 def main():
     source_root=pathlib.Path(sys.argv[1]).resolve()/"01_INFORMACION_PARA_IMPORTAR"/"decks"
     results=[]
