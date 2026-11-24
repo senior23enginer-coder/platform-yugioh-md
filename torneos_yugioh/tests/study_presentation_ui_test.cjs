@@ -89,6 +89,31 @@ const one=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42
       assert.equal(await page.locator('.curated-game-phase').count(),4,'Full plan should expose all four phases');
       assert(!(await page.locator('[data-curated-content="intro"]').innerText()).includes('PARCIAL_AVANZADO'),'Editorial status must not leak into intro');
 
+      // Production-shaped legacy fields must never be projected, even in closed details.
+      // Synthetic strategy tests the renderer only, never semantic deck acceptance.
+      const strategySections=['first','second','mid','late','weak_hand','disruption','win_condition','common_errors'].map((id,i)=>({
+        id,title:'Lección de prueba '+i,objective:'Objetivo de prueba '+i,situation:'Situación de prueba '+i,
+        card_cids:[19364],actions:['Primera acción de prueba '+i,'Segunda acción de prueba '+i],
+        expected_result:'Resultado de prueba '+i,resources_to_keep:'Recursos de prueba '+i,alternative:'Alternativa de prueba '+i,related_route_ids:[memento.routes[0].id]
+      }));
+      const legacyPolluted={...certified,delivery_progress:[{nombre:'Cobertura documental',porcentaje_cobertura_documental:100}],
+        rule_scenarios:[{situacion:'Control editorial',prueba_de_legalidad:'No escribir instrucciones al jugador'}],
+        general_rules:[{detalle:'Regla general duplicada'}],format_context:{deckSpecificControl:['No escribir que se ha comprobado']},
+        delivery_dossier:{A01_identidad:{audit:'Plan de juego completo, condiciones y evaluación editorial'}},
+        player_guide:{...guide,strategy:{schema:'station-x-player-strategy/1',sections:strategySections}}};
+      await page.evaluate(({data,viewportWidth})=>window.YgoCuratedStudy.render(
+        document.querySelector('#test-guide'),{id:671,name:data.name},data,
+        {cards:data.cards.length,sha256:'structured-a01-'+viewportWidth}
+      ),{data:legacyPolluted,viewportWidth:width});
+      const overview=page.locator('[data-curated-content="intro"]');
+      assert.equal(await overview.locator('[data-player-section]').count(),8);
+      assert.equal(await overview.locator('.curated-full-profile').count(),0,'Structured plan must replace old prose');
+      assert.equal(await overview.locator('[data-player-section] ol li').count(),16);
+      assert.equal(await overview.locator('[data-player-section] img').count(),8);
+      assert.equal(await overview.locator('[data-player-section] [data-open-route]').count(),8);
+      assert(!/Cobertura documental|Control editorial|Regla general duplicada|evaluación editorial|No escribir/i.test(await overview.textContent()),'Hidden or expanded audit content leaked into real DOM');
+      assert.equal(await page.locator('[data-curated-editorial]').count(),0,'Audit filter must not appear');
+
       if(livePackage){
         const actual=livePackage.record;
         assert.equal(actual.a01_profile_contract,'station-x-a01-profile/1');
@@ -105,13 +130,18 @@ const one=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42
         assert(publicProfile.includes(actual.profile['Resumen para ficha']),'Actual summary differs from GPT JSON');
         assert(publicProfile.includes(actual.profile['Qué vigilar']),'Actual risks differ from GPT JSON');
         assert.equal(await page.locator('.curated-featured-card').count(),4,'Actual Memento should select 4 grounded cards');
-        assert.equal(await page.locator('.curated-game-phase').count(),4,'Actual Memento needs four full game phases');
-        const titles=await page.locator('.curated-game-phase h5').allInnerTexts();
-        assert.deepEqual(titles,actual.player_guide.phases.map(p=>p.title),'Different phase titles rendered');
+        if(actual.player_guide.strategy){
+          assert.equal(await intro.locator('[data-player-section]').count(),8,'Actual Memento requires eight strategy lessons');
+          assert.equal(await intro.locator('.curated-full-profile').count(),0,'Structured lessons replace legacy prose');
+        }else{
+          assert.equal(await page.locator('.curated-game-phase').count(),4,'Actual Memento needs four full game phases');
+          const titles=await page.locator('.curated-game-phase h5').allInnerTexts();
+          assert.deepEqual(titles,actual.player_guide.phases.map(p=>p.title),'Different phase titles rendered');
+        }
         for(const featured of actual.player_guide.featured_cards){
           const card=actual.cards.find(c=>c.cid===featured.cid);
           assert(card, 'Featured CID must belong to Memento');
-          const content=await page.locator('.curated-featured-card').filter({hasText:card.name}).innerText();
+          const content=await page.locator('.curated-featured-card').filter({has:page.getByRole('img',{name:card.name,exact:true})}).innerText();
           assert(content.includes(featured.reason)&&content.includes(featured.when_to_use),
             'Player must see why and when to use '+card.name);
         }
@@ -120,9 +150,10 @@ const one=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42
         assert.equal(await intro.locator('a[href*="guide.html"]').count(),0,'External historical HTML guide should not be linked');
         assert.equal(await intro.locator('[data-rule-scenarios] details').filter({hasText:'Reglas generales y fuentes'}).count(),0,
           'Empty general rules section must not be visible');
-        await page.locator('.curated-full-profile summary').click();
-        assert((await page.locator('.curated-full-profile').innerText()).includes('Memento es un deck de Combo'),
-          'Full actual A01 plan must be accessible');
+        if(!actual.player_guide.strategy){
+          await page.locator('.curated-full-profile summary').click();
+          assert((await page.locator('.curated-full-profile').innerText()).includes(actual.profile['Cómo se juega']),'Full legacy plan accessible');
+        }
         const evidence=path.join(app,'../outputs/a01-t5-memento-671');
         fs.mkdirSync(evidence,{recursive:true});
         await page.screenshot({path:path.join(evidence,'guide-'+width+'.png')});
@@ -149,13 +180,18 @@ const one=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42
         assert(publicProfile.includes(actual.profile['Resumen para ficha']),'Actual summary differs from GPT JSON');
         assert(publicProfile.includes(actual.profile['Qué vigilar']),'Actual risks differ from GPT JSON');
         assert.equal(await page.locator('.curated-featured-card').count(),4,'Actual Crystron should select 4 grounded cards');
-        assert.equal(await page.locator('.curated-game-phase').count(),4,'Actual Crystron needs four full game phases');
-        const titles=await page.locator('.curated-game-phase h5').allInnerTexts();
-        assert.deepEqual(titles,actual.player_guide.phases.map(p=>p.title),'Different phase titles rendered');
+        if(actual.player_guide.strategy){
+          assert.equal(await intro.locator('[data-player-section]').count(),8,'Actual Crystron requires eight strategy lessons');
+          assert.equal(await intro.locator('.curated-full-profile').count(),0,'Structured lessons replace legacy prose');
+        }else{
+          assert.equal(await page.locator('.curated-game-phase').count(),4,'Actual Crystron needs four full game phases');
+          const titles=await page.locator('.curated-game-phase h5').allInnerTexts();
+          assert.deepEqual(titles,actual.player_guide.phases.map(p=>p.title),'Different phase titles rendered');
+        }
         for(const featured of actual.player_guide.featured_cards){
           const card=actual.cards.find(c=>c.cid===featured.cid);
           assert(card, 'Featured CID must belong to Crystron');
-          const content=await page.locator('.curated-featured-card').filter({hasText:card.name}).innerText();
+          const content=await page.locator('.curated-featured-card').filter({has:page.getByRole('img',{name:card.name,exact:true})}).innerText();
           assert(content.includes(featured.reason)&&content.includes(featured.when_to_use),
             'Player must see why and when to use '+card.name);
         }
@@ -164,9 +200,10 @@ const one=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42
         assert.equal(await intro.locator('a[href*="guide.html"]').count(),0,'External historical HTML guide should not be linked');
         assert.equal(await intro.locator('[data-rule-scenarios] details').filter({hasText:'Reglas generales y fuentes'}).count(),0,
           'Empty general rules section must not be visible');
-        await page.locator('.curated-full-profile summary').click();
-        assert((await page.locator('.curated-full-profile').innerText()).includes(actual.profile['Cómo se juega']),
-          'Full actual A01 plan must be accessible');
+        if(!actual.player_guide.strategy){
+          await page.locator('.curated-full-profile summary').click();
+          assert((await page.locator('.curated-full-profile').innerText()).includes(actual.profile['Cómo se juega']),'Full actual A01 plan must be accessible');
+        }
         const evidence=path.join(app,'../outputs/a01-t5-crystron-677');
         fs.mkdirSync(evidence,{recursive:true});
         await page.screenshot({path:path.join(evidence,'guide-'+width+'.png')});

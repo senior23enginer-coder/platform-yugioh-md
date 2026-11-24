@@ -31,22 +31,31 @@ const fields=['Arquetipo','Tipo de estrategia','Estilo breve','Resumen para fich
      const norm=x=>x.replace(/\s+/g,' ').trim();
      for(const field of fields.filter(x=>x!=='Cómo se juega'))assert(norm(profile).includes(norm(record.profile[field])),'Missing or truncated '+field);
      assert.equal(await page.locator('.curated-featured-card').count(),record.player_guide.featured_cards.length);
-     assert.equal(await page.locator('.curated-game-phase').count(),4);
+     assert.equal(record.player_guide.strategy.schema,'station-x-player-strategy/1');
+     assert.equal(await page.locator('[data-player-section]').count(),8);
+     for(const section of record.player_guide.strategy.sections){
+      const lesson=page.locator('[data-player-section="'+section.id+'"]');
+      const actual=norm(await lesson.innerText());
+      for(const key of ['title','objective','situation','expected_result','resources_to_keep','alternative'])assert(actual.includes(norm(section[key])),'Missing lesson '+section.id+' '+key);
+      assert.equal(await lesson.locator('ol li').count(),section.actions.length);
+      for(const action of section.actions)assert(actual.includes(norm(action)),'Missing lesson action '+section.id);
+      assert.equal(await lesson.locator('[data-open-route]').count(),section.related_route_ids.length);
+      assert.equal(await lesson.locator('img').count(),section.card_cids.length);
+     }
      for(const [i,featured] of record.player_guide.featured_cards.entries()){
       const card=record.cards.find(c=>c.cid===featured.cid);assert(card);
       const actual=await page.locator('.curated-featured-card').nth(i).innerText();
       assert(norm(actual).includes(norm(card.name))); assert(norm(actual).includes(norm(featured.reason))&&norm(actual).includes(norm(featured.when_to_use)));
      }
-     await page.locator('.curated-full-profile summary').click();
-     assert(norm(await page.locator('.curated-full-profile').innerText()).includes(norm(record.profile['Cómo se juega'])),'Full plan truncated');
+     assert.equal(await page.locator('.curated-full-profile').count(),0,'Legacy paragraph leaked');
      const intro=page.locator('[data-curated-content="intro"]');
-     assert(!/Dictamen editorial|PARCIAL_AVANZADO|Cat[aá]logo completo|consultar el plan|CID\s*\d+/i.test(await intro.innerText()));
+     assert(!/Dictamen editorial|PARCIAL_AVANZADO|Cat[aá]logo completo|consultar el plan|CID\s*\d+|cobertura documental|validación observada|evaluación editorial|no\s+(?:escribir|redactar|inferir|inventar)\b|informe de auditoría|\b\d+\s+de\s+\d+\s+decks\b/i.test(await intro.textContent()));
      assert.equal(await intro.locator('a[href*="guide.html"]').count(),0);
      assert.deepEqual(errors,[]);
      await page.screenshot({path:path.join(out,id+'-'+width+'.png')});
     }finally{await page.close();}
    }
-   reports.push({deck_id:id,status:'PASS',viewports:[390,1280],profile_fields:6});
+   reports.push({deck_id:id,status:'PASS',viewports:[390,1280],profile_fields:6,lessons:8,semantic_certification:false});
   }catch(e){reports.push({deck_id:id,status:'FAIL',error:e.message});}
  }
  }finally{await browser.close();}

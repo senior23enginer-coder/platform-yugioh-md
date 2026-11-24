@@ -206,7 +206,7 @@ function ygo_data_validate_player_guide(array $record): void {
     if(!is_array($guide)||($guide['schema']??null)!=='station-x-player-guide/1')
         throw new InvalidArgumentException('Contrato de guía del jugador desconocido.');
     $profile=$record['profile']??[];
-    $audit='/\bCID\s*\d+\b|\b[CV]\d{2}\b|\bA(?:0[1-9]|10[AB]?)\s*[-–]?\s*T?\d*\b|\beffect_id\b|\broute_id\b|PARCIAL_AVANZADO|dictamen\s+editorial|PENDIENTE_REPLAY|cat[aá]logo completo|consultar el plan|estudio individual|iteraci[oó]n\s*\d+/iu';
+    $audit='/\bCID\s*\d+\b|\b[CV]\d{2}\b|\bA(?:0[1-9]|10[AB]?)\s*[-–]?\s*T?\d*\b|\beffect_id\b|\broute_id\b|PARCIAL_AVANZADO|dictamen\s+editorial|PENDIENTE_REPLAY|cat[aá]logo completo|consultar el plan|estudio individual|iteraci[oó]n\s*\d+|cobertura\s+documental|validaci[oó]n\s+observada|evaluaci[oó]n\s+editorial|no\s+(?:escribir|redactar|inferir|inventar)\b|informe\s+de\s+auditor[ií]a|\b\d+\s+de\s+\d+\s+decks\b/iu';
     $check=static function($value,string $field,int $min)use($audit):void {
         if(!is_string($value)||trim($value)!==$value||mb_strlen($value,'UTF-8')<$min||preg_match($audit,$value))
             throw new InvalidArgumentException('Texto de guía incompleto o técnico: '.$field);
@@ -245,6 +245,37 @@ function ygo_data_validate_player_guide(array $record): void {
         foreach($phase['related_route_ids'] as $rid)if(!is_string($rid)||!isset($byRoute[$rid]))
             throw new InvalidArgumentException('Referencia a jugada inexistente.');
     }
+    // Optional on historical imports, mandatory for newly reviewed A01 closure.
+    // This checks structure and references, not semantic quality or legal replay.
+    if(array_key_exists('strategy',$guide)){
+        $strategy=$guide['strategy'];
+        $expected=['first','second','mid','late','weak_hand','disruption','win_condition','common_errors'];
+        if(!is_array($strategy)||($strategy['schema']??null)!=='station-x-player-strategy/1'||!is_array($strategy['sections']??null)||!array_is_list($strategy['sections'])||array_column($strategy['sections'],'id')!==$expected)
+            throw new InvalidArgumentException('El plan de juego requiere ocho lecciones en el orden definido.');
+        $objectives=[];$actionLists=[];
+        foreach($strategy['sections'] as $section){
+            foreach(['title','objective','situation','expected_result','resources_to_keep','alternative'] as $key)$check($section[$key]??null,$section['id'].'_'.$key,$key==='title'?6:20);
+            if(isset($objectives[$section['objective']]))throw new InvalidArgumentException('Objetivo de lección duplicado.');
+            $objectives[$section['objective']]=true;
+            $refs=$section['card_cids']??null;
+            if(!is_array($refs)||!array_is_list($refs)||!$refs||count($refs)!==count(array_unique($refs,SORT_REGULAR)))throw new InvalidArgumentException('Referencias de cartas incompletas o duplicadas.');
+            foreach($refs as $cid){
+                if(!is_int($cid)||!isset($byCid[$cid])||!array_filter($byCid[$cid]['slots']??[],static fn($slot)=>in_array($slot['section']??null,['main','extra'],true)))throw new InvalidArgumentException('Carta no disponible en el plan.');
+            }
+            $actions=$section['actions']??null;
+            if(!is_array($actions)||!array_is_list($actions)||count($actions)<2||count($actions)>7)throw new InvalidArgumentException('La lección requiere acciones concretas.');
+            foreach($actions as $action)$check($action,$section['id'].'_action',15);
+            if(count($actions)!==count(array_unique($actions)))throw new InvalidArgumentException('Acción duplicada.');
+            $signature=implode('|',$actions);
+            if(isset($actionLists[$signature]))throw new InvalidArgumentException('Lecciones con las mismas acciones.');
+            $actionLists[$signature]=true;
+            $routeRefs=$section['related_route_ids']??null;
+            if(!is_array($routeRefs)||!array_is_list($routeRefs))throw new InvalidArgumentException('Referencias de rutas ausentes.');
+            foreach($routeRefs as $rid)if(!is_string($rid)||!isset($byRoute[$rid]))throw new InvalidArgumentException('Ruta no existente en el plan.');
+            if(count($routeRefs)!==count(array_unique($routeRefs)))throw new InvalidArgumentException('Referencia de ruta duplicada.');
+        }
+    }
+
 }
 
 function ygo_data_validate(array $record,array $inventory): void {

@@ -76,7 +76,11 @@ jobs:
         run: |
           PROMPTS_REPO=https://github.com/senior23enginer-coder/gpt-yugioh-promps-platform.git
           PROMPTS_BRANCH=${GITHUB_HEAD_REF:-base}
-          if git ls-remote --exit-code --heads "$PROMPTS_REPO" "refs/heads/$PROMPTS_BRANCH" >/dev/null; then
+          if [ "$PROMPTS_BRANCH" = "fix/a01-public-guide-quality-20261123" ]; then
+            git clone --depth 1 --branch base "$PROMPTS_REPO" /tmp/station-x-gpt-decks
+            git -C /tmp/station-x-gpt-decks fetch --depth 1 origin 62c0a4a3827ed5efb37a5dfd0c7320e9d4604e92
+            git -C /tmp/station-x-gpt-decks checkout --detach 62c0a4a3827ed5efb37a5dfd0c7320e9d4604e92
+          elif git ls-remote --exit-code --heads "$PROMPTS_REPO" "refs/heads/$PROMPTS_BRANCH" >/dev/null; then
             git clone --depth 1 --branch "$PROMPTS_BRANCH" "$PROMPTS_REPO" /tmp/station-x-gpt-decks
           else
             git clone --depth 1 --branch base "$PROMPTS_REPO" /tmp/station-x-gpt-decks

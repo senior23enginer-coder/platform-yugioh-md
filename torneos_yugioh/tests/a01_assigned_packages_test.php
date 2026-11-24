@@ -28,6 +28,7 @@ foreach($assigned as $id){
   if(!$counts['main']||(!in_array($record['format'],['goat','rush','rush_duel'],true)&&!$counts['extra']))throw new RuntimeException('Missing required zone');
   $inventory=['deck'=>['id'=>$id,'name'=>$current['name']],'cards'=>$cards,'format'=>$record['format'],'inventory_sha256'=>'isolated-'.$id];
   $stage='T4';ygo_data_validate_a01_profile($record);ygo_data_validate_player_guide($record);
+  if(($record['player_guide']['strategy']['schema']??null)!=='station-x-player-strategy/1'||count($record['player_guide']['strategy']['sections']??[])!==8)throw new RuntimeException('Missing revised strategy');
   $fields=['Arquetipo','Tipo de estrategia','Estilo breve','Resumen para ficha','Cómo se juega','Qué vigilar'];
   $md=file_get_contents($root.'/'.$source);
   $offset=strpos($md,'## APARTADO_01');
@@ -70,6 +71,10 @@ foreach($assigned as $id){
   $reject(static function(&$x){$x['inventory'][0]['quantity']++;});
   $reject(static function(&$x){$x['record']['deck_id']=99999999;});
   $reject(static function(&$x){$x['record']['profile']['Tipo de estrategia']='Consultar el plan';});
+  $reject(static function(&$x){array_pop($x['record']['player_guide']['strategy']['sections']);});
+  $reject(static function(&$x){$x['record']['player_guide']['strategy']['sections'][0]['card_cids']=[99999999];});
+  $reject(static function(&$x){$x['record']['player_guide']['strategy']['sections'][0]['actions'][0]='No escribir instrucciones para el jugador';});
+  $reject(static function(&$x){$x['record']['player_guide']['strategy']['sections'][0]['related_route_ids'][]='INVALID_ROUTE';});
   $stage='T5 publish/export';
   $scratch=sys_get_temp_dir().'/stationx-a01-'.$id.'-'.bin2hex(random_bytes(8));
   mkdir($scratch.'/assets/editorial',0700,true);
@@ -98,7 +103,7 @@ foreach($assigned as $id){
   $export=ygo_data_export_files($scratch,$inventory,$active,$files,[]);
   $again=ygo_data_prepare($scratch,$export,$inventory,$active,$files);
   if($again['profile']!==$record['profile']||$again['player_guide']!==$record['player_guide']||$signature($cards)!==$signature($recordRows($again))||$routeIds($record)!==$routeIds($again))throw new RuntimeException('Round trip drift');
-  $report[]=['deck_id'=>$id,'status'=>'ISOLATED_PASS','counts'=>$counts,'fields'=>6,'featured'=>count($record['player_guide']['featured_cards']),'phases'=>4,'photos'=>$photos,'routes'=>count($record['routes']),'rejections'=>$negative];
+  $report[]=['deck_id'=>$id,'status'=>'ISOLATED_PASS','counts'=>$counts,'fields'=>6,'featured'=>count($record['player_guide']['featured_cards']),'phases'=>4,'lessons'=>8,'semantic_certification'=>false,'photos'=>$photos,'routes'=>count($record['routes']),'rejections'=>$negative];
  }catch(Throwable $e){$report[]=['deck_id'=>$id,'status'=>'FAIL','stage'=>$stage,'error'=>$e->getMessage()];}
  finally{
   if($tmp&&is_file($tmp))unlink($tmp);
