@@ -65,7 +65,7 @@
     });
     const structured=playerGuide?.strategy?.schema==='station-x-player-strategy/1'&&Array.isArray(playerGuide.strategy.sections)?playerGuide.strategy:null;
     const sectionPhotos=section=>section.card_cids.map(cid=>data.cards.find(c=>c.cid===cid)).filter(c=>c?.image);
-    const routeLinks=ids=>(ids||[]).map(id=>{const route=data.routes.find(x=>x.id===id);return route?'<button type="button" data-open-route="'+esc(route.id)+'">Estudiar: '+esc(routeLabel(route))+'</button>':'';}).join('');
+    const routeLinks=ids=>(ids||[]).map((id,i)=>{const route=data.routes.find(x=>x.id===id);return route?'<button type="button" data-open-route="'+esc(route.id)+'">Ver jugada '+(i+1)+'</button>':'';}).join('');
     const strategyHtml=structured?'<section class="curated-game-phases" data-player-strategy><h4>Plan de juego paso a paso</h4>'+structured.sections.map(section=>
       '<article class="curated-game-phase" data-player-section="'+esc(section.id)+'"><h5>'+esc(section.title)+'</h5><p><b>Objetivo:</b> '+text(section.objective)+'</p><p><b>Situación inicial:</b> '+text(section.situation)+'</p>'+strip(sectionPhotos(section))+'<h6>Qué hacer</h6><ol>'+section.actions.map(action=>'<li>'+text(action)+'</li>').join('')+'</ol><p><b>Resultado esperado:</b> '+text(section.expected_result)+'</p><p><b>Recursos que debes conservar:</b> '+text(section.resources_to_keep)+'</p><p><b>Alternativa:</b> '+text(section.alternative)+'</p>'+routeLinks(section.related_route_ids)+'</article>'
     ).join('')+'</section>':'';
