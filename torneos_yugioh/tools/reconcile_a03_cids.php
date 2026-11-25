@@ -66,6 +66,21 @@ function buildA03Plan(array $native, array $official): array {
     return $plan;
 }
 
+function a03Eligibility(array $item, array $approved): array {
+    $row=$item['before'];
+    $id=$row['id'];
+    // Original 2026-11-17 Purrely photo: two WATER copies of Ghost Sister
+    // & Spooky Dogwood. The historical catalog artifact proposed Ghost Ogre.
+    if ($row['deck_id']===660 && $id===566 &&
+        ($item['cid']!==14275 || $item['title']!=='Hermana Fantasma & Cornejo Espectral' ||
+         $row['section']!=='main' || $row['quantity']!==2)) {
+        return [false,'PURRELY_ROW_566_REQUIRES_PHOTO_VERIFIED_CID_14275'];
+    }
+    $accepted=!$item['alias_review_required'] ||
+        (isset($approved[(string)$id]) && $approved[(string)$id]===['cid'=>$item['cid'],'official_title'=>$item['title']]);
+    return [$accepted,$accepted?null:'ALIAS_APPROVAL_REQUIRED'];
+}
+
 function main(array $args): void {
     requireCondition(count($args)>=3,'USAGE: native.json official.json [--apply --approved-aliases=path.json]');
     $native=readEvidence($args[1],'a22d172d04c5e7f8127c97726a9a121aa46ba66fd22f33015a8be0d601845fac');
@@ -82,10 +97,9 @@ function main(array $args): void {
     foreach ($plan as $deckId=>$rows) {
         foreach ($rows as $item) {
             $id=$item['before']['id'];
-            $accepted=!$item['alias_review_required'] ||
-                (isset($approved[(string)$id]) && $approved[(string)$id]===['cid'=>$item['cid'],'official_title'=>$item['title']]);
+            [$accepted,$reason]=a03Eligibility($item,$approved);
             $report[]=['deck_id'=>$deckId,'card_id'=>$id,'name'=>$item['before']['card_name'],
-                'cid'=>$item['cid'],'official_title'=>$item['title'],'eligible'=>$accepted];
+                'cid'=>$item['cid'],'official_title'=>$item['title'],'eligible'=>$accepted,'blocked_reason'=>$reason];
         }
     }
     echo json_encode(['mode'=>$apply?'apply':'dry_run','rows'=>count($report),
