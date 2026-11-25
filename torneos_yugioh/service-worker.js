@@ -1,5 +1,6 @@
-const CACHE_NAME = 'yugioh-md-match-v223';
+const CACHE_NAME = 'yugioh-md-match-v224';
 const APP_SHELL = [
+  './assets/modules/startup/resources.js?v=20261125-startup-1',
   './assets/modules/match-sheet/entity-links.js?v=20261117-entity-links',
   './assets/modules/match-sheet/entity-links.css?v=20261117-entity-links',
   './assets/modules/deck-data/ui.js?v=20261117-data-folder-2',
@@ -118,7 +119,7 @@ const APP_SHELL = [
   './assets/storage-maintenance.js?v=20261028-cleanup-113',
   './assets/news.css?v=20261028-news-116',
   './assets/news.js?v=20261028-news-115',
-  './assets/app.js?v=20261117-match-entities',
+  './assets/app.js?v=20261125-startup-1',
   './assets/seasons.js?v=20261016-season-editor-4',
   './manifest.webmanifest'
 ];
@@ -177,7 +178,17 @@ self.addEventListener('fetch',event=>{
   const core=shellUrls.has(url.href),asset=url.pathname.startsWith(scope.pathname+'assets/');
   if(!core&&!asset&&event.request.mode!=='navigate')return;
   let cacheWork=Promise.resolve();
-  const response=fetch(event.request).then(response=>{
+  // Navigations, unversioned JSON and API data remain network-first. Exact
+  // versioned assets and uploaded images can be served without a new download.
+  const reusable = asset && /\.(?:js|css|png|jpe?g|webp|gif|svg|woff2?)$/i.test(url.pathname)
+    && (url.searchParams.has('v') || url.pathname.startsWith(scope.pathname+'assets/uploads/'));
+  const response=(async()=>{
+    if(reusable){
+      const cache=await caches.open(core?CACHE_NAME:RUNTIME_CACHE),saved=await cache.match(event.request);
+      if(saved&&(core||Date.now()-cacheTime(saved)<=MAX_RUNTIME_AGE))return saved;
+    }
+    return fetch(event.request);
+  })().then(response=>{
     if(response.ok&&(core||asset)&&!response.headers.get('vary')?.split(',').some(v=>v.trim()==='*')){
       const copy=response.clone();
       cacheWork=caches.open(core?CACHE_NAME:RUNTIME_CACHE).then(cache=>cache.put(event.request,copy)).then(()=>core?undefined:limitRuntime()).catch(()=>{});

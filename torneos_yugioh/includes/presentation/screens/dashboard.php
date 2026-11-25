@@ -55,7 +55,7 @@
                                 ?>
                                 <article class="dashboard-event-card-pro" data-dashboard-event-card data-dashboard-format="<?php echo e($eventFormatName); ?>" style="--accent: <?php echo e((string) ($eventMeta['accent'] ?? '#895cff')); ?>; --i: <?php echo $index; ?>">
                                     <div class="event-card-cover<?php echo !empty($event['logo_url']) ? ' has-logo' : ''; ?>">
-                                        <?php if (!empty($event['logo_url'])): ?><img src="<?php echo e((string) $event['logo_url']); ?>" alt="<?php echo e((string) ($event['name'] ?? 'Evento')); ?>"><?php endif; ?>
+                                        <?php if (!empty($event['logo_url'])): ?><img loading="lazy" decoding="async" src="<?php echo e((string) $event['logo_url']); ?>" alt="<?php echo e((string) ($event['name'] ?? 'Evento')); ?>"><?php endif; ?>
                                         <span><?php echo e((string) ($eventMeta['label'] ?? 'Evento')); ?></span>
                                         <em><?php echo e((string) (($event['status'] ?? '') ?: 'active')); ?></em>
                                     </div>
@@ -151,7 +151,7 @@
                                 ?>
                                 <article>
                                     <b><?php echo $index + 1; ?></b>
-                                    <span class="rank-avatar media-avatar"><?php if ($teamLogo !== ''): ?><img src="<?php echo e($teamLogo); ?>" alt="<?php echo e($teamName); ?>"><?php else: ?><?php echo e($teamMark); ?><?php endif; ?></span>
+                                    <span class="rank-avatar media-avatar"><?php if ($teamLogo !== ''): ?><img loading="lazy" decoding="async" src="<?php echo e($teamLogo); ?>" alt="<?php echo e($teamName); ?>"><?php else: ?><?php echo e($teamMark); ?><?php endif; ?></span>
                                     <strong><?php echo e($teamName); ?></strong>
                                     <em><?php echo (int) ($teamDeckCounts[$teamName] ?? 0); ?> decks</em>
                                 </article>

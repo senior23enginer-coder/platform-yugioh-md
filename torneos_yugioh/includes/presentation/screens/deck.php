@@ -31,7 +31,7 @@
                                 <td data-label="Deck">
                                     <span class="deck-table-identity">
                                         <?php if (!empty($deck['cover_url'])): ?>
-                                            <span class="deck-table-logo"><img src="<?php echo e((string) $deck['cover_url']); ?>" alt="<?php echo e((string) $deck['name']); ?>"></span>
+                                            <span class="deck-table-logo"><img loading="lazy" decoding="async" src="<?php echo e((string) $deck['cover_url']); ?>" alt="<?php echo e((string) $deck['name']); ?>"></span>
                                         <?php else: ?>
                                             <span class="deck-table-logo deck-table-logo-fallback"><?php echo e(strtoupper(substr((string) ($deck['name'] ?? '?'), 0, 1))); ?></span>
                                         <?php endif; ?>

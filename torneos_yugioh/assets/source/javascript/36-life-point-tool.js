@@ -412,7 +412,11 @@
   window.addEventListener('offline', updateConnectivity);
   updateConnectivity();
   flushOfflineResult();
-  if ('serviceWorker' in navigator) navigator.serviceWorker.register('./service-worker.js').catch(() => {});
+  if ('serviceWorker' in navigator) {
+    const registerOffline = () => navigator.serviceWorker.register('./service-worker.js').catch(() => {});
+    if (document.readyState === 'complete') registerOffline();
+    else window.addEventListener('load', registerOffline, { once: true });
+  }
 
   const showAppNotice = (message, tone = 'info') => {
     let host = document.querySelector('[data-app-notices]');

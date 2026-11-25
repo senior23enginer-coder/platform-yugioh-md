@@ -2,7 +2,7 @@
   "schema": "station-x-p06-test-source-baseline/1",
   "date": "2026-11-23",
   "purpose": "Explicitly review every new test program; use declarative fixture data for deck/card scenarios instead of new per-card JS/PHP files",
-  "baseline_total": 215,
+  "baseline_total": 216,
   "paths": [
     "torneos_yugioh/tests/a01_assigned_packages_test.php",
     "torneos_yugioh/tests/a01_assigned_packages_ui_test.cjs",
@@ -208,6 +208,7 @@
     "torneos_yugioh/tests/statistics_live_test.cjs",
     "torneos_yugioh/tests/statistics_multiplayer_test.php",
     "torneos_yugioh/tests/statistics_no_cuts_test.php",
+    "torneos_yugioh/tests/startup_resources_test.cjs",
     "torneos_yugioh/tests/statistics_v8_test.php",
     "torneos_yugioh/tests/statistics_workspace_test.cjs",
     "torneos_yugioh/tests/step_lesson_test.cjs",
@@ -229,5 +230,10 @@
     ],
     "removed_paths": [],
     "approval": "Pending PR review; guard remains strict."
+  },
+  "startup_review": {
+    "date": "2026-11-25",
+    "scope": "One shared startup/cache/browser regression; no deck analysis or per-card programs",
+    "added_path": "torneos_yugioh/tests/startup_resources_test.cjs"
   }
 }
