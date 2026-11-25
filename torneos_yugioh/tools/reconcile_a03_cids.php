@@ -66,6 +66,41 @@ function buildA03Plan(array $native, array $official): array {
     return $plan;
 }
 
+/**
+ * Correct one misidentified entry from the pinned historical catalog artifact.
+ * The original Purrely photo dated 2026-11-17 shows two WATER Ghost Sister
+ * copies. The CID 14275 text digest covers the two official Spanish text lines
+ * joined by LF, without surrounding whitespace.
+ */
+function applyPurrelyPhotoEvidence(array $official): array {
+    $matched=0;
+    foreach ($official['decks'] as &$deck) {
+        if ((int)$deck['deck_id']!==660) { continue; }
+        foreach ($deck['entries'] as &$entry) {
+            if (!in_array(566,$entry['card_id'],true)) { continue; }
+            requireCondition($entry['card_id']===[566] && $entry['cid']===11708 &&
+                $entry['inventory_name']==='Hermana Fantasma & Conejo Espectral' &&
+                $entry['official_title']==='Ogro Fantasma & Conejo de las Nieves' &&
+                $entry['text_sha256']==='64721b0d675f420c6a779b07aac1eec65921fe24b40c36944dea551d1dcd9ba7',
+                'PURRELY_HISTORICAL_EVIDENCE_DRIFT');
+            $entry=array_replace($entry, [
+                'cid'=>14275,
+                'official_title'=>'Hermana Fantasma & Cornejo Espectral',
+                'source'=>'https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=14275&ope=2&request_locale=es',
+                'text_sha256'=>'5f030124fa88bc3a39db6465550e09b1d6a4b7dda73449cfb346dc6e74aab813',
+                'text_chars'=>465,'nonempty_text_lines'=>2,
+                'name_exact_normalized'=>false,'name_review_required'=>true,
+                'identity_evidence'=>'physical_photo_2026-11-17_main_two_water_copies',
+            ]);
+            $matched++;
+        }
+        unset($entry);
+    }
+    unset($deck);
+    requireCondition($matched===1,'PURRELY_HISTORICAL_ROW_566_NOT_UNIQUE');
+    return $official;
+}
+
 function a03Eligibility(array $item, array $approved): array {
     $row=$item['before'];
     $id=$row['id'];
@@ -85,7 +120,7 @@ function main(array $args): void {
     requireCondition(count($args)>=3,'USAGE: native.json official.json [--apply --approved-aliases=path.json]');
     $native=readEvidence($args[1],'a22d172d04c5e7f8127c97726a9a121aa46ba66fd22f33015a8be0d601845fac');
     $official=readEvidence($args[2],'81b5ceb032531695817d36fecc4ee7957b1f10f54189728143abdc842b7a222d');
-    $plan=buildA03Plan($native,$official);
+    $plan=buildA03Plan($native,applyPurrelyPhotoEvidence($official));
     $apply=in_array('--apply',$args,true);
     $approved=[];
     foreach ($args as $arg) {
@@ -133,7 +168,8 @@ function main(array $args): void {
             $read->execute([$deckId]); $after=array_map('nativeProjection',$read->fetchAll());
             requireCondition($after===$afterExpected,'POST_WRITE_INVARIANT_'.$deckId);
             $audit->execute(['deck',$deckId,'a03_cid_metadata_reconciliation',json_encode(
-                ['before'=>$before,'after'=>$after,'source_run'=>45515416575],
+                ['before'=>$before,'after'=>$after,'source_run'=>45515416575,
+                 'photo_override'=>$deckId===660?['card_id'=>566,'cid'=>14275,'photo_date'=>'2026-11-17']:null],
                 JSON_UNESCAPED_UNICODE|JSON_THROW_ON_ERROR)]);
         }
         $pdo->commit();
