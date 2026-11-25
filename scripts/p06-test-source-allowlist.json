@@ -1,11 +1,12 @@
 {
   "schema": "station-x-p06-test-source-baseline/1",
   "date": "2026-11-23",
-  "purpose": "Explicitly review every new test program; use declarative fixture data for deck/card scenarios instead of new per-card JS/PHP files",
-  "baseline_total": 215,
+  "purpose": "Explicitly review every new test program; use declarative fixture data for deck/card scenarios instead of new per-card JS/PHP files. Proposed PR #49 adds one administrative metadata reconciliation test (not per-card or calculator logic), with explicit review required before merge.",
+  "baseline_total": 216,
   "paths": [
     "torneos_yugioh/tests/a01_assigned_packages_test.php",
     "torneos_yugioh/tests/a01_assigned_packages_ui_test.cjs",
+    "torneos_yugioh/tests/a03_cid_reconciliation_test.php",
     "torneos_yugioh/tests/best_of_rule_regression_test.js",
     "torneos_yugioh/tests/bo3_production_guard_test.js",
     "torneos_yugioh/tests/calculator_active_coverage_test.cjs",
