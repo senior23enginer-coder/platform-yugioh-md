@@ -48,7 +48,7 @@
       const teamCode = deck.team_code || deck.team_symbol || String(deck.team || 'YMD').slice(0, 3);
       const teamLogo = deck.team_logo || linkedTeam.logo_url || '';
       profileTeam.innerHTML = teamLogo
-        ? `<span class="profile-team-logo"><img src="${escapeHtml(teamLogo)}" alt="${escapeHtml(deck.team || 'Equipo')}" onerror="this.parentElement.replaceWith(Object.assign(document.createElement('span'),{className:'team-inline-badge',textContent:'${escapeHtml(teamCode)}'}))"></span><span>${escapeHtml(deck.team || 'Sin equipo')}</span>`
+        ? `<span class="profile-team-logo"><img loading="lazy" decoding="async" src="${escapeHtml(teamLogo)}" alt="${escapeHtml(deck.team || 'Equipo')}" onerror="this.parentElement.replaceWith(Object.assign(document.createElement('span'),{className:'team-inline-badge',textContent:'${escapeHtml(teamCode)}'}))"></span><span>${escapeHtml(deck.team || 'Sin equipo')}</span>`
         : `<span class="team-inline-badge" style="--team-primary:${primary};--team-secondary:${secondary};">${escapeHtml(teamCode)}</span> ${escapeHtml(deck.team || 'Sin equipo')}`;
     }
     // Identity remains native; player-facing archetype/style come exclusively from the
@@ -66,7 +66,7 @@
     const deckCards = (data.cards || []).filter((card) => String(card.deck_id) === String(deck.id));
     const deckMedia = (data.media || []).filter((item) => String(item.deck_id) === String(deck.id));
     const galleryCards = deckCards;
-    if (cardGallery && window.YgoDeckBuilder) {
+    if (cardGallery && window.YgoDeckBuilder && activeDeckCategory === 'decklist') {
       window.YgoDeckBuilder.mount(cardGallery, deck, data);
     } else if (cardGallery) {
       const sections = ['main', 'extra', 'side'];
@@ -221,9 +221,8 @@
       if (node) node.textContent = value;
     });
     window.YgoDeckData?.mount(deck);
-    window.YgoComboCreator?.mountViewer(document.querySelector('[data-deck-created-combos]'), deck);
-    window.YgoPlayCalculator?.mount(document.querySelector('[data-play-calculator]'), deck, data);
-    renderDeckAnalysis(deck);
+    if (activeDeckCategory === 'created-combos') window.YgoComboCreator?.mountViewer(document.querySelector('[data-deck-created-combos]'), deck);
+    if (['strategy', 'matchups'].includes(activeDeckCategory)) renderDeckAnalysis(deck);
   }
 
   const statsBody = document.querySelector('[data-stats-body]');

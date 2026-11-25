@@ -26,7 +26,7 @@
     const fallback = matchSideFallback(match, side);
     const teamName = side === 'a' ? (match.team_a || deckInfoByName(match.a).team || match.a) : (match.team_b || deckInfoByName(match.b).team || match.b);
     return logo
-      ? `<span class="calendar-team-logo"><img src="${escapeHtml(logo)}" alt="${escapeHtml(teamName || 'Equipo')}"></span>`
+      ? `<span class="calendar-team-logo"><img loading="lazy" decoding="async" src="${escapeHtml(logo)}" alt="${escapeHtml(teamName || 'Equipo')}"></span>`
       : `<span class="calendar-team-logo calendar-team-logo-fallback">${escapeHtml(fallback)}</span>`;
   }
 

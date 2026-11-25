@@ -51,7 +51,11 @@ class AssetPathsTests(unittest.TestCase):
         self.assertIn('data-deck-category-open="play-calculator"',index)
         self.assertIn("'/includes/decks/play-calculator-view.php'",index)
         app=(ROOT/'assets/app.js').read_text(encoding='utf-8-sig')
-        self.assertIn("window.YgoPlayCalculator?.mount",app)
+        self.assertNotIn("window.YgoPlayCalculator?.mount",app)
+        self.assertIn('<template data-startup-calculator>', index)
+        self.assertIn('./assets/modules/startup/resources.js', urls)
+        workspace=(ROOT/'assets/modules/play-calculator/workspace.js').read_text(encoding='utf-8-sig')
+        self.assertIn('window.YgoPlayCalculator.mount',workspace)
 
     def test_standalone_page_has_no_external_dependencies(self):
         html=(ROOT/'play-calculator.html').read_text(encoding='utf-8-sig')

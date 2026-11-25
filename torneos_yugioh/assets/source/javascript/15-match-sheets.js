@@ -52,7 +52,7 @@
     const team = match[`team_${key}`] || 'Sin equipo';
     const logo = matchSideLogoUrl(match, key);
     const fallback = matchSideFallback(match, key) || side;
-    return `<span class="qualifier-match-side"><span class="team-inline-badge${logo ? ' has-image' : ''}">${logo ? `<img src="${escapeHtml(logo)}" alt="${escapeHtml(team)}">` : escapeHtml(fallback)}</span><span><strong>${escapeHtml(deck)}</strong><small>${escapeHtml(team)}</small></span></span>`;
+    return `<span class="qualifier-match-side"><span class="team-inline-badge${logo ? ' has-image' : ''}">${logo ? `<img loading="lazy" decoding="async" src="${escapeHtml(logo)}" alt="${escapeHtml(team)}">` : escapeHtml(fallback)}</span><span><strong>${escapeHtml(deck)}</strong><small>${escapeHtml(team)}</small></span></span>`;
   }
 
   function renderQualifierMatchList() {
@@ -96,7 +96,7 @@
     const fallback = String(fallbackText || '?').replace(/[^a-z0-9]/gi, '').slice(0, 2).toUpperCase() || '?';
     node.classList.toggle('has-image', !!logoUrl);
     node.innerHTML = logoUrl
-      ? `<img src="${escapeHtml(logoUrl)}" alt="${escapeHtml(altText || fallback)}">`
+      ? `<img loading="lazy" decoding="async" src="${escapeHtml(logoUrl)}" alt="${escapeHtml(altText || fallback)}">`
       : escapeHtml(fallback);
   }
 

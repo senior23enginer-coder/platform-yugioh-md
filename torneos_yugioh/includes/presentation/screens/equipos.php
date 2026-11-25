@@ -26,7 +26,7 @@
                     <td data-label="Equipo">
                         <span class="team-table-identity">
                             <?php if (!empty($team['logo_url'])): ?>
-                                <span class="team-table-logo"><img src="<?php echo e((string) $team['logo_url']); ?>" alt="<?php echo e((string) $team['name']); ?>"></span>
+                                <span class="team-table-logo"><img loading="lazy" decoding="async" src="<?php echo e((string) $team['logo_url']); ?>" alt="<?php echo e((string) $team['name']); ?>"></span>
                             <?php else: ?>
                                 <span class="team-inline-badge" style="--team-primary: <?php echo e($primary); ?>; --team-secondary: <?php echo e($secondary); ?>"><?php echo e($teamSymbol); ?></span>
                             <?php endif; ?>

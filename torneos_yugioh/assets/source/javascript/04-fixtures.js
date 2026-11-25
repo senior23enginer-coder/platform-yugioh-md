@@ -91,7 +91,7 @@
     const logoUrl = matchSideLogoUrl(match, side);
     const fallback = matchSideFallback(match, side);
     const logo = logoUrl
-      ? `<span class="result-team-logo"><img src="${escapeHtml(logoUrl)}" alt="${escapeHtml(safeTeamName)}"></span>`
+      ? `<span class="result-team-logo"><img loading="lazy" decoding="async" src="${escapeHtml(logoUrl)}" alt="${escapeHtml(safeTeamName)}"></span>`
       : `<span class="result-team-logo result-team-logo-fallback">${escapeHtml(fallback)}</span>`;
     const extra = extraDecks.length ? ` + ${extraDecks.length} deck${extraDecks.length === 1 ? '' : 's'}` : '';
     return `
