@@ -104,6 +104,12 @@ function applyPurrelyPhotoEvidence(array $official): array {
 function a03Eligibility(array $item, array $approved): array {
     $row=$item['before'];
     $id=$row['id'];
+    // The Purrely Extra photo dated 2026-11-17 shows two Expurrely Noir
+    // and one Epurrely Noir in the three-copy native aggregate. A CID-only
+    // update cannot split distinct cards while preserving quantities and IDs.
+    if ($row['deck_id']===660 && $id===587) {
+        return [false,'PURRELY_ROW_587_REQUIRES_DISTINCT_NOIR_INVENTORY_ROWS'];
+    }
     // Original 2026-11-17 Purrely photo: two WATER copies of Ghost Sister
     // & Spooky Dogwood. The historical catalog artifact proposed Ghost Ogre.
     if ($row['deck_id']===660 && $id===566 &&

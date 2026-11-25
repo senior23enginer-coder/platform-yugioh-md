@@ -55,5 +55,11 @@ requireCondition(a03Eligibility($item,[])===[false,'ALIAS_APPROVAL_REQUIRED'],'P
 requireCondition(a03Eligibility($item,$correct)===[true,null],'PURR_CORRECT_CARD_REJECTED');
 $item['before']['quantity']=1;
 requireCondition(a03Eligibility($item,$correct)[0]===false,'PURR_WRONG_QUANTITY_APPROVED');
+$mixedNoir=['before'=>['deck_id'=>660,'id'=>587,'section'=>'extra','quantity'=>3],
+    'cid'=>18008,'title'=>'Noir Expurrely','alias_review_required'=>false];
+requireCondition(a03Eligibility($mixedNoir,[])===[false,'PURRELY_ROW_587_REQUIRES_DISTINCT_NOIR_INVENTORY_ROWS'],
+    'PURR_MIXED_NOIR_TREATED_AS_EXACT');
+requireCondition(a03Eligibility($mixedNoir,['587'=>['cid'=>18008,'official_title'=>'Noir Expurrely']])[0]===false,
+    'PURR_MIXED_NOIR_APPROVAL_BYPASS');
 echo "PASS: Purrely physical evidence guard and explicit alias approval.\n";
 echo "PASS: 130-row plan, preserved notes, rejected duplicates, bad sources, existing CIDs, mismatched names, incomplete plan.\n";
