@@ -49,7 +49,7 @@
                         <tr data-division-row data-division-id="<?php echo e((string) ($division['id'] ?? '')); ?>" data-division-min="<?php echo $divisionReady ? 'ready' : 'missing'; ?>" data-division-search="<?php echo e($divisionSearch); ?>">
                             <td data-label="Division">
                                 <span class="division-table-identity">
-                                    <span class="division-table-logo"><?php echo $divisionLogo !== '' ? '<img src="' . e($divisionLogo) . '" alt="' . e((string) ($division['name'] ?? 'Division')) . '">' : e((string) ($division['short'] ?? 'DV')); ?></span>
+                                    <span class="division-table-logo"><?php echo $divisionLogo !== '' ? '<img loading="lazy" decoding="async" src="' . e($divisionLogo) . '" alt="' . e((string) ($division['name'] ?? 'Division')) . '">' : e((string) ($division['short'] ?? 'DV')); ?></span>
                                     <span><strong><?php echo e((string) ($division['name'] ?? 'Division')); ?></strong><br><small><?php echo e((string) ($division['short'] ?? '')); ?> | <?php echo e((string) ($division['cup'] ?? '')); ?></small></span>
                                 </span>
                             </td>

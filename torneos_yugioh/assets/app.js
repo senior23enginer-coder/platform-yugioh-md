@@ -118,7 +118,7 @@
     button.addEventListener('click', () => document.body.classList.remove('sidebar-open'));
   });
 
-  function routeTo(route) {
+  function routeTo(route, navigationMode = 'push') {
     const requested = route === 'admin' ? 'gestion' : (route || 'dashboard');
     const routed = requested === 'tabla' ? 'estadisticas' : requested;
     if (requested === 'tabla') window.YgoStatisticsWorkspace?.open('tables');
@@ -139,7 +139,18 @@
       }
     });
     localStorage.setItem('dml_screen', target);
-    if (location.hash !== `#${target}`) history.replaceState(null, '', `#${target}`);
+    if (location.hash !== `#${target}`) {
+      // Record real user navigation so Back/Forward return to the previous
+      // Station X screen. Restoring history or bootstrapping a deep link
+      // must never add another entry.
+      const url = new URL(window.location.href);
+      url.hash = target;
+      if (navigationMode === 'push') {
+        history.pushState(history.state, '', `${url.pathname}${url.search}${url.hash}`);
+      } else {
+        history.replaceState(history.state, '', `${url.pathname}${url.search}${url.hash}`);
+      }
+    }
     document.body.classList.remove('sidebar-open');
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     window.dispatchEvent(new CustomEvent('dml:routechange', { detail: { target, requested } }));
@@ -186,9 +197,11 @@
       routeTo(button.dataset.route);
     });
   });
-  window.addEventListener('hashchange', () => {
-    routeTo((location.hash || '').replace('#', '') || 'dashboard');
-  });
+  const restoreBrowserRoute = () => {
+    routeTo((location.hash || '').replace('#', '') || 'dashboard', 'restore');
+  };
+  window.addEventListener('popstate', restoreBrowserRoute);
+  window.addEventListener('hashchange', restoreBrowserRoute);
 
   const divisionOpenButtons = Array.from(document.querySelectorAll('[data-division-open]'));
   const divisionDetailPanels = Array.from(document.querySelectorAll('[data-division-detail]'));
@@ -535,7 +548,7 @@
     const logoUrl = matchSideLogoUrl(match, side);
     const fallback = matchSideFallback(match, side);
     const logo = logoUrl
-      ? `<span class="result-team-logo"><img src="${escapeHtml(logoUrl)}" alt="${escapeHtml(safeTeamName)}"></span>`
+      ? `<span class="result-team-logo"><img loading="lazy" decoding="async" src="${escapeHtml(logoUrl)}" alt="${escapeHtml(safeTeamName)}"></span>`
       : `<span class="result-team-logo result-team-logo-fallback">${escapeHtml(fallback)}</span>`;
     const extra = extraDecks.length ? ` + ${extraDecks.length} deck${extraDecks.length === 1 ? '' : 's'}` : '';
     return `
@@ -854,7 +867,7 @@
     const fallback = matchSideFallback(match, side);
     const teamName = side === 'a' ? (match.team_a || deckInfoByName(match.a).team || match.a) : (match.team_b || deckInfoByName(match.b).team || match.b);
     return logo
-      ? `<span class="calendar-team-logo"><img src="${escapeHtml(logo)}" alt="${escapeHtml(teamName || 'Equipo')}"></span>`
+      ? `<span class="calendar-team-logo"><img loading="lazy" decoding="async" src="${escapeHtml(logo)}" alt="${escapeHtml(teamName || 'Equipo')}"></span>`
       : `<span class="calendar-team-logo calendar-team-logo-fallback">${escapeHtml(fallback)}</span>`;
   }
 
@@ -4276,7 +4289,7 @@
     const team = match[`team_${key}`] || 'Sin equipo';
     const logo = matchSideLogoUrl(match, key);
     const fallback = matchSideFallback(match, key) || side;
-    return `<span class="qualifier-match-side"><span class="team-inline-badge${logo ? ' has-image' : ''}">${logo ? `<img src="${escapeHtml(logo)}" alt="${escapeHtml(team)}">` : escapeHtml(fallback)}</span><span><strong>${escapeHtml(deck)}</strong><small>${escapeHtml(team)}</small></span></span>`;
+    return `<span class="qualifier-match-side"><span class="team-inline-badge${logo ? ' has-image' : ''}">${logo ? `<img loading="lazy" decoding="async" src="${escapeHtml(logo)}" alt="${escapeHtml(team)}">` : escapeHtml(fallback)}</span><span><strong>${escapeHtml(deck)}</strong><small>${escapeHtml(team)}</small></span></span>`;
   }
 
   function renderQualifierMatchList() {
@@ -4320,7 +4333,7 @@
     const fallback = String(fallbackText || '?').replace(/[^a-z0-9]/gi, '').slice(0, 2).toUpperCase() || '?';
     node.classList.toggle('has-image', !!logoUrl);
     node.innerHTML = logoUrl
-      ? `<img src="${escapeHtml(logoUrl)}" alt="${escapeHtml(altText || fallback)}">`
+      ? `<img loading="lazy" decoding="async" src="${escapeHtml(logoUrl)}" alt="${escapeHtml(altText || fallback)}">`
       : escapeHtml(fallback);
   }
 
@@ -4777,10 +4790,24 @@
   }
 
   function openDeckCategory(category, updateUrl = true) {
+    // The duel board needs the whole page; never place it in a scrollable modal.
+    if (category === 'play-calculator') {
+      const selected = document.querySelector('[data-deck-select]');
+      const current = (data.allDecks || []).find(d => d.name === selected?.value);
+      if (current) sessionStorage.setItem('stationx:calculator-deck', String(current.id));
+      deckCategoryModal?.hide();
+      routeTo('calculadora_jugadas');
+      return;
+    }
     if (!deckCategoryModal || !deckCategoryBody || !deckCategoryNodes[category]) return;
     Array.from(deckCategoryBody.children).forEach((node) => deckCategoryStaging?.appendChild(node));
     deckCategoryNodes[category].forEach((node) => deckCategoryBody.appendChild(node));
     activeDeckCategory = category;
+    // Prepare only the category the player actually opened, using its current deck.
+    const deck = (data.allDecks || []).find(row => row.name === deckSelect?.value) || data.allDecks?.[0];
+    if (deck && category === 'decklist') window.YgoDeckBuilder?.mount(document.querySelector('[data-card-gallery]'), deck, data);
+    if (deck && category === 'created-combos') window.YgoComboCreator?.mountViewer(document.querySelector('[data-deck-created-combos]'), deck);
+    if (deck && ['strategy', 'matchups'].includes(category)) renderDeckAnalysis(deck);
     const meta = deckCategoryMeta[category];
     if (deckCategoryTitle) deckCategoryTitle.textContent = meta[0];
     if (deckCategorySubtitle) deckCategorySubtitle.textContent = meta[1];
@@ -5109,7 +5136,11 @@
 
   function renderProfile(preferredDeckId = '') {
     if (!deckSelect) return;
-    const deck = data.allDecks.find((item) => String(item.id) === String(preferredDeckId)) || data.allDecks.find((item) => item.name === deckSelect.value) || data.allDecks[0];
+    // After a successful ZIP import, restore exactly the deck that initiated it.
+    const importedDeckId = sessionStorage.getItem('stationx:deck-data-return') || '';
+    if (importedDeckId) sessionStorage.removeItem('stationx:deck-data-return');
+    const requestedId = preferredDeckId || importedDeckId;
+    const deck = data.allDecks.find((item) => String(item.id) === String(requestedId)) || data.allDecks.find((item) => item.name === deckSelect.value) || data.allDecks[0];
     if (!deck) return;
     window.YgoDeckAttributes?.renderDeck(deck);
     const stat = deckProfileCompetitiveStats(deck);
@@ -5147,12 +5178,13 @@
       const teamCode = deck.team_code || deck.team_symbol || String(deck.team || 'YMD').slice(0, 3);
       const teamLogo = deck.team_logo || linkedTeam.logo_url || '';
       profileTeam.innerHTML = teamLogo
-        ? `<span class="profile-team-logo"><img src="${escapeHtml(teamLogo)}" alt="${escapeHtml(deck.team || 'Equipo')}" onerror="this.parentElement.replaceWith(Object.assign(document.createElement('span'),{className:'team-inline-badge',textContent:'${escapeHtml(teamCode)}'}))"></span><span>${escapeHtml(deck.team || 'Sin equipo')}</span>`
+        ? `<span class="profile-team-logo"><img loading="lazy" decoding="async" src="${escapeHtml(teamLogo)}" alt="${escapeHtml(deck.team || 'Equipo')}" onerror="this.parentElement.replaceWith(Object.assign(document.createElement('span'),{className:'team-inline-badge',textContent:'${escapeHtml(teamCode)}'}))"></span><span>${escapeHtml(deck.team || 'Sin equipo')}</span>`
         : `<span class="team-inline-badge" style="--team-primary:${primary};--team-secondary:${secondary};">${escapeHtml(teamCode)}</span> ${escapeHtml(deck.team || 'Sin equipo')}`;
     }
-    document.querySelector('[data-profile-archetype]').textContent = deck.display_archetype || deck.archetype || deck.name;
-    const editorialStyle = (data.deckAnalysisProfiles || []).find(row => String(row.deck_id) === String(deck.id))?.play_style;
-    document.querySelector('[data-profile-style]').textContent = String(deck.display_style || editorialStyle || '').trim() || 'Sin estilo registrado';
+    // Identity remains native; player-facing archetype/style come exclusively from the
+    // A01 profile activated by the authenticated Station X ZIP import.
+    document.querySelector('[data-profile-archetype]').textContent = deck.display_archetype || 'Sin análisis importado';
+    document.querySelector('[data-profile-style]').textContent = String(deck.display_style || '').trim() || 'Sin análisis importado';
     document.querySelector('[data-profile-cards]').textContent = deck.key_cards || 'Pendiente de registrar cartas clave.';
     document.querySelector('[data-profile-variations]').textContent = deck.variations || 'Pendiente de registrar variaciones.';
     document.querySelector('[data-profile-notes]').textContent = deck.notes || 'Ficha editable desde Gestion.';
@@ -5164,7 +5196,7 @@
     const deckCards = (data.cards || []).filter((card) => String(card.deck_id) === String(deck.id));
     const deckMedia = (data.media || []).filter((item) => String(item.deck_id) === String(deck.id));
     const galleryCards = deckCards;
-    if (cardGallery && window.YgoDeckBuilder) {
+    if (cardGallery && window.YgoDeckBuilder && activeDeckCategory === 'decklist') {
       window.YgoDeckBuilder.mount(cardGallery, deck, data);
     } else if (cardGallery) {
       const sections = ['main', 'extra', 'side'];
@@ -5319,9 +5351,8 @@
       if (node) node.textContent = value;
     });
     window.YgoDeckData?.mount(deck);
-    window.YgoComboCreator?.mountViewer(document.querySelector('[data-deck-created-combos]'), deck);
-    window.YgoPlayCalculator?.mount(document.querySelector('[data-play-calculator]'), deck, data);
-    renderDeckAnalysis(deck);
+    if (activeDeckCategory === 'created-combos') window.YgoComboCreator?.mountViewer(document.querySelector('[data-deck-created-combos]'), deck);
+    if (['strategy', 'matchups'].includes(activeDeckCategory)) renderDeckAnalysis(deck);
   }
 
   const statsBody = document.querySelector('[data-stats-body]');
@@ -6492,14 +6523,14 @@
     const globalRanked = decks.slice().sort(sorters.points);
     if (statsGlobalPreview) {
       statsGlobalPreview.innerHTML = globalRanked.length ? globalRanked.slice(0, 10).map((row, index) => {
-        const logo = row.logo ? '<img src="' + escapeHtml(row.logo) + '" alt="">' : '<span><i class="bi bi-collection"></i></span>';
+        const logo = row.logo ? '<img loading="lazy" decoding="async" src="' + escapeHtml(row.logo) + '" alt="">' : '<span><i class="bi bi-collection"></i></span>';
         return '<tr><td data-label="#"><b>' + (index + 1) + '</b></td><td data-label="Deck / equipo"><div class="analytics-deck-cell">' + logo + '<div><b>' + escapeHtml(row.name) + '</b><small>' + escapeHtml(row.team) + '</small></div></div></td>'
           + '<td data-label="Formato">' + escapeHtml(row.ruleset) + '</td><td data-label="PTS"><b>' + row.points + '</b></td><td data-label="Partidas G/E/P">' + row.matchWins + ' / ' + row.matchDraws + ' / ' + row.matchLosses + '</td><td data-label="WR">' + row.winRate + '%</td>'
           + '<td data-label="Duelos G/E/P">' + row.duelWins + ' / ' + row.duelDraws + ' / ' + row.duelLosses + '</td><td data-label="DIF">' + (row.duelDiff > 0 ? '+' : '') + row.duelDiff + '</td></tr>';
       }).join('') : statsEmpty('No hay decks dentro del alcance seleccionado.', 8);
     }
     statsBody.innerHTML = ranked.length ? ranked.map((row, index) => {
-      const logo = row.logo ? '<img src="' + escapeHtml(row.logo) + '" alt="">' : '<span><i class="bi bi-collection"></i></span>';
+      const logo = row.logo ? '<img loading="lazy" decoding="async" src="' + escapeHtml(row.logo) + '" alt="">' : '<span><i class="bi bi-collection"></i></span>';
       const winRate = row.matches >= context.sample ? row.winRate + '%' : '<span title="Requiere ' + context.sample + ' matches">N/M</span>';
       return '<tr><td data-label="#">' + (index + 1) + '</td><td data-label="Equipo / Deck"><div class="analytics-deck-cell">' + logo + '<div><b>' + escapeHtml(row.name) + '</b><small>' + escapeHtml(row.team) + '</small></div></div></td>'
         + '<td data-label="Formato">' + escapeHtml(row.ruleset) + '</td><td data-label="PTS">' + row.points + '</td><td data-label="Valor ranking"><b>' + rankingValue(row) + '</b></td><td data-label="MJ">' + row.matches + '</td><td data-label="MG">' + row.matchWins + '</td><td data-label="ME">' + row.matchDraws + '</td><td data-label="MP">' + row.matchLosses + '</td>'
@@ -6656,7 +6687,7 @@
     const eventRankingBody = document.querySelector('[data-stats-meta-event-ranking]');
     if (eventRankingBody) {
       const typeLabel = metaEventType ? (availableMetaTypes.get(metaEventType) || metaEventType) : 'TODOS';
-      eventRankingBody.innerHTML = tieredRows.length ? tieredRows.slice().sort((a, b) => b.points - a.points || b.wins - a.wins || b.winRate - a.winRate || b.duelDiff - a.duelDiff).map((row, index) => '<tr><td data-label="#">' + (index + 1) + '</td><td data-label="Deck / equipo"><div class="analytics-deck-cell">' + (row.logo ? '<img src="' + escapeHtml(row.logo) + '" alt="">' : '<span><i class="bi bi-collection"></i></span>') + '<div><b>' + escapeHtml(row.name) + '</b><small>' + escapeHtml(row.team) + '</small></div></div></td><td data-label="Tipo">' + escapeHtml(typeLabel) + '</td><td data-label="PTS oficiales">' + row.points + '</td><td data-label="Partidas G/E/P">' + row.wins + ' / ' + row.draws + ' / ' + row.losses + '</td><td data-label="WR">' + row.winRate + '%</td><td data-label="Duelos G/E/P">' + row.duelWins + ' / ' + row.duelDraws + ' / ' + row.duelLosses + '</td><td data-label="DIF">' + (row.duelDiff > 0 ? '+' : '') + row.duelDiff + '</td></tr>').join('') : statsEmpty('No hay resultados finalizados para este tipo de evento.', 8);
+      eventRankingBody.innerHTML = tieredRows.length ? tieredRows.slice().sort((a, b) => b.points - a.points || b.wins - a.wins || b.winRate - a.winRate || b.duelDiff - a.duelDiff).map((row, index) => '<tr><td data-label="#">' + (index + 1) + '</td><td data-label="Deck / equipo"><div class="analytics-deck-cell">' + (row.logo ? '<img loading="lazy" decoding="async" src="' + escapeHtml(row.logo) + '" alt="">' : '<span><i class="bi bi-collection"></i></span>') + '<div><b>' + escapeHtml(row.name) + '</b><small>' + escapeHtml(row.team) + '</small></div></div></td><td data-label="Tipo">' + escapeHtml(typeLabel) + '</td><td data-label="PTS oficiales">' + row.points + '</td><td data-label="Partidas G/E/P">' + row.wins + ' / ' + row.draws + ' / ' + row.losses + '</td><td data-label="WR">' + row.winRate + '%</td><td data-label="Duelos G/E/P">' + row.duelWins + ' / ' + row.duelDraws + ' / ' + row.duelLosses + '</td><td data-label="DIF">' + (row.duelDiff > 0 ? '+' : '') + row.duelDiff + '</td></tr>').join('') : statsEmpty('No hay resultados finalizados para este tipo de evento.', 8);
     }
     const timeline = document.querySelector('[data-stats-timeline]');
     if (timeline) timeline.innerHTML = model.chronology.length ? model.chronology.slice(-12).reverse().map((row) => '<div><time>' + escapeHtml(row.date || 'Sin fecha') + '</time><span>' + escapeHtml(row.event) + '</span><b>' + escapeHtml(row.a) + ' ' + (row.winner === 'A' ? 'gano a' : row.winner === 'B' ? 'perdio con' : 'empato con') + ' ' + escapeHtml(row.b) + '</b></div>').join('') : '<div class="empty-state">Sin resultados historicos para estos filtros.</div>';
@@ -6866,7 +6897,7 @@
   function dashboardRankingLogo(url, fallback, className) {
     const cleanUrl = String(url || '').trim();
     return cleanUrl
-      ? `<span class="${className} has-media"><img src="${escapeHtml(cleanUrl)}" alt="${escapeHtml(fallback)}"></span>`
+      ? `<span class="${className} has-media"><img loading="lazy" decoding="async" src="${escapeHtml(cleanUrl)}" alt="${escapeHtml(fallback)}"></span>`
       : `<span class="${className}">${escapeHtml(String(fallback || 'EQ').replace(/[^a-z0-9]/gi, '').slice(0, 3).toUpperCase() || 'EQ')}</span>`;
   }
 
@@ -7402,7 +7433,7 @@
     if (logoPreview) {
       const logo = String(team?.logo_url || '').trim();
       logoPreview.innerHTML = logo
-        ? `<img src="${escapeHtml(logo)}" alt="${escapeHtml(team?.name || 'Equipo')}">`
+        ? `<img loading="lazy" decoding="async" src="${escapeHtml(logo)}" alt="${escapeHtml(team?.name || 'Equipo')}">`
         : '<i class="bi bi-shield"></i>';
     }
     if (deckPicker) {
@@ -8238,7 +8269,7 @@
       const active = selected === url;
       return `
         <button class="event-logo-choice${active ? ' active' : ''}" type="button" data-event-logo-choice="${escapeHtml(url)}" aria-pressed="${active ? 'true' : 'false'}">
-          <img src="${escapeHtml(url)}" alt="${escapeHtml(logo.label || 'Logo')}">
+          <img loading="lazy" decoding="async" src="${escapeHtml(url)}" alt="${escapeHtml(logo.label || 'Logo')}">
           <span>${escapeHtml(logo.label || 'Logo')}</span>
         </button>
       `;
@@ -10211,7 +10242,7 @@
         const logoUrl = row.logo || row.team_logo || row.logo_url || row.cover_url || '';
         const initials = teamName.split(/\s+/).filter(Boolean).slice(0, 3).map((part) => part[0]).join('').toUpperCase();
         const emblem = logoUrl
-          ? `<img src="${escapeHtml(logoUrl)}" alt="${escapeHtml(teamName)}">`
+          ? `<img loading="lazy" decoding="async" src="${escapeHtml(logoUrl)}" alt="${escapeHtml(teamName)}">`
           : `<span>${escapeHtml(initials || 'EQ')}</span>`;
         return `
         <article class="event-ranking-row" data-ranking-deck-id="${Number(row.id||row.deck_id||0)}">
@@ -11572,7 +11603,11 @@
   window.addEventListener('offline', updateConnectivity);
   updateConnectivity();
   flushOfflineResult();
-  if ('serviceWorker' in navigator) navigator.serviceWorker.register('./service-worker.js').catch(() => {});
+  if ('serviceWorker' in navigator) {
+    const registerOffline = () => navigator.serviceWorker.register('./service-worker.js').catch(() => {});
+    if (document.readyState === 'complete') registerOffline();
+    else window.addEventListener('load', registerOffline, { once: true });
+  }
 
   const showAppNotice = (message, tone = 'info') => {
     let host = document.querySelector('[data-app-notices]');
@@ -11647,7 +11682,7 @@
   openDeckProfileView('summary');
   renderStats();
   if (resultDivision) loadMatchOptions();
-  routeTo(publicSeason ? 'estadisticas' : ((location.hash || '').replace('#', '') || localStorage.getItem('dml_screen') || 'dashboard'));
+  routeTo(publicSeason ? 'estadisticas' : ((location.hash || '').replace('#', '') || localStorage.getItem('dml_screen') || 'dashboard'), 'replace');
   if (deckCategoryOrder.includes(requestedDeckCategory) && (location.hash || '').replace('#', '') === 'deck_ficha') {
     window.setTimeout(() => openDeckCategory(requestedDeckCategory, false), 0);
   }

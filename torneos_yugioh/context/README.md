@@ -18,6 +18,7 @@ Documentacion vigente de la plataforma competitiva Yu-Gi-Oh de Station X Tulua.
 - `database.md`: modelo de persistencia real.
 - `swagger.md`: documentación interactiva OpenAPI y adaptadores de las operaciones HTTP existentes.
 - `api.md`: interfaz HTTP implementada.
+- `startup-performance.md`: carga diferida, imágenes, caché offline y límites de la medición inicial.
 - `frontend.md`: pantallas, navegacion y comportamiento responsive.
 - `testing.md`: estrategia y pruebas existentes.
 - `news.md`: fuentes de noticias, lector, filtros y actualizacion al visitar el sitio.

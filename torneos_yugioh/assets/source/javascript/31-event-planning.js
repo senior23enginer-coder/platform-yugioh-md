@@ -360,7 +360,7 @@
         const logoUrl = row.logo || row.team_logo || row.logo_url || row.cover_url || '';
         const initials = teamName.split(/\s+/).filter(Boolean).slice(0, 3).map((part) => part[0]).join('').toUpperCase();
         const emblem = logoUrl
-          ? `<img src="${escapeHtml(logoUrl)}" alt="${escapeHtml(teamName)}">`
+          ? `<img loading="lazy" decoding="async" src="${escapeHtml(logoUrl)}" alt="${escapeHtml(teamName)}">`
           : `<span>${escapeHtml(initials || 'EQ')}</span>`;
         return `
         <article class="event-ranking-row" data-ranking-deck-id="${Number(row.id||row.deck_id||0)}">

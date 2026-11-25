@@ -124,3 +124,10 @@ Mundos (`deck-attributes`) separa el transporte HTTP en `api.js` con `fetch`, co
 ## `api-docs/`
 
 `swagger.js` y `styles.css`: configuraci?n e interfaz de Swagger, servida en `/api-docs/`. Solo captura tokens de respuestas expl?citas del mismo origen y los reutiliza en memoria. No inicia consultas ni guarda datos al abrir la documentaci?n. Contrato y recursos fijados en `api-docs/`; l?mites en `context/swagger.md`.
+
+## `startup/`
+
+`resources.js` activa el manifiesto inerte del calculador al entrar a su pantalla.
+Descarga en paralelo y ejecuta dependencias en orden con carga compartida, estado
+visible y reintento. No monta tableros ni interpreta efectos. Contrato y límites
+en `context/startup-performance.md`; regresión en `tests/startup_resources_test.cjs`.

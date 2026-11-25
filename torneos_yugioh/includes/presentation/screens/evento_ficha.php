@@ -12,7 +12,7 @@
                 <div class="event-config-title-block">
                     <span class="tag">Ficha del evento</span>
                     <div class="event-config-title-row">
-                        <span class="event-config-logo" data-competition-config-logo-wrap><img src="" alt="Logo del evento" data-competition-config-logo></span>
+                        <span class="event-config-logo" data-competition-config-logo-wrap><img loading="lazy" decoding="async" src="" alt="Logo del evento" data-competition-config-logo></span>
                         <div>
                             <h2 class="modal-title" data-competition-config-title>Ficha del evento</h2>
                             <p data-competition-config-meta>Configuracion, decks, calendario y prerequisitos persistidos en base de datos.</p>

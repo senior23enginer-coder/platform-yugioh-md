@@ -31,7 +31,7 @@
   function dashboardRankingLogo(url, fallback, className) {
     const cleanUrl = String(url || '').trim();
     return cleanUrl
-      ? `<span class="${className} has-media"><img src="${escapeHtml(cleanUrl)}" alt="${escapeHtml(fallback)}"></span>`
+      ? `<span class="${className} has-media"><img loading="lazy" decoding="async" src="${escapeHtml(cleanUrl)}" alt="${escapeHtml(fallback)}"></span>`
       : `<span class="${className}">${escapeHtml(String(fallback || 'EQ').replace(/[^a-z0-9]/gi, '').slice(0, 3).toUpperCase() || 'EQ')}</span>`;
   }
 
