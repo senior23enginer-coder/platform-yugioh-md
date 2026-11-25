@@ -34,4 +34,15 @@ $bad=$official;$bad['decks'][0]['entries'][0]['inventory_name']='other';
 mustReject(fn()=>buildA03Plan($native,$bad),'IDENTITY_');
 $bad=$official;array_pop($bad['decks'][0]['entries']);
 mustReject(fn()=>buildA03Plan($native,$bad),'INCOMPLETE_');
+$item=['before'=>['deck_id'=>660,'id'=>566,'section'=>'main','quantity'=>2],
+    'cid'=>11708,'title'=>'Ogro Fantasma & Conejo de las Nieves','alias_review_required'=>true];
+$old=['566'=>['cid'=>11708,'official_title'=>$item['title']]];
+requireCondition(a03Eligibility($item,$old)===[false,'PURRELY_ROW_566_REQUIRES_PHOTO_VERIFIED_CID_14275'],'PURR_WRONG_CARD_APPROVED');
+$item['cid']=14275;$item['title']='Hermana Fantasma & Cornejo Espectral';
+$correct=['566'=>['cid'=>14275,'official_title'=>$item['title']]];
+requireCondition(a03Eligibility($item,[])===[false,'ALIAS_APPROVAL_REQUIRED'],'PURR_CORRECT_ALIAS_UNREVIEWED');
+requireCondition(a03Eligibility($item,$correct)===[true,null],'PURR_CORRECT_CARD_REJECTED');
+$item['before']['quantity']=1;
+requireCondition(a03Eligibility($item,$correct)[0]===false,'PURR_WRONG_QUANTITY_APPROVED');
+echo "PASS: Purrely physical evidence guard and explicit alias approval.\\n";
 echo "PASS: 130-row plan, preserved notes, rejected duplicates, bad sources, existing CIDs, mismatched names, incomplete plan.\n";
