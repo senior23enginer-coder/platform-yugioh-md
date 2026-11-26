@@ -7,11 +7,8 @@ final readonly class EnrichPlatformData
 {
     public function __construct(private BootstrapDataPort $port) {}
 
-    public function execute(
-        array $data,
-        array $catalogGroups,
-        array $competitionTypeOptions,
-    ): array {
+    public function execute(array $data, array $catalogGroups, array $competitionTypeOptions): array
+    {
         $data['statisticsV8'] = $this->port->statistics();
         $data['executionCapabilities'] = $this->port->executionCapabilities();
         $data['executionModelsByType'] = $this->port->executionModels(
