@@ -2136,22 +2136,58 @@ $offlineStore = new class implements \StationX\Yugioh\Application\Commands\Offli
     public ?string $stored = null;
     public string $updated = 'new';
     public array $records = [];
-    public function result(string $requestId): ?string { return $this->stored; }
-    public function updatedAt(string $action, int $id): string { return $this->updated; }
-    public function record(string $requestId, string $hash, string $result): void { $this->records[] = [$requestId, $hash, $result]; }
+    public function result(string $requestId): ?string
+    {
+        return $this->stored;
+    }
+    public function updatedAt(string $action, int $id): string
+    {
+        return $this->updated;
+    }
+    public function record(string $requestId, string $hash, string $result): void
+    {
+        $this->records[] = [$requestId, $hash, $result];
+    }
 };
 $offlineExecutor = new class implements \StationX\Yugioh\Application\Commands\OfflineFormExecutor {
     public array $calls = [];
-    public function execute(array $payload): string { $this->calls[] = $payload; return 'ok'; }
+    public function execute(array $payload): string
+    {
+        $this->calls[] = $payload;
+        return 'ok';
+    }
 };
-$offline = new \StationX\Yugioh\Application\Commands\SynchronizeOfflineForm($offlineStore, $offlineExecutor);
-architectureCheck($offline->execute(['offline_request_id' => 'id', 'offline_payload' => '{"action":"sync_offline_form"}']) === 'offline_invalido', 'Recursive offline command accepted');
-$offlineInput = ['offline_request_id' => 'id', 'offline_payload' => '{"action":"save_deck","deck_id":1,"offline_entity_updated_at":"old"}'];
-architectureCheck($offline->execute($offlineInput) === 'offline_conflicto' && !$offlineExecutor->calls, 'Stale offline request executed');
+$offline = new \StationX\Yugioh\Application\Commands\SynchronizeOfflineForm(
+    $offlineStore,
+    $offlineExecutor,
+);
+architectureCheck(
+    $offline->execute([
+        'offline_request_id' => 'id',
+        'offline_payload' => '{"action":"sync_offline_form"}',
+    ]) === 'offline_invalido',
+    'Recursive offline command accepted',
+);
+$offlineInput = [
+    'offline_request_id' => 'id',
+    'offline_payload' => '{"action":"save_deck","deck_id":1,"offline_entity_updated_at":"old"}',
+];
+architectureCheck(
+    $offline->execute($offlineInput) === 'offline_conflicto' && !$offlineExecutor->calls,
+    'Stale offline request executed',
+);
 $offlineStore->updated = 'old';
-architectureCheck($offline->execute($offlineInput) === 'ok' && !isset($offlineExecutor->calls[0]['offline_entity_updated_at']) && count($offlineStore->records) === 1, 'Offline request contract changed');
+architectureCheck(
+    $offline->execute($offlineInput) === 'ok' &&
+        !isset($offlineExecutor->calls[0]['offline_entity_updated_at']) &&
+        count($offlineStore->records) === 1,
+    'Offline request contract changed',
+);
 $offlineStore->stored = 'previous';
-architectureCheck($offline->execute($offlineInput) === 'previous' && count($offlineExecutor->calls) === 1, 'Offline duplicate wrote again');
+architectureCheck(
+    $offline->execute($offlineInput) === 'previous' && count($offlineExecutor->calls) === 1,
+    'Offline duplicate wrote again',
+);
 
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {

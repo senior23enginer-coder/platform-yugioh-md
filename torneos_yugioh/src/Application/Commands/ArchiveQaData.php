@@ -7,7 +7,10 @@ use StationX\Yugioh\Application\Shared\TransactionBoundary;
 
 final readonly class ArchiveQaData
 {
-    public function __construct(private QaArchiveStore $store, private TransactionBoundary $transaction) {}
+    public function __construct(
+        private QaArchiveStore $store,
+        private TransactionBoundary $transaction,
+    ) {}
 
     public function execute(): string
     {

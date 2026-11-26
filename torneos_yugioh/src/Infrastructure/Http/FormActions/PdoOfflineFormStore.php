@@ -23,7 +23,9 @@ final readonly class PdoOfflineFormStore implements OfflineFormStore
 
     public function result(string $requestId): ?string
     {
-        $stmt = $this->pdo->prepare('SELECT result_code FROM sx_ygo_sync_requests WHERE request_id=? LIMIT 1');
+        $stmt = $this->pdo->prepare(
+            'SELECT result_code FROM sx_ygo_sync_requests WHERE request_id=? LIMIT 1',
+        );
         $stmt->execute([$requestId]);
         $value = $stmt->fetchColumn();
         return $value === false ? null : (string) $value;
@@ -42,6 +44,10 @@ final readonly class PdoOfflineFormStore implements OfflineFormStore
 
     public function record(string $requestId, string $hash, string $result): void
     {
-        $this->pdo->prepare('INSERT INTO sx_ygo_sync_requests (request_id,match_id,payload_hash,result_code) VALUES (?,?,?,?)')->execute([$requestId, 0, $hash, $result]);
+        $this->pdo
+            ->prepare(
+                'INSERT INTO sx_ygo_sync_requests (request_id,match_id,payload_hash,result_code) VALUES (?,?,?,?)',
+            )
+            ->execute([$requestId, 0, $hash, $result]);
     }
 }

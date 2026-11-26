@@ -17,7 +17,10 @@ final class CommandMaintenanceModule
 {
     public static function offline(PDO $pdo): SynchronizeOfflineForm
     {
-        return new SynchronizeOfflineForm(new PdoOfflineFormStore($pdo), new NativeOfflineFormExecutor($pdo));
+        return new SynchronizeOfflineForm(
+            new PdoOfflineFormStore($pdo),
+            new NativeOfflineFormExecutor($pdo),
+        );
     }
 
     public static function ffa(PDO $pdo): SaveFfaAction
@@ -27,6 +30,9 @@ final class CommandMaintenanceModule
 
     public static function qa(PDO $pdo): ArchiveQaData
     {
-        return new ArchiveQaData(new PdoQaArchiveStore($pdo), new PdoTransactionBoundary($pdo, false));
+        return new ArchiveQaData(
+            new PdoQaArchiveStore($pdo),
+            new PdoTransactionBoundary($pdo, false),
+        );
     }
 }

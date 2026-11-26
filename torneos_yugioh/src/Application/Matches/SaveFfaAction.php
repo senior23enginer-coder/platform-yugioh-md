@@ -25,7 +25,12 @@ final readonly class SaveFfaAction
         if (isset($post['ffa_reason'])) {
             $command['reason'] = (string) $post['ffa_reason'];
         }
-        $this->gateway->command($id, (int) ($post['ffa_revision'] ?? -1), (string) ($post['ffa_request'] ?? ''), $command);
+        $this->gateway->command(
+            $id,
+            (int) ($post['ffa_revision'] ?? -1),
+            (string) ($post['ffa_request'] ?? ''),
+            $command,
+        );
         return 'evento_configurado_' . $this->gateway->competition($id);
     }
 }
