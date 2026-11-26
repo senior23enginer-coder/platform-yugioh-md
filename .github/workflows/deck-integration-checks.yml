@@ -151,3 +151,34 @@ jobs:
           node scripts/export-p06-route-golden.cjs
           node scripts/export-p06-legacy-inventory.cjs
           node scripts/check-p06-legacy-assertions.cjs /tmp/p06-gpt/03_COMPROBACIONES_NO_IMPORTAR/fixtures/p06-protected-legacy-assertions.json
+
+  statistics-mysql:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+          MYSQL_DATABASE: stationx_statistics_test
+          MYSQL_USER: stationx_ci
+          MYSQL_PASSWORD: stationx_ci_only
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, pdo_mysql
+          coverage: none
+      - name: Verify isolated MySQL statistics persistence
+        env:
+          STATIONX_MYSQL_TEST: '1'
+          STATIONX_MYSQL_TEST_PASSWORD: stationx_ci_only
+        run: php torneos_yugioh/tests/statistics_mysql_test.php
