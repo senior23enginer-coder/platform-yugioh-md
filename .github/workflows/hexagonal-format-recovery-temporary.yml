@@ -38,3 +38,5 @@ jobs:
           git add -u -- torneos_yugioh/
           git commit -m 'style: apply official architecture formatter'
           git -c "http.extraHeader=AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)" push origin HEAD:refs/heads/refactor/hexagonal-bootstrap-maintenance-validation
+
+# Format initialization and season maintenance.

@@ -170,7 +170,7 @@ Se extrae el cargador de datos completo a un caso de uso con puertos de lectura 
 
 ## Bootstrap (H16, avance)
 
-Se separan las tres operaciones históricas registradas en auditoría mediante un puerto de mantenimiento y un caso de uso que conserva su orden, registro e idempotencia secuencial. La resolución de rutas POST deja de depender de las variables globales. Continúan pendientes la inicialización de esquema, configuración, semillas y composición de la respuesta. CI pendiente.
+Se separan las tres operaciones históricas registradas en auditoría mediante un puerto de mantenimiento y un caso de uso que conserva su orden, registro e idempotencia secuencial. La resolución de rutas POST deja de depender de las variables globales. También se separan inicialización de esquema, semillas, contexto de temporada y catálogos, y mantenimiento de configuración/temporada en dos casos de uso con puertos explícitos. Se preservan el orden y los contadores, así como el cálculo intermedio de opciones de catálogo. La composición de respuesta sigue pendiente. CI pendiente.
 
 ## Trabajo todavía pendiente para completar toda la plataforma
 

@@ -2361,6 +2361,47 @@ architectureCheck(
     'Season-blocked redirect changed',
 );
 
+// Bootstrap stage order and counter contracts.
+$port = new class implements \StationX\Yugioh\Application\Bootstrap\PlatformInitializationPort {
+    public array $calls = [];
+    public function ensureCoreSchema(): void { $this->calls[] = 'ensureCoreSchema';  }
+    public function ensureMatchCompletionColumn(): void { $this->calls[] = 'ensureMatchCompletionColumn';  }
+    public function ensureStatisticsSchema(): void { $this->calls[] = 'ensureStatisticsSchema';  }
+    public function ensureFfaSchema(): void { $this->calls[] = 'ensureFfaSchema';  }
+    public function bootstrapGlobalStatistics(): void { $this->calls[] = 'bootstrapGlobalStatistics';  }
+    public function ensureCompetitionParametersColumn(): void { $this->calls[] = 'ensureCompetitionParametersColumn';  }
+    public function seedDatabase(array $divisions, array $fixtures): array { $this->calls[] = 'seedDatabase'; return []; }
+    public function ensureSeasonSchema(): void { $this->calls[] = 'ensureSeasonSchema';  }
+    public function initializeSeasonContext(): void { $this->calls[] = 'initializeSeasonContext';  }
+    public function closeExpiredSeasons(): void { $this->calls[] = 'closeExpiredSeasons';  }
+    public function currentSeasonId(): int { $this->calls[] = 'currentSeasonId'; return 7; }
+    public function ensureCatalogs(int $seasonId): void { $this->calls[] = 'ensureCatalogs';  }
+    public function loadCatalogs(int $seasonId): array { $this->calls[] = 'loadCatalogs'; return []; }
+};
+$stage = (new \StationX\Yugioh\Application\Bootstrap\InitializePlatform($port))->execute([], []);
+architectureCheck($port->calls === ['ensureCoreSchema', 'ensureMatchCompletionColumn', 'ensureStatisticsSchema', 'ensureFfaSchema', 'bootstrapGlobalStatistics', 'ensureCompetitionParametersColumn', 'seedDatabase', 'ensureSeasonSchema', 'initializeSeasonContext', 'closeExpiredSeasons', 'currentSeasonId', 'ensureCatalogs', 'loadCatalogs'], 'InitializePlatform order changed');
+architectureCheck($stage === ['seedCounts' => [], 'seasonId' => 7, 'catalogGroups' => []], 'InitializePlatform result changed');
+$port = new class implements \StationX\Yugioh\Application\Bootstrap\SeasonMaintenancePort {
+    public array $calls = [];
+    public function ensureSettings(): void { $this->calls[] = 'ensureSettings';  }
+    public function ensureLabels(): void { $this->calls[] = 'ensureLabels';  }
+    public function removeSeededDivisions(int $seasonId, array $definitions): int { $this->calls[] = 'removeSeededDivisions'; return 7; }
+    public function ensureRulesets(int $seasonId, array $options): void { $this->calls[] = 'ensureRulesets';  }
+    public function ensureRulesetVersions(int $seasonId): void { $this->calls[] = 'ensureRulesetVersions';  }
+    public function ensureMatchTypes(): void { $this->calls[] = 'ensureMatchTypes';  }
+    public function ensureGameRules(int $seasonId): void { $this->calls[] = 'ensureGameRules';  }
+    public function ensureGoatStructure(int $seasonId): array { $this->calls[] = 'ensureGoatStructure'; return []; }
+    public function applyHistoricalSchedule(): array { $this->calls[] = 'applyHistoricalSchedule'; return []; }
+    public function activateDueCompetitions(): int { $this->calls[] = 'activateDueCompetitions'; return 7; }
+    public function ensureCompetitionCodes(int $seasonId): void { $this->calls[] = 'ensureCompetitionCodes';  }
+    public function syncDeckTeams(): int { $this->calls[] = 'syncDeckTeams'; return 7; }
+    public function normalizeDeckFormats(): int { $this->calls[] = 'normalizeDeckFormats'; return 7; }
+    public function seedDeckAnalysis(): int { $this->calls[] = 'seedDeckAnalysis'; return 7; }
+};
+$stage = (new \StationX\Yugioh\Application\Bootstrap\MaintainSeason($port))->execute(7, [], []);
+architectureCheck($port->calls === ['ensureSettings', 'ensureLabels', 'removeSeededDivisions', 'ensureRulesets', 'ensureRulesetVersions', 'ensureMatchTypes', 'ensureGameRules', 'ensureGoatStructure', 'applyHistoricalSchedule', 'activateDueCompetitions', 'ensureCompetitionCodes', 'syncDeckTeams', 'normalizeDeckFormats', 'seedDeckAnalysis'], 'MaintainSeason order changed');
+architectureCheck($stage === ['deletedSeedDivisions' => 7, 'goatLeagueStructure' => [], 'octoberScheduleMigration' => [], 'activatedDueCompetitions' => 7, 'teamSyncCount' => 7, 'deckFormatSyncCount' => 7, 'deckAnalysisBaselineCount' => 7], 'MaintainSeason result changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
