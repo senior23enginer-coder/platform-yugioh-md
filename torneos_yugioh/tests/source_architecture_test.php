@@ -536,6 +536,30 @@ architectureCheck(
     'Team sync overwrote an existing assignment or changed archive order',
 );
 
+// Preserve the legacy league points, scores and ordering independently of SQL.
+$standings = \StationX\Yugioh\Domain\Competitions\LeagueStandings::calculate(
+    [
+        ['id' => 1, 'name' => 'A', 'seed_rank' => 2, 'division_code' => 'X'],
+        ['id' => 2, 'name' => 'B', 'seed_rank' => 1, 'division_code' => 'X'],
+        ['id' => 3, 'name' => 'C', 'seed_rank' => 3, 'division_code' => 'X'],
+    ],
+    [
+        ['deck_a_id' => 1, 'deck_b_id' => 2, 'result' => 'A', 'score' => '2-1'],
+        ['deck_a_id' => 2, 'deck_b_id' => 3, 'result' => 'E', 'score' => '1-1'],
+        ['deck_a_id' => 1, 'deck_b_id' => 99, 'result' => 'B', 'score' => '0-2'],
+    ],
+);
+architectureCheck(array_column($standings, 'id') === [1, 3, 2], 'Standings ordering changed');
+architectureCheck(array_column($standings, 'pts') === [3, 1, 1], 'Standings points changed');
+architectureCheck(array_column($standings, 'dp') === [1, 0, -1], 'Standings score difference changed');
+architectureCheck(array_column($standings, 'pj') === [1, 1, 2], 'Unknown participant not skipped');
+$rankDefinitions = ['first' => ['short' => 'A', 'size' => 2], 'last' => ['short' => 'B', 'size' => 3]];
+$rankPolicy = \StationX\Yugioh\Domain\Competitions\DivisionRankPolicy::class;
+architectureCheck($rankPolicy::category(2, $rankDefinitions) === 'A', 'Rank boundary changed');
+architectureCheck($rankPolicy::category(3, $rankDefinitions) === 'B', 'Rank division changed');
+architectureCheck($rankPolicy::category(99, $rankDefinitions) === 'B', 'Rank fallback changed');
+architectureCheck(key($rankDefinitions) === 'last', 'Legacy cursor behavior changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
