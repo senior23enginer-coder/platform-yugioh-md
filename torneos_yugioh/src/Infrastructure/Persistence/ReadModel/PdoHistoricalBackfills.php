@@ -19,7 +19,10 @@ final readonly class PdoHistoricalBackfills implements HistoricalBackfillPort
 
     public function record(string $version, array $counts): void
     {
-        $this->pdo->prepare('INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)')
+        $this->pdo
+            ->prepare(
+                'INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)',
+            )
             ->execute(['system', 0, $version, json_encode($counts, JSON_UNESCAPED_UNICODE)]);
     }
 
