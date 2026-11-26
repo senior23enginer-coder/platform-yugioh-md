@@ -31,6 +31,7 @@ const paths = [
   php + 'src/Infrastructure/Persistence/Leagues',
   php + 'src/Infrastructure/Persistence/Settings',
   php + 'src/Infrastructure/Persistence/Teams',
+  php + 'src/Infrastructure/Persistence/Decks',
   php + 'src/Infrastructure/Persistence/LoadedSeasonRepository.php',
   php + 'src/Infrastructure/Time',
   php + 'src/Infrastructure/Transactions',

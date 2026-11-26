@@ -14,6 +14,7 @@ $originals = json_decode(file_get_contents(__DIR__ . '/fixtures/domain-originals
 $contracts = json_decode(file_get_contents($root . '/context/source-function-map.json'), true, flags: JSON_THROW_ON_ERROR);
 $settingsTeamExtractions = json_decode(file_get_contents(__DIR__ . '/fixtures/settings-teams-originals.json'), true, flags: JSON_THROW_ON_ERROR);
 $settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/league-structure-originals.json'), true, flags: JSON_THROW_ON_ERROR);
+$settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/deck-eligibility-originals.json'), true, flags: JSON_THROW_ON_ERROR);
 foreach ($contracts as $name => $contract) {
     if (!function_exists($name)) throw new RuntimeException('Missing compatibility function: ' . $name);
     $function = new ReflectionFunction($name);

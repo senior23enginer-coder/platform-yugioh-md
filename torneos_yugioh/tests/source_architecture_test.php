@@ -560,6 +560,25 @@ architectureCheck($rankPolicy::category(3, $rankDefinitions) === 'B', 'Rank divi
 architectureCheck($rankPolicy::category(99, $rankDefinitions) === 'B', 'Rank fallback changed');
 architectureCheck(key($rankDefinitions) === 'last', 'Legacy cursor behavior changed');
 
+// Match validation retains error precedence, position mapping and team restrictions.
+$matchDeckPolicy = \StationX\Yugioh\Domain\Decks\MatchDeckPolicy::class;
+architectureCheck($matchDeckPolicy::selection([], [1, 1])['message'] === 'No hay decks permitidos para el formato del evento.', 'Empty pool precedence changed');
+architectureCheck($matchDeckPolicy::selection([1], [1, 2])['message'] === 'Hay decks que no pertenecen al formato/pool del evento.', 'Foreign deck accepted');
+architectureCheck($matchDeckPolicy::selection([1], [1, 1])['message'] === 'No se puede repetir un deck en el mismo match.', 'Duplicate deck accepted');
+architectureCheck($matchDeckPolicy::selection([1], [])['message'] === 'Debes seleccionar decks para crear el match.', 'Empty selection changed');
+$matchRows = [
+    ['id' => 1, 'division_id' => 7, 'team_id' => 10],
+    ['id' => 2, 'division_id' => 7, 'team_id' => 20],
+    ['id' => 3, 'division_id' => 7, 'team_id' => 10],
+    ['id' => 4, 'division_id' => 7, 'team_id' => 20],
+];
+architectureCheck($matchDeckPolicy::validateRows($matchRows, [1, 2, 3, 4], [1, 2, 3, 4], 7, 2) === ['ok' => true, 'message' => 'OK'], 'Valid 2v2 blocked');
+architectureCheck(!$matchDeckPolicy::validateRows($matchRows, [1, 2, 3, 4], [1, 3, 2, 4], 7, 2)['ok'], 'Mixed team accepted');
+architectureCheck(!$matchDeckPolicy::validateRows($matchRows, [1, 2, 3, 4], [1, 2, 3, 4], 8, 2)['ok'], 'Foreign division accepted');
+$rosterGrouping = \StationX\Yugioh\Domain\Decks\RosterGroupingPolicy::class;
+architectureCheck($rosterGrouping::normalize([0, '1', 1, 2, -1]) === [1, 2], 'Roster normalization changed');
+architectureCheck($rosterGrouping::group([4, 1, 3, 2], 2, $matchRows) === [[4, 2], [1, 3]], 'Team group ordering changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
