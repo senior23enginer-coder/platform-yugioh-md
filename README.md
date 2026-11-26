@@ -104,6 +104,7 @@ node scripts/check-p06-legacy-assertions.cjs ../gpt-yugioh-promps-platform/03_CO
 - [Configuración](#configuración)
 - [Estructura del repositorio](#estructura-del-repositorio)
 - [Arquitectura y edición del código](#arquitectura-y-edición-del-código)
+- [Stack tecnológico y arquitectura de software](#stack-tecnológico-y-arquitectura-de-software)
 - [API y Swagger](#api-y-swagger)
 - [Importación y contenido de decks](#importación-y-contenido-de-decks)
 - [Comandos y pruebas](#comandos-y-pruebas)
@@ -281,6 +282,293 @@ Editar el código legado en `assets/source/`, siguiendo su manifiesto, y ejecuta
 Las funcionalidades nuevas se organizan en `assets/modules/<feature>/`. Las vistas de servidor se mantienen bajo `includes/<domain>/` y `includes/presentation/`. Ver [source-architecture.md](torneos_yugioh/context/source-architecture.md) y el [mapa de módulos](torneos_yugioh/assets/modules/README.md).
 
 El formateador de arquitectura usa una lista explícita de fuentes migradas; no incluye todas las plantillas mixtas ni el material editorial. No regenerar huellas originales para ocultar cambios de comportamiento.
+
+## Stack tecnológico y arquitectura de software
+
+> Estado de la rama `base` revisado el 26 de noviembre de 2026. La inspección es estática; no certifica el servidor de producción ni una migración hexagonal completa.
+
+### Stack tecnológico
+
+| Tecnología | Versión / estado | Responsabilidad |
+| --- | --- | --- |
+| PHP | 8.3 (requisito) | Backend, casos de uso, controladores y vistas |
+| JavaScript nativo | ES6+ | Frontend, motores de reglas y planificación |
+| HTML / CSS | HTML5 / CSS3 | Interfaces adaptables |
+| Bootstrap | Componentes presentes; versión no auditada | Modales y componentes UI |
+| MySQL | Versión no verificada | Persistencia relacional |
+| PDO | MySQL / SQLite | Consultas, repositorios y transacciones |
+| SQLite | Pruebas locales | Persistencia aislada |
+| Apache / mod_rewrite | Alojamiento compatible | Servidor HTTP y reescritura de rutas |
+| Node.js / npm | Node.js 22 en CI | Build y pruebas |
+| Python | 3.11+ | Herramientas editoriales y automatización |
+| JSON / Markdown / ZIP | Contratos de datos | Guías y paquetes de decks |
+| ZipArchive, mbstring, cURL, DOM/SimpleXML | Extensiones PHP | Importación, texto e integraciones |
+| Service Worker / Web App Manifest | PWA | Caché y funcionalidad offline acotada |
+| Playwright / Chromium | Playwright 1.46.1 | Pruebas UI y regresión |
+| Prettier / plugin PHP | 3.6.2 / 0.26.0 | Formato y control de código |
+| Swagger UI / Swagger Parser | 5.35.1 / 12.1.0 | Documentación y validación OpenAPI |
+| MCP SDK | ^1.32.2 | Herramientas de desarrollo para MCP |
+| GitHub Actions / FTP | FTP Deploy Action v4.4.0 | CI/CD y publicación |
+
+Versiones de dependencias según [package.json](package.json). No se utiliza React, Angular, Vue ni Next.js como framework principal. Node.js y Python no son necesarios para atender las solicitudes normales en producción. Las versiones reales de PHP, Apache y MySQL deben verificarse en el servidor.
+
+### Patrones arquitectónicos
+
+| Patrón | Estado | Alcance |
+| --- | --- | --- |
+| Monolito modular | Implementado, en evolución | Una aplicación PHP con módulos y persistencia compartida |
+| Arquitectura hexagonal (Ports & Adapters) | Parcial | Casos de uso, dominio puro, puertos y adaptadores |
+| Arquitectura por capas | Parcial | Domain, Application, Infrastructure y presentación |
+| DDD | Elementos presentes | Identidades, entidades y políticas; no DDD estratégico completo |
+| SOLID e inyección de dependencias | Parcial | Contratos, reloj, transacciones y repositorios sustituibles |
+| Repository Pattern | Implementado en flujos migrados | Persistencia mediante contratos |
+| MVC | Elementos en el legado | Controladores y vistas PHP; no un framework MVC formal |
+| Feature-Based Architecture | Parcial | Módulos frontend por funcionalidad |
+| API REST | Parcial | Rutas documentadas, endpoints nativos y formularios |
+| PWA | Implementada con alcance limitado | Manifest, service worker y calculadora offline |
+| Microservicios | No implementados como arquitectura general | Módulos y repositorios separados no equivalen a microservicios |
+| Event-Driven Architecture | No implementada como arquitectura general | Eventos deportivos y auditoría no equivalen a un bus distribuido |
+
+### Arquitectura actual
+
+```mermaid
+flowchart TD
+    U["Usuarios: navegador, móvil, PWA"] --> F["Frontend: JavaScript, HTML, CSS"]
+    F --> H["Entrada PHP: index.php / API"]
+    MCP["Cliente MCP autorizado"] --> M["Adaptador MCP opcional"]
+    M --> H
+    subgraph APP["Monolito modular PHP"]
+        H --> C["Controladores y composición"]
+        C --> A["Application: casos de uso y puertos"]
+        A --> D["Domain: reglas y entidades"]
+        C --> L["Includes y flujos legados"]
+        A -->|"Invoca puertos"| P["Adaptadores de infraestructura"]
+        P -.->|"Implementan contratos internos"| A
+        L --> P
+    end
+    P --> DB[("MySQL mediante PDO")]
+    L --> DB
+    P --> EXT["Proveedores de cartas y noticias"]
+    F --> OFF["Caché y almacenamiento local"]
+```
+
+Es una arquitectura híbrida: el núcleo migrado convive con componentes procedimentales. El diagrama representa responsabilidades y flujos de ejecución, no servicios desplegados independientemente.
+
+### Organización del código
+
+```mermaid
+flowchart TD
+    R["platform-yugioh-md"] --> G[".github / config / deploy / docs / scripts"]
+    R --> Y["torneos_yugioh"]
+    R --> B["store-lib.php / package.json / AGENTS.md"]
+    Y --> ENTRY["index.php / api / api-docs / mcp"]
+    Y --> AS["assets: source / modules / editorial"]
+    Y --> INC["includes: bootstrap / presentación / legado"]
+    Y --> SRC["src"]
+    Y --> CT["context / tests / tools"]
+    SRC --> D["Domain"]
+    SRC --> A["Application"]
+    SRC --> I["Infrastructure"]
+```
+
+La estructura detallada y las responsabilidades de cada carpeta se conservan en la sección [Estructura del repositorio](#estructura-del-repositorio).
+
+### Arquitectura hexagonal y dependencias
+
+```mermaid
+flowchart LR
+    HTTP["Adaptador de entrada HTTP"] --> UC["Caso de uso"]
+    subgraph CORE["Núcleo de aplicación"]
+        UC --> DOM["Dominio puro"]
+        UC --> PORT["Puerto de salida"]
+    end
+    PDO["Adaptador PDO"] -.->|"Implementa"| PORT
+    MEM["Doble de prueba en memoria"] -.->|"Implementa"| PORT
+    PDO --> SQL[("MySQL o SQLite de pruebas")]
+    COM["Composition Root"] -.->|"Inyecta"| UC
+    COM -.-> PDO
+```
+
+- **Domain:** reglas, entidades y políticas independientes de PDO, HTTP, sesiones y archivos.
+- **Application:** casos de uso, comandos, consultas y puertos explícitos.
+- **Infrastructure:** HTTP, persistencia, red, caché, configuración, composición, reloj y transacciones.
+
+Ejemplo implementado: `attributes-http.php` → `DeckWorldsController` → `AssignDeckWorlds` / `DeckWorldsQueries` → puertos → adaptadores PDO.
+
+```mermaid
+sequenceDiagram
+    actor U as Usuario
+    participant H as Controlador HTTP
+    participant A as Caso de uso
+    participant D as Dominio
+    participant R as Repositorio PDO
+    participant B as MySQL
+    U->>H: Guardar asignación de mundos
+    H->>A: Comando autorizado y revisión esperada
+    A->>R: Leer y bloquear el deck
+    R->>B: Consulta en transacción
+    B-->>R: Estado actual
+    R-->>A: Asignación vigente
+    A->>D: Validar reglas y cambios
+    D-->>A: Estado válido
+    A->>R: Guardar asignación e historial
+    R->>B: Persistir cambios
+    A-->>H: Resultado y revisión
+    H-->>U: Respuesta
+```
+
+El ejemplo simplifica el camino exitoso. El límite transaccional inyectado confirma o revierte únicamente transacciones propias; las guardas de autorización, conflictos y rollback se documentan en el contrato del módulo.
+
+### Dominios y avance de migración
+
+| Dominio | Domain | Application | Alcance |
+| --- | --- | --- | --- |
+| Calendar | Sí | Sí | Reflujo, cupos y prioridad; generación integral pendiente |
+| CardCatalog | Sí | Sí | Identidad, proveedor, caché e imágenes; integración externa pendiente de certificar |
+| Combos | Sí | Sí | Grafo, consultas, guardado, historial; fuentes editoriales con legado |
+| Competitions | Sí | No específico | Políticas deportivas extraídas; flujos de eventos pendientes |
+| DeckMetadata | Sí | Sí | Estilo, arquetipo y lectura editorial |
+| DeckWorlds | Sí | Sí | Asignación, consultas, persistencia y transacciones separadas |
+| Decks / Decklists | Sí | Sí | Guardado y consulta de listas; ZIP y frontend compartido pendientes |
+| Matches | Sí | No específico | Reglas extraídas; parte de la coordinación sigue en legado |
+| News | Sí | Sí | Normalización, consulta y sincronización; concurrencia MySQL pendiente |
+| Seasons | Sí | Sí | Consulta de temporada actual; otros flujos pendientes |
+| Statistics | Sí | No específico | Fórmulas separadas; acumulación y consultas pendientes |
+| Commands | — | Sí | Despacho segregado; varias acciones siguen siendo adaptadores legados |
+
+Las carpetas no acreditan por sí solas una migración completa. Consultar [estado de migración](torneos_yugioh/context/architecture-migration-status.md) y [arquitectura de fuentes](torneos_yugioh/context/source-architecture.md).
+
+### Frontend y calculadora de jugadas
+
+El frontend combina vistas PHP, JavaScript legado compilado y módulos nuevos por funcionalidad. Los 37 fragmentos JavaScript históricos comparten un cierre; no son módulos ES independientes. Los motores puros nuevos se mantienen separados del DOM, almacenamiento y transporte.
+
+| Archivo en assets/modules/play-calculator/ | Responsabilidad |
+| --- | --- |
+| `engine.js` | Estado físico, zonas y reglas, sin DOM ni HTTP |
+| `planner.js` | Búsqueda limitada de acciones |
+| `planner-worker.js` | Procesamiento en Web Worker |
+| `battle.js` | Cálculo condicional de combate |
+| `scenario.js` | Escenarios y respuestas |
+| `storage.js` | Caché local de listas y rutas; no guarda el escenario |
+| `ui.js` | Tablero e interacción |
+| `workspace.js` | Coordinación del espacio de trabajo |
+| `offline.js` | Arranque autónomo con listas locales |
+| `styles.css` | Diseño adaptable |
+
+```mermaid
+flowchart TD
+    V["Vistas PHP / entrada offline"] --> W["Workspace y UI"]
+    W --> E["Engine: estado físico y reglas"]
+    W --> PL["Planner"]
+    PL --> WK["Planner Worker"]
+    WK --> E
+    W --> B["Battle / Scenario"]
+    W --> S["Storage: caché local"]
+    R["Reglas importadas y hechos de cartas"] --> E
+    T["Pruebas Node.js"] -.-> E
+    PW["Pruebas Playwright"] -.-> W
+```
+
+La calculadora no es un simulador universal; acredita únicamente operaciones modeladas. No ejecuta IA durante el cálculo ni deduce efectos ausentes. El editor de combos separa modelo de grafo, SVG, UI y persistencia.
+
+### Integración entre repositorios
+
+```mermaid
+flowchart TD
+    subgraph GPT["gpt-yugioh-promps-platform"]
+        AUTH["Deck asignado y admisión de inventario"] --> ST["A01 a A09: análisis y casos de papel"]
+        ST --> A["A10A: guía visual obligatoria"]
+        ST --> B["A10B: reglas opcionales y explícitas"]
+        A --> PK["ZIP: station-x-deck-package/1"]
+        B --> PK
+    end
+    PK --> PR["Previsualización y validación de identidad e inventario"]
+    PR -->|"Confirmación autorizada"| IMP["Importación en platform-yugioh-md"]
+    IMP --> REG["Registro editorial y persistencia versionada"]
+    REG --> GUIDE["Guías visuales y fichas"]
+    REG --> COMBO["Combos y estrategias"]
+    REG -->|"Reglas ejecutables disponibles"| CALC["Calculadora de jugadas"]
+```
+
+GPT es fuente de investigación y casos de dominio; Platform es fuente de ejecución, persistencia, UI y pruebas técnicas. El seguimiento existente no es un orquestador autónomo de IA. A10B solo se incorpora cuando fue solicitado y sus operadores están soportados. Antes de reimportar se reconcilian las revisiones nativas con su fuente.
+
+### DevOps, CI/CD y despliegue
+
+```mermaid
+flowchart TD
+    DEV["Cambio en GitHub"] --> PR["Pull Request hacia base"]
+    PR --> CI["Checks de integración según rutas configuradas"]
+    CI --> MERGE["Merge autorizado a base"]
+    MAN["Ejecución manual desde base"] --> BUILD
+    MERGE --> BUILD["Checkout y build frontend con Node.js 22"]
+    BUILD --> REL["Identidad de release: versión y commit"]
+    REL --> FTP["Transferencia FTP al hosting"]
+    FTP --> OK{"Transferencia exitosa?"}
+    OK -->|"No"| RET["Un reintento"]
+    RET -->|"Fallo"| STOP["Detener publicación"]
+    RET -->|"Éxito"| PUB["Publicar release.json"]
+    OK -->|"Sí"| PUB
+    PUB --> VER["Verificar bytes FTP y versión pública HTTPS"]
+    VER --> PROD["Station X: /yugioh/"]
+```
+
+El workflow de despliegue no vuelve a ejecutar la suite completa. Un push directo a `base` no despliega por sí solo. El FTP configurado no cifra el transporte; SFTP/FTPS o un mecanismo seguro equivalente son mejoras propuestas. Verificar el manifiesto acredita la identidad del release, no todos los flujos funcionales.
+
+### Evaluación técnica
+
+| Área | Evaluación cualitativa |
+| --- | --- |
+| Stack y funcionalidad | Base funcional sin runtimes pesados adicionales |
+| Backend modular y hexagonal | En evolución; convive con legado |
+| Frontend modular | Parcial; estado compartido y controladores históricos |
+| Pruebas y documentación | Suite y contratos desarrollados; cobertura no auditada aquí |
+| CI/CD | Implementado; límites de checks y FTP |
+| Independencia de dominios | Parcial; cargador global y persistencia compartida |
+| Escalabilidad horizontal | No acreditada; validar sesiones, archivos, bloqueos y concurrencia |
+| Seguridad | Sesión y CSRF presentes; auditoría integral pendiente |
+| Observabilidad | Revisar logs estructurados, métricas y alertas |
+
+### Deuda técnica y prioridades recomendadas
+
+Estas recomendaciones no constituyen funcionalidades implementadas.
+
+1. Completar la migración hexagonal por flujo, con caracterización y límites transaccionales.
+2. Separar el cargador global y los controladores procedimentales legados.
+3. Completar la API REST de los dominios.
+4. Separar lógica de negocio de vistas PHP y modularizar estado, transporte y controladores frontend.
+5. Incorporar Docker y Docker Compose para desarrollo reproducible.
+6. Incorporar migraciones versionadas de base de datos.
+7. Mejorar logs estructurados, métricas, trazabilidad y observabilidad.
+8. Sustituir FTP por un mecanismo cifrado.
+9. Certificar integración, bloqueos y concurrencia en MySQL de pruebas.
+10. Diseñar un orquestador de IA con autorización por deck, evidencia y trazabilidad.
+11. Incorporar colas de procesamiento cuando la carga lo justifique.
+12. Realizar una auditoría de seguridad OWASP.
+
+### Arquitectura objetivo propuesta
+
+```mermaid
+flowchart TD
+    USER["Web / PWA / clientes API"] --> API["Adaptadores de entrada: HTTP y API REST"]
+    subgraph MONO["Monolito modular hexagonal objetivo"]
+        API --> MOD["Módulos de negocio con límites explícitos"]
+        MOD --> USE["Casos de uso y puertos"]
+        USE --> DOM["Reglas de dominio independientes"]
+        AD["Adaptadores de salida"] -.->|"Implementan puertos"| USE
+        MOD -.->|"Cuando se justifique"| EVT["Eventos de dominio"]
+    end
+    AD --> DB[("MySQL y migraciones versionadas")]
+    AD --> OBS["Logs, métricas y trazabilidad"]
+    AD --> Q["Cola opcional"]
+    Q --> AI["Orquestador de IA autorizado por deck"]
+    AI --> GPT["Repositorio de prompts y fuentes"]
+    CI["CI/CD reproducible y transporte cifrado"] -.-> MONO
+```
+
+Consolidar primero el monolito modular con arquitectura hexagonal, DDD donde aporte valor, SOLID, Clean Code, contratos API y pruebas reproducibles. Incorporar eventos e IA independiente cuando se justifique. No se recomienda migrar inmediatamente a microservicios: evaluar servicios separados cuando existan necesidades operativas y límites de dominio claros. Este diagrama es conceptual, no representa componentes desplegados.
+
+**Referencias:** [arquitectura de fuentes](torneos_yugioh/context/source-architecture.md), [estado de migración](torneos_yugioh/context/architecture-migration-status.md), [módulos frontend](torneos_yugioh/assets/modules/README.md), [rutas API](torneos_yugioh/api/routes.php), [OpenAPI](torneos_yugioh/api-docs/openapi.json), [dependencias](package.json) y [workflow de producción](.github/workflows/deploy-ftp-after-approved-pr.yml).
+
 
 ## API y Swagger
 
