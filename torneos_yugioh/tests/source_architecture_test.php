@@ -2606,6 +2606,80 @@ architectureCheck(
     'Invalid report accepted',
 );
 
+// Bootstrap flash messages retain the original priority, including the season fallback.
+$flashPolicy = \StationX\Yugioh\Application\Bootstrap\SavedStatusMessage::class;
+$flashCases = [
+    ['', null, 'Existing warning', 'alert-warning', 'Existing warning', 'alert-warning', false],
+    [
+        'temporada_error',
+        'Season error',
+        null,
+        'alert-success',
+        'Cambio guardado: temporada_error',
+        'alert-success',
+        true,
+    ],
+    [
+        'evento_temporada_bloqueada',
+        null,
+        null,
+        'alert-success',
+        'Cambio guardado: evento_temporada_bloqueada',
+        'alert-success',
+        true,
+    ],
+    [
+        'temporada_guardada',
+        null,
+        null,
+        'alert-success',
+        'Cambio guardado: temporada_guardada',
+        'alert-success',
+        false,
+    ],
+    [
+        'evento_avanzado_7_2',
+        null,
+        null,
+        'alert-success',
+        'Siguiente fase creada: 2 combates nuevos generados.',
+        'alert-success',
+        false,
+    ],
+    [
+        'evento_avanzado_7_0',
+        null,
+        null,
+        'alert-success',
+        'No se creo una nueva fase: verifica que la fase anterior este finalizada y tenga ganadores.',
+        'alert-warning',
+        false,
+    ],
+    [
+        'movimientos_liga_3_2',
+        null,
+        null,
+        'alert-success',
+        'Ascensos/descensos aplicados: 2 movimientos registrados.',
+        'alert-success',
+        false,
+    ],
+    ['unknown', null, null, 'alert-warning', 'Cambio guardado: unknown', 'alert-success', false],
+];
+foreach (
+    $flashCases
+    as [$status, $seasonError, $previous, $previousClass, $message, $class, $consume]
+) {
+    architectureCheck(
+        $flashPolicy::resolve($status, $seasonError, $previous, $previousClass) === [
+            'message' => $message,
+            'class' => $class,
+            'consumeSeasonError' => $consume,
+        ],
+        'Saved status response changed: ' . $status,
+    );
+}
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

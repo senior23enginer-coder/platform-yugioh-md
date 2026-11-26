@@ -180,6 +180,10 @@ La proyección de exportación de fichas queda como caso de uso puro con entrada
 
 La cola offline y la generación de identificadores de petición ya no dependen del cierre compartido para su lógica. Se exponen mediante una fábrica independiente con puertos de almacenamiento, reloj, aleatoriedad y UUID; el bootstrap sólo conecta adaptadores del navegador. Se mantiene la clave y el formato persistido, incluida la lectura histórica. Se añade caracterización y se regenerará el bundle mediante el build oficial. Quedan los demás fragmentos, transporte y estado por funcionalidad. CI pendiente.
 
+## Respuestas de bootstrap (H16, avance)
+
+Se separa la política de mensajes posteriores a comandos de la captura HTTP y de la sesión. Se conserva la prioridad histórica de ambas cadenas de condiciones, el mensaje previo en ausencia de estado y el consumo de la sesión; incluso el fallback histórico de temporada se conserva para no introducir cambios funcionales. Se añaden regresiones; falta CI y separar el enriquecimiento de datos.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
