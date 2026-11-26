@@ -106,7 +106,7 @@ Se extraen los últimos tres flujos con SQL directo de `includes/events/generati
 
 ## Comandos de calendario, equipos y jugadores
 
-Se separan cuatro manejadores POST: reprogramar partida, vincular decks, guardar equipo y guardar jugador. Se preservan códigos de respuesta, auditorías, orden de operaciones y transacción propia del jugador. Se elimina del guardado de equipo una condición GOAT que referenciaba dos variables de competición no definidas en ese comando (no corresponde a su responsabilidad). La evidencia histórica del comparador de formularios se conserva, y las nuevas fachadas se verifican por tokens además de pruebas de puertos. La ejecución integral y MySQL quedan pendientes.
+Se separan cuatro manejadores POST: reprogramar partida, vincular decks, guardar equipo y guardar jugador. Se preservan códigos de respuesta, auditorías, orden de operaciones y transacción propia del jugador. Se elimina del guardado de equipo una condición GOAT que referenciaba dos variables de competición no definidas en ese comando (no corresponde a su responsabilidad). La evidencia histórica del comparador de formularios se conserva, y las nuevas fachadas se verifican por tokens además de pruebas de puertos. Se ejecutaron 18 comprobaciones aisladas con dobles de puertos, verificando guardas, orden de operaciones y transacciones; los 14 blobs usados coinciden con GitHub. La ejecución integral y MySQL quedan pendientes.
 
 ## Trabajo todavía pendiente para completar toda la plataforma
 
