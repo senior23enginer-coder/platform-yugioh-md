@@ -24,8 +24,8 @@ async function freePort() {
   const operations = Object.values(spec.paths).flatMap((p) =>
     Object.entries(p),
   );
-  assert.equal(operations.length, 13);
-  assert.equal(new Set(operations.map(([, op]) => op.operationId)).size, 13);
+  assert.equal(operations.length, 15);
+  assert.equal(new Set(operations.map(([, op]) => op.operationId)).size, 15);
   assert.equal(spec.servers[0].url, "../api/index.php");
   const check = spawnSync(
     process.execPath,
@@ -95,6 +95,7 @@ echo json_encode(['query'=>$_GET,'method'=>$_SERVER['REQUEST_METHOD'],'body'=>fi
       for (const method of config.methods) {
         const query = new URLSearchParams({
           deck_id: "650",
+          expected_name: "fixture deck",
           id: "32909498",
           q: "Fenrir",
           api: "reports",
@@ -128,6 +129,7 @@ echo json_encode(['query'=>$_GET,'method'=>$_SERVER['REQUEST_METHOD'],'body'=>fi
         assert.equal(body.query.public_live, undefined);
         assert.equal(body.query.source_prompts, undefined);
         assert.equal(body.method, method);
+        if (route === '/deck') assert.equal(body.query.expected_name, 'fixture deck');
         if (method === "POST")
           assert.equal(
             body.body,
@@ -180,7 +182,7 @@ echo json_encode(['query'=>$_GET,'method'=>$_SERVER['REQUEST_METHOD'],'body'=>fi
     });
     await page.goto(`${origin}/api-docs/`);
     await page.waitForSelector(".opblock");
-    assert.equal(await page.locator(".opblock").count(), 13);
+    assert.equal(await page.locator(".opblock").count(), 15);
     const output = path.join(root, "outputs/swagger");
     fs.mkdirSync(output, { recursive: true });
     for (const [name, viewport] of [
@@ -269,7 +271,7 @@ echo json_encode(['query'=>$_GET,'method'=>$_SERVER['REQUEST_METHOD'],'body'=>fi
     );
     assert.deepEqual(errors, []);
     console.log(
-      "PASS: OpenAPI valid; 13 route/method contracts, query isolation, unchanged JSON/uploads, 404/405, local resources, desktop/mobile UI and Swagger execution. No database or production access.",
+      "PASS: OpenAPI valid; 15 route/method contracts, query isolation, unchanged JSON/uploads, 404/405, local resources, desktop/mobile UI and Swagger execution. No database or production access.",
     );
   } finally {
     if (browser) await browser.close();
