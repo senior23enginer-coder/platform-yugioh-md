@@ -402,6 +402,40 @@ architectureCheck(
     'Insufficient ranked participants must block moves',
 );
 
+// League roster filtering keeps input order and only excludes other leagues of this season.
+$rosterPolicy = \StationX\Yugioh\Domain\Competitions\LeagueRosterPolicy::class;
+architectureCheck(
+    $rosterPolicy::available(
+        [4, 3, 2, 1],
+        10,
+        5,
+        [
+            ['deck_id' => 4, 'season_id' => 5, 'competition_id' => 11],
+            ['deck_id' => 3, 'season_id' => 6, 'competition_id' => 12],
+            ['deck_id' => 2, 'season_id' => 5, 'competition_id' => 10],
+        ],
+    ) === [3, 2, 1],
+    'League roster exclusivity changed',
+);
+$leagueSchedule = \StationX\Yugioh\Domain\Competitions\LeagueSchedulePolicy::class;
+architectureCheck(
+    $leagueSchedule::plan([1 => [[11], [12]], 2 => [[21], [22]]], true) === [
+        'groups' => [[11], [12], [21], [22]],
+        'rounds' => [[[0, 1, 1, 1], [2, 3, 2, 1]], [[1, 0, 1, 1], [3, 2, 2, 1]]],
+    ],
+    'Division round order or offsets changed',
+);
+architectureCheck(
+    $seasonOutcome(static fn() => $leagueSchedule::validateMembership([11], [1 => []], [11 => 2])) ===
+        'Asigna cada participante a una division de esta liga antes de generar sus combates.',
+    'Foreign division must be rejected',
+);
+architectureCheck(
+    $seasonOutcome(static fn() => $leagueSchedule::requireCompleteGroups([[11]])) ===
+        'Cada division con participantes necesita al menos dos lados completos para generar combates.',
+    'Incomplete division accepted',
+);
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

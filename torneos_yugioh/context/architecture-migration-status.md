@@ -28,6 +28,10 @@ Verificación previa aislada: 229 comprobaciones de equivalencia y puertos con P
 
 Separación de configuración y aplicación de movimientos mediante `ConfigureDivisionMovements`, `ApplyDivisionMovements`, puertos segregados de lectura/escritura, adaptadores PDO y `DivisionMovementPlan` puro. Se conserva el bloqueo de competición, orden de guardas, idempotencia por auditoría, ranking original y selección de participantes con resultados, transacción propia/prestada, auditorías y actualización de contadores. El adaptador de lectura reutiliza la clasificación nativa; los demás flujos de ligas y la certificación MySQL siguen pendientes.
 
+## Inscripción y planificación de ligas — 26 de noviembre de 2026
+
+Se separaron elegibilidad de formato, exclusividad por temporada, bloqueo ordenado de decks y planificación round-robin por división. `LeagueRosterPolicy` y `LeagueSchedulePolicy` son independientes de I/O; `ValidateFormatRoster`, `LeagueRoster` y `PlanLeagueSchedule` usan puertos segregados. Se mantiene el agrupador nativo de equipos como adaptación de compatibilidad. `includes/league_configuration.php` conserva sus firmas sin SQL directo. Regresiones añadidas; ejecución completa y concurrencia MySQL pendientes.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
