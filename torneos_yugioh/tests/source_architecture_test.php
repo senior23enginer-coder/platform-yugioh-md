@@ -819,6 +819,23 @@ architectureCheck($historicalPlan::winnersByDivision([['division_id' => 1, 'resu
 $autoScheduleRows = iterator_to_array(\StationX\Yugioh\Domain\Calendar\QualifierAutoSchedulePlan::rows([['id' => 1], ['id' => 2], ['id' => 3]], new DateTimeImmutable('2026-11-26 19:00:00'), 2, 45), false);
 architectureCheck($autoScheduleRows[1]['time'] === '19:45:00' && $autoScheduleRows[2]['date'] === '2026-11-27', 'Automatic qualifier slots changed');
 
+// Verify new command boundaries without a live database.
+$linksPort = new class implements \StationX\Yugioh\Application\Teams\TeamDeckLinkStore {
+    public array $calls = [];
+    public function active(int $teamId): bool { $this->calls[] = ['active', $teamId]; return true; }
+    public function add(int $teamId, array $ids): void { $this->calls[] = ['add', $teamId, $ids]; }
+    public function remove(int $teamId, array $ids): void { $this->calls[] = ['remove', $teamId, $ids]; }
+    public function audit(int $teamId, array $add, array $remove): void { $this->calls[] = ['audit', $teamId, $add, $remove]; }
+};
+$linkCommand = new \StationX\Yugioh\Application\Teams\UpdateTeamDeckLinks($linksPort);
+architectureCheck($linkCommand->execute(['team_id' => 7, 'team_add_deck_ids' => [0, 2, '2', 3], 'team_remove_deck_ids' => [4]]) === 'equipo_ficha', 'Link response changed');
+architectureCheck($linksPort->calls === [['active', 7], ['add', 7, [2, 3]], ['remove', 7, [4]], ['audit', 7, [2, 3], [4]]], 'Link mutation ordering changed');
+$playerProfile = \StationX\Yugioh\Domain\Teams\PlayerProfile::fromInput(['player_name' => ' A ', 'player_deck_ids' => [2, 2, -1]]);
+architectureCheck($playerProfile['name'] === 'A' && $playerProfile['deckIds'] === [2], 'Player normalization changed');
+$matchScheduleUpdate = \StationX\Yugioh\Domain\Calendar\MatchScheduleUpdate::class;
+architectureCheck($matchScheduleUpdate::closed(['status' => 'finalizado']), 'Finalized match editable');
+architectureCheck($matchScheduleUpdate::fromInput(['venue' => ' X ']) === ['scheduled_on' => null, 'starts_at' => null, 'venue' => 'X', 'judge' => '', 'notes' => ''], 'Schedule input normalization changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

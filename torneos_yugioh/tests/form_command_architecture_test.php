@@ -129,6 +129,7 @@ formCheck(
     (int) $pdo->query("SELECT COUNT(*) FROM sqlite_master WHERE type='table'")->fetchColumn() === 0,
     'Command composition initialized persistence',
 );
+$portedCommands = json_decode(file_get_contents(__DIR__ . '/fixtures/ported-form-commands.json'), true, flags: JSON_THROW_ON_ERROR);
 $comparisons = [];
 foreach ($originals['branches'] as $branch) {
     $original = 'function action(){' . $branch['body'] . '}';
@@ -146,6 +147,18 @@ foreach ($originals['branches'] as $branch) {
             $reflection->getEndLine() - $reflection->getStartLine() + 1,
         ),
     );
+    $referenceSource = file_get_contents($reflection->getFileName());
+    $ported = $portedCommands[$branch['actions'][0]] ?? null;
+    if ($ported !== null) {
+        formCheck(
+            architectureBodyTokens($source) === architectureBodyTokens($ported['expected_perform']),
+            'Ported command delegation changed: ' . $branch['actions'][0],
+        );
+        $referenceSource = $ported['original_source'];
+        $start = strpos($referenceSource, '    protected function perform(');
+        if ($start === false) throw new RuntimeException('Missing original handler evidence');
+        $source = substr($referenceSource, $start, strrpos($referenceSource, "\n}") - $start);
+    }
     preg_match_all(
         '/\b(?:new|instanceof)\s+([A-Za-z_]\w*)|\bcatch\s*\(\s*([A-Za-z_]\w*)/',
         $branch['body'],
@@ -156,7 +169,7 @@ foreach ($originals['branches'] as $branch) {
         $class = $reference[1] ?: $reference[2];
         if (!in_array($class, ['self', 'static', 'parent'], true)) {
             formCheck(
-                str_contains(file_get_contents($reflection->getFileName()), 'use ' . $class . ';'),
+                str_contains($referenceSource, 'use ' . $class . ';'),
                 'Global class resolution changed: ' . $class,
             );
         }

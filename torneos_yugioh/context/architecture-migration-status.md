@@ -104,6 +104,10 @@ Separados la selección de clasificatorio, la comprobación de rondas completas,
 
 Se extraen los últimos tres flujos con SQL directo de `includes/events/generation.php`: planificación de ronda, avance histórico por división y programación automática de clasificatorios. Las reglas de emparejamiento y fechas quedan en dominio; se mantienen los puertos para servicios nativos y auditoría. La preparación de la sentencia de inserción de ronda ocurre dentro del adaptador después de resolver la temporada; las transacciones del llamador no se alteran. Se comprobaron las tres huellas originales y 2.202 invariantes aisladas de dominio con PHP 8.4.24; los tres blobs probados coinciden con GitHub. Validación integral y MySQL pendientes.
 
+## Comandos de calendario, equipos y jugadores
+
+Se separan cuatro manejadores POST: reprogramar partida, vincular decks, guardar equipo y guardar jugador. Se preservan códigos de respuesta, auditorías, orden de operaciones y transacción propia del jugador. Se elimina del guardado de equipo una condición GOAT que referenciaba dos variables de competición no definidas en ese comando (no corresponde a su responsabilidad). La evidencia histórica del comparador de formularios se conserva, y las nuevas fachadas se verifican por tokens además de pruebas de puertos. La ejecución integral y MySQL quedan pendientes.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
