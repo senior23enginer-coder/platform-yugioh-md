@@ -58,7 +58,7 @@ Se separan la resolución de reglas de juego, prioridad de reglas por partida/ev
 
 ## Ciclo de vida y códigos de competición — 26 de noviembre de 2026
 
-Separados el historial de transiciones, la comprobación de cierre, los candidatos clasificatorios y la numeración de códigos en políticas, casos de uso y adaptadores. Se conserva el orden de consultas, los criterios de cierre y la numeración existente sin abrir transacciones nuevas. Se añaden referencias y regresiones; validación integral y MySQL pendientes.
+Separados el historial de transiciones, la comprobación de cierre, los candidatos clasificatorios y la numeración de códigos en políticas, casos de uso y adaptadores. Se conserva el orden de consultas, los criterios de cierre y la numeración existente sin abrir transacciones nuevas. Se verificaron las seis huellas originales y nueve comprobaciones aisladas de dominio con PHP 8.4.24. Los dos archivos de dominio coinciden con los probados. Validación integral, formato y MySQL pendientes.
 
 ## Trabajo todavía pendiente para completar toda la plataforma
 
