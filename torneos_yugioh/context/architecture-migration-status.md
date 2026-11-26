@@ -128,6 +128,10 @@ Se extraen alta manual de carta, importación CSV, guardado del perfil, enlace c
 
 Se separan la identidad estable de rutas, la referencia documental y la proyección de skills/formato mediante `ComboSourcePolicy`. El adaptador editorial lee rutas y contextos sin invocar funciones globales. El feed usa un puerto de lectura y un caso de uso que conserva el ETag, la respuesta 304, el esquema y el Markdown de revisión; HTTP y SQL permanecen en adaptadores. Se mantienen rutas y datos existentes. Validación integral y MySQL pendientes.
 
+## Acumulación y reproducción de estadísticas (H10–H12, primera fase)
+
+Se separan los cálculos puros de elegibilidad, acumulación individual y Tag, Elo multijugador, reproducción cronológica, metagame, logros, cortes, filtros y exportación. El caso de uso recibe un reloj; se conservan las firmas, las versiones de algoritmo, bases de rating y fórmulas existentes. Se guardan cuerpos históricos de las funciones intervenidas. Persistencia, proyección de fuentes y publicación aún pendientes; ejecutar suite integral antes de integrar.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

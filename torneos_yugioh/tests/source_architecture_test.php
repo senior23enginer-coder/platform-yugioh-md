@@ -1912,6 +1912,26 @@ $deckProfilePolicy = \StationX\Yugioh\Domain\Decks\DeckProfileInput::class;
 architectureCheck($deckProfilePolicy::team([], 7) === 7, 'Existing team was lost');
 architectureCheck($deckProfilePolicy::team(['team_id' => ''], 7) === 0, 'Explicit unlink lost');
 
+// Statistics replay accepts an explicit clock, not HTTP or persistence.
+$statsClock = new class implements \StationX\Yugioh\Application\Shared\Clock {
+    public function now(): DateTimeImmutable {
+        return new DateTimeImmutable('2026-11-26T17:00:00+00:00');
+    }
+};
+$statsReplay = new \StationX\Yugioh\Application\Statistics\CalculateStatistics($statsClock);
+$emptyStats = $statsReplay->execute([]);
+architectureCheck($emptyStats['cutoff'] === '2026-11-26 12:00:00', 'Statistics clock changed');
+architectureCheck($emptyStats['global'] === [] && $emptyStats['ledger'] === [], 'Empty ranking invented results');
+architectureCheck($statsReplay->freeForAll([])['ranking'] === [], 'Empty FFA invented results');
+architectureCheck(
+    \StationX\Yugioh\Domain\Statistics\StatisticsPolicy::defaults()['base_global'] === 1000,
+    'Global rating baseline changed',
+);
+architectureCheck(
+    \StationX\Yugioh\Domain\Statistics\AchievementPolicy::definitions()[0][0] === 'first_match_win',
+    'Achievement identity changed',
+);
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

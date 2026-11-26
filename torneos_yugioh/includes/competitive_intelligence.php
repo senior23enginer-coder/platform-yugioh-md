@@ -5,46 +5,7 @@ require_once __DIR__.'/statistics_store.php';
 
 function ygo_medal_definitions(): array
 {
-    return [
-        ['first_match_win', 'Primera victoria', 'common', 'match_wins', 1],
-        ['three_match_wins', 'Tres partidas ganadas', 'common', 'match_wins', 3],
-        ['five_match_wins', 'Cinco partidas ganadas', 'silver', 'match_wins', 5],
-        ['ten_match_wins', 'Diez partidas ganadas', 'gold', 'match_wins', 10],
-        ['five_duel_wins', 'Cinco duelos ganados', 'common', 'duel_wins', 5],
-        ['ten_duel_wins', 'Diez duelos ganados', 'silver', 'duel_wins', 10],
-        ['twenty_five_duel_wins', 'Veinticinco duelos ganados', 'gold', 'duel_wins', 25],
-        ['three_rivals', 'Vencio a tres rivales distintos', 'silver', 'rivals_beaten', 3],
-        ['first_sweep', 'Primera partida perfecta', 'silver', 'perfect_matches', 1],
-        ['three_sweeps', 'Tres partidas perfectas', 'gold', 'perfect_matches', 3],
-        ['flawless_win', 'Victoria sin perder LP', 'gold', 'flawless_wins', 1],
-        ['three_flawless', 'Tres victorias sin perder LP', 'platinum', 'flawless_wins', 3],
-        ['streak_three', 'Racha de tres partidas', 'silver', 'best_streak', 3],
-        ['streak_five', 'Racha de cinco partidas', 'gold', 'best_streak', 5],
-        ['d5_win', 'Victoria decisiva en D5', 'silver', 'd5_wins', 1],
-        ['three_d5_wins', 'Tres victorias en D5', 'platinum', 'd5_wins', 3],
-        ['brick_survivor', 'Supero una mano brick', 'silver', 'brick_wins', 1],
-        ['brick_master', 'Supero tres manos brick', 'gold', 'brick_wins', 3],
-        ['comeback', 'Primera remontada', 'silver', 'comebacks', 1],
-        ['three_comebacks', 'Tres remontadas', 'gold', 'comebacks', 3],
-        ['reverse_sweep', 'Remontada desde 0-2', 'legendary', 'reverse_sweeps', 1],
-        ['second_three', 'Tres victorias empezando segundo', 'silver', 'second_wins', 3],
-        ['forced_surrender', 'Forzo una rendicion', 'common', 'surrender_wins', 1],
-        ['time_limit_win', 'Victoria al limite de tiempo', 'silver', 'time_wins', 1],
-        ['under_ten_minutes', 'Victoria en menos de 10 min', 'silver', 'under_10', 1],
-        ['under_five_minutes', 'Victoria en menos de 5 min', 'gold', 'under_5', 1],
-        ['five_turn_win', 'Victoria en 5 turnos o menos', 'gold', 'under_5_turns', 1],
-        ['three_turn_win', 'Victoria en 3 turnos o menos', 'platinum', 'under_3_turns', 1],
-        ['deck_out_win', 'Victoria por deck sin cartas', 'silver', 'deck_out_wins', 1],
-        ['effect_win', 'Victoria por efecto especial', 'gold', 'effect_wins', 1],
-        ['three_dice_wins', 'Tres tiradas de dado ganadas', 'silver', 'dice_wins', 3],
-        ['damage_50000', '50.000 LP de reduccion neta rival', 'gold', 'damage_dealt', 50000],
-        ['three_formats', 'Victoria en tres formatos', 'platinum', 'formats_won', 3],
-        ['three_events', 'Victorias en tres eventos distintos', 'platinum', 'events_won', 3],
-        ['season_no_surrender', 'Temporada sin rendirse', 'platinum', 'no_surrender_season', 1],
-        ['undefeated_champion', 'Campeon invicto', 'legendary', 'undefeated_champion', 1],
-        ['tier_zero_slayer', 'Vencio a un Tier Zero', 'legendary', 'tier_zero_wins', 1, true],
-        ['three_tiers', 'Vencio tres tiers diferentes', 'legendary', 'tiers_beaten', 3, true],
-    ];
+    return \StationX\Yugioh\Domain\Statistics\AchievementPolicy::definitions();
 }
 
 function ygo_empty_competitive_metric(): array
