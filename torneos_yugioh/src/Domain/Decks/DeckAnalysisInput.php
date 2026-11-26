@@ -70,7 +70,11 @@ final class DeckAnalysisInput
             $sourceType,
             trim((string) ($post['deck_analysis_notes'] ?? '')),
         ];
-        return ['values' => $values, 'sourceType' => $sourceType, 'reason' => trim((string) ($post['deck_analysis_change_reason'] ?? ''))];
+        return [
+            'values' => $values,
+            'sourceType' => $sourceType,
+            'reason' => trim((string) ($post['deck_analysis_change_reason'] ?? '')),
+        ];
     }
 
     public static function matchup(array $post): array
@@ -124,6 +128,11 @@ final class DeckAnalysisInput
             $sourceType,
             trim((string) ($post['matchup_review_notes'] ?? '')),
         ];
-        return ['scope' => $scope, 'values' => $values, 'sourceType' => $sourceType, 'reason' => trim((string) ($post['matchup_change_reason'] ?? ''))];
+        return [
+            'scope' => $scope,
+            'values' => $values,
+            'sourceType' => $sourceType,
+            'reason' => trim((string) ($post['matchup_change_reason'] ?? '')),
+        ];
     }
 }

@@ -13,11 +13,17 @@ final class DeckAnalysisModule
 {
     public static function profile(PDO $pdo): SaveDeckAnalysisProfile
     {
-        return new SaveDeckAnalysisProfile(new PdoDeckAnalysisStore($pdo), new PdoTransactionBoundary($pdo));
+        return new SaveDeckAnalysisProfile(
+            new PdoDeckAnalysisStore($pdo),
+            new PdoTransactionBoundary($pdo),
+        );
     }
 
     public static function matchup(PDO $pdo): SaveMatchupAnalysis
     {
-        return new SaveMatchupAnalysis(new PdoDeckAnalysisStore($pdo), new PdoTransactionBoundary($pdo));
+        return new SaveMatchupAnalysis(
+            new PdoDeckAnalysisStore($pdo),
+            new PdoTransactionBoundary($pdo),
+        );
     }
 }

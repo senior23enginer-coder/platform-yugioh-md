@@ -19,7 +19,14 @@ interface DeckAnalysisStore
 
     public function matchup(int $deckId, int $opponentId, array $scope): array;
 
-    public function matchupHistory(int $analysisId, int $deckId, int $opponentId, int $revision, array $analysis, string $reason): void;
+    public function matchupHistory(
+        int $analysisId,
+        int $deckId,
+        int $opponentId,
+        int $revision,
+        array $analysis,
+        string $reason,
+    ): void;
 
     public function audit(string $entity, int $id, string $action, array $payload): void;
 }

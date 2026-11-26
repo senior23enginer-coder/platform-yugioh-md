@@ -9,7 +9,10 @@ use StationX\Yugioh\Domain\Decks\DeckAnalysisInput;
 
 final readonly class SaveMatchupAnalysis
 {
-    public function __construct(private DeckAnalysisStore $store, private TransactionBoundary $transaction) {}
+    public function __construct(
+        private DeckAnalysisStore $store,
+        private TransactionBoundary $transaction,
+    ) {}
 
     public function execute(array $post): string
     {
@@ -27,7 +30,14 @@ final readonly class SaveMatchupAnalysis
             $analysis = $this->store->matchup($deckId, $opponentId, $input['scope']);
             $analysisId = (int) ($analysis['id'] ?? 0);
             $revision = (int) ($analysis['revision'] ?? 1);
-            $this->store->matchupHistory($analysisId, $deckId, $opponentId, $revision, $analysis, $input['reason']);
+            $this->store->matchupHistory(
+                $analysisId,
+                $deckId,
+                $opponentId,
+                $revision,
+                $analysis,
+                $input['reason'],
+            );
             $this->store->audit('matchup_analysis', $analysisId, 'save_matchup_analysis', [
                 'deck_id' => $deckId,
                 'opponent_deck_id' => $opponentId,

@@ -1998,22 +1998,62 @@ $profileInput = $analysisInput::profile([
     'deck_analysis_consistency_score' => 9,
     'deck_analysis_confidence' => 'other',
 ]);
-architectureCheck(json_decode($profileInput['values'][12], true) === ['One, two', 'Three'], 'Structured strengths lost');
-architectureCheck(json_decode($profileInput['values'][13], true) === ['A', 'B'], 'Weakness list lost');
-architectureCheck($profileInput['values'][15] === 5 && $profileInput['values'][22] === 'MEDIA', 'Analysis score or confidence changed');
-$matchupInput = $analysisInput::matchup(['strategic_score' => -9, 'matchup_advantages' => 'A; B; A']);
-architectureCheck($matchupInput['values'][0] === -2 && $matchupInput['values'][1] === 'MUY_DESFAVORABLE', 'Strategic classification changed');
-architectureCheck(json_decode($matchupInput['values'][3], true) === ['A', 'B'], 'Matchup advantages lost');
+architectureCheck(
+    json_decode($profileInput['values'][12], true) === ['One, two', 'Three'],
+    'Structured strengths lost',
+);
+architectureCheck(
+    json_decode($profileInput['values'][13], true) === ['A', 'B'],
+    'Weakness list lost',
+);
+architectureCheck(
+    $profileInput['values'][15] === 5 && $profileInput['values'][22] === 'MEDIA',
+    'Analysis score or confidence changed',
+);
+$matchupInput = $analysisInput::matchup([
+    'strategic_score' => -9,
+    'matchup_advantages' => 'A; B; A',
+]);
+architectureCheck(
+    $matchupInput['values'][0] === -2 && $matchupInput['values'][1] === 'MUY_DESFAVORABLE',
+    'Strategic classification changed',
+);
+architectureCheck(
+    json_decode($matchupInput['values'][3], true) === ['A', 'B'],
+    'Matchup advantages lost',
+);
 
 // Administrative forms preserve input guards and QR origin without database dependencies.
 $dependencyInput = \StationX\Yugioh\Domain\Competitions\DependencyInput::class;
-architectureCheck($dependencyInput::normalize(['dependency_competition_id' => 2, 'dependency_depends_on_id' => 2]) === null, 'Self dependency accepted');
-$topDependency = $dependencyInput::normalize(['dependency_competition_id' => 2, 'dependency_depends_on_id' => 1, 'dependency_condition' => 'TOP_N']);
-architectureCheck($topDependency['takeCount'] === 4 && $topDependency['condition'] === 'top_n', 'Top N dependency default changed');
+architectureCheck(
+    $dependencyInput::normalize([
+        'dependency_competition_id' => 2,
+        'dependency_depends_on_id' => 2,
+    ]) === null,
+    'Self dependency accepted',
+);
+$topDependency = $dependencyInput::normalize([
+    'dependency_competition_id' => 2,
+    'dependency_depends_on_id' => 1,
+    'dependency_condition' => 'TOP_N',
+]);
+architectureCheck(
+    $topDependency['takeCount'] === 4 && $topDependency['condition'] === 'top_n',
+    'Top N dependency default changed',
+);
 $checkinInput = \StationX\Yugioh\Domain\Competitions\ParticipantCheckinInput::class;
 architectureCheck($checkinInput::normalize([]) === null, 'Empty participant registered');
-$qrCheckin = $checkinInput::normalize(['checkin_display_name' => ' A ', 'checkin_entity_type' => 'unknown', 'checkin_code' => '123']);
-architectureCheck($qrCheckin['entityType'] === 'guest' && $qrCheckin['source'] === 'qr' && $qrCheckin['displayName'] === 'A', 'Checkin normalization changed');
+$qrCheckin = $checkinInput::normalize([
+    'checkin_display_name' => ' A ',
+    'checkin_entity_type' => 'unknown',
+    'checkin_code' => '123',
+]);
+architectureCheck(
+    $qrCheckin['entityType'] === 'guest' &&
+        $qrCheckin['source'] === 'qr' &&
+        $qrCheckin['displayName'] === 'A',
+    'Checkin normalization changed',
+);
 
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {

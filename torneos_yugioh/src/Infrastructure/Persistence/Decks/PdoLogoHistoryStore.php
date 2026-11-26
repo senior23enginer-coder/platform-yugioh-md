@@ -19,14 +19,18 @@ final readonly class PdoLogoHistoryStore implements LogoHistoryStore
 
     public function contains(string $entity, int $id, string $url): bool
     {
-        $stmt = $this->pdo->prepare('SELECT id FROM sx_ygo_logo_history WHERE entity_type=? AND entity_id=? AND logo_url=? LIMIT 1');
+        $stmt = $this->pdo->prepare(
+            'SELECT id FROM sx_ygo_logo_history WHERE entity_type=? AND entity_id=? AND logo_url=? LIMIT 1',
+        );
         $stmt->execute([$entity, $id, $url]);
         return (bool) $stmt->fetchColumn();
     }
 
     public function select(string $entity, int $id, string $url): void
     {
-        [$table, $column] = self::TARGETS[$entity] ?? throw new InvalidArgumentException('Entidad de logo no admitida.');
+        [$table, $column] =
+            self::TARGETS[$entity] ??
+            throw new InvalidArgumentException('Entidad de logo no admitida.');
         $this->pdo->prepare("UPDATE {$table} SET {$column}=? WHERE id=?")->execute([$url, $id]);
     }
 

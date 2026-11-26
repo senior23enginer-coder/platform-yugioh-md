@@ -38,6 +38,11 @@ final class DependencyInput
         if ($competitionId <= 0 || $dependsOnId <= 0 || $competitionId === $dependsOnId) {
             return null;
         }
-        return ['competitionId' => $competitionId, 'dependsOnId' => $dependsOnId, 'condition' => $condition, 'takeCount' => $takeCount];
+        return [
+            'competitionId' => $competitionId,
+            'dependsOnId' => $dependsOnId,
+            'condition' => $condition,
+            'takeCount' => $takeCount,
+        ];
     }
 }

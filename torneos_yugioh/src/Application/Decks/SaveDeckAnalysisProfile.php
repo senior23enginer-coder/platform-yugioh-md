@@ -9,7 +9,10 @@ use StationX\Yugioh\Domain\Decks\DeckAnalysisInput;
 
 final readonly class SaveDeckAnalysisProfile
 {
-    public function __construct(private DeckAnalysisStore $store, private TransactionBoundary $transaction) {}
+    public function __construct(
+        private DeckAnalysisStore $store,
+        private TransactionBoundary $transaction,
+    ) {}
 
     public function execute(array $post): string
     {
@@ -23,7 +26,10 @@ final readonly class SaveDeckAnalysisProfile
             $saved = $this->store->profile($deckId);
             $revision = (int) ($saved['revision'] ?? 1);
             $this->store->profileHistory($deckId, $revision, $saved, $input['reason']);
-            $this->store->audit('deck_analysis', $deckId, 'save_deck_analysis_profile', ['revision' => $revision, 'source_type' => $input['sourceType']]);
+            $this->store->audit('deck_analysis', $deckId, 'save_deck_analysis_profile', [
+                'revision' => $revision,
+                'source_type' => $input['sourceType'],
+            ]);
         });
         return 'deck_analysis_' . $deckId;
     }
