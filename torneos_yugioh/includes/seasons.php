@@ -5,7 +5,7 @@ require_once __DIR__ . '/../src/autoload.php';
 
 function ygo_season_periods(): array
 {
-    return ['annual' => ['Anual', 12], 'semiannual' => ['Semestral', 6], 'quarterly' => ['Trimestral', 3]];
+    return \StationX\Yugioh\Domain\Seasons\SeasonDefinition::periods();
 }
 
 function ygo_season_status_label(string $status): string
@@ -15,14 +15,7 @@ function ygo_season_status_label(string $status): string
 
 function ygo_season_end(string $start, string $period): string
 {
-    $date = DateTimeImmutable::createFromFormat('!Y-m-d', $start);
-    if (!$date || $date->format('Y-m-d') !== $start || !isset(ygo_season_periods()[$period])) {
-        throw new InvalidArgumentException('Selecciona un ciclo y una fecha de inicio válidos.');
-    }
-    // Clamp the same day in the target month, including starts on February 29 or month end.
-    $target = $date->modify('first day of this month')->modify('+' . ygo_season_periods()[$period][1] . ' months');
-    $target = $target->setDate((int) $target->format('Y'), (int) $target->format('m'), min((int) $date->format('d'), (int) $target->format('t')));
-    return $target->modify('-1 day')->format('Y-m-d');
+    return \StationX\Yugioh\Domain\Seasons\SeasonDefinition::end($start, $period);
 }
 
 function ygo_ensure_seasons_schema(PDO $pdo): void
@@ -93,105 +86,22 @@ function ygo_season_validate_competition_schedule(PDO $pdo, int $competitionId):
 
 function ygo_season_save(PDO $pdo, array $input): int
 {
-    $id = (int) ($input['season_id'] ?? 0);
-    $name = trim((string) ($input['season_name'] ?? ''));
-    $period = (string) ($input['season_period'] ?? '');
-    $start = (string) ($input['season_starts_on'] ?? '');
-    $defaultEnd = ygo_season_end($start, $period);
-    $end = trim((string) ($input['season_ends_on'] ?? '')) ?: $defaultEnd;
-    $endDate = DateTimeImmutable::createFromFormat('!Y-m-d', $end);
-    if (!$endDate || $endDate->format('Y-m-d') !== $end || $end < $start) {
-        throw new InvalidArgumentException('La fecha de cierre debe ser valida y no puede ser anterior al inicio.');
-    }
-    $status = (string) ($input['season_status'] ?? 'draft');
-    if ($name === '' || mb_strlen($name) > 120 || !in_array($status, ['draft', 'active'], true)) {
-        throw new InvalidArgumentException('Indica un nombre de hasta 120 caracteres y un estado válido.');
-    }
-    $pdo->beginTransaction();
-    try {
-        if ($id > 0) {
-            ygo_season_require_open($pdo, $id, false, true);
-            $outside = $pdo->prepare('SELECT COUNT(*) FROM sx_ygo_competitions WHERE season_id=? AND ((starts_on IS NOT NULL AND (starts_on<? OR starts_on>?)) OR (ends_on IS NOT NULL AND (ends_on<? OR ends_on>?)))');
-            $outside->execute([$id, $start, $end, $start, $end]);
-            $matches = $pdo->prepare('SELECT COUNT(*) FROM sx_ygo_matches m JOIN sx_ygo_competitions c ON c.id=m.competition_id WHERE c.season_id=? AND m.scheduled_on IS NOT NULL AND (m.scheduled_on<? OR m.scheduled_on>?)');
-            $matches->execute([$id, $start, $end]);
-            if ((int) $outside->fetchColumn() > 0 || (int) $matches->fetchColumn() > 0) {
-                throw new InvalidArgumentException('El período dejaría eventos o partidas fuera de la temporada. Ajusta primero sus fechas.');
-            }
-            $pdo->prepare('UPDATE sx_ygo_seasons SET name=?,period_type=?,starts_on=?,ends_on=?,status=? WHERE id=?')->execute([$name, $period, $start, $end, $status, $id]);
-        } else {
-            $slug = strtolower(trim(preg_replace('/[^a-zA-Z0-9]+/', '-', iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $name) ?: $name), '-'));
-            $slug = substr($slug ?: 'temporada', 0, 56) . '-' . bin2hex(random_bytes(5));
-            $pdo->prepare('INSERT INTO sx_ygo_seasons(name,slug,status,period_type,starts_on,ends_on) VALUES(?,?,?,?,?,?)')->execute([$name, $slug, $status, $period, $start, $end]);
-            $id = (int) $pdo->lastInsertId();
-        }
-        $pdo->prepare('INSERT INTO sx_ygo_audit_log(entity_type,entity_id,action,payload) VALUES(?,?,?,?)')->execute(['season', $id, 'save_season', json_encode(['name'=>$name,'period_type'=>$period,'starts_on'=>$start,'ends_on'=>$end,'status'=>$status], JSON_UNESCAPED_UNICODE)]);
-        if (!empty($input['season_finalize'])) ygo_season_close($pdo, $id);
-        $pdo->commit();
-        return $id;
-    } catch (Throwable $error) {
-        if ($pdo->inTransaction()) $pdo->rollBack();
-        throw $error;
-    }
+    return \StationX\Yugioh\Infrastructure\Composition\SeasonLifecycleModule::create($pdo)->save($input);
 }
 
 function ygo_season_close(PDO $pdo, int $id, string $reason = 'manual'): int
 {
-    $ownsTransaction = !$pdo->inTransaction();
-    if ($ownsTransaction) $pdo->beginTransaction();
-    try {
-        $season = ygo_season_find($pdo, $id, true);
-        if (!$season) throw new InvalidArgumentException('Temporada no encontrada.');
-        if (in_array($season['status'], ['completed', 'archived'], true)) {
-            if ($ownsTransaction) $pdo->commit();
-            return 0;
-        }
-        $stmt = $pdo->prepare("SELECT id,status FROM sx_ygo_competitions WHERE season_id=? AND status NOT IN ('completed','cancelled','closed','archived') FOR UPDATE");
-        $stmt->execute([$id]);
-        $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($events as $event) {
-            $pdo->prepare("UPDATE sx_ygo_competitions SET status='closed',configuration_locked=1 WHERE id=?")->execute([$event['id']]);
-            $pdo->prepare('INSERT INTO sx_ygo_competition_status_history(season_id,competition_id,from_status,to_status,action,payload) VALUES(?,?,?,?,?,?)')->execute([$id,$event['id'],$event['status'],'closed','season_closed',json_encode(['reason'=>$reason], JSON_UNESCAPED_UNICODE)]);
-        }
-        $pdo->prepare("UPDATE sx_ygo_events SET status='closed' WHERE season_id=? AND status NOT IN ('completed','cancelled','closed')")->execute([$id]);
-        $pdo->prepare("UPDATE sx_ygo_seasons SET status='completed',closed_at=NOW() WHERE id=?")->execute([$id]);
-        $pdo->prepare('INSERT INTO sx_ygo_audit_log(entity_type,entity_id,action,payload) VALUES(?,?,?,?)')->execute(['season',$id,'close_season',json_encode(['reason'=>$reason,'closed_events'=>count($events)], JSON_UNESCAPED_UNICODE)]);
-        if ($ownsTransaction) $pdo->commit();
-        return count($events);
-    } catch (Throwable $error) {
-        if ($ownsTransaction && $pdo->inTransaction()) $pdo->rollBack();
-        throw $error;
-    }
+    return \StationX\Yugioh\Infrastructure\Composition\SeasonLifecycleModule::create($pdo)->close($id, $reason);
 }
 
 function ygo_season_close_expired(PDO $pdo): void
 {
-    $stmt = $pdo->prepare("SELECT id FROM sx_ygo_seasons WHERE ends_on<? AND status NOT IN ('completed','archived')");
-    $stmt->execute([date('Y-m-d')]);
-    foreach ($stmt->fetchAll(PDO::FETCH_COLUMN) as $id) ygo_season_close($pdo, (int) $id, 'period_ended');
+    \StationX\Yugioh\Infrastructure\Composition\SeasonLifecycleModule::create($pdo)->closeExpired();
 }
 
 function ygo_season_delete(PDO $pdo, int $id): void
 {
-    $pdo->beginTransaction();
-    try {
-        if (!ygo_season_find($pdo, $id, true)) throw new InvalidArgumentException('Temporada no encontrada.');
-        foreach (['sx_ygo_competitions', 'sx_ygo_divisions', 'sx_ygo_events'] as $table) {
-            $stmt = $pdo->prepare('SELECT COUNT(*) FROM '.$table.' WHERE season_id=?');
-            $stmt->execute([$id]);
-            if ((int) $stmt->fetchColumn() > 0) throw new InvalidArgumentException('La temporada tiene eventos o divisiones asociados. Puedes finalizarla y conservar su historial.');
-        }
-        $pdo->prepare('DELETE gc FROM sx_ygo_game_rule_conditions gc JOIN sx_ygo_game_rules g ON g.id=gc.game_rule_id WHERE g.season_id=?')->execute([$id]);
-        foreach (['sx_ygo_game_rules','sx_ygo_ruleset_versions','sx_ygo_rulesets','sx_ygo_settings','sx_ygo_ui_labels','sx_ygo_catalog_items'] as $table) {
-            $pdo->prepare('DELETE FROM '.$table.' WHERE season_id=?')->execute([$id]);
-        }
-        $pdo->prepare('DELETE FROM sx_ygo_seasons WHERE id=?')->execute([$id]);
-        $pdo->prepare('INSERT INTO sx_ygo_audit_log(entity_type,entity_id,action,payload) VALUES(?,?,?,?)')->execute(['season',$id,'delete_season','{}']);
-        $pdo->commit();
-    } catch (Throwable $error) {
-        if ($pdo->inTransaction()) $pdo->rollBack();
-        throw $error;
-    }
+    \StationX\Yugioh\Infrastructure\Composition\SeasonLifecycleModule::create($pdo)->delete($id);
 }
 
 function ygo_season_handle_post(PDO $pdo, string $action): ?string

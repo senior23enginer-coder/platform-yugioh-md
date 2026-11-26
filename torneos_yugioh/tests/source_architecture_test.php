@@ -176,6 +176,124 @@ architectureCheck(
 );
 architectureCheck($seasonReader->calls === [['competition', 9]], 'Unexpected date range query');
 
+// Season lifecycle uses ports and preserves owned/borrowed transaction selection.
+$definitionPolicy = \StationX\Yugioh\Domain\Seasons\SeasonDefinition::class;
+architectureCheck($definitionPolicy::end('2024-02-29', 'annual') === '2025-02-27', 'Leap day clamp');
+architectureCheck($definitionPolicy::end('2026-01-31', 'quarterly') === '2026-04-29', 'Month end clamp');
+$lifeStore = new class implements \StationX\Yugioh\Application\Seasons\SeasonLifecycleStore {
+    public array $calls = [];
+    public ?array $row = ['status' => 'active'];
+    public bool $dependencies = false;
+
+    public function find(int $id, bool $lock = false): ?array
+    {
+        $this->calls[] = ['find', $id, $lock];
+        return $this->row;
+    }
+    public function hasOutsideDates(int $id, string $start, string $end): bool
+    {
+        return false;
+    }
+    public function insert(array $definition): int
+    {
+        $this->calls[] = ['insert'];
+        return 7;
+    }
+    public function update(int $id, array $definition): void
+    {
+        $this->calls[] = ['update', $id];
+    }
+    public function openCompetitions(int $id): array
+    {
+        $this->calls[] = ['competitions', $id];
+        return [['id' => 21, 'status' => 'active']];
+    }
+    public function closeCompetition(int $seasonId, array $competition, string $reason): void
+    {
+        $this->calls[] = ['close', $seasonId, $competition['id'], $reason];
+    }
+    public function completeSeason(int $id): void
+    {
+        $this->calls[] = ['complete', $id];
+        $this->row = ['status' => 'completed'];
+    }
+    public function expiredIds(string $today): array
+    {
+        $this->calls[] = ['expired', $today];
+        return [7];
+    }
+    public function hasDependencies(int $id): bool
+    {
+        return $this->dependencies;
+    }
+    public function deleteSeason(int $id): void
+    {
+        $this->calls[] = ['delete', $id];
+    }
+    public function audit(int $id, string $action, array $payload): void
+    {
+        $this->calls[] = ['audit', $id, $action, $payload];
+    }
+};
+$lifeOwn = new class implements \StationX\Yugioh\Application\Shared\TransactionBoundary {
+    public int $runs = 0;
+    public function run(callable $operation): mixed
+    {
+        $this->runs++;
+        return $operation();
+    }
+};
+$lifeJoin = clone $lifeOwn;
+$life = new \StationX\Yugioh\Application\Seasons\SeasonLifecycle($lifeStore, $lifeOwn, $lifeJoin, $seasonClock);
+architectureCheck($life->close(7) === 1, 'Close count changed');
+architectureCheck(
+    $lifeStore->calls === [
+        ['find', 7, true],
+        ['competitions', 7],
+        ['close', 7, 21, 'manual'],
+        ['complete', 7],
+        ['audit', 7, 'close_season', ['reason' => 'manual', 'closed_events' => 1]],
+    ],
+    'Close ordering or audit changed',
+);
+architectureCheck($life->close(7) === 0, 'Repeated close must be idempotent');
+architectureCheck($lifeOwn->runs === 0 && $lifeJoin->runs === 2, 'Wrong close transaction boundary');
+$lifeStore->row = ['status' => 'active'];
+$lifeStore->calls = [];
+$life->closeExpired();
+architectureCheck($lifeStore->calls[0] === ['expired', '2026-11-26'], 'Expired date not injected');
+architectureCheck($lifeStore->calls[3] === ['close', 7, 21, 'period_ended'], 'Expired reason changed');
+$lifeStore->dependencies = true;
+$lifeStore->calls = [];
+architectureCheck(
+    $seasonOutcome(static fn() => $life->delete(7)) ===
+        'La temporada tiene eventos o divisiones asociados. Puedes finalizarla y conservar su historial.',
+    'Delete dependency guard changed',
+);
+architectureCheck($lifeStore->calls === [['find', 7, true]], 'Blocked delete wrote data');
+$lifeStore->dependencies = false;
+$lifeStore->calls = [];
+$life->delete(7);
+architectureCheck(
+    $lifeStore->calls === [['find', 7, true], ['delete', 7], ['audit', 7, 'delete_season', []]],
+    'Delete ordering or audit changed',
+);
+$lifeStore->calls = [];
+$lifeStore->row = ['status' => 'active'];
+$saveInput = [
+    'season_name' => 'Temporada',
+    'season_period' => 'annual',
+    'season_starts_on' => '2026-01-01',
+    'season_finalize' => true,
+];
+architectureCheck($life->save($saveInput) === 7, 'Save identity changed');
+architectureCheck(
+    $lifeStore->calls[0] === ['insert'] &&
+        $lifeStore->calls[1][2] === 'save_season' &&
+        $lifeStore->calls[2] === ['find', 7, true],
+    'Save and finalize ordering changed',
+);
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
