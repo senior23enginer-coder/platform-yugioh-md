@@ -86,7 +86,7 @@ Se separan emparejamientos, distribución de jornadas, consolidación del últim
 
 ## Generación de combates suizos, de copa y por modelo — 26 de noviembre de 2026
 
-Se separan los casos de uso de programación, las reglas de planificación y los puertos de lectura, escritura y servicios. Los adaptadores preservan las consultas, registros de generación, jornadas y reglas de admisión. Las fachadas conservan la apertura/propiedad de transacciones y el bloqueo serializado original. Las dependencias de motores nativos y la verificación de MySQL siguen pendientes.
+Se separan los casos de uso de programación, las reglas de planificación y los puertos de lectura, escritura y servicios. Los adaptadores preservan las consultas, registros de generación, jornadas y reglas de admisión. Las fachadas conservan la apertura/propiedad de transacciones y el bloqueo serializado original. Se verificaron tres huellas originales y 8.024 comprobaciones aisladas con PHP 8.4.24, incluyendo cupos impares, alternancia de lados, identidades de división y mesa, ligas de 2 a 20 grupos y calendarios de ida/vuelta. Los tres archivos de dominio utilizados coinciden con GitHub. Las dependencias de motores nativos, el formato, las pruebas integrales y MySQL siguen pendientes.
 
 ## Trabajo todavía pendiente para completar toda la plataforma
 
