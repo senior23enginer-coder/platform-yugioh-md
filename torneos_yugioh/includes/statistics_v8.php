@@ -66,7 +66,15 @@ function ygo_stats_calculate(
     array $publishedTiers = [],
     array $ffaMatches = [],
 ): array {
-    return \StationX\Yugioh\Infrastructure\Composition\StatisticsModule::replay()->execute($matches, $events, $honors, $policy, $cutoff, $publishedTiers, $ffaMatches);
+    return \StationX\Yugioh\Infrastructure\Composition\StatisticsModule::replay()->execute(
+        $matches,
+        $events,
+        $honors,
+        $policy,
+        $cutoff,
+        $publishedTiers,
+        $ffaMatches,
+    );
 }
 
 function ygo_stats_historical_tier(
@@ -102,7 +110,12 @@ function ygo_stats_achievements(
     array $honors = [],
     array $matches = [],
 ): array {
-    return \StationX\Yugioh\Domain\Statistics\AchievementPolicy::achievements($r, $events, $honors, $matches);
+    return \StationX\Yugioh\Domain\Statistics\AchievementPolicy::achievements(
+        $r,
+        $events,
+        $honors,
+        $matches,
+    );
 }
 
 /** Official global positions close once per calendar month, in Colombia time. */

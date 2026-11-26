@@ -21,7 +21,15 @@ final readonly class CalculateStatistics
         array $publishedTiers = [],
         array $ffaMatches = [],
     ): array {
-        return StatisticsReplay::calculate($this->cutoff($cutoff), $matches, $events, $honors, $policy, $publishedTiers, $ffaMatches);
+        return StatisticsReplay::calculate(
+            $this->cutoff($cutoff),
+            $matches,
+            $events,
+            $honors,
+            $policy,
+            $publishedTiers,
+            $ffaMatches,
+        );
     }
 
     public function freeForAll(array $matches, array $policy = [], ?string $cutoff = null): array
@@ -31,6 +39,10 @@ final readonly class CalculateStatistics
 
     private function cutoff(?string $cutoff): string
     {
-        return $cutoff ?? $this->clock->now()->setTimezone(new DateTimeZone('America/Bogota'))->format('Y-m-d H:i:s');
+        return $cutoff ??
+            $this->clock
+                ->now()
+                ->setTimezone(new DateTimeZone('America/Bogota'))
+                ->format('Y-m-d H:i:s');
     }
 }

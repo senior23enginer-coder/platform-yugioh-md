@@ -10,13 +10,15 @@ use InvalidArgumentException;
 
 final class StatisticsReplay
 {
-    public static function calculate(string $cutoff, array $matches,
-    array $events = [],
-    array $honors = [],
-    array $policy = [],
-    array $publishedTiers = [],
-    array $ffaMatches = []): array
-    {
+    public static function calculate(
+        string $cutoff,
+        array $matches,
+        array $events = [],
+        array $honors = [],
+        array $policy = [],
+        array $publishedTiers = [],
+        array $ffaMatches = [],
+    ): array {
         $policy = array_replace(StatisticsPolicy::defaults(), $policy);
         $policy['global_cadence'] = 'per_result';
         $policy['minimum_matches'] = 2;
@@ -127,7 +129,11 @@ final class StatisticsReplay
                 MetricAccumulator::accumulate($global[$key], $m, $side);
                 MetricAccumulator::accumulate($season[$sk], $m, $side);
                 $team = (int) $m['team_' . $sf . '_id'];
-                $teamMetrics[$team] ??= MetricFactory::metric($team, (int) $m['deck_' . $sf . '_id'], '*');
+                $teamMetrics[$team] ??= MetricFactory::metric(
+                    $team,
+                    (int) $m['deck_' . $sf . '_id'],
+                    '*',
+                );
                 MetricAccumulator::accumulate($teamMetrics[$team], $m, $side);
                 if ($ss === 1) {
                     $teamMetrics[$team]['formats'][$format] = true;
@@ -147,7 +153,10 @@ final class StatisticsReplay
                     (int) $m['deck_' . $of . '_id'],
                     $m['played_at'],
                 );
-                if ($ss === 1 && in_array($tier, ['Tier Zero', 'Tier 1', 'Tier 2', 'Tier 3'], true)) {
+                if (
+                    $ss === 1 &&
+                    in_array($tier, ['Tier Zero', 'Tier 1', 'Tier 2', 'Tier 3'], true)
+                ) {
                     $global[$key]['tiers_beaten'][$tier] = true;
                     if ($tier === 'Tier Zero') {
                         $global[$key]['tier_zero_wins']++;
@@ -158,7 +167,10 @@ final class StatisticsReplay
                     $global[$key]['versus_tiers'][$tier]['J']++;
                     $global[$key]['versus_tiers'][$tier]['score'] += $ss;
                 }
-                if ($ss === 1 && in_array($tier, ['Tier Zero', 'Tier 1', 'Tier 2', 'Tier 3'], true)) {
+                if (
+                    $ss === 1 &&
+                    in_array($tier, ['Tier Zero', 'Tier 1', 'Tier 2', 'Tier 3'], true)
+                ) {
                     $teamMetrics[$team]['tiers_beaten'][$tier] = true;
                     if ($tier === 'Tier Zero') {
                         $teamMetrics[$team]['tier_zero_wins']++;
@@ -212,7 +224,11 @@ final class StatisticsReplay
             ];
             $matchups[$mk]['J']++;
             $matchups[$mk][
-                $m['result'] === 'E' ? 'E' : (($score === 1) == ($lo === $m['team_a_id']) ? 'V' : 'D')
+                $m['result'] === 'E'
+                    ? 'E'
+                    : (($score === 1) == ($lo === $m['team_a_id'])
+                        ? 'V'
+                        : 'D')
             ]++;
             foreach ($m['duels'] ?? [] as $d) {
                 foreach (['A' => 'a', 'B' => 'b'] as $side => $suffix) {
@@ -267,7 +283,8 @@ final class StatisticsReplay
             );
             $inactive =
                 $r['last_at'] === null ||
-                (new DateTimeImmutable($r['last_at']))->diff(new DateTimeImmutable($cutoff))->days > 90;
+                (new DateTimeImmutable($r['last_at']))->diff(new DateTimeImmutable($cutoff))->days >
+                    90;
             $r['sample_state'] =
                 $r['J'] < $policy['minimum_matches'] ||
                 count($r['opponents']) < $policy['minimum_opponents']

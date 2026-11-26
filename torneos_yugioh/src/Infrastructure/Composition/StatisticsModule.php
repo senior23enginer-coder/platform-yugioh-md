@@ -42,6 +42,9 @@ final class StatisticsModule
 
     public static function view(PDO $pdo): ReadStatisticsView
     {
-        return new ReadStatisticsView(new PdoStatisticsRevisionStore($pdo), new ReadStatisticsSource(new PdoStatisticsSourceReader($pdo)));
+        return new ReadStatisticsView(
+            new PdoStatisticsRevisionStore($pdo),
+            new ReadStatisticsSource(new PdoStatisticsSourceReader($pdo)),
+        );
     }
 }

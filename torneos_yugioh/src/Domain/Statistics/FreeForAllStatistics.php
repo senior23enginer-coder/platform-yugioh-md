@@ -133,7 +133,11 @@ final class FreeForAllStatistics
                 ];
                 $ratings[$p['deck_id']] = $rows[$key]['rating'];
             }
-            $changes = FreeForAllStatistics::elo($ratings, (int) $m['winner'], (float) $policy['k']);
+            $changes = FreeForAllStatistics::elo(
+                $ratings,
+                (int) $m['winner'],
+                (float) $policy['k'],
+            );
             $entries = [];
             foreach ($players as $p) {
                 $key = $format . ':' . $p['deck_id'];
@@ -149,8 +153,9 @@ final class FreeForAllStatistics
                 }
                 if (
                     $r['last_at'] !== null &&
-                    (new DateTimeImmutable($r['last_at']))->diff(new DateTimeImmutable($m['played_at']))
-                        ->days > $policy['inactive_days']
+                    (new DateTimeImmutable($r['last_at']))->diff(
+                        new DateTimeImmutable($m['played_at']),
+                    )->days > $policy['inactive_days']
                 ) {
                     $r['reactivation'] = 0;
                 }

@@ -57,7 +57,16 @@ final class StatisticsProjection
         }
         if (in_array($collection, ['analytics', 'tops'], true)) {
             $rows = [
-                ['indicador', 'formato', 'equipo_id', 'valor', 'muestra', 'unidad', 'corte', 'version'],
+                [
+                    'indicador',
+                    'formato',
+                    'equipo_id',
+                    'valor',
+                    'muestra',
+                    'unidad',
+                    'corte',
+                    'version',
+                ],
             ];
             foreach (
                 $data['analytics'][$collection === 'tops' ? 'tops' : 'rankings'] ?? []
@@ -288,7 +297,10 @@ final class StatisticsProjection
                             if (
                                 in_array(
                                     (int) $value,
-                                    [(int) ($d['player_a_id'] ?? 0), (int) ($d['player_b_id'] ?? 0)],
+                                    [
+                                        (int) ($d['player_a_id'] ?? 0),
+                                        (int) ($d['player_b_id'] ?? 0),
+                                    ],
                                     true,
                                 )
                             ) {

@@ -55,14 +55,13 @@ final class TagStatistics
     }
 
     public static function accumulate(
-    array &$r,
-    array $m,
-    array $person,
-    array $opponents,
-    bool $won,
-    bool $draw,
-): void
-    {
+        array &$r,
+        array $m,
+        array $person,
+        array $opponents,
+        bool $won,
+        bool $draw,
+    ): void {
         $score = $won ? 1.0 : ($draw ? 0.5 : 0.0);
         $r['J']++;
         $r[$won ? 'V' : ($draw ? 'E' : 'D')]++;
@@ -76,8 +75,8 @@ final class TagStatistics
         }
         if (
             $r['last_at'] !== null &&
-            (new DateTimeImmutable($r['last_at']))->diff(new DateTimeImmutable($m['played_at']))->days >
-                90
+            (new DateTimeImmutable($r['last_at']))->diff(new DateTimeImmutable($m['played_at']))
+                ->days > 90
         ) {
             $r['reactivation'] = 0;
         }
@@ -99,13 +98,12 @@ final class TagStatistics
     }
 
     public static function apply(
-    array $m,
-    array $policy,
-    array &$global,
-    array &$profiles,
-    array &$ledger,
-): void
-    {
+        array $m,
+        array $policy,
+        array &$global,
+        array &$profiles,
+        array &$ledger,
+    ): void {
         $format = $m['format_id'];
         $left = $m['participants_a'];
         $right = $m['participants_b'];

@@ -23,11 +23,13 @@ final class MetricAccumulator
         $r['streak'] = $won ? $r['streak'] + 1 : 0;
         $r['best_streak'] = max($r['best_streak'], $r['streak']);
         $rival = (int) $m['team_' . $o . '_id'];
-        $r['opponents'][!empty($r['_season_scope']) ? (int) $m['deck_' . $o . '_id'] : $rival] = true;
+        $r['opponents'][
+            !empty($r['_season_scope']) ? (int) $m['deck_' . $o . '_id'] : $rival
+        ] = true;
         if (
             $r['last_at'] !== null &&
-            (new DateTimeImmutable($r['last_at']))->diff(new DateTimeImmutable($m['played_at']))->days >
-                90
+            (new DateTimeImmutable($r['last_at']))->diff(new DateTimeImmutable($m['played_at']))
+                ->days > 90
         ) {
             $r['reactivation'] = 0;
         }
@@ -169,7 +171,9 @@ final class MetricAccumulator
             }
             if ($method !== '') {
                 $r['closures'][$method][$dw === $side ? 'won' : ($dw === 'E' ? 'draw' : 'lost')] =
-                    ($r['closures'][$method][$dw === $side ? 'won' : ($dw === 'E' ? 'draw' : 'lost')] ??
+                    ($r['closures'][$method][
+                        $dw === $side ? 'won' : ($dw === 'E' ? 'draw' : 'lost')
+                    ] ??
                         0) +
                     1;
             }
@@ -211,7 +215,10 @@ final class MetricAccumulator
                 }
             }
         }
-        if (array_key_exists('official_points_' . $s, $m) && is_numeric($m['official_points_' . $s])) {
+        if (
+            array_key_exists('official_points_' . $s, $m) &&
+            is_numeric($m['official_points_' . $s])
+        ) {
             $r['official_points'] = ($r['official_points'] ?? 0) + $m['official_points_' . $s];
         }
     }

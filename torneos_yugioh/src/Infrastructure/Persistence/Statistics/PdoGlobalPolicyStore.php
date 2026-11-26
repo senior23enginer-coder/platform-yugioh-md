@@ -18,17 +18,25 @@ final readonly class PdoGlobalPolicyStore implements GlobalPolicyStore
 
     public function exists(): bool
     {
-        return (int) $this->pdo->query("SELECT COUNT(*) FROM sx_ygo_statistics_policy WHERE scope_key='global'")->fetchColumn() > 0;
+        return (int) $this->pdo
+            ->query("SELECT COUNT(*) FROM sx_ygo_statistics_policy WHERE scope_key='global'")
+            ->fetchColumn() > 0;
     }
 
     public function policy(): ?string
     {
-        $value = $this->pdo->query("SELECT payload FROM sx_ygo_statistics_policy WHERE scope_key='global'")->fetchColumn();
+        $value = $this->pdo
+            ->query("SELECT payload FROM sx_ygo_statistics_policy WHERE scope_key='global'")
+            ->fetchColumn();
         return $value === false ? null : (string) $value;
     }
 
     public function save(array $policy): void
     {
-        $this->pdo->prepare("INSERT IGNORE INTO sx_ygo_statistics_policy(scope_key,version,payload) VALUES('global',?,?)")->execute([StatisticsPolicy::VERSION, json_encode($policy)]);
+        $this->pdo
+            ->prepare(
+                "INSERT IGNORE INTO sx_ygo_statistics_policy(scope_key,version,payload) VALUES('global',?,?)",
+            )
+            ->execute([StatisticsPolicy::VERSION, json_encode($policy)]);
     }
 }

@@ -55,12 +55,11 @@ final class AchievementPolicy
     }
 
     public static function achievements(
-    array $r,
-    array $events = [],
-    array $honors = [],
-    array $matches = [],
-): array
-    {
+        array $r,
+        array $events = [],
+        array $honors = [],
+        array $matches = [],
+    ): array {
         $counts = [
             'match_wins' => $r['V'],
             'duel_wins' => $r['VG'],
@@ -130,7 +129,10 @@ final class AchievementPolicy
             $complete = true;
             $played = 0;
             foreach ($matches as $m) {
-                if ((int) ($m['season_id'] ?? 0) !== $seasonId || StatisticsPolicy::eligible($m) !== null) {
+                if (
+                    (int) ($m['season_id'] ?? 0) !== $seasonId ||
+                    StatisticsPolicy::eligible($m) !== null
+                ) {
                     continue;
                 }
                 $side =
@@ -199,7 +201,11 @@ final class AchievementPolicy
             ) {
                 $v = null;
             }
-            if (!$unlocked && $field === 'second_wins' && $r['first_n'] + $r['second_n'] < $r['JD']) {
+            if (
+                !$unlocked &&
+                $field === 'second_wins' &&
+                $r['first_n'] + $r['second_n'] < $r['JD']
+            ) {
                 $v = null;
             }
             $out[] = [

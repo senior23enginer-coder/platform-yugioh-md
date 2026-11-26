@@ -11,7 +11,10 @@ use StationX\Yugioh\Domain\Statistics\StatisticsRevisionPolicy;
 
 final readonly class ReadStatisticsView
 {
-    public function __construct(private StatisticsViewReader $reader, private ReadStatisticsSource $source) {}
+    public function __construct(
+        private StatisticsViewReader $reader,
+        private ReadStatisticsSource $source,
+    ) {}
 
     public function execute(): array
     {
@@ -23,7 +26,9 @@ final readonly class ReadStatisticsView
         $data['publications'] = $this->reader->publications(false);
         $data['analytics'] = Analytics::analytics($data);
         $data['revision_history'] = $this->reader->history();
-        $data['achievement_catalog'] = AchievementPolicy::achievements(MetricFactory::metric(0, 0, 'formato'));
+        $data['achievement_catalog'] = AchievementPolicy::achievements(
+            MetricFactory::metric(0, 0, 'formato'),
+        );
         $source = $this->source->execute();
         $data['available_cuts'] = [];
         $data['can_publish'] = false;

@@ -30,7 +30,14 @@ function ygo_stats_tag_accumulate(
     bool $won,
     bool $draw,
 ): void {
-    \StationX\Yugioh\Domain\Statistics\TagStatistics::accumulate($r, $m, $person, $opponents, $won, $draw);
+    \StationX\Yugioh\Domain\Statistics\TagStatistics::accumulate(
+        $r,
+        $m,
+        $person,
+        $opponents,
+        $won,
+        $draw,
+    );
 }
 
 function ygo_stats_apply_tag(
@@ -40,10 +47,20 @@ function ygo_stats_apply_tag(
     array &$profiles,
     array &$ledger,
 ): void {
-    \StationX\Yugioh\Domain\Statistics\TagStatistics::apply($m, $policy, $global, $profiles, $ledger);
+    \StationX\Yugioh\Domain\Statistics\TagStatistics::apply(
+        $m,
+        $policy,
+        $global,
+        $profiles,
+        $ledger,
+    );
 }
 
 function ygo_stats_calculate_ffa(array $matches, array $policy = [], ?string $cutoff = null): array
 {
-    return \StationX\Yugioh\Infrastructure\Composition\StatisticsModule::replay()->freeForAll($matches, $policy, $cutoff);
+    return \StationX\Yugioh\Infrastructure\Composition\StatisticsModule::replay()->freeForAll(
+        $matches,
+        $policy,
+        $cutoff,
+    );
 }

@@ -34,7 +34,13 @@ final class MetagamePolicy
         $IC =
             $r['duels_complete'] && $RD !== null && $R !== null
                 ? array_sum(
-                    array_map(static fn($w, $value) => $w * $value, $weights, [$R, $EL, $C, $RE, $RD]),
+                    array_map(static fn($w, $value) => $w * $value, $weights, [
+                        $R,
+                        $EL,
+                        $C,
+                        $RE,
+                        $RD,
+                    ]),
                 )
                 : null;
         $tier = 'SIN CLASIFICAR';

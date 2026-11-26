@@ -1914,14 +1914,18 @@ architectureCheck($deckProfilePolicy::team(['team_id' => ''], 7) === 0, 'Explici
 
 // Statistics replay accepts an explicit clock, not HTTP or persistence.
 $statsClock = new class implements \StationX\Yugioh\Application\Shared\Clock {
-    public function now(): DateTimeImmutable {
+    public function now(): DateTimeImmutable
+    {
         return new DateTimeImmutable('2026-11-26T17:00:00+00:00');
     }
 };
 $statsReplay = new \StationX\Yugioh\Application\Statistics\CalculateStatistics($statsClock);
 $emptyStats = $statsReplay->execute([]);
 architectureCheck($emptyStats['cutoff'] === '2026-11-26 12:00:00', 'Statistics clock changed');
-architectureCheck($emptyStats['global'] === [] && $emptyStats['ledger'] === [], 'Empty ranking invented results');
+architectureCheck(
+    $emptyStats['global'] === [] && $emptyStats['ledger'] === [],
+    'Empty ranking invented results',
+);
 architectureCheck($statsReplay->freeForAll([])['ranking'] === [], 'Empty FFA invented results');
 architectureCheck(
     \StationX\Yugioh\Domain\Statistics\StatisticsPolicy::defaults()['base_global'] === 1000,
@@ -1934,18 +1938,57 @@ architectureCheck(
 
 // Revision identities, unknown evidence and empty source projections are stable.
 $revisionPolicy = \StationX\Yugioh\Domain\Statistics\StatisticsRevisionPolicy::class;
-architectureCheck($revisionPolicy::canonical(['b' => 1, 'a' => 2]) === '{"a":2,"b":1}', 'Canonical statistics hash changed');
-architectureCheck($revisionPolicy::publicValues(['name' => 'Logro secreto', 'code' => 'hidden'])['code'] === 'secret_' . substr(hash('sha256', 'hidden'), 0, 12), 'Secret achievement leaked');
-$emptySource = \StationX\Yugioh\Domain\Statistics\StatisticsSourceProjection::build([], [], [], [], [], [], [], []);
-architectureCheck($emptySource === ['matches' => [], 'events' => [], 'honors' => [], 'seasons' => [], 'ffa_matches' => []], 'Empty source projection changed');
+architectureCheck(
+    $revisionPolicy::canonical(['b' => 1, 'a' => 2]) === '{"a":2,"b":1}',
+    'Canonical statistics hash changed',
+);
+architectureCheck(
+    $revisionPolicy::publicValues(['name' => 'Logro secreto', 'code' => 'hidden'])['code'] ===
+        'secret_' . substr(hash('sha256', 'hidden'), 0, 12),
+    'Secret achievement leaked',
+);
+$emptySource = \StationX\Yugioh\Domain\Statistics\StatisticsSourceProjection::build(
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+);
+architectureCheck(
+    $emptySource === [
+        'matches' => [],
+        'events' => [],
+        'honors' => [],
+        'seasons' => [],
+        'ffa_matches' => [],
+    ],
+    'Empty source projection changed',
+);
 
 // The fixed global policy preserves its version and rejects unsupported importance values.
 $globalPolicy = \StationX\Yugioh\Domain\Statistics\GlobalPolicyConfiguration::class;
 $policy = $globalPolicy::build('2026-10-18', ['BONUS' => 25]);
 architectureCheck($policy['global_anchor'] === '2026-10-18', 'Global anchor changed');
-architectureCheck($seasonOutcome(static fn() => $globalPolicy::build('2026-02-30', [])) !== null, 'Invalid global anchor accepted');
-architectureCheck($seasonOutcome(static fn() => $globalPolicy::build('2026-10-18', ['FULL' => 99])) !== null, 'Invalid importance accepted');
-architectureCheck($seasonOutcome(static fn() => $globalPolicy::assertUnchanged(json_encode($policy), $globalPolicy::build('2026-10-19', []))) !== null, 'Fixed global policy overwritten');
+architectureCheck(
+    $seasonOutcome(static fn() => $globalPolicy::build('2026-02-30', [])) !== null,
+    'Invalid global anchor accepted',
+);
+architectureCheck(
+    $seasonOutcome(static fn() => $globalPolicy::build('2026-10-18', ['FULL' => 99])) !== null,
+    'Invalid importance accepted',
+);
+architectureCheck(
+    $seasonOutcome(
+        static fn() => $globalPolicy::assertUnchanged(
+            json_encode($policy),
+            $globalPolicy::build('2026-10-19', []),
+        ),
+    ) !== null,
+    'Fixed global policy overwritten',
+);
 
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
