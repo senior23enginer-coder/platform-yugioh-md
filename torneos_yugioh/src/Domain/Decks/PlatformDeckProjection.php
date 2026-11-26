@@ -17,17 +17,34 @@ final class PlatformDeckProjection
                 'cup' => (string) $division['cup_name'],
                 'deck_count' => (int) ($division['deck_count'] ?? 0),
                 'tier_order' => (int) ($division['tier_order'] ?? 0),
-                'accent' => (string) ($division['accent'] ?: ($fallbackDivisions[$code]['accent'] ?? '#36d8ff')),
-                'description' => (string) ($division['description'] ?: ($fallbackDivisions[$code]['description'] ?? 'Evento editable.')),
+                'accent' =>
+                    (string) ($division['accent'] ?:
+                    $fallbackDivisions[$code]['accent'] ?? '#36d8ff'),
+                'description' =>
+                    (string) ($division['description'] ?:
+                    $fallbackDivisions[$code]['description'] ?? 'Evento editable.'),
                 'starts_on' => (string) ($division['starts_on'] ?? ''),
                 'ends_on' => (string) ($division['ends_on'] ?? ''),
                 'promotion_slots' => (int) ($division['promotion_slots'] ?? 2),
                 'relegation_slots' => (int) ($division['relegation_slots'] ?? 2),
-                'promotion_to_division_id' => $division['promotion_to_division_id'] !== null ? (int) $division['promotion_to_division_id'] : null,
-                'relegation_to_division_id' => $division['relegation_to_division_id'] !== null ? (int) $division['relegation_to_division_id'] : null,
-                'league_competition_id' => $division['league_competition_id'] !== null ? (int) $division['league_competition_id'] : null,
-                'source_qualifier_id' => $division['source_qualifier_id'] !== null ? (int) $division['source_qualifier_id'] : null,
-                'rank_from' => $division['rank_from'] !== null ? (int) $division['rank_from'] : null,
+                'promotion_to_division_id' =>
+                    $division['promotion_to_division_id'] !== null
+                        ? (int) $division['promotion_to_division_id']
+                        : null,
+                'relegation_to_division_id' =>
+                    $division['relegation_to_division_id'] !== null
+                        ? (int) $division['relegation_to_division_id']
+                        : null,
+                'league_competition_id' =>
+                    $division['league_competition_id'] !== null
+                        ? (int) $division['league_competition_id']
+                        : null,
+                'source_qualifier_id' =>
+                    $division['source_qualifier_id'] !== null
+                        ? (int) $division['source_qualifier_id']
+                        : null,
+                'rank_from' =>
+                    $division['rank_from'] !== null ? (int) $division['rank_from'] : null,
                 'rank_to' => $division['rank_to'] !== null ? (int) $division['rank_to'] : null,
                 'logo_url' => (string) ($division['logo_url'] ?? ''),
                 'created_at' => (string) ($division['created_at'] ?? ''),
@@ -114,15 +131,18 @@ final class PlatformDeckProjection
                 'logo_url' => $deck['logo_url'] ?? '',
             ];
         }
-        $divisions = ['CLASIFICATORIO' => [
-            'id' => 0,
-            'name' => 'Torneo clasificatorio inicial',
-            'short' => 'CLASIFICATORIO',
-            'cup' => 'Ranking de entrada a divisiones',
-            'accent' => '#36d8ff',
-            'description' => 'Fase previa gestionable con minimo 3 combates por deck.',
-            'decks' => $qualifierDeckRows,
-        ]] + $divisions;
+        $divisions =
+            [
+                'CLASIFICATORIO' => [
+                    'id' => 0,
+                    'name' => 'Torneo clasificatorio inicial',
+                    'short' => 'CLASIFICATORIO',
+                    'cup' => 'Ranking de entrada a divisiones',
+                    'accent' => '#36d8ff',
+                    'description' => 'Fase previa gestionable con minimo 3 combates por deck.',
+                    'decks' => $qualifierDeckRows,
+                ],
+            ] + $divisions;
         return ['divisions' => $divisions, 'allDecks' => $allDecks];
     }
 }

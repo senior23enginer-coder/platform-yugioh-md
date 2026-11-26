@@ -2257,9 +2257,18 @@ architectureCheck(
 // Read model projections preserve the virtual qualifier and empty fixture groups.
 $platformDeck = \StationX\Yugioh\Domain\Decks\PlatformDeckProjection::class;
 $readDecks = $platformDeck::decks($platformDeck::divisions([], []), []);
-architectureCheck(array_keys($readDecks['divisions']) === ['CLASIFICATORIO'] && $readDecks['allDecks'] === [], 'Virtual qualifier projection changed');
-$platformFixtures = \StationX\Yugioh\Domain\Matches\PlatformFixtureProjection::build([], $readDecks['divisions']);
-architectureCheck($platformFixtures === ['fixtures' => ['CLASIFICATORIO' => []], 'deckMatchCounts' => []], 'Empty fixture projection changed');
+architectureCheck(
+    array_keys($readDecks['divisions']) === ['CLASIFICATORIO'] && $readDecks['allDecks'] === [],
+    'Virtual qualifier projection changed',
+);
+$platformFixtures = \StationX\Yugioh\Domain\Matches\PlatformFixtureProjection::build(
+    [],
+    $readDecks['divisions'],
+);
+architectureCheck(
+    $platformFixtures === ['fixtures' => ['CLASIFICATORIO' => []], 'deckMatchCounts' => []],
+    'Empty fixture projection changed',
+);
 
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {

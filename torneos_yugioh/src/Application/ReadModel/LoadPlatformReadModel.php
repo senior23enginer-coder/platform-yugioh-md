@@ -24,10 +24,16 @@ final readonly class LoadPlatformReadModel
         $divisions = PlatformDeckProjection::divisions($dbDivisions, $fallbackDivisions);
 
         $deckRows = $this->reader->decks();
-        ['divisions' => $divisions, 'allDecks' => $allDecks] = PlatformDeckProjection::decks($divisions, $deckRows);
+        ['divisions' => $divisions, 'allDecks' => $allDecks] = PlatformDeckProjection::decks(
+            $divisions,
+            $deckRows,
+        );
 
         $matchRows = $this->reader->matches();
-        ['fixtures' => $fixtures, 'deckMatchCounts' => $deckMatchCounts] = PlatformFixtureProjection::build($matchRows, $divisions);
+        [
+            'fixtures' => $fixtures,
+            'deckMatchCounts' => $deckMatchCounts,
+        ] = PlatformFixtureProjection::build($matchRows, $divisions);
 
         $teams = $this->reader->teams();
         $competitions = $this->reader->competitions();
@@ -46,17 +52,26 @@ final readonly class LoadPlatformReadModel
         }
         $deckTeamById = [];
         foreach ($allDecks as $deck) {
-            $deckTeamById[(int) ($deck['id'] ?? 0)] = $deck['team_id'] !== null ? (int) $deck['team_id'] : null;
+            $deckTeamById[(int) ($deck['id'] ?? 0)] =
+                $deck['team_id'] !== null ? (int) $deck['team_id'] : null;
         }
         $competitionDependencies = $this->services->dependencies();
         $competitionGateById = [];
         $progressGroups = $this->services->progressGroups();
         foreach ($competitions as &$competition) {
             $competitionId = (int) $competition['id'];
-            $competition['progress'] = $this->services->progress($progressGroups[$competitionId] ?? [], in_array((string)$competition['type'], ['cup','final'], true));
-            $associatedDivisionIds = array_values(array_unique($leagueDivisionIdsByCompetition[$competitionId] ?? []));
+            $competition['progress'] = $this->services->progress(
+                $progressGroups[$competitionId] ?? [],
+                in_array((string) $competition['type'], ['cup', 'final'], true),
+            );
+            $associatedDivisionIds = array_values(
+                array_unique($leagueDivisionIdsByCompetition[$competitionId] ?? []),
+            );
             $primaryDivisionId = (int) ($competition['division_id'] ?? 0);
-            if ($primaryDivisionId > 0 && !in_array($primaryDivisionId, $associatedDivisionIds, true)) {
+            if (
+                $primaryDivisionId > 0 &&
+                !in_array($primaryDivisionId, $associatedDivisionIds, true)
+            ) {
                 array_unshift($associatedDivisionIds, $primaryDivisionId);
             }
             $competition['division_ids'] = $associatedDivisionIds;
@@ -66,7 +81,10 @@ final readonly class LoadPlatformReadModel
             $competition['can_execute'] = $gate['can_execute'];
             $competition['blocked_reason'] = $gate['can_execute'] ? '' : $gate['message'];
             try {
-                $allowedDeckIds = $this->services->allowedDecks($competitionId, (int) ($competition['division_id'] ?? 0));
+                $allowedDeckIds = $this->services->allowedDecks(
+                    $competitionId,
+                    (int) ($competition['division_id'] ?? 0),
+                );
                 $standings = $this->services->standings($competitionId);
             } catch (Throwable $error) {
                 $allowedDeckIds = [];
@@ -86,7 +104,11 @@ final readonly class LoadPlatformReadModel
             $competition['participant_team_count'] = count($participantTeamIds);
             $competition['ranking'] = $standings;
             $competition['ranking_ready'] = count($standings) > 0;
-            $competition['top_cut'] = array_slice($standings, 0, (string) ($competition['type'] ?? '') === 'world' ? 24 : 16);
+            $competition['top_cut'] = array_slice(
+                $standings,
+                0,
+                (string) ($competition['type'] ?? '') === 'world' ? 24 : 16,
+            );
             $competitionGateById[$competitionId] = $gate;
         }
         unset($competition);
@@ -94,9 +116,13 @@ final readonly class LoadPlatformReadModel
             foreach ($rounds as &$round) {
                 foreach ($round['matches'] as &$match) {
                     $competitionId = (int) ($match['competition_id'] ?? 0);
-                    $gate = $competitionId > 0 ? ($competitionGateById[$competitionId] ?? $this->services->gate($competitionId)) : ['can_execute' => true, 'message' => 'Sin competencia asociada.'];
+                    $gate =
+                        $competitionId > 0
+                            ? $competitionGateById[$competitionId] ??
+                                $this->services->gate($competitionId)
+                            : ['can_execute' => true, 'message' => 'Sin competencia asociada.'];
                     $match['competition_can_execute'] = (bool) ($gate['can_execute'] ?? true);
-                    $match['competition_blocked_reason'] = (string) (($gate['message'] ?? '') ?: '');
+                    $match['competition_blocked_reason'] = (string) ($gate['message'] ?? '' ?: '');
                 }
                 unset($match);
             }
@@ -119,7 +145,12 @@ final readonly class LoadPlatformReadModel
         }
         foreach ($gameRules as &$gameRule) {
             $gameRule['conditions'] = $conditionsByRule[(int) ($gameRule['id'] ?? 0)] ?? [];
-            $gameRule['condition_count'] = count(array_filter($gameRule['conditions'], static fn($condition) => !empty($condition['active'])));
+            $gameRule['condition_count'] = count(
+                array_filter(
+                    $gameRule['conditions'],
+                    static fn($condition) => !empty($condition['active']),
+                ),
+            );
         }
         unset($gameRule);
         $statusHistory = $this->reader->statusHistory();
@@ -141,7 +172,7 @@ final readonly class LoadPlatformReadModel
         $rankingHistory = $this->reader->rankingHistory();
         $eventSummaries = $this->reader->eventSummaries();
 
-        $allDecks=$this->services->deckMetadata($allDecks,$cards,$deckAnalysisProfiles);
+        $allDecks = $this->services->deckMetadata($allDecks, $cards, $deckAnalysisProfiles);
         return [
             'divisions' => $divisions,
             'fixtures' => $fixtures,
