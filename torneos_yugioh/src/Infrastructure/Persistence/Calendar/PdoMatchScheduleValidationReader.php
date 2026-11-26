@@ -7,7 +7,9 @@ use PDO;
 use StationX\Yugioh\Application\Calendar\MatchScheduleValidationReader;
 use StationX\Yugioh\Application\Calendar\ResultDateReader;
 
-final readonly class PdoMatchScheduleValidationReader implements ResultDateReader, MatchScheduleValidationReader
+final readonly class PdoMatchScheduleValidationReader implements
+    ResultDateReader,
+    MatchScheduleValidationReader
 {
     public function __construct(private PDO $pdo) {}
 
@@ -18,7 +20,9 @@ final readonly class PdoMatchScheduleValidationReader implements ResultDateReade
 
     public function match(int $matchId): ?array
     {
-        $stmt = $this->pdo->prepare('SELECT id, competition_id, scheduled_on, starts_at, status FROM sx_ygo_matches WHERE id = ? LIMIT 1');
+        $stmt = $this->pdo->prepare(
+            'SELECT id, competition_id, scheduled_on, starts_at, status FROM sx_ygo_matches WHERE id = ? LIMIT 1',
+        );
         $stmt->execute([$matchId]);
         return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
     }
@@ -30,7 +34,9 @@ final readonly class PdoMatchScheduleValidationReader implements ResultDateReade
 
     public function participants(int $matchId, array $explicitIds): array
     {
-        $stmt = $this->pdo->prepare('SELECT deck_a_id,deck_b_id,deck_c_id,deck_d_id,deck_e_id,deck_f_id FROM sx_ygo_matches WHERE id=?');
+        $stmt = $this->pdo->prepare(
+            'SELECT deck_a_id,deck_b_id,deck_c_id,deck_d_id,deck_e_id,deck_f_id FROM sx_ygo_matches WHERE id=?',
+        );
         $stmt->execute([$matchId]);
         return $explicitIds ?: ($stmt->fetch(PDO::FETCH_ASSOC) ?: []);
     }
@@ -40,7 +46,9 @@ final readonly class PdoMatchScheduleValidationReader implements ResultDateReade
         if (!\ygo_table_exists($this->pdo, 'sx_ygo_ffa_matches')) {
             return [];
         }
-        $stmt = $this->pdo->prepare('SELECT state_json,status FROM sx_ygo_ffa_matches WHERE scheduled_on=?');
+        $stmt = $this->pdo->prepare(
+            'SELECT state_json,status FROM sx_ygo_ffa_matches WHERE scheduled_on=?',
+        );
         $stmt->execute([$date]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -52,14 +60,18 @@ final readonly class PdoMatchScheduleValidationReader implements ResultDateReade
 
     public function busyMatches(string $date, int $matchId): array
     {
-        $stmt = $this->pdo->prepare('SELECT deck_a_id,deck_b_id,deck_c_id,deck_d_id,deck_e_id,deck_f_id FROM sx_ygo_matches WHERE scheduled_on=? AND id<>?');
+        $stmt = $this->pdo->prepare(
+            'SELECT deck_a_id,deck_b_id,deck_c_id,deck_d_id,deck_e_id,deck_f_id FROM sx_ygo_matches WHERE scheduled_on=? AND id<>?',
+        );
         $stmt->execute([$date, $matchId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function pendingCount(string $date, int $matchId): int
     {
-        $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM sx_ygo_matches WHERE scheduled_on = ? AND id <> ? AND status <> 'FINALIZADA'");
+        $stmt = $this->pdo->prepare(
+            "SELECT COUNT(*) FROM sx_ygo_matches WHERE scheduled_on = ? AND id <> ? AND status <> 'FINALIZADA'",
+        );
         $stmt->execute([$date, $matchId]);
         return (int) $stmt->fetchColumn();
     }

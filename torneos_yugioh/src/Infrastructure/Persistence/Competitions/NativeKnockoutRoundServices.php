@@ -20,9 +20,23 @@ final readonly class NativeKnockoutRoundServices implements KnockoutRoundService
         \ygo_save_setting($this->pdo, $key, $value);
     }
 
-    public function scheduleAdmission(array $competition, string $start, string $pattern, int $limit, string $phase, int $round): void
-    {
-        \ygo_admission_schedule_stage($this->pdo, $competition, $start, $pattern, $limit, $phase, $round);
+    public function scheduleAdmission(
+        array $competition,
+        string $start,
+        string $pattern,
+        int $limit,
+        string $phase,
+        int $round,
+    ): void {
+        \ygo_admission_schedule_stage(
+            $this->pdo,
+            $competition,
+            $start,
+            $pattern,
+            $limit,
+            $phase,
+            $round,
+        );
     }
 
     public function scheduleFixedRound(int $competitionId, string $phase, int $round): void
@@ -32,6 +46,11 @@ final readonly class NativeKnockoutRoundServices implements KnockoutRoundService
 
     public function rebuildCalendar(int $seasonId, int $competitionId, string $phase): void
     {
-        \ygo_rebuild_competition_calendar_events_from_matches($this->pdo, $seasonId, $competitionId, $phase);
+        \ygo_rebuild_competition_calendar_events_from_matches(
+            $this->pdo,
+            $seasonId,
+            $competitionId,
+            $phase,
+        );
     }
 }

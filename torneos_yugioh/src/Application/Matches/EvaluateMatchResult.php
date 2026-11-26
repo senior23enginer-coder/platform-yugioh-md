@@ -31,6 +31,12 @@ final readonly class EvaluateMatchResult
         }
         $phase = $this->events->phase($matchId);
         $workflow = $this->events->workflow($competition);
-        return EventResultPolicy::apply($competition, $phase, $workflow, $evaluation, $currentValues);
+        return EventResultPolicy::apply(
+            $competition,
+            $phase,
+            $workflow,
+            $evaluation,
+            $currentValues,
+        );
     }
 }

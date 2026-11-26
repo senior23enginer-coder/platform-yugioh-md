@@ -7,8 +7,12 @@ final class CompetitionHonorPolicy
 {
     public static function usesFinal(array $competition): bool
     {
-        return in_array((string) ($competition['type'] ?? ''), ['cup', 'final', 'world'], true)
-            || in_array((string) ($competition['execution_model'] ?? ''), ['single_elimination', 'double_elimination', 'bracket', 'series'], true);
+        return in_array((string) ($competition['type'] ?? ''), ['cup', 'final', 'world'], true) ||
+            in_array(
+                (string) ($competition['execution_model'] ?? ''),
+                ['single_elimination', 'double_elimination', 'bracket', 'series'],
+                true,
+            );
     }
 
     public static function fromFinal(array $final): array

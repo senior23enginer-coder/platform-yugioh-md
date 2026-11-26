@@ -9,7 +9,12 @@ final class LegacyPhasePlan
     {
         $winnersByDivision = [];
         foreach ($rows as $row) {
-            $winner = $row['result'] === 'A' ? (int) $row['deck_a_id'] : ($row['result'] === 'B' ? (int) $row['deck_b_id'] : 0);
+            $winner =
+                $row['result'] === 'A'
+                    ? (int) $row['deck_a_id']
+                    : ($row['result'] === 'B'
+                        ? (int) $row['deck_b_id']
+                        : 0);
             if ($winner > 0) {
                 $winnersByDivision[(int) $row['division_id']][] = $winner;
             }
@@ -24,7 +29,7 @@ final class LegacyPhasePlan
             yield [
                 'slot' => $slot,
                 'label' => 'Ronda ' . $nextRound,
-                'displayOrder' => (($nextRound - 1) * 100) + $slot,
+                'displayOrder' => ($nextRound - 1) * 100 + $slot,
                 'deckA' => $winners[$i],
                 'deckB' => $winners[$i + 1],
             ];

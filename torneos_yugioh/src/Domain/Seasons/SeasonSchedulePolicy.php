@@ -11,7 +11,9 @@ final class SeasonSchedulePolicy
     public static function requireOpen(?array $season, bool $playing, string $today): array
     {
         if (!$season) {
-            throw new InvalidArgumentException('El evento debe estar vinculado a una temporada existente.');
+            throw new InvalidArgumentException(
+                'El evento debe estar vinculado a una temporada existente.',
+            );
         }
         if (
             in_array($season['status'], ['completed', 'archived'], true) ||
@@ -46,7 +48,9 @@ final class SeasonSchedulePolicy
             }
         }
         if ($start && $end && $end < $start) {
-            throw new InvalidArgumentException('El fin del evento no puede ser anterior a su inicio.');
+            throw new InvalidArgumentException(
+                'El fin del evento no puede ser anterior a su inicio.',
+            );
         }
     }
 }

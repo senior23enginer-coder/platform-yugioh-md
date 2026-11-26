@@ -47,7 +47,13 @@ final class TeamProfile
             'exodia' => ['Fivefold Ascension', 'FBO', '#d97706', '#fef3c7', 'FO'],
             'blue dragon' => ['Azure Sovereigns', 'ADL', '#2563eb', '#bfdbfe', 'AD'],
             'dark world' => ['Underworld Renegades', 'DWO', '#1f2937', '#a855f7', 'DW'],
-            'resonator red dragon archfiend' => ['Scarlet Tyrants', 'RDD', '#dc2626', '#111827', 'RD'],
+            'resonator red dragon archfiend' => [
+                'Scarlet Tyrants',
+                'RDD',
+                '#dc2626',
+                '#111827',
+                'RD',
+            ],
             'traptrix ragnaraika' => ['Thornveil Brood', 'TVS', '#16a34a', '#f472b6', 'TS'],
             'cyber dragon pure' => ['Ironfang Rebellion', 'CDA', '#06b6d4', '#e5e7eb', 'CD'],
             'six samurai' => ['Last Shogun Clan', 'SSC', '#dc2626', '#facc15', 'SC'],
@@ -55,7 +61,13 @@ final class TeamProfile
             'volcanic' => ['Ashen Cataclysm', 'VLE', '#ef4444', '#f97316', 'VE'],
             'horus' => ['Sunborn Dynasty', 'HSE', '#f59e0b', '#fde68a', 'HS'],
         ];
-        $profile = $profiles[$normalized] ?? [$base . ' Club', strtoupper(substr(preg_replace('/[^A-Za-z0-9]/', '', $base), 0, 3)) ?: 'YMD', '#36d8ff', '#ffd25f', strtoupper(substr($base, 0, 2))];
+        $profile = $profiles[$normalized] ?? [
+            $base . ' Club',
+            strtoupper(substr(preg_replace('/[^A-Za-z0-9]/', '', $base), 0, 3)) ?: 'YMD',
+            '#36d8ff',
+            '#ffd25f',
+            strtoupper(substr($base, 0, 2)),
+        ];
         return [
             'name' => $profile[0],
             'code' => $profile[1],

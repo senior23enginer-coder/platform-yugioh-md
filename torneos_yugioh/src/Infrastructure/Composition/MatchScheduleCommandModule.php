@@ -12,6 +12,9 @@ final class MatchScheduleCommandModule
 {
     public static function create(PDO $pdo): SaveMatchSchedule
     {
-        return new SaveMatchSchedule(new PdoMatchScheduleStore($pdo), new NativeMatchScheduleServices($pdo));
+        return new SaveMatchSchedule(
+            new PdoMatchScheduleStore($pdo),
+            new NativeMatchScheduleServices($pdo),
+        );
     }
 }

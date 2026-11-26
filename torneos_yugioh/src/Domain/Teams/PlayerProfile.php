@@ -17,6 +17,12 @@ final class PlayerProfile
         if ($name === '') {
             throw new RuntimeException('El nombre del jugador es obligatorio.');
         }
-        return ['id' => $id, 'name' => $name, 'alias' => $alias, 'teamId' => $teamId, 'deckIds' => $deckIds];
+        return [
+            'id' => $id,
+            'name' => $name,
+            'alias' => $alias,
+            'teamId' => $teamId,
+            'deckIds' => $deckIds,
+        ];
     }
 }

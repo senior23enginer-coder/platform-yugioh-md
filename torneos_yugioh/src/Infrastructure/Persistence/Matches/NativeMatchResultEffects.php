@@ -17,7 +17,12 @@ final readonly class NativeMatchResultEffects implements MatchResultEffects
 
     public function persistStandings(int $competitionId): void
     {
-        \ygo_persist_competition_standings($this->pdo, \ygo_current_season_id($this->pdo), $competitionId, 'save_match_result');
+        \ygo_persist_competition_standings(
+            $this->pdo,
+            \ygo_current_season_id($this->pdo),
+            $competitionId,
+            'save_match_result',
+        );
     }
 
     public function syncStatistics(int $competitionId, int $matchId): void

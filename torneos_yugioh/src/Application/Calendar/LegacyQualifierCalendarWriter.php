@@ -11,7 +11,13 @@ interface LegacyQualifierCalendarWriter
 
     public function insertFixtures(int $divisionId, ?int $competitionId, iterable $rows): int;
 
-    public function insertJourneys(int $seasonId, int $divisionId, ?int $competitionId, array $days, string $startTime): void;
+    public function insertJourneys(
+        int $seasonId,
+        int $divisionId,
+        ?int $competitionId,
+        array $days,
+        string $startTime,
+    ): void;
 
     public function activate(int $competitionId, string $startDate, string $endDate): void;
 

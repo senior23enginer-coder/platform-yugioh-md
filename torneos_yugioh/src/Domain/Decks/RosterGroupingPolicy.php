@@ -7,11 +7,18 @@ final class RosterGroupingPolicy
 {
     public static function normalize(array $ids): array
     {
-        return array_values(array_unique(array_filter(array_map('intval', $ids), static fn(int $id): bool => $id > 0)));
+        return array_values(
+            array_unique(
+                array_filter(array_map('intval', $ids), static fn(int $id): bool => $id > 0),
+            ),
+        );
     }
 
-    public static function group(array $selectedDeckIds, int $participantsPerSide, array $rows): array
-    {
+    public static function group(
+        array $selectedDeckIds,
+        int $participantsPerSide,
+        array $rows,
+    ): array {
         $teamByDeck = [];
         foreach ($rows as $row) {
             $teamByDeck[(int) $row['id']] = (int) $row['team_id'];

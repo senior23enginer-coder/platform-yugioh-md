@@ -129,7 +129,11 @@ formCheck(
     (int) $pdo->query("SELECT COUNT(*) FROM sqlite_master WHERE type='table'")->fetchColumn() === 0,
     'Command composition initialized persistence',
 );
-$portedCommands = json_decode(file_get_contents(__DIR__ . '/fixtures/ported-form-commands.json'), true, flags: JSON_THROW_ON_ERROR);
+$portedCommands = json_decode(
+    file_get_contents(__DIR__ . '/fixtures/ported-form-commands.json'),
+    true,
+    flags: JSON_THROW_ON_ERROR,
+);
 $comparisons = [];
 foreach ($originals['branches'] as $branch) {
     $original = 'function action(){' . $branch['body'] . '}';
@@ -156,7 +160,9 @@ foreach ($originals['branches'] as $branch) {
         );
         $referenceSource = $ported['original_source'];
         $start = strpos($referenceSource, '    protected function perform(');
-        if ($start === false) throw new RuntimeException('Missing original handler evidence');
+        if ($start === false) {
+            throw new RuntimeException('Missing original handler evidence');
+        }
         $source = substr($referenceSource, $start, strrpos($referenceSource, "\n}") - $start);
     }
     preg_match_all(

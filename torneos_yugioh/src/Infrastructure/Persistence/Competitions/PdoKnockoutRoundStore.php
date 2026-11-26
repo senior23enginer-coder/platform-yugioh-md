@@ -12,7 +12,9 @@ final readonly class PdoKnockoutRoundStore implements KnockoutRoundStore
 
     public function exists(int $competitionId, string $phase, int $round): bool
     {
-        $stmt = $this->pdo->prepare('SELECT COUNT(*) FROM sx_ygo_matches WHERE competition_id = ? AND phase = ? AND round_number = ?');
+        $stmt = $this->pdo->prepare(
+            'SELECT COUNT(*) FROM sx_ygo_matches WHERE competition_id = ? AND phase = ? AND round_number = ?',
+        );
         $stmt->execute([$competitionId, $phase, $round]);
         return (int) $stmt->fetchColumn() > 0;
     }
@@ -57,7 +59,15 @@ final readonly class PdoKnockoutRoundStore implements KnockoutRoundStore
 
     public function auditBye(int $competitionId, int $round, int $deckId): void
     {
-        $this->pdo->prepare('INSERT INTO sx_ygo_audit_log(entity_type,entity_id,action,payload) VALUES(?,?,?,?)')
-            ->execute(['competition', $competitionId, 'cup_round_bye', json_encode(['round' => $round, 'deck_id' => $deckId])]);
+        $this->pdo
+            ->prepare(
+                'INSERT INTO sx_ygo_audit_log(entity_type,entity_id,action,payload) VALUES(?,?,?,?)',
+            )
+            ->execute([
+                'competition',
+                $competitionId,
+                'cup_round_bye',
+                json_encode(['round' => $round, 'deck_id' => $deckId]),
+            ]);
     }
 }

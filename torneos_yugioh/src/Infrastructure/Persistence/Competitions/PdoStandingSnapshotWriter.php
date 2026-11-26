@@ -12,7 +12,10 @@ final readonly class PdoStandingSnapshotWriter implements StandingSnapshotWriter
 
     public function clear(int $competitionId, string $snapshotKey): void
     {
-        $this->pdo->prepare('DELETE FROM sx_ygo_standing_snapshots WHERE competition_id = ? AND snapshot_key = ?')
+        $this->pdo
+            ->prepare(
+                'DELETE FROM sx_ygo_standing_snapshots WHERE competition_id = ? AND snapshot_key = ?',
+            )
             ->execute([$competitionId, $snapshotKey]);
     }
 
@@ -59,7 +62,10 @@ final readonly class PdoStandingSnapshotWriter implements StandingSnapshotWriter
     public function deleteAbsent(int $competitionId, string $snapshotKey, array $seenDeckIds): void
     {
         $placeholders = implode(',', array_fill(0, count($seenDeckIds), '?'));
-        $this->pdo->prepare("DELETE FROM sx_ygo_standing_snapshots WHERE competition_id = ? AND snapshot_key = ? AND deck_id NOT IN ($placeholders)")
+        $this->pdo
+            ->prepare(
+                "DELETE FROM sx_ygo_standing_snapshots WHERE competition_id = ? AND snapshot_key = ? AND deck_id NOT IN ($placeholders)",
+            )
             ->execute(array_merge([$competitionId, $snapshotKey], $seenDeckIds));
     }
 }

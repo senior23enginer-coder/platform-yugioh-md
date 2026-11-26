@@ -13,5 +13,11 @@ interface QualifierDivisionStore
 
     public function assign(int $divisionId, iterable $assignments): int;
 
-    public function record(int $divisionId, int $qualifierId, int $rankFrom, int $rankTo, int $count): void;
+    public function record(
+        int $divisionId,
+        int $qualifierId,
+        int $rankFrom,
+        int $rankTo,
+        int $count,
+    ): void;
 }

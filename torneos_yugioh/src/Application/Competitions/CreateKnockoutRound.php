@@ -14,20 +14,34 @@ final readonly class CreateKnockoutRound
         private Clock $clock,
     ) {}
 
-    public function execute(array $competition, string $phase, array $deckIds, int $round, string $label): int
-    {
+    public function execute(
+        array $competition,
+        string $phase,
+        array $deckIds,
+        int $round,
+        string $label,
+    ): int {
         $competitionId = (int) ($competition['id'] ?? 0);
         $ids = KnockoutRoundPlan::normalize($deckIds);
-        if ($competitionId <= 0 || count($ids) < 2 || $this->store->exists($competitionId, $phase, $round)) {
+        if (
+            $competitionId <= 0 ||
+            count($ids) < 2 ||
+            $this->store->exists($competitionId, $phase, $round)
+        ) {
             return 0;
         }
         $seasonId = $this->store->currentSeasonId();
-        $base = (string) (($competition['starts_on'] ?? '') ?: $this->clock->now()->format('Y-m-d'));
-        $created = $this->store->insert(KnockoutRoundPlan::rows($competition, $phase, $ids, $round, $label, $base));
+        $base = (string) ($competition['starts_on'] ?? '' ?: $this->clock->now()->format('Y-m-d'));
+        $created = $this->store->insert(
+            KnockoutRoundPlan::rows($competition, $phase, $ids, $round, $label, $base),
+        );
         $this->services->fixedProgram();
         $bye = KnockoutRoundPlan::bye($phase, $ids);
         if ($bye !== null) {
-            $this->services->saveBye('cup_bye_' . $competitionId . '_' . $round, json_encode([$bye]));
+            $this->services->saveBye(
+                'cup_bye_' . $competitionId . '_' . $round,
+                json_encode([$bye]),
+            );
             $this->store->auditBye($competitionId, $round, $bye);
         }
         $this->services->scheduleAdmission(

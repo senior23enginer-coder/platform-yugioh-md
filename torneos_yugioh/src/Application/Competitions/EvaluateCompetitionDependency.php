@@ -22,7 +22,9 @@ final readonly class EvaluateCompetitionDependency
             return $completed && count($this->facts->standings($requiredId)) >= $take;
         }
         if ($condition === 'winner_to_final') {
-            return $completed && ($this->facts->honorCount($requiredId) > 0 || count($this->facts->standings($requiredId)) > 0);
+            return $completed &&
+                ($this->facts->honorCount($requiredId) > 0 ||
+                    count($this->facts->standings($requiredId)) > 0);
         }
         if ($condition === 'defending_champion') {
             return $this->facts->honorCount($requiredId) > 0;

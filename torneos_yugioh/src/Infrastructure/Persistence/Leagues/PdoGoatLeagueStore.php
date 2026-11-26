@@ -12,7 +12,9 @@ final readonly class PdoGoatLeagueStore implements GoatLeagueStore
 
     public function legacySeasonId(): int
     {
-        return (int) $this->pdo->query("SELECT id FROM sx_ygo_seasons WHERE slug='temporada-2026'")->fetchColumn();
+        return (int) $this->pdo
+            ->query("SELECT id FROM sx_ygo_seasons WHERE slug='temporada-2026'")
+            ->fetchColumn();
     }
 
     public function division(int $seasonId): array
@@ -26,14 +28,18 @@ final readonly class PdoGoatLeagueStore implements GoatLeagueStore
 
     public function ensureDivision(int $seasonId): void
     {
-        $this->pdo->prepare('
+        $this->pdo
+            ->prepare(
+                '
             INSERT INTO sx_ygo_divisions
                 (season_id, code, name, cup_name, tier_order, deck_count, accent, description, active)
             VALUES
                 (?, "GOAT", "Primera Division GOAT", "Copa GOAT", 3, 0, "#36d8ff", "Primera division de la Liga GOAT para partidas retro y control de recursos.", 1)
             ON DUPLICATE KEY UPDATE
                 name=VALUES(name), cup_name=VALUES(cup_name), accent=VALUES(accent), description=VALUES(description), active=1
-        ')->execute([$seasonId]);
+        ',
+            )
+            ->execute([$seasonId]);
     }
 
     public function leagueId(int $seasonId): int
@@ -52,9 +58,13 @@ final readonly class PdoGoatLeagueStore implements GoatLeagueStore
 
     public function link(int $seasonId, int $divisionId, int $leagueId): int
     {
-        $leagueUpdate = $this->pdo->prepare('UPDATE sx_ygo_competitions SET division_id=?, event_ruleset="goat", deck_pool="division" WHERE id=? AND season_id=?');
+        $leagueUpdate = $this->pdo->prepare(
+            'UPDATE sx_ygo_competitions SET division_id=?, event_ruleset="goat", deck_pool="division" WHERE id=? AND season_id=?',
+        );
         $leagueUpdate->execute([$divisionId, $leagueId, $seasonId]);
-        $divisionUpdate = $this->pdo->prepare('UPDATE sx_ygo_divisions SET league_competition_id=? WHERE id=? AND season_id=?');
+        $divisionUpdate = $this->pdo->prepare(
+            'UPDATE sx_ygo_divisions SET league_competition_id=? WHERE id=? AND season_id=?',
+        );
         $divisionUpdate->execute([$leagueId, $divisionId, $seasonId]);
         return max($leagueUpdate->rowCount(), $divisionUpdate->rowCount());
     }
@@ -68,7 +78,12 @@ final readonly class PdoGoatLeagueStore implements GoatLeagueStore
               AND (LOWER(COALESCE(event_ruleset, ""))="goat" OR LOWER(name) LIKE "%goat%")
         ');
         $qualifierStmt->execute([$seasonId]);
-        return array_values(array_filter(array_map('intval', $qualifierStmt->fetchAll(PDO::FETCH_COLUMN)), static fn(int $id): bool => $id > 0));
+        return array_values(
+            array_filter(
+                array_map('intval', $qualifierStmt->fetchAll(PDO::FETCH_COLUMN)),
+                static fn(int $id): bool => $id > 0,
+            ),
+        );
     }
 
     public function disableQualifiers(array $qualifierIds): void
@@ -77,19 +92,37 @@ final readonly class PdoGoatLeagueStore implements GoatLeagueStore
             return;
         }
         $placeholders = implode(',', array_fill(0, count($qualifierIds), '?'));
-        $this->pdo->prepare("UPDATE sx_ygo_competitions SET active=0 WHERE id IN ($placeholders)")->execute($qualifierIds);
-        $this->pdo->prepare("UPDATE sx_ygo_events SET active=0 WHERE competition_id IN ($placeholders)")->execute($qualifierIds);
-        $this->pdo->prepare("UPDATE sx_ygo_competition_dependencies SET active=0 WHERE competition_id IN ($placeholders) OR depends_on_competition_id IN ($placeholders)")
+        $this->pdo
+            ->prepare("UPDATE sx_ygo_competitions SET active=0 WHERE id IN ($placeholders)")
+            ->execute($qualifierIds);
+        $this->pdo
+            ->prepare("UPDATE sx_ygo_events SET active=0 WHERE competition_id IN ($placeholders)")
+            ->execute($qualifierIds);
+        $this->pdo
+            ->prepare(
+                "UPDATE sx_ygo_competition_dependencies SET active=0 WHERE competition_id IN ($placeholders) OR depends_on_competition_id IN ($placeholders)",
+            )
             ->execute([...$qualifierIds, ...$qualifierIds]);
     }
 
     public function audit(int $divisionId, int $leagueId, array $qualifierIds): void
     {
-        $this->pdo->prepare('INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)')
-            ->execute(['competition', $leagueId ?: null, 'ensure_goat_league_structure', json_encode([
-                'division_id' => $divisionId,
-                'league_id' => $leagueId,
-                'disabled_qualifier_ids' => $qualifierIds,
-            ], JSON_UNESCAPED_UNICODE)]);
+        $this->pdo
+            ->prepare(
+                'INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)',
+            )
+            ->execute([
+                'competition',
+                $leagueId ?: null,
+                'ensure_goat_league_structure',
+                json_encode(
+                    [
+                        'division_id' => $divisionId,
+                        'league_id' => $leagueId,
+                        'disabled_qualifier_ids' => $qualifierIds,
+                    ],
+                    JSON_UNESCAPED_UNICODE,
+                ),
+            ]);
     }
 }

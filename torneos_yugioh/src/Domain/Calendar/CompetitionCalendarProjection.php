@@ -5,8 +5,12 @@ namespace StationX\Yugioh\Domain\Calendar;
 
 final class CompetitionCalendarProjection
 {
-    public static function journeys(int $competitionId, string $eventType, array $competition, array $days): iterable
-    {
+    public static function journeys(
+        int $competitionId,
+        string $eventType,
+        array $competition,
+        array $days,
+    ): iterable {
         foreach ($days as $index => $row) {
             $journey = $index + 1;
             yield [

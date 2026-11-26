@@ -12,11 +12,18 @@ final readonly class AdvanceLegacyPhase
     public function execute(string $phase): int
     {
         $defaultDivision = $this->store->firstDivisionId();
-        $winnersByDivision = LegacyPhasePlan::winnersByDivision($this->store->finishedResults($phase));
+        $winnersByDivision = LegacyPhasePlan::winnersByDivision(
+            $this->store->finishedResults($phase),
+        );
         $created = 0;
         foreach ($winnersByDivision as $divisionId => $winners) {
             $round = $this->store->nextRound($divisionId, $phase);
-            $created += $this->store->insert($divisionId ?: $defaultDivision, $phase, $round, LegacyPhasePlan::rows($winners, $round));
+            $created += $this->store->insert(
+                $divisionId ?: $defaultDivision,
+                $phase,
+                $round,
+                LegacyPhasePlan::rows($winners, $round),
+            );
         }
         return $created;
     }

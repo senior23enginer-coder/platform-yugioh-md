@@ -7,7 +7,16 @@ final class LegacyEventFixturePlan
 {
     public static function league(array $deckRows): iterable
     {
-        $fixture = FixtureBuilder::build(array_map(static fn(array $deck): array => [(int) $deck['seed_rank'], (string) $deck['name'], (string) ($deck['reason'] ?? '')], $deckRows));
+        $fixture = FixtureBuilder::build(
+            array_map(
+                static fn(array $deck): array => [
+                    (int) $deck['seed_rank'],
+                    (string) $deck['name'],
+                    (string) ($deck['reason'] ?? ''),
+                ],
+                $deckRows,
+            ),
+        );
         $deckIdByName = [];
         foreach ($deckRows as $deck) {
             $deckIdByName[(string) $deck['name']] = (int) $deck['id'];
@@ -17,7 +26,12 @@ final class LegacyEventFixturePlan
                 if (!isset($deckIdByName[$match['a']], $deckIdByName[$match['b']])) {
                     continue;
                 }
-                yield [$round['ronda'], $match['mesa'], $deckIdByName[$match['a']], $deckIdByName[$match['b']]];
+                yield [
+                    $round['ronda'],
+                    $match['mesa'],
+                    $deckIdByName[$match['a']],
+                    $deckIdByName[$match['b']],
+                ];
             }
         }
     }
@@ -49,7 +63,10 @@ final class LegacyEventFixturePlan
                 if ((int) $deck['id'] === (int) $rival['id']) {
                     continue;
                 }
-                $pairKey = implode('-', [min((int) $deck['id'], (int) $rival['id']), max((int) $deck['id'], (int) $rival['id'])]);
+                $pairKey = implode('-', [
+                    min((int) $deck['id'], (int) $rival['id']),
+                    max((int) $deck['id'], (int) $rival['id']),
+                ]);
                 if (isset($createdPairs[$pairKey])) {
                     continue;
                 }
@@ -67,7 +84,12 @@ final class LegacyEventFixturePlan
             $groupDecks = array_slice($decks, $group * 4, 4);
             for ($i = 0; $i < count($groupDecks); $i++) {
                 for ($j = $i + 1; $j < count($groupDecks); $j++) {
-                    yield [$group + 1, $created + 1, (int) $groupDecks[$i]['id'], (int) $groupDecks[$j]['id']];
+                    yield [
+                        $group + 1,
+                        $created + 1,
+                        (int) $groupDecks[$i]['id'],
+                        (int) $groupDecks[$j]['id'],
+                    ];
                     $created++;
                 }
             }

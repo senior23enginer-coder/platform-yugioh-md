@@ -23,11 +23,18 @@ final class QualifierFinalizationPolicy
         }
         if (empty($rounds[1])) {
             $reasons[] = 'No existe una primera ronda programada.';
-        } elseif (array_filter($rounds[1], static fn(string $status): bool => $status !== 'FINALIZADA')) {
+        } elseif (
+            array_filter($rounds[1], static fn(string $status): bool => $status !== 'FINALIZADA')
+        ) {
             $reasons[] = 'No se puede finalizar: toda la primera ronda debe estar jugada.';
         }
         foreach ($rounds as $round => $statuses) {
-            $finished = count(array_filter($statuses, static fn(string $status): bool => $status === 'FINALIZADA'));
+            $finished = count(
+                array_filter(
+                    $statuses,
+                    static fn(string $status): bool => $status === 'FINALIZADA',
+                ),
+            );
             if ($finished > 0 && $finished < count($statuses)) {
                 $reasons[] = 'No se puede finalizar: la ronda ' . $round . ' esta en curso.';
             }
@@ -37,8 +44,15 @@ final class QualifierFinalizationPolicy
 
     public static function result(array $reasons, array $standings, int $requiredMatches): array
     {
-        if (!$standings || array_filter($standings, static fn(array $row): bool => (int) $row['pj'] < $requiredMatches)) {
-            $reasons[] = 'Cada deck debe tener minimo ' . $requiredMatches . ' combates finalizados.';
+        if (
+            !$standings ||
+            array_filter(
+                $standings,
+                static fn(array $row): bool => (int) $row['pj'] < $requiredMatches,
+            )
+        ) {
+            $reasons[] =
+                'Cada deck debe tener minimo ' . $requiredMatches . ' combates finalizados.';
         }
         return ['ok' => !$reasons, 'reasons' => array_values(array_unique($reasons))];
     }
@@ -59,7 +73,11 @@ final class QualifierFinalizationPolicy
             foreach ($slice as $localRank => $deck) {
                 $assignments[] = ['deckId' => (int) $deck['id'], 'rank' => $localRank + 1];
             }
-            yield ['divisionId' => (int) $division['id'], 'size' => $size, 'assignments' => $assignments];
+            yield [
+                'divisionId' => (int) $division['id'],
+                'size' => $size,
+                'assignments' => $assignments,
+            ];
             $offset += $size;
         }
     }

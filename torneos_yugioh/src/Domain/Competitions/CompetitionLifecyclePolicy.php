@@ -40,7 +40,8 @@ final class CompetitionLifecyclePolicy
             'total' => $finalized + $pending,
             'finalized' => $finalized,
             'pending' => $pending,
-            'reason' => 'Completa el reglamento mediante Crear siguiente fase; terminar una ronda no termina el evento.',
+            'reason' =>
+                'Completa el reglamento mediante Crear siguiente fase; terminar una ronda no termina el evento.',
         ];
     }
 
@@ -56,8 +57,11 @@ final class CompetitionLifecyclePolicy
         ];
     }
 
-    public static function history(int $competitionId, ?string $fromStatus, string $toStatus): ?array
-    {
+    public static function history(
+        int $competitionId,
+        ?string $fromStatus,
+        string $toStatus,
+    ): ?array {
         if ($competitionId <= 0 || trim($toStatus) === '') {
             return null;
         }

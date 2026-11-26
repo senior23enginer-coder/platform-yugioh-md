@@ -25,7 +25,11 @@ final readonly class GenerateLegacyEventFixtures
     public function knockout(int $divisionId, string $phase, array $decks): int
     {
         $this->writer->clearPhase($divisionId, $phase);
-        return $this->writer->insertKnockout($divisionId, $phase, LegacyEventFixturePlan::knockout($decks));
+        return $this->writer->insertKnockout(
+            $divisionId,
+            $phase,
+            LegacyEventFixturePlan::knockout($decks),
+        );
     }
 
     public function friendlies(): int
@@ -36,7 +40,11 @@ final readonly class GenerateLegacyEventFixtures
             return 0;
         }
         $this->writer->clearPhase($divisionId, 'friendly');
-        return $this->writer->insert($divisionId, 'friendly', LegacyEventFixturePlan::friendlies($decks));
+        return $this->writer->insert(
+            $divisionId,
+            'friendly',
+            LegacyEventFixturePlan::friendlies($decks),
+        );
     }
 
     public function cups(): int

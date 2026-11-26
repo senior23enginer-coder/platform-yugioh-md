@@ -15,7 +15,11 @@ final class CompetitionGatePolicy
     public static function completed(array $dependency): bool
     {
         $status = strtolower((string) ($dependency['depends_on_status'] ?? 'draft'));
-        return in_array($status, ['completed', 'finalizada', 'finalizado', 'closed', 'archived'], true);
+        return in_array(
+            $status,
+            ['completed', 'finalizada', 'finalizado', 'closed', 'archived'],
+            true,
+        );
     }
 
     public static function item(array $dependency, int $resultCount, bool $ok): array
@@ -26,7 +30,8 @@ final class CompetitionGatePolicy
             'name' => (string) $dependency['depends_on_name'],
             'type' => (string) $dependency['depends_on_type'],
             'status' => (string) $dependency['depends_on_status'],
-            'condition_type' => (string) ($dependency['condition_type'] ?: 'completed_with_results'),
+            'condition_type' =>
+                (string) ($dependency['condition_type'] ?: 'completed_with_results'),
             'take_count' => (int) ($dependency['take_count'] ?? 0),
             'result_count' => $resultCount,
             'ok' => $ok,
@@ -36,14 +41,25 @@ final class CompetitionGatePolicy
     public static function summarize(array $resolved): array
     {
         if (!$resolved) {
-            return ['can_execute' => true, 'message' => 'Sin prerrequisitos.', 'dependencies' => []];
+            return [
+                'can_execute' => true,
+                'message' => 'Sin prerrequisitos.',
+                'dependencies' => [],
+            ];
         }
-        $blocked = array_values(array_filter($resolved, static fn(array $item): bool => !$item['ok']));
+        $blocked = array_values(
+            array_filter($resolved, static fn(array $item): bool => !$item['ok']),
+        );
         return [
             'can_execute' => !$blocked,
             'message' => !$blocked
                 ? 'Prerrequisitos cumplidos.'
-                : 'Evento bloqueado: primero debe cumplirse ' . implode(', ', array_map(static fn(array $item): string => $item['name'], $blocked)) . '.',
+                : 'Evento bloqueado: primero debe cumplirse ' .
+                    implode(
+                        ', ',
+                        array_map(static fn(array $item): string => $item['name'], $blocked),
+                    ) .
+                    '.',
             'dependencies' => $resolved,
         ];
     }

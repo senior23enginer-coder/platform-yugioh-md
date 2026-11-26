@@ -7,7 +7,14 @@ final class TeamManagementPolicy
 {
     public static function ids(mixed $ids): array
     {
-        return array_values(array_unique(array_filter(array_map('intval', is_array($ids) ? $ids : []), static fn(int $id): bool => $id > 0)));
+        return array_values(
+            array_unique(
+                array_filter(
+                    array_map('intval', is_array($ids) ? $ids : []),
+                    static fn(int $id): bool => $id > 0,
+                ),
+            ),
+        );
     }
 
     public static function profile(array $input, string $existingLogo): array

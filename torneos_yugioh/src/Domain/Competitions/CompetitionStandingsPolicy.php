@@ -5,8 +5,11 @@ namespace StationX\Yugioh\Domain\Competitions;
 
 final class CompetitionStandingsPolicy
 {
-    public static function phase(array $competition, array $workflowRanking, ?string $phaseFilter): ?string
-    {
+    public static function phase(
+        array $competition,
+        array $workflowRanking,
+        ?string $phaseFilter,
+    ): ?string {
         if ($workflowRanking && $phaseFilter === null) {
             return [
                 'swiss' => 'swiss',
@@ -21,16 +24,19 @@ final class CompetitionStandingsPolicy
 
     public static function rankingImpact(array $competition): string
     {
-        return strtoupper((string) (($competition['ranking_impact'] ?? '') ?: 'FULL'));
+        return strtoupper((string) ($competition['ranking_impact'] ?? '' ?: 'FULL'));
     }
 
     public static function excluded(array $competition, array $workflowRanking): bool
     {
-        $level = strtoupper((string) (($competition['level'] ?? '') ?: 'COMPETITIVE'));
-        return !$workflowRanking && (
-            self::rankingImpact($competition) === 'NONE' ||
-            in_array($level, ['CASUAL', 'BEGINNER', 'ACADEMY', 'PROMOTIONAL', 'EXHIBITION'], true)
-        );
+        $level = strtoupper((string) ($competition['level'] ?? '' ?: 'COMPETITIVE'));
+        return !$workflowRanking &&
+            (self::rankingImpact($competition) === 'NONE' ||
+                in_array(
+                    $level,
+                    ['CASUAL', 'BEGINNER', 'ACADEMY', 'PROMOTIONAL', 'EXHIBITION'],
+                    true,
+                ));
     }
 
     public static function calculate(
@@ -67,7 +73,11 @@ final class CompetitionStandingsPolicy
             if (!isset($rows[$aId], $rows[$bId])) {
                 continue;
             }
-            [$cgA, $cgB] = array_pad(array_map('intval', explode('-', (string) ($match['score'] ?: '0-0'))), 2, 0);
+            [$cgA, $cgB] = array_pad(
+                array_map('intval', explode('-', (string) ($match['score'] ?: '0-0'))),
+                2,
+                0,
+            );
             $rows[$aId]['pj']++;
             $rows[$bId]['pj']++;
             $rows[$aId]['cg'] += $cgA;
@@ -93,7 +103,13 @@ final class CompetitionStandingsPolicy
             $row['dp'] = $row['cg'] - $row['cp'];
         }
         unset($row);
-        usort($rows, static fn(array $a, array $b): int => $b['pts'] <=> $a['pts'] ?: $b['dp'] <=> $a['dp'] ?: $b['cg'] <=> $a['cg'] ?: $a['seed_rank'] <=> $b['seed_rank']);
+        usort(
+            $rows,
+            static fn(array $a, array $b): int => $b['pts'] <=> $a['pts'] ?:
+            $b['dp'] <=> $a['dp'] ?:
+            $b['cg'] <=> $a['cg'] ?:
+            $a['seed_rank'] <=> $b['seed_rank'],
+        );
         if ($workflowRanking) {
             $byId = [];
             foreach ($rows as $r) {

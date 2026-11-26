@@ -25,7 +25,11 @@ final readonly class ApplyDivisionMovements
                 !$competition ||
                 $competition['type'] !== 'league' ||
                 count($divisions) < 2 ||
-                !in_array($competition['status'], ['completed', 'finalizado', 'finalizada'], true) ||
+                !in_array(
+                    $competition['status'],
+                    ['completed', 'finalizado', 'finalizada'],
+                    true,
+                ) ||
                 (int) $competition['lock_division_moves'] === 1
             ) {
                 return 0;

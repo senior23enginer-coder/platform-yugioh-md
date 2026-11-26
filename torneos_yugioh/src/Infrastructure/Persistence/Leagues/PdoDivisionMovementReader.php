@@ -12,7 +12,8 @@ final readonly class PdoDivisionMovementReader implements DivisionMovementReader
 
     public function divisions(int $competitionId): array
     {
-        $stmt = $this->pdo->prepare("SELECT d.*, (SELECT COUNT(*) FROM sx_ygo_decks dk WHERE dk.division_id=d.id AND dk.active=1) actual_decks
+        $stmt = $this->pdo
+            ->prepare("SELECT d.*, (SELECT COUNT(*) FROM sx_ygo_decks dk WHERE dk.division_id=d.id AND dk.active=1) actual_decks
             FROM sx_ygo_divisions d JOIN sx_ygo_competitions c ON c.id=d.league_competition_id AND c.season_id=d.season_id
             WHERE c.id=? AND c.active=1 AND c.type='league' AND d.active=1 ORDER BY d.tier_order,d.id");
         $stmt->execute([$competitionId]);

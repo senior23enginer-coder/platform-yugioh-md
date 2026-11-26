@@ -7,5 +7,12 @@ interface CompetitionHonorWriter
 {
     public function workflowHonor(array $competition, int $championId, int $runnerId): void;
 
-    public function record(array $competition, int $competitionId, int $championId, int $championTeamId, int $runnerId, int $runnerTeamId): void;
+    public function record(
+        array $competition,
+        int $competitionId,
+        int $championId,
+        int $championTeamId,
+        int $runnerId,
+        int $runnerTeamId,
+    ): void;
 }

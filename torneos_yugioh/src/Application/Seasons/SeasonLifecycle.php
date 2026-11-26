@@ -29,7 +29,13 @@ final readonly class SeasonLifecycle
                     false,
                     $this->clock->now()->format('Y-m-d'),
                 );
-                if ($this->store->hasOutsideDates($id, $definition['starts_on'], $definition['ends_on'])) {
+                if (
+                    $this->store->hasOutsideDates(
+                        $id,
+                        $definition['starts_on'],
+                        $definition['ends_on'],
+                    )
+                ) {
                     throw new InvalidArgumentException(
                         'El período dejaría eventos o partidas fuera de la temporada. Ajusta primero sus fechas.',
                     );
@@ -61,7 +67,10 @@ final readonly class SeasonLifecycle
                 $this->store->closeCompetition($id, $event, $reason);
             }
             $this->store->completeSeason($id);
-            $this->store->audit($id, 'close_season', ['reason' => $reason, 'closed_events' => count($events)]);
+            $this->store->audit($id, 'close_season', [
+                'reason' => $reason,
+                'closed_events' => count($events),
+            ]);
             return count($events);
         });
     }

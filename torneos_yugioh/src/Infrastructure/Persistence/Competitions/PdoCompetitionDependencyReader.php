@@ -7,7 +7,9 @@ use PDO;
 use StationX\Yugioh\Application\Competitions\CompetitionDependencyFacts;
 use StationX\Yugioh\Application\Competitions\CompetitionGateReader;
 
-final readonly class PdoCompetitionDependencyReader implements CompetitionDependencyFacts, CompetitionGateReader
+final readonly class PdoCompetitionDependencyReader implements
+    CompetitionDependencyFacts,
+    CompetitionGateReader
 {
     public function __construct(private PDO $pdo) {}
 
@@ -58,7 +60,9 @@ final readonly class PdoCompetitionDependencyReader implements CompetitionDepend
         if (!\ygo_column_exists($this->pdo, 'sx_ygo_divisions', 'source_qualifier_id')) {
             return 0;
         }
-        $stmt = $this->pdo->prepare('SELECT COUNT(*) FROM sx_ygo_divisions WHERE source_qualifier_id = ? AND active = 1');
+        $stmt = $this->pdo->prepare(
+            'SELECT COUNT(*) FROM sx_ygo_divisions WHERE source_qualifier_id = ? AND active = 1',
+        );
         $stmt->execute([$competitionId]);
         return (int) $stmt->fetchColumn();
     }
@@ -81,7 +85,10 @@ final readonly class PdoCompetitionDependencyReader implements CompetitionDepend
 
     public function admission(array $competition): ?array
     {
-        if (\ygo_admission_required($competition) || \ygo_admission_load($this->pdo, $competition) !== null) {
+        if (
+            \ygo_admission_required($competition) ||
+            \ygo_admission_load($this->pdo, $competition) !== null
+        ) {
             return \ygo_admission_view($this->pdo, $competition);
         }
         return null;

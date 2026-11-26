@@ -15,15 +15,32 @@ interface CompetitionConfigurationContext
 
     public function assertFixtureMutable(int $competitionId): void;
 
-    public function recordHistory(int $seasonId, int $competitionId, ?string $from, string $to, string $action, array $payload): void;
+    public function recordHistory(
+        int $seasonId,
+        int $competitionId,
+        ?string $from,
+        string $to,
+        string $action,
+        array $payload,
+    ): void;
 
     public function gate(int $competitionId): array;
 
-    public function validGameRuleId(int $seasonId, int $postedRuleId, ?int $fallbackRuleId, string $competitionType, string $executionModel): ?int;
+    public function validGameRuleId(
+        int $seasonId,
+        int $postedRuleId,
+        ?int $fallbackRuleId,
+        string $competitionType,
+        string $executionModel,
+    ): ?int;
 
     public function templateBaseCode(string $code): string;
 
     public function workflowModels(): array;
 
-    public function expectedQualifierMatches(int $selectedDeckCount, int $participantsPerSide, int $duelsPerDeck): int;
+    public function expectedQualifierMatches(
+        int $selectedDeckCount,
+        int $participantsPerSide,
+        int $duelsPerDeck,
+    ): int;
 }

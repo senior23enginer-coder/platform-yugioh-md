@@ -15,7 +15,9 @@ final class CompetitionDeletionPolicy
         if (!$competition) {
             return null;
         }
-        $status = CompetitionLifecyclePolicy::normalizeStatus((string) ($competition['status'] ?? ''));
+        $status = CompetitionLifecyclePolicy::normalizeStatus(
+            (string) ($competition['status'] ?? ''),
+        );
         return in_array($status, ['active', 'completed', 'cancelled'], true) ? null : $status;
     }
 }

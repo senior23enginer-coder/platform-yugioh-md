@@ -19,21 +19,27 @@ final readonly class PdoPhaseAdvanceReader implements PhaseAdvanceReader
 
     public function activeCompetition(int $competitionId): array
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM sx_ygo_competitions WHERE id = ? AND active = 1 LIMIT 1');
+        $stmt = $this->pdo->prepare(
+            'SELECT * FROM sx_ygo_competitions WHERE id = ? AND active = 1 LIMIT 1',
+        );
         $stmt->execute([$competitionId]);
         return $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
     }
 
     public function registeredDecks(int $competitionId): array
     {
-        $stmt = $this->pdo->prepare('SELECT deck_id FROM sx_ygo_competition_decks WHERE competition_id=? AND active=1 ORDER BY sort_order,id');
+        $stmt = $this->pdo->prepare(
+            'SELECT deck_id FROM sx_ygo_competition_decks WHERE competition_id=? AND active=1 ORDER BY sort_order,id',
+        );
         $stmt->execute([$competitionId]);
         return array_map('intval', $stmt->fetchAll(PDO::FETCH_COLUMN));
     }
 
     public function matchCount(int $competitionId, string $phase): int
     {
-        $stmt = $this->pdo->prepare('SELECT COUNT(*) FROM sx_ygo_matches WHERE competition_id = ? AND phase = ?');
+        $stmt = $this->pdo->prepare(
+            'SELECT COUNT(*) FROM sx_ygo_matches WHERE competition_id = ? AND phase = ?',
+        );
         $stmt->execute([$competitionId, $phase]);
         return (int) $stmt->fetchColumn();
     }
@@ -67,14 +73,18 @@ final readonly class PdoPhaseAdvanceReader implements PhaseAdvanceReader
 
     public function latestRound(int $competitionId, string $phase): int
     {
-        $stmt = $this->pdo->prepare('SELECT COALESCE(MAX(round_number), 0) FROM sx_ygo_matches WHERE competition_id = ? AND phase = ?');
+        $stmt = $this->pdo->prepare(
+            'SELECT COALESCE(MAX(round_number), 0) FROM sx_ygo_matches WHERE competition_id = ? AND phase = ?',
+        );
         $stmt->execute([$competitionId, $phase]);
         return (int) $stmt->fetchColumn();
     }
 
     public function pendingCount(int $competitionId, string $phase, int $round): int
     {
-        $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM sx_ygo_matches WHERE competition_id = ? AND phase = ? AND round_number = ? AND status <> 'FINALIZADA'");
+        $stmt = $this->pdo->prepare(
+            "SELECT COUNT(*) FROM sx_ygo_matches WHERE competition_id = ? AND phase = ? AND round_number = ? AND status <> 'FINALIZADA'",
+        );
         $stmt->execute([$competitionId, $phase, $round]);
         return (int) $stmt->fetchColumn();
     }
@@ -86,6 +96,10 @@ final readonly class PdoPhaseAdvanceReader implements PhaseAdvanceReader
 
     public function cupByes(int $competitionId, int $round): array
     {
-        return json_decode(\ygo_settings($this->pdo)['cup_bye_' . $competitionId . '_' . $round] ?? '[]', true) ?: [];
+        return json_decode(
+            \ygo_settings($this->pdo)['cup_bye_' . $competitionId . '_' . $round] ?? '[]',
+            true,
+        ) ?:
+            [];
     }
 }

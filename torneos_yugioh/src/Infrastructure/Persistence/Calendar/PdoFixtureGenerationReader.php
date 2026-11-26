@@ -30,18 +30,24 @@ final readonly class PdoFixtureGenerationReader implements FixtureGenerationRead
     public function generation(int $competitionId, bool $cup): int
     {
         if ($cup) {
-            $generationStmt = $this->pdo->prepare("SELECT COUNT(*) FROM sx_ygo_audit_log WHERE entity_type = 'competition' AND entity_id = ? AND action = 'configure_competition' AND payload LIKE '%\"mode\":\"schedule_cup\"%'");
+            $generationStmt = $this->pdo->prepare(
+                "SELECT COUNT(*) FROM sx_ygo_audit_log WHERE entity_type = 'competition' AND entity_id = ? AND action = 'configure_competition' AND payload LIKE '%\"mode\":\"schedule_cup\"%'",
+            );
             $generationStmt->execute([$competitionId]);
             return ((int) $generationStmt->fetchColumn()) + 1;
         }
-        $generationStmt = $this->pdo->prepare('SELECT COUNT(*) FROM sx_ygo_audit_log WHERE entity_type = "competition" AND entity_id = ? AND action = "configure_competition"');
+        $generationStmt = $this->pdo->prepare(
+            'SELECT COUNT(*) FROM sx_ygo_audit_log WHERE entity_type = "competition" AND entity_id = ? AND action = "configure_competition"',
+        );
         $generationStmt->execute([$competitionId]);
         return ((int) $generationStmt->fetchColumn()) + 1;
     }
 
     public function hasFinalized(int $competitionId): bool
     {
-        $finished = $this->pdo->prepare("SELECT COUNT(*) FROM sx_ygo_matches WHERE competition_id=? AND status='FINALIZADA'");
+        $finished = $this->pdo->prepare(
+            "SELECT COUNT(*) FROM sx_ygo_matches WHERE competition_id=? AND status='FINALIZADA'",
+        );
         $finished->execute([$competitionId]);
         return (int) $finished->fetchColumn() > 0;
     }

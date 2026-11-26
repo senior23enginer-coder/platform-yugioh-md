@@ -35,9 +35,23 @@ final readonly class NativeConfigurationContext implements CompetitionConfigurat
         \ygo_assert_fixture_mutable($this->pdo, $competitionId);
     }
 
-    public function recordHistory(int $seasonId, int $competitionId, ?string $from, string $to, string $action, array $payload): void
-    {
-        \ygo_record_competition_status_history($this->pdo, $seasonId, $competitionId, $from, $to, $action, $payload);
+    public function recordHistory(
+        int $seasonId,
+        int $competitionId,
+        ?string $from,
+        string $to,
+        string $action,
+        array $payload,
+    ): void {
+        \ygo_record_competition_status_history(
+            $this->pdo,
+            $seasonId,
+            $competitionId,
+            $from,
+            $to,
+            $action,
+            $payload,
+        );
     }
 
     public function gate(int $competitionId): array
@@ -45,9 +59,21 @@ final readonly class NativeConfigurationContext implements CompetitionConfigurat
         return \ygo_competition_gate($this->pdo, $competitionId);
     }
 
-    public function validGameRuleId(int $seasonId, int $postedRuleId, ?int $fallbackRuleId, string $competitionType, string $executionModel): ?int
-    {
-        return \ygo_valid_game_rule_id($this->pdo, $seasonId, $postedRuleId, $fallbackRuleId, $competitionType, $executionModel);
+    public function validGameRuleId(
+        int $seasonId,
+        int $postedRuleId,
+        ?int $fallbackRuleId,
+        string $competitionType,
+        string $executionModel,
+    ): ?int {
+        return \ygo_valid_game_rule_id(
+            $this->pdo,
+            $seasonId,
+            $postedRuleId,
+            $fallbackRuleId,
+            $competitionType,
+            $executionModel,
+        );
     }
 
     public function templateBaseCode(string $code): string
@@ -60,8 +86,15 @@ final readonly class NativeConfigurationContext implements CompetitionConfigurat
         return \ygo_workflow_models();
     }
 
-    public function expectedQualifierMatches(int $selectedDeckCount, int $participantsPerSide, int $duelsPerDeck): int
-    {
-        return \ygo_expected_qualifier_match_count($selectedDeckCount, $participantsPerSide, $duelsPerDeck);
+    public function expectedQualifierMatches(
+        int $selectedDeckCount,
+        int $participantsPerSide,
+        int $duelsPerDeck,
+    ): int {
+        return \ygo_expected_qualifier_match_count(
+            $selectedDeckCount,
+            $participantsPerSide,
+            $duelsPerDeck,
+        );
     }
 }

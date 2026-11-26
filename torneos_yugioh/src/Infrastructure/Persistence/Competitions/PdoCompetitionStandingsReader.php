@@ -12,7 +12,9 @@ final readonly class PdoCompetitionStandingsReader implements CompetitionStandin
 
     public function competition(int $competitionId): array
     {
-        $competitionStmt = $this->pdo->prepare('SELECT * FROM sx_ygo_competitions WHERE id = ? AND active = 1 LIMIT 1');
+        $competitionStmt = $this->pdo->prepare(
+            'SELECT * FROM sx_ygo_competitions WHERE id = ? AND active = 1 LIMIT 1',
+        );
         $competitionStmt->execute([$competitionId]);
         return $competitionStmt->fetch(PDO::FETCH_ASSOC) ?: [];
     }
@@ -24,7 +26,9 @@ final readonly class PdoCompetitionStandingsReader implements CompetitionStandin
 
     public function decks(int $competitionId): array
     {
-        $selectedStmt = $this->pdo->prepare('SELECT COUNT(*) FROM sx_ygo_competition_decks WHERE competition_id = ? AND active = 1');
+        $selectedStmt = $this->pdo->prepare(
+            'SELECT COUNT(*) FROM sx_ygo_competition_decks WHERE competition_id = ? AND active = 1',
+        );
         $selectedStmt->execute([$competitionId]);
         $hasSelectedDecks = (int) $selectedStmt->fetchColumn() > 0;
         if ($hasSelectedDecks) {
@@ -46,7 +50,9 @@ final readonly class PdoCompetitionStandingsReader implements CompetitionStandin
             $deckStmt->execute([$competitionId]);
             $deckRows = $deckStmt->fetchAll(PDO::FETCH_ASSOC);
         } else {
-            $deckRows = $this->pdo->query("
+            $deckRows = $this->pdo
+                ->query(
+                    "
             SELECT
                 d.id,
                 d.name,
@@ -59,7 +65,9 @@ final readonly class PdoCompetitionStandingsReader implements CompetitionStandin
             LEFT JOIN sx_ygo_teams t ON t.id = d.team_id
             WHERE d.active = 1
             ORDER BY d.seed_rank, d.name
-            ")->fetchAll(PDO::FETCH_ASSOC);
+            ",
+                )
+                ->fetchAll(PDO::FETCH_ASSOC);
         }
         return $deckRows;
     }
@@ -73,7 +81,11 @@ final readonly class PdoCompetitionStandingsReader implements CompetitionStandin
             JOIN sx_ygo_match_results r ON r.match_id = m.id
             WHERE m.competition_id = ? AND r.result IS NOT NULL AND r.result <> ''$phaseSql
         ");
-        $matchStmt->execute($phaseFilter !== null && $phaseFilter !== '' ? [$competitionId, $phaseFilter] : [$competitionId]);
+        $matchStmt->execute(
+            $phaseFilter !== null && $phaseFilter !== ''
+                ? [$competitionId, $phaseFilter]
+                : [$competitionId],
+        );
         return $matchStmt->fetchAll(PDO::FETCH_ASSOC);
     }
 

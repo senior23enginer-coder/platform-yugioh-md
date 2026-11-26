@@ -19,7 +19,9 @@ final readonly class PdoCompetitionHonorReader implements CompetitionHonorReader
 
     public function competition(int $competitionId): array
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM sx_ygo_competitions WHERE id = ? AND active = 1 LIMIT 1');
+        $stmt = $this->pdo->prepare(
+            'SELECT * FROM sx_ygo_competitions WHERE id = ? AND active = 1 LIMIT 1',
+        );
         $stmt->execute([$competitionId]);
         return $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
     }

@@ -12,7 +12,10 @@ final readonly class PdoCompetitionCalendarWriter implements CompetitionCalendar
 
     public function deactivateType(int $seasonId, int $competitionId, string $eventType): void
     {
-        $this->pdo->prepare('UPDATE sx_ygo_events SET active = 0 WHERE season_id = ? AND competition_id = ? AND event_type = ?')
+        $this->pdo
+            ->prepare(
+                'UPDATE sx_ygo_events SET active = 0 WHERE season_id = ? AND competition_id = ? AND event_type = ?',
+            )
             ->execute([$seasonId, $competitionId, $eventType]);
     }
 
@@ -33,7 +36,10 @@ final readonly class PdoCompetitionCalendarWriter implements CompetitionCalendar
 
     public function deactivateCode(int $seasonId, int $competitionId, string $code): void
     {
-        $this->pdo->prepare("UPDATE sx_ygo_events SET active = 0 WHERE season_id = ? AND competition_id = ? AND code = ?")
+        $this->pdo
+            ->prepare(
+                'UPDATE sx_ygo_events SET active = 0 WHERE season_id = ? AND competition_id = ? AND code = ?',
+            )
             ->execute([$seasonId, $competitionId, $code]);
     }
 }

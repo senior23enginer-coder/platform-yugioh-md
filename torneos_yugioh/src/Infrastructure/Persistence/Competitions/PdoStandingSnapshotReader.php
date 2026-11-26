@@ -12,7 +12,9 @@ final readonly class PdoStandingSnapshotReader implements StandingSnapshotReader
 
     public function phases(int $competitionId): array
     {
-        $phaseStmt = $this->pdo->prepare('SELECT DISTINCT phase FROM sx_ygo_matches WHERE competition_id = ? ORDER BY phase');
+        $phaseStmt = $this->pdo->prepare(
+            'SELECT DISTINCT phase FROM sx_ygo_matches WHERE competition_id = ? ORDER BY phase',
+        );
         $phaseStmt->execute([$competitionId]);
         return $phaseStmt->fetchAll(PDO::FETCH_COLUMN);
     }
@@ -24,9 +26,14 @@ final readonly class PdoStandingSnapshotReader implements StandingSnapshotReader
 
     public function maxRound(int $competitionId, ?string $phase): int
     {
-        $maxRoundStmt = $phase === null
-            ? $this->pdo->prepare('SELECT COALESCE(MAX(round_number), 0) FROM sx_ygo_matches WHERE competition_id = ?')
-            : $this->pdo->prepare('SELECT COALESCE(MAX(round_number), 0) FROM sx_ygo_matches WHERE competition_id = ? AND phase = ?');
+        $maxRoundStmt =
+            $phase === null
+                ? $this->pdo->prepare(
+                    'SELECT COALESCE(MAX(round_number), 0) FROM sx_ygo_matches WHERE competition_id = ?',
+                )
+                : $this->pdo->prepare(
+                    'SELECT COALESCE(MAX(round_number), 0) FROM sx_ygo_matches WHERE competition_id = ? AND phase = ?',
+                );
         $maxRoundStmt->execute($phase === null ? [$competitionId] : [$competitionId, $phase]);
         return (int) $maxRoundStmt->fetchColumn();
     }

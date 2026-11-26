@@ -119,8 +119,9 @@ $dateCases = [
 ];
 foreach ($dateCases as [$start, $end, $expected]) {
     architectureCheck(
-        $seasonOutcome(static fn() => $seasonPolicy::validateEventDates($seasonRow, $start, $end)) ===
-            $expected,
+        $seasonOutcome(
+            static fn() => $seasonPolicy::validateEventDates($seasonRow, $start, $end),
+        ) === $expected,
         'Season date validation changed',
     );
 }
@@ -178,8 +179,14 @@ architectureCheck($seasonReader->calls === [['competition', 9]], 'Unexpected dat
 
 // Season lifecycle uses ports and preserves owned/borrowed transaction selection.
 $definitionPolicy = \StationX\Yugioh\Domain\Seasons\SeasonDefinition::class;
-architectureCheck($definitionPolicy::end('2024-02-29', 'annual') === '2025-02-27', 'Leap day clamp');
-architectureCheck($definitionPolicy::end('2026-01-31', 'quarterly') === '2026-04-29', 'Month end clamp');
+architectureCheck(
+    $definitionPolicy::end('2024-02-29', 'annual') === '2025-02-27',
+    'Leap day clamp',
+);
+architectureCheck(
+    $definitionPolicy::end('2026-01-31', 'quarterly') === '2026-04-29',
+    'Month end clamp',
+);
 $lifeStore = new class implements \StationX\Yugioh\Application\Seasons\SeasonLifecycleStore {
     public array $calls = [];
     public ?array $row = ['status' => 'active'];
@@ -244,7 +251,12 @@ $lifeOwn = new class implements \StationX\Yugioh\Application\Shared\TransactionB
     }
 };
 $lifeJoin = clone $lifeOwn;
-$life = new \StationX\Yugioh\Application\Seasons\SeasonLifecycle($lifeStore, $lifeOwn, $lifeJoin, $seasonClock);
+$life = new \StationX\Yugioh\Application\Seasons\SeasonLifecycle(
+    $lifeStore,
+    $lifeOwn,
+    $lifeJoin,
+    $seasonClock,
+);
 architectureCheck($life->close(7) === 1, 'Close count changed');
 architectureCheck(
     $lifeStore->calls === [
@@ -257,12 +269,18 @@ architectureCheck(
     'Close ordering or audit changed',
 );
 architectureCheck($life->close(7) === 0, 'Repeated close must be idempotent');
-architectureCheck($lifeOwn->runs === 0 && $lifeJoin->runs === 2, 'Wrong close transaction boundary');
+architectureCheck(
+    $lifeOwn->runs === 0 && $lifeJoin->runs === 2,
+    'Wrong close transaction boundary',
+);
 $lifeStore->row = ['status' => 'active'];
 $lifeStore->calls = [];
 $life->closeExpired();
 architectureCheck($lifeStore->calls[0] === ['expired', '2026-11-26'], 'Expired date not injected');
-architectureCheck($lifeStore->calls[3] === ['close', 7, 21, 'period_ended'], 'Expired reason changed');
+architectureCheck(
+    $lifeStore->calls[3] === ['close', 7, 21, 'period_ended'],
+    'Expired reason changed',
+);
 $lifeStore->dependencies = true;
 $lifeStore->calls = [];
 architectureCheck(
@@ -346,9 +364,18 @@ architectureCheck(
     ],
     'Season context read order changed',
 );
-architectureCheck($context->resolve(['season_context' => 9], []) === null, 'Unknown season accepted');
-architectureCheck($context->resolve([], ['competition_season_id' => 3]) === 3, 'Explicit season lost');
-architectureCheck($context->current(4) === 4 && $context->current(null) === 1, 'Default season changed');
+architectureCheck(
+    $context->resolve(['season_context' => 9], []) === null,
+    'Unknown season accepted',
+);
+architectureCheck(
+    $context->resolve([], ['competition_season_id' => 3]) === 3,
+    'Explicit season lost',
+);
+architectureCheck(
+    $context->current(4) === 4 && $context->current(null) === 1,
+    'Default season changed',
+);
 $seasonReader->season = $seasonRow;
 $guard = new \StationX\Yugioh\Application\Seasons\GuardSeasonAction($seasonUseCase, $contextReader);
 architectureCheck(
@@ -362,17 +389,21 @@ architectureCheck(
     'Manual match season guard changed',
 );
 architectureCheck(
-    $seasonOutcome(static fn() => $guard->execute('save_competition', 3, [
-        'competition_season_id' => 3,
-        'competition_division_id' => 7,
-    ])) === 'Las divisiones del evento deben pertenecer a su temporada.',
+    $seasonOutcome(
+        static fn() => $guard->execute('save_competition', 3, [
+            'competition_season_id' => 3,
+            'competition_division_id' => 7,
+        ]),
+    ) === 'Las divisiones del evento deben pertenecer a su temporada.',
     'Division season guard changed',
 );
 architectureCheck(
-    $seasonOutcome(static fn() => $guard->execute('save_competition', 4, [
-        'competition_season_id' => 4,
-        'competition_division_id' => 7,
-    ])) === null,
+    $seasonOutcome(
+        static fn() => $guard->execute('save_competition', 4, [
+            'competition_season_id' => 4,
+            'competition_division_id' => 7,
+        ]),
+    ) === null,
     'Valid division blocked',
 );
 
@@ -405,16 +436,11 @@ architectureCheck(
 // League roster filtering keeps input order and only excludes other leagues of this season.
 $rosterPolicy = \StationX\Yugioh\Domain\Competitions\LeagueRosterPolicy::class;
 architectureCheck(
-    $rosterPolicy::available(
-        [4, 3, 2, 1],
-        10,
-        5,
-        [
-            ['deck_id' => 4, 'season_id' => 5, 'competition_id' => 11],
-            ['deck_id' => 3, 'season_id' => 6, 'competition_id' => 12],
-            ['deck_id' => 2, 'season_id' => 5, 'competition_id' => 10],
-        ],
-    ) === [3, 2, 1],
+    $rosterPolicy::available([4, 3, 2, 1], 10, 5, [
+        ['deck_id' => 4, 'season_id' => 5, 'competition_id' => 11],
+        ['deck_id' => 3, 'season_id' => 6, 'competition_id' => 12],
+        ['deck_id' => 2, 'season_id' => 5, 'competition_id' => 10],
+    ]) === [3, 2, 1],
     'League roster exclusivity changed',
 );
 $leagueSchedule = \StationX\Yugioh\Domain\Competitions\LeagueSchedulePolicy::class;
@@ -426,8 +452,9 @@ architectureCheck(
     'Division round order or offsets changed',
 );
 architectureCheck(
-    $seasonOutcome(static fn() => $leagueSchedule::validateMembership([11], [1 => []], [11 => 2])) ===
-        'Asigna cada participante a una division de esta liga antes de generar sus combates.',
+    $seasonOutcome(
+        static fn() => $leagueSchedule::validateMembership([11], [1 => []], [11 => 2]),
+    ) === 'Asigna cada participante a una division de esta liga antes de generar sus combates.',
     'Foreign division must be rejected',
 );
 architectureCheck(
@@ -459,11 +486,23 @@ architectureCheck(
 $projectedLabels = $readSettings->labels(7, [['z', 'Default', 'Default'], ['a', 'A', 'B']]);
 architectureCheck(array_keys($projectedLabels) === ['a', 'z'], 'Label order changed');
 architectureCheck(
-    $projectedLabels['z'] === ['id' => 9, 'key' => 'z', 'title' => '', 'subtitle' => '', 'active' => 0],
+    $projectedLabels['z'] === [
+        'id' => 9,
+        'key' => 'z',
+        'title' => '',
+        'subtitle' => '',
+        'active' => 0,
+    ],
     'Persisted label must take precedence',
 );
 architectureCheck(
-    $projectedLabels['a'] === ['id' => 0, 'key' => 'a', 'title' => 'A', 'subtitle' => 'B', 'active' => 1],
+    $projectedLabels['a'] === [
+        'id' => 0,
+        'key' => 'a',
+        'title' => 'A',
+        'subtitle' => 'B',
+        'active' => 1,
+    ],
     'Missing label fallback changed',
 );
 $teamStore = new class implements \StationX\Yugioh\Application\Teams\TeamStore {
@@ -494,7 +533,10 @@ $teamStore = new class implements \StationX\Yugioh\Application\Teams\TeamStore {
 };
 $findTeam = new \StationX\Yugioh\Application\Teams\FindOrCreateTeam($teamStore);
 architectureCheck($findTeam->execute('A') === 4, 'Existing identity changed');
-architectureCheck($teamStore->calls === [['find', 'A'], ['activate', 4]], 'Existing activation changed');
+architectureCheck(
+    $teamStore->calls === [['find', 'A'], ['activate', 4]],
+    'Existing activation changed',
+);
 $teamStore->calls = [];
 $profile = ['code' => 'ABC'];
 architectureCheck($findTeam->execute('A', $profile) === 4, 'Existing profile identity changed');
@@ -505,7 +547,10 @@ architectureCheck(
 $teamStore->id = 0;
 $teamStore->calls = [];
 architectureCheck($findTeam->execute('B', null) === 17, 'New identity changed');
-architectureCheck($teamStore->calls === [['find', 'B'], ['create', 'B', null]], 'Creation order changed');
+architectureCheck(
+    $teamStore->calls === [['find', 'B'], ['create', 'B', null]],
+    'Creation order changed',
+);
 $teamProfile = \StationX\Yugioh\Domain\Teams\TeamProfile::forDeck('ignored', '  Crystron ');
 architectureCheck($teamProfile['name'] === 'Quantum Sentinels', 'Team profile mapping changed');
 $deckTeamStore = new class implements \StationX\Yugioh\Application\Teams\DeckTeamStore {
@@ -551,9 +596,15 @@ $standings = \StationX\Yugioh\Domain\Competitions\LeagueStandings::calculate(
 );
 architectureCheck(array_column($standings, 'id') === [1, 3, 2], 'Standings ordering changed');
 architectureCheck(array_column($standings, 'pts') === [3, 1, 1], 'Standings points changed');
-architectureCheck(array_column($standings, 'dp') === [1, 0, -1], 'Standings score difference changed');
+architectureCheck(
+    array_column($standings, 'dp') === [1, 0, -1],
+    'Standings score difference changed',
+);
 architectureCheck(array_column($standings, 'pj') === [1, 1, 2], 'Unknown participant not skipped');
-$rankDefinitions = ['first' => ['short' => 'A', 'size' => 2], 'last' => ['short' => 'B', 'size' => 3]];
+$rankDefinitions = [
+    'first' => ['short' => 'A', 'size' => 2],
+    'last' => ['short' => 'B', 'size' => 3],
+];
 $rankPolicy = \StationX\Yugioh\Domain\Competitions\DivisionRankPolicy::class;
 architectureCheck($rankPolicy::category(2, $rankDefinitions) === 'A', 'Rank boundary changed');
 architectureCheck($rankPolicy::category(3, $rankDefinitions) === 'B', 'Rank division changed');
@@ -562,122 +613,433 @@ architectureCheck(key($rankDefinitions) === 'last', 'Legacy cursor behavior chan
 
 // Match validation retains error precedence, position mapping and team restrictions.
 $matchDeckPolicy = \StationX\Yugioh\Domain\Decks\MatchDeckPolicy::class;
-architectureCheck($matchDeckPolicy::selection([], [1, 1])['message'] === 'No hay decks permitidos para el formato del evento.', 'Empty pool precedence changed');
-architectureCheck($matchDeckPolicy::selection([1], [1, 2])['message'] === 'Hay decks que no pertenecen al formato/pool del evento.', 'Foreign deck accepted');
-architectureCheck($matchDeckPolicy::selection([1], [1, 1])['message'] === 'No se puede repetir un deck en el mismo match.', 'Duplicate deck accepted');
-architectureCheck($matchDeckPolicy::selection([1], [])['message'] === 'Debes seleccionar decks para crear el match.', 'Empty selection changed');
+architectureCheck(
+    $matchDeckPolicy::selection([], [1, 1])['message'] ===
+        'No hay decks permitidos para el formato del evento.',
+    'Empty pool precedence changed',
+);
+architectureCheck(
+    $matchDeckPolicy::selection([1], [1, 2])['message'] ===
+        'Hay decks que no pertenecen al formato/pool del evento.',
+    'Foreign deck accepted',
+);
+architectureCheck(
+    $matchDeckPolicy::selection([1], [1, 1])['message'] ===
+        'No se puede repetir un deck en el mismo match.',
+    'Duplicate deck accepted',
+);
+architectureCheck(
+    $matchDeckPolicy::selection([1], [])['message'] ===
+        'Debes seleccionar decks para crear el match.',
+    'Empty selection changed',
+);
 $matchRows = [
     ['id' => 1, 'division_id' => 7, 'team_id' => 10],
     ['id' => 2, 'division_id' => 7, 'team_id' => 20],
     ['id' => 3, 'division_id' => 7, 'team_id' => 10],
     ['id' => 4, 'division_id' => 7, 'team_id' => 20],
 ];
-architectureCheck($matchDeckPolicy::validateRows($matchRows, [1, 2, 3, 4], [1, 2, 3, 4], 7, 2) === ['ok' => true, 'message' => 'OK'], 'Valid 2v2 blocked');
-architectureCheck(!$matchDeckPolicy::validateRows($matchRows, [1, 2, 3, 4], [1, 3, 2, 4], 7, 2)['ok'], 'Mixed team accepted');
-architectureCheck(!$matchDeckPolicy::validateRows($matchRows, [1, 2, 3, 4], [1, 2, 3, 4], 8, 2)['ok'], 'Foreign division accepted');
+architectureCheck(
+    $matchDeckPolicy::validateRows($matchRows, [1, 2, 3, 4], [1, 2, 3, 4], 7, 2) === [
+        'ok' => true,
+        'message' => 'OK',
+    ],
+    'Valid 2v2 blocked',
+);
+architectureCheck(
+    !$matchDeckPolicy::validateRows($matchRows, [1, 2, 3, 4], [1, 3, 2, 4], 7, 2)['ok'],
+    'Mixed team accepted',
+);
+architectureCheck(
+    !$matchDeckPolicy::validateRows($matchRows, [1, 2, 3, 4], [1, 2, 3, 4], 8, 2)['ok'],
+    'Foreign division accepted',
+);
 $rosterGrouping = \StationX\Yugioh\Domain\Decks\RosterGroupingPolicy::class;
-architectureCheck($rosterGrouping::normalize([0, '1', 1, 2, -1]) === [1, 2], 'Roster normalization changed');
-architectureCheck($rosterGrouping::group([4, 1, 3, 2], 2, $matchRows) === [[4, 2], [1, 3]], 'Team group ordering changed');
+architectureCheck(
+    $rosterGrouping::normalize([0, '1', 1, 2, -1]) === [1, 2],
+    'Roster normalization changed',
+);
+architectureCheck(
+    $rosterGrouping::group([4, 1, 3, 2], 2, $matchRows) === [[4, 2], [1, 3]],
+    'Team group ordering changed',
+);
 
 // Competition gate: preserve dependency short circuits and the legacy messages.
-$dependencyFacts = new class implements \StationX\Yugioh\Application\Competitions\CompetitionDependencyFacts {
+$dependencyFacts = new class implements
+    \StationX\Yugioh\Application\Competitions\CompetitionDependencyFacts
+{
     public array $calls = [];
-    public function resultCount(int $competitionId): int { $this->calls[] = 'results'; return 2; }
-    public function honorCount(int $competitionId): int { $this->calls[] = 'honors'; return 1; }
-    public function divisionCount(int $competitionId): int { $this->calls[] = 'divisions'; return 0; }
-    public function standings(int $competitionId): array { $this->calls[] = 'standings'; return [1, 2]; }
+    public function resultCount(int $competitionId): int
+    {
+        $this->calls[] = 'results';
+        return 2;
+    }
+    public function honorCount(int $competitionId): int
+    {
+        $this->calls[] = 'honors';
+        return 1;
+    }
+    public function divisionCount(int $competitionId): int
+    {
+        $this->calls[] = 'divisions';
+        return 0;
+    }
+    public function standings(int $competitionId): array
+    {
+        $this->calls[] = 'standings';
+        return [1, 2];
+    }
 };
-$dependencyEvaluator = new \StationX\Yugioh\Application\Competitions\EvaluateCompetitionDependency($dependencyFacts);
+$dependencyEvaluator = new \StationX\Yugioh\Application\Competitions\EvaluateCompetitionDependency(
+    $dependencyFacts,
+);
 $dependency = ['condition_type' => 'top_n', 'depends_on_competition_id' => 2, 'take_count' => 2];
-architectureCheck(!$dependencyEvaluator->execute($dependency, false, true) && !$dependencyFacts->calls, 'Incomplete prerequisite must short circuit');
-architectureCheck($dependencyEvaluator->execute($dependency, true, true) && $dependencyFacts->calls === ['standings'], 'Top-N prerequisite changed');
+architectureCheck(
+    !$dependencyEvaluator->execute($dependency, false, true) && !$dependencyFacts->calls,
+    'Incomplete prerequisite must short circuit',
+);
+architectureCheck(
+    $dependencyEvaluator->execute($dependency, true, true) &&
+        $dependencyFacts->calls === ['standings'],
+    'Top-N prerequisite changed',
+);
 $dependencyFacts->calls = [];
 $dependency['condition_type'] = 'winner_to_final';
-architectureCheck($dependencyEvaluator->execute($dependency, true, true) && $dependencyFacts->calls === ['honors'], 'Winner honor must short circuit standings');
+architectureCheck(
+    $dependencyEvaluator->execute($dependency, true, true) &&
+        $dependencyFacts->calls === ['honors'],
+    'Winner honor must short circuit standings',
+);
 $dependency['condition_type'] = 'creates_divisions';
-architectureCheck(!$dependencyEvaluator->execute($dependency, true, true), 'Missing divisions accepted');
+architectureCheck(
+    !$dependencyEvaluator->execute($dependency, true, true),
+    'Missing divisions accepted',
+);
 $competitionGatePolicy = \StationX\Yugioh\Domain\Competitions\CompetitionGatePolicy::class;
-architectureCheck($competitionGatePolicy::seasonOpen(['status' => 'active', 'ends_on' => '2026-11-26'], '2026-11-26'), 'Season closing date must be inclusive');
-architectureCheck(!$competitionGatePolicy::seasonOpen(['status' => 'archived'], '2026-11-26'), 'Archived season accepted');
-architectureCheck($competitionGatePolicy::summarize([])['message'] === 'Sin prerrequisitos.', 'Empty prerequisite response changed');
-architectureCheck($competitionGatePolicy::summarize([['name' => 'A', 'ok' => false], ['name' => 'B', 'ok' => true]])['message'] === 'Evento bloqueado: primero debe cumplirse A.', 'Blocked prerequisite message changed');
+architectureCheck(
+    $competitionGatePolicy::seasonOpen(
+        ['status' => 'active', 'ends_on' => '2026-11-26'],
+        '2026-11-26',
+    ),
+    'Season closing date must be inclusive',
+);
+architectureCheck(
+    !$competitionGatePolicy::seasonOpen(['status' => 'archived'], '2026-11-26'),
+    'Archived season accepted',
+);
+architectureCheck(
+    $competitionGatePolicy::summarize([])['message'] === 'Sin prerrequisitos.',
+    'Empty prerequisite response changed',
+);
+architectureCheck(
+    $competitionGatePolicy::summarize([
+        ['name' => 'A', 'ok' => false],
+        ['name' => 'B', 'ok' => true],
+    ])['message'] === 'Evento bloqueado: primero debe cumplirse A.',
+    'Blocked prerequisite message changed',
+);
 
 // Date and venue policies preserve configured limits and legacy result states.
 $schedulePolicy = \StationX\Yugioh\Domain\Calendar\MatchSchedulePolicy::class;
 $dateSettings = ['allow_early_results' => '0', 'allow_overdue_results' => '1'];
-architectureCheck($schedulePolicy::resultDate('2026-11-27', '2026-11-26', $dateSettings)['state'] === 'fecha_futura', 'Early result guard changed');
-architectureCheck($schedulePolicy::resultDate('2026-11-25', '2026-11-26', $dateSettings)['state'] === 'vencido', 'Overdue result changed');
-architectureCheck($schedulePolicy::resultDate('2026-11-26', '2026-11-26', $dateSettings)['state'] === 'hoy', 'Current date result changed');
+architectureCheck(
+    $schedulePolicy::resultDate('2026-11-27', '2026-11-26', $dateSettings)['state'] ===
+        'fecha_futura',
+    'Early result guard changed',
+);
+architectureCheck(
+    $schedulePolicy::resultDate('2026-11-25', '2026-11-26', $dateSettings)['state'] === 'vencido',
+    'Overdue result changed',
+);
+architectureCheck(
+    $schedulePolicy::resultDate('2026-11-26', '2026-11-26', $dateSettings)['state'] === 'hoy',
+    'Current date result changed',
+);
 $dateSettings['allow_overdue_results'] = '0';
-architectureCheck($schedulePolicy::resultDate('2026-11-25', '2026-11-26', $dateSettings)['state'] === 'vencido_bloqueado', 'Blocked overdue result changed');
+architectureCheck(
+    $schedulePolicy::resultDate('2026-11-25', '2026-11-26', $dateSettings)['state'] ===
+        'vencido_bloqueado',
+    'Blocked overdue result changed',
+);
 $parsedSchedule = new DateTimeImmutable('2026-11-26');
-$scheduleSettings = ['valid_weekdays' => '4', 'allowed_start_time' => '10:00', 'allowed_end_time' => '22:00', 'venues' => 'Station X', 'max_matches_per_day' => '0'];
-architectureCheck($schedulePolicy::dayAndTime($parsedSchedule, '2026-11-26', '10:00', $scheduleSettings) === null, 'Inclusive start time changed');
-architectureCheck($schedulePolicy::dayAndTime($parsedSchedule, '2026-11-26', '09:59', $scheduleSettings)['state'] === 'hora_temprana', 'Early time accepted');
-architectureCheck($schedulePolicy::dayAndTime($parsedSchedule, '2026-11-26', '22:01', $scheduleSettings)['state'] === 'hora_tardia', 'Late time accepted');
-architectureCheck($schedulePolicy::venue('station x', $scheduleSettings)['ok'], 'Case insensitive venue changed');
-architectureCheck($schedulePolicy::venue('Other', $scheduleSettings)['state'] === 'sede_no_permitida', 'Foreign venue accepted');
-architectureCheck($schedulePolicy::maxPerDay($scheduleSettings) === 1, 'Minimum daily capacity changed');
+$scheduleSettings = [
+    'valid_weekdays' => '4',
+    'allowed_start_time' => '10:00',
+    'allowed_end_time' => '22:00',
+    'venues' => 'Station X',
+    'max_matches_per_day' => '0',
+];
+architectureCheck(
+    $schedulePolicy::dayAndTime($parsedSchedule, '2026-11-26', '10:00', $scheduleSettings) === null,
+    'Inclusive start time changed',
+);
+architectureCheck(
+    $schedulePolicy::dayAndTime($parsedSchedule, '2026-11-26', '09:59', $scheduleSettings)[
+        'state'
+    ] === 'hora_temprana',
+    'Early time accepted',
+);
+architectureCheck(
+    $schedulePolicy::dayAndTime($parsedSchedule, '2026-11-26', '22:01', $scheduleSettings)[
+        'state'
+    ] === 'hora_tardia',
+    'Late time accepted',
+);
+architectureCheck(
+    $schedulePolicy::venue('station x', $scheduleSettings)['ok'],
+    'Case insensitive venue changed',
+);
+architectureCheck(
+    $schedulePolicy::venue('Other', $scheduleSettings)['state'] === 'sede_no_permitida',
+    'Foreign venue accepted',
+);
+architectureCheck(
+    $schedulePolicy::maxPerDay($scheduleSettings) === 1,
+    'Minimum daily capacity changed',
+);
 
 // Match model rules remain independent of SQL and preserve configured match scope.
 $eventResult = \StationX\Yugioh\Domain\Matches\EventResultPolicy::class;
 $matchRule = \StationX\Yugioh\Domain\Matches\MatchRulePolicy::class;
-architectureCheck($matchRule::bestOf(0) === 3 && $matchRule::bestOf(9) === 5, 'Best-of fallback changed');
-architectureCheck($matchRule::scopes('friendly') === ['all_matches', 'friendly', 'match', 'general'], 'Friendly scopes changed');
-architectureCheck($matchRule::scopes('league') === ['all_matches', 'match', 'general'], 'Match scopes changed');
+architectureCheck(
+    $matchRule::bestOf(0) === 3 && $matchRule::bestOf(9) === 5,
+    'Best-of fallback changed',
+);
+architectureCheck(
+    $matchRule::scopes('friendly') === ['all_matches', 'friendly', 'match', 'general'],
+    'Friendly scopes changed',
+);
+architectureCheck(
+    $matchRule::scopes('league') === ['all_matches', 'match', 'general'],
+    'Match scopes changed',
+);
 $draw = ['status' => 'FINALIZADA', 'winner' => 'E'];
-architectureCheck($eventResult::apply([], '', null, $draw) === $draw + ['model_effects' => []], 'No event result changed');
-architectureCheck($eventResult::apply(['type' => 'cup'], 'cup', null, $draw)['status'] === 'INVALID', 'Cup draw accepted');
-architectureCheck($eventResult::apply(['type' => 'league', 'draw_policy' => 'ALLOWED'], 'league', null, $draw)['winner'] === 'E', 'League draw rejected');
+architectureCheck(
+    $eventResult::apply([], '', null, $draw) === $draw + ['model_effects' => []],
+    'No event result changed',
+);
+architectureCheck(
+    $eventResult::apply(['type' => 'cup'], 'cup', null, $draw)['status'] === 'INVALID',
+    'Cup draw accepted',
+);
+architectureCheck(
+    $eventResult::apply(['type' => 'league', 'draw_policy' => 'ALLOWED'], 'league', null, $draw)[
+        'winner'
+    ] === 'E',
+    'League draw rejected',
+);
 $win = ['status' => 'FINALIZADA', 'winner' => 'A'];
-architectureCheck($eventResult::apply(['type' => 'special'], 'manual', null, $win, ['A', 'B', 'A', 'A'])['status'] === 'REQUIERE D5', 'D5 policy changed');
-architectureCheck($eventResult::apply(['type' => 'world', 'draw_policy' => 'ALLOWED'], 'groups', [], $draw)['winner'] === 'E', 'Workflow group draw rejected');
+architectureCheck(
+    $eventResult::apply(['type' => 'special'], 'manual', null, $win, ['A', 'B', 'A', 'A'])[
+        'status'
+    ] === 'REQUIERE D5',
+    'D5 policy changed',
+);
+architectureCheck(
+    $eventResult::apply(['type' => 'world', 'draw_policy' => 'ALLOWED'], 'groups', [], $draw)[
+        'winner'
+    ] === 'E',
+    'Workflow group draw rejected',
+);
 
 // Competition lifecycle preserves completion guards, status normalization and code numbering.
 $lifecyclePolicy = \StationX\Yugioh\Domain\Competitions\CompetitionLifecyclePolicy::class;
 $codePolicy = \StationX\Yugioh\Domain\Competitions\CompetitionCodePolicy::class;
-architectureCheck($lifecyclePolicy::normalizeStatus(' Finalizada ') === 'finalizada', 'Status normalization changed');
-architectureCheck($lifecyclePolicy::history(1, 'Activo', ' activo ') === null, 'Duplicate transition accepted');
-architectureCheck($lifecyclePolicy::history(1, null, 'Activo') === ['from' => null, 'to' => 'activo'], 'Initial history changed');
-architectureCheck(!$lifecyclePolicy::finishCounts(['total_matches' => 0, 'finalized_matches' => 0])['ok'], 'Empty competition closed');
-architectureCheck($lifecyclePolicy::finishCounts(['total_matches' => 2, 'finalized_matches' => 2])['ok'], 'Completed competition blocked');
-architectureCheck($lifecyclePolicy::unfinishedWorkflow(['complete' => false, 'history' => [1, 2], 'pending' => [3]])['pending'] === 1, 'Workflow completion count changed');
-architectureCheck($lifecyclePolicy::pendingQualifier(['type' => 'qualifier', 'status' => 'pending_configuration', 'deck_pool_count' => 4]), 'Qualifier candidate changed');
-architectureCheck($codePolicy::nextCounter(['YU-01', 'YU-009', 'manual']) === 10, 'Code sequence changed');
-architectureCheck(iterator_to_array($codePolicy::replacements([['id' => 1, 'code' => 'YU-01'], ['id' => 2, 'code' => 'old'], ['id' => 3, 'code' => 'YU-9']]), false) === [[2, 'YU-10'], [3, 'YU-11']], 'Legacy code migration changed');
+architectureCheck(
+    $lifecyclePolicy::normalizeStatus(' Finalizada ') === 'finalizada',
+    'Status normalization changed',
+);
+architectureCheck(
+    $lifecyclePolicy::history(1, 'Activo', ' activo ') === null,
+    'Duplicate transition accepted',
+);
+architectureCheck(
+    $lifecyclePolicy::history(1, null, 'Activo') === ['from' => null, 'to' => 'activo'],
+    'Initial history changed',
+);
+architectureCheck(
+    !$lifecyclePolicy::finishCounts(['total_matches' => 0, 'finalized_matches' => 0])['ok'],
+    'Empty competition closed',
+);
+architectureCheck(
+    $lifecyclePolicy::finishCounts(['total_matches' => 2, 'finalized_matches' => 2])['ok'],
+    'Completed competition blocked',
+);
+architectureCheck(
+    $lifecyclePolicy::unfinishedWorkflow([
+        'complete' => false,
+        'history' => [1, 2],
+        'pending' => [3],
+    ])['pending'] === 1,
+    'Workflow completion count changed',
+);
+architectureCheck(
+    $lifecyclePolicy::pendingQualifier([
+        'type' => 'qualifier',
+        'status' => 'pending_configuration',
+        'deck_pool_count' => 4,
+    ]),
+    'Qualifier candidate changed',
+);
+architectureCheck(
+    $codePolicy::nextCounter(['YU-01', 'YU-009', 'manual']) === 10,
+    'Code sequence changed',
+);
+architectureCheck(
+    iterator_to_array(
+        $codePolicy::replacements([
+            ['id' => 1, 'code' => 'YU-01'],
+            ['id' => 2, 'code' => 'old'],
+            ['id' => 3, 'code' => 'YU-9'],
+        ]),
+        false,
+    ) === [[2, 'YU-10'], [3, 'YU-11']],
+    'Legacy code migration changed',
+);
 
 // Standing and calendar projection payloads preserve position, source and stable event identity.
 $snapshotPolicy = \StationX\Yugioh\Domain\Competitions\StandingSnapshotPolicy::class;
-architectureCheck($snapshotPolicy::scopes(['', 'league', '0', 'cup', 'league']) === ['current' => null, 'phase:league' => 'league', 'phase:cup' => 'cup'], 'Snapshot scope changed');
-$snapshotRows = iterator_to_array($snapshotPolicy::rows([['id' => 0], ['id' => 5, 'pts' => 3, 'pj' => 1]], 'current', null), false);
-architectureCheck(count($snapshotRows) === 1 && $snapshotRows[0][0] === 5 && $snapshotRows[0][1] === 2, 'Snapshot position or invalid deck changed');
-architectureCheck($snapshotRows[0][10] === ['reason' => 'current', 'phase' => null, 'row' => ['id' => 5, 'pts' => 3, 'pj' => 1]], 'Snapshot payload changed');
+architectureCheck(
+    $snapshotPolicy::scopes(['', 'league', '0', 'cup', 'league']) === [
+        'current' => null,
+        'phase:league' => 'league',
+        'phase:cup' => 'cup',
+    ],
+    'Snapshot scope changed',
+);
+$snapshotRows = iterator_to_array(
+    $snapshotPolicy::rows([['id' => 0], ['id' => 5, 'pts' => 3, 'pj' => 1]], 'current', null),
+    false,
+);
+architectureCheck(
+    count($snapshotRows) === 1 && $snapshotRows[0][0] === 5 && $snapshotRows[0][1] === 2,
+    'Snapshot position or invalid deck changed',
+);
+architectureCheck(
+    $snapshotRows[0][10] === [
+        'reason' => 'current',
+        'phase' => null,
+        'row' => ['id' => 5, 'pts' => 3, 'pj' => 1],
+    ],
+    'Snapshot payload changed',
+);
 $calendarProjection = \StationX\Yugioh\Domain\Calendar\CompetitionCalendarProjection::class;
-$journeys = iterator_to_array($calendarProjection::journeys(7, 'league', ['division_id' => null, 'name' => 'Liga'], [['scheduled_on' => '2026-11-27', 'starts_at' => null, 'venue' => '', 'match_count' => 2]]), false);
-architectureCheck($journeys === [[null, 'competition-7-league-jornada-1', 'Liga - Jornada 1', 'league', '2026-11-27', null, 'Station X Tulua', '2 combates programados desde duelos persistidos.']], 'Calendar projection changed');
-architectureCheck($calendarProjection::startCode(7) === 'competition-7-inicio', 'Start event code changed');
+$journeys = iterator_to_array(
+    $calendarProjection::journeys(
+        7,
+        'league',
+        ['division_id' => null, 'name' => 'Liga'],
+        [['scheduled_on' => '2026-11-27', 'starts_at' => null, 'venue' => '', 'match_count' => 2]],
+    ),
+    false,
+);
+architectureCheck(
+    $journeys === [
+        [
+            null,
+            'competition-7-league-jornada-1',
+            'Liga - Jornada 1',
+            'league',
+            '2026-11-27',
+            null,
+            'Station X Tulua',
+            '2 combates programados desde duelos persistidos.',
+        ],
+    ],
+    'Calendar projection changed',
+);
+architectureCheck(
+    $calendarProjection::startCode(7) === 'competition-7-inicio',
+    'Start event code changed',
+);
 
 // Competition standings preserve scoring modes, workflow order and team projection.
 $competitionStandings = \StationX\Yugioh\Domain\Competitions\CompetitionStandingsPolicy::class;
 $standingDecks = [
-    ['id' => 1, 'name' => 'A', 'seed_rank' => 2, 'team' => 'A', 'team_code' => '', 'team_primary_color' => '', 'team_secondary_color' => ''],
-    ['id' => 2, 'name' => 'B', 'seed_rank' => 1, 'team' => 'B', 'team_code' => '', 'team_primary_color' => '', 'team_secondary_color' => ''],
+    [
+        'id' => 1,
+        'name' => 'A',
+        'seed_rank' => 2,
+        'team' => 'A',
+        'team_code' => '',
+        'team_primary_color' => '',
+        'team_secondary_color' => '',
+    ],
+    [
+        'id' => 2,
+        'name' => 'B',
+        'seed_rank' => 1,
+        'team' => 'B',
+        'team_code' => '',
+        'team_primary_color' => '',
+        'team_secondary_color' => '',
+    ],
 ];
 $standingMatches = [['deck_a_id' => 1, 'deck_b_id' => 2, 'result' => 'A', 'score' => '2-1']];
-architectureCheck(array_column($competitionStandings::calculate($standingDecks, $standingMatches, 'FULL', []), 'pts') === [3, 0], 'Full points changed');
-architectureCheck(array_column($competitionStandings::calculate($standingDecks, $standingMatches, 'REDUCED', []), 'pts') === [1, 0], 'Reduced points changed');
-architectureCheck(array_column($competitionStandings::calculate($standingDecks, $standingMatches, 'BONUS', []), 'pts') === [4, 0], 'Bonus points changed');
-architectureCheck($competitionStandings::excluded(['level' => 'CASUAL'], []), 'Casual exclusion changed');
-$workflowRows = [['id' => 2, 'points' => 6, 'buchholz' => 3], ['id' => 1, 'points' => 2, 'buchholz' => 1]];
-$workflowStanding = $competitionStandings::calculate($standingDecks, $standingMatches, 'FULL', $workflowRows);
-architectureCheck(array_column($workflowStanding, 'id') === [2, 1] && array_column($workflowStanding, 'pts') === [6, 2], 'Workflow ordering changed');
-architectureCheck(!$competitionStandings::excluded(['level' => 'CASUAL'], $workflowRows), 'Workflow ranking unexpectedly excluded');
-architectureCheck($competitionStandings::phase(['execution_model' => 'groups_knockout'], $workflowRows, null) === 'groups', 'Workflow phase changed');
-$teamStanding = $competitionStandings::teams($workflowStanding, ['size' => 2, 'lineups' => [['captain' => 2, 'name' => 'Team B', 'decks' => [2, 3]]]]);
-architectureCheck(count($teamStanding) === 1 && $teamStanding[0]['name'] === 'Team B' && $teamStanding[0]['member_deck_ids'] === [2, 3], 'Team standings changed');
+architectureCheck(
+    array_column(
+        $competitionStandings::calculate($standingDecks, $standingMatches, 'FULL', []),
+        'pts',
+    ) === [3, 0],
+    'Full points changed',
+);
+architectureCheck(
+    array_column(
+        $competitionStandings::calculate($standingDecks, $standingMatches, 'REDUCED', []),
+        'pts',
+    ) === [1, 0],
+    'Reduced points changed',
+);
+architectureCheck(
+    array_column(
+        $competitionStandings::calculate($standingDecks, $standingMatches, 'BONUS', []),
+        'pts',
+    ) === [4, 0],
+    'Bonus points changed',
+);
+architectureCheck(
+    $competitionStandings::excluded(['level' => 'CASUAL'], []),
+    'Casual exclusion changed',
+);
+$workflowRows = [
+    ['id' => 2, 'points' => 6, 'buchholz' => 3],
+    ['id' => 1, 'points' => 2, 'buchholz' => 1],
+];
+$workflowStanding = $competitionStandings::calculate(
+    $standingDecks,
+    $standingMatches,
+    'FULL',
+    $workflowRows,
+);
+architectureCheck(
+    array_column($workflowStanding, 'id') === [2, 1] &&
+        array_column($workflowStanding, 'pts') === [6, 2],
+    'Workflow ordering changed',
+);
+architectureCheck(
+    !$competitionStandings::excluded(['level' => 'CASUAL'], $workflowRows),
+    'Workflow ranking unexpectedly excluded',
+);
+architectureCheck(
+    $competitionStandings::phase(['execution_model' => 'groups_knockout'], $workflowRows, null) ===
+        'groups',
+    'Workflow phase changed',
+);
+$teamStanding = $competitionStandings::teams($workflowStanding, [
+    'size' => 2,
+    'lineups' => [['captain' => 2, 'name' => 'Team B', 'decks' => [2, 3]]],
+]);
+architectureCheck(
+    count($teamStanding) === 1 &&
+        $teamStanding[0]['name'] === 'Team B' &&
+        $teamStanding[0]['member_deck_ids'] === [2, 3],
+    'Team standings changed',
+);
 
 // Competition deletion uses a fake store: no physical data is modified.
-$deletionStore = new class implements \StationX\Yugioh\Application\Competitions\CompetitionDeletionStore {
+$deletionStore = new class implements
+    \StationX\Yugioh\Application\Competitions\CompetitionDeletionStore
+{
     public array $calls = [];
     public array $row = ['id' => 2, 'status' => 'draft'];
 
@@ -698,7 +1060,8 @@ $deletionStore = new class implements \StationX\Yugioh\Application\Competitions\
         $this->calls[] = ['delete', $seasonId, $competitionId, $status];
     }
 };
-$deletionTransaction = new class implements \StationX\Yugioh\Application\Shared\TransactionBoundary {
+$deletionTransaction = new class implements \StationX\Yugioh\Application\Shared\TransactionBoundary
+{
     public int $runs = 0;
 
     public function run(callable $operation): mixed
@@ -707,70 +1070,234 @@ $deletionTransaction = new class implements \StationX\Yugioh\Application\Shared\
         return $operation();
     }
 };
-$deleteCompetition = new \StationX\Yugioh\Application\Competitions\DeleteCompetition($deletionStore, $deletionTransaction);
-architectureCheck($deleteCompetition->execute(2, 'no') === 0 && !$deletionStore->calls && $deletionTransaction->runs === 0, 'Unconfirmed deletion did I/O');
+$deleteCompetition = new \StationX\Yugioh\Application\Competitions\DeleteCompetition(
+    $deletionStore,
+    $deletionTransaction,
+);
+architectureCheck(
+    $deleteCompetition->execute(2, 'no') === 0 &&
+        !$deletionStore->calls &&
+        $deletionTransaction->runs === 0,
+    'Unconfirmed deletion did I/O',
+);
 $deletionStore->row = ['status' => 'active'];
-architectureCheck($deleteCompetition->execute(2, 'eliminar') === 0 && $deletionTransaction->runs === 0, 'Active competition accepted');
+architectureCheck(
+    $deleteCompetition->execute(2, 'eliminar') === 0 && $deletionTransaction->runs === 0,
+    'Active competition accepted',
+);
 $deletionStore->calls = [];
 $deletionStore->row = ['status' => 'draft'];
 architectureCheck($deleteCompetition->execute(2, ' ELIMINAR ') === 2, 'Confirmed draft rejected');
-architectureCheck($deletionStore->calls === [['season'], ['read', 3, 2], ['delete', 3, 2, 'draft']] && $deletionTransaction->runs === 1, 'Deletion order or transaction changed');
+architectureCheck(
+    $deletionStore->calls === [['season'], ['read', 3, 2], ['delete', 3, 2, 'draft']] &&
+        $deletionTransaction->runs === 1,
+    'Deletion order or transaction changed',
+);
 
 // Competition configuration policy preserves roster lock, minimum sides and status transitions.
 $configurationPolicy = \StationX\Yugioh\Domain\Competitions\CompetitionConfigurationPolicy::class;
-architectureCheck($configurationPolicy::rosterLocked(true, [], 'draft', 'league'), 'Existing fixtures must lock roster');
-architectureCheck(!$configurationPolicy::rosterLocked(false, [], 'active', 'cup'), 'Active cup legacy rule changed');
-architectureCheck($configurationPolicy::rosterLocked(false, [], 'active', 'league'), 'Active league roster unlocked');
-architectureCheck($configurationPolicy::readiness('qualifier', [[1], [2], [3], [4]], 4, 1, 5, null) === ['qualifierDuelsPerDeck' => 3, 'canRunCompetition' => true], 'Qualifier capacity changed');
-architectureCheck(!$configurationPolicy::readiness('league', [[1], [2]], 2, 1, 3, null)['canRunCompetition'], 'League without division allowed');
-architectureCheck($configurationPolicy::transition('cancelled', 'league', true, true, 'start', 0) === ['status' => 'cancelled', 'mode' => 'save'], 'Cancelled event starts');
-architectureCheck($configurationPolicy::transition('draft', 'qualifier', true, false, 'start', 1)['status'] === 'pending_event', 'Qualifier start guard changed');
-architectureCheck($configurationPolicy::transition('draft', 'cup', true, true, 'start', 0)['status'] === 'active', 'Event start status changed');
+architectureCheck(
+    $configurationPolicy::rosterLocked(true, [], 'draft', 'league'),
+    'Existing fixtures must lock roster',
+);
+architectureCheck(
+    !$configurationPolicy::rosterLocked(false, [], 'active', 'cup'),
+    'Active cup legacy rule changed',
+);
+architectureCheck(
+    $configurationPolicy::rosterLocked(false, [], 'active', 'league'),
+    'Active league roster unlocked',
+);
+architectureCheck(
+    $configurationPolicy::readiness('qualifier', [[1], [2], [3], [4]], 4, 1, 5, null) === [
+        'qualifierDuelsPerDeck' => 3,
+        'canRunCompetition' => true,
+    ],
+    'Qualifier capacity changed',
+);
+architectureCheck(
+    !$configurationPolicy::readiness('league', [[1], [2]], 2, 1, 3, null)['canRunCompetition'],
+    'League without division allowed',
+);
+architectureCheck(
+    $configurationPolicy::transition('cancelled', 'league', true, true, 'start', 0) === [
+        'status' => 'cancelled',
+        'mode' => 'save',
+    ],
+    'Cancelled event starts',
+);
+architectureCheck(
+    $configurationPolicy::transition('draft', 'qualifier', true, false, 'start', 1)['status'] ===
+        'pending_event',
+    'Qualifier start guard changed',
+);
+architectureCheck(
+    $configurationPolicy::transition('draft', 'cup', true, true, 'start', 0)['status'] === 'active',
+    'Event start status changed',
+);
 
 // Division maintenance policies and ports: no live decks are modified.
 $qualifierDivisionPolicy = \StationX\Yugioh\Domain\Competitions\QualifierDivisionPolicy::class;
-architectureCheck($qualifierDivisionPolicy::range(['source_qualifier_id' => 5, 'rank_from' => 4, 'rank_to' => 2]) === [5, 2, 4], 'Rank range changed');
-architectureCheck($qualifierDivisionPolicy::range(['source_qualifier_id' => 0]) === null, 'Missing qualifier accepted');
-architectureCheck($qualifierDivisionPolicy::completed('Finalizada') && !$qualifierDivisionPolicy::completed('active'), 'Qualifier status changed');
-architectureCheck(iterator_to_array($qualifierDivisionPolicy::assignments([['deck_id' => 7], ['id' => 0], ['id' => 8]]), false) === [[7, 1], [8, 3]], 'Qualifier positions changed');
-$normalizationStore = new class implements \StationX\Yugioh\Application\Decks\LegacyFormatNormalizationStore {
+architectureCheck(
+    $qualifierDivisionPolicy::range([
+        'source_qualifier_id' => 5,
+        'rank_from' => 4,
+        'rank_to' => 2,
+    ]) === [5, 2, 4],
+    'Rank range changed',
+);
+architectureCheck(
+    $qualifierDivisionPolicy::range(['source_qualifier_id' => 0]) === null,
+    'Missing qualifier accepted',
+);
+architectureCheck(
+    $qualifierDivisionPolicy::completed('Finalizada') &&
+        !$qualifierDivisionPolicy::completed('active'),
+    'Qualifier status changed',
+);
+architectureCheck(
+    iterator_to_array(
+        $qualifierDivisionPolicy::assignments([['deck_id' => 7], ['id' => 0], ['id' => 8]]),
+        false,
+    ) === [[7, 1], [8, 3]],
+    'Qualifier positions changed',
+);
+$normalizationStore = new class implements
+    \StationX\Yugioh\Application\Decks\LegacyFormatNormalizationStore
+{
     public bool $done = true;
     public int $division = 0;
     public array $calls = [];
-    public function alreadyNormalized(): bool { $this->calls[] = 'check'; return $this->done; }
-    public function currentTcgDivision(): int { $this->calls[] = 'division'; return $this->division; }
-    public function normalize(int $divisionId): int { $this->calls[] = ['normalize', $divisionId]; return 4; }
-    public function record(int $divisionId, int $updated): void { $this->calls[] = ['audit', $divisionId, $updated]; }
+    public function alreadyNormalized(): bool
+    {
+        $this->calls[] = 'check';
+        return $this->done;
+    }
+    public function currentTcgDivision(): int
+    {
+        $this->calls[] = 'division';
+        return $this->division;
+    }
+    public function normalize(int $divisionId): int
+    {
+        $this->calls[] = ['normalize', $divisionId];
+        return 4;
+    }
+    public function record(int $divisionId, int $updated): void
+    {
+        $this->calls[] = ['audit', $divisionId, $updated];
+    }
 };
-$normalizationUseCase = new \StationX\Yugioh\Application\Decks\NormalizeLegacyDeckFormat($normalizationStore);
-architectureCheck($normalizationUseCase->execute() === 0 && $normalizationStore->calls === ['check'], 'Repeated normalization wrote data');
+$normalizationUseCase = new \StationX\Yugioh\Application\Decks\NormalizeLegacyDeckFormat(
+    $normalizationStore,
+);
+architectureCheck(
+    $normalizationUseCase->execute() === 0 && $normalizationStore->calls === ['check'],
+    'Repeated normalization wrote data',
+);
 $normalizationStore->done = false;
 $normalizationStore->calls = [];
-architectureCheck($normalizationUseCase->execute() === 0 && $normalizationStore->calls === ['check', 'division'], 'Missing division wrote data');
+architectureCheck(
+    $normalizationUseCase->execute() === 0 && $normalizationStore->calls === ['check', 'division'],
+    'Missing division wrote data',
+);
 $normalizationStore->division = 9;
 $normalizationStore->calls = [];
-architectureCheck($normalizationUseCase->execute() === 4 && $normalizationStore->calls === ['check', 'division', ['normalize', 9], ['audit', 9, 4]], 'Normalization order or audit changed');
+architectureCheck(
+    $normalizationUseCase->execute() === 4 &&
+        $normalizationStore->calls === ['check', 'division', ['normalize', 9], ['audit', 9, 4]],
+    'Normalization order or audit changed',
+);
 
 // Legacy qualifier pairing and the last-slot consolidation remain deterministic.
 $legacyPairs = \StationX\Yugioh\Domain\Calendar\LegacyQualifierPairings::build([1, 2, 3, 4]);
 architectureCheck(count($legacyPairs) === 6, 'Four-deck qualifier changed');
-$legacyCalendar = new \StationX\Yugioh\Domain\Calendar\LegacyQualifierCalendar('2026-11-26', '19:00', 2, 1, 45, new DateTimeImmutable('2026-11-26 19:00:00'));
-$legacyFixtureRows = iterator_to_array($legacyCalendar->fixtures(array_slice($legacyPairs, 0, 5)), false);
-architectureCheck($legacyFixtureRows[4]['date'] === '2026-11-27' && $legacyFixtureRows[4]['time'] === '20:30:00', 'Last qualifier slot changed');
-architectureCheck($legacyCalendar->days(5) === ['2026-11-26' => 2, '2026-11-27' => 3], 'Qualifier day projection changed');
-architectureCheck($legacyCalendar->endDate($legacyCalendar->days(5), 5) === '2026-11-27', 'Qualifier end date changed');
+$legacyCalendar = new \StationX\Yugioh\Domain\Calendar\LegacyQualifierCalendar(
+    '2026-11-26',
+    '19:00',
+    2,
+    1,
+    45,
+    new DateTimeImmutable('2026-11-26 19:00:00'),
+);
+$legacyFixtureRows = iterator_to_array(
+    $legacyCalendar->fixtures(array_slice($legacyPairs, 0, 5)),
+    false,
+);
+architectureCheck(
+    $legacyFixtureRows[4]['date'] === '2026-11-27' && $legacyFixtureRows[4]['time'] === '20:30:00',
+    'Last qualifier slot changed',
+);
+architectureCheck(
+    $legacyCalendar->days(5) === ['2026-11-26' => 2, '2026-11-27' => 3],
+    'Qualifier day projection changed',
+);
+architectureCheck(
+    $legacyCalendar->endDate($legacyCalendar->days(5), 5) === '2026-11-27',
+    'Qualifier end date changed',
+);
 
 // Fixture generation retains alternating cup sides, league table identities and slot dates.
 $fixturePlan = \StationX\Yugioh\Domain\Calendar\FixtureGenerationPlan::class;
-$cupRows = iterator_to_array($fixturePlan::cupRows([[1], [2], [3], [4], [5]], null, 8, ['best_of' => 3], '2026-11-26', 'consecutive', '1v1', 1, 2, 2), false);
+$cupRows = iterator_to_array(
+    $fixturePlan::cupRows(
+        [[1], [2], [3], [4], [5]],
+        null,
+        8,
+        ['best_of' => 3],
+        '2026-11-26',
+        'consecutive',
+        '1v1',
+        1,
+        2,
+        2,
+    ),
+    false,
+);
 architectureCheck(count($cupRows) === 2, 'Odd cup roster lost bye');
-architectureCheck($cupRows[0]['deck_a_id'] === 5 && $cupRows[0]['deck_b_id'] === 1, 'Cup side alternation changed');
-architectureCheck($cupRows[1]['deck_a_id'] === 2 && $cupRows[1]['deck_b_id'] === 4, 'Second cup side changed');
+architectureCheck(
+    $cupRows[0]['deck_a_id'] === 5 && $cupRows[0]['deck_b_id'] === 1,
+    'Cup side alternation changed',
+);
+architectureCheck(
+    $cupRows[1]['deck_a_id'] === 2 && $cupRows[1]['deck_b_id'] === 4,
+    'Second cup side changed',
+);
 architectureCheck($cupRows[1]['starts_at'] === '19:45:00', 'Cup slot time changed');
-$leagueFixturePlan = $fixturePlan::rounds([[1], [2]], ['groups' => [[3], [4]], 'rounds' => [[[0, 1, 9, 2]]]], 'round_robin', 'league');
-$leagueFixtureRows = iterator_to_array($fixturePlan::modelRows($leagueFixturePlan['groups'], $leagueFixturePlan['rounds'], 1, 8, ['best_of' => 3], '2026-11-26', 'consecutive', '1v1', 1, 2, 1, $leagueFixturePlan['phase'], 'round_robin'), false);
-architectureCheck(count($leagueFixtureRows) === 1 && $leagueFixtureRows[0]['division_id'] === 9 && $leagueFixtureRows[0]['table_number'] === 2, 'League fixture division/table changed');
-architectureCheck($leagueFixtureRows[0]['deck_a_id'] === 3 && $leagueFixtureRows[0]['deck_b_id'] === 4, 'League groups changed');
+$leagueFixturePlan = $fixturePlan::rounds(
+    [[1], [2]],
+    ['groups' => [[3], [4]], 'rounds' => [[[0, 1, 9, 2]]]],
+    'round_robin',
+    'league',
+);
+$leagueFixtureRows = iterator_to_array(
+    $fixturePlan::modelRows(
+        $leagueFixturePlan['groups'],
+        $leagueFixturePlan['rounds'],
+        1,
+        8,
+        ['best_of' => 3],
+        '2026-11-26',
+        'consecutive',
+        '1v1',
+        1,
+        2,
+        1,
+        $leagueFixturePlan['phase'],
+        'round_robin',
+    ),
+    false,
+);
+architectureCheck(
+    count($leagueFixtureRows) === 1 &&
+        $leagueFixtureRows[0]['division_id'] === 9 &&
+        $leagueFixtureRows[0]['table_number'] === 2,
+    'League fixture division/table changed',
+);
+architectureCheck(
+    $leagueFixtureRows[0]['deck_a_id'] === 3 && $leagueFixtureRows[0]['deck_b_id'] === 4,
+    'League groups changed',
+);
 
 // Legacy event fixture plans retain the old side order, rounds, and table numbering.
 $legacyEventPlan = \StationX\Yugioh\Domain\Competitions\LegacyEventFixturePlan::class;
@@ -780,71 +1307,253 @@ $eventFixtureDecks = [
     ['id' => 3, 'name' => 'C', 'seed_rank' => 3],
     ['id' => 4, 'name' => 'D', 'seed_rank' => 4],
 ];
-architectureCheck(count(iterator_to_array($legacyEventPlan::league($eventFixtureDecks), false)) === 6, 'Legacy league round count changed');
-architectureCheck(iterator_to_array($legacyEventPlan::knockout($eventFixtureDecks), false) === [[1, 'Ronda 1', 1, 1, 1, 4], [2, 'Ronda 1', 2, 2, 2, 3]], 'Legacy knockout pair order changed');
-architectureCheck(count(iterator_to_array($legacyEventPlan::world($eventFixtureDecks), false)) === 6, 'World group pair count changed');
+architectureCheck(
+    count(iterator_to_array($legacyEventPlan::league($eventFixtureDecks), false)) === 6,
+    'Legacy league round count changed',
+);
+architectureCheck(
+    iterator_to_array($legacyEventPlan::knockout($eventFixtureDecks), false) === [
+        [1, 'Ronda 1', 1, 1, 1, 4],
+        [2, 'Ronda 1', 2, 2, 2, 3],
+    ],
+    'Legacy knockout pair order changed',
+);
+architectureCheck(
+    count(iterator_to_array($legacyEventPlan::world($eventFixtureDecks), false)) === 6,
+    'World group pair count changed',
+);
 $legacyFriendlyRows = iterator_to_array($legacyEventPlan::friendlies($eventFixtureDecks), false);
-architectureCheck(count($legacyFriendlyRows) === 4 && $legacyFriendlyRows[0] === [1, 1, 1, 2], 'Legacy friendly pair order changed');
+architectureCheck(
+    count($legacyFriendlyRows) === 4 && $legacyFriendlyRows[0] === [1, 1, 1, 2],
+    'Legacy friendly pair order changed',
+);
 
 // Phase advancement preserves winner validation and completion guards.
 $phasePolicy = \StationX\Yugioh\Domain\Competitions\PhaseAdvancePolicy::class;
-architectureCheck(!$phasePolicy::finished(['total' => 0, 'closed' => 0]), 'Empty phase marked closed');
+architectureCheck(
+    !$phasePolicy::finished(['total' => 0, 'closed' => 0]),
+    'Empty phase marked closed',
+);
 architectureCheck($phasePolicy::finished(['total' => 2, 'closed' => 2]), 'Complete phase blocked');
-architectureCheck(!$phasePolicy::finished(['total' => 2, 'closed' => 1]), 'Pending phase marked closed');
-architectureCheck($phasePolicy::winners([['result' => 'A', 'deck_a_id' => 3, 'deck_b_id' => 4], ['result' => 'B', 'deck_a_id' => 5, 'deck_b_id' => 6]]) === [3, 6], 'Winner order changed');
-architectureCheck($phasePolicy::blockedQualifier(['event_flow' => 'QUALIFIES_TO_EVENT', 'advancement_rule' => 'RANKING_THRESHOLD'], 'qualifier', 'swiss', 'NONE'), 'Division qualifier gained a phase');
+architectureCheck(
+    !$phasePolicy::finished(['total' => 2, 'closed' => 1]),
+    'Pending phase marked closed',
+);
+architectureCheck(
+    $phasePolicy::winners([
+        ['result' => 'A', 'deck_a_id' => 3, 'deck_b_id' => 4],
+        ['result' => 'B', 'deck_a_id' => 5, 'deck_b_id' => 6],
+    ]) === [3, 6],
+    'Winner order changed',
+);
+architectureCheck(
+    $phasePolicy::blockedQualifier(
+        ['event_flow' => 'QUALIFIES_TO_EVENT', 'advancement_rule' => 'RANKING_THRESHOLD'],
+        'qualifier',
+        'swiss',
+        'NONE',
+    ),
+    'Division qualifier gained a phase',
+);
 
 // Qualifier finalization and honor selection retain legacy allocation and precedence.
 $finalizationPolicy = \StationX\Yugioh\Domain\Competitions\QualifierFinalizationPolicy::class;
-architectureCheck($finalizationPolicy::requiredMatches(0) === 3 && $finalizationPolicy::requiredMatches(9) === 5, 'Qualifier minimum changed');
-architectureCheck($finalizationPolicy::roundReasons([['round_number' => 1, 'status' => 'FINALIZADA']]) === [], 'Closed first round blocked');
-architectureCheck(count($finalizationPolicy::roundReasons([['round_number' => 1, 'status' => 'FINALIZADA'], ['round_number' => 1, 'status' => 'PENDIENTE']])) === 2, 'Partial round guard changed');
-architectureCheck(!$finalizationPolicy::result([], [['pj' => 2]], 3)['ok'], 'Insufficient match count accepted');
-$allocation = iterator_to_array($finalizationPolicy::divisions([['id' => 1], ['id' => 2]], [['id' => 7], ['id' => 8], ['id' => 9]]), false);
-architectureCheck(array_column($allocation, 'size') === [2, 1] && $allocation[1]['assignments'] === [['deckId' => 9, 'rank' => 1]], 'Qualifier allocation changed');
+architectureCheck(
+    $finalizationPolicy::requiredMatches(0) === 3 && $finalizationPolicy::requiredMatches(9) === 5,
+    'Qualifier minimum changed',
+);
+architectureCheck(
+    $finalizationPolicy::roundReasons([['round_number' => 1, 'status' => 'FINALIZADA']]) === [],
+    'Closed first round blocked',
+);
+architectureCheck(
+    count(
+        $finalizationPolicy::roundReasons([
+            ['round_number' => 1, 'status' => 'FINALIZADA'],
+            ['round_number' => 1, 'status' => 'PENDIENTE'],
+        ]),
+    ) === 2,
+    'Partial round guard changed',
+);
+architectureCheck(
+    !$finalizationPolicy::result([], [['pj' => 2]], 3)['ok'],
+    'Insufficient match count accepted',
+);
+$allocation = iterator_to_array(
+    $finalizationPolicy::divisions(
+        [['id' => 1], ['id' => 2]],
+        [['id' => 7], ['id' => 8], ['id' => 9]],
+    ),
+    false,
+);
+architectureCheck(
+    array_column($allocation, 'size') === [2, 1] &&
+        $allocation[1]['assignments'] === [['deckId' => 9, 'rank' => 1]],
+    'Qualifier allocation changed',
+);
 $honorPolicy = \StationX\Yugioh\Domain\Competitions\CompetitionHonorPolicy::class;
-architectureCheck($honorPolicy::usesFinal(['type' => 'cup']) && !$honorPolicy::usesFinal(['type' => 'league']), 'Honor final precedence changed');
-architectureCheck($honorPolicy::fromFinal(['result' => 'B', 'deck_a_id' => 1, 'deck_b_id' => 2]) === [2, 1], 'Final winner changed');
+architectureCheck(
+    $honorPolicy::usesFinal(['type' => 'cup']) && !$honorPolicy::usesFinal(['type' => 'league']),
+    'Honor final precedence changed',
+);
+architectureCheck(
+    $honorPolicy::fromFinal(['result' => 'B', 'deck_a_id' => 1, 'deck_b_id' => 2]) === [2, 1],
+    'Final winner changed',
+);
 architectureCheck($honorPolicy::fromRanking([['id' => 4]]) === [4, 0], 'Missing runner changed');
 
 // Knockout and historical phase plans preserve ordering and bye positions.
 $knockoutPlan = \StationX\Yugioh\Domain\Competitions\KnockoutRoundPlan::class;
 $knockoutIds = $knockoutPlan::normalize([1, '2', 2, 3, 4, 5, 0]);
-$knockoutRows = iterator_to_array($knockoutPlan::rows(['id' => 9], 'cup', $knockoutIds, 2, 'Final', '2026-11-26'), false);
-architectureCheck(array_column($knockoutRows, 'deckA') === [1, 2] && array_column($knockoutRows, 'deckB') === [5, 4], 'Knockout pairs changed');
-architectureCheck($knockoutRows[0]['displayOrder'] === 201 && $knockoutRows[0]['date'] === '2026-11-27', 'Knockout display/date changed');
-architectureCheck($knockoutPlan::bye('cup', $knockoutIds) === 3 && $knockoutPlan::bye('world', $knockoutIds) === null, 'Bye policy changed');
+$knockoutRows = iterator_to_array(
+    $knockoutPlan::rows(['id' => 9], 'cup', $knockoutIds, 2, 'Final', '2026-11-26'),
+    false,
+);
+architectureCheck(
+    array_column($knockoutRows, 'deckA') === [1, 2] &&
+        array_column($knockoutRows, 'deckB') === [5, 4],
+    'Knockout pairs changed',
+);
+architectureCheck(
+    $knockoutRows[0]['displayOrder'] === 201 && $knockoutRows[0]['date'] === '2026-11-27',
+    'Knockout display/date changed',
+);
+architectureCheck(
+    $knockoutPlan::bye('cup', $knockoutIds) === 3 &&
+        $knockoutPlan::bye('world', $knockoutIds) === null,
+    'Bye policy changed',
+);
 $historicalPlan = \StationX\Yugioh\Domain\Competitions\LegacyPhasePlan::class;
-architectureCheck($historicalPlan::winnersByDivision([['division_id' => 1, 'result' => 'A', 'deck_a_id' => 2], ['division_id' => 1, 'result' => 'E']]) === [1 => [2]], 'Historical winners changed');
-$autoScheduleRows = iterator_to_array(\StationX\Yugioh\Domain\Calendar\QualifierAutoSchedulePlan::rows([['id' => 1], ['id' => 2], ['id' => 3]], new DateTimeImmutable('2026-11-26 19:00:00'), 2, 45), false);
-architectureCheck($autoScheduleRows[1]['time'] === '19:45:00' && $autoScheduleRows[2]['date'] === '2026-11-27', 'Automatic qualifier slots changed');
+architectureCheck(
+    $historicalPlan::winnersByDivision([
+        ['division_id' => 1, 'result' => 'A', 'deck_a_id' => 2],
+        ['division_id' => 1, 'result' => 'E'],
+    ]) === [1 => [2]],
+    'Historical winners changed',
+);
+$autoScheduleRows = iterator_to_array(
+    \StationX\Yugioh\Domain\Calendar\QualifierAutoSchedulePlan::rows(
+        [['id' => 1], ['id' => 2], ['id' => 3]],
+        new DateTimeImmutable('2026-11-26 19:00:00'),
+        2,
+        45,
+    ),
+    false,
+);
+architectureCheck(
+    $autoScheduleRows[1]['time'] === '19:45:00' && $autoScheduleRows[2]['date'] === '2026-11-27',
+    'Automatic qualifier slots changed',
+);
 
 // Verify new command boundaries without a live database.
 $linksPort = new class implements \StationX\Yugioh\Application\Teams\TeamDeckLinkStore {
     public array $calls = [];
-    public function active(int $teamId): bool { $this->calls[] = ['active', $teamId]; return true; }
-    public function add(int $teamId, array $ids): void { $this->calls[] = ['add', $teamId, $ids]; }
-    public function remove(int $teamId, array $ids): void { $this->calls[] = ['remove', $teamId, $ids]; }
-    public function audit(int $teamId, array $add, array $remove): void { $this->calls[] = ['audit', $teamId, $add, $remove]; }
+    public function active(int $teamId): bool
+    {
+        $this->calls[] = ['active', $teamId];
+        return true;
+    }
+    public function add(int $teamId, array $ids): void
+    {
+        $this->calls[] = ['add', $teamId, $ids];
+    }
+    public function remove(int $teamId, array $ids): void
+    {
+        $this->calls[] = ['remove', $teamId, $ids];
+    }
+    public function audit(int $teamId, array $add, array $remove): void
+    {
+        $this->calls[] = ['audit', $teamId, $add, $remove];
+    }
 };
 $linkCommand = new \StationX\Yugioh\Application\Teams\UpdateTeamDeckLinks($linksPort);
-architectureCheck($linkCommand->execute(['team_id' => 7, 'team_add_deck_ids' => [0, 2, '2', 3], 'team_remove_deck_ids' => [4]]) === 'equipo_ficha', 'Link response changed');
-architectureCheck($linksPort->calls === [['active', 7], ['add', 7, [2, 3]], ['remove', 7, [4]], ['audit', 7, [2, 3], [4]]], 'Link mutation ordering changed');
-$playerProfile = \StationX\Yugioh\Domain\Teams\PlayerProfile::fromInput(['player_name' => ' A ', 'player_deck_ids' => [2, 2, -1]]);
-architectureCheck($playerProfile['name'] === 'A' && $playerProfile['deckIds'] === [2], 'Player normalization changed');
+architectureCheck(
+    $linkCommand->execute([
+        'team_id' => 7,
+        'team_add_deck_ids' => [0, 2, '2', 3],
+        'team_remove_deck_ids' => [4],
+    ]) === 'equipo_ficha',
+    'Link response changed',
+);
+architectureCheck(
+    $linksPort->calls === [
+        ['active', 7],
+        ['add', 7, [2, 3]],
+        ['remove', 7, [4]],
+        ['audit', 7, [2, 3], [4]],
+    ],
+    'Link mutation ordering changed',
+);
+$playerProfile = \StationX\Yugioh\Domain\Teams\PlayerProfile::fromInput([
+    'player_name' => ' A ',
+    'player_deck_ids' => [2, 2, -1],
+]);
+architectureCheck(
+    $playerProfile['name'] === 'A' && $playerProfile['deckIds'] === [2],
+    'Player normalization changed',
+);
 $matchScheduleUpdate = \StationX\Yugioh\Domain\Calendar\MatchScheduleUpdate::class;
-architectureCheck($matchScheduleUpdate::closed(['status' => 'finalizado']), 'Finalized match editable');
-architectureCheck($matchScheduleUpdate::fromInput(['venue' => ' X ']) === ['scheduled_on' => null, 'starts_at' => null, 'venue' => 'X', 'judge' => '', 'notes' => ''], 'Schedule input normalization changed');
+architectureCheck(
+    $matchScheduleUpdate::closed(['status' => 'finalizado']),
+    'Finalized match editable',
+);
+architectureCheck(
+    $matchScheduleUpdate::fromInput(['venue' => ' X ']) === [
+        'scheduled_on' => null,
+        'starts_at' => null,
+        'venue' => 'X',
+        'judge' => '',
+        'notes' => '',
+    ],
+    'Schedule input normalization changed',
+);
 
 // Result command payload and correction policies remain independent of persistence.
 $resultPayload = \StationX\Yugioh\Domain\Matches\MatchResultPayload::class;
-architectureCheck($resultPayload::values(['d1' => 'A', 'd2' => 'invalid', 'd3' => 'E']) === ['A', '', 'E', '', ''], 'Result sequence input changed');
-architectureCheck($resultPayload::offlineRequestId(['offline_request_id' => 'req:1/2']) === 'req12', 'Offline identity changed');
-$payload = $resultPayload::normalize(['result_dice_roll' => '{"winner":"a","choice":"first","starts":"a"}'], ['A', '', '', '', '']);
-architectureCheck($payload['diceWinner'] === 'A' && $payload['turnDecision'] === 'primero' && $payload['startsPlayer'] === 'A', 'Dice normalization changed');
+architectureCheck(
+    $resultPayload::values(['d1' => 'A', 'd2' => 'invalid', 'd3' => 'E']) === [
+        'A',
+        '',
+        'E',
+        '',
+        '',
+    ],
+    'Result sequence input changed',
+);
+architectureCheck(
+    $resultPayload::offlineRequestId(['offline_request_id' => 'req:1/2']) === 'req12',
+    'Offline identity changed',
+);
+$payload = $resultPayload::normalize(
+    ['result_dice_roll' => '{"winner":"a","choice":"first","starts":"a"}'],
+    ['A', '', '', '', ''],
+);
+architectureCheck(
+    $payload['diceWinner'] === 'A' &&
+        $payload['turnDecision'] === 'primero' &&
+        $payload['startsPlayer'] === 'A',
+    'Dice normalization changed',
+);
 $resultIntegrity = \StationX\Yugioh\Domain\Matches\ResultIntegrityPolicy::class;
-architectureCheck($resultIntegrity::preserveStoredValues(['A', '', 'B', '', ''], ['', 'E', 'A', '', '']) === ['A', 'E', 'B', '', ''], 'Stored sequence protection changed');
-architectureCheck($seasonOutcome(static fn() => $resultIntegrity::assertCorrectionVersion([['manual_correction_at_ms' => 5]], 4)) === 'La partida fue modificada. Recarga antes de guardar para no sobrescribir la corrección.', 'Correction version guard changed');
+architectureCheck(
+    $resultIntegrity::preserveStoredValues(['A', '', 'B', '', ''], ['', 'E', 'A', '', '']) === [
+        'A',
+        'E',
+        'B',
+        '',
+        '',
+    ],
+    'Stored sequence protection changed',
+);
+architectureCheck(
+    $seasonOutcome(
+        static fn() => $resultIntegrity::assertCorrectionVersion(
+            [['manual_correction_at_ms' => 5]],
+            4,
+        ),
+    ) === 'La partida fue modificada. Recarga antes de guardar para no sobrescribir la corrección.',
+    'Correction version guard changed',
+);
 
 // Complete command characterization through in-memory ports.
 $resultPorts = new class implements
@@ -853,7 +1562,8 @@ $resultPorts = new class implements
     \StationX\Yugioh\Application\Matches\MatchResultEffects,
     \StationX\Yugioh\Application\Matches\MatchSnapshotStore,
     \StationX\Yugioh\Application\Shared\TransactionBoundary,
-    \StationX\Yugioh\Application\Shared\Clock {
+    \StationX\Yugioh\Application\Shared\Clock
+{
     public array $calls = [];
     public array $existing = [];
     public array $saved = [];
@@ -861,36 +1571,131 @@ $resultPorts = new class implements
     public string|false $synced = false;
     public bool $dateAllowed = true;
 
-    public function syncedResult(string $requestId): string|false { $this->calls[] = 'synced'; return $this->synced; }
-    public function audit(int $matchId, string $action, array $payload): void { $this->calls[] = $action; }
-    public function ensure(int $matchId): void { $this->calls[] = 'ensure'; }
-    public function lockExisting(int $matchId): array { $this->calls[] = 'lock'; return $this->existing; }
-    public function persistedTurns(int $matchId): array { $this->calls[] = 'turns'; return []; }
-    public function appendTurns(int $matchId, iterable $rows): void { $this->calls[] = 'append'; foreach ($rows as $row) {} }
-    public function save(array $values): void { $this->calls[] = 'save'; $this->saved = $values; }
-    public function competitionId(int $matchId): int { $this->calls[] = 'competition'; return 8; }
-    public function saveLiveState(int $matchId, array $state): void { $this->calls[] = 'live-save'; }
-    public function recordSync(string $requestId, int $matchId, string $payloadHash): void { $this->calls[] = 'record-sync'; }
-    public function teamKindForMatch(int $matchId): string { $this->calls[] = 'team'; return $this->team; }
-    public function verifiedStart(int $matchId, int $duel, string $starts): bool { $this->calls[] = 'verify-start'; return false; }
-    public function validateDate(int $matchId): array { $this->calls[] = 'date'; return ['ok' => $this->dateAllowed]; }
-    public function assertEditable(int $matchId): void { $this->calls[] = 'editable'; }
-    public function evaluate(int $matchId, array $values): array { $this->calls[] = 'evaluate'; return ['winner' => null, 'score' => '0-0', 'validation' => 'OK', 'status' => 'PENDIENTE']; }
-    public function setStatus(int $matchId, string $status, string $now): void { $this->calls[] = 'status:' . $now; }
-    public function persistStandings(int $competitionId): void { $this->calls[] = 'standings'; }
-    public function syncStatistics(int $competitionId, int $matchId): void { $this->calls[] = 'statistics'; }
-    public function liveMatch(int $matchId): array { $this->calls[] = 'live'; return []; }
-    public function initialLiveState(array $match): array { return []; }
-    public function match(int $matchId): array { $this->calls[] = 'snapshot'; return []; }
-    public function deck(int $deckId): array { throw new RuntimeException('Unexpected deck read'); }
-    public function decklist(int $deckId): array { throw new RuntimeException('Unexpected decklist read'); }
-    public function insert(array $row): void { throw new RuntimeException('Unexpected snapshot'); }
-    public function run(callable $operation): mixed {
-        $this->calls[] = 'begin';
-        try { $result = $operation(); $this->calls[] = 'commit'; return $result; }
-        catch (Throwable $error) { $this->calls[] = 'rollback'; throw $error; }
+    public function syncedResult(string $requestId): string|false
+    {
+        $this->calls[] = 'synced';
+        return $this->synced;
     }
-    public function now(): DateTimeImmutable { return new DateTimeImmutable('2026-11-26T17:00:00+00:00'); }
+    public function audit(int $matchId, string $action, array $payload): void
+    {
+        $this->calls[] = $action;
+    }
+    public function ensure(int $matchId): void
+    {
+        $this->calls[] = 'ensure';
+    }
+    public function lockExisting(int $matchId): array
+    {
+        $this->calls[] = 'lock';
+        return $this->existing;
+    }
+    public function persistedTurns(int $matchId): array
+    {
+        $this->calls[] = 'turns';
+        return [];
+    }
+    public function appendTurns(int $matchId, iterable $rows): void
+    {
+        $this->calls[] = 'append';
+        foreach ($rows as $row) {
+        }
+    }
+    public function save(array $values): void
+    {
+        $this->calls[] = 'save';
+        $this->saved = $values;
+    }
+    public function competitionId(int $matchId): int
+    {
+        $this->calls[] = 'competition';
+        return 8;
+    }
+    public function saveLiveState(int $matchId, array $state): void
+    {
+        $this->calls[] = 'live-save';
+    }
+    public function recordSync(string $requestId, int $matchId, string $payloadHash): void
+    {
+        $this->calls[] = 'record-sync';
+    }
+    public function teamKindForMatch(int $matchId): string
+    {
+        $this->calls[] = 'team';
+        return $this->team;
+    }
+    public function verifiedStart(int $matchId, int $duel, string $starts): bool
+    {
+        $this->calls[] = 'verify-start';
+        return false;
+    }
+    public function validateDate(int $matchId): array
+    {
+        $this->calls[] = 'date';
+        return ['ok' => $this->dateAllowed];
+    }
+    public function assertEditable(int $matchId): void
+    {
+        $this->calls[] = 'editable';
+    }
+    public function evaluate(int $matchId, array $values): array
+    {
+        $this->calls[] = 'evaluate';
+        return ['winner' => null, 'score' => '0-0', 'validation' => 'OK', 'status' => 'PENDIENTE'];
+    }
+    public function setStatus(int $matchId, string $status, string $now): void
+    {
+        $this->calls[] = 'status:' . $now;
+    }
+    public function persistStandings(int $competitionId): void
+    {
+        $this->calls[] = 'standings';
+    }
+    public function syncStatistics(int $competitionId, int $matchId): void
+    {
+        $this->calls[] = 'statistics';
+    }
+    public function liveMatch(int $matchId): array
+    {
+        $this->calls[] = 'live';
+        return [];
+    }
+    public function initialLiveState(array $match): array
+    {
+        return [];
+    }
+    public function match(int $matchId): array
+    {
+        $this->calls[] = 'snapshot';
+        return [];
+    }
+    public function deck(int $deckId): array
+    {
+        throw new RuntimeException('Unexpected deck read');
+    }
+    public function decklist(int $deckId): array
+    {
+        throw new RuntimeException('Unexpected decklist read');
+    }
+    public function insert(array $row): void
+    {
+        throw new RuntimeException('Unexpected snapshot');
+    }
+    public function run(callable $operation): mixed
+    {
+        $this->calls[] = 'begin';
+        try {
+            $result = $operation();
+            $this->calls[] = 'commit';
+            return $result;
+        } catch (Throwable $error) {
+            $this->calls[] = 'rollback';
+            throw $error;
+        }
+    }
+    public function now(): DateTimeImmutable
+    {
+        return new DateTimeImmutable('2026-11-26T17:00:00+00:00');
+    }
 };
 $resultCommand = new \StationX\Yugioh\Application\Matches\SaveMatchResult(
     $resultPorts,
@@ -901,22 +1706,69 @@ $resultCommand = new \StationX\Yugioh\Application\Matches\SaveMatchResult(
     $resultPorts,
 );
 $resultPorts->synced = 'resultado';
-architectureCheck($resultCommand->execute(['match_id' => 7, 'offline_request_id' => 'a']) === 'resultado' && $resultPorts->calls === ['team', 'synced'], 'Offline duplicate performed writes');
+architectureCheck(
+    $resultCommand->execute(['match_id' => 7, 'offline_request_id' => 'a']) === 'resultado' &&
+        $resultPorts->calls === ['team', 'synced'],
+    'Offline duplicate performed writes',
+);
 $resultPorts->synced = false;
 $resultPorts->calls = [];
-architectureCheck($resultCommand->execute(['match_id' => 7, 'd1' => 'A']) === 'resultado_bloqueado_inicio' && $resultPorts->calls === ['team', 'verify-start'], 'Missing start guard changed');
+architectureCheck(
+    $resultCommand->execute(['match_id' => 7, 'd1' => 'A']) === 'resultado_bloqueado_inicio' &&
+        $resultPorts->calls === ['team', 'verify-start'],
+    'Missing start guard changed',
+);
 $resultPorts->dateAllowed = false;
 $resultPorts->calls = [];
-architectureCheck($resultCommand->execute(['match_id' => 7]) === 'resultado_bloqueado_fecha' && $resultPorts->calls === ['team', 'verify-start', 'date', 'blocked_result_by_date'], 'Date guard wrote result');
+architectureCheck(
+    $resultCommand->execute(['match_id' => 7]) === 'resultado_bloqueado_fecha' &&
+        $resultPorts->calls === ['team', 'verify-start', 'date', 'blocked_result_by_date'],
+    'Date guard wrote result',
+);
 $resultPorts->dateAllowed = true;
 $resultPorts->calls = [];
 $resultPorts->existing = ['duel_details' => '[{"manual_correction_at_ms":5}]'];
-architectureCheck($seasonOutcome(static fn() => $resultCommand->execute(['match_id' => 7])) !== null && end($resultPorts->calls) === 'rollback', 'Correction conflict did not roll back');
+architectureCheck(
+    $seasonOutcome(static fn() => $resultCommand->execute(['match_id' => 7])) !== null &&
+        end($resultPorts->calls) === 'rollback',
+    'Correction conflict did not roll back',
+);
 $resultPorts->existing = [];
 $resultPorts->calls = [];
-architectureCheck($resultCommand->execute(['match_id' => 7, 'offline_request_id' => 'a']) === 'resultado', 'Empty pending result response changed');
-architectureCheck($resultPorts->calls === ['team', 'synced', 'verify-start', 'date', 'begin', 'editable', 'ensure', 'lock', 'evaluate', 'save', 'snapshot', 'status:2026-11-26 12:00:00', 'competition', 'standings', 'save_result', 'statistics', 'live', 'record-sync', 'commit'], 'Result mutation order changed');
-architectureCheck($resultPorts->saved['matchId'] === 7 && $resultPorts->saved['d1'] === null && $resultPorts->saved['validation'] === 'OK', 'Result payload changed');
+architectureCheck(
+    $resultCommand->execute(['match_id' => 7, 'offline_request_id' => 'a']) === 'resultado',
+    'Empty pending result response changed',
+);
+architectureCheck(
+    $resultPorts->calls === [
+        'team',
+        'synced',
+        'verify-start',
+        'date',
+        'begin',
+        'editable',
+        'ensure',
+        'lock',
+        'evaluate',
+        'save',
+        'snapshot',
+        'status:2026-11-26 12:00:00',
+        'competition',
+        'standings',
+        'save_result',
+        'statistics',
+        'live',
+        'record-sync',
+        'commit',
+    ],
+    'Result mutation order changed',
+);
+architectureCheck(
+    $resultPorts->saved['matchId'] === 7 &&
+        $resultPorts->saved['d1'] === null &&
+        $resultPorts->saved['validation'] === 'OK',
+    'Result payload changed',
+);
 
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {

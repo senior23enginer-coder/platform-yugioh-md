@@ -25,5 +25,10 @@ interface FixtureGenerationRules
 
     public function rosterGroups(array $ids, int $participantsPerSide): array;
 
-    public function leaguePlan(int $competitionId, array $ids, int $participantsPerSide, bool $doubleRound): array;
+    public function leaguePlan(
+        int $competitionId,
+        array $ids,
+        int $participantsPerSide,
+        bool $doubleRound,
+    ): array;
 }

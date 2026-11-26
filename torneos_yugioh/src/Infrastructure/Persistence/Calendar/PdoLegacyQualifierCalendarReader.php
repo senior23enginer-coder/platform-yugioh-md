@@ -27,6 +27,11 @@ final readonly class PdoLegacyQualifierCalendarReader implements LegacyQualifier
 
     public function activeDeckIds(): array
     {
-        return array_map('intval', $this->pdo->query('SELECT id FROM sx_ygo_decks WHERE active = 1 ORDER BY seed_rank, id')->fetchAll(PDO::FETCH_COLUMN));
+        return array_map(
+            'intval',
+            $this->pdo
+                ->query('SELECT id FROM sx_ygo_decks WHERE active = 1 ORDER BY seed_rank, id')
+                ->fetchAll(PDO::FETCH_COLUMN),
+        );
     }
 }

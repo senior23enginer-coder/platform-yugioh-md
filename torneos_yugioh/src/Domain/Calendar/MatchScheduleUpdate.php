@@ -7,7 +7,11 @@ final class MatchScheduleUpdate
 {
     public static function closed(array $match): bool
     {
-        return in_array(strtoupper((string) ($match['status'] ?? '')), ['FINALIZADA', 'FINALIZADO', 'COMPLETED'], true);
+        return in_array(
+            strtoupper((string) ($match['status'] ?? '')),
+            ['FINALIZADA', 'FINALIZADO', 'COMPLETED'],
+            true,
+        );
     }
 
     public static function fromInput(array $input): array

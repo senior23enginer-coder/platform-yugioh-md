@@ -20,20 +20,34 @@ final readonly class PdoTeamDeckLinkStore implements TeamDeckLinkStore
     public function add(int $teamId, array $ids): void
     {
         $placeholders = implode(',', array_fill(0, count($ids), '?'));
-        $this->pdo->prepare("UPDATE sx_ygo_decks SET team_id=? WHERE active=1 AND team_id IS NULL AND id IN ($placeholders)")
+        $this->pdo
+            ->prepare(
+                "UPDATE sx_ygo_decks SET team_id=? WHERE active=1 AND team_id IS NULL AND id IN ($placeholders)",
+            )
             ->execute([$teamId, ...$ids]);
     }
 
     public function remove(int $teamId, array $ids): void
     {
         $placeholders = implode(',', array_fill(0, count($ids), '?'));
-        $this->pdo->prepare("UPDATE sx_ygo_decks SET team_id=NULL WHERE active=1 AND team_id=? AND id IN ($placeholders)")
+        $this->pdo
+            ->prepare(
+                "UPDATE sx_ygo_decks SET team_id=NULL WHERE active=1 AND team_id=? AND id IN ($placeholders)",
+            )
             ->execute([$teamId, ...$ids]);
     }
 
     public function audit(int $teamId, array $add, array $remove): void
     {
-        $this->pdo->prepare('INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)')
-            ->execute(['team', $teamId, 'save_team_deck_links', json_encode(['add' => $add, 'remove' => $remove], JSON_UNESCAPED_UNICODE)]);
+        $this->pdo
+            ->prepare(
+                'INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)',
+            )
+            ->execute([
+                'team',
+                $teamId,
+                'save_team_deck_links',
+                json_encode(['add' => $add, 'remove' => $remove], JSON_UNESCAPED_UNICODE),
+            ]);
     }
 }

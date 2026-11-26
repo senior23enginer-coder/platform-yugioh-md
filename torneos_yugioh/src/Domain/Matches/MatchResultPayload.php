@@ -17,7 +17,8 @@ final class MatchResultPayload
 
     public static function offlineRequestId(array $post): string
     {
-        return preg_replace('/[^a-zA-Z0-9_-]/', '', (string) ($post['offline_request_id'] ?? '')) ?: '';
+        return preg_replace('/[^a-zA-Z0-9_-]/', '', (string) ($post['offline_request_id'] ?? '')) ?:
+            '';
     }
 
     public static function normalize(array $post, array $values): array
@@ -282,12 +283,18 @@ final class MatchResultPayload
                         ]);
                     }
                 }
-                $duelDetails = json_encode(
-                    array_values($decodedDetails),
-                    JSON_UNESCAPED_UNICODE,
-                );
+                $duelDetails = json_encode(array_values($decodedDetails), JSON_UNESCAPED_UNICODE);
             }
         }
-        return ['diceRoll' => $diceRoll, 'turnChoice' => $turnChoice, 'duelDetails' => $duelDetails, 'diceWinner' => $diceWinner, 'turnChosenBy' => $turnChosenBy, 'turnDecision' => $turnDecision, 'startsPlayer' => $startsPlayer, 'decodedDetails' => $decodedDetails];
+        return [
+            'diceRoll' => $diceRoll,
+            'turnChoice' => $turnChoice,
+            'duelDetails' => $duelDetails,
+            'diceWinner' => $diceWinner,
+            'turnChosenBy' => $turnChosenBy,
+            'turnDecision' => $turnDecision,
+            'startsPlayer' => $startsPlayer,
+            'decodedDetails' => $decodedDetails,
+        ];
     }
 }

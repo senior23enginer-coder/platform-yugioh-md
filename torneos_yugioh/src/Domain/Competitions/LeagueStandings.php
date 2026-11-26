@@ -58,7 +58,13 @@ final class LeagueStandings
             $row['dp'] = $row['cg'] - $row['cp'];
         }
         unset($row);
-        usort($standings, static fn(array $a, array $b): int => $b['pts'] <=> $a['pts'] ?: $b['dp'] <=> $a['dp'] ?: $b['cg'] <=> $a['cg'] ?: $a['rank'] <=> $b['rank']);
+        usort(
+            $standings,
+            static fn(array $a, array $b): int => $b['pts'] <=> $a['pts'] ?:
+            $b['dp'] <=> $a['dp'] ?:
+            $b['cg'] <=> $a['cg'] ?:
+            $a['rank'] <=> $b['rank'],
+        );
         return $standings;
     }
 }

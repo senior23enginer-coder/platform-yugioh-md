@@ -15,9 +15,18 @@ final readonly class PdoCompetitionHonorWriter implements CompetitionHonorWriter
         \ygo_workflow_honor($this->pdo, $competition, $championId, $runnerId);
     }
 
-    public function record(array $competition, int $competitionId, int $championId, int $championTeamId, int $runnerId, int $runnerTeamId): void
-    {
-        $this->pdo->prepare('INSERT INTO sx_ygo_honors (season_id, competition_id, champion_deck_id, champion_team_id, runner_up_deck_id, runner_up_team_id, title, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
+    public function record(
+        array $competition,
+        int $competitionId,
+        int $championId,
+        int $championTeamId,
+        int $runnerId,
+        int $runnerTeamId,
+    ): void {
+        $this->pdo
+            ->prepare(
+                'INSERT INTO sx_ygo_honors (season_id, competition_id, champion_deck_id, champion_team_id, runner_up_deck_id, runner_up_team_id, title, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+            )
             ->execute([
                 (int) $competition['season_id'],
                 $competitionId,

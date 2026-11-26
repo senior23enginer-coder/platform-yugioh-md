@@ -7,7 +7,13 @@ interface FormatCategoryStore
 {
     public function managed(int $seasonId): bool;
 
-    public function rename(int $seasonId, string $oldCode, string $newCode, array $definition, int $tier): void;
+    public function rename(
+        int $seasonId,
+        string $oldCode,
+        string $newCode,
+        array $definition,
+        int $tier,
+    ): void;
 
     public function codes(int $seasonId): array;
 

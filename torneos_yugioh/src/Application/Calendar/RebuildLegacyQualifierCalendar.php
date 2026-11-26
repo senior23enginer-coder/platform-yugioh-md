@@ -17,7 +17,10 @@ final readonly class RebuildLegacyQualifierCalendar
 
     public function execute(array $input): int
     {
-        $calendar = LegacyQualifierCalendar::fromInput($input, $this->clock->now()->format('Y-m-d'));
+        $calendar = LegacyQualifierCalendar::fromInput(
+            $input,
+            $this->clock->now()->format('Y-m-d'),
+        );
         $seasonId = $this->reader->currentSeasonId();
         $divisionId = $this->reader->firstDivisionId();
         $competitionId = $this->reader->selectedQualifierId();
@@ -30,9 +33,19 @@ final readonly class RebuildLegacyQualifierCalendar
         }
         $this->writer->clearPending($seasonId, $competitionId);
         $pairs = LegacyQualifierPairings::build($deckIds);
-        $created = $this->writer->insertFixtures($divisionId, $competitionId, $calendar->fixtures($pairs));
+        $created = $this->writer->insertFixtures(
+            $divisionId,
+            $competitionId,
+            $calendar->fixtures($pairs),
+        );
         $days = $calendar->days(count($pairs));
-        $this->writer->insertJourneys($seasonId, $divisionId, $competitionId, $days, $calendar->startTime);
+        $this->writer->insertJourneys(
+            $seasonId,
+            $divisionId,
+            $competitionId,
+            $days,
+            $calendar->startTime,
+        );
         $endDate = $calendar->endDate($days, count($pairs));
         if ($competitionId) {
             $this->writer->activate($competitionId, $calendar->startDate, $endDate);

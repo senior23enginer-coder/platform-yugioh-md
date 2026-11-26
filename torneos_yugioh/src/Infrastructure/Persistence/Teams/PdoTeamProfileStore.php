@@ -19,13 +19,25 @@ final readonly class PdoTeamProfileStore implements TeamProfileStore
 
     public function save(int $id, array $profile): int
     {
-        $values = [$profile['name'], $profile['city'], $profile['logo'], $profile['code'], $profile['symbol']];
+        $values = [
+            $profile['name'],
+            $profile['city'],
+            $profile['logo'],
+            $profile['code'],
+            $profile['symbol'],
+        ];
         if ($id > 0) {
-            $this->pdo->prepare('UPDATE sx_ygo_teams SET name=?, city=?, logo_url=?, short_code=?, symbol=? WHERE id=?')
+            $this->pdo
+                ->prepare(
+                    'UPDATE sx_ygo_teams SET name=?, city=?, logo_url=?, short_code=?, symbol=? WHERE id=?',
+                )
                 ->execute([...$values, $id]);
             return $id;
         }
-        $this->pdo->prepare('INSERT INTO sx_ygo_teams (name, city, logo_url, short_code, symbol, active) VALUES (?, ?, ?, ?, ?, 1)')
+        $this->pdo
+            ->prepare(
+                'INSERT INTO sx_ygo_teams (name, city, logo_url, short_code, symbol, active) VALUES (?, ?, ?, ?, ?, 1)',
+            )
             ->execute($values);
         return (int) $this->pdo->lastInsertId();
     }

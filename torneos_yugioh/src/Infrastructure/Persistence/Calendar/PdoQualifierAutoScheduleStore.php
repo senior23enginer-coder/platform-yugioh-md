@@ -26,19 +26,38 @@ final readonly class PdoQualifierAutoScheduleStore implements QualifierAutoSched
 
     public function update(?int $competitionId, array $row): void
     {
-        $this->pdo->prepare('UPDATE sx_ygo_matches SET competition_id=COALESCE(competition_id, ?), scheduled_on=?, starts_at=?, venue=COALESCE(NULLIF(venue, ""), ?), notes=COALESCE(NULLIF(notes, ""), ?) WHERE id=?')
-            ->execute([$competitionId, $row['date'], $row['time'], 'Station X Tulua', 'Programado automaticamente desde Gestion.', $row['id']]);
+        $this->pdo
+            ->prepare(
+                'UPDATE sx_ygo_matches SET competition_id=COALESCE(competition_id, ?), scheduled_on=?, starts_at=?, venue=COALESCE(NULLIF(venue, ""), ?), notes=COALESCE(NULLIF(notes, ""), ?) WHERE id=?',
+            )
+            ->execute([
+                $competitionId,
+                $row['date'],
+                $row['time'],
+                'Station X Tulua',
+                'Programado automaticamente desde Gestion.',
+                $row['id'],
+            ]);
     }
 
     public function updateDailyLimit(int $competitionId, int $limit): void
     {
-        $this->pdo->prepare('UPDATE sx_ygo_competitions SET qualifier_matches_per_day = ? WHERE id = ?')
+        $this->pdo
+            ->prepare('UPDATE sx_ygo_competitions SET qualifier_matches_per_day = ? WHERE id = ?')
             ->execute([$limit, $competitionId]);
     }
 
     public function audit(?int $competitionId, array $payload): void
     {
-        $this->pdo->prepare('INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)')
-            ->execute(['competition', $competitionId, 'auto_schedule_qualifier', json_encode($payload, JSON_UNESCAPED_UNICODE)]);
+        $this->pdo
+            ->prepare(
+                'INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)',
+            )
+            ->execute([
+                'competition',
+                $competitionId,
+                'auto_schedule_qualifier',
+                json_encode($payload, JSON_UNESCAPED_UNICODE),
+            ]);
     }
 }

@@ -48,9 +48,11 @@ final readonly class PdoDivisionMovementWriter implements DivisionMovementWriter
                 json_encode(['competition_id' => $competitionId] + $move),
             ]);
         }
-        $this->pdo->prepare(
-            'UPDATE sx_ygo_divisions dv SET deck_count=(SELECT COUNT(*) FROM sx_ygo_decks d WHERE d.division_id=dv.id AND d.active=1) WHERE league_competition_id=?',
-        )->execute([$competitionId]);
+        $this->pdo
+            ->prepare(
+                'UPDATE sx_ygo_divisions dv SET deck_count=(SELECT COUNT(*) FROM sx_ygo_decks d WHERE d.division_id=dv.id AND d.active=1) WHERE league_competition_id=?',
+            )
+            ->execute([$competitionId]);
         $audit->execute([
             'competition',
             $competitionId,

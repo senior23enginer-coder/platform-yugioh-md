@@ -12,6 +12,9 @@ final class CompetitionHonorModule
 {
     public static function create(PDO $pdo): RecordCompetitionHonor
     {
-        return new RecordCompetitionHonor(new PdoCompetitionHonorReader($pdo), new PdoCompetitionHonorWriter($pdo));
+        return new RecordCompetitionHonor(
+            new PdoCompetitionHonorReader($pdo),
+            new PdoCompetitionHonorWriter($pdo),
+        );
     }
 }

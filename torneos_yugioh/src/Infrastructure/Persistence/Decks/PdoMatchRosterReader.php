@@ -16,7 +16,9 @@ final readonly class PdoMatchRosterReader implements MatchRosterReader
             return [];
         }
         $placeholders = implode(',', array_fill(0, count($ids), '?'));
-        $stmt = $this->pdo->prepare("SELECT id, division_id, team_id FROM sx_ygo_decks WHERE id IN ($placeholders) AND active = 1");
+        $stmt = $this->pdo->prepare(
+            "SELECT id, division_id, team_id FROM sx_ygo_decks WHERE id IN ($placeholders) AND active = 1",
+        );
         $stmt->execute($ids);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -27,7 +29,9 @@ final readonly class PdoMatchRosterReader implements MatchRosterReader
             return [];
         }
         $placeholders = implode(',', array_fill(0, count($ids), '?'));
-        $stmt = $this->pdo->prepare("SELECT id, team_id FROM sx_ygo_decks WHERE id IN ($placeholders) AND active = 1 AND team_id IS NOT NULL");
+        $stmt = $this->pdo->prepare(
+            "SELECT id, team_id FROM sx_ygo_decks WHERE id IN ($placeholders) AND active = 1 AND team_id IS NOT NULL",
+        );
         $stmt->execute($ids);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

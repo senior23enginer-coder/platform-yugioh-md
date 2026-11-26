@@ -17,7 +17,10 @@ final readonly class PublishStandingSnapshots
         if ($competitionId <= 0) {
             return;
         }
-        foreach (StandingSnapshotPolicy::scopes($this->reader->phases($competitionId)) as $key => $phase) {
+        foreach (
+            StandingSnapshotPolicy::scopes($this->reader->phases($competitionId))
+            as $key => $phase
+        ) {
             $standings = $this->reader->standings($competitionId, $phase);
             if (!$standings) {
                 $this->writer->clear($competitionId, $key);

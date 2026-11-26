@@ -24,11 +24,18 @@ final readonly class AdvanceCompetitionPhase
                 return 0;
             }
             if ($this->actions->admission($competition) !== null) {
-                $this->actions->requireAdmission($competition, $this->reader->registeredDecks($competitionId));
+                $this->actions->requireAdmission(
+                    $competition,
+                    $this->reader->registeredDecks($competitionId),
+                );
             }
             if (
                 ($this->actions->teamKind($competition) !== '' ||
-                    in_array((string) $competition['execution_model'], $this->actions->workflowModels(), true)) &&
+                    in_array(
+                        (string) $competition['execution_model'],
+                        $this->actions->workflowModels(),
+                        true,
+                    )) &&
                 $this->actions->workflow($competition) !== null
             ) {
                 return $this->actions->generateWorkflow($competition);
@@ -46,48 +53,107 @@ final readonly class AdvanceCompetitionPhase
         if (!$competition) {
             return 0;
         }
-        $type = (string) (($competition['type'] ?? '') ?: 'tournament');
-        $execution = (string) (($competition['execution_model'] ?? '') ?: 'manual');
-        if(in_array($execution,$this->actions->workflowModels(),true))throw new InvalidArgumentException('Este evento anterior no tiene un reglamento versionado. No se reinterpretaran sus combates.');
-        $phaseStructure = strtoupper((string) (($competition['phase_structure'] ?? '') ?: 'NONE'));
+        $type = (string) ($competition['type'] ?? '' ?: 'tournament');
+        $execution = (string) ($competition['execution_model'] ?? '' ?: 'manual');
+        if (in_array($execution, $this->actions->workflowModels(), true)) {
+            throw new InvalidArgumentException(
+                'Este evento anterior no tiene un reglamento versionado. No se reinterpretaran sus combates.',
+            );
+        }
+        $phaseStructure = strtoupper((string) ($competition['phase_structure'] ?? '' ?: 'NONE'));
         $created = 0;
 
-        if (PhaseAdvancePolicy::blockedQualifier($competition, $type, $execution, $phaseStructure)) {
-            $this->actions->audit($competitionId, 'blocked_advance_competition_phase', ['reason' => 'division_qualifier_has_no_next_phase']);
+        if (
+            PhaseAdvancePolicy::blockedQualifier($competition, $type, $execution, $phaseStructure)
+        ) {
+            $this->actions->audit($competitionId, 'blocked_advance_competition_phase', [
+                'reason' => 'division_qualifier_has_no_next_phase',
+            ]);
             return 0;
         }
 
-        $advanceKnockout = fn(string $phase): int => $this->advanceKnockout($competition, $competitionId, $phase);
+        $advanceKnockout = fn(string $phase): int => $this->advanceKnockout(
+            $competition,
+            $competitionId,
+            $phase,
+        );
 
-        if (in_array($execution, ['single_elimination', 'double_elimination', 'top_cut', 'playoffs', 'bracket', 'series'], true)) {
-            $phase = $this->queries->count($competitionId,'cup')>0 ? 'cup' : ($type === 'world' ? 'world' : ($type === 'final' ? 'final' : 'cup'));
+        if (
+            in_array(
+                $execution,
+                [
+                    'single_elimination',
+                    'double_elimination',
+                    'top_cut',
+                    'playoffs',
+                    'bracket',
+                    'series',
+                ],
+                true,
+            )
+        ) {
+            $phase =
+                $this->queries->count($competitionId, 'cup') > 0
+                    ? 'cup'
+                    : ($type === 'world'
+                        ? 'world'
+                        : ($type === 'final'
+                            ? 'final'
+                            : 'cup'));
             $created += $advanceKnockout($phase);
         }
 
-        if ($created === 0 && (in_array($execution, ['swiss_top_cut', 'top_cut'], true) || str_contains($phaseStructure, 'TOP_CUT'))) {
+        if (
+            $created === 0 &&
+            (in_array($execution, ['swiss_top_cut', 'top_cut'], true) ||
+                str_contains($phaseStructure, 'TOP_CUT'))
+        ) {
             $targetPhase = 'top_cut';
             if ($this->queries->count($competitionId, $targetPhase) > 0) {
                 $created += $advanceKnockout($targetPhase);
             } else {
-                $basePhase = $this->queries->count($competitionId, 'swiss') > 0 ? 'swiss' : 'qualifier';
+                $basePhase =
+                    $this->queries->count($competitionId, 'swiss') > 0 ? 'swiss' : 'qualifier';
                 if ($this->queries->finished($competitionId, $basePhase)) {
                     $ranking = $this->reader->standings($competitionId);
                     $topSize = $this->actions->targetSize(count($ranking));
-                    $deckIds = array_map(static fn(array $row): int => (int) ($row['id'] ?? 0), array_slice($ranking, 0, $topSize));
-                    $created += $this->actions->createRound($competition, $targetPhase, $deckIds, 1, 'Top Cut');
+                    $deckIds = array_map(
+                        static fn(array $row): int => (int) ($row['id'] ?? 0),
+                        array_slice($ranking, 0, $topSize),
+                    );
+                    $created += $this->actions->createRound(
+                        $competition,
+                        $targetPhase,
+                        $deckIds,
+                        1,
+                        'Top Cut',
+                    );
                 }
             }
         }
 
-        if ($created === 0 && (in_array($execution, ['groups_knockout'], true) || str_contains($phaseStructure, 'GROUPS'))) {
+        if (
+            $created === 0 &&
+            (in_array($execution, ['groups_knockout'], true) ||
+                str_contains($phaseStructure, 'GROUPS'))
+        ) {
             $targetPhase = 'playoff';
             if ($this->queries->count($competitionId, $targetPhase) > 0) {
                 $created += $advanceKnockout($targetPhase);
             } elseif ($this->queries->finished($competitionId, 'groups')) {
                 $ranking = $this->reader->standings($competitionId);
                 $topSize = $this->actions->targetSize(count($ranking));
-                $deckIds = array_map(static fn(array $row): int => (int) ($row['id'] ?? 0), array_slice($ranking, 0, $topSize));
-                $created += $this->actions->createRound($competition, $targetPhase, $deckIds, 1, 'Eliminatoria');
+                $deckIds = array_map(
+                    static fn(array $row): int => (int) ($row['id'] ?? 0),
+                    array_slice($ranking, 0, $topSize),
+                );
+                $created += $this->actions->createRound(
+                    $competition,
+                    $targetPhase,
+                    $deckIds,
+                    1,
+                    'Eliminatoria',
+                );
             }
         }
 
@@ -95,16 +161,32 @@ final readonly class AdvanceCompetitionPhase
             $targetPhase = 'playoff';
             if ($this->queries->count($competitionId, $targetPhase) > 0) {
                 $created += $advanceKnockout($targetPhase);
-            } elseif (in_array($execution, ['season_playoffs', 'playoffs'], true) && $this->queries->finished($competitionId, 'league')) {
+            } elseif (
+                in_array($execution, ['season_playoffs', 'playoffs'], true) &&
+                $this->queries->finished($competitionId, 'league')
+            ) {
                 $ranking = $this->reader->standings($competitionId);
                 $topSize = $this->actions->targetSize(count($ranking));
-                $deckIds = array_map(static fn(array $row): int => (int) ($row['id'] ?? 0), array_slice($ranking, 0, $topSize));
-                $created += $this->actions->createRound($competition, $targetPhase, $deckIds, 1, 'Playoff');
+                $deckIds = array_map(
+                    static fn(array $row): int => (int) ($row['id'] ?? 0),
+                    array_slice($ranking, 0, $topSize),
+                );
+                $created += $this->actions->createRound(
+                    $competition,
+                    $targetPhase,
+                    $deckIds,
+                    1,
+                    'Playoff',
+                );
             }
         }
 
         if ($created > 0) {
-            $this->actions->audit($competitionId, 'advance_competition_phase', ['created' => $created, 'type' => $type, 'execution_model' => $execution]);
+            $this->actions->audit($competitionId, 'advance_competition_phase', [
+                'created' => $created,
+                'type' => $type,
+                'execution_model' => $execution,
+            ]);
         }
         return $created;
     }

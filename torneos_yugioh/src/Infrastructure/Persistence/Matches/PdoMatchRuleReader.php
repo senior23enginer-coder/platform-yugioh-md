@@ -25,7 +25,9 @@ final readonly class PdoMatchRuleReader implements MatchRuleReader
 
     public function activeRule(int $ruleId): int
     {
-        $stmt = $this->pdo->prepare('SELECT id FROM sx_ygo_game_rules WHERE id = ? AND active = 1 LIMIT 1');
+        $stmt = $this->pdo->prepare(
+            'SELECT id FROM sx_ygo_game_rules WHERE id = ? AND active = 1 LIMIT 1',
+        );
         $stmt->execute([$ruleId]);
         return (int) ($stmt->fetchColumn() ?: 0);
     }
@@ -69,7 +71,9 @@ final readonly class PdoMatchRuleReader implements MatchRuleReader
 
     public function postedRule(int $seasonId, int $ruleId): int
     {
-        $stmt = $this->pdo->prepare('SELECT id FROM sx_ygo_game_rules WHERE id = ? AND season_id = ? AND active = 1 LIMIT 1');
+        $stmt = $this->pdo->prepare(
+            'SELECT id FROM sx_ygo_game_rules WHERE id = ? AND season_id = ? AND active = 1 LIMIT 1',
+        );
         $stmt->execute([$ruleId, $seasonId]);
         return (int) ($stmt->fetchColumn() ?: 0);
     }
@@ -100,7 +104,9 @@ final readonly class PdoMatchRuleReader implements MatchRuleReader
 
     public function conditions(int $ruleId): array
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM sx_ygo_game_rule_conditions WHERE game_rule_id=? AND active=1 AND operator='sequence_equals' ORDER BY sort_order,id");
+        $stmt = $this->pdo->prepare(
+            "SELECT * FROM sx_ygo_game_rule_conditions WHERE game_rule_id=? AND active=1 AND operator='sequence_equals' ORDER BY sort_order,id",
+        );
         $stmt->execute([$ruleId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

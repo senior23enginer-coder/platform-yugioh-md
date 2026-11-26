@@ -23,7 +23,7 @@ final readonly class ApplyQualifierDivision
             return 0;
         }
         $ranking = $this->store->standings($qualifierId);
-        $slice = array_slice($ranking, $rankFrom - 1, ($rankTo - $rankFrom) + 1);
+        $slice = array_slice($ranking, $rankFrom - 1, $rankTo - $rankFrom + 1);
         if (!$slice) {
             return 0;
         }

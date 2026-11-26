@@ -26,7 +26,12 @@ final readonly class PublishCompetitionCalendar
         return $this->writer->upsertJourneys(
             $seasonId,
             $competitionId,
-            CompetitionCalendarProjection::journeys($competitionId, $eventType, $competition, $days),
+            CompetitionCalendarProjection::journeys(
+                $competitionId,
+                $eventType,
+                $competition,
+                $days,
+            ),
         );
     }
 

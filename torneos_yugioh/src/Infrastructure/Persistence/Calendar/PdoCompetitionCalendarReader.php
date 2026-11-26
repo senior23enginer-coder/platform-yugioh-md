@@ -12,7 +12,9 @@ final readonly class PdoCompetitionCalendarReader implements CompetitionCalendar
 
     public function competition(int $seasonId, int $competitionId): ?array
     {
-        $competitionStmt = $this->pdo->prepare('SELECT id, division_id, name, type FROM sx_ygo_competitions WHERE id = ? AND season_id = ? AND active = 1 LIMIT 1');
+        $competitionStmt = $this->pdo->prepare(
+            'SELECT id, division_id, name, type FROM sx_ygo_competitions WHERE id = ? AND season_id = ? AND active = 1 LIMIT 1',
+        );
         $competitionStmt->execute([$competitionId, $seasonId]);
         return $competitionStmt->fetch(PDO::FETCH_ASSOC) ?: null;
     }

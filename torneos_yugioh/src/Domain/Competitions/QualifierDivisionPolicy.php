@@ -31,7 +31,7 @@ final class QualifierDivisionPolicy
     public static function assignments(array $slice): iterable
     {
         foreach ($slice as $index => $row) {
-            $deckId = (int) ($row['deck_id'] ?? $row['id'] ?? 0);
+            $deckId = (int) ($row['deck_id'] ?? ($row['id'] ?? 0));
             if ($deckId <= 0) {
                 continue;
             }

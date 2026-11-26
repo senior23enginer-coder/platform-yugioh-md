@@ -15,6 +15,6 @@ final class DivisionRankPolicy
             }
         }
         $last = end($divisionDefinitions);
-        return (string) (($last['short'] ?? '') ?: 'Genesis');
+        return (string) ($last['short'] ?? '' ?: 'Genesis');
     }
 }

@@ -50,9 +50,21 @@ final readonly class NativePhaseAdvanceActions implements PhaseAdvanceActions
         \ygo_require_supported_model($competition);
     }
 
-    public function createRound(array $competition, string $phase, array $ids, int $round, string $label): int
-    {
-        return \ygo_create_competition_knockout_round($this->pdo, $competition, $phase, $ids, $round, $label);
+    public function createRound(
+        array $competition,
+        string $phase,
+        array $ids,
+        int $round,
+        string $label,
+    ): int {
+        return \ygo_create_competition_knockout_round(
+            $this->pdo,
+            $competition,
+            $phase,
+            $ids,
+            $round,
+            $label,
+        );
     }
 
     public function recordHonor(int $competitionId): void
@@ -67,7 +79,15 @@ final readonly class NativePhaseAdvanceActions implements PhaseAdvanceActions
 
     public function audit(int $competitionId, string $action, array $payload): void
     {
-        $this->pdo->prepare('INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)')
-            ->execute(['competition', $competitionId, $action, json_encode($payload, JSON_UNESCAPED_UNICODE)]);
+        $this->pdo
+            ->prepare(
+                'INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)',
+            )
+            ->execute([
+                'competition',
+                $competitionId,
+                $action,
+                json_encode($payload, JSON_UNESCAPED_UNICODE),
+            ]);
     }
 }

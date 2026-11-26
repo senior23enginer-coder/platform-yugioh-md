@@ -21,7 +21,13 @@ interface PhaseAdvanceActions
 
     public function requireSupportedModel(array $competition): void;
 
-    public function createRound(array $competition, string $phase, array $ids, int $round, string $label): int;
+    public function createRound(
+        array $competition,
+        string $phase,
+        array $ids,
+        int $round,
+        string $label,
+    ): int;
 
     public function recordHonor(int $competitionId): void;
 

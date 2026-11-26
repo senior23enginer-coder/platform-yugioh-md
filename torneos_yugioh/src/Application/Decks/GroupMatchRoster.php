@@ -19,6 +19,10 @@ final readonly class GroupMatchRoster
         if ($participantsPerSide === 1) {
             return array_map(static fn(int $id): array => [$id], $ids);
         }
-        return RosterGroupingPolicy::group($ids, $participantsPerSide, $this->reader->activeTeamRows($ids));
+        return RosterGroupingPolicy::group(
+            $ids,
+            $participantsPerSide,
+            $this->reader->activeTeamRows($ids),
+        );
     }
 }

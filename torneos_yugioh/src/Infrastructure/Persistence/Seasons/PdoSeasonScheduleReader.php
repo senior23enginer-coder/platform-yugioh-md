@@ -12,7 +12,9 @@ final readonly class PdoSeasonScheduleReader implements SeasonScheduleReader
 
     public function find(int $id, bool $lock = false): ?array
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM sx_ygo_seasons WHERE id=?' . ($lock ? ' FOR UPDATE' : ''));
+        $stmt = $this->pdo->prepare(
+            'SELECT * FROM sx_ygo_seasons WHERE id=?' . ($lock ? ' FOR UPDATE' : ''),
+        );
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
     }

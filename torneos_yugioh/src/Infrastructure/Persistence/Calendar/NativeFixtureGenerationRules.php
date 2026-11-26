@@ -60,8 +60,18 @@ final readonly class NativeFixtureGenerationRules implements FixtureGenerationRu
         return \ygo_roster_groups_for_match($this->pdo, $ids, $participantsPerSide);
     }
 
-    public function leaguePlan(int $competitionId, array $ids, int $participantsPerSide, bool $doubleRound): array
-    {
-        return \ygo_league_round_robin_plan($this->pdo, $competitionId, $ids, $participantsPerSide, $doubleRound);
+    public function leaguePlan(
+        int $competitionId,
+        array $ids,
+        int $participantsPerSide,
+        bool $doubleRound,
+    ): array {
+        return \ygo_league_round_robin_plan(
+            $this->pdo,
+            $competitionId,
+            $ids,
+            $participantsPerSide,
+            $doubleRound,
+        );
     }
 }

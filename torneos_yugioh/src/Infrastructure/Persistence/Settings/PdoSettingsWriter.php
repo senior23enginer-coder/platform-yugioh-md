@@ -12,16 +12,22 @@ final readonly class PdoSettingsWriter implements SettingsWriter
 
     public function save(int $seasonId, string $key, string $value): void
     {
-        $this->pdo->prepare('
+        $this->pdo
+            ->prepare(
+                '
             INSERT INTO sx_ygo_settings (season_id, setting_key, setting_value)
             VALUES (?, ?, ?)
             ON DUPLICATE KEY UPDATE setting_value = VALUES(setting_value)
-        ')->execute([$seasonId, $key, $value]);
+        ',
+            )
+            ->execute([$seasonId, $key, $value]);
     }
 
     public function ensureSettings(int $seasonId, array $defaults): void
     {
-        $stmt = $this->pdo->prepare('INSERT IGNORE INTO sx_ygo_settings (season_id, setting_key, setting_value) VALUES (?, ?, ?)');
+        $stmt = $this->pdo->prepare(
+            'INSERT IGNORE INTO sx_ygo_settings (season_id, setting_key, setting_value) VALUES (?, ?, ?)',
+        );
         foreach ($defaults as $key => $value) {
             $stmt->execute([$seasonId, $key, $value]);
         }

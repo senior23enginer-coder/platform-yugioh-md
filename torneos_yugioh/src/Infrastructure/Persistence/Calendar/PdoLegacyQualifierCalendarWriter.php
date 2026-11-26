@@ -12,15 +12,28 @@ final readonly class PdoLegacyQualifierCalendarWriter implements LegacyQualifier
 
     public function updateDailyLimit(int $competitionId, int $matchesPerDay): void
     {
-        $this->pdo->prepare('UPDATE sx_ygo_competitions SET qualifier_matches_per_day = ? WHERE id = ?')
+        $this->pdo
+            ->prepare('UPDATE sx_ygo_competitions SET qualifier_matches_per_day = ? WHERE id = ?')
             ->execute([$matchesPerDay, $competitionId]);
     }
 
     public function clearPending(int $seasonId, ?int $competitionId): void
     {
-        $this->pdo->prepare("DELETE r FROM sx_ygo_match_results r INNER JOIN sx_ygo_matches m ON m.id = r.match_id WHERE m.phase = 'qualifier' AND m.status <> 'FINALIZADA' AND (? IS NULL OR m.competition_id = ? OR m.competition_id IS NULL)")->execute([$competitionId, $competitionId]);
-        $this->pdo->prepare("DELETE FROM sx_ygo_matches WHERE phase = 'qualifier' AND status <> 'FINALIZADA' AND (? IS NULL OR competition_id = ? OR competition_id IS NULL)")->execute([$competitionId, $competitionId]);
-        $this->pdo->prepare("DELETE FROM sx_ygo_events WHERE season_id=? AND event_type='qualifier' AND status <> 'completed' AND (? IS NULL OR competition_id = ?)")->execute([$seasonId, $competitionId, $competitionId]);
+        $this->pdo
+            ->prepare(
+                "DELETE r FROM sx_ygo_match_results r INNER JOIN sx_ygo_matches m ON m.id = r.match_id WHERE m.phase = 'qualifier' AND m.status <> 'FINALIZADA' AND (? IS NULL OR m.competition_id = ? OR m.competition_id IS NULL)",
+            )
+            ->execute([$competitionId, $competitionId]);
+        $this->pdo
+            ->prepare(
+                "DELETE FROM sx_ygo_matches WHERE phase = 'qualifier' AND status <> 'FINALIZADA' AND (? IS NULL OR competition_id = ? OR competition_id IS NULL)",
+            )
+            ->execute([$competitionId, $competitionId]);
+        $this->pdo
+            ->prepare(
+                "DELETE FROM sx_ygo_events WHERE season_id=? AND event_type='qualifier' AND status <> 'completed' AND (? IS NULL OR competition_id = ?)",
+            )
+            ->execute([$seasonId, $competitionId, $competitionId]);
     }
 
     public function insertFixtures(int $divisionId, ?int $competitionId, iterable $rows): int
@@ -77,13 +90,24 @@ final readonly class PdoLegacyQualifierCalendarWriter implements LegacyQualifier
 
     public function activate(int $competitionId, string $startDate, string $endDate): void
     {
-        $this->pdo->prepare("UPDATE sx_ygo_competitions SET status='active', starts_on=?, ends_on=? WHERE id=?")
+        $this->pdo
+            ->prepare(
+                "UPDATE sx_ygo_competitions SET status='active', starts_on=?, ends_on=? WHERE id=?",
+            )
             ->execute([$startDate, $endDate, $competitionId]);
     }
 
     public function audit(?int $competitionId, array $payload): void
     {
-        $this->pdo->prepare('INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)')
-            ->execute(['competition', $competitionId, 'rebuild_qualifier_calendar', json_encode($payload, JSON_UNESCAPED_UNICODE)]);
+        $this->pdo
+            ->prepare(
+                'INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)',
+            )
+            ->execute([
+                'competition',
+                $competitionId,
+                'rebuild_qualifier_calendar',
+                json_encode($payload, JSON_UNESCAPED_UNICODE),
+            ]);
     }
 }

@@ -19,22 +19,29 @@ final readonly class PdoCompetitionEligibilityReader implements CompetitionEligi
             $stmt->execute([$divisionId]);
             return array_map('intval', $stmt->fetchAll(PDO::FETCH_COLUMN));
         }
-        $stmt = $this->pdo->query('SELECT id FROM sx_ygo_decks WHERE active = 1 AND team_id IS NOT NULL');
+        $stmt = $this->pdo->query(
+            'SELECT id FROM sx_ygo_decks WHERE active = 1 AND team_id IS NOT NULL',
+        );
         return array_map('intval', $stmt->fetchAll(PDO::FETCH_COLUMN));
     }
 
     public function competition(int $id): ?array
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM sx_ygo_competitions WHERE id = ? AND active = 1 LIMIT 1');
+        $stmt = $this->pdo->prepare(
+            'SELECT * FROM sx_ygo_competitions WHERE id = ? AND active = 1 LIMIT 1',
+        );
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
     }
 
     public function admissionSelection(array $competition): ?array
     {
-        if (\ygo_admission_required($competition) || \ygo_admission_load($this->pdo, $competition) !== null) {
+        if (
+            \ygo_admission_required($competition) ||
+            \ygo_admission_load($this->pdo, $competition) !== null
+        ) {
             $admission = \ygo_admission_view($this->pdo, $competition);
-            return $admission['ok'] ? ($admission['selection']['ids'] ?? []) : [];
+            return $admission['ok'] ? $admission['selection']['ids'] ?? [] : [];
         }
         return null;
     }
@@ -122,7 +129,16 @@ final readonly class PdoCompetitionEligibilityReader implements CompetitionEligi
                 WHERE m.competition_id IN ($placeholders) AND m.deck_f_id IS NOT NULL AND r.result IS NOT NULL AND r.result <> ''
             ) qualified
         ");
-        $qualifiedStmt->execute(array_merge($requiredIds, $requiredIds, $requiredIds, $requiredIds, $requiredIds, $requiredIds));
+        $qualifiedStmt->execute(
+            array_merge(
+                $requiredIds,
+                $requiredIds,
+                $requiredIds,
+                $requiredIds,
+                $requiredIds,
+                $requiredIds,
+            ),
+        );
         return array_map('intval', $qualifiedStmt->fetchAll(PDO::FETCH_COLUMN));
     }
 }

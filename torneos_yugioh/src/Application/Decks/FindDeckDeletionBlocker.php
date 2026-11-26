@@ -15,6 +15,7 @@ final readonly class FindDeckDeletionBlocker
             return null;
         }
         $statuses = DeckDeletionPolicy::blockedStatuses();
-        return $this->reader->competition($deckId, $statuses) ?? $this->reader->match($deckId, $statuses);
+        return $this->reader->competition($deckId, $statuses) ??
+            $this->reader->match($deckId, $statuses);
     }
 }

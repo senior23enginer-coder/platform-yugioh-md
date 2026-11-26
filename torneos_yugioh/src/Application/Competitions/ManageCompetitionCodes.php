@@ -21,7 +21,10 @@ final readonly class ManageCompetitionCodes
     public function ensureSequential(int $seasonId): int
     {
         $updated = 0;
-        foreach (CompetitionCodePolicy::replacements($this->store->competitions($seasonId)) as [$id, $code]) {
+        foreach (
+            CompetitionCodePolicy::replacements($this->store->competitions($seasonId))
+            as [$id, $code]
+        ) {
             $this->store->update($seasonId, $id, $code);
             $updated++;
         }

@@ -21,7 +21,9 @@ final readonly class CompetitionPhaseQueries
 
     public function winners(int $competitionId, string $phase, int $round): array
     {
-        $winners = PhaseAdvancePolicy::winners($this->reader->roundResults($competitionId, $phase, $round));
+        $winners = PhaseAdvancePolicy::winners(
+            $this->reader->roundResults($competitionId, $phase, $round),
+        );
         if ($phase === 'cup') {
             $winners = array_merge($winners, $this->reader->cupByes($competitionId, $round));
         }

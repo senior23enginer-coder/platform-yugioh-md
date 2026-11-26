@@ -9,7 +9,14 @@ interface KnockoutRoundServices
 
     public function saveBye(string $key, string $value): void;
 
-    public function scheduleAdmission(array $competition, string $start, string $pattern, int $limit, string $phase, int $round): void;
+    public function scheduleAdmission(
+        array $competition,
+        string $start,
+        string $pattern,
+        int $limit,
+        string $phase,
+        int $round,
+    ): void;
 
     public function scheduleFixedRound(int $competitionId, string $phase, int $round): void;
 

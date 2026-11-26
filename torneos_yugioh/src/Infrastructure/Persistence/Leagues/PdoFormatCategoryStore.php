@@ -26,21 +26,25 @@ final readonly class PdoFormatCategoryStore implements FormatCategoryStore
         array $definition,
         int $tier,
     ): void {
-        $this->pdo->prepare('
+        $this->pdo
+            ->prepare(
+                '
             UPDATE sx_ygo_divisions
             SET code=?, name=?, cup_name=?, tier_order=?, deck_count=?, accent=?, description=?
             WHERE season_id=? AND code=?
-        ')->execute([
-            $newCode,
-            $definition['name'],
-            $definition['cup'],
-            $tier,
-            $definition['size'],
-            $definition['accent'],
-            $definition['description'],
-            $seasonId,
-            $oldCode,
-        ]);
+        ',
+            )
+            ->execute([
+                $newCode,
+                $definition['name'],
+                $definition['cup'],
+                $tier,
+                $definition['size'],
+                $definition['accent'],
+                $definition['description'],
+                $seasonId,
+                $oldCode,
+            ]);
     }
 
     public function codes(int $seasonId): array
@@ -52,19 +56,23 @@ final readonly class PdoFormatCategoryStore implements FormatCategoryStore
 
     public function update(int $seasonId, string $code, array $definition, int $tier): void
     {
-        $this->pdo->prepare('
+        $this->pdo
+            ->prepare(
+                '
             UPDATE sx_ygo_divisions
             SET name=?, cup_name=?, tier_order=?, deck_count=?, accent=?, description=?
             WHERE season_id=? AND code=?
-        ')->execute([
-            $definition['name'],
-            $definition['cup'],
-            $tier,
-            $definition['size'],
-            $definition['accent'],
-            $definition['description'],
-            $seasonId,
-            $code,
-        ]);
+        ',
+            )
+            ->execute([
+                $definition['name'],
+                $definition['cup'],
+                $tier,
+                $definition['size'],
+                $definition['accent'],
+                $definition['description'],
+                $seasonId,
+                $code,
+            ]);
     }
 }

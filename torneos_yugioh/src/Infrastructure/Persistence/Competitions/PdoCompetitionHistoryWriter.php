@@ -18,16 +18,20 @@ final readonly class PdoCompetitionHistoryWriter implements CompetitionHistoryWr
         string $action,
         array $payload,
     ): void {
-        $this->pdo->prepare('
+        $this->pdo
+            ->prepare(
+                '
             INSERT INTO sx_ygo_competition_status_history (season_id, competition_id, from_status, to_status, action, payload)
             VALUES (?, ?, ?, ?, ?, ?)
-        ')->execute([
-            $seasonId,
-            $competitionId,
-            $from,
-            $to,
-            $action,
-            json_encode($payload, JSON_UNESCAPED_UNICODE),
-        ]);
+        ',
+            )
+            ->execute([
+                $seasonId,
+                $competitionId,
+                $from,
+                $to,
+                $action,
+                json_encode($payload, JSON_UNESCAPED_UNICODE),
+            ]);
     }
 }

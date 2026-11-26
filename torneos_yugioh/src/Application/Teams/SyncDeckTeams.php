@@ -7,10 +7,7 @@ use StationX\Yugioh\Domain\Teams\TeamProfile;
 
 final readonly class SyncDeckTeams
 {
-    public function __construct(
-        private DeckTeamStore $decks,
-        private FindOrCreateTeam $teams,
-    ) {}
+    public function __construct(private DeckTeamStore $decks, private FindOrCreateTeam $teams) {}
 
     public function execute(): int
     {
@@ -20,7 +17,10 @@ final readonly class SyncDeckTeams
             if (!empty($row['team_id'])) {
                 continue;
             }
-            $profile = TeamProfile::forDeck((string) $row['name'], (string) ($row['archetype'] ?? ''));
+            $profile = TeamProfile::forDeck(
+                (string) $row['name'],
+                (string) ($row['archetype'] ?? ''),
+            );
             $teamId = $this->teams->execute($profile['name'], $profile);
             $this->decks->assign((int) $row['id'], $teamId);
             $updated++;

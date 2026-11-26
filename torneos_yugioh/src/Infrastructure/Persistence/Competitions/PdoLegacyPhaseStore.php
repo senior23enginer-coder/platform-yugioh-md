@@ -30,7 +30,9 @@ final readonly class PdoLegacyPhaseStore implements LegacyPhaseStore
 
     public function nextRound(int $divisionId, string $phase): int
     {
-        $stmt = $this->pdo->prepare('SELECT COALESCE(MAX(round_number), 0) + 1 FROM sx_ygo_matches WHERE division_id = ? AND phase = ?');
+        $stmt = $this->pdo->prepare(
+            'SELECT COALESCE(MAX(round_number), 0) + 1 FROM sx_ygo_matches WHERE division_id = ? AND phase = ?',
+        );
         $stmt->execute([$divisionId, $phase]);
         return (int) $stmt->fetchColumn();
     }
@@ -39,10 +41,24 @@ final readonly class PdoLegacyPhaseStore implements LegacyPhaseStore
     {
         $created = 0;
         foreach ($rows as $row) {
-            $this->pdo->prepare("
+            $this->pdo
+                ->prepare(
+                    "
                 INSERT IGNORE INTO sx_ygo_matches (division_id, phase, round_number, table_number, bracket_round_label, bracket_slot, bracket_side, display_order, generation_number, deck_a_id, deck_b_id, status)
                 VALUES (?, ?, ?, ?, ?, ?, 'main', ?, 1, ?, ?, 'PENDIENTE')
-            ")->execute([$divisionId, $phase, $round, $row['slot'], $row['label'], $row['slot'], $row['displayOrder'], $row['deckA'], $row['deckB']]);
+            ",
+                )
+                ->execute([
+                    $divisionId,
+                    $phase,
+                    $round,
+                    $row['slot'],
+                    $row['label'],
+                    $row['slot'],
+                    $row['displayOrder'],
+                    $row['deckA'],
+                    $row['deckB'],
+                ]);
             $created++;
         }
         return $created;

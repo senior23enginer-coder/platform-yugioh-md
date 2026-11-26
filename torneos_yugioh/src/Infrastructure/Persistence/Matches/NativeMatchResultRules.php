@@ -34,6 +34,11 @@ final readonly class NativeMatchResultRules implements MatchResultRules
 
     public function evaluate(int $matchId, array $values): array
     {
-        return \ygo_apply_event_model_to_result($this->pdo, $matchId, \ygo_evaluate_duel_with_rule($this->pdo, $matchId, $values), $values);
+        return \ygo_apply_event_model_to_result(
+            $this->pdo,
+            $matchId,
+            \ygo_evaluate_duel_with_rule($this->pdo, $matchId, $values),
+            $values,
+        );
     }
 }

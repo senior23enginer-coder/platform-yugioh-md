@@ -8,7 +8,10 @@ use StationX\Yugioh\Domain\Teams\PlayerProfile;
 
 final readonly class SavePlayer
 {
-    public function __construct(private PlayerStore $store, private TransactionBoundary $transaction) {}
+    public function __construct(
+        private PlayerStore $store,
+        private TransactionBoundary $transaction,
+    ) {}
 
     public function execute(array $input): string
     {

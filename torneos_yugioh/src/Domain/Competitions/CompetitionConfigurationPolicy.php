@@ -11,8 +11,24 @@ final class CompetitionConfigurationPolicy
         string $currentStatusKey,
         string $competitionType,
     ): bool {
-        return $hasFixtures || !empty($competition['configuration_locked']) || in_array($currentStatusKey, ['completed', 'finalizado', 'finalizada', 'cancelled', 'canceled', 'anulado', 'anulada'], true)
-            || (!in_array($competitionType, ['cup', 'tournament', 'final'], true) && (!empty($competition['configuration_locked']) || in_array($currentStatusKey, ['active', 'activo'], true)));
+        return $hasFixtures ||
+            !empty($competition['configuration_locked']) ||
+            in_array(
+                $currentStatusKey,
+                [
+                    'completed',
+                    'finalizado',
+                    'finalizada',
+                    'cancelled',
+                    'canceled',
+                    'anulado',
+                    'anulada',
+                ],
+                true,
+            ) ||
+            (!in_array($competitionType, ['cup', 'tournament', 'final'], true) &&
+                (!empty($competition['configuration_locked']) ||
+                    in_array($currentStatusKey, ['active', 'activo'], true)));
     }
 
     public static function readiness(
@@ -25,15 +41,30 @@ final class CompetitionConfigurationPolicy
     ): array {
         $groupCount = count($rosterGroups);
         $maxQualifierDuels = max(0, $groupCount - 1);
-        if ($competitionType === 'qualifier' && $maxQualifierDuels >= 2 && $qualifierDuelsPerDeck > $maxQualifierDuels) {
+        if (
+            $competitionType === 'qualifier' &&
+            $maxQualifierDuels >= 2 &&
+            $qualifierDuelsPerDeck > $maxQualifierDuels
+        ) {
             $qualifierDuelsPerDeck = $maxQualifierDuels;
         }
-        $minimumDecks = $competitionType === 'qualifier' ? max(4, $participantsPerSide * 2) : ($participantsPerSide * 2);
+        $minimumDecks =
+            $competitionType === 'qualifier'
+                ? max(4, $participantsPerSide * 2)
+                : $participantsPerSide * 2;
         $hasEnoughDecks = $selectedDeckCount >= $minimumDecks;
-        $hasEvenTournamentRoster = $selectedDeckCount >= $participantsPerSide*2;
-        $hasValidQualifierDuelCount = $competitionType !== 'qualifier' || ($maxQualifierDuels >= 2 && $qualifierDuelsPerDeck <= $maxQualifierDuels);
-        $hasRequiredDivision = $competitionType !== 'league' || ($divisionId !== null && $divisionId > 0);
-        $canRunCompetition = $hasRequiredDivision && $hasEnoughDecks && $groupCount >= 2 && $hasValidQualifierDuelCount && $hasEvenTournamentRoster;
+        $hasEvenTournamentRoster = $selectedDeckCount >= $participantsPerSide * 2;
+        $hasValidQualifierDuelCount =
+            $competitionType !== 'qualifier' ||
+            ($maxQualifierDuels >= 2 && $qualifierDuelsPerDeck <= $maxQualifierDuels);
+        $hasRequiredDivision =
+            $competitionType !== 'league' || ($divisionId !== null && $divisionId > 0);
+        $canRunCompetition =
+            $hasRequiredDivision &&
+            $hasEnoughDecks &&
+            $groupCount >= 2 &&
+            $hasValidQualifierDuelCount &&
+            $hasEvenTournamentRoster;
         return [
             'qualifierDuelsPerDeck' => $qualifierDuelsPerDeck,
             'canRunCompetition' => $canRunCompetition,
@@ -56,15 +87,31 @@ final class CompetitionConfigurationPolicy
         }
         if ($status === 'cancelled') {
             $mode = 'save';
-        } elseif (!$canRunCompetition && in_array($mode, ['start', 'schedule_qualifier', 'schedule_cup'], true)) {
+        } elseif (
+            !$canRunCompetition &&
+            in_array($mode, ['start', 'schedule_qualifier', 'schedule_cup'], true)
+        ) {
             $status = 'pending_configuration';
         } elseif ($mode === 'start' && $canStartCompetition) {
             $status = 'active';
         } elseif ($mode === 'start' && $competitionType === 'qualifier' && !$canStartCompetition) {
             $status = $scheduledQualifierMatches > 0 ? 'pending_event' : 'pending_configuration';
-        } elseif ($mode === 'schedule_qualifier' && $competitionType === 'qualifier' && $canRunCompetition) {
+        } elseif (
+            $mode === 'schedule_qualifier' &&
+            $competitionType === 'qualifier' &&
+            $canRunCompetition
+        ) {
             $status = 'pending_event';
-        } elseif ($mode === 'schedule_cup' && in_array($competitionType, ['cup', 'final'], true) && $canRunCompetition && !in_array(CompetitionLifecyclePolicy::normalizeStatus($postedStatus), ['active', 'activo'], true)) {
+        } elseif (
+            $mode === 'schedule_cup' &&
+            in_array($competitionType, ['cup', 'final'], true) &&
+            $canRunCompetition &&
+            !in_array(
+                CompetitionLifecyclePolicy::normalizeStatus($postedStatus),
+                ['active', 'activo'],
+                true,
+            )
+        ) {
             $status = 'pending_event';
         }
         return ['status' => $status, 'mode' => $mode];

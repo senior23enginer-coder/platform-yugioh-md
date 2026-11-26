@@ -30,13 +30,19 @@ final readonly class FinalizeQualifier
         if (!$competitionId) {
             return ['ok' => false, 'reasons' => ['Selecciona un clasificatorio valido.']];
         }
-        $required = QualifierFinalizationPolicy::requiredMatches($this->reader->requiredMatches($competitionId));
+        $required = QualifierFinalizationPolicy::requiredMatches(
+            $this->reader->requiredMatches($competitionId),
+        );
         $matches = $this->reader->matches($competitionId);
         $reasons = QualifierFinalizationPolicy::roundReasons($matches);
         if (!$matches) {
             return ['ok' => false, 'reasons' => $reasons];
         }
-        return QualifierFinalizationPolicy::result($reasons, $this->reader->standings($competitionId), $required);
+        return QualifierFinalizationPolicy::result(
+            $reasons,
+            $this->reader->standings($competitionId),
+            $required,
+        );
     }
 
     public function execute(?int $competitionId, int $postedId): bool
@@ -53,7 +59,11 @@ final readonly class FinalizeQualifier
         $standings = $this->reader->standings($competitionId);
         foreach (QualifierFinalizationPolicy::divisions($official, $standings) as $division) {
             foreach ($division['assignments'] as $assignment) {
-                $this->writer->assign($division['divisionId'], $assignment['deckId'], $assignment['rank']);
+                $this->writer->assign(
+                    $division['divisionId'],
+                    $assignment['deckId'],
+                    $assignment['rank'],
+                );
             }
             $this->writer->updateDivisionCount($division['divisionId'], $division['size']);
         }

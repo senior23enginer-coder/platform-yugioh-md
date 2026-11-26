@@ -57,22 +57,25 @@ final readonly class GuardSeasonAction
         $season = $this->schedule->requireOpen($seasonId, $action === 'save_match_result');
         if (
             $action === 'save_competition' &&
-            (!isset($input['competition_season_id']) || (int) $input['competition_season_id'] !== $seasonId)
+            (!isset($input['competition_season_id']) ||
+                (int) $input['competition_season_id'] !== $seasonId)
         ) {
             throw new InvalidArgumentException(
                 'Selecciona la temporada del evento. La temporada de un evento existente se conserva.',
             );
         }
-        $start = $input['starts_on'] ??
-            $input['competition_start_on'] ??
-            $input['scheduled_on'] ??
-            $input['manual_scheduled_on'] ??
-            $input['qualifier_schedule_start'] ??
-            null;
+        $start =
+            $input['starts_on'] ??
+            ($input['competition_start_on'] ??
+                ($input['scheduled_on'] ??
+                    ($input['manual_scheduled_on'] ??
+                        ($input['qualifier_schedule_start'] ?? null))));
         $end = $input['ends_on'] ?? null;
         SeasonSchedulePolicy::validateEventDates($season, $start, $end);
         if ($action === 'create_match' && (int) ($input['manual_competition_id'] ?? 0) <= 0) {
-            throw new InvalidArgumentException('Selecciona un evento con temporada para crear la partida.');
+            throw new InvalidArgumentException(
+                'Selecciona un evento con temporada para crear la partida.',
+            );
         }
         $divisionIds = array_unique(
             array_filter(
@@ -84,7 +87,9 @@ final readonly class GuardSeasonAction
         );
         foreach ($divisionIds as $divisionId) {
             if ($this->reader->seasonForDivision($divisionId) !== $seasonId) {
-                throw new InvalidArgumentException('Las divisiones del evento deben pertenecer a su temporada.');
+                throw new InvalidArgumentException(
+                    'Las divisiones del evento deben pertenecer a su temporada.',
+                );
             }
         }
     }

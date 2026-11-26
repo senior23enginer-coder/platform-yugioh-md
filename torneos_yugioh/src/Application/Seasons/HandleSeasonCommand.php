@@ -15,7 +15,11 @@ final readonly class HandleSeasonCommand
 
     public static function supports(string $action): bool
     {
-        return in_array($action, ['save_season', 'close_season', 'delete_season', 'set_season_status'], true);
+        return in_array(
+            $action,
+            ['save_season', 'close_season', 'delete_season', 'set_season_status'],
+            true,
+        );
     }
 
     public function execute(string $action, array $input, mixed $requestSeasonId): void
@@ -28,7 +32,10 @@ final readonly class HandleSeasonCommand
             $this->lifecycle->save($input);
         } elseif ($action === 'delete_season') {
             $this->lifecycle->delete($id);
-        } elseif ($action === 'close_season' || in_array($input['season_status'] ?? '', ['completed', 'archived'], true)) {
+        } elseif (
+            $action === 'close_season' ||
+            in_array($input['season_status'] ?? '', ['completed', 'archived'], true)
+        ) {
             $this->lifecycle->close($id);
         } else {
             $season = $this->reader->find($id);

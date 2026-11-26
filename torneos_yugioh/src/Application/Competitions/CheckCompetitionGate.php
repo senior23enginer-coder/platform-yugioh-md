@@ -29,14 +29,20 @@ final readonly class CheckCompetitionGate
         if ($target) {
             $admission = $this->reader->admission($target);
             if ($admission !== null && !$admission['ok']) {
-                return ['can_execute' => false, 'message' => $admission['message'], 'dependencies' => []];
+                return [
+                    'can_execute' => false,
+                    'message' => $admission['message'],
+                    'dependencies' => [],
+                ];
             }
         }
         $dependencies = $this->reader->dependencies()[$competitionId] ?? [];
         $resolved = [];
         foreach ($dependencies as $dependency) {
             $completed = CompetitionGatePolicy::completed($dependency);
-            $resultCount = $this->facts->resultCount((int) $dependency['depends_on_competition_id']);
+            $resultCount = $this->facts->resultCount(
+                (int) $dependency['depends_on_competition_id'],
+            );
             $ok = $this->evaluator->execute($dependency, $completed, $resultCount > 0);
             $resolved[] = CompetitionGatePolicy::item($dependency, $resultCount, $ok);
         }

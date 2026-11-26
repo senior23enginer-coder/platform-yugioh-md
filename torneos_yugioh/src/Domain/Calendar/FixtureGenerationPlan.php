@@ -15,12 +15,18 @@ final class FixtureGenerationPlan
         string $phase,
     ): array {
         $phaseStructure = 'NONE';
-        if ($leaguePlan!==null) {
-            $groups=$leaguePlan['groups'];
-            $rounds=$leaguePlan['rounds'];
-        } elseif (in_array($execution, ['groups', 'groups_knockout'], true) || str_contains($phaseStructure, 'GROUPS')) {
+        if ($leaguePlan !== null) {
+            $groups = $leaguePlan['groups'];
+            $rounds = $leaguePlan['rounds'];
+        } elseif (
+            in_array($execution, ['groups', 'groups_knockout'], true) ||
+            str_contains($phaseStructure, 'GROUPS')
+        ) {
             $rounds = [];
-            $chunks = array_chunk(range(0, count($groups) - 1), max(2, (int) ceil(count($groups) / 2)));
+            $chunks = array_chunk(
+                range(0, count($groups) - 1),
+                max(2, (int) ceil(count($groups) / 2)),
+            );
             foreach ($chunks as $chunk) {
                 $localGroups = array_map(static fn(int $index): array => $groups[$index], $chunk);
                 $localRounds = RoundRobinPairings::rounds($localGroups, false);
@@ -63,7 +69,9 @@ final class FixtureGenerationPlan
             $sideB = array_pad($groups[$rightIndex], 3, null);
             $scheduledOn = MatchDatePattern::date($start, $pattern, $created, $matchesPerDay);
             $slot = $created % $matchesPerDay;
-            $startsAt = (new DateTimeImmutable('19:00'))->modify('+' . ($slot * 45) . ' minutes')->format('H:i:s');
+            $startsAt = (new DateTimeImmutable('19:00'))
+                ->modify('+' . $slot * 45 . ' minutes')
+                ->format('H:i:s');
             yield [
                 'division_id' => $divisionId,
                 'competition_id' => $competitionId,
@@ -82,7 +90,12 @@ final class FixtureGenerationPlan
                 'deck_f_id' => $sideB[2],
                 'scheduled_on' => $scheduledOn,
                 'starts_at' => $startsAt,
-                'notes' => 'Generado por algoritmo de copa. Generacion ' . $generation . '. Duelos por dia: ' . $matchesPerDay . '.',
+                'notes' =>
+                    'Generado por algoritmo de copa. Generacion ' .
+                    $generation .
+                    '. Duelos por dia: ' .
+                    $matchesPerDay .
+                    '.',
             ];
             $created++;
         }
@@ -111,7 +124,9 @@ final class FixtureGenerationPlan
                 $sideB = array_pad($groups[(int) $pair[1]], 3, null);
                 $scheduledOn = MatchDatePattern::date($start, $pattern, $created, $matchesPerDay);
                 $slot = $created % $matchesPerDay;
-                $startsAt = (new DateTimeImmutable('19:00'))->modify('+' . ($slot * 45) . ' minutes')->format('H:i:s');
+                $startsAt = (new DateTimeImmutable('19:00'))
+                    ->modify('+' . $slot * 45 . ' minutes')
+                    ->format('H:i:s');
                 yield [
                     'division_id' => (int) ($pair[2] ?? $divisionId),
                     'competition_id' => $competitionId,
@@ -120,9 +135,9 @@ final class FixtureGenerationPlan
                     'best_of' => (int) ($competition['best_of'] ?? 3),
                     'participants_per_side' => $participantsPerSide,
                     'round_number' => $roundIndex + 1,
-                    'table_number' => (int) ($pair[3] ?? ($tableIndex + 1)),
+                    'table_number' => (int) ($pair[3] ?? $tableIndex + 1),
                     'bracket_round_label' => 'Ronda ' . ($roundIndex + 1),
-                    'bracket_slot' => (int) ($pair[3] ?? ($tableIndex + 1)),
+                    'bracket_slot' => (int) ($pair[3] ?? $tableIndex + 1),
                     'display_order' => $created + 1,
                     'generation_number' => $generation,
                     'deck_a_id' => $sideA[0],
@@ -133,7 +148,8 @@ final class FixtureGenerationPlan
                     'deck_f_id' => $sideB[2],
                     'scheduled_on' => $scheduledOn,
                     'starts_at' => $startsAt,
-                    'notes' => 'Generado por modelo ' . $execution . '. Generacion ' . $generation . '.',
+                    'notes' =>
+                        'Generado por modelo ' . $execution . '. Generacion ' . $generation . '.',
                 ];
                 $created++;
             }

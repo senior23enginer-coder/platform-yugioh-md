@@ -33,5 +33,9 @@ interface CompetitionConfigurationStore
 
     public function validQualifier(int $seasonId, int $conditionQualifierId): int;
 
-    public function setQualifierDependency(int $seasonId, int $competitionId, int $validQualifierId): void;
+    public function setQualifierDependency(
+        int $seasonId,
+        int $competitionId,
+        int $validQualifierId,
+    ): void;
 }

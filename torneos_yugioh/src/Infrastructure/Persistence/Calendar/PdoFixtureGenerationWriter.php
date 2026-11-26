@@ -12,8 +12,16 @@ final readonly class PdoFixtureGenerationWriter implements FixtureGenerationWrit
 
     public function clearPending(int $competitionId): void
     {
-        $this->pdo->prepare('DELETE r FROM sx_ygo_match_results r JOIN sx_ygo_matches m ON m.id = r.match_id WHERE m.competition_id = ? AND m.status <> "FINALIZADA"')->execute([$competitionId]);
-        $this->pdo->prepare('DELETE FROM sx_ygo_matches WHERE competition_id = ? AND status <> "FINALIZADA"')->execute([$competitionId]);
+        $this->pdo
+            ->prepare(
+                'DELETE r FROM sx_ygo_match_results r JOIN sx_ygo_matches m ON m.id = r.match_id WHERE m.competition_id = ? AND m.status <> "FINALIZADA"',
+            )
+            ->execute([$competitionId]);
+        $this->pdo
+            ->prepare(
+                'DELETE FROM sx_ygo_matches WHERE competition_id = ? AND status <> "FINALIZADA"',
+            )
+            ->execute([$competitionId]);
     }
 
     public function insertCup(iterable $rows): int

@@ -23,9 +23,17 @@ final readonly class LegacyQualifierCalendar
         $matchesPerDay = max(1, min(5, (int) ($input['qualifier_matches_per_day'] ?? 1)));
         $dayInterval = max(1, min(7, (int) ($input['qualifier_day_interval'] ?? 1)));
         $minutesPerMatch = max(20, min(180, (int) ($input['qualifier_schedule_minutes'] ?? 45)));
-        $base = DateTimeImmutable::createFromFormat('Y-m-d H:i', $startDate . ' ' . $startTime)
-            ?: new DateTimeImmutable($today . ' 19:00');
-        return new self($startDate, $startTime, $matchesPerDay, $dayInterval, $minutesPerMatch, $base);
+        $base =
+            DateTimeImmutable::createFromFormat('Y-m-d H:i', $startDate . ' ' . $startTime) ?:
+            new DateTimeImmutable($today . ' 19:00');
+        return new self(
+            $startDate,
+            $startTime,
+            $matchesPerDay,
+            $dayInterval,
+            $minutesPerMatch,
+            $base,
+        );
     }
 
     public function fixtures(array $pairs): iterable
@@ -34,8 +42,8 @@ final readonly class LegacyQualifierCalendar
         foreach (array_values($pairs) as $index => $pair) {
             [$dayIndex, $slot] = $this->position($total, $index);
             $dateTime = $this->base
-                ->modify('+' . ($dayIndex * $this->dayInterval) . ' days')
-                ->modify('+' . ($slot * $this->minutesPerMatch) . ' minutes');
+                ->modify('+' . $dayIndex * $this->dayInterval . ' days')
+                ->modify('+' . $slot * $this->minutesPerMatch . ' minutes');
             yield [
                 'round' => $pair[0],
                 'table' => $pair[1],
@@ -52,7 +60,9 @@ final readonly class LegacyQualifierCalendar
         $days = [];
         for ($index = 0; $index < $total; $index++) {
             [$dayIndex] = $this->position($total, $index);
-            $day = $this->base->modify('+' . ($dayIndex * $this->dayInterval) . ' days')->format('Y-m-d');
+            $day = $this->base
+                ->modify('+' . $dayIndex * $this->dayInterval . ' days')
+                ->format('Y-m-d');
             $days[$day] = ($days[$day] ?? 0) + 1;
         }
         return $days;
@@ -64,7 +74,11 @@ final readonly class LegacyQualifierCalendar
         return $keys
             ? (string) end($keys)
             : $this->base
-                ->modify('+' . (intdiv(max(0, $total - 1), $this->matchesPerDay) * $this->dayInterval) . ' days')
+                ->modify(
+                    '+' .
+                        intdiv(max(0, $total - 1), $this->matchesPerDay) * $this->dayInterval .
+                        ' days',
+                )
                 ->format('Y-m-d');
     }
 

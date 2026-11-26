@@ -20,16 +20,26 @@ final readonly class ResolveEligibleDecks
         if ($admission !== null) {
             return $admission;
         }
-        $pool = (string) (($competition['deck_pool'] ?? '') ?: 'all_active');
+        $pool = (string) ($competition['deck_pool'] ?? '' ?: 'all_active');
         $formatIds = $this->reader->formatDeckIds((string) $competition['event_ruleset']);
         $formatFilter = static fn(array $ids): array => array_values(
             array_intersect(array_map('intval', $ids), $formatIds),
         );
-        $participantSource = strtoupper((string) (($competition['participant_source'] ?? '') ?: 'MANUAL'));
-        $accessType = strtoupper((string) (($competition['access_type'] ?? '') ?: 'OPEN'));
+        $participantSource = strtoupper(
+            (string) ($competition['participant_source'] ?? '' ?: 'MANUAL'),
+        );
+        $accessType = strtoupper((string) ($competition['access_type'] ?? '' ?: 'OPEN'));
         $manualDeckIds = $this->reader->registeredDeckIds($competitionId);
-        $deckPolicy = strtoupper((string) (($competition['deck_policy'] ?? '') ?: 'OPTIONAL_REGISTRATION'));
-        if (in_array($deckPolicy, ['REQUIRED_REGISTRATION', 'DECK_LOCK_EVENT', 'DECK_LOCK_PHASE', 'DECK_LOCK_ROUND'], true)) {
+        $deckPolicy = strtoupper(
+            (string) ($competition['deck_policy'] ?? '' ?: 'OPTIONAL_REGISTRATION'),
+        );
+        if (
+            in_array(
+                $deckPolicy,
+                ['REQUIRED_REGISTRATION', 'DECK_LOCK_EVENT', 'DECK_LOCK_PHASE', 'DECK_LOCK_ROUND'],
+                true,
+            )
+        ) {
             return $formatFilter($manualDeckIds);
         }
         if ($manualDeckIds && in_array($participantSource, ['MANUAL', 'CUSTOM'], true)) {
@@ -38,7 +48,10 @@ final readonly class ResolveEligibleDecks
         if ($manualDeckIds && !in_array($pool, ['division', 'all_active'], true)) {
             return $formatFilter($manualDeckIds);
         }
-        $divisionId = $competition['division_id'] !== null ? (int) $competition['division_id'] : $manualDivisionId;
+        $divisionId =
+            $competition['division_id'] !== null
+                ? (int) $competition['division_id']
+                : $manualDivisionId;
         if (!$divisionId && !empty($competition['event_ruleset'])) {
             $divisionId = $this->reader->divisionForRuleset((string) $competition['event_ruleset']);
         }
@@ -54,14 +67,27 @@ final readonly class ResolveEligibleDecks
             if ($dependencyRows) {
                 $qualifiedIds = [];
                 foreach ($dependencyRows as $dependencyRow) {
-                    $dependencyType = (string) ($dependencyRow['condition_type'] ?? 'completed_with_results');
+                    $dependencyType =
+                        (string) ($dependencyRow['condition_type'] ?? 'completed_with_results');
                     $requiredId = (int) ($dependencyRow['depends_on_competition_id'] ?? 0);
                     if ($requiredId <= 0) {
                         continue;
                     }
-                    if (in_array($dependencyType, ['top_n', 'winner_to_final', 'defending_champion'], true)) {
-                        $take = $dependencyType === 'top_n' ? max(1, (int) ($dependencyRow['take_count'] ?? 0) ?: 4) : 1;
-                        foreach (array_slice($this->reader->standings($requiredId), 0, $take) as $standingRow) {
+                    if (
+                        in_array(
+                            $dependencyType,
+                            ['top_n', 'winner_to_final', 'defending_champion'],
+                            true,
+                        )
+                    ) {
+                        $take =
+                            $dependencyType === 'top_n'
+                                ? max(1, (int) ($dependencyRow['take_count'] ?? 0) ?: 4)
+                                : 1;
+                        foreach (
+                            array_slice($this->reader->standings($requiredId), 0, $take)
+                            as $standingRow
+                        ) {
                             $deckId = (int) ($standingRow['deck_id'] ?? 0);
                             if ($deckId > 0) {
                                 $qualifiedIds[] = $deckId;
@@ -72,10 +98,19 @@ final readonly class ResolveEligibleDecks
                 if ($qualifiedIds) {
                     return $formatFilter(array_values(array_unique($qualifiedIds)));
                 }
-                $requiredIds = array_values(array_unique(array_map(static fn(array $row): int => (int) $row['depends_on_competition_id'], $dependencyRows)));
+                $requiredIds = array_values(
+                    array_unique(
+                        array_map(
+                            static fn(array $row): int => (int) $row['depends_on_competition_id'],
+                            $dependencyRows,
+                        ),
+                    ),
+                );
                 $qualifiedIds = $this->reader->participantsWithResults($requiredIds);
                 if ($qualifiedIds) {
-                    return $formatFilter($pool === 'top_cut' ? array_slice($qualifiedIds, 0, 24) : $qualifiedIds);
+                    return $formatFilter(
+                        $pool === 'top_cut' ? array_slice($qualifiedIds, 0, 24) : $qualifiedIds,
+                    );
                 }
             }
             if ($divisionId > 0) {

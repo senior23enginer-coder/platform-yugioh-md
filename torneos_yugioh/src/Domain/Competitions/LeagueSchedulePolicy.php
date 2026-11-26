@@ -29,7 +29,10 @@ final class LeagueSchedulePolicy
             self::requireCompleteGroups($localGroups);
             $offset = count($groups);
             $groups = array_merge($groups, $localGroups);
-            foreach (RoundRobinPairings::rounds($localGroups, $doubleRound) as $roundIndex => $pairs) {
+            foreach (
+                RoundRobinPairings::rounds($localGroups, $doubleRound)
+                as $roundIndex => $pairs
+            ) {
                 foreach ($pairs as $tableIndex => $pair) {
                     $rounds[$roundIndex][] = [
                         $offset + $pair[0],

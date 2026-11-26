@@ -26,17 +26,12 @@ final readonly class PublishMatchSnapshots
                 $deckSnapshot = $this->store->deck($deckId);
                 $decklist = $this->store->decklist($deckId);
                 $originValue = strtolower(
-                    trim(
-                        (string) ($detailRow['data_origin'] ??
-                            ($detailRow['source'] ?? '')),
-                    ),
+                    trim((string) ($detailRow['data_origin'] ?? ($detailRow['source'] ?? ''))),
                 );
                 $hasTurnHistory =
-                    !empty($detailRow['turn_history']) &&
-                    is_array($detailRow['turn_history']);
+                    !empty($detailRow['turn_history']) && is_array($detailRow['turn_history']);
                 $origin =
-                    str_contains($originValue, 'infer') ||
-                    str_contains($originValue, 'backfill')
+                    str_contains($originValue, 'infer') || str_contains($originValue, 'backfill')
                         ? 'inferred'
                         : (str_contains($originValue, 'add')
                             ? 'added'
@@ -51,7 +46,8 @@ final readonly class PublishMatchSnapshots
                     'competitionId' => (int) ($matchSnapshot['competition_id'] ?? 0) ?: null,
                     'deckId' => $deckId,
                     'teamId' => (int) ($deckSnapshot['team_id'] ?? 0) ?: null,
-                    'playerId' => max(0, (int) ($detailRow['player_' . $suffix . '_id'] ?? 0)) ?: null,
+                    'playerId' =>
+                        max(0, (int) ($detailRow['player_' . $suffix . '_id'] ?? 0)) ?: null,
                     'deckName' => (string) ($deckSnapshot['name'] ?? ''),
                     'archetype' => (string) ($deckSnapshot['archetype'] ?? ''),
                     'variation' => (string) ($deckSnapshot['variations'] ?? ''),

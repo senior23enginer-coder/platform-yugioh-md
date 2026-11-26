@@ -40,12 +40,18 @@ final readonly class SaveMatchResult
         }
         $values = MatchResultPayload::values($post);
         if ($matchId > 0) {
-            ['diceRoll' => $diceRoll, 'turnChoice' => $turnChoice, 'duelDetails' => $duelDetails, 'diceWinner' => $diceWinner, 'turnChosenBy' => $turnChosenBy, 'turnDecision' => $turnDecision, 'startsPlayer' => $startsPlayer, 'decodedDetails' => $decodedDetails] = MatchResultPayload::normalize($post, $values);
+            [
+                'diceRoll' => $diceRoll,
+                'turnChoice' => $turnChoice,
+                'duelDetails' => $duelDetails,
+                'diceWinner' => $diceWinner,
+                'turnChosenBy' => $turnChosenBy,
+                'turnDecision' => $turnDecision,
+                'startsPlayer' => $startsPlayer,
+                'decodedDetails' => $decodedDetails,
+            ] = MatchResultPayload::normalize($post, $values);
             $manualStarts = (string) ($decodedDetails[0]['starts_player'] ?? '');
-            $verifiedManualStart = $this->rules->verifiedStart($matchId,
-                1,
-                $manualStarts,
-            );
+            $verifiedManualStart = $this->rules->verifiedStart($matchId, 1, $manualStarts);
             if ($verifiedManualStart) {
                 $startsPlayer = $manualStarts;
             }
@@ -97,7 +103,8 @@ final readonly class SaveMatchResult
                         }
                         $decodedDetails[$valueIndex]['surrendered_by'] = $surrenderingSide;
                         $decodedDetails[$valueIndex]['surrendered_at'] =
-                            (string) ($detailRow['surrendered_at'] ?? '') ?: $this->clock->now()->format(DATE_ATOM);
+                            (string) ($detailRow['surrendered_at'] ?? '') ?:
+                            $this->clock->now()->format(DATE_ATOM);
                     }
                     if ($valueIndex > 0 && $values[$valueIndex - 1] === 'E') {
                         $hasRecordedDrawReroll =
@@ -117,7 +124,8 @@ final readonly class SaveMatchResult
                         if (
                             !$hasRecordedDrawReroll &&
                             !$isHistoricalUnrecordedReroll &&
-                            !$this->rules->verifiedStart($matchId,
+                            !$this->rules->verifiedStart(
+                                $matchId,
                                 $valueIndex + 1,
                                 (string) ($detailRow['starts_player'] ?? ''),
                             )
@@ -133,18 +141,35 @@ final readonly class SaveMatchResult
                 return 'resultado_bloqueado_fecha';
             }
             return $this->transaction->run(function () use (
-                $matchId, $post, $values, $diceRoll, $turnChoice, $duelDetails, $diceWinner,
-                $turnChosenBy, $turnDecision, $startsPlayer, $decodedDetails, $offlineRequestId, $dateGuard,
+                $matchId,
+                $post,
+                $values,
+                $diceRoll,
+                $turnChoice,
+                $duelDetails,
+                $diceWinner,
+                $turnChosenBy,
+                $turnDecision,
+                $startsPlayer,
+                $decodedDetails,
+                $offlineRequestId,
+                $dateGuard,
             ): string {
                 $this->rules->assertEditable($matchId);
                 $this->store->ensure($matchId);
                 $existingRow = $this->store->lockExisting($matchId);
                 $existingDetails = json_decode((string) ($existingRow['duel_details'] ?? ''), true);
-                ResultIntegrityPolicy::assertCorrectionVersion($existingDetails, (int) ($post['result_correction_version'] ?? 0));
+                ResultIntegrityPolicy::assertCorrectionVersion(
+                    $existingDetails,
+                    (int) ($post['result_correction_version'] ?? 0),
+                );
                 $newTurnAuditRows = [];
                 if (isset($decodedDetails) && is_array($decodedDetails)) {
                     $existingByDuel = [];
-                    foreach (is_array($existingDetails) ? $existingDetails : [] as $existingDetail) {
+                    foreach (
+                        is_array($existingDetails) ? $existingDetails : []
+                        as $existingDetail
+                    ) {
                         if (is_array($existingDetail)) {
                             $existingByDuel[(int) ($existingDetail['duel'] ?? 0)] = $existingDetail;
                         }
@@ -176,13 +201,18 @@ final readonly class SaveMatchResult
                             $incomingDetail['manual_correction_at_ms'] =
                                 $storedDetail['manual_correction_at_ms'];
                         }
-                        $mergedTurns = TurnHistory::mergeMonotonicTurns($storedDetail, $incomingDetail);
+                        $mergedTurns = TurnHistory::mergeMonotonicTurns(
+                            $storedDetail,
+                            $incomingDetail,
+                        );
                         $incomingDetail = $mergedTurns['detail'];
                         foreach ($mergedTurns['appended'] as $turnRow) {
                             $newTurnAuditRows[] = ['duel' => $duelNumber, 'row' => $turnRow];
                         }
                         if (!empty($storedDetail['duel_started'])) {
-                            $storedTimerMode = strtolower((string) ($storedDetail['timer_mode'] ?? ''));
+                            $storedTimerMode = strtolower(
+                                (string) ($storedDetail['timer_mode'] ?? ''),
+                            );
                             $incomingDetail['duel_started'] = true;
                             $incomingDetail['duel_started_at'] = max(
                                 0,
@@ -199,10 +229,16 @@ final readonly class SaveMatchResult
                         }
                     }
                     unset($incomingDetail);
-                    $duelDetails = json_encode(array_values($decodedDetails), JSON_UNESCAPED_UNICODE);
+                    $duelDetails = json_encode(
+                        array_values($decodedDetails),
+                        JSON_UNESCAPED_UNICODE,
+                    );
                 }
                 if (isset($decodedDetails) && is_array($decodedDetails)) {
-                    $this->store->appendTurns($matchId, ResultIntegrityPolicy::appendTurnRows($decodedDetails));
+                    $this->store->appendTurns(
+                        $matchId,
+                        ResultIntegrityPolicy::appendTurnRows($decodedDetails),
+                    );
                 }
                 $existingValues = [];
                 for ($i = 1; $i <= 5; $i++) {
@@ -215,7 +251,10 @@ final readonly class SaveMatchResult
                     $values = ResultIntegrityPolicy::preserveStoredValues($existingValues, $values);
                 }
                 $evaluation = $this->rules->evaluate($matchId, $values);
-                $completionNow = $this->clock->now()->setTimezone(new DateTimeZone('America/Bogota'))->format('Y-m-d H:i:s');
+                $completionNow = $this->clock
+                    ->now()
+                    ->setTimezone(new DateTimeZone('America/Bogota'))
+                    ->format('Y-m-d H:i:s');
                 $decodedDetails = CompletionPolicy::completionGames(
                     $decodedDetails ?? [],
                     is_array($existingDetails) ? $existingDetails : [],
@@ -259,30 +298,26 @@ final readonly class SaveMatchResult
                 ) {
                     $this->effects->persistStandings($resultCompetitionId);
                 }
-                $this->store->audit($matchId, 'save_result',
-                        [
-                            'duels' => $values,
-                            'evaluation' => $evaluation,
-                            'date_guard' => $dateGuard,
-                            'dice_roll' => $diceRoll,
-                            'turn_choice' => $turnChoice,
-                            'dice_winner' => $diceWinner,
-                            'turn_chosen_by' => $turnChosenBy,
-                            'turn_decision' => $turnDecision,
-                            'starts_player' => $startsPlayer,
-                            'duel_details' => $duelDetails,
-                        ]
-                );
+                $this->store->audit($matchId, 'save_result', [
+                    'duels' => $values,
+                    'evaluation' => $evaluation,
+                    'date_guard' => $dateGuard,
+                    'dice_roll' => $diceRoll,
+                    'turn_choice' => $turnChoice,
+                    'dice_winner' => $diceWinner,
+                    'turn_chosen_by' => $turnChosenBy,
+                    'turn_decision' => $turnDecision,
+                    'starts_player' => $startsPlayer,
+                    'duel_details' => $duelDetails,
+                ]);
                 foreach ($newTurnAuditRows as $auditRow) {
-                    $this->store->audit($matchId, 'turn_added',
-                            [
-                                'duel' => (int) $auditRow['duel'],
-                                'turn' => (int) $auditRow['row']['turn'],
-                                'side' => (string) $auditRow['row']['side'],
-                                'ended_at' => (string) $auditRow['row']['ended_at'],
-                                'elapsed_seconds' => (int) $auditRow['row']['elapsed_seconds'],
-                            ]
-                    );
+                    $this->store->audit($matchId, 'turn_added', [
+                        'duel' => (int) $auditRow['duel'],
+                        'turn' => (int) $auditRow['row']['turn'],
+                        'side' => (string) $auditRow['row']['side'],
+                        'ended_at' => (string) $auditRow['row']['ended_at'],
+                        'elapsed_seconds' => (int) $auditRow['row']['elapsed_seconds'],
+                    ]);
                 }
                 $this->effects->syncStatistics($resultCompetitionId, $matchId);
                 $savedLiveMatch = $this->effects->liveMatch($matchId);
@@ -295,7 +330,11 @@ final readonly class SaveMatchResult
                     $this->store->saveLiveState($matchId, $savedLiveState);
                 }
                 if ($offlineRequestId !== '') {
-                    $this->store->recordSync($offlineRequestId, $matchId, hash('sha256', json_encode($post, JSON_UNESCAPED_UNICODE) ?: ''));
+                    $this->store->recordSync(
+                        $offlineRequestId,
+                        $matchId,
+                        hash('sha256', json_encode($post, JSON_UNESCAPED_UNICODE) ?: ''),
+                    );
                 }
                 return 'resultado';
             });
