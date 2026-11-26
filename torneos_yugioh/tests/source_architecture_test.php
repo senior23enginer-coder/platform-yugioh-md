@@ -294,6 +294,88 @@ architectureCheck(
     'Save and finalize ordering changed',
 );
 
+// Resolve season context with the same dependency, match, competition and division precedence.
+$contextReader = new class implements \StationX\Yugioh\Application\Seasons\SeasonContextReader {
+    public array $calls = [];
+    public function competitionForDependency(int $id): int
+    {
+        $this->calls[] = ['dependency', $id];
+        return 10;
+    }
+    public function competitionForMatch(int $id): int
+    {
+        $this->calls[] = ['match', $id];
+        return 20;
+    }
+    public function seasonForCompetition(int $id): int
+    {
+        $this->calls[] = ['competition', $id];
+        return 3;
+    }
+    public function seasonForDivision(int $id): int
+    {
+        $this->calls[] = ['division', $id];
+        return 4;
+    }
+    public function exists(int $id): bool
+    {
+        $this->calls[] = ['exists', $id];
+        return $id < 9;
+    }
+    public function defaultSeasonId(): int
+    {
+        $this->calls[] = ['default'];
+        return 1;
+    }
+};
+$context = new \StationX\Yugioh\Application\Seasons\ResolveSeasonContext($contextReader);
+architectureCheck(
+    $context->resolve(
+        ['season_context' => 2],
+        ['dependency_id' => 5, 'match_id' => 6, 'action' => 'save_division', 'division_id' => 7],
+    ) === 4,
+    'Season context precedence changed',
+);
+architectureCheck(
+    $contextReader->calls === [
+        ['dependency', 5],
+        ['match', 6],
+        ['competition', 20],
+        ['division', 7],
+        ['exists', 4],
+    ],
+    'Season context read order changed',
+);
+architectureCheck($context->resolve(['season_context' => 9], []) === null, 'Unknown season accepted');
+architectureCheck($context->resolve([], ['competition_season_id' => 3]) === 3, 'Explicit season lost');
+architectureCheck($context->current(4) === 4 && $context->current(null) === 1, 'Default season changed');
+$seasonReader->season = $seasonRow;
+$guard = new \StationX\Yugioh\Application\Seasons\GuardSeasonAction($seasonUseCase, $contextReader);
+architectureCheck(
+    $seasonOutcome(static fn() => $guard->execute('save_competition', 3, [])) ===
+        'Selecciona la temporada del evento. La temporada de un evento existente se conserva.',
+    'Competition season guard changed',
+);
+architectureCheck(
+    $seasonOutcome(static fn() => $guard->execute('create_match', 3, [])) ===
+        'Selecciona un evento con temporada para crear la partida.',
+    'Manual match season guard changed',
+);
+architectureCheck(
+    $seasonOutcome(static fn() => $guard->execute('save_competition', 3, [
+        'competition_season_id' => 3,
+        'competition_division_id' => 7,
+    ])) === 'Las divisiones del evento deben pertenecer a su temporada.',
+    'Division season guard changed',
+);
+architectureCheck(
+    $seasonOutcome(static fn() => $guard->execute('save_competition', 4, [
+        'competition_season_id' => 4,
+        'competition_division_id' => 7,
+    ])) === null,
+    'Valid division blocked',
+);
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
