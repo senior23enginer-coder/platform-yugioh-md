@@ -602,6 +602,23 @@ architectureCheck(!$competitionGatePolicy::seasonOpen(['status' => 'archived'], 
 architectureCheck($competitionGatePolicy::summarize([])['message'] === 'Sin prerrequisitos.', 'Empty prerequisite response changed');
 architectureCheck($competitionGatePolicy::summarize([['name' => 'A', 'ok' => false], ['name' => 'B', 'ok' => true]])['message'] === 'Evento bloqueado: primero debe cumplirse A.', 'Blocked prerequisite message changed');
 
+// Date and venue policies preserve configured limits and legacy result states.
+$schedulePolicy = \StationX\Yugioh\Domain\Calendar\MatchSchedulePolicy::class;
+$dateSettings = ['allow_early_results' => '0', 'allow_overdue_results' => '1'];
+architectureCheck($schedulePolicy::resultDate('2026-11-27', '2026-11-26', $dateSettings)['state'] === 'fecha_futura', 'Early result guard changed');
+architectureCheck($schedulePolicy::resultDate('2026-11-25', '2026-11-26', $dateSettings)['state'] === 'vencido', 'Overdue result changed');
+architectureCheck($schedulePolicy::resultDate('2026-11-26', '2026-11-26', $dateSettings)['state'] === 'hoy', 'Current date result changed');
+$dateSettings['allow_overdue_results'] = '0';
+architectureCheck($schedulePolicy::resultDate('2026-11-25', '2026-11-26', $dateSettings)['state'] === 'vencido_bloqueado', 'Blocked overdue result changed');
+$parsedSchedule = new DateTimeImmutable('2026-11-26');
+$scheduleSettings = ['valid_weekdays' => '4', 'allowed_start_time' => '10:00', 'allowed_end_time' => '22:00', 'venues' => 'Station X', 'max_matches_per_day' => '0'];
+architectureCheck($schedulePolicy::dayAndTime($parsedSchedule, '2026-11-26', '10:00', $scheduleSettings) === null, 'Inclusive start time changed');
+architectureCheck($schedulePolicy::dayAndTime($parsedSchedule, '2026-11-26', '09:59', $scheduleSettings)['state'] === 'hora_temprana', 'Early time accepted');
+architectureCheck($schedulePolicy::dayAndTime($parsedSchedule, '2026-11-26', '22:01', $scheduleSettings)['state'] === 'hora_tardia', 'Late time accepted');
+architectureCheck($schedulePolicy::venue('station x', $scheduleSettings)['ok'], 'Case insensitive venue changed');
+architectureCheck($schedulePolicy::venue('Other', $scheduleSettings)['state'] === 'sede_no_permitida', 'Foreign venue accepted');
+architectureCheck($schedulePolicy::maxPerDay($scheduleSettings) === 1, 'Minimum daily capacity changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

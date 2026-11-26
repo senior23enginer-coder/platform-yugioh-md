@@ -112,5 +112,5 @@ function ygo_ui_labels(PDO $pdo): array
 
 function ygo_setting_enabled(array $settings, string $key): bool
 {
-    return in_array((string) ($settings[$key] ?? '0'), ['1', 'true', 'yes', 'on'], true);
+    return \StationX\Yugioh\Domain\Settings\SettingValue::enabled($settings, $key);
 }
