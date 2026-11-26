@@ -1,0 +1,20 @@
+name: A03 CID reconciliation safety checks
+on:
+  pull_request:
+    branches: [base]
+    paths:
+      - 'torneos_yugioh/tools/reconcile_a03_cids.php'
+      - 'torneos_yugioh/tests/a03_cid_reconciliation_test.php'
+      - '.github/workflows/a03-cid-reconciliation-check.yml'
+permissions:
+  contents: read
+jobs:
+  dry-run-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: PHP lint and synthetic contract tests
+        run: |
+          php -l torneos_yugioh/tools/reconcile_a03_cids.php
+          php -l torneos_yugioh/tests/a03_cid_reconciliation_test.php
+          php torneos_yugioh/tests/a03_cid_reconciliation_test.php
