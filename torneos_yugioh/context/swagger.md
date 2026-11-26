@@ -6,7 +6,7 @@ Los recursos de Swagger UI se copian desde la versión fijada en package-lock.js
 `npm run build:swagger` actualiza la copia distribuida, incluida su licencia.
 No se usa CDN ni validador remoto.
 
-La primera integración expone 13 operaciones existentes mediante 10 rutas en
+La primera integración expone 15 operaciones mediante 11 rutas en
 `api/index.php/...`. `api/routes.php` declara métodos y parámetros admitidos.
 El adaptador no tiene SQL ni reglas nuevas: delega en los controladores nativos,
 conservando cuerpo, sesión, permisos, bloqueos, versiones e historial.
@@ -21,11 +21,10 @@ combos, Mundos y ZIP usan X-CSRF-Token. No hay token global de ejemplo ni secret
 Cada ejecución requiere pulsar Try it out / Execute: no se guardan datos al abrir.
 
 Las propuestas de 37 endpoints REST no se consideran implementadas.
-El CRUD general de decks, multimedia y otras pantallas de ficha sigue siendo
-el flujo nativo de formularios. Esta entrega no añade permisos ni borra inventarios.
+GET /deck consulta identidad, estado y token CSRF; DELETE /deck exige deck_id, expected_name y X-CSRF-Token. Reutiliza la eliminación lógica nativa y sus bloqueos de eventos. No borra inventarios ni historial. El resto del CRUD general sigue siendo el flujo nativo de formularios.
 
 Validación: `npm run test:swagger` verifica OpenAPI, rutas/métodos, recursos
 vendorizados y Swagger en escritorio/móvil mediante un PHP local sin BD.
 Nunca ejecuta guardados ni se conecta a producción.
 
-La autorizaci?n CSRF se describe como `sessionCsrf` (API key en cabecera). Una lectura expl?cita autoriza autom?ticamente ese esquema en memoria; tambi?n admite Authorize manual. Las rutas GET/POST se prueban contra un servidor ficticio, incluida la captura real de ambos tipos de token por Swagger.
+La autorizaci?n CSRF se describe como `sessionCsrf` (API key en cabecera). Una lectura expl?cita autoriza autom?ticamente ese esquema en memoria; tambi?n admite Authorize manual. Las rutas GET/POST/DELETE se prueban contra un servidor ficticio, incluida la captura real de ambos tipos de token por Swagger.
