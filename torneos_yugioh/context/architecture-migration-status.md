@@ -82,7 +82,7 @@ Se aíslan el rango de clasificación, los criterios de finalización y la asign
 
 ## Reconstrucción histórica del calendario clasificatorio — 26 de noviembre de 2026
 
-Se separan emparejamientos, distribución de jornadas, consolidación del último combate y planificación de fechas mediante políticas de dominio y un caso de uso con reloj y puertos de lectura/escritura. Se conserva el alcance de borrado original de combates pendientes, la actualización previa del límite diario y la propiedad transaccional existente. No se ejecutan reconstrucciones de producción. Validación integral y MySQL pendientes.
+Se separan emparejamientos, distribución de jornadas, consolidación del último combate y planificación de fechas mediante políticas de dominio y un caso de uso con reloj y puertos de lectura/escritura. Se conserva el alcance de borrado original de combates pendientes, la actualización previa del límite diario y la propiedad transaccional existente. No se ejecutan reconstrucciones de producción. Se verificó la huella original y 7.603 comprobaciones aisladas con PHP 8.4.24, incluyendo emparejamientos sin duplicados para 2 a 40 decks y distribución de fechas para límites diarios 1 a 5; ambos archivos de dominio coinciden con GitHub. Validación integral y MySQL pendientes.
 
 ## Trabajo todavía pendiente para completar toda la plataforma
 
