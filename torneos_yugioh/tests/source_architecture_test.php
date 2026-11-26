@@ -2988,6 +2988,29 @@ architectureCheck($competitionDirectory['byType'] === ['cup' => 2, 'special' => 
 architectureCheck($competitionDirectory['byRuleset'] === ['custom' => 3], 'Ruleset totals changed');
 architectureCheck($competitionDirectory['dependencies'][0]['ok'], 'Dependency state changed');
 
+// Qualifier match projection preserves filtering, date ordering and completion criteria.
+$qualifierProjection = \StationX\Yugioh\Application\Presentation\QualifierMatchProjection::class;
+$qualifierFixtures = [
+    'CLASIFICATORIO' => [
+        [
+            'ronda' => 2,
+            'matches' => [
+                ['id' => 1, 'competition_id' => 8, 'scheduled_on' => '2026-11-27'],
+                ['id' => 2, 'competition_id' => 8, 'scheduled_on' => '2026-11-26', 'score' => '2-0'],
+                ['id' => 3, 'competition_id' => 9, 'estado' => 'FINALIZADA'],
+                ['id' => 4, 'competition_id' => 8],
+            ],
+        ],
+    ],
+];
+$qualifierSummary = $qualifierProjection::statistics($qualifierFixtures, [8 => true]);
+architectureCheck($qualifierSummary === [8 => ['matches' => 3, 'finished' => 1]], 'Qualifier totals changed');
+$qualifierDisplay = $qualifierProjection::display($qualifierFixtures, 8);
+architectureCheck(array_column($qualifierDisplay['matches'], 'id') === [2, 1, 4], 'Qualifier order changed');
+architectureCheck($qualifierDisplay['roundCount'] === 1, 'Qualifier round count changed');
+architectureCheck($qualifierDisplay['scheduledCount'] === 2, 'Qualifier scheduled count changed');
+architectureCheck($qualifierDisplay['finishedCount'] === 1, 'Qualifier finished count changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

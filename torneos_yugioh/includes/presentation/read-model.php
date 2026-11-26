@@ -51,24 +51,7 @@ foreach ($qualifierCompetitions as $competition) {
 }
 $showQualifierDetail = $requestedQualifierCompetition !== null;
 $qualifierCompetitionIdMap = array_fill_keys(array_map(static fn(array $competition): int => (int) ($competition['id'] ?? 0), $qualifierCompetitions), true);
-$qualifierStatsByCompetition = [];
-foreach ($fixtures as $rounds) {
-    foreach ($rounds as $round) {
-        foreach (($round['matches'] ?? []) as $match) {
-            $competitionId = (int) ($match['competition_id'] ?? 0);
-            if ($competitionId <= 0 || !isset($qualifierCompetitionIdMap[$competitionId])) {
-                continue;
-            }
-            if (!isset($qualifierStatsByCompetition[$competitionId])) {
-                $qualifierStatsByCompetition[$competitionId] = ['matches' => 0, 'finished' => 0];
-            }
-            $qualifierStatsByCompetition[$competitionId]['matches']++;
-            if ((string) ($match['estado'] ?? '') === 'FINALIZADA' || !empty($match['score'])) {
-                $qualifierStatsByCompetition[$competitionId]['finished']++;
-            }
-        }
-    }
-}
+$qualifierStatsByCompetition = \StationX\Yugioh\Application\Presentation\QualifierMatchProjection::statistics($fixtures, $qualifierCompetitionIdMap);
 $displayQualifierCompetition = $requestedQualifierCompetition ?? $activeQualifierCompetition ?? $qualifierCompetition;
 $displayQualifierId = (int) ($displayQualifierCompetition['id'] ?? 0);
 $displayQualifierSelectedIds = array_map('intval', (array) ($displayQualifierCompetition['selected_deck_ids'] ?? []));
@@ -78,24 +61,12 @@ $displayQualifierDecks = $displayQualifierSelectedIds
     : [];
 $displayQualifierRequiredDuels = max(2, min(5, (int) (($displayQualifierCompetition['qualifier_duels_per_deck'] ?? 0) ?: 3)));
 $displayQualifierMatchesPerDay = max(1, min(5, (int) (($displayQualifierCompetition['qualifier_matches_per_day'] ?? 0) ?: 1)));
-$displayQualifierMatches = [];
-foreach (($fixtures['CLASIFICATORIO'] ?? []) as $round) {
-    foreach (($round['matches'] ?? []) as $match) {
-        if ($displayQualifierId > 0 && (int) ($match['competition_id'] ?? 0) !== $displayQualifierId) {
-            continue;
-        }
-        $displayQualifierMatches[] = $match + ['round_number' => (int) ($round['ronda'] ?? 0)];
-    }
-}
-usort($displayQualifierMatches, static function (array $a, array $b): int {
-    return strcmp((string) ($a['scheduled_on'] ?? '9999-12-31'), (string) ($b['scheduled_on'] ?? '9999-12-31'))
-        ?: strcmp((string) ($a['starts_at'] ?? '23:59:59'), (string) ($b['starts_at'] ?? '23:59:59'))
-        ?: ((int) ($a['round_number'] ?? 0) <=> (int) ($b['round_number'] ?? 0))
-        ?: ((int) ($a['mesa'] ?? 0) <=> (int) ($b['mesa'] ?? 0));
-});
-$displayQualifierRoundCount = count(array_unique(array_map(static fn(array $match): int => (int) ($match['round_number'] ?? 0), $displayQualifierMatches)));
-$displayQualifierScheduledCount = count(array_filter($displayQualifierMatches, static fn(array $match): bool => !empty($match['scheduled_on'])));
-$displayQualifierFinishedCount = count(array_filter($displayQualifierMatches, static fn(array $match): bool => (($match['estado'] ?? '') === 'FINALIZADA') || !empty($match['score'])));
+[
+    'matches' => $displayQualifierMatches,
+    'roundCount' => $displayQualifierRoundCount,
+    'scheduledCount' => $displayQualifierScheduledCount,
+    'finishedCount' => $displayQualifierFinishedCount,
+] = \StationX\Yugioh\Application\Presentation\QualifierMatchProjection::display($fixtures, $displayQualifierId);
 $qualifierStatus = ygo_normalize_status_key((string) ($displayQualifierCompetition['status'] ?? 'draft'));
 $qualifierFinished = in_array($qualifierStatus, ['completed', 'finalizada', 'finalizado', 'closed', 'archived'], true);
 $qualifierStatusLabel = $qualifierFinished ? 'Finalizado' : ($qualifierStatus === 'pending_event' ? 'Pendiente evento' : (in_array($qualifierStatus, ['active', 'activo', 'en_curso'], true) ? 'Activo' : 'Pendiente configuracion'));

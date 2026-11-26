@@ -200,6 +200,10 @@ Los PR #65, #66 y #67 se integraron con CI exitoso. Se continúa en una única r
 
 La agregación de fixtures de copa y mundial comparte una implementación pura que conserva el orden diferenciado, los criterios de finalización, las fechas únicas de copa y la estructura de cada respuesta. El directorio de competiciones centraliza los contadores, identidades y dependencias. Se añaden regresiones en la suite existente. CI pendiente.
 
+## Proyección de partidas clasificatorias
+
+Se extraen del read-model de presentación el resumen por competición, el filtrado de partidas, el orden cronológico y los contadores de rondas, fechas y finalizaciones. Se conservan los criterios históricos y se añade cobertura de regresión. CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
