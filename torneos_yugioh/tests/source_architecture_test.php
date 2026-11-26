@@ -1803,6 +1803,28 @@ architectureCheck(
     'Invalid Tag mode accepted',
 );
 
+// Collective results do not duplicate individual deck outcomes.
+$teamResultPolicy = \StationX\Yugioh\Domain\Competitions\TeamResultPolicy::class;
+architectureCheck(
+    $teamResultPolicy::collectiveDuels('team', [['A'], ['B'], ['A']]) === array_fill(0, 5, null),
+    'Seat games leaked into collective result',
+);
+architectureCheck(
+    $teamResultPolicy::collectiveDuels('tag', [['A', 'A']]) === ['A', 'A', null, null, null],
+    'Shared Tag series changed',
+);
+architectureCheck(
+    $seasonOutcome(static fn() => $teamResultPolicy::assertRevision(['revision' => 2], 1)) !==
+        null,
+    'Stale team result revision accepted',
+);
+$projection = \StationX\Yugioh\Domain\Statistics\TeamIndividualProjection::class;
+architectureCheck(
+    $projection::expand([['id' => 1], ['id' => 2]], [2 => true], [2 => ['kind' => 'tag']], []) ===
+        [['id' => 1]],
+    'Collective Tag match counted as individual',
+);
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

@@ -114,7 +114,7 @@ Se extraen normalización de resultados, protección de versiones y auditoría d
 
 ## Configuración de equipos y alineaciones por evento
 
-Se separan el contrato JSON versionado, la validación de modalidad, formato y participantes, la configuración y el congelamiento de alineaciones, y el enlace de los puestos de combate. El caso de uso `TeamEventConfiguration` usa puertos de persistencia y reglas; la fachada conserva el bloqueo de escritura y el adaptador transaccional respeta las transacciones prestadas. Se guardan los cuerpos anteriores para revisión y se añaden regresiones. Resultados colectivos y proyección individual siguen pendientes, igual que la ejecución integral.
+Se separan el contrato JSON versionado, la validación de modalidad, formato y participantes, la configuración y el congelamiento de alineaciones, y el enlace de los puestos de combate. El caso de uso `TeamEventConfiguration` usa puertos de persistencia y reglas; la fachada conserva el bloqueo de escritura y el adaptador transaccional respeta las transacciones prestadas. Se guardan los cuerpos anteriores para revisión y se añaden regresiones. Se separan asimismo los resultados colectivos, revisión optimista, puestos fijos, proyección individual y efectos estadísticos mediante `SaveTeamMatchResult`, `TeamResultPolicy` y `ExpandTeamIndividualResults`. Se agrega una guarda explícita ante competición desaparecida después del bloqueo. Los servicios nativos permanecen detrás de puertos; falta ejecutar la suite, el formato y las pruebas MySQL.
 
 ## Trabajo todavía pendiente para completar toda la plataforma
 
