@@ -175,10 +175,10 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
-          extensions: mbstring, pdo_mysql
+          extensions: mbstring, pdo_sqlite, pdo_mysql
           coverage: none
       - name: Verify isolated MySQL statistics persistence
         env:
           STATIONX_MYSQL_TEST: '1'
           STATIONX_MYSQL_TEST_PASSWORD: stationx_ci_only
-        run: php torneos_yugioh/tests/statistics_mysql_test.php
+        run: php torneos_yugioh/tests/statistics_no_cuts_test.php
