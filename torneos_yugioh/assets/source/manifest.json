@@ -5,6 +5,10 @@
       "responsibility": "offline queue storage and identity port"
     },
     {
+      "file": "javascript/shared/calendar-policy.js",
+      "responsibility": "calendar timing and playable-date policy"
+    },
+    {
       "file": "javascript/00-startup.js",
       "responsibility": "startup"
     },

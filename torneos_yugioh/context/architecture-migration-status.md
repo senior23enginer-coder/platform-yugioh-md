@@ -208,6 +208,10 @@ Se extraen del read-model de presentación el resumen por competición, el filtr
 
 Se extraen las agrupaciones de eventos por formato, resultados recientes, contadores de fixtures, partidos del dashboard, proyección de equipos, ranking visible, avance de clasificatorios y resumen de auditoría. Las funciones de etiquetas y medios se suministran como dependencias explícitas; se conservan los filtros, orden, campos, fecha de referencia y límites de presentación. Regresiones añadidas; CI pendiente.
 
+## Política de fechas y captura en el navegador
+
+Se extraen las guardas de fecha y captura del cierre compartido del calendario a un módulo independiente con configuración y fecha de servidor explícitas. Se conservan el orden de guardas, textos, autorización de fechas vencidas/anticipadas y días especiales. Se reconstruyen las secciones modificadas del bundle mediante sus fuentes; la reconstrucción completa y las pruebas se verifican en CI. Se añaden trece comprobaciones.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
