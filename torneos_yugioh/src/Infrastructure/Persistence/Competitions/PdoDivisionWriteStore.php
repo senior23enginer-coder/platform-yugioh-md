@@ -18,18 +18,22 @@ final readonly class PdoDivisionWriteStore implements DivisionWriteStore
     public function save(int $id, int $seasonId, string $code, array $values): int
     {
         if ($id > 0) {
-            $this->pdo->prepare(
-                'UPDATE sx_ygo_divisions SET code=?, name=?, cup_name=?, tier_order=?, deck_count=?, accent=?, description=?, starts_on=?, ends_on=?, promotion_slots=?, relegation_slots=?, promotion_to_division_id=?, relegation_to_division_id=?, league_competition_id=?, source_qualifier_id=?, rank_from=?, rank_to=? WHERE id=? AND season_id=?',
-            )->execute([...$values, $id, $seasonId]);
+            $this->pdo
+                ->prepare(
+                    'UPDATE sx_ygo_divisions SET code=?, name=?, cup_name=?, tier_order=?, deck_count=?, accent=?, description=?, starts_on=?, ends_on=?, promotion_slots=?, relegation_slots=?, promotion_to_division_id=?, relegation_to_division_id=?, league_competition_id=?, source_qualifier_id=?, rank_from=?, rank_to=? WHERE id=? AND season_id=?',
+                )
+                ->execute([...$values, $id, $seasonId]);
         } else {
-            $this->pdo->prepare(
-                '
+            $this->pdo
+                ->prepare(
+                    '
                 INSERT INTO sx_ygo_divisions
                     (season_id, code, name, cup_name, tier_order, deck_count, accent, description, starts_on, ends_on, promotion_slots, relegation_slots, promotion_to_division_id, relegation_to_division_id, league_competition_id, source_qualifier_id, rank_from, rank_to, active)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)
                 ON DUPLICATE KEY UPDATE name=VALUES(name), cup_name=VALUES(cup_name), tier_order=VALUES(tier_order), deck_count=VALUES(deck_count), accent=VALUES(accent), description=VALUES(description), starts_on=VALUES(starts_on), ends_on=VALUES(ends_on), promotion_slots=VALUES(promotion_slots), relegation_slots=VALUES(relegation_slots), promotion_to_division_id=VALUES(promotion_to_division_id), relegation_to_division_id=VALUES(relegation_to_division_id), league_competition_id=VALUES(league_competition_id), source_qualifier_id=VALUES(source_qualifier_id), rank_from=VALUES(rank_from), rank_to=VALUES(rank_to), active=1
             ',
-            )->execute([$seasonId, ...$values]);
+                )
+                ->execute([$seasonId, ...$values]);
             $lookup = $this->pdo->prepare(
                 'SELECT id FROM sx_ygo_divisions WHERE season_id=? AND code=? LIMIT 1',
             );
@@ -46,7 +50,9 @@ final readonly class PdoDivisionWriteStore implements DivisionWriteStore
 
     public function setLogo(int $id, int $seasonId, string $url): void
     {
-        $this->pdo->prepare('UPDATE sx_ygo_divisions SET logo_url=? WHERE id=? AND season_id=?')->execute([$url, $id, $seasonId]);
+        $this->pdo
+            ->prepare('UPDATE sx_ygo_divisions SET logo_url=? WHERE id=? AND season_id=?')
+            ->execute([$url, $id, $seasonId]);
     }
 
     public function assignDecks(int $id, array $decks): void
@@ -56,9 +62,11 @@ final readonly class PdoDivisionWriteStore implements DivisionWriteStore
             "UPDATE sx_ygo_decks SET division_id=? WHERE active=1 AND id IN ($placeholders)",
         );
         $deckStmt->execute([$id, ...$decks]);
-        $this->pdo->prepare(
-            'UPDATE sx_ygo_divisions SET deck_count=(SELECT COUNT(*) FROM sx_ygo_decks WHERE division_id=? AND active=1) WHERE id=?',
-        )->execute([$id, $id]);
+        $this->pdo
+            ->prepare(
+                'UPDATE sx_ygo_divisions SET deck_count=(SELECT COUNT(*) FROM sx_ygo_decks WHERE division_id=? AND active=1) WHERE id=?',
+            )
+            ->execute([$id, $id]);
     }
 
     public function applyQualifier(int $id): void

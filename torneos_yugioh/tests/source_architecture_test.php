@@ -2116,10 +2116,20 @@ architectureCheck(
 
 // Preserve division selection, ranking intervals and manual honor identity safeguards.
 $divisionInput = \StationX\Yugioh\Domain\Competitions\DivisionInput::class;
-architectureCheck($divisionInput::selectedDecks(['division_deck_ids' => [2, '2', 0, 4]]) === [2, 4], 'Division selection changed');
+architectureCheck(
+    $divisionInput::selectedDecks(['division_deck_ids' => [2, '2', 0, 4]]) === [2, 4],
+    'Division selection changed',
+);
 $manualHonor = \StationX\Yugioh\Domain\Competitions\ManualHonorPolicy::class;
-architectureCheck($seasonOutcome(static fn() => $manualHonor::assertParticipants(3, 3)) !== null, 'Duplicate champion accepted');
-architectureCheck($seasonOutcome(static fn() => $manualHonor::assertEvent(['status' => 'active'], 'evidence')) !== null, 'Open event awarded honor');
+architectureCheck(
+    $seasonOutcome(static fn() => $manualHonor::assertParticipants(3, 3)) !== null,
+    'Duplicate champion accepted',
+);
+architectureCheck(
+    $seasonOutcome(static fn() => $manualHonor::assertEvent(['status' => 'active'], 'evidence')) !==
+        null,
+    'Open event awarded honor',
+);
 
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {

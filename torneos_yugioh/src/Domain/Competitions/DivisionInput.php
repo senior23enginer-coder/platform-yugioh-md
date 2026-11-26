@@ -81,6 +81,12 @@ final class DivisionInput
             $rankFrom,
             $rankTo,
         ];
-        return ['code' => $code, 'values' => $values, 'sourceQualifierId' => $sourceQualifierId, 'rankFrom' => $rankFrom, 'rankTo' => $rankTo];
+        return [
+            'code' => $code,
+            'values' => $values,
+            'sourceQualifierId' => $sourceQualifierId,
+            'rankFrom' => $rankFrom,
+            'rankTo' => $rankTo,
+        ];
     }
 }

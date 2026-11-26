@@ -27,7 +27,11 @@ final readonly class SaveDivision
                 }
                 if ($decks) {
                     $this->store->assignDecks($id, $decks);
-                } elseif ($definition['sourceQualifierId'] && $definition['rankFrom'] && $definition['rankTo']) {
+                } elseif (
+                    $definition['sourceQualifierId'] &&
+                    $definition['rankFrom'] &&
+                    $definition['rankTo']
+                ) {
                     $this->store->applyQualifier($id);
                 }
             }
