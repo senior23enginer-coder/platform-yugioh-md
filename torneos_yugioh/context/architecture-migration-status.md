@@ -52,6 +52,10 @@ Se extraen la evaluación de prerrequisitos, la guarda de competición y la proy
 
 Se extraen las guardas de fecha de resultados y programación de partidas a casos de uso con reloj y puertos de lectura. La política pura conserva los estados, días habilitados, horarios, capacidad y sedes; la fachada captura la selección manual y los adaptadores contienen SQL y servicios heredados. Se conserva la prioridad de ocupación multijugador, disponibilidad, conflictos, día/hora, capacidad y sede. Se verificaron las tres huellas originales. Diez comprobaciones aisladas de fechas, horarios, capacidad y sedes pasan en PHP 8.4.24; los dos archivos de dominio coinciden con GitHub. Validación integral, formato y MySQL pendientes.
 
+## Evaluación de partidas y reglas — 26 de noviembre de 2026
+
+Se separan la resolución de reglas de juego, prioridad de reglas por partida/evento, evaluación de duelos y políticas de empate/D5 por modalidad mediante puertos de lectura, adaptadores PDO y dominio independiente. La fachada conserva las firmas y se preservan los cuerpos originales para el contrato de compatibilidad. La validación integral, formato y MySQL siguen pendientes.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

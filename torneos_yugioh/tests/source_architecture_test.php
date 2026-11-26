@@ -619,6 +619,20 @@ architectureCheck($schedulePolicy::venue('station x', $scheduleSettings)['ok'], 
 architectureCheck($schedulePolicy::venue('Other', $scheduleSettings)['state'] === 'sede_no_permitida', 'Foreign venue accepted');
 architectureCheck($schedulePolicy::maxPerDay($scheduleSettings) === 1, 'Minimum daily capacity changed');
 
+// Match model rules remain independent of SQL and preserve configured match scope.
+$eventResult = \StationX\Yugioh\Domain\Matches\EventResultPolicy::class;
+$matchRule = \StationX\Yugioh\Domain\Matches\MatchRulePolicy::class;
+architectureCheck($matchRule::bestOf(0) === 3 && $matchRule::bestOf(9) === 5, 'Best-of fallback changed');
+architectureCheck($matchRule::scopes('friendly') === ['all_matches', 'friendly', 'match', 'general'], 'Friendly scopes changed');
+architectureCheck($matchRule::scopes('league') === ['all_matches', 'match', 'general'], 'Match scopes changed');
+$draw = ['status' => 'FINALIZADA', 'winner' => 'E'];
+architectureCheck($eventResult::apply([], '', null, $draw) === $draw + ['model_effects' => []], 'No event result changed');
+architectureCheck($eventResult::apply(['type' => 'cup'], 'cup', null, $draw)['status'] === 'INVALID', 'Cup draw accepted');
+architectureCheck($eventResult::apply(['type' => 'league', 'draw_policy' => 'ALLOWED'], 'league', null, $draw)['winner'] === 'E', 'League draw rejected');
+$win = ['status' => 'FINALIZADA', 'winner' => 'A'];
+architectureCheck($eventResult::apply(['type' => 'special'], 'manual', null, $win, ['A', 'B', 'A', 'A'])['status'] === 'REQUIERE D5', 'D5 policy changed');
+architectureCheck($eventResult::apply(['type' => 'world', 'draw_policy' => 'ALLOWED'], 'groups', [], $draw)['winner'] === 'E', 'Workflow group draw rejected');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
