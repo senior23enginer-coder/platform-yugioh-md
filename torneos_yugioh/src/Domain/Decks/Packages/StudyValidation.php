@@ -369,7 +369,7 @@ final class StudyValidation
                 'El contenido no corresponde al deck de esta ficha.',
             );
         }
-        ygo_data_validate_a01_profile($record);
+        self::validateA01Profile($record);
         StudyValidation::validatePlayerGuide($record);
         if (isset($record['calculator'])) {
             CalculatorContract::extract(
