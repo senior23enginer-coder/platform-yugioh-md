@@ -579,6 +579,29 @@ $rosterGrouping = \StationX\Yugioh\Domain\Decks\RosterGroupingPolicy::class;
 architectureCheck($rosterGrouping::normalize([0, '1', 1, 2, -1]) === [1, 2], 'Roster normalization changed');
 architectureCheck($rosterGrouping::group([4, 1, 3, 2], 2, $matchRows) === [[4, 2], [1, 3]], 'Team group ordering changed');
 
+// Competition gate: preserve dependency short circuits and the legacy messages.
+$dependencyFacts = new class implements \StationX\Yugioh\Application\Competitions\CompetitionDependencyFacts {
+    public array $calls = [];
+    public function resultCount(int $competitionId): int { $this->calls[] = 'results'; return 2; }
+    public function honorCount(int $competitionId): int { $this->calls[] = 'honors'; return 1; }
+    public function divisionCount(int $competitionId): int { $this->calls[] = 'divisions'; return 0; }
+    public function standings(int $competitionId): array { $this->calls[] = 'standings'; return [1, 2]; }
+};
+$dependencyEvaluator = new \StationX\Yugioh\Application\Competitions\EvaluateCompetitionDependency($dependencyFacts);
+$dependency = ['condition_type' => 'top_n', 'depends_on_competition_id' => 2, 'take_count' => 2];
+architectureCheck(!$dependencyEvaluator->execute($dependency, false, true) && !$dependencyFacts->calls, 'Incomplete prerequisite must short circuit');
+architectureCheck($dependencyEvaluator->execute($dependency, true, true) && $dependencyFacts->calls === ['standings'], 'Top-N prerequisite changed');
+$dependencyFacts->calls = [];
+$dependency['condition_type'] = 'winner_to_final';
+architectureCheck($dependencyEvaluator->execute($dependency, true, true) && $dependencyFacts->calls === ['honors'], 'Winner honor must short circuit standings');
+$dependency['condition_type'] = 'creates_divisions';
+architectureCheck(!$dependencyEvaluator->execute($dependency, true, true), 'Missing divisions accepted');
+$competitionGatePolicy = \StationX\Yugioh\Domain\Competitions\CompetitionGatePolicy::class;
+architectureCheck($competitionGatePolicy::seasonOpen(['status' => 'active', 'ends_on' => '2026-11-26'], '2026-11-26'), 'Season closing date must be inclusive');
+architectureCheck(!$competitionGatePolicy::seasonOpen(['status' => 'archived'], '2026-11-26'), 'Archived season accepted');
+architectureCheck($competitionGatePolicy::summarize([])['message'] === 'Sin prerrequisitos.', 'Empty prerequisite response changed');
+architectureCheck($competitionGatePolicy::summarize([['name' => 'A', 'ok' => false], ['name' => 'B', 'ok' => true]])['message'] === 'Evento bloqueado: primero debe cumplirse A.', 'Blocked prerequisite message changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

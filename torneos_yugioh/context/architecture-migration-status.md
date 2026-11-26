@@ -44,6 +44,10 @@ Se separaron sincronización de categorías, mantenimiento GOAT, asignación pro
 
 Se extraen la selección de decks permitidos, validación de participantes 1v1/2v2/3v3, agrupación por equipos y bloqueo de eliminación por historial a casos de uso, políticas puras y puertos de lectura. Los adaptadores conservan las consultas, la precedencia de admisión y la compatibilidad con formatos, resultados y clasificaciones nativos. Se mantienen las firmas; las cuatro huellas originales fueron verificadas. Nueve comprobaciones aisladas de selección y agrupación pasan en PHP 8.4.24 y los archivos de dominio coinciden con GitHub. La suite integral, formato y pruebas de MySQL siguen pendientes.
 
+## Dependencias y guardas de eventos — 26 de noviembre de 2026
+
+Se extraen la evaluación de prerrequisitos, la guarda de competición y la proyección de resultados a políticas, casos de uso y puertos segregados. Los adaptadores PDO conservan las consultas y la fachada mantiene la caché por competición y la invalidación explícita. Se preservan las referencias originales y se añaden regresiones; validación integral y MySQL pendientes.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

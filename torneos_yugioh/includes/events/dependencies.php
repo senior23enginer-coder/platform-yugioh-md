@@ -114,135 +114,41 @@ function ygo_validate_match_schedule(PDO $pdo, int $matchId, ?string $scheduledO
 
 function ygo_competition_dependencies(PDO $pdo): array
 {
-    $stmt = $pdo->prepare("
-        SELECT dep.*, target.name AS competition_name, target.type AS competition_type,
-               required.name AS depends_on_name, required.type AS depends_on_type,
-               required.status AS depends_on_status
-        FROM sx_ygo_competition_dependencies dep
-        JOIN sx_ygo_competitions target ON target.id = dep.competition_id
-        JOIN sx_ygo_competitions required ON required.id = dep.depends_on_competition_id
-        WHERE dep.season_id = ? AND dep.active = 1
-        ORDER BY target.name, required.name
-    ");
-    $stmt->execute([ygo_current_season_id($pdo)]);
-    $grouped = [];
-    foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
-        $grouped[(int) $row['competition_id']][] = $row;
-    }
-    return $grouped;
+    return \StationX\Yugioh\Infrastructure\Composition\CompetitionGateModule::reader($pdo)->dependencies();
 }
 
 function ygo_competition_result_count(PDO $pdo, int $competitionId): int
 {
-    $stmt = $pdo->prepare("
-        SELECT COUNT(*)
-        FROM sx_ygo_matches m
-        JOIN sx_ygo_match_results r ON r.match_id = m.id
-        WHERE m.competition_id = ? AND r.result IS NOT NULL AND r.result <> ''
-    ");
-    $stmt->execute([$competitionId]);
-    return (int) $stmt->fetchColumn();
+    return \StationX\Yugioh\Infrastructure\Composition\CompetitionGateModule::reader($pdo)->resultCount($competitionId);
 }
 
 function ygo_competition_honor_count(PDO $pdo, int $competitionId): int
 {
-    if (!ygo_table_exists($pdo, 'sx_ygo_honors')) {
-        return 0;
-    }
-    $stmt = $pdo->prepare('SELECT COUNT(*) FROM sx_ygo_honors WHERE competition_id = ?');
-    $stmt->execute([$competitionId]);
-    return (int) $stmt->fetchColumn();
+    return \StationX\Yugioh\Infrastructure\Composition\CompetitionGateModule::reader($pdo)->honorCount($competitionId);
 }
 
 function ygo_competition_division_count(PDO $pdo, int $competitionId): int
 {
-    if (!ygo_column_exists($pdo, 'sx_ygo_divisions', 'source_qualifier_id')) {
-        return 0;
-    }
-    $stmt = $pdo->prepare('SELECT COUNT(*) FROM sx_ygo_divisions WHERE source_qualifier_id = ? AND active = 1');
-    $stmt->execute([$competitionId]);
-    return (int) $stmt->fetchColumn();
+    return \StationX\Yugioh\Infrastructure\Composition\CompetitionGateModule::reader($pdo)->divisionCount($competitionId);
 }
 
 function ygo_competition_dependency_satisfied(PDO $pdo, array $dependency, bool $completed, bool $hasResults, int $resultCount): bool
 {
-    $condition = (string) ($dependency['condition_type'] ?: 'completed_with_results');
-    $requiredId = (int) $dependency['depends_on_competition_id'];
-    if ($condition === 'completed') {
-        return $completed;
-    }
-    if ($condition === 'has_results') {
-        return $hasResults;
-    }
-    if ($condition === 'top_n') {
-        $take = max(1, (int) ($dependency['take_count'] ?? 0) ?: 4);
-        return $completed && count(ygo_competition_standings($pdo, $requiredId)) >= $take;
-    }
-    if ($condition === 'winner_to_final') {
-        return $completed && (ygo_competition_honor_count($pdo, $requiredId) > 0 || count(ygo_competition_standings($pdo, $requiredId)) > 0);
-    }
-    if ($condition === 'defending_champion') {
-        return ygo_competition_honor_count($pdo, $requiredId) > 0;
-    }
-    if ($condition === 'creates_divisions') {
-        return $completed && ygo_competition_division_count($pdo, $requiredId) > 0;
-    }
-    return $completed && $hasResults;
+    return \StationX\Yugioh\Infrastructure\Composition\CompetitionGateModule::dependency($pdo)->execute(
+        $dependency,
+        $completed,
+        $hasResults,
+    );
 }
 
 function ygo_competition_gate(PDO $pdo, int $competitionId, bool $refresh=false): array
 {
     static $cache = [];
-    if($refresh)unset($cache[$competitionId]);
+    if ($refresh) {
+        unset($cache[$competitionId]);
+    }
     if (isset($cache[$competitionId])) {
         return $cache[$competitionId];
     }
-    $season = $pdo->prepare('SELECT s.* FROM sx_ygo_seasons s JOIN sx_ygo_competitions c ON c.season_id=s.id WHERE c.id=?');
-    $season->execute([$competitionId]);
-    $row = $season->fetch(PDO::FETCH_ASSOC);
-    if (!$row || in_array($row['status'], ['completed','archived'], true) || (!empty($row['ends_on']) && $row['ends_on'] < date('Y-m-d'))) {
-        return $cache[$competitionId] = ['can_execute'=>false,'message'=>'Temporada finalizada: evento cerrado, disponible solo para consulta.','dependencies'=>[]];
-    }
-    $q=$pdo->prepare('SELECT * FROM sx_ygo_competitions WHERE id=?');$q->execute([$competitionId]);$target=$q->fetch(PDO::FETCH_ASSOC);
-    if($target && (ygo_admission_required($target) || ygo_admission_load($pdo,$target)!==null)){$admission=ygo_admission_view($pdo,$target);if(!$admission['ok'])return $cache[$competitionId]=['can_execute'=>false,'message'=>$admission['message'],'dependencies'=>[]];}
-    $allDependencies = ygo_competition_dependencies($pdo);
-    $dependencies = $allDependencies[$competitionId] ?? [];
-    if (!$dependencies) {
-        return $cache[$competitionId] = [
-            'can_execute' => true,
-            'message' => 'Sin prerrequisitos.',
-            'dependencies' => [],
-        ];
-    }
-    $blocked = [];
-    $resolved = [];
-    foreach ($dependencies as $dependency) {
-        $requiredId = (int) $dependency['depends_on_competition_id'];
-        $condition = (string) ($dependency['condition_type'] ?: 'completed_with_results');
-        $status = strtolower((string) ($dependency['depends_on_status'] ?? 'draft'));
-        $completed = in_array($status, ['completed', 'finalizada', 'finalizado', 'closed', 'archived'], true);
-        $resultCount = ygo_competition_result_count($pdo, $requiredId);
-        $hasResults = $resultCount > 0;
-        $ok = ygo_competition_dependency_satisfied($pdo, $dependency, $completed, $hasResults, $resultCount);
-        $item = [
-            'id' => (int) $dependency['id'],
-            'depends_on_competition_id' => $requiredId,
-            'name' => (string) $dependency['depends_on_name'],
-            'type' => (string) $dependency['depends_on_type'],
-            'status' => (string) $dependency['depends_on_status'],
-            'condition_type' => $condition,
-            'take_count' => (int) ($dependency['take_count'] ?? 0),
-            'result_count' => $resultCount,
-            'ok' => $ok,
-        ];
-        $resolved[] = $item;
-        if (!$ok) {
-            $blocked[] = $item;
-        }
-    }
-    return $cache[$competitionId] = [
-        'can_execute' => !$blocked,
-        'message' => !$blocked ? 'Prerrequisitos cumplidos.' : 'Evento bloqueado: primero debe cumplirse ' . implode(', ', array_map(static fn(array $item): string => $item['name'], $blocked)) . '.',
-        'dependencies' => $resolved,
-    ];
+    return $cache[$competitionId] = \StationX\Yugioh\Infrastructure\Composition\CompetitionGateModule::gate($pdo)->execute($competitionId);
 }
