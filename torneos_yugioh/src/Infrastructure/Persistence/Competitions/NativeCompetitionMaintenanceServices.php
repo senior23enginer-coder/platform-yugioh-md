@@ -21,9 +21,23 @@ final readonly class NativeCompetitionMaintenanceServices implements Competition
         return QualifierFinalizationModule::create($this->pdo)->execute($id, $postedId);
     }
 
-    public function history(int $seasonId, int $id, string $from, string $to, string $action, array $payload = []): void
-    {
-        \ygo_record_competition_status_history($this->pdo, $seasonId, $id, $from, $to, $action, $payload);
+    public function history(
+        int $seasonId,
+        int $id,
+        string $from,
+        string $to,
+        string $action,
+        array $payload = [],
+    ): void {
+        \ygo_record_competition_status_history(
+            $this->pdo,
+            $seasonId,
+            $id,
+            $from,
+            $to,
+            $action,
+            $payload,
+        );
     }
 
     public function standings(int $seasonId, int $id, string $reason): void

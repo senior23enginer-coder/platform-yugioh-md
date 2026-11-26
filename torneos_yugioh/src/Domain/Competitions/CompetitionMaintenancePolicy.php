@@ -13,6 +13,7 @@ final class CompetitionMaintenancePolicy
 
     public static function canFinalize(string $status, array $ready): bool
     {
-        return $ready['ok'] && in_array($status, ['active', 'activo', 'pending_event', 'pendiente_evento'], true);
+        return $ready['ok'] &&
+            in_array($status, ['active', 'activo', 'pending_event', 'pendiente_evento'], true);
     }
 }

@@ -8,7 +8,10 @@ use StationX\Yugioh\Domain\Competitions\CompetitionMaintenancePolicy;
 
 final readonly class MaintainCompetitions
 {
-    public function __construct(private CompetitionMaintenanceStore $store, private CompetitionMaintenanceServices $services) {}
+    public function __construct(
+        private CompetitionMaintenanceStore $store,
+        private CompetitionMaintenanceServices $services,
+    ) {}
 
     public function archive(array $post): string
     {
@@ -73,7 +76,9 @@ final readonly class MaintainCompetitions
     {
         $id = (int) ($post['competition_id'] ?? 0);
         $seasonId = $this->store->currentSeasonId();
-        $moves = $this->store->typeExists($id, $seasonId, 'league') ? $this->services->leagueMovements($id) : 0;
+        $moves = $this->store->typeExists($id, $seasonId, 'league')
+            ? $this->services->leagueMovements($id)
+            : 0;
         return 'movimientos_liga_' . $id . '_' . $moves;
     }
 
@@ -83,7 +88,9 @@ final readonly class MaintainCompetitions
         $seasonId = $this->store->currentSeasonId();
         $competition = $this->store->competition($id, $seasonId);
         if ($competition) {
-            $status = CompetitionLifecyclePolicy::normalizeStatus((string) ($competition['status'] ?? ''));
+            $status = CompetitionLifecyclePolicy::normalizeStatus(
+                (string) ($competition['status'] ?? ''),
+            );
             $ready = $this->services->readiness($id);
             if (CompetitionMaintenancePolicy::canFinalize($status, $ready)) {
                 $this->store->complete($id, $seasonId);
@@ -91,10 +98,29 @@ final readonly class MaintainCompetitions
                 $divisionMoves = $this->applyDivisions($id, $seasonId);
                 $leagueMoves = $this->services->leagueMovements($id);
                 $honors = $this->services->honor($id);
-                $this->services->history($seasonId, $id, (string) ($competition['status'] ?? ''), 'completed', 'finalize_competition', $ready);
-                $this->store->audit($id, 'finalize_competition', $ready + ['division_moves' => $divisionMoves, 'league_moves' => $leagueMoves, 'honors' => $honors]);
+                $this->services->history(
+                    $seasonId,
+                    $id,
+                    (string) ($competition['status'] ?? ''),
+                    'completed',
+                    'finalize_competition',
+                    $ready,
+                );
+                $this->store->audit(
+                    $id,
+                    'finalize_competition',
+                    $ready + [
+                        'division_moves' => $divisionMoves,
+                        'league_moves' => $leagueMoves,
+                        'honors' => $honors,
+                    ],
+                );
             } else {
-                $this->store->audit($id, 'blocked_finalize_competition', $ready + ['status' => $status]);
+                $this->store->audit(
+                    $id,
+                    'blocked_finalize_competition',
+                    $ready + ['status' => $status],
+                );
             }
         }
         return 'evento_configurado_' . $id;

@@ -15,11 +15,17 @@ final class CompetitionMaintenanceModule
 {
     public static function competitions(PDO $pdo): MaintainCompetitions
     {
-        return new MaintainCompetitions(new PdoCompetitionMaintenanceStore($pdo), new NativeCompetitionMaintenanceServices($pdo));
+        return new MaintainCompetitions(
+            new PdoCompetitionMaintenanceStore($pdo),
+            new NativeCompetitionMaintenanceServices($pdo),
+        );
     }
 
     public static function friendly(PDO $pdo): DeleteManualFriendly
     {
-        return new DeleteManualFriendly(new PdoManualFriendlyStore($pdo), new PdoTransactionBoundary($pdo, false));
+        return new DeleteManualFriendly(
+            new PdoManualFriendlyStore($pdo),
+            new PdoTransactionBoundary($pdo, false),
+        );
     }
 }

@@ -10,6 +10,8 @@ final class SetQualifierStatusHandler extends NativeFormHandler
 {
     protected function perform(PDO $pdo, string $action, array $post, array $files): ?string
     {
-        return \StationX\Yugioh\Infrastructure\Composition\CompetitionMaintenanceModule::competitions($pdo)->qualifierStatus($post);
+        return \StationX\Yugioh\Infrastructure\Composition\CompetitionMaintenanceModule::competitions(
+            $pdo,
+        )->qualifierStatus($post);
     }
 }

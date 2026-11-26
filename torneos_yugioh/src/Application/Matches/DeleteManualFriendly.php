@@ -7,7 +7,10 @@ use StationX\Yugioh\Application\Shared\TransactionBoundary;
 
 final readonly class DeleteManualFriendly
 {
-    public function __construct(private ManualFriendlyStore $store, private TransactionBoundary $transaction) {}
+    public function __construct(
+        private ManualFriendlyStore $store,
+        private TransactionBoundary $transaction,
+    ) {}
 
     public function execute(array $post): string
     {
