@@ -164,6 +164,10 @@ Se separan normalización del formato, validación de participantes y calendario
 
 Se separan selección de reglamento/divisiones, formato, movimientos y parámetros operativos; el caso de uso coordina puertos de validación, persistencia, historial y medios. El controlador conserva los datos de entrada y la configuración visual de tipos. Se inicializa explícitamente el identificador de destino cuando no hay una definición válida para guardar, evitando una variable indefinida. No se alteran datos de producción; CI pendiente.
 
+## Cargador de datos y proyecciones (H15)
+
+Se extrae el cargador de datos completo a un caso de uso con puertos de lectura y servicios. Las proyecciones de divisiones/decks y fixtures quedan en dominio, los SQL y normalización de URL en infraestructura, y el reloj se inyecta. Se conserva el backfill existente, la secuencia de consultas, campos y firma pública; las dos entradas fallback históricamente no utilizadas permanecen en la fachada. Regresión integral pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

@@ -30,6 +30,7 @@ $settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/l
 $settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/phase-advance-originals.json'), true, flags: JSON_THROW_ON_ERROR);
 $settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/qualifier-honor-originals.json'), true, flags: JSON_THROW_ON_ERROR);
 $settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/phase-maintenance-originals.json'), true, flags: JSON_THROW_ON_ERROR);
+$settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/platform-read-model-originals.json'), true, flags: JSON_THROW_ON_ERROR);
 foreach ($contracts as $name => $contract) {
     if (!function_exists($name)) throw new RuntimeException('Missing compatibility function: ' . $name);
     $function = new ReflectionFunction($name);
