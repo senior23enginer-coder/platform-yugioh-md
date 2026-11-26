@@ -657,6 +657,25 @@ $journeys = iterator_to_array($calendarProjection::journeys(7, 'league', ['divis
 architectureCheck($journeys === [[null, 'competition-7-league-jornada-1', 'Liga - Jornada 1', 'league', '2026-11-27', null, 'Station X Tulua', '2 combates programados desde duelos persistidos.']], 'Calendar projection changed');
 architectureCheck($calendarProjection::startCode(7) === 'competition-7-inicio', 'Start event code changed');
 
+// Competition standings preserve scoring modes, workflow order and team projection.
+$competitionStandings = \StationX\Yugioh\Domain\Competitions\CompetitionStandingsPolicy::class;
+$standingDecks = [
+    ['id' => 1, 'name' => 'A', 'seed_rank' => 2, 'team' => 'A', 'team_code' => '', 'team_primary_color' => '', 'team_secondary_color' => ''],
+    ['id' => 2, 'name' => 'B', 'seed_rank' => 1, 'team' => 'B', 'team_code' => '', 'team_primary_color' => '', 'team_secondary_color' => ''],
+];
+$standingMatches = [['deck_a_id' => 1, 'deck_b_id' => 2, 'result' => 'A', 'score' => '2-1']];
+architectureCheck(array_column($competitionStandings::calculate($standingDecks, $standingMatches, 'FULL', []), 'pts') === [3, 0], 'Full points changed');
+architectureCheck(array_column($competitionStandings::calculate($standingDecks, $standingMatches, 'REDUCED', []), 'pts') === [1, 0], 'Reduced points changed');
+architectureCheck(array_column($competitionStandings::calculate($standingDecks, $standingMatches, 'BONUS', []), 'pts') === [4, 0], 'Bonus points changed');
+architectureCheck($competitionStandings::excluded(['level' => 'CASUAL'], []), 'Casual exclusion changed');
+$workflowRows = [['id' => 2, 'points' => 6, 'buchholz' => 3], ['id' => 1, 'points' => 2, 'buchholz' => 1]];
+$workflowStanding = $competitionStandings::calculate($standingDecks, $standingMatches, 'FULL', $workflowRows);
+architectureCheck(array_column($workflowStanding, 'id') === [2, 1] && array_column($workflowStanding, 'pts') === [6, 2], 'Workflow ordering changed');
+architectureCheck(!$competitionStandings::excluded(['level' => 'CASUAL'], $workflowRows), 'Workflow ranking unexpectedly excluded');
+architectureCheck($competitionStandings::phase(['execution_model' => 'groups_knockout'], $workflowRows, null) === 'groups', 'Workflow phase changed');
+$teamStanding = $competitionStandings::teams($workflowStanding, ['size' => 2, 'lineups' => [['captain' => 2, 'name' => 'Team B', 'decks' => [2, 3]]]]);
+architectureCheck(count($teamStanding) === 1 && $teamStanding[0]['name'] === 'Team B' && $teamStanding[0]['member_deck_ids'] === [2, 3], 'Team standings changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

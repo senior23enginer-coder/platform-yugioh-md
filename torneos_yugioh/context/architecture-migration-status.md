@@ -64,6 +64,10 @@ Separados el historial de transiciones, la comprobación de cierre, los candidat
 
 Separadas la publicación de snapshots y sus recuperaciones, la reconstrucción de jornadas y la baja de eventos de inicio mediante políticas de dominio, casos de uso, puertos de lectura/escritura y adaptadores PDO. Se conserva la identidad de los snapshots y las jornadas, las consultas de clasificación nativas y los límites transaccionales del llamador. Se verificaron las cuatro huellas originales y cinco comprobaciones aisladas de dominio con PHP 8.4.24; se confirmó la identidad de ambos archivos probados. Las pruebas integrales, el formato y MySQL siguen pendientes.
 
+## Clasificación por competición — 26 de noviembre de 2026
+
+La clasificación de competición se separa en una política pura de puntos, ordenación, proyección de workflow y equipos; el caso de uso coordina los puertos de lectura. Los filtros, puntajes, orden y llamadas a adaptadores nativos se mantienen. Validación integral y MySQL pendientes.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
