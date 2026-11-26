@@ -156,6 +156,10 @@ Se separan la deduplicación y control optimista de formularios offline, normali
 
 Se separan los filtros y recálculo analítico del controlador, la consulta de publicaciones y la proyección del marcador y del historial FFA. Los casos de uso reciben datos, reloj y puertos; HTTP conserva cabeceras, estados y descarga. Se conserva evidencia de los bloques originales. Las vistas HTML y exportaciones de fichas continúan pendientes. CI pendiente.
 
+## Creación de partidos manuales (H13)
+
+Se separan normalización del formato, validación de participantes y calendario, selección de reglamento, restricciones del modelo de evento, auditoría y escritura de partido. SQL y consultas de servicios quedan en adaptadores, preservando resultados y alcance. CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
