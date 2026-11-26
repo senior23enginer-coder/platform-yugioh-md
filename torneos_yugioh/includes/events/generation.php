@@ -9,32 +9,7 @@ declare(strict_types=1);
 
 function ygo_regenerate_league_matches(PDO $pdo, int $seasonId): void
 {
-    $divisionRows = $pdo->prepare('SELECT id, code FROM sx_ygo_divisions WHERE season_id = ? ORDER BY tier_order, id');
-    $divisionRows->execute([$seasonId]);
-    foreach ($divisionRows->fetchAll(PDO::FETCH_ASSOC) as $division) {
-        $divisionId = (int) $division['id'];
-        $pdo->prepare("DELETE r FROM sx_ygo_match_results r JOIN sx_ygo_matches m ON m.id = r.match_id WHERE m.division_id = ? AND m.phase = 'league'")->execute([$divisionId]);
-        $pdo->prepare("DELETE FROM sx_ygo_matches WHERE division_id = ? AND phase = 'league'")->execute([$divisionId]);
-        $decksStmt = $pdo->prepare('SELECT id, seed_rank, name, reason FROM sx_ygo_decks WHERE division_id = ? AND active = 1 ORDER BY seed_rank, name');
-        $decksStmt->execute([$divisionId]);
-        $deckRows = $decksStmt->fetchAll(PDO::FETCH_ASSOC);
-        $fixture = buildFixtures(array_map(static fn(array $deck): array => [(int) $deck['seed_rank'], (string) $deck['name'], (string) ($deck['reason'] ?? '')], $deckRows));
-        $deckIdByName = [];
-        foreach ($deckRows as $deck) {
-            $deckIdByName[(string) $deck['name']] = (int) $deck['id'];
-        }
-        foreach ($fixture as $round) {
-            foreach ($round['matches'] as $match) {
-                if (!isset($deckIdByName[$match['a']], $deckIdByName[$match['b']])) {
-                    continue;
-                }
-                $pdo->prepare("
-                    INSERT INTO sx_ygo_matches (division_id, phase, round_number, table_number, deck_a_id, deck_b_id, status)
-                    VALUES (?, 'league', ?, ?, ?, ?, 'PENDIENTE')
-                ")->execute([$divisionId, $round['ronda'], $match['mesa'], $deckIdByName[$match['a']], $deckIdByName[$match['b']]]);
-            }
-        }
-    }
+    \StationX\Yugioh\Infrastructure\Composition\LegacyEventFixtureModule::create($pdo)->regenerateLeagues($seasonId);
 }
 
 function ygo_qualifier_finalize_check(PDO $pdo, ?int $competitionId = null): array
@@ -121,120 +96,42 @@ function ygo_finalize_qualifier(PDO $pdo, ?int $competitionId = null): bool
 
 function ygo_first_division_id(PDO $pdo): int
 {
-    $seasonId = ygo_current_season_id($pdo);
-    return (int) $pdo->query("SELECT id FROM sx_ygo_divisions WHERE season_id = $seasonId ORDER BY tier_order, id LIMIT 1")->fetchColumn();
+    return (new \StationX\Yugioh\Infrastructure\Persistence\Competitions\PdoLegacyEventFixtureReader($pdo))->firstDivisionId();
 }
 
 function ygo_decks_for_division(PDO $pdo, ?int $divisionId = null): array
 {
-    if ($divisionId) {
-        $stmt = $pdo->prepare('SELECT id, name, seed_rank FROM sx_ygo_decks WHERE active = 1 AND division_id = ? ORDER BY seed_rank, name');
-        $stmt->execute([$divisionId]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-    return $pdo->query('SELECT id, name, seed_rank FROM sx_ygo_decks WHERE active = 1 ORDER BY seed_rank, name')->fetchAll(PDO::FETCH_ASSOC);
+    return (new \StationX\Yugioh\Infrastructure\Persistence\Competitions\PdoLegacyEventFixtureReader($pdo))->decks($divisionId);
 }
 
 function ygo_clear_phase(PDO $pdo, int $divisionId, string $phase): void
 {
-    $pdo->prepare('DELETE r FROM sx_ygo_match_results r JOIN sx_ygo_matches m ON m.id = r.match_id WHERE m.division_id = ? AND m.phase = ?')->execute([$divisionId, $phase]);
-    $pdo->prepare('DELETE FROM sx_ygo_matches WHERE division_id = ? AND phase = ?')->execute([$divisionId, $phase]);
+    (new \StationX\Yugioh\Infrastructure\Persistence\Competitions\PdoLegacyEventFixtureWriter($pdo))->clearPhase($divisionId, $phase);
 }
 
 function ygo_generate_knockout(PDO $pdo, int $divisionId, string $phase, array $decks): int
 {
-    ygo_clear_phase($pdo, $divisionId, $phase);
-    $created = 0;
-    $count = count($decks);
-    if ($count < 2) {
-        return 0;
-    }
-    $pairs = intdiv($count, 2);
-    for ($i = 0; $i < $pairs; $i++) {
-        $a = $decks[$i];
-        $b = $decks[$count - 1 - $i];
-        $pdo->prepare("
-            INSERT INTO sx_ygo_matches (division_id, phase, round_number, table_number, bracket_round_label, bracket_slot, bracket_side, display_order, generation_number, deck_a_id, deck_b_id, status)
-            VALUES (?, ?, 1, ?, ?, ?, 'main', ?, 1, ?, ?, 'PENDIENTE')
-        ")->execute([$divisionId, $phase, $i + 1, 'Ronda 1', $i + 1, $i + 1, (int) $a['id'], (int) $b['id']]);
-        $created++;
-    }
-    return $created;
+    return \StationX\Yugioh\Infrastructure\Composition\LegacyEventFixtureModule::create($pdo)->knockout($divisionId, $phase, $decks);
 }
 
 function ygo_generate_friendlies(PDO $pdo): int
 {
-    $divisionId = ygo_first_division_id($pdo);
-    $decks = ygo_decks_for_division($pdo);
-    if (!$divisionId || count($decks) < 2) {
-        return 0;
-    }
-    ygo_clear_phase($pdo, $divisionId, 'friendly');
-    $createdPairs = [];
-    $created = 0;
-    $count = count($decks);
-    foreach ($decks as $index => $deck) {
-        foreach ([1, 5, 11, 17, 23] as $roundIndex => $offset) {
-            $rival = $decks[($index + $offset) % $count];
-            if ((int) $deck['id'] === (int) $rival['id']) {
-                continue;
-            }
-            $pairKey = implode('-', [min((int) $deck['id'], (int) $rival['id']), max((int) $deck['id'], (int) $rival['id'])]);
-            if (isset($createdPairs[$pairKey])) {
-                continue;
-            }
-            $createdPairs[$pairKey] = true;
-            $pdo->prepare("
-                INSERT INTO sx_ygo_matches (division_id, phase, round_number, table_number, deck_a_id, deck_b_id, status)
-                VALUES (?, 'friendly', ?, ?, ?, ?, 'PENDIENTE')
-            ")->execute([$divisionId, $roundIndex + 1, $created + 1, (int) $deck['id'], (int) $rival['id']]);
-            $created++;
-        }
-    }
-    return $created;
+    return \StationX\Yugioh\Infrastructure\Composition\LegacyEventFixtureModule::create($pdo)->friendlies();
 }
 
 function ygo_generate_cups(PDO $pdo): int
 {
-    $seasonId = ygo_current_season_id($pdo);
-    $stmt = $pdo->prepare('SELECT id FROM sx_ygo_divisions WHERE season_id = ? ORDER BY tier_order, id');
-    $stmt->execute([$seasonId]);
-    $created = 0;
-    foreach ($stmt->fetchAll(PDO::FETCH_COLUMN) as $divisionId) {
-        $created += ygo_generate_knockout($pdo, (int) $divisionId, 'cup', ygo_decks_for_division($pdo, (int) $divisionId));
-    }
-    return $created;
+    return \StationX\Yugioh\Infrastructure\Composition\LegacyEventFixtureModule::create($pdo)->cups();
 }
 
 function ygo_generate_world(PDO $pdo): int
 {
-    $divisionId = ygo_first_division_id($pdo);
-    $decks = array_slice(ygo_decks_for_division($pdo), 0, 24);
-    if (!$divisionId || count($decks) < 2) {
-        return 0;
-    }
-    ygo_clear_phase($pdo, $divisionId, 'world');
-    $created = 0;
-    for ($group = 0; $group < 6; $group++) {
-        $groupDecks = array_slice($decks, $group * 4, 4);
-        for ($i = 0; $i < count($groupDecks); $i++) {
-            for ($j = $i + 1; $j < count($groupDecks); $j++) {
-                $pdo->prepare("
-                    INSERT INTO sx_ygo_matches (division_id, phase, round_number, table_number, deck_a_id, deck_b_id, status)
-                    VALUES (?, 'world', ?, ?, ?, ?, 'PENDIENTE')
-                ")->execute([$divisionId, $group + 1, $created + 1, (int) $groupDecks[$i]['id'], (int) $groupDecks[$j]['id']]);
-                $created++;
-            }
-        }
-    }
-    return $created;
+    return \StationX\Yugioh\Infrastructure\Composition\LegacyEventFixtureModule::create($pdo)->world();
 }
 
 function ygo_generate_leagues(PDO $pdo): int
 {
-    $seasonId = ygo_current_season_id($pdo);
-    ygo_regenerate_league_matches($pdo, $seasonId);
-    return (int) $pdo->query("SELECT COUNT(*) FROM sx_ygo_matches WHERE phase = 'league'")->fetchColumn();
+    return \StationX\Yugioh\Infrastructure\Composition\LegacyEventFixtureModule::create($pdo)->leagues();
 }
 
 function ygo_selected_qualifier_competition_id(PDO $pdo): ?int

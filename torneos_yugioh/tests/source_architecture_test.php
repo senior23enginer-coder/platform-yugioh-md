@@ -772,6 +772,20 @@ $leagueFixtureRows = iterator_to_array($fixturePlan::modelRows($leagueFixturePla
 architectureCheck(count($leagueFixtureRows) === 1 && $leagueFixtureRows[0]['division_id'] === 9 && $leagueFixtureRows[0]['table_number'] === 2, 'League fixture division/table changed');
 architectureCheck($leagueFixtureRows[0]['deck_a_id'] === 3 && $leagueFixtureRows[0]['deck_b_id'] === 4, 'League groups changed');
 
+// Legacy event fixture plans retain the old side order, rounds, and table numbering.
+$legacyEventPlan = \StationX\Yugioh\Domain\Competitions\LegacyEventFixturePlan::class;
+$eventFixtureDecks = [
+    ['id' => 1, 'name' => 'A', 'seed_rank' => 1],
+    ['id' => 2, 'name' => 'B', 'seed_rank' => 2],
+    ['id' => 3, 'name' => 'C', 'seed_rank' => 3],
+    ['id' => 4, 'name' => 'D', 'seed_rank' => 4],
+];
+architectureCheck(count(iterator_to_array($legacyEventPlan::league($eventFixtureDecks), false)) === 6, 'Legacy league round count changed');
+architectureCheck(iterator_to_array($legacyEventPlan::knockout($eventFixtureDecks), false) === [[1, 'Ronda 1', 1, 1, 1, 4], [2, 'Ronda 1', 2, 2, 2, 3]], 'Legacy knockout pair order changed');
+architectureCheck(count(iterator_to_array($legacyEventPlan::world($eventFixtureDecks), false)) === 6, 'World group pair count changed');
+$legacyFriendlyRows = iterator_to_array($legacyEventPlan::friendlies($eventFixtureDecks), false);
+architectureCheck(count($legacyFriendlyRows) === 4 && $legacyFriendlyRows[0] === [1, 1, 1, 2], 'Legacy friendly pair order changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

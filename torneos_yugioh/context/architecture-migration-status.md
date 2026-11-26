@@ -88,6 +88,10 @@ Se separan emparejamientos, distribución de jornadas, consolidación del últim
 
 Se separan los casos de uso de programación, las reglas de planificación y los puertos de lectura, escritura y servicios. Los adaptadores preservan las consultas, registros de generación, jornadas y reglas de admisión. Las fachadas conservan la apertura/propiedad de transacciones y el bloqueo serializado original. Se verificaron tres huellas originales y 8.024 comprobaciones aisladas con PHP 8.4.24, incluyendo cupos impares, alternancia de lados, identidades de división y mesa, ligas de 2 a 20 grupos y calendarios de ida/vuelta. Los tres archivos de dominio utilizados coinciden con GitHub. Las dependencias de motores nativos, el formato, las pruebas integrales y MySQL siguen pendientes.
 
+## Generación histórica de eventos — 26 de noviembre de 2026
+
+Se separan generación de ligas, copas, amistosos y mundial, lectura de divisiones/decks y persistencia de combates mediante un plan de dominio y puertos. Los adaptadores preservan el alcance de limpieza y las filas de los algoritmos existentes; no se ejecuta generación ni limpieza sobre datos reales. Validación integral y MySQL pendientes.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
