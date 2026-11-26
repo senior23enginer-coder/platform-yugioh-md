@@ -224,6 +224,10 @@ La selección de reglas por partido, competición, alcance y prioridad y la proy
 
 Se separa la coordinación de competiciones y sus guardas de fixtures en un caso de uso con un puerto segregado de seis operaciones, sin dependencia del lector general de datos. Se conservan la prioridad de divisiones, consultas de admisión y clasificación, las excepciones históricas y el orden de llamadas externas. Se separa también la asociación de condiciones a reglamentos. Se añaden diez comprobaciones aisladas; CI pendiente.
 
+## Puertos del navegador: transporte, reloj y almacenamiento de duelos
+
+Se separan las opciones y construcción de peticiones HTTP para captura de duelo, envío offline y consulta en vivo. Se conservan en el adaptador de interfaz los controles de respuesta, conflictos y revisión optimista. Se separan el cálculo del reloj y su persistencia mediante reloj/almacenamiento inyectados; la restauración de LP conserva normalización histórica, claves, historial y estado pausado. Pruebas aisladas de los tres módulos incorporadas; CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

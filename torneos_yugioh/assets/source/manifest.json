@@ -13,6 +13,18 @@
       "responsibility": "fixture rule precedence and standings projection"
     },
     {
+      "file": "javascript/shared/browser-transport.js",
+      "responsibility": "HTTP transport ports for duel, offline and live polling"
+    },
+    {
+      "file": "javascript/shared/duel-timer-policy.js",
+      "responsibility": "duel timer clock and storage policy"
+    },
+    {
+      "file": "javascript/shared/lp-state-policy.js",
+      "responsibility": "life-point state normalization and persistence"
+    },
+    {
       "file": "javascript/00-startup.js",
       "responsibility": "startup"
     },

@@ -25,7 +25,7 @@
   }
 
   function resultLpStorageKey(duel) {
-    return `dml_result_lp_${activeResultCaptureMatchId || 'match'}_${duel || 1}`;
+    return window.StationXLpStatePolicy.resultKey(activeResultCaptureMatchId, duel);
   }
 
   function stopResultLpTimer() {
@@ -35,7 +35,7 @@
 
   function saveResultLpState() {
     if (!resultLpState) return;
-    localStorage.setItem(resultLpStorageKey(resultLpState.duel), JSON.stringify({ ...resultLpState, running: false }));
+    window.StationXLpStatePolicy.persist(resultLpState, resultLpStorageKey(resultLpState.duel), (key, value) => localStorage.setItem(key, value));
   }
 
   function applyResultLpStateToDuel(syncLive = true) {

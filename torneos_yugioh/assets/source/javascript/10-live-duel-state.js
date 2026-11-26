@@ -181,19 +181,15 @@
   async function requestLiveDuel(operation = '', payload = {}) {
     if (!activeResultCaptureMatchId) return null;
     const requestedMatchId = String(activeResultCaptureMatchId);
-    const options = { cache: 'no-store', headers: { Accept: 'application/json' } };
-    if (operation) {
-      const body = new FormData();
-      body.set('match_id', activeResultCaptureMatchId);
-      body.set('actor', 'judge');
-      body.set('operation', operation);
-      body.set('revision', String(liveDuelRevision || 0));
-      body.set('payload', JSON.stringify(payload));
-      options.method = 'POST';
-      options.body = body;
-    }
-    const response = await fetch(liveDuelUrl(), options);
-    const data = await response.json();
+    const { response, data } = await window.StationXBrowserTransport.liveDuel({
+      fetchResponse: fetch,
+      createFormData: () => new FormData(),
+      getUrl: liveDuelUrl,
+      matchId: activeResultCaptureMatchId,
+      revision: liveDuelRevision,
+      operation,
+      payload
+    });
     if (String(activeResultCaptureMatchId) !== requestedMatchId) return null;
     if (response.status === 409 && data.state) {
       liveDuelRevision = Number(data.revision || liveDuelRevision);

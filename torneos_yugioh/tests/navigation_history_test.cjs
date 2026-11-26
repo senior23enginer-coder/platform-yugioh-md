@@ -146,3 +146,44 @@ for (const division of ['A','missing']) {
   assert.deepEqual(actual,JSON.parse(JSON.stringify(fixtureContext.legacyStandings(division))));
 }
 console.log('Fixture policy: native rule precedence and standings characterization verified.');
+
+const timerPolicy = require('../assets/source/javascript/shared/duel-timer-policy.js');
+assert.equal(timerPolicy.storageKey(null,2),'dml_duel_timer_v2_match_2');
+assert.equal(timerPolicy.storageKey(9,1),'dml_duel_timer_v2_9_1');
+assert.equal(timerPolicy.elapsed({baseElapsed:10,running:false},()=>{throw Error('clock must not be read')}),10);
+assert.equal(timerPolicy.elapsed({baseElapsed:4,running:true,startedAt:1000},()=>4500),7);
+assert.equal(timerPolicy.elapsed({baseElapsed:1199,running:true,startedAt:1000},()=>4000),1200);
+let persistedTimer;
+const timerState = {running:true,baseElapsed:4};
+timerPolicy.persist(timerState,()=> 'timer',true,()=> 1234,(key,value)=>{persistedTimer=[key,JSON.parse(value)]});
+assert.deepEqual(persistedTimer,['timer',{running:true,baseElapsed:4,updatedAt:1234,liveSynced:true}]);
+timerPolicy.persist(null,()=>{throw Error('no key read')},false,()=>{throw Error('no clock read')},()=>{throw Error('no write')});
+const lpPolicy = require('../assets/source/javascript/shared/lp-state-policy.js');
+const defaultLp = {a:8000,b:8000,startA:8000,startB:8000,timer:0,turn:1,coin:'',dice:'',history:[],running:false};
+const restored = lpPolicy.restore(defaultLp,()=>JSON.stringify({a:-2,b:'bad',timer:-4,turn:0,running:true,history:Array(15).fill('move')}));
+assert.equal(restored.a,0); assert.equal(restored.b,8000); assert.equal(restored.timer,0);
+assert.equal(restored.turn,1); assert.equal(restored.running,false); assert.equal(restored.history.length,12);
+assert.deepEqual(lpPolicy.restore(defaultLp,()=>'{bad'),defaultLp);
+assert.equal(lpPolicy.resultKey(5,0),'dml_result_lp_5_1');
+let persistedLp;
+lpPolicy.persist({...defaultLp,running:true},'lp',(key,value)=>{persistedLp=[key,JSON.parse(value)]});
+assert.deepEqual(persistedLp,['lp',defaultLp]);
+const transport = require('../assets/source/javascript/shared/browser-transport.js');
+(async () => {
+  const requests = [];
+  const response = {ok:true,status:200,json:async()=>({ok:true,revision:7})};
+  const fetchResponse = async (url, options)=>{requests.push([url,options]);return response;};
+  const forms = [];
+  const createFormData=()=>{const form=new Map();forms.push(form);return form;};
+  const result = await transport.liveDuel({fetchResponse,createFormData,getUrl:()=>'/duel',matchId:9,revision:6,operation:'sync',payload:{a:1}});
+  assert.equal(result.response,response); assert.deepEqual(result.data,{ok:true,revision:7});
+  assert.deepEqual([...forms[0]],[['match_id',9],['actor','judge'],['operation','sync'],['revision','6'],['payload','{"a":1}']]);
+  assert.equal(requests[0][1].method,'POST');
+  await transport.liveDuel({fetchResponse,createFormData,getUrl:()=>'/duel',matchId:9,revision:0,operation:'',payload:{}});
+  assert.equal(forms.length,1); assert.equal(requests[1][1].method,undefined);
+  await transport.submitOffline(fetchResponse,'/form',new URLSearchParams({action:'save'}));
+  assert.equal(requests[2][1].body,'action=save'); assert.equal(requests[2][1].redirect,'follow');
+  await transport.pollLive(fetchResponse);
+  assert.deepEqual(requests[3],['./?api=live',{cache:'no-store',credentials:'same-origin'}]);
+  console.log('Duel timer, LP state and HTTP ports: isolated contracts verified.');
+})().catch(error=>{console.error(error);process.exitCode=1;});

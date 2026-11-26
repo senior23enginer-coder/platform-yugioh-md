@@ -5,19 +5,17 @@
  */
 // @runtime-start
   function duelTimerStorageKey(duel) {
-    return `dml_duel_timer_v2_${activeResultCaptureMatchId || 'match'}_${duel}`;
+    return window.StationXDuelTimerPolicy.storageKey(activeResultCaptureMatchId, duel);
   }
   function duelTimerElapsed(state) {
-    const base = Math.max(0, Number(state?.baseElapsed || 0));
-    if (!state?.running || !state.startedAt) return Math.min(1200, Math.floor(base));
-    return Math.min(1200, Math.floor(base + ((Date.now() - Number(state.startedAt)) / 1000)));
+    return window.StationXDuelTimerPolicy.elapsed(state, () => Date.now());
   }
   function persistDuelTimer(duel, liveSynced = false) {
     const state = duelTimerState.get(duel);
-    if (!state) return;
-    state.updatedAt = Date.now();
-    state.liveSynced = liveSynced;
-    localStorage.setItem(duelTimerStorageKey(duel), JSON.stringify(state));
+    window.StationXDuelTimerPolicy.persist(
+      state, () => duelTimerStorageKey(duel), liveSynced,
+      () => Date.now(), (key, value) => localStorage.setItem(key, value)
+    );
   }
   function closeDuelTimerConfirm() {
     if (!duelTimerConfirmNode) return;
