@@ -2680,6 +2680,119 @@ foreach (
     );
 }
 
+// The bootstrap enrichment preserves native call order and competition projections.
+$enrichmentPort = new class implements \StationX\Yugioh\Application\Bootstrap\BootstrapDataPort {
+    public array $calls = [];
+    public function statistics(): array
+    {
+        $this->calls[] = 'statistics';
+        return ['version' => 8];
+    }
+    public function executionCapabilities(): array
+    {
+        $this->calls[] = 'capabilities';
+        return [];
+    }
+    public function executionModels(array $types): array
+    {
+        $this->calls[] = 'models';
+        return array_fill_keys($types, []);
+    }
+    public function freeForAllMatches(): array
+    {
+        $this->calls[] = 'ffa';
+        return [];
+    }
+    public function canEdit(): bool
+    {
+        $this->calls[] = 'edit';
+        return true;
+    }
+    public function teamResults(): array
+    {
+        $this->calls[] = 'results';
+        return [1 => ['score' => 2]];
+    }
+    public function teamConfiguration(array $competition): mixed
+    {
+        $this->calls[] = 'team' . $competition['id'];
+        return ['id' => $competition['id']];
+    }
+    public function workflow(array $competition): mixed
+    {
+        $this->calls[] = 'workflow' . $competition['id'];
+        return $competition['id'] === 1 ? ['phase' => 2] : null;
+    }
+    public function recoveryToken(mixed $workflow): mixed
+    {
+        $this->calls[] = 'token';
+        return 'token';
+    }
+    public function admissionSources(): array
+    {
+        $this->calls[] = 'sources';
+        return [];
+    }
+    public function admission(array $competition): mixed
+    {
+        $this->calls[] = 'admission' . $competition['id'];
+        return ['id' => $competition['id']];
+    }
+    public function eventCatalog(): array
+    {
+        $this->calls[] = 'catalog';
+        return [];
+    }
+    public function eventDescriptors(): mixed
+    {
+        $this->calls[] = 'descriptors';
+        return null;
+    }
+    public function eventTemplates(): array
+    {
+        $this->calls[] = 'templates';
+        return [];
+    }
+};
+$enriched = (new \StationX\Yugioh\Application\Bootstrap\EnrichPlatformData(
+    $enrichmentPort,
+))->execute(
+    ['competitions' => [['id' => 1], ['id' => 2]], 'unchanged' => true],
+    ['ruleset' => []],
+    ['league' => 'League'],
+);
+architectureCheck(
+    $enrichmentPort->calls === [
+        'statistics',
+        'capabilities',
+        'models',
+        'ffa',
+        'edit',
+        'results',
+        'team1',
+        'workflow1',
+        'token',
+        'team2',
+        'workflow2',
+        'sources',
+        'admission1',
+        'admission2',
+        'catalog',
+        'descriptors',
+        'templates',
+    ],
+    'Bootstrap enrichment call order changed',
+);
+architectureCheck($enriched['unchanged'] === true, 'Original data lost');
+architectureCheck($enriched['statisticsV8'] === ['version' => 8], 'Statistics changed');
+architectureCheck($enriched['teamResults'] === [1 => ['score' => 2]], 'Team results changed');
+architectureCheck($enriched['competitions'][0]['recoveryToken'] === 'token', 'Token lost');
+architectureCheck($enriched['competitions'][1]['recoveryToken'] === null, 'Null workflow changed');
+architectureCheck(
+    $enriched['competitions'][1]['admission'] === ['id' => 2],
+    'Admission projection changed',
+);
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

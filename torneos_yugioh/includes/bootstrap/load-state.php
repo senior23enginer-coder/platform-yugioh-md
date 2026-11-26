@@ -62,19 +62,8 @@ try {
     }
     ygo_stats_sync($pdo);
     $appData = ygo_load_data($pdo, $divisions, $fixtures, $allDecks);
-    $appData['statisticsV8'] = ygo_stats_view($pdo);
-    $appData['executionCapabilities']=ygo_execution_capabilities();
-    $appData['executionModelsByType']=array_combine(array_keys($competitionTypeOptions),array_map('ygo_allowed_execution_models_for_type',array_keys($competitionTypeOptions)));
-    $appData['ffaMatches']=ygo_ffa_rows($pdo);$appData['canEditEvents']=ygo_can_edit();
-    $appData['teamResults']=[];$teamResultsQuery=$pdo->prepare("SELECT setting_key,setting_value FROM sx_ygo_settings WHERE season_id=? AND setting_key LIKE 'event_team_result_%'");$teamResultsQuery->execute([ygo_current_season_id($pdo)]);foreach($teamResultsQuery->fetchAll(PDO::FETCH_ASSOC) as $tr)$appData['teamResults'][(int)substr($tr['setting_key'],18)]=json_decode($tr['setting_value'],true);
-    foreach($appData['competitions'] as &$workflowCompetition){$workflowCompetition['teamConfig']=ygo_team_load($pdo,$workflowCompetition);$workflowCompetition['workflow']=ygo_workflow_load($pdo,$workflowCompetition);$workflowCompetition['recoveryToken']=$workflowCompetition['workflow']!==null?ygo_workflow_recovery_token($workflowCompetition['workflow']):null;}unset($workflowCompetition);
-    $appData['admissionSources']=ygo_admission_sources($pdo);
-    foreach($appData['competitions'] as &$admissionCompetition)$admissionCompetition['admission']=ygo_admission_view($pdo,$admissionCompetition);unset($admissionCompetition);
-    $appData['eventExtendedCatalog']=ygo_extended_event_catalog();
-    $appData['businessEventDescriptors']=json_decode((string)file_get_contents(YGO_APP_ROOT.'/includes/event_business_descriptors.json'),true);
-    $appData['catalogs'] = $catalogGroups;
-    $appData['eventPromptTemplates'] = ygo_event_available_templates();
-    $appData['competitionTypeOptions'] = $competitionTypeOptions;
+    $appData = \StationX\Yugioh\Infrastructure\Composition\BootstrapModule::enrich($pdo)
+        ->execute($appData, $catalogGroups, $competitionTypeOptions);
     $divisions = $appData['divisions'];
     $fixtures = $appData['fixtures'];
     $allDecks = $appData['allDecks'];
