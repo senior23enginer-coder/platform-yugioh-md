@@ -50,7 +50,7 @@ Se extraen la evaluación de prerrequisitos, la guarda de competición y la proy
 
 ## Validaciones de fechas y capacidad de partidas — 26 de noviembre de 2026
 
-Se extraen las guardas de fecha de resultados y programación de partidas a casos de uso con reloj y puertos de lectura. La política pura conserva los estados, días habilitados, horarios, capacidad y sedes; la fachada captura la selección manual y los adaptadores contienen SQL y servicios heredados. Se conserva la prioridad de ocupación multijugador, disponibilidad, conflictos, día/hora, capacidad y sede. Se añaden regresiones y referencias originales; validación integral y MySQL pendientes.
+Se extraen las guardas de fecha de resultados y programación de partidas a casos de uso con reloj y puertos de lectura. La política pura conserva los estados, días habilitados, horarios, capacidad y sedes; la fachada captura la selección manual y los adaptadores contienen SQL y servicios heredados. Se conserva la prioridad de ocupación multijugador, disponibilidad, conflictos, día/hora, capacidad y sede. Se verificaron las tres huellas originales. Diez comprobaciones aisladas de fechas, horarios, capacidad y sedes pasan en PHP 8.4.24; los dos archivos de dominio coinciden con GitHub. Validación integral, formato y MySQL pendientes.
 
 ## Trabajo todavía pendiente para completar toda la plataforma
 
