@@ -6,10 +6,11 @@ namespace StationX\Yugioh\Infrastructure\Persistence\Statistics;
 use PDO;
 use RuntimeException;
 use StationX\Yugioh\Application\Statistics\StatisticsRevisionStore;
+use StationX\Yugioh\Application\Statistics\StatisticsViewReader;
 use StationX\Yugioh\Domain\Statistics\StatisticsPolicy;
 use StationX\Yugioh\Domain\Statistics\StatisticsRevisionPolicy;
 
-final readonly class PdoStatisticsRevisionStore implements StatisticsRevisionStore
+final readonly class PdoStatisticsRevisionStore implements StatisticsRevisionStore, StatisticsViewReader
 {
     public function __construct(private PDO $pdo) {}
 
@@ -92,5 +93,10 @@ final readonly class PdoStatisticsRevisionStore implements StatisticsRevisionSto
         $query->execute([$hash, StatisticsPolicy::VERSION, json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRESERVE_ZERO_FRACTION), $previous, 'Relectura del origen confirmado: comparar versiones de match y hash de fuente.']);
         $count = $query->rowCount();
         return ['count' => $count, 'id' => (int) $this->pdo->lastInsertId()];
+    }
+
+    public function history(): array
+    {
+        return $this->pdo->query('SELECT id,source_hash,algorithm_version,created_at,previous_revision_id,change_reason FROM sx_ygo_statistics_revisions ORDER BY id DESC LIMIT 100')->fetchAll(PDO::FETCH_ASSOC);
     }
 }

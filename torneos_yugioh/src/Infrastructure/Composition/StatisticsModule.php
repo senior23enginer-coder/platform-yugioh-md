@@ -4,6 +4,9 @@ declare(strict_types=1);
 namespace StationX\Yugioh\Infrastructure\Composition;
 
 use DateTimeZone;
+use StationX\Yugioh\Application\Statistics\ConfigureGlobalStatistics;
+use StationX\Yugioh\Application\Statistics\ReadStatisticsView;
+use StationX\Yugioh\Infrastructure\Persistence\Statistics\PdoGlobalPolicyStore;
 use PDO;
 use StationX\Yugioh\Application\Statistics\CalculateStatistics;
 use StationX\Yugioh\Application\Statistics\ReadStatisticsSource;
@@ -30,5 +33,15 @@ final class StatisticsModule
             new PdoTransactionBoundary($pdo, false),
             new SystemClock(new DateTimeZone(date_default_timezone_get())),
         );
+    }
+
+    public static function configuration(PDO $pdo): ConfigureGlobalStatistics
+    {
+        return new ConfigureGlobalStatistics(new PdoGlobalPolicyStore($pdo));
+    }
+
+    public static function view(PDO $pdo): ReadStatisticsView
+    {
+        return new ReadStatisticsView(new PdoStatisticsRevisionStore($pdo), new ReadStatisticsSource(new PdoStatisticsSourceReader($pdo)));
     }
 }

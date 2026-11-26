@@ -1939,6 +1939,14 @@ architectureCheck($revisionPolicy::publicValues(['name' => 'Logro secreto', 'cod
 $emptySource = \StationX\Yugioh\Domain\Statistics\StatisticsSourceProjection::build([], [], [], [], [], [], [], []);
 architectureCheck($emptySource === ['matches' => [], 'events' => [], 'honors' => [], 'seasons' => [], 'ffa_matches' => []], 'Empty source projection changed');
 
+// The fixed global policy preserves its version and rejects unsupported importance values.
+$globalPolicy = \StationX\Yugioh\Domain\Statistics\GlobalPolicyConfiguration::class;
+$policy = $globalPolicy::build('2026-10-18', ['BONUS' => 25]);
+architectureCheck($policy['global_anchor'] === '2026-10-18', 'Global anchor changed');
+architectureCheck($seasonOutcome(static fn() => $globalPolicy::build('2026-02-30', [])) !== null, 'Invalid global anchor accepted');
+architectureCheck($seasonOutcome(static fn() => $globalPolicy::build('2026-10-18', ['FULL' => 99])) !== null, 'Invalid importance accepted');
+architectureCheck($seasonOutcome(static fn() => $globalPolicy::assertUnchanged(json_encode($policy), $globalPolicy::build('2026-10-19', []))) !== null, 'Fixed global policy overwritten');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
