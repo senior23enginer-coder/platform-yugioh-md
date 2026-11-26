@@ -102,7 +102,7 @@ Separados la selección de clasificatorio, la comprobación de rondas completas,
 
 ## Rondas eliminatorias, avance histórico y programación automática
 
-Se extraen los últimos tres flujos con SQL directo de `includes/events/generation.php`: planificación de ronda, avance histórico por división y programación automática de clasificatorios. Las reglas de emparejamiento y fechas quedan en dominio; se mantienen los puertos para servicios nativos y auditoría. La preparación de la sentencia de inserción de ronda ocurre dentro del adaptador después de resolver la temporada; las transacciones del llamador no se alteran. Validación integral pendiente.
+Se extraen los últimos tres flujos con SQL directo de `includes/events/generation.php`: planificación de ronda, avance histórico por división y programación automática de clasificatorios. Las reglas de emparejamiento y fechas quedan en dominio; se mantienen los puertos para servicios nativos y auditoría. La preparación de la sentencia de inserción de ronda ocurre dentro del adaptador después de resolver la temporada; las transacciones del llamador no se alteran. Se comprobaron las tres huellas originales y 2.202 invariantes aisladas de dominio con PHP 8.4.24; los tres blobs probados coinciden con GitHub. Validación integral y MySQL pendientes.
 
 ## Trabajo todavía pendiente para completar toda la plataforma
 
