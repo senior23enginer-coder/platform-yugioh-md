@@ -21,6 +21,7 @@ const paths = [
   php + 'src/Infrastructure/Persistence/News',
   php + 'src/Infrastructure/Persistence/Decklists',
   php + 'src/Infrastructure/Http/Decklists',
+  php + 'src/Infrastructure/Http/DeckPackages',
   php + 'src/Infrastructure/Http/News',
   php + 'src/Infrastructure/Http/DeckWorlds',
   php + 'src/Infrastructure/Http/FormActions',

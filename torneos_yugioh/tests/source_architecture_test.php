@@ -1861,6 +1861,22 @@ try {
     // Conflict is expected before creating a publication directory.
 }
 
+// Package ticket identity and expiry are explicit and independently testable.
+$packagePreview = \StationX\Yugioh\Domain\Decks\Packages\PackagePreviewPolicy::class;
+$packagePending = $packagePreview::pending(9, '/tmp/example', 'ticket', 100, null, ['inventory_sha256' => 'inv'], []);
+$packagePreview::assertTicket($packagePending, 9, 'ticket', 1900);
+architectureCheck(
+    $seasonOutcome(static fn() => $packagePreview::assertTicket($packagePending, 9, 'ticket', 1901)) !==
+        null,
+    'Expired preview ticket accepted',
+);
+architectureCheck(
+    $seasonOutcome(static fn() => $packagePreview::assertTicket($packagePending, 8, 'ticket', 100)) !==
+        null,
+    'Preview ticket reused for another deck',
+);
+$packagePreview::assertInventory($packagePending, ['inventory_sha256' => 'inv'], []);
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

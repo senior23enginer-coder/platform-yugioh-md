@@ -4,6 +4,11 @@ declare(strict_types=1);
 namespace StationX\Yugioh\Infrastructure\Composition;
 
 use DateTimeZone;
+use PDO;
+use StationX\Yugioh\Application\Decks\Packages\DeckPackageWorkflow;
+use StationX\Yugioh\Infrastructure\Http\DeckPackages\SessionDeckPackageTicketStore;
+use StationX\Yugioh\Infrastructure\Editorial\TemporaryDeckPackageStaging;
+use StationX\Yugioh\Infrastructure\Persistence\Decks\PdoDeckPackageInventory;
 use StationX\Yugioh\Application\Decks\Packages\ExportDeckPackage;
 use StationX\Yugioh\Application\Decks\Packages\PublishDeckPackage;
 use StationX\Yugioh\Infrastructure\Editorial\LocalDeckPackagePublication;
@@ -39,6 +44,21 @@ final class DeckPackageModule
             $app,
             new LocalDeckPackageMedia($app),
             new ZipDeckPackageArchive(),
+        );
+    }
+
+    public static function workflow(string $app, PDO $pdo): DeckPackageWorkflow
+    {
+        return new DeckPackageWorkflow(
+            new PdoDeckPackageInventory($pdo),
+            self::sources($app),
+            new ZipDeckPackageArchive(),
+            new SessionDeckPackageTicketStore(),
+            new TemporaryDeckPackageStaging(),
+            self::prepare($app),
+            self::export($app),
+            self::publish($app),
+            new SystemClock(new DateTimeZone('UTC')),
         );
     }
 }
