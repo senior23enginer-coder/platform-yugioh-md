@@ -8,6 +8,4 @@ interface PlatformReadModelReader extends
     SportingReadModelReader,
     DeckIdentityReadModelReader,
     HistoricalReadModelReader,
-    RulesReadModelReader
-{
-}
+    RulesReadModelReader {}

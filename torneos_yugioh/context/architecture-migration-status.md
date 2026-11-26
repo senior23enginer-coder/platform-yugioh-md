@@ -232,6 +232,13 @@ Se separan las opciones y construcción de peticiones HTTP para captura de duelo
 
 Se distribuyen las 34 operaciones del lector general en cuatro puertos y adaptadores: competición/calendario, identidad de decks, historial y reglamentos. El lector público conserva la firma mediante composición, usando la misma conexión PDO y sin iniciar consultas en sus constructores. Cada consulta original queda registrada para comparar los tokens de su implementación, sin regenerar evidencia para ocultar cambios. CI pendiente.
 
+## Evidencia de la iteración consolidada del 26 de noviembre
+
+- PR #68: integrado en base en `e7785e3`; los tres trabajos de CI finalizaron correctamente.
+- PR #69, commit `10b2754`: regresión integral, estadísticas MySQL y paridad P06 finalizaron correctamente (ejecución 45886396967).
+- PR #69, commit `69d850b`: ejecución aislada 45887319966 completada con éxito; 754 fuentes de arquitectura verificadas por el formateador, build de 43 fuentes JavaScript y 37 CSS, caracterización de reglas y clasificación, transporte/reloj/LP, pruebas de arquitectura y equivalencia de las 34 consultas de lectura. La certificación integral del último commit y la cobertura de concurrencia por dominio no se infieren de esta ejecución aislada.
+- La fachada histórica y el lector general conservan los contratos públicos. Los cuatro adaptadores de lectura ya existen; las vistas y los controladores heredados que aún conservan estado compartido no se declaran migrados por completo.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
