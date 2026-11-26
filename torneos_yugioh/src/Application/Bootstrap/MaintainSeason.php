@@ -23,6 +23,14 @@ final readonly class MaintainSeason
         $teamSyncCount = $this->port->syncDeckTeams();
         $deckFormatSyncCount = $this->port->normalizeDeckFormats();
         $deckAnalysisBaselineCount = $this->port->seedDeckAnalysis();
-        return compact('deletedSeedDivisions', 'goatLeagueStructure', 'octoberScheduleMigration', 'activatedDueCompetitions', 'teamSyncCount', 'deckFormatSyncCount', 'deckAnalysisBaselineCount');
+        return compact(
+            'deletedSeedDivisions',
+            'goatLeagueStructure',
+            'octoberScheduleMigration',
+            'activatedDueCompetitions',
+            'teamSyncCount',
+            'deckFormatSyncCount',
+            'deckAnalysisBaselineCount',
+        );
     }
 }
