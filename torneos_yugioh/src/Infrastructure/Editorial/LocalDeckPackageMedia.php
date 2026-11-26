@@ -12,10 +12,21 @@ final readonly class LocalDeckPackageMedia implements DeckPackageMedia
 
     public function resolve(string $url): ?string
     {
-        $url=preg_replace('~^\./~','',$url);
-        if(!str_starts_with($url,'assets/editorial/')&&!str_starts_with($url,'assets/cards/'))return null;
-        PackageFiles::path($url);$path=realpath($this->app.'/'.$url);$base=realpath($this->app.'/assets');
-        return $path&&$base&&str_starts_with(str_replace('\\','/',$path),str_replace('\\','/',$base).'/')?$path:null;
+        $url = preg_replace('~^\./~', '', $url);
+        if (
+            !str_starts_with($url, 'assets/editorial/') &&
+            !str_starts_with($url, 'assets/cards/')
+        ) {
+            return null;
+        }
+        PackageFiles::path($url);
+        $path = realpath($this->app . '/' . $url);
+        $base = realpath($this->app . '/assets');
+        return $path &&
+            $base &&
+            str_starts_with(str_replace('\\', '/', $path), str_replace('\\', '/', $base) . '/')
+            ? $path
+            : null;
     }
 
     public function exists(string $url): bool

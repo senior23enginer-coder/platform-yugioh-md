@@ -11,7 +11,9 @@ final class PackagePublicationPolicy
     public static function assertUnchanged(mixed $old, string $expected): void
     {
         if (hash('sha256', PackageFiles::json($old)) !== $expected) {
-            throw new DomainException('El deck cambió desde la previsualización. Vuelve a seleccionar el ZIP.');
+            throw new DomainException(
+                'El deck cambió desde la previsualización. Vuelve a seleccionar el ZIP.',
+            );
         }
     }
 
@@ -22,12 +24,22 @@ final class PackagePublicationPolicy
                 continue;
             }
             $info = @getimagesizefromstring($bytes);
-            $extensions = ['image/png' => 'png', 'image/jpeg' => 'jpg', 'image/webp' => 'webp', 'image/gif' => 'gif'];
+            $extensions = [
+                'image/png' => 'png',
+                'image/jpeg' => 'jpg',
+                'image/webp' => 'webp',
+                'image/gif' => 'gif',
+            ];
             if (!$info || !isset($extensions[$info['mime']])) {
                 throw new InvalidArgumentException('Imagen inválida: ' . $name);
             }
             $destination = hash('sha256', $bytes) . '.' . $extensions[$info['mime']];
-            yield ['name' => $name, 'destination' => $destination, 'bytes' => $bytes, 'url' => $prefix . $destination];
+            yield [
+                'name' => $name,
+                'destination' => $destination,
+                'bytes' => $bytes,
+                'url' => $prefix . $destination,
+            ];
         }
     }
 

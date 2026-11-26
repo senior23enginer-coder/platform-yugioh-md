@@ -17,7 +17,9 @@ final readonly class PdoDeckPackageInventory implements DeckPackageInventory
 
     public function saved(int $id): array
     {
-        $stmt = $this->pdo->prepare('SELECT id,revision,document_json,inventory_json,updated_at FROM sx_ygo_created_combos WHERE deck_id=? ORDER BY id');
+        $stmt = $this->pdo->prepare(
+            'SELECT id,revision,document_json,inventory_json,updated_at FROM sx_ygo_created_combos WHERE deck_id=? ORDER BY id',
+        );
         $stmt->execute([$id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

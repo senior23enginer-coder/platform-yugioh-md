@@ -26,7 +26,11 @@ final readonly class PublishDeckPackage
                 $this->storage->writeImage($version, $image['destination'], $image['bytes']);
                 $map[$image['name']] = $image['url'];
             }
-            $record = PackagePublicationPolicy::record($record, $map, $this->clock->now()->setTimezone(new DateTimeZone('UTC'))->format('c'));
+            $record = PackagePublicationPolicy::record(
+                $record,
+                $map,
+                $this->clock->now()->setTimezone(new DateTimeZone('UTC'))->format('c'),
+            );
             $json = PackageFiles::json($record);
             $this->storage->writeStudy($version, $id, $json);
             $this->storage->writeOriginal($version, $files);

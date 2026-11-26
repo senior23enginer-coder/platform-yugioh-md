@@ -68,14 +68,29 @@ final readonly class DeckPackageWorkflow
             }
             $ticket = $this->staging->ticket();
             $saved = $this->inventory->saved($id);
-            $this->tickets->save(PackagePreviewPolicy::pending(
-                $id, $temp, $ticket, $this->clock->now()->getTimestamp(), $context['entry'], $inventory, $saved,
-            ));
+            $this->tickets->save(
+                PackagePreviewPolicy::pending(
+                    $id,
+                    $temp,
+                    $ticket,
+                    $this->clock->now()->getTimestamp(),
+                    $context['entry'],
+                    $inventory,
+                    $saved,
+                ),
+            );
         } catch (Throwable $error) {
             $this->staging->discard($temp);
             throw $error;
         }
-        return PackagePreviewPolicy::response($ticket, $inventory, $context['current'], $record, $saved, $structured);
+        return PackagePreviewPolicy::response(
+            $ticket,
+            $inventory,
+            $context['current'],
+            $record,
+            $saved,
+            $structured,
+        );
     }
 
     public function commit(array $context, string $ticket): array
@@ -83,14 +98,24 @@ final readonly class DeckPackageWorkflow
         $pending = $this->tickets->pending();
         $id = $context['id'];
         $inventory = $context['inventory'];
-        PackagePreviewPolicy::assertTicket($pending, $id, $ticket, $this->clock->now()->getTimestamp());
+        PackagePreviewPolicy::assertTicket(
+            $pending,
+            $id,
+            $ticket,
+            $this->clock->now()->getTimestamp(),
+        );
         // Preserve the original short circuit: do not read revisions for a changed inventory.
         if ($pending['inventory'] !== $inventory['inventory_sha256']) {
             PackagePreviewPolicy::assertInventory($pending, $inventory, []);
         }
         PackagePreviewPolicy::assertInventory($pending, $inventory, $this->inventory->saved($id));
         $files = PackageFolder::normalizeFiles($this->archive->read($pending['path']));
-        $record = $this->prepare->execute($files, $inventory, $context['current'], $this->sources->sources($id, $context['entry']));
+        $record = $this->prepare->execute(
+            $files,
+            $inventory,
+            $context['current'],
+            $this->sources->sources($id, $context['entry']),
+        );
         $entry = $this->publish->execute($id, $record, $files, $pending['registry']);
         $this->staging->discard($pending['path']);
         $this->tickets->clear();

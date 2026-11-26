@@ -53,14 +53,20 @@ final readonly class LocalDeckPackagePublication implements DeckPackagePublicati
 
     public function writeImage(string $version, string $destination, string $bytes): void
     {
-        if (file_put_contents($this->root . '/' . $version . '/' . $destination, $bytes) !== strlen($bytes)) {
+        if (
+            file_put_contents($this->root . '/' . $version . '/' . $destination, $bytes) !==
+            strlen($bytes)
+        ) {
             throw new RuntimeException('No se pudo escribir la imagen.');
         }
     }
 
     public function writeStudy(string $version, int $id, string $json): void
     {
-        if (file_put_contents($this->root . '/' . $version . '/' . $id . '.json', $json) !== strlen($json)) {
+        if (
+            file_put_contents($this->root . '/' . $version . '/' . $id . '.json', $json) !==
+            strlen($json)
+        ) {
             throw new RuntimeException('No se pudo escribir el contenido.');
         }
     }
@@ -80,7 +86,9 @@ final readonly class LocalDeckPackagePublication implements DeckPackagePublicati
         $registry = $this->root . '/strategy-content-state.json';
         $temp = $registry . '.' . bin2hex(random_bytes(4)) . '.tmp';
         if (file_put_contents($temp, $json) !== strlen($json) || !rename($temp, $registry)) {
-            throw new RuntimeException('No se pudo activar la versión; el contenido anterior sigue disponible.');
+            throw new RuntimeException(
+                'No se pudo activar la versión; el contenido anterior sigue disponible.',
+            );
         }
     }
 }
