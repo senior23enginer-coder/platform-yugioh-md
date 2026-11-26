@@ -42,7 +42,8 @@ final readonly class NativeTeamEventRules implements TeamEventRules
 
     public function hasAdmission(array $competition): bool
     {
-        return \ygo_admission_required($competition) || \ygo_admission_load($this->pdo, $competition) !== null;
+        return \ygo_admission_required($competition) ||
+            \ygo_admission_load($this->pdo, $competition) !== null;
     }
 
     public function identities(array $ids, string $format): array

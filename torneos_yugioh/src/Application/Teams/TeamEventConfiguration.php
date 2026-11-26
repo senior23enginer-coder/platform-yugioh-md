@@ -57,7 +57,9 @@ final readonly class TeamEventConfiguration
             TeamConfigurationPolicy::assertSameFormat($competition, $actualFormat, false);
             $this->rules->validateLeague($id, $ids);
             if ($this->rules->hasAdmission($competition)) {
-                throw new InvalidArgumentException('Los equipos se inscriben directamente; la clasificacion entre eventos de equipos requiere otro contrato de admision.');
+                throw new InvalidArgumentException(
+                    'Los equipos se inscriben directamente; la clasificacion entre eventos de equipos requiere otro contrato de admision.',
+                );
             }
             $this->store->replaceRoster($id, $ids);
             $state['identities'] = $this->rules->identities($ids, $actualFormat);
@@ -72,7 +74,9 @@ final readonly class TeamEventConfiguration
     {
         $state = $this->load($competition);
         if (!$state) {
-            throw new InvalidArgumentException('Configura Equipos y alineaciones en la ficha antes de programar.');
+            throw new InvalidArgumentException(
+                'Configura Equipos y alineaciones en la ficha antes de programar.',
+            );
         }
         $expected = TeamConfigurationPolicy::assertRoster($state, $ids);
         $this->rules->validateFormat($competition['event_ruleset'], $expected);

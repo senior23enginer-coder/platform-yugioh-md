@@ -33,13 +33,21 @@ final readonly class SaveTeamMatchResult
                 throw new InvalidArgumentException('El combate no es de equipos.');
             }
             $this->services->requireOpen((int) $competition['season_id']);
-            if (in_array(CompetitionLifecyclePolicy::normalizeStatus($competition['status']), ['completed', 'closed', 'cancelled', 'archived'], true)) {
+            if (
+                in_array(
+                    CompetitionLifecyclePolicy::normalizeStatus($competition['status']),
+                    ['completed', 'closed', 'cancelled', 'archived'],
+                    true,
+                )
+            ) {
                 throw new InvalidArgumentException('El evento esta cerrado.');
             }
             $this->services->assertEditable($matchId);
             $date = $this->services->validateDate($matchId);
             if (!$date['ok']) {
-                throw new InvalidArgumentException('El combate no puede registrarse antes de su fecha programada.');
+                throw new InvalidArgumentException(
+                    'El combate no puede registrarse antes de su fecha programada.',
+                );
             }
             $state = $this->configuration->load($competition);
             $workflow = $this->services->workflow($competition);
@@ -60,11 +68,33 @@ final readonly class SaveTeamMatchResult
                 }
                 $evaluations[] = $this->services->evaluate($matchId, $sequence);
             }
-            $aggregate = TeamLineupPolicy::aggregate($state['kind'], $evaluations, in_array($match['phase'], ['swiss', 'groups', 'league'], true));
-            $now = $this->clock->now()->setTimezone(new DateTimeZone('America/Bogota'))->format('Y-m-d H:i:s');
-            $record = TeamResultPolicy::record($state, $left, $right, $sequences, $evaluations, $aggregate, $old, $revision, (string) $db['status'], $now);
+            $aggregate = TeamLineupPolicy::aggregate(
+                $state['kind'],
+                $evaluations,
+                in_array($match['phase'], ['swiss', 'groups', 'league'], true),
+            );
+            $now = $this->clock
+                ->now()
+                ->setTimezone(new DateTimeZone('America/Bogota'))
+                ->format('Y-m-d H:i:s');
+            $record = TeamResultPolicy::record(
+                $state,
+                $left,
+                $right,
+                $sequences,
+                $evaluations,
+                $aggregate,
+                $old,
+                $revision,
+                (string) $db['status'],
+                $now,
+            );
             $this->store->save((int) $competition['season_id'], $matchId, $record);
-            $this->store->saveCollective($matchId, TeamResultPolicy::collectiveDuels($state['kind'], $sequences), $aggregate);
+            $this->store->saveCollective(
+                $matchId,
+                TeamResultPolicy::collectiveDuels($state['kind'], $sequences),
+                $aggregate,
+            );
             $this->services->finalize($matchId, $now);
             $this->services->standings((int) $competition['season_id'], (int) $competition['id']);
             $this->store->audit($matchId, $record);

@@ -15,6 +15,11 @@ final readonly class ExpandTeamIndividualResults
         if (!$teamIds) {
             return $rows;
         }
-        return TeamIndividualProjection::expand($rows, $teamIds, $this->reader->records(), $this->reader->decks());
+        return TeamIndividualProjection::expand(
+            $rows,
+            $teamIds,
+            $this->reader->records(),
+            $this->reader->decks(),
+        );
     }
 }

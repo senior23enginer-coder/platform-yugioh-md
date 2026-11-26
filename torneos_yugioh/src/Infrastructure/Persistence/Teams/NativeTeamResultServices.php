@@ -53,7 +53,12 @@ final readonly class NativeTeamResultServices implements TeamResultServices
 
     public function standings(int $seasonId, int $competitionId): void
     {
-        \ygo_persist_competition_standings($this->pdo, $seasonId, $competitionId, 'save_team_result');
+        \ygo_persist_competition_standings(
+            $this->pdo,
+            $seasonId,
+            $competitionId,
+            'save_team_result',
+        );
     }
 
     public function sync(int $matchId): void

@@ -59,17 +59,27 @@ function ygo_team_all_ids(array $s): array
 
 function ygo_team_context(PDO $p, array $c): array
 {
-    return \StationX\Yugioh\Infrastructure\Composition\TeamEventModule::configuration($p)->context($c);
+    return \StationX\Yugioh\Infrastructure\Composition\TeamEventModule::configuration($p)->context(
+        $c,
+    );
 }
 
 function ygo_team_save(PDO $p, int $id, array $rows): array
 {
-    return ygo_with_event_write_lock($p, static fn(): array => \StationX\Yugioh\Infrastructure\Composition\TeamEventModule::configuration($p)->save($id, $rows));
+    return ygo_with_event_write_lock(
+        $p,
+        static fn(): array => \StationX\Yugioh\Infrastructure\Composition\TeamEventModule::configuration(
+            $p,
+        )->save($id, $rows),
+    );
 }
 
 function ygo_team_require(PDO $p, array $c, array $ids): array
 {
-    return \StationX\Yugioh\Infrastructure\Composition\TeamEventModule::configuration($p)->require($c, $ids);
+    return \StationX\Yugioh\Infrastructure\Composition\TeamEventModule::configuration($p)->require(
+        $c,
+        $ids,
+    );
 }
 
 function ygo_team_lineup(array $s, int $captain): array
@@ -79,7 +89,13 @@ function ygo_team_lineup(array $s, int $captain): array
 
 function ygo_team_bind_match(PDO $p, array $c, int $mid, int $a, int $b, array $s): void
 {
-    \StationX\Yugioh\Infrastructure\Composition\TeamEventModule::configuration($p)->bind($c, $mid, $a, $b, $s);
+    \StationX\Yugioh\Infrastructure\Composition\TeamEventModule::configuration($p)->bind(
+        $c,
+        $mid,
+        $a,
+        $b,
+        $s,
+    );
 }
 
 /** Three complete individual matches, or one genuinely shared Tag series. */
@@ -94,7 +110,10 @@ function ygo_team_aggregate(string $kind, array $evaluations, bool $drawAllowed)
 
 function ygo_team_result_load(PDO $p, int $season, int $mid): ?array
 {
-    return (new \StationX\Yugioh\Infrastructure\Persistence\Teams\PdoTeamResultStore($p))->load($season, $mid);
+    return (new \StationX\Yugioh\Infrastructure\Persistence\Teams\PdoTeamResultStore($p))->load(
+        $season,
+        $mid,
+    );
 }
 
 /** Collective rows never count as a captain's individual result.
@@ -102,10 +121,17 @@ function ygo_team_result_load(PDO $p, int $season, int $mid): ?array
  */
 function ygo_team_expand_individual_rows(PDO $p, array $rows): array
 {
-    return \StationX\Yugioh\Infrastructure\Composition\TeamEventModule::individual($p)->execute($rows);
+    return \StationX\Yugioh\Infrastructure\Composition\TeamEventModule::individual($p)->execute(
+        $rows,
+    );
 }
 
 function ygo_team_save_result(PDO $p, int $mid, array $sequences, int $revision): array
 {
-    return ygo_with_event_write_lock($p, static fn(): array => \StationX\Yugioh\Infrastructure\Composition\TeamEventModule::result($p)->execute($mid, $sequences, $revision));
+    return ygo_with_event_write_lock(
+        $p,
+        static fn(): array => \StationX\Yugioh\Infrastructure\Composition\TeamEventModule::result(
+            $p,
+        )->execute($mid, $sequences, $revision),
+    );
 }
