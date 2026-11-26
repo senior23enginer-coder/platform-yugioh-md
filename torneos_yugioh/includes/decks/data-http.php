@@ -5,17 +5,13 @@ require_once __DIR__.'/data-folder.php';
 require_once __DIR__.'/combo-creator.php';
 
 function ygo_data_current(string $app,int $id): array {
-    $state=ygo_data_read($app.'/assets/editorial/strategy-content-state.json');$entry=$state['checked_studies'][(string)$id]??null;
-    $path=$entry?ygo_data_local($app,$entry['path']):null;
-    return [$entry,$path?ygo_data_read($path):null];
+    return \StationX\Yugioh\Infrastructure\Composition\DeckPackageModule::sources($app)->current($id);
 }
 function ygo_data_sources(string $app,int $id,?array $entry): array {
-    $path=isset($entry['source_zip'])?ygo_data_local($app,$entry['source_zip']):null;
-    if(!$path){$idx=$app.'/assets/editorial/deck-data-sources/index.json';$index=is_file($idx)?ygo_data_read($idx):[];$path=isset($index[(string)$id])?ygo_data_local($app,$index[(string)$id]['zip']):null;}
-    return $path?ygo_data_normalize_files(ygo_data_archive($path)):[];
+    return \StationX\Yugioh\Infrastructure\Composition\DeckPackageModule::sources($app)->sources($id, $entry);
 }
 function ygo_data_saved(PDO $pdo,int $id): array {
-    $q=$pdo->prepare('SELECT id,revision,document_json,inventory_json,updated_at FROM sx_ygo_created_combos WHERE deck_id=? ORDER BY id');$q->execute([$id]);return $q->fetchAll(PDO::FETCH_ASSOC);
+    return (new \StationX\Yugioh\Infrastructure\Persistence\Decks\PdoDeckPackageInventory($pdo))->saved($id);
 }
 
 /** Translate local images in author Markdown to inert text for the native reader.

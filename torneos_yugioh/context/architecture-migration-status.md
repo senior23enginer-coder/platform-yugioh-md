@@ -118,7 +118,7 @@ Se separan el contrato JSON versionado, la validación de modalidad, formato y p
 
 ## Paquetes de importación y exportación de decks
 
-Se separan las políticas puras de ruta, carpeta, inventario, contrato de calculadora, Markdown, presentación y validación, así como la preparación y construcción de exportaciones mediante el puerto de medios. Los lectores JSON/ZIP y de archivos locales permanecen en infraestructura; las funciones públicas originales son fachadas compatibles. Se conserva una copia de las funciones originales para revisión. El coordinador HTTP de tickets, las consultas de revisiones y la publicación atómica todavía requieren separación. Validación integral pendiente.
+Se separan las políticas puras de ruta, carpeta, inventario, contrato de calculadora, Markdown, presentación y validación, así como la preparación y construcción de exportaciones mediante el puerto de medios. Los lectores JSON/ZIP y de archivos locales permanecen en infraestructura; las funciones públicas originales son fachadas compatibles. Se conserva una copia de las funciones originales para revisión. Se separan también el coordinador de publicación atómica bajo bloqueo, la validación optimista, la transformación de imágenes y los lectores de registros, fuentes e inventario/revisiones. La escritura de archivos, ZIP y reemplazo del puntero permanece en adaptadores locales. Falta separar el coordinador HTTP de tickets y verificar la suite integral.
 
 ## Trabajo todavía pendiente para completar toda la plataforma
 

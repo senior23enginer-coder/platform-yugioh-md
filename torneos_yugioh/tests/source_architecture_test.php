@@ -1841,6 +1841,26 @@ architectureCheck(
     'Ambiguous image accepted',
 );
 
+// Publication policies preserve the expected revision and immutable metadata.
+$publicationPolicy = \StationX\Yugioh\Domain\Decks\Packages\PackagePublicationPolicy::class;
+$publicationRecord = $publicationPolicy::record(
+    ['image' => 'old.png', 'folder_delivery' => ['reader' => 'old.html']],
+    ['old.png' => './assets/editorial/version/new.png'],
+    '2026-11-26T12:00:00+00:00',
+);
+architectureCheck(
+    $publicationRecord['image'] === './assets/editorial/version/new.png' &&
+        !isset($publicationRecord['folder_delivery']['reader']),
+    'Publication image map or private reader changed',
+);
+$publicationPolicy::assertUnchanged(null, hash('sha256', 'null'));
+try {
+    $publicationPolicy::assertUnchanged(['path' => 'new'], hash('sha256', 'null'));
+    throw new RuntimeException('Stale package revision accepted');
+} catch (DomainException) {
+    // Conflict is expected before creating a publication directory.
+}
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

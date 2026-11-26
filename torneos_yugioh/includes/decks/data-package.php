@@ -69,33 +69,5 @@ function ygo_data_reader(string $name,string $raw): string {
 }
 /** Atomic pointer replacement under one global lock; immutable old revisions remain available. */
 function ygo_data_publish(string $app,int $id,array $record,array $files,string $expected): array {
-    $root=$app.'/assets/editorial';$registry=$root.'/strategy-content-state.json';
-    $lock=fopen($root.'/.deck-data.lock','c');if(!$lock||!flock($lock,LOCK_EX))throw new RuntimeException('No se pudo bloquear la publicación.');
-    try{
-        $state=ygo_data_read($registry);$old=$state['checked_studies'][(string)$id]??null;
-        if(hash('sha256',ygo_data_json($old))!==$expected)throw new DomainException('El deck cambió desde la previsualización. Vuelve a seleccionar el ZIP.');
-        $version='deck-data-'.$id.'-'.gmdate('YmdHis').'-'.bin2hex(random_bytes(4));$dir=$root.'/'.$version;
-        if(!mkdir($dir,0755,true))throw new RuntimeException('No se pudo crear la versión del deck.');
-        $prefix='./assets/editorial/'.$version.'/';$map=[];
-        foreach($files as $name=>$bytes)if(preg_match('/\.(png|jpe?g|webp|gif)$/i',$name)){
-            $info=@getimagesizefromstring($bytes);if(!$info||!in_array($info['mime'],['image/png','image/jpeg','image/webp','image/gif'],true))throw new InvalidArgumentException('Imagen inválida: '.$name);
-            $ext=['image/png'=>'png','image/jpeg'=>'jpg','image/webp'=>'webp','image/gif'=>'gif'][$info['mime']];$dest=hash('sha256',$bytes).'.'.$ext;
-            if(file_put_contents($dir.'/'.$dest,$bytes)!==strlen($bytes))throw new RuntimeException('No se pudo escribir la imagen.');$map[$name]=$prefix.$dest;
-        }
-        array_walk_recursive($record,static function(&$v)use($map){if(is_string($v)&&isset($map[$v]))$v=$map[$v];});
-        // The technical Markdown is archived in the immutable source ZIP. Never publish a second HTML guide with audit details.
-        unset($record['folder_delivery']['reader']);
-        $record['folder_delivery']['source_file']='ZIP importado desde la ficha del deck';
-        $record['folder_delivery']['imported_at']=gmdate('c');
-        $json=ygo_data_json($record);if(file_put_contents($dir.'/'.$id.'.json',$json)!==strlen($json))throw new RuntimeException('No se pudo escribir el contenido.');
-        // Keep the exact submitted package privately within a ZIP (HTML/SVG never served directly).
-        $zip=new ZipArchive();if($zip->open($dir.'/source.zip',ZipArchive::CREATE|ZipArchive::OVERWRITE)!==true)throw new RuntimeException('No se pudo guardar el original.');
-        foreach($files as $name=>$bytes)$zip->addFromString($name,$bytes);if(!$zip->close())throw new RuntimeException('No se pudo cerrar el original.');
-        $entry=['path'=>$prefix.$id.'.json','cards'=>count($record['cards']),'routes'=>count($record['routes']),'sha256'=>hash('sha256',$json),'presentation'=>'curated-v62','source_zip'=>$prefix.'source.zip'];
-        $state['checked_studies'][(string)$id]=$entry;$state['version']=$version;
-        file_put_contents($dir.'/previous-entry.json',ygo_data_json($old));
-        $temp=$registry.'.'.bin2hex(random_bytes(4)).'.tmp';$encoded=ygo_data_json($state);
-        if(file_put_contents($temp,$encoded)!==strlen($encoded)||!rename($temp,$registry))throw new RuntimeException('No se pudo activar la versión; el contenido anterior sigue disponible.');
-        return $entry;
-    }finally{flock($lock,LOCK_UN);fclose($lock);}
+    return \StationX\Yugioh\Infrastructure\Composition\DeckPackageModule::publish($app)->execute($id, $record, $files, $expected);
 }
