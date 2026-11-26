@@ -136,6 +136,10 @@ Se separan los cálculos puros de elegibilidad, acumulación individual y Tag, E
 
 Se separan normalización de listas y puntuaciones, persistencia, transacción propia/prestada, auditoría y revisiones de perfiles y matchup. Se corrige la captura ausente de `$post` en las dos funciones anónimas que normalizaban listas: antes podían perder el texto enviado; se añade una regresión explícita. No se alteran datos existentes. Se añaden también comandos de dependencias, check-in y selección de logos históricos con puertos, preservando el origen QR/manual, auditorías y lista de destinos permitidos. Validación integral pendiente.
 
+## Reglamentos y configuración administrativa (H13)
+
+Se extraen seis comandos de escritura adicionales: reglas, condiciones, archivo de reglas, reglamentos, preferencias, etiquetas y catálogo. Se preservan límites, auditorías, orden de persistencia y efectos estadísticos; SQL queda en adaptadores y el dominio normaliza datos sin acceso externo. Validación CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

@@ -2055,6 +2055,17 @@ architectureCheck(
     'Checkin normalization changed',
 );
 
+// Rule/administrative input policies keep existing limits and fallback behavior.
+$ruleInput = \StationX\Yugioh\Domain\Matches\GameRuleInput::class;
+$ruleValues = $ruleInput::ruleset(1, 'test', 'Test', ['ruleset_best_of' => 99, 'ruleset_participants_per_side' => 0]);
+architectureCheck($ruleValues[8] === 10 && $ruleValues[9] === 1, 'Ruleset limits changed');
+$conditions = iterator_to_array($ruleInput::conditions(['condition_label' => ['A', ''], 'condition_type' => ['invalid'], 'condition_active' => ['on'], 'condition_result' => ['X']]), false);
+architectureCheck(count($conditions) === 1 && $conditions[0]['values'][0] === 'validation' && $conditions[0]['values'][4] === '' && $conditions[0]['values'][9] === 1, 'Rule condition normalization changed');
+$admin = \StationX\Yugioh\Domain\Settings\AdministrativeInput::class;
+$values = iterator_to_array($admin::settings(['valid_weekdays' => ['0', '3', '1', '9'], 'max_matches_per_day' => 100]));
+architectureCheck($values['valid_weekdays'] === '1,3,0' && $values['max_matches_per_day'] === '3', 'Settings normalization changed');
+architectureCheck(iterator_to_array($admin::labels(['ui_label_key' => ['a!'], 'ui_label_title' => [' Title '], 'ui_label_active' => ['a']]), false) === [['a', 'Title', '', 1]], 'UI label normalization changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
