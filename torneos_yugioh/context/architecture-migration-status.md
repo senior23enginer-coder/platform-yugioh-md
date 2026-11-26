@@ -184,6 +184,10 @@ La cola offline y la generación de identificadores de petición ya no dependen 
 
 Se separa la política de mensajes posteriores a comandos de la captura HTTP y de la sesión. Se conserva la prioridad histórica de ambas cadenas de condiciones, el mensaje previo en ausencia de estado y el consumo de la sesión; incluso el fallback histórico de temporada se conserva para no introducir cambios funcionales. Se añaden regresiones; falta CI y separar el enriquecimiento de datos.
 
+## Enriquecimiento de datos del bootstrap (H16, avance)
+
+La composición de estadísticas, modelos de ejecución, FFA, resultados colectivos, workflow, admisión y catálogos queda en un caso de uso con un puerto explícito. SQL y archivos se conservan en el adaptador nativo; se conserva el orden de consultas y las dos pasadas de proyección de competiciones. Se añaden pruebas de orden y contenido. CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
