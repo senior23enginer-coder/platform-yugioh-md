@@ -70,7 +70,12 @@
           : match.scheduled_on > serverToday
             ? enabled("allow_early_results")
             : true);
-      return { key: "in_progress", label: "En curso", className: "ok", canCapture };
+      return {
+        key: "in_progress",
+        label: "En curso",
+        className: "ok",
+        canCapture,
+      };
     }
     if (!match.scheduled_on) {
       return {

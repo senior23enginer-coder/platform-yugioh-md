@@ -9,7 +9,8 @@ final class DeckFormatProjection
     {
         $rulesetSelectOptions = [];
         foreach ($rulesets as $ruleset) {
-            $rulesetSelectOptions[(string) ($ruleset['code'] ?? '')] = (string) ($ruleset['label'] ?? $ruleset['code'] ?? '');
+            $rulesetSelectOptions[(string) ($ruleset['code'] ?? '')] =
+                (string) ($ruleset['label'] ?? ($ruleset['code'] ?? ''));
         }
         if (!$rulesetSelectOptions) {
             $rulesetSelectOptions = $eventRulesetOptions;
@@ -17,13 +18,16 @@ final class DeckFormatProjection
         $formatSelectOptions = array_filter(
             $rulesetSelectOptions,
             static fn(string $label, string $code): bool => $code !== '' && $code !== 'custom',
-            ARRAY_FILTER_USE_BOTH
+            ARRAY_FILTER_USE_BOTH,
         );
         return [$rulesetSelectOptions, $formatSelectOptions];
     }
 
-    public static function assign(array $allDecks, array $formatSelectOptions, ?callable $deckIdsForFormat): array
-    {
+    public static function assign(
+        array $allDecks,
+        array $formatSelectOptions,
+        ?callable $deckIdsForFormat,
+    ): array {
         $deckFormatCodesById = [];
         if ($deckIdsForFormat !== null) {
             foreach ($formatSelectOptions as $formatCode => $formatLabel) {
@@ -33,7 +37,9 @@ final class DeckFormatProjection
             }
         }
         foreach ($allDecks as &$formatDeck) {
-            $formatDeck['format_codes'] = array_values(array_unique($deckFormatCodesById[(int) ($formatDeck['id'] ?? 0)] ?? []));
+            $formatDeck['format_codes'] = array_values(
+                array_unique($deckFormatCodesById[(int) ($formatDeck['id'] ?? 0)] ?? []),
+            );
         }
         unset($formatDeck);
         return [$deckFormatCodesById, $allDecks];

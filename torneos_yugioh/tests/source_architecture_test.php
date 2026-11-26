@@ -3135,28 +3135,85 @@ $normalizeStatus = static fn(string $status): string => strtolower($status);
 $qualifierCandidates = [
     ['id' => 1, 'type' => 'qualifier', 'status' => 'active', 'can_execute' => false],
     ['id' => 2, 'type' => 'qualifier', 'status' => 'ACTIVE', 'selected_deck_ids' => [2]],
-    ['id' => 3, 'type' => 'qualifier', 'status' => 'pending_event', 'qualifier_duels_per_deck' => 9],
+    [
+        'id' => 3,
+        'type' => 'qualifier',
+        'status' => 'pending_event',
+        'qualifier_duels_per_deck' => 9,
+    ],
 ];
-[$first, $qualifiers, $pending, $active, $requested, $requestedCompetition, $detail, $ids] =
-    $selection::select($qualifierCandidates, 3, static fn(array $event): bool => $event['status'] === 'pending_event', $normalizeStatus);
-architectureCheck($first['id'] === 1 && $active['id'] === 2 && $requestedCompetition['id'] === 3, 'Qualifier selection changed');
-architectureCheck($detail && count($pending) === 1 && count($ids) === 3, 'Qualifier directory changed');
-[$display, $displayId, $selectedIds, $selectedMap, $selectedDecks, $required, $perDay] =
-    $selection::display($requestedCompetition, $active, $first, []);
-architectureCheck($displayId === 3 && $required === 5 && $perDay === 1, 'Qualifier display constraints changed');
-architectureCheck($selection::status($display, $normalizeStatus)[2] === 'Pendiente evento', 'Qualifier status label changed');
+[
+    $first,
+    $qualifiers,
+    $pending,
+    $active,
+    $requested,
+    $requestedCompetition,
+    $detail,
+    $ids,
+] = $selection::select(
+    $qualifierCandidates,
+    3,
+    static fn(array $event): bool => $event['status'] === 'pending_event',
+    $normalizeStatus,
+);
+architectureCheck(
+    $first['id'] === 1 && $active['id'] === 2 && $requestedCompetition['id'] === 3,
+    'Qualifier selection changed',
+);
+architectureCheck(
+    $detail && count($pending) === 1 && count($ids) === 3,
+    'Qualifier directory changed',
+);
+[
+    $display,
+    $displayId,
+    $selectedIds,
+    $selectedMap,
+    $selectedDecks,
+    $required,
+    $perDay,
+] = $selection::display($requestedCompetition, $active, $first, []);
+architectureCheck(
+    $displayId === 3 && $required === 5 && $perDay === 1,
+    'Qualifier display constraints changed',
+);
+architectureCheck(
+    $selection::status($display, $normalizeStatus)[2] === 'Pendiente evento',
+    'Qualifier status label changed',
+);
 $formats = \StationX\Yugioh\Application\Presentation\DeckFormatProjection::class;
-[$rulesetOptions, $formatOptions] = $formats::options([], ['custom' => 'Custom', 'tcg' => 'TCG', 'goat' => 'GOAT']);
+[$rulesetOptions, $formatOptions] = $formats::options(
+    [],
+    ['custom' => 'Custom', 'tcg' => 'TCG', 'goat' => 'GOAT'],
+);
 architectureCheck(array_keys($formatOptions) === ['tcg', 'goat'], 'Format options changed');
-[$formatIds, $formattedDecks] = $formats::assign([['id' => 1], ['id' => 2]], $formatOptions, static fn(string $code): array => $code === 'tcg' ? [1, 1] : [1, 2]);
-architectureCheck($formattedDecks[0]['format_codes'] === ['tcg', 'goat'], 'Format deduplication changed');
+[$formatIds, $formattedDecks] = $formats::assign(
+    [['id' => 1], ['id' => 2]],
+    $formatOptions,
+    static fn(string $code): array => $code === 'tcg' ? [1, 1] : [1, 2],
+);
+architectureCheck(
+    $formattedDecks[0]['format_codes'] === ['tcg', 'goat'],
+    'Format deduplication changed',
+);
 architectureCheck($formattedDecks[1]['format_codes'] === ['goat'], 'Format assignment changed');
-architectureCheck($formats::assign([['id' => 1]], $formatOptions, null)[1][0]['format_codes'] === [], 'Disconnected projection changed');
+architectureCheck(
+    $formats::assign([['id' => 1]], $formatOptions, null)[1][0]['format_codes'] === [],
+    'Disconnected projection changed',
+);
 $dashboardSummary = \StationX\Yugioh\Application\Presentation\DashboardSummaryProjection::build(
     [['status' => 'pending_configuration'], ['status' => 'completed', 'starts_on' => '2026-11-26']],
-    [['active' => 1]], [['team_id' => 2], ['cover_url' => 'a']], $dashboardFixture, [], $normalizeStatus,
+    [['active' => 1]],
+    [['team_id' => 2], ['cover_url' => 'a']],
+    $dashboardFixture,
+    [],
+    $normalizeStatus,
 );
-architectureCheck(array_slice($dashboardSummary, 0, 10) === [1, 0, 1, 0, 1, 1, 1, 1, 1, 1], 'Dashboard summary changed');
+architectureCheck(
+    array_slice($dashboardSummary, 0, 10) === [1, 0, 1, 0, 1, 1, 1, 1, 1, 1],
+    'Dashboard summary changed',
+);
 
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
