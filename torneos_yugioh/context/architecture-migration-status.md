@@ -148,6 +148,10 @@ Se extraen siete comandos de archivo, cierre, cambio de estado de clasificatorio
 
 Se extraen validaciones, normalización, asignación y escritura de divisiones, y la concesión manual de honores con identidad y evidencia confirmadas. Se conserva la propiedad transaccional del llamador y el bloqueo de evento del honor. No se escriben datos deportivos reales. CI pendiente.
 
+## Sincronización offline, FFA y archivo QA (H13)
+
+Se separan la deduplicación y control optimista de formularios offline, normalización y aplicación de acciones FFA, y archivo transaccional de fixtures QA. La ejecución de comandos anidados mantiene el guardado y restauración de contexto HTTP en infraestructura. No se invoca ninguna operación de archivo real. CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
