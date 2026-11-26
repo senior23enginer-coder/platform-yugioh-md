@@ -10,7 +10,7 @@ final class LiveMatchProjection
         $liveMatches = [];
         foreach ($fixtures as $rounds) {
             foreach ($rounds as $round) {
-                foreach (($round['matches'] ?? []) as $match) {
+                foreach ($round['matches'] ?? [] as $match) {
                     $liveMatches[] = [
                         'id' => (int) ($match['id'] ?? 0),
                         'competition_id' => (int) ($match['competition_id'] ?? 0),
@@ -24,8 +24,11 @@ final class LiveMatchProjection
                         'venue' => (string) ($match['venue'] ?? ''),
                         'estado' => (string) ($match['estado'] ?? ''),
                         'score' => (string) ($match['score'] ?? ''),
-                        'd1' => $match['d1'] ?? null, 'd2' => $match['d2'] ?? null,
-                        'd3' => $match['d3'] ?? null, 'd4' => $match['d4'] ?? null, 'd5' => $match['d5'] ?? null,
+                        'd1' => $match['d1'] ?? null,
+                        'd2' => $match['d2'] ?? null,
+                        'd3' => $match['d3'] ?? null,
+                        'd4' => $match['d4'] ?? null,
+                        'd5' => $match['d5'] ?? null,
                         'duel_details' => (string) ($match['duel_details'] ?? ''),
                         'scheduled_on' => (string) ($match['scheduled_on'] ?? ''),
                         'starts_at' => (string) ($match['starts_at'] ?? ''),

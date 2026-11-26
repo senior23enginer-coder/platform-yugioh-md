@@ -12,7 +12,9 @@ final readonly class PdoStatisticsPublicationReader implements StatisticsPublica
 
     public function find(int $id): array
     {
-        $stmt = $this->pdo->prepare('SELECT id,payload,published_at FROM sx_ygo_statistics_publications WHERE id=?');
+        $stmt = $this->pdo->prepare(
+            'SELECT id,payload,published_at FROM sx_ygo_statistics_publications WHERE id=?',
+        );
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
     }

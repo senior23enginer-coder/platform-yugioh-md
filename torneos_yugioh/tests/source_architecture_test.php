@@ -2192,8 +2192,16 @@ architectureCheck(
 // Live API projections do not depend on HTTP globals or invent match data.
 $liveProjection = \StationX\Yugioh\Domain\Matches\LiveMatchProjection::class;
 architectureCheck($liveProjection::matches([]) === [], 'Empty live list changed');
-$liveRows = $liveProjection::matches([[['matches' => [['id' => '7', 'a' => 'Deck A', 'estado' => 'PENDIENTE']]]]]);
-architectureCheck(count($liveRows) === 1 && $liveRows[0]['id'] === 7 && $liveRows[0]['d1'] === null && $liveRows[0]['a'] === 'Deck A', 'Live match projection changed');
+$liveRows = $liveProjection::matches([
+    [['matches' => [['id' => '7', 'a' => 'Deck A', 'estado' => 'PENDIENTE']]]],
+]);
+architectureCheck(
+    count($liveRows) === 1 &&
+        $liveRows[0]['id'] === 7 &&
+        $liveRows[0]['d1'] === null &&
+        $liveRows[0]['a'] === 'Deck A',
+    'Live match projection changed',
+);
 
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
