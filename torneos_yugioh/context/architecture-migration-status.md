@@ -124,6 +124,10 @@ Se separan las políticas puras de ruta, carpeta, inventario, contrato de calcul
 
 Se extraen alta manual de carta, importación CSV, guardado del perfil, enlace con equipo, portada, medios y baja lógica con bloqueo por eventos. Se mantienen zonas y límites heredados (sin modificar inventarios reales), respuestas HTTP, transacción propia de importación y auditorías. Los puertos de persistencia y medios conservan los servicios existentes. Regresiones añadidas; pendiente CI integral y MySQL.
 
+## Fuentes documentales del editor de combos
+
+Se separan la identidad estable de rutas, la referencia documental y la proyección de skills/formato mediante `ComboSourcePolicy`. El adaptador editorial lee rutas y contextos sin invocar funciones globales. El feed usa un puerto de lectura y un caso de uso que conserva el ETag, la respuesta 304, el esquema y el Markdown de revisión; HTTP y SQL permanecen en adaptadores. Se mantienen rutas y datos existentes. Validación integral y MySQL pendientes.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
