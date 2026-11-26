@@ -152,6 +152,10 @@ Se extraen validaciones, normalización, asignación y escritura de divisiones, 
 
 Se separan la deduplicación y control optimista de formularios offline, normalización y aplicación de acciones FFA, y archivo transaccional de fixtures QA. La ejecución de comandos anidados mantiene el guardado y restauración de contexto HTTP en infraestructura. No se invoca ninguna operación de archivo real. CI pendiente.
 
+## Consultas HTTP de estadísticas, marcador en vivo e historial FFA (H14)
+
+Se separan los filtros y recálculo analítico del controlador, la consulta de publicaciones y la proyección del marcador y del historial FFA. Los casos de uso reciben datos, reloj y puertos; HTTP conserva cabeceras, estados y descarga. Se conserva evidencia de los bloques originales. Las vistas HTML y exportaciones de fichas continúan pendientes. CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
