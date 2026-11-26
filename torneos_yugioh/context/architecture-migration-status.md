@@ -62,7 +62,7 @@ Separados el historial de transiciones, la comprobación de cierre, los candidat
 
 ## Proyecciones de clasificaciones y calendario — 26 de noviembre de 2026
 
-Separadas la publicación de snapshots y sus recuperaciones, la reconstrucción de jornadas y la baja de eventos de inicio mediante políticas de dominio, casos de uso, puertos de lectura/escritura y adaptadores PDO. Se conserva la identidad de los snapshots y las jornadas, las consultas de clasificación nativas y los límites transaccionales del llamador. Las pruebas integrales y MySQL siguen pendientes.
+Separadas la publicación de snapshots y sus recuperaciones, la reconstrucción de jornadas y la baja de eventos de inicio mediante políticas de dominio, casos de uso, puertos de lectura/escritura y adaptadores PDO. Se conserva la identidad de los snapshots y las jornadas, las consultas de clasificación nativas y los límites transaccionales del llamador. Se verificaron las cuatro huellas originales y cinco comprobaciones aisladas de dominio con PHP 8.4.24; se confirmó la identidad de ambos archivos probados. Las pruebas integrales, el formato y MySQL siguen pendientes.
 
 ## Trabajo todavía pendiente para completar toda la plataforma
 
