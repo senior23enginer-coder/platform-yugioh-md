@@ -12,6 +12,7 @@ $formOriginals = json_decode(file_get_contents(__DIR__ . '/fixtures/form-command
 $extractions = json_decode(file_get_contents($root . '/context/domain-extractions.json'), true, flags: JSON_THROW_ON_ERROR);
 $originals = json_decode(file_get_contents(__DIR__ . '/fixtures/domain-originals.json'), true, flags: JSON_THROW_ON_ERROR);
 $contracts = json_decode(file_get_contents($root . '/context/source-function-map.json'), true, flags: JSON_THROW_ON_ERROR);
+$settingsTeamExtractions = json_decode(file_get_contents(__DIR__ . '/fixtures/settings-teams-originals.json'), true, flags: JSON_THROW_ON_ERROR);
 foreach ($contracts as $name => $contract) {
     if (!function_exists($name)) throw new RuntimeException('Missing compatibility function: ' . $name);
     $function = new ReflectionFunction($name);
@@ -21,6 +22,17 @@ foreach ($contracts as $name => $contract) {
     $lines = file($function->getFileName());
     $body = implode('', array_slice($lines, $function->getStartLine() - 1, $function->getEndLine() - $function->getStartLine() + 1));
     $body = rtrim(str_replace("\r\n", "\n", $body), "\r\n");
+    if (isset($settingsTeamExtractions[$name])) {
+        $entry = $settingsTeamExtractions[$name];
+        $original = rtrim(str_replace("\r\n", "\n", $entry['original']), "\r\n");
+        if (hash('sha256', $original) !== $contract['sha256']) {
+            throw new RuntimeException('Original settings/team evidence changed: ' . $name);
+        }
+        if (architectureBodyTokens($body) !== architectureBodyTokens($entry['facade'])) {
+            throw new RuntimeException('Settings/team delegation changed: ' . $name);
+        }
+        continue;
+    }
     if ($name === $formExtractions['function']) {
         $original = rtrim(str_replace("\r\n", "\n", $formOriginals['signature'] . $formOriginals['body']), "\r\n");
         if (hash('sha256', $original) !== $contract['sha256']) throw new RuntimeException('Original dispatcher evidence changed');

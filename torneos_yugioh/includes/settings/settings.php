@@ -71,70 +71,43 @@ function ygo_default_ui_labels(): array
 
 function ygo_settings(PDO $pdo): array
 {
-    $seasonId = ygo_current_season_id($pdo);
-    $settings = ygo_default_settings();
-    $stmt = $pdo->prepare('SELECT setting_key, setting_value FROM sx_ygo_settings WHERE season_id = ?');
-    $stmt->execute([$seasonId]);
-    foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
-        $settings[(string) $row['setting_key']] = (string) ($row['setting_value'] ?? '');
-    }
-    return $settings;
+    return \StationX\Yugioh\Infrastructure\Composition\SettingsModule::read($pdo)->settings(
+        ygo_current_season_id($pdo),
+        ygo_default_settings(),
+    );
 }
 
 function ygo_save_setting(PDO $pdo, string $key, string $value): void
 {
-    $seasonId = ygo_current_season_id($pdo);
-    $pdo->prepare('
-        INSERT INTO sx_ygo_settings (season_id, setting_key, setting_value)
-        VALUES (?, ?, ?)
-        ON DUPLICATE KEY UPDATE setting_value = VALUES(setting_value)
-    ')->execute([$seasonId, $key, $value]);
+    \StationX\Yugioh\Infrastructure\Composition\SettingsModule::writer($pdo)->save(
+        ygo_current_season_id($pdo),
+        $key,
+        $value,
+    );
 }
 
 function ygo_ensure_default_settings(PDO $pdo): void
 {
-    $seasonId = ygo_current_season_id($pdo);
-    $stmt = $pdo->prepare('INSERT IGNORE INTO sx_ygo_settings (season_id, setting_key, setting_value) VALUES (?, ?, ?)');
-    foreach (ygo_default_settings() as $key => $value) {
-        $stmt->execute([$seasonId, $key, $value]);
-    }
+    \StationX\Yugioh\Infrastructure\Composition\SettingsModule::writer($pdo)->ensureSettings(
+        ygo_current_season_id($pdo),
+        ygo_default_settings(),
+    );
 }
 
 function ygo_ensure_default_ui_labels(PDO $pdo): void
 {
-    $seasonId = ygo_current_season_id($pdo);
-    $stmt = $pdo->prepare('
-        INSERT INTO sx_ygo_ui_labels (season_id, label_key, title, subtitle, active)
-        VALUES (?, ?, ?, ?, 1)
-        ON DUPLICATE KEY UPDATE label_key = label_key
-    ');
-    foreach (ygo_default_ui_labels() as $label) {
-        $stmt->execute([$seasonId, $label[0], $label[1], $label[2]]);
-    }
+    \StationX\Yugioh\Infrastructure\Composition\SettingsModule::writer($pdo)->ensureLabels(
+        ygo_current_season_id($pdo),
+        ygo_default_ui_labels(),
+    );
 }
 
 function ygo_ui_labels(PDO $pdo): array
 {
-    $seasonId = ygo_current_season_id($pdo);
-    $stmt = $pdo->prepare('SELECT * FROM sx_ygo_ui_labels WHERE season_id IN (0, ?) ORDER BY label_key');
-    $stmt->execute([$seasonId]);
-    $labels = [];
-    foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
-        $labels[(string) $row['label_key']] = [
-            'id' => (int) $row['id'],
-            'key' => (string) $row['label_key'],
-            'title' => (string) ($row['title'] ?? ''),
-            'subtitle' => (string) ($row['subtitle'] ?? ''),
-            'active' => (int) ($row['active'] ?? 1),
-        ];
-    }
-    foreach (ygo_default_ui_labels() as $label) {
-        if (!isset($labels[$label[0]])) {
-            $labels[$label[0]] = ['id' => 0, 'key' => $label[0], 'title' => $label[1], 'subtitle' => $label[2], 'active' => 1];
-        }
-    }
-    ksort($labels);
-    return $labels;
+    return \StationX\Yugioh\Infrastructure\Composition\SettingsModule::read($pdo)->labels(
+        ygo_current_season_id($pdo),
+        ygo_default_ui_labels(),
+    );
 }
 
 function ygo_setting_enabled(array $settings, string $key): bool
