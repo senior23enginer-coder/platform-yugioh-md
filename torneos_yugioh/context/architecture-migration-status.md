@@ -176,6 +176,10 @@ Se separan las tres operaciones históricas registradas en auditoría mediante u
 
 La proyección de exportación de fichas queda como caso de uso puro con entradas explícitas y fecha de generación; conserva filas, cálculos, textos y formato de salida. Las pantallas de jugador y marcador público pasan a vistas dedicadas; el controlador mantiene las cabeceras, validación de identidad y estados. Se añaden pruebas de resultados, duelos y winrate. CI pendiente.
 
+## Frontend (H19/H20, avance)
+
+La cola offline y la generación de identificadores de petición ya no dependen del cierre compartido para su lógica. Se exponen mediante una fábrica independiente con puertos de almacenamiento, reloj, aleatoriedad y UUID; el bootstrap sólo conecta adaptadores del navegador. Se mantiene la clave y el formato persistido, incluida la lectura histórica. Se añade caracterización y se regenerará el bundle mediante el build oficial. Quedan los demás fragmentos, transporte y estado por funcionalidad. CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

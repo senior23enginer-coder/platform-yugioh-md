@@ -45,6 +45,7 @@ const paths = [
   php + 'tests/deck_metadata_architecture_test.php',
   php + 'includes/decks/attributes-http.php',
   php + 'assets/modules/deck-attributes',
+  php + 'assets/source/javascript/shared',
   php + 'tests/deck_worlds_application_test.php',
   php + 'tests/deck_worlds_persistence_test.php',
   php + 'tests/source_architecture_test.php',
