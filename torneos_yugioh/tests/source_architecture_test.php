@@ -2098,6 +2098,13 @@ architectureCheck(
     'UI label normalization changed',
 );
 
+// Maintenance commands retain qualifier fallback and blocked-finalization guards.
+$maintenance = \StationX\Yugioh\Domain\Competitions\CompetitionMaintenancePolicy::class;
+architectureCheck($maintenance::qualifierStatus(['status' => 'invalid']) === 'active', 'Qualifier fallback changed');
+architectureCheck($maintenance::canFinalize('active', ['ok' => true]), 'Ready event blocked');
+architectureCheck(!$maintenance::canFinalize('completed', ['ok' => true]), 'Completed event finalized twice');
+architectureCheck(!$maintenance::canFinalize('active', ['ok' => false]), 'Incomplete event finalized');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
