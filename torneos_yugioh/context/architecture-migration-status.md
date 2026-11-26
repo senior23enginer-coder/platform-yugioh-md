@@ -34,7 +34,7 @@ Se separaron elegibilidad de formato, exclusividad por temporada, bloqueo ordena
 
 ## Configuración y sincronización de equipos — 26 de noviembre de 2026
 
-Se separaron consultas y persistencia de configuración y etiquetas, así como la identificación de perfiles y sincronización de equipos. Se conservaron las firmas y huellas originales; la validación integral queda pendiente. No se ejecutaron escrituras de producción.
+Se separaron consultas y persistencia de configuración y etiquetas, así como la identificación de perfiles y sincronización de equipos. Se conservaron las firmas y huellas originales (ocho comprobadas); diez comprobaciones aisladas de configuración y creación de equipos pasan en PHP 8.4.24 con dobles de puertos. Se añadieron regresiones de sincronización y perfiles a la suite existente; su ejecución integral queda pendiente. No se ejecutaron escrituras de producción.
 
 ## Trabajo todavía pendiente para completar toda la plataforma
 

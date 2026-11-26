@@ -436,6 +436,106 @@ architectureCheck(
     'Incomplete division accepted',
 );
 
+// Settings projection keeps overrides, defaults, null conversion and sorted UI labels.
+$settingsReader = new class implements \StationX\Yugioh\Application\Settings\SettingsReader {
+    public function settings(int $seasonId): array
+    {
+        return [
+            ['setting_key' => 'a', 'setting_value' => null],
+            ['setting_key' => 'c', 'setting_value' => $seasonId],
+        ];
+    }
+
+    public function labels(int $seasonId): array
+    {
+        return [['id' => 9, 'label_key' => 'z', 'title' => null, 'active' => 0]];
+    }
+};
+$readSettings = new \StationX\Yugioh\Application\Settings\ReadSettings($settingsReader);
+architectureCheck(
+    $readSettings->settings(7, ['a' => '1', 'b' => '2']) === ['a' => '', 'b' => '2', 'c' => '7'],
+    'Settings override changed',
+);
+$projectedLabels = $readSettings->labels(7, [['z', 'Default', 'Default'], ['a', 'A', 'B']]);
+architectureCheck(array_keys($projectedLabels) === ['a', 'z'], 'Label order changed');
+architectureCheck(
+    $projectedLabels['z'] === ['id' => 9, 'key' => 'z', 'title' => '', 'subtitle' => '', 'active' => 0],
+    'Persisted label must take precedence',
+);
+architectureCheck(
+    $projectedLabels['a'] === ['id' => 0, 'key' => 'a', 'title' => 'A', 'subtitle' => 'B', 'active' => 1],
+    'Missing label fallback changed',
+);
+$teamStore = new class implements \StationX\Yugioh\Application\Teams\TeamStore {
+    public array $calls = [];
+    public int $id = 4;
+
+    public function findId(string $name): int
+    {
+        $this->calls[] = ['find', $name];
+        return $this->id;
+    }
+
+    public function activate(int $id): void
+    {
+        $this->calls[] = ['activate', $id];
+    }
+
+    public function updateProfile(int $id, array $profile): void
+    {
+        $this->calls[] = ['profile', $id, $profile];
+    }
+
+    public function create(string $name, ?array $profile): int
+    {
+        $this->calls[] = ['create', $name, $profile];
+        return 17;
+    }
+};
+$findTeam = new \StationX\Yugioh\Application\Teams\FindOrCreateTeam($teamStore);
+architectureCheck($findTeam->execute('A') === 4, 'Existing identity changed');
+architectureCheck($teamStore->calls === [['find', 'A'], ['activate', 4]], 'Existing activation changed');
+$teamStore->calls = [];
+$profile = ['code' => 'ABC'];
+architectureCheck($findTeam->execute('A', $profile) === 4, 'Existing profile identity changed');
+architectureCheck(
+    $teamStore->calls === [['find', 'A'], ['activate', 4], ['profile', 4, $profile]],
+    'Existing profile write order changed',
+);
+$teamStore->id = 0;
+$teamStore->calls = [];
+architectureCheck($findTeam->execute('B', null) === 17, 'New identity changed');
+architectureCheck($teamStore->calls === [['find', 'B'], ['create', 'B', null]], 'Creation order changed');
+$teamProfile = \StationX\Yugioh\Domain\Teams\TeamProfile::forDeck('ignored', '  Crystron ');
+architectureCheck($teamProfile['name'] === 'Quantum Sentinels', 'Team profile mapping changed');
+$deckTeamStore = new class implements \StationX\Yugioh\Application\Teams\DeckTeamStore {
+    public array $calls = [];
+
+    public function activeDecks(): array
+    {
+        return [
+            ['id' => 1, 'team_id' => 6, 'name' => 'Keep'],
+            ['id' => 2, 'team_id' => null, 'name' => 'Crystron'],
+        ];
+    }
+
+    public function assign(int $deckId, int $teamId): void
+    {
+        $this->calls[] = ['assign', $deckId, $teamId];
+    }
+
+    public function archiveUnusedLegacyTeams(): void
+    {
+        $this->calls[] = ['archive'];
+    }
+};
+$syncTeams = new \StationX\Yugioh\Application\Teams\SyncDeckTeams($deckTeamStore, $findTeam);
+architectureCheck($syncTeams->execute() === 1, 'Team sync count changed');
+architectureCheck(
+    $deckTeamStore->calls === [['assign', 2, 17], ['archive']],
+    'Team sync overwrote an existing assignment or changed archive order',
+);
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
