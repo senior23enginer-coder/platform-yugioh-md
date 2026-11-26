@@ -30,10 +30,7 @@ function ygo_slugify(string $value): string
 
 function ygo_normalize_status_key(string $status): string
 {
-    $status = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $status) ?: $status;
-    $status = strtolower(trim($status));
-    $status = preg_replace('/[^a-z0-9]+/', '_', $status) ?: '';
-    return trim($status, '_');
+    return \StationX\Yugioh\Domain\Competitions\CompetitionLifecyclePolicy::normalizeStatus($status);
 }
 
 function ygo_event_status_labels(): array
@@ -96,48 +93,19 @@ function ygo_event_status_label(string $status): string
 
 function ygo_record_competition_status_history(PDO $pdo, int $seasonId, int $competitionId, ?string $fromStatus, string $toStatus, string $action, array $payload = []): void
 {
-    if ($competitionId <= 0 || trim($toStatus) === '') {
-        return;
-    }
-    $from = $fromStatus !== null ? ygo_normalize_status_key($fromStatus) : null;
-    $to = ygo_normalize_status_key($toStatus);
-    if ($from !== null && $from === $to) {
-        return;
-    }
-    $pdo->prepare('
-        INSERT INTO sx_ygo_competition_status_history (season_id, competition_id, from_status, to_status, action, payload)
-        VALUES (?, ?, ?, ?, ?, ?)
-    ')->execute([
+    \StationX\Yugioh\Infrastructure\Composition\CompetitionLifecycleModule::history($pdo)->execute(
         $seasonId,
         $competitionId,
-        $from,
-        $to,
+        $fromStatus,
+        $toStatus,
         $action,
-        json_encode($payload, JSON_UNESCAPED_UNICODE),
-    ]);
+        $payload,
+    );
 }
 
 function ygo_competition_ready_to_finish(PDO $pdo, int $competitionId): array
 {
-    $workflowQuery=$pdo->prepare('SELECT * FROM sx_ygo_competitions WHERE id=?');$workflowQuery->execute([$competitionId]);$workflowCompetition=$workflowQuery->fetch(PDO::FETCH_ASSOC);
-    if($workflowCompetition){$workflow=ygo_workflow_load($pdo,$workflowCompetition);if($workflow!==null && empty($workflow['complete']))return ['ok'=>false,'total'=>count($workflow['history'])+count($workflow['pending']??[]),'finalized'=>count($workflow['history']),'pending'=>count($workflow['pending']??[]),'reason'=>'Completa el reglamento mediante Crear siguiente fase; terminar una ronda no termina el evento.'];}
-    $stmt = $pdo->prepare("
-        SELECT
-            COUNT(*) AS total_matches,
-            SUM(CASE WHEN status = 'FINALIZADA' THEN 1 ELSE 0 END) AS finalized_matches
-        FROM sx_ygo_matches
-        WHERE competition_id = ?
-    ");
-    $stmt->execute([$competitionId]);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
-    $total = (int) ($row['total_matches'] ?? 0);
-    $finalized = (int) ($row['finalized_matches'] ?? 0);
-    return [
-        'ok' => $total > 0 && $total === $finalized,
-        'total' => $total,
-        'finalized' => $finalized,
-        'pending' => max(0, $total - $finalized),
-    ];
+    return \StationX\Yugioh\Infrastructure\Composition\CompetitionLifecycleModule::completion($pdo)->execute($competitionId);
 }
 
 function ygo_persist_competition_standings(PDO $pdo, int $seasonId, int $competitionId, string $reason = 'current'): void
@@ -301,74 +269,15 @@ function ygo_persist_competition_calendar_event(PDO $pdo, int $seasonId, int $co
 
 function ygo_is_pending_event_qualifier_candidate(array $competition): bool
 {
-    if ((string) ($competition['type'] ?? '') !== 'qualifier') {
-        return false;
-    }
-    $status = ygo_normalize_status_key((string) ($competition['status'] ?? ''));
-    if (in_array($status, ['pending_event', 'pendiente_evento'], true)) {
-        return true;
-    }
-    $selectedDeckIds = $competition['selected_deck_ids'] ?? [];
-    $selectedDeckCount = is_array($selectedDeckIds) ? count($selectedDeckIds) : 0;
-    $deckCount = max($selectedDeckCount, (int) ($competition['deck_pool_count'] ?? 0));
-    return $status === 'pending_configuration' && $deckCount >= 4;
+    return \StationX\Yugioh\Domain\Competitions\CompetitionLifecyclePolicy::pendingQualifier($competition);
 }
 
 function ygo_generate_competition_code(PDO $pdo, int $seasonId, string $type, string $ruleset, string $name, int $ignoreId = 0): string
 {
-    $rows = $pdo->prepare("SELECT code FROM sx_ygo_competitions WHERE season_id = ? AND code LIKE 'YU-%' AND id <> ?");
-    $rows->execute([$seasonId, $ignoreId]);
-    $max = 0;
-    foreach ($rows->fetchAll(PDO::FETCH_COLUMN) as $code) {
-        if (preg_match('/^YU-(\d+)$/', (string) $code, $match)) {
-            $max = max($max, (int) $match[1]);
-        }
-    }
-    $counter = $max + 1;
-    $stmt = $pdo->prepare('SELECT id FROM sx_ygo_competitions WHERE season_id = ? AND code = ? AND id <> ? LIMIT 1');
-    while (true) {
-        $candidate = 'YU-' . str_pad((string) $counter, 2, '0', STR_PAD_LEFT);
-        $stmt->execute([$seasonId, $candidate, $ignoreId]);
-        if (!$stmt->fetchColumn()) {
-            return $candidate;
-        }
-        $counter++;
-    }
+    return \StationX\Yugioh\Infrastructure\Composition\CompetitionLifecycleModule::codes($pdo)->next($seasonId, $ignoreId);
 }
 
 function ygo_ensure_sequential_competition_codes(PDO $pdo, int $seasonId): int
 {
-    $rows = $pdo->prepare('SELECT id, code FROM sx_ygo_competitions WHERE season_id = ? ORDER BY id');
-    $rows->execute([$seasonId]);
-    $competitions = $rows->fetchAll(PDO::FETCH_ASSOC);
-    $used = [];
-    $max = 0;
-    foreach ($competitions as $competition) {
-        $code = (string) ($competition['code'] ?? '');
-        if (preg_match('/^YU-(\d+)$/', $code, $match)) {
-            $number = (int) $match[1];
-            $max = max($max, $number);
-            $used['YU-' . str_pad((string) $number, 2, '0', STR_PAD_LEFT)] = true;
-        } elseif ($code !== '') {
-            $used[$code] = true;
-        }
-    }
-
-    $updated = 0;
-    $counter = $max + 1;
-    $update = $pdo->prepare('UPDATE sx_ygo_competitions SET code = ? WHERE id = ? AND season_id = ?');
-    foreach ($competitions as $competition) {
-        $currentCode = (string) ($competition['code'] ?? '');
-        if (preg_match('/^YU-\d{2,}$/', $currentCode)) {
-            continue;
-        }
-        do {
-            $candidate = 'YU-' . str_pad((string) $counter, 2, '0', STR_PAD_LEFT);
-            $counter++;
-        } while (isset($used[$candidate]));
-        $used[$candidate] = true;
-        $update->execute([$candidate, (int) $competition['id'], $seasonId]);
-        $updated++;
-    }
-    return $updated;
+    return \StationX\Yugioh\Infrastructure\Composition\CompetitionLifecycleModule::codes($pdo)->ensureSequential($seasonId);
 }

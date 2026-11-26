@@ -56,6 +56,10 @@ Se extraen las guardas de fecha de resultados y programación de partidas a caso
 
 Se separan la resolución de reglas de juego, prioridad de reglas por partida/evento, evaluación de duelos y políticas de empate/D5 por modalidad mediante puertos de lectura, adaptadores PDO y dominio independiente. La fachada conserva las firmas; se verificaron las siete huellas históricas y ocho comprobaciones aisladas de políticas con PHP 8.4.24, con identidad de ambos archivos de dominio respecto a GitHub. La validación integral, formato y MySQL siguen pendientes.
 
+## Ciclo de vida y códigos de competición — 26 de noviembre de 2026
+
+Separados el historial de transiciones, la comprobación de cierre, los candidatos clasificatorios y la numeración de códigos en políticas, casos de uso y adaptadores. Se conserva el orden de consultas, los criterios de cierre y la numeración existente sin abrir transacciones nuevas. Se añaden referencias y regresiones; validación integral y MySQL pendientes.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

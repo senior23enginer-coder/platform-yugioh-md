@@ -633,6 +633,19 @@ $win = ['status' => 'FINALIZADA', 'winner' => 'A'];
 architectureCheck($eventResult::apply(['type' => 'special'], 'manual', null, $win, ['A', 'B', 'A', 'A'])['status'] === 'REQUIERE D5', 'D5 policy changed');
 architectureCheck($eventResult::apply(['type' => 'world', 'draw_policy' => 'ALLOWED'], 'groups', [], $draw)['winner'] === 'E', 'Workflow group draw rejected');
 
+// Competition lifecycle preserves completion guards, status normalization and code numbering.
+$lifecyclePolicy = \StationX\Yugioh\Domain\Competitions\CompetitionLifecyclePolicy::class;
+$codePolicy = \StationX\Yugioh\Domain\Competitions\CompetitionCodePolicy::class;
+architectureCheck($lifecyclePolicy::normalizeStatus(' Finalizada ') === 'finalizada', 'Status normalization changed');
+architectureCheck($lifecyclePolicy::history(1, 'Activo', ' activo ') === null, 'Duplicate transition accepted');
+architectureCheck($lifecyclePolicy::history(1, null, 'Activo') === ['from' => null, 'to' => 'activo'], 'Initial history changed');
+architectureCheck(!$lifecyclePolicy::finishCounts(['total_matches' => 0, 'finalized_matches' => 0])['ok'], 'Empty competition closed');
+architectureCheck($lifecyclePolicy::finishCounts(['total_matches' => 2, 'finalized_matches' => 2])['ok'], 'Completed competition blocked');
+architectureCheck($lifecyclePolicy::unfinishedWorkflow(['complete' => false, 'history' => [1, 2], 'pending' => [3]])['pending'] === 1, 'Workflow completion count changed');
+architectureCheck($lifecyclePolicy::pendingQualifier(['type' => 'qualifier', 'status' => 'pending_configuration', 'deck_pool_count' => 4]), 'Qualifier candidate changed');
+architectureCheck($codePolicy::nextCounter(['YU-01', 'YU-009', 'manual']) === 10, 'Code sequence changed');
+architectureCheck(iterator_to_array($codePolicy::replacements([['id' => 1, 'code' => 'YU-01'], ['id' => 2, 'code' => 'old'], ['id' => 3, 'code' => 'YU-9']]), false) === [[2, 'YU-10'], [3, 'YU-11']], 'Legacy code migration changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
