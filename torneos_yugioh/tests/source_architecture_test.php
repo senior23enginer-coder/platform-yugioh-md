@@ -794,6 +794,19 @@ architectureCheck(!$phasePolicy::finished(['total' => 2, 'closed' => 1]), 'Pendi
 architectureCheck($phasePolicy::winners([['result' => 'A', 'deck_a_id' => 3, 'deck_b_id' => 4], ['result' => 'B', 'deck_a_id' => 5, 'deck_b_id' => 6]]) === [3, 6], 'Winner order changed');
 architectureCheck($phasePolicy::blockedQualifier(['event_flow' => 'QUALIFIES_TO_EVENT', 'advancement_rule' => 'RANKING_THRESHOLD'], 'qualifier', 'swiss', 'NONE'), 'Division qualifier gained a phase');
 
+// Qualifier finalization and honor selection retain legacy allocation and precedence.
+$finalizationPolicy = \StationX\Yugioh\Domain\Competitions\QualifierFinalizationPolicy::class;
+architectureCheck($finalizationPolicy::requiredMatches(0) === 3 && $finalizationPolicy::requiredMatches(9) === 5, 'Qualifier minimum changed');
+architectureCheck($finalizationPolicy::roundReasons([['round_number' => 1, 'status' => 'FINALIZADA']]) === [], 'Closed first round blocked');
+architectureCheck(count($finalizationPolicy::roundReasons([['round_number' => 1, 'status' => 'FINALIZADA'], ['round_number' => 1, 'status' => 'PENDIENTE']])) === 2, 'Partial round guard changed');
+architectureCheck(!$finalizationPolicy::result([], [['pj' => 2]], 3)['ok'], 'Insufficient match count accepted');
+$allocation = iterator_to_array($finalizationPolicy::divisions([['id' => 1], ['id' => 2]], [['id' => 7], ['id' => 8], ['id' => 9]]), false);
+architectureCheck(array_column($allocation, 'size') === [2, 1] && $allocation[1]['assignments'] === [['deckId' => 9, 'rank' => 1]], 'Qualifier allocation changed');
+$honorPolicy = \StationX\Yugioh\Domain\Competitions\CompetitionHonorPolicy::class;
+architectureCheck($honorPolicy::usesFinal(['type' => 'cup']) && !$honorPolicy::usesFinal(['type' => 'league']), 'Honor final precedence changed');
+architectureCheck($honorPolicy::fromFinal(['result' => 'B', 'deck_a_id' => 1, 'deck_b_id' => 2]) === [2, 1], 'Final winner changed');
+architectureCheck($honorPolicy::fromRanking([['id' => 4]]) === [4, 0], 'Missing runner changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

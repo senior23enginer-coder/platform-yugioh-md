@@ -96,6 +96,10 @@ Se separan generación de ligas, copas, amistosos y mundial, lectura de division
 
 Se extraen la coordinación serializada, las consultas de fase y las guardas de ganadores a casos de uso y políticas independientes de PDO. La fachada externa conserva el bloqueo por evento; el límite transaccional conserva transacciones prestadas. La creación de rondas, honores y motor de workflow aún se consumen mediante adaptadores nativos. Se verificaron cinco huellas históricas y 518 comprobaciones aisladas de la política de fases con PHP 8.4.24; el blob probado coincide con GitHub. Validación integral y MySQL pendientes.
 
+## Cierre de clasificatorios y registro de honores
+
+Separados la selección de clasificatorio, la comprobación de rondas completas, el reparto de clasificados por división y la selección de campeón/subcampeón. Los casos de uso consumen puertos de lectura y escritura; las fachadas conservan sus firmas. No se ejecuta cierre ni se registra un campeón real. La regeneración de liga y el honor de workflow permanecen detrás de adaptadores; pruebas integrales y MySQL pendientes.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

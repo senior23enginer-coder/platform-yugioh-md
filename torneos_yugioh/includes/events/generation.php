@@ -14,84 +14,12 @@ function ygo_regenerate_league_matches(PDO $pdo, int $seasonId): void
 
 function ygo_qualifier_finalize_check(PDO $pdo, ?int $competitionId = null): array
 {
-    $competitionId = $competitionId ?: ygo_selected_qualifier_competition_id($pdo);
-    if (!$competitionId) {
-        return ['ok' => false, 'reasons' => ['Selecciona un clasificatorio valido.']];
-    }
-    $competitionStmt = $pdo->prepare("SELECT qualifier_duels_per_deck FROM sx_ygo_competitions WHERE id=? AND type='qualifier' AND active=1 LIMIT 1");
-    $competitionStmt->execute([$competitionId]);
-    $requiredMatches = max(2, min(5, (int) ($competitionStmt->fetchColumn() ?: 3)));
-    $reasons = [];
-    $matchesStmt = $pdo->prepare("
-        SELECT round_number, status
-        FROM sx_ygo_matches
-        WHERE phase = 'qualifier' AND competition_id = ?
-        ORDER BY round_number, table_number, id
-    ");
-    $matchesStmt->execute([$competitionId]);
-    $matches = $matchesStmt->fetchAll(PDO::FETCH_ASSOC);
-    if (!$matches) {
-        return ['ok' => false, 'reasons' => ['No hay combates clasificatorios programados.']];
-    }
-    $rounds = [];
-    foreach ($matches as $match) {
-        $round = (int) $match['round_number'];
-        $rounds[$round][] = (string) $match['status'];
-    }
-    if (empty($rounds[1])) {
-        $reasons[] = 'No existe una primera ronda programada.';
-    } elseif (array_filter($rounds[1], static fn(string $status): bool => $status !== 'FINALIZADA')) {
-        $reasons[] = 'No se puede finalizar: toda la primera ronda debe estar jugada.';
-    }
-    foreach ($rounds as $round => $statuses) {
-        $finished = count(array_filter($statuses, static fn(string $status): bool => $status === 'FINALIZADA'));
-        if ($finished > 0 && $finished < count($statuses)) {
-            $reasons[] = 'No se puede finalizar: la ronda ' . $round . ' esta en curso.';
-        }
-    }
-    $standings = ygo_competition_standings($pdo, $competitionId, 'qualifier');
-    if (!$standings || array_filter($standings, static fn(array $row): bool => (int) $row['pj'] < $requiredMatches)) {
-        $reasons[] = 'Cada deck debe tener minimo ' . $requiredMatches . ' combates finalizados.';
-    }
-    return ['ok' => !$reasons, 'reasons' => array_values(array_unique($reasons))];
+    return \StationX\Yugioh\Infrastructure\Composition\QualifierFinalizationModule::create($pdo)->check($competitionId, (int) ($_POST['qualifier_competition_id'] ?? 0));
 }
 
 function ygo_finalize_qualifier(PDO $pdo, ?int $competitionId = null): bool
 {
-    $competitionId = $competitionId ?: ygo_selected_qualifier_competition_id($pdo);
-    if (!$competitionId) {
-        return false;
-    }
-    $seasonId = ygo_current_season_id($pdo);
-    $divisionRows = $pdo->prepare('SELECT id, code FROM sx_ygo_divisions WHERE season_id = ? ORDER BY tier_order, id');
-    $divisionRows->execute([$seasonId]);
-    $official = $divisionRows->fetchAll(PDO::FETCH_ASSOC);
-    if (!$official) {
-        return false;
-    }
-    $check = ygo_qualifier_finalize_check($pdo, $competitionId);
-    if (!$check['ok']) {
-        return false;
-    }
-    $standings = ygo_competition_standings($pdo, $competitionId, 'qualifier');
-    $total = count($standings);
-    $base = intdiv($total, count($official));
-    $extra = $total % count($official);
-    $offset = 0;
-    foreach ($official as $index => $division) {
-        $size = $base + ($index < $extra ? 1 : 0);
-        $slice = array_slice($standings, $offset, $size);
-        foreach ($slice as $localRank => $deck) {
-            $pdo->prepare('UPDATE sx_ygo_decks SET division_id = ?, seed_rank = ? WHERE id = ?')
-                ->execute([(int) $division['id'], $localRank + 1, (int) $deck['id']]);
-        }
-        $pdo->prepare('UPDATE sx_ygo_divisions SET deck_count = ? WHERE id = ?')->execute([$size, (int) $division['id']]);
-        $offset += $size;
-    }
-    ygo_regenerate_league_matches($pdo, $seasonId);
-    $pdo->prepare('INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)')
-        ->execute(['competition', $competitionId, 'finalize_qualifier', json_encode(['total_decks' => $total], JSON_UNESCAPED_UNICODE)]);
-    return true;
+    return \StationX\Yugioh\Infrastructure\Composition\QualifierFinalizationModule::create($pdo)->execute($competitionId, (int) ($_POST['qualifier_competition_id'] ?? 0));
 }
 
 function ygo_first_division_id(PDO $pdo): int
@@ -136,19 +64,7 @@ function ygo_generate_leagues(PDO $pdo): int
 
 function ygo_selected_qualifier_competition_id(PDO $pdo): ?int
 {
-    $postedId = (int) ($_POST['qualifier_competition_id'] ?? 0);
-    if ($postedId > 0) {
-        $stmt = $pdo->prepare("SELECT id FROM sx_ygo_competitions WHERE id=? AND type='qualifier' AND active=1 LIMIT 1");
-        $stmt->execute([$postedId]);
-        $found = (int) $stmt->fetchColumn();
-        if ($found > 0) {
-            return $found;
-        }
-    }
-    $stmt = $pdo->prepare("SELECT id FROM sx_ygo_competitions WHERE season_id=? AND type='qualifier' AND active=1 ORDER BY FIELD(status, 'active', 'draft', 'completed'), id LIMIT 1");
-    $stmt->execute([ygo_current_season_id($pdo)]);
-    $found = (int) $stmt->fetchColumn();
-    return $found > 0 ? $found : null;
+    return \StationX\Yugioh\Infrastructure\Composition\QualifierFinalizationModule::create($pdo)->select((int) ($_POST['qualifier_competition_id'] ?? 0));
 }
 
 function ygo_competition_phase_match_count(PDO $pdo, int $competitionId, string $phase): int
@@ -233,69 +149,7 @@ function ygo_create_competition_knockout_round(PDO $pdo, array $competition, str
 
 function ygo_record_competition_honor(PDO $pdo, int $competitionId): int
 {
-    if ($competitionId <= 0) {
-        return 0;
-    }
-    $exists = $pdo->prepare('SELECT COUNT(*) FROM sx_ygo_honors WHERE competition_id = ?');
-    $exists->execute([$competitionId]);
-    if ((int) $exists->fetchColumn() > 0) {
-        return 0;
-    }
-    $competitionStmt = $pdo->prepare('SELECT * FROM sx_ygo_competitions WHERE id = ? AND active = 1 LIMIT 1');
-    $competitionStmt->execute([$competitionId]);
-    $competition = $competitionStmt->fetch(PDO::FETCH_ASSOC) ?: [];
-    if (!$competition) {
-        return 0;
-    }
-    if(($competition['execution_model']??'')==='manual')return 0;
-    $workflow=ygo_workflow_load($pdo,$competition);
-    if($workflow!==null){if(!empty($workflow['complete']) && $workflow['champion']!==null){ygo_workflow_honor($pdo,$competition,(int)$workflow['champion'],(int)$workflow['runner_up']);return 1;}return 0;}
-    $finalStmt = $pdo->prepare("
-        SELECT m.deck_a_id, m.deck_b_id, r.result
-        FROM sx_ygo_matches m
-        JOIN sx_ygo_match_results r ON r.match_id = m.id
-        WHERE m.competition_id = ? AND m.status = 'FINALIZADA' AND r.result IN ('A', 'B')
-          AND m.phase IN ('final', 'cup', 'top_cut', 'playoff')
-        ORDER BY m.round_number DESC, m.id DESC
-        LIMIT 1
-    ");
-    $finalStmt->execute([$competitionId]);
-    $final = $finalStmt->fetch(PDO::FETCH_ASSOC) ?: [];
-    $championId = 0;
-    $runnerId = 0;
-    $usesDecisiveFinal = in_array((string) ($competition['type'] ?? ''), ['cup', 'final', 'world'], true)
-        || in_array((string) ($competition['execution_model'] ?? ''), ['single_elimination', 'double_elimination', 'bracket', 'series'], true);
-    if ($usesDecisiveFinal && $final) {
-        $championId = $final['result'] === 'A' ? (int) $final['deck_a_id'] : (int) $final['deck_b_id'];
-        $runnerId = $final['result'] === 'A' ? (int) $final['deck_b_id'] : (int) $final['deck_a_id'];
-    } else {
-        $ranking = ygo_competition_standings($pdo, $competitionId);
-        $championId = (int) ($ranking[0]['id'] ?? 0);
-        $runnerId = (int) ($ranking[1]['id'] ?? 0);
-    }
-    if ($championId <= 0) {
-        return 0;
-    }
-    $teamStmt = $pdo->prepare('SELECT team_id FROM sx_ygo_decks WHERE id = ? LIMIT 1');
-    $teamStmt->execute([$championId]);
-    $championTeamId = (int) ($teamStmt->fetchColumn() ?: 0);
-    $runnerTeamId = 0;
-    if ($runnerId > 0) {
-        $teamStmt->execute([$runnerId]);
-        $runnerTeamId = (int) ($teamStmt->fetchColumn() ?: 0);
-    }
-    $pdo->prepare('INSERT INTO sx_ygo_honors (season_id, competition_id, champion_deck_id, champion_team_id, runner_up_deck_id, runner_up_team_id, title, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
-        ->execute([
-            (int) $competition['season_id'],
-            $competitionId,
-            $championId,
-            $championTeamId > 0 ? $championTeamId : null,
-            $runnerId > 0 ? $runnerId : null,
-            $runnerTeamId > 0 ? $runnerTeamId : null,
-            'Campeon - ' . (string) $competition['name'],
-            'Registrado automaticamente al cerrar el evento.',
-        ]);
-    return 1;
+    return \StationX\Yugioh\Infrastructure\Composition\CompetitionHonorModule::create($pdo)->execute($competitionId);
 }
 
 function ygo_apply_league_division_movements(PDO $pdo, int $competitionId): int
