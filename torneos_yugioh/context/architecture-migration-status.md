@@ -144,6 +144,10 @@ Se extraen seis comandos de escritura adicionales: reglas, condiciones, archivo 
 
 Se extraen siete comandos de archivo, cierre, cambio de estado de clasificatorio, recalculo, movimientos, asignación de divisiones y baja de amistosos. Se conservan respuestas, auditorías y alcance de operaciones; los servicios deportivos siguen consumidos mediante puertos. La eliminación se prueba únicamente en fixtures; no se ejecuta sobre datos reales. Validación CI pendiente.
 
+## Escritura de divisiones y honores manuales (H13)
+
+Se extraen validaciones, normalización, asignación y escritura de divisiones, y la concesión manual de honores con identidad y evidencia confirmadas. Se conserva la propiedad transaccional del llamador y el bloqueo de evento del honor. No se escriben datos deportivos reales. CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
