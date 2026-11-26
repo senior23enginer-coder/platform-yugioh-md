@@ -134,7 +134,7 @@ Se separan los cálculos puros de elegibilidad, acumulación individual y Tag, E
 
 ## Comandos de perfiles de análisis y enfrentamientos (H13)
 
-Se separan normalización de listas y puntuaciones, persistencia, transacción propia/prestada, auditoría y revisiones de perfiles y matchup. Se corrige la captura ausente de `$post` en las dos funciones anónimas que normalizaban listas: antes podían perder el texto enviado; se añade una regresión explícita. No se alteran datos existentes. Validación integral pendiente.
+Se separan normalización de listas y puntuaciones, persistencia, transacción propia/prestada, auditoría y revisiones de perfiles y matchup. Se corrige la captura ausente de `$post` en las dos funciones anónimas que normalizaban listas: antes podían perder el texto enviado; se añade una regresión explícita. No se alteran datos existentes. Se añaden también comandos de dependencias, check-in y selección de logos históricos con puertos, preservando el origen QR/manual, auditorías y lista de destinos permitidos. Validación integral pendiente.
 
 ## Trabajo todavía pendiente para completar toda la plataforma
 
