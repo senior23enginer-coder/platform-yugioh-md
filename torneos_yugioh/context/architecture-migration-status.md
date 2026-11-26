@@ -66,7 +66,7 @@ Separadas la publicación de snapshots y sus recuperaciones, la reconstrucción 
 
 ## Clasificación por competición — 26 de noviembre de 2026
 
-La clasificación de competición se separa en una política pura de puntos, ordenación, proyección de workflow y equipos; el caso de uso coordina los puertos de lectura. Los filtros, puntajes, orden y llamadas a adaptadores nativos se mantienen. Validación integral y MySQL pendientes.
+La clasificación de competición se separa en una política pura de puntos, ordenación, proyección de workflow y equipos; el caso de uso coordina los puertos de lectura. Los filtros, puntajes, orden y llamadas a adaptadores nativos se mantienen. Se comprobó la huella original y ocho comprobaciones aisladas con PHP 8.4.24. Validación integral, formato y MySQL pendientes.
 
 ## Trabajo todavía pendiente para completar toda la plataforma
 
