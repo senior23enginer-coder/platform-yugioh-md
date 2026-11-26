@@ -5,7 +5,10 @@ namespace StationX\Yugioh\Application\Decks;
 
 final readonly class RemoveDeck
 {
-    public function __construct(private FindDeckDeletionBlocker $blocker, private DeckRemovalStore $store) {}
+    public function __construct(
+        private FindDeckDeletionBlocker $blocker,
+        private DeckRemovalStore $store,
+    ) {}
 
     public function execute(array $input): string
     {

@@ -33,7 +33,11 @@ final class DeckCardInput
             $section = strtolower(trim((string) ($columns[0] ?? 'main')));
             $quantity = max(1, min(3, (int) ($columns[1] ?? 1)));
             $name = mb_substr(trim((string) ($columns[2] ?? '')), 0, 180);
-            if (!in_array($section, ['main', 'extra', 'side', 'tech'], true) || $name === '' || strtolower($name) === 'nombre') {
+            if (
+                !in_array($section, ['main', 'extra', 'side', 'tech'], true) ||
+                $name === '' ||
+                strtolower($name) === 'nombre'
+            ) {
                 continue;
             }
             $valid[] = [

@@ -10,6 +10,8 @@ final class SaveDeckMediaHandler extends NativeFormHandler
 {
     protected function perform(PDO $pdo, string $action, array $post, array $files): ?string
     {
-        return \StationX\Yugioh\Infrastructure\Composition\DeckManagementModule::media($pdo)->execute($post);
+        return \StationX\Yugioh\Infrastructure\Composition\DeckManagementModule::media(
+            $pdo,
+        )->execute($post);
     }
 }

@@ -25,12 +25,18 @@ final class DeckManagementModule
 
     public static function import(PDO $pdo): ImportDeckCards
     {
-        return new ImportDeckCards(new PdoDeckCardWriter($pdo), new PdoTransactionBoundary($pdo, false));
+        return new ImportDeckCards(
+            new PdoDeckCardWriter($pdo),
+            new PdoTransactionBoundary($pdo, false),
+        );
     }
 
     public static function save(PDO $pdo): SaveDeckProfile
     {
-        return new SaveDeckProfile(new PdoDeckProfileStore($pdo), new NativeDeckProfileServices($pdo));
+        return new SaveDeckProfile(
+            new PdoDeckProfileStore($pdo),
+            new NativeDeckProfileServices($pdo),
+        );
     }
 
     public static function remove(PDO $pdo): RemoveDeck

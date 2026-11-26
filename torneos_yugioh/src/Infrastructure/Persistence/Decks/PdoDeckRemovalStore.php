@@ -17,7 +17,15 @@ final readonly class PdoDeckRemovalStore implements DeckRemovalStore
 
     public function auditBlocked(int $id, array $blocker): void
     {
-        $this->pdo->prepare('INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)')
-            ->execute(['deck', $id, 'blocked_remove_deck_in_event', json_encode($blocker, JSON_UNESCAPED_UNICODE)]);
+        $this->pdo
+            ->prepare(
+                'INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)',
+            )
+            ->execute([
+                'deck',
+                $id,
+                'blocked_remove_deck_in_event',
+                json_encode($blocker, JSON_UNESCAPED_UNICODE),
+            ]);
     }
 }

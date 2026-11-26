@@ -7,7 +7,10 @@ use StationX\Yugioh\Domain\Decks\DeckProfileInput;
 
 final readonly class SaveDeckProfile
 {
-    public function __construct(private DeckProfileStore $store, private DeckProfileServices $services) {}
+    public function __construct(
+        private DeckProfileStore $store,
+        private DeckProfileServices $services,
+    ) {}
 
     public function execute(array $input): string
     {

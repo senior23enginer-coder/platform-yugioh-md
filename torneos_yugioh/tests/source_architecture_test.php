@@ -1893,7 +1893,11 @@ $packagePreview::assertInventory($packagePending, ['inventory_sha256' => 'inv'],
 
 // Deck inventory commands preserve manual quantities and CSV zones.
 $deckCardInput = \StationX\Yugioh\Domain\Decks\DeckCardInput::class;
-$manualDeckCard = $deckCardInput::single(['card_deck_id' => 7, 'card_name' => ' A ', 'card_quantity' => 4]);
+$manualDeckCard = $deckCardInput::single([
+    'card_deck_id' => 7,
+    'card_name' => ' A ',
+    'card_quantity' => 4,
+]);
 architectureCheck(
     $manualDeckCard['quantity'] === 4 && $manualDeckCard['section'] === 'main',
     'Legacy manual card quantity changed',

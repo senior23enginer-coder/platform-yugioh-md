@@ -8,7 +8,10 @@ use StationX\Yugioh\Domain\Decks\DeckCardInput;
 
 final readonly class ImportDeckCards
 {
-    public function __construct(private DeckCardWriter $writer, private TransactionBoundary $transaction) {}
+    public function __construct(
+        private DeckCardWriter $writer,
+        private TransactionBoundary $transaction,
+    ) {}
 
     public function execute(array $input): string
     {
