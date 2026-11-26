@@ -10,6 +10,8 @@ final class SaveGameRuleHandler extends NativeFormHandler
 {
     protected function perform(PDO $pdo, string $action, array $post, array $files): ?string
     {
-        return \StationX\Yugioh\Infrastructure\Composition\AdministrativeSettingsModule::rules($pdo)->rule($post);
+        return \StationX\Yugioh\Infrastructure\Composition\AdministrativeSettingsModule::rules(
+            $pdo,
+        )->rule($post);
     }
 }

@@ -20,7 +20,10 @@ final readonly class ManageGameRules
         $values = GameRuleInput::ruleset($seasonId, $code, $label, $post);
         if ($code !== '' && $label !== '') {
             $this->store->saveRuleset($values);
-            $this->store->audit('ruleset', null, 'save_ruleset', ['code' => $code, 'label' => $label]);
+            $this->store->audit('ruleset', null, 'save_ruleset', [
+                'code' => $code,
+                'label' => $label,
+            ]);
         }
         return 'reglamento';
     }
@@ -40,7 +43,10 @@ final readonly class ManageGameRules
             if ($ruleId > 0) {
                 $this->store->replaceConditions($ruleId, GameRuleInput::conditions($post));
             }
-            $this->store->audit('game_rule', $ruleId ?: null, 'save_game_rule', ['code' => $ruleCode, 'name' => $ruleName]);
+            $this->store->audit('game_rule', $ruleId ?: null, 'save_game_rule', [
+                'code' => $ruleCode,
+                'name' => $ruleName,
+            ]);
         }
         return 'reglamento';
     }

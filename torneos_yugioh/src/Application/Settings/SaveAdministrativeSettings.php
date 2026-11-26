@@ -23,7 +23,9 @@ final readonly class SaveAdministrativeSettings
     {
         $seasonId = $this->store->currentSeasonId();
         $this->store->saveLabels($seasonId, AdministrativeInput::labels($post));
-        $this->store->audit('ui_labels', $seasonId, 'save_ui_labels', ['rows' => AdministrativeInput::labelCount($post)]);
+        $this->store->audit('ui_labels', $seasonId, 'save_ui_labels', [
+            'rows' => AdministrativeInput::labelCount($post),
+        ]);
         return 'textos_guardados';
     }
 
@@ -35,7 +37,10 @@ final readonly class SaveAdministrativeSettings
         if ($row[0] !== '' && $row[1] !== '' && $row[2] !== '') {
             $this->store->addCatalog($seasonId, $row);
         }
-        $this->store->audit('catalog_items', $seasonId, 'save_catalog_items', ['updated' => count((array) ($post['catalog_id'] ?? [])), 'new' => $row[0] . ':' . $row[1]]);
+        $this->store->audit('catalog_items', $seasonId, 'save_catalog_items', [
+            'updated' => count((array) ($post['catalog_id'] ?? [])),
+            'new' => $row[0] . ':' . $row[1],
+        ]);
         return 'opciones_guardadas';
     }
 }

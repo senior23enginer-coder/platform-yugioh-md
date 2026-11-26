@@ -28,8 +28,12 @@ final class GameRuleInput
         return $values;
     }
 
-    public static function rule(int $seasonId, string $ruleCode, string $ruleName, array $post): array
-    {
+    public static function rule(
+        int $seasonId,
+        string $ruleCode,
+        string $ruleName,
+        array $post,
+    ): array {
         $values = [
             $seasonId,
             $ruleCode,
@@ -80,13 +84,7 @@ final class GameRuleInput
             'blocks_when',
             'custom',
         ];
-        $allowedStatuses = [
-            'FINALIZADA',
-            'REQUIERE D5',
-            'EN CURSO',
-            'PENDIENTE',
-            'INVALID',
-        ];
+        $allowedStatuses = ['FINALIZADA', 'REQUIERE D5', 'EN CURSO', 'PENDIENTE', 'INVALID'];
         $rows = max(count((array) $conditionLabels), count((array) $conditionTypes));
         for ($i = 0; $i < $rows; $i++) {
             $label = trim((string) ($conditionLabels[$i] ?? ''));
@@ -96,14 +94,8 @@ final class GameRuleInput
             $type = trim((string) ($conditionTypes[$i] ?? 'validation'));
             $operator = trim((string) ($conditionOperators[$i] ?? 'defined'));
             $type = in_array($type, $allowedTypes, true) ? $type : 'validation';
-            $operator = in_array($operator, $allowedOperators, true)
-                ? $operator
-                : 'defined';
-            $rowActive = in_array(
-                (string) ($conditionActive[$i] ?? '0'),
-                ['1', 'on', 'true'],
-                true,
-            )
+            $operator = in_array($operator, $allowedOperators, true) ? $operator : 'defined';
+            $rowActive = in_array((string) ($conditionActive[$i] ?? '0'), ['1', 'on', 'true'], true)
                 ? 1
                 : 0;
             $target = trim((string) ($conditionTargets[$i] ?? ''));
@@ -117,7 +109,21 @@ final class GameRuleInput
             $message = trim((string) ($conditionMessages[$i] ?? ''));
             $sort = ($i + 1) * 10;
             $conditionId = (int) ($conditionIds[$i] ?? 0);
-            yield ['id' => $conditionId, 'values' => [$type, $label, $operator, $target, $result, $statusValue, $scoreValue, $message, $sort, $rowActive]];
+            yield [
+                'id' => $conditionId,
+                'values' => [
+                    $type,
+                    $label,
+                    $operator,
+                    $target,
+                    $result,
+                    $statusValue,
+                    $scoreValue,
+                    $message,
+                    $sort,
+                    $rowActive,
+                ],
+            ];
         }
     }
 }

@@ -120,7 +120,10 @@ final class AdministrativeInput
 
     public static function labelCount(array $post): int
     {
-        return max(count((array) ($post['ui_label_key'] ?? [])), count((array) ($post['ui_label_title'] ?? [])));
+        return max(
+            count((array) ($post['ui_label_key'] ?? [])),
+            count((array) ($post['ui_label_title'] ?? [])),
+        );
     }
 
     public static function catalog(array $post): iterable
@@ -164,6 +167,13 @@ final class AdministrativeInput
             trim((string) ($post['new_catalog_code'] ?? '')),
         );
         $newLabel = trim((string) ($post['new_catalog_label'] ?? ''));
-        return [$newKey, $newCode, $newLabel, trim((string) ($post['new_catalog_icon'] ?? '')), trim((string) ($post['new_catalog_accent'] ?? '')), max(0, (int) ($post['new_catalog_sort_order'] ?? 100))];
+        return [
+            $newKey,
+            $newCode,
+            $newLabel,
+            trim((string) ($post['new_catalog_icon'] ?? '')),
+            trim((string) ($post['new_catalog_accent'] ?? '')),
+            max(0, (int) ($post['new_catalog_sort_order'] ?? 100)),
+        ];
     }
 }

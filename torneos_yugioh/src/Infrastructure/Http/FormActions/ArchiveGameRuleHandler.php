@@ -10,6 +10,8 @@ final class ArchiveGameRuleHandler extends NativeFormHandler
 {
     protected function perform(PDO $pdo, string $action, array $post, array $files): ?string
     {
-        return \StationX\Yugioh\Infrastructure\Composition\AdministrativeSettingsModule::rules($pdo)->archive($post);
+        return \StationX\Yugioh\Infrastructure\Composition\AdministrativeSettingsModule::rules(
+            $pdo,
+        )->archive($post);
     }
 }

@@ -44,18 +44,23 @@ final readonly class PdoAdministrativeStore implements AdministrativeStore
 
     public function addCatalog(int $seasonId, array $row): void
     {
-        $this->pdo->prepare(
-            '
+        $this->pdo
+            ->prepare(
+                '
             INSERT INTO sx_ygo_catalog_items (season_id, catalog_key, item_code, label, icon, accent, sort_order, meta_json, active)
             VALUES (?, ?, ?, ?, ?, ?, ?, "[]", 1)
             ON DUPLICATE KEY UPDATE label=VALUES(label), icon=VALUES(icon), accent=VALUES(accent), sort_order=VALUES(sort_order), active=1
         ',
-        )->execute([$seasonId, ...$row]);
+            )
+            ->execute([$seasonId, ...$row]);
     }
 
     public function audit(string $entity, int $id, string $action, array $payload): void
     {
-        $this->pdo->prepare('INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)')
+        $this->pdo
+            ->prepare(
+                'INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)',
+            )
             ->execute([$entity, $id, $action, json_encode($payload, JSON_UNESCAPED_UNICODE)]);
     }
 
