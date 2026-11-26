@@ -54,7 +54,7 @@ Se extraen las guardas de fecha de resultados y programación de partidas a caso
 
 ## Evaluación de partidas y reglas — 26 de noviembre de 2026
 
-Se separan la resolución de reglas de juego, prioridad de reglas por partida/evento, evaluación de duelos y políticas de empate/D5 por modalidad mediante puertos de lectura, adaptadores PDO y dominio independiente. La fachada conserva las firmas y se preservan los cuerpos originales para el contrato de compatibilidad. La validación integral, formato y MySQL siguen pendientes.
+Se separan la resolución de reglas de juego, prioridad de reglas por partida/evento, evaluación de duelos y políticas de empate/D5 por modalidad mediante puertos de lectura, adaptadores PDO y dominio independiente. La fachada conserva las firmas; se verificaron las siete huellas históricas y ocho comprobaciones aisladas de políticas con PHP 8.4.24, con identidad de ambos archivos de dominio respecto a GitHub. La validación integral, formato y MySQL siguen pendientes.
 
 ## Trabajo todavía pendiente para completar toda la plataforma
 
