@@ -1,0 +1,24 @@
+name: H16 formatter diagnostics
+on:
+  pull_request:
+    branches: [base]
+    paths:
+      - '.github/workflows/h16-formatter-diagnostics.yml'
+permissions:
+  contents: read
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - name: Format and emit only the H16 changed files
+        run: |
+          npm run format:architecture
+          git diff --name-only
+          git diff -- torneos_yugioh/src/Application/Bootstrap/SavedStatusMessage.php torneos_yugioh/src/Application/Bootstrap/EnrichPlatformData.php torneos_yugioh/src/Application/Bootstrap/BootstrapDataPort.php torneos_yugioh/src/Infrastructure/Persistence/ReadModel/NativeBootstrapData.php torneos_yugioh/src/Infrastructure/Composition/BootstrapModule.php torneos_yugioh/tests/source_architecture_test.php
