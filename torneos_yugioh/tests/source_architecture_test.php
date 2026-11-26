@@ -751,6 +751,15 @@ $normalizationStore->division = 9;
 $normalizationStore->calls = [];
 architectureCheck($normalizationUseCase->execute() === 4 && $normalizationStore->calls === ['check', 'division', ['normalize', 9], ['audit', 9, 4]], 'Normalization order or audit changed');
 
+// Legacy qualifier pairing and the last-slot consolidation remain deterministic.
+$legacyPairs = \StationX\Yugioh\Domain\Calendar\LegacyQualifierPairings::build([1, 2, 3, 4]);
+architectureCheck(count($legacyPairs) === 6, 'Four-deck qualifier changed');
+$legacyCalendar = new \StationX\Yugioh\Domain\Calendar\LegacyQualifierCalendar('2026-11-26', '19:00', 2, 1, 45, new DateTimeImmutable('2026-11-26 19:00:00'));
+$legacyFixtureRows = iterator_to_array($legacyCalendar->fixtures(array_slice($legacyPairs, 0, 5)), false);
+architectureCheck($legacyFixtureRows[4]['date'] === '2026-11-27' && $legacyFixtureRows[4]['time'] === '20:30:00', 'Last qualifier slot changed');
+architectureCheck($legacyCalendar->days(5) === ['2026-11-26' => 2, '2026-11-27' => 3], 'Qualifier day projection changed');
+architectureCheck($legacyCalendar->endDate($legacyCalendar->days(5), 5) === '2026-11-27', 'Qualifier end date changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

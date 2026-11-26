@@ -80,6 +80,10 @@ Se separa el flujo de configuración mediante puertos de persistencia, contexto,
 
 Se aíslan el rango de clasificación, los criterios de finalización y la asignación de posiciones, así como la normalización histórica protegida por auditoría, mediante políticas, casos de uso y puertos. No se agregan transacciones nuevas ni se ejecutan operaciones sobre datos de producción. Se verificaron las dos huellas originales y siete comprobaciones aisladas de dominio y normalización con PHP 8.4.24; los tres archivos probados coinciden con GitHub. Validación integral y MySQL pendientes.
 
+## Reconstrucción histórica del calendario clasificatorio — 26 de noviembre de 2026
+
+Se separan emparejamientos, distribución de jornadas, consolidación del último combate y planificación de fechas mediante políticas de dominio y un caso de uso con reloj y puertos de lectura/escritura. Se conserva el alcance de borrado original de combates pendientes, la actualización previa del límite diario y la propiedad transaccional existente. No se ejecutan reconstrucciones de producción. Validación integral y MySQL pendientes.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
