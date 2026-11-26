@@ -716,6 +716,17 @@ $deletionStore->row = ['status' => 'draft'];
 architectureCheck($deleteCompetition->execute(2, ' ELIMINAR ') === 2, 'Confirmed draft rejected');
 architectureCheck($deletionStore->calls === [['season'], ['read', 3, 2], ['delete', 3, 2, 'draft']] && $deletionTransaction->runs === 1, 'Deletion order or transaction changed');
 
+// Competition configuration policy preserves roster lock, minimum sides and status transitions.
+$configurationPolicy = \StationX\Yugioh\Domain\Competitions\CompetitionConfigurationPolicy::class;
+architectureCheck($configurationPolicy::rosterLocked(true, [], 'draft', 'league'), 'Existing fixtures must lock roster');
+architectureCheck(!$configurationPolicy::rosterLocked(false, [], 'active', 'cup'), 'Active cup legacy rule changed');
+architectureCheck($configurationPolicy::rosterLocked(false, [], 'active', 'league'), 'Active league roster unlocked');
+architectureCheck($configurationPolicy::readiness('qualifier', [[1], [2], [3], [4]], 4, 1, 5, null) === ['qualifierDuelsPerDeck' => 3, 'canRunCompetition' => true], 'Qualifier capacity changed');
+architectureCheck(!$configurationPolicy::readiness('league', [[1], [2]], 2, 1, 3, null)['canRunCompetition'], 'League without division allowed');
+architectureCheck($configurationPolicy::transition('cancelled', 'league', true, true, 'start', 0) === ['status' => 'cancelled', 'mode' => 'save'], 'Cancelled event starts');
+architectureCheck($configurationPolicy::transition('draft', 'qualifier', true, false, 'start', 1)['status'] === 'pending_event', 'Qualifier start guard changed');
+architectureCheck($configurationPolicy::transition('draft', 'cup', true, true, 'start', 0)['status'] === 'active', 'Event start status changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

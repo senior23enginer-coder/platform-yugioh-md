@@ -72,6 +72,10 @@ La clasificación de competición se separa en una política pura de puntos, ord
 
 La confirmación y restricción por estado se separan de la eliminación SQL; el caso de uso recibe el puerto de persistencia y un límite transaccional propio. Se conserva la secuencia de eliminación y auditoría, sin ejecutar eliminación real durante esta migración. Se comprobó la huella original y cuatro pruebas aisladas del caso de uso con un puerto falso, sin conexión a la base de datos. Configuración integral de eventos, concurrencia y pruebas MySQL pendientes.
 
+## Configuración de competiciones — 26 de noviembre de 2026
+
+Se separa el flujo de configuración mediante puertos de persistencia, contexto, participantes, multimedia y calendario. Las políticas de bloqueo de plantel, cupos y transición quedan independientes de I/O. Se conserva la fachada HTTP y el límite transaccional original. Los adaptadores de servicios todavía reutilizan operaciones nativas; la validación integral y MySQL quedan pendientes.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
