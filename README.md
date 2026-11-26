@@ -332,24 +332,72 @@ Versiones de dependencias según [package.json](package.json). No se utiliza Rea
 ### Arquitectura actual
 
 ```mermaid
-flowchart TD
-    U["Usuarios: navegador, móvil, PWA"] --> F["Frontend: JavaScript, HTML, CSS"]
-    F --> H["Entrada PHP: index.php / API"]
-    MCP["Cliente MCP autorizado"] --> M["Adaptador MCP opcional"]
-    M --> H
-    subgraph APP["Monolito modular PHP"]
-        H --> C["Controladores y composición"]
-        C --> A["Application: casos de uso y puertos"]
-        A --> D["Domain: reglas y entidades"]
-        C --> L["Includes y flujos legados"]
-        A -->|"Invoca puertos"| P["Adaptadores de infraestructura"]
-        P -.->|"Implementan contratos internos"| A
-        L --> P
+flowchart TB
+    U(["USUARIOS<br/>Navegador · móvil · PWA"]):::gray
+    AI(["Cliente MCP autorizado"]):::violet
+    subgraph WEB["01 · EXPERIENCIA DE USUARIO"]
+        direction TB
+        F["Frontend web<br/>HTML5 · CSS3 · JavaScript · Bootstrap"]:::blue
+        subgraph FEATURES["Módulos funcionales"]
+            direction LR
+            GUI["Guías y fichas"]:::blue
+            CALC["Calculadora"]:::blue
+            COMBO["Editor de combos"]:::blue
+        end
+        F --- GUI & CALC & COMBO
+        OFF["Service Worker · caché local"]:::teal
+        F --- OFF
     end
-    P --> DB[("MySQL mediante PDO")]
-    L --> DB
-    P --> EXT["Proveedores de cartas y noticias"]
-    F --> OFF["Caché y almacenamiento local"]
+    subgraph HTTP["02 · ENTRADAS Y COMPOSICIÓN"]
+        direction LR
+        H["index.php<br/>Vistas y formularios"]:::violet
+        API["API HTTP<br/>Rutas REST / Swagger"]:::violet
+        M["Adaptador MCP<br/>Consulta opcional"]:::violet
+        C["Composición de solicitudes"]:::violet
+        H & API & M --> C
+    end
+    subgraph BACK["03 · BACKEND PHP 8.3 — MONOLITO MODULAR"]
+        direction LR
+        subgraph HEX["Núcleo migrado · hexagonal"]
+            direction TB
+            A["APPLICATION<br/>Casos de uso y puertos"]:::green
+            D["DOMAIN<br/>Entidades · reglas · políticas"]:::green
+            P["INFRASTRUCTURE<br/>Adaptadores · PDO · reloj"]:::teal
+            A --> D
+            P -.->|"implementa puertos"| A
+        end
+        subgraph LEG["Compatibilidad · código legado"]
+            direction TB
+            L["Includes PHP<br/>Controladores y funciones"]:::amber
+            Q["Consultas y proyecciones<br/>Vistas PHP / HTML"]:::amber
+            L --> Q
+        end
+    end
+    subgraph DATA["04 · PERSISTENCIA E INTEGRACIONES"]
+        direction LR
+        DB[("MySQL<br/>Inventarios · eventos · resultados<br/>Historial y transacciones")]:::teal
+        EXT["Proveedores externos<br/>Cartas y noticias"]:::gray
+    end
+    U --> F
+    F --> H & API
+    AI --> M
+    C --> A & L
+    P & Q --> DB
+    P --> EXT
+    style WEB fill:#EFF6FF,stroke:#93C5FD,color:#1E3A8A
+    style HTTP fill:#F5F3FF,stroke:#C4B5FD,color:#4C1D95
+    style BACK fill:#F8FAFC,stroke:#94A3B8,color:#334155
+    style HEX fill:#F0FDF4,stroke:#16A34A,stroke-dasharray:5 3,color:#14532D
+    style LEG fill:#FFFBEB,stroke:#D97706,color:#78350F
+    style DATA fill:#F0FDFA,stroke:#5EEAD4,color:#134E4A
+    style FEATURES fill:#FFFFFF,stroke:#BFDBFE,color:#1E3A8A
+    classDef blue fill:#DBEAFE,stroke:#2563EB,color:#172554,stroke-width:1.6px
+    classDef violet fill:#EDE9FE,stroke:#7C3AED,color:#2E1065,stroke-width:1.6px
+    classDef green fill:#DCFCE7,stroke:#16A34A,color:#14532D,stroke-width:1.6px
+    classDef amber fill:#FEF3C7,stroke:#D97706,color:#78350F,stroke-width:1.6px
+    classDef teal fill:#CCFBF1,stroke:#0D9488,color:#134E4A,stroke-width:1.6px
+    classDef gray fill:#F1F5F9,stroke:#64748B,color:#1E293B,stroke-width:1.3px
+    classDef red fill:#FEE2E2,stroke:#DC2626,color:#7F1D1D,stroke-width:1.6px
 ```
 
 Es una arquitectura híbrida: el núcleo migrado convive con componentes procedimentales. El diagrama representa responsabilidades y flujos de ejecución, no servicios desplegados independientemente.
@@ -357,18 +405,51 @@ Es una arquitectura híbrida: el núcleo migrado convive con componentes procedi
 ### Organización del código
 
 ```mermaid
-flowchart TD
-    R["platform-yugioh-md"] --> G[".github / config / deploy / docs / scripts"]
-    R --> Y["torneos_yugioh"]
-    R --> B["store-lib.php / package.json / AGENTS.md"]
-    Y --> ENTRY["index.php / api / api-docs / mcp"]
-    Y --> AS["assets: source / modules / editorial"]
-    Y --> INC["includes: bootstrap / presentación / legado"]
-    Y --> SRC["src"]
-    Y --> CT["context / tests / tools"]
-    SRC --> D["Domain"]
-    SRC --> A["Application"]
-    SRC --> I["Infrastructure"]
+flowchart TB
+    R(["platform-yugioh-md<br/>Repositorio de aplicación"]):::violet
+    subgraph SUPPORT["RAÍZ · Herramientas y configuración"]
+        direction LR
+        G[".github/<br/>CI/CD"]:::gray
+        CONF["config/ · deploy/<br/>Configuración y publicación"]:::gray
+        DOC["docs/ · scripts/<br/>Documentación y automatización"]:::gray
+        B["store-lib.php<br/>package.json · AGENTS.md"]:::gray
+    end
+    Y["torneos_yugioh/<br/>Aplicación web"]:::violet
+    R --> SUPPORT & Y
+    subgraph APP["CÓDIGO DE APLICACIÓN"]
+        direction TB
+        ENTRY["index.php · api/ · api-docs/ · mcp/<br/>Entradas HTTP y contratos"]:::violet
+        subgraph UI["Presentación y frontend"]
+            direction TB
+            AS["assets/"]:::blue
+            S["source/<br/>Fuentes de bundles"]:::blue
+            MOD["modules/<br/>Módulos por funcionalidad"]:::blue
+            ED["editorial/<br/>Recursos documentales"]:::blue
+            AS --> S & MOD & ED
+        end
+        subgraph CORE["Backend por capas"]
+            direction TB
+            SRC["src/"]:::green
+            D["Domain/<br/>Reglas y entidades"]:::green
+            A["Application/<br/>Casos de uso y puertos"]:::green
+            I["Infrastructure/<br/>Adaptadores concretos"]:::teal
+            SRC --> D & A & I
+        end
+        INC["includes/<br/>Bootstrap · presentación · legado"]:::amber
+        CT["context/ · tests/ · tools/<br/>Contratos, pruebas y utilidades"]:::gray
+    end
+    Y --> ENTRY & AS & SRC & INC & CT
+    style SUPPORT fill:#F8FAFC,stroke:#94A3B8,color:#334155
+    style APP fill:#F8FAFC,stroke:#94A3B8,color:#334155
+    style UI fill:#EFF6FF,stroke:#93C5FD,color:#1E3A8A
+    style CORE fill:#F0FDF4,stroke:#86EFAC,color:#14532D
+    classDef blue fill:#DBEAFE,stroke:#2563EB,color:#172554,stroke-width:1.6px
+    classDef violet fill:#EDE9FE,stroke:#7C3AED,color:#2E1065,stroke-width:1.6px
+    classDef green fill:#DCFCE7,stroke:#16A34A,color:#14532D,stroke-width:1.6px
+    classDef amber fill:#FEF3C7,stroke:#D97706,color:#78350F,stroke-width:1.6px
+    classDef teal fill:#CCFBF1,stroke:#0D9488,color:#134E4A,stroke-width:1.6px
+    classDef gray fill:#F1F5F9,stroke:#64748B,color:#1E293B,stroke-width:1.3px
+    classDef red fill:#FEE2E2,stroke:#DC2626,color:#7F1D1D,stroke-width:1.6px
 ```
 
 La estructura detallada y las responsabilidades de cada carpeta se conservan en la sección [Estructura del repositorio](#estructura-del-repositorio).
@@ -376,17 +457,41 @@ La estructura detallada y las responsabilidades de cada carpeta se conservan en 
 ### Arquitectura hexagonal y dependencias
 
 ```mermaid
-flowchart LR
-    HTTP["Adaptador de entrada HTTP"] --> UC["Caso de uso"]
-    subgraph CORE["Núcleo de aplicación"]
-        UC --> DOM["Dominio puro"]
-        UC --> PORT["Puerto de salida"]
+flowchart TB
+    HTTP["Adaptador de entrada<br/>HTTP · controlador"]:::blue
+    COM["Composition Root<br/>Construcción e inyección"]:::gray
+    subgraph OUTER["INFRASTRUCTURE · Adaptadores externos"]
+        direction TB
+        subgraph MID["APPLICATION · Orquestación"]
+            direction TB
+            UC["Caso de uso<br/>AssignDeckWorlds"]:::violet
+            PORT["Puertos de salida<br/>Lectura · escritura · reloj · transacción"]:::violet
+            subgraph INNER["DOMAIN · Núcleo independiente"]
+                direction TB
+                DOM{{"Reglas y entidades<br/>Selección ordenada · identidad<br/>Validación de asignaciones"}}:::green
+            end
+            UC --> DOM
+            UC --> PORT
+        end
+        PDO["Adaptador PDO<br/>Repositorio y bloqueos"]:::teal
+        MEM["Adaptador de prueba<br/>Repositorio en memoria"]:::gray
+        PDO -.->|"implementa"| PORT
+        MEM -.->|"implementa"| PORT
     end
-    PDO["Adaptador PDO"] -.->|"Implementa"| PORT
-    MEM["Doble de prueba en memoria"] -.->|"Implementa"| PORT
-    PDO --> SQL[("MySQL o SQLite de pruebas")]
-    COM["Composition Root"] -.->|"Inyecta"| UC
-    COM -.-> PDO
+    DB[("MySQL<br/>SQLite en pruebas")]:::teal
+    HTTP --> UC
+    COM -.->|"inyecta"| UC & PDO
+    PDO --> DB
+    style OUTER fill:#EFF6FF,stroke:#2563EB,stroke-width:2px,color:#1E3A8A
+    style MID fill:#F5F3FF,stroke:#7C3AED,stroke-width:2px,color:#4C1D95
+    style INNER fill:#F0FDF4,stroke:#16A34A,stroke-width:2px,color:#14532D
+    classDef blue fill:#DBEAFE,stroke:#2563EB,color:#172554,stroke-width:1.6px
+    classDef violet fill:#EDE9FE,stroke:#7C3AED,color:#2E1065,stroke-width:1.6px
+    classDef green fill:#DCFCE7,stroke:#16A34A,color:#14532D,stroke-width:1.6px
+    classDef amber fill:#FEF3C7,stroke:#D97706,color:#78350F,stroke-width:1.6px
+    classDef teal fill:#CCFBF1,stroke:#0D9488,color:#134E4A,stroke-width:1.6px
+    classDef gray fill:#F1F5F9,stroke:#64748B,color:#1E293B,stroke-width:1.3px
+    classDef red fill:#FEE2E2,stroke:#DC2626,color:#7F1D1D,stroke-width:1.6px
 ```
 
 - **Domain:** reglas, entidades y políticas independientes de PDO, HTTP, sesiones y archivos.
@@ -397,27 +502,58 @@ Ejemplo implementado: `attributes-http.php` → `DeckWorldsController` → `Assi
 
 ```mermaid
 sequenceDiagram
+    autonumber
     actor U as Usuario
-    participant H as Controlador HTTP
-    participant A as Caso de uso
-    participant D as Dominio
-    participant R as Repositorio PDO
-    participant B as MySQL
-    U->>H: Guardar asignación de mundos
-    H->>A: Comando autorizado y revisión esperada
-    A->>R: Leer y bloquear el deck
-    R->>B: Consulta en transacción
-    B-->>R: Estado actual
-    R-->>A: Asignación vigente
-    A->>D: Validar reglas y cambios
-    D-->>A: Estado válido
-    A->>R: Guardar asignación e historial
-    R->>B: Persistir cambios
-    A-->>H: Resultado y revisión
-    H-->>U: Respuesta
+    box rgba(37,99,235,0.12) Entrada HTTP
+        participant H as Controlador
+    end
+    box rgba(124,58,237,0.12) Aplicación
+        participant A as AssignDeckWorlds
+        participant T as TransactionBoundary
+    end
+    box rgba(22,163,74,0.12) Dominio puro
+        participant D as Política de mundos
+    end
+    box rgba(13,148,136,0.12) Infraestructura
+        participant R as Repositorio PDO
+        participant B as MySQL
+    end
+    rect rgba(37,99,235,0.08)
+        U->>H: Guardar asignación
+        H->>A: Comando autorizado y revisión esperada
+        activate A
+    end
+    rect rgba(124,58,237,0.08)
+        A->>T: Ejecutar dentro del límite transaccional
+        T->>B: Iniciar transacción si es propia
+        A->>R: Leer y bloquear el deck
+        R->>B: Consultar estado actual
+        B-->>R: Asignación vigente
+        R-->>A: Estado y revisión
+    end
+    rect rgba(22,163,74,0.08)
+        A->>D: Validar reglas y cambios
+        D-->>A: Asignación válida o error
+    end
+    alt Revisión y reglas válidas
+        rect rgba(13,148,136,0.08)
+            A->>R: Guardar asignación e historial
+            R->>B: Persistir cambios atómicos
+            A-->>T: Finalizar operación
+            T->>B: Confirmar solo transacción propia
+        end
+        A-->>H: Resultado y nueva revisión
+        H-->>U: Respuesta exitosa
+    else Error de validación o persistencia
+        A-->>T: Propagar error
+        T->>B: Revertir solo transacción propia
+        A-->>H: Error o conflicto
+        H-->>U: Respuesta de error
+    end
+    deactivate A
 ```
 
-El ejemplo simplifica el camino exitoso. El límite transaccional inyectado confirma o revierte únicamente transacciones propias; las guardas de autorización, conflictos y rollback se documentan en el contrato del módulo.
+El diagrama ilustra el flujo transaccional principal y una rama de error simplificada; no pretende reproducir cada llamada interna. El límite transaccional inyectado confirma o revierte únicamente transacciones propias; las guardas y conflictos detallados se documentan en el contrato del módulo.
 
 ### Dominios y avance de migración
 
@@ -456,17 +592,51 @@ El frontend combina vistas PHP, JavaScript legado compilado y módulos nuevos po
 | `styles.css` | Diseño adaptable |
 
 ```mermaid
-flowchart TD
-    V["Vistas PHP / entrada offline"] --> W["Workspace y UI"]
-    W --> E["Engine: estado físico y reglas"]
-    W --> PL["Planner"]
-    PL --> WK["Planner Worker"]
-    WK --> E
-    W --> B["Battle / Scenario"]
-    W --> S["Storage: caché local"]
-    R["Reglas importadas y hechos de cartas"] --> E
-    T["Pruebas Node.js"] -.-> E
-    PW["Pruebas Playwright"] -.-> W
+flowchart TB
+    USER(["Jugador<br/>Escritorio · móvil · modo offline"]):::gray
+    subgraph UI["01 · Presentación e interacción"]
+        direction LR
+        V["Vistas PHP<br/>Entrada web"]:::blue
+        O["play-calculator.html<br/>offline.js"]:::blue
+        W["workspace.js · ui.js<br/>Tablero · selección · arrastre"]:::blue
+        V & O --> W
+    end
+    subgraph LOGIC["02 · Motores y planificación"]
+        direction TB
+        PL["planner.js<br/>Búsqueda acotada"]:::violet
+        WK["planner-worker.js<br/>Web Worker · cancelación"]:::violet
+        E{{"engine.js<br/>Estado físico · zonas<br/>Reglas · validación"}}:::green
+        B["battle.js<br/>Combate condicional"]:::green
+        SC["scenario.js<br/>Ramas de respuesta"]:::green
+        PL --> WK --> E
+    end
+    subgraph DATA["03 · Datos y almacenamiento"]
+        direction LR
+        RULE["Reglas ejecutables A10B<br/>Operadores soportados"]:::amber
+        FACT["card-facts.json<br/>Hechos de cartas"]:::teal
+        S[("storage.js<br/>Caché de listas y rutas")]:::teal
+    end
+    subgraph TESTS["04 · Verificación técnica"]
+        direction LR
+        T["Node.js<br/>Motor y contratos"]:::gray
+        PW["Playwright<br/>Regresión de interfaz"]:::gray
+    end
+    USER --> V & O
+    W --> E & PL & B & SC & S
+    RULE & FACT --> E
+    T -.-> E
+    PW -.-> W
+    style UI fill:#EFF6FF,stroke:#93C5FD,color:#1E3A8A
+    style LOGIC fill:#F0FDF4,stroke:#86EFAC,color:#14532D
+    style DATA fill:#F0FDFA,stroke:#5EEAD4,color:#134E4A
+    style TESTS fill:#F8FAFC,stroke:#94A3B8,color:#334155
+    classDef blue fill:#DBEAFE,stroke:#2563EB,color:#172554,stroke-width:1.6px
+    classDef violet fill:#EDE9FE,stroke:#7C3AED,color:#2E1065,stroke-width:1.6px
+    classDef green fill:#DCFCE7,stroke:#16A34A,color:#14532D,stroke-width:1.6px
+    classDef amber fill:#FEF3C7,stroke:#D97706,color:#78350F,stroke-width:1.6px
+    classDef teal fill:#CCFBF1,stroke:#0D9488,color:#134E4A,stroke-width:1.6px
+    classDef gray fill:#F1F5F9,stroke:#64748B,color:#1E293B,stroke-width:1.3px
+    classDef red fill:#FEE2E2,stroke:#DC2626,color:#7F1D1D,stroke-width:1.6px
 ```
 
 La calculadora no es un simulador universal; acredita únicamente operaciones modeladas. No ejecuta IA durante el cálculo ni deduce efectos ausentes. El editor de combos separa modelo de grafo, SVG, UI y persistencia.
@@ -474,20 +644,50 @@ La calculadora no es un simulador universal; acredita únicamente operaciones mo
 ### Integración entre repositorios
 
 ```mermaid
-flowchart TD
-    subgraph GPT["gpt-yugioh-promps-platform"]
-        AUTH["Deck asignado y admisión de inventario"] --> ST["A01 a A09: análisis y casos de papel"]
-        ST --> A["A10A: guía visual obligatoria"]
-        ST --> B["A10B: reglas opcionales y explícitas"]
-        A --> PK["ZIP: station-x-deck-package/1"]
-        B --> PK
+flowchart TB
+    OWNER(["Usuario<br/>Autoriza un deck específico"]):::gray
+    subgraph GPT["REPOSITORIO 01 · gpt-yugioh-promps-platform"]
+        direction TB
+        AUTH{"Admisión<br/>Identidad · inventario · formato"}:::amber
+        STOP["Bloqueado<br/>Sin análisis ni datos inventados"]:::red
+        ST["A01 a A09<br/>Investigación · fichas · estrategias · casos de papel"]:::violet
+        A["A10A · Obligatoria<br/>Guía visual y campos finales"]:::green
+        B["A10B · Opcional y explícita<br/>Reglas ejecutables"]:::violet
+        AUTH -->|"Admitido"| ST
+        AUTH -->|"No admitido"| STOP
+        ST --> A
+        ST -.->|"Si se solicita"| B
     end
-    PK --> PR["Previsualización y validación de identidad e inventario"]
-    PR -->|"Confirmación autorizada"| IMP["Importación en platform-yugioh-md"]
-    IMP --> REG["Registro editorial y persistencia versionada"]
-    REG --> GUIDE["Guías visuales y fichas"]
-    REG --> COMBO["Combos y estrategias"]
-    REG -->|"Reglas ejecutables disponibles"| CALC["Calculadora de jugadas"]
+    PK[["CONTRATO DE INTERCAMBIO<br/>ZIP · station-x-deck-package/1<br/>JSON · Markdown · imágenes"]]:::amber
+    subgraph PLATFORM["REPOSITORIO 02 · platform-yugioh-md"]
+        direction TB
+        PR["Previsualizar paquete<br/>Validar identidad e inventario"]:::blue
+        IMP["Confirmar importación autorizada"]:::blue
+        REG[("Registro editorial versionado<br/>Persistencia e historial")]:::teal
+        PR --> IMP --> REG
+        subgraph FEATURES["Consumo por módulos"]
+            direction LR
+            GUIDE["Guías visuales<br/>Fichas de decks"]:::blue
+            COMBO["Combos<br/>Editor y estrategias"]:::blue
+            CALC["Calculadora<br/>Solo reglas disponibles"]:::green
+        end
+        REG --> GUIDE & COMBO
+        REG -->|"A10B soportado"| CALC
+    end
+    OWNER --> AUTH
+    A & B --> PK
+    PK --> PR
+    COMBO -.->|"Reconciliar revisión nativa<br/>antes de reimportar"| GPT
+    style GPT fill:#F5F3FF,stroke:#7C3AED,stroke-width:2px,color:#4C1D95
+    style PLATFORM fill:#EFF6FF,stroke:#2563EB,stroke-width:2px,color:#1E3A8A
+    style FEATURES fill:#FFFFFF,stroke:#93C5FD,color:#1E3A8A
+    classDef blue fill:#DBEAFE,stroke:#2563EB,color:#172554,stroke-width:1.6px
+    classDef violet fill:#EDE9FE,stroke:#7C3AED,color:#2E1065,stroke-width:1.6px
+    classDef green fill:#DCFCE7,stroke:#16A34A,color:#14532D,stroke-width:1.6px
+    classDef amber fill:#FEF3C7,stroke:#D97706,color:#78350F,stroke-width:1.6px
+    classDef teal fill:#CCFBF1,stroke:#0D9488,color:#134E4A,stroke-width:1.6px
+    classDef gray fill:#F1F5F9,stroke:#64748B,color:#1E293B,stroke-width:1.3px
+    classDef red fill:#FEE2E2,stroke:#DC2626,color:#7F1D1D,stroke-width:1.6px
 ```
 
 GPT es fuente de investigación y casos de dominio; Platform es fuente de ejecución, persistencia, UI y pruebas técnicas. El seguimiento existente no es un orquestador autónomo de IA. A10B solo se incorpora cuando fue solicitado y sus operadores están soportados. Antes de reimportar se reconcilian las revisiones nativas con su fuente.
@@ -495,21 +695,61 @@ GPT es fuente de investigación y casos de dominio; Platform es fuente de ejecuc
 ### DevOps, CI/CD y despliegue
 
 ```mermaid
-flowchart TD
-    DEV["Cambio en GitHub"] --> PR["Pull Request hacia base"]
-    PR --> CI["Checks de integración según rutas configuradas"]
-    CI --> MERGE["Merge autorizado a base"]
-    MAN["Ejecución manual desde base"] --> BUILD
-    MERGE --> BUILD["Checkout y build frontend con Node.js 22"]
-    BUILD --> REL["Identidad de release: versión y commit"]
-    REL --> FTP["Transferencia FTP al hosting"]
-    FTP --> OK{"Transferencia exitosa?"}
-    OK -->|"No"| RET["Un reintento"]
-    RET -->|"Fallo"| STOP["Detener publicación"]
-    RET -->|"Éxito"| PUB["Publicar release.json"]
-    OK -->|"Sí"| PUB
-    PUB --> VER["Verificar bytes FTP y versión pública HTTPS"]
-    VER --> PROD["Station X: /yugioh/"]
+flowchart TB
+    subgraph DEV["01 · CONTROL DE VERSIONES"]
+        direction LR
+        CHANGE["Commit en GitHub"]:::gray
+        PR["Pull Request<br/>Destino: base"]:::blue
+        CHANGE --> PR
+    end
+    subgraph CI["02 · INTEGRACIÓN CONTINUA"]
+        direction LR
+        CHECK["Checks de PR<br/>Según rutas configuradas"]:::violet
+        MERGE["Merge autorizado<br/>Rama base"]:::green
+        CHECK --> MERGE
+    end
+    subgraph BUILD["03 · PREPARACIÓN DEL RELEASE"]
+        direction LR
+        MAN["Ejecución manual<br/>Desde base"]:::gray
+        CO["Checkout del commit<br/>Node.js 22 · build frontend"]:::violet
+        REL["Identidad de release<br/>Versión · SHA · fecha"]:::violet
+        MAN --> CO --> REL
+    end
+    subgraph DEPLOY["04 · PUBLICACIÓN AL HOSTING"]
+        direction TB
+        FTP["FTP Deploy Action<br/>Transferencia al directorio /yugioh/"]:::amber
+        OK{"Transferencia exitosa?"}:::amber
+        RET["Un reintento"]:::amber
+        STOP(["Detener publicación"]):::red
+        PUB["Publicar release.json"]:::teal
+        FTP --> OK
+        OK -->|"No"| RET
+        RET -->|"Fallo"| STOP
+        RET -->|"Éxito"| PUB
+        OK -->|"Sí"| PUB
+    end
+    subgraph VERIFY["05 · VERIFICACIÓN"]
+        direction LR
+        VER["Verificar bytes por FTP<br/>y manifiesto público HTTPS"]:::teal
+        PROD(["PRODUCCIÓN<br/>stationxtulua.com/yugioh"]):::green
+        VER --> PROD
+    end
+    PR --> CHECK
+    MERGE --> CO
+    REL --> FTP
+    PUB --> VER
+    style DEV fill:#F8FAFC,stroke:#94A3B8,color:#334155
+    style CI fill:#F5F3FF,stroke:#C4B5FD,color:#4C1D95
+    style BUILD fill:#F5F3FF,stroke:#C4B5FD,color:#4C1D95
+    style DEPLOY fill:#FFFBEB,stroke:#FCD34D,color:#78350F
+    style VERIFY fill:#F0FDFA,stroke:#5EEAD4,color:#134E4A
+    classDef blue fill:#DBEAFE,stroke:#2563EB,color:#172554,stroke-width:1.6px
+    classDef violet fill:#EDE9FE,stroke:#7C3AED,color:#2E1065,stroke-width:1.6px
+    classDef green fill:#DCFCE7,stroke:#16A34A,color:#14532D,stroke-width:1.6px
+    classDef amber fill:#FEF3C7,stroke:#D97706,color:#78350F,stroke-width:1.6px
+    classDef teal fill:#CCFBF1,stroke:#0D9488,color:#134E4A,stroke-width:1.6px
+    classDef gray fill:#F1F5F9,stroke:#64748B,color:#1E293B,stroke-width:1.3px
+    classDef red fill:#FEE2E2,stroke:#DC2626,color:#7F1D1D,stroke-width:1.6px
 ```
 
 El workflow de despliegue no vuelve a ejecutar la suite completa. Un push directo a `base` no despliega por sí solo. El FTP configurado no cifra el transporte; SFTP/FTPS o un mecanismo seguro equivalente son mejoras propuestas. Verificar el manifiesto acredita la identidad del release, no todos los flujos funcionales.
@@ -548,21 +788,62 @@ Estas recomendaciones no constituyen funcionalidades implementadas.
 ### Arquitectura objetivo propuesta
 
 ```mermaid
-flowchart TD
-    USER["Web / PWA / clientes API"] --> API["Adaptadores de entrada: HTTP y API REST"]
-    subgraph MONO["Monolito modular hexagonal objetivo"]
-        API --> MOD["Módulos de negocio con límites explícitos"]
-        MOD --> USE["Casos de uso y puertos"]
-        USE --> DOM["Reglas de dominio independientes"]
-        AD["Adaptadores de salida"] -.->|"Implementan puertos"| USE
-        MOD -.->|"Cuando se justifique"| EVT["Eventos de dominio"]
+flowchart TB
+    USER(["Clientes<br/>Web · PWA · API"]):::gray
+    subgraph ENTRY["01 · CONTRATOS DE ENTRADA"]
+        direction LR
+        API["API REST<br/>Contratos OpenAPI"]:::blue
+        WEB["Presentación web<br/>Módulos independientes"]:::blue
+        AUTH["Autorización y validación"]:::violet
+        API & WEB --> AUTH
     end
-    AD --> DB[("MySQL y migraciones versionadas")]
-    AD --> OBS["Logs, métricas y trazabilidad"]
-    AD --> Q["Cola opcional"]
-    Q --> AI["Orquestador de IA autorizado por deck"]
-    AI --> GPT["Repositorio de prompts y fuentes"]
-    CI["CI/CD reproducible y transporte cifrado"] -.-> MONO
+    subgraph MONO["02 · MONOLITO MODULAR HEXAGONAL · OBJETIVO"]
+        direction TB
+        subgraph MODULES["Módulos de negocio"]
+            direction LR
+            DECK["Decks · cartas<br/>Mundos · combos"]:::green
+            SPORT["Ligas · eventos<br/>Temporadas · partidas"]:::green
+            STATS["Ranking · estadísticas<br/>Noticias"]:::green
+        end
+        USE["APPLICATION<br/>Casos de uso y puertos explícitos"]:::violet
+        DOM{{"DOMAIN<br/>Entidades · invariantes · políticas<br/>Reglas independientes de I/O"}}:::green
+        AD["INFRASTRUCTURE<br/>Adaptadores sustituibles"]:::teal
+        EVT["Eventos de dominio<br/>Cuando aporten valor"]:::amber
+        DECK & SPORT & STATS --> USE
+        USE --> DOM
+        AD -.->|"Implementa contratos"| USE
+        USE -.-> EVT
+    end
+    subgraph SERVICES["03 · PERSISTENCIA Y SERVICIOS PROPUESTOS"]
+        direction LR
+        DB[("MySQL<br/>Migraciones versionadas")]:::teal
+        OBS["Observabilidad<br/>Logs · métricas · trazas"]:::teal
+        Q["Cola de tareas<br/>Opcional"]:::amber
+    end
+    subgraph INT["04 · PROCESAMIENTO EDITORIAL / IA"]
+        direction TB
+        AI["Orquestador autorizado por deck<br/>Evidencia · estados · reintentos"]:::violet
+        GPT[["Repositorio de prompts<br/>Contratos y fuentes"]]:::violet
+        AI --> GPT
+    end
+    CI["CI/CD seguro<br/>Pruebas · build reproducible · transporte cifrado"]:::gray
+    USER --> API & WEB
+    AUTH --> DECK & SPORT & STATS
+    AD --> DB & OBS & Q
+    Q --> AI
+    CI -.-> MONO
+    style ENTRY fill:#EFF6FF,stroke:#93C5FD,color:#1E3A8A
+    style MONO fill:#F0FDF4,stroke:#16A34A,stroke-width:2px,color:#14532D
+    style MODULES fill:#FFFFFF,stroke:#86EFAC,color:#14532D
+    style SERVICES fill:#F0FDFA,stroke:#5EEAD4,color:#134E4A
+    style INT fill:#F5F3FF,stroke:#7C3AED,color:#4C1D95
+    classDef blue fill:#DBEAFE,stroke:#2563EB,color:#172554,stroke-width:1.6px
+    classDef violet fill:#EDE9FE,stroke:#7C3AED,color:#2E1065,stroke-width:1.6px
+    classDef green fill:#DCFCE7,stroke:#16A34A,color:#14532D,stroke-width:1.6px
+    classDef amber fill:#FEF3C7,stroke:#D97706,color:#78350F,stroke-width:1.6px
+    classDef teal fill:#CCFBF1,stroke:#0D9488,color:#134E4A,stroke-width:1.6px
+    classDef gray fill:#F1F5F9,stroke:#64748B,color:#1E293B,stroke-width:1.3px
+    classDef red fill:#FEE2E2,stroke:#DC2626,color:#7F1D1D,stroke-width:1.6px
 ```
 
 Consolidar primero el monolito modular con arquitectura hexagonal, DDD donde aporte valor, SOLID, Clean Code, contratos API y pruebas reproducibles. Incorporar eventos e IA independiente cuando se justifique. No se recomienda migrar inmediatamente a microservicios: evaluar servicios separados cuando existan necesidades operativas y límites de dominio claros. Este diagrama es conceptual, no representa componentes desplegados.
