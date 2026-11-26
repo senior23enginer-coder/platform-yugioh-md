@@ -2220,6 +2220,15 @@ architectureCheck(
     'Manual match format limits changed',
 );
 
+// Competition creation preserves selected format, league movement guards and valid series sizes.
+$creationPolicy = \StationX\Yugioh\Domain\Competitions\CompetitionCreationPolicy::class;
+architectureCheck($creationPolicy::selection(['competition_division_ids' => ['2', 2, 0]], 'format:ocg') === ['divisionIds' => [2], 'ruleset' => 'ocg'], 'Competition format selection changed');
+$competitionInput = $creationPolicy::format(['competition_match_format' => '2v2'], [], '7', [8]);
+architectureCheck($competitionInput['participantsPerSide'] === 2 && $competitionInput['divisionIds'] === [7, 8], 'Competition division order changed');
+architectureCheck($creationPolicy::movements(['competition_promotion_slots' => 3], 'league', 7, [7])['leaguePromotionSlots'] === 0, 'Single division promotion allowed');
+architectureCheck($creationPolicy::parameters(['competition_parameter_series_matches' => '5']) === ['series_matches' => 5, 'series_wins' => 3], 'Series threshold changed');
+architectureCheck($seasonOutcome(static fn() => $creationPolicy::parameters(['competition_parameter_series_matches' => '4'])) !== null, 'Even series accepted');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
