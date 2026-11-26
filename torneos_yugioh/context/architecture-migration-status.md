@@ -18,6 +18,12 @@ Fecha: 18 de noviembre de 2026. Repositorio de aplicación, rama `base`.
 | Guardado y consulta de listas | Reglas puras, catálogo por puerto, bloqueo, transacción, persistencia y auditoría | 88 comprobaciones y 15 escenarios originales; SQLite, sin producción |
 | Formato | 266 fuentes seleccionadas con formato estable y control en la suite | `npm run format:architecture:check` |
 
+## Avance del 26 de noviembre de 2026 — validación de temporadas
+
+Migrados los flujos de consulta de temporada, guardas de apertura y validación de fechas de eventos: `SeasonSchedulePolicy` (dominio puro), `ValidateSeasonSchedule` (caso de uso), `SeasonScheduleReader` (puerto), `PdoSeasonScheduleReader` (SQL y bloqueo opcional) y `SeasonScheduleModule` (composición). Las cuatro funciones públicas de `includes/seasons.php` conservan firmas, mensajes y orden de consultas; se conserva la zona horaria PHP vigente y no se alteran los límites transaccionales. Se añaden casos de regresión a `source_architecture_test.php`.
+
+Verificación previa aislada: 229 comprobaciones de equivalencia y puertos con PHP 8.4.24 y dobles de lectura, sin conexión a producción. La suite completa, el formateador PHP y las pruebas MySQL quedan pendientes de ejecución; no se certifica aún la migración completa de temporadas. Guardado, cierre, eliminación y resolución del contexto de temporada siguen pendientes.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

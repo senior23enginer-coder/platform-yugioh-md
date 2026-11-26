@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+require_once __DIR__ . '/../src/autoload.php';
+
 function ygo_season_periods(): array
 {
     return ['annual' => ['Anual', 12], 'semiannual' => ['Semestral', 6], 'quarterly' => ['Trimestral', 3]];
@@ -39,38 +41,17 @@ function ygo_ensure_seasons_schema(PDO $pdo): void
 
 function ygo_season_find(PDO $pdo, int $id, bool $lock = false): ?array
 {
-    $stmt = $pdo->prepare('SELECT * FROM sx_ygo_seasons WHERE id=?' . ($lock ? ' FOR UPDATE' : ''));
-    $stmt->execute([$id]);
-    return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
+    return (new \StationX\Yugioh\Infrastructure\Persistence\Seasons\PdoSeasonScheduleReader($pdo))->find($id, $lock);
 }
 
 function ygo_season_require_open(PDO $pdo, int $id, bool $playing = false, bool $lock = false): array
 {
-    $season = ygo_season_find($pdo, $id, $lock);
-    if (!$season) {
-        throw new InvalidArgumentException('El evento debe estar vinculado a una temporada existente.');
-    }
-    if (in_array($season['status'], ['completed', 'archived'], true) || (!empty($season['ends_on']) && $season['ends_on'] < date('Y-m-d'))) {
-        throw new InvalidArgumentException('La temporada está finalizada. Sus eventos están cerrados y solo permiten consulta.');
-    }
-    if ($playing && !empty($season['starts_on']) && $season['starts_on'] > date('Y-m-d')) {
-        throw new InvalidArgumentException('La temporada todavía no ha comenzado.');
-    }
-    return $season;
+    return \StationX\Yugioh\Infrastructure\Composition\SeasonScheduleModule::create($pdo)->requireOpen($id, $playing, $lock);
 }
 
 function ygo_season_validate_event_dates(array $season, ?string $start, ?string $end): void
 {
-    foreach ([$start, $end] as $value) {
-        if (!$value) continue;
-        $date = DateTimeImmutable::createFromFormat('!Y-m-d', $value);
-        if (!$date || $date->format('Y-m-d') !== $value || (!empty($season['starts_on']) && $value < $season['starts_on']) || (!empty($season['ends_on']) && $value > $season['ends_on'])) {
-            throw new InvalidArgumentException('Las fechas del evento deben estar dentro del período de su temporada.');
-        }
-    }
-    if ($start && $end && $end < $start) {
-        throw new InvalidArgumentException('El fin del evento no puede ser anterior a su inicio.');
-    }
+    \StationX\Yugioh\Domain\Seasons\SeasonSchedulePolicy::validateEventDates($season, $start, $end);
 }
 
 function ygo_season_initialize_context(PDO $pdo): void
@@ -107,14 +88,7 @@ function ygo_season_initialize_context(PDO $pdo): void
 
 function ygo_season_validate_competition_schedule(PDO $pdo, int $competitionId): void
 {
-    $stmt = $pdo->prepare('SELECT s.* FROM sx_ygo_seasons s JOIN sx_ygo_competitions c ON c.season_id=s.id WHERE c.id=?');
-    $stmt->execute([$competitionId]);
-    $season = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (!$season) throw new InvalidArgumentException('El evento debe pertenecer a una temporada existente.');
-    $stmt = $pdo->prepare('SELECT MIN(scheduled_on) first_date,MAX(scheduled_on) last_date FROM sx_ygo_matches WHERE competition_id=?');
-    $stmt->execute([$competitionId]);
-    $range = $stmt->fetch(PDO::FETCH_ASSOC);
-    ygo_season_validate_event_dates($season, $range['first_date'], $range['last_date']);
+    \StationX\Yugioh\Infrastructure\Composition\SeasonScheduleModule::create($pdo)->validateCompetition($competitionId);
 }
 
 function ygo_season_save(PDO $pdo, array $input): int
