@@ -65,7 +65,12 @@ if ($dbStatus['connected'] && isset($_GET['export'])) {
         header('Content-Disposition: attachment; filename="yugioh-' . $export . '.csv"');
     }
 
-    ['title' => $title, 'rows' => $rows] = \StationX\Yugioh\Application\Reports\EntityReportProjection::build($export, $_GET, $allDecks, $teams, $competitions, $fixtures, $cards, $media, $appData, $generatedAt);
+    if ($export === 'entity_report') {
+        ['title' => $title, 'rows' => $rows] = \StationX\Yugioh\Application\Reports\EntityReportProjection::build($export, $_GET, $allDecks, $teams, $competitions, $fixtures, $cards, $media, $appData, $generatedAt);
+    } else {
+        $title = 'Reporte ' . ucfirst(str_replace('_', ' ', $export));
+        $rows = [['YUGIOH MD', 'Station X Tulua', $generatedAt], ['']];
+    }
 
     if ($format === 'pdf') {
         ygo_output_simple_pdf($title, $rows, 'yugioh-' . $export . '-' . date('Y-m-d') . '.pdf');
