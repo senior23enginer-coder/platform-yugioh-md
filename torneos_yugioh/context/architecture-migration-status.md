@@ -212,6 +212,10 @@ Se extraen las agrupaciones de eventos por formato, resultados recientes, contad
 
 Se extraen las guardas de fecha y captura del cierre compartido del calendario a un módulo independiente con configuración y fecha de servidor explícitas. Se conservan el orden de guardas, textos, autorización de fechas vencidas/anticipadas y días especiales. Se reconstruyen las secciones modificadas del bundle mediante sus fuentes; la reconstrucción completa y las pruebas se verifican en CI. Se añaden trece comprobaciones.
 
+## Selección clasificatoria y formatos del read-model de presentación
+
+Se extraen los selectores de partidas, prioridad de clasificatorios, límites de duelos, etiquetas de estado, opciones de formato, asignación de formatos por deck y contadores del dashboard. La consulta nativa de elegibilidad se suministra como dependencia explícita y se preserva el comportamiento sin conexión. La fachada conserva la captura de HTTP, las llamadas externas y la composición de las vistas. CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
