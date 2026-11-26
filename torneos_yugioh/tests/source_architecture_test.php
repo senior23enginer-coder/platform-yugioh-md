@@ -846,6 +846,78 @@ $resultIntegrity = \StationX\Yugioh\Domain\Matches\ResultIntegrityPolicy::class;
 architectureCheck($resultIntegrity::preserveStoredValues(['A', '', 'B', '', ''], ['', 'E', 'A', '', '']) === ['A', 'E', 'B', '', ''], 'Stored sequence protection changed');
 architectureCheck($seasonOutcome(static fn() => $resultIntegrity::assertCorrectionVersion([['manual_correction_at_ms' => 5]], 4)) === 'La partida fue modificada. Recarga antes de guardar para no sobrescribir la corrección.', 'Correction version guard changed');
 
+// Complete command characterization through in-memory ports.
+$resultPorts = new class implements
+    \StationX\Yugioh\Application\Matches\MatchResultStore,
+    \StationX\Yugioh\Application\Matches\MatchResultRules,
+    \StationX\Yugioh\Application\Matches\MatchResultEffects,
+    \StationX\Yugioh\Application\Matches\MatchSnapshotStore,
+    \StationX\Yugioh\Application\Shared\TransactionBoundary,
+    \StationX\Yugioh\Application\Shared\Clock {
+    public array $calls = [];
+    public array $existing = [];
+    public array $saved = [];
+    public string $team = '';
+    public string|false $synced = false;
+    public bool $dateAllowed = true;
+
+    public function syncedResult(string $requestId): string|false { $this->calls[] = 'synced'; return $this->synced; }
+    public function audit(int $matchId, string $action, array $payload): void { $this->calls[] = $action; }
+    public function ensure(int $matchId): void { $this->calls[] = 'ensure'; }
+    public function lockExisting(int $matchId): array { $this->calls[] = 'lock'; return $this->existing; }
+    public function persistedTurns(int $matchId): array { $this->calls[] = 'turns'; return []; }
+    public function appendTurns(int $matchId, iterable $rows): void { $this->calls[] = 'append'; foreach ($rows as $row) {} }
+    public function save(array $values): void { $this->calls[] = 'save'; $this->saved = $values; }
+    public function competitionId(int $matchId): int { $this->calls[] = 'competition'; return 8; }
+    public function saveLiveState(int $matchId, array $state): void { $this->calls[] = 'live-save'; }
+    public function recordSync(string $requestId, int $matchId, string $payloadHash): void { $this->calls[] = 'record-sync'; }
+    public function teamKindForMatch(int $matchId): string { $this->calls[] = 'team'; return $this->team; }
+    public function verifiedStart(int $matchId, int $duel, string $starts): bool { $this->calls[] = 'verify-start'; return false; }
+    public function validateDate(int $matchId): array { $this->calls[] = 'date'; return ['ok' => $this->dateAllowed]; }
+    public function assertEditable(int $matchId): void { $this->calls[] = 'editable'; }
+    public function evaluate(int $matchId, array $values): array { $this->calls[] = 'evaluate'; return ['winner' => null, 'score' => '0-0', 'validation' => 'OK', 'status' => 'PENDIENTE']; }
+    public function setStatus(int $matchId, string $status, string $now): void { $this->calls[] = 'status:' . $now; }
+    public function persistStandings(int $competitionId): void { $this->calls[] = 'standings'; }
+    public function syncStatistics(int $competitionId, int $matchId): void { $this->calls[] = 'statistics'; }
+    public function liveMatch(int $matchId): array { $this->calls[] = 'live'; return []; }
+    public function initialLiveState(array $match): array { return []; }
+    public function match(int $matchId): array { $this->calls[] = 'snapshot'; return []; }
+    public function deck(int $deckId): array { throw new RuntimeException('Unexpected deck read'); }
+    public function decklist(int $deckId): array { throw new RuntimeException('Unexpected decklist read'); }
+    public function insert(array $row): void { throw new RuntimeException('Unexpected snapshot'); }
+    public function run(callable $operation): mixed {
+        $this->calls[] = 'begin';
+        try { $result = $operation(); $this->calls[] = 'commit'; return $result; }
+        catch (Throwable $error) { $this->calls[] = 'rollback'; throw $error; }
+    }
+    public function now(): DateTimeImmutable { return new DateTimeImmutable('2026-11-26T17:00:00+00:00'); }
+};
+$resultCommand = new \StationX\Yugioh\Application\Matches\SaveMatchResult(
+    $resultPorts,
+    $resultPorts,
+    $resultPorts,
+    new \StationX\Yugioh\Application\Matches\PublishMatchSnapshots($resultPorts),
+    $resultPorts,
+    $resultPorts,
+);
+$resultPorts->synced = 'resultado';
+architectureCheck($resultCommand->execute(['match_id' => 7, 'offline_request_id' => 'a']) === 'resultado' && $resultPorts->calls === ['team', 'synced'], 'Offline duplicate performed writes');
+$resultPorts->synced = false;
+$resultPorts->calls = [];
+architectureCheck($resultCommand->execute(['match_id' => 7, 'd1' => 'A']) === 'resultado_bloqueado_inicio' && $resultPorts->calls === ['team', 'verify-start'], 'Missing start guard changed');
+$resultPorts->dateAllowed = false;
+$resultPorts->calls = [];
+architectureCheck($resultCommand->execute(['match_id' => 7]) === 'resultado_bloqueado_fecha' && $resultPorts->calls === ['team', 'verify-start', 'date', 'blocked_result_by_date'], 'Date guard wrote result');
+$resultPorts->dateAllowed = true;
+$resultPorts->calls = [];
+$resultPorts->existing = ['duel_details' => '[{"manual_correction_at_ms":5}]'];
+architectureCheck($seasonOutcome(static fn() => $resultCommand->execute(['match_id' => 7])) !== null && end($resultPorts->calls) === 'rollback', 'Correction conflict did not roll back');
+$resultPorts->existing = [];
+$resultPorts->calls = [];
+architectureCheck($resultCommand->execute(['match_id' => 7, 'offline_request_id' => 'a']) === 'resultado', 'Empty pending result response changed');
+architectureCheck($resultPorts->calls === ['team', 'synced', 'verify-start', 'date', 'begin', 'editable', 'ensure', 'lock', 'evaluate', 'save', 'snapshot', 'status:2026-11-26 12:00:00', 'competition', 'standings', 'save_result', 'statistics', 'live', 'record-sync', 'commit'], 'Result mutation order changed');
+architectureCheck($resultPorts->saved['matchId'] === 7 && $resultPorts->saved['d1'] === null && $resultPorts->saved['validation'] === 'OK', 'Result payload changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

@@ -136,168 +136,168 @@ final readonly class SaveMatchResult
                 $matchId, $post, $values, $diceRoll, $turnChoice, $duelDetails, $diceWinner,
                 $turnChosenBy, $turnDecision, $startsPlayer, $decodedDetails, $offlineRequestId, $dateGuard,
             ): string {
-            $this->rules->assertEditable($matchId);
-            $this->store->ensure($matchId);
-            $existingRow = $this->store->lockExisting($matchId);
-            $existingDetails = json_decode((string) ($existingRow['duel_details'] ?? ''), true);
-            ResultIntegrityPolicy::assertCorrectionVersion($existingDetails, (int) ($post['result_correction_version'] ?? 0));
-            $newTurnAuditRows = [];
-            if (isset($decodedDetails) && is_array($decodedDetails)) {
-                $existingByDuel = [];
-                foreach (is_array($existingDetails) ? $existingDetails : [] as $existingDetail) {
-                    if (is_array($existingDetail)) {
-                        $existingByDuel[(int) ($existingDetail['duel'] ?? 0)] = $existingDetail;
-                    }
-                }
-                foreach ($this->store->persistedTurns($matchId) as $turnRow) {
-                    $duelNumber = (int) $turnRow['duel_number'];
-                    if (!isset($existingByDuel[$duelNumber])) {
-                        $existingByDuel[$duelNumber] = [
-                            'duel' => $duelNumber,
-                            'turn_count' => 0,
-                            'turn_history' => [],
-                        ];
-                    }
-                    $existingByDuel[$duelNumber]['turn_history'][] = [
-                        'turn' => (int) $turnRow['turn_number'],
-                        'side' => (string) $turnRow['side'],
-                        'ended_at' => (string) ($turnRow['ended_at'] ?? ''),
-                        'elapsed_seconds' => (int) $turnRow['elapsed_seconds'],
-                    ];
-                    $existingByDuel[$duelNumber]['turn_count'] = max(
-                        (int) ($existingByDuel[$duelNumber]['turn_count'] ?? 0),
-                        (int) $turnRow['turn_number'],
-                    );
-                }
-                foreach ($decodedDetails as &$incomingDetail) {
-                    $duelNumber = (int) ($incomingDetail['duel'] ?? 0);
-                    $storedDetail = $existingByDuel[$duelNumber] ?? [];
-                    if (!empty($storedDetail['manual_correction_at_ms'])) {
-                        $incomingDetail['manual_correction_at_ms'] =
-                            $storedDetail['manual_correction_at_ms'];
-                    }
-                    $mergedTurns = TurnHistory::mergeMonotonicTurns($storedDetail, $incomingDetail);
-                    $incomingDetail = $mergedTurns['detail'];
-                    foreach ($mergedTurns['appended'] as $turnRow) {
-                        $newTurnAuditRows[] = ['duel' => $duelNumber, 'row' => $turnRow];
-                    }
-                    if (!empty($storedDetail['duel_started'])) {
-                        $storedTimerMode = strtolower((string) ($storedDetail['timer_mode'] ?? ''));
-                        $incomingDetail['duel_started'] = true;
-                        $incomingDetail['duel_started_at'] = max(
-                            0,
-                            (int) ($storedDetail['duel_started_at'] ??
-                                ($incomingDetail['duel_started_at'] ?? 0)),
-                        );
-                        if (in_array($storedTimerMode, ['none', 'countdown'], true)) {
-                            $incomingDetail['timer_mode'] = $storedTimerMode;
+                $this->rules->assertEditable($matchId);
+                $this->store->ensure($matchId);
+                $existingRow = $this->store->lockExisting($matchId);
+                $existingDetails = json_decode((string) ($existingRow['duel_details'] ?? ''), true);
+                ResultIntegrityPolicy::assertCorrectionVersion($existingDetails, (int) ($post['result_correction_version'] ?? 0));
+                $newTurnAuditRows = [];
+                if (isset($decodedDetails) && is_array($decodedDetails)) {
+                    $existingByDuel = [];
+                    foreach (is_array($existingDetails) ? $existingDetails : [] as $existingDetail) {
+                        if (is_array($existingDetail)) {
+                            $existingByDuel[(int) ($existingDetail['duel'] ?? 0)] = $existingDetail;
                         }
                     }
-                    if (($incomingDetail['timer_mode'] ?? 'none') !== 'countdown') {
-                        $incomingDetail['timer_running'] = false;
-                        $incomingDetail['timer_started_at'] = null;
+                    foreach ($this->store->persistedTurns($matchId) as $turnRow) {
+                        $duelNumber = (int) $turnRow['duel_number'];
+                        if (!isset($existingByDuel[$duelNumber])) {
+                            $existingByDuel[$duelNumber] = [
+                                'duel' => $duelNumber,
+                                'turn_count' => 0,
+                                'turn_history' => [],
+                            ];
+                        }
+                        $existingByDuel[$duelNumber]['turn_history'][] = [
+                            'turn' => (int) $turnRow['turn_number'],
+                            'side' => (string) $turnRow['side'],
+                            'ended_at' => (string) ($turnRow['ended_at'] ?? ''),
+                            'elapsed_seconds' => (int) $turnRow['elapsed_seconds'],
+                        ];
+                        $existingByDuel[$duelNumber]['turn_count'] = max(
+                            (int) ($existingByDuel[$duelNumber]['turn_count'] ?? 0),
+                            (int) $turnRow['turn_number'],
+                        );
                     }
+                    foreach ($decodedDetails as &$incomingDetail) {
+                        $duelNumber = (int) ($incomingDetail['duel'] ?? 0);
+                        $storedDetail = $existingByDuel[$duelNumber] ?? [];
+                        if (!empty($storedDetail['manual_correction_at_ms'])) {
+                            $incomingDetail['manual_correction_at_ms'] =
+                                $storedDetail['manual_correction_at_ms'];
+                        }
+                        $mergedTurns = TurnHistory::mergeMonotonicTurns($storedDetail, $incomingDetail);
+                        $incomingDetail = $mergedTurns['detail'];
+                        foreach ($mergedTurns['appended'] as $turnRow) {
+                            $newTurnAuditRows[] = ['duel' => $duelNumber, 'row' => $turnRow];
+                        }
+                        if (!empty($storedDetail['duel_started'])) {
+                            $storedTimerMode = strtolower((string) ($storedDetail['timer_mode'] ?? ''));
+                            $incomingDetail['duel_started'] = true;
+                            $incomingDetail['duel_started_at'] = max(
+                                0,
+                                (int) ($storedDetail['duel_started_at'] ??
+                                    ($incomingDetail['duel_started_at'] ?? 0)),
+                            );
+                            if (in_array($storedTimerMode, ['none', 'countdown'], true)) {
+                                $incomingDetail['timer_mode'] = $storedTimerMode;
+                            }
+                        }
+                        if (($incomingDetail['timer_mode'] ?? 'none') !== 'countdown') {
+                            $incomingDetail['timer_running'] = false;
+                            $incomingDetail['timer_started_at'] = null;
+                        }
+                    }
+                    unset($incomingDetail);
+                    $duelDetails = json_encode(array_values($decodedDetails), JSON_UNESCAPED_UNICODE);
                 }
-                unset($incomingDetail);
-                $duelDetails = json_encode(array_values($decodedDetails), JSON_UNESCAPED_UNICODE);
-            }
-            if (isset($decodedDetails) && is_array($decodedDetails)) {
-                $this->store->appendTurns($matchId, ResultIntegrityPolicy::appendTurnRows($decodedDetails));
-            }
-            $existingValues = [];
-            for ($i = 1; $i <= 5; $i++) {
-                $storedValue = (string) ($existingRow["d$i"] ?? '');
-                $existingValues[] = in_array($storedValue, ['A', 'B', 'E'], true)
-                    ? $storedValue
-                    : '';
-            }
-            if ($duelDetails === '') {
-                $values = ResultIntegrityPolicy::preserveStoredValues($existingValues, $values);
-            }
-            $evaluation = $this->rules->evaluate($matchId, $values);
-            $completionNow = $this->clock->now()->setTimezone(new DateTimeZone('America/Bogota'))->format('Y-m-d H:i:s');
-            $decodedDetails = CompletionPolicy::completionGames(
-                $decodedDetails ?? [],
-                is_array($existingDetails) ? $existingDetails : [],
-                $existingValues,
-                $values,
-                $completionNow,
-                !in_array(
-                    strtoupper((string) ($existingRow['match_status'] ?? '')),
-                    ['FINALIZADA', 'FINALIZADO', 'COMPLETED', 'FINISHED'],
-                    true,
-                ),
-            );
-            $duelDetails = json_encode($decodedDetails, JSON_UNESCAPED_UNICODE);
-            $this->store->save([
-                'matchId' => $matchId,
-                'd1' => $values[0] ?: null,
-                'd2' => $values[1] ?: null,
-                'd3' => $values[2] ?: null,
-                'd4' => $values[3] ?: null,
-                'd5' => $values[4] ?: null,
-                'winner' => $evaluation['winner'],
-                'score' => $evaluation['score'],
-                'validation' => $evaluation['validation'],
-                'notes' => trim((string) ($post['result_notes'] ?? '')),
-                'diceRoll' => $diceRoll !== '' ? $diceRoll : null,
-                'turnChoice' => $turnChoice !== '' ? $turnChoice : null,
-                'diceWinner' => $diceWinner,
-                'turnChosenBy' => $turnChosenBy,
-                'turnDecision' => $turnDecision,
-                'startsPlayer' => $startsPlayer,
-                'duelDetails' => $duelDetails !== '' ? $duelDetails : null,
-            ]);
-            if (isset($decodedDetails) && is_array($decodedDetails)) {
-                $this->snapshots->execute($matchId, $decodedDetails);
-            }
-            $this->effects->setStatus($matchId, $evaluation['status'], $completionNow);
-            $resultCompetitionId = $this->store->competitionId($matchId);
-            if (
-                $resultCompetitionId > 0 &&
-                !in_array('ranking_impact:NONE', $evaluation['model_effects'] ?? [], true)
-            ) {
-                $this->effects->persistStandings($resultCompetitionId);
-            }
-            $this->store->audit($matchId, 'save_result',
-                    [
-                        'duels' => $values,
-                        'evaluation' => $evaluation,
-                        'date_guard' => $dateGuard,
-                        'dice_roll' => $diceRoll,
-                        'turn_choice' => $turnChoice,
-                        'dice_winner' => $diceWinner,
-                        'turn_chosen_by' => $turnChosenBy,
-                        'turn_decision' => $turnDecision,
-                        'starts_player' => $startsPlayer,
-                        'duel_details' => $duelDetails,
-                    ]
-            );
-            foreach ($newTurnAuditRows as $auditRow) {
-                $this->store->audit($matchId, 'turn_added',
+                if (isset($decodedDetails) && is_array($decodedDetails)) {
+                    $this->store->appendTurns($matchId, ResultIntegrityPolicy::appendTurnRows($decodedDetails));
+                }
+                $existingValues = [];
+                for ($i = 1; $i <= 5; $i++) {
+                    $storedValue = (string) ($existingRow["d$i"] ?? '');
+                    $existingValues[] = in_array($storedValue, ['A', 'B', 'E'], true)
+                        ? $storedValue
+                        : '';
+                }
+                if ($duelDetails === '') {
+                    $values = ResultIntegrityPolicy::preserveStoredValues($existingValues, $values);
+                }
+                $evaluation = $this->rules->evaluate($matchId, $values);
+                $completionNow = $this->clock->now()->setTimezone(new DateTimeZone('America/Bogota'))->format('Y-m-d H:i:s');
+                $decodedDetails = CompletionPolicy::completionGames(
+                    $decodedDetails ?? [],
+                    is_array($existingDetails) ? $existingDetails : [],
+                    $existingValues,
+                    $values,
+                    $completionNow,
+                    !in_array(
+                        strtoupper((string) ($existingRow['match_status'] ?? '')),
+                        ['FINALIZADA', 'FINALIZADO', 'COMPLETED', 'FINISHED'],
+                        true,
+                    ),
+                );
+                $duelDetails = json_encode($decodedDetails, JSON_UNESCAPED_UNICODE);
+                $this->store->save([
+                    'matchId' => $matchId,
+                    'd1' => $values[0] ?: null,
+                    'd2' => $values[1] ?: null,
+                    'd3' => $values[2] ?: null,
+                    'd4' => $values[3] ?: null,
+                    'd5' => $values[4] ?: null,
+                    'winner' => $evaluation['winner'],
+                    'score' => $evaluation['score'],
+                    'validation' => $evaluation['validation'],
+                    'notes' => trim((string) ($post['result_notes'] ?? '')),
+                    'diceRoll' => $diceRoll !== '' ? $diceRoll : null,
+                    'turnChoice' => $turnChoice !== '' ? $turnChoice : null,
+                    'diceWinner' => $diceWinner,
+                    'turnChosenBy' => $turnChosenBy,
+                    'turnDecision' => $turnDecision,
+                    'startsPlayer' => $startsPlayer,
+                    'duelDetails' => $duelDetails !== '' ? $duelDetails : null,
+                ]);
+                if (isset($decodedDetails) && is_array($decodedDetails)) {
+                    $this->snapshots->execute($matchId, $decodedDetails);
+                }
+                $this->effects->setStatus($matchId, $evaluation['status'], $completionNow);
+                $resultCompetitionId = $this->store->competitionId($matchId);
+                if (
+                    $resultCompetitionId > 0 &&
+                    !in_array('ranking_impact:NONE', $evaluation['model_effects'] ?? [], true)
+                ) {
+                    $this->effects->persistStandings($resultCompetitionId);
+                }
+                $this->store->audit($matchId, 'save_result',
                         [
-                            'duel' => (int) $auditRow['duel'],
-                            'turn' => (int) $auditRow['row']['turn'],
-                            'side' => (string) $auditRow['row']['side'],
-                            'ended_at' => (string) $auditRow['row']['ended_at'],
-                            'elapsed_seconds' => (int) $auditRow['row']['elapsed_seconds'],
+                            'duels' => $values,
+                            'evaluation' => $evaluation,
+                            'date_guard' => $dateGuard,
+                            'dice_roll' => $diceRoll,
+                            'turn_choice' => $turnChoice,
+                            'dice_winner' => $diceWinner,
+                            'turn_chosen_by' => $turnChosenBy,
+                            'turn_decision' => $turnDecision,
+                            'starts_player' => $startsPlayer,
+                            'duel_details' => $duelDetails,
                         ]
                 );
-            }
-            $this->effects->syncStatistics($resultCompetitionId, $matchId);
-            $savedLiveMatch = $this->effects->liveMatch($matchId);
-            if ($savedLiveMatch) {
-                $savedLiveState = $this->effects->initialLiveState($savedLiveMatch);
-                if (($evaluation['status'] ?? '') === 'FINALIZADA') {
-                    $savedLiveState['status'] = 'completed';
-                    $savedLiveState['active_side'] = '';
+                foreach ($newTurnAuditRows as $auditRow) {
+                    $this->store->audit($matchId, 'turn_added',
+                            [
+                                'duel' => (int) $auditRow['duel'],
+                                'turn' => (int) $auditRow['row']['turn'],
+                                'side' => (string) $auditRow['row']['side'],
+                                'ended_at' => (string) $auditRow['row']['ended_at'],
+                                'elapsed_seconds' => (int) $auditRow['row']['elapsed_seconds'],
+                            ]
+                    );
                 }
-                $this->store->saveLiveState($matchId, $savedLiveState);
-            }
-            if ($offlineRequestId !== '') {
-                $this->store->recordSync($offlineRequestId, $matchId, hash('sha256', json_encode($post, JSON_UNESCAPED_UNICODE) ?: ''));
-            }
-            return 'resultado';
+                $this->effects->syncStatistics($resultCompetitionId, $matchId);
+                $savedLiveMatch = $this->effects->liveMatch($matchId);
+                if ($savedLiveMatch) {
+                    $savedLiveState = $this->effects->initialLiveState($savedLiveMatch);
+                    if (($evaluation['status'] ?? '') === 'FINALIZADA') {
+                        $savedLiveState['status'] = 'completed';
+                        $savedLiveState['active_side'] = '';
+                    }
+                    $this->store->saveLiveState($matchId, $savedLiveState);
+                }
+                if ($offlineRequestId !== '') {
+                    $this->store->recordSync($offlineRequestId, $matchId, hash('sha256', json_encode($post, JSON_UNESCAPED_UNICODE) ?: ''));
+                }
+                return 'resultado';
             });
         }
         return 'resultado';
