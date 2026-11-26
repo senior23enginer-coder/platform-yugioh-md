@@ -28,6 +28,7 @@ const paths = [
   php + 'src/Infrastructure/Persistence/Combos',
   php + 'src/Infrastructure/Persistence/Calendar',
   php + 'src/Infrastructure/Persistence/Seasons',
+  php + 'src/Infrastructure/Persistence/Leagues',
   php + 'src/Infrastructure/Persistence/LoadedSeasonRepository.php',
   php + 'src/Infrastructure/Time',
   php + 'src/Infrastructure/Transactions',

@@ -66,11 +66,7 @@ function ygo_validate_format_roster(PDO $pdo, string $ruleset, array $ids): arra
 
 function ygo_league_divisions(PDO $pdo, int $competitionId): array
 {
-    $stmt = $pdo->prepare("SELECT d.*, (SELECT COUNT(*) FROM sx_ygo_decks dk WHERE dk.division_id=d.id AND dk.active=1) actual_decks
-        FROM sx_ygo_divisions d JOIN sx_ygo_competitions c ON c.id=d.league_competition_id AND c.season_id=d.season_id
-        WHERE c.id=? AND c.active=1 AND c.type='league' AND d.active=1 ORDER BY d.tier_order,d.id");
-    $stmt->execute([$competitionId]);
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return (new \StationX\Yugioh\Infrastructure\Persistence\Leagues\PdoDivisionMovementReader($pdo))->divisions($competitionId);
 }
 
 function ygo_validate_division_movements(array $divisions, array $input): array
@@ -83,154 +79,12 @@ function ygo_validate_division_movements(array $divisions, array $input): array
 
 function ygo_save_division_movements(PDO $pdo, int $competitionId, array $input): void
 {
-    $rows = ygo_validate_division_movements(ygo_league_divisions($pdo, $competitionId), $input);
-    $update = $pdo->prepare(
-        'UPDATE sx_ygo_divisions SET promotion_slots=?,promotion_to_division_id=?,relegation_slots=?,relegation_to_division_id=? WHERE id=? AND league_competition_id=?',
-    );
-    foreach ($rows as $row) {
-        $update->execute([
-            $row['promotion_slots'],
-            $row['promotion_to_division_id'],
-            $row['relegation_slots'],
-            $row['relegation_to_division_id'],
-            $row['id'],
-            $competitionId,
-        ]);
-    }
+    \StationX\Yugioh\Infrastructure\Composition\DivisionMovementModule::configure($pdo)->execute($competitionId, $input);
 }
 
 function ygo_apply_configured_league_movements(PDO $pdo, int $competitionId): int
 {
-    $ownsTransaction = !$pdo->inTransaction();
-    if ($ownsTransaction) {
-        $pdo->beginTransaction();
-    }
-    try {
-        $stmt = $pdo->prepare(
-            'SELECT * FROM sx_ygo_competitions WHERE id=? AND active=1 FOR UPDATE',
-        );
-        $stmt->execute([$competitionId]);
-        $competition = $stmt->fetch(PDO::FETCH_ASSOC);
-        $divisions = ygo_league_divisions($pdo, $competitionId);
-        if (
-            !$competition ||
-            $competition['type'] !== 'league' ||
-            count($divisions) < 2 ||
-            !in_array($competition['status'], ['completed', 'finalizado', 'finalizada'], true) ||
-            (int) $competition['lock_division_moves'] === 1
-        ) {
-            if ($ownsTransaction) {
-                $pdo->commit();
-            }
-            return 0;
-        }
-        $done = $pdo->prepare(
-            "SELECT COUNT(*) FROM sx_ygo_audit_log WHERE entity_type='competition' AND entity_id=? AND action='division_movements_applied'",
-        );
-        $done->execute([$competitionId]);
-        if ((int) $done->fetchColumn() > 0) {
-            if ($ownsTransaction) {
-                $pdo->commit();
-            }
-            return 0;
-        }
-        $pending = $pdo->prepare(
-            "SELECT COUNT(*) FROM sx_ygo_matches WHERE competition_id=? AND status<>'FINALIZADA'",
-        );
-        $pending->execute([$competitionId]);
-        if ((int) $pending->fetchColumn() > 0) {
-            throw new InvalidArgumentException(
-                'Completa los encuentros antes de aplicar ascensos y descensos.',
-            );
-        }
-        $input = [];
-        foreach ($divisions as $division) {
-            $input[$division['id']] = $division;
-        }
-        $plans = ygo_validate_division_movements($divisions, $input);
-        $ranking = ygo_competition_standings($pdo, $competitionId);
-        $original = [];
-        $stmt = $pdo->query('SELECT id,division_id FROM sx_ygo_decks WHERE active=1');
-        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $deck) {
-            $original[(int) $deck['id']] = (int) $deck['division_id'];
-        }
-        $moves = [];
-        foreach ($plans as $plan) {
-            $divisionRanking = array_values(
-                array_filter(
-                    $ranking,
-                    static fn($row) => (int) ($original[(int) $row['id']] ?? 0) === $plan['id'] &&
-                        (int) ($row['pj'] ?? ($row['played'] ?? 0)) > 0,
-                ),
-            );
-            if ($plan['promotion_slots'] + $plan['relegation_slots'] > count($divisionRanking)) {
-                throw new InvalidArgumentException(
-                    'La división no tiene suficientes participantes con resultados para los cupos configurados.',
-                );
-            }
-            foreach (['promotion', 'relegation'] as $kind) {
-                $slots = $plan[$kind . '_slots'];
-                if (!$slots) {
-                    continue;
-                }
-                $selected =
-                    $kind === 'promotion'
-                        ? array_slice($divisionRanking, 0, $slots)
-                        : array_slice($divisionRanking, -$slots);
-                foreach ($selected as $row) {
-                    $moves[] = [
-                        'deck_id' => (int) $row['id'],
-                        'from_division_id' => $plan['id'],
-                        'to_division_id' => $plan[$kind . '_to_division_id'],
-                        'kind' => $kind,
-                    ];
-                }
-            }
-        }
-        if (!$moves) {
-            if ($ownsTransaction) {
-                $pdo->commit();
-            }
-            return 0;
-        }
-        $update = $pdo->prepare(
-            'UPDATE sx_ygo_decks SET division_id=? WHERE id=? AND division_id=?',
-        );
-        $audit = $pdo->prepare(
-            'INSERT INTO sx_ygo_audit_log(entity_type,entity_id,action,payload) VALUES(?,?,?,?)',
-        );
-        foreach ($moves as $move) {
-            $update->execute([
-                $move['to_division_id'],
-                $move['deck_id'],
-                $move['from_division_id'],
-            ]);
-            $audit->execute([
-                'deck',
-                $move['deck_id'],
-                'division_' . $move['kind'],
-                json_encode(['competition_id' => $competitionId] + $move),
-            ]);
-        }
-        $pdo->prepare(
-            'UPDATE sx_ygo_divisions dv SET deck_count=(SELECT COUNT(*) FROM sx_ygo_decks d WHERE d.division_id=dv.id AND d.active=1) WHERE league_competition_id=?',
-        )->execute([$competitionId]);
-        $audit->execute([
-            'competition',
-            $competitionId,
-            'division_movements_applied',
-            json_encode(['moves' => $moves]),
-        ]);
-        if ($ownsTransaction) {
-            $pdo->commit();
-        }
-        return count($moves);
-    } catch (Throwable $error) {
-        if ($ownsTransaction && $pdo->inTransaction()) {
-            $pdo->rollBack();
-        }
-        throw $error;
-    }
+    return \StationX\Yugioh\Infrastructure\Composition\DivisionMovementModule::apply($pdo)->execute($competitionId);
 }
 
 function ygo_league_deck_assignments(PDO $pdo): array

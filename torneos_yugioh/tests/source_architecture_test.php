@@ -376,6 +376,32 @@ architectureCheck(
     'Valid division blocked',
 );
 
+// Configured movement planning uses original divisions and only ranked decks with results.
+$movementPlan = \StationX\Yugioh\Domain\Competitions\DivisionMovementPlan::class;
+$movementPlans = [
+    ['id' => 1, 'promotion_slots' => 0, 'relegation_slots' => 1, 'relegation_to_division_id' => 2],
+    ['id' => 2, 'promotion_slots' => 1, 'promotion_to_division_id' => 1, 'relegation_slots' => 0],
+];
+$movementRanking = [
+    ['id' => 10, 'pj' => 2],
+    ['id' => 20, 'pj' => 2],
+    ['id' => 11, 'played' => 1],
+    ['id' => 21, 'pj' => 0],
+];
+$movementOriginal = [10 => 1, 11 => 1, 20 => 2, 21 => 2];
+architectureCheck(
+    $movementPlan::build($movementPlans, $movementRanking, $movementOriginal) === [
+        ['deck_id' => 11, 'from_division_id' => 1, 'to_division_id' => 2, 'kind' => 'relegation'],
+        ['deck_id' => 20, 'from_division_id' => 2, 'to_division_id' => 1, 'kind' => 'promotion'],
+    ],
+    'Configured division movement plan changed',
+);
+architectureCheck(
+    $seasonOutcome(static fn() => $movementPlan::build($movementPlans, [], $movementOriginal)) ===
+        'La división no tiene suficientes participantes con resultados para los cupos configurados.',
+    'Insufficient ranked participants must block moves',
+);
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
