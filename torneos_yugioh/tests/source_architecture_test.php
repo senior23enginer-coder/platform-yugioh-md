@@ -2542,6 +2542,19 @@ architectureCheck(
     'MaintainSeason result changed',
 );
 
+// Entity report projection preserves the native export rows without HTTP or database state.
+$reportClass = \StationX\Yugioh\Application\Reports\EntityReportProjection::class;
+$report = $reportClass::build('entity_report', ['entity_type' => 'deck', 'entity_id' => '3'],
+    [['id' => 3, 'name' => 'Memento', 'team_id' => 4, 'team' => 'Team A']], [], [],
+    [['rounds' => ['matches' => [['id' => 1, 'deck_a_id' => 3, 'deck_b_id' => 8, 'a' => 'Memento', 'b' => 'Crystron', 'estado' => 'FINALIZADA', 'result' => 'A', 'score' => '2-1', 'd1' => 'A', 'd2' => 'B', 'd3' => 'A']]]]],
+    [], [], [], '2026-11-26 12:00:00');
+architectureCheck($report['title'] === 'Informe completo Deck #3', 'Entity report title changed');
+architectureCheck(in_array(['Partidas G/E/P', '1/0/0'], $report['rows'], true), 'Entity report match count changed');
+architectureCheck(in_array(['Duelos G/E/P', '2/0/1'], $report['rows'], true), 'Entity report duel count changed');
+architectureCheck(in_array(['Winrate partidas', '100%'], $report['rows'], true), 'Entity report win rate changed');
+$invalid = $reportClass::build('entity_report', ['entity_type' => 'unknown', 'entity_id' => 3], [], [], [], [], [], [], [], '2026-11-26 12:00:00');
+architectureCheck(in_array(['Error', 'Entidad o identificador invalido'], $invalid['rows'], true), 'Invalid report accepted');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
