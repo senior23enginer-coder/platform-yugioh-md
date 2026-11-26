@@ -38,14 +38,17 @@ final readonly class LoadPlatformReadModel
         $competitions = $this->reader->competitions();
         $matchTypes = $this->reader->matchTypes();
         $competitionDeckRows = $this->reader->competitionDeckRows();
-        ['competitions' => $competitions, 'fixtures' => $fixtures, 'dependencies' => $competitionDependencies] =
-            (new ProjectCompetitionReadModel($this->services))->execute(
-                $dbDivisions,
-                $competitionDeckRows,
-                $allDecks,
-                $competitions,
-                $fixtures,
-            );
+        [
+            'competitions' => $competitions,
+            'fixtures' => $fixtures,
+            'dependencies' => $competitionDependencies,
+        ] = (new ProjectCompetitionReadModel($this->services))->execute(
+            $dbDivisions,
+            $competitionDeckRows,
+            $allDecks,
+            $competitions,
+            $fixtures,
+        );
         $cards = $this->reader->cards();
         $media = $this->reader->media();
         $logoHistory = $this->reader->logoHistory();
