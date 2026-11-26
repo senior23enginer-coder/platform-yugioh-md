@@ -90,7 +90,7 @@ Se separan los casos de uso de programación, las reglas de planificación y los
 
 ## Generación histórica de eventos — 26 de noviembre de 2026
 
-Se separan generación de ligas, copas, amistosos y mundial, lectura de divisiones/decks y persistencia de combates mediante un plan de dominio y puertos. Los adaptadores preservan el alcance de limpieza y las filas de los algoritmos existentes; no se ejecuta generación ni limpieza sobre datos reales. Validación integral y MySQL pendientes.
+Se separan generación de ligas, copas, amistosos y mundial, lectura de divisiones/decks y persistencia de combates mediante un plan de dominio y puertos. Los adaptadores preservan el alcance de limpieza y las filas de los algoritmos existentes; no se ejecuta generación ni limpieza sobre datos reales. Se verificaron nueve huellas originales y 1.608 comprobaciones aisladas con PHP 8.4.24 para ligas, copas, amistosos y grupos, incluidos planteles de 2 a 24 decks. Los archivos probados coinciden con GitHub. Validación integral, formato y MySQL pendientes.
 
 ## Trabajo todavía pendiente para completar toda la plataforma
 
