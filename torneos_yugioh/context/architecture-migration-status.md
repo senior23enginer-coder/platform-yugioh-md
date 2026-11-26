@@ -196,6 +196,10 @@ Se centraliza la construcción de los datos iniciales y de error en una polític
 
 Los PR #65, #66 y #67 se integraron con CI exitoso. Se continúa en una única rama de migración. Se extraen las proyecciones iniciales de fixtures/decks, etiquetas UI, estado de conexión y directorio de divisiones/equipos a clases puras. Se preserva la precedencia de claves, la primera división visible, el último equipo por nombre y los mensajes originales. Las pruebas se añaden a la suite existente; certificación de este cambio pendiente.
 
+## Proyecciones de copas, mundiales y competiciones
+
+La agregación de fixtures de copa y mundial comparte una implementación pura que conserva el orden diferenciado, los criterios de finalización, las fechas únicas de copa y la estructura de cada respuesta. El directorio de competiciones centraliza los contadores, identidades y dependencias. Se añaden regresiones en la suite existente. CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

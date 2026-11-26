@@ -2947,6 +2947,47 @@ architectureCheck($directory::matchLabel($teamNames, 'A') === 'New / A', 'Team l
 architectureCheck($directory::matchLabel($teamNames, 'B') === 'Sin equipo / B', 'Empty team changed');
 architectureCheck($directory::matchLabel($teamNames, 'C') === 'Sin equipo / C', 'Missing team changed');
 
+// Shared presentation aggregation keeps cup sorting and world insertion order distinct.
+$competitionMatches = \StationX\Yugioh\Application\Presentation\CompetitionMatchProjection::class;
+$projectionFixtures = [
+    'X' => [
+        [
+            'ronda' => 2,
+            'matches' => [
+                ['id' => 1, 'competition_id' => 8, 'phase' => 'cup', 'display_order' => 2],
+                ['id' => 2, 'competition_id' => 8, 'phase' => 'final', 'display_order' => 1, 'score' => '2-0', 'scheduled_on' => '2026-11-26'],
+                ['id' => 3, 'competition_id' => 9, 'phase' => 'world', 'display_order' => 2],
+                ['id' => 4, 'competition_id' => 9, 'phase' => 'world', 'display_order' => 1],
+                ['id' => 5, 'competition_id' => 0, 'phase' => 'cup'],
+            ],
+        ],
+    ],
+];
+$cupProjection = $competitionMatches::cups($projectionFixtures);
+$worldProjection = $competitionMatches::worlds($projectionFixtures);
+architectureCheck(array_column($cupProjection['matches'][8], 'id') === [2, 1], 'Cup order changed');
+architectureCheck(array_column($worldProjection['matches'][9], 'id') === [3, 4], 'World order changed');
+architectureCheck(
+    $cupProjection['stats'][8] === [
+        'total' => 2,
+        'scheduled' => 1,
+        'finalized' => 1,
+        'pending' => 1,
+        'dates' => ['2026-11-26' => true],
+    ],
+    'Cup totals changed',
+);
+architectureCheck(!isset($worldProjection['stats'][9]['dates']), 'World shape changed');
+architectureCheck(!isset($cupProjection['stats'][0]), 'Invalid competition included');
+$competitionDirectory = \StationX\Yugioh\Application\Presentation\CompetitionDirectoryProjection::build([
+    ['id' => 1, 'type' => 'cup', 'name' => 'Cup', 'dependencies' => [['ok' => true]]],
+    ['id' => 2, 'type' => 'cup'],
+    ['id' => 3],
+]);
+architectureCheck($competitionDirectory['byType'] === ['cup' => 2, 'special' => 1], 'Type totals changed');
+architectureCheck($competitionDirectory['byRuleset'] === ['custom' => 3], 'Ruleset totals changed');
+architectureCheck($competitionDirectory['dependencies'][0]['ok'], 'Dependency state changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
