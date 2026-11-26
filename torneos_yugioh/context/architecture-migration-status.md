@@ -108,6 +108,10 @@ Se extraen los últimos tres flujos con SQL directo de `includes/events/generati
 
 Se separan cuatro manejadores POST: reprogramar partida, vincular decks, guardar equipo y guardar jugador. Se preservan códigos de respuesta, auditorías, orden de operaciones y transacción propia del jugador. Se elimina del guardado de equipo una condición GOAT que referenciaba dos variables de competición no definidas en ese comando (no corresponde a su responsabilidad). La evidencia histórica del comparador de formularios se conserva, y las nuevas fachadas se verifican por tokens además de pruebas de puertos. Se ejecutaron 18 comprobaciones aisladas con dobles de puertos, verificando guardas, orden de operaciones y transacciones; los 14 blobs usados coinciden con GitHub. La ejecución integral y MySQL quedan pendientes.
 
+## Guardado de resultados individuales
+
+Se extraen normalización de resultados, protección de versiones y auditoría de turnos, caso de uso de guardado, publicación de snapshots y puertos de reglas, efectos y persistencia. El límite transaccional propio conserva la atomicidad y revierte explícitamente si falla el flujo. Los adaptadores preservan el orden lógico de consultas y operaciones; la preparación de sentencias de snapshots se realiza en cada lectura/escritura. Se añade evidencia histórica del manejador y regresiones. La validación integral, MySQL y mbstring quedan pendientes.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

@@ -836,6 +836,16 @@ $matchScheduleUpdate = \StationX\Yugioh\Domain\Calendar\MatchScheduleUpdate::cla
 architectureCheck($matchScheduleUpdate::closed(['status' => 'finalizado']), 'Finalized match editable');
 architectureCheck($matchScheduleUpdate::fromInput(['venue' => ' X ']) === ['scheduled_on' => null, 'starts_at' => null, 'venue' => 'X', 'judge' => '', 'notes' => ''], 'Schedule input normalization changed');
 
+// Result command payload and correction policies remain independent of persistence.
+$resultPayload = \StationX\Yugioh\Domain\Matches\MatchResultPayload::class;
+architectureCheck($resultPayload::values(['d1' => 'A', 'd2' => 'invalid', 'd3' => 'E']) === ['A', '', 'E', '', ''], 'Result sequence input changed');
+architectureCheck($resultPayload::offlineRequestId(['offline_request_id' => 'req:1/2']) === 'req12', 'Offline identity changed');
+$payload = $resultPayload::normalize(['result_dice_roll' => '{"winner":"a","choice":"first","starts":"a"}'], ['A', '', '', '', '']);
+architectureCheck($payload['diceWinner'] === 'A' && $payload['turnDecision'] === 'primero' && $payload['startsPlayer'] === 'A', 'Dice normalization changed');
+$resultIntegrity = \StationX\Yugioh\Domain\Matches\ResultIntegrityPolicy::class;
+architectureCheck($resultIntegrity::preserveStoredValues(['A', '', 'B', '', ''], ['', 'E', 'A', '', '']) === ['A', 'E', 'B', '', ''], 'Stored sequence protection changed');
+architectureCheck($seasonOutcome(static fn() => $resultIntegrity::assertCorrectionVersion([['manual_correction_at_ms' => 5]], 4)) === 'La partida fue modificada. Recarga antes de guardar para no sobrescribir la corrección.', 'Correction version guard changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
