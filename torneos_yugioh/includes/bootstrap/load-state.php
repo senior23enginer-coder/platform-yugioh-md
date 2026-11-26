@@ -15,7 +15,21 @@ $defaultUiLabels = [];
 foreach (ygo_default_ui_labels() as $defaultUiLabel) {
     $defaultUiLabels[$defaultUiLabel[0]] = ['id' => 0, 'key' => $defaultUiLabel[0], 'title' => $defaultUiLabel[1], 'subtitle' => $defaultUiLabel[2], 'active' => 1];
 }
-$appData = ['eventExtendedCatalog'=>ygo_extended_event_catalog(), 'executionCapabilities'=>ygo_execution_capabilities(), 'executionModelsByType'=>array_combine(array_keys($competitionTypeOptions),array_map('ygo_allowed_execution_models_for_type',array_keys($competitionTypeOptions))), 'divisions' => $divisions, 'fixtures' => $fixtures, 'allDecks' => $allDecks, 'teams' => [], 'competitions' => [], 'competitionDependencies' => [], 'statusHistory' => [], 'standingSnapshots' => [], 'matchSnapshots' => [], 'matchupAnalyses' => [], 'matchupAnalysisHistory' => [], 'deckAnalysisProfiles' => [], 'deckAnalysisProfileHistory' => [], 'medalUnlocks' => [], 'medalProgress' => [], 'rankingHistory' => [], 'eventSummaries' => [], 'checkins' => [], 'metaHistory' => [], 'eloHistory' => [], 'seasons' => [], 'players' => [], 'playerDecks' => [], 'cards' => [], 'media' => [], 'logoHistory' => [], 'honors' => [], 'audit' => [], 'events' => [], 'rulesets' => [], 'rulesetVersions' => [], 'matchTypes' => [], 'gameRules' => [], 'gameRuleConditions' => [], 'eventPromptTemplates' => ygo_event_available_templates(), 'competitionTypeOptions' => $competitionTypeOptions, 'settings' => ygo_default_settings(), 'uiLabels' => $defaultUiLabels, 'serverToday' => date('Y-m-d')];
+$appData = \StationX\Yugioh\Application\Bootstrap\InitialPlatformData::build(
+    [
+        'eventExtendedCatalog' => ygo_extended_event_catalog(),
+        'executionCapabilities' => ygo_execution_capabilities(),
+        'executionModelsByType' => array_combine(array_keys($competitionTypeOptions), array_map('ygo_allowed_execution_models_for_type', array_keys($competitionTypeOptions))),
+        'eventPromptTemplates' => ygo_event_available_templates(),
+        'competitionTypeOptions' => $competitionTypeOptions,
+        'settings' => ygo_default_settings(),
+        'uiLabels' => $defaultUiLabels,
+        'serverToday' => date('Y-m-d'),
+    ],
+    $divisions,
+    $fixtures,
+    $allDecks,
+);
 $dbStatus = ['connected' => false, 'message' => 'Sin conexion comprobada', 'counts' => []];
 $flashMessage = null;
 $flashClass = 'alert-success';
@@ -104,7 +118,22 @@ try {
         'message' => 'No se pudo conectar a la base de datos en este entorno',
         'counts' => [],
     ];
-    $appData = ['eventExtendedCatalog'=>ygo_extended_event_catalog(), 'executionCapabilities'=>ygo_execution_capabilities(), 'executionModelsByType'=>array_combine(array_keys($competitionTypeOptions),array_map('ygo_allowed_execution_models_for_type',array_keys($competitionTypeOptions))), 'divisions' => [], 'fixtures' => [], 'allDecks' => [], 'teams' => [], 'competitions' => [], 'competitionDependencies' => [], 'statusHistory' => [], 'standingSnapshots' => [], 'cards' => [], 'media' => [], 'logoHistory' => [], 'honors' => [], 'audit' => [], 'events' => [], 'rulesets' => [], 'rulesetVersions' => [], 'matchTypes' => [], 'gameRules' => [], 'gameRuleConditions' => [], 'eventPromptTemplates' => ygo_event_available_templates(), 'competitionTypeOptions' => $competitionTypeOptions, 'settings' => ygo_default_settings(), 'uiLabels' => $defaultUiLabels, 'serverToday' => date('Y-m-d')];
+    $appData = \StationX\Yugioh\Application\Bootstrap\InitialPlatformData::build(
+        [
+            'eventExtendedCatalog' => ygo_extended_event_catalog(),
+            'executionCapabilities' => ygo_execution_capabilities(),
+            'executionModelsByType' => array_combine(array_keys($competitionTypeOptions), array_map('ygo_allowed_execution_models_for_type', array_keys($competitionTypeOptions))),
+            'eventPromptTemplates' => ygo_event_available_templates(),
+            'competitionTypeOptions' => $competitionTypeOptions,
+            'settings' => ygo_default_settings(),
+            'uiLabels' => $defaultUiLabels,
+            'serverToday' => date('Y-m-d'),
+        ],
+        [],
+        [],
+        [],
+        true,
+    );
     $divisions = [];
     $fixtures = [];
     $allDecks = [];

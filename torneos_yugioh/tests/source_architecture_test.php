@@ -2793,6 +2793,106 @@ architectureCheck(
     'Admission projection changed',
 );
 
+// Both pre-connection and failure payloads preserve the original ordered keys.
+$initialMetadata = [
+    'eventExtendedCatalog' => ['catalog'],
+    'executionCapabilities' => ['capability'],
+    'executionModelsByType' => ['league' => []],
+    'eventPromptTemplates' => ['template'],
+    'competitionTypeOptions' => ['league' => 'League'],
+    'settings' => ['limit' => 3],
+    'uiLabels' => ['title' => []],
+    'serverToday' => '2026-11-26',
+];
+$initialPolicy = \StationX\Yugioh\Application\Bootstrap\InitialPlatformData::class;
+$initialPayload = $initialPolicy::build($initialMetadata, [1 => []], [1 => []], ['deck']);
+$failurePayload = $initialPolicy::build($initialMetadata, [], [], [], true);
+architectureCheck(
+    array_keys($initialPayload) === [
+        'eventExtendedCatalog',
+        'executionCapabilities',
+        'executionModelsByType',
+        'divisions',
+        'fixtures',
+        'allDecks',
+        'teams',
+        'competitions',
+        'competitionDependencies',
+        'statusHistory',
+        'standingSnapshots',
+        'matchSnapshots',
+        'matchupAnalyses',
+        'matchupAnalysisHistory',
+        'deckAnalysisProfiles',
+        'deckAnalysisProfileHistory',
+        'medalUnlocks',
+        'medalProgress',
+        'rankingHistory',
+        'eventSummaries',
+        'checkins',
+        'metaHistory',
+        'eloHistory',
+        'seasons',
+        'players',
+        'playerDecks',
+        'cards',
+        'media',
+        'logoHistory',
+        'honors',
+        'audit',
+        'events',
+        'rulesets',
+        'rulesetVersions',
+        'matchTypes',
+        'gameRules',
+        'gameRuleConditions',
+        'eventPromptTemplates',
+        'competitionTypeOptions',
+        'settings',
+        'uiLabels',
+        'serverToday',
+    ],
+    'Initial bootstrap payload keys changed',
+);
+architectureCheck(
+    array_keys($failurePayload) === [
+        'eventExtendedCatalog',
+        'executionCapabilities',
+        'executionModelsByType',
+        'divisions',
+        'fixtures',
+        'allDecks',
+        'teams',
+        'competitions',
+        'competitionDependencies',
+        'statusHistory',
+        'standingSnapshots',
+        'cards',
+        'media',
+        'logoHistory',
+        'honors',
+        'audit',
+        'events',
+        'rulesets',
+        'rulesetVersions',
+        'matchTypes',
+        'gameRules',
+        'gameRuleConditions',
+        'eventPromptTemplates',
+        'competitionTypeOptions',
+        'settings',
+        'uiLabels',
+        'serverToday',
+    ],
+    'Failure bootstrap payload keys changed',
+);
+architectureCheck($initialPayload['allDecks'] === ['deck'], 'Initial decks changed');
+architectureCheck($failurePayload['allDecks'] === [], 'Failure decks changed');
+foreach ($initialMetadata as $key => $value) {
+    architectureCheck($initialPayload[$key] === $value, 'Initial metadata changed: ' . $key);
+    architectureCheck($failurePayload[$key] === $value, 'Failure metadata changed: ' . $key);
+}
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

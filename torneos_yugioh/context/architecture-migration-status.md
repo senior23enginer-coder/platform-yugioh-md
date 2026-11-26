@@ -188,6 +188,10 @@ Se separa la política de mensajes posteriores a comandos de la captura HTTP y d
 
 La composición de estadísticas, modelos de ejecución, FFA, resultados colectivos, workflow, admisión y catálogos queda en un caso de uso con un puerto explícito. SQL y archivos se conservan en el adaptador nativo; se conserva el orden de consultas y las dos pasadas de proyección de competiciones. Se añaden pruebas de orden y contenido. CI pendiente.
 
+## Datos iniciales y contingencia del bootstrap (H16, avance)
+
+Se centraliza la construcción de los datos iniciales y de error en una política pura que recibe los metadatos ya resueltos. Se conservan exactamente las claves, su orden, los valores y la diferencia histórica entre ambas estructuras; no se añade información inventada a la respuesta de error. Las llamadas a servicios nativos y sus límites de excepción no se desplazan. Se añaden regresiones de contrato; CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
