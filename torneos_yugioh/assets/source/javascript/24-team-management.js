@@ -239,7 +239,7 @@
     if (logoPreview) {
       const logo = String(team?.logo_url || '').trim();
       logoPreview.innerHTML = logo
-        ? `<img src="${escapeHtml(logo)}" alt="${escapeHtml(team?.name || 'Equipo')}">`
+        ? `<img loading="lazy" decoding="async" src="${escapeHtml(logo)}" alt="${escapeHtml(team?.name || 'Equipo')}">`
         : '<i class="bi bi-shield"></i>';
     }
     if (deckPicker) {

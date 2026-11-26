@@ -1,8 +1,8 @@
 {
   "schema": "station-x-p06-test-source-baseline/1",
   "date": "2026-11-23",
-  "purpose": "Explicitly review every new test program; use declarative fixture data for deck/card scenarios instead of new per-card JS/PHP files. Proposed PR #49 adds one administrative metadata reconciliation test (not per-card or calculator logic), with explicit review required before merge.",
-  "baseline_total": 216,
+  "purpose": "Explicitly review every new test program; use declarative fixture data for deck/card scenarios instead of new per-card JS/PHP files PR #49 adds one administrative CID reconciliation test, not a per-card test.",
+  "baseline_total": 217,
   "paths": [
     "torneos_yugioh/tests/a01_assigned_packages_test.php",
     "torneos_yugioh/tests/a01_assigned_packages_ui_test.cjs",
@@ -206,6 +206,7 @@
     "torneos_yugioh/tests/simple_pdf_test.php",
     "torneos_yugioh/tests/source_architecture_test.php",
     "torneos_yugioh/tests/standard_calculator_ui_test.js",
+    "torneos_yugioh/tests/startup_resources_test.cjs",
     "torneos_yugioh/tests/statistics_live_test.cjs",
     "torneos_yugioh/tests/statistics_multiplayer_test.php",
     "torneos_yugioh/tests/statistics_no_cuts_test.php",
@@ -230,5 +231,10 @@
     ],
     "removed_paths": [],
     "approval": "Pending PR review; guard remains strict."
+  },
+  "startup_review": {
+    "date": "2026-11-25",
+    "scope": "One shared startup/cache/browser regression; no deck analysis or per-card programs",
+    "added_path": "torneos_yugioh/tests/startup_resources_test.cjs"
   }
 }

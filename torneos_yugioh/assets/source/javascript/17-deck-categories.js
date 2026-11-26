@@ -26,6 +26,11 @@
     Array.from(deckCategoryBody.children).forEach((node) => deckCategoryStaging?.appendChild(node));
     deckCategoryNodes[category].forEach((node) => deckCategoryBody.appendChild(node));
     activeDeckCategory = category;
+    // Prepare only the category the player actually opened, using its current deck.
+    const deck = (data.allDecks || []).find(row => row.name === deckSelect?.value) || data.allDecks?.[0];
+    if (deck && category === 'decklist') window.YgoDeckBuilder?.mount(document.querySelector('[data-card-gallery]'), deck, data);
+    if (deck && category === 'created-combos') window.YgoComboCreator?.mountViewer(document.querySelector('[data-deck-created-combos]'), deck);
+    if (deck && ['strategy', 'matchups'].includes(category)) renderDeckAnalysis(deck);
     const meta = deckCategoryMeta[category];
     if (deckCategoryTitle) deckCategoryTitle.textContent = meta[0];
     if (deckCategorySubtitle) deckCategorySubtitle.textContent = meta[1];

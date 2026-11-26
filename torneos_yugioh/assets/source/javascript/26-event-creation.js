@@ -529,7 +529,7 @@
       const active = selected === url;
       return `
         <button class="event-logo-choice${active ? ' active' : ''}" type="button" data-event-logo-choice="${escapeHtml(url)}" aria-pressed="${active ? 'true' : 'false'}">
-          <img src="${escapeHtml(url)}" alt="${escapeHtml(logo.label || 'Logo')}">
+          <img loading="lazy" decoding="async" src="${escapeHtml(url)}" alt="${escapeHtml(logo.label || 'Logo')}">
           <span>${escapeHtml(logo.label || 'Logo')}</span>
         </button>
       `;

@@ -16,7 +16,6 @@ if (is_file($stationxReleasePath)) {
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js" defer></script>
 <script src="./assets/ui-labels.js?v=20261026-labels-101" defer></script>
@@ -52,6 +51,8 @@ if (is_file($stationxReleasePath)) {
 <script src="./assets/lp-sound.js?v=20261027-sound-106" defer></script>
 <script src="./assets/storage-maintenance.js?v=20261028-cleanup-113" defer></script>
 <script src="./assets/news.js?v=20261028-news-115" defer></script>
+
+<template data-startup-calculator>
 <script src="./assets/modules/play-calculator/engine.js?v=20261120-coverage-1" defer></script>
 <script src="./assets/modules/play-calculator/hand-practice.js?v=20261113-hand-practice-170" defer></script>
 <script src="./assets/modules/play-calculator/storage.js?v=20261103-board-129" defer></script>
@@ -72,11 +73,16 @@ if (is_file($stationxReleasePath)) {
 <script src="./assets/modules/play-calculator/scenario.js?v=20261120-core-boot-1" defer></script>
 <script src="./assets/modules/play-calculator/verified-rules.js?v=20261118-memento-effects-5" defer></script>
 <script src="./assets/modules/play-calculator/contract.js?v=20261120-core-boot-1" defer></script>
-<script src="./assets/modules/play-calculator/study.js?v=20261123-gpt-source-only-1" defer></script><script src="./assets/modules/play-calculator/chain.js?v=20261118-chain-2" defer></script><script src="./assets/modules/play-calculator/ui.js?v=20261120-smiger-rule-1" defer></script>
+<script src="./assets/modules/play-calculator/study.js?v=20261123-gpt-source-only-1" defer></script>
+<script src="./assets/modules/play-calculator/chain.js?v=20261118-chain-2" defer></script>
+<script src="./assets/modules/play-calculator/ui.js?v=20261120-smiger-rule-1" defer></script>
+<script src="./assets/modules/play-calculator/workspace.js?v=20261120-deck-combobox-1" defer></script>
+</template>
+<script src="./assets/modules/startup/resources.js?v=20261125-startup-1" defer></script>
 <script src="./assets/modules/combo-creator/model.js?v=20261103-combos-133" defer></script>
 <script src="./assets/modules/combo-creator/step-lesson.js?v=20261113-step-lessons-173" defer></script>
 <script src="./assets/modules/combo-creator/documented-import.js?v=20261116-folder-import-1" defer></script>
-<script src="./assets/modules/play-calculator/workspace.js?v=20261120-deck-combobox-1" defer></script>
+
 <script src="./assets/modules/card-inspector/model.js?v=20261116-readable-3" defer></script>
 <script src="./assets/modules/card-inspector/ui.js?v=20261116-readable-3" defer></script>
 <script src="./assets/modules/combo-creator/ui.js?v=20261119-local-study-photos-1" defer></script>
@@ -109,7 +115,7 @@ if (is_file($stationxReleasePath)) {
 <script src="./assets/modules/deck-attributes/api.js?v=20261118-worlds-hexagonal"></script>
 <script src="./assets/modules/deck-attributes/ui.js?v=20261118-worlds-hexagonal"></script>
 <script src="./assets/modules/deck-guide/league-position.js?v=20261113-match-positions-182" defer></script>
-<script src="./assets/app.js?v=20261123-gpt-authority-1" defer></script>
+<script src="./assets/app.js?v=20261126-offline-ports-1" defer></script>
 <link rel="stylesheet" href="./assets/modules/deck-guide/analysis-progress.css?v=20261121-task-grid-1">
 <script src="./assets/modules/deck-guide/analysis-progress.js?v=20261121-task-grid-1" defer></script>
 <script src="./assets/match-editor.js?v=20261027-participants-103" defer></script>
@@ -119,9 +125,4 @@ if (is_file($stationxReleasePath)) {
 <script src="./assets/modules/deck-template/ui.js?v=20261119-template-deck-1" defer></script>
 </body>
 </html>
-
-
-
-
-
 
