@@ -164,3 +164,10 @@ La validación de una fila tiene dos fases explícitas: preparar antes de resolv
 `decklist_architecture_test.php` ejecuta 88 comprobaciones, incluidas 15 caracterizaciones capturadas antes de sustituir las fachadas (respuesta, error, inventario y auditoría). Prueba además orden de puertos, identidad de catálogo, otros decks intactos, rollback, transacciones prestadas, versión obsoleta, HTTP y composición sin I/O. Sus originales y huellas permanecen en `tests/fixtures/decklist-originals.json`. No se accedió a producción ni a proveedores. La prueba SQLite elimina únicamente `FOR UPDATE` en un adaptador de pruebas y usa un sustituto del bloqueo MySQL; no certifica concurrencia MySQL real.
 
 La importación/exportación de paquetes ZIP y la sincronización de fuentes editoriales siguen siendo flujos distintos pendientes de migración. El frontend del editor también permanece en su fuente compartida; esta entrega no lo presenta como modularizado.
+
+
+## Validación de temporadas y calendario de eventos
+
+`includes/seasons.php` mantiene las fachadas `ygo_season_find`, `ygo_season_require_open`, `ygo_season_validate_event_dates` y `ygo_season_validate_competition_schedule`. La composición `SeasonScheduleModule` inyecta el puerto de lectura implementado por `PdoSeasonScheduleReader` y un reloj con la zona horaria PHP vigente. `ValidateSeasonSchedule` coordina consultas y `SeasonSchedulePolicy` conserva las reglas de apertura, cierre, límites inclusivos y fechas válidas sin PDO ni HTTP. La consulta opcional FOR UPDATE mantiene la transacción de su llamador. No se migran todavía las operaciones de escritura, cierre ni eliminación de temporadas.
+
+La regresión persistente se incorpora a `tests/source_architecture_test.php`. No se declara verificada la integración MySQL ni la suite completa hasta ejecutarlas en un entorno adecuado.

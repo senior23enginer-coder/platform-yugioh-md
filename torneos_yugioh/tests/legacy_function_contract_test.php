@@ -12,6 +12,25 @@ $formOriginals = json_decode(file_get_contents(__DIR__ . '/fixtures/form-command
 $extractions = json_decode(file_get_contents($root . '/context/domain-extractions.json'), true, flags: JSON_THROW_ON_ERROR);
 $originals = json_decode(file_get_contents(__DIR__ . '/fixtures/domain-originals.json'), true, flags: JSON_THROW_ON_ERROR);
 $contracts = json_decode(file_get_contents($root . '/context/source-function-map.json'), true, flags: JSON_THROW_ON_ERROR);
+$settingsTeamExtractions = json_decode(file_get_contents(__DIR__ . '/fixtures/settings-teams-originals.json'), true, flags: JSON_THROW_ON_ERROR);
+$settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/league-structure-originals.json'), true, flags: JSON_THROW_ON_ERROR);
+$settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/deck-eligibility-originals.json'), true, flags: JSON_THROW_ON_ERROR);
+$settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/competition-gate-originals.json'), true, flags: JSON_THROW_ON_ERROR);
+$settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/match-schedule-validation-originals.json'), true, flags: JSON_THROW_ON_ERROR);
+$settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/match-evaluation-originals.json'), true, flags: JSON_THROW_ON_ERROR);
+$settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/competition-lifecycle-originals.json'), true, flags: JSON_THROW_ON_ERROR);
+$settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/competition-projections-originals.json'), true, flags: JSON_THROW_ON_ERROR);
+$settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/competition-standings-originals.json'), true, flags: JSON_THROW_ON_ERROR);
+$settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/competition-deletion-originals.json'), true, flags: JSON_THROW_ON_ERROR);
+$settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/competition-configuration-originals.json'), true, flags: JSON_THROW_ON_ERROR);
+$settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/division-maintenance-originals.json'), true, flags: JSON_THROW_ON_ERROR);
+$settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/legacy-qualifier-calendar-originals.json'), true, flags: JSON_THROW_ON_ERROR);
+$settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/fixture-generation-originals.json'), true, flags: JSON_THROW_ON_ERROR);
+$settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/legacy-event-fixtures-originals.json'), true, flags: JSON_THROW_ON_ERROR);
+$settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/phase-advance-originals.json'), true, flags: JSON_THROW_ON_ERROR);
+$settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/qualifier-honor-originals.json'), true, flags: JSON_THROW_ON_ERROR);
+$settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/phase-maintenance-originals.json'), true, flags: JSON_THROW_ON_ERROR);
+$settingsTeamExtractions += json_decode(file_get_contents(__DIR__ . '/fixtures/platform-read-model-originals.json'), true, flags: JSON_THROW_ON_ERROR);
 foreach ($contracts as $name => $contract) {
     if (!function_exists($name)) throw new RuntimeException('Missing compatibility function: ' . $name);
     $function = new ReflectionFunction($name);
@@ -21,6 +40,17 @@ foreach ($contracts as $name => $contract) {
     $lines = file($function->getFileName());
     $body = implode('', array_slice($lines, $function->getStartLine() - 1, $function->getEndLine() - $function->getStartLine() + 1));
     $body = rtrim(str_replace("\r\n", "\n", $body), "\r\n");
+    if (isset($settingsTeamExtractions[$name])) {
+        $entry = $settingsTeamExtractions[$name];
+        $original = rtrim(str_replace("\r\n", "\n", $entry['original']), "\r\n");
+        if (hash('sha256', $original) !== $contract['sha256']) {
+            throw new RuntimeException('Original ported module evidence changed: ' . $name);
+        }
+        if (architectureBodyTokens($body) !== architectureBodyTokens($entry['facade'])) {
+            throw new RuntimeException('Ported module delegation changed: ' . $name);
+        }
+        continue;
+    }
     if ($name === $formExtractions['function']) {
         $original = rtrim(str_replace("\r\n", "\n", $formOriginals['signature'] . $formOriginals['body']), "\r\n");
         if (hash('sha256', $original) !== $contract['sha256']) throw new RuntimeException('Original dispatcher evidence changed');

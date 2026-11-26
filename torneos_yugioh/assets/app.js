@@ -1,16 +1,47 @@
+(function (root) {
+  "use strict";
+  function create({ key, readValue, writeValue, now, random, uuid }) {
+    function read() {
+      try {
+        const value = JSON.parse(readValue(key) || "[]");
+        if (Array.isArray(value)) return value;
+        return value && Array.isArray(value.payload)
+          ? [{ id: value.id || `legacy-${now()}`, ...value }]
+          : [];
+      } catch {
+        return [];
+      }
+    }
+    function write(queue) {
+      writeValue(key, JSON.stringify(queue));
+    }
+    function requestId() {
+      const id = uuid();
+      return id === null
+        ? `offline-${now()}-${random().toString(16).slice(2)}`
+        : id;
+    }
+    return Object.freeze({ read, write, requestId });
+  }
+  const api = Object.freeze({ create });
+  root.StationXOfflineQueue = api;
+  if (typeof module === "object" && module.exports) module.exports = api;
+})(typeof window !== "undefined" ? window : globalThis);
 (function () {
   const data = window.DML_DATA || { divisions: {}, fixtures: {}, allDecks: [], teams: [], competitions: [], cards: [], media: [], honors: [], audit: [], events: [], rulesets: [], rulesetVersions: [], matchTypes: [], gameRules: [], gameRuleConditions: [], competitionDependencies: [], statusHistory: [], standingSnapshots: [], matchSnapshots: [], matchupAnalyses: [], matchupAnalysisHistory: [], deckAnalysisProfiles: [], deckAnalysisProfileHistory: [], medalUnlocks: [], medalProgress: [], rankingHistory: [], eventSummaries: [], checkins: [], metaHistory: [], eloHistory: [], settings: {} };
   const settings = data.settings || {};
   const OFFLINE_QUEUE_KEY = 'dml_offline_result_queue';
-  const readOfflineQueue = () => {
-    try {
-      const value = JSON.parse(localStorage.getItem(OFFLINE_QUEUE_KEY) || '[]');
-      if (Array.isArray(value)) return value;
-      return value && Array.isArray(value.payload) ? [{ id: value.id || `legacy-${Date.now()}`, ...value }] : [];
-    } catch { return []; }
-  };
-  const writeOfflineQueue = (queue) => localStorage.setItem(OFFLINE_QUEUE_KEY, JSON.stringify(queue));
-  const makeRequestId = () => (window.crypto?.randomUUID ? window.crypto.randomUUID() : `offline-${Date.now()}-${Math.random().toString(16).slice(2)}`);
+  const offlineQueue = window.StationXOfflineQueue.create({
+    key: OFFLINE_QUEUE_KEY,
+    readValue: (key) => localStorage.getItem(key),
+    writeValue: (key, value) => localStorage.setItem(key, value),
+    now: () => Date.now(),
+    random: () => Math.random(),
+    uuid: () => window.crypto?.randomUUID ? window.crypto.randomUUID() : null
+  });
+  const readOfflineQueue = offlineQueue.read;
+  const writeOfflineQueue = offlineQueue.write;
+  const makeRequestId = offlineQueue.requestId;
   const serverToday = data.serverToday || new Date().toISOString().slice(0, 10);
   const appMain = document.querySelector('.app-main');
   const detachedEventScreen = document.querySelector('[data-screen="evento_ficha"]');

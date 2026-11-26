@@ -12,7 +12,9 @@ for(const phrase of ['XMLHttpRequest','xhr.upload.onprogress','event.lengthCompu
 assert(ui.includes('dialog.close()')&&ui.includes('root.location.reload()'),'Success must refresh the selected deck after closing the importer');
 assert(ui.includes('new Intl.DateTimeFormat')&&ui.includes('timeZone:\'America/Bogota\''),'Display recorded timestamp in Colombian time');
 assert(page.includes('data-deck-last-updated')&&!page.includes('12 secciones'),'Deck header should show last imported timestamp, never a static section count');
-assert(server.includes("'updated_at'=>is_string($current['folder_delivery']['imported_at']"),'Timestamp must originate from stored import metadata');
+const workflow=fs.readFileSync(path.join(app,'src/Application/Decks/Packages/DeckPackageWorkflow.php'),'utf8');
+assert(server.includes('$workflow->status($context)'),'HTTP status must delegate to the application workflow');
+assert(workflow.includes("'updated_at' => is_string($current['folder_delivery']['imported_at']"),'Timestamp must originate from stored import metadata');
 assert(profile.includes("sessionStorage.getItem('stationx:deck-data-return')"),'After refresh the original deck must be restored');
 assert(css.includes('.deck-data-progress')&&css.includes('.deck-last-updated'),'Progress and update label require responsive styling');
 console.log('Deck data import UX contracts verified');
