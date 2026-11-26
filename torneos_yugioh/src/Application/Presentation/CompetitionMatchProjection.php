@@ -23,18 +23,24 @@ final class CompetitionMatchProjection
             foreach ($rounds as $round) {
                 foreach ($round['matches'] ?? [] as $match) {
                     $id = (int) ($match['competition_id'] ?? 0);
-                    $phase = (string) (($match['phase'] ?? '') ?: '');
+                    $phase = (string) ($match['phase'] ?? '' ?: '');
                     if ($id <= 0 || !in_array($phase, $phases, true)) {
                         continue;
                     }
                     $matches[$id][] = $match + ['round_number' => (int) ($round['ronda'] ?? 0)];
                     if (!isset($stats[$id])) {
-                        $stats[$id] = ['total' => 0, 'scheduled' => 0, 'finalized' => 0, 'pending' => 0];
+                        $stats[$id] = [
+                            'total' => 0,
+                            'scheduled' => 0,
+                            'finalized' => 0,
+                            'pending' => 0,
+                        ];
                         if ($cup) {
                             $stats[$id]['dates'] = [];
                         }
                     }
-                    $finished = ($match['estado'] ?? '') === 'FINALIZADA' || !empty($match['score']);
+                    $finished =
+                        ($match['estado'] ?? '') === 'FINALIZADA' || !empty($match['score']);
                     $stats[$id]['total']++;
                     $stats[$id][$finished ? 'finalized' : 'pending']++;
                     if (!empty($match['scheduled_on'])) {
@@ -50,12 +56,10 @@ final class CompetitionMatchProjection
             foreach ($matches as &$group) {
                 usort(
                     $group,
-                    static fn(array $left, array $right): int =>
-                        (int) ($left['display_order'] ?? 0) <=>
-                            (int) ($right['display_order'] ?? 0) ?:
-                        (int) ($left['round_number'] ?? 0) <=>
-                            (int) ($right['round_number'] ?? 0) ?:
-                        (int) ($left['mesa'] ?? 0) <=> (int) ($right['mesa'] ?? 0),
+                    static fn(array $left, array $right): int => (int) ($left['display_order'] ??
+                        0) <=> (int) ($right['display_order'] ?? 0) ?:
+                    (int) ($left['round_number'] ?? 0) <=> (int) ($right['round_number'] ?? 0) ?:
+                    (int) ($left['mesa'] ?? 0) <=> (int) ($right['mesa'] ?? 0),
                 );
             }
             unset($group);

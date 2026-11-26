@@ -2944,8 +2944,14 @@ $teamNames = $directory::deckTeams([
     ['name' => 'B', 'team' => ''],
 ]);
 architectureCheck($directory::matchLabel($teamNames, 'A') === 'New / A', 'Team label changed');
-architectureCheck($directory::matchLabel($teamNames, 'B') === 'Sin equipo / B', 'Empty team changed');
-architectureCheck($directory::matchLabel($teamNames, 'C') === 'Sin equipo / C', 'Missing team changed');
+architectureCheck(
+    $directory::matchLabel($teamNames, 'B') === 'Sin equipo / B',
+    'Empty team changed',
+);
+architectureCheck(
+    $directory::matchLabel($teamNames, 'C') === 'Sin equipo / C',
+    'Missing team changed',
+);
 
 // Shared presentation aggregation keeps cup sorting and world insertion order distinct.
 $competitionMatches = \StationX\Yugioh\Application\Presentation\CompetitionMatchProjection::class;
@@ -2955,7 +2961,14 @@ $projectionFixtures = [
             'ronda' => 2,
             'matches' => [
                 ['id' => 1, 'competition_id' => 8, 'phase' => 'cup', 'display_order' => 2],
-                ['id' => 2, 'competition_id' => 8, 'phase' => 'final', 'display_order' => 1, 'score' => '2-0', 'scheduled_on' => '2026-11-26'],
+                [
+                    'id' => 2,
+                    'competition_id' => 8,
+                    'phase' => 'final',
+                    'display_order' => 1,
+                    'score' => '2-0',
+                    'scheduled_on' => '2026-11-26',
+                ],
                 ['id' => 3, 'competition_id' => 9, 'phase' => 'world', 'display_order' => 2],
                 ['id' => 4, 'competition_id' => 9, 'phase' => 'world', 'display_order' => 1],
                 ['id' => 5, 'competition_id' => 0, 'phase' => 'cup'],
@@ -2966,7 +2979,10 @@ $projectionFixtures = [
 $cupProjection = $competitionMatches::cups($projectionFixtures);
 $worldProjection = $competitionMatches::worlds($projectionFixtures);
 architectureCheck(array_column($cupProjection['matches'][8], 'id') === [2, 1], 'Cup order changed');
-architectureCheck(array_column($worldProjection['matches'][9], 'id') === [3, 4], 'World order changed');
+architectureCheck(
+    array_column($worldProjection['matches'][9], 'id') === [3, 4],
+    'World order changed',
+);
 architectureCheck(
     $cupProjection['stats'][8] === [
         'total' => 2,
@@ -2979,12 +2995,17 @@ architectureCheck(
 );
 architectureCheck(!isset($worldProjection['stats'][9]['dates']), 'World shape changed');
 architectureCheck(!isset($cupProjection['stats'][0]), 'Invalid competition included');
-$competitionDirectory = \StationX\Yugioh\Application\Presentation\CompetitionDirectoryProjection::build([
-    ['id' => 1, 'type' => 'cup', 'name' => 'Cup', 'dependencies' => [['ok' => true]]],
-    ['id' => 2, 'type' => 'cup'],
-    ['id' => 3],
-]);
-architectureCheck($competitionDirectory['byType'] === ['cup' => 2, 'special' => 1], 'Type totals changed');
+$competitionDirectory = \StationX\Yugioh\Application\Presentation\CompetitionDirectoryProjection::build(
+    [
+        ['id' => 1, 'type' => 'cup', 'name' => 'Cup', 'dependencies' => [['ok' => true]]],
+        ['id' => 2, 'type' => 'cup'],
+        ['id' => 3],
+    ],
+);
+architectureCheck(
+    $competitionDirectory['byType'] === ['cup' => 2, 'special' => 1],
+    'Type totals changed',
+);
 architectureCheck($competitionDirectory['byRuleset'] === ['custom' => 3], 'Ruleset totals changed');
 architectureCheck($competitionDirectory['dependencies'][0]['ok'], 'Dependency state changed');
 
@@ -2996,7 +3017,12 @@ $qualifierFixtures = [
             'ronda' => 2,
             'matches' => [
                 ['id' => 1, 'competition_id' => 8, 'scheduled_on' => '2026-11-27'],
-                ['id' => 2, 'competition_id' => 8, 'scheduled_on' => '2026-11-26', 'score' => '2-0'],
+                [
+                    'id' => 2,
+                    'competition_id' => 8,
+                    'scheduled_on' => '2026-11-26',
+                    'score' => '2-0',
+                ],
                 ['id' => 3, 'competition_id' => 9, 'estado' => 'FINALIZADA'],
                 ['id' => 4, 'competition_id' => 8],
             ],
@@ -3004,9 +3030,15 @@ $qualifierFixtures = [
     ],
 ];
 $qualifierSummary = $qualifierProjection::statistics($qualifierFixtures, [8 => true]);
-architectureCheck($qualifierSummary === [8 => ['matches' => 3, 'finished' => 1]], 'Qualifier totals changed');
+architectureCheck(
+    $qualifierSummary === [8 => ['matches' => 3, 'finished' => 1]],
+    'Qualifier totals changed',
+);
 $qualifierDisplay = $qualifierProjection::display($qualifierFixtures, 8);
-architectureCheck(array_column($qualifierDisplay['matches'], 'id') === [2, 1, 4], 'Qualifier order changed');
+architectureCheck(
+    array_column($qualifierDisplay['matches'], 'id') === [2, 1, 4],
+    'Qualifier order changed',
+);
 architectureCheck($qualifierDisplay['roundCount'] === 1, 'Qualifier round count changed');
 architectureCheck($qualifierDisplay['scheduledCount'] === 2, 'Qualifier scheduled count changed');
 architectureCheck($qualifierDisplay['finishedCount'] === 1, 'Qualifier finished count changed');

@@ -13,9 +13,9 @@ final class CompetitionDirectoryProjection
         $byId = [];
         $dependencies = [];
         foreach ($competitions as $competition) {
-            $type = (string) (($competition['type'] ?? '') ?: 'special');
-            $ruleset = (string) (($competition['event_ruleset'] ?? '') ?: 'custom');
-            $status = (string) (($competition['status'] ?? '') ?: 'draft');
+            $type = (string) ($competition['type'] ?? '' ?: 'special');
+            $ruleset = (string) ($competition['event_ruleset'] ?? '' ?: 'custom');
+            $status = (string) ($competition['status'] ?? '' ?: 'draft');
             $byType[$type] = ($byType[$type] ?? 0) + 1;
             $byRuleset[$ruleset] = ($byRuleset[$ruleset] ?? 0) + 1;
             $byStatus[$status] = ($byStatus[$status] ?? 0) + 1;
@@ -27,7 +27,8 @@ final class CompetitionDirectoryProjection
                     'ruleset' => $ruleset,
                     'ok' => !empty($dependency['ok']),
                     'status' => (string) ($dependency['status'] ?? 'draft'),
-                    'condition' => (string) ($dependency['condition_type'] ?? 'completed_with_results'),
+                    'condition' =>
+                        (string) ($dependency['condition_type'] ?? 'completed_with_results'),
                 ];
             }
         }

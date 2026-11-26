@@ -14,7 +14,7 @@ final class DirectoryProjection
         );
         $unique = [];
         foreach ($visible as $key => $division) {
-            $identity = (string) (($division['code'] ?? '') ?: ($division['short'] ?? '') ?: $key);
+            $identity = (string) ($division['code'] ?? '' ?: $division['short'] ?? '' ?: $key);
             if ($identity === '') {
                 $identity = (string) $key;
             }
@@ -29,13 +29,13 @@ final class DirectoryProjection
     {
         $teams = [];
         foreach ($decks as $deck) {
-            $teams[(string) ($deck['name'] ?? '')] = (string) (($deck['team'] ?? '') ?: 'Sin equipo');
+            $teams[(string) ($deck['name'] ?? '')] = (string) ($deck['team'] ?? '' ?: 'Sin equipo');
         }
         return $teams;
     }
 
     public static function matchLabel(array $teams, string $deck): string
     {
-        return (($teams[$deck] ?? 'Sin equipo') ?: 'Sin equipo') . ' / ' . $deck;
+        return ($teams[$deck] ?? 'Sin equipo' ?: 'Sin equipo') . ' / ' . $deck;
     }
 }
