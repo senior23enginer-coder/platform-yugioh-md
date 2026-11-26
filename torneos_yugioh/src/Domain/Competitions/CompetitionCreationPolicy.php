@@ -28,8 +28,12 @@ final class CompetitionCreationPolicy
         return ['divisionIds' => $postedDivisionIds, 'ruleset' => $competitionRuleset];
     }
 
-    public static function format(array $post, array $selectedRuleset, string $postedDivision, array $postedDivisionIds): array
-    {
+    public static function format(
+        array $post,
+        array $selectedRuleset,
+        string $postedDivision,
+        array $postedDivisionIds,
+    ): array {
         $matchFormat = trim(
             (string) ($post['competition_match_format'] ??
                 ($selectedRuleset['match_format'] ?? '1v1')),
@@ -45,11 +49,20 @@ final class CompetitionCreationPolicy
         if ($postedDivisionId && !in_array($postedDivisionId, $postedDivisionIds, true)) {
             array_unshift($postedDivisionIds, $postedDivisionId);
         }
-        return ['matchFormat' => $matchFormat, 'participantsPerSide' => $participantsPerSide, 'divisionId' => $postedDivisionId, 'divisionIds' => $postedDivisionIds];
+        return [
+            'matchFormat' => $matchFormat,
+            'participantsPerSide' => $participantsPerSide,
+            'divisionId' => $postedDivisionId,
+            'divisionIds' => $postedDivisionIds,
+        ];
     }
 
-    public static function movements(array $post, string $competitionType, ?int $postedDivisionId, array $postedDivisionIds): array
-    {
+    public static function movements(
+        array $post,
+        string $competitionType,
+        ?int $postedDivisionId,
+        array $postedDivisionIds,
+    ): array {
         $deckPoolMode = (string) ($post['competition_deck_pool'] ?? 'all_active');
         if (!in_array($deckPoolMode, ['all_active', 'division'], true)) {
             $deckPoolMode = 'all_active';
@@ -89,10 +102,14 @@ final class CompetitionCreationPolicy
                 ? max(1, min(5, (int) ($post['qualifier_matches_per_day'] ?? 1)))
                 : 1;
         return [
-            'deckPoolMode' => $deckPoolMode, 'leaguePromotionSlots' => $leaguePromotionSlots,
-            'leagueRelegationSlots' => $leagueRelegationSlots, 'leaguePromotionTo' => $leaguePromotionTo,
-            'leagueRelegationTo' => $leagueRelegationTo, 'lockDivisionMoves' => $lockDivisionMoves,
-            'qualifierDuelsPerDeck' => $qualifierDuelsPerDeck, 'qualifierMatchesPerDay' => $qualifierMatchesPerDay,
+            'deckPoolMode' => $deckPoolMode,
+            'leaguePromotionSlots' => $leaguePromotionSlots,
+            'leagueRelegationSlots' => $leagueRelegationSlots,
+            'leaguePromotionTo' => $leaguePromotionTo,
+            'leagueRelegationTo' => $leagueRelegationTo,
+            'lockDivisionMoves' => $lockDivisionMoves,
+            'qualifierDuelsPerDeck' => $qualifierDuelsPerDeck,
+            'qualifierMatchesPerDay' => $qualifierMatchesPerDay,
         ];
     }
 

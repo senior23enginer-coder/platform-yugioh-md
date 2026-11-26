@@ -10,6 +10,8 @@ final class SaveCompetitionHandler extends NativeFormHandler
 {
     protected function perform(PDO $pdo, string $action, array $post, array $files): ?string
     {
-        return \StationX\Yugioh\Infrastructure\Composition\CompetitionDefinitionModule::create($pdo)->execute($post, $GLOBALS['competitionTypeOptions'] ?? []);
+        return \StationX\Yugioh\Infrastructure\Composition\CompetitionDefinitionModule::create(
+            $pdo,
+        )->execute($post, $GLOBALS['competitionTypeOptions'] ?? []);
     }
 }

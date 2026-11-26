@@ -38,10 +38,7 @@ final readonly class PdoCompetitionDefinitionStore implements CompetitionDefinit
             'SELECT id FROM sx_ygo_divisions WHERE season_id=? AND active=1 AND league_competition_id=? ORDER BY tier_order,id',
         );
         $linkedDivisionStmt->execute([$seasonId, $id]);
-        return array_map(
-            'intval',
-            $linkedDivisionStmt->fetchAll(PDO::FETCH_COLUMN),
-        );
+        return array_map('intval', $linkedDivisionStmt->fetchAll(PDO::FETCH_COLUMN));
     }
 
     public function activeDivisions(int $seasonId, array $postedDivisionIds): array
@@ -50,50 +47,59 @@ final readonly class PdoCompetitionDefinitionStore implements CompetitionDefinit
         $divisionStmt = $this->pdo->prepare(
             "SELECT id FROM sx_ygo_divisions WHERE season_id=? AND active=1 AND id IN ($placeholders) ORDER BY FIELD(id,$placeholders)",
         );
-        $divisionStmt->execute(
-            array_merge([$seasonId], $postedDivisionIds, $postedDivisionIds),
-        );
+        $divisionStmt->execute(array_merge([$seasonId], $postedDivisionIds, $postedDivisionIds));
         return array_map('intval', $divisionStmt->fetchAll(PDO::FETCH_COLUMN));
     }
 
     public function update(int $id, array $values): void
     {
-        $this->pdo->prepare(
-            'UPDATE sx_ygo_competitions SET division_id=?, code=?, name=?, type=?, scope=?, format=?, match_format=?, best_of=?, participants_per_side=?, schedule_strategy=?, event_ruleset=?, ruleset_version=?, deck_pool=?, promotion_slots=?, relegation_slots=?, promotion_to_division_id=?, relegation_to_division_id=?, lock_division_moves=?, victory_condition=?, defeat_condition=?, draw_condition=?, prompt_template=?, event_system=?, execution_model=?, participation=?, construction=?, environment=?, level=?, event_flow=?, participant_source=?, advancement_rule=?, draw_policy=?, ranking_impact=?, deck_policy=?, access_type=?, phase_structure=?, qualifier_duels_per_deck=?, qualifier_matches_per_day=?, game_rule_id=?, status=?, starts_on=?, ends_on=?, accent=?, logo_url=?, rules=?, active=1 WHERE id=?',
-        )->execute(array_merge(array_slice($values, 1), [$id]));
+        $this->pdo
+            ->prepare(
+                'UPDATE sx_ygo_competitions SET division_id=?, code=?, name=?, type=?, scope=?, format=?, match_format=?, best_of=?, participants_per_side=?, schedule_strategy=?, event_ruleset=?, ruleset_version=?, deck_pool=?, promotion_slots=?, relegation_slots=?, promotion_to_division_id=?, relegation_to_division_id=?, lock_division_moves=?, victory_condition=?, defeat_condition=?, draw_condition=?, prompt_template=?, event_system=?, execution_model=?, participation=?, construction=?, environment=?, level=?, event_flow=?, participant_source=?, advancement_rule=?, draw_policy=?, ranking_impact=?, deck_policy=?, access_type=?, phase_structure=?, qualifier_duels_per_deck=?, qualifier_matches_per_day=?, game_rule_id=?, status=?, starts_on=?, ends_on=?, accent=?, logo_url=?, rules=?, active=1 WHERE id=?',
+            )
+            ->execute(array_merge(array_slice($values, 1), [$id]));
     }
 
     public function insert(array $values): int
     {
-        $this->pdo->prepare(
-            'INSERT INTO sx_ygo_competitions (season_id, division_id, code, name, type, scope, format, match_format, best_of, participants_per_side, schedule_strategy, event_ruleset, ruleset_version, deck_pool, promotion_slots, relegation_slots, promotion_to_division_id, relegation_to_division_id, lock_division_moves, victory_condition, defeat_condition, draw_condition, prompt_template, event_system, execution_model, participation, construction, environment, level, event_flow, participant_source, advancement_rule, draw_policy, ranking_impact, deck_policy, access_type, phase_structure, qualifier_duels_per_deck, qualifier_matches_per_day, game_rule_id, status, starts_on, ends_on, accent, logo_url, rules, active) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)',
-        )->execute($values);
+        $this->pdo
+            ->prepare(
+                'INSERT INTO sx_ygo_competitions (season_id, division_id, code, name, type, scope, format, match_format, best_of, participants_per_side, schedule_strategy, event_ruleset, ruleset_version, deck_pool, promotion_slots, relegation_slots, promotion_to_division_id, relegation_to_division_id, lock_division_moves, victory_condition, defeat_condition, draw_condition, prompt_template, event_system, execution_model, participation, construction, environment, level, event_flow, participant_source, advancement_rule, draw_policy, ranking_impact, deck_policy, access_type, phase_structure, qualifier_duels_per_deck, qualifier_matches_per_day, game_rule_id, status, starts_on, ends_on, accent, logo_url, rules, active) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)',
+            )
+            ->execute($values);
         return (int) $this->pdo->lastInsertId();
     }
 
-    public function linkDivisions(int $seasonId, int $targetCompetitionId, array $postedDivisionIds): void
-    {
-        $this->pdo->prepare(
-            'UPDATE sx_ygo_divisions SET league_competition_id=NULL WHERE season_id=? AND league_competition_id=?',
-        )->execute([$seasonId, $targetCompetitionId]);
+    public function linkDivisions(
+        int $seasonId,
+        int $targetCompetitionId,
+        array $postedDivisionIds,
+    ): void {
+        $this->pdo
+            ->prepare(
+                'UPDATE sx_ygo_divisions SET league_competition_id=NULL WHERE season_id=? AND league_competition_id=?',
+            )
+            ->execute([$seasonId, $targetCompetitionId]);
         $placeholders = implode(',', array_fill(0, count($postedDivisionIds), '?'));
-        $this->pdo->prepare(
-            "UPDATE sx_ygo_divisions SET league_competition_id=? WHERE season_id=? AND active=1 AND id IN ($placeholders)",
-        )->execute(array_merge([$targetCompetitionId, $seasonId], $postedDivisionIds));
+        $this->pdo
+            ->prepare(
+                "UPDATE sx_ygo_divisions SET league_competition_id=? WHERE season_id=? AND active=1 AND id IN ($placeholders)",
+            )
+            ->execute(array_merge([$targetCompetitionId, $seasonId], $postedDivisionIds));
     }
 
     public function setParameters(int $targetCompetitionId, ?string $parameters): void
     {
-        $this->pdo->prepare(
-            'UPDATE sx_ygo_competitions SET execution_parameters=? WHERE id=?',
-        )->execute([$parameters, $targetCompetitionId]);
+        $this->pdo
+            ->prepare('UPDATE sx_ygo_competitions SET execution_parameters=? WHERE id=?')
+            ->execute([$parameters, $targetCompetitionId]);
     }
 
     public function clearDependencies(int $targetCompetitionId): void
     {
-        $this->pdo->prepare(
-            'UPDATE sx_ygo_competition_dependencies SET active=0 WHERE competition_id=?',
-        )->execute([$targetCompetitionId]);
+        $this->pdo
+            ->prepare('UPDATE sx_ygo_competition_dependencies SET active=0 WHERE competition_id=?')
+            ->execute([$targetCompetitionId]);
     }
 
     public function validQualifier(int $conditionQualifierId, int $seasonId): int
@@ -115,14 +121,19 @@ final readonly class PdoCompetitionDefinitionStore implements CompetitionDefinit
         return (int) ($qualifierStmt->fetchColumn() ?: 0);
     }
 
-    public function setDependency(int $seasonId, int $targetCompetitionId, int $validQualifierId): void
-    {
-        $this->pdo->prepare(
-            '
+    public function setDependency(
+        int $seasonId,
+        int $targetCompetitionId,
+        int $validQualifierId,
+    ): void {
+        $this->pdo
+            ->prepare(
+                '
             INSERT INTO sx_ygo_competition_dependencies (season_id, competition_id, depends_on_competition_id, condition_type, take_count, active)
             VALUES (?, ?, ?, "completed_with_results", 0, 1)
             ON DUPLICATE KEY UPDATE condition_type=VALUES(condition_type), take_count=VALUES(take_count), active=1
         ',
-        )->execute([$seasonId, $targetCompetitionId, $validQualifierId]);
+            )
+            ->execute([$seasonId, $targetCompetitionId, $validQualifierId]);
     }
 }

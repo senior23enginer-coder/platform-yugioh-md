@@ -20,8 +20,13 @@ final readonly class NativeCompetitionDefinitionServices implements CompetitionD
         \ygo_assert_fixture_mutable($this->pdo, $id);
     }
 
-    public function generateCode(int $seasonId, string $type, string $ruleset, string $name, int $id): string
-    {
+    public function generateCode(
+        int $seasonId,
+        string $type,
+        string $ruleset,
+        string $name,
+        int $id,
+    ): string {
         return \ygo_generate_competition_code($this->pdo, $seasonId, $type, $ruleset, $name, $id);
     }
 
@@ -60,9 +65,21 @@ final readonly class NativeCompetitionDefinitionServices implements CompetitionD
         return \ygo_event_logo_gallery();
     }
 
-    public function validGameRule(int $seasonId, int $posted, ?int $fallback, string $type, string $execution): ?int
-    {
-        return \ygo_valid_game_rule_id($this->pdo, $seasonId, $posted, $fallback, $type, $execution);
+    public function validGameRule(
+        int $seasonId,
+        int $posted,
+        ?int $fallback,
+        string $type,
+        string $execution,
+    ): ?int {
+        return \ygo_valid_game_rule_id(
+            $this->pdo,
+            $seasonId,
+            $posted,
+            $fallback,
+            $type,
+            $execution,
+        );
     }
 
     public function parameterFields(string $execution): array
@@ -75,9 +92,23 @@ final readonly class NativeCompetitionDefinitionServices implements CompetitionD
         return \ygo_event_contract_errors($input, $preset);
     }
 
-    public function history(int $seasonId, int $id, ?string $from, string $to, string $action, array $payload): void
-    {
-        \ygo_record_competition_status_history($this->pdo, $seasonId, $id, $from, $to, $action, $payload);
+    public function history(
+        int $seasonId,
+        int $id,
+        ?string $from,
+        string $to,
+        string $action,
+        array $payload,
+    ): void {
+        \ygo_record_competition_status_history(
+            $this->pdo,
+            $seasonId,
+            $id,
+            $from,
+            $to,
+            $action,
+            $payload,
+        );
     }
 
     public function recordLogo(string $entity, int $id, string $url, string $source): void

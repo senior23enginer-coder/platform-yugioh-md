@@ -9,7 +9,10 @@ use StationX\Yugioh\Domain\Competitions\CompetitionCreationPolicy;
 
 final readonly class SaveCompetitionDefinition
 {
-    public function __construct(private CompetitionDefinitionStore $store, private CompetitionDefinitionServices $services) {}
+    public function __construct(
+        private CompetitionDefinitionStore $store,
+        private CompetitionDefinitionServices $services,
+    ) {}
 
     public function execute(array $post, array $typeOptions): string
     {
@@ -39,14 +42,20 @@ final readonly class SaveCompetitionDefinition
         }
         $competitionCode = $id > 0 ? trim((string) ($existingCompetition['code'] ?? '')) : '';
         if ($competitionCode === '' && $competitionName !== '') {
-            $competitionCode = $this->services->generateCode($seasonId,
+            $competitionCode = $this->services->generateCode(
+                $seasonId,
                 $competitionType,
                 $competitionRuleset,
                 $competitionName,
                 $id,
             );
         }
-        $formatInput = CompetitionCreationPolicy::format($post, $selectedRuleset, $postedDivision, $postedDivisionIds);
+        $formatInput = CompetitionCreationPolicy::format(
+            $post,
+            $selectedRuleset,
+            $postedDivision,
+            $postedDivisionIds,
+        );
         $matchFormat = $formatInput['matchFormat'];
         $participantsPerSide = $formatInput['participantsPerSide'];
         $postedDivisionId = $formatInput['divisionId'];
@@ -72,11 +81,20 @@ final readonly class SaveCompetitionDefinition
             throw new RuntimeException('Toda liga debe tener una division activa asociada.');
         }
         [
-            'deckPoolMode' => $deckPoolMode, 'leaguePromotionSlots' => $leaguePromotionSlots,
-            'leagueRelegationSlots' => $leagueRelegationSlots, 'leaguePromotionTo' => $leaguePromotionTo,
-            'leagueRelegationTo' => $leagueRelegationTo, 'lockDivisionMoves' => $lockDivisionMoves,
-            'qualifierDuelsPerDeck' => $qualifierDuelsPerDeck, 'qualifierMatchesPerDay' => $qualifierMatchesPerDay,
-        ] = CompetitionCreationPolicy::movements($post, $competitionType, $postedDivisionId, $postedDivisionIds);
+            'deckPoolMode' => $deckPoolMode,
+            'leaguePromotionSlots' => $leaguePromotionSlots,
+            'leagueRelegationSlots' => $leagueRelegationSlots,
+            'leaguePromotionTo' => $leaguePromotionTo,
+            'leagueRelegationTo' => $leagueRelegationTo,
+            'lockDivisionMoves' => $lockDivisionMoves,
+            'qualifierDuelsPerDeck' => $qualifierDuelsPerDeck,
+            'qualifierMatchesPerDay' => $qualifierMatchesPerDay,
+        ] = CompetitionCreationPolicy::movements(
+            $post,
+            $competitionType,
+            $postedDivisionId,
+            $postedDivisionIds,
+        );
         $rulesetVersion = trim((string) ($post['competition_ruleset_version'] ?? ''));
         if (
             $id === 0 &&
@@ -98,7 +116,8 @@ final readonly class SaveCompetitionDefinition
             '',
             trim((string) ($post['competition_execution_model'] ?? '')),
         );
-        $templateType = $promptTemplate !== '' ? $this->services->templateType($promptTemplate) : '';
+        $templateType =
+            $promptTemplate !== '' ? $this->services->templateType($promptTemplate) : '';
         if ($templateType !== '' && $templateType !== $competitionType) {
             throw new InvalidArgumentException(
                 'El tipo de evento no corresponde a la plantilla elegida; no se borrara ni sustituira silenciosamente.',
@@ -188,12 +207,11 @@ final readonly class SaveCompetitionDefinition
             $level = $level ?: 'CASUAL';
         }
         $uploadedLogo = $this->services->uploadLogo();
-        $galleryLogo = $this->services->validGalleryLogo((string) ($post['competition_gallery_logo'] ?? ''),
+        $galleryLogo = $this->services->validGalleryLogo(
+            (string) ($post['competition_gallery_logo'] ?? ''),
             $competitionType,
         );
-        $eventTypeAccent =
-            (string) ($typeOptions[$competitionType]['accent'] ?? '' ?:
-            '#36d8ff');
+        $eventTypeAccent = (string) ($typeOptions[$competitionType]['accent'] ?? '' ?: '#36d8ff');
         $defaultLogos = $this->services->gallery()[$competitionType] ?? [];
         $defaultLogo = (string) ($defaultLogos[0]['url'] ?? '');
         $logoUrl =
@@ -210,7 +228,8 @@ final readonly class SaveCompetitionDefinition
             $postedCreateStatus === 'cancelled' && $id > 0 ? 'cancelled' : 'pending_configuration';
         $existingRuleCode = (string) ($existingCompetition['game_rule_code'] ?? '');
         $fallbackRuleId = (int) ($existingCompetition['game_rule_id'] ?? 0) ?: null;
-        $gameRuleId = $this->services->validGameRule($seasonId,
+        $gameRuleId = $this->services->validGameRule(
+            $seasonId,
             (int) ($post['competition_game_rule_id'] ?? 0),
             $fallbackRuleId,
             $competitionType,
@@ -282,7 +301,8 @@ final readonly class SaveCompetitionDefinition
                 );
             }
         }
-        $contractErrors = $this->services->contractErrors([
+        $contractErrors = $this->services->contractErrors(
+            [
                 'type' => $competitionType,
                 'prompt_template' => $promptTemplate,
                 'execution_model' => $executionModel,
@@ -360,7 +380,8 @@ final readonly class SaveCompetitionDefinition
             $targetCompetitionId = $id;
             if ($id > 0) {
                 $this->store->update($id, $values);
-                $this->services->history($seasonId,
+                $this->services->history(
+                    $seasonId,
                     $id,
                     (string) ($existingCompetition['status'] ?? ''),
                     $competitionStatus,
@@ -369,7 +390,8 @@ final readonly class SaveCompetitionDefinition
                 );
             } else {
                 $targetCompetitionId = $this->store->insert($values);
-                $this->services->history($seasonId,
+                $this->services->history(
+                    $seasonId,
                     $targetCompetitionId,
                     null,
                     $competitionStatus,
@@ -379,17 +401,25 @@ final readonly class SaveCompetitionDefinition
             }
             if ($targetCompetitionId > 0) {
                 if ($competitionType === 'league' && $postedDivisionIds) {
-                    $this->store->linkDivisions($seasonId, $targetCompetitionId, $postedDivisionIds);
+                    $this->store->linkDivisions(
+                        $seasonId,
+                        $targetCompetitionId,
+                        $postedDivisionIds,
+                    );
                 }
                 $sameRecipe =
                     ($existingCompetition['prompt_template'] ?? null) === $promptTemplate &&
                     ($existingCompetition['execution_model'] ?? null) === $executionModel;
-                $this->store->setParameters($targetCompetitionId,                     $operationalParameters
+                $this->store->setParameters(
+                    $targetCompetitionId,
+                    $operationalParameters
                         ? json_encode($operationalParameters)
                         : ($sameRecipe
                             ? $existingCompetition['execution_parameters'] ?? null
-                            : null));
-                $this->services->recordLogo('competition',
+                            : null),
+                );
+                $this->services->recordLogo(
+                    'competition',
                     $targetCompetitionId,
                     $logoUrl,
                     $uploadedLogo !== '' ? 'upload' : ($galleryLogo !== '' ? 'gallery' : 'default'),
@@ -403,9 +433,16 @@ final readonly class SaveCompetitionDefinition
             ) {
                 $this->store->clearDependencies($targetCompetitionId);
                 if ($conditionQualifierId > 0) {
-                    $validQualifierId = $this->store->validQualifier($conditionQualifierId, $seasonId);
+                    $validQualifierId = $this->store->validQualifier(
+                        $conditionQualifierId,
+                        $seasonId,
+                    );
                     if ($validQualifierId > 0) {
-                        $this->store->setDependency($seasonId, $targetCompetitionId, $validQualifierId);
+                        $this->store->setDependency(
+                            $seasonId,
+                            $targetCompetitionId,
+                            $validQualifierId,
+                        );
                     }
                 }
             }

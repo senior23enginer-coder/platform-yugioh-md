@@ -12,6 +12,9 @@ final class CompetitionDefinitionModule
 {
     public static function create(PDO $pdo): SaveCompetitionDefinition
     {
-        return new SaveCompetitionDefinition(new PdoCompetitionDefinitionStore($pdo), new NativeCompetitionDefinitionServices($pdo));
+        return new SaveCompetitionDefinition(
+            new PdoCompetitionDefinitionStore($pdo),
+            new NativeCompetitionDefinitionServices($pdo),
+        );
     }
 }

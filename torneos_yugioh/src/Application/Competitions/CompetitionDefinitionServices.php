@@ -9,7 +9,13 @@ interface CompetitionDefinitionServices
 
     public function assertMutable(int $id): void;
 
-    public function generateCode(int $seasonId, string $type, string $ruleset, string $name, int $id): string;
+    public function generateCode(
+        int $seasonId,
+        string $type,
+        string $ruleset,
+        string $name,
+        int $id,
+    ): string;
 
     public function templateType(string $template): string;
 
@@ -25,13 +31,26 @@ interface CompetitionDefinitionServices
 
     public function gallery(): array;
 
-    public function validGameRule(int $seasonId, int $posted, ?int $fallback, string $type, string $execution): ?int;
+    public function validGameRule(
+        int $seasonId,
+        int $posted,
+        ?int $fallback,
+        string $type,
+        string $execution,
+    ): ?int;
 
     public function parameterFields(string $execution): array;
 
     public function contractErrors(array $input, ?array $preset): array;
 
-    public function history(int $seasonId, int $id, ?string $from, string $to, string $action, array $payload): void;
+    public function history(
+        int $seasonId,
+        int $id,
+        ?string $from,
+        string $to,
+        string $action,
+        array $payload,
+    ): void;
 
     public function recordLogo(string $entity, int $id, string $url, string $source): void;
 

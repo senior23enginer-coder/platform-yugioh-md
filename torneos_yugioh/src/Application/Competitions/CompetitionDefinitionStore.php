@@ -17,7 +17,11 @@ interface CompetitionDefinitionStore
 
     public function insert(array $values): int;
 
-    public function linkDivisions(int $seasonId, int $targetCompetitionId, array $postedDivisionIds): void;
+    public function linkDivisions(
+        int $seasonId,
+        int $targetCompetitionId,
+        array $postedDivisionIds,
+    ): void;
 
     public function setParameters(int $targetCompetitionId, ?string $parameters): void;
 
@@ -25,5 +29,9 @@ interface CompetitionDefinitionStore
 
     public function validQualifier(int $conditionQualifierId, int $seasonId): int;
 
-    public function setDependency(int $seasonId, int $targetCompetitionId, int $validQualifierId): void;
+    public function setDependency(
+        int $seasonId,
+        int $targetCompetitionId,
+        int $validQualifierId,
+    ): void;
 }
