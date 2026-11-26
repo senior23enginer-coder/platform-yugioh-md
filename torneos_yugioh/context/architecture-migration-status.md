@@ -120,6 +120,10 @@ Se separan el contrato JSON versionado, la validación de modalidad, formato y p
 
 Se separan las políticas puras de ruta, carpeta, inventario, contrato de calculadora, Markdown, presentación y validación, así como la preparación y construcción de exportaciones mediante el puerto de medios. Los lectores JSON/ZIP y de archivos locales permanecen en infraestructura; las funciones públicas originales son fachadas compatibles. Se conserva una copia de las funciones originales para revisión. Se separan también el coordinador de publicación atómica bajo bloqueo, la validación optimista, la transformación de imágenes y los lectores de registros, fuentes e inventario/revisiones. La escritura de archivos, ZIP y reemplazo del puntero permanece en adaptadores locales. Se separa el coordinador de status/export/preview/commit con puerto de sesión, reloj, staging, ZIP e inventario; HTTP conserva captura, CSRF, límites de subida, errores y descarga. Se preservan el TTL de 1.800 segundos, validación optimista de inventario y revisiones, historial inmutable y lock de publicación. Se añade cierre del temporal si falla la preparación. Falta verificar formato, regresión integral y filesystem/BD de pruebas.
 
+## Comandos de inventario y ficha de deck
+
+Se extraen alta manual de carta, importación CSV, guardado del perfil, enlace con equipo, portada, medios y baja lógica con bloqueo por eventos. Se mantienen zonas y límites heredados (sin modificar inventarios reales), respuestas HTTP, transacción propia de importación y auditorías. Los puertos de persistencia y medios conservan los servicios existentes. Regresiones añadidas; pendiente CI integral y MySQL.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

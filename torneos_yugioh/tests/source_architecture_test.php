@@ -1891,6 +1891,23 @@ architectureCheck(
 );
 $packagePreview::assertInventory($packagePending, ['inventory_sha256' => 'inv'], []);
 
+// Deck inventory commands preserve manual quantities and CSV zones.
+$deckCardInput = \StationX\Yugioh\Domain\Decks\DeckCardInput::class;
+$manualDeckCard = $deckCardInput::single(['card_deck_id' => 7, 'card_name' => ' A ', 'card_quantity' => 4]);
+architectureCheck(
+    $manualDeckCard['quantity'] === 4 && $manualDeckCard['section'] === 'main',
+    'Legacy manual card quantity changed',
+);
+$parsedDeckCards = $deckCardInput::parse(7, "main;4;A\nextra;1;B\ninvalid;1;C\nside;0;D");
+architectureCheck(
+    array_column($parsedDeckCards, 'quantity') === [3, 1, 1] &&
+        array_column($parsedDeckCards, 'section') === ['main', 'extra', 'side'],
+    'Legacy inventory parser changed',
+);
+$deckProfilePolicy = \StationX\Yugioh\Domain\Decks\DeckProfileInput::class;
+architectureCheck($deckProfilePolicy::team([], 7) === 7, 'Existing team was lost');
+architectureCheck($deckProfilePolicy::team(['team_id' => ''], 7) === 0, 'Explicit unlink lost');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
