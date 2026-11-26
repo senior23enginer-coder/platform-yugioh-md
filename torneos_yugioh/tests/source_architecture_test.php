@@ -1770,6 +1770,39 @@ architectureCheck(
     'Result payload changed',
 );
 
+// Team event configuration preserves exact roster membership, storage limits and fixed slots.
+$teamEventPolicy = \StationX\Yugioh\Domain\Competitions\TeamConfigurationPolicy::class;
+$teamState = [
+    'version' => 'STATION_X_TEAMS_V1',
+    'size' => 2,
+    'lineups' => [
+        ['captain' => 5, 'decks' => [5, 6]],
+        ['captain' => 7, 'decks' => [7, 8]],
+    ],
+];
+architectureCheck(
+    $teamEventPolicy::decodeState($teamEventPolicy::encodeState($teamState)) === $teamState,
+    'Team configuration JSON changed',
+);
+architectureCheck(
+    $teamEventPolicy::assertRoster($teamState, [8, '7', 6, 5]) === [5, 6, 7, 8],
+    'Team roster identity changed',
+);
+architectureCheck(
+    $teamEventPolicy::binding($teamState, 5, 7) === ['2v2', 2, 6, 8, null, null],
+    'Tag binding changed',
+);
+architectureCheck(
+    $seasonOutcome(static fn() => $teamEventPolicy::assertRoster($teamState, [5, 5, 7, 8])) ===
+        'Los participantes deben coincidir exactamente con las alineaciones guardadas.',
+    'Duplicate team roster accepted',
+);
+architectureCheck(
+    $seasonOutcome(static fn() => $teamEventPolicy::assertMode(['match_format' => '1v1'], 'tag')) !==
+        null,
+    'Invalid Tag mode accepted',
+);
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

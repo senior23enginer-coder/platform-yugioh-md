@@ -112,6 +112,10 @@ Se separan cuatro manejadores POST: reprogramar partida, vincular decks, guardar
 
 Se extraen normalización de resultados, protección de versiones y auditoría de turnos, caso de uso de guardado, publicación de snapshots y puertos de reglas, efectos y persistencia. El límite transaccional propio conserva la atomicidad y revierte explícitamente si falla el flujo. Los adaptadores preservan el orden lógico de consultas y operaciones; la preparación de sentencias de snapshots se realiza en cada lectura/escritura. Se añade evidencia histórica del manejador y regresiones. La validación integral, MySQL y mbstring quedan pendientes.
 
+## Configuración de equipos y alineaciones por evento
+
+Se separan el contrato JSON versionado, la validación de modalidad, formato y participantes, la configuración y el congelamiento de alineaciones, y el enlace de los puestos de combate. El caso de uso `TeamEventConfiguration` usa puertos de persistencia y reglas; la fachada conserva el bloqueo de escritura y el adaptador transaccional respeta las transacciones prestadas. Se guardan los cuerpos anteriores para revisión y se añaden regresiones. Resultados colectivos y proyección individual siguen pendientes, igual que la ejecución integral.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
