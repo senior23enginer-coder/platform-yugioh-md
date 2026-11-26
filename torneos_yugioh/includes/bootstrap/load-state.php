@@ -2,19 +2,11 @@
 declare(strict_types=1);
 
 // Legacy request bootstrap, POST dispatch and database loading; preserve transaction boundaries.
-$fixtures = [];
-$allDecks = [];
-foreach ($divisions as $key => $division) {
-    $fixtures[$key] = buildFixtures($division['decks']);
-    foreach ($division['decks'] as $deck) {
-        $allDecks[] = ['rank' => $deck[0], 'name' => $deck[1], 'division' => $key, 'reason' => $deck[2]];
-    }
-}
-
-$defaultUiLabels = [];
-foreach (ygo_default_ui_labels() as $defaultUiLabel) {
-    $defaultUiLabels[$defaultUiLabel[0]] = ['id' => 0, 'key' => $defaultUiLabel[0], 'title' => $defaultUiLabel[1], 'subtitle' => $defaultUiLabel[2], 'active' => 1];
-}
+['fixtures' => $fixtures, 'allDecks' => $allDecks] =
+    \StationX\Yugioh\Application\Bootstrap\SeedDataProjection::fixturesAndDecks($divisions);
+$defaultUiLabels = \StationX\Yugioh\Application\Bootstrap\SeedDataProjection::labels(
+    ygo_default_ui_labels(),
+);
 $appData = \StationX\Yugioh\Application\Bootstrap\InitialPlatformData::build(
     [
         'eventExtendedCatalog' => ygo_extended_event_catalog(),
@@ -30,7 +22,7 @@ $appData = \StationX\Yugioh\Application\Bootstrap\InitialPlatformData::build(
     $fixtures,
     $allDecks,
 );
-$dbStatus = ['connected' => false, 'message' => 'Sin conexion comprobada', 'counts' => []];
+$dbStatus = \StationX\Yugioh\Application\Bootstrap\ConnectionStatus::initial();
 $flashMessage = null;
 $flashClass = 'alert-success';
 try {
@@ -63,11 +55,18 @@ try {
     if ($posted !== null) {
         ygo_sync_event_summaries($pdo);
     }
-    $dbStatus = [
-        'connected' => true,
-        'message' => 'Conectado a la misma base de datos de la tienda',
-        'counts' => array_merge($seedCounts, ['deleted_seed_divisions' => $deletedSeedDivisions, 'deck_teams_sync' => $teamSyncCount, 'deck_format_sync' => $deckFormatSyncCount, 'deck_analysis_baselines' => $deckAnalysisBaselineCount, 'goat_disabled_qualifiers' => $goatLeagueStructure['disabled_qualifiers'] ?? 0, 'shared_schedule_limit' => $octoberScheduleMigration['global_daily_limit'] ?? 3, 'auto_started_events' => $activatedDueCompetitions]),
-    ];
+    $dbStatus = \StationX\Yugioh\Application\Bootstrap\ConnectionStatus::connected(
+        $seedCounts,
+        [
+            'deleted_seed_divisions' => $deletedSeedDivisions,
+            'deck_teams_sync' => $teamSyncCount,
+            'deck_format_sync' => $deckFormatSyncCount,
+            'deck_analysis_baselines' => $deckAnalysisBaselineCount,
+            'goat_disabled_qualifiers' => $goatLeagueStructure['disabled_qualifiers'] ?? 0,
+            'shared_schedule_limit' => $octoberScheduleMigration['global_daily_limit'] ?? 3,
+            'auto_started_events' => $activatedDueCompetitions,
+        ],
+    );
     if ($posted !== null) {
         ['screen' => $targetScreen, 'extraQuery' => $extraQuery] = \StationX\Yugioh\Application\Bootstrap\PostRedirectTarget::resolve($posted, $_POST);
         if (!ygo_season_find($pdo, ygo_current_season_id($pdo))) unset($GLOBALS['ygo_request_season_id']);
@@ -113,11 +112,7 @@ try {
     if (isset($pdo) && $pdo instanceof PDO && $pdo->inTransaction()) {
         $pdo->rollBack();
     }
-    $dbStatus = [
-        'connected' => false,
-        'message' => 'No se pudo conectar a la base de datos en este entorno',
-        'counts' => [],
-    ];
+    $dbStatus = \StationX\Yugioh\Application\Bootstrap\ConnectionStatus::failed();
     $appData = \StationX\Yugioh\Application\Bootstrap\InitialPlatformData::build(
         [
             'eventExtendedCatalog' => ygo_extended_event_catalog(),
@@ -153,10 +148,5 @@ try {
 }
 
 $uiLabels = $uiLabels ?? ($appData['uiLabels'] ?? $defaultUiLabels);
-$uiText = static function (string $key, string $field, string $fallback) use ($uiLabels): string {
-    if (isset($uiLabels[$key]['active']) && (int) $uiLabels[$key]['active'] !== 1) {
-        return $fallback;
-    }
-    $value = trim((string) ($uiLabels[$key][$field] ?? ''));
-    return $value !== '' ? $value : $fallback;
-};
+$uiText = static fn(string $key, string $field, string $fallback): string =>
+    \StationX\Yugioh\Application\Bootstrap\SeedDataProjection::labelText($uiLabels, $key, $field, $fallback);

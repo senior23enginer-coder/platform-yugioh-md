@@ -4,30 +4,12 @@ declare(strict_types=1);
 // Presentation projections derived from the loaded request state.
 $appData['dbStatus'] = $dbStatus;
 $appData['eventLogoGallery'] = ygo_event_logo_gallery();
-$displayDivisions = array_filter(
-    $divisions,
-    static fn(array $division): bool => (int) ($division['id'] ?? 0) > 0 && (int) ($division['active'] ?? 1) === 1
-);
-$uniqueDisplayDivisions = [];
-foreach ($displayDivisions as $divisionKey => $division) {
-    $uniqueKey = (string) (($division['code'] ?? '') ?: ($division['short'] ?? '') ?: $divisionKey);
-    if ($uniqueKey === '') {
-        $uniqueKey = (string) $divisionKey;
-    }
-    if (!isset($uniqueDisplayDivisions[$uniqueKey])) {
-        $uniqueDisplayDivisions[$uniqueKey] = $division;
-    }
-}
-$displayDivisions = $uniqueDisplayDivisions;
-$deckTeamByName = [];
+$displayDivisions = \StationX\Yugioh\Application\Presentation\DirectoryProjection::divisions($divisions);
 $appData['presentationLabels'] = ygo_ui_labels_catalog($divisions, $competitions);
 $presentationLabels = $appData['presentationLabels'];
-foreach ($allDecks as $deck) {
-    $deckTeamByName[(string) ($deck['name'] ?? '')] = (string) (($deck['team'] ?? '') ?: 'Sin equipo');
-}
-$deckMatchLabel = static function (string $deckName) use ($deckTeamByName): string {
-    return (($deckTeamByName[$deckName] ?? 'Sin equipo') ?: 'Sin equipo') . ' / ' . $deckName;
-};
+$deckTeamByName = \StationX\Yugioh\Application\Presentation\DirectoryProjection::deckTeams($allDecks);
+$deckMatchLabel = static fn(string $deckName): string =>
+    \StationX\Yugioh\Application\Presentation\DirectoryProjection::matchLabel($deckTeamByName, $deckName);
 $matchOptions = [];
 foreach ($fixtures as $code => $rounds) {
     foreach ($rounds as $round) {

@@ -2893,6 +2893,60 @@ foreach ($initialMetadata as $key => $value) {
     architectureCheck($failurePayload[$key] === $value, 'Failure metadata changed: ' . $key);
 }
 
+// Bootstrap seed and presentation directory projections preserve the native output.
+$seedProjection = \StationX\Yugioh\Application\Bootstrap\SeedDataProjection::class;
+$seedDecks = [[1, 'A', 'first'], [2, 'B', 'second']];
+$seedProjectionResult = $seedProjection::fixturesAndDecks(['APEX' => ['decks' => $seedDecks]]);
+architectureCheck(
+    $seedProjectionResult['fixtures']['APEX'] === FixtureBuilder::build($seedDecks),
+    'Bootstrap fixture generation changed',
+);
+architectureCheck(
+    $seedProjectionResult['allDecks'] === [
+        ['rank' => 1, 'name' => 'A', 'division' => 'APEX', 'reason' => 'first'],
+        ['rank' => 2, 'name' => 'B', 'division' => 'APEX', 'reason' => 'second'],
+    ],
+    'Bootstrap seed identity changed',
+);
+$seedLabels = $seedProjection::labels([['home', ' Home ', 'Subtitle']]);
+architectureCheck(
+    $seedProjection::labelText($seedLabels, 'home', 'title', 'Fallback') === 'Home',
+    'Active label changed',
+);
+$seedLabels['home']['active'] = 0;
+architectureCheck(
+    $seedProjection::labelText($seedLabels, 'home', 'title', 'Fallback') === 'Fallback',
+    'Inactive label fallback changed',
+);
+$statusPolicy = \StationX\Yugioh\Application\Bootstrap\ConnectionStatus::class;
+architectureCheck(
+    $statusPolicy::connected(['old' => 1, 'same' => 2], ['same' => 3])['counts'] === [
+        'old' => 1,
+        'same' => 3,
+    ],
+    'Connection maintenance count precedence changed',
+);
+architectureCheck(!$statusPolicy::initial()['connected'], 'Initial connection state changed');
+architectureCheck(!$statusPolicy::failed()['connected'], 'Failure connection state changed');
+$directory = \StationX\Yugioh\Application\Presentation\DirectoryProjection::class;
+$visibleDivisions = $directory::divisions([
+    'a' => ['id' => 1, 'code' => 'A'],
+    'b' => ['id' => 2, 'code' => 'A'],
+    'c' => ['id' => 3, 'active' => 0],
+    'd' => ['id' => 4, 'short' => 'D'],
+    'e' => ['id' => 0],
+]);
+architectureCheck(array_keys($visibleDivisions) === ['A', 'D'], 'Division identity changed');
+architectureCheck($visibleDivisions['A']['id'] === 1, 'First division precedence changed');
+$teamNames = $directory::deckTeams([
+    ['name' => 'A', 'team' => 'Old'],
+    ['name' => 'A', 'team' => 'New'],
+    ['name' => 'B', 'team' => ''],
+]);
+architectureCheck($directory::matchLabel($teamNames, 'A') === 'New / A', 'Team label changed');
+architectureCheck($directory::matchLabel($teamNames, 'B') === 'Sin equipo / B', 'Empty team changed');
+architectureCheck($directory::matchLabel($teamNames, 'C') === 'Sin equipo / C', 'Missing team changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
