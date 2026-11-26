@@ -46,7 +46,7 @@ Se extraen la selección de decks permitidos, validación de participantes 1v1/2
 
 ## Dependencias y guardas de eventos — 26 de noviembre de 2026
 
-Se extraen la evaluación de prerrequisitos, la guarda de competición y la proyección de resultados a políticas, casos de uso y puertos segregados. Los adaptadores PDO conservan las consultas y la fachada mantiene la caché por competición y la invalidación explícita. Se preservan las referencias originales y se añaden regresiones; validación integral y MySQL pendientes.
+Se extraen la evaluación de prerrequisitos, la guarda de competición y la proyección de resultados a políticas, casos de uso y puertos segregados. Los adaptadores PDO conservan las consultas y la fachada mantiene la caché por competición y la invalidación explícita. Se verificaron las seis huellas originales. Ocho comprobaciones aisladas de prerrequisitos y cierre de temporada pasan en PHP 8.4.24; los tres archivos probados coinciden con GitHub. Validación integral, formato y MySQL pendientes.
 
 ## Trabajo todavía pendiente para completar toda la plataforma
 
