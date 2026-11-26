@@ -38,7 +38,7 @@ Se separaron consultas y persistencia de configuración y etiquetas, así como l
 
 ## Estructura de ligas y clasificación histórica — 26 de noviembre de 2026
 
-Se separaron sincronización de categorías, mantenimiento GOAT, asignación provisional por ranking y cálculo histórico de standings. `LeagueStructureModule` compone casos de uso y adaptadores PDO; el dominio conserva las fórmulas y ordenación. Se preservan consultas, auditoría y transacción propia del mantenimiento GOAT. Se añaden las cuatro referencias originales sin reescribir huellas históricas. Validación integral de MySQL y formato pendiente.
+Se separaron sincronización de categorías, mantenimiento GOAT, asignación provisional por ranking y cálculo histórico de standings. `LeagueStructureModule` compone casos de uso y adaptadores PDO; el dominio conserva las fórmulas y ordenación. Se preservan consultas, auditoría y transacción propia del mantenimiento GOAT. Se verificaron las cuatro huellas originales sin reescribirlas. Ocho comprobaciones aisladas de puntos, desempates y categorías pasan en PHP 8.4.24; se comprobó identidad de los dos archivos de dominio con GitHub. Validación integral de MySQL y formato pendiente.
 
 ## Trabajo todavía pendiente para completar toda la plataforma
 
