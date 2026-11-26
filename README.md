@@ -2,6 +2,19 @@
 
 Plataforma web para administrar decks, equipos, temporadas, eventos y resultados de Yu-Gi-Oh, con guías de juego, un editor visual de combos y herramientas de estudio.
 
+<!-- station-x-repository-guide:start -->
+
+## Guía de esta copia
+
+### Ruta rápida de mantenimiento
+Consulta el [contexto de la aplicación](./torneos_yugioh/context/README.md) antes de tocar un módulo y usa las secciones de instalación, configuración y ramas de este README. [AGENTS.md](./AGENTS.md) documenta las reglas de trabajo en base. El contrato editorial se mantiene junto con [el repositorio de prompts](https://github.com/senior23enginer-coder/gpt-yugioh-promps-platform).
+### Selección de comprobaciones
+[package.json](./package.json) registra los comandos vigentes. Para cambios de frontend comprueba `npm run build:check` y la prueba de la función que cambió. Para Swagger revisa `npm run test:swagger`. Para estructura de fuentes y fronteras de arquitectura usa `npm run format:architecture:check`.
+### Operación
+[deploy](./deploy) contiene recursos de despliegue y [docs](./docs) reúne documentación adicional. Sigue el flujo de publicación de esta guía cuando exista autorización específica. Las pruebas locales, la validación HTTP y la certificación de producción registran evidencia por separado.
+
+<!-- station-x-repository-guide:end -->
+
 ## Estándar de análisis y seguimiento por deck — contrato compartido con GPT
 
 Station X es una plataforma de registro y estudio de **duelos físicos**, no un simulador universal. **No se ejecuta ningún análisis A01–A10A/A10B sin que el usuario asigne expresamente un único `deck_id`**, y el sistema no procesa por defecto el catálogo completo de decks. Enumerar decks, actualizar documentación, consultar avances o probar la infraestructura NO constituye autorización para analizar ningún mazo.
