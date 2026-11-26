@@ -56,33 +56,7 @@ try {
     $teamSyncCount = ygo_sync_deck_teams($pdo);
     $deckFormatSyncCount = ygo_normalize_existing_decks_to_tcg_advanced($pdo);
     $deckAnalysisBaselineCount = ygo_seed_deck_analysis_profiles($pdo);
-    $medalBackfillVersion = 'medal_backfill_v2';
-    $medalBackfillStmt = $pdo->prepare('SELECT COUNT(*) FROM sx_ygo_audit_log WHERE action = ?');
-    $medalBackfillStmt->execute([$medalBackfillVersion]);
-    if ((int) $medalBackfillStmt->fetchColumn() === 0) {
-        $unlockedCount = ygo_sync_medal_unlocks($pdo);
-        $pdo->prepare('INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)')
-            ->execute(['system', 0, $medalBackfillVersion, json_encode(['unlocks_processed' => $unlockedCount], JSON_UNESCAPED_UNICODE)]);
-    }
-    $snapshotBackfillVersion = 'snapshot_backfill_v1';
-    $snapshotBackfillStmt = $pdo->prepare('SELECT COUNT(*) FROM sx_ygo_audit_log WHERE action = ?');
-    $snapshotBackfillStmt->execute([$snapshotBackfillVersion]);
-    if ((int) $snapshotBackfillStmt->fetchColumn() === 0) {
-        $snapshotCount = ygo_backfill_match_snapshots($pdo);
-        $pdo->prepare('INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)')
-            ->execute(['system', 0, $snapshotBackfillVersion, json_encode(['snapshots_inferred' => $snapshotCount], JSON_UNESCAPED_UNICODE)]);
-    }
-    $intelligenceVersion = 'historical_intelligence_v2';
-    $intelligenceStmt = $pdo->prepare('SELECT COUNT(*) FROM sx_ygo_audit_log WHERE action=?');
-    $intelligenceStmt->execute([$intelligenceVersion]);
-    if ((int) $intelligenceStmt->fetchColumn() === 0) {
-        $metaRows = ygo_sync_meta_history($pdo);
-        $eloRows = ygo_sync_elo_history($pdo);
-        $rankingRows = ygo_sync_global_ranking_history($pdo);
-        $summaryRows = ygo_sync_event_summaries($pdo);
-        ygo_sync_medal_unlocks($pdo);
-        $pdo->prepare('INSERT INTO sx_ygo_audit_log (entity_type,entity_id,action,payload) VALUES (?,?,?,?)')->execute(['system',0,$intelligenceVersion,json_encode(['meta_rows'=>$metaRows,'elo_rows'=>$eloRows],JSON_UNESCAPED_UNICODE)]);
-    }
+    \StationX\Yugioh\Infrastructure\Composition\BootstrapModule::backfills($pdo)->execute();
     if ((string) ($_GET['api'] ?? '') === 'duel_session') {
         ygo_live_duel_api($pdo);
     }
@@ -106,26 +80,7 @@ try {
         'counts' => array_merge($seedCounts, ['deleted_seed_divisions' => $deletedSeedDivisions, 'deck_teams_sync' => $teamSyncCount, 'deck_format_sync' => $deckFormatSyncCount, 'deck_analysis_baselines' => $deckAnalysisBaselineCount, 'goat_disabled_qualifiers' => $goatLeagueStructure['disabled_qualifiers'] ?? 0, 'shared_schedule_limit' => $octoberScheduleMigration['global_daily_limit'] ?? 3, 'auto_started_events' => $activatedDueCompetitions]),
     ];
     if ($posted !== null) {
-        $targetScreen = preg_match('/^jugador_\d+$/', $posted) ? 'estadisticas' : (preg_match('/^(?:deck|deck_analysis|logo_deck|matchup_deck)_\d+$/', $posted) ? 'deck_ficha' : (preg_match('/^(?:equipo|logo_team)_\d+$/', $posted) ? 'equipo_ficha' : (preg_match('/^logo_competition_\d+$/', $posted) ? 'evento_ficha' : (strpos($posted, 'clasificatorio_') === 0 ? 'clasificatorio' : (in_array($posted, ['resultado', 'resultado_bloqueado_fecha', 'resultado_bloqueado_inicio', 'resultado_bloqueado_rendicion'], true) ? 'resultados' : (in_array($posted, ['calendario', 'calendario_reprogramado', 'calendario_bloqueado_finalizado', 'partido_manual', 'partido_invalido', 'amistoso_eliminado', 'amistoso_no_eliminado', 'calendario_bloqueado_regla', 'partido_bloqueado_regla', 'partido_bloqueado_pool'], true) ? 'calendario' : ($posted === 'reglamento' ? 'reglamento' : ($posted === 'reglas' ? 'reglas' : (($posted === 'evento' || strpos($posted, 'evento_configurado_') === 0 || preg_match('/^(evento_avanzado|divisiones_aplicadas|movimientos_liga|ranking_recalculado)_/', $posted)) ? 'evento_ficha' : 'gestion')))))))));
-        $postedEventId = 0;
-        if (preg_match('/^evento_configurado_(\d+)$/', $posted, $eventMatch)) {
-            $postedEventId = (int) $eventMatch[1];
-        } elseif (preg_match('/^logo_competition_(\d+)$/', $posted, $eventMatch)) {
-            $postedEventId = (int) $eventMatch[1];
-        } elseif (preg_match('/^(?:evento_avanzado|divisiones_aplicadas|movimientos_liga|ranking_recalculado)_(\d+)_\d+$/', $posted, $eventMatch)) {
-            $postedEventId = (int) $eventMatch[1];
-        } elseif ($targetScreen === 'clasificatorio') {
-            $postedEventId = (int) ($_POST['qualifier_competition_id'] ?? 0);
-        }
-        $extraQuery = $postedEventId > 0 ? '&event_id=' . $postedEventId : '';
-        if (preg_match('/^(?:deck|deck_analysis|logo_deck|matchup_deck)_(\d+)$/', $posted, $entityMatch)) {
-            $extraQuery .= '&deck_id=' . (int) $entityMatch[1];
-            if (str_starts_with($posted, 'matchup_deck_') || str_starts_with($posted, 'deck_analysis_')) $extraQuery .= '&deck_view=analysis';
-        } elseif (preg_match('/^(?:equipo|logo_team)_(\d+)$/', $posted, $entityMatch)) {
-            $extraQuery .= '&team_id=' . (int) $entityMatch[1];
-        }
-        if (str_starts_with($posted, 'temporada_')) $targetScreen = 'temporadas';
-        if ($posted === 'evento_temporada_bloqueada') $targetScreen = 'torneos';
+        ['screen' => $targetScreen, 'extraQuery' => $extraQuery] = \StationX\Yugioh\Application\Bootstrap\PostRedirectTarget::resolve($posted, $_POST);
         if (!ygo_season_find($pdo, ygo_current_season_id($pdo))) unset($GLOBALS['ygo_request_season_id']);
         header('Location: ./?saved=' . rawurlencode($posted) . '&season_context=' . ygo_current_season_id($pdo) . $extraQuery . '#' . $targetScreen);
         exit;

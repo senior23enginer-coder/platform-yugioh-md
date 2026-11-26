@@ -2270,6 +2270,31 @@ architectureCheck(
     'Empty fixture projection changed',
 );
 
+// Bootstrap maintenance is independently replayable; audit is recorded only after success.
+$backfillPort = new class implements \StationX\Yugioh\Application\Bootstrap\HistoricalBackfillPort {
+    public array $calls = [];
+    public array $records = [];
+    public function completed(string $version): bool { return isset($this->records[$version]); }
+    public function record(string $version, array $counts): void { $this->records[$version] = $counts; }
+    public function syncMedals(): int { $this->calls[] = 'medals'; return 3; }
+    public function backfillSnapshots(): int { $this->calls[] = 'snapshots'; return 4; }
+    public function syncMeta(): int { $this->calls[] = 'meta'; return 5; }
+    public function syncElo(): int { $this->calls[] = 'elo'; return 6; }
+    public function syncRanking(): void { $this->calls[] = 'ranking'; }
+    public function syncSummaries(): void { $this->calls[] = 'summaries'; }
+};
+$backfills = new \StationX\Yugioh\Application\Bootstrap\RunHistoricalBackfills($backfillPort);
+$backfills->execute();
+architectureCheck($backfillPort->calls === ['medals', 'snapshots', 'meta', 'elo', 'ranking', 'summaries', 'medals'], 'Backfill order changed');
+architectureCheck($backfillPort->records['historical_intelligence_v2'] === ['meta_rows' => 5, 'elo_rows' => 6], 'Historical audit changed');
+$backfills->execute();
+architectureCheck(count($backfillPort->calls) === 7, 'Completed historical work repeated');
+$redirect = \StationX\Yugioh\Application\Bootstrap\PostRedirectTarget::class;
+architectureCheck($redirect::resolve('deck_analysis_8', []) === ['screen' => 'deck_ficha', 'extraQuery' => '&deck_id=8&deck_view=analysis'], 'Deck redirect changed');
+architectureCheck($redirect::resolve('evento_avanzado_9_2', []) === ['screen' => 'evento_ficha', 'extraQuery' => '&event_id=9'], 'Event redirect changed');
+architectureCheck($redirect::resolve('clasificatorio_guardado', ['qualifier_competition_id' => 11]) === ['screen' => 'clasificatorio', 'extraQuery' => '&event_id=11'], 'Qualifier redirect changed');
+architectureCheck($redirect::resolve('evento_temporada_bloqueada', []) === ['screen' => 'torneos', 'extraQuery' => ''], 'Season-blocked redirect changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
