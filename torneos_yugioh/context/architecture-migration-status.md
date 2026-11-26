@@ -78,7 +78,7 @@ Se separa el flujo de configuración mediante puertos de persistencia, contexto,
 
 ## Aplicación de divisiones desde clasificatorios y normalización histórica — 26 de noviembre de 2026
 
-Se aíslan el rango de clasificación, los criterios de finalización y la asignación de posiciones, así como la normalización histórica protegida por auditoría, mediante políticas, casos de uso y puertos. No se agregan transacciones nuevas ni se ejecutan operaciones sobre datos de producción. Se conservan las huellas originales y se añaden regresiones; validación integral pendiente.
+Se aíslan el rango de clasificación, los criterios de finalización y la asignación de posiciones, así como la normalización histórica protegida por auditoría, mediante políticas, casos de uso y puertos. No se agregan transacciones nuevas ni se ejecutan operaciones sobre datos de producción. Se verificaron las dos huellas originales y siete comprobaciones aisladas de dominio y normalización con PHP 8.4.24; los tres archivos probados coinciden con GitHub. Validación integral y MySQL pendientes.
 
 ## Trabajo todavía pendiente para completar toda la plataforma
 
