@@ -3,21 +3,9 @@ declare(strict_types=1);
 
 namespace StationX\Yugioh\Application\ReadModel;
 
-interface PlatformReadModelServices
+interface PlatformReadModelServices extends CompetitionReadModelServices
 {
     public function currentSeasonId(): int;
-
-    public function dependencies(): array;
-
-    public function progressGroups(): array;
-
-    public function progress(array $rows, bool $knockout): array;
-
-    public function gate(int $id): array;
-
-    public function allowedDecks(int $id, int $divisionId): array;
-
-    public function standings(int $id): array;
 
     public function backfill(int $seasonId): void;
 

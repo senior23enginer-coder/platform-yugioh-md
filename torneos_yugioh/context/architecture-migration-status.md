@@ -220,6 +220,10 @@ Se extraen los selectores de partidas, prioridad de clasificatorios, límites de
 
 La selección de reglas por partido, competición, alcance y prioridad y la proyección de clasificación de división se extraen a un módulo con entradas explícitas. Se preservan puntos, desempates, D5, barridas, estados y orden de lectura de resultados. Los cuerpos anteriores se conservan como fixture de caracterización; se comparan directamente con el módulo extraído. CI pendiente.
 
+## Cargador de datos: proyección de competiciones y reglamentos
+
+Se separa la coordinación de competiciones y sus guardas de fixtures en un caso de uso con un puerto segregado de seis operaciones, sin dependencia del lector general de datos. Se conservan la prioridad de divisiones, consultas de admisión y clasificación, las excepciones históricas y el orden de llamadas externas. Se separa también la asociación de condiciones a reglamentos. Se añaden diez comprobaciones aisladas; CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

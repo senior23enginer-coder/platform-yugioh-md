@@ -3215,6 +3215,69 @@ architectureCheck(
     'Dashboard summary changed',
 );
 
+// Competition read-model projection uses only its narrow service port, with native order and fallbacks.
+$competitionReadPort = new class implements \StationX\Yugioh\Application\ReadModel\CompetitionReadModelServices {
+    public array $calls = [];
+    public function dependencies(): array
+    {
+        $this->calls[] = 'dependencies';
+        return [['id' => 1]];
+    }
+    public function progressGroups(): array
+    {
+        $this->calls[] = 'groups';
+        return [7 => ['rows']];
+    }
+    public function progress(array $rows, bool $knockout): array
+    {
+        $this->calls[] = 'progress';
+        return ['rows' => $rows, 'knockout' => $knockout];
+    }
+    public function gate(int $id): array
+    {
+        $this->calls[] = 'gate-' . $id;
+        return ['dependencies' => [], 'can_execute' => $id === 7, 'message' => 'gate'];
+    }
+    public function allowedDecks(int $id, int $divisionId): array
+    {
+        $this->calls[] = 'allowed-' . $id . '-' . $divisionId;
+        if ($id === 8) {
+            throw new RuntimeException('unavailable');
+        }
+        return [1, 2];
+    }
+    public function standings(int $id): array
+    {
+        $this->calls[] = 'standings-' . $id;
+        return [['id' => 1, 'pts' => 3]];
+    }
+};
+$competitionModel = (new \StationX\Yugioh\Application\ReadModel\ProjectCompetitionReadModel(
+    $competitionReadPort,
+))->execute(
+    [['id' => 2, 'league_competition_id' => 7], ['id' => 2, 'league_competition_id' => 7]],
+    [['competition_id' => 7, 'deck_id' => 1], ['competition_id' => 7, 'deck_id' => 2]],
+    [['id' => 1, 'team_id' => 5], ['id' => 2, 'team_id' => 5]],
+    [['id' => 7, 'division_id' => 3, 'type' => 'cup'], ['id' => 8, 'type' => 'world']],
+    ['A' => [['matches' => [['competition_id' => 7], ['competition_id' => 8], ['competition_id' => 9], ['competition_id' => 0]]]]],
+);
+architectureCheck(
+    $competitionReadPort->calls === ['dependencies', 'groups', 'progress', 'gate-7', 'allowed-7-3', 'standings-7', 'progress', 'gate-8', 'allowed-8-0', 'gate-9'],
+    'Competition read service order changed',
+);
+architectureCheck($competitionModel['competitions'][0]['division_ids'] === [3, 2], 'Division priority changed');
+architectureCheck($competitionModel['competitions'][0]['participant_team_count'] === 1, 'Participant team count changed');
+architectureCheck($competitionModel['competitions'][0]['ranking_ready'], 'Ranking readiness changed');
+architectureCheck(!$competitionModel['competitions'][1]['ranking_ready'], 'Failed standings fallback changed');
+architectureCheck($competitionModel['fixtures']['A'][0]['matches'][0]['competition_can_execute'], 'Fixture gate changed');
+architectureCheck(!$competitionModel['fixtures']['A'][0]['matches'][2]['competition_can_execute'], 'Unknown competition gate changed');
+architectureCheck($competitionModel['fixtures']['A'][0]['matches'][3]['competition_can_execute'], 'Unassigned fixture gate changed');
+$readRules = \StationX\Yugioh\Application\ReadModel\GameRuleReadModelProjection::attachConditions(
+    [['id' => 1], ['id' => 2]], [['game_rule_id' => 1, 'active' => 1], ['game_rule_id' => 1, 'active' => 0]],
+);
+architectureCheck($readRules[0]['condition_count'] === 1 && count($readRules[0]['conditions']) === 2, 'Rule conditions changed');
+architectureCheck($readRules[1]['conditions'] === [], 'Empty rule conditions changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
