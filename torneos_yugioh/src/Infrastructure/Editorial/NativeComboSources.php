@@ -37,7 +37,10 @@ final class NativeComboSources implements ComboSources, ComboDocumentRoutes
         if (
             !$file ||
             !$allowed ||
-            !str_starts_with(str_replace('\\', '/', $file), str_replace('\\', '/', $allowed) . '/') ||
+            !str_starts_with(
+                str_replace('\\', '/', $file),
+                str_replace('\\', '/', $allowed) . '/',
+            ) ||
             !str_ends_with($file, '.json')
         ) {
             return $result;

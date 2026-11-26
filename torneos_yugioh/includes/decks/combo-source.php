@@ -32,13 +32,19 @@ function ygo_combo_source_markdown(array $record): string
 function ygo_combo_source_feed(PDO $pdo): never
 {
     $sources = new NativeComboSources();
-    $response = (new ReadComboSourceFeed(new PdoComboSourceFeedReader($pdo), $sources, $sources))
-        ->execute($_SERVER['HTTP_IF_NONE_MATCH'] ?? '');
+    $response = (new ReadComboSourceFeed(
+        new PdoComboSourceFeedReader($pdo),
+        $sources,
+        $sources,
+    ))->execute($_SERVER['HTTP_IF_NONE_MATCH'] ?? '');
     header('ETag: ' . $response['etag']);
     if ($response['status'] === 304) {
         http_response_code(304);
         exit();
     }
-    echo json_encode($response['body'], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR);
+    echo json_encode(
+        $response['body'],
+        JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR,
+    );
     exit();
 }
