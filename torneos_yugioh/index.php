@@ -19,6 +19,11 @@ require YGO_APP_ROOT . '/includes/bootstrap/dependencies.php';
 
 require YGO_APP_ROOT . '/includes/bootstrap/defaults.php';
 
+if ((string) ($_GET['api'] ?? '') === 'deck_remove') {
+    require_once YGO_APP_ROOT . '/includes/decks/remove-http.php';
+    ygo_deck_remove_http();
+}
+
 // Preserve native request transactions, then derive presentation projections.
 require YGO_APP_ROOT . '/includes/bootstrap/load-state.php';
 
