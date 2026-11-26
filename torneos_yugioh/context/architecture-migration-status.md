@@ -140,6 +140,10 @@ Se separan normalización de listas y puntuaciones, persistencia, transacción p
 
 Se extraen seis comandos de escritura adicionales: reglas, condiciones, archivo de reglas, reglamentos, preferencias, etiquetas y catálogo. Se preservan límites, auditorías, orden de persistencia y efectos estadísticos; SQL queda en adaptadores y el dominio normaliza datos sin acceso externo. Validación CI pendiente.
 
+## Mantenimiento de eventos y amistosos (H13)
+
+Se extraen siete comandos de archivo, cierre, cambio de estado de clasificatorio, recalculo, movimientos, asignación de divisiones y baja de amistosos. Se conservan respuestas, auditorías y alcance de operaciones; los servicios deportivos siguen consumidos mediante puertos. La eliminación se prueba únicamente en fixtures; no se ejecuta sobre datos reales. Validación CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

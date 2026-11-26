@@ -2066,6 +2066,13 @@ $values = iterator_to_array($admin::settings(['valid_weekdays' => ['0', '3', '1'
 architectureCheck($values['valid_weekdays'] === '1,3,0' && $values['max_matches_per_day'] === '3', 'Settings normalization changed');
 architectureCheck(iterator_to_array($admin::labels(['ui_label_key' => ['a!'], 'ui_label_title' => [' Title '], 'ui_label_active' => ['a']]), false) === [['a', 'Title', '', 1]], 'UI label normalization changed');
 
+// Maintenance commands retain qualifier fallback and blocked-finalization guards.
+$maintenance = \StationX\Yugioh\Domain\Competitions\CompetitionMaintenancePolicy::class;
+architectureCheck($maintenance::qualifierStatus(['status' => 'invalid']) === 'active', 'Qualifier fallback changed');
+architectureCheck($maintenance::canFinalize('active', ['ok' => true]), 'Ready event blocked');
+architectureCheck(!$maintenance::canFinalize('completed', ['ok' => true]), 'Completed event finalized twice');
+architectureCheck(!$maintenance::canFinalize('active', ['ok' => false]), 'Incomplete event finalized');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
