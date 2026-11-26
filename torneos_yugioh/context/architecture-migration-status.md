@@ -160,6 +160,10 @@ Se separan los filtros y recálculo analítico del controlador, la consulta de p
 
 Se separan normalización del formato, validación de participantes y calendario, selección de reglamento, restricciones del modelo de evento, auditoría y escritura de partido. SQL y consultas de servicios quedan en adaptadores, preservando resultados y alcance. CI pendiente.
 
+## Definición de competiciones (H13)
+
+Se separan selección de reglamento/divisiones, formato, movimientos y parámetros operativos; el caso de uso coordina puertos de validación, persistencia, historial y medios. El controlador conserva los datos de entrada y la configuración visual de tipos. Se inicializa explícitamente el identificador de destino cuando no hay una definición válida para guardar, evitando una variable indefinida. No se alteran datos de producción; CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
