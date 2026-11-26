@@ -1,0 +1,25 @@
+name: Consolidated migration formatter
+on:
+  pull_request:
+    branches: [base]
+    paths:
+      - '.github/workflows/consolidated-migration-formatter.yml'
+permissions:
+  contents: read
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - name: Format changed architecture sources and run isolated checks
+        run: |
+          npm run format:architecture
+          git diff --name-only
+          git diff -- torneos_yugioh/src/Application/Presentation torneos_yugioh/tests/source_architecture_test.php
+          php torneos_yugioh/tests/source_architecture_test.php

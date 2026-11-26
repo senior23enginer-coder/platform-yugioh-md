@@ -3043,6 +3043,41 @@ architectureCheck($qualifierDisplay['roundCount'] === 1, 'Qualifier round count 
 architectureCheck($qualifierDisplay['scheduledCount'] === 2, 'Qualifier scheduled count changed');
 architectureCheck($qualifierDisplay['finishedCount'] === 1, 'Qualifier finished count changed');
 
+// Dashboard and qualifier projections preserve the original visible order and totals.
+$dashboardProjection = \StationX\Yugioh\Application\Presentation\DashboardProjection::class;
+$dashboardEvents = $dashboardProjection::eventsByFormat([
+    ['id' => 1, 'status' => 'active', 'division_code' => 'A'],
+    ['id' => 2, 'status' => 'draft', 'division_code' => 'A'],
+    ['id' => 3, 'status' => 'ACTIVO', 'event_ruleset' => 'tcg'],
+], ['tcg' => 'TCG']);
+architectureCheck(array_keys($dashboardEvents) === ['A', 'TCG'], 'Dashboard format grouping changed');
+$dashboardFixture = ['APEX' => [['ronda' => 1, 'matches' => [
+    ['id' => 1, 'a' => 'A', 'b' => 'B', 'score' => '2-0', 'scheduled_on' => '2026-11-26', 'competition_id' => 1],
+    ['id' => 2, 'a' => 'A', 'b' => 'C', 'estado' => 'PENDIENTE'],
+]]]];
+$labeler = static fn(array $match, string $code, int|string $round, array $labels): string => $code . '-' . $round;
+[$events, $active, $total, $finished] = $dashboardProjection::fixtureCounts($dashboardEvents, $dashboardFixture);
+architectureCheck($active === 2 && $total === 2 && $finished === 1, 'Dashboard counts changed');
+$recent = $dashboardProjection::recentResults($dashboardFixture, '2026-11-26', [], $labeler);
+architectureCheck(count($recent) === 1 && $recent[0]['score'] === '2-0', 'Recent result changed');
+[$matches, $byCompetition, $byPhase, $usage, $today] = $dashboardProjection::matches(
+    $dashboardFixture, [], static fn(string $deck): string => $deck, $labeler, '2026-11-26',
+);
+architectureCheck(array_column($matches, 'id') === [1, 2], 'Dashboard ordering changed');
+architectureCheck($byCompetition[1]['finalized'] === 1 && $byPhase['apex']['pending'] === 1, 'Dashboard group totals changed');
+architectureCheck($usage === ['A' => 2, 'B' => 1, 'C' => 1] && count($today) === 1, 'Dashboard usage changed');
+$qualifierProgressClass = \StationX\Yugioh\Application\Presentation\QualifierProgressProjection::class;
+$qualifierDecks = [
+    ['id' => 1, 'name' => 'A', 'rank' => 1, 'division' => 'APEX'],
+    ['id' => 2, 'name' => 'B', 'rank' => 2, 'division' => 'APEX'],
+];
+[$pairings, $progress, $ranking, $rankingMap, $ready] = $qualifierProgressClass::build(
+    $qualifierDecks, 2, null, [], 0, static fn(string $url): string => $url,
+);
+architectureCheck($pairings[0]['rivals'] === ['B'], 'Qualifier pairing changed');
+architectureCheck($progress[0]['remaining'] === 2 && $ready === 0, 'Qualifier progress changed');
+architectureCheck(\StationX\Yugioh\Application\Presentation\AuditSummaryProjection::build([['action' => 'a'], ['action' => 'b'], ['action' => 'b']]) === ['b' => 2, 'a' => 1], 'Audit aggregation changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

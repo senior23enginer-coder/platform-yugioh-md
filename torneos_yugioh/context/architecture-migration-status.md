@@ -204,6 +204,10 @@ La agregación de fixtures de copa y mundial comparte una implementación pura q
 
 Se extraen del read-model de presentación el resumen por competición, el filtrado de partidas, el orden cronológico y los contadores de rondas, fechas y finalizaciones. Se conservan los criterios históricos y se añade cobertura de regresión. CI pendiente.
 
+## Dashboard, avance clasificatorio y auditoría
+
+Se extraen las agrupaciones de eventos por formato, resultados recientes, contadores de fixtures, partidos del dashboard, proyección de equipos, ranking visible, avance de clasificatorios y resumen de auditoría. Las funciones de etiquetas y medios se suministran como dependencias explícitas; se conservan los filtros, orden, campos, fecha de referencia y límites de presentación. Regresiones añadidas; CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

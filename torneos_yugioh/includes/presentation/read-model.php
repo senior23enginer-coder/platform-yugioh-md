@@ -125,45 +125,9 @@ $matchTypeOptions = $matchTypes ?: [
     ['code' => '3v3', 'label' => '3v3', 'participants_per_side' => 3],
 ];
 $todayIso = date('Y-m-d');
-$currentEventsByFormat = [];
-foreach ($competitions as $competition) {
-    $status = strtolower((string) ($competition['status'] ?? 'draft'));
-    $starts = (string) ($competition['starts_on'] ?? '');
-    $ends = (string) ($competition['ends_on'] ?? '');
-    if (!in_array($status, ['active', 'en_curso', 'activo'], true)) {
-        continue;
-    }
-    $formatKey = (string) (($competition['division_code'] ?? '') ?: (($eventRulesetOptions[(string) ($competition['event_ruleset'] ?? '')] ?? '') ?: 'General'));
-    $currentEventsByFormat[$formatKey][] = $competition;
-}
-$recentResults = [];
-foreach ($fixtures as $code => $rounds) {
-    foreach ($rounds as $round) {
-        foreach (($round['matches'] ?? []) as $match) {
-            if (($match['estado'] ?? '') !== 'FINALIZADA' && empty($match['score'])) {
-                continue;
-            }
-            $recentResults[] = [
-                'date' => (string) (($match['scheduled_on'] ?? '') ?: $todayIso),
-                'label' => ygo_ui_match_label($match, (string)$code, $round['ronda'] ?? '-', $presentationLabels),
-                'versus' => (string) (($match['a'] ?? 'Deck A') . ' vs ' . ($match['b'] ?? 'Deck B')),
-                'score' => (string) (($match['score'] ?? '') ?: '0-0'),
-                'status' => (string) (($match['estado'] ?? '') ?: 'FINALIZADA'),
-            ];
-        }
-    }
-}
-usort($recentResults, static fn(array $a, array $b): int => strcmp($b['date'], $a['date']));
-$recentResults = array_slice($recentResults, 0, 6);
-$activeDashboardEvents = [];
-foreach ($currentEventsByFormat as $formatEvents) {
-    foreach ($formatEvents as $event) {
-        $activeDashboardEvents[] = $event;
-    }
-}
-$activeEventCount = count($activeDashboardEvents);
-$totalFixtureMatches = array_sum(array_map(static fn(array $rounds): int => array_sum(array_map(static fn(array $round): int => count($round['matches'] ?? []), $rounds)), $fixtures));
-$totalFinalizedMatches = array_sum(array_map(static fn(array $rounds): int => array_sum(array_map(static fn(array $round): int => count(array_filter($round['matches'] ?? [], static fn(array $match): bool => (($match['estado'] ?? '') === 'FINALIZADA') || !empty($match['score']))), $rounds)), $fixtures));
+$currentEventsByFormat = \StationX\Yugioh\Application\Presentation\DashboardProjection::eventsByFormat($competitions, $eventRulesetOptions);
+$recentResults = \StationX\Yugioh\Application\Presentation\DashboardProjection::recentResults($fixtures, $todayIso, $presentationLabels, 'ygo_ui_match_label');
+[$activeDashboardEvents, $activeEventCount, $totalFixtureMatches, $totalFinalizedMatches] = \StationX\Yugioh\Application\Presentation\DashboardProjection::fixtureCounts($currentEventsByFormat, $fixtures);
 $pendingConfigEventCount = count(array_filter($competitions, static fn(array $competition): bool => ygo_normalize_status_key((string) ($competition['status'] ?? '')) === 'pending_configuration'));
 $pendingEventCount = count(array_filter($competitions, static fn(array $competition): bool => ygo_normalize_status_key((string) ($competition['status'] ?? '')) === 'pending_event'));
 $completedEventCount = count(array_filter($competitions, static fn(array $competition): bool => in_array(ygo_normalize_status_key((string) ($competition['status'] ?? '')), ['completed', 'finalized', 'finalizado', 'finalizada'], true)));
@@ -180,168 +144,9 @@ $currentDashboardSeason = (new \StationX\Yugioh\Application\Seasons\GetCurrentSe
     new \StationX\Yugioh\Infrastructure\Persistence\LoadedSeasonRepository($seasons ?? [])
 ))->execute();
 $dashboardSeasonName = $currentDashboardSeason ? trim($currentDashboardSeason->name) : '2027 B';
-$dashboardMatches = [];
-$dashboardMatchStatsByCompetition = [];
-$dashboardMatchStatsByPhase = [];
-$dashboardDeckUsage = [];
-foreach ($fixtures as $code => $rounds) {
-    foreach ($rounds as $round) {
-        foreach (($round['matches'] ?? []) as $match) {
-            $competitionId = (int) ($match['competition_id'] ?? 0);
-            $phaseKey = (string) (($match['phase'] ?? '') ?: strtolower((string) $code));
-            $isFinalized = (($match['estado'] ?? '') === 'FINALIZADA') || !empty($match['score']);
-            if (!isset($dashboardMatchStatsByPhase[$phaseKey])) {
-                $dashboardMatchStatsByPhase[$phaseKey] = ['total' => 0, 'finalized' => 0, 'pending' => 0];
-            }
-            $dashboardMatchStatsByPhase[$phaseKey]['total']++;
-            $dashboardMatchStatsByPhase[$phaseKey][$isFinalized ? 'finalized' : 'pending']++;
-            if ($competitionId > 0) {
-                if (!isset($dashboardMatchStatsByCompetition[$competitionId])) {
-                    $dashboardMatchStatsByCompetition[$competitionId] = ['total' => 0, 'finalized' => 0, 'pending' => 0];
-                }
-                $dashboardMatchStatsByCompetition[$competitionId]['total']++;
-                $dashboardMatchStatsByCompetition[$competitionId][$isFinalized ? 'finalized' : 'pending']++;
-            }
-            foreach (['a', 'b'] as $side) {
-                $deckName = (string) ($match[$side] ?? '');
-                if ($deckName !== '') {
-                    $dashboardDeckUsage[$deckName] = ($dashboardDeckUsage[$deckName] ?? 0) + 1;
-                }
-            }
-            $dashboardMatches[] = [
-                'id' => (int) ($match['id'] ?? 0),
-                'date' => (string) (($match['scheduled_on'] ?? '') ?: ''),
-                'time' => (string) (($match['starts_at'] ?? '') ?: ''),
-                'label' => ygo_ui_match_label($match, (string)$code, $round['ronda'] ?? '-', $presentationLabels),
-                'versus' => $deckMatchLabel((string) ($match['a'] ?? 'Deck A')) . ' vs ' . $deckMatchLabel((string) ($match['b'] ?? 'Deck B')),
-                'status' => (string) (($match['estado'] ?? '') ?: 'PENDIENTE'),
-                'score' => (string) (($match['score'] ?? '') ?: ''),
-                'competition_id' => $competitionId,
-            ];
-        }
-    }
-}
-usort($dashboardMatches, static fn(array $a, array $b): int => strcmp(($a['date'] ?: '2999-12-31') . ' ' . ($a['time'] ?: '23:59:59'), ($b['date'] ?: '2999-12-31') . ' ' . ($b['time'] ?: '23:59:59')));
-$upcomingDashboardMatches = array_slice(array_values(array_filter($dashboardMatches, static fn(array $match): bool => ($match['date'] ?? '') === date('Y-m-d'))), 0, 8);
-$teamDeckCounts = [];
-$teamDashboardLogos = [];
-foreach ($allDecks as $deck) {
-    $teamName = (string) (($deck['team'] ?? '') ?: 'Sin equipo');
-    $teamDeckCounts[$teamName] = ($teamDeckCounts[$teamName] ?? 0) + 1;
-    $deckLogo = ygo_media_src((string) (($deck['team_logo'] ?? '') ?: (($deck['cover_url'] ?? '') ?: ($deck['logo_url'] ?? ''))));
-    if ($deckLogo !== '' && empty($teamDashboardLogos[$teamName])) {
-        $teamDashboardLogos[$teamName] = $deckLogo;
-    }
-}
-$dashboardLiveRanking = [];
-$dashboardRankingSource = '';
-foreach ($activeDashboardEvents as $event) {
-    $ranking = array_values(array_filter((array) ($event['ranking'] ?? []), static fn(array $row): bool => (int) ($row['pj'] ?? 0) > 0));
-    if ($ranking) {
-        $dashboardLiveRanking = array_slice($ranking, 0, 8);
-        $dashboardRankingSource = (string) ($event['name'] ?? 'Evento activo');
-        break;
-    }
-}
-$topDashboardDecks = array_slice($allDecks, 0, 10);
-$topDashboardTeamPool = array_map(static function (array $team) use ($teamDashboardLogos): array {
-    $teamName = (string) ($team['name'] ?? '');
-    $team['logo_url'] = ygo_media_src((string) (($team['logo_url'] ?? '') ?: ($teamDashboardLogos[$teamName] ?? '')));
-    return $team;
-}, $teams);
-usort($topDashboardTeamPool, static function (array $a, array $b) use ($teamDeckCounts): int {
-    $aLogo = trim((string) ($a['logo_url'] ?? '')) !== '' ? 1 : 0;
-    $bLogo = trim((string) ($b['logo_url'] ?? '')) !== '' ? 1 : 0;
-    $aDecks = (int) ($teamDeckCounts[(string) ($a['name'] ?? '')] ?? 0);
-    $bDecks = (int) ($teamDeckCounts[(string) ($b['name'] ?? '')] ?? 0);
-    return $bLogo <=> $aLogo ?: $bDecks <=> $aDecks ?: strcmp((string) ($a['name'] ?? ''), (string) ($b['name'] ?? ''));
-});
-$topDashboardTeams = array_slice($topDashboardTeamPool, 0, 8);
-$qualifierPairings = [];
-$deckCount = count($displayQualifierDecks);
-if ($deckCount > 1) {
-    foreach ($displayQualifierDecks as $index => $deck) {
-        $rivals = [];
-        for ($offset = 1; $offset <= $displayQualifierRequiredDuels; $offset++) {
-            $rival = $displayQualifierDecks[($index + $offset) % $deckCount];
-            if ($rival['name'] !== $deck['name']) {
-                $rivals[] = $rival['name'];
-            }
-        }
-        $qualifierPairings[] = ['deck' => $deck['name'], 'team' => $deck['team'] ?? 'Sin equipo', 'rivals' => array_slice(array_values(array_unique($rivals)), 0, $displayQualifierRequiredDuels)];
-    }
-}
-$qualifierProgress = [];
-$displayQualifierRanking = array_values((array) ($displayQualifierCompetition['ranking'] ?? []));
-$displayQualifierRankingByDeckId = [];
-foreach ($displayQualifierRanking as $position => $standingRow) {
-    $displayQualifierRankingByDeckId[(int) ($standingRow['id'] ?? 0)] = $standingRow + ['position' => $position + 1];
-}
-foreach ($displayQualifierDecks as $deck) {
-    $deckId = (int) ($deck['id'] ?? 0);
-    $standing = $displayQualifierRankingByDeckId[$deckId] ?? [];
-    $qualifierProgress[$deck['name']] = [
-        'rank' => (int) ($standing['position'] ?? $deck['rank']),
-        'seed_rank' => (int) ($deck['rank'] ?? 0),
-        'deck_id' => $deckId,
-        'deck' => $deck['name'],
-        'team' => $deck['team'] ?? 'Sin equipo',
-        'code' => $deck['team_code'] ?? '',
-        'team_logo' => ygo_media_src((string) ($deck['team_logo'] ?? '')),
-        'division' => $deck['division'],
-        'pts' => (int) ($standing['pts'] ?? 0),
-        'pj' => (int) ($standing['pj'] ?? 0),
-        'pg' => (int) ($standing['pg'] ?? 0),
-        'pe' => (int) ($standing['pe'] ?? 0),
-        'pp' => (int) ($standing['pp'] ?? 0),
-        'cg' => (int) ($standing['cg'] ?? 0),
-        'cp' => (int) ($standing['cp'] ?? 0),
-        'dp' => (int) ($standing['dp'] ?? 0),
-        'played' => 0,
-        'scheduled' => 0,
-        'opponents' => [],
-        'ready' => false,
-    ];
-}
-foreach (($fixtures['CLASIFICATORIO'] ?? []) as $round) {
-    foreach (($round['matches'] ?? []) as $match) {
-        if ($displayQualifierId > 0 && (int) ($match['competition_id'] ?? 0) !== $displayQualifierId) {
-            continue;
-        }
-        foreach ([[$match['a'] ?? '', $match['b'] ?? ''], [$match['b'] ?? '', $match['a'] ?? '']] as $pair) {
-            [$deckName, $opponentName] = $pair;
-            if (!isset($qualifierProgress[$deckName])) {
-                continue;
-            }
-            if (!empty($match['scheduled_on'])) {
-                $qualifierProgress[$deckName]['scheduled']++;
-            }
-            if (($match['estado'] ?? '') === 'FINALIZADA') {
-                $qualifierProgress[$deckName]['played']++;
-                if ($opponentName !== '') {
-                    $qualifierProgress[$deckName]['opponents'][$opponentName] = true;
-                }
-            }
-        }
-    }
-}
-foreach ($qualifierProgress as &$progressRow) {
-    $progressRow['opponent_count'] = count($progressRow['opponents']);
-    $progressRow['ready'] = $progressRow['played'] >= $displayQualifierRequiredDuels;
-    $progressRow['remaining'] = max(0, $displayQualifierRequiredDuels - $progressRow['played']);
-}
-unset($progressRow);
-usort($qualifierProgress, static fn(array $a, array $b): int =>
-    $b['pts'] <=> $a['pts']
-    ?: $b['dp'] <=> $a['dp']
-    ?: $b['cg'] <=> $a['cg']
-    ?: $a['seed_rank'] <=> $b['seed_rank']
-);
-foreach ($qualifierProgress as $position => &$progressRow) {
-    $progressRow['rank'] = $position + 1;
-}
-unset($progressRow);
-$qualifierReadyCount = count(array_filter($qualifierProgress, static fn(array $row): bool => $row['ready']));
+[$dashboardMatches, $dashboardMatchStatsByCompetition, $dashboardMatchStatsByPhase, $dashboardDeckUsage, $upcomingDashboardMatches] = \StationX\Yugioh\Application\Presentation\DashboardProjection::matches($fixtures, $presentationLabels, $deckMatchLabel, 'ygo_ui_match_label', date('Y-m-d'));
+[$teamDeckCounts, $teamDashboardLogos, $dashboardLiveRanking, $dashboardRankingSource, $topDashboardDecks, $topDashboardTeamPool, $topDashboardTeams] = \StationX\Yugioh\Application\Presentation\DashboardProjection::teamsAndRanking($allDecks, $teams, $activeDashboardEvents, 'ygo_media_src');
+[$qualifierPairings, $qualifierProgress, $displayQualifierRanking, $displayQualifierRankingByDeckId, $qualifierReadyCount] = \StationX\Yugioh\Application\Presentation\QualifierProgressProjection::build($displayQualifierDecks, $displayQualifierRequiredDuels, $displayQualifierCompetition, $fixtures, $displayQualifierId, 'ygo_media_src');
 $qualifierFinalizeCheck = ['ok' => false, 'reasons' => ['Conecta la base de datos para validar el cierre.']];
 if ($dbStatus['connected'] && isset($pdo)) {
     try {
@@ -350,11 +155,6 @@ if ($dbStatus['connected'] && isset($pdo)) {
         $qualifierFinalizeCheck = ['ok' => false, 'reasons' => ['No se pudo validar el cierre del clasificatorio.']];
     }
 }
-$auditSummary = [];
-foreach ($audit ?? [] as $auditRow) {
-    $action = (string) ($auditRow['action'] ?? 'accion');
-    $auditSummary[$action] = ($auditSummary[$action] ?? 0) + 1;
-}
-arsort($auditSummary);
+$auditSummary = \StationX\Yugioh\Application\Presentation\AuditSummaryProjection::build($audit ?? []);
 
 $duelPlayerSide = strtoupper((string) ($_GET['duel_player'] ?? ''));
