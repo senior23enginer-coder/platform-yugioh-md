@@ -138,7 +138,7 @@ node scripts/check-p06-legacy-assertions.cjs ../gpt-yugioh-promps-platform/03_CO
 | Calculadora de jugadas   | Práctica y captura de escenarios, manos y consulta de líneas disponibles. La cobertura del motor depende de las reglas implementadas para cada deck/formato. |
 | Inspector de cartas      | Consulta local y del proveedor de cartas, imagen y texto disponible.                                                                                         |
 | Importar / exportar Data | Intercambio de un deck por ZIP con previsualización, control de identidad e inventario.                                                                      |
-| API de Decks             | Swagger publica 13 operaciones implementadas mediante 10 rutas; la propuesta de 37 endpoints REST todavía no está implementada.                              |
+| API de Decks             | Swagger publica 15 operaciones implementadas mediante 11 rutas; la propuesta de 37 endpoints REST todavía no está implementada.                              |
 | Conexión con ChatGPT     | Integración MCP de consulta, opcional y con configuración privada independiente.                                                                             |
 
 La plataforma conserva código nativo junto con funcionalidades migradas a puertos y adaptadores. No se considera terminada la migración completa a arquitectura hexagonal. Una guía importada tampoco equivale a una secuencia certificada por un motor de reglas. Consultar el [estado de arquitectura](torneos_yugioh/context/architecture-migration-status.md) y los límites de la [calculadora](torneos_yugioh/context/play-calculator.md).
@@ -870,15 +870,16 @@ La interfaz combina formularios PHP, endpoints nativos `?api=...` y adaptadores 
 
 | Grupo de Swagger | Operaciones implementadas                                         |
 | ---------------- | ----------------------------------------------------------------- |
+| Decks            | Consultar identidad y estado; eliminación lógica con confirmación del nombre |
 | Decklist         | Consultar lista, versión y token; guardar lista completa          |
 | Catálogo         | Buscar cartas, consultar detalle e imagen                         |
 | Combos           | Consultar creaciones/historial; crear o actualizar                |
 | Mundos           | Consultar asignaciones; actualizar su orden                       |
 | Data ZIP         | Consultar estado, exportar, previsualizar y confirmar importación |
 
-Son **13 operaciones mediante 10 rutas**. El contrato está en [openapi.json](torneos_yugioh/api-docs/openapi.json) y la correspondencia nativa en [api/routes.php](torneos_yugioh/api/routes.php). Los 37 endpoints REST propuestos siguen pendientes; no se publican como implementados en Swagger.
+Son **15 operaciones mediante 11 rutas**. El contrato está en [openapi.json](torneos_yugioh/api-docs/openapi.json) y la correspondencia nativa en [api/routes.php](torneos_yugioh/api/routes.php). Los 37 endpoints REST propuestos siguen pendientes; no se publican como implementados en Swagger.
 
-Para probar un guardado, ejecutar primero la lectura del recurso en la misma sesión. Swagger conserva cookies y reutiliza los tokens solo en memoria. Decklist lleva el token dentro del JSON; combos, Mundos y ZIP utilizan `X-CSRF-Token` mediante el esquema `sessionCsrf`. La versión/revisión debe corresponder a la lectura vigente. **Execute aplica operaciones reales cuando se utiliza producción.**
+Para probar un guardado, ejecutar primero la lectura del recurso en la misma sesión. Swagger conserva cookies y reutiliza los tokens solo en memoria. Decklist lleva el token dentro del JSON; eliminación de decks, combos, Mundos y ZIP utilizan `X-CSRF-Token` mediante el esquema `sessionCsrf`. La versión/revisión debe corresponder a la lectura vigente. **Execute aplica operaciones reales cuando se utiliza producción.**
 
 Swagger se distribuye con recursos locales de una versión fijada; no usa CDN ni validador remoto. Abrir la documentación no inicializa la base ni ejecuta guardados. Más detalles en [swagger.md](torneos_yugioh/context/swagger.md) y [api.md](torneos_yugioh/context/api.md).
 

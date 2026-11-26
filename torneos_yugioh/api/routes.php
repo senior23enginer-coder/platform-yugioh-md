@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 /** HTTP aliases only. Each route delegates to a native controller; no SQL or business rules here. */
 return [
+    '/deck' => ['api' => 'deck_remove', 'methods' => ['GET', 'DELETE'], 'query' => ['deck_id', 'expected_name']],
     '/decklist' => ['api' => 'deck_builder', 'methods' => ['GET', 'POST'], 'query' => ['deck_id']],
     '/cards/search' => ['api' => 'deck_builder', 'op' => 'search', 'methods' => ['GET'], 'query' => ['q', 'format', 'page']],
     '/cards/detail' => ['api' => 'deck_builder', 'op' => 'detail', 'methods' => ['GET'], 'query' => ['id', 'local']],

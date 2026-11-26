@@ -11,7 +11,7 @@
     withCredentials: true,
     persistAuthorization: false,
     tryItOutEnabled: false,
-    supportedSubmitMethods: ["get", "post"],
+    supportedSubmitMethods: ["get", "post", "delete"],
     defaultModelsExpandDepth: 0,
     requestInterceptor(request) {
       const url = new URL(request.url, window.location.href);
@@ -20,7 +20,7 @@
         !url.pathname.startsWith(apiRoot.pathname)
       )
         return request;
-      if (request.method.toUpperCase() === "POST") {
+      if (["POST", "DELETE"].includes(request.method.toUpperCase())) {
         request.headers = request.headers || {};
         if (
           url.pathname.endsWith("/decklist") &&
