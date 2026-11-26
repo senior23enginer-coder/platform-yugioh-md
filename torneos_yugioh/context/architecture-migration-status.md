@@ -228,6 +228,10 @@ Se separa la coordinación de competiciones y sus guardas de fixtures en un caso
 
 Se separan las opciones y construcción de peticiones HTTP para captura de duelo, envío offline y consulta en vivo. Se conservan en el adaptador de interfaz los controles de respuesta, conflictos y revisión optimista. Se separan el cálculo del reloj y su persistencia mediante reloj/almacenamiento inyectados; la restauración de LP conserva normalización histórica, claves, historial y estado pausado. Pruebas aisladas de los tres módulos incorporadas; CI pendiente.
 
+## Segregación de persistencia de lectura (ISP)
+
+Se distribuyen las 34 operaciones del lector general en cuatro puertos y adaptadores: competición/calendario, identidad de decks, historial y reglamentos. El lector público conserva la firma mediante composición, usando la misma conexión PDO y sin iniciar consultas en sus constructores. Cada consulta original queda registrada para comparar los tokens de su implementación, sin regenerar evidencia para ocultar cambios. CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

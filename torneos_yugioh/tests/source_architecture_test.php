@@ -3327,6 +3327,39 @@ architectureCheck(
 );
 architectureCheck($readRules[1]['conditions'] === [], 'Empty rule conditions changed');
 
+// Segregated read-model adapters retain the exact native query method tokens.
+$readModelOriginals = json_decode(
+    file_get_contents(__DIR__ . '/fixtures/platform-read-model-query-originals.json'),
+    true,
+    flags: JSON_THROW_ON_ERROR,
+);
+$readModelTokens = static function (string $source): array {
+    return array_values(array_filter(token_get_all('<?php ' . $source), static fn($token): bool =>
+        !is_array($token) || !in_array($token[0], [T_WHITESPACE, T_OPEN_TAG], true)
+    ));
+};
+foreach ($readModelOriginals as $method => $original) {
+    $readerClass = 'StationX\\Yugioh\\Infrastructure\\Persistence\\ReadModel\\' . $original['adapter'];
+    $reflection = new ReflectionMethod($readerClass, $method);
+    $readerLines = file($reflection->getFileName());
+    $actualSource = implode('', array_slice(
+        $readerLines, $reflection->getStartLine() - 1,
+        $reflection->getEndLine() - $reflection->getStartLine() + 1,
+    ));
+    // Drop token line numbers while retaining token kinds and literal values.
+    $withoutLine = static fn(array $tokens): array => array_map(
+        static fn($token) => is_array($token) ? [$token[0], $token[1]] : $token,
+        $tokens,
+    );
+    architectureCheck(
+        $withoutLine($readModelTokens($actualSource)) === $withoutLine($readModelTokens($original['source'])),
+        'Read-model query changed: ' . $method,
+    );
+}
+$aggregateReader = new ReflectionClass(\StationX\Yugioh\Application\ReadModel\PlatformReadModelReader::class);
+architectureCheck(count($aggregateReader->getMethods()) === count($readModelOriginals), 'Read port coverage changed');
+architectureCheck(count($aggregateReader->getInterfaceNames()) === 4, 'Read ports not segregated');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

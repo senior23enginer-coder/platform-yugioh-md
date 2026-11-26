@@ -12,15 +12,18 @@
     operation,
     payload,
   }) {
-    const options = { cache: 'no-store', headers: { Accept: 'application/json' } };
+    const options = {
+      cache: "no-store",
+      headers: { Accept: "application/json" },
+    };
     if (operation) {
       const body = createFormData();
-      body.set('match_id', matchId);
-      body.set('actor', 'judge');
-      body.set('operation', operation);
-      body.set('revision', String(revision || 0));
-      body.set('payload', JSON.stringify(payload));
-      options.method = 'POST';
+      body.set("match_id", matchId);
+      body.set("actor", "judge");
+      body.set("operation", operation);
+      body.set("revision", String(revision || 0));
+      body.set("payload", JSON.stringify(payload));
+      options.method = "POST";
       options.body = body;
     }
     const response = await fetchResponse(getUrl(), options);
