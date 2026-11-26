@@ -4,30 +4,12 @@ declare(strict_types=1);
 // Presentation projections derived from the loaded request state.
 $appData['dbStatus'] = $dbStatus;
 $appData['eventLogoGallery'] = ygo_event_logo_gallery();
-$displayDivisions = array_filter(
-    $divisions,
-    static fn(array $division): bool => (int) ($division['id'] ?? 0) > 0 && (int) ($division['active'] ?? 1) === 1
-);
-$uniqueDisplayDivisions = [];
-foreach ($displayDivisions as $divisionKey => $division) {
-    $uniqueKey = (string) (($division['code'] ?? '') ?: ($division['short'] ?? '') ?: $divisionKey);
-    if ($uniqueKey === '') {
-        $uniqueKey = (string) $divisionKey;
-    }
-    if (!isset($uniqueDisplayDivisions[$uniqueKey])) {
-        $uniqueDisplayDivisions[$uniqueKey] = $division;
-    }
-}
-$displayDivisions = $uniqueDisplayDivisions;
-$deckTeamByName = [];
+$displayDivisions = \StationX\Yugioh\Application\Presentation\DirectoryProjection::divisions($divisions);
 $appData['presentationLabels'] = ygo_ui_labels_catalog($divisions, $competitions);
 $presentationLabels = $appData['presentationLabels'];
-foreach ($allDecks as $deck) {
-    $deckTeamByName[(string) ($deck['name'] ?? '')] = (string) (($deck['team'] ?? '') ?: 'Sin equipo');
-}
-$deckMatchLabel = static function (string $deckName) use ($deckTeamByName): string {
-    return (($deckTeamByName[$deckName] ?? 'Sin equipo') ?: 'Sin equipo') . ' / ' . $deckName;
-};
+$deckTeamByName = \StationX\Yugioh\Application\Presentation\DirectoryProjection::deckTeams($allDecks);
+$deckMatchLabel = static fn(string $deckName): string =>
+    \StationX\Yugioh\Application\Presentation\DirectoryProjection::matchLabel($deckTeamByName, $deckName);
 $matchOptions = [];
 foreach ($fixtures as $code => $rounds) {
     foreach ($rounds as $round) {
@@ -69,24 +51,7 @@ foreach ($qualifierCompetitions as $competition) {
 }
 $showQualifierDetail = $requestedQualifierCompetition !== null;
 $qualifierCompetitionIdMap = array_fill_keys(array_map(static fn(array $competition): int => (int) ($competition['id'] ?? 0), $qualifierCompetitions), true);
-$qualifierStatsByCompetition = [];
-foreach ($fixtures as $rounds) {
-    foreach ($rounds as $round) {
-        foreach (($round['matches'] ?? []) as $match) {
-            $competitionId = (int) ($match['competition_id'] ?? 0);
-            if ($competitionId <= 0 || !isset($qualifierCompetitionIdMap[$competitionId])) {
-                continue;
-            }
-            if (!isset($qualifierStatsByCompetition[$competitionId])) {
-                $qualifierStatsByCompetition[$competitionId] = ['matches' => 0, 'finished' => 0];
-            }
-            $qualifierStatsByCompetition[$competitionId]['matches']++;
-            if ((string) ($match['estado'] ?? '') === 'FINALIZADA' || !empty($match['score'])) {
-                $qualifierStatsByCompetition[$competitionId]['finished']++;
-            }
-        }
-    }
-}
+$qualifierStatsByCompetition = \StationX\Yugioh\Application\Presentation\QualifierMatchProjection::statistics($fixtures, $qualifierCompetitionIdMap);
 $displayQualifierCompetition = $requestedQualifierCompetition ?? $activeQualifierCompetition ?? $qualifierCompetition;
 $displayQualifierId = (int) ($displayQualifierCompetition['id'] ?? 0);
 $displayQualifierSelectedIds = array_map('intval', (array) ($displayQualifierCompetition['selected_deck_ids'] ?? []));
@@ -96,123 +61,36 @@ $displayQualifierDecks = $displayQualifierSelectedIds
     : [];
 $displayQualifierRequiredDuels = max(2, min(5, (int) (($displayQualifierCompetition['qualifier_duels_per_deck'] ?? 0) ?: 3)));
 $displayQualifierMatchesPerDay = max(1, min(5, (int) (($displayQualifierCompetition['qualifier_matches_per_day'] ?? 0) ?: 1)));
-$displayQualifierMatches = [];
-foreach (($fixtures['CLASIFICATORIO'] ?? []) as $round) {
-    foreach (($round['matches'] ?? []) as $match) {
-        if ($displayQualifierId > 0 && (int) ($match['competition_id'] ?? 0) !== $displayQualifierId) {
-            continue;
-        }
-        $displayQualifierMatches[] = $match + ['round_number' => (int) ($round['ronda'] ?? 0)];
-    }
-}
-usort($displayQualifierMatches, static function (array $a, array $b): int {
-    return strcmp((string) ($a['scheduled_on'] ?? '9999-12-31'), (string) ($b['scheduled_on'] ?? '9999-12-31'))
-        ?: strcmp((string) ($a['starts_at'] ?? '23:59:59'), (string) ($b['starts_at'] ?? '23:59:59'))
-        ?: ((int) ($a['round_number'] ?? 0) <=> (int) ($b['round_number'] ?? 0))
-        ?: ((int) ($a['mesa'] ?? 0) <=> (int) ($b['mesa'] ?? 0));
-});
-$displayQualifierRoundCount = count(array_unique(array_map(static fn(array $match): int => (int) ($match['round_number'] ?? 0), $displayQualifierMatches)));
-$displayQualifierScheduledCount = count(array_filter($displayQualifierMatches, static fn(array $match): bool => !empty($match['scheduled_on'])));
-$displayQualifierFinishedCount = count(array_filter($displayQualifierMatches, static fn(array $match): bool => (($match['estado'] ?? '') === 'FINALIZADA') || !empty($match['score'])));
+[
+    'matches' => $displayQualifierMatches,
+    'roundCount' => $displayQualifierRoundCount,
+    'scheduledCount' => $displayQualifierScheduledCount,
+    'finishedCount' => $displayQualifierFinishedCount,
+] = \StationX\Yugioh\Application\Presentation\QualifierMatchProjection::display($fixtures, $displayQualifierId);
 $qualifierStatus = ygo_normalize_status_key((string) ($displayQualifierCompetition['status'] ?? 'draft'));
 $qualifierFinished = in_array($qualifierStatus, ['completed', 'finalizada', 'finalizado', 'closed', 'archived'], true);
 $qualifierStatusLabel = $qualifierFinished ? 'Finalizado' : ($qualifierStatus === 'pending_event' ? 'Pendiente evento' : (in_array($qualifierStatus, ['active', 'activo', 'en_curso'], true) ? 'Activo' : 'Pendiente configuracion'));
 $divisionModeLabel = $qualifierFinished ? 'Formatos oficiales' : 'Formatos pendientes del clasificatorio';
 $cupEventTypes = ['cup', 'final'];
 $cupCompetitions = array_values(array_filter($competitions, static fn(array $competition): bool => in_array((string) ($competition['type'] ?? ''), $cupEventTypes, true)));
-$cupMatchesByCompetition = [];
-$cupStatsByCompetition = [];
-foreach ($fixtures as $rounds) {
-    foreach ($rounds as $round) {
-        foreach (($round['matches'] ?? []) as $match) {
-            $competitionId = (int) ($match['competition_id'] ?? 0);
-            if ($competitionId <= 0) {
-                continue;
-            }
-            $phase = (string) (($match['phase'] ?? '') ?: '');
-            if (!in_array($phase, ['cup', 'final'], true)) {
-                continue;
-            }
-            $cupMatchesByCompetition[$competitionId][] = $match + ['round_number' => (int) ($round['ronda'] ?? 0)];
-            if (!isset($cupStatsByCompetition[$competitionId])) {
-                $cupStatsByCompetition[$competitionId] = ['total' => 0, 'scheduled' => 0, 'finalized' => 0, 'pending' => 0, 'dates' => []];
-            }
-            $isFinalized = (($match['estado'] ?? '') === 'FINALIZADA') || !empty($match['score']);
-            $hasDate = !empty($match['scheduled_on']);
-            $cupStatsByCompetition[$competitionId]['total']++;
-            $cupStatsByCompetition[$competitionId][$isFinalized ? 'finalized' : 'pending']++;
-            if ($hasDate) {
-                $cupStatsByCompetition[$competitionId]['scheduled']++;
-                $cupStatsByCompetition[$competitionId]['dates'][(string) $match['scheduled_on']] = true;
-            }
-        }
-    }
-}
-foreach ($cupMatchesByCompetition as &$cupMatches) {
-    usort($cupMatches, static fn(array $left, array $right): int =>
-        ((int) ($left['display_order'] ?? 0) <=> (int) ($right['display_order'] ?? 0))
-        ?: ((int) ($left['round_number'] ?? 0) <=> (int) ($right['round_number'] ?? 0))
-        ?: ((int) ($left['mesa'] ?? 0) <=> (int) ($right['mesa'] ?? 0))
-    );
-}
-unset($cupMatches);
+['matches' => $cupMatchesByCompetition, 'stats' => $cupStatsByCompetition] =
+    \StationX\Yugioh\Application\Presentation\CompetitionMatchProjection::cups($fixtures);
 $cupActiveCount = count(array_filter($cupCompetitions, static fn(array $competition): bool => in_array(ygo_normalize_status_key((string) ($competition['status'] ?? '')), ['active', 'activo', 'en_curso'], true)));
 $cupCompletedCount = count(array_filter($cupCompetitions, static fn(array $competition): bool => in_array(ygo_normalize_status_key((string) ($competition['status'] ?? '')), ['completed', 'finalized', 'finalizado', 'finalizada', 'cancelled', 'canceled', 'anulado', 'anulada'], true)));
 $cupTotalMatches = array_sum(array_map(static fn(array $stats): int => (int) ($stats['total'] ?? 0), $cupStatsByCompetition));
 $featuredCupCompetition = $cupCompetitions[0] ?? null;
 $worldCompetitions = array_values(array_filter($competitions, static fn(array $competition): bool => (string) ($competition['type'] ?? '') === 'world'));
-$worldMatchesByCompetition = [];
-$worldStatsByCompetition = [];
-foreach ($fixtures as $rounds) {
-    foreach ($rounds as $round) {
-        foreach (($round['matches'] ?? []) as $match) {
-            $competitionId = (int) ($match['competition_id'] ?? 0);
-            if ($competitionId <= 0 || (string) (($match['phase'] ?? '') ?: '') !== 'world') {
-                continue;
-            }
-            $worldMatchesByCompetition[$competitionId][] = $match + ['round_number' => (int) ($round['ronda'] ?? 0)];
-            if (!isset($worldStatsByCompetition[$competitionId])) {
-                $worldStatsByCompetition[$competitionId] = ['total' => 0, 'scheduled' => 0, 'finalized' => 0, 'pending' => 0];
-            }
-            $isFinalized = (($match['estado'] ?? '') === 'FINALIZADA') || !empty($match['score']);
-            $worldStatsByCompetition[$competitionId]['total']++;
-            $worldStatsByCompetition[$competitionId][$isFinalized ? 'finalized' : 'pending']++;
-            if (!empty($match['scheduled_on'])) {
-                $worldStatsByCompetition[$competitionId]['scheduled']++;
-            }
-        }
-    }
-}
+['matches' => $worldMatchesByCompetition, 'stats' => $worldStatsByCompetition] =
+    \StationX\Yugioh\Application\Presentation\CompetitionMatchProjection::worlds($fixtures);
 $worldActiveCount = count(array_filter($worldCompetitions, static fn(array $competition): bool => in_array(ygo_normalize_status_key((string) ($competition['status'] ?? '')), ['active', 'activo', 'en_curso'], true)));
 $worldTotalMatches = array_sum(array_map(static fn(array $stats): int => (int) ($stats['total'] ?? 0), $worldStatsByCompetition));
-$eventSummaryByType = [];
-$eventSummaryByRuleset = [];
-$eventSummaryByStatus = [];
-foreach ($competitions as $competition) {
-    $type = (string) (($competition['type'] ?? '') ?: 'special');
-    $ruleset = (string) (($competition['event_ruleset'] ?? '') ?: 'custom');
-    $statusKey = (string) (($competition['status'] ?? '') ?: 'draft');
-    $eventSummaryByType[$type] = ($eventSummaryByType[$type] ?? 0) + 1;
-    $eventSummaryByRuleset[$ruleset] = ($eventSummaryByRuleset[$ruleset] ?? 0) + 1;
-    $eventSummaryByStatus[$statusKey] = ($eventSummaryByStatus[$statusKey] ?? 0) + 1;
-}
-$competitionById = [];
-foreach ($competitions as $competition) {
-    $competitionById[(int) ($competition['id'] ?? 0)] = $competition;
-}
-$dependencyFlow = [];
-foreach ($competitions as $competition) {
-    foreach (($competition['dependencies'] ?? []) as $dependency) {
-        $dependencyFlow[] = [
-            'from' => (string) ($dependency['name'] ?? 'Evento previo'),
-            'to' => (string) ($competition['name'] ?? 'Evento'),
-            'ruleset' => (string) (($competition['event_ruleset'] ?? '') ?: 'custom'),
-            'ok' => !empty($dependency['ok']),
-            'status' => (string) ($dependency['status'] ?? 'draft'),
-            'condition' => (string) ($dependency['condition_type'] ?? 'completed_with_results'),
-        ];
-    }
-}
+[
+    'byType' => $eventSummaryByType,
+    'byRuleset' => $eventSummaryByRuleset,
+    'byStatus' => $eventSummaryByStatus,
+    'byId' => $competitionById,
+    'dependencies' => $dependencyFlow,
+] = \StationX\Yugioh\Application\Presentation\CompetitionDirectoryProjection::build($competitions);
 $rulesetSelectOptions = [];
 foreach ($rulesets as $ruleset) {
     $rulesetSelectOptions[(string) ($ruleset['code'] ?? '')] = (string) ($ruleset['label'] ?? $ruleset['code'] ?? '');

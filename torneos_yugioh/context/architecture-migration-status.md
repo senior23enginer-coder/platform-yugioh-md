@@ -192,6 +192,18 @@ La composición de estadísticas, modelos de ejecución, FFA, resultados colecti
 
 Se centraliza la construcción de los datos iniciales y de error en una política pura que recibe los metadatos ya resueltos. Se conservan exactamente las claves, su orden, los valores y la diferencia histórica entre ambas estructuras; no se añade información inventada a la respuesta de error. Las llamadas a servicios nativos y sus límites de excepción no se desplazan. Se añaden regresiones de contrato; CI pendiente.
 
+## Migración consolidada — bootstrap y directorio de presentación
+
+Los PR #65, #66 y #67 se integraron con CI exitoso. Se continúa en una única rama de migración. Se extraen las proyecciones iniciales de fixtures/decks, etiquetas UI, estado de conexión y directorio de divisiones/equipos a clases puras. Se preserva la precedencia de claves, la primera división visible, el último equipo por nombre y los mensajes originales. Las pruebas se añaden a la suite existente; certificación de este cambio pendiente.
+
+## Proyecciones de copas, mundiales y competiciones
+
+La agregación de fixtures de copa y mundial comparte una implementación pura que conserva el orden diferenciado, los criterios de finalización, las fechas únicas de copa y la estructura de cada respuesta. El directorio de competiciones centraliza los contadores, identidades y dependencias. Se añaden regresiones en la suite existente. CI pendiente.
+
+## Proyección de partidas clasificatorias
+
+Se extraen del read-model de presentación el resumen por competición, el filtrado de partidas, el orden cronológico y los contadores de rondas, fechas y finalizaciones. Se conservan los criterios históricos y se añade cobertura de regresión. CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

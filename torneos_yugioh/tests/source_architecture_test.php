@@ -2893,6 +2893,156 @@ foreach ($initialMetadata as $key => $value) {
     architectureCheck($failurePayload[$key] === $value, 'Failure metadata changed: ' . $key);
 }
 
+// Bootstrap seed and presentation directory projections preserve the native output.
+$seedProjection = \StationX\Yugioh\Application\Bootstrap\SeedDataProjection::class;
+$seedDecks = [[1, 'A', 'first'], [2, 'B', 'second']];
+$seedProjectionResult = $seedProjection::fixturesAndDecks(['APEX' => ['decks' => $seedDecks]]);
+architectureCheck(
+    $seedProjectionResult['fixtures']['APEX'] === FixtureBuilder::build($seedDecks),
+    'Bootstrap fixture generation changed',
+);
+architectureCheck(
+    $seedProjectionResult['allDecks'] === [
+        ['rank' => 1, 'name' => 'A', 'division' => 'APEX', 'reason' => 'first'],
+        ['rank' => 2, 'name' => 'B', 'division' => 'APEX', 'reason' => 'second'],
+    ],
+    'Bootstrap seed identity changed',
+);
+$seedLabels = $seedProjection::labels([['home', ' Home ', 'Subtitle']]);
+architectureCheck(
+    $seedProjection::labelText($seedLabels, 'home', 'title', 'Fallback') === 'Home',
+    'Active label changed',
+);
+$seedLabels['home']['active'] = 0;
+architectureCheck(
+    $seedProjection::labelText($seedLabels, 'home', 'title', 'Fallback') === 'Fallback',
+    'Inactive label fallback changed',
+);
+$statusPolicy = \StationX\Yugioh\Application\Bootstrap\ConnectionStatus::class;
+architectureCheck(
+    $statusPolicy::connected(['old' => 1, 'same' => 2], ['same' => 3])['counts'] === [
+        'old' => 1,
+        'same' => 3,
+    ],
+    'Connection maintenance count precedence changed',
+);
+architectureCheck(!$statusPolicy::initial()['connected'], 'Initial connection state changed');
+architectureCheck(!$statusPolicy::failed()['connected'], 'Failure connection state changed');
+$directory = \StationX\Yugioh\Application\Presentation\DirectoryProjection::class;
+$visibleDivisions = $directory::divisions([
+    'a' => ['id' => 1, 'code' => 'A'],
+    'b' => ['id' => 2, 'code' => 'A'],
+    'c' => ['id' => 3, 'active' => 0],
+    'd' => ['id' => 4, 'short' => 'D'],
+    'e' => ['id' => 0],
+]);
+architectureCheck(array_keys($visibleDivisions) === ['A', 'D'], 'Division identity changed');
+architectureCheck($visibleDivisions['A']['id'] === 1, 'First division precedence changed');
+$teamNames = $directory::deckTeams([
+    ['name' => 'A', 'team' => 'Old'],
+    ['name' => 'A', 'team' => 'New'],
+    ['name' => 'B', 'team' => ''],
+]);
+architectureCheck($directory::matchLabel($teamNames, 'A') === 'New / A', 'Team label changed');
+architectureCheck(
+    $directory::matchLabel($teamNames, 'B') === 'Sin equipo / B',
+    'Empty team changed',
+);
+architectureCheck(
+    $directory::matchLabel($teamNames, 'C') === 'Sin equipo / C',
+    'Missing team changed',
+);
+
+// Shared presentation aggregation keeps cup sorting and world insertion order distinct.
+$competitionMatches = \StationX\Yugioh\Application\Presentation\CompetitionMatchProjection::class;
+$projectionFixtures = [
+    'X' => [
+        [
+            'ronda' => 2,
+            'matches' => [
+                ['id' => 1, 'competition_id' => 8, 'phase' => 'cup', 'display_order' => 2],
+                [
+                    'id' => 2,
+                    'competition_id' => 8,
+                    'phase' => 'final',
+                    'display_order' => 1,
+                    'score' => '2-0',
+                    'scheduled_on' => '2026-11-26',
+                ],
+                ['id' => 3, 'competition_id' => 9, 'phase' => 'world', 'display_order' => 2],
+                ['id' => 4, 'competition_id' => 9, 'phase' => 'world', 'display_order' => 1],
+                ['id' => 5, 'competition_id' => 0, 'phase' => 'cup'],
+            ],
+        ],
+    ],
+];
+$cupProjection = $competitionMatches::cups($projectionFixtures);
+$worldProjection = $competitionMatches::worlds($projectionFixtures);
+architectureCheck(array_column($cupProjection['matches'][8], 'id') === [2, 1], 'Cup order changed');
+architectureCheck(
+    array_column($worldProjection['matches'][9], 'id') === [3, 4],
+    'World order changed',
+);
+architectureCheck(
+    $cupProjection['stats'][8] === [
+        'total' => 2,
+        'scheduled' => 1,
+        'finalized' => 1,
+        'pending' => 1,
+        'dates' => ['2026-11-26' => true],
+    ],
+    'Cup totals changed',
+);
+architectureCheck(!isset($worldProjection['stats'][9]['dates']), 'World shape changed');
+architectureCheck(!isset($cupProjection['stats'][0]), 'Invalid competition included');
+$competitionDirectory = \StationX\Yugioh\Application\Presentation\CompetitionDirectoryProjection::build(
+    [
+        ['id' => 1, 'type' => 'cup', 'name' => 'Cup', 'dependencies' => [['ok' => true]]],
+        ['id' => 2, 'type' => 'cup'],
+        ['id' => 3],
+    ],
+);
+architectureCheck(
+    $competitionDirectory['byType'] === ['cup' => 2, 'special' => 1],
+    'Type totals changed',
+);
+architectureCheck($competitionDirectory['byRuleset'] === ['custom' => 3], 'Ruleset totals changed');
+architectureCheck($competitionDirectory['dependencies'][0]['ok'], 'Dependency state changed');
+
+// Qualifier match projection preserves filtering, date ordering and completion criteria.
+$qualifierProjection = \StationX\Yugioh\Application\Presentation\QualifierMatchProjection::class;
+$qualifierFixtures = [
+    'CLASIFICATORIO' => [
+        [
+            'ronda' => 2,
+            'matches' => [
+                ['id' => 1, 'competition_id' => 8, 'scheduled_on' => '2026-11-27'],
+                [
+                    'id' => 2,
+                    'competition_id' => 8,
+                    'scheduled_on' => '2026-11-26',
+                    'score' => '2-0',
+                ],
+                ['id' => 3, 'competition_id' => 9, 'estado' => 'FINALIZADA'],
+                ['id' => 4, 'competition_id' => 8],
+            ],
+        ],
+    ],
+];
+$qualifierSummary = $qualifierProjection::statistics($qualifierFixtures, [8 => true]);
+architectureCheck(
+    $qualifierSummary === [8 => ['matches' => 3, 'finished' => 1]],
+    'Qualifier totals changed',
+);
+$qualifierDisplay = $qualifierProjection::display($qualifierFixtures, 8);
+architectureCheck(
+    array_column($qualifierDisplay['matches'], 'id') === [2, 1, 4],
+    'Qualifier order changed',
+);
+architectureCheck($qualifierDisplay['roundCount'] === 1, 'Qualifier round count changed');
+architectureCheck($qualifierDisplay['scheduledCount'] === 2, 'Qualifier scheduled count changed');
+architectureCheck($qualifierDisplay['finishedCount'] === 1, 'Qualifier finished count changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
