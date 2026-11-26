@@ -5,7 +5,7 @@
   function create({ key, readValue, writeValue, now, random, uuid }) {
     function read() {
       try {
-        const value = JSON.parse(readValue(key) || '[]');
+        const value = JSON.parse(readValue(key) || "[]");
         if (Array.isArray(value)) return value;
         return value && Array.isArray(value.payload)
           ? [{ id: value.id || `legacy-${now()}`, ...value }]
@@ -19,7 +19,9 @@
     }
     function requestId() {
       const id = uuid();
-      return id === null ? `offline-${now()}-${random().toString(16).slice(2)}` : id;
+      return id === null
+        ? `offline-${now()}-${random().toString(16).slice(2)}`
+        : id;
     }
     return Object.freeze({ read, write, requestId });
   }
