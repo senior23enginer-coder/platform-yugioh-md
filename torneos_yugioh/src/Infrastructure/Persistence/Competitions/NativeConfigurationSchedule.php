@@ -27,7 +27,7 @@ final readonly class NativeConfigurationSchedule implements CompetitionConfigura
 
     public function fixedProgram(): bool
     {
-        return \ygo_fixed_program($this->pdo);
+        return (bool) \ygo_fixed_program($this->pdo);
     }
 
     public function reflow(int $competitionId, string $startDate, string $pattern, int $matchesPerDay): void

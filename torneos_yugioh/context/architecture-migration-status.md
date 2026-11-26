@@ -74,7 +74,7 @@ La confirmación y restricción por estado se separan de la eliminación SQL; el
 
 ## Configuración de competiciones — 26 de noviembre de 2026
 
-Se separa el flujo de configuración mediante puertos de persistencia, contexto, participantes, multimedia y calendario. Las políticas de bloqueo de plantel, cupos y transición quedan independientes de I/O. Se conserva la fachada HTTP y el límite transaccional original. Los adaptadores de servicios todavía reutilizan operaciones nativas; la validación integral y MySQL quedan pendientes.
+Se separa el flujo de configuración mediante puertos de persistencia, contexto, participantes, multimedia y calendario. Las políticas de bloqueo de plantel, cupos y transición quedan independientes de I/O. Se conserva la fachada HTTP y el límite transaccional original. Los adaptadores de servicios todavía reutilizan operaciones nativas. Se verificó la huella histórica de la fachada y 2.168 comprobaciones aisladas de las políticas de configuración, incluidas 2.160 combinaciones de transición de estado contra una caracterización del flujo anterior; el archivo de dominio probado coincide con GitHub. La ejecución completa del caso de uso, el formato y MySQL quedan pendientes.
 
 ## Trabajo todavía pendiente para completar toda la plataforma
 

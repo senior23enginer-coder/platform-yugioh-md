@@ -93,7 +93,36 @@ final readonly class PdoCompetitionConfigurationStore implements CompetitionConf
             UPDATE sx_ygo_competitions
             SET division_id=?, name=?, type=?, event_ruleset=?, ruleset_version=?, accent=?, logo_url=?, rules=?, starts_on=?, status=?, match_format=?, participants_per_side=?, qualifier_duels_per_deck=?, qualifier_matches_per_day=?, deck_pool=?, promotion_slots=?, relegation_slots=?, promotion_to_division_id=?, relegation_to_division_id=?, lock_division_moves=?, schedule_strategy=?, schedule_pattern=?, schedule_interval_days=?, game_rule_id=?, configuration_locked=IF(? = 1, 1, configuration_locked), started_at=IF(? = 1, COALESCE(started_at, NOW()), started_at)
             WHERE id=? AND season_id=?
-        ')->execute($values);
+        ')->execute([
+            $values['division_id'],
+            $values['name'],
+            $values['type'],
+            $values['event_ruleset'],
+            $values['ruleset_version'],
+            $values['accent'],
+            $values['logo_url'],
+            $values['rules'],
+            $values['starts_on'],
+            $values['status'],
+            $values['match_format'],
+            $values['participants_per_side'],
+            $values['qualifier_duels_per_deck'],
+            $values['qualifier_matches_per_day'],
+            $values['deck_pool'],
+            $values['promotion_slots'],
+            $values['relegation_slots'],
+            $values['promotion_to_division_id'],
+            $values['relegation_to_division_id'],
+            $values['lock_division_moves'],
+            $values['schedule_strategy'],
+            $values['schedule_pattern'],
+            $values['schedule_interval_days'],
+            $values['game_rule_id'],
+            $values['lock_configuration'],
+            $values['mark_started'],
+            $values['competition_id'],
+            $values['season_id'],
+        ]);
     }
 
     public function scheduledRows(int $competitionId): \Closure
