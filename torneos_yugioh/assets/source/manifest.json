@@ -1,6 +1,10 @@
 {
   "javascript": [
     {
+      "file": "javascript/shared/offline-queue.js",
+      "responsibility": "offline queue storage and identity port"
+    },
+    {
       "file": "javascript/00-startup.js",
       "responsibility": "startup"
     },

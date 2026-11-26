@@ -76,3 +76,25 @@ assert.equal(position, 2, 'Selecting the current route must not duplicate histor
 assert.equal(store.dml_screen, 'dashboard');
 assert(events.includes('deck') && events.includes('estadisticas'));
 console.log('Browser navigation: Back, Forward, direct-route and query preservation verified.');
+
+const { create: createQueue } = require('../assets/source/javascript/shared/offline-queue.js');
+let raw = null, uuid = null;
+const queue = createQueue({
+  key: 'queue',
+  readValue: key => { assert.equal(key, 'queue'); return raw; },
+  writeValue: (key, value) => { assert.equal(key, 'queue'); raw = value; },
+  now: () => 123,
+  random: () => 0.5,
+  uuid: () => uuid
+});
+assert.deepEqual(queue.read(), []);
+raw = 'invalid';
+assert.deepEqual(queue.read(), []);
+raw = '{"payload":[["match_id","4"]]}';
+assert.deepEqual(queue.read(), [{id:'legacy-123',payload:[['match_id','4']]}]);
+queue.write([{id:'saved',payload:[]}]);
+assert.deepEqual(queue.read(), [{id:'saved',payload:[]}]);
+assert.equal(queue.requestId(), 'offline-123-8');
+uuid = 'uuid-from-adapter';
+assert.equal(queue.requestId(), uuid);
+console.log('Offline queue: invalid JSON, legacy migration, persistence and request IDs verified.');
