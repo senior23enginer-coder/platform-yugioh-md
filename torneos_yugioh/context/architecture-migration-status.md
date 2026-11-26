@@ -172,6 +172,10 @@ Se extrae el cargador de datos completo a un caso de uso con puertos de lectura 
 
 Se separan las tres operaciones históricas registradas en auditoría mediante un puerto de mantenimiento y un caso de uso que conserva su orden, registro e idempotencia secuencial. La resolución de rutas POST deja de depender de las variables globales. También se separan inicialización de esquema, semillas, contexto de temporada y catálogos, y mantenimiento de configuración/temporada en dos casos de uso con puertos explícitos. Se preservan el orden y los contadores, así como el cálculo intermedio de opciones de catálogo. La composición de respuesta sigue pendiente. CI pendiente.
 
+## HTTP y presentación (H14/H23, avance)
+
+La proyección de exportación de fichas queda como caso de uso puro con entradas explícitas y fecha de generación; conserva filas, cálculos, textos y formato de salida. Las pantallas de jugador y marcador público pasan a vistas dedicadas; el controlador mantiene las cabeceras, validación de identidad y estados. Se añaden pruebas de resultados, duelos y winrate. CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
