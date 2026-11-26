@@ -132,6 +132,10 @@ Se separan la identidad estable de rutas, la referencia documental y la proyecci
 
 Se separan los cálculos puros de elegibilidad, acumulación individual y Tag, Elo multijugador, reproducción cronológica, metagame, logros, cortes, filtros y exportación. El caso de uso recibe un reloj; se conservan las firmas, las versiones de algoritmo, bases de rating y fórmulas existentes. Se guardan cuerpos históricos de las funciones intervenidas. Se extraen además la proyección de hechos deportivos desde filas, la validación de identidades colectivas, la sincronización de revisiones y revocaciones, el hash canónico, el bloqueo estadístico y los puertos de persistencia. Se conserva el retorno temprano dentro de transacciones deportivas. Se separan también la configuración inmutable, bootstrap, esquema y vista de estadísticas, dejando las funciones históricas como fachadas. La publicación de cortes continúa retirada. Comprobación integral y MySQL pendientes.
 
+## Comandos de perfiles de análisis y enfrentamientos (H13)
+
+Se separan normalización de listas y puntuaciones, persistencia, transacción propia/prestada, auditoría y revisiones de perfiles y matchup. Se corrige la captura ausente de `$post` en las dos funciones anónimas que normalizaban listas: antes podían perder el texto enviado; se añade una regresión explícita. No se alteran datos existentes. Validación integral pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

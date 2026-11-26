@@ -1990,6 +1990,21 @@ architectureCheck(
     'Fixed global policy overwritten',
 );
 
+// Analysis form fields are normalized from the submitted payload, not implicit closure state.
+$analysisInput = \StationX\Yugioh\Domain\Decks\DeckAnalysisInput::class;
+$profileInput = $analysisInput::profile([
+    'deck_analysis_strengths' => '["One, two","One, two","Three"]',
+    'deck_analysis_weaknesses' => 'A; B; A',
+    'deck_analysis_consistency_score' => 9,
+    'deck_analysis_confidence' => 'other',
+]);
+architectureCheck(json_decode($profileInput['values'][12], true) === ['One, two', 'Three'], 'Structured strengths lost');
+architectureCheck(json_decode($profileInput['values'][13], true) === ['A', 'B'], 'Weakness list lost');
+architectureCheck($profileInput['values'][15] === 5 && $profileInput['values'][22] === 'MEDIA', 'Analysis score or confidence changed');
+$matchupInput = $analysisInput::matchup(['strategic_score' => -9, 'matchup_advantages' => 'A; B; A']);
+architectureCheck($matchupInput['values'][0] === -2 && $matchupInput['values'][1] === 'MUY_DESFAVORABLE', 'Strategic classification changed');
+architectureCheck(json_decode($matchupInput['values'][3], true) === ['A', 'B'], 'Matchup advantages lost');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
