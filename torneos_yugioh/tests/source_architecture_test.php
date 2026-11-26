@@ -807,6 +807,18 @@ architectureCheck($honorPolicy::usesFinal(['type' => 'cup']) && !$honorPolicy::u
 architectureCheck($honorPolicy::fromFinal(['result' => 'B', 'deck_a_id' => 1, 'deck_b_id' => 2]) === [2, 1], 'Final winner changed');
 architectureCheck($honorPolicy::fromRanking([['id' => 4]]) === [4, 0], 'Missing runner changed');
 
+// Knockout and historical phase plans preserve ordering and bye positions.
+$knockoutPlan = \StationX\Yugioh\Domain\Competitions\KnockoutRoundPlan::class;
+$knockoutIds = $knockoutPlan::normalize([1, '2', 2, 3, 4, 5, 0]);
+$knockoutRows = iterator_to_array($knockoutPlan::rows(['id' => 9], 'cup', $knockoutIds, 2, 'Final', '2026-11-26'), false);
+architectureCheck(array_column($knockoutRows, 'deckA') === [1, 2] && array_column($knockoutRows, 'deckB') === [5, 4], 'Knockout pairs changed');
+architectureCheck($knockoutRows[0]['displayOrder'] === 201 && $knockoutRows[0]['date'] === '2026-11-27', 'Knockout display/date changed');
+architectureCheck($knockoutPlan::bye('cup', $knockoutIds) === 3 && $knockoutPlan::bye('world', $knockoutIds) === null, 'Bye policy changed');
+$historicalPlan = \StationX\Yugioh\Domain\Competitions\LegacyPhasePlan::class;
+architectureCheck($historicalPlan::winnersByDivision([['division_id' => 1, 'result' => 'A', 'deck_a_id' => 2], ['division_id' => 1, 'result' => 'E']]) === [1 => [2]], 'Historical winners changed');
+$autoScheduleRows = iterator_to_array(\StationX\Yugioh\Domain\Calendar\QualifierAutoSchedulePlan::rows([['id' => 1], ['id' => 2], ['id' => 3]], new DateTimeImmutable('2026-11-26 19:00:00'), 2, 45), false);
+architectureCheck($autoScheduleRows[1]['time'] === '19:45:00' && $autoScheduleRows[2]['date'] === '2026-11-27', 'Automatic qualifier slots changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
