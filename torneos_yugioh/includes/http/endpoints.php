@@ -81,49 +81,12 @@ if ($dbStatus['connected'] && in_array($duelPlayerSide, ['A', 'B'], true)) {
 }
 
 if($dbStatus['connected']&&(string)($_GET['api']??'')==='ffa_history'){
-    $q=$pdo->prepare('SELECT revision,payload,created_at FROM sx_ygo_ffa_actions WHERE match_id=? ORDER BY revision');$q->execute([(int)($_GET['ffa_match_id']??0)]);
-    header('Content-Type: application/json; charset=utf-8');header('Cache-Control: no-store');echo json_encode(['actions'=>$q->fetchAll(PDO::FETCH_ASSOC)],JSON_UNESCAPED_UNICODE);exit;
+    $history=\StationX\Yugioh\Infrastructure\Composition\LiveQueryModule::matches($pdo)->ffaHistory((int)($_GET['ffa_match_id']??0));
+    header('Content-Type: application/json; charset=utf-8');header('Cache-Control: no-store');echo json_encode($history,JSON_UNESCAPED_UNICODE);exit;
 }
 if ($dbStatus['connected'] && (string)($_GET['api']??'')==='statistics') {
-    $stats=ygo_stats_view($pdo);
-    if(!empty($_GET['publication_id'])){
-        $q=$pdo->prepare('SELECT id,payload,published_at FROM sx_ygo_statistics_publications WHERE id=?');$q->execute([(int)$_GET['publication_id']]);$cut=$q->fetch(PDO::FETCH_ASSOC);
-        if(!$cut){http_response_code(404);header('Content-Type: application/json');echo json_encode(['status'=>'PENDIENTE','reason'=>'Corte publicado inexistente']);exit;}
-        $stats=ygo_stats_public_values(json_decode($cut['payload'],true));$stats['publication_id']=$cut['id'];$stats['published_at']=$cut['published_at'];
-    }
-    $format=trim((string)($_GET['format']??''));
-    if($format!==''){
-        foreach(['global','metagame','medals','ledger'] as $collection)$stats[$collection]=array_values(array_filter($stats[$collection]??[],static fn($r)=>(string)($r['format_id']??'')===$format));
-        foreach(['ranking','ledger'] as $collection)$stats['free_for_all'][$collection]=array_values(array_filter($stats['free_for_all'][$collection]??[],static fn($r)=>($r['format_id']??'')===$format));
-    }
-    if(!empty($_GET['entity_team_id'])){
-        $team=(int)$_GET['entity_team_id'];
-        foreach(['global','profiles','medals'] as $list)$stats[$list]=array_values(array_filter($stats[$list]??[],static fn($r)=>(int)($r['team_id']??0)===$team));
-        $stats['ledger']=array_values(array_filter($stats['ledger']??[],static fn($r)=>(int)($r['team_a_id']??0)===$team||(int)($r['team_b_id']??0)===$team||in_array($team,array_column($r['participants']??[],'team_id'),true)));
-        $stats['free_for_all']['ranking']=array_values(array_filter($stats['free_for_all']['ranking']??[],static fn($r)=>(int)$r['team_id']===$team));
-        $stats['free_for_all']['ledger']=array_values(array_filter($stats['free_for_all']['ledger']??[],static fn($r)=>in_array($team,array_column($r['changes'],'team_id'),true)));
-    }
-    $filters=[];foreach(['event_id','season_id','division_id','phase','event_type','team_id','deck_id','player_id','judge','venue','from','to'] as $key)if(isset($_GET['stats_'.$key])&&trim((string)$_GET['stats_'.$key])!=='')$filters[$key]=trim((string)$_GET['stats_'.$key]);
-    $analysis=$stats;
-    if($filters){
-        $analysis=ygo_stats_calculate(ygo_stats_filter($stats['confirmed_matches']??[],$filters),[],[],$stats['policy']??[],$stats['cutoff']??null);
-        $selectedMatches=array_fill_keys(array_column($analysis['ledger'],'match_id'),true);
-        foreach($analysis['global'] as &$r){
-            $official=array_values(array_filter($stats['global']??[],static fn($g)=>$g['team_id']===$r['team_id']&&$g['format_id']===$r['format_id']))[0]??null;
-            $r['rating']=$official['rating']??null;$r['rival_pre_sum']=0;
-            foreach($stats['ledger']??[] as $entry){
-                if(!isset($selectedMatches[$entry['match_id']])||$entry['format_id']!==$r['format_id'])continue;
-                if(($entry['kind']??'')==='tag'){foreach($entry['participants'] as $participant)if($participant['team_id']===$r['team_id'])$r['rival_pre_sum']+=$participant['rival_mean'];continue;}
-                if($entry['team_a_id']===$r['team_id'])$r['rival_pre_sum']+=$entry['before_b'];
-                elseif($entry['team_b_id']===$r['team_id'])$r['rival_pre_sum']+=$entry['before_a'];
-            }
-        }unset($r);
-        $stats['matchups']=$analysis['matchups'];$stats['players']=$analysis['players'];
-    }
-    $analytics=ygo_stats_analytics($analysis,max(1,min(100,(int)($_GET['minimum']??3))));
-    $stats['analytical_filters']=$filters;
-
-    $stats['analytics']=$analytics;
+    $stats=\StationX\Yugioh\Infrastructure\Composition\LiveQueryModule::statistics($pdo)->execute($_GET);
+    if($stats===null){http_response_code(404);header('Content-Type: application/json');echo json_encode(['status'=>'PENDIENTE','reason'=>'Corte publicado inexistente']);exit;}
     if(in_array($_GET['export']??'',['csv','pdf'],true)){
         ini_set('precision','17');
         $rows=ygo_stats_export_rows($stats,(string)($_GET['collection']??'global'));
@@ -134,41 +97,9 @@ if ($dbStatus['connected'] && (string)($_GET['api']??'')==='statistics') {
     header('Content-Type: application/json; charset=utf-8');header('Cache-Control: no-store');echo json_encode($stats,JSON_UNESCAPED_UNICODE|JSON_PRESERVE_ZERO_FRACTION);exit;
 }
 if ($dbStatus['connected'] && (string) ($_GET['api'] ?? '') === 'live') {
-    $liveMatches = [];
-    foreach ($fixtures as $rounds) {
-        foreach ($rounds as $round) {
-            foreach (($round['matches'] ?? []) as $match) {
-                $liveMatches[] = [
-                    'id' => (int) ($match['id'] ?? 0),
-                    'competition_id' => (int) ($match['competition_id'] ?? 0),
-                    'competition_name' => (string) ($match['competition_name'] ?? ''),
-                    'ronda' => (string) ($match['ronda'] ?? ''),
-                    'mesa' => (string) ($match['mesa'] ?? ''),
-                    'a' => (string) ($match['a'] ?? ''),
-                    'b' => (string) ($match['b'] ?? ''),
-                    'team_a' => (string) ($match['team_a'] ?? ''),
-                    'team_b' => (string) ($match['team_b'] ?? ''),
-                    'venue' => (string) ($match['venue'] ?? ''),
-                    'estado' => (string) ($match['estado'] ?? ''),
-                    'score' => (string) ($match['score'] ?? ''),
-                    'd1' => $match['d1'] ?? null, 'd2' => $match['d2'] ?? null,
-                    'd3' => $match['d3'] ?? null, 'd4' => $match['d4'] ?? null, 'd5' => $match['d5'] ?? null,
-                    'duel_details' => (string) ($match['duel_details'] ?? ''),
-                    'scheduled_on' => (string) ($match['scheduled_on'] ?? ''),
-                    'starts_at' => (string) ($match['starts_at'] ?? ''),
-                    'result_updated_at' => (string) ($match['result_updated_at'] ?? ''),
-                ];
-            }
-        }
-    }
     header('Content-Type: application/json; charset=utf-8');
     header('Cache-Control: no-store, max-age=0');
-    echo json_encode([
-        'server_time' => date(DATE_ATOM),
-        'revision' => (int) ($pdo->query('SELECT COALESCE(MAX(id),0) FROM sx_ygo_audit_log')->fetchColumn() ?: 0),
-        'matches' => $liveMatches,
-        'medal_unlocks' => array_slice($appData['medalUnlocks'] ?? [], 0, 100),
-    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    echo json_encode(\StationX\Yugioh\Infrastructure\Composition\LiveQueryModule::matches($pdo)->execute($fixtures, $appData['medalUnlocks'] ?? []), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     exit;
 }
 
