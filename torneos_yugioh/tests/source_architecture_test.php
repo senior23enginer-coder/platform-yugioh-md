@@ -2205,9 +2205,20 @@ architectureCheck(
 
 // Manual match input preserves phase sanitization and team size inferred from format.
 $manualMatch = \StationX\Yugioh\Domain\Matches\ManualMatchInput::class;
-architectureCheck($manualMatch::initial(['manual_phase' => 'Friendly!', 'manual_round' => 0])['phase'] === 'friendly', 'Manual phase changed');
-$manualDetails = $manualMatch::details(['manual_match_format' => '3v3', 'manual_participants_per_side' => 1, 'manual_best_of' => 999]);
-architectureCheck($manualDetails['participants'] === 3 && $manualDetails['bestOf'] === 10, 'Manual match format limits changed');
+architectureCheck(
+    $manualMatch::initial(['manual_phase' => 'Friendly!', 'manual_round' => 0])['phase'] ===
+        'friendly',
+    'Manual phase changed',
+);
+$manualDetails = $manualMatch::details([
+    'manual_match_format' => '3v3',
+    'manual_participants_per_side' => 1,
+    'manual_best_of' => 999,
+]);
+architectureCheck(
+    $manualDetails['participants'] === 3 && $manualDetails['bestOf'] === 10,
+    'Manual match format limits changed',
+);
 
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {

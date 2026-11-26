@@ -10,6 +10,8 @@ final class CreateMatchHandler extends NativeFormHandler
 {
     protected function perform(PDO $pdo, string $action, array $post, array $files): ?string
     {
-        return \StationX\Yugioh\Infrastructure\Composition\ManualMatchModule::create($pdo)->execute($post);
+        return \StationX\Yugioh\Infrastructure\Composition\ManualMatchModule::create($pdo)->execute(
+            $post,
+        );
     }
 }

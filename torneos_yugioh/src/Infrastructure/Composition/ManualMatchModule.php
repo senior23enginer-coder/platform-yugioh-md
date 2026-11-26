@@ -12,6 +12,9 @@ final class ManualMatchModule
 {
     public static function create(PDO $pdo): CreateManualMatch
     {
-        return new CreateManualMatch(new PdoManualMatchStore($pdo), new NativeManualMatchRules($pdo));
+        return new CreateManualMatch(
+            new PdoManualMatchStore($pdo),
+            new NativeManualMatchRules($pdo),
+        );
     }
 }
