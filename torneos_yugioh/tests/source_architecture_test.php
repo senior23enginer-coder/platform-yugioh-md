@@ -760,6 +760,18 @@ architectureCheck($legacyFixtureRows[4]['date'] === '2026-11-27' && $legacyFixtu
 architectureCheck($legacyCalendar->days(5) === ['2026-11-26' => 2, '2026-11-27' => 3], 'Qualifier day projection changed');
 architectureCheck($legacyCalendar->endDate($legacyCalendar->days(5), 5) === '2026-11-27', 'Qualifier end date changed');
 
+// Fixture generation retains alternating cup sides, league table identities and slot dates.
+$fixturePlan = \StationX\Yugioh\Domain\Calendar\FixtureGenerationPlan::class;
+$cupRows = iterator_to_array($fixturePlan::cupRows([[1], [2], [3], [4], [5]], null, 8, ['best_of' => 3], '2026-11-26', 'consecutive', '1v1', 1, 2, 2), false);
+architectureCheck(count($cupRows) === 2, 'Odd cup roster lost bye');
+architectureCheck($cupRows[0]['deck_a_id'] === 5 && $cupRows[0]['deck_b_id'] === 1, 'Cup side alternation changed');
+architectureCheck($cupRows[1]['deck_a_id'] === 2 && $cupRows[1]['deck_b_id'] === 4, 'Second cup side changed');
+architectureCheck($cupRows[1]['starts_at'] === '19:45:00', 'Cup slot time changed');
+$leagueFixturePlan = $fixturePlan::rounds([[1], [2]], ['groups' => [[3], [4]], 'rounds' => [[[0, 1, 9, 2]]]], 'round_robin', 'league');
+$leagueFixtureRows = iterator_to_array($fixturePlan::modelRows($leagueFixturePlan['groups'], $leagueFixturePlan['rounds'], 1, 8, ['best_of' => 3], '2026-11-26', 'consecutive', '1v1', 1, 2, 1, $leagueFixturePlan['phase'], 'round_robin'), false);
+architectureCheck(count($leagueFixtureRows) === 1 && $leagueFixtureRows[0]['division_id'] === 9 && $leagueFixtureRows[0]['table_number'] === 2, 'League fixture division/table changed');
+architectureCheck($leagueFixtureRows[0]['deck_a_id'] === 3 && $leagueFixtureRows[0]['deck_b_id'] === 4, 'League groups changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

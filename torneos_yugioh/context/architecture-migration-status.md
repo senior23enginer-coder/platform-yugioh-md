@@ -84,6 +84,10 @@ Se aíslan el rango de clasificación, los criterios de finalización y la asign
 
 Se separan emparejamientos, distribución de jornadas, consolidación del último combate y planificación de fechas mediante políticas de dominio y un caso de uso con reloj y puertos de lectura/escritura. Se conserva el alcance de borrado original de combates pendientes, la actualización previa del límite diario y la propiedad transaccional existente. No se ejecutan reconstrucciones de producción. Se verificó la huella original y 7.603 comprobaciones aisladas con PHP 8.4.24, incluyendo emparejamientos sin duplicados para 2 a 40 decks y distribución de fechas para límites diarios 1 a 5; ambos archivos de dominio coinciden con GitHub. Validación integral y MySQL pendientes.
 
+## Generación de combates suizos, de copa y por modelo — 26 de noviembre de 2026
+
+Se separan los casos de uso de programación, las reglas de planificación y los puertos de lectura, escritura y servicios. Los adaptadores preservan las consultas, registros de generación, jornadas y reglas de admisión. Las fachadas conservan la apertura/propiedad de transacciones y el bloqueo serializado original. Las dependencias de motores nativos y la verificación de MySQL siguen pendientes.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
