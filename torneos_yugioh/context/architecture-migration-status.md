@@ -60,6 +60,10 @@ Se separan la resolución de reglas de juego, prioridad de reglas por partida/ev
 
 Separados el historial de transiciones, la comprobación de cierre, los candidatos clasificatorios y la numeración de códigos en políticas, casos de uso y adaptadores. Se conserva el orden de consultas, los criterios de cierre y la numeración existente sin abrir transacciones nuevas. Se verificaron las seis huellas originales y nueve comprobaciones aisladas de dominio con PHP 8.4.24. Los dos archivos de dominio coinciden con los probados. Validación integral, formato y MySQL pendientes.
 
+## Proyecciones de clasificaciones y calendario — 26 de noviembre de 2026
+
+Separadas la publicación de snapshots y sus recuperaciones, la reconstrucción de jornadas y la baja de eventos de inicio mediante políticas de dominio, casos de uso, puertos de lectura/escritura y adaptadores PDO. Se conserva la identidad de los snapshots y las jornadas, las consultas de clasificación nativas y los límites transaccionales del llamador. Las pruebas integrales y MySQL siguen pendientes.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

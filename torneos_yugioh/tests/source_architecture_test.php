@@ -646,6 +646,17 @@ architectureCheck($lifecyclePolicy::pendingQualifier(['type' => 'qualifier', 'st
 architectureCheck($codePolicy::nextCounter(['YU-01', 'YU-009', 'manual']) === 10, 'Code sequence changed');
 architectureCheck(iterator_to_array($codePolicy::replacements([['id' => 1, 'code' => 'YU-01'], ['id' => 2, 'code' => 'old'], ['id' => 3, 'code' => 'YU-9']]), false) === [[2, 'YU-10'], [3, 'YU-11']], 'Legacy code migration changed');
 
+// Standing and calendar projection payloads preserve position, source and stable event identity.
+$snapshotPolicy = \StationX\Yugioh\Domain\Competitions\StandingSnapshotPolicy::class;
+architectureCheck($snapshotPolicy::scopes(['', 'league', '0', 'cup', 'league']) === ['current' => null, 'phase:league' => 'league', 'phase:cup' => 'cup'], 'Snapshot scope changed');
+$snapshotRows = iterator_to_array($snapshotPolicy::rows([['id' => 0], ['id' => 5, 'pts' => 3, 'pj' => 1]], 'current', null), false);
+architectureCheck(count($snapshotRows) === 1 && $snapshotRows[0][0] === 5 && $snapshotRows[0][1] === 2, 'Snapshot position or invalid deck changed');
+architectureCheck($snapshotRows[0][10] === ['reason' => 'current', 'phase' => null, 'row' => ['id' => 5, 'pts' => 3, 'pj' => 1]], 'Snapshot payload changed');
+$calendarProjection = \StationX\Yugioh\Domain\Calendar\CompetitionCalendarProjection::class;
+$journeys = iterator_to_array($calendarProjection::journeys(7, 'league', ['division_id' => null, 'name' => 'Liga'], [['scheduled_on' => '2026-11-27', 'starts_at' => null, 'venue' => '', 'match_count' => 2]]), false);
+architectureCheck($journeys === [[null, 'competition-7-league-jornada-1', 'Liga - Jornada 1', 'league', '2026-11-27', null, 'Station X Tulua', '2 combates programados desde duelos persistidos.']], 'Calendar projection changed');
+architectureCheck($calendarProjection::startCode(7) === 'competition-7-inicio', 'Start event code changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
