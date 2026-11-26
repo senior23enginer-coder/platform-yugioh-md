@@ -130,7 +130,7 @@ Se separan la identidad estable de rutas, la referencia documental y la proyecci
 
 ## Acumulación y reproducción de estadísticas (H10–H12, primera fase)
 
-Se separan los cálculos puros de elegibilidad, acumulación individual y Tag, Elo multijugador, reproducción cronológica, metagame, logros, cortes, filtros y exportación. El caso de uso recibe un reloj; se conservan las firmas, las versiones de algoritmo, bases de rating y fórmulas existentes. Se guardan cuerpos históricos de las funciones intervenidas. Persistencia, proyección de fuentes y publicación aún pendientes; ejecutar suite integral antes de integrar.
+Se separan los cálculos puros de elegibilidad, acumulación individual y Tag, Elo multijugador, reproducción cronológica, metagame, logros, cortes, filtros y exportación. El caso de uso recibe un reloj; se conservan las firmas, las versiones de algoritmo, bases de rating y fórmulas existentes. Se guardan cuerpos históricos de las funciones intervenidas. Se extraen además la proyección de hechos deportivos desde filas, la validación de identidades colectivas, la sincronización de revisiones y revocaciones, el hash canónico, el bloqueo estadístico y los puertos de persistencia. Se conserva el retorno temprano dentro de transacciones deportivas. Quedan la vista, configuración y esquema, y la comprobación integral y MySQL.
 
 ## Trabajo todavía pendiente para completar toda la plataforma
 

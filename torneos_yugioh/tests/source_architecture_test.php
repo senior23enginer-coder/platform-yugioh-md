@@ -1932,6 +1932,13 @@ architectureCheck(
     'Achievement identity changed',
 );
 
+// Revision identities, unknown evidence and empty source projections are stable.
+$revisionPolicy = \StationX\Yugioh\Domain\Statistics\StatisticsRevisionPolicy::class;
+architectureCheck($revisionPolicy::canonical(['b' => 1, 'a' => 2]) === '{"a":2,"b":1}', 'Canonical statistics hash changed');
+architectureCheck($revisionPolicy::publicValues(['name' => 'Logro secreto', 'code' => 'hidden'])['code'] === 'secret_' . substr(hash('sha256', 'hidden'), 0, 12), 'Secret achievement leaked');
+$emptySource = \StationX\Yugioh\Domain\Statistics\StatisticsSourceProjection::build([], [], [], [], [], [], [], []);
+architectureCheck($emptySource === ['matches' => [], 'events' => [], 'honors' => [], 'seasons' => [], 'ffa_matches' => []], 'Empty source projection changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
