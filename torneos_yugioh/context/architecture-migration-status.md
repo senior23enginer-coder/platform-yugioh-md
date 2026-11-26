@@ -76,6 +76,10 @@ La confirmación y restricción por estado se separan de la eliminación SQL; el
 
 Se separa el flujo de configuración mediante puertos de persistencia, contexto, participantes, multimedia y calendario. Las políticas de bloqueo de plantel, cupos y transición quedan independientes de I/O. Se conserva la fachada HTTP y el límite transaccional original. Los adaptadores de servicios todavía reutilizan operaciones nativas. Se verificó la huella histórica de la fachada y 2.168 comprobaciones aisladas de las políticas de configuración, incluidas 2.160 combinaciones de transición de estado contra una caracterización del flujo anterior; el archivo de dominio probado coincide con GitHub. La ejecución completa del caso de uso, el formato y MySQL quedan pendientes.
 
+## Aplicación de divisiones desde clasificatorios y normalización histórica — 26 de noviembre de 2026
+
+Se aíslan el rango de clasificación, los criterios de finalización y la asignación de posiciones, así como la normalización histórica protegida por auditoría, mediante políticas, casos de uso y puertos. No se agregan transacciones nuevas ni se ejecutan operaciones sobre datos de producción. Se conservan las huellas originales y se añaden regresiones; validación integral pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

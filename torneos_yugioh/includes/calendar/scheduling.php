@@ -11,23 +11,7 @@ require_once dirname(__DIR__, 2) . '/src/autoload.php';
 
 function ygo_normalize_existing_decks_to_tcg_advanced(PDO $pdo): int
 {
-    $done = (int) $pdo->query("SELECT COUNT(*) FROM sx_ygo_audit_log WHERE entity_type = 'deck' AND action = 'normalize_existing_decks_tcg_advanced'")->fetchColumn();
-    if ($done > 0) {
-        return 0;
-    }
-    $seasonId = ygo_current_season_id($pdo);
-    $stmt = $pdo->prepare("SELECT id FROM sx_ygo_divisions WHERE season_id = ? AND code = 'TCG_AVANZADO' AND active = 1 LIMIT 1");
-    $stmt->execute([$seasonId]);
-    $tcgDivisionId = (int) $stmt->fetchColumn();
-    if ($tcgDivisionId <= 0) {
-        return 0;
-    }
-    $update = $pdo->prepare('UPDATE sx_ygo_decks SET division_id = ? WHERE active = 1 AND (division_id IS NULL OR division_id <> ?)');
-    $update->execute([$tcgDivisionId, $tcgDivisionId]);
-    $updated = $update->rowCount();
-    $pdo->prepare('INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)')
-        ->execute(['deck', null, 'normalize_existing_decks_tcg_advanced', json_encode(['division_id' => $tcgDivisionId, 'updated' => $updated], JSON_UNESCAPED_UNICODE)]);
-    return (int) $updated;
+    return \StationX\Yugioh\Infrastructure\Composition\DivisionMaintenanceModule::normalize($pdo)->execute();
 }
 
 function ygo_rebuild_qualifier_calendar(PDO $pdo): int
@@ -419,46 +403,7 @@ function ygo_schedule_competition_by_model_serialized(PDO $pdo, array $competiti
 
 function ygo_apply_division_from_qualifier(PDO $pdo, int $divisionId): int
 {
-    if ($divisionId <= 0) {
-        return 0;
-    }
-    $divisionStmt = $pdo->prepare('SELECT * FROM sx_ygo_divisions WHERE id = ? AND active = 1 LIMIT 1');
-    $divisionStmt->execute([$divisionId]);
-    $division = $divisionStmt->fetch(PDO::FETCH_ASSOC) ?: [];
-    $qualifierId = (int) ($division['source_qualifier_id'] ?? 0);
-    $rankFrom = (int) ($division['rank_from'] ?? 0);
-    $rankTo = (int) ($division['rank_to'] ?? 0);
-    if ($qualifierId <= 0 || $rankFrom <= 0 || $rankTo <= 0) {
-        return 0;
-    }
-    if ($rankTo < $rankFrom) {
-        [$rankFrom, $rankTo] = [$rankTo, $rankFrom];
-    }
-    $competitionStmt = $pdo->prepare("SELECT status FROM sx_ygo_competitions WHERE id = ? AND active = 1 LIMIT 1");
-    $competitionStmt->execute([$qualifierId]);
-    $status = ygo_normalize_status_key((string) ($competitionStmt->fetchColumn() ?: ''));
-    if (!in_array($status, ['completed', 'finalizado', 'finalizada'], true)) {
-        return 0;
-    }
-    $ranking = ygo_competition_standings($pdo, $qualifierId);
-    $slice = array_slice($ranking, $rankFrom - 1, ($rankTo - $rankFrom) + 1);
-    if (!$slice) {
-        return 0;
-    }
-    $update = $pdo->prepare('UPDATE sx_ygo_decks SET division_id = ?, seed_rank = ? WHERE id = ?');
-    $count = 0;
-    foreach ($slice as $index => $row) {
-        $deckId = (int) ($row['deck_id'] ?? $row['id'] ?? 0);
-        if ($deckId <= 0) {
-            continue;
-        }
-        $update->execute([$divisionId, $index + 1, $deckId]);
-        $count++;
-    }
-    $pdo->prepare('UPDATE sx_ygo_divisions SET deck_count = ? WHERE id = ?')->execute([$count, $divisionId]);
-    $pdo->prepare('INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)')
-        ->execute(['division', $divisionId, 'apply_from_qualifier', json_encode(['qualifier_id' => $qualifierId, 'rank_from' => $rankFrom, 'rank_to' => $rankTo, 'moved' => $count], JSON_UNESCAPED_UNICODE)]);
-    return $count;
+    return \StationX\Yugioh\Infrastructure\Composition\DivisionMaintenanceModule::qualifier($pdo)->execute($divisionId);
 }
 
 function ygo_expected_qualifier_match_count(int $selectedDeckCount, int $participantsPerSide, int $duelsPerDeck): int

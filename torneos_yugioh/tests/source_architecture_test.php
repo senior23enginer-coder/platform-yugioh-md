@@ -727,6 +727,30 @@ architectureCheck($configurationPolicy::transition('cancelled', 'league', true, 
 architectureCheck($configurationPolicy::transition('draft', 'qualifier', true, false, 'start', 1)['status'] === 'pending_event', 'Qualifier start guard changed');
 architectureCheck($configurationPolicy::transition('draft', 'cup', true, true, 'start', 0)['status'] === 'active', 'Event start status changed');
 
+// Division maintenance policies and ports: no live decks are modified.
+$qualifierDivisionPolicy = \StationX\Yugioh\Domain\Competitions\QualifierDivisionPolicy::class;
+architectureCheck($qualifierDivisionPolicy::range(['source_qualifier_id' => 5, 'rank_from' => 4, 'rank_to' => 2]) === [5, 2, 4], 'Rank range changed');
+architectureCheck($qualifierDivisionPolicy::range(['source_qualifier_id' => 0]) === null, 'Missing qualifier accepted');
+architectureCheck($qualifierDivisionPolicy::completed('Finalizada') && !$qualifierDivisionPolicy::completed('active'), 'Qualifier status changed');
+architectureCheck(iterator_to_array($qualifierDivisionPolicy::assignments([['deck_id' => 7], ['id' => 0], ['id' => 8]]), false) === [[7, 1], [8, 3]], 'Qualifier positions changed');
+$normalizationStore = new class implements \StationX\Yugioh\Application\Decks\LegacyFormatNormalizationStore {
+    public bool $done = true;
+    public int $division = 0;
+    public array $calls = [];
+    public function alreadyNormalized(): bool { $this->calls[] = 'check'; return $this->done; }
+    public function currentTcgDivision(): int { $this->calls[] = 'division'; return $this->division; }
+    public function normalize(int $divisionId): int { $this->calls[] = ['normalize', $divisionId]; return 4; }
+    public function record(int $divisionId, int $updated): void { $this->calls[] = ['audit', $divisionId, $updated]; }
+};
+$normalizationUseCase = new \StationX\Yugioh\Application\Decks\NormalizeLegacyDeckFormat($normalizationStore);
+architectureCheck($normalizationUseCase->execute() === 0 && $normalizationStore->calls === ['check'], 'Repeated normalization wrote data');
+$normalizationStore->done = false;
+$normalizationStore->calls = [];
+architectureCheck($normalizationUseCase->execute() === 0 && $normalizationStore->calls === ['check', 'division'], 'Missing division wrote data');
+$normalizationStore->division = 9;
+$normalizationStore->calls = [];
+architectureCheck($normalizationUseCase->execute() === 4 && $normalizationStore->calls === ['check', 'division', ['normalize', 9], ['audit', 9, 4]], 'Normalization order or audit changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
