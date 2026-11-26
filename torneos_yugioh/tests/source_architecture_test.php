@@ -676,6 +676,46 @@ architectureCheck($competitionStandings::phase(['execution_model' => 'groups_kno
 $teamStanding = $competitionStandings::teams($workflowStanding, ['size' => 2, 'lineups' => [['captain' => 2, 'name' => 'Team B', 'decks' => [2, 3]]]]);
 architectureCheck(count($teamStanding) === 1 && $teamStanding[0]['name'] === 'Team B' && $teamStanding[0]['member_deck_ids'] === [2, 3], 'Team standings changed');
 
+// Competition deletion uses a fake store: no physical data is modified.
+$deletionStore = new class implements \StationX\Yugioh\Application\Competitions\CompetitionDeletionStore {
+    public array $calls = [];
+    public array $row = ['id' => 2, 'status' => 'draft'];
+
+    public function currentSeasonId(): int
+    {
+        $this->calls[] = ['season'];
+        return 3;
+    }
+
+    public function competition(int $seasonId, int $competitionId): array
+    {
+        $this->calls[] = ['read', $seasonId, $competitionId];
+        return $this->row;
+    }
+
+    public function delete(int $seasonId, int $competitionId, string $status): void
+    {
+        $this->calls[] = ['delete', $seasonId, $competitionId, $status];
+    }
+};
+$deletionTransaction = new class implements \StationX\Yugioh\Application\Shared\TransactionBoundary {
+    public int $runs = 0;
+
+    public function run(callable $operation): mixed
+    {
+        $this->runs++;
+        return $operation();
+    }
+};
+$deleteCompetition = new \StationX\Yugioh\Application\Competitions\DeleteCompetition($deletionStore, $deletionTransaction);
+architectureCheck($deleteCompetition->execute(2, 'no') === 0 && !$deletionStore->calls && $deletionTransaction->runs === 0, 'Unconfirmed deletion did I/O');
+$deletionStore->row = ['status' => 'active'];
+architectureCheck($deleteCompetition->execute(2, 'eliminar') === 0 && $deletionTransaction->runs === 0, 'Active competition accepted');
+$deletionStore->calls = [];
+$deletionStore->row = ['status' => 'draft'];
+architectureCheck($deleteCompetition->execute(2, ' ELIMINAR ') === 2, 'Confirmed draft rejected');
+architectureCheck($deletionStore->calls === [['season'], ['read', 3, 2], ['delete', 3, 2, 'draft']] && $deletionTransaction->runs === 1, 'Deletion order or transaction changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

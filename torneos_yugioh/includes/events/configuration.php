@@ -354,39 +354,8 @@ function ygo_configure_competition(PDO $pdo): int
 
 function ygo_delete_competition(PDO $pdo): int
 {
-    $competitionId = (int) ($_POST['competition_id'] ?? 0);
-    $confirmation = strtolower(trim((string) ($_POST['delete_confirmation'] ?? '')));
-    if ($competitionId <= 0 || $confirmation !== 'eliminar') {
-        return 0;
-    }
-    $seasonId = ygo_current_season_id($pdo);
-    $stmt = $pdo->prepare('SELECT id, status FROM sx_ygo_competitions WHERE id = ? AND season_id = ? AND active = 1 LIMIT 1');
-    $stmt->execute([$competitionId, $seasonId]);
-    $competition = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (!$competition) {
-        return 0;
-    }
-    $status = ygo_normalize_status_key((string) ($competition['status'] ?? ''));
-    if (in_array($status, ['active', 'completed', 'cancelled'], true)) {
-        return 0;
-    }
-    $pdo->beginTransaction();
-    try {
-        $pdo->prepare('DELETE r FROM sx_ygo_match_results r INNER JOIN sx_ygo_matches m ON m.id = r.match_id WHERE m.competition_id = ?')->execute([$competitionId]);
-        $pdo->prepare('DELETE FROM sx_ygo_matches WHERE competition_id = ?')->execute([$competitionId]);
-        $pdo->prepare('DELETE FROM sx_ygo_events WHERE season_id = ? AND competition_id = ?')->execute([$seasonId, $competitionId]);
-        $pdo->prepare('DELETE FROM sx_ygo_competition_decks WHERE competition_id = ?')->execute([$competitionId]);
-        $pdo->prepare('DELETE FROM sx_ygo_competition_dependencies WHERE competition_id = ? OR depends_on_competition_id = ?')->execute([$competitionId, $competitionId]);
-        $pdo->prepare('DELETE FROM sx_ygo_competition_status_history WHERE competition_id = ?')->execute([$competitionId]);
-        $pdo->prepare('DELETE FROM sx_ygo_standing_snapshots WHERE competition_id = ?')->execute([$competitionId]);
-        $pdo->prepare('DELETE FROM sx_ygo_honors WHERE competition_id = ?')->execute([$competitionId]);
-        if (ygo_table_exists($pdo, 'sx_ygo_event_summaries')) $pdo->prepare('DELETE FROM sx_ygo_event_summaries WHERE competition_id = ?')->execute([$competitionId]);
-        $pdo->prepare('INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)')->execute(['competition', $competitionId, 'delete_competition', json_encode(['status' => $status], JSON_UNESCAPED_UNICODE)]);
-        $pdo->prepare('DELETE FROM sx_ygo_competitions WHERE id = ? AND season_id = ?')->execute([$competitionId, $seasonId]);
-        $pdo->commit();
-        return $competitionId;
-    } catch (Throwable $error) {
-        $pdo->rollBack();
-        throw $error;
-    }
+    return \StationX\Yugioh\Infrastructure\Composition\CompetitionDeletionModule::create($pdo)->execute(
+        (int) ($_POST['competition_id'] ?? 0),
+        (string) ($_POST['delete_confirmation'] ?? ''),
+    );
 }

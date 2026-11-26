@@ -68,6 +68,10 @@ Separadas la publicación de snapshots y sus recuperaciones, la reconstrucción 
 
 La clasificación de competición se separa en una política pura de puntos, ordenación, proyección de workflow y equipos; el caso de uso coordina los puertos de lectura. Los filtros, puntajes, orden y llamadas a adaptadores nativos se mantienen. Se comprobó la huella original y ocho comprobaciones aisladas con PHP 8.4.24. Validación integral, formato y MySQL pendientes.
 
+## Eliminación de competiciones — 26 de noviembre de 2026
+
+La confirmación y restricción por estado se separan de la eliminación SQL; el caso de uso recibe el puerto de persistencia y un límite transaccional propio. Se conserva la secuencia de eliminación y auditoría, sin ejecutar eliminación real durante esta migración. Configuración integral de eventos, concurrencia y pruebas MySQL pendientes.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
