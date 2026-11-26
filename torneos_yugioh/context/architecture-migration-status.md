@@ -98,7 +98,7 @@ Se extraen la coordinación serializada, las consultas de fase y las guardas de 
 
 ## Cierre de clasificatorios y registro de honores
 
-Separados la selección de clasificatorio, la comprobación de rondas completas, el reparto de clasificados por división y la selección de campeón/subcampeón. Los casos de uso consumen puertos de lectura y escritura; las fachadas conservan sus firmas. No se ejecuta cierre ni se registra un campeón real. La regeneración de liga y el honor de workflow permanecen detrás de adaptadores; pruebas integrales y MySQL pendientes.
+Separados la selección de clasificatorio, la comprobación de rondas completas, el reparto de clasificados por división y la selección de campeón/subcampeón. Los casos de uso consumen puertos de lectura y escritura; las fachadas conservan sus firmas. No se ejecuta cierre ni se registra un campeón real. Se verificaron cuatro huellas originales y 70.986 comprobaciones aisladas de invariantes de dominio en PHP 8.4.24, principalmente reparto de 0–100 decks entre 1–12 divisiones y posiciones; los dos blobs probados coinciden con GitHub. La regeneración de liga y el honor de workflow permanecen detrás de adaptadores; pruebas integrales y MySQL pendientes.
 
 ## Trabajo todavía pendiente para completar toda la plataforma
 
