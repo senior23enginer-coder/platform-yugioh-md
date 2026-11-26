@@ -9,6 +9,10 @@
       "responsibility": "calendar timing and playable-date policy"
     },
     {
+      "file": "javascript/shared/fixture-policy.js",
+      "responsibility": "fixture rule precedence and standings projection"
+    },
+    {
       "file": "javascript/00-startup.js",
       "responsibility": "startup"
     },

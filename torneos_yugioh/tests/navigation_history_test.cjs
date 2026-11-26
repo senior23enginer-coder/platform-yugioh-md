@@ -115,3 +115,34 @@ assert.equal(calendarPolicy.isPlayableDate(day, {valid_weekdays:'1', special_day
 assert.equal(calendarPolicy.isPlayableDate(day, {valid_weekdays:'1', special_days:day, allow_special_days:1}), true);
 assert.equal(calendarPolicy.isPlayableDate('invalid', {}), false);
 console.log('Calendar timing policy: priority, date permission and special weekdays verified.');
+
+const fixturePolicy = require('../assets/source/javascript/shared/fixture-policy.js');
+const originalFixture = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures/browser-fixture-policy-originals.json'), 'utf8'));
+const ruleData = {gameRules:[
+  {id:1, scope:'general', priority_order:1},
+  {id:2, scope:'all_matches', priority_order:5},
+  {id:3, scope:'all_matches', priority_order:2},
+  {id:4, scope:'friendly', priority_order:1},
+  {id:5, scope:'match', active:0},
+], competitions:[{id:7,game_rule_id:1}], divisions:{A:{decks:[[1,'A'],[2,'B'],[3,'C']]}}, allDecks:[{name:'A',team:'Team A'}]};
+const fixtureMatches = [
+  {a:'A',b:'B',result:{state:'FINALIZADA',winner:'A',score:'2-0'},values:['A','A']},
+  {a:'B',b:'C',result:{state:'FINALIZADA',winner:'B',score:'0-3'},values:['A','B','A','B','B']},
+  {a:'A',b:'C',result:{state:'FINALIZADA',winner:'E',score:'1-1'},values:['A','B']},
+  {a:'C',b:'A',result:{state:'EN CURSO',winner:'',score:'0-0'},values:[]},
+  {a:'missing',b:'A',result:{state:'FINALIZADA',winner:'A',score:'2-0'},values:['A','A']},
+];
+const allFixtureMatches = () => fixtureMatches;
+const savedFixtureResult = match => match.values;
+const evaluateFixture = (values, match) => match.result;
+const fixtureContext = {data:ruleData,allMatches:allFixtureMatches,getSavedResult:savedFixtureResult,evaluateDuel:evaluateFixture};
+vm.createContext(fixtureContext);
+vm.runInContext(originalFixture.ruleSource + '\n' + originalFixture.standingSource + '\nthis.legacyRule = ruleForMatch; this.legacyStandings = computeStandings;', fixtureContext);
+for (const match of [null,{}, {game_rule_id:5,competition_id:7}, {game_rule_id:4,competition_id:7}, {phase:'friendly'}, {phase:'league'}, {competition_id:7}]) {
+  assert.deepEqual(fixturePolicy.ruleForMatch(match,ruleData),fixtureContext.legacyRule(match));
+}
+for (const division of ['A','missing']) {
+  const actual = fixturePolicy.computeStandings(division,ruleData,allFixtureMatches,savedFixtureResult,evaluateFixture);
+  assert.deepEqual(actual,JSON.parse(JSON.stringify(fixtureContext.legacyStandings(division))));
+}
+console.log('Fixture policy: native rule precedence and standings characterization verified.');

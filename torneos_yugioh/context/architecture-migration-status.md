@@ -216,6 +216,10 @@ Se extraen las guardas de fecha y captura del cierre compartido del calendario a
 
 Se extraen los selectores de partidas, prioridad de clasificatorios, límites de duelos, etiquetas de estado, opciones de formato, asignación de formatos por deck y contadores del dashboard. La consulta nativa de elegibilidad se suministra como dependencia explícita y se preserva el comportamiento sin conexión. La fachada conserva la captura de HTTP, las llamadas externas y la composición de las vistas. CI pendiente.
 
+## Reglas y clasificación de fixtures en el navegador
+
+La selección de reglas por partido, competición, alcance y prioridad y la proyección de clasificación de división se extraen a un módulo con entradas explícitas. Se preservan puntos, desempates, D5, barridas, estados y orden de lectura de resultados. Los cuerpos anteriores se conservan como fixture de caracterización; se comparan directamente con el módulo extraído. CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
