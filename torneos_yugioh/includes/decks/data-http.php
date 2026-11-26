@@ -23,19 +23,7 @@ function ygo_data_saved(PDO $pdo,int $id): array {
  * Remote sources, event handlers and unrecognized tags fail closed.
  */
 function ygo_data_safe_markdown_images(string $markdown, array $files): string {
-    // A historical Markdown label is not a file: URI. Normalize only the exact
-    // editorial label before plain-text validation; keep the original ZIP intact.
-    $markdown=preg_replace('/^- \*\*reference file:\*\* /m','- **Archivo de referencia:** ',$markdown)
-        ?? throw new InvalidArgumentException('No se pudo procesar la referencia documental.');
-    return preg_replace_callback('~<img\b[^>]*>~iu', static function(array $match) use($files):string {
-        $tag=$match[0];
-        if(!preg_match('~^<img\s+src="(imagenes/(?:[a-zA-Z0-9_-]+/)*[a-zA-Z0-9_.-]+\.(?:png|jpe?g|webp|gif))"(?:\s+width="[0-9]{1,3}")?(?:\s+alt="[^"<>]*")?(?:\s+loading="lazy")?\s*/?>$~iuD',$tag,$parts)) {
-            throw new InvalidArgumentException('Etiqueta HTML de imagen no admitida. Usa imágenes locales sin atributos ejecutables.');
-        }
-        $source=ygo_data_source_image($files,$parts[1]);
-        if($source===null)throw new InvalidArgumentException('La imagen del documento no existe en el ZIP: '.$parts[1]);
-        return '[Imagen local: '.$parts[1].']';
-    },$markdown) ?? throw new InvalidArgumentException('No se pudo procesar el Markdown.');
+    return \StationX\Yugioh\Domain\Decks\Packages\SafeMarkdownImages::normalize($markdown, $files);
 }
 
 
@@ -47,135 +35,11 @@ function ygo_data_safe_markdown_images(string $markdown, array $files): string {
  * only when native and portable row IDs/quantities agree; never convert it to Side.
  */
 function ygo_data_validate_portable_inventory(array $envelope,array $inventory,string $folder,?array $current): void {
-    if(($envelope['inventory_binding']??'')!=='deck-slots-v1'
-       ||($envelope['content_mode']??'')!=='structured'
-       ||($envelope['package_root']??'')!==$folder
-       ||!is_array($envelope['inventory']??null)) {
-        throw new InvalidArgumentException('Paquete GPT portátil incompleto o con carpeta incorrecta.');
-    }
-    if(isset($envelope['inventory_sha256']) && $envelope['inventory_sha256']!==$inventory['inventory_sha256']) {
-        throw new InvalidArgumentException('El inventario de la plataforma cambió; vuelve a exportar Data.');
-    }
-    $read=static function(array $rows,string $source): array {
-        $found=[];
-        foreach($rows as $row) {
-            if(!is_array($row))throw new InvalidArgumentException('Fila inválida en '.$source);
-            $id=filter_var($row['id']??null,FILTER_VALIDATE_INT);
-            $qty=filter_var($row['quantity']??null,FILTER_VALIDATE_INT);
-            $zone=$row['section']??null;
-            if(!$id||$id<1||!is_string($zone)||!in_array($zone,['main','extra','side','reserve','tech'],true)||$qty===false||$qty<1||$qty>3||isset($found[$id])) {
-                throw new InvalidArgumentException('Inventario duplicado o incompatible en '.$source);
-            }
-            $found[$id]=[$zone,$qty];
-        }
-        ksort($found,SORT_NUMERIC);
-        return $found;
-    };
-    $native=$read($inventory['cards']??[],'Station X');
-    $declared=$read($envelope['inventory'],'paquete GPT');
-    if(!$native || $native!==$declared) {
-        throw new InvalidArgumentException('Las cartas del ZIP GPT no coinciden exactamente con el deck guardado en Station X.');
-    }
-    $record=$envelope['record']??[];
-    if(!is_array($record)||!is_array($record['cards']??null))throw new InvalidArgumentException('Faltan fichas del deck.');
-    // Older decks can be absent from deck-deliveries.json; that source returns
-    // "unspecified" even though their verified current study has a real format.
-    $declaredFormat=(string)($inventory['format']??'unspecified');
-    $expectedFormat=match($declaredFormat){
-        'tcg','tcg_advanced'=>'tcg_advanced',
-        'rush','rush_duel'=>'rush_duel',
-        'goat'=>'goat',
-        'tcg_traditional'=>'tcg_traditional',
-        default=>'unspecified',
-    };
-    if($expectedFormat==='unspecified'){
-        $studyFormat=$current['format']??null;
-        if(!is_array($current)||($current['schema']??null)!=='station-x-curated-v62'
-            ||(int)($current['deck_id']??0)!==(int)$inventory['deck']['id']
-            ||!is_string($studyFormat)
-            ||!in_array($studyFormat,['tcg_advanced','tcg_traditional','rush_duel','goat'],true)){
-            throw new InvalidArgumentException('No se pudo verificar el formato actual del deck. Exporta Data desde Station X.');
-        }
-        $expectedFormat=$studyFormat;
-    }
-    if(($record['format']??'')!==$expectedFormat)throw new InvalidArgumentException('El formato del paquete GPT no corresponde al deck.');
-
-    $slots=[];
-    foreach($record['cards'] as $card) {
-        if(!is_array($card)||!is_array($card['slots']??null))throw new InvalidArgumentException('Ficha sin cartas.');
-        foreach($card['slots'] as $slot) {
-            $slots[]=['id'=>$slot['card_id']??null,'section'=>$slot['section']??null,'quantity'=>$slot['quantity']??null];
-        }
-    }
-    if($read($slots,'fichas GPT')!==$native) {
-        throw new InvalidArgumentException('El JSON de estudio omitió o modificó cartas respecto al inventario real.');
-    }
+    \StationX\Yugioh\Domain\Decks\Packages\PortableInventory::validate($envelope, $inventory, $folder, $current);
 }
 
 function ygo_data_prepare(string $app,array $files,array $inventory,?array $current,array $sources): array {
-    $verifiedFolder=ygo_data_check_folder($files,$sources,$inventory);
-    $id=(int)$inventory['deck']['id'];$envelope=null;$envelopeName=null;
-    foreach($files as $name=>$raw)if(basename($name)==='stationx-deck.json'){
-        if($envelope)throw new InvalidArgumentException('El ZIP contiene varios decks. Exporta e importa un deck a la vez.');
-        $envelope=json_decode($raw,true,128,JSON_THROW_ON_ERROR);$envelopeName=$name;
-    }
-    if($envelope){
-        if(($envelope['schema']??'')!=='station-x-deck-package/1'||(int)($envelope['deck_id']??0)!==$id)throw new InvalidArgumentException('Este ZIP pertenece a otro deck.');
-        $portable=($envelope['inventory_binding']??'')==='deck-slots-v1';
-        if($portable){
-            $document=$envelope['source_document']??null;
-            // GPT folder packages may declare the root document relative to package_root.
-            // Resolve only a single basename inside the verified deck folder; never search other folders.
-            if(is_string($document)&&basename($document)===$document&&isset($files[$verifiedFolder.'/'.$document])){
-                $document=$verifiedFolder.'/'.$document;
-                $envelope['source_document']=$document;
-            }
-            if(!is_string($document)||!isset($files[$document])||!preg_match('/CONTENIDO_CURADO\\.md$/i',$document))throw new InvalidArgumentException('El ZIP GPT no contiene su documento curado original.');
-            ygo_data_validate_portable_inventory($envelope,$inventory,$verifiedFolder,$current);
-        }elseif(($envelope['inventory_sha256']??'')!==$inventory['inventory_sha256']){
-            throw new InvalidArgumentException('La lista de cartas cambió. Exporta la data actual y pide a ChatGPT actualizar ese paquete.');
-        }
-        $record=$envelope['record']??null;if(!is_array($record))throw new InvalidArgumentException('El paquete no contiene data del deck.');
-        // Explicitly choose the structured document or Markdown as authority, never guess between conflicting edits.
-        $mode=$envelope['content_mode']??'structured';
-        if($mode==='auto'){
-            $source=$envelope['source_document']??'';$baseline=$envelope['baseline']??[];
-            if(!isset($files[$source],$baseline['record_sha256'],$baseline['source_sha256']))throw new InvalidArgumentException('Falta el documento o la referencia de la exportación automática. Exporta de nuevo la carpeta del deck.');
-            $changedRecord=hash('sha256',ygo_data_json($record))!==$baseline['record_sha256'];$changedSource=hash('sha256',$files[$source])!==$baseline['source_sha256'];
-            if($changedRecord&&$changedSource)throw new InvalidArgumentException('El JSON y el Markdown fueron modificados. Pide a ChatGPT indicar content_mode=structured o markdown para elegir la fuente principal.');
-            $mode=$changedSource?'markdown':'structured';
-        }
-        if(!in_array($mode,['structured','markdown'],true))throw new InvalidArgumentException('content_mode debe ser auto, structured o markdown.');
-        if($mode==='markdown'){
-            $source=$envelope['source_document']??'';
-            if(!is_string($source)||!isset($files[$source])||!str_ends_with($source,'.md'))throw new InvalidArgumentException('Falta el documento Markdown declarado.');
-            $record=ygo_data_markdown(ygo_data_safe_markdown_images($files[$source],$files),$record,$id);
-        }
-        $source=$envelope['source_document']??'';
-        if(is_string($source)&&isset($files[$source]))$record['imported_source_text']=ygo_data_safe_markdown_images($files[$source],$files);
-    }else{
-        // Existing ChatGPT folder deliveries: resolve exact source filename, including owner-confirmed aliases.
-        $expected=[];foreach($sources as $name=>$bytes)if(preg_match('/CONTENIDO_CURADO\.md$/i',$name))$expected[]=basename($name);
-        $matches=[];foreach($files as $name=>$raw)if(in_array(basename($name),$expected,true))$matches[$name]=$raw;
-        if(count($matches)!==1||!$current)throw new InvalidArgumentException('No se identificó inequívocamente este deck. Usa el ZIP de «Exportar data» como base para ChatGPT y conserva stationx-deck.json.');
-        $record=ygo_data_markdown(ygo_data_safe_markdown_images(reset($matches),$files),$current,$id);
-    }
-    $record['name']=$inventory['deck']['name'];
-    // A source package cannot replace a manually saved editor revision. The creator continues to use its native history.
-    foreach($record['routes'] as &$route)foreach(['native_editor_document','native_editor_cards','native_editor_revision'] as $k)unset($route[$k]);unset($route);
-    ygo_data_validate($record,$inventory);
-    if(!empty($portable) && $current && is_array($current['routes']??null)){
-        $oldIds=array_column($current['routes'],'id');
-        $newIds=array_column($record['routes'],'id');
-        if(array_diff($oldIds,$newIds))throw new InvalidArgumentException('El ZIP GPT omite rutas ya existentes en Station X. No se sobrescribió el estudio.');
-    }
-    array_walk_recursive($record,static function(&$v,$k)use($files,$app){
-        if(!is_string($v)||!in_array($k,['image','full_image'],true)||$v==='')return;
-        $source=ygo_data_source_image($files,$v);if($source)$v=$source;
-        if(isset($files[$v])){if(!preg_match('/\.(png|jpe?g|webp|gif)$/i',$v))throw new InvalidArgumentException('Una fotografía no corresponde a una imagen admitida.');return;}
-        if(!ygo_data_local($app,$v))throw new InvalidArgumentException('Falta una imagen del paquete: '.$v);
-    });
-    return $record;
+    return \StationX\Yugioh\Infrastructure\Composition\DeckPackageModule::prepare($app)->execute($files, $inventory, $current, $sources);
 }
 function ygo_data_http(?string $appOverride=null): never {
     header('Cache-Control: no-store');$temp=null;

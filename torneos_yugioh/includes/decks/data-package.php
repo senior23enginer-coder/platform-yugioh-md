@@ -1,175 +1,50 @@
 <?php
 declare(strict_types=1);
 
+require_once dirname(__DIR__, 2) . '/src/autoload.php';
+
 /** Deck-only editorial packages. No SQL writes, archive extraction or executable uploads. */
-function ygo_data_json(mixed $value): string { return json_encode($value, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR); }
+function ygo_data_json(mixed $value): string {
+    return \StationX\Yugioh\Domain\Decks\Packages\PackageFiles::json($value);
+}
 function ygo_data_read(string $path): array {
-    $v=json_decode((string)file_get_contents($path),true,128,JSON_THROW_ON_ERROR);
-    if(!is_array($v))throw new InvalidArgumentException('Documento JSON inválido.');return $v;
+    return \StationX\Yugioh\Infrastructure\Editorial\DeckPackageJsonFile::read($path);
 }
 function ygo_data_path(string $name): string {
-    $name=str_replace('\\','/',$name);
-    if($name===''||strlen($name)>240||str_starts_with($name,'/')||preg_match('~(^|/)\.\.?(/|$)|[:\x00-\x1f]~',$name))throw new InvalidArgumentException('El ZIP contiene una ruta no permitida.');
-    return $name;
+    return \StationX\Yugioh\Domain\Decks\Packages\PackageFiles::path($name);
 }
 function ygo_data_local(string $app,string $url): ?string {
-    $url=preg_replace('~^\./~','',$url);
-    if(!str_starts_with($url,'assets/editorial/')&&!str_starts_with($url,'assets/cards/'))return null;
-    ygo_data_path($url);$path=realpath($app.'/'.$url);$base=realpath($app.'/assets');
-    return $path&&$base&&str_starts_with(str_replace('\\','/',$path),str_replace('\\','/',$base).'/')?$path:null;
+    return (new \StationX\Yugioh\Infrastructure\Editorial\LocalDeckPackageMedia($app))->resolve($url);
 }
 function ygo_data_source_image(array $files,string $value): ?string {
-    $value=preg_replace('~^\./~','',$value);$matches=[];
-    foreach($files as $path=>$bytes)if($path===$value||str_ends_with($path,'/'.$value))$matches[]=$path;
-    return count($matches)===1?$matches[0]:null;
+    return \StationX\Yugioh\Domain\Decks\Packages\PackageFiles::sourceImage($files, $value);
 }
 function ygo_data_archive(string $path): array {
-    if(!class_exists('ZipArchive'))throw new RuntimeException('El servidor necesita la extensión PHP ZIP para esta herramienta.');
-    $zip=new ZipArchive();if($zip->open($path)!==true)throw new InvalidArgumentException('No se pudo abrir el ZIP.');
-    try {
-        if($zip->numFiles>3000)throw new InvalidArgumentException('El ZIP supera los 3000 archivos.');
-        $files=[];$total=0;
-        for($i=0;$i<$zip->numFiles;$i++){
-            $s=$zip->statIndex($i);$name=ygo_data_path($s['name']);if(str_ends_with($name,'/'))continue;
-            $total+=(int)$s['size'];
-            if($total>120*1024*1024||$s['size']>24*1024*1024||($s['size']>1024*1024&&$s['size']/max(1,$s['comp_size'])>300))throw new InvalidArgumentException('El ZIP supera el límite de contenido descomprimido.');
-            if(isset($files[$name])||!preg_match('~\.(md|txt|json|png|jpe?g|webp|gif|html|svg)$~i',$name))throw new InvalidArgumentException('Archivo duplicado o tipo no admitido: '.$name);
-            $opsys=0;$attrs=0;$zip->getExternalAttributesIndex($i,$opsys,$attrs);
-            if(($attrs>>16&0170000)===0120000)throw new InvalidArgumentException('No se admiten enlaces simbólicos.');
-            $bytes=$zip->getFromIndex($i);if($bytes===false||strlen($bytes)!==(int)$s['size']||sprintf('%u',crc32($bytes))!==sprintf('%u',$s['crc']))throw new InvalidArgumentException('Archivo ZIP dañado.');
-            $files[$name]=$bytes;
-        }return $files;
-    }finally{$zip->close();}
+    return (new \StationX\Yugioh\Infrastructure\Editorial\ZipDeckPackageArchive())->read($path);
 }
 function ygo_data_sections(string $raw): array {
-    preg_match_all('/^(#{2,4}) (.*?)\R(.*?)(?=^#{1,4} |\z)/msu',$raw,$m,PREG_SET_ORDER);return $m;
+    return \StationX\Yugioh\Domain\Decks\Packages\MarkdownStudy::sections($raw);
 }
-function ygo_data_plain(string $s): string { return trim(str_replace(['**','`'],'',$s)); }
+function ygo_data_plain(string $s): string {
+    return \StationX\Yugioh\Domain\Decks\Packages\MarkdownStudy::plain($s);
+}
 function ygo_data_photos(string $text,array $cards): array {
-    $photos=[];foreach($cards as $c){
-        $names=array_unique(array_merge([$c['name']],$c['source_aliases']??[]));$found=false;
-        foreach($names as $n)if(mb_strlen($n)>3&&preg_match('~(?<![\pL\pN])'.preg_quote($n,'~').'(?![\pL\pN])~iu',$text))$found=true;
-        if(!empty($c['cid'])&&preg_match('~(?:cid=|CID\s*|#)'.(int)$c['cid'].'\b~i',$text))$found=true;
-        if($found)$photos[]=array_intersect_key($c,array_flip(['cid','name','image','full_image']))+['label'=>'Carta mencionada en el paso'];
-    }return $photos;
+    return \StationX\Yugioh\Domain\Decks\Packages\MarkdownStudy::photos($text, $cards);
 }
 /** Preserve one explicit simulator contract; prose never becomes an executable effect. */
 function ygo_data_calculator(string $raw,array $data,int $deckId): array {
-    preg_match_all('~```json\s*\R(.*?)\R```~s',$raw,$blocks,PREG_SET_ORDER);$found=false;
-    foreach($blocks as $block){
-        $value=json_decode($block[1],true);
-        if(json_last_error()!==JSON_ERROR_NONE&&str_contains($block[1],'station-x-calculator/1'))throw new InvalidArgumentException('JSON de calculadora dañado; no se descartará silenciosamente.');
-        if(!is_array($value)||($value['schema']??'')!=='station-x-calculator/1')continue;
-        if($found||strlen($block[1])>2097152||(int)($value['deck_id']??0)!==$deckId||($value['format']??'')!==($data['format']??'')||!is_array($value['rules']??null)||count($value['rules'])>1000)throw new InvalidArgumentException('Contrato de calculadora duplicado, de otro deck o incompleto.');
-        $found=false;$seen=[];$cids=array_column($data['cards']??[],'cid');
-        foreach($value['rules'] as $rule){
-            $cid=$rule['actor']['cid']??null;
-            $actorValid=is_int($cid)&&in_array($cid,$cids,true);
-            if(!$actorValid&&$cid===null){
-                // Exact TY-PHON alternate Xyz procedure uses a list of possible
-                // materials instead of one CID for its actor.
-                $materials=$rule['actor']['cids']??null;
-                $result=$rule['resolve'][0]??null;
-                $actorValid=is_array($materials)&&count($materials)>0&&count($materials)<=60
-                    &&count($materials)===count(array_unique($materials))
-                    &&count(array_diff($materials,$cids))===0
-                    &&($rule['actor']['side']??null)==='self'
-                    &&($rule['actor']['zones']??null)===['monsters']
-                    &&($rule['actor']['faceUp']??null)===true
-                    &&is_array($result)&&count($rule['resolve'])===1
-                    &&($result['op']??null)==='xyzOverlay'
-                    &&($result['cid']??null)===19184
-                    &&($result['recipe']??null)==='typhon-highest-atk'
-                    &&in_array(19184,$cids,true)
-                    &&str_contains((string)($rule['source']??''),'cid=19184');
-            }
-            if(!is_array($rule)||($rule['version']??0)!==1||($rule['deckId']??0)!==$deckId||($rule['format']??'')!==$value['format']||!is_string($rule['id']??null)||!$actorValid)throw new InvalidArgumentException('Regla de calculadora de otro deck o carta no identificada.');
-            foreach(['guards','select','costs','resolve','tags','assumptions'] as $field)if(!is_array($rule[$field]??null))throw new InvalidArgumentException('Regla sin '.$field);
-            $id=$rule['id'];
-            $definition=json_encode($rule,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_THROW_ON_ERROR);
-            $policy=[$cid,$rule['oncePerTurn']??null,$rule['oncePerName']??null,$rule['activation']??null,$rule['chainSpeed']??null];
-            if(isset($seen[$id])){
-                if($seen[$id]['policy']!==$policy||in_array($definition,$seen[$id]['definitions'],true))
-                    throw new InvalidArgumentException('ID de regla duplicado o variantes incompatibles: '.$id);
-                $seen[$id]['definitions'][]=$definition;
-            }else $seen[$id]=['policy'=>$policy,'definitions'=>[$definition]];
-        }
-        $found=true;$data['calculator']=$value;
-    }
-    return $data;
+    return \StationX\Yugioh\Domain\Decks\Packages\CalculatorContract::extract($raw, $data, $deckId);
 }
 /** Keep simulator metadata in the package, outside player-facing explanations. */
 function ygo_data_without_calculator(string $raw): string {
-    return preg_replace_callback('~```json\s*\R(.*?)\R```~s',static function(array $m):string{
-        $v=json_decode($m[1],true);return is_array($v)&&($v['schema']??'')==='station-x-calculator/1'?'':$m[0];
-    },$raw);
+    return \StationX\Yugioh\Domain\Decks\Packages\CalculatorContract::withoutContract($raw);
 }
 function ygo_data_markdown(string $raw,array $base,int $deckId): array {
-    $data=ygo_data_calculator($raw,$base,$deckId);$raw=ygo_data_without_calculator($raw);$by=[];foreach($data['routes']??[] as $r)$by[$r['id']]=$r;
-    $parsed=0;
-    foreach(ygo_data_sections($raw) as $part){
-        [,,$title,$body]=$part;$rid=null;
-        if(preg_match('/`('.$deckId.':A09:[^`]+)`/u',$title,$m))$rid=$m[1];
-        elseif(preg_match('/^(?:MEMD-)?((?:[PSG]-)?[CV]\d{2})\b/u',$title,$m))$rid=$deckId.':A09:'.$m[1];
-        if($rid&&preg_match('/^1\.\s/m',$body)){
-            preg_match_all('/^(\d+)\.\s+(.*?)(?=^\d+\.\s|^#{1,4} |\n\n|\z)/msu',$body,$matches,PREG_SET_ORDER);
-            $steps=[];foreach($matches as $m){if((int)$m[1]!==count($steps)+1)throw new InvalidArgumentException('Numeración incompleta en '.$rid);$text=ygo_data_plain($m[2]);$steps[]=['number'=>(int)$m[1],'action'=>$text,'detail'=>$text,'photos'=>ygo_data_photos($text,$data['cards']??[]),'requirements'=>[],'resources'=>[],'board'=>[]];}
-            $r=$by[$rid]??['id'=>$rid,'name'=>ygo_data_plain($title),'title'=>ygo_data_plain($title),'family'=>'Desarrollo de la jugada','purpose'=>'','category'=>'APERTURA'];
-            $old=$r['steps']??[];foreach($steps as $i=>&$step)if(($old[$i]['action']??null)===$step['action'])$step=$old[$i];unset($step);
-            if(array_column($old,'action')!==array_column($steps,'action')){
-                unset($r['endboard']);$r['board']=[];$r['resources']=[];$r['result']='Estado final pendiente de especificar en la secuencia actualizada.';
-            }
-            preg_match('/^1\.\s/m',$body,$first,PREG_OFFSET_CAPTURE);$opening=ygo_data_plain(substr($body,0,$first[0][1]));
-            $r['steps']=$steps;$r['opening']=$opening;$r['initial_details']=$opening;$r['hand_photos']=ygo_data_photos($opening,$data['cards']??[]);
-            $r['technical']=ygo_data_plain($body);$r['documentary_source']=$body;$r['editorial_status']='pending';
-            $r['notice']='Secuencia documental importada; no certificada mediante simulación.';
-            foreach(['native_editor_document','native_editor_cards','native_editor_revision'] as $key)unset($r[$key]);
-            if(preg_match('/^- \*\*(?:Objetivo|Propósito)[^\n]*?\*\*[: ]*(.+)$/mu',$body,$m))$r['purpose']=ygo_data_plain($m[1]);
-            if(preg_match('/\*\*(?:Campo final|Tablero final|Final|Resultado|Salida)[^\n]*?(?:\R.*?)(?=\n\n|\z)/su',$body,$m)||preg_match('/\*\*(?:Campo final|Tablero final|Final|Resultado|Salida)[^\n]*/u',$body,$m)){
-                $result=ygo_data_plain($m[0]);if($result!==($r['result']??'')){unset($r['endboard']);$r['board']=[];$r['resources']=[];}$r['result']=$result;
-            }
-            $r+=['result'=>'Estado final no especificado.','board'=>[],'resources'=>[]];$by[$rid]=$r;$parsed++;
-        }
-        if(preg_match('/^(?:\d+\.\s+)(.+)$/u',$title,$m)){
-            foreach($data['cards']??[] as $i=>$card)if(mb_strtolower(trim($m[1]))===mb_strtolower($card['name'])){
-                preg_match_all('/^- \*\*(.*?)\*\*[:：]?\s*(.*?)(?=^- \*\*|\n\n|\z)/msu',$body,$fs,PREG_SET_ORDER);
-                foreach($fs as $field){$label=rtrim(ygo_data_plain($field[1]),':');$text=ygo_data_plain($field[2]);$found=false;
-                    foreach($data['cards'][$i]['fields'] as &$f)if($f['title']===$label){$f['text']=$text;$found=true;}unset($f);
-                    if(!$found)$data['cards'][$i]['fields'][]=['title'=>$label,'text'=>$text];
-                }
-            }
-        }
-    }
-    if(!$parsed&&empty($base['routes']))$data['routes']=[];else $data['routes']=array_values($by);
-    $data['imported_source_text']=$raw;return $data;
+    return \StationX\Yugioh\Domain\Decks\Packages\MarkdownStudy::parse($raw, $base, $deckId);
 }
 /** Presentation readiness is separate from legal rulings and simulator coverage. */
 function ygo_data_presentation_quality(array $record): array {
-    $routes=is_array($record['routes']??null)?$record['routes']:[];
-    $steps=0;$illustrated=0;$fullBoards=0;$partialBoards=0;$illustrativeBoards=0;
-    foreach($routes as $route) {
-        if(!is_array($route))continue;
-        foreach($route['steps']??[] as $step) {
-            $steps++;
-            if(!empty($step['photos'])&&is_array($step['photos']))$illustrated++;
-        }
-        if(!empty($route['endboard']['variants'])) {
-            // A diagram based on documented zones can be useful without claiming
-            // that an exact spatial board (columns/material placement) was verified.
-            if(($route['endboard']['spatial_verified']??null)===false
-                ||array_filter($route['endboard']['variants'],static fn($v)=>($v['spatial_verified']??null)===false)) {
-                $illustrativeBoards++;
-            }else $fullBoards++;
-        }elseif(!empty($route['board']))$partialBoards++;
-    }
-    $style=is_array($record['profile']??null)?(string)($record['profile']['Estilo breve']??''):'';
-    $intro=is_array($record['profile']??null)?(string)($record['profile']['Resumen para ficha']??''):'';
-    $ready=trim($style)!==''&&trim($intro)!==''&&$steps>0&&$illustrated===$steps
-        &&$fullBoards===count($routes);
-    return ['routes'=>count($routes),'steps'=>$steps,'illustrated_steps'=>$illustrated,
-        'full_endboards'=>$fullBoards,'illustrative_endboards'=>$illustrativeBoards,'partial_endboards'=>$partialBoards,
-        'profile_summary'=>trim($style)!==''&&trim($intro)!=='',
-        'visual_complete'=>$ready];
+    return \StationX\Yugioh\Domain\Decks\Packages\StudyValidation::presentationQuality($record);
 }
 
 /**
@@ -177,190 +52,20 @@ function ygo_data_presentation_quality(array $record): array {
  * Older records remain readable but are not automatically certified A01-T4/T5.
  */
 function ygo_data_validate_a01_profile(array $record): void {
-    if(!array_key_exists('a01_profile_contract',$record))return;
-    if(($record['a01_profile_contract']??null)!=='station-x-a01-profile/1')
-        throw new InvalidArgumentException('Contrato A01 del perfil desconocido.');
-    $profile=$record['profile']??null;
-    if(!is_array($profile))throw new InvalidArgumentException('Falta el perfil A01 de seis campos.');
-    foreach(['Arquetipo','Tipo de estrategia','Estilo breve','Resumen para ficha','Cómo se juega','Qué vigilar'] as $field){
-        $value=$profile[$field]??null;
-        if(!is_string($value)||trim($value)===''||$value!==trim($value)
-           ||preg_match('/[<>]/u',$value)||preg_match('/\\s{3,}/u',$value)
-           ||preg_match('/cat[aá]logo completo|consultar el plan|^pendiente\\b|^sin datos\\b|dictamen editorial|ganas siempre/iu',$value))
-            throw new InvalidArgumentException('Campo A01 inválido o incompleto: '.$field);
-        $length=mb_strlen($value,'UTF-8');
-        if(($field==='Estilo breve'&&$length>190)||($field==='Resumen para ficha'&&$length>250))
-            throw new InvalidArgumentException('Campo A01 excede su longitud: '.$field);
-    }
-    if(preg_match('/estudio individual|iteraci[oó]n|versi[oó]n\\s*[v0-9]|dictamen|\\d{4}-\\d{2}-\\d{2}/iu',$profile['Arquetipo']))
-        throw new InvalidArgumentException('El arquetipo A01 contiene auditoría, versión o fecha.');
-    if(mb_strlen($profile['Cómo se juega'],'UTF-8')<60||mb_strlen($profile['Qué vigilar'],'UTF-8')<15)
-        throw new InvalidArgumentException('Falta el plan completo o los riesgos estratégicos A01.');
+    \StationX\Yugioh\Domain\Decks\Packages\StudyValidation::validateA01Profile($record);
 }
 
 
 /** Structured player guide: never certify a deck from editorial prose alone. */
 function ygo_data_validate_player_guide(array $record): void {
-    if(!array_key_exists('player_guide',$record))return; // historical packages remain readable, not newly certified
-    $guide=$record['player_guide'];
-    if(!is_array($guide)||($guide['schema']??null)!=='station-x-player-guide/1')
-        throw new InvalidArgumentException('Contrato de guía del jugador desconocido.');
-    $profile=$record['profile']??[];
-    $audit='/\bCID\s*\d+\b|\b[CV]\d{2}\b|\bA(?:0[1-9]|10[AB]?)\s*[-–]?\s*T?\d*\b|\beffect_id\b|\broute_id\b|PARCIAL_AVANZADO|dictamen\s+editorial|PENDIENTE_REPLAY|cat[aá]logo completo|consultar el plan|estudio individual|iteraci[oó]n\s*\d+|cobertura\s+documental|validaci[oó]n\s+observada|evaluaci[oó]n\s+editorial|no\s+(?:escribir|redactar|inferir|inventar)\b|informe\s+de\s+auditor[ií]a|\b\d+\s+de\s+\d+\s+decks\b/iu';
-    $check=static function($value,string $field,int $min)use($audit):void {
-        if(!is_string($value)||trim($value)!==$value||mb_strlen($value,'UTF-8')<$min||preg_match($audit,$value))
-            throw new InvalidArgumentException('Texto de guía incompleto o técnico: '.$field);
-    };
-    foreach(['Arquetipo','Tipo de estrategia','Estilo breve','Resumen para ficha','Cómo se juega','Qué vigilar'] as $field)
-        $check($profile[$field]??null,$field,$field==='Cómo se juega'?400:($field==='Qué vigilar'?15:8));
-    $byCid=[];foreach($record['cards']??[] as $card)$byCid[(int)($card['cid']??0)]=$card;
-    $byRoute=[];foreach($record['routes']??[] as $route)$byRoute[$route['id']??'']=true;
-    $featured=$guide['featured_cards']??null;
-    if(!is_array($featured)||!array_is_list($featured)||count($featured)<1||count($featured)>4)
-        throw new InvalidArgumentException('La guía requiere de una a cuatro cartas clave justificadas.');
-    $seen=[];
-    foreach($featured as $item){
-        $cid=$item['cid']??null;
-        if(!is_int($cid)||!isset($byCid[$cid])||isset($seen[$cid]))
-            throw new InvalidArgumentException('Carta destacada inexistente o repetida.');
-        $seen[$cid]=true;
-        $allowed=false;
-        foreach($byCid[$cid]['slots']??[] as $slot)if(in_array($slot['section']??null,['main','extra'],true))$allowed=true;
-        if(!$allowed)throw new InvalidArgumentException('Las cartas destacadas requieren copia en Main o Extra.');
-        foreach(['role'=>15,'reason'=>35,'when_to_use'=>30] as $name=>$min)$check($item[$name]??null,$name,$min);
-        if(!is_array($item['related_cids']??null))throw new InvalidArgumentException('Faltan vínculos de carta destacada.');
-        foreach($item['related_cids'] as $related)if(!is_int($related)||!isset($byCid[$related]))
-            throw new InvalidArgumentException('Vínculo de carta inexistente.');
-    }
-    $phases=$guide['phases']??null;
-    if(!is_array($phases)||!array_is_list($phases)||count($phases)!==4)
-        throw new InvalidArgumentException('La guía requiere cuatro planes por fase.');
-    $ids=[];
-    foreach($phases as $phase){
-        $id=$phase['id']??null;
-        if(!in_array($id,['first','second','mid','late'],true)||isset($ids[$id]))
-            throw new InvalidArgumentException('Fase duplicada o desconocida.');$ids[$id]=true;
-        foreach(['title'=>6,'plan'=>100,'preconditions'=>35,'risks'=>35] as $name=>$min)$check($phase[$name]??null,$name,$min);
-        if(!is_array($phase['related_route_ids']??null))throw new InvalidArgumentException('La fase no declaró sus referencias.');
-        foreach($phase['related_route_ids'] as $rid)if(!is_string($rid)||!isset($byRoute[$rid]))
-            throw new InvalidArgumentException('Referencia a jugada inexistente.');
-    }
-    // Optional on historical imports, mandatory for newly reviewed A01 closure.
-    // This checks structure and references, not semantic quality or legal replay.
-    if(array_key_exists('strategy',$guide)){
-        $strategy=$guide['strategy'];
-        $expected=['first','second','mid','late','weak_hand','disruption','win_condition','common_errors'];
-        if(!is_array($strategy)||($strategy['schema']??null)!=='station-x-player-strategy/1'||!is_array($strategy['sections']??null)||!array_is_list($strategy['sections'])||array_column($strategy['sections'],'id')!==$expected)
-            throw new InvalidArgumentException('El plan de juego requiere ocho lecciones en el orden definido.');
-        $objectives=[];$actionLists=[];
-        foreach($strategy['sections'] as $section){
-            foreach(['title','objective','situation','expected_result','resources_to_keep','alternative'] as $key)$check($section[$key]??null,$section['id'].'_'.$key,$key==='title'?6:20);
-            if(isset($objectives[$section['objective']]))throw new InvalidArgumentException('Objetivo de lección duplicado.');
-            $objectives[$section['objective']]=true;
-            $refs=$section['card_cids']??null;
-            if(!is_array($refs)||!array_is_list($refs)||!$refs||count($refs)!==count(array_unique($refs,SORT_REGULAR)))throw new InvalidArgumentException('Referencias de cartas incompletas o duplicadas.');
-            foreach($refs as $cid){
-                if(!is_int($cid)||!isset($byCid[$cid])||!array_filter($byCid[$cid]['slots']??[],static fn($slot)=>in_array($slot['section']??null,['main','extra'],true)))throw new InvalidArgumentException('Carta no disponible en el plan.');
-            }
-            $actions=$section['actions']??null;
-            if(!is_array($actions)||!array_is_list($actions)||count($actions)<2||count($actions)>7)throw new InvalidArgumentException('La lección requiere acciones concretas.');
-            foreach($actions as $action)$check($action,$section['id'].'_action',15);
-            if(count($actions)!==count(array_unique($actions)))throw new InvalidArgumentException('Acción duplicada.');
-            $signature=implode('|',$actions);
-            if(isset($actionLists[$signature]))throw new InvalidArgumentException('Lecciones con las mismas acciones.');
-            $actionLists[$signature]=true;
-            $routeRefs=$section['related_route_ids']??null;
-            if(!is_array($routeRefs)||!array_is_list($routeRefs))throw new InvalidArgumentException('Referencias de rutas ausentes.');
-            foreach($routeRefs as $rid)if(!is_string($rid)||!isset($byRoute[$rid]))throw new InvalidArgumentException('Ruta no existente en el plan.');
-            if(count($routeRefs)!==count(array_unique($routeRefs)))throw new InvalidArgumentException('Referencia de ruta duplicada.');
-        }
-    }
-
+    \StationX\Yugioh\Domain\Decks\Packages\StudyValidation::validatePlayerGuide($record);
 }
 
 function ygo_data_validate(array $record,array $inventory): void {
-    $id=(int)$inventory['deck']['id'];
-    if(($record['schema']??'')!=='station-x-curated-v62'||(int)($record['deck_id']??0)!==$id)throw new InvalidArgumentException('El contenido no corresponde al deck de esta ficha.');
-    ygo_data_validate_a01_profile($record);
-    ygo_data_validate_player_guide($record);
-    if(isset($record['calculator']))ygo_data_calculator("```json\n".ygo_data_json($record['calculator'])."\n```",$record,$id);
-    // New GPT packages may certify visual completeness. False certification is
-    // rejected; older documentary packages remain importable with an explicit warning.
-    if(isset($record['presentation_contract'])&&!in_array($record['presentation_contract'],['station-x-visual-v1'],true))
-        throw new InvalidArgumentException('Contrato visual desconocido.');
-    if(($record['presentation_contract']??'')==='station-x-visual-v1') {
-        $quality=ygo_data_presentation_quality($record);
-        if(!$quality['visual_complete'])throw new InvalidArgumentException(
-            'La entrega declara guía visual completa, pero faltan fotografías por paso, campos finales estructurados o resumen de estilo.'
-        );
-        foreach($record['routes'] as $route) {
-            foreach($route['steps'] as $step) {
-                if(!is_string($step['action']??null)||trim($step['action'])===''||!is_string($step['detail']??null)||trim($step['detail'])==='')
-                    throw new InvalidArgumentException('Una guía visual certificada no puede omitir su acción o detalle de paso.');
-                foreach($step['photos'] as $photo)if(!is_array($photo)||empty($photo['name'])||empty($photo['image']))
-                    throw new InvalidArgumentException('Fotografía incompleta en guía visual.');
-            }
-            foreach($route['endboard']['variants'] as $variant) {
-                if(!is_array($variant)||!in_array((int)($variant['columns']??0),[3,5],true)
-                   ||!is_string($variant['layout_note']??null)||trim($variant['layout_note'])===''
-                   ||!is_array($variant['monster']??null)||!is_array($variant['spell']??null)||!is_array($variant['field']??null))
-                    throw new InvalidArgumentException('Campo final sin zonas documentadas.');
-                $onBoard=array_merge($variant['monster'],$variant['spell'],$variant['field']);
-                if(!$onBoard&&empty($variant['empty_board_reason']))
-                    throw new InvalidArgumentException('Campo final vacío sin justificación documental.');
-                foreach($onBoard as $card)if(!is_array($card)||!is_string($card['name']??null)||trim($card['name'])===''||!is_string($card['image']??null)||trim($card['image'])==='')
-                    throw new InvalidArgumentException('Carta del campo final sin identidad o fotografía.');
-            }
-        }
-    }
-    foreach(['cards','routes','skills','profile','engine_maps','decisions','practice'] as $key)if(!isset($record[$key])||!is_array($record[$key]))throw new InvalidArgumentException('Falta la sección '.$key.'.');
-    if(count($record['cards'])>300||count($record['routes'])>500)throw new InvalidArgumentException('Demasiadas cartas o rutas.');
-    $native=[];foreach($inventory['cards'] as $c)$native[(int)$c['id']]=$c;
-    $ids=[];$usedSlots=[];foreach($record['cards'] as $card){
-        if(!is_string($card['id']??null)||!preg_match('/^[\w:.-]+$/D',$card['id'])||isset($ids[$card['id']])||!is_string($card['name']??null)||!is_array($card['fields']??null)||!is_array($card['slots']??null))throw new InvalidArgumentException('Ficha de carta incompleta o duplicada.');$ids[$card['id']]=true;
-        foreach(['sources','synergy'] as $key)if(!is_array($card[$key]??null))throw new InvalidArgumentException('Falta '.$key.' en la carta '.$card['name']);
-        if(!is_array($card['synergy']['labels']??null))throw new InvalidArgumentException('Faltan las funciones de la carta.');
-        // Accesos documentales del Extra: se transportan por CID sin inflar record.routes ni simular combos.
-        if(isset($card['extra_access'])){
-            if(!is_array($card['extra_access'])||count($card['extra_access'])>20||!array_filter($card['slots'],static fn($slot)=>($slot['section']??'')==='extra'))
-                throw new InvalidArgumentException('Accesos Extra fuera de su carta o en formato inválido.');
-            $accessIds=[];
-            foreach($card['extra_access'] as $access){
-                if(!is_array($access)||(int)($access['cid']??0)!==(int)($card['cid']??0)
-                    ||!is_string($access['id']??null)||!preg_match('/^[A-Z0-9:_.-]+$/D',$access['id'])||isset($accessIds[$access['id']])
-                    ||!in_array($access['status']??null,['DOCUMENTADA_CONDICIONAL_SIN_REPLAY','TEORICA_PENDIENTE_VALIDACION'],true)
-                    ||!is_array($access['steps']??null)||count($access['steps'])<1||count($access['steps'])>30)
-                    throw new InvalidArgumentException('Acceso Extra incompleto, duplicado o sin estado documental.');
-                foreach(['opening','materials','result','limitation'] as $key)
-                    if(!is_string($access[$key]??null)||trim($access[$key])==='')
-                        throw new InvalidArgumentException('Faltan requisitos o resultados del acceso Extra '.$access['id']);
-                foreach($access['steps'] as $step)
-                    if(!is_string($step)||trim($step)==='')throw new InvalidArgumentException('Paso vacío en el acceso Extra '.$access['id']);
-                $accessIds[$access['id']]=true;
-            }
-        }
-        foreach($card['fields'] as $f)if(!is_string($f['title']??null)||!is_string($f['text']??null))throw new InvalidArgumentException('Explicación de carta incompleta.');
-        foreach($card['slots'] as $s){$c=$native[(int)($s['card_id']??0)]??null;
-            if(!$c||$c['section']!==($s['section']??'')||(int)$c['quantity']!==(int)($s['quantity']??-1))throw new InvalidArgumentException('El inventario del ZIP difiere del guardado. Actualiza primero la decklist y vuelve a exportar.');
-            if(isset($usedSlots[$c['id']]))throw new InvalidArgumentException('Una carta guardada aparece duplicada en las fichas.');$usedSlots[$c['id']]=true;
-        }
-    }
-    $ids=[];foreach($record['routes'] as $r){
-        if(!is_string($r['id']??null)||!preg_match('~^[\pL\pN_:./—–-]+$~uD',$r['id'])||!str_starts_with($r['id'],$id.':')||isset($ids[$r['id']])||!is_string($r['title']??null)||mb_strlen($r['title'])>160||!is_array($r['steps']??null))throw new InvalidArgumentException('Jugada incompleta, duplicada o de otro deck.');$ids[$r['id']]=true;
-        $previous=0;foreach($r['steps'] as $s){if((int)($s['number']??0)<=$previous||!is_string($s['action']??null)||trim($s['action'])==='')throw new InvalidArgumentException('Pasos incompletos en '.$r['id']);$previous=(int)$s['number'];}
-    }
-    foreach($record['decisions'] as $d)if(!is_string($d['id']??null)||!preg_match('/^[\w:.-]+$/D',$d['id'])||!is_array($d['options']??null)||!is_array($d['routes']??null))throw new InvalidArgumentException('Decisión incompleta.');
-    foreach($record['practice'] as $p)if(!is_string($p['id']??null)||!preg_match('/^[\w:.-]+$/D',$p['id'])||!is_array($p['routes']??null))throw new InvalidArgumentException('Ejercicio incompleto.');
-    // All downstream renderers receive plain editorial strings, never executable schemes or HTML.
-    array_walk_recursive($record,static function($value){if(is_string($value)&&(preg_match('~(?:javascript|vbscript|data|file):~i',$value)||preg_match('~<\s*/?\s*(script|iframe|object|embed|svg|img|style|link)\b~i',$value)))throw new InvalidArgumentException('El contenido contiene HTML o enlaces ejecutables no admitidos.');});
+    \StationX\Yugioh\Domain\Decks\Packages\StudyValidation::validate($record, $inventory);
 }
 function ygo_data_reader(string $name,string $raw): string {
-    $raw=ygo_data_without_calculator($raw);
-    $e=static fn($v)=>htmlspecialchars($v,ENT_QUOTES|ENT_SUBSTITUTE,'UTF-8');$html='';
-    foreach(explode("\n",$raw) as $line){if(preg_match('/^(#{1,6})\s+(.*)$/u',$line,$m)){$n=min(6,strlen($m[1])+1);$html.='<h'.$n.'>'.$e(ygo_data_plain($m[2])).'</h'.$n.'>';}
-        else $html.='<div class="line">'.$e($line).'</div>';
-    }
-    return '<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src &#39;none&#39;; style-src &#39;unsafe-inline&#39;"><title>'.$e($name).'</title><style>body{max-width:1000px;margin:24px auto;padding:16px;background:#081827;color:#e2efff;font:17px/1.6 system-ui}.line{white-space:pre-wrap;overflow-wrap:anywhere}h2,h3{color:#60dded}</style><h1>'.$e($name).'</h1>'.$html.'</html>';
+    return \StationX\Yugioh\Infrastructure\Editorial\DeckPackageReaderHtml::render($name, $raw);
 }
 /** Atomic pointer replacement under one global lock; immutable old revisions remain available. */
 function ygo_data_publish(string $app,int $id,array $record,array $files,string $expected): array {

@@ -116,6 +116,10 @@ Se extraen normalización de resultados, protección de versiones y auditoría d
 
 Se separan el contrato JSON versionado, la validación de modalidad, formato y participantes, la configuración y el congelamiento de alineaciones, y el enlace de los puestos de combate. El caso de uso `TeamEventConfiguration` usa puertos de persistencia y reglas; la fachada conserva el bloqueo de escritura y el adaptador transaccional respeta las transacciones prestadas. Se guardan los cuerpos anteriores para revisión y se añaden regresiones. Se separan asimismo los resultados colectivos, revisión optimista, puestos fijos, proyección individual y efectos estadísticos mediante `SaveTeamMatchResult`, `TeamResultPolicy` y `ExpandTeamIndividualResults`. Se agrega una guarda explícita ante competición desaparecida después del bloqueo. Los servicios nativos permanecen detrás de puertos; falta ejecutar la suite, el formato y las pruebas MySQL.
 
+## Paquetes de importación y exportación de decks
+
+Se separan las políticas puras de ruta, carpeta, inventario, contrato de calculadora, Markdown, presentación y validación, así como la preparación y construcción de exportaciones mediante el puerto de medios. Los lectores JSON/ZIP y de archivos locales permanecen en infraestructura; las funciones públicas originales son fachadas compatibles. Se conserva una copia de las funciones originales para revisión. El coordinador HTTP de tickets, las consultas de revisiones y la publicación atómica todavía requieren separación. Validación integral pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

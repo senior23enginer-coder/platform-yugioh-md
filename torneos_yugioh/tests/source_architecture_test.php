@@ -1823,6 +1823,24 @@ architectureCheck(
     'Collective Tag match counted as individual',
 );
 
+// The package boundary rejects traversal and accepts only the exact deck root.
+$packageFiles = \StationX\Yugioh\Domain\Decks\Packages\PackageFiles::class;
+architectureCheck($packageFiles::path('DECK_1/guide.md') === 'DECK_1/guide.md', 'Package path changed');
+architectureCheck(
+    $seasonOutcome(static fn() => $packageFiles::path('../outside.md')) !== null,
+    'Archive traversal accepted',
+);
+$packageFolder = \StationX\Yugioh\Domain\Decks\Packages\PackageFolder::class;
+architectureCheck(
+    $packageFolder::normalizeFiles(['decks/DECK_1/guide.md' => 'source']) ===
+        ['DECK_1/guide.md' => 'source'],
+    'Deck root normalization changed',
+);
+architectureCheck(
+    $packageFiles::sourceImage(['a/photo.png' => 'a', 'b/photo.png' => 'b'], 'photo.png') === null,
+    'Ambiguous image accepted',
+);
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
