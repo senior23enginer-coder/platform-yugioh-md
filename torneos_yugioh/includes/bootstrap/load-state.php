@@ -96,7 +96,8 @@ try {
     $savedStatus = isset($_GET['saved']) ? (string) $_GET['saved'] : '';
     $resolvedFlash = \StationX\Yugioh\Application\Bootstrap\SavedStatusMessage::resolve(
         $savedStatus,
-        isset($_SESSION['ygo_season_error']) ? (string) $_SESSION['ygo_season_error'] : null,
+        in_array($savedStatus, ['temporada_error', 'evento_temporada_bloqueada'], true)
+            && isset($_SESSION['ygo_season_error']) ? (string) $_SESSION['ygo_season_error'] : null,
         $flashMessage,
         $flashClass,
     );
