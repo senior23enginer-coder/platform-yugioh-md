@@ -786,6 +786,14 @@ architectureCheck(count(iterator_to_array($legacyEventPlan::world($eventFixtureD
 $legacyFriendlyRows = iterator_to_array($legacyEventPlan::friendlies($eventFixtureDecks), false);
 architectureCheck(count($legacyFriendlyRows) === 4 && $legacyFriendlyRows[0] === [1, 1, 1, 2], 'Legacy friendly pair order changed');
 
+// Phase advancement preserves winner validation and completion guards.
+$phasePolicy = \StationX\Yugioh\Domain\Competitions\PhaseAdvancePolicy::class;
+architectureCheck(!$phasePolicy::finished(['total' => 0, 'closed' => 0]), 'Empty phase marked closed');
+architectureCheck($phasePolicy::finished(['total' => 2, 'closed' => 2]), 'Complete phase blocked');
+architectureCheck(!$phasePolicy::finished(['total' => 2, 'closed' => 1]), 'Pending phase marked closed');
+architectureCheck($phasePolicy::winners([['result' => 'A', 'deck_a_id' => 3, 'deck_b_id' => 4], ['result' => 'B', 'deck_a_id' => 5, 'deck_b_id' => 6]]) === [3, 6], 'Winner order changed');
+architectureCheck($phasePolicy::blockedQualifier(['event_flow' => 'QUALIFIES_TO_EVENT', 'advancement_rule' => 'RANKING_THRESHOLD'], 'qualifier', 'swiss', 'NONE'), 'Division qualifier gained a phase');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

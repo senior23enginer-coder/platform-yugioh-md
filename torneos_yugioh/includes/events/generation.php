@@ -153,47 +153,17 @@ function ygo_selected_qualifier_competition_id(PDO $pdo): ?int
 
 function ygo_competition_phase_match_count(PDO $pdo, int $competitionId, string $phase): int
 {
-    $stmt = $pdo->prepare('SELECT COUNT(*) FROM sx_ygo_matches WHERE competition_id = ? AND phase = ?');
-    $stmt->execute([$competitionId, $phase]);
-    return (int) $stmt->fetchColumn();
+    return \StationX\Yugioh\Infrastructure\Composition\CompetitionPhaseModule::queries($pdo)->count($competitionId, $phase);
 }
 
 function ygo_competition_phase_finished(PDO $pdo, int $competitionId, string $phase): bool
 {
-    $stmt = $pdo->prepare("
-        SELECT
-            COUNT(*) AS total,
-            SUM(CASE WHEN m.status = 'FINALIZADA' AND r.result IN ('A', 'B', 'DRAW') THEN 1 ELSE 0 END) AS closed
-        FROM sx_ygo_matches m
-        LEFT JOIN sx_ygo_match_results r ON r.match_id = m.id
-        WHERE m.competition_id = ? AND m.phase = ?
-    ");
-    $stmt->execute([$competitionId, $phase]);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
-    $total = (int) ($row['total'] ?? 0);
-    return $total > 0 && $total === (int) ($row['closed'] ?? 0);
+    return \StationX\Yugioh\Infrastructure\Composition\CompetitionPhaseModule::queries($pdo)->finished($competitionId, $phase);
 }
 
 function ygo_competition_round_winners(PDO $pdo, int $competitionId, string $phase, int $round): array
 {
-    $stmt = $pdo->prepare("
-        SELECT m.deck_a_id, m.deck_b_id, r.result
-        FROM sx_ygo_matches m
-        LEFT JOIN sx_ygo_match_results r ON r.match_id = m.id
-        WHERE m.competition_id = ? AND m.phase = ? AND m.round_number = ? AND m.status = 'FINALIZADA'
-        ORDER BY m.table_number, m.id
-    ");
-    $stmt->execute([$competitionId, $phase, $round]);
-    $winners = [];
-    foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
-        $winner = $row['result'] === 'A' ? (int) $row['deck_a_id'] : ($row['result'] === 'B' ? (int) $row['deck_b_id'] : 0);
-        if ($winner<=0) throw new InvalidArgumentException('La llave requiere un ganador valido en todos sus combates; no se avanzara con empate.');
-        if ($winner > 0) {
-            $winners[] = $winner;
-        }
-    }
-    if($phase==='cup') $winners=array_merge($winners,json_decode(ygo_settings($pdo)['cup_bye_'.$competitionId.'_'.$round] ?? '[]',true) ?: []);
-    return array_values(array_unique($winners));
+    return \StationX\Yugioh\Infrastructure\Composition\CompetitionPhaseModule::queries($pdo)->winners($competitionId, $phase, $round);
 }
 
 function ygo_deck_ids_for_ruleset(PDO $pdo, string $ruleset): array
@@ -340,122 +310,12 @@ function ygo_advance_competition_phase(PDO $pdo, int $competitionId): int
 
 function ygo_advance_competition_phase_serialized(PDO $pdo, int $competitionId): int
 {
-    $owns=!$pdo->inTransaction();if($owns)$pdo->beginTransaction();
-    try {
-        $lock=$pdo->prepare('SELECT * FROM sx_ygo_competitions WHERE id=? FOR UPDATE');$lock->execute([$competitionId]);$c=$lock->fetch(PDO::FETCH_ASSOC);
-        if(!$c) {if($owns)$pdo->commit();return 0;}
-        if(ygo_admission_load($pdo,$c)!==null){$roster=$pdo->prepare('SELECT deck_id FROM sx_ygo_competition_decks WHERE competition_id=? AND active=1 ORDER BY sort_order,id');$roster->execute([$competitionId]);ygo_admission_require($pdo,$c,array_map('intval',$roster->fetchAll(PDO::FETCH_COLUMN)),false);}
-        if((ygo_team_kind($c)!=='' || in_array((string)$c['execution_model'],ygo_workflow_models(),true)) && ygo_workflow_load($pdo,$c)!==null){
-            $result=ygo_workflow_generate($pdo,$c);if($owns)$pdo->commit();return $result;
-        }
-        ygo_season_require_open($pdo,(int)$c['season_id']);
-        if(in_array(ygo_normalize_status_key((string)$c['status']),['completed','closed','cancelled','archived'],true)) throw new InvalidArgumentException('El evento esta cerrado y no admite avance.');
-        ygo_require_supported_model($c);
-        $result=ygo_advance_competition_phase_locked($pdo,$competitionId);
-        if($owns)$pdo->commit();return $result;
-    } catch(Throwable $e) {if($owns && $pdo->inTransaction())$pdo->rollBack();throw $e;}
+    return \StationX\Yugioh\Infrastructure\Composition\CompetitionPhaseModule::advance($pdo)->execute($competitionId);
 }
 
 function ygo_advance_competition_phase_locked(PDO $pdo, int $competitionId): int
 {
-    $stmt = $pdo->prepare('SELECT * FROM sx_ygo_competitions WHERE id = ? AND active = 1 LIMIT 1');
-    $stmt->execute([$competitionId]);
-    $competition = $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
-    if (!$competition) {
-        return 0;
-    }
-    $type = (string) (($competition['type'] ?? '') ?: 'tournament');
-    $execution = (string) (($competition['execution_model'] ?? '') ?: 'manual');
-    if(in_array($execution,ygo_workflow_models(),true))throw new InvalidArgumentException('Este evento anterior no tiene un reglamento versionado. No se reinterpretaran sus combates.');
-    $phaseStructure = strtoupper((string) (($competition['phase_structure'] ?? '') ?: 'NONE'));
-    $created = 0;
-
-    if (
-        $type === 'qualifier'
-        && $execution === 'swiss'
-        && $phaseStructure === 'NONE'
-        && strtoupper((string) (($competition['event_flow'] ?? '') ?: '')) === 'QUALIFIES_TO_EVENT'
-        && strtoupper((string) (($competition['advancement_rule'] ?? '') ?: '')) === 'RANKING_THRESHOLD'
-    ) {
-        $pdo->prepare('INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)')
-            ->execute(['competition', $competitionId, 'blocked_advance_competition_phase', json_encode(['reason' => 'division_qualifier_has_no_next_phase'], JSON_UNESCAPED_UNICODE)]);
-        return 0;
-    }
-
-    $advanceKnockout = function (string $phase) use ($pdo, $competition, $competitionId): int {
-        $roundStmt = $pdo->prepare('SELECT COALESCE(MAX(round_number), 0) FROM sx_ygo_matches WHERE competition_id = ? AND phase = ?');
-        $roundStmt->execute([$competitionId, $phase]);
-        $round = (int) $roundStmt->fetchColumn();
-        if ($round <= 0) {
-            return 0;
-        }
-        $pendingStmt = $pdo->prepare("SELECT COUNT(*) FROM sx_ygo_matches WHERE competition_id = ? AND phase = ? AND round_number = ? AND status <> 'FINALIZADA'");
-        $pendingStmt->execute([$competitionId, $phase, $round]);
-        if ((int) $pendingStmt->fetchColumn() > 0) {
-            return 0;
-        }
-        $winners = ygo_competition_round_winners($pdo, $competitionId, $phase, $round);
-        if (count($winners) === 1) {
-            ygo_record_competition_honor($pdo, $competitionId);
-            return 0;
-        }
-        if (count($winners) < 2) {
-            return 0;
-        }
-        $nextRound = $round + 1;
-        $label = count($winners) <= 2 ? 'Final' : 'Ronda ' . $nextRound;
-        return ygo_create_competition_knockout_round($pdo, $competition, $phase, $winners, $nextRound, $label);
-    };
-
-    if (in_array($execution, ['single_elimination', 'double_elimination', 'top_cut', 'playoffs', 'bracket', 'series'], true)) {
-        $phase = ygo_competition_phase_match_count($pdo,$competitionId,'cup')>0 ? 'cup' : ($type === 'world' ? 'world' : ($type === 'final' ? 'final' : 'cup'));
-        $created += $advanceKnockout($phase);
-    }
-
-    if ($created === 0 && (in_array($execution, ['swiss_top_cut', 'top_cut'], true) || str_contains($phaseStructure, 'TOP_CUT'))) {
-        $targetPhase = 'top_cut';
-        if (ygo_competition_phase_match_count($pdo, $competitionId, $targetPhase) > 0) {
-            $created += $advanceKnockout($targetPhase);
-        } else {
-            $basePhase = ygo_competition_phase_match_count($pdo, $competitionId, 'swiss') > 0 ? 'swiss' : 'qualifier';
-            if (ygo_competition_phase_finished($pdo, $competitionId, $basePhase)) {
-                $ranking = ygo_competition_standings($pdo, $competitionId);
-                $topSize = ygo_knockout_target_size(count($ranking));
-                $deckIds = array_map(static fn(array $row): int => (int) ($row['id'] ?? 0), array_slice($ranking, 0, $topSize));
-                $created += ygo_create_competition_knockout_round($pdo, $competition, $targetPhase, $deckIds, 1, 'Top Cut');
-            }
-        }
-    }
-
-    if ($created === 0 && (in_array($execution, ['groups_knockout'], true) || str_contains($phaseStructure, 'GROUPS'))) {
-        $targetPhase = 'playoff';
-        if (ygo_competition_phase_match_count($pdo, $competitionId, $targetPhase) > 0) {
-            $created += $advanceKnockout($targetPhase);
-        } elseif (ygo_competition_phase_finished($pdo, $competitionId, 'groups')) {
-            $ranking = ygo_competition_standings($pdo, $competitionId);
-            $topSize = ygo_knockout_target_size(count($ranking));
-            $deckIds = array_map(static fn(array $row): int => (int) ($row['id'] ?? 0), array_slice($ranking, 0, $topSize));
-            $created += ygo_create_competition_knockout_round($pdo, $competition, $targetPhase, $deckIds, 1, 'Eliminatoria');
-        }
-    }
-
-    if ($created === 0 && $type === 'league') {
-        $targetPhase = 'playoff';
-        if (ygo_competition_phase_match_count($pdo, $competitionId, $targetPhase) > 0) {
-            $created += $advanceKnockout($targetPhase);
-        } elseif (in_array($execution, ['season_playoffs', 'playoffs'], true) && ygo_competition_phase_finished($pdo, $competitionId, 'league')) {
-            $ranking = ygo_competition_standings($pdo, $competitionId);
-            $topSize = ygo_knockout_target_size(count($ranking));
-            $deckIds = array_map(static fn(array $row): int => (int) ($row['id'] ?? 0), array_slice($ranking, 0, $topSize));
-            $created += ygo_create_competition_knockout_round($pdo, $competition, $targetPhase, $deckIds, 1, 'Playoff');
-        }
-    }
-
-    if ($created > 0) {
-        $pdo->prepare('INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)')
-            ->execute(['competition', $competitionId, 'advance_competition_phase', json_encode(['created' => $created, 'type' => $type, 'execution_model' => $execution], JSON_UNESCAPED_UNICODE)]);
-    }
-    return $created;
+    return \StationX\Yugioh\Infrastructure\Composition\CompetitionPhaseModule::advance($pdo)->locked($competitionId);
 }
 
 function ygo_advance_phase(PDO $pdo, string $phase, ?int $competitionId = null): int

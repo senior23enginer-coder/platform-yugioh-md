@@ -92,6 +92,10 @@ Se separan los casos de uso de programación, las reglas de planificación y los
 
 Se separan generación de ligas, copas, amistosos y mundial, lectura de divisiones/decks y persistencia de combates mediante un plan de dominio y puertos. Los adaptadores preservan el alcance de limpieza y las filas de los algoritmos existentes; no se ejecuta generación ni limpieza sobre datos reales. Se verificaron nueve huellas originales y 1.608 comprobaciones aisladas con PHP 8.4.24 para ligas, copas, amistosos y grupos, incluidos planteles de 2 a 24 decks. Los archivos probados coinciden con GitHub. Validación integral, formato y MySQL pendientes.
 
+## Avance de fases de competición
+
+Se extraen la coordinación serializada, las consultas de fase y las guardas de ganadores a casos de uso y políticas independientes de PDO. La fachada externa conserva el bloqueo por evento; el límite transaccional conserva transacciones prestadas. La creación de rondas, honores y motor de workflow aún se consumen mediante adaptadores nativos. Se añaden regresiones y evidencia de contratos; validación integral pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
