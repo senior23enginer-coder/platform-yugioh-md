@@ -4318,7 +4318,6 @@ $stageStore->calls = [];
 $stageCase->execute($targetCompetition, '2026-11-25', 'manual', 2);
 architectureCheck($stageStore->calls === [], 'Direct event was rescheduled by admission');
 
-
 // Configuration selection must not create a connection or mutate the request.
 $configRoot = sys_get_temp_dir() . '/stationx-config-' . bin2hex(random_bytes(8));
 mkdir($configRoot . '/config', 0700, true);
@@ -4327,9 +4326,7 @@ try {
         $configRoot . '/config/database.local.php',
         '<?php return ["database"=>"test_db","username"=>"test_user","prefix"=>"x_","entity"=>2];',
     );
-    $storeConfig = \StationX\Yugioh\Infrastructure\Configuration\StoreDatabaseConfiguration::load(
-        $configRoot,
-    );
+    $storeConfig = \StationX\Yugioh\Infrastructure\Configuration\StoreDatabaseConfiguration::load($configRoot);
     architectureCheck($storeConfig['database'] === 'test_db', 'Local config selection changed');
     architectureCheck($storeConfig['entity'] === 2, 'Local config entity changed');
     file_put_contents($configRoot . '/config/database.local.php', '<?php return false;');
