@@ -306,3 +306,28 @@ let eventPlanWarnings=[];
 eventPlanning.submitCompetitionConfig('start',{competitionConfigModal:{},data:{competitions:[{id:7}]},activeCompetitionConfigId:7,competitionPersistedMatchCount:()=>0,eventModelWarnings:()=>['blocked'],alert:s=>eventPlanWarnings.push(s)});
 assert.deepEqual(eventPlanWarnings,['Modelo pendiente de implementacion/configuracion: blocked']);
 console.log('Event planning: status, previews, qualifier ranges and submission guard verified.');
+
+
+const auditBracketContext = { window: {} };
+vm.runInNewContext(fs.readFileSync(path.join(__dirname, '../assets/source/javascript/shared/audit-bracket-policy.js'), 'utf8'), auditBracketContext);
+const auditBracket = auditBracketContext.window.StationXAuditBracketPolicy;
+const normAudit = value => String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+const legacyAudit = (filters, row) => {
+  const q = normAudit(filters.query), k = normAudit(filters.kind), e = normAudit(filters.entity), a = normAudit(filters.action);
+  const t = normAudit(row.text), re = normAudit(row.entity), ra = normAudit(row.action);
+  return Boolean((q && !t.includes(q)) || (k && !t.includes(k)) || (e && re !== e) || (a && ra !== a));
+};
+for (const query of ['', 'acción', 'missing']) for (const kind of ['', 'deck']) for (const entity of ['', 'deck', 'event']) for (const action of ['', 'save', 'delete']) {
+  const filters = {query,kind,entity,action};
+  for (const row of [{text:'Acción Deck',entity:'deck',action:'save'},{text:'Evento',entity:'event',action:'delete'},{text:'',entity:'',action:''}]) {
+    assert.equal(auditBracket.auditHidden(filters,row,normAudit),legacyAudit(filters,row));
+  }
+}
+for (let size = 0; size <= 40; size++) {
+  const pool = Array.from({length:size}, (_, i) => 'Deck ' + i);
+  const pairs = [];
+  for(let i=0;i<pool.length;i+=2) pairs.push([pool[i],pool[i+1] || 'Pasa directo']);
+  assert.equal(JSON.stringify(auditBracket.pairRows(pool)),JSON.stringify(pairs));
+  assert.equal(JSON.stringify(auditBracket.worldGroups(pool)),JSON.stringify(Array.from({length:6},(_,i)=>pool.slice(i*4,i*4+4))));
+}
+console.log('Audit and bracket policies: legacy filter and projection parity verified.');
