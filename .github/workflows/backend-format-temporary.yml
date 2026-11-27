@@ -1,0 +1,27 @@
+name: Temporary backend formatter evidence
+on:
+  pull_request:
+    branches: [base]
+permissions:
+  contents: read
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, pdo_sqlite
+          coverage: none
+      - run: npm ci
+      - name: Print exact formatter patch
+        run: |
+          npm run format:architecture
+          git diff -- torneos_yugioh/src torneos_yugioh/tests/source_architecture_test.php
+          npm run format:architecture -- --check
+      - name: Backend architecture regression
+        run: php torneos_yugioh/tests/source_architecture_test.php
