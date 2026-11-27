@@ -9,26 +9,7 @@ declare(strict_types=1);
 
 function ygo_live_duel_match(PDO $pdo, int $matchId): array
 {
-    $stmt = $pdo->prepare("
-        SELECT m.id, m.status, m.best_of, m.round_number, m.table_number, m.scheduled_on, m.starts_at,
-               COALESCE(c.name, dv.name, 'Partida') AS competition_name,
-               da.name AS deck_a, db.name AS deck_b,
-               COALESCE(ta.name, 'Sin equipo') AS team_a, COALESCE(tb.name, 'Sin equipo') AS team_b,
-               COALESCE(ta.logo_url, '') AS logo_a, COALESCE(tb.logo_url, '') AS logo_b,
-               r.d1, r.d2, r.d3, r.d4, r.d5, r.duel_details
-        FROM sx_ygo_matches m
-        JOIN sx_ygo_decks da ON da.id = m.deck_a_id
-        JOIN sx_ygo_decks db ON db.id = m.deck_b_id
-        LEFT JOIN sx_ygo_teams ta ON ta.id = da.team_id
-        LEFT JOIN sx_ygo_teams tb ON tb.id = db.team_id
-        LEFT JOIN sx_ygo_competitions c ON c.id = m.competition_id
-        LEFT JOIN sx_ygo_divisions dv ON dv.id = m.division_id
-        LEFT JOIN sx_ygo_match_results r ON r.match_id = m.id
-        WHERE m.id = ?
-        LIMIT 1
-    ");
-    $stmt->execute([$matchId]);
-    return $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
+    return (new \StationX\Yugioh\Infrastructure\Persistence\Matches\PdoLiveDuelReadStore($pdo))->match($matchId);
 }
 
 function ygo_live_duel_initial_state(array $match): array
@@ -43,41 +24,9 @@ function ygo_live_duel_normalize_state(array $state): array
 
 function ygo_live_duel_get(PDO $pdo, int $matchId, bool $forUpdate = false): array
 {
-    $match = ygo_live_duel_match($pdo, $matchId);
-    if (!$match) return [];
-    $select = $pdo->prepare('SELECT duel_number, revision, state_json, updated_by, updated_at FROM sx_ygo_live_duel_state WHERE match_id = ?' . ($forUpdate ? ' FOR UPDATE' : ''));
-    $select->execute([$matchId]);
-    $row = $select->fetch(PDO::FETCH_ASSOC);
-    if (!$row) {
-        $state = ygo_live_duel_initial_state($match);
-        $pdo->prepare('INSERT IGNORE INTO sx_ygo_live_duel_state (match_id, duel_number, revision, state_json, updated_by) VALUES (?, ?, 1, ?, ?)')
-            ->execute([$matchId, $state['duel_number'], json_encode($state, JSON_UNESCAPED_UNICODE), 'judge']);
-        $select->execute([$matchId]);
-        $row = $select->fetch(PDO::FETCH_ASSOC) ?: [];
-    }
-    $state = json_decode((string) ($row['state_json'] ?? ''), true);
-    $normalizedState = ygo_live_duel_normalize_state(is_array($state) ? $state : ygo_live_duel_initial_state($match));
-    $authoritativeState = ygo_live_duel_initial_state($match);
-    if ((int) $normalizedState['duel_number'] !== (int) $authoritativeState['duel_number'] && strtoupper((string)$match['status'])!=='FINALIZADA') {
-        $normalizedState = ygo_live_duel_normalize_state($authoritativeState);
-    }
-    $liveDuelNumber = (int) $normalizedState['duel_number'];
-    $previousResult = $liveDuelNumber > 1 ? (string) ($match['d' . ($liveDuelNumber - 1)] ?? '') : '';
-    $hasDrawReroll = (int) $normalizedState['dice_a'] >= 1 && (int) $normalizedState['dice_b'] >= 1 && in_array((string) $normalizedState['dice_winner'], ['A', 'B'], true);
-    if ($previousResult === 'E' && !$hasDrawReroll) {
-        $normalizedState['status'] = 'setup';
-        $normalizedState['starts_player'] = '';
-        $normalizedState['active_side'] = '';
-        $normalizedState['timer_running'] = false;
-        $normalizedState['timer_started_at'] = 0;
-    }
-    return [
-        'match' => $match,
-        'state' => $normalizedState,
-        'revision' => max(1, (int) ($row['revision'] ?? 1)),
-        'updated_by' => (string) ($row['updated_by'] ?? 'judge'),
-        'updated_at' => (string) ($row['updated_at'] ?? ''),
-    ];
+    return (new \StationX\Yugioh\Application\Matches\LoadLiveDuel(
+        new \StationX\Yugioh\Infrastructure\Persistence\Matches\PdoLiveDuelReadStore($pdo)
+    ))->execute($matchId, $forUpdate, static fn(): int => (int) floor(microtime(true) * 1000));
 }
 
 function ygo_live_duel_api(PDO $pdo): void

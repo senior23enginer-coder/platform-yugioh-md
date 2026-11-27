@@ -26,7 +26,7 @@ jobs:
         run: |
           npm run format:architecture
           git diff --name-only
-          git diff -- torneos_yugioh/src/Domain/Matches torneos_yugioh/src/Application torneos_yugioh/tests/source_architecture_test.php
+          git diff -- torneos_yugioh/src/Domain/Matches torneos_yugioh/src/Application torneos_yugioh/src/Infrastructure/Persistence/Matches torneos_yugioh/tests/source_architecture_test.php
           php torneos_yugioh/tests/source_architecture_test.php
           php torneos_yugioh/tests/legacy_function_contract_test.php
           npm run format:architecture:check

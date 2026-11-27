@@ -243,6 +243,10 @@ Se distribuyen las 34 operaciones del lector general en cuatro puertos y adaptad
 
 CI integral del commit `e6b59bd` completado (45887432048). Se extraen inicialización, normalización, sincronización del juez, cierre de turno, rendición y operaciones LP a `Domain/Matches/LiveDuelState`, con reloj y marcas temporales explícitas. Se conserva la prioridad de los conflictos de revisión/corrección y la transacción del controlador, sin modificar sus SQL, respuestas HTTP ni auditoría. Los tres cuerpos originales se preservan para el contrato SHA-256 existente; se añaden pruebas de estado, autorización deportiva, reroll, LP y conflicto. CI del nuevo cambio pendiente.
 
+## Duelos en vivo: persistencia de lectura y recuperación
+
+Se extrae la lectura de partida y estado, la creación inicial idempotente y la reconciliación con el duelo persistido mediante un caso de uso y un puerto de persistencia. El adaptador conserva las consultas SQL y `FOR UPDATE` opcional; la relectura después de INSERT IGNORE utiliza una nueva preparación de la misma consulta. No abre ni cierra transacciones propias. Se preservan los cuerpos históricos de las dos fachadas y se añaden pruebas de orden, ausencia de partida, recuperación, estado finalizado y empate. CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

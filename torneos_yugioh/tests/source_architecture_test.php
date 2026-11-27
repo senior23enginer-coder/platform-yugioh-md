@@ -3420,6 +3420,47 @@ $boundedDuel = $livePolicy::normalize(['duel_number' => 9, 'lp_a' => -1, 'lp_b' 
 architectureCheck($boundedDuel['duel_number'] === 5 && $boundedDuel['lp_a'] === 0 && $boundedDuel['lp_b'] === 99999, 'State bounds changed');
 architectureCheck($boundedDuel['status'] === 'setup' && $boundedDuel['updated_at_ms'] === 5000, 'State normalization changed');
 
+// The live-duel loader preserves lazy creation, borrowed lock selection and authoritative duel recovery.
+$liveStore = new class implements \StationX\Yugioh\Application\Matches\LiveDuelReadStore {
+    public array $calls = [];
+    public array $matchRow = [];
+    public array $stateRow = [];
+    public function match(int $matchId): array
+    {
+        $this->calls[] = 'match-' . $matchId;
+        return $this->matchRow;
+    }
+    public function state(int $matchId, bool $forUpdate): array
+    {
+        $this->calls[] = $forUpdate ? 'locked-state' : 'state';
+        return $this->stateRow;
+    }
+    public function insertInitial(int $matchId, array $state): void
+    {
+        $this->calls[] = 'insert';
+        $this->stateRow = ['revision' => 1, 'state_json' => json_encode($state), 'updated_by' => 'judge'];
+    }
+};
+$liveLoader = new \StationX\Yugioh\Application\Matches\LoadLiveDuel($liveStore);
+architectureCheck($liveLoader->execute(9, true, $liveNow) === [], 'Missing match changed');
+architectureCheck($liveStore->calls === ['match-9'], 'Missing match should not query state');
+$liveStore->calls = [];
+$liveStore->matchRow = ['status' => 'EN CURSO', 'd1' => 'A'];
+$loaded = $liveLoader->execute(9, true, $liveNow);
+architectureCheck($liveStore->calls === ['match-9', 'locked-state', 'insert', 'locked-state'], 'State creation order or lock changed');
+architectureCheck($loaded['state']['duel_number'] === 2 && $loaded['revision'] === 1, 'Initial persisted state changed');
+$liveStore->calls = [];
+$liveStore->stateRow = ['revision' => 4, 'state_json' => json_encode(['duel_number' => 1]), 'updated_by' => 'A'];
+$loaded = $liveLoader->execute(9, false, $liveNow);
+architectureCheck($liveStore->calls === ['match-9', 'state'], 'Existing state was written');
+architectureCheck($loaded['state']['duel_number'] === 2 && $loaded['revision'] === 4, 'Authoritative duel recovery changed');
+$liveStore->matchRow['status'] = 'FINALIZADA';
+architectureCheck($liveLoader->execute(9, false, $liveNow)['state']['duel_number'] === 1, 'Finalized match state changed');
+$liveStore->matchRow = ['status' => 'EN CURSO', 'd1' => 'E'];
+$liveStore->stateRow['state_json'] = json_encode(['duel_number' => 2, 'status' => 'running', 'starts_player' => 'A', 'timer_running' => true]);
+$loaded = $liveLoader->execute(9, false, $liveNow);
+architectureCheck($loaded['state']['status'] === 'setup' && !$loaded['state']['timer_running'], 'Stored draw reroll guard changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
