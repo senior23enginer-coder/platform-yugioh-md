@@ -4326,7 +4326,9 @@ try {
         $configRoot . '/config/database.local.php',
         '<?php return ["database"=>"test_db","username"=>"test_user","prefix"=>"x_","entity"=>2];',
     );
-    $storeConfig = \StationX\Yugioh\Infrastructure\Configuration\StoreDatabaseConfiguration::load($configRoot);
+    $storeConfig = \StationX\Yugioh\Infrastructure\Configuration\StoreDatabaseConfiguration::load(
+        $configRoot,
+    );
     architectureCheck($storeConfig['database'] === 'test_db', 'Local config selection changed');
     architectureCheck($storeConfig['entity'] === 2, 'Local config entity changed');
     file_put_contents($configRoot . '/config/database.local.php', '<?php return false;');
