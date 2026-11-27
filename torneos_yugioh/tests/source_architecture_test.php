@@ -3666,6 +3666,81 @@ architectureCheck(
     'Audit occurred after failed write',
 );
 
+// TXT import: compare the preserved parser and keep inventory creation atomic.
+$templateOriginal = json_decode(file_get_contents(__DIR__ . '/fixtures/deck-template-original.json'), true, flags: JSON_THROW_ON_ERROR);
+eval(str_replace('function ygo_parse_deck_template(', 'function architectureOriginalDeckTemplate(', $templateOriginal['parser']));
+$templateValid = "# STATIONX-DECK-TEMPLATE/1\n[DECK]\nnombre=Test\narquetipo=Machine\n[MAIN]\n2;Card A\n[EXTRA]\n1;Card B\n[SIDE]\n1;Card C\n[RESERVA]\n3;Card D";
+foreach ([$templateValid, "\xEF\xBB\xBF" . $templateValid, str_replace("\n", "\r\n", $templateValid), '', 'invalid', str_replace('2;Card A', '4;Card A', $templateValid), str_replace('[RESERVA]', '[UNKNOWN]', $templateValid)] as $templateCase) {
+    $evaluateTemplate = static function (callable $parse) use ($templateCase): array {
+        try {
+            return ['ok' => $parse($templateCase)];
+        } catch (InvalidArgumentException $error) {
+            return ['error' => $error->getMessage()];
+        }
+    };
+    architectureCheck($evaluateTemplate('architectureOriginalDeckTemplate') === $evaluateTemplate([\StationX\Yugioh\Domain\Decks\DeckTemplate::class, 'parse']), 'Template parser changed');
+}
+$templateWriter = new class implements \StationX\Yugioh\Application\Decks\DeckTemplateWriter {
+    public array $calls = [];
+    public bool $exists = false;
+    public bool $fail = false;
+    public function activeNameExists(string $name): bool
+    {
+        $this->calls[] = ['exists', $name];
+        return $this->exists;
+    }
+    public function create(array $data): int
+    {
+        $this->calls[] = ['create', $data['name']];
+        return 42;
+    }
+    public function appendCards(int $id, array $cards): void
+    {
+        $this->calls[] = ['cards', $id, array_column($cards, 'section')];
+        if ($this->fail) {
+            throw new RuntimeException('card write failed');
+        }
+    }
+};
+$templateTx = new class implements \StationX\Yugioh\Application\Shared\TransactionBoundary {
+    public array $calls = [];
+    public function run(callable $operation): mixed
+    {
+        $this->calls[] = 'begin';
+        try {
+            $result = $operation();
+            $this->calls[] = 'commit';
+            return $result;
+        } catch (Throwable $error) {
+            $this->calls[] = 'rollback';
+            throw $error;
+        }
+    }
+};
+$templateUsecase = new \StationX\Yugioh\Application\Decks\ImportDeckTemplate($templateWriter, $templateTx);
+architectureCheck($templateUsecase->execute($templateValid) === 'deck_42', 'Template response changed');
+architectureCheck($templateWriter->calls === [['exists', 'Test'], ['create', 'Test'], ['cards', 42, ['main', 'extra', 'side', 'tech']]], 'Template write order/sections changed');
+architectureCheck($templateTx->calls === ['begin', 'commit'], 'Template transaction changed');
+$templateWriter->exists = true;
+$templateWriter->calls = [];
+$templateTx->calls = [];
+try {
+    $templateUsecase->execute($templateValid);
+    architectureCheck(false, 'Duplicate deck accepted');
+} catch (InvalidArgumentException $error) {
+    architectureCheck($error->getMessage() === 'Ya existe un deck activo con ese nombre.', 'Duplicate deck message changed');
+}
+architectureCheck($templateWriter->calls === [['exists', 'Test']] && $templateTx->calls === [], 'Duplicate deck started write');
+$templateWriter->exists = false;
+$templateWriter->fail = true;
+try {
+    $templateUsecase->execute($templateValid);
+    architectureCheck(false, 'Card failure swallowed');
+} catch (RuntimeException $error) {
+    architectureCheck($error->getMessage() === 'card write failed', 'Card error changed');
+}
+architectureCheck($templateTx->calls === ['begin', 'rollback'], 'Failed template did not roll back');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

@@ -255,6 +255,10 @@ Se extrae `ApplyLiveDuelChange` con puertos de lectura/escritura, revalidación 
 
 La ejecución 45952164505 del commit `abafcb4` finalizó correctamente tras aplicar el formateador oficial en el runner: 761 fuentes verificadas, caracterización de reglas de estado, recuperación y guardas, pruebas con dobles de lectura/escritura y los 132 contratos históricos conservados. Se incorporan los cambios exactos de formato al siguiente commit. Esta comprobación no certifica todavía las transacciones concurrentes de duelos en MySQL ni el resto de la migración.
 
+## Importación de plantillas TXT
+
+Se extrae el analizador estricto UTF-8 a dominio y la creación de deck/cartas a un caso de uso con puerto de escritura y transacción propia. El adaptador HTTP conserva validación de archivo subido, extensión y lectura; PDO conserva consultas y orden de inserción. Se conserva el nombre, cantidades y zonas históricas, incluida Reserva como tech. Se añade caracterización del parser original y pruebas de duplicado, orden de escritura y rollback con dobles. CI pendiente. El flujo ZIP ya dispone de `DeckPackageWorkflow`; quedan pruebas específicas de concurrencia y revisión de sus fronteras.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
