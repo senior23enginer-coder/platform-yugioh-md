@@ -263,6 +263,10 @@ Se extrae el analizador estricto UTF-8 a dominio y la creación de deck/cartas a
 
 Se extraen el cálculo determinista de cupos y la validación del formulario a dominio. Se separa el guardado de fuentes y clasificados a un caso de uso con puerto de escritura, manteniendo el bloqueo exterior, la transacción propia/prestada, la resolución y validación del plantel antes de escribir, las dependencias agregadas, la actualización de guardas y la auditoría final. El adaptador conserva SQL y llamadas nativas. Se añade evidencia de los cuerpos originales y regresiones de cupos, orden y fallos. La resolución completa de fuentes sigue siendo un servicio nativo pendiente. CI pendiente.
 
+## Certificación MySQL de duelos en vivo
+
+Se añade un programa de integración específico de plataforma (no de deck), con un servicio MySQL desechable independiente de estadísticas. Verifica creación inicial, bloqueo con dos conexiones y timeout esperado, rollback de estado/auditoría, conflicto de revisión, confirmación de rendición y temporada cerrada. El programa exige CI, base con nombre fijo y esquema vacío; nunca usa credenciales de aplicación. Se actualiza explícitamente el inventario de programas de prueba P06, sin cambiar controles de crecimiento ni añadir pruebas por carta. Ejecución pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

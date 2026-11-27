@@ -182,3 +182,34 @@ jobs:
           STATIONX_MYSQL_TEST: '1'
           STATIONX_MYSQL_TEST_PASSWORD: stationx_ci_only
         run: php torneos_yugioh/tests/statistics_no_cuts_test.php
+
+  live-duel-mysql:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+          MYSQL_DATABASE: stationx_live_duel_test
+          MYSQL_USER: stationx_ci
+          MYSQL_PASSWORD: stationx_ci_only
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, pdo_sqlite, pdo_mysql
+          coverage: none
+      - name: Verify isolated MySQL live-duel locks and rollback
+        env:
+          STATIONX_LIVE_DUEL_MYSQL_TEST: '1'
+          STATIONX_MYSQL_TEST_PASSWORD: stationx_ci_only
+        run: php torneos_yugioh/tests/live_duel_mysql_test.php
