@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+require_once dirname(__DIR__, 2) . '/src/autoload.php';
+
 /** Strict, UTF-8 deck template. No prompt prose or executable rules accepted. */
 function ygo_parse_deck_template(string $text): array
 {

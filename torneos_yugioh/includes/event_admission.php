@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+require_once dirname(__DIR__).'/src/autoload.php';
 require_once __DIR__.'/event_qualification.php';
 require_once __DIR__.'/event_catalog_rules.php';
 
@@ -37,25 +38,7 @@ function ygo_admission_deck_format(PDO $pdo,array $ids): string
 /** Largest remainders, deterministic by configured source order. No fractional seats. */
 function ygo_admission_quotas(array $rows,int $capacity): array
 {
-    if(!$rows || !array_is_list($rows) || count($rows)>32 || $capacity<0 || $capacity>64)throw new InvalidArgumentException('Configura entre 1 y 32 fuentes y un total de hasta 64 plazas.');
-    foreach($rows as $r)if(!is_array($r))throw new InvalidArgumentException('Fuente invalida.');
-    $percentage=count(array_filter($rows,static fn($r)=>($r['mode']??'')==='percentage'));
-    if($percentage && $percentage!==count($rows))throw new InvalidArgumentException('Usa porcentajes en todas las fuentes o cupos/campeones; no se pueden mezclar ambos sistemas.');
-    $quotas=[];$sum=0;$remainders=[];
-    foreach($rows as $i=>$r){
-        $mode=$r['mode']??'';$v=filter_var($r['value']??0,FILTER_VALIDATE_INT);
-        if(!in_array($mode,['winner','runner_up','top_n','percentage','minimum_points','best_record','group_position'],true) || (!in_array($mode,['winner','runner_up'],true) && ($v===false || $v<1 || $v>($percentage?100:64))))throw new InvalidArgumentException('Los cupos y porcentajes deben ser enteros positivos.');
-        $sum+=in_array($mode,['winner','runner_up'],true)?1:$v;
-        $quotas[$i]=$percentage?intdiv($capacity*$v,100):(in_array($mode,['winner','runner_up'],true)?1:$v);
-        if($percentage)$remainders[$i]=($capacity*$v)%100;
-    }
-    if($percentage){
-        if($sum!==100 || $capacity<2)throw new InvalidArgumentException('Los porcentajes deben sumar 100 y el total debe ser al menos 2.');
-        $order=array_keys($remainders);usort($order,static fn($a,$b)=>$remainders[$b]<=>$remainders[$a] ?: $a<=>$b);
-        foreach(array_slice($order,0,$capacity-array_sum($quotas)) as $i)$quotas[$i]++;
-    }elseif($capacity!==0 && array_sum($quotas)!==$capacity)throw new InvalidArgumentException('La suma de cupos debe coincidir exactamente con el total de plazas.');
-    if(array_sum($quotas)<2 || array_sum($quotas)>64)throw new InvalidArgumentException('La admision requiere entre 2 y 64 clasificados.');
-    return $quotas;
+    return \StationX\Yugioh\Domain\Competitions\AdmissionQuotaPolicy::quotas($rows, $capacity);
 }
 
 /** A source must actually be finished; a status label alone is not sufficient. */
@@ -149,25 +132,10 @@ function ygo_admission_save(PDO $pdo,int $target,array $rows,int $capacity): arr
 
 function ygo_admission_save_serialized(PDO $pdo,int $target,array $rows,int $capacity): array
 {
-    $owns=!$pdo->inTransaction();if($owns)$pdo->beginTransaction();
-    try{
-        $q=$pdo->prepare('SELECT * FROM sx_ygo_competitions WHERE id=? AND active=1 FOR UPDATE');$q->execute([$target]);$c=$q->fetch(PDO::FETCH_ASSOC);if(!$c)throw new InvalidArgumentException('Evento inexistente.');
-        ygo_season_require_open($pdo,(int)$c['season_id']);ygo_assert_fixture_mutable($pdo,$target);
-        if(!empty($c['configuration_locked']) || in_array(ygo_normalize_status_key((string)$c['status']),['completed','closed','cancelled','archived'],true))throw new InvalidArgumentException('La admision ya esta bloqueada por el estado del evento.');
-        $a=['version'=>'STATION_X_ADMISSION_V1','capacity'=>$capacity,'sources'=>array_values($rows),'frozen'=>false];
-        ygo_admission_assert_no_cycle($pdo,$target,$a['sources']);$resolved=ygo_admission_resolve($pdo,$c,$a,true);
-        ygo_validate_league_roster($pdo,$target,$resolved['ids']);
-        $pdo->prepare('UPDATE sx_ygo_competition_decks SET active=0 WHERE competition_id=?')->execute([$target]);
-        foreach($resolved['ids'] as $i=>$id)$pdo->prepare('INSERT INTO sx_ygo_competition_decks(competition_id,deck_id,sort_order,active) VALUES(?,?,?,1) ON DUPLICATE KEY UPDATE sort_order=VALUES(sort_order),active=1')->execute([$target,$id,$i+1]);
-        $pdo->prepare('UPDATE sx_ygo_competition_dependencies SET active=0 WHERE competition_id=?')->execute([$target]);
-        $dependencies=[];foreach($rows as $i=>$r){$sid=(int)$r['source_id'];$dependencies[$sid]=($dependencies[$sid]??0)+$resolved['quotas'][$i];}
-        foreach($dependencies as $sid=>$take)$pdo->prepare("INSERT INTO sx_ygo_competition_dependencies(season_id,competition_id,depends_on_competition_id,condition_type,take_count,active) VALUES(?,?,?,'completed_with_results',?,1) ON DUPLICATE KEY UPDATE condition_type=VALUES(condition_type),take_count=VALUES(take_count),active=1")->execute([$c['season_id'],$target,$sid,$take]);
-        $pdo->prepare("UPDATE sx_ygo_competitions SET participant_source='PREVIOUS_EVENT',deck_pool='all_active' WHERE id=?")->execute([$target]);
-        $a['selection']=$resolved;ygo_admission_store($pdo,$c,$a);
-        ygo_competition_gate($pdo,$target,true);
-        $pdo->prepare('INSERT INTO sx_ygo_audit_log(entity_type,entity_id,action,payload) VALUES(?,?,?,?)')->execute(['competition',$target,'save_event_admission',json_encode($a,JSON_UNESCAPED_UNICODE)]);
-        if($owns)$pdo->commit();return $a;
-    }catch(Throwable $e){if($owns && $pdo->inTransaction())$pdo->rollBack();throw $e;}
+    return (new \StationX\Yugioh\Application\Competitions\SaveEventAdmission(
+        new \StationX\Yugioh\Infrastructure\Persistence\Competitions\PdoAdmissionWriteStore($pdo),
+        new \StationX\Yugioh\Infrastructure\Transactions\PdoTransactionBoundary($pdo)
+    ))->execute($target, $rows, $capacity);
 }
 
 /** Called before any schedule mutation; also detects corrections to a frozen source. */

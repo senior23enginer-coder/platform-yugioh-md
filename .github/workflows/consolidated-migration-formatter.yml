@@ -22,11 +22,13 @@ jobs:
           extensions: mbstring, pdo_sqlite, pdo_mysql
           coverage: none
       - run: npm ci
-      - name: Format and verify template contracts
+      - name: Format and verify template and admission contracts
         run: |
           npm run format:architecture
           git diff --name-only
-          git diff -- torneos_yugioh/src/Domain/Decks torneos_yugioh/src/Application/Decks torneos_yugioh/src/Infrastructure/Persistence/Decks torneos_yugioh/tests/source_architecture_test.php
+          git diff -- torneos_yugioh/src/Domain/Decks torneos_yugioh/src/Application/Decks torneos_yugioh/src/Infrastructure/Persistence/Decks torneos_yugioh/src/Domain/Competitions torneos_yugioh/src/Application/Competitions torneos_yugioh/src/Infrastructure/Persistence/Competitions torneos_yugioh/src/Infrastructure/Http/FormActions torneos_yugioh/tests/source_architecture_test.php
           php torneos_yugioh/tests/source_architecture_test.php
           php torneos_yugioh/tests/legacy_function_contract_test.php
+          php torneos_yugioh/tests/form_command_architecture_test.php
+          php torneos_yugioh/tests/event_admission_test.php
           npm run format:architecture:check
