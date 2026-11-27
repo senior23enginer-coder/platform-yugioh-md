@@ -295,6 +295,8 @@ La ejecución 45955490597 del commit `d9cd7af` pasó las comparaciones del calen
 
 Se extraen normalización de estado, proyecciones de fases/partidas, lectura preventiva, selección de clasificatorios y rangos. El controlador de envío recibe explícitamente sus controles y funciones de validación, sin depender de la clausura compartida ni del acceso directo a alertas globales. Se conserva el orden de guardas, confirmaciones y envío. Se agregan comparaciones con los cuerpos originales y casos aislados. CI pendiente.
 
+La ejecución 45955756118 del commit `e243ba2` pasó las comparaciones del calendario, participantes y planificación/envío de eventos, con 792 fuentes formateadas y 46 fragmentos JavaScript / 37 CSS reconstruidos. Se incorpora el formato oficial y se retira el workflow temporal; CI integral del commit final pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
