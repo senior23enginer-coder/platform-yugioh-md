@@ -267,6 +267,10 @@ Se extraen el cálculo determinista de cupos y la validación del formulario a d
 
 Se añade un programa de integración específico de plataforma (no de deck), con un servicio MySQL desechable independiente de estadísticas. Verifica creación inicial, bloqueo con dos conexiones y timeout esperado, rollback de estado/auditoría, conflicto de revisión, confirmación de rendición y temporada cerrada. El programa exige CI, base con nombre fijo y esquema vacío; nunca usa credenciales de aplicación. Se actualiza explícitamente el inventario de programas de prueba P06, sin cambiar controles de crecimiento ni añadir pruebas por carta. Ejecución pendiente.
 
+## Evidencia de plantillas y admisión (27 de noviembre)
+
+La regresión integral del commit `3d978de` terminó con los tres trabajos correctos (45952269737). La ejecución aislada 45952785058 del commit `234a264` pasó las pruebas de arquitectura, 132 contratos históricos, 55 comparaciones originales/migradas de comandos, 269 comprobaciones de enrutamiento y contexto, 4.103 aserciones de cupos y 637 escenarios de paridad, además de verificar 770 fuentes mediante el formateador. Se aplica su salida exacta en el siguiente commit. La nueva prueba MySQL de duelos requiere ejecución separada.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

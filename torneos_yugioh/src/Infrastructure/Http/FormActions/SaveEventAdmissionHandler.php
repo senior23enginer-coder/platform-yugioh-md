@@ -10,7 +10,9 @@ final class SaveEventAdmissionHandler extends NativeFormHandler
 {
     protected function perform(PDO $pdo, string $action, array $post, array $files): ?string
     {
-        [$id, $rows, $capacity] = \StationX\Yugioh\Domain\Competitions\AdmissionFormInput::parse($post);
+        [$id, $rows, $capacity] = \StationX\Yugioh\Domain\Competitions\AdmissionFormInput::parse(
+            $post,
+        );
         ygo_admission_save($pdo, $id, $rows, $capacity);
         return 'evento_configurado_' . $id;
     }

@@ -22,10 +22,24 @@ final readonly class SaveEventAdmission
             }
             $this->store->requireOpen((int) $c['season_id']);
             $this->store->assertMutable($target);
-            if (!empty($c['configuration_locked']) || in_array($this->store->normalizedStatus((string) $c['status']), ['completed', 'closed', 'cancelled', 'archived'], true)) {
-                throw new InvalidArgumentException('La admision ya esta bloqueada por el estado del evento.');
+            if (
+                !empty($c['configuration_locked']) ||
+                in_array(
+                    $this->store->normalizedStatus((string) $c['status']),
+                    ['completed', 'closed', 'cancelled', 'archived'],
+                    true,
+                )
+            ) {
+                throw new InvalidArgumentException(
+                    'La admision ya esta bloqueada por el estado del evento.',
+                );
             }
-            $a = ['version' => 'STATION_X_ADMISSION_V1', 'capacity' => $capacity, 'sources' => array_values($rows), 'frozen' => false];
+            $a = [
+                'version' => 'STATION_X_ADMISSION_V1',
+                'capacity' => $capacity,
+                'sources' => array_values($rows),
+                'frozen' => false,
+            ];
             $this->store->assertNoCycle($target, $a['sources']);
             $resolved = $this->store->resolve($c, $a);
             $this->store->validateRoster($target, $resolved['ids']);

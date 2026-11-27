@@ -3667,10 +3667,32 @@ architectureCheck(
 );
 
 // TXT import: compare the preserved parser and keep inventory creation atomic.
-$templateOriginal = json_decode(file_get_contents(__DIR__ . '/fixtures/deck-template-original.json'), true, flags: JSON_THROW_ON_ERROR);
-eval(str_replace('function ygo_parse_deck_template(', 'function architectureOriginalDeckTemplate(', $templateOriginal['parser']));
-$templateValid = "# STATIONX-DECK-TEMPLATE/1\n[DECK]\nnombre=Test\narquetipo=Machine\n[MAIN]\n2;Card A\n[EXTRA]\n1;Card B\n[SIDE]\n1;Card C\n[RESERVA]\n3;Card D";
-foreach ([$templateValid, "\xEF\xBB\xBF" . $templateValid, str_replace("\n", "\r\n", $templateValid), '', 'invalid', str_replace('2;Card A', '4;Card A', $templateValid), str_replace('[RESERVA]', '[UNKNOWN]', $templateValid)] as $templateCase) {
+$templateOriginal = json_decode(
+    file_get_contents(__DIR__ . '/fixtures/deck-template-original.json'),
+    true,
+    flags: JSON_THROW_ON_ERROR,
+);
+eval(
+    str_replace(
+        'function ygo_parse_deck_template(',
+        'function architectureOriginalDeckTemplate(',
+        $templateOriginal['parser'],
+    )
+);
+$templateValid =
+    "# STATIONX-DECK-TEMPLATE/1\n[DECK]\nnombre=Test\narquetipo=Machine\n[MAIN]\n2;Card A\n[EXTRA]\n1;Card B\n[SIDE]\n1;Card C\n[RESERVA]\n3;Card D";
+foreach (
+    [
+        $templateValid,
+        "\xEF\xBB\xBF" . $templateValid,
+        str_replace("\n", "\r\n", $templateValid),
+        '',
+        'invalid',
+        str_replace('2;Card A', '4;Card A', $templateValid),
+        str_replace('[RESERVA]', '[UNKNOWN]', $templateValid),
+    ]
+    as $templateCase
+) {
     $evaluateTemplate = static function (callable $parse) use ($templateCase): array {
         try {
             return ['ok' => $parse($templateCase)];
@@ -3678,7 +3700,11 @@ foreach ([$templateValid, "\xEF\xBB\xBF" . $templateValid, str_replace("\n", "\r
             return ['error' => $error->getMessage()];
         }
     };
-    architectureCheck($evaluateTemplate('architectureOriginalDeckTemplate') === $evaluateTemplate([\StationX\Yugioh\Domain\Decks\DeckTemplate::class, 'parse']), 'Template parser changed');
+    architectureCheck(
+        $evaluateTemplate('architectureOriginalDeckTemplate') ===
+            $evaluateTemplate([\StationX\Yugioh\Domain\Decks\DeckTemplate::class, 'parse']),
+        'Template parser changed',
+    );
 }
 $templateWriter = new class implements \StationX\Yugioh\Application\Decks\DeckTemplateWriter {
     public array $calls = [];
@@ -3717,9 +3743,22 @@ $templateTx = new class implements \StationX\Yugioh\Application\Shared\Transacti
         }
     }
 };
-$templateUsecase = new \StationX\Yugioh\Application\Decks\ImportDeckTemplate($templateWriter, $templateTx);
-architectureCheck($templateUsecase->execute($templateValid) === 'deck_42', 'Template response changed');
-architectureCheck($templateWriter->calls === [['exists', 'Test'], ['create', 'Test'], ['cards', 42, ['main', 'extra', 'side', 'tech']]], 'Template write order/sections changed');
+$templateUsecase = new \StationX\Yugioh\Application\Decks\ImportDeckTemplate(
+    $templateWriter,
+    $templateTx,
+);
+architectureCheck(
+    $templateUsecase->execute($templateValid) === 'deck_42',
+    'Template response changed',
+);
+architectureCheck(
+    $templateWriter->calls === [
+        ['exists', 'Test'],
+        ['create', 'Test'],
+        ['cards', 42, ['main', 'extra', 'side', 'tech']],
+    ],
+    'Template write order/sections changed',
+);
 architectureCheck($templateTx->calls === ['begin', 'commit'], 'Template transaction changed');
 $templateWriter->exists = true;
 $templateWriter->calls = [];
@@ -3728,9 +3767,15 @@ try {
     $templateUsecase->execute($templateValid);
     architectureCheck(false, 'Duplicate deck accepted');
 } catch (InvalidArgumentException $error) {
-    architectureCheck($error->getMessage() === 'Ya existe un deck activo con ese nombre.', 'Duplicate deck message changed');
+    architectureCheck(
+        $error->getMessage() === 'Ya existe un deck activo con ese nombre.',
+        'Duplicate deck message changed',
+    );
 }
-architectureCheck($templateWriter->calls === [['exists', 'Test']] && $templateTx->calls === [], 'Duplicate deck started write');
+architectureCheck(
+    $templateWriter->calls === [['exists', 'Test']] && $templateTx->calls === [],
+    'Duplicate deck started write',
+);
 $templateWriter->exists = false;
 $templateWriter->fail = true;
 try {
@@ -3739,49 +3784,160 @@ try {
 } catch (RuntimeException $error) {
     architectureCheck($error->getMessage() === 'card write failed', 'Card error changed');
 }
-architectureCheck($templateTx->calls === ['begin', 'rollback'], 'Failed template did not roll back');
+architectureCheck(
+    $templateTx->calls === ['begin', 'rollback'],
+    'Failed template did not roll back',
+);
 
 // Admission quotas retain exact deterministic remainders; write coordination uses the same transaction boundary.
-$admissionOriginal = json_decode(file_get_contents(__DIR__ . '/fixtures/admission-write-originals.json'), true, flags: JSON_THROW_ON_ERROR);
-eval(str_replace('function ygo_admission_quotas(', 'function architectureOriginalAdmissionQuotas(', $admissionOriginal['quotas']));
+$admissionOriginal = json_decode(
+    file_get_contents(__DIR__ . '/fixtures/admission-write-originals.json'),
+    true,
+    flags: JSON_THROW_ON_ERROR,
+);
+eval(
+    str_replace(
+        'function ygo_admission_quotas(',
+        'function architectureOriginalAdmissionQuotas(',
+        $admissionOriginal['quotas'],
+    )
+);
 $quotaRows = [['mode' => 'percentage', 'value' => 50], ['mode' => 'percentage', 'value' => 50]];
 foreach (range(2, 64) as $quotaCapacity) {
-    architectureCheck(\StationX\Yugioh\Domain\Competitions\AdmissionQuotaPolicy::quotas($quotaRows, $quotaCapacity) === architectureOriginalAdmissionQuotas($quotaRows, $quotaCapacity), 'Admission quota changed');
+    architectureCheck(
+        \StationX\Yugioh\Domain\Competitions\AdmissionQuotaPolicy::quotas(
+            $quotaRows,
+            $quotaCapacity,
+        ) === architectureOriginalAdmissionQuotas($quotaRows, $quotaCapacity),
+        'Admission quota changed',
+    );
 }
-$admissionInput = \StationX\Yugioh\Domain\Competitions\AdmissionFormInput::parse(['competition_id' => 7, 'admission_sources_json' => '[{"source_id":3}]', 'admission_capacity' => '2']);
-architectureCheck($admissionInput === [7, [['source_id' => 3]], 2], 'Admission form contract changed');
-$admissionStore = new class implements \StationX\Yugioh\Application\Competitions\AdmissionWriteStore {
+$admissionInput = \StationX\Yugioh\Domain\Competitions\AdmissionFormInput::parse([
+    'competition_id' => 7,
+    'admission_sources_json' => '[{"source_id":3}]',
+    'admission_capacity' => '2',
+]);
+architectureCheck(
+    $admissionInput === [7, [['source_id' => 3]], 2],
+    'Admission form contract changed',
+);
+$admissionStore = new class implements \StationX\Yugioh\Application\Competitions\AdmissionWriteStore
+{
     public array $calls = [];
     public array $competition = ['season_id' => 1, 'status' => 'active'];
     public bool $fail = false;
-    public function lockedCompetition(int $target): array { $this->calls[] = 'lock'; return $this->competition; }
-    public function requireOpen(int $seasonId): void { $this->calls[] = 'season'; }
-    public function assertMutable(int $target): void { $this->calls[] = 'mutable'; }
-    public function normalizedStatus(string $status): string { $this->calls[] = 'status'; return $status; }
-    public function assertNoCycle(int $target, array $sources): void { $this->calls[] = 'cycle'; }
-    public function resolve(array $competition, array $admission): array { $this->calls[] = 'resolve'; return ['ids' => [4, 5], 'quotas' => [1, 1]]; }
-    public function validateRoster(int $target, array $ids): void { $this->calls[] = 'validate'; if ($this->fail) throw new RuntimeException('roster failure'); }
-    public function replaceDecks(int $target, array $ids): void { $this->calls[] = ['decks', $ids]; }
-    public function clearDependencies(int $target): void { $this->calls[] = 'clear'; }
-    public function writeDependencies(array $competition, int $target, array $dependencies): void { $this->calls[] = ['dependencies', $dependencies]; }
-    public function setParticipantSource(int $target): void { $this->calls[] = 'source'; }
-    public function store(array $competition, array $admission): void { $this->calls[] = 'store'; }
-    public function refreshGate(int $target): void { $this->calls[] = 'gate'; }
-    public function audit(int $target, array $admission): void { $this->calls[] = 'audit'; }
+    public function lockedCompetition(int $target): array
+    {
+        $this->calls[] = 'lock';
+        return $this->competition;
+    }
+    public function requireOpen(int $seasonId): void
+    {
+        $this->calls[] = 'season';
+    }
+    public function assertMutable(int $target): void
+    {
+        $this->calls[] = 'mutable';
+    }
+    public function normalizedStatus(string $status): string
+    {
+        $this->calls[] = 'status';
+        return $status;
+    }
+    public function assertNoCycle(int $target, array $sources): void
+    {
+        $this->calls[] = 'cycle';
+    }
+    public function resolve(array $competition, array $admission): array
+    {
+        $this->calls[] = 'resolve';
+        return ['ids' => [4, 5], 'quotas' => [1, 1]];
+    }
+    public function validateRoster(int $target, array $ids): void
+    {
+        $this->calls[] = 'validate';
+        if ($this->fail) {
+            throw new RuntimeException('roster failure');
+        }
+    }
+    public function replaceDecks(int $target, array $ids): void
+    {
+        $this->calls[] = ['decks', $ids];
+    }
+    public function clearDependencies(int $target): void
+    {
+        $this->calls[] = 'clear';
+    }
+    public function writeDependencies(array $competition, int $target, array $dependencies): void
+    {
+        $this->calls[] = ['dependencies', $dependencies];
+    }
+    public function setParticipantSource(int $target): void
+    {
+        $this->calls[] = 'source';
+    }
+    public function store(array $competition, array $admission): void
+    {
+        $this->calls[] = 'store';
+    }
+    public function refreshGate(int $target): void
+    {
+        $this->calls[] = 'gate';
+    }
+    public function audit(int $target, array $admission): void
+    {
+        $this->calls[] = 'audit';
+    }
 };
-$admissionUsecase = new \StationX\Yugioh\Application\Competitions\SaveEventAdmission($admissionStore, $templateTx);
+$admissionUsecase = new \StationX\Yugioh\Application\Competitions\SaveEventAdmission(
+    $admissionStore,
+    $templateTx,
+);
 $templateTx->calls = [];
 $admissionRows = [['source_id' => 3], ['source_id' => 3]];
 $admissionResult = $admissionUsecase->execute(7, $admissionRows, 2);
 architectureCheck($admissionResult['selection']['ids'] === [4, 5], 'Admission selection changed');
-architectureCheck($admissionStore->calls === ['lock', 'season', 'mutable', 'status', 'cycle', 'resolve', 'validate', ['decks', [4, 5]], 'clear', ['dependencies', [3 => 2]], 'source', 'store', 'gate', 'audit'], 'Admission order changed');
+architectureCheck(
+    $admissionStore->calls === [
+        'lock',
+        'season',
+        'mutable',
+        'status',
+        'cycle',
+        'resolve',
+        'validate',
+        ['decks', [4, 5]],
+        'clear',
+        ['dependencies', [3 => 2]],
+        'source',
+        'store',
+        'gate',
+        'audit',
+    ],
+    'Admission order changed',
+);
 architectureCheck($templateTx->calls === ['begin', 'commit'], 'Admission transaction changed');
 $admissionStore->calls = [];
 $templateTx->calls = [];
 $admissionStore->fail = true;
-try { $admissionUsecase->execute(7, $admissionRows, 2); architectureCheck(false, 'Invalid roster accepted'); }
-catch (RuntimeException $error) { architectureCheck($error->getMessage() === 'roster failure', 'Admission error changed'); }
-architectureCheck($admissionStore->calls === ['lock', 'season', 'mutable', 'status', 'cycle', 'resolve', 'validate'], 'Invalid roster modified data');
+try {
+    $admissionUsecase->execute(7, $admissionRows, 2);
+    architectureCheck(false, 'Invalid roster accepted');
+} catch (RuntimeException $error) {
+    architectureCheck($error->getMessage() === 'roster failure', 'Admission error changed');
+}
+architectureCheck(
+    $admissionStore->calls === [
+        'lock',
+        'season',
+        'mutable',
+        'status',
+        'cycle',
+        'resolve',
+        'validate',
+    ],
+    'Invalid roster modified data',
+);
 architectureCheck($templateTx->calls === ['begin', 'rollback'], 'Admission rollback changed');
 
 // Enforce inward dependencies, including code added after this refactor.
