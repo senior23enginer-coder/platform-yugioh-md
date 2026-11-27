@@ -129,22 +129,10 @@
     `;
   }
   function normalizeCompetitionStatus(status) {
-    const normalized = normalizeStatusKey(status);
-    if (['draft', ''].includes(normalized)) return 'pending_configuration';
-    if (['cancelled', 'canceled', 'anulado', 'anulada'].includes(normalized)) return 'cancelled';
-    if (['finalizada', 'finalizado', 'finalized'].includes(normalized)) return 'completed';
-    if (['pendiente_evento'].includes(normalized)) return 'pending_event';
-    if (['pendiente_configuracion'].includes(normalized)) return 'pending_configuration';
-    return String(status || 'pending_configuration');
+    return window.StationXEventPlanning.normalizeCompetitionStatus(status, normalizeStatusKey);
   }
   function competitionStatusLabel(status) {
-    return {
-      pending_configuration: 'Pendiente configuracion',
-      pending_event: 'Programado',
-      active: 'Activo',
-      completed: 'Finalizado',
-      cancelled: 'Anulado'
-    }[normalizeCompetitionStatus(status)] || status || 'Pendiente configuracion';
+    return window.StationXEventPlanning.competitionStatusLabel(status, normalizeStatusKey);
   }
   function competitionIsCancelled(status) {
     return normalizeCompetitionStatus(status) === 'cancelled';

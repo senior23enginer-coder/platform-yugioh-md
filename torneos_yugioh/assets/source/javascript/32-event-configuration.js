@@ -152,16 +152,7 @@
     });
   }
   function completedQualifierOptions() {
-    const targetDivisionId = selectedCompetitionDivisionId();
-    return (data.competitions || [])
-      .filter((competition) => {
-        if (String(competition.type || '') !== 'qualifier') return false;
-        if (normalizeCompetitionStatus(competition.status) !== 'completed') return false;
-        const ranking = Array.isArray(competition.ranking) ? competition.ranking : [];
-        if (!ranking.length) return false;
-        return !targetDivisionId || String(competition.division_id || '') === String(targetDivisionId);
-      })
-      .sort((a, b) => String(b.ends_on || b.starts_on || b.created_at || '').localeCompare(String(a.ends_on || a.starts_on || a.created_at || '')) || Number(b.id || 0) - Number(a.id || 0));
+    return window.StationXEventPlanning.completedQualifierOptions(data, selectedCompetitionDivisionId, normalizeCompetitionStatus);
   }
   function selectedQualifierLoad() {
     return completedQualifierOptions().find((competition) => String(competition.id || '') === String(activeQualifierLoadId || '')) || null;
@@ -204,15 +195,9 @@
   }
   function qualifierLoadRange() {
     const qualifier = selectedQualifierLoad();
-    const ranking = Array.isArray(qualifier?.ranking) ? qualifier.ranking : [];
     const fromInput = qualifierLoadModalNode?.querySelector('[data-qualifier-load-from]');
     const toInput = qualifierLoadModalNode?.querySelector('[data-qualifier-load-to]');
-    const from = Math.max(1, Number.parseInt(String(fromInput?.value || '1'), 10) || 1);
-    const to = Math.max(1, Number.parseInt(String(toInput?.value || '1'), 10) || 1);
-    const start = Math.min(from, to);
-    const end = Math.max(from, to);
-    const selectedRows = ranking.slice(start - 1, end);
-    return { qualifier, ranking, from: start, to: end, selectedRows };
+    return window.StationXEventPlanning.qualifierLoadRange(qualifier, fromInput?.value, toInput?.value);
   }
   function renderQualifierLoadPreview() {
     if (!qualifierLoadModalNode) return;

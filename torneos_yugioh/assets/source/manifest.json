@@ -5,6 +5,38 @@
       "responsibility": "offline queue storage and identity port"
     },
     {
+      "file": "javascript/shared/calendar-policy.js",
+      "responsibility": "calendar timing and playable-date policy"
+    },
+    {
+      "file": "javascript/shared/fixture-policy.js",
+      "responsibility": "fixture rule precedence and standings projection"
+    },
+    {
+      "file": "javascript/shared/browser-transport.js",
+      "responsibility": "HTTP transport ports for duel, offline and live polling"
+    },
+    {
+      "file": "javascript/shared/duel-timer-policy.js",
+      "responsibility": "duel timer clock and storage policy"
+    },
+    {
+      "file": "javascript/shared/lp-state-policy.js",
+      "responsibility": "life-point state normalization and persistence"
+    },
+    {
+      "file": "javascript/shared/calendar-projection.js",
+      "responsibility": "calendar event, alert and scope projections"
+    },
+    {
+      "file": "javascript/shared/participant-policy.js",
+      "responsibility": "participant eligibility policies and manual match controller"
+    },
+    {
+      "file": "javascript/shared/event-planning.js",
+      "responsibility": "event planning and submission controller"
+    },
+    {
       "file": "javascript/00-startup.js",
       "responsibility": "startup"
     },

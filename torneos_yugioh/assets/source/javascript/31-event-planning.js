@@ -27,17 +27,13 @@
   }
 
   function competitionMatchesFor(competitionId) {
-    return allMatchList().filter((match) => String(match.competition_id || '') === String(competitionId || ''));
+    return window.StationXEventPlanning.competitionMatchesFor(competitionId, allMatchList);
   }
   function competitionMatchIsFinalized(match) {
-    return ['FINALIZADA', 'completed', 'finalizada'].includes(String(match.estado || match.status || ''));
+    return window.StationXEventPlanning.competitionMatchIsFinalized(match);
   }
   function latestCompetitionPhase(matches) {
-    const phaseOrder = { qualifier: 1, swiss: 2, groups: 3, league: 4, cup: 5, top_cut: 6, playoff: 7, final: 8 };
-    return matches.slice().sort((left, right) =>
-      (phaseOrder[String(right.phase || '').toLowerCase()] || 0) - (phaseOrder[String(left.phase || '').toLowerCase()] || 0)
-      || Number(right.ronda || right.round_number || 0) - Number(left.ronda || left.round_number || 0)
-    )[0]?.phase || '';
+    return window.StationXEventPlanning.latestCompetitionPhase(matches);
   }
   function renderCompetitionActionPreview(competition) {
     const node = document.querySelector('[data-competition-action-preview]');
@@ -46,54 +42,7 @@
       node.innerHTML = '<strong>Lectura preventiva</strong><span>Selecciona un evento activo para ver si puede avanzar, aplicar divisiones o mover equipos.</span>';
       return;
     }
-    const matches = competitionMatchesFor(competition.id);
-    const pending = matches.filter((match) => !competitionMatchIsFinalized(match)).length;
-    const completed = matches.length - pending;
-    const phase = latestCompetitionPhase(matches) || competition.phase_structure || competition.type || 'evento';
-    const divisions = Object.values(data.divisions || {}).filter((division) => String(division.source_qualifier_id || '') === String(competition.id || ''));
-    const standings = Array.isArray(competition.ranking) ? competition.ranking : [];
-    const lines = [];
-    if (!matches.length) {
-      lines.push('No hay combates programados todavia; primero genera calendario o guarda participantes.');
-    } else if (pending > 0) {
-      lines.push(`Faltan ${pending} de ${matches.length} combates por cerrar en ${phase}; no conviene avanzar fase todavia.`);
-    } else {
-      const normalizedPhase = String(phase).toLowerCase();
-      const winners = matches.filter((match) => ['A', 'B'].includes(String(match.result || '').toUpperCase())).length;
-      if (['cup', 'final', 'single_elimination', 'top_cut', 'playoff'].includes(normalizedPhase)) {
-        const nextMatches = Math.floor(winners / 2);
-        lines.push(nextMatches > 0
-          ? `Fase actual cerrada: puede crear exactamente ${nextMatches} combate(s) de la siguiente llave.`
-          : 'Fase actual cerrada: no hay suficientes ganadores para crear otra ronda.');
-      } else if (competition.type === 'league' && ['season_playoffs', 'playoffs'].includes(String(competition.execution_model || ''))) {
-        const nextMatches = Math.max(1, Math.floor(Math.min(standings.length || winners || completed, 8) / 2));
-        lines.push(`Liga cerrada: puede crear hasta ${nextMatches} combate(s) de playoff segun ranking.`);
-      } else if (competition.type === 'league') {
-        lines.push('Liga de fase unica: al cerrar todos los combates se finaliza la tabla; no existe una fase siguiente.');
-      } else {
-        const nextMatches = Math.max(1, Math.min(8, Math.ceil((standings.length || winners || completed) / 4)));
-        lines.push(`Fase actual cerrada: puede crear ${nextMatches} combate(s) segun modelo y ranking.`);
-      }
-    }
-    if (['cup', 'tournament'].includes(String(competition.type || ''))) {
-      const deckCount = Number(competition.deck_pool_count || (competition.selected_deck_ids || []).length || 0);
-      if (deckCount > 0 && deckCount % 2 !== 0) {
-        lines.push(`Roster impar: hay ${deckCount} decks. Quita 1 deck desde Decks participantes para poder programar la copa.`);
-      }
-    }
-    if (competition.type === 'qualifier') {
-      lines.push(divisions.length
-        ? `Divisiones conectadas: ${divisions.length}. Aplicar divisiones movera decks segun rangos guardados.`
-        : 'No hay divisiones conectadas a este clasificatorio; configura rangos antes de aplicar divisiones.');
-    }
-    if (competition.type === 'league' && Number(competition.division_count || 0) > 1) {
-      const lock = String(competition.lock_division_moves || '0') === '1';
-      const up = Number(competition.promotion_slots || 0);
-      const down = Number(competition.relegation_slots || 0);
-      lines.push(lock
-        ? 'Ascensos/descensos bloqueados para esta liga: la accion no movera decks.'
-        : 'Configura los cupos por division en Ascenso y descenso. Requiere liga finalizada y ranking calculado.');
-    }
+    const lines = window.StationXEventPlanning.competitionPreviewLines(competition, allMatchList, data.divisions);
     node.innerHTML = `<strong>Lectura preventiva</strong>${lines.map((line) => `<span>${escapeHtml(line)}</span>`).join('')}`;
   }
   function renderEventMainChoices(competition) {

@@ -3043,6 +3043,1281 @@ architectureCheck($qualifierDisplay['roundCount'] === 1, 'Qualifier round count 
 architectureCheck($qualifierDisplay['scheduledCount'] === 2, 'Qualifier scheduled count changed');
 architectureCheck($qualifierDisplay['finishedCount'] === 1, 'Qualifier finished count changed');
 
+// Dashboard and qualifier projections preserve the original visible order and totals.
+$dashboardProjection = \StationX\Yugioh\Application\Presentation\DashboardProjection::class;
+$dashboardEvents = $dashboardProjection::eventsByFormat(
+    [
+        ['id' => 1, 'status' => 'active', 'division_code' => 'A'],
+        ['id' => 2, 'status' => 'draft', 'division_code' => 'A'],
+        ['id' => 3, 'status' => 'ACTIVO', 'event_ruleset' => 'tcg'],
+    ],
+    ['tcg' => 'TCG'],
+);
+architectureCheck(
+    array_keys($dashboardEvents) === ['A', 'TCG'],
+    'Dashboard format grouping changed',
+);
+$dashboardFixture = [
+    'APEX' => [
+        [
+            'ronda' => 1,
+            'matches' => [
+                [
+                    'id' => 1,
+                    'a' => 'A',
+                    'b' => 'B',
+                    'score' => '2-0',
+                    'scheduled_on' => '2026-11-26',
+                    'competition_id' => 1,
+                ],
+                ['id' => 2, 'a' => 'A', 'b' => 'C', 'estado' => 'PENDIENTE'],
+            ],
+        ],
+    ],
+];
+$labeler = static fn(
+    array $match,
+    string $code,
+    int|string $round,
+    array $labels,
+): string => $code . '-' . $round;
+[$events, $active, $total, $finished] = $dashboardProjection::fixtureCounts(
+    $dashboardEvents,
+    $dashboardFixture,
+);
+architectureCheck($active === 2 && $total === 2 && $finished === 1, 'Dashboard counts changed');
+$recent = $dashboardProjection::recentResults($dashboardFixture, '2026-11-26', [], $labeler);
+architectureCheck(count($recent) === 1 && $recent[0]['score'] === '2-0', 'Recent result changed');
+[$matches, $byCompetition, $byPhase, $usage, $today] = $dashboardProjection::matches(
+    $dashboardFixture,
+    [],
+    static fn(string $deck): string => $deck,
+    $labeler,
+    '2026-11-26',
+);
+architectureCheck(array_column($matches, 'id') === [1, 2], 'Dashboard ordering changed');
+architectureCheck(
+    $byCompetition[1]['finalized'] === 1 && $byPhase['apex']['pending'] === 1,
+    'Dashboard group totals changed',
+);
+architectureCheck(
+    $usage === ['A' => 2, 'B' => 1, 'C' => 1] && count($today) === 1,
+    'Dashboard usage changed',
+);
+$qualifierProgressClass =
+    \StationX\Yugioh\Application\Presentation\QualifierProgressProjection::class;
+$qualifierDecks = [
+    ['id' => 1, 'name' => 'A', 'rank' => 1, 'division' => 'APEX'],
+    ['id' => 2, 'name' => 'B', 'rank' => 2, 'division' => 'APEX'],
+];
+[$pairings, $progress, $ranking, $rankingMap, $ready] = $qualifierProgressClass::build(
+    $qualifierDecks,
+    2,
+    null,
+    [],
+    0,
+    static fn(string $url): string => $url,
+);
+architectureCheck($pairings[0]['rivals'] === ['B'], 'Qualifier pairing changed');
+architectureCheck($progress[0]['remaining'] === 2 && $ready === 0, 'Qualifier progress changed');
+architectureCheck(
+    \StationX\Yugioh\Application\Presentation\AuditSummaryProjection::build([
+        ['action' => 'a'],
+        ['action' => 'b'],
+        ['action' => 'b'],
+    ]) === ['b' => 2, 'a' => 1],
+    'Audit aggregation changed',
+);
+
+// Preserve selection priority, deck-format mapping and dashboard counters.
+$selection = \StationX\Yugioh\Application\Presentation\QualifierSelectionProjection::class;
+$normalizeStatus = static fn(string $status): string => strtolower($status);
+$qualifierCandidates = [
+    ['id' => 1, 'type' => 'qualifier', 'status' => 'active', 'can_execute' => false],
+    ['id' => 2, 'type' => 'qualifier', 'status' => 'ACTIVE', 'selected_deck_ids' => [2]],
+    [
+        'id' => 3,
+        'type' => 'qualifier',
+        'status' => 'pending_event',
+        'qualifier_duels_per_deck' => 9,
+    ],
+];
+[
+    $first,
+    $qualifiers,
+    $pending,
+    $active,
+    $requested,
+    $requestedCompetition,
+    $detail,
+    $ids,
+] = $selection::select(
+    $qualifierCandidates,
+    3,
+    static fn(array $event): bool => $event['status'] === 'pending_event',
+    $normalizeStatus,
+);
+architectureCheck(
+    $first['id'] === 1 && $active['id'] === 2 && $requestedCompetition['id'] === 3,
+    'Qualifier selection changed',
+);
+architectureCheck(
+    $detail && count($pending) === 1 && count($ids) === 3,
+    'Qualifier directory changed',
+);
+[
+    $display,
+    $displayId,
+    $selectedIds,
+    $selectedMap,
+    $selectedDecks,
+    $required,
+    $perDay,
+] = $selection::display($requestedCompetition, $active, $first, []);
+architectureCheck(
+    $displayId === 3 && $required === 5 && $perDay === 1,
+    'Qualifier display constraints changed',
+);
+architectureCheck(
+    $selection::status($display, $normalizeStatus)[2] === 'Pendiente evento',
+    'Qualifier status label changed',
+);
+$formats = \StationX\Yugioh\Application\Presentation\DeckFormatProjection::class;
+[$rulesetOptions, $formatOptions] = $formats::options(
+    [],
+    ['custom' => 'Custom', 'tcg' => 'TCG', 'goat' => 'GOAT'],
+);
+architectureCheck(array_keys($formatOptions) === ['tcg', 'goat'], 'Format options changed');
+[$formatIds, $formattedDecks] = $formats::assign(
+    [['id' => 1], ['id' => 2]],
+    $formatOptions,
+    static fn(string $code): array => $code === 'tcg' ? [1, 1] : [1, 2],
+);
+architectureCheck(
+    $formattedDecks[0]['format_codes'] === ['tcg', 'goat'],
+    'Format deduplication changed',
+);
+architectureCheck($formattedDecks[1]['format_codes'] === ['goat'], 'Format assignment changed');
+architectureCheck(
+    $formats::assign([['id' => 1]], $formatOptions, null)[1][0]['format_codes'] === [],
+    'Disconnected projection changed',
+);
+$dashboardSummary = \StationX\Yugioh\Application\Presentation\DashboardSummaryProjection::build(
+    [['status' => 'pending_configuration'], ['status' => 'completed', 'starts_on' => '2026-11-26']],
+    [['active' => 1]],
+    [['team_id' => 2], ['cover_url' => 'a']],
+    $dashboardFixture,
+    [],
+    $normalizeStatus,
+);
+architectureCheck(
+    array_slice($dashboardSummary, 0, 10) === [1, 0, 1, 0, 1, 1, 1, 1, 1, 1],
+    'Dashboard summary changed',
+);
+
+// Competition read-model projection uses only its narrow service port, with native order and fallbacks.
+$competitionReadPort = new class implements
+    \StationX\Yugioh\Application\ReadModel\CompetitionReadModelServices
+{
+    public array $calls = [];
+    public function dependencies(): array
+    {
+        $this->calls[] = 'dependencies';
+        return [['id' => 1]];
+    }
+    public function progressGroups(): array
+    {
+        $this->calls[] = 'groups';
+        return [7 => ['rows']];
+    }
+    public function progress(array $rows, bool $knockout): array
+    {
+        $this->calls[] = 'progress';
+        return ['rows' => $rows, 'knockout' => $knockout];
+    }
+    public function gate(int $id): array
+    {
+        $this->calls[] = 'gate-' . $id;
+        return ['dependencies' => [], 'can_execute' => $id === 7, 'message' => 'gate'];
+    }
+    public function allowedDecks(int $id, int $divisionId): array
+    {
+        $this->calls[] = 'allowed-' . $id . '-' . $divisionId;
+        if ($id === 8) {
+            throw new RuntimeException('unavailable');
+        }
+        return [1, 2];
+    }
+    public function standings(int $id): array
+    {
+        $this->calls[] = 'standings-' . $id;
+        return [['id' => 1, 'pts' => 3]];
+    }
+};
+$competitionModel = (new \StationX\Yugioh\Application\ReadModel\ProjectCompetitionReadModel(
+    $competitionReadPort,
+))->execute(
+    [['id' => 2, 'league_competition_id' => 7], ['id' => 2, 'league_competition_id' => 7]],
+    [['competition_id' => 7, 'deck_id' => 1], ['competition_id' => 7, 'deck_id' => 2]],
+    [['id' => 1, 'team_id' => 5], ['id' => 2, 'team_id' => 5]],
+    [['id' => 7, 'division_id' => 3, 'type' => 'cup'], ['id' => 8, 'type' => 'world']],
+    [
+        'A' => [
+            [
+                'matches' => [
+                    ['competition_id' => 7],
+                    ['competition_id' => 8],
+                    ['competition_id' => 9],
+                    ['competition_id' => 0],
+                ],
+            ],
+        ],
+    ],
+);
+architectureCheck(
+    $competitionReadPort->calls === [
+        'dependencies',
+        'groups',
+        'progress',
+        'gate-7',
+        'allowed-7-3',
+        'standings-7',
+        'progress',
+        'gate-8',
+        'allowed-8-0',
+        'gate-9',
+    ],
+    'Competition read service order changed',
+);
+architectureCheck(
+    $competitionModel['competitions'][0]['division_ids'] === [3, 2],
+    'Division priority changed',
+);
+architectureCheck(
+    $competitionModel['competitions'][0]['participant_team_count'] === 1,
+    'Participant team count changed',
+);
+architectureCheck(
+    $competitionModel['competitions'][0]['ranking_ready'],
+    'Ranking readiness changed',
+);
+architectureCheck(
+    !$competitionModel['competitions'][1]['ranking_ready'],
+    'Failed standings fallback changed',
+);
+architectureCheck(
+    $competitionModel['fixtures']['A'][0]['matches'][0]['competition_can_execute'],
+    'Fixture gate changed',
+);
+architectureCheck(
+    !$competitionModel['fixtures']['A'][0]['matches'][2]['competition_can_execute'],
+    'Unknown competition gate changed',
+);
+architectureCheck(
+    $competitionModel['fixtures']['A'][0]['matches'][3]['competition_can_execute'],
+    'Unassigned fixture gate changed',
+);
+$readRules = \StationX\Yugioh\Application\ReadModel\GameRuleReadModelProjection::attachConditions(
+    [['id' => 1], ['id' => 2]],
+    [['game_rule_id' => 1, 'active' => 1], ['game_rule_id' => 1, 'active' => 0]],
+);
+architectureCheck(
+    $readRules[0]['condition_count'] === 1 && count($readRules[0]['conditions']) === 2,
+    'Rule conditions changed',
+);
+architectureCheck($readRules[1]['conditions'] === [], 'Empty rule conditions changed');
+
+// Segregated read-model adapters retain the exact native query method tokens.
+$readModelOriginals = json_decode(
+    file_get_contents(__DIR__ . '/fixtures/platform-read-model-query-originals.json'),
+    true,
+    flags: JSON_THROW_ON_ERROR,
+);
+$readModelTokens = static function (string $source): array {
+    return array_values(
+        array_filter(
+            token_get_all('<?php ' . $source),
+            static fn($token): bool => !is_array($token) ||
+                !in_array($token[0], [T_WHITESPACE, T_OPEN_TAG], true),
+        ),
+    );
+};
+foreach ($readModelOriginals as $method => $original) {
+    $readerClass =
+        'StationX\\Yugioh\\Infrastructure\\Persistence\\ReadModel\\' . $original['adapter'];
+    $reflection = new ReflectionMethod($readerClass, $method);
+    $readerLines = file($reflection->getFileName());
+    $actualSource = implode(
+        '',
+        array_slice(
+            $readerLines,
+            $reflection->getStartLine() - 1,
+            $reflection->getEndLine() - $reflection->getStartLine() + 1,
+        ),
+    );
+    // Drop token line numbers while retaining token kinds and literal values.
+    $withoutLine = static fn(array $tokens): array => array_map(
+        static fn($token) => is_array($token) ? [$token[0], $token[1]] : $token,
+        $tokens,
+    );
+    architectureCheck(
+        $withoutLine($readModelTokens($actualSource)) ===
+            $withoutLine($readModelTokens($original['source'])),
+        'Read-model query changed: ' . $method,
+    );
+}
+$aggregateReader = new ReflectionClass(
+    \StationX\Yugioh\Application\ReadModel\PlatformReadModelReader::class,
+);
+architectureCheck(
+    count($aggregateReader->getMethods()) === count($readModelOriginals),
+    'Read port coverage changed',
+);
+architectureCheck(count($aggregateReader->getInterfaceNames()) === 4, 'Read ports not segregated');
+
+// The live-duel state policy has deterministic time and no HTTP or database dependency.
+$livePolicy = \StationX\Yugioh\Domain\Matches\LiveDuelState::class;
+$liveNow = static fn(): int => 5000;
+$liveMilliseconds = static fn(): float => 5000.0;
+$liveAtom = static fn(): string => '2026-11-26T19:00:00-05:00';
+$liveMatch = ['status' => 'EN CURSO'];
+$initialDuel = $livePolicy::initial($liveMatch, $liveNow);
+architectureCheck(
+    $initialDuel['duel_number'] === 1 && $initialDuel['lp_a'] === 8000,
+    'Initial duel changed',
+);
+$drawDuel = $livePolicy::initial(
+    [
+        'd1' => 'E',
+        'duel_details' => json_encode([
+            ['duel' => 2, 'duel_started' => true, 'starts_player' => 'B', 'timer_running' => true],
+        ]),
+    ],
+    $liveNow,
+);
+architectureCheck(
+    $drawDuel['duel_number'] === 2 &&
+        $drawDuel['status'] === 'setup' &&
+        !$drawDuel['timer_running'],
+    'Draw reroll guard changed',
+);
+$liveState = $livePolicy::normalize(
+    [
+        'status' => 'running',
+        'starts_player' => 'A',
+        'active_side' => 'A',
+        'timer_running' => true,
+        'timer_started_at' => 1000,
+        'elapsed_seconds' => 10,
+        'lp_a' => 8000,
+        'lp_b' => 8000,
+    ],
+    $liveNow,
+);
+$liveTransition = static fn(
+    array $state,
+    string $actor,
+    string $op,
+    array $payload = [],
+): ?array => $livePolicy::transition(
+    $state,
+    $liveMatch,
+    $actor,
+    $op,
+    $payload,
+    $liveNow,
+    $liveMilliseconds,
+    $liveAtom,
+);
+$endedTurn = $liveTransition($liveState, 'A', 'end_turn');
+architectureCheck(
+    $endedTurn['active_side'] === 'B' && $endedTurn['turn_count'] === 1,
+    'Turn progression changed',
+);
+architectureCheck(
+    $endedTurn['turn_history'][0]['elapsed_seconds'] === 14,
+    'Turn elapsed calculation changed',
+);
+architectureCheck(
+    $endedTurn['turn_history'][0]['ended_at'] === $liveAtom(),
+    'Turn timestamp changed',
+);
+$halfLp = $liveTransition($liveState, 'A', 'lp_change', ['kind' => 'half']);
+architectureCheck(
+    $halfLp['lp_a'] === 4000 && $halfLp['lp_history'][0]['before'] === 8000,
+    'LP operation changed',
+);
+$resetLp = $liveTransition($halfLp, 'judge', 'lp_change', ['side' => 'A', 'kind' => 'reset']);
+architectureCheck(
+    $resetLp['lp_a'] === 8000 && count($resetLp['lp_history']) === 2,
+    'LP reset/history changed',
+);
+$surrendered = $liveTransition($liveState, 'A', 'surrender');
+architectureCheck(
+    $surrendered['status'] === 'completed' && !$surrendered['timer_running'],
+    'Surrender changed',
+);
+architectureCheck($surrendered['surrendered_at'] === $liveAtom(), 'Surrender timestamp changed');
+$synced = $liveTransition($surrendered, 'judge', 'sync', $liveState);
+architectureCheck(
+    $synced['surrendered_by'] === 'A' && $synced['status'] === 'completed',
+    'Surrender overwritten',
+);
+architectureCheck(
+    $liveTransition($liveState, 'judge', 'sync', ['correction_at_ms' => 1]) === null,
+    'Correction conflict changed',
+);
+foreach (
+    [['B', 'end_turn'], ['B', 'surrender'], ['judge', 'surrender']]
+    as [$invalidActor, $invalidOp]
+) {
+    try {
+        $liveTransition($liveState, $invalidActor, $invalidOp);
+        architectureCheck(false, 'Invalid actor accepted');
+    } catch (RuntimeException $error) {
+        architectureCheck(
+            $error->getMessage() !== 'Invalid actor accepted',
+            'Invalid actor accepted',
+        );
+    }
+}
+$boundedDuel = $livePolicy::normalize(
+    ['duel_number' => 9, 'lp_a' => -1, 'lp_b' => 999999, 'status' => 'running'],
+    $liveNow,
+);
+architectureCheck(
+    $boundedDuel['duel_number'] === 5 &&
+        $boundedDuel['lp_a'] === 0 &&
+        $boundedDuel['lp_b'] === 99999,
+    'State bounds changed',
+);
+architectureCheck(
+    $boundedDuel['status'] === 'setup' && $boundedDuel['updated_at_ms'] === 5000,
+    'State normalization changed',
+);
+
+// The live-duel loader preserves lazy creation, borrowed lock selection and authoritative duel recovery.
+$liveStore = new class implements \StationX\Yugioh\Application\Matches\LiveDuelReadStore {
+    public array $calls = [];
+    public array $matchRow = [];
+    public array $stateRow = [];
+    public function match(int $matchId): array
+    {
+        $this->calls[] = 'match-' . $matchId;
+        return $this->matchRow;
+    }
+    public function state(int $matchId, bool $forUpdate): array
+    {
+        $this->calls[] = $forUpdate ? 'locked-state' : 'state';
+        return $this->stateRow;
+    }
+    public function insertInitial(int $matchId, array $state): void
+    {
+        $this->calls[] = 'insert';
+        $this->stateRow = [
+            'revision' => 1,
+            'state_json' => json_encode($state),
+            'updated_by' => 'judge',
+        ];
+    }
+};
+$liveLoader = new \StationX\Yugioh\Application\Matches\LoadLiveDuel($liveStore);
+architectureCheck($liveLoader->execute(9, true, $liveNow) === [], 'Missing match changed');
+architectureCheck($liveStore->calls === ['match-9'], 'Missing match should not query state');
+$liveStore->calls = [];
+$liveStore->matchRow = ['status' => 'EN CURSO', 'd1' => 'A'];
+$loaded = $liveLoader->execute(9, true, $liveNow);
+architectureCheck(
+    $liveStore->calls === ['match-9', 'locked-state', 'insert', 'locked-state'],
+    'State creation order or lock changed',
+);
+architectureCheck(
+    $loaded['state']['duel_number'] === 2 && $loaded['revision'] === 1,
+    'Initial persisted state changed',
+);
+$liveStore->calls = [];
+$liveStore->stateRow = [
+    'revision' => 4,
+    'state_json' => json_encode(['duel_number' => 1]),
+    'updated_by' => 'A',
+];
+$loaded = $liveLoader->execute(9, false, $liveNow);
+architectureCheck($liveStore->calls === ['match-9', 'state'], 'Existing state was written');
+architectureCheck(
+    $loaded['state']['duel_number'] === 2 && $loaded['revision'] === 4,
+    'Authoritative duel recovery changed',
+);
+$liveStore->matchRow['status'] = 'FINALIZADA';
+architectureCheck(
+    $liveLoader->execute(9, false, $liveNow)['state']['duel_number'] === 1,
+    'Finalized match state changed',
+);
+$liveStore->matchRow = ['status' => 'EN CURSO', 'd1' => 'E'];
+$liveStore->stateRow['state_json'] = json_encode([
+    'duel_number' => 2,
+    'status' => 'running',
+    'starts_player' => 'A',
+    'timer_running' => true,
+]);
+$loaded = $liveLoader->execute(9, false, $liveNow);
+architectureCheck(
+    $loaded['state']['status'] === 'setup' && !$loaded['state']['timer_running'],
+    'Stored draw reroll guard changed',
+);
+
+// Write use case relies on narrow read/write ports and preserves lock, update and audit order.
+$liveChangeStore = new class implements
+    \StationX\Yugioh\Application\Matches\LiveDuelReadStore,
+    \StationX\Yugioh\Application\Matches\LiveDuelWriteStore
+{
+    public array $calls = [];
+    public array $row = [];
+    public bool $failUpdate = false;
+    public function match(int $matchId): array
+    {
+        $this->calls[] = 'match';
+        return ['status' => 'EN CURSO'];
+    }
+    public function state(int $matchId, bool $forUpdate): array
+    {
+        $this->calls[] = $forUpdate ? 'locked-state' : 'state';
+        return $this->row;
+    }
+    public function insertInitial(int $matchId, array $state): void
+    {
+        throw new RuntimeException('Unexpected initialization');
+    }
+    public function requireOpen(int $matchId, bool $forUpdate): void
+    {
+        $this->calls[] = $forUpdate ? 'locked-season' : 'season';
+    }
+    public function update(int $matchId, array $state, int $revision, string $actor): void
+    {
+        $this->calls[] = 'update';
+        if ($this->failUpdate) {
+            throw new RuntimeException('write failure');
+        }
+        $this->row = [
+            'revision' => $revision,
+            'state_json' => json_encode($state),
+            'updated_by' => $actor,
+        ];
+    }
+    public function recordSurrender(int $matchId, array $state, string $actor): void
+    {
+        $this->calls[] = 'audit';
+    }
+};
+$liveChange = new \StationX\Yugioh\Application\Matches\ApplyLiveDuelChange(
+    new \StationX\Yugioh\Application\Matches\LoadLiveDuel($liveChangeStore),
+    $liveChangeStore,
+);
+$liveChangeStore->row = ['revision' => 3, 'state_json' => json_encode($liveState)];
+$change = static fn(
+    int $revision,
+    string $actor,
+    string $operation,
+    array $payload = [],
+): ?array => $liveChange->execute(
+    9,
+    $revision,
+    $actor,
+    $operation,
+    $payload,
+    $liveNow,
+    $liveMilliseconds,
+    $liveAtom,
+);
+architectureCheck($change(2, 'A', 'surrender') === null, 'Stale revision accepted');
+architectureCheck(
+    $liveChangeStore->calls === ['locked-season', 'match', 'locked-state'],
+    'Conflict wrote state',
+);
+$liveChangeStore->calls = [];
+architectureCheck(
+    $change(3, 'judge', 'sync', ['correction_at_ms' => 1]) === null,
+    'Correction conflict accepted',
+);
+architectureCheck(
+    $liveChangeStore->calls === ['locked-season', 'match', 'locked-state'],
+    'Correction conflict wrote state',
+);
+$liveChangeStore->calls = [];
+$changedDuel = $change(3, 'A', 'surrender');
+architectureCheck(
+    $changedDuel['revision'] === 4 && $changedDuel['state']['status'] === 'completed',
+    'Write response changed',
+);
+architectureCheck(
+    $liveChangeStore->calls === ['locked-season', 'match', 'locked-state', 'update', 'audit'],
+    'Surrender write/audit order changed',
+);
+$liveChangeStore->row = ['revision' => 3, 'state_json' => json_encode($liveState)];
+$liveChangeStore->calls = [];
+$liveChangeStore->failUpdate = true;
+try {
+    $change(3, 'A', 'surrender');
+    architectureCheck(false, 'Write failure swallowed');
+} catch (RuntimeException $error) {
+    architectureCheck($error->getMessage() === 'write failure', 'Write failure changed');
+}
+architectureCheck(
+    $liveChangeStore->calls === ['locked-season', 'match', 'locked-state', 'update'],
+    'Audit occurred after failed write',
+);
+
+// TXT import: compare the preserved parser and keep inventory creation atomic.
+$templateOriginal = json_decode(
+    file_get_contents(__DIR__ . '/fixtures/deck-template-original.json'),
+    true,
+    flags: JSON_THROW_ON_ERROR,
+);
+eval(
+    str_replace(
+        'function ygo_parse_deck_template(',
+        'function architectureOriginalDeckTemplate(',
+        $templateOriginal['parser'],
+    )
+);
+$templateValid =
+    "# STATIONX-DECK-TEMPLATE/1\n[DECK]\nnombre=Test\narquetipo=Machine\n[MAIN]\n2;Card A\n[EXTRA]\n1;Card B\n[SIDE]\n1;Card C\n[RESERVA]\n3;Card D";
+foreach (
+    [
+        $templateValid,
+        "\xEF\xBB\xBF" . $templateValid,
+        str_replace("\n", "\r\n", $templateValid),
+        '',
+        'invalid',
+        str_replace('2;Card A', '4;Card A', $templateValid),
+        str_replace('[RESERVA]', '[UNKNOWN]', $templateValid),
+    ]
+    as $templateCase
+) {
+    $evaluateTemplate = static function (callable $parse) use ($templateCase): array {
+        try {
+            return ['ok' => $parse($templateCase)];
+        } catch (InvalidArgumentException $error) {
+            return ['error' => $error->getMessage()];
+        }
+    };
+    architectureCheck(
+        $evaluateTemplate('architectureOriginalDeckTemplate') ===
+            $evaluateTemplate([\StationX\Yugioh\Domain\Decks\DeckTemplate::class, 'parse']),
+        'Template parser changed',
+    );
+}
+$templateWriter = new class implements \StationX\Yugioh\Application\Decks\DeckTemplateWriter {
+    public array $calls = [];
+    public bool $exists = false;
+    public bool $fail = false;
+    public function activeNameExists(string $name): bool
+    {
+        $this->calls[] = ['exists', $name];
+        return $this->exists;
+    }
+    public function create(array $data): int
+    {
+        $this->calls[] = ['create', $data['name']];
+        return 42;
+    }
+    public function appendCards(int $id, array $cards): void
+    {
+        $this->calls[] = ['cards', $id, array_column($cards, 'section')];
+        if ($this->fail) {
+            throw new RuntimeException('card write failed');
+        }
+    }
+};
+$templateTx = new class implements \StationX\Yugioh\Application\Shared\TransactionBoundary {
+    public array $calls = [];
+    public function run(callable $operation): mixed
+    {
+        $this->calls[] = 'begin';
+        try {
+            $result = $operation();
+            $this->calls[] = 'commit';
+            return $result;
+        } catch (Throwable $error) {
+            $this->calls[] = 'rollback';
+            throw $error;
+        }
+    }
+};
+$templateUsecase = new \StationX\Yugioh\Application\Decks\ImportDeckTemplate(
+    $templateWriter,
+    $templateTx,
+);
+architectureCheck(
+    $templateUsecase->execute($templateValid) === 'deck_42',
+    'Template response changed',
+);
+architectureCheck(
+    $templateWriter->calls === [
+        ['exists', 'Test'],
+        ['create', 'Test'],
+        ['cards', 42, ['main', 'extra', 'side', 'tech']],
+    ],
+    'Template write order/sections changed',
+);
+architectureCheck($templateTx->calls === ['begin', 'commit'], 'Template transaction changed');
+$templateWriter->exists = true;
+$templateWriter->calls = [];
+$templateTx->calls = [];
+try {
+    $templateUsecase->execute($templateValid);
+    architectureCheck(false, 'Duplicate deck accepted');
+} catch (InvalidArgumentException $error) {
+    architectureCheck(
+        $error->getMessage() === 'Ya existe un deck activo con ese nombre.',
+        'Duplicate deck message changed',
+    );
+}
+architectureCheck(
+    $templateWriter->calls === [['exists', 'Test']] && $templateTx->calls === [],
+    'Duplicate deck started write',
+);
+$templateWriter->exists = false;
+$templateWriter->fail = true;
+try {
+    $templateUsecase->execute($templateValid);
+    architectureCheck(false, 'Card failure swallowed');
+} catch (RuntimeException $error) {
+    architectureCheck($error->getMessage() === 'card write failed', 'Card error changed');
+}
+architectureCheck(
+    $templateTx->calls === ['begin', 'rollback'],
+    'Failed template did not roll back',
+);
+
+// Admission quotas retain exact deterministic remainders; write coordination uses the same transaction boundary.
+$admissionOriginal = json_decode(
+    file_get_contents(__DIR__ . '/fixtures/admission-write-originals.json'),
+    true,
+    flags: JSON_THROW_ON_ERROR,
+);
+eval(
+    str_replace(
+        'function ygo_admission_quotas(',
+        'function architectureOriginalAdmissionQuotas(',
+        $admissionOriginal['quotas'],
+    )
+);
+$quotaRows = [['mode' => 'percentage', 'value' => 50], ['mode' => 'percentage', 'value' => 50]];
+foreach (range(2, 64) as $quotaCapacity) {
+    architectureCheck(
+        \StationX\Yugioh\Domain\Competitions\AdmissionQuotaPolicy::quotas(
+            $quotaRows,
+            $quotaCapacity,
+        ) === architectureOriginalAdmissionQuotas($quotaRows, $quotaCapacity),
+        'Admission quota changed',
+    );
+}
+$admissionInput = \StationX\Yugioh\Domain\Competitions\AdmissionFormInput::parse([
+    'competition_id' => 7,
+    'admission_sources_json' => '[{"source_id":3}]',
+    'admission_capacity' => '2',
+]);
+architectureCheck(
+    $admissionInput === [7, [['source_id' => 3]], 2],
+    'Admission form contract changed',
+);
+$admissionStore = new class implements \StationX\Yugioh\Application\Competitions\AdmissionWriteStore
+{
+    public array $calls = [];
+    public array $competition = ['season_id' => 1, 'status' => 'active'];
+    public bool $fail = false;
+    public function lockedCompetition(int $target): array
+    {
+        $this->calls[] = 'lock';
+        return $this->competition;
+    }
+    public function requireOpen(int $seasonId): void
+    {
+        $this->calls[] = 'season';
+    }
+    public function assertMutable(int $target): void
+    {
+        $this->calls[] = 'mutable';
+    }
+    public function normalizedStatus(string $status): string
+    {
+        $this->calls[] = 'status';
+        return $status;
+    }
+    public function assertNoCycle(int $target, array $sources): void
+    {
+        $this->calls[] = 'cycle';
+    }
+    public function resolve(array $competition, array $admission): array
+    {
+        $this->calls[] = 'resolve';
+        return ['ids' => [4, 5], 'quotas' => [1, 1]];
+    }
+    public function validateRoster(int $target, array $ids): void
+    {
+        $this->calls[] = 'validate';
+        if ($this->fail) {
+            throw new RuntimeException('roster failure');
+        }
+    }
+    public function replaceDecks(int $target, array $ids): void
+    {
+        $this->calls[] = ['decks', $ids];
+    }
+    public function clearDependencies(int $target): void
+    {
+        $this->calls[] = 'clear';
+    }
+    public function writeDependencies(array $competition, int $target, array $dependencies): void
+    {
+        $this->calls[] = ['dependencies', $dependencies];
+    }
+    public function setParticipantSource(int $target): void
+    {
+        $this->calls[] = 'source';
+    }
+    public function store(array $competition, array $admission): void
+    {
+        $this->calls[] = 'store';
+    }
+    public function refreshGate(int $target): void
+    {
+        $this->calls[] = 'gate';
+    }
+    public function audit(int $target, array $admission): void
+    {
+        $this->calls[] = 'audit';
+    }
+};
+$admissionUsecase = new \StationX\Yugioh\Application\Competitions\SaveEventAdmission(
+    $admissionStore,
+    $templateTx,
+);
+$templateTx->calls = [];
+$admissionRows = [['source_id' => 3], ['source_id' => 3]];
+$admissionResult = $admissionUsecase->execute(7, $admissionRows, 2);
+architectureCheck($admissionResult['selection']['ids'] === [4, 5], 'Admission selection changed');
+architectureCheck(
+    $admissionStore->calls === [
+        'lock',
+        'season',
+        'mutable',
+        'status',
+        'cycle',
+        'resolve',
+        'validate',
+        ['decks', [4, 5]],
+        'clear',
+        ['dependencies', [3 => 2]],
+        'source',
+        'store',
+        'gate',
+        'audit',
+    ],
+    'Admission order changed',
+);
+architectureCheck($templateTx->calls === ['begin', 'commit'], 'Admission transaction changed');
+$admissionStore->calls = [];
+$templateTx->calls = [];
+$admissionStore->fail = true;
+try {
+    $admissionUsecase->execute(7, $admissionRows, 2);
+    architectureCheck(false, 'Invalid roster accepted');
+} catch (RuntimeException $error) {
+    architectureCheck($error->getMessage() === 'roster failure', 'Admission error changed');
+}
+architectureCheck(
+    $admissionStore->calls === [
+        'lock',
+        'season',
+        'mutable',
+        'status',
+        'cycle',
+        'resolve',
+        'validate',
+    ],
+    'Invalid roster modified data',
+);
+architectureCheck($templateTx->calls === ['begin', 'rollback'], 'Admission rollback changed');
+
+// Source verification and selection: compare native ordering, signatures, guards and dependencies.
+$sourceReader = new class implements \StationX\Yugioh\Application\Competitions\AdmissionSourceReader
+{
+    public array $calls = [];
+    public string $status = 'completed';
+    public string $format = 'tcg_advanced';
+    public function competition(int $id, bool $lock): array
+    {
+        $this->calls[] = ['competition', $id, $lock];
+        return [
+            'id' => $id,
+            'status' => $this->status,
+            'type' => 'cup',
+            'name' => 'Source ' . $id,
+            'season_id' => 1,
+            'execution_model' => 'single_elimination',
+            'event_ruleset' => $this->format,
+        ];
+    }
+    public function matches(int $id): array
+    {
+        $this->calls[] = 'matches';
+        return [
+            [
+                'id' => 1,
+                'division_id' => 1,
+                'deck_a_id' => 101,
+                'deck_b_id' => 102,
+                'phase' => 'cup',
+                'round_number' => 1,
+                'status' => 'FINALIZADA',
+                'result' => 'A',
+                'score' => '2-0',
+            ],
+        ];
+    }
+    public function normalizedStatus(string $status): string
+    {
+        $this->calls[] = 'status';
+        return $status;
+    }
+    public function workflow(array $competition): ?array
+    {
+        $this->calls[] = 'workflow';
+        return null;
+    }
+    public function divisions(int $id): array
+    {
+        $this->calls[] = 'divisions';
+        return [];
+    }
+    public function workflowResult(int $matchId): array
+    {
+        $this->calls[] = 'workflow-result';
+        return [];
+    }
+    public function standings(int $id): array
+    {
+        $this->calls[] = 'standings';
+        return [['id' => 101, 'pts' => 3], ['id' => 102, 'pts' => 0]];
+    }
+    public function divisionBelongs(int $division, int $id, int $seasonId): bool
+    {
+        $this->calls[] = 'division';
+        return true;
+    }
+    public function honors(int $id): array
+    {
+        $this->calls[] = 'honors';
+        return [['champion_deck_id' => 101, 'runner_up_deck_id' => 102]];
+    }
+    public function finals(int $id): array
+    {
+        $this->calls[] = 'finals';
+        return [['deck_a_id' => 101, 'deck_b_id' => 102, 'result' => 'A']];
+    }
+    public function roster(int $id): array
+    {
+        $this->calls[] = 'roster';
+        return [['deck_id' => 101, 'sort_order' => 1], ['deck_id' => 102, 'sort_order' => 2]];
+    }
+    public function rulesets(): array
+    {
+        $this->calls[] = 'rulesets';
+        return [['code' => 'tcg_advanced', 'label' => 'TCG']];
+    }
+    public function deckFormats(array $ids): array
+    {
+        $this->calls[] = ['formats', $ids];
+        return array_map(
+            static fn($id) => ['id' => $id, 'style' => 'TCG', 'event_ruleset' => 'tcg_advanced'],
+            $ids,
+        );
+    }
+    public function edges(): array
+    {
+        return [];
+    }
+    public function baseTemplate(string $code): string
+    {
+        $this->calls[] = 'template';
+        return $code;
+    }
+    public function validateFormatRoster(string $format, array $ids): void
+    {
+        $this->calls[] = ['validate', $format, $ids];
+    }
+};
+$formatUsecase = new \StationX\Yugioh\Application\Competitions\ResolveAdmissionDeckFormat(
+    $sourceReader,
+);
+$readSource = new \StationX\Yugioh\Application\Competitions\ReadAdmissionSource(
+    $sourceReader,
+    $formatUsecase,
+);
+$sourceResult = $readSource->execute(3, 0, true);
+architectureCheck(
+    $sourceResult['champion_id'] === 101 && $sourceResult['runner_up_id'] === 102,
+    'Admission title changed',
+);
+architectureCheck(
+    array_column($sourceResult['ranking'], 'id') === [101, 102],
+    'Admission ranking changed',
+);
+architectureCheck(
+    $sourceReader->calls === [
+        ['competition', 3, true],
+        'status',
+        'matches',
+        'workflow',
+        'standings',
+        'honors',
+        'finals',
+        'rulesets',
+        ['formats', [101, 102]],
+        'roster',
+    ],
+    'Admission source read order changed',
+);
+$sourceReader->calls = [];
+$resolveAdmission = new \StationX\Yugioh\Application\Competitions\ResolveEventAdmission(
+    $sourceReader,
+    $readSource,
+);
+$resolvedAdmission = $resolveAdmission->execute(
+    ['id' => 7, 'event_ruleset' => 'tcg_advanced'],
+    [
+        'version' => 'STATION_X_ADMISSION_V1',
+        'capacity' => 2,
+        'sources' => [['source_id' => 3, 'mode' => 'top_n', 'value' => 2]],
+    ],
+    true,
+);
+architectureCheck(
+    $resolvedAdmission['ids'] === [101, 102] && $resolvedAdmission['quotas'] === [2],
+    'Admission selection changed',
+);
+architectureCheck(
+    $resolvedAdmission['signatures']['3:0'] === $sourceResult['signature'],
+    'Admission signature changed',
+);
+architectureCheck(
+    end($sourceReader->calls) === ['validate', 'tcg_advanced', [101, 102]],
+    'Admission roster validation changed',
+);
+$sourceReader->status = 'active';
+$sourceReader->calls = [];
+try {
+    $readSource->execute(3);
+    architectureCheck(false, 'Unfinished source accepted');
+} catch (InvalidArgumentException $error) {
+    architectureCheck(
+        $error->getMessage() === 'La fuente debe ser un evento finalizado.',
+        'Source guard changed',
+    );
+}
+architectureCheck(
+    $sourceReader->calls === [['competition', 3, false], 'status'],
+    'Unfinished source read results',
+);
+\StationX\Yugioh\Domain\Competitions\AdmissionDependencyPolicy::assertNoCycle(
+    7,
+    [['source_id' => 3]],
+    [['competition_id' => 3, 'depends_on_competition_id' => 2]],
+);
+try {
+    \StationX\Yugioh\Domain\Competitions\AdmissionDependencyPolicy::assertNoCycle(
+        7,
+        [['source_id' => 3]],
+        [['competition_id' => 3, 'depends_on_competition_id' => 7]],
+    );
+    architectureCheck(false, 'Cycle accepted');
+} catch (InvalidArgumentException $error) {
+    architectureCheck(
+        $error->getMessage() === 'Las fuentes forman una dependencia circular.',
+        'Cycle error changed',
+    );
+}
+
+// Admission configuration retains required, freeze, view, and result protection contracts.
+$sourceReader->status = 'completed';
+$admissionConfig = new class implements
+    \StationX\Yugioh\Application\Competitions\AdmissionConfigurationStore
+{
+    public ?array $value = null;
+    public array $calls = [];
+    public function load(array $competition, bool $lock = false): ?array
+    {
+        $this->calls[] = ['load', $lock];
+        return $this->value;
+    }
+    public function store(array $competition, array $admission): void
+    {
+        $this->calls[] = 'store';
+        $this->value = $admission;
+    }
+};
+$configCase = new \StationX\Yugioh\Application\Competitions\AdmissionConfiguration(
+    $admissionConfig,
+    $sourceReader,
+    $resolveAdmission,
+);
+$targetCompetition = ['id' => 7, 'event_ruleset' => 'tcg_advanced'];
+architectureCheck(
+    $configCase->requireParticipants($targetCompetition, [5, 4]) === [5, 4],
+    'Direct admission changed',
+);
+architectureCheck(
+    $configCase->view($targetCompetition)['message'] === 'Inscripcion directa.',
+    'Direct admission label changed',
+);
+try {
+    $configCase->requireParticipants(
+        $targetCompetition + ['participant_source' => 'PREVIOUS_EVENT'],
+        [],
+    );
+    architectureCheck(false, 'Required admission ignored');
+} catch (InvalidArgumentException $error) {
+    architectureCheck(
+        str_contains($error->getMessage(), 'Configura Fuentes'),
+        'Required admission error changed',
+    );
+}
+$admissionConfig->value = [
+    'version' => 'STATION_X_ADMISSION_V1',
+    'capacity' => 2,
+    'sources' => [['source_id' => 3, 'mode' => 'top_n', 'value' => 2]],
+    'selection' => $resolvedAdmission,
+    'frozen' => false,
+];
+architectureCheck($configCase->view($targetCompetition)['ok'], 'Valid admission view changed');
+architectureCheck(
+    $configCase->requireParticipants($targetCompetition, [102, 101]) === [101, 102],
+    'Verified participants changed',
+);
+architectureCheck(
+    $admissionConfig->value['frozen'] && end($admissionConfig->calls) === 'store',
+    'Freeze not persisted',
+);
+$admissionConfig->value['selection']['ids'] = [999];
+architectureCheck(!$configCase->view($targetCompetition)['ok'], 'Stale source accepted');
+try {
+    $configCase->requireParticipants($targetCompetition, [101, 102]);
+    architectureCheck(false, 'Frozen source changed');
+} catch (InvalidArgumentException $error) {
+    architectureCheck(
+        str_contains($error->getMessage(), 'despues de programar'),
+        'Frozen source error changed',
+    );
+}
+$guardStore = new class implements
+    \StationX\Yugioh\Application\Competitions\AdmissionResultGuardStore
+{
+    public int $source = 3;
+    public array $calls = [];
+    public function competitionForMatch(int $matchId): int
+    {
+        $this->calls[] = 'match';
+        return $this->source;
+    }
+    public function lockCompetition(int $source): void
+    {
+        $this->calls[] = 'lock';
+    }
+    public function lockedConfigurations(): array
+    {
+        $this->calls[] = 'configs';
+        return ['{"frozen":true,"sources":[{"source_id":3}]}'];
+    }
+};
+$resultGuard = new \StationX\Yugioh\Application\Competitions\GuardAdmissionResult($guardStore);
+try {
+    $resultGuard->execute(4);
+    architectureCheck(false, 'Protected result editable');
+} catch (InvalidArgumentException $error) {
+    architectureCheck(
+        str_contains($error->getMessage(), 'ya clasifico'),
+        'Result protection changed',
+    );
+}
+architectureCheck($guardStore->calls === ['match', 'lock', 'configs'], 'Result lock order changed');
+$guardStore->source = 0;
+$guardStore->calls = [];
+$resultGuard->execute(4);
+architectureCheck($guardStore->calls === ['match'], 'Unassigned match locked a source');
+$stageStore = new class implements \StationX\Yugioh\Application\Competitions\AdmissionStageStore {
+    public array $calls = [];
+    public function pendingIds(array $competition, ?string $phase, ?int $round): array
+    {
+        $this->calls[] = ['pending', $phase, $round];
+        return [3, 4];
+    }
+    public function clearDates(array $ids): void
+    {
+        $this->calls[] = ['clear', $ids];
+    }
+    public function lastDate(array $competition): string|false|null
+    {
+        $this->calls[] = 'last';
+        return '2026-11-28';
+    }
+    public function nextDate(string $base, string $pattern, int $index, int $perDay): string
+    {
+        $this->calls[] = ['date', $base, $index, $perDay];
+        return $base;
+    }
+    public function slot(
+        array $competition,
+        int $matchId,
+        string $date,
+        string $pattern,
+        int $perDay,
+    ): array {
+        $this->calls[] = ['slot', $matchId];
+        return [$date, '19:00:00'];
+    }
+    public function updateSlot(int $matchId, string $date, string $time): void
+    {
+        $this->calls[] = ['update', $matchId, $date, $time];
+    }
+    public function validateSeason(int $competitionId): void
+    {
+        $this->calls[] = ['validate', $competitionId];
+    }
+};
+$stageClock = new class implements \StationX\Yugioh\Application\Shared\Clock {
+    public function now(): DateTimeImmutable
+    {
+        return new DateTimeImmutable('2026-11-27T12:00:00-05:00');
+    }
+};
+$stageCase = new \StationX\Yugioh\Application\Competitions\ScheduleAdmissionStage(
+    $admissionConfig,
+    $stageStore,
+    $stageClock,
+);
+$stageCase->execute($targetCompetition, '2026-11-25', 'manual', 2, 'cup', 2);
+architectureCheck(
+    $stageStore->calls === [
+        ['pending', 'cup', 2],
+        ['clear', [3, 4]],
+        'last',
+        ['date', '2026-11-28', 1, 1],
+        ['date', '2026-11-28', 0, 2],
+        ['slot', 3],
+        ['update', 3, '2026-11-28', '19:00:00'],
+        ['date', '2026-11-28', 1, 2],
+        ['slot', 4],
+        ['update', 4, '2026-11-28', '19:00:00'],
+        ['validate', 7],
+    ],
+    'Stage scheduling order or scope changed',
+);
+$admissionConfig->value = null;
+$stageStore->calls = [];
+$stageCase->execute($targetCompetition, '2026-11-25', 'manual', 2);
+architectureCheck($stageStore->calls === [], 'Direct event was rescheduled by admission');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

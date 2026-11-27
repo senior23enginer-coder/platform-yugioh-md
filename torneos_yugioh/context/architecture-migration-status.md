@@ -204,6 +204,99 @@ La agregación de fixtures de copa y mundial comparte una implementación pura q
 
 Se extraen del read-model de presentación el resumen por competición, el filtrado de partidas, el orden cronológico y los contadores de rondas, fechas y finalizaciones. Se conservan los criterios históricos y se añade cobertura de regresión. CI pendiente.
 
+## Dashboard, avance clasificatorio y auditoría
+
+Se extraen las agrupaciones de eventos por formato, resultados recientes, contadores de fixtures, partidos del dashboard, proyección de equipos, ranking visible, avance de clasificatorios y resumen de auditoría. Las funciones de etiquetas y medios se suministran como dependencias explícitas; se conservan los filtros, orden, campos, fecha de referencia y límites de presentación. Regresiones añadidas; CI pendiente.
+
+## Política de fechas y captura en el navegador
+
+Se extraen las guardas de fecha y captura del cierre compartido del calendario a un módulo independiente con configuración y fecha de servidor explícitas. Se conservan el orden de guardas, textos, autorización de fechas vencidas/anticipadas y días especiales. Se reconstruyen las secciones modificadas del bundle mediante sus fuentes; la reconstrucción completa y las pruebas se verifican en CI. Se añaden trece comprobaciones.
+
+## Selección clasificatoria y formatos del read-model de presentación
+
+Se extraen los selectores de partidas, prioridad de clasificatorios, límites de duelos, etiquetas de estado, opciones de formato, asignación de formatos por deck y contadores del dashboard. La consulta nativa de elegibilidad se suministra como dependencia explícita y se preserva el comportamiento sin conexión. La fachada conserva la captura de HTTP, las llamadas externas y la composición de las vistas. CI pendiente.
+
+## Reglas y clasificación de fixtures en el navegador
+
+La selección de reglas por partido, competición, alcance y prioridad y la proyección de clasificación de división se extraen a un módulo con entradas explícitas. Se preservan puntos, desempates, D5, barridas, estados y orden de lectura de resultados. Los cuerpos anteriores se conservan como fixture de caracterización; se comparan directamente con el módulo extraído. CI pendiente.
+
+## Cargador de datos: proyección de competiciones y reglamentos
+
+Se separa la coordinación de competiciones y sus guardas de fixtures en un caso de uso con un puerto segregado de seis operaciones, sin dependencia del lector general de datos. Se conservan la prioridad de divisiones, consultas de admisión y clasificación, las excepciones históricas y el orden de llamadas externas. Se separa también la asociación de condiciones a reglamentos. Se añaden diez comprobaciones aisladas; CI pendiente.
+
+## Puertos del navegador: transporte, reloj y almacenamiento de duelos
+
+Se separan las opciones y construcción de peticiones HTTP para captura de duelo, envío offline y consulta en vivo. Se conservan en el adaptador de interfaz los controles de respuesta, conflictos y revisión optimista. Se separan el cálculo del reloj y su persistencia mediante reloj/almacenamiento inyectados; la restauración de LP conserva normalización histórica, claves, historial y estado pausado. Pruebas aisladas de los tres módulos incorporadas; CI pendiente.
+
+## Segregación de persistencia de lectura (ISP)
+
+Se distribuyen las 34 operaciones del lector general en cuatro puertos y adaptadores: competición/calendario, identidad de decks, historial y reglamentos. El lector público conserva la firma mediante composición, usando la misma conexión PDO y sin iniciar consultas en sus constructores. Cada consulta original queda registrada para comparar los tokens de su implementación, sin regenerar evidencia para ocultar cambios. CI pendiente.
+
+## Evidencia de la iteración consolidada del 26 de noviembre
+
+- PR #68: integrado en base en `e7785e3`; los tres trabajos de CI finalizaron correctamente.
+- PR #69, commit `10b2754`: regresión integral, estadísticas MySQL y paridad P06 finalizaron correctamente (ejecución 45886396967).
+- PR #69, commit `69d850b`: ejecución aislada 45887319966 completada con éxito; 754 fuentes de arquitectura verificadas por el formateador, build de 43 fuentes JavaScript y 37 CSS, caracterización de reglas y clasificación, transporte/reloj/LP, pruebas de arquitectura y equivalencia de las 34 consultas de lectura. La certificación integral del último commit y la cobertura de concurrencia por dominio no se infieren de esta ejecución aislada.
+- La fachada histórica y el lector general conservan los contratos públicos. Los cuatro adaptadores de lectura ya existen; las vistas y los controladores heredados que aún conservan estado compartido no se declaran migrados por completo.
+
+## Duelos en vivo: reglas de estado y transiciones
+
+CI integral del commit `e6b59bd` completado (45887432048). Se extraen inicialización, normalización, sincronización del juez, cierre de turno, rendición y operaciones LP a `Domain/Matches/LiveDuelState`, con reloj y marcas temporales explícitas. Se conserva la prioridad de los conflictos de revisión/corrección y la transacción del controlador, sin modificar sus SQL, respuestas HTTP ni auditoría. Los tres cuerpos originales se preservan para el contrato SHA-256 existente; se añaden pruebas de estado, autorización deportiva, reroll, LP y conflicto. CI del nuevo cambio pendiente.
+
+## Duelos en vivo: persistencia de lectura y recuperación
+
+Se extrae la lectura de partida y estado, la creación inicial idempotente y la reconciliación con el duelo persistido mediante un caso de uso y un puerto de persistencia. El adaptador conserva las consultas SQL y `FOR UPDATE` opcional; la relectura después de INSERT IGNORE utiliza una nueva preparación de la misma consulta. No abre ni cierra transacciones propias. Se preservan los cuerpos históricos de las dos fachadas y se añaden pruebas de orden, ausencia de partida, recuperación, estado finalizado y empate. CI pendiente.
+
+## Duelos en vivo: comandos de escritura
+
+Se extrae `ApplyLiveDuelChange` con puertos de lectura/escritura, revalidación de temporada bajo bloqueo, revisión optimista, actualización y auditoría de rendición. El adaptador HTTP conserva la apertura, commit, rollback, respuesta 409, relectura fuera de la transacción y respuesta 422 originales. SQL queda en infraestructura. El flujo no cambia la autorización preexistente. Se añaden pruebas con dobles de puertos para conflictos, orden, éxito y propagación de errores; concurrencia MySQL del módulo todavía pendiente.
+
+## Evidencia del bloque de duelos en vivo (27 de noviembre)
+
+La ejecución 45952164505 del commit `abafcb4` finalizó correctamente tras aplicar el formateador oficial en el runner: 761 fuentes verificadas, caracterización de reglas de estado, recuperación y guardas, pruebas con dobles de lectura/escritura y los 132 contratos históricos conservados. Se incorporan los cambios exactos de formato al siguiente commit. Esta comprobación no certifica todavía las transacciones concurrentes de duelos en MySQL ni el resto de la migración.
+
+## Importación de plantillas TXT
+
+Se extrae el analizador estricto UTF-8 a dominio y la creación de deck/cartas a un caso de uso con puerto de escritura y transacción propia. El adaptador HTTP conserva validación de archivo subido, extensión y lectura; PDO conserva consultas y orden de inserción. Se conserva el nombre, cantidades y zonas históricas, incluida Reserva como tech. Se añade caracterización del parser original y pruebas de duplicado, orden de escritura y rollback con dobles. CI pendiente. El flujo ZIP ya dispone de `DeckPackageWorkflow`; quedan pruebas específicas de concurrencia y revisión de sus fronteras.
+
+## Admisión de eventos: cupos y escritura
+
+Se extraen el cálculo determinista de cupos y la validación del formulario a dominio. Se separa el guardado de fuentes y clasificados a un caso de uso con puerto de escritura, manteniendo el bloqueo exterior, la transacción propia/prestada, la resolución y validación del plantel antes de escribir, las dependencias agregadas, la actualización de guardas y la auditoría final. El adaptador conserva SQL y llamadas nativas. Se añade evidencia de los cuerpos originales y regresiones de cupos, orden y fallos. La resolución completa de fuentes sigue siendo un servicio nativo pendiente. CI pendiente.
+
+## Certificación MySQL de duelos en vivo
+
+Se añade un programa de integración específico de plataforma (no de deck), con un servicio MySQL desechable independiente de estadísticas. Verifica creación inicial, bloqueo con dos conexiones y timeout esperado, rollback de estado/auditoría, conflicto de revisión, confirmación de rendición y temporada cerrada. El programa exige CI, base con nombre fijo y esquema vacío; nunca usa credenciales de aplicación. Se actualiza explícitamente el inventario de programas de prueba P06, sin cambiar controles de crecimiento ni añadir pruebas por carta. Ejecución pendiente.
+
+## Evidencia de plantillas y admisión (27 de noviembre)
+
+La regresión integral del commit `3d978de` terminó con los tres trabajos correctos (45952269737). La ejecución aislada 45952785058 del commit `234a264` pasó las pruebas de arquitectura, 132 contratos históricos, 55 comparaciones originales/migradas de comandos, 269 comprobaciones de enrutamiento y contexto, 4.103 aserciones de cupos y 637 escenarios de paridad, además de verificar 770 fuentes mediante el formateador. Se aplica su salida exacta en el siguiente commit. La nueva prueba MySQL de duelos requiere ejecución separada.
+
+## Resolución de admisión y clasificación de fuentes
+
+CI integral del commit `f7c28a2` (45952934995) completado con cuatro trabajos exitosos, incluida la prueba MySQL de duelos. Se separan la verificación de fuente, ranking, títulos, formato, firma de evidencia y selección de clasificados de las consultas PDO. Se mantiene la secuencia original y los bloqueos opcionales de fuente, y se extrae la detección de ciclos a dominio. Se conserva una copia de los cuerpos anteriores y se añaden pruebas de puerto, orden, firma y rechazo de fuentes abiertas. CI del nuevo cambio pendiente.
+
+## Configuración, protección y programación de admisión
+
+Se extrae la persistencia de configuración, validación de participantes, congelación de fuentes, directorio, guarda de edición y programación de nuevas etapas. Se mantienen las consultas y el orden de bloqueo, sin abrir transacciones adicionales. Los relojes y el almacenamiento se suministran mediante puertos; la selección de slots sigue usando el servicio nativo en infraestructura. Se conservan los cuerpos originales y se añaden regresiones de congelación, protección y alcance de programación. El formateador de la extracción anterior verificó 777 fuentes y sus pruebas aisladas pasaron; CI integral de este bloque pendiente.
+
+## Proyección del calendario en el navegador
+
+Se extraen las alertas operativas, visibilidad de competiciones, consolidación de eventos/fixtures/FFA, selección por equipo o deck y filtros a un módulo independiente de DOM y cierre compartido. El adaptador entrega valores de controles y dependencias explícitas, sin cambiar etiquetas, prioridades, reglas de finalización ni orden. Se conserva la implementación anterior en fixture y se compara la salida directamente. CI pendiente.
+
+## Participantes y partidas manuales en frontend
+
+Se extraen las restricciones de formato, elegibilidad, pertenencia a otra liga, admisión, edición de planteles y cálculo de cupos/partidas. El controlador de partidas manuales ya no depende de variables globales de la clausura: recibe los controles, expone el ciclo de montaje y mantiene las mismas operaciones DOM y orden. Se conserva evidencia y se comparan decisiones contra los algoritmos anteriores. CI pendiente.
+
+## Evidencia de la migración de admisión, calendario y participantes
+
+La ejecución 45955490597 del commit `d9cd7af` pasó las comparaciones del calendario y de participantes contra sus algoritmos originales, los contratos de arquitectura, las 4.103 aserciones de cupos, 637 casos de paridad y 132 contratos históricos. Verificó 791 fuentes de arquitectura y reconstruyó el bundle con 45 fragmentos JavaScript y 37 CSS. Se incorpora su formato exacto y la regeneración equivalente del bundle al siguiente commit. Queda pendiente la regresión integral de ese commit.
+
+## Planificación y envío de eventos en frontend
+
+Se extraen normalización de estado, proyecciones de fases/partidas, lectura preventiva, selección de clasificatorios y rangos. El controlador de envío recibe explícitamente sus controles y funciones de validación, sin depender de la clausura compartida ni del acceso directo a alertas globales. Se conserva el orden de guardas, confirmaciones y envío. Se agregan comparaciones con los cuerpos originales y casos aislados. CI pendiente.
+
+La ejecución 45955756118 del commit `e243ba2` pasó las comparaciones del calendario, participantes y planificación/envío de eventos, con 792 fuentes formateadas y 46 fragmentos JavaScript / 37 CSS reconstruidos. Se incorpora el formato oficial y se retira el workflow temporal; CI integral del commit final pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

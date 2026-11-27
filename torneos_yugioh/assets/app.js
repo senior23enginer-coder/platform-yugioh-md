@@ -27,6 +27,1581 @@
   root.StationXOfflineQueue = api;
   if (typeof module === "object" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);
+(function (root) {
+  "use strict";
+  function settingEnabled(settings, key) {
+    return ["1", "true", "yes", "on"].includes(
+      String(settings[key] || "0").toLowerCase(),
+    );
+  }
+
+  function matchTimingStatus(match, serverToday, settings) {
+    const enabled = (key) => settingEnabled(settings, key);
+    if (!match || match.estado === "FINALIZADA") {
+      return {
+        key: "done",
+        label: "Finalizado",
+        className: "ok",
+        canCapture: true,
+      };
+    }
+    if (
+      match.competition_can_execute === false ||
+      match.competition_can_execute === "0"
+    ) {
+      return {
+        key: "competition_blocked",
+        label:
+          match.competition_blocked_reason ||
+          "Evento bloqueado por prerequisitos",
+        className: "blocked",
+        canCapture: false,
+      };
+    }
+    if (
+      ["EN CURSO", "IN_PROGRESS", "RUNNING", "PAUSED"].includes(
+        String(match.estado || match.status || "").toUpperCase(),
+      )
+    ) {
+      const canCapture =
+        Boolean(match.scheduled_on) &&
+        (match.scheduled_on < serverToday
+          ? enabled("allow_overdue_results")
+          : match.scheduled_on > serverToday
+            ? enabled("allow_early_results")
+            : true);
+      return {
+        key: "in_progress",
+        label: "En curso",
+        className: "ok",
+        canCapture,
+      };
+    }
+    if (!match.scheduled_on) {
+      return {
+        key: "unscheduled",
+        label: "Sin fecha",
+        className: "warn",
+        canCapture: false,
+      };
+    }
+    if (match.scheduled_on < serverToday) {
+      return {
+        key: "overdue",
+        label: "Vencido",
+        className: "danger",
+        canCapture: enabled("allow_overdue_results"),
+      };
+    }
+    if (match.scheduled_on === serverToday) {
+      return { key: "today", label: "Hoy", className: "ok", canCapture: true };
+    }
+    return {
+      key: "future",
+      label: enabled("allow_early_results") ? "Adelantable" : "Fecha futura",
+      className: enabled("allow_early_results") ? "warn" : "blocked",
+      canCapture: enabled("allow_early_results"),
+    };
+  }
+
+  function isPlayableDate(dayIso, settings) {
+    if (!dayIso) return false;
+    const date = new Date(`${dayIso}T12:00:00`);
+    if (Number.isNaN(date.getTime())) return false;
+    const weekday = String(date.getDay());
+    const validDays = String(settings.valid_weekdays || "1,2,3,4,5,6,0")
+      .split(",")
+      .map((value) => value.trim())
+      .filter(Boolean);
+    const specialDays = String(settings.special_days || "")
+      .split(/[\s,]+/)
+      .map((value) => value.trim())
+      .filter(Boolean);
+    return (
+      validDays.includes(weekday) ||
+      (settingEnabled(settings, "allow_special_days") &&
+        specialDays.includes(dayIso))
+    );
+  }
+
+  const api = Object.freeze({
+    settingEnabled,
+    matchTimingStatus,
+    isPlayableDate,
+  });
+  root.StationXCalendarPolicy = api;
+  if (typeof module === "object" && module.exports) module.exports = api;
+})(typeof window !== "undefined" ? window : globalThis);
+(function (root) {
+  "use strict";
+  function ruleForMatch(match, data) {
+    if (match?.game_rule_id) {
+      const directRule = (data.gameRules || []).find(
+        (rule) =>
+          String(rule.id || "") === String(match.game_rule_id || "") &&
+          String(rule.active ?? "1") !== "0",
+      );
+      if (directRule) return directRule;
+    }
+    const competition = (data.competitions || []).find(
+      (item) => String(item.id || "") === String(match?.competition_id || ""),
+    );
+    if (competition?.game_rule_id) {
+      const competitionRule = (data.gameRules || []).find(
+        (rule) =>
+          String(rule.id || "") === String(competition.game_rule_id || "") &&
+          String(rule.active ?? "1") !== "0",
+      );
+      if (competitionRule) return competitionRule;
+    }
+    const phase = String(match?.phase || "");
+    const scopes =
+      phase === "friendly"
+        ? ["all_matches", "friendly", "match", "general"]
+        : ["all_matches", "match", "general"];
+    return (
+      (data.gameRules || [])
+        .filter(
+          (rule) =>
+            String(rule.active ?? "1") !== "0" &&
+            scopes.includes(String(rule.scope || "")),
+        )
+        .sort((a, b) => {
+          const scopeDiff =
+            scopes.indexOf(String(a.scope || "")) -
+            scopes.indexOf(String(b.scope || ""));
+          if (scopeDiff !== 0) return scopeDiff;
+          return (
+            Number(a.priority_order || 100) - Number(b.priority_order || 100)
+          );
+        })[0] || null
+    );
+  }
+
+  function computeStandings(
+    division,
+    data,
+    allMatches,
+    getSavedResult,
+    evaluateDuel,
+  ) {
+    if (!data.divisions[division]) return [];
+    const rows = data.divisions[division].decks.map((deck) => {
+      const fullDeck =
+        (data.allDecks || []).find((item) => item.name === deck[1]) || {};
+      return {
+        rank: deck[0],
+        name: deck[1],
+        team: fullDeck.team || deck.team || "Sin equipo",
+        teamCode: fullDeck.team_code || fullDeck.team_symbol || "",
+        teamPrimary: fullDeck.team_primary_color || "#36d8ff",
+        teamSecondary: fullDeck.team_secondary_color || "#ffd25f",
+        pts: 0,
+        pj: 0,
+        pg: 0,
+        pe: 0,
+        pp: 0,
+        cg: 0,
+        cp: 0,
+        dp: 0,
+        d5: 0,
+        sweep: 0,
+        streak: "-",
+      };
+    });
+    const byName = Object.fromEntries(rows.map((row) => [row.name, row]));
+    allMatches(division).forEach((match) => {
+      const result = evaluateDuel(getSavedResult(match), match);
+      if (result.state !== "FINALIZADA") return;
+      const a = byName[match.a];
+      const b = byName[match.b];
+      if (!a || !b) return;
+      const [cgA, cgB] = result.score.split("-").map(Number);
+      a.pj += 1;
+      b.pj += 1;
+      a.cg += cgA;
+      a.cp += cgB;
+      b.cg += cgB;
+      b.cp += cgA;
+      if (getSavedResult(match)[4]) {
+        if (result.winner === "A") a.d5 += 1;
+        if (result.winner === "B") b.d5 += 1;
+      }
+      if (result.score === "2-0") a.sweep += 1;
+      if (result.score === "0-2") b.sweep += 1;
+      if (result.winner === "A") {
+        a.pts += 3;
+        a.pg += 1;
+        b.pp += 1;
+        a.streak = "W";
+        b.streak = "L";
+      }
+      if (result.winner === "B") {
+        b.pts += 3;
+        b.pg += 1;
+        a.pp += 1;
+        b.streak = "W";
+        a.streak = "L";
+      }
+      if (result.winner === "E") {
+        a.pts += 1;
+        b.pts += 1;
+        a.pe += 1;
+        b.pe += 1;
+        a.streak = "D";
+        b.streak = "D";
+      }
+    });
+    rows.forEach((row) => {
+      row.dp = row.cg - row.cp;
+    });
+    return rows.sort(
+      (a, b) => b.pts - a.pts || b.dp - a.dp || b.cg - a.cg || a.rank - b.rank,
+    );
+  }
+
+  const api = Object.freeze({ ruleForMatch, computeStandings });
+  root.StationXFixturePolicy = api;
+  if (typeof module === "object" && module.exports) module.exports = api;
+})(typeof window !== "undefined" ? window : globalThis);
+(function (root) {
+  "use strict";
+
+  async function liveDuel({
+    fetchResponse,
+    createFormData,
+    getUrl,
+    matchId,
+    revision,
+    operation,
+    payload,
+  }) {
+    const options = {
+      cache: "no-store",
+      headers: { Accept: "application/json" },
+    };
+    if (operation) {
+      const body = createFormData();
+      body.set("match_id", matchId);
+      body.set("actor", "judge");
+      body.set("operation", operation);
+      body.set("revision", String(revision || 0));
+      body.set("payload", JSON.stringify(payload));
+      options.method = "POST";
+      options.body = body;
+    }
+    const response = await fetchResponse(getUrl(), options);
+    const data = await response.json();
+    return { response, data };
+  }
+
+  function submitOffline(fetchResponse, url, body) {
+    return fetchResponse(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+      },
+      body: body.toString(),
+      credentials: "same-origin",
+      redirect: "follow",
+    });
+  }
+
+  function pollLive(fetchResponse) {
+    return fetchResponse("./?api=live", {
+      cache: "no-store",
+      credentials: "same-origin",
+    });
+  }
+
+  const api = Object.freeze({ liveDuel, submitOffline, pollLive });
+  root.StationXBrowserTransport = api;
+  if (typeof module === "object" && module.exports) module.exports = api;
+})(typeof window !== "undefined" ? window : globalThis);
+(function (root) {
+  "use strict";
+
+  function storageKey(matchId, duel) {
+    return `dml_duel_timer_v2_${matchId || "match"}_${duel}`;
+  }
+
+  function elapsed(state, now) {
+    const base = Math.max(0, Number(state?.baseElapsed || 0));
+    if (!state?.running || !state.startedAt)
+      return Math.min(1200, Math.floor(base));
+    return Math.min(
+      1200,
+      Math.floor(base + (now() - Number(state.startedAt)) / 1000),
+    );
+  }
+
+  function persist(state, key, liveSynced, now, writeValue) {
+    if (!state) return;
+    state.updatedAt = now();
+    state.liveSynced = liveSynced;
+    writeValue(key(), JSON.stringify(state));
+  }
+
+  const api = Object.freeze({ storageKey, elapsed, persist });
+  root.StationXDuelTimerPolicy = api;
+  if (typeof module === "object" && module.exports) module.exports = api;
+})(typeof window !== "undefined" ? window : globalThis);
+(function (root) {
+  "use strict";
+
+  function restore(defaultState, readValue) {
+    let state = { ...defaultState };
+    try {
+      const saved = JSON.parse(readValue() || "{}");
+      state = { ...state, ...saved };
+      state.a = Number.isFinite(Number(state.a))
+        ? Math.max(0, Number(state.a))
+        : 8000;
+      state.b = Number.isFinite(Number(state.b))
+        ? Math.max(0, Number(state.b))
+        : 8000;
+      state.startA = Number.isFinite(Number(state.startA))
+        ? Math.max(0, Number(state.startA))
+        : 8000;
+      state.startB = Number.isFinite(Number(state.startB))
+        ? Math.max(0, Number(state.startB))
+        : 8000;
+      state.timer = Number.isFinite(Number(state.timer))
+        ? Math.max(0, Number(state.timer))
+        : 0;
+      state.turn = Number.isFinite(Number(state.turn))
+        ? Math.max(1, Number(state.turn))
+        : 1;
+      state.coin = String(state.coin || "");
+      state.dice = String(state.dice || "");
+      state.history = Array.isArray(state.history)
+        ? state.history.slice(0, 12)
+        : [];
+      state.running = false;
+    } catch (error) {
+      state = { ...defaultState };
+    }
+    return state;
+  }
+
+  function resultKey(matchId, duel) {
+    return `dml_result_lp_${matchId || "match"}_${duel || 1}`;
+  }
+
+  function persist(state, key, writeValue) {
+    writeValue(key, JSON.stringify({ ...state, running: false }));
+  }
+
+  const api = Object.freeze({ restore, resultKey, persist });
+  root.StationXLpStatePolicy = api;
+  if (typeof module === "object" && module.exports) module.exports = api;
+})(typeof window !== "undefined" ? window : globalThis);
+(function (root) {
+  "use strict";
+
+  function operationalAlertBuckets(
+    alertableMatchList,
+    addDays,
+    serverToday,
+    normalizeStatusKey,
+    isPlayableDate,
+  ) {
+    const matches = alertableMatchList();
+    const tomorrow = addDays(serverToday, 1);
+    const running = (match) =>
+      ["en_curso", "in_progress", "running", "paused", "requiere_d5"].includes(
+        normalizeStatusKey(match.estado || match.status || ""),
+      );
+    const pending = matches.filter((match) => !running(match));
+    const byDate = (a, b) =>
+      String(a.scheduled_on || "9999-12-31").localeCompare(
+        String(b.scheduled_on || "9999-12-31"),
+      ) ||
+      String(a.starts_at || "99:99:99").localeCompare(
+        String(b.starts_at || "99:99:99"),
+      ) ||
+      Number(a.mesa || 0) - Number(b.mesa || 0) ||
+      Number(a.id || 0) - Number(b.id || 0);
+    return {
+      inProgress: matches.filter(running).sort(byDate),
+      overdue: pending
+        .filter(
+          (match) => match.scheduled_on && match.scheduled_on < serverToday,
+        )
+        .sort(byDate),
+      today: pending
+        .filter((match) => match.scheduled_on === serverToday)
+        .sort(byDate),
+      upcoming: pending
+        .filter((match) => match.scheduled_on === tomorrow)
+        .sort(byDate),
+      unscheduled: pending.filter((match) => !match.scheduled_on).sort(byDate),
+      invalidDays: matches
+        .filter(
+          (match) => match.scheduled_on && !isPlayableDate(match.scheduled_on),
+        )
+        .sort(byDate),
+    };
+  }
+
+  function activeCalendarCompetitions(data, normalize) {
+    const competitions = (data.competitions || []).filter(
+      (competition) => normalize(competition.active ?? "1") !== "0",
+    );
+    const visibleStatuses = [
+      "active",
+      "activo",
+      "en curso",
+      "en_curso",
+      "pending event",
+      "pending_event",
+      "pendiente evento",
+      "pendiente_evento",
+      "pending configuration",
+      "pending_configuration",
+      "pendiente configuracion",
+      "pendiente_configuracion",
+      "completed",
+      "finalizado",
+      "finalizada",
+    ];
+    const active = competitions.filter((competition) =>
+      visibleStatuses.includes(normalize(competition.status)),
+    );
+    return active;
+  }
+
+  function calendarEvents(
+    data,
+    {
+      activeCalendarCompetitions,
+      allMatchList,
+      normalize,
+      styleForEvent,
+      fixtureRoundsFor,
+      matchVersusLabel,
+      calendarCompletion,
+      normalizeStatusKey,
+      calendarFormatStyle,
+    },
+  ) {
+    const activeCompetitions = activeCalendarCompetitions();
+    const activeCompetitionIds = new Set(
+      activeCompetitions.map((competition) => String(competition.id || "")),
+    );
+    const scheduledMatchesByDate = allMatchList()
+      .filter((match) => match.scheduled_on)
+      .reduce((map, match) => {
+        map[match.scheduled_on] = map[match.scheduled_on] || [];
+        map[match.scheduled_on].push(match);
+        return map;
+      }, {});
+    const scheduledMatchesByDateAndCompetition = allMatchList()
+      .filter((match) => match.scheduled_on && match.competition_id)
+      .reduce((map, match) => {
+        const key = `${match.scheduled_on}|${match.competition_id}`;
+        map[key] = map[key] || [];
+        map[key].push(match);
+        return map;
+      }, {});
+    const storedEventRows = (data.events || []).filter((event) => {
+      const eventCompetition = String(event.competition_id || "");
+      const eventCompetitionStatus = normalize(event.competition_status || "");
+      return (
+        !eventCompetition ||
+        activeCompetitionIds.has(eventCompetition) ||
+        ["active", "activo", "en curso", "en_curso"].includes(
+          eventCompetitionStatus,
+        )
+      );
+    });
+    const storedEventByKey = new Map();
+    storedEventRows.forEach((event) => {
+      const eventCompetition = String(event.competition_id || "");
+      const key = eventCompetition
+        ? `${event.event_date}|${eventCompetition}|${event.event_type || event.competition_type || ""}`
+        : `raw-${event.id}`;
+      const current = storedEventByKey.get(key);
+      const score =
+        (String(event.title || "")
+          .toLowerCase()
+          .includes("jornada")
+          ? 10
+          : 0) +
+        (String(event.notes || "")
+          .toLowerCase()
+          .includes("combates")
+          ? 5
+          : 0) +
+        (event.starts_at ? 1 : 0);
+      const currentScore = current
+        ? (String(current.title || "")
+            .toLowerCase()
+            .includes("jornada")
+            ? 10
+            : 0) +
+          (String(current.notes || "")
+            .toLowerCase()
+            .includes("combates")
+            ? 5
+            : 0) +
+          (current.starts_at ? 1 : 0)
+        : -1;
+      if (!current || score >= currentScore) storedEventByKey.set(key, event);
+    });
+    const storedEventCoverage = new Set();
+    const storedEvents = Array.from(storedEventByKey.values()).map((event) => {
+      const eventCompetition = String(event.competition_id || "");
+      const competition = activeCompetitions.find(
+        (item) => String(item.id || "") === eventCompetition,
+      );
+      if (eventCompetition)
+        storedEventCoverage.add(`${event.event_date}|${eventCompetition}`);
+      const eventMatches = eventCompetition
+        ? scheduledMatchesByDateAndCompetition[
+            `${event.event_date}|${eventCompetition}`
+          ] || []
+        : scheduledMatchesByDate[event.event_date] || [];
+      return {
+        id: `event-${event.id}`,
+        competitionId: eventCompetition,
+        date: event.event_date,
+        type: event.event_type || event.competition_type || "torneo",
+        ruleset:
+          competition?.event_ruleset ||
+          eventMatches[0]?.competition_ruleset ||
+          "",
+        division: event.division_code || "GENERAL",
+        status: event.status || "scheduled",
+        competitionStatus:
+          competition?.status || event.competition_status || "",
+        title: event.title,
+        meta: event.notes || event.competition_name || "Evento programado",
+        time: event.starts_at || "",
+        venue: event.venue || "",
+        accent: styleForEvent(
+          event.event_type || event.competition_type || "torneo",
+        ).accent,
+        matches: eventMatches,
+      };
+    });
+    const fixtureEvents = Object.keys(data.fixtures || {}).flatMap(
+      (division) => {
+        const divisionRounds = fixtureRoundsFor(division);
+        const firstPhase = divisionRounds[0]?.matches?.[0]?.phase;
+        const type =
+          firstPhase ||
+          (division === "CLASIFICATORIO" ? "qualifier" : "league");
+        const matchEvents = divisionRounds.flatMap((round) =>
+          (round.matches || [])
+            .filter(
+              (match) =>
+                match.scheduled_on &&
+                (!match.competition_id ||
+                  activeCompetitionIds.has(String(match.competition_id))),
+            )
+            .filter(
+              (match) =>
+                !match.competition_id ||
+                !storedEventCoverage.has(
+                  `${match.scheduled_on}|${match.competition_id}`,
+                ),
+            )
+            .map((match) => {
+              const competition = activeCompetitions.find(
+                (item) =>
+                  String(item.id || "") === String(match.competition_id || ""),
+              );
+              return {
+                id: `match-${match.id}`,
+                date: match.scheduled_on,
+                type: competition?.type || match.phase || type,
+                ruleset:
+                  competition?.event_ruleset || match.competition_ruleset || "",
+                division,
+                round: round.ronda,
+                status: match.estado || "PENDIENTE",
+                title: `Mesa ${match.mesa}: ${matchVersusLabel(match)}`,
+                meta: `Ronda ${round.ronda} | ${String(match.match_format || "1v1").toUpperCase()} | Mejor de ${match.best_of || 5}${match.starts_at ? ` | ${match.starts_at.slice(0, 5)}` : ""}${match.venue ? ` | ${match.venue}` : ""}`,
+                time: match.starts_at || "",
+                venue: match.venue || "",
+                judge: match.judge || "",
+                notes: match.notes || "",
+                accent:
+                  competition?.accent ||
+                  (data.divisions[division]
+                    ? data.divisions[division].accent
+                    : "#36d8ff"),
+                matches: [match],
+              };
+            }),
+        );
+        return matchEvents;
+      },
+    );
+    const ffaEvents = (data.ffaMatches || [])
+      .filter((row) => activeCompetitionIds.has(String(row.competition_id)))
+      .map((row) => {
+        const c = activeCompetitions.find(
+            (c) => String(c.id) === String(row.competition_id),
+          ),
+          names = row.state.players
+            .map(
+              (p) =>
+                (data.allDecks || []).find((d) => Number(d.id) === p.deck_id)
+                  ?.name || p.deck_id,
+            )
+            .join(" · ");
+        return {
+          id: "ffa-" + row.id,
+          ffa: true,
+          competitionId: String(row.competition_id),
+          date: row.scheduled_on,
+          type: c?.type || "special",
+          ruleset: c?.event_ruleset || "",
+          division: "GENERAL",
+          status: row.status,
+          competitionStatus: c?.status,
+          title: (c?.name || "Battle Royale") + " · " + names,
+          meta: "3-4 jugadores independientes",
+          time: row.starts_at,
+          accent: c?.accent || "#36d8ff",
+          matches: [
+            {
+              id: "ffa-" + row.id,
+              ffa_id: row.id,
+              competition_id: row.competition_id,
+              player_names: names,
+              estado: row.status,
+              scheduled_on: row.scheduled_on,
+              starts_at: row.starts_at,
+            },
+          ],
+        };
+      });
+    return [...storedEvents, ...fixtureEvents, ...ffaEvents].map((event) => {
+      const style = styleForEvent(event.type, event.accent);
+      const matchCompletion = calendarCompletion(event.matches || []);
+      const eventStatus = normalizeStatusKey(
+        event.competitionStatus || event.status || "",
+      );
+      const completion =
+        matchCompletion === "empty"
+          ? ["completed", "finalizado", "finalizada"].includes(eventStatus)
+            ? "complete"
+            : "incomplete"
+          : matchCompletion;
+      const format = calendarFormatStyle(
+        event.ruleset ||
+          event.matches?.[0]?.competition_ruleset ||
+          event.division,
+        style.accent,
+        event.type,
+      );
+      return {
+        ...event,
+        typeLabel: style.label,
+        typeAccent: style.accent,
+        format: format.key,
+        completion,
+        accent: format.accent,
+      };
+    });
+  }
+
+  function filteredCalendarEvents({
+    calendarEvents,
+    type,
+    division,
+    search,
+    normalize,
+    calendarProfileScope,
+    calendarMatchBelongsToScope,
+  }) {
+    const query = normalize(search);
+    return calendarEvents()
+      .map((event) => {
+        if (!calendarProfileScope) return event;
+        const scopedMatches = (event.matches || []).filter((match) =>
+          calendarMatchBelongsToScope(match, calendarProfileScope),
+        );
+        return scopedMatches.length
+          ? { ...event, matches: scopedMatches }
+          : null;
+      })
+      .filter(Boolean)
+      .filter((event) => {
+        const haystack = normalize(
+          `${event.title} ${event.meta} ${event.type} ${event.division} ${event.status}`,
+        );
+        const eventDivision = String(event.division || "");
+        return (
+          (!type || event.type === type) &&
+          (!division ||
+            eventDivision === division ||
+            eventDivision.endsWith(`_${division}`)) &&
+          (!query || haystack.includes(query))
+        );
+      });
+  }
+
+  function calendarMatchBelongsToScope(
+    match,
+    scope,
+    data,
+    matchSideDecks,
+    normalize,
+  ) {
+    if (!match || !scope) return false;
+    const participantIds = [
+      match.deck_a_id,
+      match.deck_b_id,
+      match.deck_c_id,
+      match.deck_d_id,
+      match.deck_e_id,
+      match.deck_f_id,
+    ]
+      .map((id) => String(id || ""))
+      .filter(Boolean);
+    if (scope.type === "deck") {
+      return (
+        participantIds.includes(String(scope.id || "")) ||
+        [...matchSideDecks(match, "a"), ...matchSideDecks(match, "b")].some(
+          (name) => normalize(name) === normalize(scope.label),
+        )
+      );
+    }
+    const teamDecks = (data.allDecks || []).filter(
+      (deck) => String(deck.team_id || "") === String(scope.id || ""),
+    );
+    const teamDeckIds = new Set(teamDecks.map((deck) => String(deck.id || "")));
+    const teamDeckNames = new Set(
+      teamDecks.map((deck) => normalize(deck.name || "")),
+    );
+    return (
+      participantIds.some((id) => teamDeckIds.has(id)) ||
+      [...matchSideDecks(match, "a"), ...matchSideDecks(match, "b")].some(
+        (name) => teamDeckNames.has(normalize(name)),
+      ) ||
+      [match.team_a, match.team_b].some(
+        (name) => normalize(name || "") === normalize(scope.label),
+      )
+    );
+  }
+
+  const api = Object.freeze({
+    operationalAlertBuckets,
+    activeCalendarCompetitions,
+    calendarEvents,
+    filteredCalendarEvents,
+    calendarMatchBelongsToScope,
+  });
+  root.StationXCalendarProjection = api;
+  if (typeof module === "object" && module.exports) module.exports = api;
+})(typeof window !== "undefined" ? window : globalThis);
+(function (root) {
+  "use strict";
+
+  function competitionCanEditRoster(
+    competition,
+    currentCompetitionType,
+    normalizeStatusKey,
+  ) {
+    const type = String(competition?.type || currentCompetitionType() || "");
+    const status = normalizeStatusKey(competition?.status || "");
+    if (
+      [
+        "completed",
+        "finalizado",
+        "finalizada",
+        "cancelled",
+        "canceled",
+        "anulado",
+        "anulada",
+      ].includes(status)
+    )
+      return false;
+    if (["cup", "tournament", "final"].includes(type)) return true;
+    return !(
+      competition?.configuration_locked === 1 ||
+      competition?.configuration_locked === "1" ||
+      ["active", "activo"].includes(status)
+    );
+  }
+
+  function participantFormatCodes(deck) {
+    return (deck?.format_codes || []).filter(
+      (code) => code && code !== "custom",
+    );
+  }
+
+  function compatibleParticipantRoster(decks, eventFormat) {
+    let formats =
+      eventFormat && eventFormat !== "custom" ? [eventFormat] : null;
+    for (const deck of decks) {
+      if (!deck?.id || !deck.team_id) return false;
+      const own = participantFormatCodes(deck);
+      formats =
+        formats === null ? own : formats.filter((code) => own.includes(code));
+      if (!formats.length) return false;
+    }
+    return true;
+  }
+
+  function participantOtherLeague(deck, currentCompetitionConfig, data) {
+    const competition = currentCompetitionConfig();
+    if (!competition || competition.type !== "league" || !deck) return null;
+    return (
+      (data.leagueDeckAssignments || []).find(
+        (row) =>
+          String(row.deck_id) === String(deck.id) &&
+          String(row.season_id) === String(competition.season_id) &&
+          String(row.competition_id) !== String(competition.id),
+      ) || null
+    );
+  }
+
+  function participantIsQualified(deck, currentCompetitionConfig) {
+    const competition = currentCompetitionConfig();
+    if (
+      !competition ||
+      (!competition.admission?.config &&
+        competition.participant_source !== "PREVIOUS_EVENT" &&
+        !["top_cut", "playoffs"].includes(competition.execution_model))
+    )
+      return true;
+    return (
+      !!competition.admission?.ok &&
+      (competition.admission.selection?.ids || []).some(
+        (id) => String(id) === String(deck?.id),
+      )
+    );
+  }
+
+  function participantAddRestriction(
+    deck,
+    participantIsQualified,
+    participantOtherLeague,
+  ) {
+    if (!participantIsQualified(deck))
+      return "Este deck no esta clasificado por las fuentes del evento. Configura Fuentes y clasificados en la ficha.";
+    const other = participantOtherLeague(deck);
+    return other
+      ? `No se puede agregar: este deck pertenece a ${other.competition_name}. Un deck solo puede estar en una liga por temporada; puede participar en otros eventos.`
+      : "No se puede agregar este deck: no se permite mezclar formatos.";
+  }
+
+  function eligibleTeamIdsForCompetition(
+    divisionId,
+    participantsPerSide,
+    data,
+    deckMatchesCompetitionFormat,
+  ) {
+    if (participantsPerSide <= 1) return null;
+    const counts = {};
+    (data.allDecks || []).forEach((deck) => {
+      if (!deckMatchesCompetitionFormat(deck, divisionId)) return;
+      const teamId = String(deck.team_id || "");
+      if (!teamId) return;
+      counts[teamId] = (counts[teamId] || 0) + 1;
+    });
+    return new Set(
+      Object.keys(counts).filter(
+        (teamId) => counts[teamId] >= participantsPerSide,
+      ),
+    );
+  }
+
+  function expectedQualifierMatchCount(
+    deckCount,
+    participantsPerSide,
+    duelsPerDeck,
+    competitionUsesWorkflow,
+  ) {
+    if (competitionUsesWorkflow()) return Math.floor(deckCount / 2);
+    const groups =
+      participantsPerSide > 0 ? Math.floor(deckCount / participantsPerSide) : 0;
+    if (groups < 2 || duelsPerDeck < 2 || duelsPerDeck > groups - 1) return 0;
+    const roundLimit = Math.min(
+      Math.max(2, Math.min(5, duelsPerDeck)),
+      groups - 1,
+    );
+    return Math.floor(groups / 2) * roundLimit;
+  }
+
+  function currentEligibleGroupCount(
+    participantsPerSide,
+    selectedCompetitionDivisionId,
+    selectedCompetitionDecks,
+    deckMatchesCompetitionFormat,
+  ) {
+    const divisionId = selectedCompetitionDivisionId();
+    const validDecks = selectedCompetitionDecks().filter((deck) =>
+      deckMatchesCompetitionFormat(deck, divisionId),
+    );
+    if (participantsPerSide <= 1) return validDecks.length;
+    const selectedTeamCounts = validDecks.reduce((map, deck) => {
+      const teamId = String(deck.team_id || "");
+      if (!teamId) return map;
+      map[teamId] = (map[teamId] || 0) + 1;
+      return map;
+    }, {});
+    return Object.values(selectedTeamCounts).filter(
+      (count) => count >= participantsPerSide,
+    ).length;
+  }
+
+  function createManualMatchController({
+    manualCompetitionSelect,
+    manualMatchFormatSelect,
+    manualParticipantsInput,
+    manualDivisionSelect,
+    manualDeckSelects,
+    manualPhaseSelect,
+    manualBestOfInput,
+    manualDeckPoolNote,
+  }) {
+    function manualCompetitionOption() {
+      return manualCompetitionSelect
+        ? manualCompetitionSelect.selectedOptions[0]
+        : null;
+    }
+    function manualParticipantsPerSide() {
+      const value =
+        manualMatchFormatSelect?.value || manualParticipantsInput?.value || "1";
+      const fromMatch = Number.parseInt(String(value), 10);
+      return Math.max(
+        1,
+        Math.min(3, Number(manualParticipantsInput?.value || fromMatch || 1)),
+      );
+    }
+    function manualTargetDivisionId(competitionOption) {
+      return String(
+        competitionOption?.dataset?.divisionId ||
+          manualDivisionSelect?.value ||
+          "",
+      );
+    }
+    function manualEligibleTeamIds(targetDivisionId, participantsPerSide) {
+      if (participantsPerSide <= 1) return null;
+      const counts = {};
+      manualDeckSelects[0]
+        ?.querySelectorAll("option[value]")
+        .forEach((option) => {
+          if (
+            !option.value ||
+            (targetDivisionId && option.dataset.divisionId !== targetDivisionId)
+          )
+            return;
+          const teamId = option.dataset.teamId || "";
+          if (!teamId) return;
+          counts[teamId] = (counts[teamId] || 0) + 1;
+        });
+      return new Set(
+        Object.keys(counts).filter(
+          (teamId) => counts[teamId] >= participantsPerSide,
+        ),
+      );
+    }
+    function manualDeckAllowed(option, competitionOption) {
+      if (!option || option.value === "") return true;
+      const participantsPerSide = manualParticipantsPerSide();
+      const targetDivisionId = manualTargetDivisionId(competitionOption);
+      if (targetDivisionId && option.dataset.divisionId !== targetDivisionId)
+        return false;
+      if (!option.dataset.teamId) return false;
+      const eligibleTeams = manualEligibleTeamIds(
+        targetDivisionId,
+        participantsPerSide,
+      );
+      if (eligibleTeams && !eligibleTeams.has(option.dataset.teamId || ""))
+        return false;
+      if (!competitionOption || !competitionOption.value) return true;
+      const pool = competitionOption.dataset.deckPool || "all_active";
+      if (pool === "all_active" || pool === "manual") return true;
+      if (
+        ["division", "qualified", "top_cut"].includes(pool) &&
+        targetDivisionId
+      ) {
+        return option.dataset.divisionId === targetDivisionId;
+      }
+      return true;
+    }
+    function applyManualCompetition() {
+      const option = manualCompetitionOption();
+      if (option && option.value) {
+        if (manualPhaseSelect && option.dataset.type)
+          manualPhaseSelect.value =
+            option.dataset.type === "special"
+              ? "friendly"
+              : option.dataset.type;
+        if (manualDivisionSelect && option.dataset.divisionId)
+          manualDivisionSelect.value = option.dataset.divisionId;
+        if (manualMatchFormatSelect && option.dataset.matchFormat)
+          manualMatchFormatSelect.value = option.dataset.matchFormat;
+        if (manualBestOfInput && option.dataset.bestOf)
+          manualBestOfInput.value = option.dataset.bestOf;
+        if (manualParticipantsInput && option.dataset.participants)
+          manualParticipantsInput.value = option.dataset.participants;
+      }
+      let visibleDecks = 0;
+      manualDeckSelects.forEach((select) => {
+        Array.from(select.options).forEach((deckOption) => {
+          const allowed = manualDeckAllowed(deckOption, option);
+          deckOption.hidden = !allowed;
+          deckOption.disabled = !allowed;
+          if (allowed && deckOption.value) visibleDecks += 1;
+        });
+        const current = select.selectedOptions[0];
+        if (current && current.disabled) {
+          const next = Array.from(select.options).find(
+            (deckOption) => !deckOption.disabled,
+          );
+          if (next) select.value = next.value;
+        }
+      });
+      if (manualDeckPoolNote) {
+        const pool =
+          option && option.value
+            ? option.dataset.deckPool || "all_active"
+            : "all_active";
+        const ruleset =
+          option && option.value
+            ? option.dataset.ruleset || "custom"
+            : "general";
+        manualDeckPoolNote.textContent = `Pool aplicado: ${pool} | Reglamento: ${ruleset} | Opciones visibles: ${visibleDecks}`;
+      }
+    }
+
+    function mount() {
+      if (manualCompetitionSelect)
+        manualCompetitionSelect.addEventListener(
+          "change",
+          applyManualCompetition,
+        );
+      if (manualDivisionSelect)
+        manualDivisionSelect.addEventListener("change", applyManualCompetition);
+      if (manualMatchFormatSelect)
+        manualMatchFormatSelect.addEventListener("change", () => {
+          if (manualParticipantsInput)
+            manualParticipantsInput.value = String(
+              Math.max(
+                1,
+                Math.min(
+                  3,
+                  Number.parseInt(manualMatchFormatSelect.value, 10) || 1,
+                ),
+              ),
+            );
+          applyManualCompetition();
+        });
+      if (manualParticipantsInput)
+        manualParticipantsInput.addEventListener(
+          "input",
+          applyManualCompetition,
+        );
+      applyManualCompetition();
+    }
+
+    return Object.freeze({
+      manualCompetitionOption,
+      manualParticipantsPerSide,
+      manualTargetDivisionId,
+      manualEligibleTeamIds,
+      manualDeckAllowed,
+      applyManualCompetition,
+      mount,
+    });
+  }
+
+  const api = Object.freeze({
+    competitionCanEditRoster,
+    participantFormatCodes,
+    compatibleParticipantRoster,
+    participantOtherLeague,
+    participantIsQualified,
+    participantAddRestriction,
+    eligibleTeamIdsForCompetition,
+    expectedQualifierMatchCount,
+    currentEligibleGroupCount,
+    createManualMatchController,
+  });
+  root.StationXParticipantPolicy = api;
+  if (typeof module === "object" && module.exports) module.exports = api;
+})(typeof window !== "undefined" ? window : globalThis);
+(function (root) {
+  "use strict";
+
+  function normalizeCompetitionStatus(status, normalizeStatusKey) {
+    const normalized = normalizeStatusKey(status);
+    if (["draft", ""].includes(normalized)) return "pending_configuration";
+    if (["cancelled", "canceled", "anulado", "anulada"].includes(normalized))
+      return "cancelled";
+    if (["finalizada", "finalizado", "finalized"].includes(normalized))
+      return "completed";
+    if (["pendiente_evento"].includes(normalized)) return "pending_event";
+    if (["pendiente_configuracion"].includes(normalized))
+      return "pending_configuration";
+    return String(status || "pending_configuration");
+  }
+
+  function competitionStatusLabel(status, normalizeStatusKey) {
+    return (
+      {
+        pending_configuration: "Pendiente configuracion",
+        pending_event: "Programado",
+        active: "Activo",
+        completed: "Finalizado",
+        cancelled: "Anulado",
+      }[normalizeCompetitionStatus(status, normalizeStatusKey)] ||
+      status ||
+      "Pendiente configuracion"
+    );
+  }
+
+  function competitionMatchesFor(competitionId, allMatchList) {
+    return allMatchList().filter(
+      (match) =>
+        String(match.competition_id || "") === String(competitionId || ""),
+    );
+  }
+
+  function competitionMatchIsFinalized(match) {
+    return ["FINALIZADA", "completed", "finalizada"].includes(
+      String(match.estado || match.status || ""),
+    );
+  }
+
+  function latestCompetitionPhase(matches) {
+    const phaseOrder = {
+      qualifier: 1,
+      swiss: 2,
+      groups: 3,
+      league: 4,
+      cup: 5,
+      top_cut: 6,
+      playoff: 7,
+      final: 8,
+    };
+    return (
+      matches
+        .slice()
+        .sort(
+          (left, right) =>
+            (phaseOrder[String(right.phase || "").toLowerCase()] || 0) -
+              (phaseOrder[String(left.phase || "").toLowerCase()] || 0) ||
+            Number(right.ronda || right.round_number || 0) -
+              Number(left.ronda || left.round_number || 0),
+        )[0]?.phase || ""
+    );
+  }
+
+  function competitionPreviewLines(competition, allMatchList, divisionsByCode) {
+    const matches = competitionMatchesFor(competition.id, allMatchList);
+    const pending = matches.filter(
+      (match) => !competitionMatchIsFinalized(match),
+    ).length;
+    const completed = matches.length - pending;
+    const phase =
+      latestCompetitionPhase(matches) ||
+      competition.phase_structure ||
+      competition.type ||
+      "evento";
+    const divisions = Object.values(divisionsByCode || {}).filter(
+      (division) =>
+        String(division.source_qualifier_id || "") ===
+        String(competition.id || ""),
+    );
+    const standings = Array.isArray(competition.ranking)
+      ? competition.ranking
+      : [];
+    const lines = [];
+    if (!matches.length) {
+      lines.push(
+        "No hay combates programados todavia; primero genera calendario o guarda participantes.",
+      );
+    } else if (pending > 0) {
+      lines.push(
+        `Faltan ${pending} de ${matches.length} combates por cerrar en ${phase}; no conviene avanzar fase todavia.`,
+      );
+    } else {
+      const normalizedPhase = String(phase).toLowerCase();
+      const winners = matches.filter((match) =>
+        ["A", "B"].includes(String(match.result || "").toUpperCase()),
+      ).length;
+      if (
+        ["cup", "final", "single_elimination", "top_cut", "playoff"].includes(
+          normalizedPhase,
+        )
+      ) {
+        const nextMatches = Math.floor(winners / 2);
+        lines.push(
+          nextMatches > 0
+            ? `Fase actual cerrada: puede crear exactamente ${nextMatches} combate(s) de la siguiente llave.`
+            : "Fase actual cerrada: no hay suficientes ganadores para crear otra ronda.",
+        );
+      } else if (
+        competition.type === "league" &&
+        ["season_playoffs", "playoffs"].includes(
+          String(competition.execution_model || ""),
+        )
+      ) {
+        const nextMatches = Math.max(
+          1,
+          Math.floor(Math.min(standings.length || winners || completed, 8) / 2),
+        );
+        lines.push(
+          `Liga cerrada: puede crear hasta ${nextMatches} combate(s) de playoff segun ranking.`,
+        );
+      } else if (competition.type === "league") {
+        lines.push(
+          "Liga de fase unica: al cerrar todos los combates se finaliza la tabla; no existe una fase siguiente.",
+        );
+      } else {
+        const nextMatches = Math.max(
+          1,
+          Math.min(
+            8,
+            Math.ceil((standings.length || winners || completed) / 4),
+          ),
+        );
+        lines.push(
+          `Fase actual cerrada: puede crear ${nextMatches} combate(s) segun modelo y ranking.`,
+        );
+      }
+    }
+    if (["cup", "tournament"].includes(String(competition.type || ""))) {
+      const deckCount = Number(
+        competition.deck_pool_count ||
+          (competition.selected_deck_ids || []).length ||
+          0,
+      );
+      if (deckCount > 0 && deckCount % 2 !== 0) {
+        lines.push(
+          `Roster impar: hay ${deckCount} decks. Quita 1 deck desde Decks participantes para poder programar la copa.`,
+        );
+      }
+    }
+    if (competition.type === "qualifier") {
+      lines.push(
+        divisions.length
+          ? `Divisiones conectadas: ${divisions.length}. Aplicar divisiones movera decks segun rangos guardados.`
+          : "No hay divisiones conectadas a este clasificatorio; configura rangos antes de aplicar divisiones.",
+      );
+    }
+    if (
+      competition.type === "league" &&
+      Number(competition.division_count || 0) > 1
+    ) {
+      const lock = String(competition.lock_division_moves || "0") === "1";
+      const up = Number(competition.promotion_slots || 0);
+      const down = Number(competition.relegation_slots || 0);
+      lines.push(
+        lock
+          ? "Ascensos/descensos bloqueados para esta liga: la accion no movera decks."
+          : "Configura los cupos por division en Ascenso y descenso. Requiere liga finalizada y ranking calculado.",
+      );
+    }
+    return lines;
+  }
+
+  function completedQualifierOptions(
+    data,
+    selectedCompetitionDivisionId,
+    normalizeCompetitionStatus,
+  ) {
+    const targetDivisionId = selectedCompetitionDivisionId();
+    return (data.competitions || [])
+      .filter((competition) => {
+        if (String(competition.type || "") !== "qualifier") return false;
+        if (normalizeCompetitionStatus(competition.status) !== "completed")
+          return false;
+        const ranking = Array.isArray(competition.ranking)
+          ? competition.ranking
+          : [];
+        if (!ranking.length) return false;
+        return (
+          !targetDivisionId ||
+          String(competition.division_id || "") === String(targetDivisionId)
+        );
+      })
+      .sort(
+        (a, b) =>
+          String(b.ends_on || b.starts_on || b.created_at || "").localeCompare(
+            String(a.ends_on || a.starts_on || a.created_at || ""),
+          ) || Number(b.id || 0) - Number(a.id || 0),
+      );
+  }
+
+  function qualifierLoadRange(qualifier, fromValue, toValue) {
+    const ranking = Array.isArray(qualifier?.ranking) ? qualifier.ranking : [];
+    const from = Math.max(
+      1,
+      Number.parseInt(String(fromValue || "1"), 10) || 1,
+    );
+    const to = Math.max(1, Number.parseInt(String(toValue || "1"), 10) || 1);
+    const start = Math.min(from, to);
+    const end = Math.max(from, to);
+    const selectedRows = ranking.slice(start - 1, end);
+    return { qualifier, ranking, from: start, to: end, selectedRows };
+  }
+
+  function submitCompetitionConfig(
+    mode,
+    {
+      competitionConfigModal,
+      data,
+      activeCompetitionConfigId,
+      competitionPersistedMatchCount,
+      eventModelWarnings,
+      bootstrap,
+      document,
+      selectedCompetitionDecks,
+      participantOtherLeague,
+      participantAddRestriction,
+      compatibleParticipantRoster,
+      syncCompetitionDeckInputs,
+      updateCompetitionDeckConstraints,
+      serverToday,
+      competitionParticipantsPerSide,
+      currentEligibleGroupCount,
+      expectedQualifierMatchCount,
+      competitionScheduledMatchCount,
+      confirmScheduleQualifierModal,
+      confirmScheduleQualifierModalNode,
+      allMatchList,
+      confirmStartQualifierModal,
+      confirmStartQualifierModalNode,
+      eventTypeLabel,
+      alert,
+    },
+  ) {
+    if (!competitionConfigModal) return;
+    const model = (data.competitions || []).find(
+      (c) => String(c.id) === String(activeCompetitionConfigId),
+    );
+    if (
+      model &&
+      ["start", "schedule_qualifier", "schedule_cup", "save_schedule"].includes(
+        mode,
+      ) &&
+      competitionPersistedMatchCount(model.id) === 0
+    ) {
+      const warnings = eventModelWarnings(model);
+      if (warnings.length) {
+        alert(
+          "Modelo pendiente de implementacion/configuracion: " +
+            warnings.join(" "),
+        );
+        return;
+      }
+    }
+    const invalidExchange = competitionConfigModal.querySelector(
+      "[data-division-exchange]:invalid",
+    );
+    if (invalidExchange) {
+      bootstrap.Modal.getOrCreateInstance(
+        document.querySelector("[data-league-movement-modal]"),
+      ).show();
+      invalidExchange.reportValidity();
+      return;
+    }
+    const occupiedDeck = selectedCompetitionDecks().find((deck) =>
+      participantOtherLeague(deck),
+    );
+    if (occupiedDeck) {
+      alert(participantAddRestriction(occupiedDeck));
+      return;
+    }
+    if (!compatibleParticipantRoster(selectedCompetitionDecks())) {
+      alert(
+        "No se pueden guardar participantes de otro formato ni mezclar formatos. Retira los decks incompatibles.",
+      );
+      return;
+    }
+    const form = competitionConfigModal.querySelector("form");
+    const modeInput = competitionConfigModal.querySelector(
+      "[data-competition-config-mode]",
+    );
+    if (!form || !modeInput) return;
+    const normalizedMode = mode === "status" ? "save" : mode;
+    const type =
+      competitionConfigModal.querySelector("[data-competition-config-type]")
+        ?.value || "";
+    const startInput = competitionConfigModal.querySelector(
+      "[data-competition-config-start]",
+    );
+    modeInput.value = normalizedMode;
+    syncCompetitionDeckInputs();
+    updateCompetitionDeckConstraints();
+    if (
+      ["schedule_qualifier", "schedule_cup"].includes(normalizedMode) &&
+      startInput &&
+      startInput.value &&
+      startInput.value < serverToday
+    ) {
+      startInput.reportValidity();
+      alert("La fecha de inicio no puede ser menor a la fecha actual.");
+      return;
+    }
+    if (
+      normalizedMode === "start" &&
+      startInput &&
+      startInput.value &&
+      startInput.value > serverToday
+    ) {
+      alert(`Este evento se podra comenzar el ${startInput.value}.`);
+      return;
+    }
+    if (
+      !["save", "save_schedule", "start"].includes(normalizedMode) &&
+      !updateCompetitionDeckConstraints()
+    ) {
+      alert(
+        type === "qualifier"
+          ? "Configuracion invalida: el clasificatorio necesita minimo 4 decks y combinaciones coherentes entre match y duelos a clasificar."
+          : "Configuracion invalida: agrega decks suficientes para organizar los combates del evento.",
+      );
+      return;
+    }
+    const participantsPerSide = competitionParticipantsPerSide(
+      competitionConfigModal.querySelector("[data-competition-config-match]"),
+    );
+    const eligibleGroups = currentEligibleGroupCount(participantsPerSide);
+    const expectedMatches = expectedQualifierMatchCount(
+      eligibleGroups * participantsPerSide,
+      participantsPerSide,
+      Number(
+        competitionConfigModal.querySelector(
+          "[data-competition-config-qualifier-duels]",
+        )?.value || 0,
+      ),
+    );
+    if (
+      normalizedMode === "start" &&
+      type === "qualifier" &&
+      competitionScheduledMatchCount() < expectedMatches
+    ) {
+      alert(
+        "Primero debes programar todos los duelos y fechas tentativas del clasificatorio.",
+      );
+      return;
+    }
+    if (
+      normalizedMode === "schedule_qualifier" &&
+      type === "qualifier" &&
+      confirmScheduleQualifierModal
+    ) {
+      const competitionId =
+        competitionConfigModal.querySelector("[data-competition-config-id]")
+          ?.value || "";
+      confirmScheduleQualifierModalNode.dataset.pendingScheduleMode =
+        "schedule_qualifier";
+      const existingMatches = allMatchList().filter(
+        (match) =>
+          String(match.competition_id || "") === String(competitionId) &&
+          !["FINALIZADA", "completed", "finalizada"].includes(
+            String(match.estado || match.status || ""),
+          ),
+      );
+      const message = confirmScheduleQualifierModalNode.querySelector(
+        "[data-confirm-schedule-qualifier-message]",
+      );
+      const meta = confirmScheduleQualifierModalNode.querySelector(
+        "[data-confirm-schedule-qualifier-meta]",
+      );
+      if (meta)
+        meta.textContent = existingMatches.length
+          ? `Este evento ya tiene ${existingMatches.length} duelos programados.`
+          : "Este evento aun no tiene duelos programados.";
+      if (message)
+        message.textContent = existingMatches.length
+          ? "Ya se genero un calendario de duelos y fechas para este evento. Si continuas, se reemplazara el calendario anterior no finalizado y se actualizara en base de datos."
+          : "Si continuas, se generaran los cruces y fechas tentativas del clasificatorio y quedaran guardados en base de datos.";
+      confirmScheduleQualifierModal.show();
+      return;
+    }
+    if (
+      normalizedMode === "schedule_cup" &&
+      ["cup", "final"].includes(type) &&
+      confirmScheduleQualifierModal
+    ) {
+      const competitionId =
+        competitionConfigModal.querySelector("[data-competition-config-id]")
+          ?.value || "";
+      confirmScheduleQualifierModalNode.dataset.pendingScheduleMode =
+        "schedule_cup";
+      const existingMatches = allMatchList().filter(
+        (match) =>
+          String(match.competition_id || "") === String(competitionId) &&
+          !["FINALIZADA", "completed", "finalizada"].includes(
+            String(match.estado || match.status || ""),
+          ),
+      );
+      if (existingMatches.length) {
+        alert(
+          "Esta copa ya fue programada. La llave existente no se puede volver a generar.",
+        );
+        return;
+      }
+      const message = confirmScheduleQualifierModalNode.querySelector(
+        "[data-confirm-schedule-qualifier-message]",
+      );
+      const meta = confirmScheduleQualifierModalNode.querySelector(
+        "[data-confirm-schedule-qualifier-meta]",
+      );
+      if (meta) meta.textContent = "Esta copa aun no tiene llave programada.";
+      if (message)
+        message.textContent =
+          "Si continuas, se generara una sola vez la llave inicial de copa, sus cruces y fechas tentativas en base de datos.";
+      confirmScheduleQualifierModal.show();
+      return;
+    }
+    if (normalizedMode === "start" && confirmStartQualifierModal) {
+      const scheduledMatches = competitionScheduledMatchCount();
+      const title = confirmStartQualifierModalNode.querySelector(
+        "[data-confirm-start-title]",
+      );
+      const subtitle = confirmStartQualifierModalNode.querySelector(
+        "[data-confirm-start-subtitle]",
+      );
+      const message = confirmStartQualifierModalNode.querySelector(
+        "[data-confirm-start-message]",
+      );
+      if (title)
+        title.textContent = `Comenzar ${eventTypeLabel(type).toLowerCase()}`;
+      if (subtitle)
+        subtitle.textContent =
+          "El evento cambiara a estado activo y su configuracion quedara bloqueada.";
+      if (message)
+        message.textContent =
+          type === "league" &&
+          startInput?.value > serverToday &&
+          scheduledMatches > 0
+            ? `La liga esta programada para el ${startInput.value}. Si confirmas, quedara activa desde ahora sin cambiar las fechas de sus combates. Esta seguro de continuar?`
+            : ["cup", "final"].includes(type) && scheduledMatches === 0
+              ? "Esta copa aun no ha sido programada. Al confirmar, el sistema generara automaticamente la llave y los combates antes de comenzar. Esta seguro de continuar?"
+              : "El evento ya tiene su programacion preparada. Esta seguro de comenzar?";
+      confirmStartQualifierModal.show();
+      return;
+    }
+    form.requestSubmit();
+  }
+
+  const api = Object.freeze({
+    normalizeCompetitionStatus,
+    competitionStatusLabel,
+    competitionMatchesFor,
+    competitionMatchIsFinalized,
+    latestCompetitionPhase,
+    competitionPreviewLines,
+    completedQualifierOptions,
+    qualifierLoadRange,
+    submitCompetitionConfig,
+  });
+  root.StationXEventPlanning = api;
+  if (typeof module === "object" && module.exports) module.exports = api;
+})(typeof window !== "undefined" ? window : globalThis);
 (function () {
   const data = window.DML_DATA || { divisions: {}, fixtures: {}, allDecks: [], teams: [], competitions: [], cards: [], media: [], honors: [], audit: [], events: [], rulesets: [], rulesetVersions: [], matchTypes: [], gameRules: [], gameRuleConditions: [], competitionDependencies: [], statusHistory: [], standingSnapshots: [], matchSnapshots: [], matchupAnalyses: [], matchupAnalysisHistory: [], deckAnalysisProfiles: [], deckAnalysisProfileHistory: [], medalUnlocks: [], medalProgress: [], rankingHistory: [], eventSummaries: [], checkins: [], metaHistory: [], eloHistory: [], settings: {} };
   const settings = data.settings || {};
@@ -663,26 +2238,7 @@
   }
 
   function ruleForMatch(match) {
-    if (match?.game_rule_id) {
-      const directRule = (data.gameRules || []).find((rule) => String(rule.id || '') === String(match.game_rule_id || '') && String(rule.active ?? '1') !== '0');
-      if (directRule) return directRule;
-    }
-    const competition = (data.competitions || []).find((item) => String(item.id || '') === String(match?.competition_id || ''));
-    if (competition?.game_rule_id) {
-      const competitionRule = (data.gameRules || []).find((rule) => String(rule.id || '') === String(competition.game_rule_id || '') && String(rule.active ?? '1') !== '0');
-      if (competitionRule) return competitionRule;
-    }
-    const phase = String(match?.phase || '');
-    const scopes = phase === 'friendly'
-      ? ['all_matches', 'friendly', 'match', 'general']
-      : ['all_matches', 'match', 'general'];
-    return (data.gameRules || [])
-      .filter((rule) => String(rule.active ?? '1') !== '0' && scopes.includes(String(rule.scope || '')))
-      .sort((a, b) => {
-        const scopeDiff = scopes.indexOf(String(a.scope || '')) - scopes.indexOf(String(b.scope || ''));
-        if (scopeDiff !== 0) return scopeDiff;
-        return Number(a.priority_order || 100) - Number(b.priority_order || 100);
-      })[0] || null;
+    return window.StationXFixturePolicy.ruleForMatch(match, data);
   }
 
   function evaluateDuelByRule(values, match = null) {
@@ -714,51 +2270,7 @@
   }
 
   function computeStandings(division) {
-    if (!data.divisions[division]) return [];
-    const rows = data.divisions[division].decks.map((deck) => {
-      const fullDeck = (data.allDecks || []).find((item) => item.name === deck[1]) || {};
-      return {
-        rank: deck[0],
-        name: deck[1],
-        team: fullDeck.team || deck.team || 'Sin equipo',
-        teamCode: fullDeck.team_code || fullDeck.team_symbol || '',
-        teamPrimary: fullDeck.team_primary_color || '#36d8ff',
-        teamSecondary: fullDeck.team_secondary_color || '#ffd25f',
-        pts: 0,
-        pj: 0,
-        pg: 0,
-        pe: 0,
-        pp: 0,
-        cg: 0,
-        cp: 0,
-        dp: 0,
-        d5: 0,
-        sweep: 0,
-        streak: '-'
-      };
-    });
-    const byName = Object.fromEntries(rows.map((row) => [row.name, row]));
-    allMatches(division).forEach((match) => {
-      const result = evaluateDuel(getSavedResult(match), match);
-      if (result.state !== 'FINALIZADA') return;
-      const a = byName[match.a];
-      const b = byName[match.b];
-      if (!a || !b) return;
-      const [cgA, cgB] = result.score.split('-').map(Number);
-      a.pj += 1; b.pj += 1;
-      a.cg += cgA; a.cp += cgB; b.cg += cgB; b.cp += cgA;
-      if (getSavedResult(match)[4]) {
-        if (result.winner === 'A') a.d5 += 1;
-        if (result.winner === 'B') b.d5 += 1;
-      }
-      if (result.score === '2-0') a.sweep += 1;
-      if (result.score === '0-2') b.sweep += 1;
-      if (result.winner === 'A') { a.pts += 3; a.pg += 1; b.pp += 1; a.streak = 'W'; b.streak = 'L'; }
-      if (result.winner === 'B') { b.pts += 3; b.pg += 1; a.pp += 1; b.streak = 'W'; a.streak = 'L'; }
-      if (result.winner === 'E') { a.pts += 1; b.pts += 1; a.pe += 1; b.pe += 1; a.streak = 'D'; b.streak = 'D'; }
-    });
-    rows.forEach((row) => { row.dp = row.cg - row.cp; });
-    return rows.sort((a, b) => b.pts - a.pts || b.dp - a.dp || b.cg - a.cg || a.rank - b.rank);
+    return window.StationXFixturePolicy.computeStandings(division, data, allMatches, getSavedResult, evaluateDuel);
   }
 
   function hasPlayedMatches(division) {
@@ -933,68 +2445,19 @@
   }
 
   function settingEnabled(key) {
-    return ['1', 'true', 'yes', 'on'].includes(String(settings[key] || '0').toLowerCase());
+    return window.StationXCalendarPolicy.settingEnabled(settings, key);
   }
 
   function matchTimingStatus(match) {
-    if (!match || match.estado === 'FINALIZADA') {
-      return { key: 'done', label: 'Finalizado', className: 'ok', canCapture: true };
-    }
-    if (match.competition_can_execute === false || match.competition_can_execute === '0') {
-      return {
-        key: 'competition_blocked',
-        label: match.competition_blocked_reason || 'Evento bloqueado por prerequisitos',
-        className: 'blocked',
-        canCapture: false
-      };
-    }
-    if (['EN CURSO', 'IN_PROGRESS', 'RUNNING', 'PAUSED'].includes(String(match.estado || match.status || '').toUpperCase())) {
-      const canCapture = Boolean(match.scheduled_on) && (match.scheduled_on < serverToday ? settingEnabled('allow_overdue_results') : match.scheduled_on > serverToday ? settingEnabled('allow_early_results') : true);
-      return { key: 'in_progress', label: 'En curso', className: 'ok', canCapture };
-    }
-    if (!match.scheduled_on) {
-      return { key: 'unscheduled', label: 'Sin fecha', className: 'warn', canCapture: false };
-    }
-    if (match.scheduled_on < serverToday) {
-      return { key: 'overdue', label: 'Vencido', className: 'danger', canCapture: settingEnabled('allow_overdue_results') };
-    }
-    if (match.scheduled_on === serverToday) {
-      return { key: 'today', label: 'Hoy', className: 'ok', canCapture: true };
-    }
-    return {
-      key: 'future',
-      label: settingEnabled('allow_early_results') ? 'Adelantable' : 'Fecha futura',
-      className: settingEnabled('allow_early_results') ? 'warn' : 'blocked',
-      canCapture: settingEnabled('allow_early_results')
-    };
+    return window.StationXCalendarPolicy.matchTimingStatus(match, serverToday, settings);
   }
 
   function isPlayableDate(dayIso) {
-    if (!dayIso) return false;
-    const date = new Date(`${dayIso}T12:00:00`);
-    if (Number.isNaN(date.getTime())) return false;
-    const weekday = String(date.getDay());
-    const validDays = String(settings.valid_weekdays || '1,2,3,4,5,6,0').split(',').map((value) => value.trim()).filter(Boolean);
-    const specialDays = String(settings.special_days || '').split(/[\s,]+/).map((value) => value.trim()).filter(Boolean);
-    return validDays.includes(weekday) || (settingEnabled('allow_special_days') && specialDays.includes(dayIso));
+    return window.StationXCalendarPolicy.isPlayableDate(dayIso, settings);
   }
 
   function operationalAlertBuckets() {
-    const matches = alertableMatchList();
-    const tomorrow = addDays(serverToday, 1);
-    const running = match => ['en_curso', 'in_progress', 'running', 'paused', 'requiere_d5'].includes(normalizeStatusKey(match.estado || match.status || ''));
-    const pending = matches.filter(match => !running(match));
-    const byDate = (a, b) => String(a.scheduled_on || '9999-12-31').localeCompare(String(b.scheduled_on || '9999-12-31'))
-      || String(a.starts_at || '99:99:99').localeCompare(String(b.starts_at || '99:99:99'))
-      || Number(a.mesa || 0) - Number(b.mesa || 0) || Number(a.id || 0) - Number(b.id || 0);
-    return {
-      inProgress: matches.filter(running).sort(byDate),
-      overdue: pending.filter(match => match.scheduled_on && match.scheduled_on < serverToday).sort(byDate),
-      today: pending.filter(match => match.scheduled_on === serverToday).sort(byDate),
-      upcoming: pending.filter(match => match.scheduled_on === tomorrow).sort(byDate),
-      unscheduled: pending.filter(match => !match.scheduled_on).sort(byDate),
-      invalidDays: matches.filter(match => match.scheduled_on && !isPlayableDate(match.scheduled_on)).sort(byDate),
-    };
+    return window.StationXCalendarProjection.operationalAlertBuckets(alertableMatchList, addDays, serverToday, normalizeStatusKey, isPlayableDate);
   }
 
   function matchLeagueSideText(info, side, includeNames = false) {
@@ -1217,10 +2680,7 @@
   }
 
   function activeCalendarCompetitions() {
-    const competitions = (data.competitions || []).filter((competition) => normalize(competition.active ?? '1') !== '0');
-    const visibleStatuses = ['active', 'activo', 'en curso', 'en_curso', 'pending event', 'pending_event', 'pendiente evento', 'pendiente_evento', 'pending configuration', 'pending_configuration', 'pendiente configuracion', 'pendiente_configuracion', 'completed', 'finalizado', 'finalizada'];
-    const active = competitions.filter((competition) => visibleStatuses.includes(normalize(competition.status)));
-    return active;
+    return window.StationXCalendarProjection.activeCalendarCompetitions(data, normalize);
   }
 
   function activeCompetitionFor(type, division) {
@@ -1231,106 +2691,9 @@
   }
 
   function calendarEvents() {
-    const activeCompetitions = activeCalendarCompetitions();
-    const activeCompetitionIds = new Set(activeCompetitions.map((competition) => String(competition.id || '')));
-    const scheduledMatchesByDate = allMatchList()
-      .filter((match) => match.scheduled_on)
-      .reduce((map, match) => {
-        map[match.scheduled_on] = map[match.scheduled_on] || [];
-        map[match.scheduled_on].push(match);
-        return map;
-      }, {});
-    const scheduledMatchesByDateAndCompetition = allMatchList()
-      .filter((match) => match.scheduled_on && match.competition_id)
-      .reduce((map, match) => {
-        const key = `${match.scheduled_on}|${match.competition_id}`;
-        map[key] = map[key] || [];
-        map[key].push(match);
-        return map;
-      }, {});
-    const storedEventRows = (data.events || []).filter((event) => {
-      const eventCompetition = String(event.competition_id || '');
-      const eventCompetitionStatus = normalize(event.competition_status || '');
-      return !eventCompetition || activeCompetitionIds.has(eventCompetition) || ['active', 'activo', 'en curso', 'en_curso'].includes(eventCompetitionStatus);
-    });
-    const storedEventByKey = new Map();
-    storedEventRows.forEach((event) => {
-      const eventCompetition = String(event.competition_id || '');
-      const key = eventCompetition ? `${event.event_date}|${eventCompetition}|${event.event_type || event.competition_type || ''}` : `raw-${event.id}`;
-      const current = storedEventByKey.get(key);
-      const score = (String(event.title || '').toLowerCase().includes('jornada') ? 10 : 0)
-        + (String(event.notes || '').toLowerCase().includes('combates') ? 5 : 0)
-        + (event.starts_at ? 1 : 0);
-      const currentScore = current ? ((String(current.title || '').toLowerCase().includes('jornada') ? 10 : 0)
-        + (String(current.notes || '').toLowerCase().includes('combates') ? 5 : 0)
-        + (current.starts_at ? 1 : 0)) : -1;
-      if (!current || score >= currentScore) storedEventByKey.set(key, event);
-    });
-    const storedEventCoverage = new Set();
-    const storedEvents = Array.from(storedEventByKey.values()).map((event) => {
-      const eventCompetition = String(event.competition_id || '');
-      const competition = activeCompetitions.find((item) => String(item.id || '') === eventCompetition);
-      if (eventCompetition) storedEventCoverage.add(`${event.event_date}|${eventCompetition}`);
-      const eventMatches = eventCompetition ? (scheduledMatchesByDateAndCompetition[`${event.event_date}|${eventCompetition}`] || []) : (scheduledMatchesByDate[event.event_date] || []);
-      return {
-        id: `event-${event.id}`,
-        competitionId: eventCompetition,
-        date: event.event_date,
-        type: event.event_type || event.competition_type || 'torneo',
-        ruleset: competition?.event_ruleset || eventMatches[0]?.competition_ruleset || '',
-        division: event.division_code || 'GENERAL',
-        status: event.status || 'scheduled',
-        competitionStatus: competition?.status || event.competition_status || '',
-        title: event.title,
-        meta: event.notes || event.competition_name || 'Evento programado',
-        time: event.starts_at || '',
-        venue: event.venue || '',
-        accent: styleForEvent(event.event_type || event.competition_type || 'torneo').accent,
-        matches: eventMatches
-      };
-    });
-    const fixtureEvents = Object.keys(data.fixtures || {}).flatMap((division) => {
-      const divisionRounds = fixtureRoundsFor(division);
-      const firstPhase = divisionRounds[0]?.matches?.[0]?.phase;
-      const type = firstPhase || (division === 'CLASIFICATORIO' ? 'qualifier' : 'league');
-      const matchEvents = divisionRounds.flatMap((round) => (round.matches || [])
-        .filter((match) => match.scheduled_on && (!match.competition_id || activeCompetitionIds.has(String(match.competition_id))))
-        .filter((match) => !match.competition_id || !storedEventCoverage.has(`${match.scheduled_on}|${match.competition_id}`))
-        .map((match) => {
-          const competition = activeCompetitions.find((item) => String(item.id || '') === String(match.competition_id || ''));
-          return {
-            id: `match-${match.id}`,
-            date: match.scheduled_on,
-            type: competition?.type || match.phase || type,
-            ruleset: competition?.event_ruleset || match.competition_ruleset || '',
-            division,
-            round: round.ronda,
-            status: match.estado || 'PENDIENTE',
-            title: `Mesa ${match.mesa}: ${matchVersusLabel(match)}`,
-            meta: `Ronda ${round.ronda} | ${String(match.match_format || '1v1').toUpperCase()} | Mejor de ${match.best_of || 5}${match.starts_at ? ` | ${match.starts_at.slice(0, 5)}` : ''}${match.venue ? ` | ${match.venue}` : ''}`,
-            time: match.starts_at || '',
-            venue: match.venue || '',
-            judge: match.judge || '',
-            notes: match.notes || '',
-            accent: competition?.accent || (data.divisions[division] ? data.divisions[division].accent : '#36d8ff'),
-            matches: [match]
-          };
-        }));
-      return matchEvents;
-    });
-    const ffaEvents=(data.ffaMatches||[]).filter(row=>activeCompetitionIds.has(String(row.competition_id))).map(row=>{
-      const c=activeCompetitions.find(c=>String(c.id)===String(row.competition_id)),names=row.state.players.map(p=>(data.allDecks||[]).find(d=>Number(d.id)===p.deck_id)?.name||p.deck_id).join(' · ');
-      return {id:'ffa-'+row.id,ffa:true,competitionId:String(row.competition_id),date:row.scheduled_on,type:c?.type||'special',ruleset:c?.event_ruleset||'',division:'GENERAL',status:row.status,competitionStatus:c?.status,title:(c?.name||'Battle Royale')+' · '+names,meta:'3-4 jugadores independientes',time:row.starts_at,accent:c?.accent||'#36d8ff',matches:[{id:'ffa-'+row.id,ffa_id:row.id,competition_id:row.competition_id,player_names:names,estado:row.status,scheduled_on:row.scheduled_on,starts_at:row.starts_at}]};
-    });
-    return [...storedEvents, ...fixtureEvents,...ffaEvents].map((event) => {
-      const style = styleForEvent(event.type, event.accent);
-      const matchCompletion = calendarCompletion(event.matches || []);
-      const eventStatus = normalizeStatusKey(event.competitionStatus || event.status || '');
-      const completion = matchCompletion === 'empty'
-        ? (['completed', 'finalizado', 'finalizada'].includes(eventStatus) ? 'complete' : 'incomplete')
-        : matchCompletion;
-      const format = calendarFormatStyle(event.ruleset || event.matches?.[0]?.competition_ruleset || event.division, style.accent, event.type);
-      return { ...event, typeLabel: style.label, typeAccent: style.accent, format: format.key, completion, accent: format.accent };
+    return window.StationXCalendarProjection.calendarEvents(data, {
+      activeCalendarCompetitions, allMatchList, normalize, styleForEvent,
+      fixtureRoundsFor, matchVersusLabel, calendarCompletion, normalizeStatusKey, calendarFormatStyle
     });
   }
 
@@ -1377,36 +2740,16 @@
   syncFriendlyMatchDecks();
 
   function filteredCalendarEvents() {
-    const type = calendarType ? calendarType.value : '';
-    const division = calendarDivision ? calendarDivision.value : '';
-    const query = normalize(calendarSearch ? calendarSearch.value : '');
-    return calendarEvents().map((event) => {
-      if (!calendarProfileScope) return event;
-      const scopedMatches = (event.matches || []).filter((match) => calendarMatchBelongsToScope(match, calendarProfileScope));
-      return scopedMatches.length ? { ...event, matches: scopedMatches } : null;
-    }).filter(Boolean).filter((event) => {
-      const haystack = normalize(`${event.title} ${event.meta} ${event.type} ${event.division} ${event.status}`);
-      const eventDivision = String(event.division || '');
-      return (!type || event.type === type)
-        && (!division || eventDivision === division || eventDivision.endsWith(`_${division}`))
-        && (!query || haystack.includes(query));
+    return window.StationXCalendarProjection.filteredCalendarEvents({
+      calendarEvents, type: calendarType ? calendarType.value : '',
+      division: calendarDivision ? calendarDivision.value : '',
+      search: calendarSearch ? calendarSearch.value : '',
+      normalize, calendarProfileScope, calendarMatchBelongsToScope
     });
   }
 
   function calendarMatchBelongsToScope(match, scope) {
-    if (!match || !scope) return false;
-    const participantIds = [match.deck_a_id, match.deck_b_id, match.deck_c_id, match.deck_d_id, match.deck_e_id, match.deck_f_id]
-      .map((id) => String(id || '')).filter(Boolean);
-    if (scope.type === 'deck') {
-      return participantIds.includes(String(scope.id || ''))
-        || [...matchSideDecks(match, 'a'), ...matchSideDecks(match, 'b')].some((name) => normalize(name) === normalize(scope.label));
-    }
-    const teamDecks = (data.allDecks || []).filter((deck) => String(deck.team_id || '') === String(scope.id || ''));
-    const teamDeckIds = new Set(teamDecks.map((deck) => String(deck.id || '')));
-    const teamDeckNames = new Set(teamDecks.map((deck) => normalize(deck.name || '')));
-    return participantIds.some((id) => teamDeckIds.has(id))
-      || [...matchSideDecks(match, 'a'), ...matchSideDecks(match, 'b')].some((name) => teamDeckNames.has(normalize(name)))
-      || [match.team_a, match.team_b].some((name) => normalize(name || '') === normalize(scope.label));
+    return window.StationXCalendarProjection.calendarMatchBelongsToScope(match, scope, data, matchSideDecks, normalize);
   }
 
   function syncCalendarProfileScope() {
@@ -2801,19 +4144,15 @@
   async function requestLiveDuel(operation = '', payload = {}) {
     if (!activeResultCaptureMatchId) return null;
     const requestedMatchId = String(activeResultCaptureMatchId);
-    const options = { cache: 'no-store', headers: { Accept: 'application/json' } };
-    if (operation) {
-      const body = new FormData();
-      body.set('match_id', activeResultCaptureMatchId);
-      body.set('actor', 'judge');
-      body.set('operation', operation);
-      body.set('revision', String(liveDuelRevision || 0));
-      body.set('payload', JSON.stringify(payload));
-      options.method = 'POST';
-      options.body = body;
-    }
-    const response = await fetch(liveDuelUrl(), options);
-    const data = await response.json();
+    const { response, data } = await window.StationXBrowserTransport.liveDuel({
+      fetchResponse: fetch,
+      createFormData: () => new FormData(),
+      getUrl: liveDuelUrl,
+      matchId: activeResultCaptureMatchId,
+      revision: liveDuelRevision,
+      operation,
+      payload
+    });
     if (String(activeResultCaptureMatchId) !== requestedMatchId) return null;
     if (response.status === 409 && data.state) {
       liveDuelRevision = Number(data.revision || liveDuelRevision);
@@ -2854,19 +4193,17 @@
     liveDuelSyncTimer = window.setTimeout(() => syncJudgeLiveDuel(true), 180);
   }
   function duelTimerStorageKey(duel) {
-    return `dml_duel_timer_v2_${activeResultCaptureMatchId || 'match'}_${duel}`;
+    return window.StationXDuelTimerPolicy.storageKey(activeResultCaptureMatchId, duel);
   }
   function duelTimerElapsed(state) {
-    const base = Math.max(0, Number(state?.baseElapsed || 0));
-    if (!state?.running || !state.startedAt) return Math.min(1200, Math.floor(base));
-    return Math.min(1200, Math.floor(base + ((Date.now() - Number(state.startedAt)) / 1000)));
+    return window.StationXDuelTimerPolicy.elapsed(state, () => Date.now());
   }
   function persistDuelTimer(duel, liveSynced = false) {
     const state = duelTimerState.get(duel);
-    if (!state) return;
-    state.updatedAt = Date.now();
-    state.liveSynced = liveSynced;
-    localStorage.setItem(duelTimerStorageKey(duel), JSON.stringify(state));
+    window.StationXDuelTimerPolicy.persist(
+      state, () => duelTimerStorageKey(duel), liveSynced,
+      () => Date.now(), (key, value) => localStorage.setItem(key, value)
+    );
   }
   function closeDuelTimerConfirm() {
     if (!duelTimerConfirmNode) return;
@@ -3778,7 +5115,7 @@
   }
 
   function resultLpStorageKey(duel) {
-    return `dml_result_lp_${activeResultCaptureMatchId || 'match'}_${duel || 1}`;
+    return window.StationXLpStatePolicy.resultKey(activeResultCaptureMatchId, duel);
   }
 
   function stopResultLpTimer() {
@@ -3788,7 +5125,7 @@
 
   function saveResultLpState() {
     if (!resultLpState) return;
-    localStorage.setItem(resultLpStorageKey(resultLpState.duel), JSON.stringify({ ...resultLpState, running: false }));
+    window.StationXLpStatePolicy.persist(resultLpState, resultLpStorageKey(resultLpState.duel), (key, value) => localStorage.setItem(key, value));
   }
 
   function applyResultLpStateToDuel(syncLive = true) {
@@ -9181,22 +10518,10 @@
     `;
   }
   function normalizeCompetitionStatus(status) {
-    const normalized = normalizeStatusKey(status);
-    if (['draft', ''].includes(normalized)) return 'pending_configuration';
-    if (['cancelled', 'canceled', 'anulado', 'anulada'].includes(normalized)) return 'cancelled';
-    if (['finalizada', 'finalizado', 'finalized'].includes(normalized)) return 'completed';
-    if (['pendiente_evento'].includes(normalized)) return 'pending_event';
-    if (['pendiente_configuracion'].includes(normalized)) return 'pending_configuration';
-    return String(status || 'pending_configuration');
+    return window.StationXEventPlanning.normalizeCompetitionStatus(status, normalizeStatusKey);
   }
   function competitionStatusLabel(status) {
-    return {
-      pending_configuration: 'Pendiente configuracion',
-      pending_event: 'Programado',
-      active: 'Activo',
-      completed: 'Finalizado',
-      cancelled: 'Anulado'
-    }[normalizeCompetitionStatus(status)] || status || 'Pendiente configuracion';
+    return window.StationXEventPlanning.competitionStatusLabel(status, normalizeStatusKey);
   }
   function competitionIsCancelled(status) {
     return normalizeCompetitionStatus(status) === 'cancelled';
@@ -9324,11 +10649,7 @@
     return competitionConfigModal.dataset.deckRosterLocked === '1';
   }
   function competitionCanEditRoster(competition) {
-    const type = String(competition?.type || currentCompetitionType() || '');
-    const status = normalizeStatusKey(competition?.status || '');
-    if (['completed', 'finalizado', 'finalizada', 'cancelled', 'canceled', 'anulado', 'anulada'].includes(status)) return false;
-    if (['cup', 'tournament', 'final'].includes(type)) return true;
-    return !(competition?.configuration_locked === 1 || competition?.configuration_locked === '1' || ['active', 'activo'].includes(status));
+    return window.StationXParticipantPolicy.competitionCanEditRoster(competition, currentCompetitionType, normalizeStatusKey);
   }
   function syncCompetitionStatusOptions(statusSelect, currentStatus) {
     if (!statusSelect) return;
@@ -9404,21 +10725,13 @@
     return (data.allDecks || []).find((deck) => String(deck.id || '') === String(deckId || '')) || null;
   }
   function participantFormatCodes(deck) {
-    return (deck?.format_codes || []).filter(code => code && code !== 'custom');
+    return window.StationXParticipantPolicy.participantFormatCodes(deck);
   }
   function participantFormatLabel(deck) {
     return participantFormatCodes(deck).map(code => rulesetLabel(code)).join(' / ') || 'Sin formato';
   }
   function compatibleParticipantRoster(decks) {
-    const eventFormat = competitionConfigModal?.querySelector('[data-competition-config-ruleset]')?.value || '';
-    let formats = eventFormat && eventFormat !== 'custom' ? [eventFormat] : null;
-    for (const deck of decks) {
-      if (!deck?.id || !deck.team_id) return false;
-      const own = participantFormatCodes(deck);
-      formats = formats === null ? own : formats.filter(code => own.includes(code));
-      if (!formats.length) return false;
-    }
-    return true;
+    return window.StationXParticipantPolicy.compatibleParticipantRoster(decks, competitionConfigModal?.querySelector('[data-competition-config-ruleset]')?.value || '');
   }
   function deckMatchesCompetitionFormat(deck) {
     return compatibleParticipantRoster([deck]);
@@ -9435,22 +10748,16 @@
     note.classList.toggle('text-warning', Boolean(message));
   }
   function participantOtherLeague(deck) {
-    const competition = currentCompetitionConfig();
-    if (!competition || competition.type !== 'league' || !deck) return null;
-    return (data.leagueDeckAssignments || []).find(row => String(row.deck_id) === String(deck.id) && String(row.season_id) === String(competition.season_id) && String(row.competition_id) !== String(competition.id)) || null;
+    return window.StationXParticipantPolicy.participantOtherLeague(deck, currentCompetitionConfig, data);
   }
   function canAddParticipant(deck) {
     return participantIsQualified(deck) && !participantOtherLeague(deck) && compatibleParticipantRoster([...selectedCompetitionDecks(), deck]);
   }
   function participantIsQualified(deck) {
-    const competition = currentCompetitionConfig();
-    if (!competition || (!competition.admission?.config && competition.participant_source !== 'PREVIOUS_EVENT' && !['top_cut','playoffs'].includes(competition.execution_model))) return true;
-    return !!competition.admission?.ok && (competition.admission.selection?.ids || []).some(id => String(id) === String(deck?.id));
+    return window.StationXParticipantPolicy.participantIsQualified(deck, currentCompetitionConfig);
   }
   function participantAddRestriction(deck) {
-    if (!participantIsQualified(deck)) return 'Este deck no esta clasificado por las fuentes del evento. Configura Fuentes y clasificados en la ficha.';
-    const other = participantOtherLeague(deck);
-    return other ? `No se puede agregar: este deck pertenece a ${other.competition_name}. Un deck solo puede estar en una liga por temporada; puede participar en otros eventos.` : 'No se puede agregar este deck: no se permite mezclar formatos.';
+    return window.StationXParticipantPolicy.participantAddRestriction(deck, participantIsQualified, participantOtherLeague);
   }
   function leagueMovementDivisions(competition = currentCompetitionConfig()) {
     if (!competition || competition.type !== 'league') return [];
@@ -9517,15 +10824,7 @@
     return competitionConfigModal ? String(competitionConfigModal.querySelector('[data-competition-config-type]')?.value || '') : '';
   }
   function eligibleTeamIdsForCompetition(divisionId, participantsPerSide) {
-    if (participantsPerSide <= 1) return null;
-    const counts = {};
-    (data.allDecks || []).forEach((deck) => {
-      if (!deckMatchesCompetitionFormat(deck, divisionId)) return;
-      const teamId = String(deck.team_id || '');
-      if (!teamId) return;
-      counts[teamId] = (counts[teamId] || 0) + 1;
-    });
-    return new Set(Object.keys(counts).filter((teamId) => counts[teamId] >= participantsPerSide));
+    return window.StationXParticipantPolicy.eligibleTeamIdsForCompetition(divisionId, participantsPerSide, data, deckMatchesCompetitionFormat);
   }
   function renderCompetitionDeckPicker() {
     const picker = deckPickerNode();
@@ -9685,23 +10984,10 @@
     return !!(data.executionCapabilities || {})[competition?.execution_model]?.policy;
   }
   function expectedQualifierMatchCount(deckCount, participantsPerSide, duelsPerDeck) {
-    if (competitionUsesWorkflow()) return Math.floor(deckCount / 2);
-    const groups = participantsPerSide > 0 ? Math.floor(deckCount / participantsPerSide) : 0;
-    if (groups < 2 || duelsPerDeck < 2 || duelsPerDeck > groups - 1) return 0;
-    const roundLimit = Math.min(Math.max(2, Math.min(5, duelsPerDeck)), groups - 1);
-    return Math.floor(groups / 2) * roundLimit;
+    return window.StationXParticipantPolicy.expectedQualifierMatchCount(deckCount, participantsPerSide, duelsPerDeck, competitionUsesWorkflow);
   }
   function currentEligibleGroupCount(participantsPerSide = selectedCompetitionParticipantsPerSide()) {
-    const divisionId = selectedCompetitionDivisionId();
-    const validDecks = selectedCompetitionDecks().filter((deck) => deckMatchesCompetitionFormat(deck, divisionId));
-    if (participantsPerSide <= 1) return validDecks.length;
-    const selectedTeamCounts = validDecks.reduce((map, deck) => {
-      const teamId = String(deck.team_id || '');
-      if (!teamId) return map;
-      map[teamId] = (map[teamId] || 0) + 1;
-      return map;
-    }, {});
-    return Object.values(selectedTeamCounts).filter((count) => count >= participantsPerSide).length;
+    return window.StationXParticipantPolicy.currentEligibleGroupCount(participantsPerSide, selectedCompetitionDivisionId, selectedCompetitionDecks, deckMatchesCompetitionFormat);
   }
   function competitionParticipantsPerSide(matchSelect) {
     const selected = matchSelect?.selectedOptions?.[0];
@@ -9940,17 +11226,13 @@
   }
 
   function competitionMatchesFor(competitionId) {
-    return allMatchList().filter((match) => String(match.competition_id || '') === String(competitionId || ''));
+    return window.StationXEventPlanning.competitionMatchesFor(competitionId, allMatchList);
   }
   function competitionMatchIsFinalized(match) {
-    return ['FINALIZADA', 'completed', 'finalizada'].includes(String(match.estado || match.status || ''));
+    return window.StationXEventPlanning.competitionMatchIsFinalized(match);
   }
   function latestCompetitionPhase(matches) {
-    const phaseOrder = { qualifier: 1, swiss: 2, groups: 3, league: 4, cup: 5, top_cut: 6, playoff: 7, final: 8 };
-    return matches.slice().sort((left, right) =>
-      (phaseOrder[String(right.phase || '').toLowerCase()] || 0) - (phaseOrder[String(left.phase || '').toLowerCase()] || 0)
-      || Number(right.ronda || right.round_number || 0) - Number(left.ronda || left.round_number || 0)
-    )[0]?.phase || '';
+    return window.StationXEventPlanning.latestCompetitionPhase(matches);
   }
   function renderCompetitionActionPreview(competition) {
     const node = document.querySelector('[data-competition-action-preview]');
@@ -9959,54 +11241,7 @@
       node.innerHTML = '<strong>Lectura preventiva</strong><span>Selecciona un evento activo para ver si puede avanzar, aplicar divisiones o mover equipos.</span>';
       return;
     }
-    const matches = competitionMatchesFor(competition.id);
-    const pending = matches.filter((match) => !competitionMatchIsFinalized(match)).length;
-    const completed = matches.length - pending;
-    const phase = latestCompetitionPhase(matches) || competition.phase_structure || competition.type || 'evento';
-    const divisions = Object.values(data.divisions || {}).filter((division) => String(division.source_qualifier_id || '') === String(competition.id || ''));
-    const standings = Array.isArray(competition.ranking) ? competition.ranking : [];
-    const lines = [];
-    if (!matches.length) {
-      lines.push('No hay combates programados todavia; primero genera calendario o guarda participantes.');
-    } else if (pending > 0) {
-      lines.push(`Faltan ${pending} de ${matches.length} combates por cerrar en ${phase}; no conviene avanzar fase todavia.`);
-    } else {
-      const normalizedPhase = String(phase).toLowerCase();
-      const winners = matches.filter((match) => ['A', 'B'].includes(String(match.result || '').toUpperCase())).length;
-      if (['cup', 'final', 'single_elimination', 'top_cut', 'playoff'].includes(normalizedPhase)) {
-        const nextMatches = Math.floor(winners / 2);
-        lines.push(nextMatches > 0
-          ? `Fase actual cerrada: puede crear exactamente ${nextMatches} combate(s) de la siguiente llave.`
-          : 'Fase actual cerrada: no hay suficientes ganadores para crear otra ronda.');
-      } else if (competition.type === 'league' && ['season_playoffs', 'playoffs'].includes(String(competition.execution_model || ''))) {
-        const nextMatches = Math.max(1, Math.floor(Math.min(standings.length || winners || completed, 8) / 2));
-        lines.push(`Liga cerrada: puede crear hasta ${nextMatches} combate(s) de playoff segun ranking.`);
-      } else if (competition.type === 'league') {
-        lines.push('Liga de fase unica: al cerrar todos los combates se finaliza la tabla; no existe una fase siguiente.');
-      } else {
-        const nextMatches = Math.max(1, Math.min(8, Math.ceil((standings.length || winners || completed) / 4)));
-        lines.push(`Fase actual cerrada: puede crear ${nextMatches} combate(s) segun modelo y ranking.`);
-      }
-    }
-    if (['cup', 'tournament'].includes(String(competition.type || ''))) {
-      const deckCount = Number(competition.deck_pool_count || (competition.selected_deck_ids || []).length || 0);
-      if (deckCount > 0 && deckCount % 2 !== 0) {
-        lines.push(`Roster impar: hay ${deckCount} decks. Quita 1 deck desde Decks participantes para poder programar la copa.`);
-      }
-    }
-    if (competition.type === 'qualifier') {
-      lines.push(divisions.length
-        ? `Divisiones conectadas: ${divisions.length}. Aplicar divisiones movera decks segun rangos guardados.`
-        : 'No hay divisiones conectadas a este clasificatorio; configura rangos antes de aplicar divisiones.');
-    }
-    if (competition.type === 'league' && Number(competition.division_count || 0) > 1) {
-      const lock = String(competition.lock_division_moves || '0') === '1';
-      const up = Number(competition.promotion_slots || 0);
-      const down = Number(competition.relegation_slots || 0);
-      lines.push(lock
-        ? 'Ascensos/descensos bloqueados para esta liga: la accion no movera decks.'
-        : 'Configura los cupos por division en Ascenso y descenso. Requiere liga finalizada y ranking calculado.');
-    }
+    const lines = window.StationXEventPlanning.competitionPreviewLines(competition, allMatchList, data.divisions);
     node.innerHTML = `<strong>Lectura preventiva</strong>${lines.map((line) => `<span>${escapeHtml(line)}</span>`).join('')}`;
   }
   function renderEventMainChoices(competition) {
@@ -10498,16 +11733,7 @@
     });
   }
   function completedQualifierOptions() {
-    const targetDivisionId = selectedCompetitionDivisionId();
-    return (data.competitions || [])
-      .filter((competition) => {
-        if (String(competition.type || '') !== 'qualifier') return false;
-        if (normalizeCompetitionStatus(competition.status) !== 'completed') return false;
-        const ranking = Array.isArray(competition.ranking) ? competition.ranking : [];
-        if (!ranking.length) return false;
-        return !targetDivisionId || String(competition.division_id || '') === String(targetDivisionId);
-      })
-      .sort((a, b) => String(b.ends_on || b.starts_on || b.created_at || '').localeCompare(String(a.ends_on || a.starts_on || a.created_at || '')) || Number(b.id || 0) - Number(a.id || 0));
+    return window.StationXEventPlanning.completedQualifierOptions(data, selectedCompetitionDivisionId, normalizeCompetitionStatus);
   }
   function selectedQualifierLoad() {
     return completedQualifierOptions().find((competition) => String(competition.id || '') === String(activeQualifierLoadId || '')) || null;
@@ -10550,15 +11776,9 @@
   }
   function qualifierLoadRange() {
     const qualifier = selectedQualifierLoad();
-    const ranking = Array.isArray(qualifier?.ranking) ? qualifier.ranking : [];
     const fromInput = qualifierLoadModalNode?.querySelector('[data-qualifier-load-from]');
     const toInput = qualifierLoadModalNode?.querySelector('[data-qualifier-load-to]');
-    const from = Math.max(1, Number.parseInt(String(fromInput?.value || '1'), 10) || 1);
-    const to = Math.max(1, Number.parseInt(String(toInput?.value || '1'), 10) || 1);
-    const start = Math.min(from, to);
-    const end = Math.max(from, to);
-    const selectedRows = ranking.slice(start - 1, end);
-    return { qualifier, ranking, from: start, to: end, selectedRows };
+    return window.StationXEventPlanning.qualifierLoadRange(qualifier, fromInput?.value, toInput?.value);
   }
   function renderQualifierLoadPreview() {
     if (!qualifierLoadModalNode) return;
@@ -10691,107 +11911,33 @@
     });
   });
   function submitCompetitionConfig(mode) {
-    if (!competitionConfigModal) return;
-    const model = (data.competitions || []).find(c => String(c.id) === String(activeCompetitionConfigId));
-    if (model && ['start','schedule_qualifier','schedule_cup','save_schedule'].includes(mode) && competitionPersistedMatchCount(model.id) === 0) {
-      const warnings = eventModelWarnings(model);
-      if (warnings.length) { window.alert('Modelo pendiente de implementacion/configuracion: ' + warnings.join(' ')); return; }
-    }
-    const invalidExchange = competitionConfigModal.querySelector('[data-division-exchange]:invalid');
-    if (invalidExchange) {
-      bootstrap.Modal.getOrCreateInstance(document.querySelector('[data-league-movement-modal]')).show();
-      invalidExchange.reportValidity();
-      return;
-    }
-    const occupiedDeck = selectedCompetitionDecks().find(deck => participantOtherLeague(deck));
-    if (occupiedDeck) { window.alert(participantAddRestriction(occupiedDeck)); return; }
-    if (!compatibleParticipantRoster(selectedCompetitionDecks())) {
-      window.alert('No se pueden guardar participantes de otro formato ni mezclar formatos. Retira los decks incompatibles.');
-      return;
-    }
-    const form = competitionConfigModal.querySelector('form');
-    const modeInput = competitionConfigModal.querySelector('[data-competition-config-mode]');
-    if (!form || !modeInput) return;
-    const normalizedMode = mode === 'status' ? 'save' : mode;
-    const type = competitionConfigModal.querySelector('[data-competition-config-type]')?.value || '';
-    const startInput = competitionConfigModal.querySelector('[data-competition-config-start]');
-    modeInput.value = normalizedMode;
-    syncCompetitionDeckInputs();
-    updateCompetitionDeckConstraints();
-    if (['schedule_qualifier', 'schedule_cup'].includes(normalizedMode) && startInput && startInput.value && startInput.value < serverToday) {
-      startInput.reportValidity();
-      window.alert('La fecha de inicio no puede ser menor a la fecha actual.');
-      return;
-    }
-    if (normalizedMode === 'start' && startInput && startInput.value && startInput.value > serverToday) {
-      window.alert(`Este evento se podra comenzar el ${startInput.value}.`);
-      return;
-    }
-    if (!['save', 'save_schedule', 'start'].includes(normalizedMode) && !updateCompetitionDeckConstraints()) {
-      window.alert(type === 'qualifier'
-        ? 'Configuracion invalida: el clasificatorio necesita minimo 4 decks y combinaciones coherentes entre match y duelos a clasificar.'
-        : 'Configuracion invalida: agrega decks suficientes para organizar los combates del evento.');
-      return;
-    }
-    const participantsPerSide = competitionParticipantsPerSide(competitionConfigModal.querySelector('[data-competition-config-match]'));
-    const eligibleGroups = currentEligibleGroupCount(participantsPerSide);
-    const expectedMatches = expectedQualifierMatchCount(eligibleGroups * participantsPerSide, participantsPerSide, Number(competitionConfigModal.querySelector('[data-competition-config-qualifier-duels]')?.value || 0));
-    if (normalizedMode === 'start' && type === 'qualifier' && competitionScheduledMatchCount() < expectedMatches) {
-      window.alert('Primero debes programar todos los duelos y fechas tentativas del clasificatorio.');
-      return;
-    }
-    if (normalizedMode === 'schedule_qualifier' && type === 'qualifier' && confirmScheduleQualifierModal) {
-      const competitionId = competitionConfigModal.querySelector('[data-competition-config-id]')?.value || '';
-      confirmScheduleQualifierModalNode.dataset.pendingScheduleMode = 'schedule_qualifier';
-      const existingMatches = allMatchList().filter((match) =>
-        String(match.competition_id || '') === String(competitionId)
-        && !['FINALIZADA', 'completed', 'finalizada'].includes(String(match.estado || match.status || ''))
-      );
-      const message = confirmScheduleQualifierModalNode.querySelector('[data-confirm-schedule-qualifier-message]');
-      const meta = confirmScheduleQualifierModalNode.querySelector('[data-confirm-schedule-qualifier-meta]');
-      if (meta) meta.textContent = existingMatches.length
-        ? `Este evento ya tiene ${existingMatches.length} duelos programados.`
-        : 'Este evento aun no tiene duelos programados.';
-      if (message) message.textContent = existingMatches.length
-        ? 'Ya se genero un calendario de duelos y fechas para este evento. Si continuas, se reemplazara el calendario anterior no finalizado y se actualizara en base de datos.'
-        : 'Si continuas, se generaran los cruces y fechas tentativas del clasificatorio y quedaran guardados en base de datos.';
-      confirmScheduleQualifierModal.show();
-      return;
-    }
-    if (normalizedMode === 'schedule_cup' && ['cup', 'final'].includes(type) && confirmScheduleQualifierModal) {
-      const competitionId = competitionConfigModal.querySelector('[data-competition-config-id]')?.value || '';
-      confirmScheduleQualifierModalNode.dataset.pendingScheduleMode = 'schedule_cup';
-      const existingMatches = allMatchList().filter((match) =>
-        String(match.competition_id || '') === String(competitionId)
-        && !['FINALIZADA', 'completed', 'finalizada'].includes(String(match.estado || match.status || ''))
-      );
-      if (existingMatches.length) {
-        window.alert('Esta copa ya fue programada. La llave existente no se puede volver a generar.');
-        return;
-      }
-      const message = confirmScheduleQualifierModalNode.querySelector('[data-confirm-schedule-qualifier-message]');
-      const meta = confirmScheduleQualifierModalNode.querySelector('[data-confirm-schedule-qualifier-meta]');
-      if (meta) meta.textContent = 'Esta copa aun no tiene llave programada.';
-      if (message) message.textContent = 'Si continuas, se generara una sola vez la llave inicial de copa, sus cruces y fechas tentativas en base de datos.';
-      confirmScheduleQualifierModal.show();
-      return;
-    }
-    if (normalizedMode === 'start' && confirmStartQualifierModal) {
-      const scheduledMatches = competitionScheduledMatchCount();
-      const title = confirmStartQualifierModalNode.querySelector('[data-confirm-start-title]');
-      const subtitle = confirmStartQualifierModalNode.querySelector('[data-confirm-start-subtitle]');
-      const message = confirmStartQualifierModalNode.querySelector('[data-confirm-start-message]');
-      if (title) title.textContent = `Comenzar ${eventTypeLabel(type).toLowerCase()}`;
-      if (subtitle) subtitle.textContent = 'El evento cambiara a estado activo y su configuracion quedara bloqueada.';
-      if (message) message.textContent = type === 'league' && startInput?.value > serverToday && scheduledMatches > 0
-        ? `La liga esta programada para el ${startInput.value}. Si confirmas, quedara activa desde ahora sin cambiar las fechas de sus combates. Esta seguro de continuar?`
-        : (['cup', 'final'].includes(type) && scheduledMatches === 0
-        ? 'Esta copa aun no ha sido programada. Al confirmar, el sistema generara automaticamente la llave y los combates antes de comenzar. Esta seguro de continuar?'
-        : 'El evento ya tiene su programacion preparada. Esta seguro de comenzar?');
-      confirmStartQualifierModal.show();
-      return;
-    }
-    form.requestSubmit();
+    return window.StationXEventPlanning.submitCompetitionConfig(mode, {
+      competitionConfigModal,
+      data,
+      activeCompetitionConfigId,
+      competitionPersistedMatchCount,
+      eventModelWarnings,
+      bootstrap,
+      document,
+      selectedCompetitionDecks,
+      participantOtherLeague,
+      participantAddRestriction,
+      compatibleParticipantRoster,
+      syncCompetitionDeckInputs,
+      updateCompetitionDeckConstraints,
+      serverToday,
+      competitionParticipantsPerSide,
+      currentEligibleGroupCount,
+      expectedQualifierMatchCount,
+      competitionScheduledMatchCount,
+      confirmScheduleQualifierModal,
+      confirmScheduleQualifierModalNode,
+      allMatchList,
+      confirmStartQualifierModal,
+      confirmStartQualifierModalNode,
+      eventTypeLabel,
+      alert: message => window.alert(message)
+    });
   }
   document.querySelectorAll('[data-competition-config-submit]').forEach((button) => {
     button.addEventListener('click', () => submitCompetitionConfig(button.dataset.competitionConfigSubmit || 'save'));
@@ -11009,81 +12155,14 @@
   const manualParticipantsInput = document.querySelector('input[name="manual_participants_per_side"]');
   const manualDeckSelects = Array.from(document.querySelectorAll('[data-manual-deck-select]'));
   const manualDeckPoolNote = document.querySelector('[data-manual-deck-pool-note]');
-  function manualCompetitionOption() {
-    return manualCompetitionSelect ? manualCompetitionSelect.selectedOptions[0] : null;
-  }
-  function manualParticipantsPerSide() {
-    const value = manualMatchFormatSelect?.value || manualParticipantsInput?.value || '1';
-    const fromMatch = Number.parseInt(String(value), 10);
-    return Math.max(1, Math.min(3, Number(manualParticipantsInput?.value || fromMatch || 1)));
-  }
-  function manualTargetDivisionId(competitionOption) {
-    return String(competitionOption?.dataset?.divisionId || manualDivisionSelect?.value || '');
-  }
-  function manualEligibleTeamIds(targetDivisionId, participantsPerSide) {
-    if (participantsPerSide <= 1) return null;
-    const counts = {};
-    manualDeckSelects[0]?.querySelectorAll('option[value]').forEach((option) => {
-      if (!option.value || (targetDivisionId && option.dataset.divisionId !== targetDivisionId)) return;
-      const teamId = option.dataset.teamId || '';
-      if (!teamId) return;
-      counts[teamId] = (counts[teamId] || 0) + 1;
-    });
-    return new Set(Object.keys(counts).filter((teamId) => counts[teamId] >= participantsPerSide));
-  }
-  function manualDeckAllowed(option, competitionOption) {
-    if (!option || option.value === '') return true;
-    const participantsPerSide = manualParticipantsPerSide();
-    const targetDivisionId = manualTargetDivisionId(competitionOption);
-    if (targetDivisionId && option.dataset.divisionId !== targetDivisionId) return false;
-    if (!option.dataset.teamId) return false;
-    const eligibleTeams = manualEligibleTeamIds(targetDivisionId, participantsPerSide);
-    if (eligibleTeams && !eligibleTeams.has(option.dataset.teamId || '')) return false;
-    if (!competitionOption || !competitionOption.value) return true;
-    const pool = competitionOption.dataset.deckPool || 'all_active';
-    if (pool === 'all_active' || pool === 'manual') return true;
-    if (['division', 'qualified', 'top_cut'].includes(pool) && targetDivisionId) {
-      return option.dataset.divisionId === targetDivisionId;
-    }
-    return true;
-  }
-  function applyManualCompetition() {
-    const option = manualCompetitionOption();
-    if (option && option.value) {
-      if (manualPhaseSelect && option.dataset.type) manualPhaseSelect.value = option.dataset.type === 'special' ? 'friendly' : option.dataset.type;
-      if (manualDivisionSelect && option.dataset.divisionId) manualDivisionSelect.value = option.dataset.divisionId;
-      if (manualMatchFormatSelect && option.dataset.matchFormat) manualMatchFormatSelect.value = option.dataset.matchFormat;
-      if (manualBestOfInput && option.dataset.bestOf) manualBestOfInput.value = option.dataset.bestOf;
-      if (manualParticipantsInput && option.dataset.participants) manualParticipantsInput.value = option.dataset.participants;
-    }
-    let visibleDecks = 0;
-    manualDeckSelects.forEach((select) => {
-      Array.from(select.options).forEach((deckOption) => {
-        const allowed = manualDeckAllowed(deckOption, option);
-        deckOption.hidden = !allowed;
-        deckOption.disabled = !allowed;
-        if (allowed && deckOption.value) visibleDecks += 1;
-      });
-      const current = select.selectedOptions[0];
-      if (current && current.disabled) {
-        const next = Array.from(select.options).find((deckOption) => !deckOption.disabled);
-        if (next) select.value = next.value;
-      }
-    });
-    if (manualDeckPoolNote) {
-      const pool = option && option.value ? (option.dataset.deckPool || 'all_active') : 'all_active';
-      const ruleset = option && option.value ? (option.dataset.ruleset || 'custom') : 'general';
-      manualDeckPoolNote.textContent = `Pool aplicado: ${pool} | Reglamento: ${ruleset} | Opciones visibles: ${visibleDecks}`;
-    }
-  }
-  if (manualCompetitionSelect) manualCompetitionSelect.addEventListener('change', applyManualCompetition);
-  if (manualDivisionSelect) manualDivisionSelect.addEventListener('change', applyManualCompetition);
-  if (manualMatchFormatSelect) manualMatchFormatSelect.addEventListener('change', () => {
-    if (manualParticipantsInput) manualParticipantsInput.value = String(Math.max(1, Math.min(3, Number.parseInt(manualMatchFormatSelect.value, 10) || 1)));
-    applyManualCompetition();
+  const manualMatchController = window.StationXParticipantPolicy.createManualMatchController({
+    manualCompetitionSelect, manualMatchFormatSelect, manualParticipantsInput,
+    manualDivisionSelect, manualDeckSelects, manualPhaseSelect, manualBestOfInput,
+    manualDeckPoolNote
   });
-  if (manualParticipantsInput) manualParticipantsInput.addEventListener('input', applyManualCompetition);
-  applyManualCompetition();
+  const { manualCompetitionOption, manualParticipantsPerSide, manualTargetDivisionId,
+    manualEligibleTeamIds, manualDeckAllowed, applyManualCompetition } = manualMatchController;
+  manualMatchController.mount();
 
   const adminDivisionSelect = document.querySelector('[data-gestion-division-select]');
   const divisionDeckSearch = document.querySelector('[data-division-deck-search]');
@@ -11248,22 +12327,7 @@
     let timerStartedAt = 0;
     let timerTick = null;
 
-    try {
-      const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
-      state = { ...state, ...saved };
-      state.a = Number.isFinite(Number(state.a)) ? Math.max(0, Number(state.a)) : 8000;
-      state.b = Number.isFinite(Number(state.b)) ? Math.max(0, Number(state.b)) : 8000;
-      state.startA = Number.isFinite(Number(state.startA)) ? Math.max(0, Number(state.startA)) : 8000;
-      state.startB = Number.isFinite(Number(state.startB)) ? Math.max(0, Number(state.startB)) : 8000;
-      state.timer = Number.isFinite(Number(state.timer)) ? Math.max(0, Number(state.timer)) : 0;
-      state.turn = Number.isFinite(Number(state.turn)) ? Math.max(1, Number(state.turn)) : 1;
-      state.coin = String(state.coin || '');
-      state.dice = String(state.dice || '');
-      state.history = Array.isArray(state.history) ? state.history.slice(0, 12) : [];
-      state.running = false;
-    } catch (error) {
-      state = { ...defaultState };
-    }
+    state = window.StationXLpStatePolicy.restore(defaultState, () => localStorage.getItem(storageKey));
 
     const formatLp = (value) => new Intl.NumberFormat('es-CO').format(Math.max(0, Math.round(Number(value) || 0)));
     const formatTimer = (seconds) => {
@@ -11274,7 +12338,7 @@
       return `${h}:${m}:${s}`;
     };
     const save = () => {
-      localStorage.setItem(storageKey, JSON.stringify({ ...state, running: false }));
+      window.StationXLpStatePolicy.persist(state, storageKey, (key, value) => localStorage.setItem(key, value));
     };
     const setStatus = (text) => {
       const node = tool.querySelector('[data-lp-status]');
@@ -11606,7 +12670,7 @@
           (queued.payload || []).forEach(([key, value]) => body.append(key, value));
           if (!body.has('offline_request_id')) body.set('offline_request_id', queued.id || makeRequestId());
         }
-        const response = await fetch(window.location.pathname, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, body: body.toString(), credentials: 'same-origin', redirect: 'follow' });
+        const response = await window.StationXBrowserTransport.submitOffline(fetch, window.location.pathname, body);
         const responseUrl = String(response.url || '');
         if (responseUrl.includes('saved=offline_conflicto')) {
           document.querySelectorAll('[data-pwa-status]').forEach((node) => { node.textContent = 'Conflicto detectado: el registro cambio en otro dispositivo. Revisa antes de reemplazarlo.'; });
@@ -11680,7 +12744,7 @@
     if (!navigator.onLine || livePolling || readOfflineQueue().length) return;
     livePolling = true;
     try {
-      const response = await fetch('./?api=live', { cache: 'no-store', credentials: 'same-origin' });
+      const response = await window.StationXBrowserTransport.pollLive(fetch);
       if (!response.ok) throw new Error('live');
       const payload = await response.json();
       if (Number(payload.revision || 0) <= liveRevision) return;
