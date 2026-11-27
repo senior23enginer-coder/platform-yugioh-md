@@ -3940,6 +3940,65 @@ architectureCheck(
 );
 architectureCheck($templateTx->calls === ['begin', 'rollback'], 'Admission rollback changed');
 
+// Source verification and selection: compare native ordering, signatures, guards and dependencies.
+$sourceReader = new class implements \StationX\Yugioh\Application\Competitions\AdmissionSourceReader {
+    public array $calls = [];
+    public string $status = 'completed';
+    public string $format = 'tcg_advanced';
+    public function competition(int $id, bool $lock): array
+    {
+        $this->calls[] = ['competition', $id, $lock];
+        return ['id' => $id, 'status' => $this->status, 'type' => 'cup', 'name' => 'Source ' . $id, 'season_id' => 1, 'execution_model' => 'single_elimination', 'event_ruleset' => $this->format];
+    }
+    public function matches(int $id): array
+    {
+        $this->calls[] = 'matches';
+        return [['id' => 1, 'division_id' => 1, 'deck_a_id' => 101, 'deck_b_id' => 102, 'phase' => 'cup', 'round_number' => 1, 'status' => 'FINALIZADA', 'result' => 'A', 'score' => '2-0']];
+    }
+    public function normalizedStatus(string $status): string { $this->calls[] = 'status'; return $status; }
+    public function workflow(array $competition): ?array { $this->calls[] = 'workflow'; return null; }
+    public function divisions(int $id): array { $this->calls[] = 'divisions'; return []; }
+    public function workflowResult(int $matchId): array { $this->calls[] = 'workflow-result'; return []; }
+    public function standings(int $id): array { $this->calls[] = 'standings'; return [['id' => 101, 'pts' => 3], ['id' => 102, 'pts' => 0]]; }
+    public function divisionBelongs(int $division, int $id, int $seasonId): bool { $this->calls[] = 'division'; return true; }
+    public function honors(int $id): array { $this->calls[] = 'honors'; return [['champion_deck_id' => 101, 'runner_up_deck_id' => 102]]; }
+    public function finals(int $id): array { $this->calls[] = 'finals'; return [['deck_a_id' => 101, 'deck_b_id' => 102, 'result' => 'A']]; }
+    public function roster(int $id): array { $this->calls[] = 'roster'; return [['deck_id' => 101, 'sort_order' => 1], ['deck_id' => 102, 'sort_order' => 2]]; }
+    public function rulesets(): array { $this->calls[] = 'rulesets'; return [['code' => 'tcg_advanced', 'label' => 'TCG']]; }
+    public function deckFormats(array $ids): array { $this->calls[] = ['formats', $ids]; return array_map(static fn($id) => ['id' => $id, 'style' => 'TCG', 'event_ruleset' => 'tcg_advanced'], $ids); }
+    public function edges(): array { return []; }
+    public function baseTemplate(string $code): string { $this->calls[] = 'template'; return $code; }
+    public function validateFormatRoster(string $format, array $ids): void { $this->calls[] = ['validate', $format, $ids]; }
+};
+$formatUsecase = new \StationX\Yugioh\Application\Competitions\ResolveAdmissionDeckFormat($sourceReader);
+$readSource = new \StationX\Yugioh\Application\Competitions\ReadAdmissionSource($sourceReader, $formatUsecase);
+$sourceResult = $readSource->execute(3, 0, true);
+architectureCheck($sourceResult['champion_id'] === 101 && $sourceResult['runner_up_id'] === 102, 'Admission title changed');
+architectureCheck(array_column($sourceResult['ranking'], 'id') === [101, 102], 'Admission ranking changed');
+architectureCheck($sourceReader->calls === [['competition', 3, true], 'status', 'matches', 'workflow', 'standings', 'honors', 'finals', 'rulesets', ['formats', [101, 102]], 'roster'], 'Admission source read order changed');
+$sourceReader->calls = [];
+$resolveAdmission = new \StationX\Yugioh\Application\Competitions\ResolveEventAdmission($sourceReader, $readSource);
+$resolvedAdmission = $resolveAdmission->execute(
+    ['id' => 7, 'event_ruleset' => 'tcg_advanced'],
+    ['version' => 'STATION_X_ADMISSION_V1', 'capacity' => 2, 'sources' => [['source_id' => 3, 'mode' => 'top_n', 'value' => 2]]],
+    true,
+);
+architectureCheck($resolvedAdmission['ids'] === [101, 102] && $resolvedAdmission['quotas'] === [2], 'Admission selection changed');
+architectureCheck($resolvedAdmission['signatures']['3:0'] === $sourceResult['signature'], 'Admission signature changed');
+architectureCheck(end($sourceReader->calls) === ['validate', 'tcg_advanced', [101, 102]], 'Admission roster validation changed');
+$sourceReader->status = 'active';
+$sourceReader->calls = [];
+try { $readSource->execute(3); architectureCheck(false, 'Unfinished source accepted'); }
+catch (InvalidArgumentException $error) { architectureCheck($error->getMessage() === 'La fuente debe ser un evento finalizado.', 'Source guard changed'); }
+architectureCheck($sourceReader->calls === [['competition', 3, false], 'status'], 'Unfinished source read results');
+\StationX\Yugioh\Domain\Competitions\AdmissionDependencyPolicy::assertNoCycle(7, [['source_id' => 3]], [['competition_id' => 3, 'depends_on_competition_id' => 2]]);
+try {
+    \StationX\Yugioh\Domain\Competitions\AdmissionDependencyPolicy::assertNoCycle(7, [['source_id' => 3]], [['competition_id' => 3, 'depends_on_competition_id' => 7]]);
+    architectureCheck(false, 'Cycle accepted');
+} catch (InvalidArgumentException $error) {
+    architectureCheck($error->getMessage() === 'Las fuentes forman una dependencia circular.', 'Cycle error changed');
+}
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

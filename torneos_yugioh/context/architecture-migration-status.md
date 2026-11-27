@@ -271,6 +271,10 @@ Se añade un programa de integración específico de plataforma (no de deck), co
 
 La regresión integral del commit `3d978de` terminó con los tres trabajos correctos (45952269737). La ejecución aislada 45952785058 del commit `234a264` pasó las pruebas de arquitectura, 132 contratos históricos, 55 comparaciones originales/migradas de comandos, 269 comprobaciones de enrutamiento y contexto, 4.103 aserciones de cupos y 637 escenarios de paridad, además de verificar 770 fuentes mediante el formateador. Se aplica su salida exacta en el siguiente commit. La nueva prueba MySQL de duelos requiere ejecución separada.
 
+## Resolución de admisión y clasificación de fuentes
+
+CI integral del commit `f7c28a2` (45952934995) completado con cuatro trabajos exitosos, incluida la prueba MySQL de duelos. Se separan la verificación de fuente, ranking, títulos, formato, firma de evidencia y selección de clasificados de las consultas PDO. Se mantiene la secuencia original y los bloqueos opcionales de fuente, y se extrae la detección de ciclos a dominio. Se conserva una copia de los cuerpos anteriores y se añaden pruebas de puerto, orden, firma y rechazo de fuentes abiertas. CI del nuevo cambio pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
