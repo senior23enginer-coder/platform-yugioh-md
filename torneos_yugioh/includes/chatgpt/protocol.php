@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 final class YgoMcpProtocol
 {
-    public const VERSION='1.0.0';
+    public const VERSION='1.1.0';
     public const PROTOCOLS=['2025-11-25','2025-06-18','2025-03-26','2024-11-05'];
     public static function tools(): array
     {
@@ -17,6 +17,9 @@ final class YgoMcpProtocol
             ['get_deck','Lee cartas y cantidades reales del deck, Main/Extra/Side/reserva separados, y perfil. Consultar antes de sugerir combos.',['deck_id'=>$integer],['deck_id']],
             ['get_guide','Lee una sección documental publicada para un deck con cartas cargadas. Usa offset y next_offset hasta null para conservar toda la información. Contrasta la lista actual; no certifica simulación ni legalidad.',['deck_id'=>$integer,'section'=>['type'=>'string','enum'=>YgoMcpData::SECTIONS],'offset'=>$offset],['deck_id','section']],
             ['list_combos','Lista los combos y estrategias creados por el usuario y asignados al deck.',['deck_id'=>$integer,'offset'=>$offset],['deck_id']],
+            ['list_leagues','Lista ligas activas, divisiones y decks inscritos; filtra opcionalmente por temporada. Usa next_offset.',['season_id'=>$integer,'offset'=>$offset],[]],
+            ['list_matches','Consulta partidas registradas de ligas activas y fechas reales o nulas. Filtra liga, división, deck o temporada; usa next_offset.',['league_id'=>$integer,'division_id'=>$integer,'deck_id'=>$integer,'season_id'=>$integer,'offset'=>$offset],[]],
+            ['get_deck_schedule','Consulta la liga y división actuales del deck y sus partidas registradas en ligas, con totales de programación.',['deck_id'=>$integer,'season_id'=>$integer,'offset'=>$offset],['deck_id']],
             ['get_combo','Lee un combo propio con pasos, conexiones, cartas de la instantánea y advertencia si cambió el inventario.',['combo_id'=>['type'=>'string','pattern'=>'^[A-Za-z0-9-]{16,64}$']],['combo_id']],
         ];
         $security=[['type'=>'oauth2','scopes'=>[YgoMcpAuth::SCOPE]]];$tools=[];
@@ -43,6 +46,9 @@ final class YgoMcpProtocol
             'list_decks'=>$data->decks($a['query']??'',$a['offset']??0), 'get_deck'=>$data->deck($a['deck_id']),
             'get_guide'=>$data->guide($a['deck_id'],$a['section'],$a['offset']??0),
             'list_combos'=>$data->combos($a['deck_id'],$a['offset']??0), 'get_combo'=>$data->combo($a['combo_id']),
+            'list_leagues'=>$data->leagues($a['season_id']??null,$a['offset']??0),
+            'list_matches'=>$data->matches($a['league_id']??null,$a['division_id']??null,$a['deck_id']??null,$a['season_id']??null,$a['offset']??0),
+            'get_deck_schedule'=>$data->deckSchedule($a['deck_id'],$a['season_id']??null,$a['offset']??0),
             default=>throw new InvalidArgumentException('Herramienta desconocida.')};
     }
 }

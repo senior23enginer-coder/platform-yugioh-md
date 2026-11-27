@@ -4326,7 +4326,9 @@ try {
         $configRoot . '/config/database.local.php',
         '<?php return ["database"=>"test_db","username"=>"test_user","prefix"=>"x_","entity"=>2];',
     );
-    $storeConfig = \StationX\Yugioh\Infrastructure\Configuration\StoreDatabaseConfiguration::load($configRoot);
+    $storeConfig = \StationX\Yugioh\Infrastructure\Configuration\StoreDatabaseConfiguration::load(
+        $configRoot,
+    );
     architectureCheck($storeConfig['database'] === 'test_db', 'Local config selection changed');
     architectureCheck($storeConfig['entity'] === 2, 'Local config entity changed');
     file_put_contents($configRoot . '/config/database.local.php', '<?php return false;');
@@ -4344,6 +4346,129 @@ try {
     rmdir($configRoot . '/config');
     rmdir($configRoot);
 }
+
+// Characterize the migrated backend policies against the preserved implementations.
+$boundaryOriginals = json_decode(
+    file_get_contents(__DIR__ . '/fixtures/backend-boundary-originals.json'),
+    true,
+    flags: JSON_THROW_ON_ERROR,
+);
+$legacyProgress = str_replace(
+    'ygo_event_progress(',
+    'legacy_boundary_progress(',
+    $boundaryOriginals['progress'],
+);
+$legacyProgress = substr(
+    $legacyProgress,
+    strpos($legacyProgress, 'function legacy_boundary_progress('),
+);
+$legacyProgress = substr(
+    $legacyProgress,
+    0,
+    strpos($legacyProgress, 'function ygo_event_progress_groups('),
+);
+eval($legacyProgress);
+for ($n = 0; $n <= 5; $n++) {
+    $rounds = [];
+    for ($i = $n; $i > 0; $i--) {
+        $rounds[] = ['round_number' => $i, 'done' => $i % 3, 'total' => 3];
+    }
+    foreach ([true, false] as $perRound) {
+        architectureCheck(
+            \StationX\Yugioh\Domain\Competitions\EventProgressPolicy::calculate(
+                $rounds,
+                $perRound,
+            ) === legacy_boundary_progress($rounds, $perRound),
+            'Event progress changed',
+        );
+    }
+}
+$identityReader = new class implements
+    \StationX\Yugioh\Application\Competitions\ParticipantIdentityReader
+{
+    public int $calls = 0;
+    public function activeDecks(array $ids): array
+    {
+        $this->calls++;
+        return [['id' => '7', 'team_id' => '3']];
+    }
+};
+$freezeIdentity = new \StationX\Yugioh\Application\Competitions\FreezeParticipantIdentities(
+    $identityReader,
+);
+architectureCheck(
+    $freezeIdentity->execute([], 'tcg') === [] && $identityReader->calls === 0,
+    'Empty identity lookup changed',
+);
+architectureCheck(
+    $freezeIdentity->execute([7], 'tcg') === [
+        7 => [
+            'deck_id' => 7,
+            'team_id' => 3,
+            'format_id' => 'tcg',
+            'quality' => 'CONFIRMED_AT_ROSTER_FREEZE',
+        ],
+    ],
+    'Frozen identity changed',
+);
+try {
+    $freezeIdentity->execute([7, 8], 'tcg');
+    architectureCheck(false, 'Incomplete identity accepted');
+} catch (InvalidArgumentException $error) {
+    architectureCheck(
+        $error->getMessage() === 'No se pudo fijar la identidad de todos los participantes.',
+        'Identity error changed',
+    );
+}
+$eventAuditReader = new class implements \StationX\Yugioh\Application\Competitions\EventAuditReader
+{
+    public array $calls = [];
+    public function snapshot(int $id): array
+    {
+        return ['event' => ['id' => $id], 'participants' => []];
+    }
+    public function event(int $id): array|false
+    {
+        return $id > 0 ? ['id' => $id, 'name' => 'Test'] : false;
+    }
+    public function history(int $id, int $before, string $search): array
+    {
+        $this->calls[] = [$id, $before, $search];
+        return array_map(
+            static fn($i) => [
+                'id' => $i,
+                'action' => 'save',
+                'payload' => '{"ok":true}',
+                'created_at' => '2026-11-27',
+            ],
+            range(26, 1),
+        );
+    }
+};
+$eventAuditCase = new \StationX\Yugioh\Application\Competitions\ReadEventAudit($eventAuditReader);
+$auditPage = $eventAuditCase->page(7, 50, '  test  ', static fn($action) => strtoupper($action));
+architectureCheck(
+    count($auditPage['rows']) === 25 && $auditPage['next_cursor'] === 2,
+    'Audit pagination changed',
+);
+architectureCheck(
+    $auditPage['rows'][0]['detail'] === ['ok' => true] &&
+        $auditPage['rows'][0]['label'] === 'SAVE' &&
+        !isset($auditPage['rows'][0]['payload']),
+    'Audit detail changed',
+);
+architectureCheck($eventAuditReader->calls === [[7, 50, 'test']], 'Audit search contract changed');
+architectureCheck(
+    \StationX\Yugioh\Application\Presentation\UiLabelProjection::eventName('Apex League') ===
+        'Liga Apex',
+    'Presentation event label changed',
+);
+$contractErrors = \StationX\Yugioh\Domain\Competitions\EventContractPolicy::errors(
+    ['execution_model' => 'manual', 'advancement_rule' => 'MANUAL_ENTRIES'],
+    null,
+    static fn($code) => $code,
+);
+architectureCheck($contractErrors === [], 'Manual event contract changed');
 
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {

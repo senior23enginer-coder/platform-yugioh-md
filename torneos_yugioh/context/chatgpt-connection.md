@@ -19,6 +19,9 @@ Ejemplo: «Usa Station X para consultar las cartas actuales de Kashtira Pure y e
 - `get_guide`: secciones de la entrega publicada señalada en `assets/editorial/deck-deliveries.json`, con versión, fuentes, estado documental y paginación de texto sin descartar fragmentos. También permite leer `documents`, `card_profiles`, `card_checks`, `route_checks`, `source_index`, `verification`, `coverage`, `official_card_texts` e `historical_records` de la biblioteca detallada, solo cuando su ID y hash de fuente coinciden con la entrega activa. Continuar con `next_offset` hasta `null`. Hay que contrastar la lista documental con el inventario vivo antes de recomendar rutas.
 - `list_combos` / `get_combo`: diagramas del usuario, revisión, instantánea de cartas y aviso si cambió el inventario.
 - `search` / `fetch`: búsqueda de nombres de decks y títulos de combos, y lectura por IDs estables. No se promete búsqueda de texto completo.
+- `list_leagues`: ligas activas, divisiones activas e inventario de decks inscritos, con filtro de temporada y paginación.
+- `list_matches`: partidas registradas de liga con participantes directos A/B/C, fechas y horas reales (null si faltan), filtros por liga/división/deck/temporada y totales de programación.
+- `get_deck_schedule`: identidad, división actual y calendario de liga de un deck. No infiere partidos no generados. Los equipos/FFA y sus participantes indirectos no están cubiertos por esta lectura.
 - No modifica cartas, guías, diagramas, calendario, partidas, resultados ni historial. No ejecuta simulación de reglas ni certifica legalidad. El acceso autorizado es al conjunto del catálogo y combos del único operador; no es un modelo multiusuario.
 
 ## Implementación y publicación

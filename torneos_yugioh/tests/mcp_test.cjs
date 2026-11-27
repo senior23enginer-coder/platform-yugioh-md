@@ -16,7 +16,11 @@ const { StreamableHTTPClientTransport } = require('@modelcontextprotocol/sdk/cli
   const config=path.join(out,'private.php'), state=path.join(out,'state','oauth.json');
   const env={...process.env,MCP_TEST_DB:path.join(out,'db.sqlite'),STATION_X_CHATGPT_CONFIG:config,MCP_TEST_RESOURCE:resource};
   const published=path.join(out,'published');env.MCP_TEST_EDITORIAL_APP=published;
-  for(const relative of ['assets/editorial/deck-deliveries.json','assets/editorial/20261101-11-decks/deck-665.json','assets/editorial/deck-library/deck-665.json']){
+  const manifestGit=spawnSync('git',['show','HEAD:torneos_yugioh/assets/editorial/deck-deliveries.json'],{cwd:root,maxBuffer:32000000});assert.equal(manifestGit.status,0);
+  const manifest=JSON.parse(manifestGit.stdout.toString('utf8'));
+  const guideRelative=manifest.decks['665'].url.split('?')[0].replace(/^\.\//,'');
+  assert(guideRelative.startsWith('assets/editorial/') && !guideRelative.includes('..'));
+  for(const relative of ['assets/editorial/deck-deliveries.json',guideRelative,'assets/editorial/deck-library/deck-665.json']){
     const git=spawnSync('git',['show','HEAD:torneos_yugioh/'+relative],{cwd:root,maxBuffer:32000000});assert.equal(git.status,0);
     const target=path.join(published,relative);fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,git.stdout);
   }
@@ -33,7 +37,7 @@ const { StreamableHTTPClientTransport } = require('@modelcontextprotocol/sdk/cli
     let r=await json(resource,post({jsonrpc:'2.0',id:1,method:'tools/call',params:{name:'list_decks',arguments:{}}}));assert.equal(r.response.status,401);assert(r.response.headers.get('www-authenticate').includes('resource_metadata='));
     r=await json(resource,{...post({jsonrpc:'2.0',id:1,method:'initialize'}),headers:{'Content-Type':'application/json',Origin:'https://evil.example'}});assert.equal(r.response.status,403);
     const publicClient=new Client({name:'station-x-test',version:'1.0.0'});clients.push(publicClient);await publicClient.connect(new StreamableHTTPClientTransport(new URL(resource)));
-    const list=await publicClient.listTools();assert.equal(list.tools.length,7);assert(list.tools.every(t=>t.annotations.readOnlyHint&&!t.annotations.destructiveHint));
+    const list=await publicClient.listTools();assert.equal(list.tools.length,10);assert(list.tools.every(t=>t.annotations.readOnlyHint&&!t.annotations.destructiveHint));
     const callback='https://chatgpt.com/connector_platform_oauth_redirect';
     r=await json(resource+'oauth/register',post({redirect_uris:['https://evil.example/callback']}));assert.equal(r.response.status,400);
     r=await json(resource+'oauth/register',post({redirect_uris:[callback],token_endpoint_auth_method:'none'}));assert.equal(r.response.status,201);const client=r.body.client_id;
@@ -53,6 +57,11 @@ const { StreamableHTTPClientTransport } = require('@modelcontextprotocol/sdk/cli
     const privateClient=new Client({name:'station-x-authenticated-test',version:'1.0.0'});clients.push(privateClient);await privateClient.connect(new StreamableHTTPClientTransport(new URL(resource),{requestInit:{headers:{Authorization:`Bearer ${token.access_token}`}}}));
     const call=async(name,args)=>{const value=await privateClient.callTool({name,arguments:args});assert(!value.isError,JSON.stringify(value));return value.structuredContent;};
     const decks=await call('list_decks',{});assert(decks.decks.some(d=>d.id===665&&d.cards_loaded));assert(decks.decks.some(d=>d.id===999&&!d.cards_loaded));
+    const leagues=await call('list_leagues',{season_id:1});assert.equal(leagues.total,1);assert.equal(leagues.leagues[0].divisions[0].deck_count,2);
+    const matches=await call('list_matches',{league_id:10,deck_id:665});assert.equal(matches.total,2);assert.equal(matches.scheduled,1);assert.equal(matches.unscheduled,1);assert.equal(matches.matches[0].scheduled_on,'2026-11-29');assert.equal(matches.matches[1].scheduled_on,null);
+    const schedule=await call('get_deck_schedule',{deck_id:665,season_id:1});assert.equal(schedule.memberships[0].league_id,10);assert.equal(schedule.schedule.total,2);
+    assert.equal((await call('list_matches',{league_id:11})).total,0);
+    assert((await privateClient.callTool({name:'get_deck_schedule',arguments:{deck_id:2147483647}})).isError);
     const deck=await call('get_deck',{deck_id:665});assert(deck.cards.length>0);assert.equal(deck.deck.name,'Kashtira Pure');assert(deck.cards.every(c=>c.deck_id===665));
     const guide=await call('get_guide',{deck_id:665,section:'combos'});assert.equal(guide.deck_id,665);assert(guide.text.length>0);
     if(guide.next_offset!==null){const next=await call('get_guide',{deck_id:665,section:'combos',offset:guide.next_offset});assert.equal(next.offset,guide.next_offset);}
@@ -70,6 +79,6 @@ const { StreamableHTTPClientTransport } = require('@modelcontextprotocol/sdk/cli
     await fetch(resource+'oauth/revoke',{method:'POST',body:new URLSearchParams({client_id:client,token:refreshed.body.refresh_token})});
     r=await json(resource,{...post({jsonrpc:'2.0',id:99,method:'tools/call',params:{name:'list_decks',arguments:{}}}),headers:{'Content-Type':'application/json',Authorization:`Bearer ${token.access_token}`}});assert.equal(r.response.status,401,'Revoke invalidates access family');
     assert(!/Fatal error|Warning:|Uncaught/.test(errors),errors);
-    console.log('MCP: official SDK negotiation, 7 read-only tools, inventory isolation, guide pagination, OAuth PKCE/session binding, code replay, audience, rotation, revocation and secret storage passed.');
+    console.log('MCP: official SDK negotiation, 10 read-only tools, inventory isolation, guide pagination, OAuth PKCE/session binding, code replay, audience, rotation, revocation and secret storage passed.');
   } finally {for(const c of clients)await c.close().catch(()=>{});server.kill();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

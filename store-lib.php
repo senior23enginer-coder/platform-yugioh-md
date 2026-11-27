@@ -4,8 +4,8 @@ declare(strict_types=1);
 /** Compatibility bridge: only the three Station X functions used by Yu-Gi-Oh. */
 function sx_start(): void
 {
-    if (session_status() !== PHP_SESSION_ACTIVE) session_start();
-    if (empty($_SESSION['sx_csrf'])) $_SESSION['sx_csrf'] = bin2hex(random_bytes(32));
+    require_once __DIR__ . '/torneos_yugioh/src/autoload.php';
+    \StationX\Yugioh\Infrastructure\Http\StoreSession::start();
 }
 
 function e(?string $value): string

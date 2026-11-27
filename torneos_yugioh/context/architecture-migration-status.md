@@ -313,3 +313,7 @@ Estos elementos siguen siendo deuda real; no están certificados como migración
 ## Condición de cierre
 
 Cada flujo debe tener responsabilidades y dependencias explícitas, reglas independientes de I/O, adaptadores sustituibles, contratos preservados y pruebas apropiadas. Se deben verificar las transacciones y concurrencia en un MySQL de pruebas antes de certificar esa integración. Una suite local correcta no equivale a un despliegue ni a certificación de producción. No existe un porcentaje global de cumplimiento inferido del número de archivos movidos.
+
+## Auditoría, identidad deportiva, progreso y contratos de presentación
+
+Se extraen cinco fachadas: progreso de eventos, identidad de participantes, auditoría paginada, etiquetas de presentación y contratos de recetas. Las consultas permanecen en adaptadores PDO; los casos de uso dependen de puertos. Se conserva la evidencia original en `tests/fixtures/backend-boundary-originals.json`. Pendientes formato oficial y regresión integral del bloque.
