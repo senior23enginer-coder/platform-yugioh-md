@@ -20,6 +20,9 @@ final class AdmissionReadModule
     public static function resolve(PDO $pdo): ResolveEventAdmission
     {
         $reader = new PdoAdmissionSourceReader($pdo);
-        return new ResolveEventAdmission($reader, new ReadAdmissionSource($reader, new ResolveAdmissionDeckFormat($reader)));
+        return new ResolveEventAdmission(
+            $reader,
+            new ReadAdmissionSource($reader, new ResolveAdmissionDeckFormat($reader)),
+        );
     }
 }
