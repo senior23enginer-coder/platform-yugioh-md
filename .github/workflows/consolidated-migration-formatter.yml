@@ -1,0 +1,32 @@
+name: Consolidated migration formatter
+on:
+  pull_request:
+    branches: [base]
+    paths:
+      - '.github/workflows/consolidated-migration-formatter.yml'
+permissions:
+  contents: read
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, pdo_sqlite, pdo_mysql
+          coverage: none
+      - run: npm ci
+      - name: Format and verify contracts
+        run: |
+          npm run format:architecture
+          git diff --name-only
+          git diff -- torneos_yugioh/src/Domain/Matches torneos_yugioh/src/Application torneos_yugioh/tests/source_architecture_test.php
+          php torneos_yugioh/tests/source_architecture_test.php
+          php torneos_yugioh/tests/legacy_function_contract_test.php
+          npm run format:architecture:check

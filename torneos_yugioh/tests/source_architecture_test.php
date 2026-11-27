@@ -3375,6 +3375,51 @@ architectureCheck(
 );
 architectureCheck(count($aggregateReader->getInterfaceNames()) === 4, 'Read ports not segregated');
 
+// The live-duel state policy has deterministic time and no HTTP or database dependency.
+$livePolicy = \StationX\Yugioh\Domain\Matches\LiveDuelState::class;
+$liveNow = static fn(): int => 5000;
+$liveMilliseconds = static fn(): float => 5000.0;
+$liveAtom = static fn(): string => '2026-11-26T19:00:00-05:00';
+$liveMatch = ['status' => 'EN CURSO'];
+$initialDuel = $livePolicy::initial($liveMatch, $liveNow);
+architectureCheck($initialDuel['duel_number'] === 1 && $initialDuel['lp_a'] === 8000, 'Initial duel changed');
+$drawDuel = $livePolicy::initial(['d1' => 'E', 'duel_details' => json_encode([
+    ['duel' => 2, 'duel_started' => true, 'starts_player' => 'B', 'timer_running' => true],
+])], $liveNow);
+architectureCheck($drawDuel['duel_number'] === 2 && $drawDuel['status'] === 'setup' && !$drawDuel['timer_running'], 'Draw reroll guard changed');
+$liveState = $livePolicy::normalize([
+    'status' => 'running', 'starts_player' => 'A', 'active_side' => 'A',
+    'timer_running' => true, 'timer_started_at' => 1000, 'elapsed_seconds' => 10,
+    'lp_a' => 8000, 'lp_b' => 8000,
+], $liveNow);
+$liveTransition = static fn(array $state, string $actor, string $op, array $payload = []): ?array =>
+    $livePolicy::transition($state, $liveMatch, $actor, $op, $payload, $liveNow, $liveMilliseconds, $liveAtom);
+$endedTurn = $liveTransition($liveState, 'A', 'end_turn');
+architectureCheck($endedTurn['active_side'] === 'B' && $endedTurn['turn_count'] === 1, 'Turn progression changed');
+architectureCheck($endedTurn['turn_history'][0]['elapsed_seconds'] === 14, 'Turn elapsed calculation changed');
+architectureCheck($endedTurn['turn_history'][0]['ended_at'] === $liveAtom(), 'Turn timestamp changed');
+$halfLp = $liveTransition($liveState, 'A', 'lp_change', ['kind' => 'half']);
+architectureCheck($halfLp['lp_a'] === 4000 && $halfLp['lp_history'][0]['before'] === 8000, 'LP operation changed');
+$resetLp = $liveTransition($halfLp, 'judge', 'lp_change', ['side' => 'A', 'kind' => 'reset']);
+architectureCheck($resetLp['lp_a'] === 8000 && count($resetLp['lp_history']) === 2, 'LP reset/history changed');
+$surrendered = $liveTransition($liveState, 'A', 'surrender');
+architectureCheck($surrendered['status'] === 'completed' && !$surrendered['timer_running'], 'Surrender changed');
+architectureCheck($surrendered['surrendered_at'] === $liveAtom(), 'Surrender timestamp changed');
+$synced = $liveTransition($surrendered, 'judge', 'sync', $liveState);
+architectureCheck($synced['surrendered_by'] === 'A' && $synced['status'] === 'completed', 'Surrender overwritten');
+architectureCheck($liveTransition($liveState, 'judge', 'sync', ['correction_at_ms' => 1]) === null, 'Correction conflict changed');
+foreach ([['B', 'end_turn'], ['B', 'surrender'], ['judge', 'surrender']] as [$invalidActor, $invalidOp]) {
+    try {
+        $liveTransition($liveState, $invalidActor, $invalidOp);
+        architectureCheck(false, 'Invalid actor accepted');
+    } catch (RuntimeException $error) {
+        architectureCheck($error->getMessage() !== 'Invalid actor accepted', 'Invalid actor accepted');
+    }
+}
+$boundedDuel = $livePolicy::normalize(['duel_number' => 9, 'lp_a' => -1, 'lp_b' => 999999, 'status' => 'running'], $liveNow);
+architectureCheck($boundedDuel['duel_number'] === 5 && $boundedDuel['lp_a'] === 0 && $boundedDuel['lp_b'] === 99999, 'State bounds changed');
+architectureCheck($boundedDuel['status'] === 'setup' && $boundedDuel['updated_at_ms'] === 5000, 'State normalization changed');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

@@ -239,6 +239,10 @@ Se distribuyen las 34 operaciones del lector general en cuatro puertos y adaptad
 - PR #69, commit `69d850b`: ejecución aislada 45887319966 completada con éxito; 754 fuentes de arquitectura verificadas por el formateador, build de 43 fuentes JavaScript y 37 CSS, caracterización de reglas y clasificación, transporte/reloj/LP, pruebas de arquitectura y equivalencia de las 34 consultas de lectura. La certificación integral del último commit y la cobertura de concurrencia por dominio no se infieren de esta ejecución aislada.
 - La fachada histórica y el lector general conservan los contratos públicos. Los cuatro adaptadores de lectura ya existen; las vistas y los controladores heredados que aún conservan estado compartido no se declaran migrados por completo.
 
+## Duelos en vivo: reglas de estado y transiciones
+
+CI integral del commit `e6b59bd` completado (45887432048). Se extraen inicialización, normalización, sincronización del juez, cierre de turno, rendición y operaciones LP a `Domain/Matches/LiveDuelState`, con reloj y marcas temporales explícitas. Se conserva la prioridad de los conflictos de revisión/corrección y la transacción del controlador, sin modificar sus SQL, respuestas HTTP ni auditoría. Los tres cuerpos originales se preservan para el contrato SHA-256 existente; se añaden pruebas de estado, autorización deportiva, reroll, LP y conflicto. CI del nuevo cambio pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
