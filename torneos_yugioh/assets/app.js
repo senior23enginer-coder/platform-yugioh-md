@@ -1,5 +1,39 @@
 (function (root) {
   "use strict";
+
+  function auditHidden(filters, row, normalize) {
+    const query = normalize(filters.query);
+    const kind = normalize(filters.kind);
+    const entity = normalize(filters.entity);
+    const action = normalize(filters.action);
+    const text = normalize(row.text);
+    const rowEntity = normalize(row.entity);
+    const rowAction = normalize(row.action);
+    return Boolean(
+      (query && !text.includes(query)) ||
+        (kind && !text.includes(kind)) ||
+        (entity && rowEntity !== entity) ||
+        (action && rowAction !== action),
+    );
+  }
+
+  function pairRows(names) {
+    const rows = [];
+    for (let i = 0; i < names.length; i += 2)
+      rows.push([names[i], names[i + 1] || "Pasa directo"]);
+    return rows;
+  }
+
+  function worldGroups(pool) {
+    return Array.from({ length: 6 }, (_, group) =>
+      pool.slice(group * 4, group * 4 + 4),
+    );
+  }
+
+  root.StationXAuditBracketPolicy = { auditHidden, pairRows, worldGroups };
+})(typeof window !== "undefined" ? window : globalThis);
+(function (root) {
+  "use strict";
   function create({ key, readValue, writeValue, now, random, uuid }) {
     function read() {
       try {
@@ -8475,20 +8509,18 @@
   const auditRows = Array.from(document.querySelectorAll('[data-audit-row]'));
 
   function renderAuditFilter() {
-    const query = normalize(auditSearch ? auditSearch.value : '');
-    const kind = normalize(auditKind ? auditKind.value : '');
-    const entity = normalize(auditEntity ? auditEntity.value : '');
-    const action = normalize(auditAction ? auditAction.value : '');
+    const filters = {
+      query: auditSearch ? auditSearch.value : '',
+      kind: auditKind ? auditKind.value : '',
+      entity: auditEntity ? auditEntity.value : '',
+      action: auditAction ? auditAction.value : ''
+    };
     auditRows.forEach((row) => {
-      const text = normalize(row.dataset.auditText || row.textContent || '');
-      const rowEntity = normalize(row.dataset.auditEntity || '');
-      const rowAction = normalize(row.dataset.auditAction || '');
-      row.hidden = Boolean(
-        (query && !text.includes(query))
-        || (kind && !text.includes(kind))
-        || (entity && rowEntity !== entity)
-        || (action && rowAction !== action)
-      );
+      row.hidden = window.StationXAuditBracketPolicy.auditHidden(filters, {
+        text: row.dataset.auditText || row.textContent || '',
+        entity: row.dataset.auditEntity || '',
+        action: row.dataset.auditAction || ''
+      }, normalize);
     });
   }
 
@@ -8497,9 +8529,7 @@
   });
 
   function pairRows(names) {
-    const rows = [];
-    for (let i = 0; i < names.length; i += 2) rows.push([names[i], names[i + 1] || 'Pasa directo']);
-    return rows;
+    return window.StationXAuditBracketPolicy.pairRows(names);
   }
 
   document.querySelectorAll('[data-bracket]').forEach((node) => {
@@ -8529,8 +8559,8 @@
       worldGroups.innerHTML = '<article class="group-card"><h3>Sin clasificados</h3><p>El mundial no arma grupos temporales con semillas. Primero deben jugarse las fases que entregan cupos.</p></article>';
     } else {
     const pool = officialDivisions.flatMap((division) => data.divisions[division].decks.slice(0, 6).map((deck) => `${matchLabelWithTeam(deck[1])} (${division})`));
-    worldGroups.innerHTML = Array.from({ length: 6 }, (_, group) => {
-      const items = pool.slice(group * 4, group * 4 + 4).map((name) => `<li>${name}</li>`).join('');
+    worldGroups.innerHTML = window.StationXAuditBracketPolicy.worldGroups(pool).map((groupItems, group) => {
+      const items = groupItems.map((name) => `<li>${name}</li>`).join('');
       return `<article class="group-card"><h3>Grupo ${String.fromCharCode(65 + group)}</h3><ol>${items}</ol><span class="status-chip">Clasifican 2</span></article>`;
     }).join('');
     }
