@@ -80,6 +80,47 @@ function ygo_validate_fixed_calendar_2026(PDO $pdo): void {
     }
 }
 
+function ygo_expand_recent_decks_calendar_2026(PDO $pdo): array {
+    $action='recent_decks_calendar_20261127_v1';
+    $done=$pdo->prepare('SELECT payload FROM sx_ygo_audit_log WHERE action=? ORDER BY id DESC LIMIT 1');$done->execute([$action]);$payload=$done->fetchColumn();
+    if($payload!==false)return json_decode((string)$payload,true) ?: ['applied'=>true];
+
+    $targetIds=[734,735,736,737,738,739,740,741];
+    $targetQuery=$pdo->prepare('SELECT id,name,division_id FROM sx_ygo_decks WHERE active=1 AND id IN('.implode(',',array_fill(0,count($targetIds),'?')).') ORDER BY id');$targetQuery->execute($targetIds);$targets=$targetQuery->fetchAll(PDO::FETCH_ASSOC);
+    if(!$targets)return ['applied'=>false,'reason'=>'target_decks_absent'];
+    if(count($targets)!==count($targetIds)||array_map('intval',array_column($targets,'id'))!==$targetIds)throw new RuntimeException('El lote de decks nuevos esta incompleto; no se modifico el calendario.');
+
+    $specs=[
+        ['competition_id'=>27,'division_id'=>26327,'target_ids'=>[737,738,739,740,741],'expected'=>20,'starts_on'=>'2026-11-28'],
+        ['competition_id'=>27,'division_id'=>26323,'target_ids'=>[735,736],'expected'=>26,'starts_on'=>'2026-11-28'],
+        ['competition_id'=>28,'division_id'=>26324,'target_ids'=>[734],'expected'=>18,'starts_on'=>'2026-12-20'],
+    ];
+    $ownsTransaction=!$pdo->inTransaction();if($ownsTransaction)$pdo->beginTransaction();
+    try {
+        $lock=$pdo->query('SELECT id FROM sx_ygo_competitions WHERE id IN(27,28) ORDER BY id FOR UPDATE')->fetchAll(PDO::FETCH_COLUMN);if(array_map('intval',$lock)!==[27,28])throw new RuntimeException('No se encontraron las ligas esperadas.');
+        $done->execute([$action]);if(($payload=$done->fetchColumn())!==false){if($ownsTransaction)$pdo->commit();return json_decode((string)$payload,true) ?: ['applied'=>true];}
+
+        $competitionRows=$pdo->query('SELECT * FROM sx_ygo_competitions WHERE id IN(27,28)')->fetchAll(PDO::FETCH_ASSOC);$competitions=array_column($competitionRows,null,'id');
+        foreach($specs as $spec){$division=$pdo->prepare('SELECT league_competition_id FROM sx_ygo_divisions WHERE id=? AND season_id=1 AND active=1');$division->execute([$spec['division_id']]);if((int)$division->fetchColumn()!==$spec['competition_id'])throw new RuntimeException('Una division nueva no pertenece a la liga esperada.');foreach($spec['target_ids'] as $id){$row=$targets[array_search($id,$targetIds,true)]??null;if((int)($row['division_id']??0)!==$spec['division_id'])throw new RuntimeException('Un deck nuevo cambio de division; no se modifico el calendario.');}}
+
+        $rosterInsert=$pdo->prepare('INSERT INTO sx_ygo_competition_decks(competition_id,deck_id,sort_order,active) VALUES(?,?,?,1) ON DUPLICATE KEY UPDATE active=1,sort_order=VALUES(sort_order)');
+        foreach([27,28] as $competitionId){$roster=$pdo->prepare('SELECT d.id FROM sx_ygo_decks d JOIN sx_ygo_divisions v ON v.id=d.division_id WHERE d.active=1 AND v.active=1 AND v.season_id=1 AND v.league_competition_id=? ORDER BY v.tier_order,d.seed_rank,d.id');$roster->execute([$competitionId]);foreach(array_map('intval',$roster->fetchAll(PDO::FETCH_COLUMN)) as $index=>$deckId)$rosterInsert->execute([$competitionId,$deckId,$index+1]);}
+
+        $occupiedTimes=[];$busyDecks=[];$dailyCounts=[];$occupied=$pdo->query('SELECT scheduled_on,starts_at,deck_a_id,deck_b_id,deck_c_id,deck_d_id,deck_e_id,deck_f_id FROM sx_ygo_matches WHERE scheduled_on IS NOT NULL')->fetchAll(PDO::FETCH_ASSOC);
+        foreach($occupied as $match){$date=(string)$match['scheduled_on'];$time=(string)$match['starts_at'];if($time!=='')$occupiedTimes[$date][$time]=true;$dailyCounts[$date]=($dailyCounts[$date]??0)+1;foreach(['deck_a_id','deck_b_id','deck_c_id','deck_d_id','deck_e_id','deck_f_id'] as $field)if((int)($match[$field]??0)>0)$busyDecks[$date][(int)$match[$field]]=true;}
+
+        $insert=$pdo->prepare('INSERT INTO sx_ygo_matches (division_id,competition_id,game_rule_id,phase,match_format,best_of,participants_per_side,round_number,table_number,bracket_round_label,bracket_slot,bracket_side,display_order,generation_number,deck_a_id,deck_b_id,status,scheduled_on,starts_at,venue,notes) VALUES (?,?,?,\'league\',?,?,?,?,?,?,?,\'main\',?,1,?,?,\'PENDIENTE\',?,?,\'Station X Tulua\',?)');
+        $summary=[];$total=0;
+        foreach($specs as $spec){$deckQuery=$pdo->prepare('SELECT id FROM sx_ygo_decks WHERE active=1 AND division_id=? ORDER BY seed_rank,id');$deckQuery->execute([$spec['division_id']]);$deckIds=array_map('intval',$deckQuery->fetchAll(PDO::FETCH_COLUMN));$pairQuery=$pdo->prepare('SELECT deck_a_id,deck_b_id FROM sx_ygo_matches WHERE competition_id=? AND division_id=? AND phase=\'league\'');$pairQuery->execute([$spec['competition_id'],$spec['division_id']]);$pairs=array_map(static fn($row)=>(int)$row['deck_a_id'].':'.(int)$row['deck_b_id'],$pairQuery->fetchAll(PDO::FETCH_ASSOC));$lastRoundQuery=$pdo->prepare('SELECT COALESCE(MAX(round_number),0) FROM sx_ygo_matches WHERE competition_id=? AND division_id=? AND phase=\'league\'');$lastRoundQuery->execute([$spec['competition_id'],$spec['division_id']]);
+            $fixtures=\StationX\Yugioh\Domain\Calendar\LeagueExpansionPlan::missingFixtures($deckIds,$pairs,(int)$lastRoundQuery->fetchColumn());if(count($fixtures)!==$spec['expected'])throw new RuntimeException('La cantidad de cruces faltantes cambio; no se modifico el calendario.');$fixtures=\StationX\Yugioh\Domain\Calendar\LeagueExpansionPlan::schedule($fixtures,$spec['starts_on'],'2027-10-27',$occupiedTimes,$busyDecks,$dailyCounts);$event=$competitions[$spec['competition_id']];$first='';$last='';
+            foreach($fixtures as $index=>$fixture){$display=((int)$fixture['round_number']-1)*100+(int)$fixture['table_number'];$insert->execute([$spec['division_id'],$spec['competition_id'],$event['game_rule_id']?:null,$event['match_format']?:'1v1',(int)($event['best_of']?:5),(int)($event['participants_per_side']?:1),$fixture['round_number'],$fixture['table_number'],'Ronda '.$fixture['round_number'],$fixture['table_number'],$display,$fixture['deck_a_id'],$fixture['deck_b_id'],$fixture['scheduled_on'],$fixture['starts_at'],'Ampliacion incremental de liga para decks incorporados el 2026-11-27.']);$first=$first===''?$fixture['scheduled_on']:min($first,$fixture['scheduled_on']);$last=max($last,$fixture['scheduled_on']);}
+            $pdo->prepare('UPDATE sx_ygo_divisions SET starts_on=LEAST(COALESCE(starts_on,?),?),ends_on=GREATEST(COALESCE(ends_on,?),?) WHERE id=?')->execute([$first,$first,$last,$last,$spec['division_id']]);$pdo->prepare('UPDATE sx_ygo_competitions SET ends_on=GREATEST(COALESCE(ends_on,?),?) WHERE id=?')->execute([$last,$last,$spec['competition_id']]);$summary[]=['competition_id'=>$spec['competition_id'],'division_id'=>$spec['division_id'],'matches'=>count($fixtures),'first'=>$first,'last'=>$last];$total+=count($fixtures);
+        }
+        foreach([27,28] as $competitionId)ygo_rebuild_competition_calendar_events_from_matches($pdo,1,$competitionId,'league');
+        ygo_validate_fixed_calendar_2026($pdo);$result=['applied'=>true,'matches_created'=>$total,'decks'=>$targetIds,'divisions'=>$summary];$pdo->prepare('INSERT INTO sx_ygo_audit_log(entity_type,entity_id,action,payload) VALUES(?,?,?,?)')->execute(['season',1,$action,json_encode($result,JSON_UNESCAPED_UNICODE)]);if($ownsTransaction)$pdo->commit();return $result;
+    } catch(Throwable $error){if($ownsTransaction&&$pdo->inTransaction())$pdo->rollBack();throw $error;}
+}
+
 
 function ygo_deck_available_from(PDO $pdo,array $deckIds): string {
     $rules=json_decode(ygo_settings($pdo)['deck_not_before_2026'] ?? '[]',true) ?: [];
@@ -129,3 +170,4 @@ function ygo_delay_named_decks_2026(PDO $pdo): array {
     ygo_validate_fixed_calendar_2026($pdo);$first=[];foreach($decks as $d){$stmt=$pdo->prepare('SELECT MIN(scheduled_on) FROM sx_ygo_matches WHERE ? IN(deck_a_id,deck_b_id,COALESCE(deck_c_id,0),COALESCE(deck_d_id,0),COALESCE(deck_e_id,0),COALESCE(deck_f_id,0))');$stmt->execute([(int)$d['id']]);$first[]=['id'=>(int)$d['id'],'name'=>$d['name'],'first_match'=>$stmt->fetchColumn()];}
     $result=['cutoff'=>$cutoff,'decks'=>$first,'early_matches_before'=>count($early),'changed_matches'=>$changed,'backfilled_slots'=>$backfills];$pdo->prepare('INSERT INTO sx_ygo_audit_log(entity_type,entity_id,action,payload) VALUES(?,?,?,?)')->execute(['season',1,'decks_available_from_20261026',json_encode($result)]);return $result;
 }
+

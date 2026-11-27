@@ -18,6 +18,7 @@ final readonly class MaintainSeason
         $this->port->ensureGameRules($seasonId);
         $goatLeagueStructure = $this->port->ensureGoatStructure($seasonId);
         $octoberScheduleMigration = $this->port->applyHistoricalSchedule();
+        $recentDeckCalendarExpansion = $this->port->expandRecentLeagueCalendar();
         $activatedDueCompetitions = $this->port->activateDueCompetitions();
         $this->port->ensureCompetitionCodes($seasonId);
         $teamSyncCount = $this->port->syncDeckTeams();
@@ -27,6 +28,7 @@ final readonly class MaintainSeason
             'deletedSeedDivisions',
             'goatLeagueStructure',
             'octoberScheduleMigration',
+            'recentDeckCalendarExpansion',
             'activatedDueCompetitions',
             'teamSyncCount',
             'deckFormatSyncCount',
@@ -34,3 +36,4 @@ final readonly class MaintainSeason
         );
     }
 }
+

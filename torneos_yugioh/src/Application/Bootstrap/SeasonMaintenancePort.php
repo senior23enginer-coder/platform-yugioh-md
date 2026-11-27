@@ -23,6 +23,8 @@ interface SeasonMaintenancePort
 
     public function applyHistoricalSchedule(): array;
 
+    public function expandRecentLeagueCalendar(): array;
+
     public function activateDueCompetitions(): int;
 
     public function ensureCompetitionCodes(int $seasonId): void;
@@ -33,3 +35,4 @@ interface SeasonMaintenancePort
 
     public function seedDeckAnalysis(): int;
 }
+

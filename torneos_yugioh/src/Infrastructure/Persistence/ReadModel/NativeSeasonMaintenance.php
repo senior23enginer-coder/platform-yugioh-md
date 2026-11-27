@@ -55,6 +55,11 @@ final readonly class NativeSeasonMaintenance implements SeasonMaintenancePort
         return \ygo_apply_october_2026_schedule($this->pdo);
     }
 
+    public function expandRecentLeagueCalendar(): array
+    {
+        return \ygo_expand_recent_decks_calendar_2026($this->pdo);
+    }
+
     public function activateDueCompetitions(): int
     {
         return \ygo_activate_due_scheduled_competitions($this->pdo);
@@ -80,3 +85,4 @@ final readonly class NativeSeasonMaintenance implements SeasonMaintenancePort
         return \ygo_seed_deck_analysis_profiles($this->pdo);
     }
 }
+

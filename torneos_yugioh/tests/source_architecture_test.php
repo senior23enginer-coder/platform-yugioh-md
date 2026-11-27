@@ -7,6 +7,7 @@ use StationX\Yugioh\Application\Seasons\SeasonRepository;
 use StationX\Yugioh\Domain\Competitions\FixtureBuilder;
 use StationX\Yugioh\Domain\Competitions\KnockoutSize;
 use StationX\Yugioh\Domain\Competitions\RoundRobinPairings;
+use StationX\Yugioh\Domain\Calendar\LeagueExpansionPlan;
 use StationX\Yugioh\Domain\Seasons\Season;
 use StationX\Yugioh\Infrastructure\Persistence\LoadedSeasonRepository;
 
@@ -45,6 +46,29 @@ foreach ($cases as $case) {
         'Bracket sizing changed',
     );
 }
+
+$missing = LeagueExpansionPlan::missingFixtures([1, 2, 3], ['1:2', '2:1'], 6);
+architectureCheck(count($missing) === 4, 'Incremental league plan replaced existing pairs');
+architectureCheck(
+    array_column($missing, 'round_number') === [7, 8, 9, 10],
+    'Incremental league rounds were not appended',
+);
+$occupiedTimes = ['2026-11-28' => ['19:00:00' => true, '20:00:00' => true]];
+$busyDecks = ['2026-11-28' => [1 => true, 2 => true, 3 => true]];
+$dailyCounts = ['2026-11-28' => 2];
+$scheduled = LeagueExpansionPlan::schedule(
+    array_slice($missing, 0, 2),
+    '2026-11-28',
+    '2026-12-31',
+    $occupiedTimes,
+    $busyDecks,
+    $dailyCounts,
+);
+architectureCheck(
+    $scheduled[0]['scheduled_on'] === '2026-11-29' &&
+        $scheduled[1]['scheduled_on'] === '2026-11-30',
+    'Incremental league scheduling ignored deck or daily occupancy',
+);
 
 // The use case accepts a test double: it cannot depend on the PDO adapter or globals.
 $repository = new class implements SeasonRepository {
@@ -2484,6 +2508,11 @@ $port = new class implements \StationX\Yugioh\Application\Bootstrap\SeasonMainte
         $this->calls[] = 'applyHistoricalSchedule';
         return [];
     }
+    public function expandRecentLeagueCalendar(): array
+    {
+        $this->calls[] = 'expandRecentLeagueCalendar';
+        return [];
+    }
     public function activateDueCompetitions(): int
     {
         $this->calls[] = 'activateDueCompetitions';
@@ -2521,6 +2550,7 @@ architectureCheck(
         'ensureGameRules',
         'ensureGoatStructure',
         'applyHistoricalSchedule',
+        'expandRecentLeagueCalendar',
         'activateDueCompetitions',
         'ensureCompetitionCodes',
         'syncDeckTeams',
@@ -2534,6 +2564,7 @@ architectureCheck(
         'deletedSeedDivisions' => 7,
         'goatLeagueStructure' => [],
         'octoberScheduleMigration' => [],
+        'recentDeckCalendarExpansion' => [],
         'activatedDueCompetitions' => 7,
         'teamSyncCount' => 7,
         'deckFormatSyncCount' => 7,
@@ -4536,3 +4567,4 @@ foreach (['Domain', 'Application'] as $layer) {
 }
 
 echo "OK: domain characterization, injected season port, no persistence startup, inward dependencies.\n";
+

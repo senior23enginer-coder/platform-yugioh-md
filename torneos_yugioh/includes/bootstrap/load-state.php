@@ -36,7 +36,7 @@ try {
     $competitionStatusOptions = ygo_catalog_label_options($catalogGroups['competition_status'] ?? []);
     $matchStatusOptions = ygo_catalog_label_options($catalogGroups['match_status'] ?? []);
     $schedulePatternOptions = ygo_catalog_label_options($catalogGroups['schedule_pattern'] ?? []);
-    ['deletedSeedDivisions' => $deletedSeedDivisions, 'goatLeagueStructure' => $goatLeagueStructure, 'octoberScheduleMigration' => $octoberScheduleMigration, 'activatedDueCompetitions' => $activatedDueCompetitions, 'teamSyncCount' => $teamSyncCount, 'deckFormatSyncCount' => $deckFormatSyncCount, 'deckAnalysisBaselineCount' => $deckAnalysisBaselineCount] = \StationX\Yugioh\Infrastructure\Composition\BootstrapModule::maintain($pdo)->execute($seasonId, $divisionDefinitions, $eventRulesetOptions);
+    ['deletedSeedDivisions' => $deletedSeedDivisions, 'goatLeagueStructure' => $goatLeagueStructure, 'octoberScheduleMigration' => $octoberScheduleMigration, 'recentDeckCalendarExpansion' => $recentDeckCalendarExpansion, 'activatedDueCompetitions' => $activatedDueCompetitions, 'teamSyncCount' => $teamSyncCount, 'deckFormatSyncCount' => $deckFormatSyncCount, 'deckAnalysisBaselineCount' => $deckAnalysisBaselineCount] = \StationX\Yugioh\Infrastructure\Composition\BootstrapModule::maintain($pdo)->execute($seasonId, $divisionDefinitions, $eventRulesetOptions);
     \StationX\Yugioh\Infrastructure\Composition\BootstrapModule::backfills($pdo)->execute();
     if ((string) ($_GET['api'] ?? '') === 'duel_session') {
         ygo_live_duel_api($pdo);
@@ -150,3 +150,4 @@ try {
 $uiLabels = $uiLabels ?? ($appData['uiLabels'] ?? $defaultUiLabels);
 $uiText = static fn(string $key, string $field, string $fallback): string =>
     \StationX\Yugioh\Application\Bootstrap\SeedDataProjection::labelText($uiLabels, $key, $field, $fallback);
+
