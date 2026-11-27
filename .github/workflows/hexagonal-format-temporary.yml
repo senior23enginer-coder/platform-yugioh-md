@@ -1,0 +1,20 @@
+name: Temporary architecture format diagnosis
+on:
+  pull_request:
+    branches: [base]
+permissions:
+  contents: read
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - name: Print exact formatter patch
+        run: |
+          npm run format:architecture
+          git diff -- torneos_yugioh/tests/source_architecture_test.php
+          npm run format:architecture -- --check
