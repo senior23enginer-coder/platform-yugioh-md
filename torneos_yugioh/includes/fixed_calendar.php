@@ -170,4 +170,3 @@ function ygo_delay_named_decks_2026(PDO $pdo): array {
     ygo_validate_fixed_calendar_2026($pdo);$first=[];foreach($decks as $d){$stmt=$pdo->prepare('SELECT MIN(scheduled_on) FROM sx_ygo_matches WHERE ? IN(deck_a_id,deck_b_id,COALESCE(deck_c_id,0),COALESCE(deck_d_id,0),COALESCE(deck_e_id,0),COALESCE(deck_f_id,0))');$stmt->execute([(int)$d['id']]);$first[]=['id'=>(int)$d['id'],'name'=>$d['name'],'first_match'=>$stmt->fetchColumn()];}
     $result=['cutoff'=>$cutoff,'decks'=>$first,'early_matches_before'=>count($early),'changed_matches'=>$changed,'backfilled_slots'=>$backfills];$pdo->prepare('INSERT INTO sx_ygo_audit_log(entity_type,entity_id,action,payload) VALUES(?,?,?,?)')->execute(['season',1,'decks_available_from_20261026',json_encode($result)]);return $result;
 }
-

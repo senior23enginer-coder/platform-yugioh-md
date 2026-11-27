@@ -35,4 +35,3 @@ interface SeasonMaintenancePort
 
     public function seedDeckAnalysis(): int;
 }
-

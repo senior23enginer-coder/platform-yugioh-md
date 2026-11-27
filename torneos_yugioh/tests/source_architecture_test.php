@@ -4567,4 +4567,3 @@ foreach (['Domain', 'Application'] as $layer) {
 }
 
 echo "OK: domain characterization, injected season port, no persistence startup, inward dependencies.\n";
-

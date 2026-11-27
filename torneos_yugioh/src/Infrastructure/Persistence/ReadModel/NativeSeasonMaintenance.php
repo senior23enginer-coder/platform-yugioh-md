@@ -85,4 +85,3 @@ final readonly class NativeSeasonMaintenance implements SeasonMaintenancePort
         return \ygo_seed_deck_analysis_profiles($this->pdo);
     }
 }
-

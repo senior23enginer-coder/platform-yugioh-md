@@ -150,4 +150,3 @@ try {
 $uiLabels = $uiLabels ?? ($appData['uiLabels'] ?? $defaultUiLabels);
 $uiText = static fn(string $key, string $field, string $fallback): string =>
     \StationX\Yugioh\Application\Bootstrap\SeedDataProjection::labelText($uiLabels, $key, $field, $fallback);
-
