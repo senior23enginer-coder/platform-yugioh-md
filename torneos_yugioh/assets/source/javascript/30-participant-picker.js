@@ -21,11 +21,7 @@
     return competitionConfigModal.dataset.deckRosterLocked === '1';
   }
   function competitionCanEditRoster(competition) {
-    const type = String(competition?.type || currentCompetitionType() || '');
-    const status = normalizeStatusKey(competition?.status || '');
-    if (['completed', 'finalizado', 'finalizada', 'cancelled', 'canceled', 'anulado', 'anulada'].includes(status)) return false;
-    if (['cup', 'tournament', 'final'].includes(type)) return true;
-    return !(competition?.configuration_locked === 1 || competition?.configuration_locked === '1' || ['active', 'activo'].includes(status));
+    return window.StationXParticipantPolicy.competitionCanEditRoster(competition, currentCompetitionType, normalizeStatusKey);
   }
   function syncCompetitionStatusOptions(statusSelect, currentStatus) {
     if (!statusSelect) return;
@@ -101,21 +97,13 @@
     return (data.allDecks || []).find((deck) => String(deck.id || '') === String(deckId || '')) || null;
   }
   function participantFormatCodes(deck) {
-    return (deck?.format_codes || []).filter(code => code && code !== 'custom');
+    return window.StationXParticipantPolicy.participantFormatCodes(deck);
   }
   function participantFormatLabel(deck) {
     return participantFormatCodes(deck).map(code => rulesetLabel(code)).join(' / ') || 'Sin formato';
   }
   function compatibleParticipantRoster(decks) {
-    const eventFormat = competitionConfigModal?.querySelector('[data-competition-config-ruleset]')?.value || '';
-    let formats = eventFormat && eventFormat !== 'custom' ? [eventFormat] : null;
-    for (const deck of decks) {
-      if (!deck?.id || !deck.team_id) return false;
-      const own = participantFormatCodes(deck);
-      formats = formats === null ? own : formats.filter(code => own.includes(code));
-      if (!formats.length) return false;
-    }
-    return true;
+    return window.StationXParticipantPolicy.compatibleParticipantRoster(decks, competitionConfigModal?.querySelector('[data-competition-config-ruleset]')?.value || '');
   }
   function deckMatchesCompetitionFormat(deck) {
     return compatibleParticipantRoster([deck]);
@@ -132,22 +120,16 @@
     note.classList.toggle('text-warning', Boolean(message));
   }
   function participantOtherLeague(deck) {
-    const competition = currentCompetitionConfig();
-    if (!competition || competition.type !== 'league' || !deck) return null;
-    return (data.leagueDeckAssignments || []).find(row => String(row.deck_id) === String(deck.id) && String(row.season_id) === String(competition.season_id) && String(row.competition_id) !== String(competition.id)) || null;
+    return window.StationXParticipantPolicy.participantOtherLeague(deck, currentCompetitionConfig, data);
   }
   function canAddParticipant(deck) {
     return participantIsQualified(deck) && !participantOtherLeague(deck) && compatibleParticipantRoster([...selectedCompetitionDecks(), deck]);
   }
   function participantIsQualified(deck) {
-    const competition = currentCompetitionConfig();
-    if (!competition || (!competition.admission?.config && competition.participant_source !== 'PREVIOUS_EVENT' && !['top_cut','playoffs'].includes(competition.execution_model))) return true;
-    return !!competition.admission?.ok && (competition.admission.selection?.ids || []).some(id => String(id) === String(deck?.id));
+    return window.StationXParticipantPolicy.participantIsQualified(deck, currentCompetitionConfig);
   }
   function participantAddRestriction(deck) {
-    if (!participantIsQualified(deck)) return 'Este deck no esta clasificado por las fuentes del evento. Configura Fuentes y clasificados en la ficha.';
-    const other = participantOtherLeague(deck);
-    return other ? `No se puede agregar: este deck pertenece a ${other.competition_name}. Un deck solo puede estar en una liga por temporada; puede participar en otros eventos.` : 'No se puede agregar este deck: no se permite mezclar formatos.';
+    return window.StationXParticipantPolicy.participantAddRestriction(deck, participantIsQualified, participantOtherLeague);
   }
   function leagueMovementDivisions(competition = currentCompetitionConfig()) {
     if (!competition || competition.type !== 'league') return [];
@@ -214,15 +196,7 @@
     return competitionConfigModal ? String(competitionConfigModal.querySelector('[data-competition-config-type]')?.value || '') : '';
   }
   function eligibleTeamIdsForCompetition(divisionId, participantsPerSide) {
-    if (participantsPerSide <= 1) return null;
-    const counts = {};
-    (data.allDecks || []).forEach((deck) => {
-      if (!deckMatchesCompetitionFormat(deck, divisionId)) return;
-      const teamId = String(deck.team_id || '');
-      if (!teamId) return;
-      counts[teamId] = (counts[teamId] || 0) + 1;
-    });
-    return new Set(Object.keys(counts).filter((teamId) => counts[teamId] >= participantsPerSide));
+    return window.StationXParticipantPolicy.eligibleTeamIdsForCompetition(divisionId, participantsPerSide, data, deckMatchesCompetitionFormat);
   }
   function renderCompetitionDeckPicker() {
     const picker = deckPickerNode();
@@ -382,23 +356,10 @@
     return !!(data.executionCapabilities || {})[competition?.execution_model]?.policy;
   }
   function expectedQualifierMatchCount(deckCount, participantsPerSide, duelsPerDeck) {
-    if (competitionUsesWorkflow()) return Math.floor(deckCount / 2);
-    const groups = participantsPerSide > 0 ? Math.floor(deckCount / participantsPerSide) : 0;
-    if (groups < 2 || duelsPerDeck < 2 || duelsPerDeck > groups - 1) return 0;
-    const roundLimit = Math.min(Math.max(2, Math.min(5, duelsPerDeck)), groups - 1);
-    return Math.floor(groups / 2) * roundLimit;
+    return window.StationXParticipantPolicy.expectedQualifierMatchCount(deckCount, participantsPerSide, duelsPerDeck, competitionUsesWorkflow);
   }
   function currentEligibleGroupCount(participantsPerSide = selectedCompetitionParticipantsPerSide()) {
-    const divisionId = selectedCompetitionDivisionId();
-    const validDecks = selectedCompetitionDecks().filter((deck) => deckMatchesCompetitionFormat(deck, divisionId));
-    if (participantsPerSide <= 1) return validDecks.length;
-    const selectedTeamCounts = validDecks.reduce((map, deck) => {
-      const teamId = String(deck.team_id || '');
-      if (!teamId) return map;
-      map[teamId] = (map[teamId] || 0) + 1;
-      return map;
-    }, {});
-    return Object.values(selectedTeamCounts).filter((count) => count >= participantsPerSide).length;
+    return window.StationXParticipantPolicy.currentEligibleGroupCount(participantsPerSide, selectedCompetitionDivisionId, selectedCompetitionDecks, deckMatchesCompetitionFormat);
   }
   function competitionParticipantsPerSide(matchSelect) {
     const selected = matchSelect?.selectedOptions?.[0];

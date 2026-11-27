@@ -29,6 +29,10 @@
       "responsibility": "calendar event, alert and scope projections"
     },
     {
+      "file": "javascript/shared/participant-policy.js",
+      "responsibility": "participant eligibility policies and manual match controller"
+    },
+    {
       "file": "javascript/00-startup.js",
       "responsibility": "startup"
     },

@@ -232,3 +232,52 @@ for(const scope of [{type:'deck',id:10,label:'Deck A'},{type:'team',id:100,label
 }
 assert.deepEqual(calendarProjection.filteredCalendarEvents({calendarEvents:projectedCalendar,type:'league',division:'',search:'deck',normalize:calendarNorm,calendarProfileScope:calendarContext.calendarProfileScope,calendarMatchBelongsToScope:scopedCalendar}),plainCalendar(calendarContext.originalFilter()));
 console.log('Calendar projection: original events, alerts, visibility, filters and scopes verified.');
+
+const participantPolicy = require('../assets/source/javascript/shared/participant-policy.js');
+const participantOriginal = JSON.parse(fs.readFileSync(path.join(__dirname,'fixtures/browser-participant-policy-originals.json'),'utf8'));
+const participantDecks = [
+  {id:1,team_id:10,format_codes:['tcg_advanced','goat']},
+  {id:2,team_id:10,format_codes:['tcg_advanced']},
+  {id:3,team_id:20,format_codes:['goat']},
+  {id:4,team_id:0,format_codes:['tcg_advanced']},
+];
+let participantEvent = {id:9,season_id:1,type:'league',status:'draft'};
+let participantFormat = 'tcg_advanced';
+const participantData = {allDecks:participantDecks,leagueDeckAssignments:[{deck_id:3,season_id:1,competition_id:8,competition_name:'Other league'}]};
+const participantContext = {
+  data:participantData,currentCompetitionType:()=>participantEvent.type,
+  normalizeStatusKey:calendarStatus,currentCompetitionConfig:()=>participantEvent,
+  competitionConfigModal:{querySelector:()=>({value:participantFormat})},
+  selectedCompetitionDivisionId:()=>'',selectedCompetitionParticipantsPerSide:()=>2,
+  selectedCompetitionDecks:()=>participantDecks.slice(0,2),competitionUsesWorkflow:()=>false,
+  deckMatchesCompetitionFormat:deck=>participantPolicy.compatibleParticipantRoster([deck],participantFormat)
+};
+vm.createContext(participantContext);
+vm.runInContext(Object.values(participantOriginal).join('\n')+'\nthis.oldRoster=compatibleParticipantRoster;this.oldOther=participantOtherLeague;this.oldQualified=participantIsQualified;this.oldRestrictions=participantAddRestriction;this.oldEdit=competitionCanEditRoster;this.oldGroupCount=currentEligibleGroupCount;this.oldMatchCount=expectedQualifierMatchCount;this.oldTeams=eligibleTeamIdsForCompetition;',participantContext);
+const qualified = deck=>participantPolicy.participantIsQualified(deck,participantContext.currentCompetitionConfig);
+const otherLeague = deck=>participantPolicy.participantOtherLeague(deck,participantContext.currentCompetitionConfig,participantData);
+for(const format of ['tcg_advanced','goat','custom','']) {
+  participantFormat=format;
+  for(const decks of [[],participantDecks.slice(0,1),participantDecks.slice(0,2),participantDecks.slice(1,3),participantDecks]) assert.equal(participantPolicy.compatibleParticipantRoster(decks,format),participantContext.oldRoster(decks));
+}
+for(const event of [{id:9,season_id:1,type:'league',status:'draft'},{id:9,season_id:1,type:'league',status:'active'},{type:'cup',status:'active'},{type:'cup',status:'completed'},{type:'cup',participant_source:'PREVIOUS_EVENT',admission:{ok:true,config:{},selection:{ids:[1]}}}]){
+  participantEvent=event;
+  assert.equal(participantPolicy.competitionCanEditRoster(event,participantContext.currentCompetitionType,calendarStatus),participantContext.oldEdit(event));
+  for(const deck of participantDecks) {
+    assert.equal(qualified(deck),participantContext.oldQualified(deck));
+    assert.equal(otherLeague(deck),participantContext.oldOther(deck));
+    assert.equal(participantPolicy.participantAddRestriction(deck,qualified,otherLeague),participantContext.oldRestrictions(deck));
+  }
+}
+for(const n of [1,2,3,5,10,20]) for(const sides of [1,2,3]) for(const rounds of [1,2,3,5]) assert.equal(participantPolicy.expectedQualifierMatchCount(n,sides,rounds,()=>false),participantContext.oldMatchCount(n,sides,rounds));
+participantFormat='tcg_advanced';
+assert.equal(participantPolicy.currentEligibleGroupCount(2,participantContext.selectedCompetitionDivisionId,participantContext.selectedCompetitionDecks,participantContext.deckMatchesCompetitionFormat),participantContext.oldGroupCount(2));
+assert.deepEqual([...participantPolicy.eligibleTeamIdsForCompetition('',2,participantData,participantContext.deckMatchesCompetitionFormat)],[...participantContext.oldTeams('',2)]);
+const manualOptions = [{value:'',dataset:{}},{value:'1',dataset:{divisionId:'5',teamId:'10'}},{value:'2',dataset:{divisionId:'5',teamId:'10'}},{value:'3',dataset:{divisionId:'6',teamId:'20'}}];
+const manualSelect = {options:manualOptions,selectedOptions:[manualOptions[0]],querySelectorAll:()=>manualOptions};
+const manualController=participantPolicy.createManualMatchController({manualDeckSelects:[manualSelect],manualDivisionSelect:{value:'5'},manualParticipantsInput:{value:'2'},manualMatchFormatSelect:{value:'2v2'}});
+assert.equal(manualController.manualParticipantsPerSide(),2);
+assert.deepEqual([...manualController.manualEligibleTeamIds('5',2)],['10']);
+assert.equal(manualController.manualDeckAllowed(manualOptions[1],null),true);
+assert.equal(manualController.manualDeckAllowed(manualOptions[3],null),false);
+console.log('Participant policy: format, admission, league exclusivity, qualifier count and manual controller verified.');

@@ -283,6 +283,10 @@ Se extrae la persistencia de configuración, validación de participantes, conge
 
 Se extraen las alertas operativas, visibilidad de competiciones, consolidación de eventos/fixtures/FFA, selección por equipo o deck y filtros a un módulo independiente de DOM y cierre compartido. El adaptador entrega valores de controles y dependencias explícitas, sin cambiar etiquetas, prioridades, reglas de finalización ni orden. Se conserva la implementación anterior en fixture y se compara la salida directamente. CI pendiente.
 
+## Participantes y partidas manuales en frontend
+
+Se extraen las restricciones de formato, elegibilidad, pertenencia a otra liga, admisión, edición de planteles y cálculo de cupos/partidas. El controlador de partidas manuales ya no depende de variables globales de la clausura: recibe los controles, expone el ciclo de montaje y mantiene las mismas operaciones DOM y orden. Se conserva evidencia y se comparan decisiones contra los algoritmos anteriores. CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
