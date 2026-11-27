@@ -18,7 +18,20 @@ if(PHP_SAPI==='cli'){
     $config=['resource'=>getenv('MCP_TEST_RESOURCE'),'owner_password_hash'=>password_hash($password,PASSWORD_DEFAULT),'state_dir'=>dirname($dbPath).'/state'];
     file_put_contents(getenv('STATION_X_CHATGPT_CONFIG'),"<?php\nreturn ".var_export($config,true).";\n");
     require_once dirname(__DIR__).'/includes/chatgpt/data.php';$data=new YgoMcpData($pdo,getenv('MCP_TEST_EDITORIAL_APP'),'https://example.test/');
-    foreach(['card_profiles','documents','verification'] as $section){$part=$data->guide(665,$section);if($part['total_characters']<5)throw new RuntimeException('Detailed published content missing.');}
+    // Verify the real publication guard even when the detailed library is stale.
+    $editorial=getenv('MCP_TEST_EDITORIAL_APP');
+    $manifest=json_decode(file_get_contents($editorial.'/assets/editorial/deck-deliveries.json'),true,512,JSON_THROW_ON_ERROR);
+    $guide=json_decode(file_get_contents($editorial.'/'.substr(parse_url($manifest['decks']['665']['url'],PHP_URL_PATH),2)),true,512,JSON_THROW_ON_ERROR);
+    $library=json_decode(file_get_contents($editorial.'/assets/editorial/deck-library/deck-665.json'),true,512,JSON_THROW_ON_ERROR);
+    $matching=(int)($library['deck_id']??0)===665&&!empty($guide['source_sha256'])&&hash_equals((string)$guide['source_sha256'],(string)($library['source_sha256']??''));
+    foreach(['card_profiles','documents','verification'] as $section){
+        try {
+            $part=$data->guide(665,$section);
+            if(!$matching||$part['total_characters']<5)throw new RuntimeException('Detailed library guard failed.');
+        } catch(InvalidArgumentException $e) {
+            if($matching||!str_contains($e->getMessage(),'No se mezclan entregas.'))throw $e;
+        }
+    }
     try{$pdo->exec("UPDATE sx_ygo_decks SET name='bad'");throw new RuntimeException('Read-only transaction did not protect the database.');}catch(PDOException $e){if(!str_contains($e->getMessage(),'readonly'))throw $e;}
     unset($data);echo "Isolated fixture and read-only guard ready.\n";exit;
 }
