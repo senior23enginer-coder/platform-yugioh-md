@@ -16,7 +16,11 @@ const { StreamableHTTPClientTransport } = require('@modelcontextprotocol/sdk/cli
   const config=path.join(out,'private.php'), state=path.join(out,'state','oauth.json');
   const env={...process.env,MCP_TEST_DB:path.join(out,'db.sqlite'),STATION_X_CHATGPT_CONFIG:config,MCP_TEST_RESOURCE:resource};
   const published=path.join(out,'published');env.MCP_TEST_EDITORIAL_APP=published;
-  for(const relative of ['assets/editorial/deck-deliveries.json','assets/editorial/20261101-11-decks/deck-665.json','assets/editorial/deck-library/deck-665.json']){
+  const manifestGit=spawnSync('git',['show','HEAD:torneos_yugioh/assets/editorial/deck-deliveries.json'],{cwd:root,maxBuffer:32000000});assert.equal(manifestGit.status,0);
+  const manifest=JSON.parse(manifestGit.stdout.toString('utf8'));
+  const guideRelative=manifest.decks['665'].url.split('?')[0].replace(/^\.\//,'');
+  assert(guideRelative.startsWith('assets/editorial/') && !guideRelative.includes('..'));
+  for(const relative of ['assets/editorial/deck-deliveries.json',guideRelative,'assets/editorial/deck-library/deck-665.json']){
     const git=spawnSync('git',['show','HEAD:torneos_yugioh/'+relative],{cwd:root,maxBuffer:32000000});assert.equal(git.status,0);
     const target=path.join(published,relative);fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,git.stdout);
   }
