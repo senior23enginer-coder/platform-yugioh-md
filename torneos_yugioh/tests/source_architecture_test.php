@@ -3382,43 +3382,119 @@ $liveMilliseconds = static fn(): float => 5000.0;
 $liveAtom = static fn(): string => '2026-11-26T19:00:00-05:00';
 $liveMatch = ['status' => 'EN CURSO'];
 $initialDuel = $livePolicy::initial($liveMatch, $liveNow);
-architectureCheck($initialDuel['duel_number'] === 1 && $initialDuel['lp_a'] === 8000, 'Initial duel changed');
-$drawDuel = $livePolicy::initial(['d1' => 'E', 'duel_details' => json_encode([
-    ['duel' => 2, 'duel_started' => true, 'starts_player' => 'B', 'timer_running' => true],
-])], $liveNow);
-architectureCheck($drawDuel['duel_number'] === 2 && $drawDuel['status'] === 'setup' && !$drawDuel['timer_running'], 'Draw reroll guard changed');
-$liveState = $livePolicy::normalize([
-    'status' => 'running', 'starts_player' => 'A', 'active_side' => 'A',
-    'timer_running' => true, 'timer_started_at' => 1000, 'elapsed_seconds' => 10,
-    'lp_a' => 8000, 'lp_b' => 8000,
-], $liveNow);
-$liveTransition = static fn(array $state, string $actor, string $op, array $payload = []): ?array =>
-    $livePolicy::transition($state, $liveMatch, $actor, $op, $payload, $liveNow, $liveMilliseconds, $liveAtom);
+architectureCheck(
+    $initialDuel['duel_number'] === 1 && $initialDuel['lp_a'] === 8000,
+    'Initial duel changed',
+);
+$drawDuel = $livePolicy::initial(
+    [
+        'd1' => 'E',
+        'duel_details' => json_encode([
+            ['duel' => 2, 'duel_started' => true, 'starts_player' => 'B', 'timer_running' => true],
+        ]),
+    ],
+    $liveNow,
+);
+architectureCheck(
+    $drawDuel['duel_number'] === 2 &&
+        $drawDuel['status'] === 'setup' &&
+        !$drawDuel['timer_running'],
+    'Draw reroll guard changed',
+);
+$liveState = $livePolicy::normalize(
+    [
+        'status' => 'running',
+        'starts_player' => 'A',
+        'active_side' => 'A',
+        'timer_running' => true,
+        'timer_started_at' => 1000,
+        'elapsed_seconds' => 10,
+        'lp_a' => 8000,
+        'lp_b' => 8000,
+    ],
+    $liveNow,
+);
+$liveTransition = static fn(
+    array $state,
+    string $actor,
+    string $op,
+    array $payload = [],
+): ?array => $livePolicy::transition(
+    $state,
+    $liveMatch,
+    $actor,
+    $op,
+    $payload,
+    $liveNow,
+    $liveMilliseconds,
+    $liveAtom,
+);
 $endedTurn = $liveTransition($liveState, 'A', 'end_turn');
-architectureCheck($endedTurn['active_side'] === 'B' && $endedTurn['turn_count'] === 1, 'Turn progression changed');
-architectureCheck($endedTurn['turn_history'][0]['elapsed_seconds'] === 14, 'Turn elapsed calculation changed');
-architectureCheck($endedTurn['turn_history'][0]['ended_at'] === $liveAtom(), 'Turn timestamp changed');
+architectureCheck(
+    $endedTurn['active_side'] === 'B' && $endedTurn['turn_count'] === 1,
+    'Turn progression changed',
+);
+architectureCheck(
+    $endedTurn['turn_history'][0]['elapsed_seconds'] === 14,
+    'Turn elapsed calculation changed',
+);
+architectureCheck(
+    $endedTurn['turn_history'][0]['ended_at'] === $liveAtom(),
+    'Turn timestamp changed',
+);
 $halfLp = $liveTransition($liveState, 'A', 'lp_change', ['kind' => 'half']);
-architectureCheck($halfLp['lp_a'] === 4000 && $halfLp['lp_history'][0]['before'] === 8000, 'LP operation changed');
+architectureCheck(
+    $halfLp['lp_a'] === 4000 && $halfLp['lp_history'][0]['before'] === 8000,
+    'LP operation changed',
+);
 $resetLp = $liveTransition($halfLp, 'judge', 'lp_change', ['side' => 'A', 'kind' => 'reset']);
-architectureCheck($resetLp['lp_a'] === 8000 && count($resetLp['lp_history']) === 2, 'LP reset/history changed');
+architectureCheck(
+    $resetLp['lp_a'] === 8000 && count($resetLp['lp_history']) === 2,
+    'LP reset/history changed',
+);
 $surrendered = $liveTransition($liveState, 'A', 'surrender');
-architectureCheck($surrendered['status'] === 'completed' && !$surrendered['timer_running'], 'Surrender changed');
+architectureCheck(
+    $surrendered['status'] === 'completed' && !$surrendered['timer_running'],
+    'Surrender changed',
+);
 architectureCheck($surrendered['surrendered_at'] === $liveAtom(), 'Surrender timestamp changed');
 $synced = $liveTransition($surrendered, 'judge', 'sync', $liveState);
-architectureCheck($synced['surrendered_by'] === 'A' && $synced['status'] === 'completed', 'Surrender overwritten');
-architectureCheck($liveTransition($liveState, 'judge', 'sync', ['correction_at_ms' => 1]) === null, 'Correction conflict changed');
-foreach ([['B', 'end_turn'], ['B', 'surrender'], ['judge', 'surrender']] as [$invalidActor, $invalidOp]) {
+architectureCheck(
+    $synced['surrendered_by'] === 'A' && $synced['status'] === 'completed',
+    'Surrender overwritten',
+);
+architectureCheck(
+    $liveTransition($liveState, 'judge', 'sync', ['correction_at_ms' => 1]) === null,
+    'Correction conflict changed',
+);
+foreach (
+    [['B', 'end_turn'], ['B', 'surrender'], ['judge', 'surrender']]
+    as [$invalidActor, $invalidOp]
+) {
     try {
         $liveTransition($liveState, $invalidActor, $invalidOp);
         architectureCheck(false, 'Invalid actor accepted');
     } catch (RuntimeException $error) {
-        architectureCheck($error->getMessage() !== 'Invalid actor accepted', 'Invalid actor accepted');
+        architectureCheck(
+            $error->getMessage() !== 'Invalid actor accepted',
+            'Invalid actor accepted',
+        );
     }
 }
-$boundedDuel = $livePolicy::normalize(['duel_number' => 9, 'lp_a' => -1, 'lp_b' => 999999, 'status' => 'running'], $liveNow);
-architectureCheck($boundedDuel['duel_number'] === 5 && $boundedDuel['lp_a'] === 0 && $boundedDuel['lp_b'] === 99999, 'State bounds changed');
-architectureCheck($boundedDuel['status'] === 'setup' && $boundedDuel['updated_at_ms'] === 5000, 'State normalization changed');
+$boundedDuel = $livePolicy::normalize(
+    ['duel_number' => 9, 'lp_a' => -1, 'lp_b' => 999999, 'status' => 'running'],
+    $liveNow,
+);
+architectureCheck(
+    $boundedDuel['duel_number'] === 5 &&
+        $boundedDuel['lp_a'] === 0 &&
+        $boundedDuel['lp_b'] === 99999,
+    'State bounds changed',
+);
+architectureCheck(
+    $boundedDuel['status'] === 'setup' && $boundedDuel['updated_at_ms'] === 5000,
+    'State normalization changed',
+);
 
 // The live-duel loader preserves lazy creation, borrowed lock selection and authoritative duel recovery.
 $liveStore = new class implements \StationX\Yugioh\Application\Matches\LiveDuelReadStore {
@@ -3438,7 +3514,11 @@ $liveStore = new class implements \StationX\Yugioh\Application\Matches\LiveDuelR
     public function insertInitial(int $matchId, array $state): void
     {
         $this->calls[] = 'insert';
-        $this->stateRow = ['revision' => 1, 'state_json' => json_encode($state), 'updated_by' => 'judge'];
+        $this->stateRow = [
+            'revision' => 1,
+            'state_json' => json_encode($state),
+            'updated_by' => 'judge',
+        ];
     }
 };
 $liveLoader = new \StationX\Yugioh\Application\Matches\LoadLiveDuel($liveStore);
@@ -3447,22 +3527,49 @@ architectureCheck($liveStore->calls === ['match-9'], 'Missing match should not q
 $liveStore->calls = [];
 $liveStore->matchRow = ['status' => 'EN CURSO', 'd1' => 'A'];
 $loaded = $liveLoader->execute(9, true, $liveNow);
-architectureCheck($liveStore->calls === ['match-9', 'locked-state', 'insert', 'locked-state'], 'State creation order or lock changed');
-architectureCheck($loaded['state']['duel_number'] === 2 && $loaded['revision'] === 1, 'Initial persisted state changed');
+architectureCheck(
+    $liveStore->calls === ['match-9', 'locked-state', 'insert', 'locked-state'],
+    'State creation order or lock changed',
+);
+architectureCheck(
+    $loaded['state']['duel_number'] === 2 && $loaded['revision'] === 1,
+    'Initial persisted state changed',
+);
 $liveStore->calls = [];
-$liveStore->stateRow = ['revision' => 4, 'state_json' => json_encode(['duel_number' => 1]), 'updated_by' => 'A'];
+$liveStore->stateRow = [
+    'revision' => 4,
+    'state_json' => json_encode(['duel_number' => 1]),
+    'updated_by' => 'A',
+];
 $loaded = $liveLoader->execute(9, false, $liveNow);
 architectureCheck($liveStore->calls === ['match-9', 'state'], 'Existing state was written');
-architectureCheck($loaded['state']['duel_number'] === 2 && $loaded['revision'] === 4, 'Authoritative duel recovery changed');
+architectureCheck(
+    $loaded['state']['duel_number'] === 2 && $loaded['revision'] === 4,
+    'Authoritative duel recovery changed',
+);
 $liveStore->matchRow['status'] = 'FINALIZADA';
-architectureCheck($liveLoader->execute(9, false, $liveNow)['state']['duel_number'] === 1, 'Finalized match state changed');
+architectureCheck(
+    $liveLoader->execute(9, false, $liveNow)['state']['duel_number'] === 1,
+    'Finalized match state changed',
+);
 $liveStore->matchRow = ['status' => 'EN CURSO', 'd1' => 'E'];
-$liveStore->stateRow['state_json'] = json_encode(['duel_number' => 2, 'status' => 'running', 'starts_player' => 'A', 'timer_running' => true]);
+$liveStore->stateRow['state_json'] = json_encode([
+    'duel_number' => 2,
+    'status' => 'running',
+    'starts_player' => 'A',
+    'timer_running' => true,
+]);
 $loaded = $liveLoader->execute(9, false, $liveNow);
-architectureCheck($loaded['state']['status'] === 'setup' && !$loaded['state']['timer_running'], 'Stored draw reroll guard changed');
+architectureCheck(
+    $loaded['state']['status'] === 'setup' && !$loaded['state']['timer_running'],
+    'Stored draw reroll guard changed',
+);
 
 // Write use case relies on narrow read/write ports and preserves lock, update and audit order.
-$liveChangeStore = new class implements \StationX\Yugioh\Application\Matches\LiveDuelReadStore, \StationX\Yugioh\Application\Matches\LiveDuelWriteStore {
+$liveChangeStore = new class implements
+    \StationX\Yugioh\Application\Matches\LiveDuelReadStore,
+    \StationX\Yugioh\Application\Matches\LiveDuelWriteStore
+{
     public array $calls = [];
     public array $row = [];
     public bool $failUpdate = false;
@@ -3490,7 +3597,11 @@ $liveChangeStore = new class implements \StationX\Yugioh\Application\Matches\Liv
         if ($this->failUpdate) {
             throw new RuntimeException('write failure');
         }
-        $this->row = ['revision' => $revision, 'state_json' => json_encode($state), 'updated_by' => $actor];
+        $this->row = [
+            'revision' => $revision,
+            'state_json' => json_encode($state),
+            'updated_by' => $actor,
+        ];
     }
     public function recordSurrender(int $matchId, array $state, string $actor): void
     {
@@ -3498,20 +3609,49 @@ $liveChangeStore = new class implements \StationX\Yugioh\Application\Matches\Liv
     }
 };
 $liveChange = new \StationX\Yugioh\Application\Matches\ApplyLiveDuelChange(
-    new \StationX\Yugioh\Application\Matches\LoadLiveDuel($liveChangeStore), $liveChangeStore,
+    new \StationX\Yugioh\Application\Matches\LoadLiveDuel($liveChangeStore),
+    $liveChangeStore,
 );
 $liveChangeStore->row = ['revision' => 3, 'state_json' => json_encode($liveState)];
-$change = static fn(int $revision, string $actor, string $operation, array $payload = []): ?array =>
-    $liveChange->execute(9, $revision, $actor, $operation, $payload, $liveNow, $liveMilliseconds, $liveAtom);
+$change = static fn(
+    int $revision,
+    string $actor,
+    string $operation,
+    array $payload = [],
+): ?array => $liveChange->execute(
+    9,
+    $revision,
+    $actor,
+    $operation,
+    $payload,
+    $liveNow,
+    $liveMilliseconds,
+    $liveAtom,
+);
 architectureCheck($change(2, 'A', 'surrender') === null, 'Stale revision accepted');
-architectureCheck($liveChangeStore->calls === ['locked-season', 'match', 'locked-state'], 'Conflict wrote state');
+architectureCheck(
+    $liveChangeStore->calls === ['locked-season', 'match', 'locked-state'],
+    'Conflict wrote state',
+);
 $liveChangeStore->calls = [];
-architectureCheck($change(3, 'judge', 'sync', ['correction_at_ms' => 1]) === null, 'Correction conflict accepted');
-architectureCheck($liveChangeStore->calls === ['locked-season', 'match', 'locked-state'], 'Correction conflict wrote state');
+architectureCheck(
+    $change(3, 'judge', 'sync', ['correction_at_ms' => 1]) === null,
+    'Correction conflict accepted',
+);
+architectureCheck(
+    $liveChangeStore->calls === ['locked-season', 'match', 'locked-state'],
+    'Correction conflict wrote state',
+);
 $liveChangeStore->calls = [];
 $changedDuel = $change(3, 'A', 'surrender');
-architectureCheck($changedDuel['revision'] === 4 && $changedDuel['state']['status'] === 'completed', 'Write response changed');
-architectureCheck($liveChangeStore->calls === ['locked-season', 'match', 'locked-state', 'update', 'audit'], 'Surrender write/audit order changed');
+architectureCheck(
+    $changedDuel['revision'] === 4 && $changedDuel['state']['status'] === 'completed',
+    'Write response changed',
+);
+architectureCheck(
+    $liveChangeStore->calls === ['locked-season', 'match', 'locked-state', 'update', 'audit'],
+    'Surrender write/audit order changed',
+);
 $liveChangeStore->row = ['revision' => 3, 'state_json' => json_encode($liveState)];
 $liveChangeStore->calls = [];
 $liveChangeStore->failUpdate = true;
@@ -3521,7 +3661,10 @@ try {
 } catch (RuntimeException $error) {
     architectureCheck($error->getMessage() === 'write failure', 'Write failure changed');
 }
-architectureCheck($liveChangeStore->calls === ['locked-season', 'match', 'locked-state', 'update'], 'Audit occurred after failed write');
+architectureCheck(
+    $liveChangeStore->calls === ['locked-season', 'match', 'locked-state', 'update'],
+    'Audit occurred after failed write',
+);
 
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {

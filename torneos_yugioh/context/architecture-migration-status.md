@@ -251,6 +251,10 @@ Se extrae la lectura de partida y estado, la creación inicial idempotente y la 
 
 Se extrae `ApplyLiveDuelChange` con puertos de lectura/escritura, revalidación de temporada bajo bloqueo, revisión optimista, actualización y auditoría de rendición. El adaptador HTTP conserva la apertura, commit, rollback, respuesta 409, relectura fuera de la transacción y respuesta 422 originales. SQL queda en infraestructura. El flujo no cambia la autorización preexistente. Se añaden pruebas con dobles de puertos para conflictos, orden, éxito y propagación de errores; concurrencia MySQL del módulo todavía pendiente.
 
+## Evidencia del bloque de duelos en vivo (27 de noviembre)
+
+La ejecución 45952164505 del commit `abafcb4` finalizó correctamente tras aplicar el formateador oficial en el runner: 761 fuentes verificadas, caracterización de reglas de estado, recuperación y guardas, pruebas con dobles de lectura/escritura y los 132 contratos históricos conservados. Se incorporan los cambios exactos de formato al siguiente commit. Esta comprobación no certifica todavía las transacciones concurrentes de duelos en MySQL ni el resto de la migración.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

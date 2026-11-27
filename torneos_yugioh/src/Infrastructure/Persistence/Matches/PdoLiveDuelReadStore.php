@@ -36,14 +36,25 @@ final readonly class PdoLiveDuelReadStore implements LiveDuelReadStore
 
     public function state(int $matchId, bool $forUpdate): array
     {
-        $select = $this->pdo->prepare('SELECT duel_number, revision, state_json, updated_by, updated_at FROM sx_ygo_live_duel_state WHERE match_id = ?' . ($forUpdate ? ' FOR UPDATE' : ''));
+        $select = $this->pdo->prepare(
+            'SELECT duel_number, revision, state_json, updated_by, updated_at FROM sx_ygo_live_duel_state WHERE match_id = ?' .
+                ($forUpdate ? ' FOR UPDATE' : ''),
+        );
         $select->execute([$matchId]);
         return $select->fetch(PDO::FETCH_ASSOC) ?: [];
     }
 
     public function insertInitial(int $matchId, array $state): void
     {
-        $this->pdo->prepare('INSERT IGNORE INTO sx_ygo_live_duel_state (match_id, duel_number, revision, state_json, updated_by) VALUES (?, ?, 1, ?, ?)')
-            ->execute([$matchId, $state['duel_number'], json_encode($state, JSON_UNESCAPED_UNICODE), 'judge']);
+        $this->pdo
+            ->prepare(
+                'INSERT IGNORE INTO sx_ygo_live_duel_state (match_id, duel_number, revision, state_json, updated_by) VALUES (?, ?, 1, ?, ?)',
+            )
+            ->execute([
+                $matchId,
+                $state['duel_number'],
+                json_encode($state, JSON_UNESCAPED_UNICODE),
+                'judge',
+            ]);
     }
 }

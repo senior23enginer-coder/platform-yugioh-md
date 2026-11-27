@@ -22,14 +22,24 @@ final readonly class LoadLiveDuel
             $row = $this->store->state($matchId, $forUpdate);
         }
         $state = json_decode((string) ($row['state_json'] ?? ''), true);
-        $normalizedState = LiveDuelState::normalize(is_array($state) ? $state : LiveDuelState::initial($match, $nowMs), $nowMs);
+        $normalizedState = LiveDuelState::normalize(
+            is_array($state) ? $state : LiveDuelState::initial($match, $nowMs),
+            $nowMs,
+        );
         $authoritativeState = LiveDuelState::initial($match, $nowMs);
-        if ((int) $normalizedState['duel_number'] !== (int) $authoritativeState['duel_number'] && strtoupper((string)$match['status'])!=='FINALIZADA') {
+        if (
+            (int) $normalizedState['duel_number'] !== (int) $authoritativeState['duel_number'] &&
+            strtoupper((string) $match['status']) !== 'FINALIZADA'
+        ) {
             $normalizedState = LiveDuelState::normalize($authoritativeState, $nowMs);
         }
         $liveDuelNumber = (int) $normalizedState['duel_number'];
-        $previousResult = $liveDuelNumber > 1 ? (string) ($match['d' . ($liveDuelNumber - 1)] ?? '') : '';
-        $hasDrawReroll = (int) $normalizedState['dice_a'] >= 1 && (int) $normalizedState['dice_b'] >= 1 && in_array((string) $normalizedState['dice_winner'], ['A', 'B'], true);
+        $previousResult =
+            $liveDuelNumber > 1 ? (string) ($match['d' . ($liveDuelNumber - 1)] ?? '') : '';
+        $hasDrawReroll =
+            (int) $normalizedState['dice_a'] >= 1 &&
+            (int) $normalizedState['dice_b'] >= 1 &&
+            in_array((string) $normalizedState['dice_winner'], ['A', 'B'], true);
         if ($previousResult === 'E' && !$hasDrawReroll) {
             $normalizedState['status'] = 'setup';
             $normalizedState['starts_player'] = '';

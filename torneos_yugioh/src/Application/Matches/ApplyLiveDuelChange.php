@@ -8,10 +8,7 @@ use StationX\Yugioh\Domain\Matches\LiveDuelState;
 /** The caller owns commit and rollback, including the unlocked read on a conflict. */
 final readonly class ApplyLiveDuelChange
 {
-    public function __construct(
-        private LoadLiveDuel $loader,
-        private LiveDuelWriteStore $writer,
-    ) {}
+    public function __construct(private LoadLiveDuel $loader, private LiveDuelWriteStore $writer) {}
 
     public function execute(
         int $matchId,
