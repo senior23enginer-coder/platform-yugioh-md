@@ -28,7 +28,12 @@ final class EventProgressPolicy
                 $total += (int) $row['total'];
             }
         }
-        return ['done' => $done, 'total' => $total, 'round' => $round, 'ratio' => $total > 0 ? $done / $total : 0];
+        return [
+            'done' => $done,
+            'total' => $total,
+            'round' => $round,
+            'ratio' => $total > 0 ? $done / $total : 0,
+        ];
     }
 
     public static function group(array $rows): array

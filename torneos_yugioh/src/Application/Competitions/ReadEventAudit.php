@@ -7,9 +7,7 @@ use InvalidArgumentException;
 
 final class ReadEventAudit
 {
-    public function __construct(private readonly EventAuditReader $reader)
-    {
-    }
+    public function __construct(private readonly EventAuditReader $reader) {}
 
     public function snapshot(int $id): array
     {
@@ -27,10 +25,17 @@ final class ReadEventAudit
         $rows = array_slice($rows, 0, 25);
         foreach ($rows as &$row) {
             $row['label'] = $label((string) $row['action']);
-            $row['detail'] = json_decode((string) $row['payload'], true) ?? ['detalle' => (string) $row['payload']];
+            $row['detail'] = json_decode((string) $row['payload'], true) ?? [
+                'detalle' => (string) $row['payload'],
+            ];
             unset($row['payload']);
         }
         unset($row);
-        return ['ok' => true, 'event' => $event, 'rows' => $rows, 'next_cursor' => $more ? (int) end($rows)['id'] : null];
+        return [
+            'ok' => true,
+            'event' => $event,
+            'rows' => $rows,
+            'next_cursor' => $more ? (int) end($rows)['id'] : null,
+        ];
     }
 }

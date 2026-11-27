@@ -19,7 +19,9 @@ final class ParticipantIdentityPolicy
             ];
         }
         if (count($out) !== count($ids)) {
-            throw new InvalidArgumentException('No se pudo fijar la identidad de todos los participantes.');
+            throw new InvalidArgumentException(
+                'No se pudo fijar la identidad de todos los participantes.',
+            );
         }
         return $out;
     }
