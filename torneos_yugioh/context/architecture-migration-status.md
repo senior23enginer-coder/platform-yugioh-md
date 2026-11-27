@@ -287,6 +287,10 @@ Se extraen las alertas operativas, visibilidad de competiciones, consolidación 
 
 Se extraen las restricciones de formato, elegibilidad, pertenencia a otra liga, admisión, edición de planteles y cálculo de cupos/partidas. El controlador de partidas manuales ya no depende de variables globales de la clausura: recibe los controles, expone el ciclo de montaje y mantiene las mismas operaciones DOM y orden. Se conserva evidencia y se comparan decisiones contra los algoritmos anteriores. CI pendiente.
 
+## Evidencia de la migración de admisión, calendario y participantes
+
+La ejecución 45955490597 del commit `d9cd7af` pasó las comparaciones del calendario y de participantes contra sus algoritmos originales, los contratos de arquitectura, las 4.103 aserciones de cupos, 637 casos de paridad y 132 contratos históricos. Verificó 791 fuentes de arquitectura y reconstruyó el bundle con 45 fragmentos JavaScript y 37 CSS. Se incorpora su formato exacto y la regeneración equivalente del bundle al siguiente commit. Queda pendiente la regresión integral de ese commit.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

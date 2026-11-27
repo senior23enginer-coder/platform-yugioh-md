@@ -16,6 +16,9 @@ final readonly class GuardAdmissionResult
             return;
         }
         $this->store->lockCompetition($source);
-        AdmissionConfigurationPolicy::assertResultEditable($source, $this->store->lockedConfigurations());
+        AdmissionConfigurationPolicy::assertResultEditable(
+            $source,
+            $this->store->lockedConfigurations(),
+        );
     }
 }

@@ -18,12 +18,19 @@ final class AdmissionConfigurationModule
 {
     public static function configuration(PDO $pdo): AdmissionConfiguration
     {
-        return new AdmissionConfiguration(new PdoAdmissionConfigurationStore($pdo), new PdoAdmissionSourceReader($pdo), AdmissionReadModule::resolve($pdo));
+        return new AdmissionConfiguration(
+            new PdoAdmissionConfigurationStore($pdo),
+            new PdoAdmissionSourceReader($pdo),
+            AdmissionReadModule::resolve($pdo),
+        );
     }
 
     public static function directory(PDO $pdo): ListAdmissionSources
     {
-        return new ListAdmissionSources(new PdoAdmissionOperations($pdo), AdmissionReadModule::source($pdo));
+        return new ListAdmissionSources(
+            new PdoAdmissionOperations($pdo),
+            AdmissionReadModule::source($pdo),
+        );
     }
 
     public static function resultGuard(PDO $pdo): GuardAdmissionResult
@@ -33,6 +40,10 @@ final class AdmissionConfigurationModule
 
     public static function schedule(PDO $pdo): ScheduleAdmissionStage
     {
-        return new ScheduleAdmissionStage(new PdoAdmissionConfigurationStore($pdo), new PdoAdmissionOperations($pdo), new SystemClock(new DateTimeZone(date_default_timezone_get())));
+        return new ScheduleAdmissionStage(
+            new PdoAdmissionConfigurationStore($pdo),
+            new PdoAdmissionOperations($pdo),
+            new SystemClock(new DateTimeZone(date_default_timezone_get())),
+        );
     }
 }

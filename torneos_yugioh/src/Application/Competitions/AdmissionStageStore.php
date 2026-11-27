@@ -13,7 +13,13 @@ interface AdmissionStageStore
 
     public function nextDate(string $base, string $pattern, int $index, int $perDay): string;
 
-    public function slot(array $competition, int $matchId, string $date, string $pattern, int $perDay): array;
+    public function slot(
+        array $competition,
+        int $matchId,
+        string $date,
+        string $pattern,
+        int $perDay,
+    ): array;
 
     public function updateSlot(int $matchId, string $date, string $time): void;
 
