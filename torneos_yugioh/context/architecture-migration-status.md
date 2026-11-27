@@ -275,6 +275,10 @@ La regresión integral del commit `3d978de` terminó con los tres trabajos corre
 
 CI integral del commit `f7c28a2` (45952934995) completado con cuatro trabajos exitosos, incluida la prueba MySQL de duelos. Se separan la verificación de fuente, ranking, títulos, formato, firma de evidencia y selección de clasificados de las consultas PDO. Se mantiene la secuencia original y los bloqueos opcionales de fuente, y se extrae la detección de ciclos a dominio. Se conserva una copia de los cuerpos anteriores y se añaden pruebas de puerto, orden, firma y rechazo de fuentes abiertas. CI del nuevo cambio pendiente.
 
+## Configuración, protección y programación de admisión
+
+Se extrae la persistencia de configuración, validación de participantes, congelación de fuentes, directorio, guarda de edición y programación de nuevas etapas. Se mantienen las consultas y el orden de bloqueo, sin abrir transacciones adicionales. Los relojes y el almacenamiento se suministran mediante puertos; la selección de slots sigue usando el servicio nativo en infraestructura. Se conservan los cuerpos originales y se añaden regresiones de congelación, protección y alcance de programación. El formateador de la extracción anterior verificó 777 fuentes y sus pruebas aisladas pasaron; CI integral de este bloque pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

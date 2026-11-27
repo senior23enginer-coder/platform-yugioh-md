@@ -4139,6 +4139,69 @@ try {
     );
 }
 
+// Admission configuration retains required, freeze, view, and result protection contracts.
+$sourceReader->status = 'completed';
+$admissionConfig = new class implements \StationX\Yugioh\Application\Competitions\AdmissionConfigurationStore {
+    public ?array $value = null;
+    public array $calls = [];
+    public function load(array $competition, bool $lock = false): ?array
+    {
+        $this->calls[] = ['load', $lock];
+        return $this->value;
+    }
+    public function store(array $competition, array $admission): void
+    {
+        $this->calls[] = 'store';
+        $this->value = $admission;
+    }
+};
+$configCase = new \StationX\Yugioh\Application\Competitions\AdmissionConfiguration($admissionConfig, $sourceReader, $resolveAdmission);
+$targetCompetition = ['id' => 7, 'event_ruleset' => 'tcg_advanced'];
+architectureCheck($configCase->requireParticipants($targetCompetition, [5, 4]) === [5, 4], 'Direct admission changed');
+architectureCheck($configCase->view($targetCompetition)['message'] === 'Inscripcion directa.', 'Direct admission label changed');
+try { $configCase->requireParticipants($targetCompetition + ['participant_source' => 'PREVIOUS_EVENT'], []); architectureCheck(false, 'Required admission ignored'); }
+catch (InvalidArgumentException $error) { architectureCheck(str_contains($error->getMessage(), 'Configura Fuentes'), 'Required admission error changed'); }
+$admissionConfig->value = ['version'=>'STATION_X_ADMISSION_V1','capacity'=>2,'sources'=>[['source_id'=>3,'mode'=>'top_n','value'=>2]],'selection'=>$resolvedAdmission,'frozen'=>false];
+architectureCheck($configCase->view($targetCompetition)['ok'], 'Valid admission view changed');
+architectureCheck($configCase->requireParticipants($targetCompetition, [102, 101]) === [101, 102], 'Verified participants changed');
+architectureCheck($admissionConfig->value['frozen'] && end($admissionConfig->calls) === 'store', 'Freeze not persisted');
+$admissionConfig->value['selection']['ids'] = [999];
+architectureCheck(!$configCase->view($targetCompetition)['ok'], 'Stale source accepted');
+try { $configCase->requireParticipants($targetCompetition, [101, 102]); architectureCheck(false, 'Frozen source changed'); }
+catch (InvalidArgumentException $error) { architectureCheck(str_contains($error->getMessage(), 'despues de programar'), 'Frozen source error changed'); }
+$guardStore = new class implements \StationX\Yugioh\Application\Competitions\AdmissionResultGuardStore {
+    public int $source = 3;
+    public array $calls = [];
+    public function competitionForMatch(int $matchId): int { $this->calls[] = 'match'; return $this->source; }
+    public function lockCompetition(int $source): void { $this->calls[] = 'lock'; }
+    public function lockedConfigurations(): array { $this->calls[] = 'configs'; return ['{"frozen":true,"sources":[{"source_id":3}]}']; }
+};
+$resultGuard = new \StationX\Yugioh\Application\Competitions\GuardAdmissionResult($guardStore);
+try { $resultGuard->execute(4); architectureCheck(false, 'Protected result editable'); }
+catch (InvalidArgumentException $error) { architectureCheck(str_contains($error->getMessage(), 'ya clasifico'), 'Result protection changed'); }
+architectureCheck($guardStore->calls === ['match','lock','configs'], 'Result lock order changed');
+$guardStore->source = 0; $guardStore->calls = []; $resultGuard->execute(4);
+architectureCheck($guardStore->calls === ['match'], 'Unassigned match locked a source');
+$stageStore = new class implements \StationX\Yugioh\Application\Competitions\AdmissionStageStore {
+    public array $calls = [];
+    public function pendingIds(array $competition, ?string $phase, ?int $round): array { $this->calls[] = ['pending',$phase,$round]; return [3,4]; }
+    public function clearDates(array $ids): void { $this->calls[] = ['clear',$ids]; }
+    public function lastDate(array $competition): string|false|null { $this->calls[] = 'last'; return '2026-11-28'; }
+    public function nextDate(string $base,string $pattern,int $index,int $perDay): string { $this->calls[] = ['date',$base,$index,$perDay]; return $base; }
+    public function slot(array $competition,int $matchId,string $date,string $pattern,int $perDay): array { $this->calls[] = ['slot',$matchId]; return [$date,'19:00:00']; }
+    public function updateSlot(int $matchId,string $date,string $time): void { $this->calls[] = ['update',$matchId,$date,$time]; }
+    public function validateSeason(int $competitionId): void { $this->calls[] = ['validate',$competitionId]; }
+};
+$stageClock = new class implements \StationX\Yugioh\Application\Shared\Clock {
+    public function now(): DateTimeImmutable { return new DateTimeImmutable('2026-11-27T12:00:00-05:00'); }
+};
+$stageCase = new \StationX\Yugioh\Application\Competitions\ScheduleAdmissionStage($admissionConfig,$stageStore,$stageClock);
+$stageCase->execute($targetCompetition,'2026-11-25','manual',2,'cup',2);
+architectureCheck($stageStore->calls === [['pending','cup',2],['clear',[3,4]],'last',['date','2026-11-28',1,1],['date','2026-11-28',0,2],['slot',3],['update',3,'2026-11-28','19:00:00'],['date','2026-11-28',1,2],['slot',4],['update',4,'2026-11-28','19:00:00'],['validate',7]], 'Stage scheduling order or scope changed');
+$admissionConfig->value = null; $stageStore->calls = [];
+$stageCase->execute($targetCompetition,'2026-11-25','manual',2);
+architectureCheck($stageStore->calls === [], 'Direct event was rescheduled by admission');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (
