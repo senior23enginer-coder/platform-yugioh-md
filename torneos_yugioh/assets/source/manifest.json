@@ -1,6 +1,10 @@
 {
   "javascript": [
     {
+      "file": "javascript/shared/audit-bracket-policy.js",
+      "responsibility": "audit filtering and bracket projections"
+    },
+    {
       "file": "javascript/shared/offline-queue.js",
       "responsibility": "offline queue storage and identity port"
     },
