@@ -3461,6 +3461,68 @@ $liveStore->stateRow['state_json'] = json_encode(['duel_number' => 2, 'status' =
 $loaded = $liveLoader->execute(9, false, $liveNow);
 architectureCheck($loaded['state']['status'] === 'setup' && !$loaded['state']['timer_running'], 'Stored draw reroll guard changed');
 
+// Write use case relies on narrow read/write ports and preserves lock, update and audit order.
+$liveChangeStore = new class implements \StationX\Yugioh\Application\Matches\LiveDuelReadStore, \StationX\Yugioh\Application\Matches\LiveDuelWriteStore {
+    public array $calls = [];
+    public array $row = [];
+    public bool $failUpdate = false;
+    public function match(int $matchId): array
+    {
+        $this->calls[] = 'match';
+        return ['status' => 'EN CURSO'];
+    }
+    public function state(int $matchId, bool $forUpdate): array
+    {
+        $this->calls[] = $forUpdate ? 'locked-state' : 'state';
+        return $this->row;
+    }
+    public function insertInitial(int $matchId, array $state): void
+    {
+        throw new RuntimeException('Unexpected initialization');
+    }
+    public function requireOpen(int $matchId, bool $forUpdate): void
+    {
+        $this->calls[] = $forUpdate ? 'locked-season' : 'season';
+    }
+    public function update(int $matchId, array $state, int $revision, string $actor): void
+    {
+        $this->calls[] = 'update';
+        if ($this->failUpdate) {
+            throw new RuntimeException('write failure');
+        }
+        $this->row = ['revision' => $revision, 'state_json' => json_encode($state), 'updated_by' => $actor];
+    }
+    public function recordSurrender(int $matchId, array $state, string $actor): void
+    {
+        $this->calls[] = 'audit';
+    }
+};
+$liveChange = new \StationX\Yugioh\Application\Matches\ApplyLiveDuelChange(
+    new \StationX\Yugioh\Application\Matches\LoadLiveDuel($liveChangeStore), $liveChangeStore,
+);
+$liveChangeStore->row = ['revision' => 3, 'state_json' => json_encode($liveState)];
+$change = static fn(int $revision, string $actor, string $operation, array $payload = []): ?array =>
+    $liveChange->execute(9, $revision, $actor, $operation, $payload, $liveNow, $liveMilliseconds, $liveAtom);
+architectureCheck($change(2, 'A', 'surrender') === null, 'Stale revision accepted');
+architectureCheck($liveChangeStore->calls === ['locked-season', 'match', 'locked-state'], 'Conflict wrote state');
+$liveChangeStore->calls = [];
+architectureCheck($change(3, 'judge', 'sync', ['correction_at_ms' => 1]) === null, 'Correction conflict accepted');
+architectureCheck($liveChangeStore->calls === ['locked-season', 'match', 'locked-state'], 'Correction conflict wrote state');
+$liveChangeStore->calls = [];
+$changedDuel = $change(3, 'A', 'surrender');
+architectureCheck($changedDuel['revision'] === 4 && $changedDuel['state']['status'] === 'completed', 'Write response changed');
+architectureCheck($liveChangeStore->calls === ['locked-season', 'match', 'locked-state', 'update', 'audit'], 'Surrender write/audit order changed');
+$liveChangeStore->row = ['revision' => 3, 'state_json' => json_encode($liveState)];
+$liveChangeStore->calls = [];
+$liveChangeStore->failUpdate = true;
+try {
+    $change(3, 'A', 'surrender');
+    architectureCheck(false, 'Write failure swallowed');
+} catch (RuntimeException $error) {
+    architectureCheck($error->getMessage() === 'write failure', 'Write failure changed');
+}
+architectureCheck($liveChangeStore->calls === ['locked-season', 'match', 'locked-state', 'update'], 'Audit occurred after failed write');
+
 // Enforce inward dependencies, including code added after this refactor.
 foreach (['Domain', 'Application'] as $layer) {
     foreach (

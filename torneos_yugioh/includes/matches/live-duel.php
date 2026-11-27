@@ -40,10 +40,9 @@ function ygo_live_duel_api(PDO $pdo): void
         echo json_encode(['ok' => false, 'message' => 'Partida no encontrada.'], JSON_UNESCAPED_UNICODE);
         exit;
     }
+    $writer = new \StationX\Yugioh\Infrastructure\Persistence\Matches\PdoLiveDuelWriteStore($pdo);
     try {
-        $seasonStmt = $pdo->prepare('SELECT c.season_id FROM sx_ygo_matches m JOIN sx_ygo_competitions c ON c.id=m.competition_id WHERE m.id=?');
-        $seasonStmt->execute([$matchId]);
-        ygo_season_require_open($pdo, (int) $seasonStmt->fetchColumn(), true);
+        $writer->requireOpen($matchId, false);
     } catch (InvalidArgumentException $error) {
         http_response_code(409);
         echo json_encode(['ok'=>false,'read_only'=>true,'message'=>$error->getMessage()], JSON_UNESCAPED_UNICODE);
@@ -61,19 +60,12 @@ function ygo_live_duel_api(PDO $pdo): void
     $payload = is_array($payload) ? $payload : [];
     $pdo->beginTransaction();
     try {
-        $seasonStmt = $pdo->prepare('SELECT c.season_id FROM sx_ygo_matches m JOIN sx_ygo_competitions c ON c.id=m.competition_id WHERE m.id=?');
-        $seasonStmt->execute([$matchId]);
-        ygo_season_require_open($pdo, (int) $seasonStmt->fetchColumn(), true, true);
-        $live = ygo_live_duel_get($pdo, $matchId, true);
-        if ($expectedRevision > 0 && $expectedRevision !== (int) $live['revision']) {
-            $pdo->rollBack();
-            http_response_code(409);
-            echo json_encode(['ok' => false, 'conflict' => true] + ygo_live_duel_get($pdo, $matchId), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-            exit;
-        }
-        $state = \StationX\Yugioh\Domain\Matches\LiveDuelState::transition(
-            $live['state'],
-            $live['match'],
+        $result = (new \StationX\Yugioh\Application\Matches\ApplyLiveDuelChange(
+            new \StationX\Yugioh\Application\Matches\LoadLiveDuel(new \StationX\Yugioh\Infrastructure\Persistence\Matches\PdoLiveDuelReadStore($pdo)),
+            $writer
+        ))->execute(
+            $matchId,
+            $expectedRevision,
             $actor,
             $operation,
             $payload,
@@ -81,21 +73,14 @@ function ygo_live_duel_api(PDO $pdo): void
             static fn(): float => microtime(true) * 1000,
             static fn(): string => date(DATE_ATOM)
         );
-        if ($state === null) {
+        if ($result === null) {
             $pdo->rollBack();
             http_response_code(409);
             echo json_encode(['ok' => false, 'conflict' => true] + ygo_live_duel_get($pdo, $matchId), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
             exit;
         }
-        $revision = (int) $live['revision'] + 1;
-        $pdo->prepare('UPDATE sx_ygo_live_duel_state SET duel_number=?, revision=?, state_json=?, updated_by=? WHERE match_id=?')
-            ->execute([$state['duel_number'], $revision, json_encode($state, JSON_UNESCAPED_UNICODE), $actor, $matchId]);
-        if ($operation === 'surrender') {
-            $pdo->prepare('INSERT INTO sx_ygo_audit_log (entity_type, entity_id, action, payload) VALUES (?, ?, ?, ?)')
-                ->execute(['match', $matchId, 'duel_surrendered', json_encode(['duel' => (int) $state['duel_number'], 'side' => $actor, 'at' => (string) $state['surrendered_at']], JSON_UNESCAPED_UNICODE)]);
-        }
         $pdo->commit();
-        echo json_encode(['ok' => true, 'match' => $live['match'], 'state' => $state, 'revision' => $revision, 'updated_by' => $actor], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        echo json_encode($result, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     } catch (Throwable $error) {
         if ($pdo->inTransaction()) $pdo->rollBack();
         http_response_code(422);

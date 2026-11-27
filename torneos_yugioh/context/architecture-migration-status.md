@@ -247,6 +247,10 @@ CI integral del commit `e6b59bd` completado (45887432048). Se extraen inicializa
 
 Se extrae la lectura de partida y estado, la creación inicial idempotente y la reconciliación con el duelo persistido mediante un caso de uso y un puerto de persistencia. El adaptador conserva las consultas SQL y `FOR UPDATE` opcional; la relectura después de INSERT IGNORE utiliza una nueva preparación de la misma consulta. No abre ni cierra transacciones propias. Se preservan los cuerpos históricos de las dos fachadas y se añaden pruebas de orden, ausencia de partida, recuperación, estado finalizado y empate. CI pendiente.
 
+## Duelos en vivo: comandos de escritura
+
+Se extrae `ApplyLiveDuelChange` con puertos de lectura/escritura, revalidación de temporada bajo bloqueo, revisión optimista, actualización y auditoría de rendición. El adaptador HTTP conserva la apertura, commit, rollback, respuesta 409, relectura fuera de la transacción y respuesta 422 originales. SQL queda en infraestructura. El flujo no cambia la autorización preexistente. Se añaden pruebas con dobles de puertos para conflictos, orden, éxito y propagación de errores; concurrencia MySQL del módulo todavía pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:
