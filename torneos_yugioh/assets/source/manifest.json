@@ -33,6 +33,10 @@
       "responsibility": "participant eligibility policies and manual match controller"
     },
     {
+      "file": "javascript/shared/event-planning.js",
+      "responsibility": "event planning and submission controller"
+    },
+    {
       "file": "javascript/00-startup.js",
       "responsibility": "startup"
     },

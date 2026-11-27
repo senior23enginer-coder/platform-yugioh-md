@@ -5,107 +5,33 @@
  */
 // @runtime-start
   function submitCompetitionConfig(mode) {
-    if (!competitionConfigModal) return;
-    const model = (data.competitions || []).find(c => String(c.id) === String(activeCompetitionConfigId));
-    if (model && ['start','schedule_qualifier','schedule_cup','save_schedule'].includes(mode) && competitionPersistedMatchCount(model.id) === 0) {
-      const warnings = eventModelWarnings(model);
-      if (warnings.length) { window.alert('Modelo pendiente de implementacion/configuracion: ' + warnings.join(' ')); return; }
-    }
-    const invalidExchange = competitionConfigModal.querySelector('[data-division-exchange]:invalid');
-    if (invalidExchange) {
-      bootstrap.Modal.getOrCreateInstance(document.querySelector('[data-league-movement-modal]')).show();
-      invalidExchange.reportValidity();
-      return;
-    }
-    const occupiedDeck = selectedCompetitionDecks().find(deck => participantOtherLeague(deck));
-    if (occupiedDeck) { window.alert(participantAddRestriction(occupiedDeck)); return; }
-    if (!compatibleParticipantRoster(selectedCompetitionDecks())) {
-      window.alert('No se pueden guardar participantes de otro formato ni mezclar formatos. Retira los decks incompatibles.');
-      return;
-    }
-    const form = competitionConfigModal.querySelector('form');
-    const modeInput = competitionConfigModal.querySelector('[data-competition-config-mode]');
-    if (!form || !modeInput) return;
-    const normalizedMode = mode === 'status' ? 'save' : mode;
-    const type = competitionConfigModal.querySelector('[data-competition-config-type]')?.value || '';
-    const startInput = competitionConfigModal.querySelector('[data-competition-config-start]');
-    modeInput.value = normalizedMode;
-    syncCompetitionDeckInputs();
-    updateCompetitionDeckConstraints();
-    if (['schedule_qualifier', 'schedule_cup'].includes(normalizedMode) && startInput && startInput.value && startInput.value < serverToday) {
-      startInput.reportValidity();
-      window.alert('La fecha de inicio no puede ser menor a la fecha actual.');
-      return;
-    }
-    if (normalizedMode === 'start' && startInput && startInput.value && startInput.value > serverToday) {
-      window.alert(`Este evento se podra comenzar el ${startInput.value}.`);
-      return;
-    }
-    if (!['save', 'save_schedule', 'start'].includes(normalizedMode) && !updateCompetitionDeckConstraints()) {
-      window.alert(type === 'qualifier'
-        ? 'Configuracion invalida: el clasificatorio necesita minimo 4 decks y combinaciones coherentes entre match y duelos a clasificar.'
-        : 'Configuracion invalida: agrega decks suficientes para organizar los combates del evento.');
-      return;
-    }
-    const participantsPerSide = competitionParticipantsPerSide(competitionConfigModal.querySelector('[data-competition-config-match]'));
-    const eligibleGroups = currentEligibleGroupCount(participantsPerSide);
-    const expectedMatches = expectedQualifierMatchCount(eligibleGroups * participantsPerSide, participantsPerSide, Number(competitionConfigModal.querySelector('[data-competition-config-qualifier-duels]')?.value || 0));
-    if (normalizedMode === 'start' && type === 'qualifier' && competitionScheduledMatchCount() < expectedMatches) {
-      window.alert('Primero debes programar todos los duelos y fechas tentativas del clasificatorio.');
-      return;
-    }
-    if (normalizedMode === 'schedule_qualifier' && type === 'qualifier' && confirmScheduleQualifierModal) {
-      const competitionId = competitionConfigModal.querySelector('[data-competition-config-id]')?.value || '';
-      confirmScheduleQualifierModalNode.dataset.pendingScheduleMode = 'schedule_qualifier';
-      const existingMatches = allMatchList().filter((match) =>
-        String(match.competition_id || '') === String(competitionId)
-        && !['FINALIZADA', 'completed', 'finalizada'].includes(String(match.estado || match.status || ''))
-      );
-      const message = confirmScheduleQualifierModalNode.querySelector('[data-confirm-schedule-qualifier-message]');
-      const meta = confirmScheduleQualifierModalNode.querySelector('[data-confirm-schedule-qualifier-meta]');
-      if (meta) meta.textContent = existingMatches.length
-        ? `Este evento ya tiene ${existingMatches.length} duelos programados.`
-        : 'Este evento aun no tiene duelos programados.';
-      if (message) message.textContent = existingMatches.length
-        ? 'Ya se genero un calendario de duelos y fechas para este evento. Si continuas, se reemplazara el calendario anterior no finalizado y se actualizara en base de datos.'
-        : 'Si continuas, se generaran los cruces y fechas tentativas del clasificatorio y quedaran guardados en base de datos.';
-      confirmScheduleQualifierModal.show();
-      return;
-    }
-    if (normalizedMode === 'schedule_cup' && ['cup', 'final'].includes(type) && confirmScheduleQualifierModal) {
-      const competitionId = competitionConfigModal.querySelector('[data-competition-config-id]')?.value || '';
-      confirmScheduleQualifierModalNode.dataset.pendingScheduleMode = 'schedule_cup';
-      const existingMatches = allMatchList().filter((match) =>
-        String(match.competition_id || '') === String(competitionId)
-        && !['FINALIZADA', 'completed', 'finalizada'].includes(String(match.estado || match.status || ''))
-      );
-      if (existingMatches.length) {
-        window.alert('Esta copa ya fue programada. La llave existente no se puede volver a generar.');
-        return;
-      }
-      const message = confirmScheduleQualifierModalNode.querySelector('[data-confirm-schedule-qualifier-message]');
-      const meta = confirmScheduleQualifierModalNode.querySelector('[data-confirm-schedule-qualifier-meta]');
-      if (meta) meta.textContent = 'Esta copa aun no tiene llave programada.';
-      if (message) message.textContent = 'Si continuas, se generara una sola vez la llave inicial de copa, sus cruces y fechas tentativas en base de datos.';
-      confirmScheduleQualifierModal.show();
-      return;
-    }
-    if (normalizedMode === 'start' && confirmStartQualifierModal) {
-      const scheduledMatches = competitionScheduledMatchCount();
-      const title = confirmStartQualifierModalNode.querySelector('[data-confirm-start-title]');
-      const subtitle = confirmStartQualifierModalNode.querySelector('[data-confirm-start-subtitle]');
-      const message = confirmStartQualifierModalNode.querySelector('[data-confirm-start-message]');
-      if (title) title.textContent = `Comenzar ${eventTypeLabel(type).toLowerCase()}`;
-      if (subtitle) subtitle.textContent = 'El evento cambiara a estado activo y su configuracion quedara bloqueada.';
-      if (message) message.textContent = type === 'league' && startInput?.value > serverToday && scheduledMatches > 0
-        ? `La liga esta programada para el ${startInput.value}. Si confirmas, quedara activa desde ahora sin cambiar las fechas de sus combates. Esta seguro de continuar?`
-        : (['cup', 'final'].includes(type) && scheduledMatches === 0
-        ? 'Esta copa aun no ha sido programada. Al confirmar, el sistema generara automaticamente la llave y los combates antes de comenzar. Esta seguro de continuar?'
-        : 'El evento ya tiene su programacion preparada. Esta seguro de comenzar?');
-      confirmStartQualifierModal.show();
-      return;
-    }
-    form.requestSubmit();
+    return window.StationXEventPlanning.submitCompetitionConfig(mode, {
+      competitionConfigModal,
+      data,
+      activeCompetitionConfigId,
+      competitionPersistedMatchCount,
+      eventModelWarnings,
+      bootstrap,
+      document,
+      selectedCompetitionDecks,
+      participantOtherLeague,
+      participantAddRestriction,
+      compatibleParticipantRoster,
+      syncCompetitionDeckInputs,
+      updateCompetitionDeckConstraints,
+      serverToday,
+      competitionParticipantsPerSide,
+      currentEligibleGroupCount,
+      expectedQualifierMatchCount,
+      competitionScheduledMatchCount,
+      confirmScheduleQualifierModal,
+      confirmScheduleQualifierModalNode,
+      allMatchList,
+      confirmStartQualifierModal,
+      confirmStartQualifierModalNode,
+      eventTypeLabel,
+      alert: message => window.alert(message)
+    });
   }
   document.querySelectorAll('[data-competition-config-submit]').forEach((button) => {
     button.addEventListener('click', () => submitCompetitionConfig(button.dataset.competitionConfigSubmit || 'save'));

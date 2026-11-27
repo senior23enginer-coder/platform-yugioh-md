@@ -291,6 +291,10 @@ Se extraen las restricciones de formato, elegibilidad, pertenencia a otra liga, 
 
 La ejecución 45955490597 del commit `d9cd7af` pasó las comparaciones del calendario y de participantes contra sus algoritmos originales, los contratos de arquitectura, las 4.103 aserciones de cupos, 637 casos de paridad y 132 contratos históricos. Verificó 791 fuentes de arquitectura y reconstruyó el bundle con 45 fragmentos JavaScript y 37 CSS. Se incorpora su formato exacto y la regeneración equivalente del bundle al siguiente commit. Queda pendiente la regresión integral de ese commit.
 
+## Planificación y envío de eventos en frontend
+
+Se extraen normalización de estado, proyecciones de fases/partidas, lectura preventiva, selección de clasificatorios y rangos. El controlador de envío recibe explícitamente sus controles y funciones de validación, sin depender de la clausura compartida ni del acceso directo a alertas globales. Se conserva el orden de guardas, confirmaciones y envío. Se agregan comparaciones con los cuerpos originales y casos aislados. CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

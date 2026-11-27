@@ -115,7 +115,7 @@ if (is_file($stationxReleasePath)) {
 <script src="./assets/modules/deck-attributes/api.js?v=20261118-worlds-hexagonal"></script>
 <script src="./assets/modules/deck-attributes/ui.js?v=20261118-worlds-hexagonal"></script>
 <script src="./assets/modules/deck-guide/league-position.js?v=20261113-match-positions-182" defer></script>
-<script src="./assets/app.js?v=20261127-participant-policy-1" defer></script>
+<script src="./assets/app.js?v=20261127-event-planning-1" defer></script>
 <link rel="stylesheet" href="./assets/modules/deck-guide/analysis-progress.css?v=20261121-task-grid-1">
 <script src="./assets/modules/deck-guide/analysis-progress.js?v=20261121-task-grid-1" defer></script>
 <script src="./assets/match-editor.js?v=20261027-participants-103" defer></script>

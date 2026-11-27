@@ -281,3 +281,28 @@ assert.deepEqual([...manualController.manualEligibleTeamIds('5',2)],['10']);
 assert.equal(manualController.manualDeckAllowed(manualOptions[1],null),true);
 assert.equal(manualController.manualDeckAllowed(manualOptions[3],null),false);
 console.log('Participant policy: format, admission, league exclusivity, qualifier count and manual controller verified.');
+
+const eventPlanning = require('../assets/source/javascript/shared/event-planning.js');
+const eventOriginal = JSON.parse(fs.readFileSync(path.join(__dirname,'fixtures/browser-event-planning-originals.json'),'utf8'));
+const eventPlanMatches = [{competition_id:7,phase:'cup',ronda:1,estado:'FINALIZADA',result:'A'},{competition_id:7,phase:'cup',ronda:2,estado:'PENDIENTE'},{competition_id:8,phase:'league',estado:'FINALIZADA'}];
+const eventPlanData = {competitions:[{id:1,type:'qualifier',status:'completed',division_id:4,ranking:[{id:1},{id:2}],ends_on:'2026-11-26'},{id:2,type:'qualifier',status:'finalizada',division_id:4,ranking:[{id:3}],ends_on:'2026-11-27'},{id:3,type:'qualifier',status:'active',division_id:4,ranking:[{id:4}]}],divisions:{A:{source_qualifier_id:7}}};
+const previewNode={innerHTML:''};
+const eventPlanContext={data:eventPlanData,normalizeStatusKey:calendarStatus,allMatchList:()=>eventPlanMatches,document:{querySelector:()=>previewNode},escapeHtml:s=>s,selectedCompetitionDivisionId:()=>4,selectedQualifierLoad:()=>eventPlanData.competitions[0],qualifierLoadModalNode:{querySelector:selector=>({value:selector.includes('from')?'2':'1'})}};
+vm.createContext(eventPlanContext);
+vm.runInContext(Object.values(eventOriginal).join('\n')+'\nthis.oldStatus=normalizeCompetitionStatus;this.oldLabel=competitionStatusLabel;this.oldMatches=competitionMatchesFor;this.oldPhase=latestCompetitionPhase;this.oldPreview=renderCompetitionActionPreview;this.oldQualifiers=completedQualifierOptions;this.oldRange=qualifierLoadRange;this.oldSubmit=submitCompetitionConfig;',eventPlanContext);
+for(const status of ['draft','active','completed','FINALIZADA','anulada','pending_event','pendiente_configuracion','']) {
+  assert.equal(eventPlanning.normalizeCompetitionStatus(status,calendarStatus),eventPlanContext.oldStatus(status));
+  assert.equal(eventPlanning.competitionStatusLabel(status,calendarStatus),eventPlanContext.oldLabel(status));
+}
+assert.deepEqual(eventPlanning.competitionMatchesFor(7,()=>eventPlanMatches),plainCalendar(eventPlanContext.oldMatches(7)));
+assert.equal(eventPlanning.latestCompetitionPhase(eventPlanMatches),eventPlanContext.oldPhase(eventPlanMatches));
+for(const competition of [{id:7,type:'cup',deck_pool_count:3},{id:7,type:'qualifier'},{id:99,type:'league',division_count:2}]) {
+  eventPlanContext.oldPreview(competition);
+  assert.equal('<strong>Lectura preventiva</strong>'+eventPlanning.competitionPreviewLines(competition,()=>eventPlanMatches,eventPlanData.divisions).map(s=>'<span>'+s+'</span>').join(''),previewNode.innerHTML);
+}
+assert.deepEqual(eventPlanning.completedQualifierOptions(eventPlanData,()=>4,s=>eventPlanning.normalizeCompetitionStatus(s,calendarStatus)),plainCalendar(eventPlanContext.oldQualifiers()));
+assert.deepEqual(eventPlanning.qualifierLoadRange(eventPlanData.competitions[0],'2','1'),plainCalendar(eventPlanContext.oldRange()));
+let eventPlanWarnings=[];
+eventPlanning.submitCompetitionConfig('start',{competitionConfigModal:{},data:{competitions:[{id:7}]},activeCompetitionConfigId:7,competitionPersistedMatchCount:()=>0,eventModelWarnings:()=>['blocked'],alert:s=>eventPlanWarnings.push(s)});
+assert.deepEqual(eventPlanWarnings,['Modelo pendiente de implementacion/configuracion: blocked']);
+console.log('Event planning: status, previews, qualifier ranges and submission guard verified.');
