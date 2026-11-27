@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+require_once dirname(__DIR__,2).'/src/autoload.php';
 
 /** Narrow read model. Never bootstrap index.php or initialize platform tables. */
 final class YgoMcpData
@@ -45,6 +46,21 @@ final class YgoMcpData
     private function url(int $deck, string $section=''): string
     {
         return $this->site.'?deck_id='.$deck.($section!==''?'&deck_section='.$section:'').'#deck_ficha';
+    }
+
+    public function leagues(?int $season, int $offset): array
+    {
+        return (new \StationX\Yugioh\Infrastructure\Persistence\McpScheduleReader($this->pdo))->leagues($season,$offset);
+    }
+
+    public function matches(?int $league, ?int $division, ?int $deck, ?int $season, int $offset): array
+    {
+        return (new \StationX\Yugioh\Infrastructure\Persistence\McpScheduleReader($this->pdo))->matches($league,$division,$deck,$season,$offset);
+    }
+
+    public function deckSchedule(int $deck, ?int $season, int $offset): array
+    {
+        return (new \StationX\Yugioh\Infrastructure\Persistence\McpScheduleReader($this->pdo))->deckSchedule($deck,$season,$offset);
     }
 
     public function decks(string $query='', int $offset=0, int $limit=30): array

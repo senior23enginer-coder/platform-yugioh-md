@@ -58,6 +58,12 @@ jobs:
         run: npm test
       - name: Verify all 40 preserved Memento/Crystron historical regression files
         run: node scripts/deck-legacy-regression-gate.cjs --run
+      - name: Test authenticated MCP schedule queries
+        env:
+          PHP_BINARY: php
+        run: |
+          mkdir -p outputs
+          npm run test:mcp
       - name: Verify PHP requirements
         run: |
           php -v
