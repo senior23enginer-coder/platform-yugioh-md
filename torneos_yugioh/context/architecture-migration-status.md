@@ -279,6 +279,10 @@ CI integral del commit `f7c28a2` (45952934995) completado con cuatro trabajos ex
 
 Se extrae la persistencia de configuración, validación de participantes, congelación de fuentes, directorio, guarda de edición y programación de nuevas etapas. Se mantienen las consultas y el orden de bloqueo, sin abrir transacciones adicionales. Los relojes y el almacenamiento se suministran mediante puertos; la selección de slots sigue usando el servicio nativo en infraestructura. Se conservan los cuerpos originales y se añaden regresiones de congelación, protección y alcance de programación. El formateador de la extracción anterior verificó 777 fuentes y sus pruebas aisladas pasaron; CI integral de este bloque pendiente.
 
+## Proyección del calendario en el navegador
+
+Se extraen las alertas operativas, visibilidad de competiciones, consolidación de eventos/fixtures/FFA, selección por equipo o deck y filtros a un módulo independiente de DOM y cierre compartido. El adaptador entrega valores de controles y dependencias explícitas, sin cambiar etiquetas, prioridades, reglas de finalización ni orden. Se conserva la implementación anterior en fixture y se compara la salida directamente. CI pendiente.
+
 ## Trabajo todavía pendiente para completar toda la plataforma
 
 Estos elementos siguen siendo deuda real; no están certificados como migración completa:

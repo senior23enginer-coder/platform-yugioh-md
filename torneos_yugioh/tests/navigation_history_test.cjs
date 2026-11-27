@@ -187,3 +187,48 @@ const transport = require('../assets/source/javascript/shared/browser-transport.
   assert.deepEqual(requests[3],['./?api=live',{cache:'no-store',credentials:'same-origin'}]);
   console.log('Duel timer, LP state and HTTP ports: isolated contracts verified.');
 })().catch(error=>{console.error(error);process.exitCode=1;});
+
+const calendarProjection = require('../assets/source/javascript/shared/calendar-projection.js');
+const calendarOriginal = JSON.parse(fs.readFileSync(path.join(__dirname,'fixtures/browser-calendar-projection-originals.json'),'utf8'));
+const calendarNorm = value => String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
+const calendarStatus = value => calendarNorm(value).replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'');
+const calendarMatches = [
+  {id:1,competition_id:7,scheduled_on:'2026-11-27',starts_at:'19:00:00',mesa:1,estado:'PENDIENTE',phase:'league',deck_a_id:10,deck_b_id:20,a:'Deck A',b:'Deck B'},
+  {id:2,competition_id:7,scheduled_on:'2026-11-28',estado:'EN CURSO',phase:'league',deck_a_id:20,deck_b_id:30,a:'Deck B',b:'Deck C'},
+  {id:3,competition_id:7,estado:'PENDIENTE',phase:'league',deck_a_id:30,deck_b_id:10,a:'Deck C',b:'Deck A'},
+  {id:4,competition_id:8,scheduled_on:'2026-11-26',estado:'PENDIENTE',phase:'league',a:'Deck A',b:'Deck C'},
+];
+const calendarData = {
+  competitions:[{id:7,active:1,status:'active',type:'league',event_ruleset:'tcg_advanced'},{id:8,active:1,status:'pending_event',type:'cup'},{id:9,active:0,status:'active'},{id:10,active:1,status:'draft'}],
+  allDecks:[{id:10,team_id:100,name:'Deck A'},{id:20,team_id:200,name:'Deck B'},{id:30,team_id:100,name:'Deck C'}],
+  fixtures:{A:[{ronda:1,matches:calendarMatches}]}, divisions:{A:{accent:'#123456'}},
+  events:[{id:1,competition_id:7,event_date:'2026-11-27',title:'Evento',event_type:'league'},{id:2,competition_id:7,event_date:'2026-11-27',title:'Jornada 1',notes:'combates',event_type:'league'}],
+  ffaMatches:[],
+};
+const calendarContext = {
+  data:calendarData, normalize:calendarNorm, normalizeStatusKey:calendarStatus,
+  allMatchList:()=>calendarMatches, alertableMatchList:()=>calendarMatches,
+  serverToday:'2026-11-27', addDays:()=> '2026-11-28', isPlayableDate:date=>date!=='2026-11-26',
+  styleForEvent:(type,accent)=>({label:type,accent:accent||'#123456'}),
+  fixtureRoundsFor:division=>calendarData.fixtures[division],
+  matchVersusLabel:match=>match.a+' vs '+match.b,
+  calendarCompletion:matches=>matches.length?'incomplete':'empty',
+  calendarFormatStyle:()=>({key:'tcg',accent:'#2f80ed'}),
+  matchSideDecks:(match,side)=>[match[side]],
+  calendarType:{value:'league'},calendarDivision:{value:''},calendarSearch:{value:'deck'},
+  calendarProfileScope:{type:'team',id:100,label:'Team A'}
+};
+vm.createContext(calendarContext);
+vm.runInContext(Object.values(calendarOriginal).join('\n')+'\nthis.originalCalendarEvents=calendarEvents;this.originalFilter=filteredCalendarEvents;this.originalAlerts=operationalAlertBuckets;this.originalScope=calendarMatchBelongsToScope;this.originalActive=activeCalendarCompetitions;',calendarContext);
+const plainCalendar = value=>JSON.parse(JSON.stringify(value));
+const activeCalendar = ()=>calendarProjection.activeCalendarCompetitions(calendarData,calendarNorm);
+const projectedCalendar = ()=>calendarProjection.calendarEvents(calendarData,{...calendarContext,activeCalendarCompetitions:activeCalendar});
+const scopedCalendar = (match,scope)=>calendarProjection.calendarMatchBelongsToScope(match,scope,calendarData,calendarContext.matchSideDecks,calendarNorm);
+assert.deepEqual(activeCalendar(),plainCalendar(calendarContext.originalActive()));
+assert.deepEqual(projectedCalendar(),plainCalendar(calendarContext.originalCalendarEvents()));
+assert.deepEqual(calendarProjection.operationalAlertBuckets(calendarContext.alertableMatchList,calendarContext.addDays,calendarContext.serverToday,calendarStatus,calendarContext.isPlayableDate),plainCalendar(calendarContext.originalAlerts()));
+for(const scope of [{type:'deck',id:10,label:'Deck A'},{type:'team',id:100,label:'Team A'},null]){
+  for(const match of calendarMatches) assert.equal(scopedCalendar(match,scope),calendarContext.originalScope(match,scope));
+}
+assert.deepEqual(calendarProjection.filteredCalendarEvents({calendarEvents:projectedCalendar,type:'league',division:'',search:'deck',normalize:calendarNorm,calendarProfileScope:calendarContext.calendarProfileScope,calendarMatchBelongsToScope:scopedCalendar}),plainCalendar(calendarContext.originalFilter()));
+console.log('Calendar projection: original events, alerts, visibility, filters and scopes verified.');

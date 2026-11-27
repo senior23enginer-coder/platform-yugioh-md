@@ -26,8 +26,11 @@ jobs:
         run: |
           npm run format:architecture
           git diff --name-only
-          git diff -- torneos_yugioh/src/Application/Competitions torneos_yugioh/src/Domain/Competitions torneos_yugioh/src/Infrastructure/Persistence/Competitions torneos_yugioh/src/Infrastructure/Composition torneos_yugioh/tests/source_architecture_test.php
+          git diff -- torneos_yugioh/src/Application/Competitions torneos_yugioh/src/Domain/Competitions torneos_yugioh/src/Infrastructure/Persistence/Competitions torneos_yugioh/src/Infrastructure/Composition torneos_yugioh/tests/source_architecture_test.php torneos_yugioh/assets/source/javascript/shared
+          npm run build
+          npm run test:navigation
           php torneos_yugioh/tests/source_architecture_test.php
           php torneos_yugioh/tests/event_admission_test.php
           php torneos_yugioh/tests/legacy_function_contract_test.php
           npm run format:architecture:check
+          npm run build:check

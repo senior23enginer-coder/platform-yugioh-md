@@ -25,6 +25,10 @@
       "responsibility": "life-point state normalization and persistence"
     },
     {
+      "file": "javascript/shared/calendar-projection.js",
+      "responsibility": "calendar event, alert and scope projections"
+    },
+    {
       "file": "javascript/00-startup.js",
       "responsibility": "startup"
     },
